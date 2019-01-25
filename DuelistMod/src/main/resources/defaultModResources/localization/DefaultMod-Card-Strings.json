@@ -394,6 +394,66 @@
 		"NAME": "Valkyrion the Magnet Warrior",
 		"DESCRIPTION": "Placeholder text."
 	},
+	"theDuelist:BlueEyesToon": {
+		"NAME": "B.E. Toon Dragon",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:DarkMirrorForce": {
+		"NAME": "Dark Mirror Force",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:RedEyesToon": {
+		"NAME": "Red Eyes Toon",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:StormingMirrorForce": {
+		"NAME": "Storming Mirror Force",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:SuperheavyBenkei": {
+		"NAME": "Superheavy Benkei",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:SuperheavyScales": {
+		"NAME": "Superheavy Scales",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:SuperheavySwordsman": {
+		"NAME": "Superheavy Swordsman",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:SuperheavyWaraji": {
+		"NAME": "Superheavy Waraji",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:ToonBarrelDragon": {
+		"NAME": "Toon Barrel Dragon",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:ToonBriefcase": {
+		"NAME": "Toon Briefcase",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:ToonDarkMagician": {
+		"NAME": "Toon Dark Magician",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:ToonDarkMagicianGirl": {
+		"NAME": "Toon D.M. Girl",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:ToonGeminiElf": {
+		"NAME": "Toon Gemini Elf",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:ToonMermaid": {
+		"NAME": "Toon Mermaid",
+		"DESCRIPTION": "Placeholder text."
+	},
+	"theDuelist:ToonSummonedSkull": {
+		"NAME": "Toon S. Skull",
+		"DESCRIPTION": "Placeholder text."
+	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon of Ra",
 		"DESCRIPTION": "Tribute 4. Deal damage equal to (number of cards played this turn + summons) multiplied by X."

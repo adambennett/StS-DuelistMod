@@ -196,18 +196,36 @@ public class DefaultMod
     public static final String SWORDS_REVEALING = "cards/Swords_Revealing.png";
     public static final String TIME_WIZARD = "cards/Time_Wizard.png";
     public static final String TOON_BARREL_DRAGON = "cards/Toon_Barrel_Dragon.png";
-    public static final String TOON_BRIEFCASE = "cards/Toon_Barrel_Dragon.png";
-    public static final String TOON_DARK_MAGICIAN = "cards/Toon_Barrel_Dragon.png";
-    public static final String TOON_DARK_MAGICIAN_GIRL = "cards/Toon_Barrel_Dragon.png";
-    public static final String TOON_GEMINI_ELF = "cards/Toon_Barrel_Dragon.png";
-    public static final String TOON_MERMAID = "cards/Toon_Barrel_Dragon.png";
-    public static final String TOON_SUMMONED_SKULL = "cards/Toon_Barrel_Dragon.png";
+    public static final String TOON_BRIEFCASE = "cards/Toon_Briefcase.png";
+    public static final String TOON_DARK_MAGICIAN = "cards/Toon_Dark_Magician.png";
+    public static final String TOON_DARK_MAGICIAN_GIRL = "cards/Toon_Dark_Magician_Girl.png";
+    public static final String TOON_GEMINI_ELF = "cards/Toon_Gemini_Elf.png";
+    public static final String TOON_MERMAID = "cards/Toon_Mermaid.png";
+    public static final String TOON_SUMMONED_SKULL = "cards/Toon_Summoned_Skull.png";
     public static final String TOON_WORLD = "cards/Toon_World.png";
     public static final String TRAP_HOLE = "cards/Trap_Hole.png";
     public static final String VALK_MAGNET = "cards/Valk_Magnet.png";
     public static final String WINGED_DRAGON_RA = "cards/Winged_Dragon_Ra.png";
 	
     // Many rainbow fishes..
+    
+    /*
+    public static final String BLUE_EYES_TOON = "cards/7_Colored_Fish.png";
+    public static final String DARK_MIRROR_FORCE = "cards/7_Colored_Fish.png";
+    public static final String RED_EYES_TOON = "cards/7_Colored_Fish.png";
+    public static final String STORMING_MIRROR_FORCE = "cards/7_Colored_Fish.png";
+    public static final String SUPERHEAVY_BENKEI = "cards/7_Colored_Fish.png";
+    public static final String SUPERHEAVY_SCALES = "cards/7_Colored_Fish.png";
+    public static final String SUPERHEAVY_SWORDSMAN = "cards/7_Colored_Fish.png";
+    public static final String SUPERHEAVY_WARAJI = "cards/7_Colored_Fish.png";
+    public static final String TOON_BARREL_DRAGON = "cards/7_Colored_Fish.png";
+    public static final String TOON_BRIEFCASE = "cards/7_Colored_Fish.png";
+    public static final String TOON_DARK_MAGICIAN = "cards/7_Colored_Fish.png";
+    public static final String TOON_DARK_MAGICIAN_GIRL = "cards/7_Colored_Fish.png";
+    public static final String TOON_GEMINI_ELF = "cards/7_Colored_Fish.png";
+    public static final String TOON_MERMAID = "cards/7_Colored_Fish.png";
+    public static final String TOON_SUMMONED_SKULL = "cards/7_Colored_Fish.png";
+    */
     /*
     public static final String CELTIC_GUARDIAN = "cards/7_Colored_Fish.png";
     public static final String DARK_HOLE = "cards/7_Colored_Fish.png";
