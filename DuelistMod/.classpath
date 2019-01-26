@@ -28,8 +28,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/BaseMod.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/desktop-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/ModTheSpire.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adam/Documents/Slay the Spire Modding/lib/BaseMod.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adam/Documents/Slay the Spire Modding/lib/desktop-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adam/Documents/Slay the Spire Modding/lib/ModTheSpire.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

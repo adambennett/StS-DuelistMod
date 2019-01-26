@@ -206,71 +206,7 @@ public class DefaultMod
     public static final String TRAP_HOLE = "cards/Trap_Hole.png";
     public static final String VALK_MAGNET = "cards/Valk_Magnet.png";
     public static final String WINGED_DRAGON_RA = "cards/Winged_Dragon_Ra.png";
-	
-    // Many rainbow fishes..
-    
-    /*
-    public static final String BLUE_EYES_TOON = "cards/7_Colored_Fish.png";
-    public static final String DARK_MIRROR_FORCE = "cards/7_Colored_Fish.png";
-    public static final String RED_EYES_TOON = "cards/7_Colored_Fish.png";
-    public static final String STORMING_MIRROR_FORCE = "cards/7_Colored_Fish.png";
-    public static final String SUPERHEAVY_BENKEI = "cards/7_Colored_Fish.png";
-    public static final String SUPERHEAVY_SCALES = "cards/7_Colored_Fish.png";
-    public static final String SUPERHEAVY_SWORDSMAN = "cards/7_Colored_Fish.png";
-    public static final String SUPERHEAVY_WARAJI = "cards/7_Colored_Fish.png";
-    public static final String TOON_BARREL_DRAGON = "cards/7_Colored_Fish.png";
-    public static final String TOON_BRIEFCASE = "cards/7_Colored_Fish.png";
-    public static final String TOON_DARK_MAGICIAN = "cards/7_Colored_Fish.png";
-    public static final String TOON_DARK_MAGICIAN_GIRL = "cards/7_Colored_Fish.png";
-    public static final String TOON_GEMINI_ELF = "cards/7_Colored_Fish.png";
-    public static final String TOON_MERMAID = "cards/7_Colored_Fish.png";
-    public static final String TOON_SUMMONED_SKULL = "cards/7_Colored_Fish.png";
-    */
-    /*
-    public static final String CELTIC_GUARDIAN = "cards/7_Colored_Fish.png";
-    public static final String DARK_HOLE = "cards/7_Colored_Fish.png";
-    public static final String EXODIA_RIGHT_ARM = "cards/7_Colored_Fish.png";
-    public static final String EXODIA_RIGHT_LEG = "cards/7_Colored_Fish.png";
-    public static final String FEATHER_PHOENIX = "cards/7_Colored_Fish.png";
-    public static final String FIEND_MEGACYBER = "cards/7_Colored_Fish.png";
-    
-    public static final String POT_DUALITY = "cards/7_Colored_Fish.png";
-    public static final String POT_GENEROSITY = "cards/7_Colored_Fish.png";
-    public static final String POT_GREED = "cards/7_Colored_Fish.png";
-    public static final String PUMPKING = "cards/7_Colored_Fish.png";
-    public static final String PUMPRINCESS = "cards/7_Colored_Fish.png";
-    public static final String RADIANT_MIRROR_FORCE = "cards/7_Colored_Fish.png";
-    public static final String RAIN_MERCY = "cards/7_Colored_Fish.png";
-    public static final String RED_EYES = "cards/7_Colored_Fish.png";
-    public static final String RED_MEDICINE = "cards/7_Colored_Fish.png";
-    public static final String RELINQUISHED = "cards/7_Colored_Fish.png";
-    public static final String SANGA_THUNDER = "cards/7_Colored_Fish.png";
-    public static final String SANGA_WATER = "cards/7_Colored_Fish.png";
-    public static final String SCAPEGOAT = "cards/7_Colored_Fish.png";
-    public static final String SLIFER_SKY = "cards/7_Colored_Fish.png";
-    public static final String SUMMONED_SKULL = "cards/7_Colored_Fish.png";
-    public static final String SWORDS_BURNING = "cards/7_Colored_Fish.png";
-    public static final String SWORDS_CONCEALING = "cards/7_Colored_Fish.png";
-    public static final String SWORDS_REVEALING = "cards/7_Colored_Fish.png";
-    public static final String TOON_WORLD = "cards/7_Colored_Fish.png";
-    public static final String TRAP_HOLE = "cards/7_Colored_Fish.png";
-    public static final String VALK_MAGNET = "cards/7_Colored_Fish.png";
-    public static final String WINGED_DRAGON_RA = "cards/7_Colored_Fish.png";
-    
-    /*
-    public static final String BAD_REACTION = "cards/7_Colored_Fish.png";
-    public static final String CANNON_SOLDIER = "cards/7_Colored_Fish.png";
-    public static final String CATAPULT_TURTLE = "cards/7_Colored_Fish.png";
-    public static final String IMPERIAL_ORDER = "cards/7_Colored_Fish.png";
-    public static final String JAM_BREEDING = "cards/7_Colored_Fish.png";
-    public static final String MAUSOLEUM = "cards/7_Colored_Fish.png";
-    
-    public static final String SHARD_GREED = "cards/7_Colored_Fish.png";
-    public static final String TIME_WIZARD = "cards/7_Colored_Fish.png";
-    public static final String SEVEN_COLORED_FISH = "cards/7_Colored_Fish.png";
-    public static final String LEGENDARY_FISHERMAN = "cards/7_Colored_Fish.png";
-    */
-    
+  
     // Power images
     public static final String COMMON_POWER = "powers/placeholder_power.png";
     public static final String UNCOMMON_POWER = "powers/placeholder_power.png";
