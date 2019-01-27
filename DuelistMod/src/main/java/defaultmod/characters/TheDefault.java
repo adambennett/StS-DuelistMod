@@ -23,14 +23,15 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
-import defaultmod.cards.*;
-import defaultmod.patches.*;
+import defaultmod.cards.CastleWalls;
+import defaultmod.cards.CelticGuardian;
+import defaultmod.cards.GeminiElf;
+import defaultmod.cards.GiantSoldier;
+import defaultmod.cards.Hinotoma;
+import defaultmod.cards.ScrapFactory;
+import defaultmod.cards.SevenColoredFish;
+import defaultmod.patches.AbstractCardEnum;
 import defaultmod.relics.PlaceholderRelic;
-
-import basemod.animations.AbstractAnimation;
-import basemod.animations.SpriterAnimation;
-//Wiki-page https://github.com/daviscook477/BaseMod/wiki/Custom-Characters
-//and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 
 public class TheDefault extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
@@ -113,7 +114,7 @@ public class TheDefault extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo("The Duelist",
-                "Placeholder description text. NL " + "Second line of description text. ",
+                "The Duelist summons and tributes monster cards to slay the spire. NL " + "Play your favorite deckbuilding game with a Yu-Gi-Oh! twist.",
                 STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
@@ -127,18 +128,14 @@ public class TheDefault extends CustomPlayer {
 
         retVal.add(SevenColoredFish.ID);
         retVal.add(SevenColoredFish.ID);
-        retVal.add(SevenColoredFish.ID);
-        
-        retVal.add(SevenColoredFish.ID);
-        retVal.add(SevenColoredFish.ID);
-        retVal.add(SevenColoredFish.ID);
-        
-        retVal.add(SevenColoredFish.ID);
-        retVal.add(SevenColoredFish.ID);
-        retVal.add(SevenColoredFish.ID);
-        
-        retVal.add(SevenColoredFish.ID);
-      
+        retVal.add(GiantSoldier.ID);
+        retVal.add(GiantSoldier.ID);
+        retVal.add(CastleWalls.ID);
+        retVal.add(CastleWalls.ID);
+        retVal.add(CelticGuardian.ID);
+        retVal.add(Hinotoma.ID);
+        retVal.add(ScrapFactory.ID);
+        retVal.add(GeminiElf.ID);
         return retVal;
     }
 

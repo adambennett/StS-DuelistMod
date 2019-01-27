@@ -1,8 +1,6 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,11 +8,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
 
-public class DefaultCommonAttack extends CustomCard {
+public class GeminiElf extends CustomCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -26,7 +24,7 @@ public class DefaultCommonAttack extends CustomCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = defaultmod.DefaultMod.makeID("DefaultCommonAttack");
+    public static final String ID = defaultmod.DefaultMod.makeID("GeminiElf");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     // Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
@@ -34,7 +32,7 @@ public class DefaultCommonAttack extends CustomCard {
     // Using makePath is good practice once you get the hand of things, as it prevents you from
     // having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
 
-    public static final String IMG = DefaultMod.makePath(DefaultMod.DEFAULT_COMMON_ATTACK);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.GEMINI_ELF);
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
@@ -45,34 +43,30 @@ public class DefaultCommonAttack extends CustomCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 1;
-    private static final int DAMAGE = 7;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int COST = 0;
 
     // /STAT DECLARATION/
 
-    public DefaultCommonAttack() {
+    public GeminiElf() 
+    {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 1));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new DefaultCommonAttack();
+        return new GeminiElf();
     }
 
     // Upgraded stats.
@@ -80,7 +74,6 @@ public class DefaultCommonAttack extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.initializeDescription();
         }
     }

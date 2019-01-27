@@ -92,6 +92,7 @@ public class DefaultMod
     private static final String ENERGY_ORB_DEFAULT_GRAY_PORTRAIT = "1024/card_default_gray_orb.png";
 
     // Card images
+    /*
     public static final String DEFAULT_COMMON_ATTACK = "cards/Attack.png";
     public static final String DEFAULT_COMMON_SKILL = "cards/Skill.png";
     public static final String DEFAULT_COMMON_POWER = "cards/Power.png";
@@ -101,6 +102,7 @@ public class DefaultMod
     public static final String DEFAULT_RARE_ATTACK = "cards/Attack.png";
     public static final String DEFAULT_RARE_SKILL = "cards/Skill.png";
     public static final String DEFAULT_RARE_POWER = "cards/Power.png";
+    */
     
     public static final String ALPHA_MAGNET = "cards/Alpha_Magnet.png";
     public static final String ANCIENT_RULES = "cards/Ancient_Rules.png";
@@ -137,6 +139,7 @@ public class DefaultMod
     public static final String GAIA_FIERCE = "cards/Gaia_Fierce.png";
     public static final String GAMMA_MAGNET = "cards/Gamma_Magnet.png";
     public static final String GATE_GUARDIAN = "cards/Gate_Guardian.png";
+    public static final String GEMINI_ELF = "cards/Gemini_Elf.png";
     public static final String GIANT_SOLDIER = "cards/Giant_Soldier.png";
     public static final String GIANT_TRUNADE = "cards/Giant_Trunade.png";
     public static final String GRACEFUL_CHARITY = "cards/Graceful_Charity.png";
@@ -182,6 +185,7 @@ public class DefaultMod
     public static final String SANGA_THUNDER = "cards/Sanga_Thunder.png";
     public static final String SANGA_WATER = "cards/Sanga_Water.png";
     public static final String SCAPEGOAT = "cards/Scapegoat.png";
+    public static final String SCRAP_FACTORY = "cards/Scrap_Factory.png";
     public static final String SEVEN_COLORED_FISH = "cards/7_Colored_Fish.png";
     public static final String SHARD_GREED = "cards/Shard_Greed.png";
     public static final String SLIFER_SKY = "cards/Slifer_Sky.png";
@@ -208,9 +212,12 @@ public class DefaultMod
     public static final String WINGED_DRAGON_RA = "cards/Winged_Dragon_Ra.png";
   
     // Power images
+    /*
     public static final String COMMON_POWER = "powers/placeholder_power.png";
     public static final String UNCOMMON_POWER = "powers/placeholder_power.png";
     public static final String RARE_POWER = "powers/placeholder_power.png";
+    */
+    public static final String SUMMON_POWER = "powers/SummonPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -370,6 +377,7 @@ public class DefaultMod
         logger.info("Adding cards");
         // Add the cards
         
+        /*
         BaseMod.addCard(new DefaultCommonAttack());
         BaseMod.addCard(new DefaultAttackWithVariable());
         BaseMod.addCard(new DefaultCommonSkill());
@@ -380,9 +388,26 @@ public class DefaultMod
         BaseMod.addCard(new DefaultRareAttack());
         BaseMod.addCard(new DefaultRareSkill());
         BaseMod.addCard(new DefaultRarePower());
-        
+        */
         
         // Adding yugioh cards
+        /*
+        BaseMod.addCard(new BlueEyes());
+        BaseMod.addCard(new CastleWalls());
+        BaseMod.addCard(new CelticGuardian());
+        BaseMod.addCard(new GaiaFierce());
+        BaseMod.addCard(new GeminiElf());
+		BaseMod.addCard(new GiantSoldier());
+		BaseMod.addCard(new Hinotoma());
+		BaseMod.addCard(new JudgeMan());
+		BaseMod.addCard(new Ookazi());
+		BaseMod.addCard(new RedEyes());
+		BaseMod.addCard(new ScrapFactory());
+		BaseMod.addCard(new SevenColoredFish());
+		BaseMod.addCard(new SummonedSkull());
+		BaseMod.addCard(new SuperheavyScales());
+        */
+		
         BaseMod.addCard(new AlphaMagnet());
 		BaseMod.addCard(new AncientRules());
 		BaseMod.addCard(new AxeDespair());
@@ -418,6 +443,7 @@ public class DefaultMod
 		BaseMod.addCard(new GaiaFierce());
 		BaseMod.addCard(new GammaMagnet());
 		BaseMod.addCard(new GateGuardian());
+		BaseMod.addCard(new GeminiElf());
 		BaseMod.addCard(new GiantSoldier());
 		BaseMod.addCard(new GiantTrunade());
 		BaseMod.addCard(new GracefulCharity());
@@ -463,6 +489,7 @@ public class DefaultMod
 		BaseMod.addCard(new SangaThunder());
 		BaseMod.addCard(new SangaWater());
 		BaseMod.addCard(new Scapegoat());
+		BaseMod.addCard(new ScrapFactory());
 		BaseMod.addCard(new SevenColoredFish());
 		BaseMod.addCard(new ShardGreed());
 		BaseMod.addCard(new SliferSky());
@@ -487,9 +514,10 @@ public class DefaultMod
 		BaseMod.addCard(new TrapHole());
 		BaseMod.addCard(new ValkMagnet());
 		BaseMod.addCard(new WingedDragonRa());
-    
+    	
         logger.info("Making sure the cards are unlocked.");
         // Unlock the cards
+        /*
         UnlockTracker.unlockCard(DefaultCommonAttack.ID);
         UnlockTracker.unlockCard(DefaultAttackWithVariable.ID);
         UnlockTracker.unlockCard(DefaultCommonSkill.ID);
@@ -500,9 +528,26 @@ public class DefaultMod
         UnlockTracker.unlockCard(DefaultRareAttack.ID);
         UnlockTracker.unlockCard(DefaultRareSkill.ID);
         UnlockTracker.unlockCard(DefaultRarePower.ID);
-        
+        */
         
         // Unlock yugioh cards
+        /*
+        UnlockTracker.unlockCard(BlueEyes.ID);
+    	UnlockTracker.unlockCard(CastleWalls.ID);
+    	UnlockTracker.unlockCard(CelticGuardian.ID);
+    	UnlockTracker.unlockCard(GaiaFierce.ID);
+    	UnlockTracker.unlockCard(GeminiElf.ID);
+		UnlockTracker.unlockCard(GiantSoldier.ID);
+		UnlockTracker.unlockCard(Hinotoma.ID);
+		UnlockTracker.unlockCard(JudgeMan.ID);
+		UnlockTracker.unlockCard(Ookazi.ID);
+		UnlockTracker.unlockCard(RedEyes.ID);
+		UnlockTracker.unlockCard(ScrapFactory.ID);
+		UnlockTracker.unlockCard(SevenColoredFish.ID);
+		UnlockTracker.unlockCard(SummonedSkull.ID);
+		UnlockTracker.unlockCard(SuperheavyScales.ID);
+		*/
+		
         UnlockTracker.unlockCard(AlphaMagnet.ID);
 		UnlockTracker.unlockCard(AncientRules.ID);
 		UnlockTracker.unlockCard(AxeDespair.ID);
@@ -538,6 +583,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(GaiaFierce.ID);
 		UnlockTracker.unlockCard(GammaMagnet.ID);
 		UnlockTracker.unlockCard(GateGuardian.ID);
+		UnlockTracker.unlockCard(GeminiElf.ID);
 		UnlockTracker.unlockCard(GiantSoldier.ID);
 		UnlockTracker.unlockCard(GiantTrunade.ID);
 		UnlockTracker.unlockCard(GracefulCharity.ID);
@@ -583,6 +629,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(SangaThunder.ID);
 		UnlockTracker.unlockCard(SangaWater.ID);
 		UnlockTracker.unlockCard(Scapegoat.ID);
+		UnlockTracker.unlockCard(ScrapFactory.ID);
 		UnlockTracker.unlockCard(SevenColoredFish.ID);
 		UnlockTracker.unlockCard(ShardGreed.ID);
 		UnlockTracker.unlockCard(SliferSky.ID);
@@ -648,10 +695,13 @@ public class DefaultMod
     public void receiveEditKeywords() {
         final String[] placeholder = { "keyword", "keywords", "Keyword", "Keywords" };
         BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
-        BaseMod.addKeyword(new String[] {"summon", "Summon"}, "Placeholder text.");
-        BaseMod.addKeyword(new String[] {"tribute", "Tribute"}, "Placeholder text.");
-        BaseMod.addKeyword(new String[] {"spell counter", "Spell Counter"}, "Placeholder text.");	
+        BaseMod.addKeyword(new String[] {"summon", "Summon"}, "Stack counter of number of monsters currently summoned. Tribute or sacrifice to remove stacks, play monster cards to increase.");
+        BaseMod.addKeyword(new String[] {"tribute", "Tribute"}, "Sacrifices the given number of summons. Monster cards with tribute do NOT stack additional summons.");
+        BaseMod.addKeyword(new String[] {"spell counter", "Spell Counter", "Spell Counters", "spell counters"}, "Placeholder text.");	
         BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "Placeholder text.");
+        BaseMod.addKeyword(new String[] {"Burning Flesh"}, "Each time target takes damage, Summon 1.");
+        BaseMod.addKeyword(new String[] {"Mako's Tsunami"}, "Each time target attacks, gain 1 Dexterity.");
+        BaseMod.addKeyword(new String[] {"Blessing of Ra"}, "Gain 1 Strength. Gain 3 Dexterity.");
 
     }
 

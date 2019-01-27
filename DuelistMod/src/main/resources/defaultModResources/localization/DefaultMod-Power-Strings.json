@@ -3,6 +3,10 @@
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["You applied ", " keyword.", " keywords."]
 },
+"theDuelist:SummonPower": {
+        "NAME": "Summons",
+        "DESCRIPTIONS": ["The number of monsters you have currently summoned. Gain more by playing monsters. Remove summons by tributing or sacrificing."]
+},
 "theDuelist:RarePower": {
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["At the start of your turn, TOUCH ", " enemy." , " enemies."]

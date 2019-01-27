@@ -13,6 +13,7 @@ import basemod.abstracts.CustomCard;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
 
 public class JudgeMan extends CustomCard {
 
@@ -44,14 +45,14 @@ public class JudgeMan extends CustomCard {
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int COST = 1;
+    private static final int DAMAGE = 5;
+    private static final int UPGRADE_PLUS_DMG = 3;
 
     // /STAT DECLARATION/
 
@@ -62,11 +63,27 @@ public class JudgeMan extends CustomCard {
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.magicNumber >= 1)
+    		{
+    			AbstractDungeon.actionManager
+    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, 1));
+    			AbstractDungeon.actionManager
+    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 1));
+    			AbstractDungeon.actionManager
+    				.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
+    				new DamageInfo(p, this.damage, this.damageTypeForTurn),
+    				AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    		}
+    	} 
+    	else 
+    	{
+    		this.magicNumber = 0;
+    	} 
     }
 
     // Which card to return when making a copy of this card.

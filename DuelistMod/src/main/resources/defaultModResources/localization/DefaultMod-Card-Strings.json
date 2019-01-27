@@ -44,7 +44,7 @@
 	},
 	"theDuelist:AlphaMagnet": {
 		"NAME": "A. Magnet Warrior",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Gain Alpha Magnet. Deal 5 damage."
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "Ancient Rules",
@@ -55,7 +55,7 @@
 		"DESCRIPTION": "Gain 10 strength this turn. At the end of the turn, Sacrifice 1 and place this card on top of your draw pile."
 	},
 	"theDuelist:BadReaction": {
-		"NAME": "Bad Reaction to Simochi",
+		"NAME": "Bad Reaction",
 		"DESCRIPTION": "During your turn, any healing effects damage all enemies instead."
 	},
 	"theDuelist:BarrelDragon": {
@@ -64,11 +64,15 @@
 	},
 	"theDuelist:BetaMagnet": {
 		"NAME": "B. Magnet Warrior",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Gain Beta Magnet. Block 5."
 	},
 	"theDuelist:BlueEyes": {
 		"NAME": "B.E. White Dragon",
-		"DESCRIPTION": "Tribute 2. Deal 30 damage. If you play 3 copies of this in one turn, add a copy of Blue Eyes Ultimate to your hand."
+		"DESCRIPTION": "Tribute 2. Deal 30 damage."
+	},
+	"theDuelist:BlueEyesToon": {
+		"NAME": "B.E. Toon Dragon",
+		"DESCRIPTION": "Tribute 2. Deal 25 damage (through block). Can only be played if Toon World is active."
 	},
 	"theDuelist:BlueEyesUltimate": {
 		"NAME": "B. Eyes Ultimate",
@@ -87,8 +91,8 @@
 		"DESCRIPTION": "Discard your entire hand. Gain 1 Intangible. Gain 1 block for each enemy in combat. Gain 1 artifact for each enemy in combat."
 	},
 	"theDuelist:CastleDarkIllusions": {
-		"NAME": "Castle of Dark Illusions",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Castle Dark Illusion",
+		"DESCRIPTION": "Whenever you shuffle your discard pile back into your deck, Summon 1 for each monster card shuffled."
 	},
 	"theDuelist:CastleWalls": {
 		"NAME": "Castle Walls",
@@ -100,7 +104,7 @@
 	},
 	"theDuelist:CelticGuardian": {
 		"NAME": "Celtic Guardian",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Deal 6 damage."
 	},
 	"theDuelist:ChangeHeart": {
 		"NAME": "Change of Heart",
@@ -119,8 +123,8 @@
 		"DESCRIPTION": "Tribute 2.  Deal 25 damage. Apply 3 Spell Counters."
 	},
 	"theDuelist:DarkMagicianGirl": {
-		"NAME": "Dark Magician Girl",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "D.M. Girl",
+		"DESCRIPTION": "Tribute 1. Apply 4 Spell Counters."
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "Dian Keto",
@@ -131,68 +135,68 @@
 		"DESCRIPTION": "Apply 1 Exodia. Summon 1 monster. Overflow - Apply 1 Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaLA": {
-		"NAME": "Exodia Left Arm",
+		"NAME": "Exodia L. Arm",
 		"DESCRIPTION": "Apply 1 Exodia. Summon 1 monster. Overflow - Apply 1 Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaLL": {
-		"NAME": "Exodia Left Leg",
+		"NAME": "Exodia L. Leg",
 		"DESCRIPTION": "Apply 1 Exodia. Summon 1 monster. Overflow - Apply 1 Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaRA": {
-		"NAME": "Exodia Right Arm",
+		"NAME": "Exodia R. Arm",
 		"DESCRIPTION": "Apply 1 Exodia. Summon 1 monster. Overflow - Apply 1 Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaRL": {
-		"NAME": "Exodia Right Leg",
+		"NAME": "Exodia R. Leg",
 		"DESCRIPTION": "Apply 1 Exodia. Summon 1 monster. Overflow - Apply 1 Exodia. Exhaust."
 	},
 	"theDuelist:FeatherPho": {
 		"NAME": "Phoenix Feather",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Discard 1 card from your hand. Place 1 card from your discard pile into your draw pile."
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "Fiend Megacyber",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 1. Deal 5 damage to any enemy for every Spell Counter it has."
 	},
 	"theDuelist:Fissure": {
 		"NAME": "Fissure",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Deal 12 damage to the enemy with the lowest HP."
 	},
 	"theDuelist:FlameSwordsman": {
 		"NAME": "Flame Swordsman",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 1. Apply Burning Flesh. Deal 6 damage."
 	},
 	"theDuelist:GaiaFierce": {
 		"NAME": "G. Fierce Knight",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 2. Deal 10 damage."
 	},
 	"theDuelist:GammaMagnet": {
 		"NAME": "G. Magnet Warrior",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Gain Gamma Magnet. Draw 1 card."
 	},
 	"theDuelist:GateGuardian": {
 		"NAME": "Gate Guardian",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Can only be played if you have a lightning, plasma and frost channeled. Summon 3. Deal 50 damage."
 	},
 	"theDuelist:GiantSoldier": {
-		"NAME": "Giant Soldier of Stone",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Giant Stone Soldier",
+		"DESCRIPTION": "Summon 1 monster. Block 3."
 	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "Giant Trunade",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Remove all buffs and debuffs from everyone in combat. Reapply all buffs and debuffs at the start of your next turn."
 	},
 	"theDuelist:GracefulCharity": {
 		"NAME": "Graceful Charity",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Draw 3 cards. At the end of your turn, discard 2 cards."
 	},
 	"theDuelist:HarpieFeather": {
-		"NAME": "Harpie's Feather Duster",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Harpie Feather Duster",
+		"DESCRIPTION": "Remove all buffs from all enemies."
 	},
 	"theDuelist:Hinotoma": {
 		"NAME": "Hinotoma",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Deal 6 damage."
 	},
 	"theDuelist:ImperialOrder": {
 		"NAME": "Imperial Order",
@@ -200,43 +204,43 @@
 	},
 	"theDuelist:InjectionFairy": {
 		"NAME": "Injection Fairy Lily",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1 monster. Choose one: take 5 damage and deal 15 damage; gain 15 HP and deal 5 damage."
 	},
 	"theDuelist:InsectQueen": {
 		"NAME": "Insect Queen",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute all summons. Apply that much poison to all enemies."
 	},
 	"theDuelist:JamBreeding": {
-		"NAME": "Jam Breeding Machine",
+		"NAME": "Jam Breed Machine",
 		"DESCRIPTION": "At the start of your turn, Summon 1 and deal 5 damage to a random enemy."
 	},
 	"theDuelist:JudgeMan": {
 		"NAME": "Judge Man",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 1. Summon 2. Deal 5 damage."
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1 monster. Gain 1 Intangible."
 	},
 	"theDuelist:LabyrinthWall": {
 		"NAME": "Labyrinth Wall",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Block 30."
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "Legendary Fisherman",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 3. Apply Mako's Tsunami to all enemies. Exhaust."
 	},
 	"theDuelist:MagicCylinder": {
 		"NAME": "Magic Cylinder",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "The next time you take unblocked damage, gain Reflection."
 	},
 	"theDuelist:Mausoleum": {
-		"NAME": "Mausoleum of the Emperor",
+		"NAME": "Emperor Mausoleum",
 		"DESCRIPTION": "The first card you play with Tribute each turn does not sacrifice. Take 1 damage each turn."
 	},
 	"theDuelist:MillenniumShield": {
 		"NAME": "Millennium Shield",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Gain 6 Dexterity."
 	},
 	"theDuelist:MirrorForce": {
 		"NAME": "Mirror Force",
@@ -268,7 +272,7 @@
 	},
 	"theDuelist:OjamaKing": {
 		"NAME": "Ojama King",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 3. Apply an effect X times for each different Ojama token you have to every enemy with Spell Counters, where X is the number of Spell Counters."
 	},
 	"theDuelist:OjamaKnight": {
 		"NAME": "Ojama Knight",
@@ -284,7 +288,7 @@
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "At the start of your turn, have a chance to poison or debuff random enemies. Chances are raised with more summon stacks."
 	},
 	"theDuelist:PotAvarice": {
 		"NAME": "Pot of Avarice",
@@ -292,31 +296,31 @@
 	},
 	"theDuelist:PotDichotomy": {
 		"NAME": "Pot of Dichotomy",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon X."
 	},
 	"theDuelist:PotDuality": {
 		"NAME": "Pot of Duality",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Look at the top 3 cards of your deck - add one to your hand and shuffle the other two back in."
 	},
 	"theDuelist:PotGenerosity": {
 		"NAME": "Pot of Generosity",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Each time you Summon this turn, gain 1 mana."
 	},
 	"theDuelist:PotGreed": {
 		"NAME": "Pot of Greed",
 		"DESCRIPTION": "Innate. Draw 2 cards. Exhaust."
 	},
 	"theDuelist:Pumpking": {
-		"NAME": "Pumpking, King of Ghosts",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Pumpking",
+		"DESCRIPTION": "Tribute 1. Play a random monster card from your discard pile."
 	},
 	"theDuelist:Pumprincess": {
-		"NAME": "Pumprincess, Princess of Ghosts",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Pumprincess",
+		"DESCRIPTION": "Summon 1. Play a random monster from your discard pile."
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "The next time you take unblocked damage, all enemies lose all block."
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "Rain of Mercy",
@@ -332,7 +336,7 @@
 	},
 	"theDuelist:Relinquished": {
 		"NAME": "Relinquished",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Copy each enemy action this turn."
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
@@ -355,8 +359,8 @@
 		"DESCRIPTION": "Summon 1. Deal 3 damage."
 	},
 	"theDuelist:SliferSky": {
-		"NAME": "Slifer the Sky Dragon",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Slifer Sky Dragon",
+		"DESCRIPTION": "Tribute 4. At the start of your turn, sacrifice all monsters and apply 1 Blessing of Ra for each. Exhaust."
 	},
 	"theDuelist:ShardGreed": {
 		"NAME": "Shard of Greed",
@@ -367,15 +371,15 @@
 		"DESCRIPTION": "Tribute 1. Deal 14 damage."
 	},
 	"theDuelist:SwordsBurning": {
-		"NAME": "Swords of Burning Light",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Swords: Burning Light",
+		"DESCRIPTION": "Each time you deal 10 unblocked damage for the next 3 turns, Summon 1."
 	},
 	"theDuelist:SwordsConcealing": {
-		"NAME": "Swords of Concealing Light",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Swords: Concealing Light",
+		"DESCRIPTION": "For the next 3 turns, gain 15 block at the start of your turn."
 	},
 	"theDuelist:SwordsRevealing": {
-		"NAME": "Swords of Revealing Light",
+		"NAME": "Swords: Revealing Light",
 		"DESCRIPTION": "For the next 3 turns, gain 1 Intangible. You may not play any attack cards while this effect is active."
 	},
 	"theDuelist:TimeWizard": {
@@ -384,78 +388,82 @@
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Allows you to play Toon monster cards."
 	},
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",
 		"DESCRIPTION": "The next time an enemy summons minions, deal 10 damage to ALL enemies. "
 	},
 	"theDuelist:ValkMagnet": {
-		"NAME": "Valkyrion the Magnet Warrior",
-		"DESCRIPTION": "Placeholder text."
-	},
-	"theDuelist:BlueEyesToon": {
-		"NAME": "B.E. Toon Dragon",
-		"DESCRIPTION": "Placeholder text."
+		"NAME": "Valkyrion",
+		"DESCRIPTION": "If you have all three magnets, summon 3 and deal 20 damage. Remove all magnets."
 	},
 	"theDuelist:DarkMirrorForce": {
 		"NAME": "Dark Mirror Force",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "The next time you take damage, gain Weak equal to the damage and take 0 damage."
 	},
 	"theDuelist:RedEyesToon": {
 		"NAME": "Red Eyes Toon",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Deal 24 damage (through block)."
 	},
 	"theDuelist:StormingMirrorForce": {
 		"NAME": "Storming Mirror Force",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Each time an enemy attacks this turn, Summon 1."
 	},
 	"theDuelist:SuperheavyBenkei": {
 		"NAME": "Superheavy Benkei",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 3. Deal 25 damage. Gain 3 dexterity."
 	},
 	"theDuelist:SuperheavyScales": {
 		"NAME": "Superheavy Scales",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Block 8."
 	},
 	"theDuelist:SuperheavySwordsman": {
 		"NAME": "Superheavy Swordsman",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Deal 12 damage. Gain 1 dexterity."
 	},
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "Superheavy Waraji",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 2. Gain 3 dexterity."
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Deal a random amount of damage (0-50) to each enemy. Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Toon monsters played this turn are added back to your hand at the end of your turn."
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Deal 15 damage (through block). Apply 3 Spell Counters. Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Apply 6 Spell Counters. Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "Toon Gemini Elf",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 2. Deal 3 damage (through block). Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonMermaid": {
 		"NAME": "Toon Mermaid",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Deal 6 damage (through block). Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonSummonedSkull": {
 		"NAME": "Toon S. Skull",
-		"DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 1. Deal 9 damage (through block). Gain 1 Strength. Can only be played if Toon World is active."
+	},
+	"theDuelist:ScrapFactory": {
+		"NAME": "Scrap Factory",
+		"DESCRIPTION": "Tribute 1. Gain 1 mana."
+	},
+	"theDuelist:GeminiElf": {
+		"NAME": "Gemini Elf",
+		"DESCRIPTION": "Summon 2."
 	},
 	"theDuelist:WingedDragonRa": {
-		"NAME": "Winged Dragon of Ra",
+		"NAME": "Winged Dragon Ra",
 		"DESCRIPTION": "Tribute 4. Deal damage equal to (number of cards played this turn + summons) multiplied by X."
 	}
 }

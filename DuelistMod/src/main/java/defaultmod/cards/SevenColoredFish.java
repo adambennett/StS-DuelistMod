@@ -13,6 +13,7 @@ import basemod.abstracts.CustomCard;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
 
 public class SevenColoredFish extends CustomCard {
 
@@ -44,7 +45,7 @@ public class SevenColoredFish extends CustomCard {
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -63,6 +64,7 @@ public class SevenColoredFish extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 1), 1));
         AbstractDungeon.actionManager
                 .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
                         new DamageInfo(p, this.damage, this.damageTypeForTurn),
