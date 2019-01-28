@@ -36,6 +36,7 @@ public class GeminiElf extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -60,7 +61,7 @@ public class GeminiElf extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 1));
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 2));
     }
 
     // Which card to return when making a copy of this card.
@@ -74,6 +75,7 @@ public class GeminiElf extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

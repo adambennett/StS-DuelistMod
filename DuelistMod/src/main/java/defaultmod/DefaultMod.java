@@ -67,7 +67,7 @@ public class DefaultMod
     // Colors (RGB)
         // Character Color
         public static final Color DEFAULT_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
-
+        
         // Potion Colors in RGB
         public static final Color PLACEHOLDER_POTION_LIQUID = CardHelper.getColor(209.0f, 53.0f, 18.0f); // Orange-ish Red
         public static final Color PLACEHOLDER_POTION_HYBRID = CardHelper.getColor(255.0f, 230.0f, 230.0f); // Near White
@@ -355,6 +355,7 @@ public class DefaultMod
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
         BaseMod.addRelicToCustomPool(new PlaceholderRelic(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new StarterRelic(), AbstractCardEnum.DEFAULT_GRAY);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
         BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
@@ -391,7 +392,7 @@ public class DefaultMod
         */
         
         // Adding yugioh cards
-        /*
+        
         BaseMod.addCard(new BlueEyes());
         BaseMod.addCard(new CastleWalls());
         BaseMod.addCard(new CelticGuardian());
@@ -406,8 +407,14 @@ public class DefaultMod
 		BaseMod.addCard(new SevenColoredFish());
 		BaseMod.addCard(new SummonedSkull());
 		BaseMod.addCard(new SuperheavyScales());
-        */
+		BaseMod.addCard(new AlphaMagnet());
+		BaseMod.addCard(new AncientRules());
+		BaseMod.addCard(new AxeDespair());
 		
+		BaseMod.addCard(new ObeliskTormentor());
+        
+		
+        /*
         BaseMod.addCard(new AlphaMagnet());
 		BaseMod.addCard(new AncientRules());
 		BaseMod.addCard(new AxeDespair());
@@ -514,7 +521,7 @@ public class DefaultMod
 		BaseMod.addCard(new TrapHole());
 		BaseMod.addCard(new ValkMagnet());
 		BaseMod.addCard(new WingedDragonRa());
-    	
+    	*/
         logger.info("Making sure the cards are unlocked.");
         // Unlock the cards
         /*
@@ -531,7 +538,7 @@ public class DefaultMod
         */
         
         // Unlock yugioh cards
-        /*
+        
         UnlockTracker.unlockCard(BlueEyes.ID);
     	UnlockTracker.unlockCard(CastleWalls.ID);
     	UnlockTracker.unlockCard(CelticGuardian.ID);
@@ -546,8 +553,13 @@ public class DefaultMod
 		UnlockTracker.unlockCard(SevenColoredFish.ID);
 		UnlockTracker.unlockCard(SummonedSkull.ID);
 		UnlockTracker.unlockCard(SuperheavyScales.ID);
-		*/
+		UnlockTracker.unlockCard(AlphaMagnet.ID);
+		UnlockTracker.unlockCard(AncientRules.ID);
+		UnlockTracker.unlockCard(AxeDespair.ID);
 		
+		UnlockTracker.unlockCard(ObeliskTormentor.ID);
+		
+		/*
         UnlockTracker.unlockCard(AlphaMagnet.ID);
 		UnlockTracker.unlockCard(AncientRules.ID);
 		UnlockTracker.unlockCard(AxeDespair.ID);
@@ -654,7 +666,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(TrapHole.ID);
 		UnlockTracker.unlockCard(ValkMagnet.ID);
 		UnlockTracker.unlockCard(WingedDragonRa.ID);
-
+		*/
         logger.info("Done adding cards!");
     }
 
@@ -695,13 +707,13 @@ public class DefaultMod
     public void receiveEditKeywords() {
         final String[] placeholder = { "keyword", "keywords", "Keyword", "Keywords" };
         BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
-        BaseMod.addKeyword(new String[] {"summon", "Summon"}, "Stack counter of number of monsters currently summoned. Tribute or sacrifice to remove stacks, play monster cards to increase.");
-        BaseMod.addKeyword(new String[] {"tribute", "Tribute"}, "Sacrifices the given number of summons. Monster cards with tribute do NOT stack additional summons.");
-        BaseMod.addKeyword(new String[] {"spell counter", "Spell Counter", "Spell Counters", "spell counters"}, "Placeholder text.");	
-        BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "Placeholder text.");
+        BaseMod.addKeyword(new String[] {"summon", "Summon"}, "Number of monster cards summoned. Play low level monsters to increase, or tribute summon high level monsters to decrease.");
+        BaseMod.addKeyword(new String[] {"tribute", "Tribute"}, "Removes X summons. Monster cards with tribute do NOT stack additional summons.");
+        BaseMod.addKeyword(new String[] {"spell counter", "Spell Counter", "Spell Counters", "spell counters"}, "A counter that has no inherent effect. Used with magic monsters to trigger powerful effects.");	
+        BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "OBLITERATE");
         BaseMod.addKeyword(new String[] {"Burning Flesh"}, "Each time target takes damage, Summon 1.");
-        BaseMod.addKeyword(new String[] {"Mako's Tsunami"}, "Each time target attacks, gain 1 Dexterity.");
-        BaseMod.addKeyword(new String[] {"Blessing of Ra"}, "Gain 1 Strength. Gain 3 Dexterity.");
+        BaseMod.addKeyword(new String[] {"Mako's"}, "Each time target attacks, gain 1 Dexterity.");
+        BaseMod.addKeyword(new String[] {"Ra"}, "Gain 1 Strength. Gain 3 Dexterity.");
 
     }
 

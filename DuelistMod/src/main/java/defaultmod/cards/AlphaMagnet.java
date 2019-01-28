@@ -13,6 +13,7 @@ import basemod.abstracts.CustomCard;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
 
 public class AlphaMagnet extends CustomCard {
 
@@ -38,19 +39,20 @@ public class AlphaMagnet extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 0;
-    private static final int DAMAGE = 3;
+    private static final int COST = 1;
+    private static final int DAMAGE = 5;
     private static final int UPGRADE_PLUS_DMG = 2;
 
     // /STAT DECLARATION/
@@ -63,7 +65,8 @@ public class AlphaMagnet extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 1), 1));
+    	AbstractDungeon.actionManager
                 .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
                         new DamageInfo(p, this.damage, this.damageTypeForTurn),
                         AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
@@ -81,6 +84,7 @@ public class AlphaMagnet extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

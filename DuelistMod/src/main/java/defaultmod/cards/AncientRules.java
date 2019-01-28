@@ -10,17 +10,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
 
 public class AncientRules extends CustomCard {
 
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
-     *
-     * Strike Deal 7(9) damage.
-     */
-
+	/* 	
+	 * Summon 3. Exhaust.
+	 * 
+	 * 
+	 */
     // TEXT DECLARATION
 
     public static final String ID = defaultmod.DefaultMod.makeID("AncientRules");
@@ -35,33 +33,33 @@ public class AncientRules extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 0;
-    private static final int BLOCK = 0;
-    private static final int UPGRADE_PLUS_BLOCK = 0;
+    private static final int MAGIC = 2;
+    private static final int UPGRADE_MAGIC = 3;
 
     // /STAT DECLARATION/
 
     public AncientRules() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = BLOCK;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	AbstractDungeon.actionManager.addToBottom(
-                new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, this.block));
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, MAGIC), MAGIC));
     }
 
     // Which card to return when making a copy of this card.
@@ -75,8 +73,9 @@ public class AncientRules extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
         	this.upgradeName();
-            this.upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.initializeDescription();
+        	this.upgradeMagicNumber(UPGRADE_MAGIC);
+        	this.rawDescription = UPGRADE_DESCRIPTION;
+        	this.initializeDescription();
         }
     }
 }

@@ -27,20 +27,19 @@ import defaultmod.cards.CastleWalls;
 import defaultmod.cards.CelticGuardian;
 import defaultmod.cards.GeminiElf;
 import defaultmod.cards.GiantSoldier;
-import defaultmod.cards.Hinotoma;
 import defaultmod.cards.ScrapFactory;
 import defaultmod.cards.SevenColoredFish;
 import defaultmod.patches.AbstractCardEnum;
-import defaultmod.relics.PlaceholderRelic;
+import defaultmod.relics.StarterRelic;
 
 public class TheDefault extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
     // =============== BASE STATS =================
 
-    public static final int ENERGY_PER_TURN = 3;
-    public static final int STARTING_HP = 75;
-    public static final int MAX_HP = 75;
+    public static final int ENERGY_PER_TURN = 2;
+    public static final int STARTING_HP = 65;
+    public static final int MAX_HP = 65;
     public static final int STARTING_GOLD = 99;
     public static final int CARD_DRAW = 9;
     public static final int ORB_SLOTS = 0;
@@ -50,25 +49,28 @@ public class TheDefault extends CustomPlayer {
     
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
-    public static final String[] orbTextures = {
-            "defaultModResources/images/char/defaultCharacter/orb/layer1.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer2.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer3.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer4.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer5.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer6.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer1d.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer2d.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer3d.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer4d.png",
-            "defaultModResources/images/char/defaultCharacter/orb/layer5d.png", };
+    public static final String[] orbTextures = 
+	{
+        "defaultModResources/images/char/defaultCharacter/orb/layer1.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer2.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer3.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer4.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer5.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer6.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer1d.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer2d.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer3d.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer4d.png",
+        "defaultModResources/images/char/defaultCharacter/orb/layer5d.png", 
+	};
     
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
     
     // =============== CHARACTER CLASS START =================
 
-    public TheDefault(String name, PlayerClass setClass) {
+    public TheDefault(String name, PlayerClass setClass) 
+    {
         super(name, setClass, orbTextures,
                 "defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
                 new SpriterAnimation(
@@ -128,25 +130,24 @@ public class TheDefault extends CustomPlayer {
 
         retVal.add(SevenColoredFish.ID);
         retVal.add(SevenColoredFish.ID);
+        retVal.add(SevenColoredFish.ID);
         retVal.add(GiantSoldier.ID);
         retVal.add(GiantSoldier.ID);
         retVal.add(CastleWalls.ID);
         retVal.add(CastleWalls.ID);
         retVal.add(CelticGuardian.ID);
-        retVal.add(Hinotoma.ID);
+        //retVal.add(Hinotoma.ID);
         retVal.add(ScrapFactory.ID);
         retVal.add(GeminiElf.ID);
         return retVal;
     }
 
     // Starting Relics	
-    public ArrayList<String> getStartingRelics() {
+    public ArrayList<String> getStartingRelics() 
+    {
         ArrayList<String> retVal = new ArrayList<>();
-
-        retVal.add(PlaceholderRelic.ID);
-
-        UnlockTracker.markRelicAsSeen(PlaceholderRelic.ID);
-
+        retVal.add(StarterRelic.ID);
+        UnlockTracker.markRelicAsSeen(StarterRelic.ID);
         return retVal;
     }
 

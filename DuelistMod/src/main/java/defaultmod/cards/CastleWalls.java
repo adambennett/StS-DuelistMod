@@ -35,6 +35,7 @@ public class CastleWalls extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -59,7 +60,9 @@ public class CastleWalls extends CustomCard {
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	if (this.upgraded) { this.baseBlock = BLOCK + UPGRADE_PLUS_BLK; }
     	AbstractDungeon.actionManager
                 .addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
     }
@@ -76,6 +79,7 @@ public class CastleWalls extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(UPGRADE_PLUS_BLK);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

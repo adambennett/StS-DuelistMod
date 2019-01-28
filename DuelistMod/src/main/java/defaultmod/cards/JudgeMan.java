@@ -39,6 +39,7 @@ public class JudgeMan extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -73,7 +74,7 @@ public class JudgeMan extends CustomCard {
     			AbstractDungeon.actionManager
     				.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, 1));
     			AbstractDungeon.actionManager
-    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 1));
+    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 2));
     			AbstractDungeon.actionManager
     				.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
     				new DamageInfo(p, this.damage, this.damageTypeForTurn),
@@ -98,6 +99,7 @@ public class JudgeMan extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

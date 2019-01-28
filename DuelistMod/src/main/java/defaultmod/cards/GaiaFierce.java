@@ -39,6 +39,7 @@ public class GaiaFierce extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -63,12 +64,25 @@ public class GaiaFierce extends CustomCard {
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 1));
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.magicNumber >= 1)
+    		{
+    			AbstractDungeon.actionManager
+    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, 1));
+    			AbstractDungeon.actionManager
+    				.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
+    				new DamageInfo(p, this.damage, this.damageTypeForTurn),
+    				AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    		}
+    	} 
+    	else 
+    	{
+    		this.magicNumber = 0;
+    	} 
     }
 
     // Which card to return when making a copy of this card.
@@ -83,6 +97,7 @@ public class GaiaFierce extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
