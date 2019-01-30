@@ -36,6 +36,7 @@ public class GiantSoldier extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -50,6 +51,7 @@ public class GiantSoldier extends CustomCard {
     private static final int COST = 0;
     private static final int BLOCK = 3;
     private static final int UPGRADE_PLUS_BLK = 2;
+    private static final int SUMMONS = 1;
 
     // /STAT DECLARATION/
 
@@ -60,10 +62,22 @@ public class GiantSoldier extends CustomCard {
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 1), 1));
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	if (this.upgraded) { this.baseBlock = BLOCK + UPGRADE_PLUS_BLK; }
+    	if (!p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    	}
+    	else
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (!(this.misc > 5 - SUMMONS)) 
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    		}
+    	}
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
     }
 
     // Which card to return when making a copy of this card.
@@ -78,6 +92,7 @@ public class GiantSoldier extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(UPGRADE_PLUS_BLK);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

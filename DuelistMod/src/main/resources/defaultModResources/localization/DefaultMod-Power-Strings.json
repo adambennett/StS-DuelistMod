@@ -11,6 +11,10 @@
         "NAME": "Axe of Despair",
         "DESCRIPTIONS": ["+10 Strength this turn."]
 },
+"theDuelist:JamPower": {
+        "NAME": "Jam Breeder",
+        "DESCRIPTIONS": ["At the start of your turn, Summon 1 and deal 5 damage to a random enemy."]
+},
 "theDuelist:RarePower": {
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["At the start of your turn, TOUCH ", " enemy." , " enemies."]

@@ -46,7 +46,7 @@ public class JudgeMan extends CustomCard {
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -54,6 +54,8 @@ public class JudgeMan extends CustomCard {
     private static final int COST = 1;
     private static final int DAMAGE = 5;
     private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int TRIBUTES = 1;
+    private static final int SUMMONS = 2;
 
     // /STAT DECLARATION/
 
@@ -66,26 +68,24 @@ public class JudgeMan extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasPower(SummonPower.POWER_ID)) 
+		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+		AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+		if (!p.hasPower(SummonPower.POWER_ID)) 
     	{
-    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (this.magicNumber >= 1)
+    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    	}
+    	else
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (!(this.misc > 5 - SUMMONS)) 
     		{
-    			AbstractDungeon.actionManager
-    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, 1));
-    			AbstractDungeon.actionManager
-    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 2));
-    			AbstractDungeon.actionManager
-    				.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-    				new DamageInfo(p, this.damage, this.damageTypeForTurn),
-    				AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     		}
-    	} 
-    	else 
-    	{
-    		this.magicNumber = 0;
-    	} 
+    	}
+		AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
+		
+     
 
     // Which card to return when making a copy of this card.
     @Override
@@ -95,12 +95,33 @@ public class JudgeMan extends CustomCard {
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
+    public void upgrade() 
+    {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.magicNumber >= TRIBUTES)
+    		{
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
+
+    	return false;
     }
 }

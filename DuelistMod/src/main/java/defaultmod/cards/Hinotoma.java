@@ -63,7 +63,9 @@ public class Hinotoma extends CustomCard {
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	if (this.upgraded) { this.baseDamage = DAMAGE + UPGRADE_PLUS_DMG; }
         AbstractDungeon.actionManager
                 .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
                         new DamageInfo(p, this.damage, this.damageTypeForTurn),

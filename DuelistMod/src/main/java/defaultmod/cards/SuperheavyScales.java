@@ -51,6 +51,7 @@ public class SuperheavyScales extends CustomCard {
     private static final int COST = 1;
     private static final int BLOCK = 8;
     private static final int UPGRADE_PLUS_BLK = 4;
+    private static final int SUMMONS = 1;
 
     // /STAT DECLARATION/
 
@@ -62,9 +63,19 @@ public class SuperheavyScales extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 1), 1));
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
+    	if (!p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    	}
+    	else
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (!(this.misc > 5 - SUMMONS)) 
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    		}
+    	}
+		AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
     }
 
     // Which card to return when making a copy of this card.

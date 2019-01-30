@@ -62,7 +62,7 @@ public class AxeDespair extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.magicNumber = MAGIC + UPGRADE_MAGIC; }
+    	if (this.upgraded) { this.magicNumber = this.baseMagicNumber = MAGIC + UPGRADE_MAGIC; }
     	AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber)));
     	AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DespairPower(p, p, this.magicNumber)));
     }

@@ -2,44 +2,67 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+	<!-- Duelist Mod Properties -->
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.33</version>
     <packaging>jar</packaging>
-	
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
+    <!-- Duelist Mod Properties-->
+    
+    <!-- Dependency Properties-->
+    <properties>
+    	<BaseMod.version>5.9.0</BaseMod.version>
+        <SlayTheSpire.version>1-23-2019</SlayTheSpire.version>
+        <ModTheSpire.version>3.8.3</ModTheSpire.version>
+        <StSLib.version>1.13.2</StSLib.version>
+        <FriendlyMinions.version>0.1.2</FriendlyMinions.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <!-- Dependency Properties-->
 
     <dependencies>
         <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
             <artifactId>slaythespire</artifactId>
-            <version>016</version>
+            <version>${SlayTheSpire.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/desktop-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>ModTheSpire</artifactId>
-            <version>3.5.0</version>
+            <version>${ModTheSpire.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/ModTheSpire.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>
             <artifactId>BaseMod</artifactId>
-            <version>5.0.0</version>
+            <version>${BaseMod.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/BaseMod.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>friendlyminions</groupId>
+            <artifactId>FriendlyMinions</artifactId>
+            <version>${FriendlyMinions.version}</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../lib/FriendlyMinions.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.evacipated.cardcrawl</groupId>
+            <artifactId>stslib</artifactId>
+            <version>${StSLib.version}</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../lib/STSLib.jar</systemPath>
         </dependency>
 
     </dependencies>
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
 
     <!-- This is how your code is packaged into the jar file-->
     <build>

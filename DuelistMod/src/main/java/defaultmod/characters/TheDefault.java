@@ -27,6 +27,7 @@ import defaultmod.cards.CastleWalls;
 import defaultmod.cards.CelticGuardian;
 import defaultmod.cards.GeminiElf;
 import defaultmod.cards.GiantSoldier;
+import defaultmod.cards.Hinotoma;
 import defaultmod.cards.ScrapFactory;
 import defaultmod.cards.SevenColoredFish;
 import defaultmod.patches.AbstractCardEnum;
@@ -37,12 +38,23 @@ public class TheDefault extends CustomPlayer {
 
     // =============== BASE STATS =================
 
-    public static final int ENERGY_PER_TURN = 2;
-    public static final int STARTING_HP = 65;
-    public static final int MAX_HP = 65;
-    public static final int STARTING_GOLD = 99;
+    // Testing Stats
+    /*
+    public static final int ENERGY_PER_TURN = 8;
+    public static final int STARTING_HP = 999;
+    public static final int MAX_HP = 999;
+    public static final int STARTING_GOLD = 999;
     public static final int CARD_DRAW = 9;
-    public static final int ORB_SLOTS = 0;
+    public static final int ORB_SLOTS = 3;
+    */
+    
+    // Real Stats
+    public static final int ENERGY_PER_TURN = 2;
+    public static final int STARTING_HP = 80;
+    public static final int MAX_HP = 80;
+    public static final int STARTING_GOLD = 99;
+    public static final int CARD_DRAW = 5;
+    public static final int ORB_SLOTS = 3;
 
     // =============== /BASE STATS/ =================
 
@@ -128,7 +140,7 @@ public class TheDefault extends CustomPlayer {
 
         logger.info("Begin loading starter Deck Strings");
 
-        retVal.add(SevenColoredFish.ID);
+        // working base deck
         retVal.add(SevenColoredFish.ID);
         retVal.add(SevenColoredFish.ID);
         retVal.add(GiantSoldier.ID);
@@ -136,9 +148,13 @@ public class TheDefault extends CustomPlayer {
         retVal.add(CastleWalls.ID);
         retVal.add(CastleWalls.ID);
         retVal.add(CelticGuardian.ID);
-        //retVal.add(Hinotoma.ID);
         retVal.add(ScrapFactory.ID);
+        retVal.add(Hinotoma.ID);
         retVal.add(GeminiElf.ID);
+         
+        // temp for testing
+       
+
         return retVal;
     }
 
@@ -242,7 +258,7 @@ public class TheDefault extends CustomPlayer {
     // core to its maximum..."
     @Override
     public String getSpireHeartText() {
-        return "You touch the heart.";
+        return "You touch the heart. NL Is this the heart of the cards?";
     }
 
     // The vampire events refer to the base game characters as "brother", "sister",

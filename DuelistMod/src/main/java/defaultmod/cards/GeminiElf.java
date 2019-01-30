@@ -49,19 +49,34 @@ public class GeminiElf extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 0;
+    private static final int SUMMONS = 2;
+    private static final int UPGRADE_SUMMONS = 1;
 
     // /STAT DECLARATION/
 
     public GeminiElf() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.magicNumber = this.baseMagicNumber = SUMMONS;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 2), 2));
+    	if (this.upgraded) { this.magicNumber = this.baseMagicNumber = SUMMONS + UPGRADE_SUMMONS; }
+    	if (!p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
+    	}
+    	else
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (!(this.misc > 5 - this.magicNumber)) 
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -75,6 +90,7 @@ public class GeminiElf extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.magicNumber = this.baseMagicNumber = SUMMONS + UPGRADE_SUMMONS;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -31,26 +31,6 @@ import defaultmod.characters.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//TODO: FIRST THING'S FIRST: RENAME YOUR PACKAGE AND ID NAMES FIRST-THING!!!
-// Right click the package -> Refactor -> Rename, and name it whatever you wanna call your mod.
-// Scroll to the very bottom of this file. Change the id string from "theDefault:" to "yourModName:"
-// or whatever your heart desires (don't use spaces).
-
-//TODO: To understand how image paths work, check the image path section at line ~140, as they are a bit special.
-// Start with DefaultCommonAttack - it is the most commented card right now.
-
-/*
- * With that out of the way:
- * Welcome to this mildly over-commented Slay the Spire modding base. 
- * Use it to make your own mod of any type. - If you want to add any standard in-game content (Character, 
- * cards, relics), this is a good starting point.
- * It features 1 character with a minimal set of things: 1 card of each type, 1 debuff, 1 relic, etc
- * If you're new to modding, you basically *need* the BaseMod wiki for whatever you wish to add
- * https://github.com/daviscook477/BaseMod/wiki - work your way through with this base.
- * Feel free to use this in any way you like, of course. Happy modding!
- */
-
-//NOTE: ASD
 @SpireInitializer
 public class DefaultMod
         implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
@@ -212,12 +192,10 @@ public class DefaultMod
     public static final String WINGED_DRAGON_RA = "cards/Winged_Dragon_Ra.png";
   
     // Power images
-    /*
-    public static final String COMMON_POWER = "powers/placeholder_power.png";
-    public static final String UNCOMMON_POWER = "powers/placeholder_power.png";
-    public static final String RARE_POWER = "powers/placeholder_power.png";
-    */
     public static final String SUMMON_POWER = "powers/SummonPower.png";
+    //public static final String JAM_POWER = "powers/JamPower.png";
+    //public static final String DESPAIR_POWER = "powers/DespairPower.png";
+    //public static final String OBELISK_POWER = "powers/ObeliskPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -377,42 +355,39 @@ public class DefaultMod
         
         logger.info("Adding cards");
         // Add the cards
-        
-        /*
-        BaseMod.addCard(new DefaultCommonAttack());
-        BaseMod.addCard(new DefaultAttackWithVariable());
-        BaseMod.addCard(new DefaultCommonSkill());
-        BaseMod.addCard(new DefaultCommonPower());
-        BaseMod.addCard(new DefaultUncommonSkill());
-        BaseMod.addCard(new DefaultUncommonAttack());
-        BaseMod.addCard(new DefaultUncommonPower());
-        BaseMod.addCard(new DefaultRareAttack());
-        BaseMod.addCard(new DefaultRareSkill());
-        BaseMod.addCard(new DefaultRarePower());
-        */
-        
-        // Adding yugioh cards
-        
-        BaseMod.addCard(new BlueEyes());
-        BaseMod.addCard(new CastleWalls());
-        BaseMod.addCard(new CelticGuardian());
-        BaseMod.addCard(new GaiaFierce());
-        BaseMod.addCard(new GeminiElf());
+        BaseMod.addCard(new AlphaMagnet());
+		BaseMod.addCard(new AncientRules());
+		BaseMod.addCard(new AxeDespair());
+		BaseMod.addCard(new BarrelDragon());
+		BaseMod.addCard(new BetaMagnet());
+		BaseMod.addCard(new BlueEyes());
+		BaseMod.addCard(new BlueEyesUltimate());
+		BaseMod.addCard(new BusterBlader());
+		BaseMod.addCard(new CastleWalls());
+		BaseMod.addCard(new CelticGuardian());
+		BaseMod.addCard(new DarkMagician());
+		BaseMod.addCard(new DarkMagicianGirl());
+		BaseMod.addCard(new FlameSwordsman());
+		BaseMod.addCard(new GaiaFierce());
+		BaseMod.addCard(new GammaMagnet());
+		BaseMod.addCard(new GateGuardian());
+		BaseMod.addCard(new GeminiElf());
 		BaseMod.addCard(new GiantSoldier());
 		BaseMod.addCard(new Hinotoma());
+		BaseMod.addCard(new InsectQueen());
+		BaseMod.addCard(new JamBreeding());
 		BaseMod.addCard(new JudgeMan());
+		BaseMod.addCard(new Kuriboh());
+		BaseMod.addCard(new LabyrinthWall());
 		BaseMod.addCard(new Ookazi());
 		BaseMod.addCard(new RedEyes());
+		BaseMod.addCard(new SangaEarth());
+		BaseMod.addCard(new SangaThunder());
+		BaseMod.addCard(new SangaWater());
 		BaseMod.addCard(new ScrapFactory());
 		BaseMod.addCard(new SevenColoredFish());
 		BaseMod.addCard(new SummonedSkull());
 		BaseMod.addCard(new SuperheavyScales());
-		BaseMod.addCard(new AlphaMagnet());
-		BaseMod.addCard(new AncientRules());
-		BaseMod.addCard(new AxeDespair());
-		
-		BaseMod.addCard(new ObeliskTormentor());
-        
 		
         /*
         BaseMod.addCard(new AlphaMagnet());
@@ -522,42 +497,43 @@ public class DefaultMod
 		BaseMod.addCard(new ValkMagnet());
 		BaseMod.addCard(new WingedDragonRa());
     	*/
-        logger.info("Making sure the cards are unlocked.");
+        
+		logger.info("Making sure the cards are unlocked.");
         // Unlock the cards
-        /*
-        UnlockTracker.unlockCard(DefaultCommonAttack.ID);
-        UnlockTracker.unlockCard(DefaultAttackWithVariable.ID);
-        UnlockTracker.unlockCard(DefaultCommonSkill.ID);
-        UnlockTracker.unlockCard(DefaultCommonPower.ID);
-        UnlockTracker.unlockCard(DefaultUncommonSkill.ID);
-        UnlockTracker.unlockCard(DefaultUncommonAttack.ID);
-        UnlockTracker.unlockCard(DefaultUncommonPower.ID);
-        UnlockTracker.unlockCard(DefaultRareAttack.ID);
-        UnlockTracker.unlockCard(DefaultRareSkill.ID);
-        UnlockTracker.unlockCard(DefaultRarePower.ID);
-        */
-        
-        // Unlock yugioh cards
-        
-        UnlockTracker.unlockCard(BlueEyes.ID);
-    	UnlockTracker.unlockCard(CastleWalls.ID);
-    	UnlockTracker.unlockCard(CelticGuardian.ID);
-    	UnlockTracker.unlockCard(GaiaFierce.ID);
-    	UnlockTracker.unlockCard(GeminiElf.ID);
+        UnlockTracker.unlockCard(AlphaMagnet.ID);
+		UnlockTracker.unlockCard(AncientRules.ID);
+		UnlockTracker.unlockCard(AxeDespair.ID);	
+		UnlockTracker.unlockCard(BarrelDragon.ID);
+		UnlockTracker.unlockCard(BetaMagnet.ID);
+		UnlockTracker.unlockCard(BlueEyes.ID);		
+		UnlockTracker.unlockCard(BlueEyesUltimate.ID);		
+		UnlockTracker.unlockCard(BusterBlader.ID);		
+		UnlockTracker.unlockCard(CastleWalls.ID);		
+		UnlockTracker.unlockCard(CelticGuardian.ID);		
+		UnlockTracker.unlockCard(DarkMagician.ID);
+		UnlockTracker.unlockCard(DarkMagicianGirl.ID);
+		UnlockTracker.unlockCard(FlameSwordsman.ID);
+		UnlockTracker.unlockCard(GaiaFierce.ID);
+		UnlockTracker.unlockCard(GammaMagnet.ID);
+		UnlockTracker.unlockCard(GateGuardian.ID);
+		UnlockTracker.unlockCard(GeminiElf.ID);
 		UnlockTracker.unlockCard(GiantSoldier.ID);
 		UnlockTracker.unlockCard(Hinotoma.ID);
+		UnlockTracker.unlockCard(InsectQueen.ID);
+		UnlockTracker.unlockCard(JamBreeding.ID);
 		UnlockTracker.unlockCard(JudgeMan.ID);
+		UnlockTracker.unlockCard(Kuriboh.ID);
+		UnlockTracker.unlockCard(LabyrinthWall.ID);
 		UnlockTracker.unlockCard(Ookazi.ID);
 		UnlockTracker.unlockCard(RedEyes.ID);
+		UnlockTracker.unlockCard(SangaEarth.ID);
+		UnlockTracker.unlockCard(SangaThunder.ID);
+		UnlockTracker.unlockCard(SangaWater.ID);
 		UnlockTracker.unlockCard(ScrapFactory.ID);
 		UnlockTracker.unlockCard(SevenColoredFish.ID);
 		UnlockTracker.unlockCard(SummonedSkull.ID);
 		UnlockTracker.unlockCard(SuperheavyScales.ID);
-		UnlockTracker.unlockCard(AlphaMagnet.ID);
-		UnlockTracker.unlockCard(AncientRules.ID);
-		UnlockTracker.unlockCard(AxeDespair.ID);
-		
-		UnlockTracker.unlockCard(ObeliskTormentor.ID);
+        
 		
 		/*
         UnlockTracker.unlockCard(AlphaMagnet.ID);
@@ -707,11 +683,10 @@ public class DefaultMod
     public void receiveEditKeywords() {
         final String[] placeholder = { "keyword", "keywords", "Keyword", "Keywords" };
         BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
-        BaseMod.addKeyword(new String[] {"summon", "Summon"}, "Number of monster cards summoned. Play low level monsters to increase, or tribute summon high level monsters to decrease.");
-        BaseMod.addKeyword(new String[] {"tribute", "Tribute"}, "Removes X summons. Monster cards with tribute do NOT stack additional summons.");
-        BaseMod.addKeyword(new String[] {"spell counter", "Spell Counter", "Spell Counters", "spell counters"}, "A counter that has no inherent effect. Used with magic monsters to trigger powerful effects.");	
+        BaseMod.addKeyword(new String[] {"summon", "Summon"}, "Counts monsters currently summoned. Max 5, cannot go negative.");
+        BaseMod.addKeyword(new String[] {"tribute", "Tribute"}, "Removes X summons. Unless you have enough summons to tribute, you cannot play a Tribute Summon monster.");
+        BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "Spell counters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
         BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "OBLITERATE");
-        BaseMod.addKeyword(new String[] {"Burning Flesh"}, "Each time target takes damage, Summon 1.");
         BaseMod.addKeyword(new String[] {"Mako's"}, "Each time target attacks, gain 1 Dexterity.");
         BaseMod.addKeyword(new String[] {"Ra"}, "Gain 1 Strength. Gain 3 Dexterity.");
 

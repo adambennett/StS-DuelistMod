@@ -51,9 +51,10 @@ public class BlueEyes extends CustomCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int DAMAGE = 30;
     private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int TRIBUTES = 2;
 
     // /STAT DECLARATION/
 
@@ -69,14 +70,10 @@ public class BlueEyes extends CustomCard {
     	 if (p.hasPower(SummonPower.POWER_ID)) 
     	 {
              this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-             if (this.magicNumber >= 2)
+             if (this.magicNumber >= TRIBUTES)
              {
-            	 AbstractDungeon.actionManager
-            	 	.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, 2));
-            	 AbstractDungeon.actionManager
-                 	.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                    new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                    AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+            	 AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+            	 AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
              }
          } 
     	 else 
@@ -101,4 +98,25 @@ public class BlueEyes extends CustomCard {
             this.initializeDescription();
         }
     }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.magicNumber >= TRIBUTES)
+    		{
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
+    	
+    	return false;
+    }
+   
 }
