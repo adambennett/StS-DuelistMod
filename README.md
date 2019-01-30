@@ -4,6 +4,7 @@ A Slay the Spire adaptation of Yu-Gi-Oh!
 TODO
 - Make cards say Monster/Spell/Trap in-game
 - Add character sprite/button/overall thematic art
+- Design and add some relics
 - Finish implementing rest of the cards
 - Balance and QA
 
