@@ -193,8 +193,10 @@ public class DefaultMod
   
     // Power images
     public static final String SUMMON_POWER = "powers/SummonPower.png";
-    //public static final String JAM_POWER = "powers/JamPower.png";
-    //public static final String DESPAIR_POWER = "powers/DespairPower.png";
+    public static final String JAM_POWER = "powers/JamPower.png";
+    public static final String DESPAIR_POWER = "powers/DespairPower.png";
+    public static final String TOON_WORLD_POWER = "powers/ToonWorldPower.png";
+    public static final String SPELL_COUNTER_POWER = "powers/SpellCounterPower.png";
     //public static final String OBELISK_POWER = "powers/ObeliskPower.png";
     
     // Relic images  

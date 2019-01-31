@@ -11,8 +11,8 @@
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "Axe of Despair",
-		"DESCRIPTION": "Gain !M! strength this turn. At the end of the turn, Sacrifice 1 and place this card on top of your draw pile.",
-		"UPGRADE_DESCRIPTION": "Gain !M! strength this turn. At the end of the turn, Sacrifice 1 and place this card on top of your draw pile."
+		"DESCRIPTION": "Gain !M! strength this turn. At the end of turn, Sacrifice 1 and place this card on top of your draw pile.",
+		"UPGRADE_DESCRIPTION": "Gain !M! strength this turn. At the end of turn, Sacrifice 1 and place this card on top of your draw pile."
 	},
 	"theDuelist:BadReaction": {
 		"NAME": "Bad Reaction",
@@ -431,8 +431,8 @@
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
-		"DESCRIPTION": "Allows you to play Toon monster cards.",
-		"UPGRADE_DESCRIPTION": "Allows you to play Toon monster cards."
+		"DESCRIPTION": "Allows you to play Toon monster cards. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Allows you to play Toon monster cards. Exhaust."
 	},
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",

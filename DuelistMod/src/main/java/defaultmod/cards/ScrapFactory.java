@@ -87,24 +87,24 @@ public class ScrapFactory extends CustomCard {
         }
     }
     
- // If player doesn't have enough summons, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	if (p.energy.energy > COST)
     	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (this.misc >= TRIBUTES)
-    		{
-    			if (p.energy.energy >= COST)
-    			{
-    				return true;
-    			}
-    		}
-    		else
-    		{
-    			return false;
-    		}
+	    	if (p.hasPower(SummonPower.POWER_ID)) 
+	    	{
+	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
+	    		if (temp >= TRIBUTES)
+	    		{
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			return false;
+	    		}
+	    	}
     	}
     	
     	return false;

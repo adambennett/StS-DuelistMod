@@ -13,6 +13,7 @@ import basemod.abstracts.CustomCard;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
 
 public class Pumpking extends CustomCard {
 
@@ -52,6 +53,7 @@ public class Pumpking extends CustomCard {
     private static final int COST = 0;
     private static final int DAMAGE = 3;
     private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int TRIBUTES = 1;
 
     // /STAT DECLARATION/
 
@@ -83,5 +85,28 @@ public class Pumpking extends CustomCard {
             this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.energy.energy > COST)
+    	{
+	    	if (p.hasPower(SummonPower.POWER_ID)) 
+	    	{
+	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
+	    		if (temp >= TRIBUTES)
+	    		{
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			return false;
+	    		}
+	    	}
+    	}
+    	
+    	return false;
     }
 }

@@ -27,7 +27,14 @@ public class SummonPower extends AbstractPower
     }
 
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
+    	if (this.owner.hasPower(SummonPower.POWER_ID))
+    	{
+    		this.description = this.owner.getPower(SummonPower.POWER_ID).amount + DESCRIPTIONS[0];
+    	}
+    	else
+    	{
+    		this.description = "0" + DESCRIPTIONS[0];
+    	} 
     }
 
 }

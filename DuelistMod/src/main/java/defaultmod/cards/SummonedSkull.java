@@ -93,17 +93,24 @@ public class SummonedSkull extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	if (p.energy.energy > COST)
     	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (this.misc >= TRIBUTES)
-    		{
-    			return true;
-    		}
-    		else
-    		{
-    			return false;
-    		}
+	    	if (p.hasPower(SummonPower.POWER_ID)) 
+	    	{
+	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
+	    		if (temp >= TRIBUTES)
+	    		{
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			if (this.upgraded)
+	    			{
+	    				return true;
+	    			}
+	    			return false;
+	    		}
+	    	}
     	}
     	
     	return false;

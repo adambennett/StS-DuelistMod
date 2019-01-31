@@ -1,19 +1,15 @@
 {
-"theDuelist:CommonPower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["You applied ", " keyword.", " keywords."]
-},
 "theDuelist:SummonPower": {
         "NAME": "Summons",
-        "DESCRIPTIONS": ["The number of monsters you have currently summoned. Gain more by playing monsters. Remove summons by tributing or sacrificing."]
+        "DESCRIPTIONS": [" monsters summoned. Play monsters cards to stack more #ysummons, or #yTribute to remove stacks. Cannot stack over 5 or below 0."]
 },
 "theDuelist:DespairPower": {
         "NAME": "Axe of Despair",
-        "DESCRIPTIONS": ["+10 Strength this turn."]
+        "DESCRIPTIONS": ["At the end of turn, lose 10 #yStrength, #yTribute 1 and place Axe of Despair on the top of your deck."]
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
-        "DESCRIPTIONS": ["At the start of your turn, Summon 1 and deal 5 damage to a random enemy."]
+        "DESCRIPTIONS": ["At the start of your turn, Summon #b", " and deal #b5 damage to #b", " random enemy.", " random enemies.",]
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
@@ -22,9 +18,5 @@
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]
-},
-"theDuelist:RarePower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["At the start of your turn, TOUCH ", " enemy." , " enemies."]
 }
 }

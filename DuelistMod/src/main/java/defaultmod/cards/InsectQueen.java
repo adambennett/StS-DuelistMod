@@ -97,17 +97,20 @@ public class InsectQueen extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	if (p.energy.energy > COST)
     	{
-    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (this.magicNumber >= 1)
-    		{
-    			return true;
-    		}
-    		else
-    		{
-    			return false;
-    		}
+	    	if (p.hasPower(SummonPower.POWER_ID)) 
+	    	{
+	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
+	    		if (temp >= 1)
+	    		{
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			return false;
+	    		}
+	    	}
     	}
     	
     	return false;

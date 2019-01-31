@@ -106,21 +106,24 @@ public class RedEyesToon extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-	    if (p.hasPower(ToonWorldPower.POWER_ID))
-	    {
-    		if (p.hasPower(SummonPower.POWER_ID)) 
-	    	{
-	    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-	    		if (this.misc >= TRIBUTES)
-	    		{
-	    			return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
-	    }
+    	if (p.energy.energy > COST)
+    	{
+    		if (p.hasPower(ToonWorldPower.POWER_ID))
+    		{
+		    	if (p.hasPower(SummonPower.POWER_ID)) 
+		    	{
+		    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
+		    		if (temp >= TRIBUTES)
+		    		{
+		    			return true;
+		    		}
+		    		else
+		    		{
+		    			return false;
+		    		}
+		    	}
+    		}
+    	}
     	
     	return false;
     }

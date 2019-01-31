@@ -18,7 +18,7 @@ public class SpellCounterPower extends AbstractPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DefaultMod.makePath(DefaultMod.SUMMON_POWER);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.SPELL_COUNTER_POWER);
 
     public SpellCounterPower(final AbstractCreature owner, final AbstractCreature source, final int amount) 
     {
