@@ -1,47 +1,4 @@
 {
-	"theDuelist:DefaultCommonAttack": {
-		"NAME": "Strike",
-		"DESCRIPTION": "Deal !D! Damage."
-	},
-	"theDuelist:DefaultAttackWithVariable": {
-		"NAME": "Special Strike",
-		"DESCRIPTION": "Deal !D! Damage [R] times. NL (Deal !ENERGY_DAMAGE! damage total.)"
-	},
-	"theDuelist:DefaultCommonSkill": {
-		"NAME": "Defend",
-		"DESCRIPTION": "Gain !B! Block."
-	},
-	"theDuelist:DefaultCommonPower": {
-		"NAME": "Hold Place",
-		"DESCRIPTION": "Gain !M! Keyword.",
-		"UPGRADE_DESCRIPTION": "Gain !M! Keywords."
-	},
-	"theDuelist:DefaultUncommonAttack": {
-		"NAME": "Big Slap",
-		"DESCRIPTION": "Deal !D! Damage."
-	},
-	"theDuelist:DefaultUncommonSkill": {
-		"NAME": "A Better Defend",
-		"DESCRIPTION": "Gain !B! Plated Armor. Affected by Dexterity."
-	},
-	"theDuelist:DefaultUncommonPower": {
-		"NAME": "Weirdness",
-		"DESCRIPTION": "Gain X Keywords.",
-		"UPGRADE_DESCRIPTION": "Gain X +1 Keywords."
-	},
-	"theDuelist:DefaultRareAttack": {
-		"NAME": "TOUCH",
-		"DESCRIPTION": "Deal !D! Damage."
-	},
-	"theDuelist:DefaultRareSkill": {
-		"NAME": "For Each Loop x2",
-		"DESCRIPTION": "Apply !M! vulnerable to ALL enemies, 2 times.",
-		"UPGRADE_DESCRIPTION": "Apply !M! vulnerable to ALL enemies, 3 times."
-	},
-	"theDuelist:DefaultRarePower": {
-		"NAME": "In-Progress Form",
-		"DESCRIPTION": "At the start of your turn, play a TOUCH."
-	},
 	"theDuelist:AlphaMagnet": {
 		"NAME": "A. Magnet Warrior",
 		"DESCRIPTION": "Summon 1. Gain Alpha Magnet. Deal !D! damage.",
@@ -139,13 +96,13 @@
 	},
 	"theDuelist:DarkMagician": {
 		"NAME": "Dark Magician",
-		"DESCRIPTION": "Tribute 2.  Deal !D! damage. Apply 3 Spell Counters.",
-		"UPGRADE_DESCRIPTION": "Tribute 2.  Deal !D! damage. Apply 3 Spell Counters."
+		"DESCRIPTION": "Tribute 2.  Deal !D! damage. Apply !M! Spell Counters.",
+		"UPGRADE_DESCRIPTION": "Tribute 2.  Deal !D! damage. Apply !M! Spell Counters."
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"NAME": "D.M. Girl",
-		"DESCRIPTION": "Tribute 1. Apply 4 Spell Counters.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Apply 4 Spell Counters."
+		"DESCRIPTION": "Tribute 1. Apply !M! Spell Counters.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Apply !M! Spell Counters."
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "Dian Keto",
@@ -184,8 +141,8 @@
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "Fiend Megacyber",
-		"DESCRIPTION": "Tribute 1. Deal !D! damage to any enemy for every Spell Counter it has.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "If enemy has Spell Counters: Tribute 1. Deal !D! damage to enemy for every Spell Counter it has.",
+		"UPGRADE_DESCRIPTION": "If enemy has Spell Counters: Tribute 1. Deal !D! damage to enemy for every Spell Counter it has."
 	},
 	"theDuelist:Fissure": {
 		"NAME": "Fissure",
@@ -209,8 +166,8 @@
 	},
 	"theDuelist:GateGuardian": {
 		"NAME": "Gate Guardian",
-		"DESCRIPTION": "Tribute 2. Summon 3. Deal !D! damage. NL Evoke all orbs. NL Can only be played if you have a lightning, plasma and frost channeled. ",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Can only be played if you have a lightning, plasma and frost channeled. Summon 3. Deal !D! damage."
+		"DESCRIPTION": "Tribute 3. Summon 1. Evoke all orbs. Channel a Gate.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. Summon 1. Evoke all orbs. Channel a Gate."
 	},
 	"theDuelist:GiantSoldier": {
 		"NAME": "Giant Stone Soldier",
@@ -264,8 +221,8 @@
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
-		"DESCRIPTION": "Summon 1 monster. Gain 1 Intangible.",
-		"UPGRADE_DESCRIPTION": "Summon 1 monster. Gain 1 Intangible."
+		"DESCRIPTION": "Summon 1 monster. Gain !M! Intangible.",
+		"UPGRADE_DESCRIPTION": "Summon 1 monster. Gain !M! Intangible."
 	},
 	"theDuelist:LabyrinthWall": {
 		"NAME": "Labyrinth Wall",
@@ -524,8 +481,8 @@
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
-		"DESCRIPTION": "Tribute 2. Deal a random amount of damage (0-!D!) to each enemy. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal a random amount of damage (0-!D!) to each enemy. Can only be played if Toon World is active."
+		"DESCRIPTION": "Tribute 2. Deal a random amount of damage (0-15) to each enemy. Can only be played if Toon World is active.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. Deal a random amount of damage (0-50) to each enemy. Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
@@ -534,18 +491,18 @@
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",
-		"DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Apply 3 Spell Counters. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Apply 3 Spell Counters. Can only be played if Toon World is active."
+		"DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Apply !M! Spell Counters. Can only be played if Toon World is active.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Apply !M! Spell Counters. Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",
-		"DESCRIPTION": "Summon 1. Apply 6 Spell Counters. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Apply 6 Spell Counters. Can only be played if Toon World is active."
+		"DESCRIPTION": "Summon 1. Apply !M! Spell Counters. Can only be played if Toon World is active.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Apply !M! Spell Counters. Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "Toon Gemini Elf",
-		"DESCRIPTION": "Summon 2. Deal !D! damage (through block). Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Summon 2. Deal !D! damage (through block). Can only be played if Toon World is active."
+		"DESCRIPTION": "Summon !M!. Can only be played if Toon World is active.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Can only be played if Toon World is active."
 	},
 	"theDuelist:ToonMermaid": {
 		"NAME": "Toon Mermaid",
@@ -559,8 +516,8 @@
 	},
 	"theDuelist:ScrapFactory": {
 		"NAME": "Scrap Factory",
-		"DESCRIPTION": "Tribute 1. Gain 1 mana.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Gain 1 mana."
+		"DESCRIPTION": "Tribute 1. Gain [R].",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Gain [R]."
 	},
 	"theDuelist:GeminiElf": {
 		"NAME": "Gemini Elf",

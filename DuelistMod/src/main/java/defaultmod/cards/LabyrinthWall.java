@@ -73,7 +73,7 @@ public class LabyrinthWall extends CustomCard {
     			AbstractDungeon.actionManager
     				.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
     			AbstractDungeon.actionManager
-    				.addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
+    				.addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, this.block));
     		}
     	} 
     	else 
@@ -108,7 +108,10 @@ public class LabyrinthWall extends CustomCard {
     		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
     		if (this.magicNumber >= TRIBUTES)
     		{
-    			return true;
+    			if (p.energy.energy >= COST)
+    			{
+    				return true;
+    			}
     		}
     		else
     		{

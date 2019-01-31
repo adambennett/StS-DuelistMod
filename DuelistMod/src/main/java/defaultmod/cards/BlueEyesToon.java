@@ -1,6 +1,10 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,10 +14,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.powers.SummonPower;
+import defaultmod.powers.ToonWorldPower;
 
 public class BlueEyesToon extends CustomCard {
 
@@ -51,9 +55,8 @@ public class BlueEyesToon extends CustomCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 1;
-    private static final int DAMAGE = 25;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int COST = 2;
+    private static final int DAMAGE = 15;
     private static final int TRIBUTES = 2;
 
     // /STAT DECLARATION/
@@ -67,8 +70,18 @@ public class BlueEyesToon extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.baseDamage = DAMAGE + UPGRADE_PLUS_DMG; }
-        AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	// Tribute Summon
+    	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+    	
+    	// Record target block and remove all of it
+        int targetArmor = m.currentBlock;
+        if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new RemoveAllBlockAction(m, m)); }
+        
+        // Deal direct damage to target HP
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+        
+        // Restore original target block
+        if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -82,7 +95,7 @@ public class BlueEyesToon extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -92,23 +105,23 @@ public class BlueEyesToon extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (this.magicNumber >= TRIBUTES)
-    		{
-    			//if (p.hasPower(ToonWorld.POWER_ID))
-    			//{
-    				return true;
-    			//}
-    		}
-    		else
-    		{
-    			return false;
-    		}
-    	}
+	    if (p.hasPower(ToonWorldPower.POWER_ID))
+	    {
+    		if (p.hasPower(SummonPower.POWER_ID)) 
+	    	{
+	    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+	    		if (this.misc >= TRIBUTES)
+	    		{
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			return false;
+	    		}
+	    	}
+	    }
     	
     	return false;
     }
-    
+   
 }

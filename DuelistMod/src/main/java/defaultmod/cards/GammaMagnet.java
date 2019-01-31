@@ -74,6 +74,10 @@ public class GammaMagnet extends CustomCard {
     		{
     			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
+    		}
     	}
     	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DrawCardAction(p, DRAW));
     }

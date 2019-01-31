@@ -51,8 +51,7 @@ public class InsectQueen extends CustomCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 2;
-    private static final int UPGRADE_COST = 1;
+    private static final int COST = 1;
 
     // /STAT DECLARATION/
 
@@ -67,13 +66,13 @@ public class InsectQueen extends CustomCard {
     {
     	 if (p.hasPower(SummonPower.POWER_ID)) 
     	 {
-             this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-        	 AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(p, p, SummonPower.POWER_ID, this.magicNumber));
-        	 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new PoisonPower(m, p, this.magicNumber), this.magicNumber));
+             this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+        	 AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(p, p, SummonPower.POWER_ID, this.misc));
+        	 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new PoisonPower(m, p, this.misc), this.misc));
          } 
     	 else 
     	 {
-             this.magicNumber = 0;
+             this.misc = 0;
          } 
     }
 
@@ -88,10 +87,30 @@ public class InsectQueen extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(UPGRADE_COST);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.magicNumber >= 1)
+    		{
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
+    	
+    	return false;
     }
    
 }

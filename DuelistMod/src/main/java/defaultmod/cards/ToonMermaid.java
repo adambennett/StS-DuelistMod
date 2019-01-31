@@ -1,6 +1,9 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,9 +13,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
+import defaultmod.powers.ToonWorldPower;
 
 public class ToonMermaid extends CustomCard {
 
@@ -38,6 +42,7 @@ public class ToonMermaid extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -49,10 +54,11 @@ public class ToonMermaid extends CustomCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int UPGRADE_PLUS_DMG = 2;
-
+    private static final int COST = 1;
+    private static final int SUMMONS = 1;
+    private static final int DAMAGE = 6;
+    private static final int U_DMG = 4;
+    
     // /STAT DECLARATION/
 
     public ToonMermaid() {
@@ -62,11 +68,35 @@ public class ToonMermaid extends CustomCard {
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	// Summon
+    	if (!p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    	}
+    	else
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (!(this.misc > 5 - SUMMONS)) 
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
+    		}
+    	}
+
+    	// Record target block and remove all of it
+        int targetArmor = m.currentBlock;
+        if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new RemoveAllBlockAction(m, m)); }
+        
+        // Deal direct damage to target HP
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        
+        // Restore original target block
+        if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -80,8 +110,21 @@ public class ToonMermaid extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeDamage(U_DMG);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
+
+    // If player doesn't have Toon World, can't be played
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.hasPower(ToonWorldPower.POWER_ID))
+    	{
+    		return true;
+    	}
+    	return false;
+    }
+
 }

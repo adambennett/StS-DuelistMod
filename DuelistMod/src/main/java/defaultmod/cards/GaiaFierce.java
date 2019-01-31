@@ -67,7 +67,6 @@ public class GaiaFierce extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.baseDamage = DAMAGE + UPGRADE_PLUS_DMG; }
     	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
     	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
@@ -95,10 +94,13 @@ public class GaiaFierce extends CustomCard {
     {
     	if (p.hasPower(SummonPower.POWER_ID)) 
     	{
-    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (this.magicNumber >= TRIBUTES)
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.misc >= TRIBUTES)
     		{
-    			return true;
+    			if (p.energy.energy >= COST)
+    			{
+    				return true;
+    			}
     		}
     		else
     		{

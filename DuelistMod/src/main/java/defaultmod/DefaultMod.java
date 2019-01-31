@@ -1,10 +1,14 @@
 package defaultmod;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
@@ -13,23 +17,19 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.BaseMod;
 import basemod.ModLabel;
 import basemod.ModPanel;
-import basemod.helpers.RelicType;
 import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
-
-import defaultmod.potions.*;
-import defaultmod.patches.*;
-import defaultmod.relics.*;
-import defaultmod.variables.*;
 import defaultmod.cards.*;
-import defaultmod.characters.*;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import defaultmod.characters.TheDuelist;
+import defaultmod.patches.AbstractCardEnum;
+import defaultmod.patches.TheDuelistEnum;
+import defaultmod.potions.PlaceholderPotion;
+import defaultmod.relics.MillenniumPuzzle;
+import defaultmod.variables.DefaultCustomVariable;
 
 @SpireInitializer
 public class DefaultMod
@@ -274,10 +274,10 @@ public class DefaultMod
 
     @Override
     public void receiveEditCharacters() {
-        logger.info("Beginning to edit characters. " + "Add " + TheDefaultEnum.THE_DEFAULT.toString());
+        logger.info("Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
 
-        BaseMod.addCharacter(new TheDefault("the Default", TheDefaultEnum.THE_DEFAULT),
-                makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDefaultEnum.THE_DEFAULT);
+        BaseMod.addCharacter(new TheDuelist("the Default", TheDuelistEnum.THE_DUELIST),
+                makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
         
         receiveEditPotions();
         logger.info("Done editing characters");
@@ -316,8 +316,8 @@ public class DefaultMod
     public void receiveEditPotions() {
         logger.info("Beginning to edit potions");
        
-        // Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT")
-        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, TheDefaultEnum.THE_DEFAULT);
+        // Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
+        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, TheDuelistEnum.THE_DUELIST);
       
         logger.info("Done editing potions");
     }
@@ -332,11 +332,11 @@ public class DefaultMod
         logger.info("Adding relics");
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
-        BaseMod.addRelicToCustomPool(new PlaceholderRelic(), AbstractCardEnum.DEFAULT_GRAY);
-        BaseMod.addRelicToCustomPool(new StarterRelic(), AbstractCardEnum.DEFAULT_GRAY);
+        //BaseMod.addRelicToCustomPool(new PlaceholderRelic(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new MillenniumPuzzle(), AbstractCardEnum.DEFAULT_GRAY);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
-        BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
+        //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
 
         logger.info("Done adding relics!");
     }
@@ -358,16 +358,16 @@ public class DefaultMod
         BaseMod.addCard(new AlphaMagnet());
 		BaseMod.addCard(new AncientRules());
 		BaseMod.addCard(new AxeDespair());
-		BaseMod.addCard(new BarrelDragon());
+		//BaseMod.addCard(new BarrelDragon());
 		BaseMod.addCard(new BetaMagnet());
 		BaseMod.addCard(new BlueEyes());
 		BaseMod.addCard(new BlueEyesUltimate());
-		BaseMod.addCard(new BusterBlader());
+		//BaseMod.addCard(new BusterBlader());
 		BaseMod.addCard(new CastleWalls());
 		BaseMod.addCard(new CelticGuardian());
 		BaseMod.addCard(new DarkMagician());
 		BaseMod.addCard(new DarkMagicianGirl());
-		BaseMod.addCard(new FlameSwordsman());
+		//BaseMod.addCard(new FlameSwordsman());
 		BaseMod.addCard(new GaiaFierce());
 		BaseMod.addCard(new GammaMagnet());
 		BaseMod.addCard(new GateGuardian());
@@ -388,6 +388,17 @@ public class DefaultMod
 		BaseMod.addCard(new SevenColoredFish());
 		BaseMod.addCard(new SummonedSkull());
 		BaseMod.addCard(new SuperheavyScales());
+		BaseMod.addCard(new ToonBarrelDragon());
+		BaseMod.addCard(new ToonDarkMagician());
+		BaseMod.addCard(new ToonDarkMagicianGirl());
+		BaseMod.addCard(new ToonGeminiElf());
+		BaseMod.addCard(new ToonMermaid());
+		BaseMod.addCard(new ToonSummonedSkull());
+		BaseMod.addCard(new ToonWorld());
+		BaseMod.addCard(new BlueEyesToon());
+		//BaseMod.addCard(new FiendMegacyber());
+		BaseMod.addCard(new PotGreed());
+		BaseMod.addCard(new RedEyesToon());
 		
         /*
         BaseMod.addCard(new AlphaMagnet());
@@ -503,16 +514,16 @@ public class DefaultMod
         UnlockTracker.unlockCard(AlphaMagnet.ID);
 		UnlockTracker.unlockCard(AncientRules.ID);
 		UnlockTracker.unlockCard(AxeDespair.ID);	
-		UnlockTracker.unlockCard(BarrelDragon.ID);
+		//UnlockTracker.unlockCard(BarrelDragon.ID);
 		UnlockTracker.unlockCard(BetaMagnet.ID);
 		UnlockTracker.unlockCard(BlueEyes.ID);		
 		UnlockTracker.unlockCard(BlueEyesUltimate.ID);		
-		UnlockTracker.unlockCard(BusterBlader.ID);		
+		//UnlockTracker.unlockCard(BusterBlader.ID);		
 		UnlockTracker.unlockCard(CastleWalls.ID);		
 		UnlockTracker.unlockCard(CelticGuardian.ID);		
 		UnlockTracker.unlockCard(DarkMagician.ID);
 		UnlockTracker.unlockCard(DarkMagicianGirl.ID);
-		UnlockTracker.unlockCard(FlameSwordsman.ID);
+		//UnlockTracker.unlockCard(FlameSwordsman.ID);
 		UnlockTracker.unlockCard(GaiaFierce.ID);
 		UnlockTracker.unlockCard(GammaMagnet.ID);
 		UnlockTracker.unlockCard(GateGuardian.ID);
@@ -533,7 +544,17 @@ public class DefaultMod
 		UnlockTracker.unlockCard(SevenColoredFish.ID);
 		UnlockTracker.unlockCard(SummonedSkull.ID);
 		UnlockTracker.unlockCard(SuperheavyScales.ID);
-        
+		UnlockTracker.unlockCard(ToonWorld.ID);
+		UnlockTracker.unlockCard(ToonBarrelDragon.ID);
+		UnlockTracker.unlockCard(ToonDarkMagician.ID);
+		UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
+		UnlockTracker.unlockCard(ToonGeminiElf.ID);
+		UnlockTracker.unlockCard(ToonMermaid.ID);
+		UnlockTracker.unlockCard(ToonSummonedSkull.ID);
+		UnlockTracker.unlockCard(BlueEyesToon.ID);
+		UnlockTracker.unlockCard(FiendMegacyber.ID);
+		UnlockTracker.unlockCard(PotGreed.ID);
+		UnlockTracker.unlockCard(RedEyesToon.ID);
 		
 		/*
         UnlockTracker.unlockCard(AlphaMagnet.ID);
@@ -658,19 +679,23 @@ public class DefaultMod
 
         // CardStrings
         BaseMod.loadCustomStringsFile(CardStrings.class,
-                "defaultModResources/localization/DefaultMod-Card-Strings.json");
+                "defaultModResources/localization/DuelistMod-Card-Strings.json");
 
         // PowerStrings
         BaseMod.loadCustomStringsFile(PowerStrings.class,
-                "defaultModResources/localization/DefaultMod-Power-Strings.json");
+                "defaultModResources/localization/DuelistMod-Power-Strings.json");
 
         // RelicStrings
         BaseMod.loadCustomStringsFile(RelicStrings.class,
-                "defaultModResources/localization/DefaultMod-Relic-Strings.json");
+                "defaultModResources/localization/DuelistMod-Relic-Strings.json");
 
         // PotionStrings
         BaseMod.loadCustomStringsFile(PotionStrings.class,
-                "defaultModResources/localization/DefaultMod-Potion-Strings.json");
+                "defaultModResources/localization/DuelistMod-Potion-Strings.json");
+        
+        // OrbStrings
+        BaseMod.loadCustomStringsFile(OrbStrings.class,
+                "defaultModResources/localization/DuelistMod-Orb-Strings.json");
 
         logger.info("Done edittting strings");
     }
@@ -689,6 +714,7 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "OBLITERATE");
         BaseMod.addKeyword(new String[] {"Mako's"}, "Each time target attacks, gain 1 Dexterity.");
         BaseMod.addKeyword(new String[] {"Ra"}, "Gain 1 Strength. Gain 3 Dexterity.");
+        BaseMod.addKeyword(new String[] {"Gate", "gate"}, "Orb: Deal damage to ALL enemies, gain energy and block.");
 
     }
 

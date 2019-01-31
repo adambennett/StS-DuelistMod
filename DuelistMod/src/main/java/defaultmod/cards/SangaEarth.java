@@ -103,6 +103,7 @@ public class SangaEarth extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -117,7 +118,10 @@ public class SangaEarth extends CustomCard {
     		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
     		if (this.magicNumber >= TRIBUTES)
     		{
-    			return true;
+    			if (p.energy.energy >= COST)
+    			{
+    				return true;
+    			}
     		}
     		else
     		{

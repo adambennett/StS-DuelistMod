@@ -64,7 +64,7 @@ public class CastleWalls extends CustomCard {
     {
     	if (this.upgraded) { this.baseBlock = BLOCK + UPGRADE_PLUS_BLK; }
     	AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
+                .addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, this.block));
     }
 
     // Which card to return when making a copy of this card.

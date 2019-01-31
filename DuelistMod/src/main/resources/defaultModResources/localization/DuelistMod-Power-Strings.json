@@ -15,6 +15,14 @@
         "NAME": "Jam Breeder",
         "DESCRIPTIONS": ["At the start of your turn, Summon 1 and deal 5 damage to a random enemy."]
 },
+"theDuelist:ToonWorldPower": {
+        "NAME": "Toon World",
+        "DESCRIPTIONS": ["Toon Monsters can be played."]
+},
+"theDuelist:SpellCounterPower": {
+        "NAME": "Spell Counter",
+        "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]
+},
 "theDuelist:RarePower": {
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["At the start of your turn, TOUCH ", " enemy." , " enemies."]

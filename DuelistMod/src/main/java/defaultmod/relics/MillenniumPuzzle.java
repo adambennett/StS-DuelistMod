@@ -6,40 +6,32 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import defaultmod.DefaultMod;
+import defaultmod.powers.SummonPower;
 
-public class PlaceholderRelic extends CustomRelic {
+public class MillenniumPuzzle extends CustomRelic {
     
     /*
      * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
      * 
-     * Gain 1 energy.
+     * Summon 1 on combat start
      */
 
     // ID, images, text.
-    public static final String ID = defaultmod.DefaultMod.makeID("PlaceholderRelic");
+    public static final String ID = defaultmod.DefaultMod.makeID("MillenniumPuzzle");
     public static final String IMG = DefaultMod.makePath(DefaultMod.PLACEHOLDER_RELIC);
     public static final String OUTLINE = DefaultMod.makePath(DefaultMod.PLACEHOLDER_RELIC_OUTLINE);
+    private int SUMMONS = 1;
 
-    public PlaceholderRelic() {
+    public MillenniumPuzzle() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
     }
 
-    // Flash at the start of Battle.
+    // Summon 1 on turn start
     @Override
-    public void atBattleStartPreDraw() {
-        flash();
-    }
-
-    // Gain 1 energy on equip.
-    @Override
-    public void onEquip() {
-        AbstractDungeon.player.energy.energyMaster += 1;
-    }
-
-    // Lose 1 energy on unequip.
-    @Override
-    public void onUnequip() {
-        AbstractDungeon.player.energy.energyMaster -= 1;
+    public void atBattleStart() 
+    {
+        this.flash();
+        AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS), SUMMONS));
     }
 
     // Description
@@ -51,6 +43,6 @@ public class PlaceholderRelic extends CustomRelic {
     // Which relic to return on making a copy of this relic.
     @Override
     public AbstractRelic makeCopy() {
-        return new PlaceholderRelic();
+        return new MillenniumPuzzle();
     }
 }

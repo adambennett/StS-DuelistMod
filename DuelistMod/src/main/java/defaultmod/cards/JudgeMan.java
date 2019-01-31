@@ -81,6 +81,10 @@ public class JudgeMan extends CustomCard {
     		{
     			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
+    		}
     	}
 		AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
@@ -114,7 +118,10 @@ public class JudgeMan extends CustomCard {
     		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
     		if (this.magicNumber >= TRIBUTES)
     		{
-    			return true;
+    			if (p.energy.energy >= COST)
+    			{
+    				return true;
+    			}
     		}
     		else
     		{

@@ -23,47 +23,28 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
-import defaultmod.cards.CastleWalls;
-import defaultmod.cards.CelticGuardian;
-import defaultmod.cards.GeminiElf;
-import defaultmod.cards.GiantSoldier;
-import defaultmod.cards.Hinotoma;
-import defaultmod.cards.ScrapFactory;
-import defaultmod.cards.SevenColoredFish;
-import defaultmod.patches.AbstractCardEnum;
-import defaultmod.relics.StarterRelic;
+import defaultmod.cards.*;
+import defaultmod.patches.*;
+import defaultmod.relics.MillenniumPuzzle;
 
-public class TheDefault extends CustomPlayer {
+
+public class TheDuelist extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
     // =============== BASE STATS =================
-
-    // Testing Stats
-    /*
-    public static final int ENERGY_PER_TURN = 8;
-    public static final int STARTING_HP = 999;
-    public static final int MAX_HP = 999;
-    public static final int STARTING_GOLD = 999;
-    public static final int CARD_DRAW = 9;
-    public static final int ORB_SLOTS = 3;
-    */
-    
-    // Real Stats
     public static final int ENERGY_PER_TURN = 2;
     public static final int STARTING_HP = 80;
     public static final int MAX_HP = 80;
     public static final int STARTING_GOLD = 99;
     public static final int CARD_DRAW = 5;
     public static final int ORB_SLOTS = 3;
-
     // =============== /BASE STATS/ =================
 
     
     // =============== TEXTURES OF BIG ENERGY ORB ===============
-
     public static final String[] orbTextures = 
-	{
-        "defaultModResources/images/char/defaultCharacter/orb/layer1.png",
+    {	
+		"defaultModResources/images/char/defaultCharacter/orb/layer1.png",
         "defaultModResources/images/char/defaultCharacter/orb/layer2.png",
         "defaultModResources/images/char/defaultCharacter/orb/layer3.png",
         "defaultModResources/images/char/defaultCharacter/orb/layer4.png",
@@ -74,14 +55,13 @@ public class TheDefault extends CustomPlayer {
         "defaultModResources/images/char/defaultCharacter/orb/layer3d.png",
         "defaultModResources/images/char/defaultCharacter/orb/layer4d.png",
         "defaultModResources/images/char/defaultCharacter/orb/layer5d.png", 
-	};
-    
+    };
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
     
     // =============== CHARACTER CLASS START =================
 
-    public TheDefault(String name, PlayerClass setClass) 
+    public TheDuelist(String name, PlayerClass setClass) 
     {
         super(name, setClass, orbTextures,
                 "defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
@@ -147,13 +127,12 @@ public class TheDefault extends CustomPlayer {
         retVal.add(GiantSoldier.ID);
         retVal.add(CastleWalls.ID);
         retVal.add(CastleWalls.ID);
-        retVal.add(CelticGuardian.ID);
         retVal.add(ScrapFactory.ID);
         retVal.add(Hinotoma.ID);
-        retVal.add(GeminiElf.ID);
-         
+        retVal.add(Hinotoma.ID);
+        retVal.add(SummonedSkull.ID);
+
         // temp for testing
-       
 
         return retVal;
     }
@@ -162,8 +141,8 @@ public class TheDefault extends CustomPlayer {
     public ArrayList<String> getStartingRelics() 
     {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(StarterRelic.ID);
-        UnlockTracker.markRelicAsSeen(StarterRelic.ID);
+        retVal.add(MillenniumPuzzle.ID);
+        UnlockTracker.markRelicAsSeen(MillenniumPuzzle.ID);
         return retVal;
     }
 
@@ -228,7 +207,7 @@ public class TheDefault extends CustomPlayer {
     // Should return a new instance of your character, sending this.name as its name parameter.
     @Override
     public AbstractPlayer newInstance() {
-        return new TheDefault(this.name, this.chosenClass);
+        return new TheDuelist(this.name, this.chosenClass);
     }
 
     // Should return a Color object to be used to color the miniature card images in run history.

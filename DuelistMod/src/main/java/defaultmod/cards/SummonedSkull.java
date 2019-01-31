@@ -68,7 +68,6 @@ public class SummonedSkull extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.magicNumber = this.baseMagicNumber = TRIBUTES + U_TRIBUTES; }
     	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, this.magicNumber));
     	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
@@ -84,9 +83,29 @@ public class SummonedSkull extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.magicNumber = this.baseMagicNumber = TRIBUTES + U_TRIBUTES;
+            this.upgradeMagicNumber(U_TRIBUTES);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.misc >= TRIBUTES)
+    		{
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
+    	
+    	return false;
     }
 }

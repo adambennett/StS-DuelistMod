@@ -1,8 +1,6 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,9 +8,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SummonPower;
+import defaultmod.powers.ToonWorldPower;
 
 public class ToonGeminiElf extends CustomCard {
 
@@ -38,35 +37,51 @@ public class ToonGeminiElf extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int SUMMONS = 2;
+    private static final int UPGRADE_SUMMONS = 2;
 
     // /STAT DECLARATION/
 
-    public ToonGeminiElf() {
+    public ToonGeminiElf() 
+    {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = SUMMONS;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	if (this.upgraded) { this.magicNumber = this.baseMagicNumber = SUMMONS + UPGRADE_SUMMONS; }
+    	if (!p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
+    	}
+    	else
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (!(this.misc > 5 - this.magicNumber)) 
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
+    		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -80,8 +95,20 @@ public class ToonGeminiElf extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.magicNumber = this.baseMagicNumber = SUMMONS + UPGRADE_SUMMONS;
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have Toon World, can't be played
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.hasPower(ToonWorldPower.POWER_ID))
+    	{
+    		return true;
+    	}
+    	return false;
     }
 }

@@ -1,6 +1,9 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,9 +13,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.SpellCounterPower;
 import defaultmod.powers.SummonPower;
 
 public class DarkMagician extends CustomCard {
@@ -53,22 +56,25 @@ public class DarkMagician extends CustomCard {
 
     private static final int COST = 1;
     private static final int DAMAGE = 15;
-    private static final int UPGRADE_PLUS_DMG = 3;
     private static final int TRIBUTES = 2;
+    private static final int COUNTERS = 3;
+    private static final int U_COUNTERS = 2;
 
     // /STAT DECLARATION/
 
     public DarkMagician() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = COUNTERS;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+    	AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new SpellCounterPower(p, p, this.magicNumber)));
     }
 
     // Which card to return when making a copy of this card.
@@ -82,7 +88,7 @@ public class DarkMagician extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeMagicNumber(U_COUNTERS);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -97,7 +103,10 @@ public class DarkMagician extends CustomCard {
     		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
     		if (this.magicNumber >= TRIBUTES)
     		{
-    			return true;
+    			if (p.energy.energy >= COST)
+    			{
+    				return true;
+    			}
     		}
     		else
     		{

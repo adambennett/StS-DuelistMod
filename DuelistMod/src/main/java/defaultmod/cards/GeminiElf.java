@@ -48,7 +48,7 @@ public class GeminiElf extends CustomCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int SUMMONS = 2;
     private static final int UPGRADE_SUMMONS = 1;
 
@@ -75,6 +75,10 @@ public class GeminiElf extends CustomCard {
     		if (!(this.misc > 5 - this.magicNumber)) 
     		{
     			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
+    		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
     		}
     	}
     }

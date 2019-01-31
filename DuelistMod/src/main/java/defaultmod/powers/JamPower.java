@@ -62,6 +62,10 @@ public class JamPower extends AbstractPower
     		{
     			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, this.amount), this.amount));
     		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, 5- temp), 5 - temp));
+    		}
     	}
     	AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageInfo.DamageType.NORMAL),AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }

@@ -113,7 +113,10 @@ public class RedEyes extends CustomCard {
     		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
     		if (this.magicNumber >= TRIBUTES)
     		{
-    			return true;
+    			if (p.energy.energy >= COST)
+    			{
+    				return true;
+    			}
     		}
     		else
     		{

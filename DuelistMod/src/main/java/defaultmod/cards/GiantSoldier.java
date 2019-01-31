@@ -64,7 +64,7 @@ public class GiantSoldier extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.baseBlock = BLOCK + UPGRADE_PLUS_BLK; }
+    	//if (this.upgraded) { this.baseBlock = BLOCK + UPGRADE_PLUS_BLK; }
     	if (!p.hasPower(SummonPower.POWER_ID)) 
     	{
     		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
@@ -76,8 +76,12 @@ public class GiantSoldier extends CustomCard {
     		{
     			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
+    		}
     	}
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, BLOCK));
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, this.block));
     }
 
     // Which card to return when making a copy of this card.

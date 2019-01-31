@@ -1,17 +1,17 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
+import defaultmod.orbs.Gate;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.powers.SummonPower;
 
@@ -47,28 +47,32 @@ public class GateGuardian extends CustomCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 3;
-    private static final int DAMAGE = 50;
-    private static final int UPGRADE_PLUS_DMG = 15;
     private static final int TRIBUTES = 3;
+    private static final int SUMMONS = 1;
+    private static final int U_TRIBUTES = 1;
 
     // /STAT DECLARATION/
 
     public GateGuardian() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	if (this.upgraded) { AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES)); }
+    	else { AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES - U_TRIBUTES)); }
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.defect.EvokeAllOrbsAction());
+    	AbstractOrb orb = new Gate();
+   	 	AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
     }
 
     // Which card to return when making a copy of this card.
@@ -82,7 +86,7 @@ public class GateGuardian extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -92,26 +96,18 @@ public class GateGuardian extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.hasEmptyOrb())  
-		{
-    		return false;
-		}
-    	else
+    	if (p.hasPower(SummonPower.POWER_ID)) 
     	{
-	    	if (p.hasPower(SummonPower.POWER_ID)) 
-	    	{
-	    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-	    		if (this.magicNumber >= TRIBUTES)
-	    		{
-	    				return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
+    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.magicNumber >= TRIBUTES)
+    		{
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
     	}
-    	
     	return false;
     }
    

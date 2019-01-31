@@ -49,34 +49,25 @@ public class ScrapFactory extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 0;
-
+    private static final int TRIBUTES = 1;
+    private static final int ENERGY = 1;
+    private static final int U_ENERGY = 1;
 
     // /STAT DECLARATION/
 
     public ScrapFactory() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.magicNumber = this.baseMagicNumber = ENERGY;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (this.magicNumber >= 1)
-    		{
-    			AbstractDungeon.actionManager
-    				.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, 1));
-    			AbstractDungeon.actionManager
-    				.addToBottom(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(1));
-    		}
-    	} 
-    	else 
-    	{
-    		this.magicNumber = 0;
-    	} 
+    	//if (this.upgraded) { this.magicNumber = this.baseMagicNumber = ENERGY + U_ENERGY; }
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, 1));
+    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -90,8 +81,32 @@ public class ScrapFactory extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(U_ENERGY);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+ // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (this.misc >= TRIBUTES)
+    		{
+    			if (p.energy.energy >= COST)
+    			{
+    				return true;
+    			}
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
+    	
+    	return false;
     }
 }
