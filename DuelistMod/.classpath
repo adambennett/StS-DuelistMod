@@ -28,10 +28,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/BaseMod.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/desktop-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/FriendlyMinions.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/ModTheSpire.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Adam/git/StS-DuelistMod-B/lib/StSLib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/BaseMod.jar"/>
+	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/desktop-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/FriendlyMinions.jar"/>
+	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/ModTheSpire.jar"/>
+	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/StSLib.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
