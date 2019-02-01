@@ -108,7 +108,7 @@ public class GateGuardian extends CustomCard {
     {
     	if (p.energy.energy > COST)
     	{
-	    	if (p.hasPower(SummonPower.POWER_ID)) 
+    		if (p.energy.energy >= COST) 
 	    	{
 	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
 	    		if (temp >= TRIBUTES)

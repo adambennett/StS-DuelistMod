@@ -34,9 +34,9 @@ public class TheDuelist extends CustomPlayer {
     // =============== BASE STATS =================
     public static final int ENERGY_PER_TURN = 2;
     public static final int STARTING_HP = 80;
-    public static final int MAX_HP = 99;
-    public static final int STARTING_GOLD = 80;
-    public static final int CARD_DRAW = 9;
+    public static final int MAX_HP = 80;
+    public static final int STARTING_GOLD = 99;
+    public static final int CARD_DRAW = 5;
     public static final int ORB_SLOTS = 3;
     // =============== /BASE STATS/ =================
 
@@ -133,9 +133,6 @@ public class TheDuelist extends CustomPlayer {
         retVal.add(SummonedSkull.ID);
 
         // temp for testing
-        retVal.add(JamBreeding.ID);
-        retVal.add(JamBreeding.ID);
-        retVal.add(JamBreeding.ID);
 
         return retVal;
     }

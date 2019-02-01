@@ -45,7 +45,7 @@ public class AxeDespair extends CustomCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int MAGIC = 10;
     private static final int UPGRADE_MAGIC = 2;
 

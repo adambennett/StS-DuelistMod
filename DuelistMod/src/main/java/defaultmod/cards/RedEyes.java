@@ -108,7 +108,7 @@ public class RedEyes extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy > COST)
+    	if (p.energy.energy >= COST)
     	{
 	    	if (p.hasPower(SummonPower.POWER_ID)) 
 	    	{
