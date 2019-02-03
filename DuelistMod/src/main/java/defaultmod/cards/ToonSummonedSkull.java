@@ -3,11 +3,13 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,120 +20,129 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.ObeliskPower;
 import defaultmod.powers.SummonPower;
 import defaultmod.powers.ToonWorldPower;
 
 public class ToonSummonedSkull extends CustomCard {
 
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
-     *
-     * Strike Deal 7(9) damage.
-     */
+	/*
+	 * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
+	 *
+	 * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
+	 *
+	 * Strike Deal 7(9) damage.
+	 */
 
-    // TEXT DECLARATION
+	// TEXT DECLARATION
 
-    public static final String ID = defaultmod.DefaultMod.makeID("ToonSummonedSkull");
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+	public static final String ID = defaultmod.DefaultMod.makeID("ToonSummonedSkull");
+	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
-    // Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
-    // It might be easier to use that while testing.
-    // Using makePath is good practice once you get the hand of things, as it prevents you from
-    // having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
+	// Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
+	// It might be easier to use that while testing.
+	// Using makePath is good practice once you get the hand of things, as it prevents you from
+	// having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
 
-    public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_SUMMONED_SKULL);
+	public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_SUMMONED_SKULL);
 
-    public static final String NAME = cardStrings.NAME;
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+	public static final String NAME = cardStrings.NAME;
+	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
-    // /TEXT DECLARATION/
+	// /TEXT DECLARATION/
 
-    
-    // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	// STAT DECLARATION
 
-    private static final int COST = 2;
-    private static final int DAMAGE = 10;
-    private static final int TRIBUTES = 1;
-    private static final int U_DMG = 5;
-    private static final int STR_GAIN = 1;
-    
-    // /STAT DECLARATION/
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
+	private static final CardType TYPE = CardType.ATTACK;
+	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    public ToonSummonedSkull() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
-    }
+	private static final int COST = 2;
+	private static final int DAMAGE = 10;
+	private static final int TRIBUTES = 1;
+	private static final int U_DMG = 5;
+	private static final int STR_GAIN = 1;
 
-    // Actions the card should do.
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	// Tribute Summon
-    	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
-    	
-    	// Record target block and remove all of it
-        int targetArmor = m.currentBlock;
-        if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new RemoveAllBlockAction(m, m)); }
-        
-        // Deal direct damage to target HP
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-        
-        // Restore original target block
-        if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }
-        
-        // Gain 1 Strength
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, STR_GAIN)));
-    }
+	// /STAT DECLARATION/
 
-    // Which card to return when making a copy of this card.
-    @Override
-    public AbstractCard makeCopy() {
-        return new ToonSummonedSkull();
-    }
+	public ToonSummonedSkull() {
+		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		this.baseDamage = DAMAGE;
+	}
 
-    // Upgraded stats.
-    @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeDamage(U_DMG);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
-    }
-    
-    // If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	if (p.energy.energy >= COST)
-    	{
-		    if (p.hasPower(ToonWorldPower.POWER_ID))
-		    {
-	    		if (p.hasPower(SummonPower.POWER_ID)) 
-		    	{
-		    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-		    		if (this.misc >= TRIBUTES)
-		    		{
-		    			return true;
-		    		}
-		    		else
-		    		{
-		    			return false;
-		    		}
-		    	}
-		    }
-    	}
-    	
-    	return false;
-    }
-   
+	// Actions the card should do.
+	@Override
+	public void use(AbstractPlayer p, AbstractMonster m) 
+	{
+		// Tribute Summon
+		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+
+		// Check for Obelisk after tributing
+		if (p.hasPower(ObeliskPower.POWER_ID))
+		{
+			int[] temp = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
+			for (int i : temp) { i = i * TRIBUTES; }
+			AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
+		}
+
+		// Record target block and remove all of it
+		int targetArmor = m.currentBlock;
+		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
+
+		// Deal direct damage to target HP
+		AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+
+		// Restore original target block
+		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new GainBlockAction(m, m, targetArmor)); }
+
+		// Gain 1 Strength
+		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, STR_GAIN)));
+	}
+
+	// Which card to return when making a copy of this card.
+	@Override
+	public AbstractCard makeCopy() {
+		return new ToonSummonedSkull();
+	}
+
+	// Upgraded stats.
+	@Override
+	public void upgrade() {
+		if (!this.upgraded) {
+			this.upgradeName();
+			this.upgradeDamage(U_DMG);
+			this.rawDescription = UPGRADE_DESCRIPTION;
+			this.initializeDescription();
+		}
+	}
+
+	// If player doesn't have enough summons, can't play card
+	@Override
+	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+	{
+		if (p.energy.energy >= COST)
+		{
+			if (p.hasPower(ToonWorldPower.POWER_ID))
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) 
+				{
+					this.misc = (p.getPower(SummonPower.POWER_ID).amount);
+					if (this.misc >= TRIBUTES)
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
 }

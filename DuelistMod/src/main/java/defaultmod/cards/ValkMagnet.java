@@ -1,6 +1,10 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,9 +14,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.AlphaMagPower;
+import defaultmod.powers.BetaMagPower;
+import defaultmod.powers.GammaMagPower;
+import defaultmod.powers.PotGenerosityPower;
+import defaultmod.powers.SummonPower;
 
 public class ValkMagnet extends CustomCard {
 
@@ -38,20 +46,21 @@ public class ValkMagnet extends CustomCard {
 
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int COST = 2;
+    private static final int DAMAGE = 20;
+    private static final int SUMMONS = 3;
 
     // /STAT DECLARATION/
 
@@ -62,11 +71,42 @@ public class ValkMagnet extends CustomCard {
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	// Summon
+    	if (!p.hasPower(SummonPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    	}
+    	else
+    	{
+    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
+    		if (!(temp > 5 - SUMMONS)) 
+    		{
+    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    		}
+    		else
+    		{
+    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - temp), 5 - temp));
+    		}
+    	}
+    	
+    	// Check for Pot of Generosity
+    	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(SUMMONS));
+    	}
+    	
+    	// Deal damage to target enemy
+    	AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+   
+    	// Remove magnets
+    	if (!this.upgraded)
+    	{
+	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, AlphaMagPower.POWER_ID, 1));
+	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, BetaMagPower.POWER_ID, 1));
+	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, GammaMagPower.POWER_ID, 1));
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -79,9 +119,31 @@ public class ValkMagnet extends CustomCard {
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeName(); 
+            this.upgradeBaseCost(1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have all three magnets, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (p.energy.energy >= COST)
+    	{
+	    	if (p.hasPower(AlphaMagPower.POWER_ID)) 
+	    	{
+	    		if (p.hasPower(BetaMagPower.POWER_ID)) 
+		    	{
+	    			if (p.hasPower(GammaMagPower.POWER_ID)) 
+	    	    	{
+	    	    		return true;
+	    	    	}
+		    	}
+	    	}
+    	}
+    	
+    	return false;
     }
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -71,6 +72,12 @@ public class JamPower extends AbstractPower
 					AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, 5 - temp), 5 - temp));
 				}
 			}
+			
+			// Check for Pot of Generosity
+	    	if (this.owner.hasPower(PotGenerosityPower.POWER_ID)) 
+	    	{
+	    		AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(SUMMONS));
+	    	}
 			
 			// Deal 5 damage to a random enemy for each copy of Jam Breeding Machine that has been played
 			for (int i = 0; i < this.amount; i++)

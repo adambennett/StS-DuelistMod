@@ -1,5 +1,8 @@
 package defaultmod.cards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,6 +13,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.GammaMagPower;
+import defaultmod.powers.PotGenerosityPower;
 import defaultmod.powers.SummonPower;
 
 public class GammaMagnet extends CustomCard {
@@ -48,7 +53,7 @@ public class GammaMagnet extends CustomCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int SUMMONS = 1;
     private static final int DRAW = 1;
 
@@ -63,23 +68,35 @@ public class GammaMagnet extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	// Summon
     	if (!p.hasPower(SummonPower.POWER_ID)) 
     	{
-    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     	}
     	else
     	{
     		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
     		if (!(this.misc > 5 - SUMMONS)) 
     		{
-    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     		}
     		else
     		{
-    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
+    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
     		}
     	}
-    	AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DrawCardAction(p, DRAW));
+    	
+    	// Check for Pot of Generosity
+    	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(SUMMONS));
+    	}
+    	
+    	// Gain Gamma Magnet
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p)));
+    	
+    	// Draw cards
+    	AbstractDungeon.actionManager.addToTop(new DrawCardAction(p, DRAW));
     }
 
     // Which card to return when making a copy of this card.
@@ -93,6 +110,8 @@ public class GammaMagnet extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(0);
+            this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

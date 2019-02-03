@@ -3,6 +3,7 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.PotGenerosityPower;
 import defaultmod.powers.SummonPower;
 
 public class SevenColoredFish extends CustomCard {
@@ -30,14 +32,7 @@ public class SevenColoredFish extends CustomCard {
 
     public static final String ID = defaultmod.DefaultMod.makeID("SevenColoredFish");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-
-    // Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
-    // It might be easier to use that while testing.
-    // Using makePath is good practice once you get the hand of things, as it prevents you from
-    // having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
-
     public static final String IMG = DefaultMod.makePath(DefaultMod.SEVEN_COLORED_FISH);
-
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -53,7 +48,7 @@ public class SevenColoredFish extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 0;
-    private static final int DAMAGE = 3;
+    private static final int DAMAGE = 4;
     private static final int SUMMONS = 1;
     private static final int U_SUMMONS = 1;
 
@@ -69,7 +64,7 @@ public class SevenColoredFish extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.magicNumber = this.baseMagicNumber = SUMMONS + U_SUMMONS; }
+    	// Summon
     	if (!p.hasPower(SummonPower.POWER_ID)) 
     	{
     		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
@@ -86,7 +81,15 @@ public class SevenColoredFish extends CustomCard {
     			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
     		}
     	}
-		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	
+    	// Check for Pot of Generosity
+    	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
+    	{
+    		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(SUMMONS));
+    	}
+    	
+    	// Damage
+		AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     // Which card to return when making a copy of this card.

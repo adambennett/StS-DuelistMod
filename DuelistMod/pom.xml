@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>0.40.1</version>
+    <version>0.53.0</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
@@ -19,6 +19,7 @@
         <ModTheSpire.version>3.8.3</ModTheSpire.version>
         <StSLib.version>1.13.2</StSLib.version>
         <FriendlyMinions.version>0.1.2</FriendlyMinions.version>
+        <TheJuggernaut.version>0.1.2</TheJuggernaut.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -59,6 +60,13 @@
             <version>${StSLib.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/STSLib.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>StsMod</groupId>
+    		<artifactId>TheJuggernaut</artifactId>
+            <version>${TheJuggernaut.version}</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../lib/TheJuggernaut.jar</systemPath>
         </dependency>
 
     </dependencies>

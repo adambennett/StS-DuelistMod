@@ -197,7 +197,20 @@ public class DefaultMod
     public static final String DESPAIR_POWER = "powers/DespairPower.png";
     public static final String TOON_WORLD_POWER = "powers/ToonWorldPower.png";
     public static final String SPELL_COUNTER_POWER = "powers/SpellCounterPower.png";
-    //public static final String OBELISK_POWER = "powers/ObeliskPower.png";
+    public static final String OBELISK_POWER = "powers/ObeliskPower.png";
+    public static final String ALPHA_MAG_POWER = "powers/AlphaMagPower.png";
+    public static final String BETA_MAG_POWER = "powers/BetaMagPower.png";
+    public static final String GAMMA_MAG_POWER = "powers/GammaMagPower.png";
+    public static final String GREED_SHARD_POWER = "powers/GreedShardPower.png";
+    public static final String MIRROR_POWER = "powers/MirrorPower.png";
+    public static final String SWORDS_BURNING_POWER = "powers/SwordsBurnPower.png";
+    public static final String SWORDS_CONCEALING_POWER = "powers/SwordsConcealPower.png";
+    public static final String SWORDS_REVEALING_POWER = "powers/SwordsRevealPower.png";
+    public static final String TIME_WIZARD_POWER = "powers/TimeWizardPower.png";
+    public static final String TOON_BRIEFCASE_POWER = "powers/ToonBriefPower.png";
+    public static final String POT_GENEROSITY_POWER = "powers/PotGenerosityPower.png";
+    public static final String CANNON_SOLDIER_POWER = "powers/CannonPower.png";
+    public static final String CATAPULT_TURTLE_POWER = "powers/CatapultPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -364,7 +377,7 @@ public class DefaultMod
 		BaseMod.addCard(new BetaMagnet());
 		BaseMod.addCard(new BlueEyes());
 		BaseMod.addCard(new BlueEyesUltimate());
-		//BaseMod.addCard(new BusterBlader());
+		BaseMod.addCard(new BusterBlader());
 		BaseMod.addCard(new CastleWalls());
 		BaseMod.addCard(new CelticGuardian());
 		BaseMod.addCard(new DarkMagician());
@@ -398,9 +411,18 @@ public class DefaultMod
 		BaseMod.addCard(new ToonSummonedSkull());
 		BaseMod.addCard(new ToonWorld());
 		BaseMod.addCard(new BlueEyesToon());
-		//BaseMod.addCard(new FiendMegacyber());
+		BaseMod.addCard(new FiendMegacyber());
 		BaseMod.addCard(new PotGreed());
 		BaseMod.addCard(new RedEyesToon());
+		BaseMod.addCard(new ObeliskTormentor());
+		BaseMod.addCard(new DianKeto());
+		BaseMod.addCard(new MillenniumShield());
+		BaseMod.addCard(new PotGenerosity());
+		BaseMod.addCard(new ValkMagnet());
+		BaseMod.addCard(new CannonSoldier());
+		BaseMod.addCard(new CatapultTurtle());
+		BaseMod.addCard(new Scapegoat());
+		BaseMod.addCard(new DarklordMarie());
 		
         /*
         BaseMod.addCard(new AlphaMagnet());
@@ -520,7 +542,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(BetaMagnet.ID);
 		UnlockTracker.unlockCard(BlueEyes.ID);		
 		UnlockTracker.unlockCard(BlueEyesUltimate.ID);		
-		//UnlockTracker.unlockCard(BusterBlader.ID);		
+		UnlockTracker.unlockCard(BusterBlader.ID);		
 		UnlockTracker.unlockCard(CastleWalls.ID);		
 		UnlockTracker.unlockCard(CelticGuardian.ID);		
 		UnlockTracker.unlockCard(DarkMagician.ID);
@@ -557,6 +579,15 @@ public class DefaultMod
 		UnlockTracker.unlockCard(FiendMegacyber.ID);
 		UnlockTracker.unlockCard(PotGreed.ID);
 		UnlockTracker.unlockCard(RedEyesToon.ID);
+		UnlockTracker.unlockCard(ObeliskTormentor.ID);
+		UnlockTracker.unlockCard(DianKeto.ID);
+		UnlockTracker.unlockCard(MillenniumShield.ID);
+		UnlockTracker.unlockCard(PotGenerosity.ID);
+		UnlockTracker.unlockCard(ValkMagnet.ID);
+		UnlockTracker.unlockCard(CannonSoldier.ID);
+		UnlockTracker.unlockCard(CatapultTurtle.ID);
+		UnlockTracker.unlockCard(Scapegoat.ID);
+		UnlockTracker.unlockCard(DarklordMarie.ID);
 		
 		/*
         UnlockTracker.unlockCard(AlphaMagnet.ID);
@@ -710,14 +741,18 @@ public class DefaultMod
     public void receiveEditKeywords() {
         final String[] placeholder = { "keyword", "keywords", "Keyword", "Keywords" };
         BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
-        BaseMod.addKeyword(new String[] {"summon", "Summon"}, "Counts monsters currently summoned. Max 5, cannot go negative.");
-        BaseMod.addKeyword(new String[] {"tribute", "Tribute"}, "Removes X summons. Unless you have enough summons to tribute, you cannot play a Tribute Summon monster.");
-        BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "Spell counters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
-        BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "OBLITERATE");
-        BaseMod.addKeyword(new String[] {"Mako's"}, "Each time target attacks, gain 1 Dexterity.");
-        BaseMod.addKeyword(new String[] {"Ra"}, "Gain 1 Strength. Gain 3 Dexterity.");
-        BaseMod.addKeyword(new String[] {"Gate", "gate"}, "Orb: Deal damage to ALL enemies, gain energy and block.");
-
+        BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of 5 #ySummons.");
+        BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes", "sacrifice"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
+        BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "#ySpell #yCounters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
+        BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "#yOBLITERATE");
+        BaseMod.addKeyword(new String[] {"Mako's"}, "Each time target attacks, gain #b1 #yDexterity.");
+        BaseMod.addKeyword(new String[] {"Ra"}, "Gain #b1 #yStrength. Gain #b3 #yDexterity.");
+        BaseMod.addKeyword(new String[] {"Gate", "gate"}, "Orb: Deal damage to ALL enemies, gain #yEnergy and #yBlock.");
+        BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
+        BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if Toon World is active.");
+        BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the Magnet Warrior monsters. Magnets have no inherent effect.");
+        
+       
     }
 
     // ================ /LOAD THE KEYWORDS/ ===================    

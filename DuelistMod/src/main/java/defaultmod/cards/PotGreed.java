@@ -61,7 +61,7 @@ public class PotGreed extends CustomCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-    	AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, DRAW));
+    	AbstractDungeon.actionManager.addToTop(new DrawCardAction(p, DRAW));
     }
 
     // Which card to return when making a copy of this card.

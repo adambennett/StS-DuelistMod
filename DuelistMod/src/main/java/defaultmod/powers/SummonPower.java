@@ -25,15 +25,24 @@ public class SummonPower extends AbstractPower
         this.updateDescription();
         this.img = new Texture(IMG);
     }
+    
+    public SummonPower(AbstractCreature owner, int newAmount, String desc) {
+        this.name = NAME;
+        this.ID = POWER_ID;
+        this.owner = owner;
+        this.amount = newAmount;
+        this.img = new Texture(IMG);
+        this.description = desc;
+    }
 
     public void updateDescription() {
     	if (this.owner.hasPower(SummonPower.POWER_ID))
     	{
-    		this.description = this.owner.getPower(SummonPower.POWER_ID).amount + DESCRIPTIONS[0];
+    		this.description = DESCRIPTIONS[0] + this.owner.getPower(SummonPower.POWER_ID).amount + DESCRIPTIONS[1];
     	}
     	else
     	{
-    		this.description = "0" + DESCRIPTIONS[0];
+    		this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1];
     	} 
     }
 

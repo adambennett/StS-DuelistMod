@@ -2,7 +2,7 @@
 	"theDuelist:AlphaMagnet": {
 		"NAME": "A. Magnet Warrior",
 		"DESCRIPTION": "Summon 1. Gain Alpha Magnet. Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Gain Alpha Magnet. Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain Alpha Magnet. Deal !D! damage. Exhaust."
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "Ancient Rules",
@@ -11,8 +11,8 @@
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "Axe of Despair",
-		"DESCRIPTION": "Gain !M! strength this turn. At the end of turn, Sacrifice 1 and place this card on top of your draw pile.",
-		"UPGRADE_DESCRIPTION": "Gain !M! strength this turn. At the end of turn, Sacrifice 1 and place this card on top of your draw pile."
+		"DESCRIPTION": "Gain !M! Strength this turn. At the end of turn, Tribute 1 and place this card on top of your draw pile.",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength this turn. At the end of turn, Tribute 1 and place this card on top of your draw pile."
 	},
 	"theDuelist:BadReaction": {
 		"NAME": "Bad Reaction",
@@ -27,7 +27,7 @@
 	"theDuelist:BetaMagnet": {
 		"NAME": "B. Magnet Warrior",
 		"DESCRIPTION": "Summon 1. Gain Beta Magnet. Block !B!.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Gain Beta Magnet. Block !B!."
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain Beta Magnet. Block !B!. Exhaust."
 	},
 	"theDuelist:BlueEyes": {
 		"NAME": "B.E. White Dragon",
@@ -36,8 +36,8 @@
 	},
 	"theDuelist:BlueEyesToon": {
 		"NAME": "B.E. Toon Dragon",
-		"DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Can only be played if Toon World is active."
+		"DESCRIPTION": "Toon. Tribute 2. Deal !D! damage (through block).",
+		"UPGRADE_DESCRIPTION": "Toon. Tribute 2. Deal !D! damage (through block)."
 	},
 	"theDuelist:BlueEyesUltimate": {
 		"NAME": "B. Eyes Ultimate",
@@ -51,8 +51,8 @@
 	},
 	"theDuelist:CannonSoldier": {
 		"NAME": "Cannon Soldier",
-		"DESCRIPTION": "Once per turn, remove 1 summon and deal !D! damage to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Once per turn, Tribute 1 and deal !D! damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Once per turn, Tribute 1 and deal !D! damage to a random enemy."
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
@@ -71,8 +71,8 @@
 	},
 	"theDuelist:CatapultTurtle": {
 		"NAME": "Catapult Turtle",
-		"DESCRIPTION": "Once per turn, remove all summons and deal !D! damage for each to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Once per turn, Tribute all summons and deal !D! damage for each to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Once per turn, Tribute all summons and deal !D! damage for each to ALL enemies."
 	},
 	"theDuelist:CelticGuardian": {
 		"NAME": "Celtic Guardian",
@@ -91,8 +91,8 @@
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "Darklord Marie",
-		"DESCRIPTION": "Summon 1 monster. Deal !D! damage. Overflow 10 - gain 2 HP.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1 monster. Deal !D! damage. Overflow !M! - gain 2 HP.",
+		"UPGRADE_DESCRIPTION": "Summon 1 monster. Deal !D! damage. Overflow !M! - gain 6 HP."
 	},
 	"theDuelist:DarkMagician": {
 		"NAME": "Dark Magician",
@@ -106,8 +106,8 @@
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "Dian Keto",
-		"DESCRIPTION": "Heal 10 HP.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Heal !M! HP.",
+		"UPGRADE_DESCRIPTION": "Heal !M! HP."
 	},
 	"theDuelist:ExodiaHead": {
 		"NAME": "Exodia Head",
@@ -141,8 +141,8 @@
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "Fiend Megacyber",
-		"DESCRIPTION": "If enemy has Spell Counters: Tribute 1. Deal !D! damage to enemy for every Spell Counter it has.",
-		"UPGRADE_DESCRIPTION": "If enemy has Spell Counters: Tribute 1. Deal !D! damage to enemy for every Spell Counter it has."
+		"DESCRIPTION": "Tribute 1. If target enemy has 10 or more Spell Counters, deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "If target enemy has 10 or more Spell Counters, deal !D! damage."
 	},
 	"theDuelist:Fissure": {
 		"NAME": "Fissure",
@@ -162,7 +162,7 @@
 	"theDuelist:GammaMagnet": {
 		"NAME": "G. Magnet Warrior",
 		"DESCRIPTION": "Summon 1. Gain Gamma Magnet. Draw 1 card.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Gain Gamma Magnet. Draw 1 card."
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain Gamma Magnet. Draw 1 card. Exhaust."
 	},
 	"theDuelist:GateGuardian": {
 		"NAME": "Gate Guardian",
@@ -176,13 +176,13 @@
 	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "Giant Trunade",
-		"DESCRIPTION": "Remove all buffs and debuffs from everyone in combat. Reapply all buffs and debuffs at the start of your next turn.",
+		"DESCRIPTION": "Remove all buffs and debuffs from everyone in combat. Reapply all buffs and debuffs at the start of next turn.",
 		"UPGRADE_DESCRIPTION": "Placeholder text."
 	},
 	"theDuelist:GracefulCharity": {
 		"NAME": "Graceful Charity",
-		"DESCRIPTION": "Draw 3 cards. At the end of your turn, discard 2 cards.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Draw 3 cards. Discard 2 cards.",
+		"UPGRADE_DESCRIPTION": "Draw 3 cards. Discard a card."
 	},
 	"theDuelist:HarpieFeather": {
 		"NAME": "Harpie Feather Duster",
@@ -196,7 +196,7 @@
 	},
 	"theDuelist:ImperialOrder": {
 		"NAME": "Imperial Order",
-		"DESCRIPTION": "Negate all enemy buffs and debuffs. At the start of each turn, choose to take 7 damage or remove this effect.",
+		"DESCRIPTION": "Negate all enemy buffs and debuffs. At the start of turn, choose to take 7 damage or remove this effect.",
 		"UPGRADE_DESCRIPTION": "Placeholder text."
 	},
 	"theDuelist:InjectionFairy": {
@@ -206,13 +206,13 @@
 	},
 	"theDuelist:InsectQueen": {
 		"NAME": "Insect Queen",
-		"DESCRIPTION": "Tribute all summons. Apply that much poison to all enemies.",
-		"UPGRADE_DESCRIPTION": "Tribute all summons. Apply that much poison to all enemies."
+		"DESCRIPTION": "Tribute all summons. Apply !M! times that much poison to all enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute all summons. Apply !M! times that much poison to all enemies."
 	},
 	"theDuelist:JamBreeding": {
 		"NAME": "Jam Breed Machine",
-		"DESCRIPTION": "At the start of your turn, Summon !M! and deal 5 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "At the start of your turn, Summon !M! and deal 5 damage to a random enemy."
+		"DESCRIPTION": "At the start of turn, Summon !M! and deal 5 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, Summon !M! and deal 5 damage to a random enemy."
 	},
 	"theDuelist:JudgeMan": {
 		"NAME": "Judge Man",
@@ -221,8 +221,8 @@
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
-		"DESCRIPTION": "Summon 1 monster. Gain !M! Intangible.",
-		"UPGRADE_DESCRIPTION": "Summon 1 monster. Gain !M! Intangible."
+		"DESCRIPTION": "Summon 1 monster. Gain 1 Intangible.",
+		"UPGRADE_DESCRIPTION": "Summon 1 monster. Gain 1 Intangible."
 	},
 	"theDuelist:LabyrinthWall": {
 		"NAME": "Labyrinth Wall",
@@ -246,8 +246,8 @@
 	},
 	"theDuelist:MillenniumShield": {
 		"NAME": "Millennium Shield",
-		"DESCRIPTION": "Tribute 2. Gain 6 Dexterity.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Gain 6 Dexterity."
+		"DESCRIPTION": "Tribute !M!. Gain 6 Dexterity.",
+		"UPGRADE_DESCRIPTION": "Tribute !M!. Gain 6 Dexterity."
 	},
 	"theDuelist:MirrorForce": {
 		"NAME": "Mirror Force",
@@ -257,7 +257,7 @@
 	"theDuelist:MonsterReborn": {
 		"NAME": "Monster Reborn",
 		"DESCRIPTION": "Play a monster card from your discard pile. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"UPGRADE_DESCRIPTION": "Play a monster card from your discard pile."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
@@ -266,8 +266,8 @@
 	},
 	"theDuelist:ObeliskTormentor": {
 		"NAME": "Obelisk",
-		"DESCRIPTION": "Tribute 4. Each time you sacrifice a monster, deal !D! damage to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Tribute 4. Each time you sacrifice a monster, deal !D! damage to ALL enemies."
+		"DESCRIPTION": "Tribute 4. Each time you Tribute a monster, deal !D! damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. Each time you Tribute a monster, deal !D! damage to ALL enemies."
 	},
 	"theDuelist:OjamaBlack": {
 		"NAME": "Ojama Black",
@@ -306,7 +306,7 @@
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
-		"DESCRIPTION": "At the start of your turn, have a chance to poison or debuff random enemies. Chances are raised with more summon stacks.",
+		"DESCRIPTION": "At the start of turn, have a chance to poison or debuff random enemies. Chances are raised with more summon stacks.",
 		"UPGRADE_DESCRIPTION": "Placeholder text."
 	},
 	"theDuelist:PotAvarice": {
@@ -326,8 +326,8 @@
 	},
 	"theDuelist:PotGenerosity": {
 		"NAME": "Pot of Generosity",
-		"DESCRIPTION": "Each time you Summon this turn, gain 1 mana.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Each time you Summon this turn, gain [R].",
+		"UPGRADE_DESCRIPTION": "Each time you Summon this turn, gain [R]."
 	},
 	"theDuelist:PotGreed": {
 		"NAME": "Pot of Greed",
@@ -396,7 +396,7 @@
 	},
 	"theDuelist:SliferSky": {
 		"NAME": "Slifer Sky Dragon",
-		"DESCRIPTION": "Tribute 4. At the start of your turn, sacrifice all monsters and apply 1 Blessing of Ra for each. Exhaust.",
+		"DESCRIPTION": "Tribute 4. At the start of turn, Tribute all monsters and apply 1 Blessing of Ra for each. Exhaust.",
 		"UPGRADE_DESCRIPTION": "Placeholder text."
 	},
 	"theDuelist:ShardGreed": {
@@ -416,7 +416,7 @@
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "Swords: Concealing Light",
-		"DESCRIPTION": "For the next 3 turns, gain 15 block at the start of your turn.",
+		"DESCRIPTION": "For the next 3 turns, gain 15 block at the start of turn.",
 		"UPGRADE_DESCRIPTION": "Placeholder text."
 	},
 	"theDuelist:SwordsRevealing": {
@@ -431,8 +431,8 @@
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
-		"DESCRIPTION": "Allows you to play Toon monster cards. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Allows you to play Toon monster cards. Exhaust."
+		"DESCRIPTION": "Allows you to play Toon monster cards.",
+		"UPGRADE_DESCRIPTION": "Allows you to play Toon monster cards."
 	},
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",
@@ -442,7 +442,7 @@
 	"theDuelist:ValkMagnet": {
 		"NAME": "Valkyrion",
 		"DESCRIPTION": "If you have all three magnets, summon 3 and deal !D! damage. Remove all magnets.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"UPGRADE_DESCRIPTION": "If you have all three magnets, summon 3 and deal !D! damage."
 	},
 	"theDuelist:DarkMirrorForce": {
 		"NAME": "Dark Mirror Force",
@@ -451,8 +451,8 @@
 	},
 	"theDuelist:RedEyesToon": {
 		"NAME": "Red Eyes Toon",
-		"DESCRIPTION": "Tribute 2. Deal !D! damage (through block).",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage (through block)."
+		"DESCRIPTION": "Toon. Tribute 2. Deal !D! damage (through block).",
+		"UPGRADE_DESCRIPTION": "Toon. Tribute 2. Deal !D! damage (through block)."
 	},
 	"theDuelist:StormingMirrorForce": {
 		"NAME": "Storming Mirror Force",
@@ -481,43 +481,43 @@
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
-		"DESCRIPTION": "Tribute 2. Deal a random amount of damage (0-15) to each enemy. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal a random amount of damage (0-50) to each enemy. Can only be played if Toon World is active."
+		"DESCRIPTION": "Toon. Tribute 2. Deal a random amount of damage (0-15) to each enemy.",
+		"UPGRADE_DESCRIPTION": "Toon. Tribute 2. Deal a random amount of damage (0-20) to each enemy."
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
-		"DESCRIPTION": "Toon monsters played this turn are added back to your hand at the end of your turn.",
-		"UPGRADE_DESCRIPTION": "Toon monsters played this turn are added back to your hand at the end of your turn."
+		"DESCRIPTION": "Toon monsters played this turn are added back to your hand at the end of turn.",
+		"UPGRADE_DESCRIPTION": "Toon monsters played this turn are added back to your hand at the end of turn."
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",
-		"DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Apply !M! Spell Counters. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage (through block). Apply !M! Spell Counters. Can only be played if Toon World is active."
+		"DESCRIPTION": "Toon. Tribute 2. Deal !D! damage (through block). Apply !M! Spell Counters.",
+		"UPGRADE_DESCRIPTION": "Toon. Tribute 2. Deal !D! damage (through block). Apply !M! Spell Counters."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",
-		"DESCRIPTION": "Summon 1. Apply !M! Spell Counters. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Apply !M! Spell Counters. Can only be played if Toon World is active."
+		"DESCRIPTION": "Toon. Summon 1. Apply !M! Spell Counters.",
+		"UPGRADE_DESCRIPTION": "Toon. Summon 1. Apply !M! Spell Counters."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "Toon Gemini Elf",
-		"DESCRIPTION": "Summon !M!. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. Can only be played if Toon World is active."
+		"DESCRIPTION": "Toon. Summon !M!.",
+		"UPGRADE_DESCRIPTION": "Toon. Summon !M!."
 	},
 	"theDuelist:ToonMermaid": {
 		"NAME": "Toon Mermaid",
-		"DESCRIPTION": "Summon 1. Deal !D! damage (through block). Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage (through block). Can only be played if Toon World is active."
+		"DESCRIPTION": "Toon. Summon 1. Deal !D! damage (through block).",
+		"UPGRADE_DESCRIPTION": "Toon. Summon 1. Deal !D! damage (through block)."
 	},
 	"theDuelist:ToonSummonedSkull": {
 		"NAME": "Toon S. Skull",
-		"DESCRIPTION": "Tribute 1. Deal !D! damage (through block). Gain 1 Strength. Can only be played if Toon World is active.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Deal !D! damage (through block). Gain 1 Strength. Can only be played if Toon World is active."
+		"DESCRIPTION": "Toon. Tribute 1. Deal !D! damage (through block). Gain 1 Strength.",
+		"UPGRADE_DESCRIPTION": "Toon. Tribute 1. Deal !D! damage (through block). Gain 1 Strength."
 	},
 	"theDuelist:ScrapFactory": {
 		"NAME": "Scrap Factory",
 		"DESCRIPTION": "Tribute 1. Gain [R].",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Gain [R]."
+		"UPGRADE_DESCRIPTION": "Tribute 1. Gain [R] [R]."
 	},
 	"theDuelist:GeminiElf": {
 		"NAME": "Gemini Elf",

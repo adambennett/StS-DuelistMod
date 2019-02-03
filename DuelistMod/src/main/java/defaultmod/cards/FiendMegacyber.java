@@ -2,9 +2,11 @@ package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.ObeliskPower;
 import defaultmod.powers.SpellCounterPower;
 import defaultmod.powers.SummonPower;
 
@@ -53,8 +56,8 @@ public class FiendMegacyber extends CustomCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 1;
-    private static final int DAMAGE = 5;
+    private static final int COST = 0;
+    private static final int DAMAGE = 20;
     private static final int TRIBUTES = 1;
     private static final int U_TRIBUTES = -1;
 
@@ -70,19 +73,28 @@ public class FiendMegacyber extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Check if target has spell counters
-    	if (m.hasPower(SpellCounterPower.POWER_ID))
+    	
+		// Tribute Summon
+    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, this.magicNumber));
+    	
+    	// Check for Obelisk after tributing
+    	if (p.hasPower(ObeliskPower.POWER_ID))
     	{
-    		// Tribute Summon
-        	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(p, p, SummonPower.POWER_ID, this.magicNumber));
-        	
-        	// Get target spell counter count
-	    	this.misc = m.getPower(SpellCounterPower.POWER_ID).amount;
-	    	
-	    	// Set damage to 5 * counters and apply damage to target
-	    	this.baseDamage = 5 * misc;
-	    	AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    		int[] temp = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
+			for (int i : temp) { i = i * TRIBUTES; }
+    		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
     	}
+		
+    	// Check if target has spell counters
+		if (m.hasPower(SpellCounterPower.POWER_ID))
+		{
+        	// Get target spell counter count
+	    	int counters = m.getPower(SpellCounterPower.POWER_ID).amount;
+	    	if (counters >= 10)
+	    	{
+		    	AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+	    	}
+		}
     }
 
     // Which card to return when making a copy of this card.

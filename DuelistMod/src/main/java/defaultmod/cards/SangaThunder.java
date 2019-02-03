@@ -1,9 +1,13 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,9 +17,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 
 import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
+import defaultmod.powers.ObeliskPower;
 import defaultmod.powers.SummonPower;
 
 public class SangaThunder extends CustomCard {
@@ -70,26 +74,17 @@ public class SangaThunder extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.baseDamage = DAMAGE + UPGRADE_PLUS_DMG; }
-    	 if (p.hasPower(SummonPower.POWER_ID)) 
-    	 {
-             this.magicNumber = (p.getPower(SummonPower.POWER_ID).amount);
-             if (this.magicNumber >= TRIBUTES)
-             {
-            	 AbstractDungeon.actionManager
-            	 	.addToBottom(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
-            	 AbstractDungeon.actionManager
-                 	.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                    new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                    AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-            	 AbstractOrb orb = new Lightning();
-            	 AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
-             }
-         } 
-    	 else
-    	 {
-             this.magicNumber = 0;
-         } 
+    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+    	// Check for Obelisk after tributing
+    	if (p.hasPower(ObeliskPower.POWER_ID))
+    	{
+			int[] temp = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
+			for (int i : temp) { i = i * TRIBUTES; }
+    		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
+    	}
+    	AbstractDungeon.actionManager.addToTop(new DamageAction(m,new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	AbstractOrb orb = new Lightning();
+    	AbstractDungeon.actionManager.addToTop(new ChannelAction(orb));
     }
 
     // Which card to return when making a copy of this card.

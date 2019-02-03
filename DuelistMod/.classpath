@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/FriendlyMinions.jar"/>
 	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/ModTheSpire.jar"/>
 	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/StSLib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/TheJuggernaut.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

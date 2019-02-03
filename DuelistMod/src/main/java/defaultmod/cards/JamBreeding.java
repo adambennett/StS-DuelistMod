@@ -62,8 +62,7 @@ public class JamBreeding extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.magicNumber = this.baseMagicNumber = SUMMONS + UPGRADE_SUMMONS; }
-    	AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new JamPower(p, 1, this.magicNumber), 1));
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new JamPower(p, 1, this.magicNumber), 1));
     }
 
 

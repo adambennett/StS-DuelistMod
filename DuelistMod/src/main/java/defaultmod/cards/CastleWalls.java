@@ -1,5 +1,6 @@
 package defaultmod.cards;
 
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -48,8 +49,8 @@ public class CastleWalls extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 1;
-    private static final int BLOCK = 5;
-    private static final int UPGRADE_PLUS_BLK = 5;
+    private static final int BLOCK = 7;
+    private static final int UPGRADE_PLUS_BLK = 4;
 
     // /STAT DECLARATION/
 
@@ -62,9 +63,7 @@ public class CastleWalls extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.baseBlock = BLOCK + UPGRADE_PLUS_BLK; }
-    	AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.GainBlockAction(p, p, this.block));
+    	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
     }
 
     // Which card to return when making a copy of this card.

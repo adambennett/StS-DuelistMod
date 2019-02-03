@@ -51,7 +51,6 @@ public class ToonWorld extends CustomCard
 
     public ToonWorld() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.exhaust = true;
     }
 
 
@@ -59,7 +58,7 @@ public class ToonWorld extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ToonWorldPower(p, p)));
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new ToonWorldPower(p, p)));
     }
 
 

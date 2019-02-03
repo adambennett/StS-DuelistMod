@@ -24,7 +24,7 @@ import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
 import defaultmod.cards.*;
-import defaultmod.patches.*;
+import defaultmod.patches.AbstractCardEnum;
 import defaultmod.relics.MillenniumPuzzle;
 
 
@@ -133,7 +133,11 @@ public class TheDuelist extends CustomPlayer {
         retVal.add(SummonedSkull.ID);
 
         // temp for testing
-
+       // retVal.add(BusterBlader.ID);
+        //retVal.add(DarklordMarie.ID);
+    
+        
+		
         return retVal;
     }
 
