@@ -1,6 +1,9 @@
 package defaultmod.cards;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -11,9 +14,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.mod.replay.powers.LanguidPower;
+import com.megacrit.cardcrawl.mod.replay.powers.NecroticPoisonPower;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PoisonPower;
+import com.megacrit.cardcrawl.powers.SlowPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import basemod.abstracts.CustomCard;
+import blackrusemod.powers.MatrixPower;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.powers.ObeliskPower;
@@ -57,14 +68,17 @@ public class BarrelDragon extends CustomCard {
 
     private static final int COST = 2;
     private static final int DAMAGE = 10;
-    private static final int UPGRADE_PLUS_DMG = 2;
     private static final int TRIBUTES = 2;
-
+    private static final int MIN_TURNS_ROLL = 1;
+    private static final int MAX_TURNS_ROLL = 6;
+    private static final int RANDOM_ENEMIES = 3;
+    
     // /STAT DECLARATION/
 
     public BarrelDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = RANDOM_ENEMIES;
     }
 
     
@@ -72,7 +86,8 @@ public class BarrelDragon extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+		// Tribute Summon
+    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
 		
 		// Check for Obelisk after tributing
     	if (p.hasPower(ObeliskPower.POWER_ID))
@@ -81,7 +96,57 @@ public class BarrelDragon extends CustomCard {
 			for (int i : temp) { i = i * TRIBUTES; }
     		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
     	}
+    	
+    	// Deal damage
 		AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    
+		// Get number of enemies
+		int monsters = AbstractDungeon.getMonsters().monsters.size();
+		
+		// If number of enemies < debuff targets, set debuff targets # to number of enemies
+		if (monsters < this.magicNumber) { this.magicNumber = this.baseMagicNumber = monsters; }
+		
+		// 3-4 times, apply 1 or 2 random debuffs to a random enemy
+		for (int i = 0; i < this.magicNumber; i++)
+		{
+			// Get random number of turns for debuff to apply for (1-10)
+			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+			int randomTurnNumB = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+			
+			// Get random monster target
+			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
+			
+			// Setup powers array for random debuff selection
+			AbstractPower slow = new SlowPower(targetMonster, randomTurnNum);
+			AbstractPower vulnerable = new VulnerablePower(p, randomTurnNum, false);
+			AbstractPower poison = new PoisonPower(p, p, randomTurnNum);
+			AbstractPower nPoison = new NecroticPoisonPower(p, p, randomTurnNum);
+			AbstractPower weak = new WeakPower(p, randomTurnNum, false);
+			AbstractPower languid = new LanguidPower(p, randomTurnNum, false);
+			AbstractPower matrix = new MatrixPower(p, randomTurnNum);
+			AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, languid, matrix};
+			
+			// Setup second powers array for random debuff #2 selection (for upgraded card)
+			AbstractPower slowB = new SlowPower(targetMonster, randomTurnNumB);
+			AbstractPower vulnerableB = new VulnerablePower(p, randomTurnNumB, false);
+			AbstractPower poisonB = new PoisonPower(p, p, randomTurnNumB);
+			AbstractPower nPoisonB = new NecroticPoisonPower(p, p, randomTurnNumB);
+			AbstractPower weakB = new WeakPower(p, randomTurnNumB, false);
+			AbstractPower languidB = new LanguidPower(p, randomTurnNumB, false);
+			AbstractPower matrixB = new MatrixPower(p, randomTurnNumB);
+			AbstractPower[] debuffsB = new AbstractPower[] {slowB, vulnerableB, poisonB, nPoisonB, weakB, languidB, matrixB};
+			
+			// Get two randomized debuffs
+			int randomDebuffNum = ThreadLocalRandom.current().nextInt(0, debuffs.length);
+			int randomDebuffNumB = ThreadLocalRandom.current().nextInt(0, debuffs.length);
+			AbstractPower randomDebuffA = debuffs[randomDebuffNum];
+			AbstractPower randomDebuffB = debuffsB[randomDebuffNumB];
+	    
+			// Apply random debuff(s)
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, p, randomDebuffA));
+			if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, p, randomDebuffB)); }
+		}
+    
     }
 
     // Which card to return when making a copy of this card.
@@ -95,7 +160,7 @@ public class BarrelDragon extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.baseDamage = UPGRADE_PLUS_DMG + DAMAGE;
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -105,22 +170,15 @@ public class BarrelDragon extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy >= COST)
-    	{
-	    	if (p.hasPower(SummonPower.POWER_ID)) 
-	    	{
-	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-	    		if (temp >= TRIBUTES)
-	    		{
-	    			return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
-    	}
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
     	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
 }

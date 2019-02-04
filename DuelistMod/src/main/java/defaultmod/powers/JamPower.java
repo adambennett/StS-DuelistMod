@@ -55,23 +55,8 @@ public class JamPower extends AbstractPower
     	if (this.owner.hasPower(JamPower.POWER_ID))
     	{
     		// Summon 1 if possible
-			int temp = 0;
-			if (!this.owner.hasPower(SummonPower.POWER_ID)) 
-			{
-				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, SUMMONS), SUMMONS));
-			}
-			else
-			{
-				temp = (this.owner.getPower(SummonPower.POWER_ID).amount);
-				if (!(temp > 5 - this.amount)) 
-				{
-					AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, SUMMONS), SUMMONS));
-				}
-				else
-				{
-					AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, 5 - temp), 5 - temp));
-				}
-			}
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, SUMMONS), SUMMONS));
+			
 			
 			// Check for Pot of Generosity
 	    	if (this.owner.hasPower(PotGenerosityPower.POWER_ID)) 

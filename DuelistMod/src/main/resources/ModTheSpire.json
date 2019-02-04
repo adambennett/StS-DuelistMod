@@ -3,7 +3,7 @@
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
   "description": "A Slay the Spire adaptation of Yu-Gi-Oh!",
-  "version": "0.53.0",
+  "version": "0.55.0",
   "sts_version": "1-23-2019",
   "mts_version": "3.8.3",
   "dependencies": ["basemod"]

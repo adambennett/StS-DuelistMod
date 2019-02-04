@@ -55,34 +55,26 @@ public class Kuriboh extends CustomCard {
     private static final int COST = 2;
     private static final int INTANGIBLE = 1;
     private static final int SUMMONS = 1;
+    private static final int INC_SUMMONS = 1;
+    private static final int U_INC_SUMMONS = 1;
 
     // /STAT DECLARATION/
 
     public Kuriboh() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.magicNumber = this.baseMagicNumber = INC_SUMMONS;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	// Increase max summons
+		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber, true), 0));
+		
+    	
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	}
-    	else
-    	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(this.misc > 5 - SUMMONS)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
@@ -90,8 +82,11 @@ public class Kuriboh extends CustomCard {
     		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(SUMMONS));
     	}
     	
-    	// Gain Intangible
-		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new IntangiblePower(p, INTANGIBLE), INTANGIBLE));
+    	// Gain Intangible if upgraded
+    	if (this.upgraded)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new IntangiblePower(p, INTANGIBLE), INTANGIBLE));
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -105,7 +100,7 @@ public class Kuriboh extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(U_INC_SUMMONS);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

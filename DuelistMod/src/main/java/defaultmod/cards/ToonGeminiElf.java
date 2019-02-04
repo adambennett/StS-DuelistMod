@@ -69,22 +69,7 @@ public class ToonGeminiElf extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
-    	}
-    	else
-    	{
-    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(temp > 5 - this.magicNumber)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - temp), 5 - temp));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 

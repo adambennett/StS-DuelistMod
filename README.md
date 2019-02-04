@@ -5,7 +5,7 @@ TODO
 - Make cards say Monster/Spell/Trap in-game
 - Add character sprite/button/overall thematic art
 - Design and add some relics
-- Finish implementing rest of the cards (41/112 planned)
+- Finish implementing rest of the cards (55/112 planned)
 - Balance and QA
 
 Some in game screenshots taken of the first build with full card set + all descriptions. Mana costs are not correct and everything is obviously subject to change.

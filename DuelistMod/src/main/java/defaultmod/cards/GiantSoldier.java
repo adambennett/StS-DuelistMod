@@ -54,7 +54,6 @@ public class GiantSoldier extends CustomCard {
 
     private static final int COST = 0;
     private static final int BLOCK = 4;
-    private static final int UPGRADE_PLUS_BLK = 4;
     private static final int SUMMONS = 1;
 
     // /STAT DECLARATION/
@@ -62,6 +61,7 @@ public class GiantSoldier extends CustomCard {
     public GiantSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BLOCK;
+        this.magicNumber = this.baseMagicNumber = SUMMONS;
     }
 
     // Actions the card should do.
@@ -69,22 +69,7 @@ public class GiantSoldier extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	}
-    	else
-    	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(this.misc > 5 - SUMMONS)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
@@ -107,7 +92,7 @@ public class GiantSoldier extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(UPGRADE_PLUS_BLK);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

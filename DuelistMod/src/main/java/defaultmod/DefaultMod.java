@@ -23,13 +23,67 @@ import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
-import defaultmod.cards.*;
+import defaultmod.cards.AlphaMagnet;
+import defaultmod.cards.AncientRules;
+import defaultmod.cards.AxeDespair;
+import defaultmod.cards.BarrelDragon;
+import defaultmod.cards.BetaMagnet;
+import defaultmod.cards.BlueEyes;
+import defaultmod.cards.BlueEyesToon;
+import defaultmod.cards.BlueEyesUltimate;
+import defaultmod.cards.BusterBlader;
+import defaultmod.cards.CannonSoldier;
+import defaultmod.cards.CastleWalls;
+import defaultmod.cards.CatapultTurtle;
+import defaultmod.cards.CelticGuardian;
+import defaultmod.cards.ChangeHeart;
+import defaultmod.cards.DarkHole;
+import defaultmod.cards.DarkMagician;
+import defaultmod.cards.DarkMagicianGirl;
+import defaultmod.cards.DarklordMarie;
+import defaultmod.cards.DianKeto;
+import defaultmod.cards.FiendMegacyber;
+import defaultmod.cards.GaiaFierce;
+import defaultmod.cards.GammaMagnet;
+import defaultmod.cards.GateGuardian;
+import defaultmod.cards.GeminiElf;
+import defaultmod.cards.GiantSoldier;
+import defaultmod.cards.Hinotoma;
+import defaultmod.cards.InsectQueen;
+import defaultmod.cards.JamBreeding;
+import defaultmod.cards.JudgeMan;
+import defaultmod.cards.Kuriboh;
+import defaultmod.cards.LabyrinthWall;
+import defaultmod.cards.MillenniumShield;
+import defaultmod.cards.ObeliskTormentor;
+import defaultmod.cards.Ookazi;
+import defaultmod.cards.PotGenerosity;
+import defaultmod.cards.PotGreed;
+import defaultmod.cards.RedEyes;
+import defaultmod.cards.RedEyesToon;
+import defaultmod.cards.SangaEarth;
+import defaultmod.cards.SangaThunder;
+import defaultmod.cards.SangaWater;
+import defaultmod.cards.Scapegoat;
+import defaultmod.cards.ScrapFactory;
+import defaultmod.cards.SevenColoredFish;
+import defaultmod.cards.SummonedSkull;
+import defaultmod.cards.SuperheavyScales;
+import defaultmod.cards.ToonBarrelDragon;
+import defaultmod.cards.ToonDarkMagician;
+import defaultmod.cards.ToonDarkMagicianGirl;
+import defaultmod.cards.ToonGeminiElf;
+import defaultmod.cards.ToonMermaid;
+import defaultmod.cards.ToonSummonedSkull;
+import defaultmod.cards.ToonWorld;
+import defaultmod.cards.ValkMagnet;
 import defaultmod.characters.TheDuelist;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.patches.TheDuelistEnum;
 import defaultmod.potions.PlaceholderPotion;
 import defaultmod.relics.MillenniumPuzzle;
 import defaultmod.variables.DefaultCustomVariable;
+
 
 @SpireInitializer
 public class DefaultMod
@@ -373,7 +427,7 @@ public class DefaultMod
         BaseMod.addCard(new AlphaMagnet());
 		BaseMod.addCard(new AncientRules());
 		BaseMod.addCard(new AxeDespair());
-		//BaseMod.addCard(new BarrelDragon());
+		BaseMod.addCard(new BarrelDragon());
 		BaseMod.addCard(new BetaMagnet());
 		BaseMod.addCard(new BlueEyes());
 		BaseMod.addCard(new BlueEyesUltimate());
@@ -423,6 +477,8 @@ public class DefaultMod
 		BaseMod.addCard(new CatapultTurtle());
 		BaseMod.addCard(new Scapegoat());
 		BaseMod.addCard(new DarklordMarie());
+		BaseMod.addCard(new ChangeHeart());
+		BaseMod.addCard(new DarkHole());
 		
         /*
         BaseMod.addCard(new AlphaMagnet());
@@ -538,7 +594,7 @@ public class DefaultMod
         UnlockTracker.unlockCard(AlphaMagnet.ID);
 		UnlockTracker.unlockCard(AncientRules.ID);
 		UnlockTracker.unlockCard(AxeDespair.ID);	
-		//UnlockTracker.unlockCard(BarrelDragon.ID);
+		UnlockTracker.unlockCard(BarrelDragon.ID);
 		UnlockTracker.unlockCard(BetaMagnet.ID);
 		UnlockTracker.unlockCard(BlueEyes.ID);		
 		UnlockTracker.unlockCard(BlueEyesUltimate.ID);		
@@ -588,6 +644,8 @@ public class DefaultMod
 		UnlockTracker.unlockCard(CatapultTurtle.ID);
 		UnlockTracker.unlockCard(Scapegoat.ID);
 		UnlockTracker.unlockCard(DarklordMarie.ID);
+		UnlockTracker.unlockCard(ChangeHeart.ID);
+		UnlockTracker.unlockCard(DarkHole.ID);
 		
 		/*
         UnlockTracker.unlockCard(AlphaMagnet.ID);

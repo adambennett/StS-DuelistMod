@@ -61,9 +61,8 @@ public class GateGuardian extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 3;
-    private static final int TRIBUTES = 3;
+    private static int TRIBUTES = 3;
     private static final int SUMMONS = 1;
-    private static final int U_TRIBUTES = 1;
 
     // /STAT DECLARATION/
 
@@ -77,8 +76,7 @@ public class GateGuardian extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Tribute Summon
-    	if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES)); }
-    	else { AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES - U_TRIBUTES)); }
+    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES)); 
     	
     	// Check for Obelisk after tributing
     	if (p.hasPower(ObeliskPower.POWER_ID))
@@ -102,7 +100,7 @@ public class GateGuardian extends CustomCard {
     	
     	// Channel Gate
     	AbstractOrb orb = new Gate();
-   	 	AbstractDungeon.actionManager.addToTop(new ChannelAction(orb));
+   	 	AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
     }
 
     // Which card to return when making a copy of this card.
@@ -117,6 +115,7 @@ public class GateGuardian extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(2);
+            TRIBUTES = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -126,25 +125,15 @@ public class GateGuardian extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy > COST)
-    	{
-    		if (p.energy.energy >= COST) 
-	    	{
-    			if (p.hasPower(SummonPower.POWER_ID))
-    			{
-		    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-		    		if (temp >= TRIBUTES)
-		    		{
-		    			return true;
-		    		}
-		    		else
-		    		{
-		    			return false;
-		    		}
-    			}
-	    	}
-    	}
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
     	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
    

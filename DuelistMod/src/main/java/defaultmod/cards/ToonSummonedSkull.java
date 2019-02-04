@@ -99,7 +99,8 @@ public class ToonSummonedSkull extends CustomCard {
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new GainBlockAction(m, m, targetArmor)); }
 
 		// Gain 1 Strength
-		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, STR_GAIN)));
+		if (!this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, STR_GAIN))); }
+		else { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, STR_GAIN + 1))); }
 	}
 
 	// Which card to return when making a copy of this card.
@@ -120,29 +121,23 @@ public class ToonSummonedSkull extends CustomCard {
 	}
 
 	// If player doesn't have enough summons, can't play card
-	@Override
-	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-	{
-		if (p.energy.energy >= COST)
-		{
-			if (p.hasPower(ToonWorldPower.POWER_ID))
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) 
-				{
-					this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-					if (this.misc >= TRIBUTES)
-					{
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Check for Toon World
+    	else if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; return false; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; }
+    	else { this.cantUseMessage = "Not enough Summons"; }
+    	return false;
+    }
 
 }

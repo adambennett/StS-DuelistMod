@@ -56,7 +56,7 @@ public class RedEyes extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 1;
-    private static final int DAMAGE = 12;
+    private static final int DAMAGE = 18;
     private static final int UPGRADE_PLUS_DMG = 6;
     private static final int TRIBUTES = 2;
 
@@ -99,26 +99,19 @@ public class RedEyes extends CustomCard {
         }
     }
     
- // If player doesn't have enough summons, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy >= COST)
-    	{
-	    	if (p.hasPower(SummonPower.POWER_ID)) 
-	    	{
-	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-	    		if (temp >= TRIBUTES)
-	    		{
-	    			return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
-    	}
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
     	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
 }

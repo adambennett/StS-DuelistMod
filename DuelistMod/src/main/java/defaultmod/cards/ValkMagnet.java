@@ -59,7 +59,7 @@ public class ValkMagnet extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 2;
-    private static final int DAMAGE = 20;
+    private static final int DAMAGE = 27;
     private static final int SUMMONS = 3;
 
     // /STAT DECLARATION/
@@ -74,22 +74,7 @@ public class ValkMagnet extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	}
-    	else
-    	{
-    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(temp > 5 - SUMMONS)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - temp), 5 - temp));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 

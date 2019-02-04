@@ -54,9 +54,9 @@ public class LabyrinthWall extends CustomCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 1;
-    private static final int BLOCK = 20;
-    private static final int UPGRADE_PLUS_BLK = 10;
+    private static final int COST = 2;
+    private static final int BLOCK = 25;
+    private static final int UPGRADE_PLUS_BLK = 7;
     private static final int TRIBUTES = 2;
 
     // /STAT DECLARATION/
@@ -102,22 +102,15 @@ public class LabyrinthWall extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy >= COST)
-    	{
-	    	if (p.hasPower(SummonPower.POWER_ID)) 
-	    	{
-	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-	    		if (temp >= TRIBUTES)
-	    		{
-	    			return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
-    	}
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
     	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
    

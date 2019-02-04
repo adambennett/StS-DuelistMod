@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
-import defaultmod.actions.SpecificCardDiscardToDeckAction;
+import defaultmod.actions.common.SpecificCardDiscardToDeckAction;
 
 /* 	
  * Lose 10 strength at the end of turn and
@@ -32,8 +32,11 @@ public class DespairPower extends AbstractPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DefaultMod.makePath(DefaultMod.DESPAIR_POWER);
 	public static CustomCard ATTACHED_AXE = null;
+	
+	private static int TRIBUTES = 2;
+	private static int STR_LOSS = 10;
 
-	public DespairPower(final AbstractCreature owner, final AbstractCreature source, final CustomCard card) 
+	public DespairPower(final AbstractCreature owner, final AbstractCreature source, final CustomCard card, int strLoss) 
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -45,7 +48,7 @@ public class DespairPower extends AbstractPower
 		this.source = source;
 		this.amount = 1;
 		ATTACHED_AXE = card;
-
+		STR_LOSS = strLoss;
 	}
 
 	// At the end of the turn, remove gained Strength.
@@ -56,7 +59,15 @@ public class DespairPower extends AbstractPower
 		if (this.owner.hasPower(SummonPower.POWER_ID))
 		{
 			// If so, reduce by 1
-			AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, SummonPower.POWER_ID, 1));
+			if (this.owner.getPower(SummonPower.POWER_ID).amount >= TRIBUTES)
+			{
+				AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, SummonPower.POWER_ID, TRIBUTES));
+			}
+			
+			else
+			{
+				AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, SummonPower.POWER_ID, this.owner.getPower(SummonPower.POWER_ID).amount));
+			}
 
 			// Check for Obelisk after Tributing
 			if (this.owner.hasPower(ObeliskPower.POWER_ID))
@@ -66,8 +77,8 @@ public class DespairPower extends AbstractPower
 			}
 		}
 		
-		// Lose 10 Strength
-		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, "Strength", this.amount));
+		// Lose 10 or 12 Strength
+		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, "Strength", STR_LOSS));
 		
 		// Take the Axe of Despair we just played out of the discard and put on top of the deck
 		AbstractDungeon.actionManager.addToTop(new SpecificCardDiscardToDeckAction(this.owner, ATTACHED_AXE));
@@ -75,6 +86,6 @@ public class DespairPower extends AbstractPower
 	}
 
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0];
+		this.description = DESCRIPTIONS[0] + STR_LOSS + DESCRIPTIONS[1];
 	}
 }

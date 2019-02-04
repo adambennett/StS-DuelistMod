@@ -12,6 +12,7 @@ import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.powers.CannonPower;
+import defaultmod.powers.SummonPower;
 
 public class CannonSoldier extends CustomCard 
 {
@@ -45,8 +46,9 @@ public class CannonSoldier extends CustomCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 1;
-    private static final int TRIBUTES = 1;
+    private static final int POWER_TRIBUTES = 1;
     private static final int DAMAGE = 5;
+    private static final int SUMMONS = 1;
     
 
     // /STAT DECLARATION/
@@ -62,7 +64,11 @@ public class CannonSoldier extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CannonPower(p, 1, TRIBUTES), 1));
+    	// Summon
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+    	
+    	// Apply Cannon Soldier power
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CannonPower(p, 1, POWER_TRIBUTES), 1));
     }
 
 

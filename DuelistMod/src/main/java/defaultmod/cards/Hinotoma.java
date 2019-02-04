@@ -50,9 +50,11 @@ public class Hinotoma extends CustomCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 1;
-    private static final int DAMAGE = 7;
-    private static final int UPGRADE_PLUS_DMG = 4;
+    private static final int COST = 2;
+    private static final int DAMAGE = 5;
+    private static final int UPGRADE_PLUS_DMG = 1;
+    private static final int ATTACKS = 3;
+    private static final int U_ATTACKS = 1;
 
     // /STAT DECLARATION/
 
@@ -65,7 +67,20 @@ public class Hinotoma extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-        AbstractDungeon.actionManager .addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	if (this.upgraded)
+    	{
+    		for (int i = 0; i < ATTACKS + U_ATTACKS; i++)
+	        {
+	        	AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+	        }
+    	}
+    	else
+    	{
+	        for (int i = 0; i < ATTACKS; i++)
+	        {
+	        	AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+	        }
+    	}	
     }
 
     // Which card to return when making a copy of this card.
@@ -77,7 +92,8 @@ public class Hinotoma extends CustomCard {
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
+        if (!this.upgraded) 
+        {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.rawDescription = UPGRADE_DESCRIPTION;

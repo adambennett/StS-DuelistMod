@@ -55,7 +55,7 @@ public class BlueEyesUltimate extends CustomCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
-    private static final int COST = 2;
+    private static final int COST = 4;
     private static final int DAMAGE = 35;
     private static final int UPGRADE_PLUS_DMG = 5;
     private static final int TRIBUTES = 3;
@@ -71,7 +71,7 @@ public class BlueEyesUltimate extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded) { this.baseDamage = DAMAGE + UPGRADE_PLUS_DMG; }
+    	// Tribute Summon
 		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
 		
 		// Check for Obelisk after tributing
@@ -102,26 +102,19 @@ public class BlueEyesUltimate extends CustomCard {
         }
     }
     
- // If player doesn't have enough summons, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy >= COST)
-    	{
-	    	if (p.hasPower(SummonPower.POWER_ID)) 
-	    	{
-	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-	    		if (temp >= TRIBUTES)
-	    		{
-	    			return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
-    	}
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
     	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
 }

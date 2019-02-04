@@ -1,11 +1,11 @@
 {
 "theDuelist:SummonPower": {
         "NAME": "Summons",
-        "DESCRIPTIONS": ["#b", " monsters summoned. Maximum of 5 Summons."]
+        "DESCRIPTIONS": ["#b", " monsters summoned. Maximum of #b", " Summons."]
 },
 "theDuelist:DespairPower": {
         "NAME": "Axe of Despair",
-        "DESCRIPTIONS": ["At the end of turn, lose #b10 #yStrength, #yTribute #b1 and place Axe of Despair on the top of your deck."]
+        "DESCRIPTIONS": ["At the end of turn, lose #b", " #yStrength, #yTribute #b1 and place Axe of Despair on the top of your deck."]
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
@@ -61,7 +61,7 @@
 },
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",
-        "DESCRIPTIONS": ["Each time you #ySummon this turn, gain #b", " #yEnergy."]
+        "DESCRIPTIONS": ["Each time you #ySummon this turn, gain #b", " [E]"]
 },
 "theDuelist:CannonPower": {
         "NAME": "Cannon Soldier",

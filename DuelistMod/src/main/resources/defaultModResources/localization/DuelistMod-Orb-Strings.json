@@ -1,8 +1,8 @@
 {
-"theDuelist:Gate": {
+  "theDuelist:Gate": {
+    "NAME": "Gate",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b5 damage to ALL enemies, gain #b7 #yBlock and gain [e]. NL #yEvoke: #ySummon #b3."
-    ],
-    "NAME": "Gate"
+      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " #yBlock, and gain #b1 #yEnergy. NL #yEvoke: #ySummon #b", "."
+    ]
   }
 }

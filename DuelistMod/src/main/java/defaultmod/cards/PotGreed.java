@@ -76,6 +76,7 @@ public class PotGreed extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.isInnate = true;
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

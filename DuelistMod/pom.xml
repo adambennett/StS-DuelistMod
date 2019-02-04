@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>0.53.0</version>
+    <version>0.55.0</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
@@ -19,7 +19,9 @@
         <ModTheSpire.version>3.8.3</ModTheSpire.version>
         <StSLib.version>1.13.2</StSLib.version>
         <FriendlyMinions.version>0.1.2</FriendlyMinions.version>
-        <TheJuggernaut.version>0.1.2</TheJuggernaut.version>
+        <ReplayTheSpireMod.version>1.3.20</ReplayTheSpireMod.version>
+        <Conspire.version>1.5.5</Conspire.version>
+        <StS-BlackRuse.version>0.9.3</StS-BlackRuse.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -62,11 +64,25 @@
             <systemPath>${basedir}/../lib/STSLib.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>StsMod</groupId>
-    		<artifactId>TheJuggernaut</artifactId>
-            <version>${TheJuggernaut.version}</version>
+            <groupId>ReplayTheSpireMod</groupId>
+            <artifactId>ReplayTheSpireMod</artifactId>
+            <version>${ReplayTheSpireMod.version}</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/TheJuggernaut.jar</systemPath>
+            <systemPath>${basedir}/../lib/ReplayTheSpireMod.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>conspire</groupId>
+            <artifactId>Conspire</artifactId>
+            <version>${Conspire.version}</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../lib/Conspire.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>BlackRuseMods</groupId>
+            <artifactId>StS-BlackRuse</artifactId>
+            <version>${StS-BlackRuse.version}</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/../lib/BlackRuseMod.jar</systemPath>
         </dependency>
 
     </dependencies>

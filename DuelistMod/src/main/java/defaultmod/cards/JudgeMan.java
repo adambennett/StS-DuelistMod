@@ -87,22 +87,7 @@ public class JudgeMan extends CustomCard {
     	}
     	
     	// Summon
-		if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	}
-    	else
-    	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(this.misc > 5 - SUMMONS)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
 		
 		// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
@@ -138,22 +123,15 @@ public class JudgeMan extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy >= COST)
-    	{
-	    	if (p.hasPower(SummonPower.POWER_ID)) 
-	    	{
-	    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-	    		if (temp >= TRIBUTES)
-	    		{
-	    			return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
-    	}
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
     	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
 }

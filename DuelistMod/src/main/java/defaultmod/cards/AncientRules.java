@@ -43,7 +43,7 @@ public class AncientRules extends CustomCard {
     
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -65,22 +65,7 @@ public class AncientRules extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
-    	}
-    	else
-    	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(this.misc > 5 - this.magicNumber)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
@@ -101,6 +86,7 @@ public class AncientRules extends CustomCard {
         if (!this.upgraded) {
         	this.upgradeName();
         	this.upgradeMagicNumber(UPGRADE_SUMMONS);
+        	this.exhaust = false;
         	this.rawDescription = UPGRADE_DESCRIPTION;
         	this.initializeDescription();
         }

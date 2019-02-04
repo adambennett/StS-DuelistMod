@@ -1,6 +1,7 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,6 +13,7 @@ import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.powers.CatapultPower;
+import defaultmod.powers.SummonPower;
 
 public class CatapultTurtle extends CustomCard 
 {
@@ -46,6 +48,7 @@ public class CatapultTurtle extends CustomCard
 
     private static final int COST = 2;
     private static final int DAMAGE = 3;
+    private static final int TRIBUTES = 2;
 
     // /STAT DECLARATION/
 
@@ -60,6 +63,10 @@ public class CatapultTurtle extends CustomCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	// Tribute Summon
+    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
+    	
+    	// Apply Catapult Turtle power
     	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CatapultPower(p)));
     }
 
@@ -79,5 +86,21 @@ public class CatapultTurtle extends CustomCard
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
     }
 }

@@ -53,8 +53,8 @@ public class SuperheavyScales extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 1;
-    private static final int BLOCK = 8;
-    private static final int UPGRADE_PLUS_BLK = 4;
+    private static final int BLOCK = 9;
+    //private static final int UPGRADE_PLUS_BLK = 4;
     private static final int SUMMONS = 1;
 
     // /STAT DECLARATION/
@@ -69,22 +69,7 @@ public class SuperheavyScales extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	}
-    	else
-    	{
-    		int temp = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(temp > 5 - SUMMONS)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - temp), 5 - temp));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
@@ -107,7 +92,7 @@ public class SuperheavyScales extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(UPGRADE_PLUS_BLK);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

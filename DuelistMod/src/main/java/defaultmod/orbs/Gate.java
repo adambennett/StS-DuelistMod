@@ -6,7 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.defect.LightningOrbPassiveAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -17,6 +22,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
@@ -28,8 +34,9 @@ public class Gate extends AbstractOrb
 	public static final String ID = defaultmod.DefaultMod.makeID("Gate");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxTimer = 1.0F; private float vfxIntervalMin = 0.15F; private float vfxIntervalMax = 0.8F;
-
+	private float vfxTimer = 1.0F; 
+	private float vfxIntervalMin = 0.15F; 
+	private float vfxIntervalMax = 0.8F;
 	private static final float PI_DIV_16 = 0.19634955F;
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
@@ -44,10 +51,8 @@ public class Gate extends AbstractOrb
 	{
 		this.img = com.megacrit.cardcrawl.helpers.ImageMaster.ORB_LIGHTNING;
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = 3;
-		this.evokeAmount = this.baseEvokeAmount;
-		this.basePassiveAmount = 3;
-		this.passiveAmount = this.basePassiveAmount;
+		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.basePassiveAmount = this.passiveAmount = 3;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -55,28 +60,13 @@ public class Gate extends AbstractOrb
 
 	public void updateDescription()
 	{
-		this.description = "#yPassive: At the start of turn, deal #b" + DAMAGE + " damage to ALL enemies, gain #b" + BLOCK + " #yBlock, and gain [e]. NL #yEvoke: #ySummon #b" + SUMMONS + ".";
+		applyFocus();
+		this.description = DESC[0] + DAMAGE + DESC[1] + BLOCK + DESC[2] + SUMMONS + DESC[3];
 	}
 
 	public void onEvoke()
 	{
-		int temp = 0;
-		if (!AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS), SUMMONS));
-    	}
-    	else
-    	{
-    		temp = (AbstractDungeon.player.getPower(SummonPower.POWER_ID).amount);
-    		if (!(temp > 5 - SUMMONS)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS), SUMMONS));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, 5 - temp), 5 - temp));
-    		}
-    	}
+		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS), SUMMONS));
 	}
 
 	public void onEndOfTurn()
@@ -91,9 +81,9 @@ public class Gate extends AbstractOrb
 	
 	public void onStartOfTurn()
 	{
-		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.defect.LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, this.DAMAGE, DamageInfo.DamageType.THORNS), this, true));
+		AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), this, true));
 		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(this.MANA));
-		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.common.GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.BLOCK, true));
+		AbstractDungeon.actionManager.addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK, true));
 	}
 
 	private void triggerPassiveEffect(DamageInfo info, boolean hitAll)
@@ -110,7 +100,7 @@ public class Gate extends AbstractOrb
 				{
 					speedTime = 0.0F;
 				}
-				AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m, info, AbstractGameAction.AttackEffect.NONE, true));
+				AbstractDungeon.actionManager.addToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.NONE, true));
 				AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
 				AbstractDungeon.actionManager.addToBottom(new VFXAction(new LightningEffect(m.drawX, m.drawY), speedTime));
 				AbstractDungeon.actionManager.addToBottom(new SFXAction("ORB_FROST_EVOKE"));
@@ -124,7 +114,7 @@ public class Gate extends AbstractOrb
 				speedTime = 0.0F;
 			}
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
-			AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction(AbstractDungeon.player, 
+			AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(AbstractDungeon.player, 
 			DamageInfo.createDamageMatrix(info.base, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
 			for (AbstractMonster m3 : AbstractDungeon.getMonsters().monsters) 
 			{
@@ -140,7 +130,7 @@ public class Gate extends AbstractOrb
 	public void triggerEvokeAnimation()
 	{
 		CardCrawlGame.sound.play("ORB_FROST_EVOKE", 0.1F);
-		AbstractDungeon.effectsQueue.add(new com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect(this.cX, this.cY));
+		AbstractDungeon.effectsQueue.add(new LightningOrbActivateEffect(this.cX, this.cY));
 	}
 
 	public void updateAnimation()
@@ -182,6 +172,13 @@ public class Gate extends AbstractOrb
 	public AbstractOrb makeCopy()
 	{
 		return new Gate();
+	}
+
+	@Override
+	public void applyFocus() 
+	{
+		this.passiveAmount = this.basePassiveAmount;
+		this.evokeAmount = this.baseEvokeAmount;
 	}
 }
 

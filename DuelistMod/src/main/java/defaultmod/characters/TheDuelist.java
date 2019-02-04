@@ -23,7 +23,21 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
-import defaultmod.cards.*;
+import defaultmod.cards.AlphaMagnet;
+import defaultmod.cards.AxeDespair;
+import defaultmod.cards.BarrelDragon;
+import defaultmod.cards.BusterBlader;
+import defaultmod.cards.ChangeHeart;
+import defaultmod.cards.DarkHole;
+import defaultmod.cards.GeminiElf;
+import defaultmod.cards.GiantSoldier;
+import defaultmod.cards.Hinotoma;
+import defaultmod.cards.Kuriboh;
+import defaultmod.cards.SangaWater;
+import defaultmod.cards.Scapegoat;
+import defaultmod.cards.SevenColoredFish;
+import defaultmod.cards.ToonSummonedSkull;
+import defaultmod.cards.ToonWorld;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.relics.MillenniumPuzzle;
 
@@ -32,11 +46,11 @@ public class TheDuelist extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
     // =============== BASE STATS =================
-    public static final int ENERGY_PER_TURN = 2;
-    public static final int STARTING_HP = 80;
-    public static final int MAX_HP = 80;
+    public static final int ENERGY_PER_TURN = 9;
+    public static final int STARTING_HP = 999;
+    public static final int MAX_HP = 999;
     public static final int STARTING_GOLD = 99;
-    public static final int CARD_DRAW = 5;
+    public static final int CARD_DRAW = 9;
     public static final int ORB_SLOTS = 3;
     // =============== /BASE STATS/ =================
 
@@ -121,20 +135,40 @@ public class TheDuelist extends CustomPlayer {
         logger.info("Begin loading starter Deck Strings");
 
         // working base deck
-        retVal.add(SevenColoredFish.ID);
-        retVal.add(SevenColoredFish.ID);
+        //retVal.add(SevenColoredFish.ID);
+        //retVal.add(SevenColoredFish.ID);
         retVal.add(GiantSoldier.ID);
         retVal.add(GiantSoldier.ID);
-        retVal.add(CastleWalls.ID);
-        retVal.add(CastleWalls.ID);
-        retVal.add(ScrapFactory.ID);
-        retVal.add(Hinotoma.ID);
-        retVal.add(Hinotoma.ID);
-        retVal.add(SummonedSkull.ID);
+        //retVal.add(CastleWalls.ID);
+        //retVal.add(CastleWalls.ID);
+        //retVal.add(ScrapFactory.ID);
+        //retVal.add(Ookazi.ID);
+        //retVal.add(Ookazi.ID);
+        //retVal.add(SummonedSkull.ID);
 
         // temp for testing
-       // retVal.add(BusterBlader.ID);
-        //retVal.add(DarklordMarie.ID);
+        retVal.add(DarkHole.ID);
+		retVal.add(AxeDespair.ID);	
+		retVal.add(BusterBlader.ID);	
+		retVal.add(Hinotoma.ID);
+		retVal.add(SangaWater.ID);
+		retVal.add(ToonWorld.ID);
+		retVal.add(ToonSummonedSkull.ID);
+		retVal.add(ChangeHeart.ID);
+        retVal.add(BarrelDragon.ID);
+        retVal.add(Scapegoat.ID);
+        retVal.add(Kuriboh.ID);
+        retVal.add(AlphaMagnet.ID);
+        retVal.add(GeminiElf.ID);
+        retVal.add(GiantSoldier.ID);
+        retVal.add(GiantSoldier.ID);
+        retVal.add(GiantSoldier.ID);
+        retVal.add(GiantSoldier.ID);
+        retVal.add(GiantSoldier.ID);
+        retVal.add(GiantSoldier.ID);
+        retVal.add(GiantSoldier.ID);
+
+
     
         
 		

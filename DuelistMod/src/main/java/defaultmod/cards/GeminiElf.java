@@ -67,23 +67,23 @@ public class GeminiElf extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	
+    	int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+    	System.out.println("GEMINI ELF HAS JUST LOOKED AT YOUR SUMMONS! YOU HAD: " + startSummons);
+    	
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
-    	}
-    	else
-    	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(this.misc > 5 - this.magicNumber)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber), this.magicNumber));
+
+    	int endSummons = p.getPower(SummonPower.POWER_ID).amount;
+    	int potSummons = endSummons - startSummons;
+    	
+    	System.out.println("GEMINI ELF HAS JUST LOOKED AT YOUR SUMMONS (AGAIN)! YOU HAD: " + endSummons);
+    	System.out.println("GEMINI ELF HAS JUST LOOKED AT YOUR SUMMONS (FOR POT)! YOU HAD: " + potSummons);
+    	
+    	
+    	
+    	// Summon
+    	//AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, this.magicNumber, 5, false), this.magicNumber));
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
@@ -91,7 +91,7 @@ public class GeminiElf extends CustomCard {
     		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(SUMMONS));
     	}
     }
-
+ 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

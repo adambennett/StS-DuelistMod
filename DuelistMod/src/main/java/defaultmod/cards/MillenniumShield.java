@@ -65,6 +65,7 @@ public class MillenniumShield extends CustomCard {
     public MillenniumShield() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = TRIBUTES;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

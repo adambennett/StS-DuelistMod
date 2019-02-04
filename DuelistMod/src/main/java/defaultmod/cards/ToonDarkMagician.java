@@ -121,29 +121,22 @@ public class ToonDarkMagician extends CustomCard {
 	}
 
 	// If player doesn't have enough summons, can't play card
-	@Override
-	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-	{
-		if (p.energy.energy >= COST)
-		{
-			if (p.hasPower(ToonWorldPower.POWER_ID))
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) 
-				{
-					this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-					if (this.misc >= TRIBUTES)
-					{
-						return true;
-					}
-					else
-					{
-						return false;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Check for Toon World
+    	else if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; return false; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
+    }
 
 }

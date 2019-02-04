@@ -56,7 +56,7 @@ public class SummonedSkull extends CustomCard {
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
 	private static final int COST = 1;
-	private static final int DAMAGE = 9;
+	private static final int DAMAGE = 11;
 	private static final int TRIBUTES = 1;
 	private static final int U_TRIBUTES = -1;
 
@@ -100,36 +100,21 @@ public class SummonedSkull extends CustomCard {
 	}
 
 	// If player doesn't have enough summons, can't play card
-	@Override
-	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-	{
-		if (p.energy.energy >= COST)
-		{
-			if (p.hasPower(SummonPower.POWER_ID)) 
-			{
-				int temp = (p.getPower(SummonPower.POWER_ID).amount);
-				if (temp >= TRIBUTES)
-				{
-					return true;
-				}
-				else
-				{
-					if (this.upgraded)
-					{
-						return true;
-					}
-					return false;
-				}
-			}
-			else
-			{
-				if (this.upgraded)
-				{
-					return true;
-				}
-			}
-		}
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// If upgraded, don't need tributes
+    	else if (this.upgraded) { return true; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
 
-		return false;
-	}
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
+    }
 }

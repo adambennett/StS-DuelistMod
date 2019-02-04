@@ -49,14 +49,15 @@ public class DianKeto extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 1;
-    private static final int HEAL = 10;
-    private static final int U_HEAL = 5;
+    private static final int HEAL = 8;
+    private static final int U_HEAL = 2;
 
     // /STAT DECLARATION/
 
     public DianKeto() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
        	this.magicNumber = this.baseMagicNumber = HEAL;
+       	this.exhaust = true;
     }
 
     // Actions the card should do.

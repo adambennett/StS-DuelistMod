@@ -97,6 +97,12 @@ public class InsectQueen extends CustomCard {
 			}
 		}
 		
+		// If unupgraded, reduce max summons by 1.
+		if (!this.upgraded)
+		{
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, -1, true), 0));
+		}
+		
 	}
 
 	// Which card to return when making a copy of this card.

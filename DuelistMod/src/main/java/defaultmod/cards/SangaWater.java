@@ -14,9 +14,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Frost;
 
 import basemod.abstracts.CustomCard;
+import conspire.orbs.Water;
 import defaultmod.DefaultMod;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.powers.ObeliskPower;
@@ -83,7 +83,7 @@ public class SangaWater extends CustomCard {
 			AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
 		}
 		AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-		AbstractOrb orb = new Frost();
+		AbstractOrb orb = new Water();
 		AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
 	}
 

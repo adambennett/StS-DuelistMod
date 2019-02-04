@@ -33,6 +33,8 @@
 	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/FriendlyMinions.jar"/>
 	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/ModTheSpire.jar"/>
 	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/StSLib.jar"/>
-	<classpathentry kind="lib" path="C:/Users/eX_Di/git/StS-DuelistMod/lib/TheJuggernaut.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Steam/steamapps/workshop/content/646570/1610173938/ReplayTheSpireMod.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Steam/steamapps/workshop/content/646570/1612329757/Conspire.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Steam/steamapps/workshop/content/646570/1615745539/BlackRuseMod.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

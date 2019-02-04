@@ -70,23 +70,17 @@ public class AlphaMagnet extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+    	System.out.println("ALPHA MAGNET WARRIOR HAS JUST LOOKED AT YOUR SUMMONS! YOU HAD: " + startSummons);
+    	
     	// Summon
-    	if (!p.hasPower(SummonPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	}
-    	else
-    	{
-    		this.misc = (p.getPower(SummonPower.POWER_ID).amount);
-    		if (!(this.misc > 5 - SUMMONS)) 
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    		}
-    		else
-    		{
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 5 - this.misc), 5 - this.misc));
-    		}
-    	}
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+
+    	int endSummons = p.getPower(SummonPower.POWER_ID).amount;
+    	int potSummons = endSummons - startSummons;
+    	
+    	System.out.println("ALPHA MAGNET WARRIOR HAS JUST LOOKED AT YOUR SUMMONS (AGAIN)! YOU HAD: " + endSummons);
+    	System.out.println("ALPHA MAGNET WARRIOR HAS JUST LOOKED AT YOUR SUMMONS (FOR POT)! YOU HAD: " + potSummons);
     	
     	// Check for Pot of Generosity
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
