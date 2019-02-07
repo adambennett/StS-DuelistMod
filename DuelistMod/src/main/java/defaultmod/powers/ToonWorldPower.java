@@ -13,7 +13,6 @@ import defaultmod.DefaultMod;
 public class ToonWorldPower extends AbstractPower 
 {
     public AbstractCreature source;
-
     public static final String POWER_ID = defaultmod.DefaultMod.makeID("ToonWorldPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -30,10 +29,10 @@ public class ToonWorldPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-
     }
 
-    public void updateDescription() {
+    @Override
+	public void updateDescription() {
         this.description = DESCRIPTIONS[0];
     }
 }

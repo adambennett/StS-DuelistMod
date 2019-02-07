@@ -2,8 +2,7 @@ package defaultmod.characters;
 
 import java.util.ArrayList;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -12,32 +11,14 @@ import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
-import defaultmod.cards.AlphaMagnet;
-import defaultmod.cards.AxeDespair;
-import defaultmod.cards.BarrelDragon;
-import defaultmod.cards.BusterBlader;
-import defaultmod.cards.ChangeHeart;
-import defaultmod.cards.DarkHole;
-import defaultmod.cards.GeminiElf;
-import defaultmod.cards.GiantSoldier;
-import defaultmod.cards.Hinotoma;
-import defaultmod.cards.Kuriboh;
-import defaultmod.cards.SangaWater;
-import defaultmod.cards.Scapegoat;
-import defaultmod.cards.SevenColoredFish;
-import defaultmod.cards.ToonSummonedSkull;
-import defaultmod.cards.ToonWorld;
+import defaultmod.cards.*;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.relics.MillenniumPuzzle;
 
@@ -46,12 +27,12 @@ public class TheDuelist extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
     // =============== BASE STATS =================
-    public static final int ENERGY_PER_TURN = 9;
-    public static final int STARTING_HP = 999;
-    public static final int MAX_HP = 999;
+    public static final int ENERGY_PER_TURN = 3;
+    public static final int STARTING_HP = 80;
+    public static final int MAX_HP = 80;
     public static final int STARTING_GOLD = 99;
-    public static final int CARD_DRAW = 9;
-    public static final int ORB_SLOTS = 3;
+    public static final int CARD_DRAW = 5;
+    public static final int ORB_SLOTS = 2;
     // =============== /BASE STATS/ =================
 
     
@@ -135,48 +116,43 @@ public class TheDuelist extends CustomPlayer {
         logger.info("Begin loading starter Deck Strings");
 
         // working base deck
-        //retVal.add(SevenColoredFish.ID);
-        //retVal.add(SevenColoredFish.ID);
+        retVal.add(SevenColoredFish.ID);
+        retVal.add(SevenColoredFish.ID);
         retVal.add(GiantSoldier.ID);
         retVal.add(GiantSoldier.ID);
-        //retVal.add(CastleWalls.ID);
-        //retVal.add(CastleWalls.ID);
-        //retVal.add(ScrapFactory.ID);
-        //retVal.add(Ookazi.ID);
-        //retVal.add(Ookazi.ID);
-        //retVal.add(SummonedSkull.ID);
+        retVal.add(CastleWalls.ID);
+        retVal.add(CastleWalls.ID);
+        retVal.add(ScrapFactory.ID);
+        retVal.add(Ookazi.ID);
+        retVal.add(Ookazi.ID);
+        retVal.add(SummonedSkull.ID);
 
         // temp for testing
-        retVal.add(DarkHole.ID);
-		retVal.add(AxeDespair.ID);	
-		retVal.add(BusterBlader.ID);	
-		retVal.add(Hinotoma.ID);
-		retVal.add(SangaWater.ID);
-		retVal.add(ToonWorld.ID);
-		retVal.add(ToonSummonedSkull.ID);
-		retVal.add(ChangeHeart.ID);
-        retVal.add(BarrelDragon.ID);
-        retVal.add(Scapegoat.ID);
-        retVal.add(Kuriboh.ID);
-        retVal.add(AlphaMagnet.ID);
-        retVal.add(GeminiElf.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(GiantSoldier.ID);
-
-
-    
+        /*
+        retVal.add(OjamaBlack.ID);
+		retVal.add(OjamaGreen.ID);
+		retVal.add(OjamaKing.ID);
+		retVal.add(OjamaKnight.ID);
+		retVal.add(OjamaYellow.ID);
+		retVal.add(RainMercy.ID);
+		retVal.add(ShardGreed.ID);
+		retVal.add(SuperheavyBenkei.ID);
+		retVal.add(SuperheavyScales.ID);
+		retVal.add(SuperheavySwordsman.ID);
+		retVal.add(SuperheavyWaraji.ID);
+		retVal.add(WingedDragonRa.ID);
+		retVal.add(Mausoleum.ID);
+		retVal.add(DarkMagicianGirl.ID);
+		retVal.add(DarkMagicianGirl.ID);
+		retVal.add(DarkMagicianGirl.ID);
+		*/
         
-		
         return retVal;
     }
 
     // Starting Relics	
-    public ArrayList<String> getStartingRelics() 
+    @Override
+	public ArrayList<String> getStartingRelics() 
     {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(MillenniumPuzzle.ID);

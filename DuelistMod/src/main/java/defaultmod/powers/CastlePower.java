@@ -1,0 +1,63 @@
+package defaultmod.powers;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+
+import SpikesRelics.interfaces.IShufflePower;
+import defaultmod.DefaultMod;
+import defaultmod.cards.CastleDarkIllusions;
+
+// 
+
+public class CastlePower extends AbstractPower implements IShufflePower 
+{
+    public AbstractCreature source;
+
+    public static final String POWER_ID = defaultmod.DefaultMod.makeID("CastlePower");
+    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String NAME = powerStrings.NAME;
+    public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    public static final String IMG = DefaultMod.makePath(DefaultMod.CASTLE_POWER);
+    
+    public static boolean UPGRADE = false;
+    public static int SUMMONS = 5;
+    public static int INC_SUMMONS = 5;
+
+    public CastlePower(final AbstractCreature owner, final AbstractCreature source, boolean upgrade) 
+    {
+        this.name = NAME;
+        this.ID = POWER_ID;
+        this.owner = owner;
+        this.updateDescription();
+        this.type = PowerType.BUFF;
+        this.isTurnBased = false;
+        this.img = new Texture(IMG);
+        this.source = source;
+        if (upgrade) { UPGRADE = true; }
+    }
+    
+    @Override
+    public void onShuffle() 
+    {
+    	AbstractPlayer p = AbstractDungeon.player;
+        if (UPGRADE) 
+        { 
+        	CastleDarkIllusions.incMaxSummons(p, INC_SUMMONS);
+        }
+        else 
+        {
+        	CastleDarkIllusions.summon(p, SUMMONS);
+        }
+    }
+
+    @Override
+	public void updateDescription() 
+    {
+    	if (UPGRADE) { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + INC_SUMMONS; }
+    	else { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + SUMMONS;} 
+    }
+}

@@ -8,50 +8,28 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
-import defaultmod.patches.AbstractCardEnum;
+import defaultmod.patches.*;
 
-public class DianKeto extends CustomCard {
-
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
-     *
-     * Strike Deal 7(9) damage.
-     */
-
+public class DianKeto extends DuelistCard 
+{
     // TEXT DECLARATION
-
     public static final String ID = defaultmod.DefaultMod.makeID("DianKeto");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-
-    // Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
-    // It might be easier to use that while testing.
-    // Using makePath is good practice once you get the hand of things, as it prevents you from
-    // having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
-
     public static final String IMG = DefaultMod.makePath(DefaultMod.DIAN_KETO);
-
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-
     // /TEXT DECLARATION/
 
-    
     // STAT DECLARATION
-
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-
     private static final int COST = 1;
     private static final int HEAL = 8;
     private static final int U_HEAL = 2;
-
     // /STAT DECLARATION/
 
     public DianKeto() {
@@ -64,10 +42,7 @@ public class DianKeto extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Heal
     	AbstractDungeon.actionManager.addToTop(new HealAction(p, p, this.magicNumber));
-    	
-    	// Check for Bad Reaction
     }
 
     // Which card to return when making a copy of this card.

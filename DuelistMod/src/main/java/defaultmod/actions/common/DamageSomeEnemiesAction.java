@@ -59,13 +59,13 @@ extends AbstractGameAction {
             int temp = AbstractDungeon.getCurrRoom().monsters.monsters.size();
             for (int i = 0; i < temp; ++i) {
             	if(!targets[i]) continue;
-                if (AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).isDying || AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).currentHealth <= 0 || AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).isEscaping) continue;
+                if (AbstractDungeon.getCurrRoom().monsters.monsters.get(i).isDying || AbstractDungeon.getCurrRoom().monsters.monsters.get(i).currentHealth <= 0 || AbstractDungeon.getCurrRoom().monsters.monsters.get(i).isEscaping) continue;
                 if (playedMusic) {
-                    AbstractDungeon.effectList.add(new FlashAtkImgEffect(AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).hb.cX, AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).hb.cY, this.attackEffect, true));
+                    AbstractDungeon.effectList.add(new FlashAtkImgEffect(AbstractDungeon.getCurrRoom().monsters.monsters.get(i).hb.cX, AbstractDungeon.getCurrRoom().monsters.monsters.get(i).hb.cY, this.attackEffect, true));
                     continue;
                 }
                 playedMusic = true;
-                AbstractDungeon.effectList.add(new FlashAtkImgEffect(AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).hb.cX, AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).hb.cY, this.attackEffect));
+                AbstractDungeon.effectList.add(new FlashAtkImgEffect(AbstractDungeon.getCurrRoom().monsters.monsters.get(i).hb.cX, AbstractDungeon.getCurrRoom().monsters.monsters.get(i).hb.cY, this.attackEffect));
             }
             this.firstFrame = false;
         }
@@ -81,11 +81,11 @@ extends AbstractGameAction {
             	if(!targets[i]) continue;
                 if (AbstractDungeon.getCurrRoom().monsters.monsters.get(i).isDeadOrEscaped()) continue;
                 if (this.attackEffect == AbstractGameAction.AttackEffect.POISON) {
-                    AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).tint.color = Color.CHARTREUSE.cpy();
-                    AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).tint.changeColor(Color.WHITE.cpy());
+                    AbstractDungeon.getCurrRoom().monsters.monsters.get(i).tint.color = Color.CHARTREUSE.cpy();
+                    AbstractDungeon.getCurrRoom().monsters.monsters.get(i).tint.changeColor(Color.WHITE.cpy());
                 } else if (this.attackEffect == AbstractGameAction.AttackEffect.FIRE) {
-                    AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).tint.color = Color.RED.cpy();
-                    AbstractDungeon.getCurrRoom().monsters.monsters.get((int)i).tint.changeColor(Color.WHITE.cpy());
+                    AbstractDungeon.getCurrRoom().monsters.monsters.get(i).tint.color = Color.RED.cpy();
+                    AbstractDungeon.getCurrRoom().monsters.monsters.get(i).tint.changeColor(Color.WHITE.cpy());
                 }
                 AbstractDungeon.getCurrRoom().monsters.monsters.get(i).damage(new DamageInfo(this.source, this.damage[i], this.damageType));
             }

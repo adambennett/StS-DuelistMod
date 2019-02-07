@@ -5,7 +5,7 @@
 },
 "theDuelist:DespairPower": {
         "NAME": "Axe of Despair",
-        "DESCRIPTIONS": ["At the end of turn, lose #b", " #yStrength, #yTribute #b1 and place Axe of Despair on the top of your deck."]
+        "DESCRIPTIONS": ["At the end of turn, lose #b", " #yStrength, #yTribute #b2 and place Axe of Despair on the top of your deck. If you do not have enough Tributes, lose #b30 HP."]
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
@@ -33,7 +33,7 @@
 },
 "theDuelist:GreedShardPower": {
         "NAME": "Shard of Greed",
-        "DESCRIPTIONS": ["Every #b", " turns, draw #b", " extra card at the start of turn."]
+        "DESCRIPTIONS": ["Every #b3 turns, draw #b1 extra card at the start of turn. TURN: #b"]
 },
 "theDuelist:MirrorPower": {
         "NAME": "Mirror Force",
@@ -68,8 +68,20 @@
         "DESCRIPTIONS": ["At the start of turn, #yTribute #b", " and deal #b", " damage to #b", " random enemy. (5 total damage)", " damage to random enemies. (", " total damage)" ]
 },
 "theDuelist:CatapultPower": {
-        "NAME": "CatapultPower",
+        "NAME": "Catapult Power",
         "DESCRIPTIONS": ["At the start of turn, #yTribute all #ySummons and deal #b", " damage for each to all enemies." ]
+},
+"theDuelist:BadReactionPower": {
+        "NAME": "Bad Reaction to Simochi",
+        "DESCRIPTIONS": ["During your turn, deal #b", " damage to ALL enemies for every #b", " HP you gain." ]
+},
+"theDuelist:CastlePower": {
+        "NAME": "Castle of Dark Illusions",
+        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " Summon #b", "increase your max Summons by #b" ]
+},
+"theDuelist:EmperorPower": {
+        "NAME": "Mausoleum of the Emperor",
+        "DESCRIPTIONS": ["The first Tribute card you play each turn does not Tribute. Take #b", " damage each turn." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

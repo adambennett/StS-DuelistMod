@@ -58,17 +58,20 @@ public class Gate extends AbstractOrb
 		this.channelAnimTimer = 0.5F;
 	}
 
+	@Override
 	public void updateDescription()
 	{
 		applyFocus();
 		this.description = DESC[0] + DAMAGE + DESC[1] + BLOCK + DESC[2] + SUMMONS + DESC[3];
 	}
 
+	@Override
 	public void onEvoke()
 	{
 		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS), SUMMONS));
 	}
 
+	@Override
 	public void onEndOfTurn()
 	{
 		float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
@@ -79,6 +82,7 @@ public class Gate extends AbstractOrb
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
 	}
 	
+	@Override
 	public void onStartOfTurn()
 	{
 		AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), this, true));
@@ -127,12 +131,14 @@ public class Gate extends AbstractOrb
 		}
 	}
 
+	@Override
 	public void triggerEvokeAnimation()
 	{
 		CardCrawlGame.sound.play("ORB_FROST_EVOKE", 0.1F);
 		AbstractDungeon.effectsQueue.add(new LightningOrbActivateEffect(this.cX, this.cY));
 	}
 
+	@Override
 	public void updateAnimation()
 	{
 		super.updateAnimation();
@@ -148,6 +154,7 @@ public class Gate extends AbstractOrb
 		}
 	}
 
+	@Override
 	public void render(SpriteBatch sb)
 	{
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
@@ -164,11 +171,13 @@ public class Gate extends AbstractOrb
 		this.hb.render(sb);
 	}
 
+	@Override
 	public void playChannelSFX()
 	{
 		CardCrawlGame.sound.play("ORB_LIGHTNING_CHANNEL", 0.1F);
 	}
 
+	@Override
 	public AbstractOrb makeCopy()
 	{
 		return new Gate();

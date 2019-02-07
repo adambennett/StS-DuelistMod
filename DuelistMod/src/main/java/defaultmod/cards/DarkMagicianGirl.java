@@ -1,120 +1,113 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
-import defaultmod.patches.AbstractCardEnum;
-import defaultmod.powers.ObeliskPower;
-import defaultmod.powers.SpellCounterPower;
-import defaultmod.powers.SummonPower;
+import defaultmod.actions.common.ModifyMagicNumberAction;
+import defaultmod.patches.*;
+import defaultmod.powers.*;
 
-public class DarkMagicianGirl extends CustomCard {
+public class DarkMagicianGirl extends DuelistCard 
+{
+	// TEXT DECLARATION
+	public static final String ID = defaultmod.DefaultMod.makeID("DarkMagicianGirl");
+	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+	public static final String IMG = DefaultMod.makePath(DefaultMod.DARK_MAGICIAN_GIRL);
+	public static final String NAME = cardStrings.NAME;
+	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+	// /TEXT DECLARATION/
 
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
-     *
-     * Strike Deal 7(9) damage.
-     */
+	// STAT DECLARATION
+	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
+	private static final CardType TYPE = CardType.SKILL;
+	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	private static final int COST = 1;
+	private static final int TRIBUTES = 1;
+	private static final int OVERFLOW_AMT = 3;
+	private static final int U_OVERFLOW = 2;
+	private static int MIN_TURNS_ROLL = 3;
+	private static int MAX_TURNS_ROLL = 7;
+	// /STAT DECLARATION/
 
-    // TEXT DECLARATION
+	public DarkMagicianGirl() {
+		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
+		this.counters = 10;
+	}
 
-    public static final String ID = defaultmod.DefaultMod.makeID("DarkMagicianGirl");
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+	// Actions the card should do.
+	@Override
+	public void use(AbstractPlayer p, AbstractMonster m) 
+	{
+		tribute(p, TRIBUTES, false);
+		applyPower(new SpellCounterPower(p, p, this.counters), m);
+	}
 
-    // Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
-    // It might be easier to use that while testing.
-    // Using makePath is good practice once you get the hand of things, as it prevents you from
-    // having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
+	@Override
+	public void triggerOnEndOfPlayerTurn() 
+	{
+		// If overflows remaining
+		if (this.magicNumber > 0) 
+		{
+			// Get player reference
+			AbstractPlayer p = AbstractDungeon.player;
 
-    public static final String IMG = DefaultMod.makePath(DefaultMod.DARK_MAGICIAN_GIRL);
+			// Remove 1 overflow
+			AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this, -1));
 
-    public static final String NAME = cardStrings.NAME;
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+			// Get random number of turns for buff to apply for (1-5)
+			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
 
-    // /TEXT DECLARATION/
+			// Get random buff with random tumber of turns
+			AbstractPower randomBuff = getRandomBuff(p, randomTurnNum);
 
-    
-    // STAT DECLARATION
+			// Apply random buff
+			//AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, randomBuff));
+			applyPower(randomBuff, p);
+		}
+	}
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	// Which card to return when making a copy of this card.
+	@Override
+	public AbstractCard makeCopy() {
+		return new DarkMagicianGirl();
+	}
 
-    private static final int COST = 1;
-    private static final int TRIBUTES = 1;
-    private static int COUNTERS = 7;
-    private static int COUNTERS_UPGRADE = 3;
+	// Upgraded stats.
+	@Override
+	public void upgrade() {
+		if (!this.upgraded) {
+			this.upgradeName();
+			this.upgradeMagicNumber(U_OVERFLOW);
+			this.rawDescription = UPGRADE_DESCRIPTION;
+			this.initializeDescription();
+		}
+	}
 
-    // /STAT DECLARATION/
+	// If player doesn't have enough summons, can't play card
+	@Override
+	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+	{
+		// Check super canUse()
+		boolean canUse = super.canUse(p, m); 
+		if (!canUse) { return false; }
 
-    public DarkMagicianGirl() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = COUNTERS;
-    }
+		// Check for # of summons >= tributes
+		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
 
-    // Actions the card should do.
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	 if (this.upgraded) { this.magicNumber = this.baseMagicNumber = COUNTERS + COUNTERS_UPGRADE; }
-    	 AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
-    	 
-    	// Check for Obelisk after tributing
-     	if (p.hasPower(ObeliskPower.POWER_ID))
-     	{
-     		int[] temp = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
-			for (int i : temp) { i = i * TRIBUTES; }
-     		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
-     	}
-    	 AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, p, new SpellCounterPower(p, p, this.magicNumber)));
-    }
+		// Player doesn't have something required at this point
+		this.cantUseMessage = "Not enough Summons";
+		return false;
+	}
 
-    // Which card to return when making a copy of this card.
-    @Override
-    public AbstractCard makeCopy() {
-        return new DarkMagicianGirl();
-    }
-
-    // Upgraded stats.
-    @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.magicNumber = this.baseMagicNumber = COUNTERS + COUNTERS_UPGRADE;
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
-    }
-    
-    // If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	
-    	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
-    	
-    	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
-    	return false;
-    }
-   
 }

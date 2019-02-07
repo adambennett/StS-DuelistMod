@@ -1,77 +1,67 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.patches.AbstractCardEnum;
+import defaultmod.patches.*;
 
-public class RedMedicine extends CustomCard {
 
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
-     *
-     * Strike Deal 7(9) damage.
-     */
-
+public class RedMedicine extends DuelistCard 
+{
     // TEXT DECLARATION
 
     public static final String ID = defaultmod.DefaultMod.makeID("RedMedicine");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-
-    // Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
-    // It might be easier to use that while testing.
-    // Using makePath is good practice once you get the hand of things, as it prevents you from
-    // having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
-
     public static final String IMG = DefaultMod.makePath(DefaultMod.RED_MEDICINE);
-
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
-    
     // STAT DECLARATION
-
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-
-    private static final int COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int UPGRADE_PLUS_DMG = 2;
-
+    private static final int COST = 1;
+    private static int MIN_TURNS_ROLL = 1;
+    private static int MAX_TURNS_ROLL = 5;
+    private static final int BUFFS = 1;
     // /STAT DECLARATION/
 
     public RedMedicine() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = BUFFS;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	// Get random number of turns for buff to apply for
+		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+		int randomTurnNumB = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+
+		// Get two random buffs
+		AbstractPower randomBuff = getRandomBuff(p, randomTurnNum);
+		AbstractPower randomBuffB = getRandomBuff(p, randomTurnNumB);
+
+		// Apply random buff(s)
+		applyPowerToSelf(randomBuff);
+		if (this.upgraded) { applyPowerToSelf(randomBuffB); }
     }
 
     // Which card to return when making a copy of this card.
     @Override
-    public AbstractCard makeCopy() {
+    public AbstractCard makeCopy() 
+    {
         return new RedMedicine();
     }
 
@@ -80,7 +70,10 @@ public class RedMedicine extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeBaseCost(0);
+            MIN_TURNS_ROLL = 2;
+            MAX_TURNS_ROLL = 6;
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

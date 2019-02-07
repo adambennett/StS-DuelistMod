@@ -3,15 +3,14 @@ package defaultmod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.cards.CatapultTurtle;
 
 /* 	
  * Lose 10 strength at the end of turn and
@@ -51,22 +50,10 @@ public class CatapultPower extends AbstractPower
     	{
     		if (this.owner.hasPower(SummonPower.POWER_ID))
     		{
-    			// Get # of summons
-    			int playerSummons = this.owner.getPower(SummonPower.POWER_ID).amount;
-    			
+    			// Get # of summons and tribute all
+    			int playerSummons = CatapultTurtle.tribute(AbstractDungeon.player, 0, true);
     			if (playerSummons > 0)
     			{
-		    		// Tribute all summons
-		        	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, SummonPower.POWER_ID, playerSummons));
-		        	
-		        	// Check for Obelisk after tribute
-		        	if (this.owner.hasPower(ObeliskPower.POWER_ID))
-		        	{
-		        		int[] obeliskDmg = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
-		    			for (int z : obeliskDmg) { z = z * playerSummons; }
-		        		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(this.owner, obeliskDmg, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
-		        	}
-					
 					// Deal 10 damage to all enemies for each Tribute
 		        	int[] catapultDmg = new int[] {TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG};
 		        	for (int i = 0; i < playerSummons; i++)
@@ -78,7 +65,8 @@ public class CatapultPower extends AbstractPower
     	}
     }
     
-    public void updateDescription() 
+    @Override
+	public void updateDescription() 
     {
     	this.description = DESCRIPTIONS[0] + TURN_DMG + DESCRIPTIONS[1];
     }

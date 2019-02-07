@@ -21,6 +21,7 @@ public class MakeTempCardInDrawPileFreeAction extends com.megacrit.cardcrawl.act
 		this.cardOffset = cardOffset;
 	}
 
+	@Override
 	public void update() {
 		if (this.duration == 0.5F) {
 

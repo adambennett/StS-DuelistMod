@@ -1,16 +1,19 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import java.util.concurrent.ThreadLocalRandom;
+
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.*;
 
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.ModifyMagicNumberAction;
 import defaultmod.patches.AbstractCardEnum;
 import defaultmod.powers.PotGenerosityPower;
 import defaultmod.powers.SpellCounterPower;
@@ -56,30 +59,91 @@ public class ToonDarkMagicianGirl extends CustomCard {
     private static final int COST = 1;
     private static final int SUMMONS = 1;
     private static final int COUNTERS = 6;
-    private static final int U_COUNTERS = 3;
+    private static final int OVERFLOW_AMT = 3;
+    private static final int U_OVERFLOW = 2;
+    private static int MIN_TURNS_ROLL = 1;
+    private static int MAX_TURNS_ROLL = 5;
     
     // /STAT DECLARATION/
 
     public ToonDarkMagicianGirl() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = COUNTERS;
+        this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Summon
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	
-    	// Check for Pot of Generosity
+    	// Pot of Generosity setup
+    	int potSummons = 0;
     	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
     	{
-    		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(SUMMONS));
+	    	int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+	    	SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+	    	int maxSummons = summonsInstance.MAX_SUMMONS;
+	    	if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
+	    	else { potSummons = SUMMONS; }
     	}
+    	
+    	// Summon
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
+
+    	// Check for Pot of Generosity
+    	if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
         // Apply Spell Counters to target
-        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, p, new SpellCounterPower(p, p, this.magicNumber)));
+        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(m, p, new SpellCounterPower(p, p, COUNTERS)));
+    }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Get player reference
+        	AbstractPlayer p = AbstractDungeon.player;
+        	
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this, -1));
+            
+            // Get random number of turns for buff to apply for (1-5)
+    		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+    		
+    		// Setup powers array for random buff selection
+    		AbstractPower str = new StrengthPower(p, randomTurnNum);
+    		AbstractPower dex = new DexterityPower(p, randomTurnNum);
+    		AbstractPower summons = new SummonPower(p, randomTurnNum);
+    		AbstractPower art = new ArtifactPower(p, randomTurnNum);
+    		AbstractPower plate = new PlatedArmorPower(p, randomTurnNum);
+    		AbstractPower intan = new IntangiblePower(p, 1);
+    		AbstractPower regen = new RegenPower(p, randomTurnNum);
+    		AbstractPower energy = new EnergizedPower(p, randomTurnNum);
+    		AbstractPower thorns = new ThornsPower(p, randomTurnNum);
+    		AbstractPower barricade = new BarricadePower(p);
+    		AbstractPower blur = new BlurPower(p, randomTurnNum);
+    		AbstractPower burst = new BurstPower(p, randomTurnNum);
+    		AbstractPower creative = new CreativeAIPower(p, randomTurnNum);
+    		AbstractPower darkEmb = new DarkEmbracePower(p, randomTurnNum);
+    		AbstractPower doubleTap = new DoubleTapPower(p, randomTurnNum);
+    		AbstractPower equal = new EquilibriumPower(p, randomTurnNum);
+    		AbstractPower noPain = new FeelNoPainPower(p, randomTurnNum);
+    		AbstractPower fire = new FireBreathingPower(p, randomTurnNum);
+    		AbstractPower jugger = new JuggernautPower(p, randomTurnNum);
+    		AbstractPower metal = new MetallicizePower(p, randomTurnNum);
+    		AbstractPower penNib = new PenNibPower(p, 1);
+    		AbstractPower sadistic = new SadisticPower(p, randomTurnNum);
+    		AbstractPower storm = new StormPower(p, randomTurnNum);
+    		AbstractPower[] buffs = new AbstractPower[] {str, dex, summons, art, plate, intan, regen, energy, thorns, barricade, blur, burst, creative, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm };
+ 
+    		// Get randomized buff
+    		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
+    		AbstractPower randomBuff = buffs[randomBuffNum];
+
+    		// Apply random buff
+    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, randomBuff));
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -93,7 +157,7 @@ public class ToonDarkMagicianGirl extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(U_COUNTERS);
+            this.upgradeMagicNumber(U_OVERFLOW);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

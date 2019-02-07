@@ -3,18 +3,16 @@ package defaultmod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.cards.CannonSoldier;
 
 /* 	
  * Lose 10 strength at the end of turn and
@@ -47,8 +45,6 @@ public class CannonPower extends AbstractPower
         TRIBUTES = tributes;
     }
 
-
-    // At the end of the turn, remove gained Strength.
     @Override
     public void atStartOfTurn() 
     {
@@ -62,27 +58,19 @@ public class CannonPower extends AbstractPower
 				{
 	    			if (this.owner.hasPower(SummonPower.POWER_ID))
 	    			{
-			    		// Tribute Summon for each copy of Cannon Soldier
-			        	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, SummonPower.POWER_ID, TRIBUTES));
-			        	
-			        	// Check for Obelisk after tribute
-			        	if (this.owner.hasPower(ObeliskPower.POWER_ID))
-			        	{
-			        		int[] temp = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
-			    			for (int z : temp) { z = z * TRIBUTES; }
-			        		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.owner, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
-			        	}
+	    				CannonSoldier.tribute(AbstractDungeon.player, TRIBUTES, false);
 						
-						// Deal 5 damage to a random enemy for each copy of Cannon Soldier
+	    				// Deal 5 damage to a random enemy for each copy of Cannon Soldier
 						AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-						AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageInfo.DamageType.NORMAL),AbstractGameAction.AttackEffect.FIRE));
+						AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
 	    			}
 	    		}
 			}
 	    }
     }
     
-    public void updateDescription() 
+    @Override
+	public void updateDescription() 
     {
     	if (this.amount == 1)
     	{

@@ -8,13 +8,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 
-// Passive no-effect power, just lets Toon Monsters check for playability
 
 public class PotGenerosityPower extends AbstractPower 
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = defaultmod.DefaultMod.makeID("PotGenerosityPower");
+    public static final String POWER_ID = DefaultMod.makeID("PotGenerosityPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -32,10 +31,10 @@ public class PotGenerosityPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-
     }
 
-    public void updateDescription() {
+    @Override
+	public void updateDescription() {
         this.description = DESCRIPTIONS[0] + MANA + DESCRIPTIONS[1];
     }
 }

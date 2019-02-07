@@ -1,72 +1,77 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.abstracts.CustomCard;
-
 import defaultmod.DefaultMod;
-import defaultmod.patches.AbstractCardEnum;
+import defaultmod.patches.*;
+import defaultmod.powers.SummonPower;
 
-public class OjamaKnight extends CustomCard {
-
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
-     *
-     * Strike Deal 7(9) damage.
-     */
-
+public class OjamaKnight extends DuelistCard 
+{
     // TEXT DECLARATION
-
     public static final String ID = defaultmod.DefaultMod.makeID("OjamaKnight");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-
-    // Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
-    // It might be easier to use that while testing.
-    // Using makePath is good practice once you get the hand of things, as it prevents you from
-    // having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
-
     public static final String IMG = DefaultMod.makePath(DefaultMod.OJAMA_KNIGHT);
-
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
-    
     // STAT DECLARATION
-
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-
-    private static final int COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int UPGRADE_PLUS_DMG = 2;
-
+    private static final int COST = 1;
+    private static int TRIBUTES = 1;
+    private static int MIN_BUFF_TURNS_ROLL = 1;
+    private static int MAX_BUFF_TURNS_ROLL = 2;
+    private static int MIN_DEBUFF_TURNS_ROLL = 1;
+    private static int MAX_DEBUFF_TURNS_ROLL = 4;
     // /STAT DECLARATION/
 
     public OjamaKnight() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
     }
 
+    
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager
-                .addToBottom(new com.megacrit.cardcrawl.actions.common.DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	// Tribute
+		tribute(p, TRIBUTES, false);
+
+		// Get number of buffs & debuffs
+		int randomDebuffNum = ThreadLocalRandom.current().nextInt(1, 2 + 1); 
+    	int randomDebuffNumU = ThreadLocalRandom.current().nextInt(2, 4 + 1); 
+    	int randomBuffNum = ThreadLocalRandom.current().nextInt(1, 2 + 1); 
+    	int randomBuffNumU = ThreadLocalRandom.current().nextInt(2, 4 + 1); 
+    	
+    	// Set number of buffs & debuffs to right number (based on upgrade status)
+    	int primary = 4;	int primaryB = 4;
+    	if (this.upgraded) { primary = randomDebuffNumU; primaryB = randomBuffNumU;  }
+    	else { primary = randomDebuffNum; primaryB = randomBuffNum; }
+ 
+		// Give self 'primaryB' random buffs
+		for (int i = 0; i < primaryB; i++)
+		{
+			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL + 1);
+			applyPower(getRandomBuff(p, randomTurnNum), p);
+		}
+		
+		// Give 'primary' random debuffs to enemy
+		for (int i = 0; i < primary; i++)
+		{
+			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL + 1);
+			applyPower(getRandomDebuff(p, m, randomTurnNum), m);
+		}
     }
 
     // Which card to return when making a copy of this card.
@@ -80,8 +85,26 @@ public class OjamaKnight extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            MAX_DEBUFF_TURNS_ROLL = 6;
+            MAX_BUFF_TURNS_ROLL = 4;
+            this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
     }
 }

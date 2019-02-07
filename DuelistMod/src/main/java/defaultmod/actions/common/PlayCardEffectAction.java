@@ -23,8 +23,8 @@ public class PlayCardEffectAction extends AbstractGameAction {
 		AbstractDungeon.player.limbo.addToBottom(tmp);
 		tmp.current_x = card.current_x;
 		tmp.current_y = card.current_y;
-		tmp.target_x = (float)Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
-		tmp.target_y = (float)Settings.HEIGHT / 2.0f;
+		tmp.target_x = Settings.WIDTH / 2.0f - 300.0f * Settings.scale;
+		tmp.target_y = Settings.HEIGHT / 2.0f;
 		tmp.freeToPlayOnce = true;
 		if (this.target != null) {
 		    tmp.calculateCardDamage((AbstractMonster)this.target);

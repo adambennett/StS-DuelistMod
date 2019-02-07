@@ -2,18 +2,16 @@ package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.cards.JamBreeding;
 
 /* 	
  * Lose 10 strength at the end of turn and
@@ -54,26 +52,19 @@ public class JamPower extends AbstractPower
     	// If owner still has power
     	if (this.owner.hasPower(JamPower.POWER_ID))
     	{
-    		// Summon 1 if possible
-			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new SummonPower(this.owner, SUMMONS), SUMMONS));
-			
-			
-			// Check for Pot of Generosity
-	    	if (this.owner.hasPower(PotGenerosityPower.POWER_ID)) 
-	    	{
-	    		AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(SUMMONS));
-	    	}
+    		JamBreeding.summon(AbstractDungeon.player, SUMMONS);
 			
 			// Deal 5 damage to a random enemy for each copy of Jam Breeding Machine that has been played
 			for (int i = 0; i < this.amount; i++)
 			{
 				AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-				AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageInfo.DamageType.NORMAL),AbstractGameAction.AttackEffect.FIRE));
+				AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageInfo.DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
 			}
 		}
     }
     
-    public void updateDescription() 
+    @Override
+	public void updateDescription() 
     {
     	if (this.amount == 1)
     	{

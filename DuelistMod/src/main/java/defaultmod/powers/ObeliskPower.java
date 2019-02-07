@@ -8,18 +8,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 
-/* 	
- * Lose 10 strength at the end of turn and
- * tribute 1 monster. Then, place this card on top of your draw pile. 
- * 
- * 
- */
-
 public class ObeliskPower extends AbstractPower 
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = defaultmod.DefaultMod.makeID("ObeliskPower");
+    public static final String POWER_ID = DefaultMod.makeID("ObeliskPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -39,7 +32,8 @@ public class ObeliskPower extends AbstractPower
 
     }
 
-    public void updateDescription() {
+    @Override
+	public void updateDescription() {
         this.description = DESCRIPTIONS[0] + DAMAGE + DESCRIPTIONS[1];
     }
 }

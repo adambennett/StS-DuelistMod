@@ -8,12 +8,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 
-// Passive no-effect power, just lets Toon Monsters check for playability
 
 public class SpellCounterPower extends AbstractPower 
 {
     public AbstractCreature source;
-
     public static final String POWER_ID = defaultmod.DefaultMod.makeID("SpellCounterPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -31,10 +29,10 @@ public class SpellCounterPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = amount;
-
     }
 
-    public void updateDescription() {
+    @Override
+	public void updateDescription() {
         this.description = DESCRIPTIONS[0];
     }
 }

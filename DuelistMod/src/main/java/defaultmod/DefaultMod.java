@@ -1,88 +1,23 @@
 package defaultmod;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.*;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.OrbStrings;
-import com.megacrit.cardcrawl.localization.PotionStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
-import basemod.BaseMod;
-import basemod.ModLabel;
-import basemod.ModPanel;
-import basemod.interfaces.EditCardsSubscriber;
-import basemod.interfaces.EditCharactersSubscriber;
-import basemod.interfaces.EditKeywordsSubscriber;
-import basemod.interfaces.EditRelicsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
-import basemod.interfaces.PostInitializeSubscriber;
-import defaultmod.cards.AlphaMagnet;
-import defaultmod.cards.AncientRules;
-import defaultmod.cards.AxeDespair;
-import defaultmod.cards.BarrelDragon;
-import defaultmod.cards.BetaMagnet;
-import defaultmod.cards.BlueEyes;
-import defaultmod.cards.BlueEyesToon;
-import defaultmod.cards.BlueEyesUltimate;
-import defaultmod.cards.BusterBlader;
-import defaultmod.cards.CannonSoldier;
-import defaultmod.cards.CastleWalls;
-import defaultmod.cards.CatapultTurtle;
-import defaultmod.cards.CelticGuardian;
-import defaultmod.cards.ChangeHeart;
-import defaultmod.cards.DarkHole;
-import defaultmod.cards.DarkMagician;
-import defaultmod.cards.DarkMagicianGirl;
-import defaultmod.cards.DarklordMarie;
-import defaultmod.cards.DianKeto;
-import defaultmod.cards.FiendMegacyber;
-import defaultmod.cards.GaiaFierce;
-import defaultmod.cards.GammaMagnet;
-import defaultmod.cards.GateGuardian;
-import defaultmod.cards.GeminiElf;
-import defaultmod.cards.GiantSoldier;
-import defaultmod.cards.Hinotoma;
-import defaultmod.cards.InsectQueen;
-import defaultmod.cards.JamBreeding;
-import defaultmod.cards.JudgeMan;
-import defaultmod.cards.Kuriboh;
-import defaultmod.cards.LabyrinthWall;
-import defaultmod.cards.MillenniumShield;
-import defaultmod.cards.ObeliskTormentor;
-import defaultmod.cards.Ookazi;
-import defaultmod.cards.PotGenerosity;
-import defaultmod.cards.PotGreed;
-import defaultmod.cards.RedEyes;
-import defaultmod.cards.RedEyesToon;
-import defaultmod.cards.SangaEarth;
-import defaultmod.cards.SangaThunder;
-import defaultmod.cards.SangaWater;
-import defaultmod.cards.Scapegoat;
-import defaultmod.cards.ScrapFactory;
-import defaultmod.cards.SevenColoredFish;
-import defaultmod.cards.SummonedSkull;
-import defaultmod.cards.SuperheavyScales;
-import defaultmod.cards.ToonBarrelDragon;
-import defaultmod.cards.ToonDarkMagician;
-import defaultmod.cards.ToonDarkMagicianGirl;
-import defaultmod.cards.ToonGeminiElf;
-import defaultmod.cards.ToonMermaid;
-import defaultmod.cards.ToonSummonedSkull;
-import defaultmod.cards.ToonWorld;
-import defaultmod.cards.ValkMagnet;
+import basemod.*;
+import basemod.interfaces.*;
+import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
-import defaultmod.patches.AbstractCardEnum;
-import defaultmod.patches.TheDuelistEnum;
+import defaultmod.patches.*;
 import defaultmod.potions.PlaceholderPotion;
 import defaultmod.relics.MillenniumPuzzle;
 import defaultmod.variables.DefaultCustomVariable;
+
 
 
 @SpireInitializer
@@ -90,6 +25,8 @@ public class DefaultMod
         implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
         EditCharactersSubscriber, PostInitializeSubscriber {
     public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
+    public static final String PLACEHOLDER = "Placeholder";
+    public static final String MOD_ID_PREFIX = "theDuelist:";
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "Duelist Mod";
@@ -265,6 +202,9 @@ public class DefaultMod
     public static final String POT_GENEROSITY_POWER = "powers/PotGenerosityPower.png";
     public static final String CANNON_SOLDIER_POWER = "powers/CannonPower.png";
     public static final String CATAPULT_TURTLE_POWER = "powers/CatapultPower.png";
+    public static final String BAD_REACTION_POWER = "powers/BadReactionPower.png";
+    public static final String CASTLE_POWER = "powers/CastlePower.png";
+    public static final String EMPEROR_POWER = "powers/EmperorPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -345,7 +285,7 @@ public class DefaultMod
     public void receiveEditCharacters() {
         logger.info("Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
 
-        BaseMod.addCharacter(new TheDuelist("the Default", TheDuelistEnum.THE_DUELIST),
+        BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),
                 makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
         
         receiveEditPotions();
@@ -436,7 +376,6 @@ public class DefaultMod
 		BaseMod.addCard(new CelticGuardian());
 		BaseMod.addCard(new DarkMagician());
 		BaseMod.addCard(new DarkMagicianGirl());
-		//BaseMod.addCard(new FlameSwordsman());
 		BaseMod.addCard(new GaiaFierce());
 		BaseMod.addCard(new GammaMagnet());
 		BaseMod.addCard(new GateGuardian());
@@ -479,6 +418,26 @@ public class DefaultMod
 		BaseMod.addCard(new DarklordMarie());
 		BaseMod.addCard(new ChangeHeart());
 		BaseMod.addCard(new DarkHole());
+		BaseMod.addCard(new RedMedicine());
+		BaseMod.addCard(new PotAvarice());
+		BaseMod.addCard(new BadReaction());
+		BaseMod.addCard(new CardDestruction());
+		BaseMod.addCard(new CastleDarkIllusions());
+		BaseMod.addCard(new Ojamagic());
+		BaseMod.addCard(new PotDichotomy());
+		BaseMod.addCard(new OjamaBlack());
+		BaseMod.addCard(new OjamaGreen());
+		BaseMod.addCard(new OjamaKing());
+		BaseMod.addCard(new OjamaKnight());
+		BaseMod.addCard(new OjamaYellow());
+		BaseMod.addCard(new RainMercy());
+		BaseMod.addCard(new ShardGreed());
+		BaseMod.addCard(new SuperheavyBenkei());
+		BaseMod.addCard(new SuperheavyScales());
+		BaseMod.addCard(new SuperheavySwordsman());
+		BaseMod.addCard(new SuperheavyWaraji());
+		BaseMod.addCard(new WingedDragonRa());
+		BaseMod.addCard(new Mausoleum());
 		
         /*
         BaseMod.addCard(new AlphaMagnet());
@@ -603,7 +562,6 @@ public class DefaultMod
 		UnlockTracker.unlockCard(CelticGuardian.ID);		
 		UnlockTracker.unlockCard(DarkMagician.ID);
 		UnlockTracker.unlockCard(DarkMagicianGirl.ID);
-		//UnlockTracker.unlockCard(FlameSwordsman.ID);
 		UnlockTracker.unlockCard(GaiaFierce.ID);
 		UnlockTracker.unlockCard(GammaMagnet.ID);
 		UnlockTracker.unlockCard(GateGuardian.ID);
@@ -646,6 +604,26 @@ public class DefaultMod
 		UnlockTracker.unlockCard(DarklordMarie.ID);
 		UnlockTracker.unlockCard(ChangeHeart.ID);
 		UnlockTracker.unlockCard(DarkHole.ID);
+		UnlockTracker.unlockCard(RedMedicine.ID);
+		UnlockTracker.unlockCard(PotAvarice.ID);
+		UnlockTracker.unlockCard(BadReaction.ID);
+		UnlockTracker.unlockCard(CardDestruction.ID);
+		UnlockTracker.unlockCard(CastleDarkIllusions.ID);
+		UnlockTracker.unlockCard(Ojamagic.ID);
+		UnlockTracker.unlockCard(PotDichotomy.ID);
+		UnlockTracker.unlockCard(OjamaBlack.ID);
+		UnlockTracker.unlockCard(OjamaGreen.ID);
+		UnlockTracker.unlockCard(OjamaKing.ID);
+		UnlockTracker.unlockCard(OjamaKnight.ID);
+		UnlockTracker.unlockCard(OjamaYellow.ID);
+		UnlockTracker.unlockCard(RainMercy.ID);
+		UnlockTracker.unlockCard(ShardGreed.ID);
+		UnlockTracker.unlockCard(SuperheavyBenkei.ID);
+		UnlockTracker.unlockCard(SuperheavyScales.ID);
+		UnlockTracker.unlockCard(SuperheavySwordsman.ID);
+		UnlockTracker.unlockCard(SuperheavyWaraji.ID);
+		UnlockTracker.unlockCard(WingedDragonRa.ID);
+		UnlockTracker.unlockCard(Mausoleum.ID);
 		
 		/*
         UnlockTracker.unlockCard(AlphaMagnet.ID);
@@ -809,7 +787,7 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
         BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if Toon World is active.");
         BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the Magnet Warrior monsters. Magnets have no inherent effect.");
-        
+        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add 5 random cards to your hand, they cost 0 this turn. Apply 3 random buffs. Apply 3 random debuffs and 3 Spell Counters to an enemy.");
        
     }
 
@@ -819,6 +797,21 @@ public class DefaultMod
     // in order to avoid conflicts if any other mod uses the same ID.
     public static String makeID(String idText) {
         return "theDuelist:" + idText;
+    }
+    
+
+    public static String getExistingOrPlaceholder(String prefix, String id, String postfix) {
+    	String idWithoutModName = id.replaceAll(MOD_ID_PREFIX, "");
+    	String maybeExisting = prefix + idWithoutModName + postfix;
+    	System.out.println("BIG OLD DICKS IN YA BUTTTTTTTTTTTTTTTTTTTTTTTT::: " + maybeExisting);
+    	if (Gdx.files.internal(maybeExisting).exists()) {
+    		return maybeExisting;
+    	} else {
+    		DefaultMod.logger.debug(
+    				id + " has no image configured. Defaulting to placeholder image (should be in "
+    						+ prefix + ")");
+    		return prefix + PLACEHOLDER + postfix;
+    	}
     }
 
 }

@@ -33,7 +33,7 @@ extends AbstractGameAction {
                 for (int i = 0; i < this.amount; ++i) {
                     AbstractCard c = cardsToShuffle.get(i);
                     AbstractDungeon.player.hand.removeCard(c);
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(c, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f, this.randomSpot, this.cardOffset));
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(c, Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f, this.randomSpot, this.cardOffset));
                 }
             } else {
                 for (int i = 0; i < this.amount; ++i) {

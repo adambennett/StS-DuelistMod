@@ -4,64 +4,39 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
-import defaultmod.patches.AbstractCardEnum;
-import defaultmod.powers.ObeliskPower;
-import defaultmod.powers.SummonPower;
-import defaultmod.powers.ToonWorldPower;
+import defaultmod.patches.*;
+import defaultmod.powers.*;
 
-public class ToonBarrelDragon extends CustomCard {
-
-	/*
-	 * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-	 *
-	 * In order to understand how image paths work, go to defaultmod/DefaultMod.java, Line ~140 (Image path section).
-	 *
-	 * Strike Deal 7(9) damage.
-	 */
-
+public class ToonBarrelDragon extends DuelistCard 
+{
 	// TEXT DECLARATION
 
 	public static final String ID = defaultmod.DefaultMod.makeID("ToonBarrelDragon");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-
-	// Yes, you totally can use "defaultModResources/images/cards/Attack.png" instead and that would work.
-	// It might be easier to use that while testing.
-	// Using makePath is good practice once you get the hand of things, as it prevents you from
-	// having to change *every single card/file/path* if the image path changes due to updates or your personal preference.
-
 	public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_BARREL_DRAGON);
-
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-
 	// /TEXT DECLARATION/
 
-
 	// STAT DECLARATION
-
 	private static final CardRarity RARITY = CardRarity.RARE;
 	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-
-	private static final int COST = 3;
+	private static final int COST = 2;
 	private static final int DAMAGE = 0;
 	private static final int TRIBUTES = 2;
-	private static final int MIN_DMG = 0;
+	private static int MIN_DMG = 3;
 	private static int MAX_DMG = 15;
-
 	// /STAT DECLARATION/
 
 	public ToonBarrelDragon() {
@@ -69,6 +44,7 @@ public class ToonBarrelDragon extends CustomCard {
 		this.baseDamage = DAMAGE;
 		this.isMultiDamage = true;
 		this.multiDamage = new int[]{0, 0, 0, 0, 0};
+		this.magicNumber = this.baseMagicNumber = 20;
 	}
 
 	// Actions the card should do.
@@ -82,15 +58,7 @@ public class ToonBarrelDragon extends CustomCard {
 			test[i] = randomNum;
 		}
 		this.multiDamage = test;
-		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, SummonPower.POWER_ID, TRIBUTES));
-
-		// Check for Obelisk after tributing
-		if (p.hasPower(ObeliskPower.POWER_ID))
-		{
-			int[] temp = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
-			for (int i : temp) { i = i * TRIBUTES; }
-			AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
-		}
+		tribute(p, TRIBUTES, false);
 		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
 	}
 
@@ -105,7 +73,8 @@ public class ToonBarrelDragon extends CustomCard {
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBaseCost(2);
+			this.upgradeBaseCost(1);
+			MIN_DMG = 8;
 			MAX_DMG = 20;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();

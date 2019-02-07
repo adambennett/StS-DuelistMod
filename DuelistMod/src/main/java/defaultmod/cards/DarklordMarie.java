@@ -1,43 +1,38 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.ModifyMagicNumberAction;
-import defaultmod.patches.AbstractCardEnum;
-import defaultmod.powers.PotGenerosityPower;
-import defaultmod.powers.SummonPower;
+import defaultmod.patches.*;
 
 
-public class DarklordMarie extends CustomCard {
+public class DarklordMarie extends DuelistCard 
+{
+	// TEXT DECLARATION
 	public static final String ID = defaultmod.DefaultMod.makeID("DarklordMarie");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.DARKLORD_MARIE);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    // /TEXT DECLARATION/
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-  
+    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int SUMMONS = 1;
     private static final int OVERFLOW_AMT = 10;
-    //private static final int U_OVERFLOW = 0;
     private static final int COST = 1;
     private static int HEAL = 2;
     private static final int U_HEAL = 1;
@@ -46,7 +41,6 @@ public class DarklordMarie extends CustomCard {
     public DarklordMarie() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
-        //this.isOverflow = true;
         this.baseDamage = DAMAGE;
     }
 
@@ -61,12 +55,6 @@ public class DarklordMarie extends CustomCard {
             
             // Heal
             AbstractDungeon.actionManager.addToTop(new HealAction(AbstractDungeon.player, AbstractDungeon.player, HEAL));
-            
-            // If only 1 overflow remains, this is the last overflow
-            if (this.magicNumber == 1) 
-            {
-               // this.isOverflow = false;
-            }
         }
     }
 
@@ -74,17 +62,8 @@ public class DarklordMarie extends CustomCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	// Summon
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, SUMMONS), SUMMONS));
-    	
-    	// Check for Pot of Generosity
-    	if (p.hasPower(PotGenerosityPower.POWER_ID)) 
-    	{
-    		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(SUMMONS));
-    	}
-    	
-    	// Damage
-		AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));   
+    	summon(p, SUMMONS);
+    	attack(m, AFX, this.damage);
     }
 
     @Override
@@ -96,7 +75,6 @@ public class DarklordMarie extends CustomCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeMagicNumber(U_OVERFLOW);
             HEAL += U_HEAL;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

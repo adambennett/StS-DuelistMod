@@ -4,7 +4,7 @@
   <groupId>duelistmod</groupId>
   <artifactId>DuelistMod</artifactId>
   <name>DuelistMod</name>
-  <version>0.55.0</version>
+  <version>0.74.0</version>
   <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
   <build>
     <finalName>DuelistMod</finalName>
@@ -105,6 +105,20 @@
       <scope>system</scope>
       <systemPath>${basedir}/../lib/BlackRuseMod.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>slimebound</groupId>
+      <artifactId>slimebound</artifactId>
+      <version>${slimebound.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/SlimeboundMod.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>spikeRelic</groupId>
+      <artifactId>SpikesRelics</artifactId>
+      <version>${SpikesRelics.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/SpikesRelics.jar</systemPath>
+    </dependency>
   </dependencies>
   <properties>
     <StS-BlackRuse.version>0.9.3</StS-BlackRuse.version>
@@ -113,6 +127,8 @@
     <FriendlyMinions.version>0.1.2</FriendlyMinions.version>
     <ModTheSpire.version>3.8.3</ModTheSpire.version>
     <BaseMod.version>5.9.0</BaseMod.version>
+    <SpikesRelics.version>0.0.1</SpikesRelics.version>
+    <slimebound.version>2.2.0</slimebound.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <ReplayTheSpireMod.version>1.3.20</ReplayTheSpireMod.version>
     <Conspire.version>1.5.5</Conspire.version>

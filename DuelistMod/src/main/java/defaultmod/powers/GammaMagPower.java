@@ -33,7 +33,8 @@ public class GammaMagPower extends AbstractPower
 
     }
 
-    public void updateDescription() {
+    @Override
+	public void updateDescription() {
         this.description = DESCRIPTIONS[0];
     }
 }
