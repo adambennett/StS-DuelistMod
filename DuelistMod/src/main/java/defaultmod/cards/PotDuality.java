@@ -30,6 +30,8 @@ public class PotDuality extends DuelistCard
 
     public PotDuality() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.POT);
 
     }
 

@@ -14,12 +14,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import defaultmod.DefaultMod;
 import defaultmod.cards.CannonSoldier;
 
-/* 	
- * Lose 10 strength at the end of turn and
- * tribute 1 monster. Then, place this card on top of your draw pile. 
- * 
- * 
- */
 
 public class CannonPower extends AbstractPower 
 {
@@ -59,7 +53,6 @@ public class CannonPower extends AbstractPower
 	    			if (this.owner.hasPower(SummonPower.POWER_ID))
 	    			{
 	    				CannonSoldier.tribute(AbstractDungeon.player, TRIBUTES, false);
-						
 	    				// Deal 5 damage to a random enemy for each copy of Cannon Soldier
 						AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
 						AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));

@@ -26,7 +26,13 @@ public class PotGreed extends DuelistCard
     private static final int DRAW = 2;
     // /STAT DECLARATION/
 
-    public PotGreed() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.exhaust = true; }
+    public PotGreed() 
+    { 
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
+    	this.exhaust = true; 
+    	this.tags.add(DefaultMod.SPELL);
+    	this.tags.add(DefaultMod.POT);
+    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) { draw(DRAW); }

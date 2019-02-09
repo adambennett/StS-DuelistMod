@@ -36,6 +36,7 @@ public class Scapegoat extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = INTANGIBLE;
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

@@ -34,6 +34,7 @@ public class AncientRules extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 2;
         this.summons = this.magicNumber;
         this.upgradeSummons = 1;
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

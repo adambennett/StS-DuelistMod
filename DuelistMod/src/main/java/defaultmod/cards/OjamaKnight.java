@@ -38,6 +38,9 @@ public class OjamaKnight extends DuelistCard
 
     public OjamaKnight() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.OJAMA);
+        this.misc = 0;
     }
 
     
@@ -46,7 +49,7 @@ public class OjamaKnight extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Tribute
-		tribute(p, TRIBUTES, false);
+		tribute(p, TRIBUTES, false, this);
 
 		// Get number of buffs & debuffs
 		int randomDebuffNum = ThreadLocalRandom.current().nextInt(1, 2 + 1); 
@@ -99,6 +102,9 @@ public class OjamaKnight extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
+    	
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

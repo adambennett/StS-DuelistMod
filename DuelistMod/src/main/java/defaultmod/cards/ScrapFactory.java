@@ -28,7 +28,6 @@ public class ScrapFactory extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 0;
-	private static final int TRIBUTES = 1;
 	private static final int ENERGY = 1;
 	private static final int U_ENERGY = 1;
 	// /STAT DECLARATION/
@@ -38,13 +37,16 @@ public class ScrapFactory extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.magicNumber = this.baseMagicNumber = ENERGY;
 		this.energyOnUse = ENERGY;
+		this.tags.add(DefaultMod.SPELL);
+		this.misc = 0;
+		this.tributes = 1;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, TRIBUTES, false);
+		tribute(p, this.tributes, false, this);
 		gainEnergy(this.magicNumber);
 	}
 
@@ -66,25 +68,21 @@ public class ScrapFactory extends DuelistCard
 	}
 
 	// If player doesn't have enough summons, can't play card
-	@Override
-	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-	{
-		if (p.energy.energy >= COST)
-		{
-			if (p.hasPower(SummonPower.POWER_ID)) 
-			{
-				int temp = (p.getPower(SummonPower.POWER_ID).amount);
-				if (temp >= TRIBUTES)
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-		}
-
-		return false;
-	}
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
+    }
 }

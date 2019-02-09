@@ -28,8 +28,8 @@ public class Hinotoma extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final AttackEffect AFX = AttackEffect.FIRE;
+    private static final int COST = 1;
     private static int MIN_DMG_ROLL = 1;
     private static int MAX_DMG_ROLL = 7;
     private static int MIN_DMG_ROLL_U = 3;

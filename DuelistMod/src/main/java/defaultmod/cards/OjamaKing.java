@@ -35,10 +35,17 @@ public class OjamaKing extends DuelistCard
     private static int MAX_BUFF_TURNS_ROLL = 3;
     private static int MIN_DEBUFF_TURNS_ROLL = 1;
     private static int MAX_DEBUFF_TURNS_ROLL = 6;
+    private static int RAND_CARDS = 3;
+    private static int RAND_BUFFS = 3;
+    private static int RAND_DEBUFFS = 3;
+    private static int COUNTERS = 3;
     // /STAT DECLARATION/
 
     public OjamaKing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.OJAMA);
+        this.misc = 0;
     }
 
     
@@ -47,16 +54,10 @@ public class OjamaKing extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Tribute
-		tribute(p, TRIBUTES, false);
-		
-		//OJAMANIA - 
-		//	SELF:	5 random 0 cost cards to hand 
-		//			3 random buffs
-		//  TARGET: 3 random debuffs
-		//			3 spell counters to target
-		
+		tribute(p, TRIBUTES, false, this);
+
 		// Add 5 random cards to hand, set cost to 0
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < RAND_CARDS; i++)
 		{
 			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 			card.costForTurn = 0;
@@ -65,21 +66,21 @@ public class OjamaKing extends DuelistCard
 		}
 		
 		// Give self 3 random buffs
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < RAND_BUFFS; i++)
 		{
 			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL + 1);
 			applyPower(getRandomBuff(p, randomTurnNum), p);
 		}
 		
 		// Give 3 random debuffs to enemy
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < RAND_DEBUFFS; i++)
 		{
 			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL + 1);
 			applyPower(getRandomDebuff(p, m, randomTurnNum), m);
 		}
 		
 		// Give 3 Spell Counters to enemy
-		applyPower(new SpellCounterPower(p, p, 3), m);
+		applyPower(new SpellCounterPower(p, p, COUNTERS), m);
 
     }
 
@@ -109,6 +110,9 @@ public class OjamaKing extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
+    	
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

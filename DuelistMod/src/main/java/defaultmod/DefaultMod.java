@@ -4,7 +4,8 @@ import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -32,6 +33,50 @@ public class DefaultMod
     private static final String MODNAME = "Duelist Mod";
     private static final String AUTHOR = "Nyoxide";
     private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
+    
+    
+    // Tag Enums
+    @SpireEnum
+    public static AbstractCard.CardTags MONSTER;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags SPELL;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags TRAP;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags POT;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags TOON;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags GUARDIAN;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags EXODIA;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags MAGNETWARRIOR;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags SUPERHEAVY;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags DRAGON;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags OJAMA;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags GOD;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags TRIBUTE;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags NO_PUMPKIN;
 
     // =============== INPUT TEXTURE LOCATION =================
 
@@ -205,6 +250,10 @@ public class DefaultMod
     public static final String BAD_REACTION_POWER = "powers/BadReactionPower.png";
     public static final String CASTLE_POWER = "powers/CastlePower.png";
     public static final String EMPEROR_POWER = "powers/EmperorPower.png";
+    public static final String MAGIC_CYLINDER_POWER = "powers/MagicCylinderPower.png";
+    public static final String MIRROR_FORCE_POWER = "powers/MirrorForcePower.png";
+    public static final String SLIFER_SKY_POWER = "powers/SliferSkyPower.png";
+    public static final String EXODIA_POWER = "powers/ExodiaPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -367,82 +416,6 @@ public class DefaultMod
         BaseMod.addCard(new AlphaMagnet());
 		BaseMod.addCard(new AncientRules());
 		BaseMod.addCard(new AxeDespair());
-		BaseMod.addCard(new BarrelDragon());
-		BaseMod.addCard(new BetaMagnet());
-		BaseMod.addCard(new BlueEyes());
-		BaseMod.addCard(new BlueEyesUltimate());
-		BaseMod.addCard(new BusterBlader());
-		BaseMod.addCard(new CastleWalls());
-		BaseMod.addCard(new CelticGuardian());
-		BaseMod.addCard(new DarkMagician());
-		BaseMod.addCard(new DarkMagicianGirl());
-		BaseMod.addCard(new GaiaFierce());
-		BaseMod.addCard(new GammaMagnet());
-		BaseMod.addCard(new GateGuardian());
-		BaseMod.addCard(new GeminiElf());
-		BaseMod.addCard(new GiantSoldier());
-		BaseMod.addCard(new Hinotoma());
-		BaseMod.addCard(new InsectQueen());
-		BaseMod.addCard(new JamBreeding());
-		BaseMod.addCard(new JudgeMan());
-		BaseMod.addCard(new Kuriboh());
-		BaseMod.addCard(new LabyrinthWall());
-		BaseMod.addCard(new Ookazi());
-		BaseMod.addCard(new RedEyes());
-		BaseMod.addCard(new SangaEarth());
-		BaseMod.addCard(new SangaThunder());
-		BaseMod.addCard(new SangaWater());
-		BaseMod.addCard(new ScrapFactory());
-		BaseMod.addCard(new SevenColoredFish());
-		BaseMod.addCard(new SummonedSkull());
-		BaseMod.addCard(new SuperheavyScales());
-		BaseMod.addCard(new ToonBarrelDragon());
-		BaseMod.addCard(new ToonDarkMagician());
-		BaseMod.addCard(new ToonDarkMagicianGirl());
-		BaseMod.addCard(new ToonGeminiElf());
-		BaseMod.addCard(new ToonMermaid());
-		BaseMod.addCard(new ToonSummonedSkull());
-		BaseMod.addCard(new ToonWorld());
-		BaseMod.addCard(new BlueEyesToon());
-		BaseMod.addCard(new FiendMegacyber());
-		BaseMod.addCard(new PotGreed());
-		BaseMod.addCard(new RedEyesToon());
-		BaseMod.addCard(new ObeliskTormentor());
-		BaseMod.addCard(new DianKeto());
-		BaseMod.addCard(new MillenniumShield());
-		BaseMod.addCard(new PotGenerosity());
-		BaseMod.addCard(new ValkMagnet());
-		BaseMod.addCard(new CannonSoldier());
-		BaseMod.addCard(new CatapultTurtle());
-		BaseMod.addCard(new Scapegoat());
-		BaseMod.addCard(new DarklordMarie());
-		BaseMod.addCard(new ChangeHeart());
-		BaseMod.addCard(new DarkHole());
-		BaseMod.addCard(new RedMedicine());
-		BaseMod.addCard(new PotAvarice());
-		BaseMod.addCard(new BadReaction());
-		BaseMod.addCard(new CardDestruction());
-		BaseMod.addCard(new CastleDarkIllusions());
-		BaseMod.addCard(new Ojamagic());
-		BaseMod.addCard(new PotDichotomy());
-		BaseMod.addCard(new OjamaBlack());
-		BaseMod.addCard(new OjamaGreen());
-		BaseMod.addCard(new OjamaKing());
-		BaseMod.addCard(new OjamaKnight());
-		BaseMod.addCard(new OjamaYellow());
-		BaseMod.addCard(new RainMercy());
-		BaseMod.addCard(new ShardGreed());
-		BaseMod.addCard(new SuperheavyBenkei());
-		BaseMod.addCard(new SuperheavyScales());
-		BaseMod.addCard(new SuperheavySwordsman());
-		BaseMod.addCard(new SuperheavyWaraji());
-		BaseMod.addCard(new WingedDragonRa());
-		BaseMod.addCard(new Mausoleum());
-		
-        /*
-        BaseMod.addCard(new AlphaMagnet());
-		BaseMod.addCard(new AncientRules());
-		BaseMod.addCard(new AxeDespair());
 		BaseMod.addCard(new BadReaction());
 		BaseMod.addCard(new BarrelDragon());
 		BaseMod.addCard(new BetaMagnet());
@@ -468,7 +441,7 @@ public class DefaultMod
 		BaseMod.addCard(new ExodiaLL());
 		BaseMod.addCard(new ExodiaRA());
 		BaseMod.addCard(new ExodiaRL());
-		BaseMod.addCard(new FeatherPho());
+		//BaseMod.addCard(new FeatherPho());
 		BaseMod.addCard(new FiendMegacyber());
 		BaseMod.addCard(new Fissure());
 		BaseMod.addCard(new FlameSwordsman());
@@ -493,7 +466,7 @@ public class DefaultMod
 		BaseMod.addCard(new Mausoleum());
 		BaseMod.addCard(new MillenniumShield());
 		BaseMod.addCard(new MirrorForce());
-		BaseMod.addCard(new MonsterReborn());
+		//BaseMod.addCard(new MonsterReborn());
 		BaseMod.addCard(new NutrientZ());
 		BaseMod.addCard(new ObeliskTormentor());
 		BaseMod.addCard(new OjamaBlack());
@@ -503,20 +476,20 @@ public class DefaultMod
 		BaseMod.addCard(new OjamaYellow());
 		BaseMod.addCard(new Ojamagic());
 		BaseMod.addCard(new Ookazi());
-		BaseMod.addCard(new Parasite());
+		//BaseMod.addCard(new Parasite());
 		BaseMod.addCard(new PotAvarice());
 		BaseMod.addCard(new PotDichotomy());
-		BaseMod.addCard(new PotDuality());
+		//BaseMod.addCard(new PotDuality());
 		BaseMod.addCard(new PotGenerosity());
 		BaseMod.addCard(new PotGreed());
 		BaseMod.addCard(new Pumpking());
 		BaseMod.addCard(new Pumprincess());
-		BaseMod.addCard(new RadiantMirrorForce());
+		//BaseMod.addCard(new RadiantMirrorForce());
 		BaseMod.addCard(new RainMercy());
 		BaseMod.addCard(new RedEyes());
 		BaseMod.addCard(new RedEyesToon());
 		BaseMod.addCard(new RedMedicine());
-		BaseMod.addCard(new Relinquished());
+		//BaseMod.addCard(new Relinquished());
 		BaseMod.addCard(new SangaEarth());
 		BaseMod.addCard(new SangaThunder());
 		BaseMod.addCard(new SangaWater());
@@ -525,107 +498,31 @@ public class DefaultMod
 		BaseMod.addCard(new SevenColoredFish());
 		BaseMod.addCard(new ShardGreed());
 		BaseMod.addCard(new SliferSky());
-		BaseMod.addCard(new StormingMirrorForce());
+		//BaseMod.addCard(new StormingMirrorForce());
 		BaseMod.addCard(new SummonedSkull());
 		BaseMod.addCard(new SuperheavyBenkei());
 		BaseMod.addCard(new SuperheavyScales());
 		BaseMod.addCard(new SuperheavySwordsman());
 		BaseMod.addCard(new SuperheavyWaraji());
-		BaseMod.addCard(new SwordsBurning());
-		BaseMod.addCard(new SwordsConcealing());
-		BaseMod.addCard(new SwordsRevealing());
-		BaseMod.addCard(new TimeWizard());
+		//BaseMod.addCard(new SwordsBurning());
+		//BaseMod.addCard(new SwordsConcealing());
+		//BaseMod.addCard(new SwordsRevealing());
+		//BaseMod.addCard(new TimeWizard());
 		BaseMod.addCard(new ToonBarrelDragon());
-		BaseMod.addCard(new ToonBriefcase());
+		//BaseMod.addCard(new ToonBriefcase());
 		BaseMod.addCard(new ToonDarkMagician());
 		BaseMod.addCard(new ToonDarkMagicianGirl());
 		BaseMod.addCard(new ToonGeminiElf());
 		BaseMod.addCard(new ToonMermaid());
 		BaseMod.addCard(new ToonSummonedSkull());
 		BaseMod.addCard(new ToonWorld());
-		BaseMod.addCard(new TrapHole());
+		//BaseMod.addCard(new TrapHole());
 		BaseMod.addCard(new ValkMagnet());
 		BaseMod.addCard(new WingedDragonRa());
-    	*/
+    	
         
 		logger.info("Making sure the cards are unlocked.");
         // Unlock the cards
-        UnlockTracker.unlockCard(AlphaMagnet.ID);
-		UnlockTracker.unlockCard(AncientRules.ID);
-		UnlockTracker.unlockCard(AxeDespair.ID);	
-		UnlockTracker.unlockCard(BarrelDragon.ID);
-		UnlockTracker.unlockCard(BetaMagnet.ID);
-		UnlockTracker.unlockCard(BlueEyes.ID);		
-		UnlockTracker.unlockCard(BlueEyesUltimate.ID);		
-		UnlockTracker.unlockCard(BusterBlader.ID);		
-		UnlockTracker.unlockCard(CastleWalls.ID);		
-		UnlockTracker.unlockCard(CelticGuardian.ID);		
-		UnlockTracker.unlockCard(DarkMagician.ID);
-		UnlockTracker.unlockCard(DarkMagicianGirl.ID);
-		UnlockTracker.unlockCard(GaiaFierce.ID);
-		UnlockTracker.unlockCard(GammaMagnet.ID);
-		UnlockTracker.unlockCard(GateGuardian.ID);
-		UnlockTracker.unlockCard(GeminiElf.ID);
-		UnlockTracker.unlockCard(GiantSoldier.ID);
-		UnlockTracker.unlockCard(Hinotoma.ID);
-		UnlockTracker.unlockCard(InsectQueen.ID);
-		UnlockTracker.unlockCard(JamBreeding.ID);
-		UnlockTracker.unlockCard(JudgeMan.ID);
-		UnlockTracker.unlockCard(Kuriboh.ID);
-		UnlockTracker.unlockCard(LabyrinthWall.ID);
-		UnlockTracker.unlockCard(Ookazi.ID);
-		UnlockTracker.unlockCard(RedEyes.ID);
-		UnlockTracker.unlockCard(SangaEarth.ID);
-		UnlockTracker.unlockCard(SangaThunder.ID);
-		UnlockTracker.unlockCard(SangaWater.ID);
-		UnlockTracker.unlockCard(ScrapFactory.ID);
-		UnlockTracker.unlockCard(SevenColoredFish.ID);
-		UnlockTracker.unlockCard(SummonedSkull.ID);
-		UnlockTracker.unlockCard(SuperheavyScales.ID);
-		UnlockTracker.unlockCard(ToonWorld.ID);
-		UnlockTracker.unlockCard(ToonBarrelDragon.ID);
-		UnlockTracker.unlockCard(ToonDarkMagician.ID);
-		UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
-		UnlockTracker.unlockCard(ToonGeminiElf.ID);
-		UnlockTracker.unlockCard(ToonMermaid.ID);
-		UnlockTracker.unlockCard(ToonSummonedSkull.ID);
-		UnlockTracker.unlockCard(BlueEyesToon.ID);
-		UnlockTracker.unlockCard(FiendMegacyber.ID);
-		UnlockTracker.unlockCard(PotGreed.ID);
-		UnlockTracker.unlockCard(RedEyesToon.ID);
-		UnlockTracker.unlockCard(ObeliskTormentor.ID);
-		UnlockTracker.unlockCard(DianKeto.ID);
-		UnlockTracker.unlockCard(MillenniumShield.ID);
-		UnlockTracker.unlockCard(PotGenerosity.ID);
-		UnlockTracker.unlockCard(ValkMagnet.ID);
-		UnlockTracker.unlockCard(CannonSoldier.ID);
-		UnlockTracker.unlockCard(CatapultTurtle.ID);
-		UnlockTracker.unlockCard(Scapegoat.ID);
-		UnlockTracker.unlockCard(DarklordMarie.ID);
-		UnlockTracker.unlockCard(ChangeHeart.ID);
-		UnlockTracker.unlockCard(DarkHole.ID);
-		UnlockTracker.unlockCard(RedMedicine.ID);
-		UnlockTracker.unlockCard(PotAvarice.ID);
-		UnlockTracker.unlockCard(BadReaction.ID);
-		UnlockTracker.unlockCard(CardDestruction.ID);
-		UnlockTracker.unlockCard(CastleDarkIllusions.ID);
-		UnlockTracker.unlockCard(Ojamagic.ID);
-		UnlockTracker.unlockCard(PotDichotomy.ID);
-		UnlockTracker.unlockCard(OjamaBlack.ID);
-		UnlockTracker.unlockCard(OjamaGreen.ID);
-		UnlockTracker.unlockCard(OjamaKing.ID);
-		UnlockTracker.unlockCard(OjamaKnight.ID);
-		UnlockTracker.unlockCard(OjamaYellow.ID);
-		UnlockTracker.unlockCard(RainMercy.ID);
-		UnlockTracker.unlockCard(ShardGreed.ID);
-		UnlockTracker.unlockCard(SuperheavyBenkei.ID);
-		UnlockTracker.unlockCard(SuperheavyScales.ID);
-		UnlockTracker.unlockCard(SuperheavySwordsman.ID);
-		UnlockTracker.unlockCard(SuperheavyWaraji.ID);
-		UnlockTracker.unlockCard(WingedDragonRa.ID);
-		UnlockTracker.unlockCard(Mausoleum.ID);
-		
-		/*
         UnlockTracker.unlockCard(AlphaMagnet.ID);
 		UnlockTracker.unlockCard(AncientRules.ID);
 		UnlockTracker.unlockCard(AxeDespair.ID);
@@ -654,7 +551,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(ExodiaLL.ID);
 		UnlockTracker.unlockCard(ExodiaRA.ID);
 		UnlockTracker.unlockCard(ExodiaRL.ID);
-		UnlockTracker.unlockCard(FeatherPho.ID);
+		//UnlockTracker.unlockCard(FeatherPho.ID);
 		UnlockTracker.unlockCard(FiendMegacyber.ID);
 		UnlockTracker.unlockCard(Fissure.ID);
 		UnlockTracker.unlockCard(FlameSwordsman.ID);
@@ -664,7 +561,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(GeminiElf.ID);
 		UnlockTracker.unlockCard(GiantSoldier.ID);
 		UnlockTracker.unlockCard(GiantTrunade.ID);
-		UnlockTracker.unlockCard(GracefulCharity.ID);
+		//UnlockTracker.unlockCard(GracefulCharity.ID);
 		UnlockTracker.unlockCard(HarpieFeather.ID);
 		UnlockTracker.unlockCard(Hinotoma.ID);
 		UnlockTracker.unlockCard(ImperialOrder.ID);
@@ -679,7 +576,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(Mausoleum.ID);
 		UnlockTracker.unlockCard(MillenniumShield.ID);
 		UnlockTracker.unlockCard(MirrorForce.ID);
-		UnlockTracker.unlockCard(MonsterReborn.ID);
+		//UnlockTracker.unlockCard(MonsterReborn.ID);
 		UnlockTracker.unlockCard(NutrientZ.ID);
 		UnlockTracker.unlockCard(ObeliskTormentor.ID);
 		UnlockTracker.unlockCard(OjamaBlack.ID);
@@ -689,20 +586,20 @@ public class DefaultMod
 		UnlockTracker.unlockCard(OjamaYellow.ID);
 		UnlockTracker.unlockCard(Ojamagic.ID);
 		UnlockTracker.unlockCard(Ookazi.ID);
-		UnlockTracker.unlockCard(Parasite.ID);
+		//UnlockTracker.unlockCard(Parasite.ID);
 		UnlockTracker.unlockCard(PotAvarice.ID);
 		UnlockTracker.unlockCard(PotDichotomy.ID);
-		UnlockTracker.unlockCard(PotDuality.ID);
+		//UnlockTracker.unlockCard(PotDuality.ID);
 		UnlockTracker.unlockCard(PotGenerosity.ID);
 		UnlockTracker.unlockCard(PotGreed.ID);
 		UnlockTracker.unlockCard(Pumpking.ID);
 		UnlockTracker.unlockCard(Pumprincess.ID);
-		UnlockTracker.unlockCard(RadiantMirrorForce.ID);
+		//UnlockTracker.unlockCard(RadiantMirrorForce.ID);
 		UnlockTracker.unlockCard(RainMercy.ID);
 		UnlockTracker.unlockCard(RedEyes.ID);
 		UnlockTracker.unlockCard(RedEyesToon.ID);
 		UnlockTracker.unlockCard(RedMedicine.ID);
-		UnlockTracker.unlockCard(Relinquished.ID);
+		//UnlockTracker.unlockCard(Relinquished.ID);
 		UnlockTracker.unlockCard(SangaEarth.ID);
 		UnlockTracker.unlockCard(SangaThunder.ID);
 		UnlockTracker.unlockCard(SangaWater.ID);
@@ -711,29 +608,30 @@ public class DefaultMod
 		UnlockTracker.unlockCard(SevenColoredFish.ID);
 		UnlockTracker.unlockCard(ShardGreed.ID);
 		UnlockTracker.unlockCard(SliferSky.ID);
-		UnlockTracker.unlockCard(StormingMirrorForce.ID);
+		//UnlockTracker.unlockCard(StormingMirrorForce.ID);
 		UnlockTracker.unlockCard(SummonedSkull.ID);
 		UnlockTracker.unlockCard(SuperheavyBenkei.ID);
 		UnlockTracker.unlockCard(SuperheavyScales.ID);
 		UnlockTracker.unlockCard(SuperheavySwordsman.ID);
 		UnlockTracker.unlockCard(SuperheavyWaraji.ID);
-		UnlockTracker.unlockCard(SwordsBurning.ID);
-		UnlockTracker.unlockCard(SwordsConcealing.ID);
-		UnlockTracker.unlockCard(SwordsRevealing.ID);
-		UnlockTracker.unlockCard(TimeWizard.ID);
+		//UnlockTracker.unlockCard(SwordsBurning.ID);
+		//UnlockTracker.unlockCard(SwordsConcealing.ID);
+		//UnlockTracker.unlockCard(SwordsRevealing.ID);
+		//UnlockTracker.unlockCard(TimeWizard.ID);
 		UnlockTracker.unlockCard(ToonBarrelDragon.ID);
-		UnlockTracker.unlockCard(ToonBriefcase.ID);
+		//UnlockTracker.unlockCard(ToonBriefcase.ID);
 		UnlockTracker.unlockCard(ToonDarkMagician.ID);
 		UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
 		UnlockTracker.unlockCard(ToonGeminiElf.ID);
 		UnlockTracker.unlockCard(ToonMermaid.ID);
 		UnlockTracker.unlockCard(ToonSummonedSkull.ID);
 		UnlockTracker.unlockCard(ToonWorld.ID);
-		UnlockTracker.unlockCard(TrapHole.ID);
+		//UnlockTracker.unlockCard(TrapHole.ID);
 		UnlockTracker.unlockCard(ValkMagnet.ID);
 		UnlockTracker.unlockCard(WingedDragonRa.ID);
-		*/
+		
         logger.info("Done adding cards!");
+
     }
 
     // ================ /ADD CARDS/ ===================
@@ -787,7 +685,7 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
         BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if Toon World is active.");
         BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the Magnet Warrior monsters. Magnets have no inherent effect.");
-        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add 5 random cards to your hand, they cost 0 this turn. Apply 3 random buffs. Apply 3 random debuffs and 3 Spell Counters to an enemy.");
+        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add 3 random cards to your hand, they cost 0 this turn. Apply 3 random buffs. Apply 3 random debuffs and 3 Spell Counters to an enemy.");
        
     }
 

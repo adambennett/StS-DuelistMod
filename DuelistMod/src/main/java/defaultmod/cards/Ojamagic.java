@@ -43,7 +43,8 @@ public class Ojamagic extends CustomCard
 
     public Ojamagic() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-
+        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.OJAMA);
 		tooltips = new ArrayList<>();
 		tooltips.add(new RedMedicine());
 	}
@@ -59,10 +60,12 @@ public class Ojamagic extends CustomCard
 		if (upgraded) 
 		{
 			redMedicine.upgrade();
+			redMedicine.modifyCostForCombat(0);
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(redMedicine, randomNumCards, true, true));
 		} 
 		else 
 		{
+			//redMedicine.modifyCostForCombat(0);
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(redMedicine, randomNumCards, true, true));
 		}
 	}

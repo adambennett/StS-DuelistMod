@@ -33,6 +33,8 @@ public class PotDichotomy extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.summons = 0;
     	this.upgradeSummons = 3;
+    	this.tags.add(DefaultMod.SPELL);
+    	this.tags.add(DefaultMod.POT);
     }
 
     // Actions the card should do.

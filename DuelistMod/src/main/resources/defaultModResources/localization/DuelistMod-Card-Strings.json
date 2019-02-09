@@ -111,28 +111,28 @@
 	},
 	"theDuelist:ExodiaHead": {
 		"NAME": "Exodia Head",
-		"DESCRIPTION": "Apply 1 Exodia. Summon 1. Overflow - Apply 1 Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "If you have 4 Exodia, gain !M! Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "If you have 4 Exodia, gain !M! Exodia."
 	},
 	"theDuelist:ExodiaLA": {
 		"NAME": "Exodia L. Arm",
-		"DESCRIPTION": "Apply 1 Exodia. Summon 1. Overflow - Apply 1 Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaLL": {
 		"NAME": "Exodia L. Leg",
-		"DESCRIPTION": "Apply 1 Exodia. Summon 1. Overflow - Apply 1 Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaRA": {
 		"NAME": "Exodia R. Arm",
-		"DESCRIPTION": "Apply 1 Exodia. Summon 1. Overflow - Apply 1 Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaRL": {
 		"NAME": "Exodia R. Leg",
-		"DESCRIPTION": "Apply 1 Exodia. Summon 1. Overflow - Apply 1 Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust."
 	},
 	"theDuelist:FeatherPho": {
 		"NAME": "Phoenix Feather",
@@ -146,13 +146,13 @@
 	},
 	"theDuelist:Fissure": {
 		"NAME": "Fissure",
-		"DESCRIPTION": "Deal !D! damage to the enemy with the lowest HP.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Deal !D! damage all enemies for each of your Summons.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage all enemies for each of your Summons."
 	},
 	"theDuelist:FlameSwordsman": {
 		"NAME": "Flame Swordsman",
-		"DESCRIPTION": "Tribute 1. Apply Burning Flesh. Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Apply Burning Flesh. Deal !D! damage."
+		"DESCRIPTION": "Tribute 1. Deal !D! damage. Channel a Hellfire.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Deal !D! damage. Channel a Hellfire."
 	},
 	"theDuelist:GaiaFierce": {
 		"NAME": "G. Fierce Knight",
@@ -176,8 +176,8 @@
 	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "Giant Trunade",
-		"DESCRIPTION": "Remove all buffs and debuffs from everyone in combat. Reapply all buffs and debuffs at the start of next turn.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Remove all Spell Counters from an enemy. Gain !M! HP for every !D! Spell Counters removed. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from an enemy. Gain !M! HP for !D! Spell Counters removed. Exhaust."
 	},
 	"theDuelist:GracefulCharity": {
 		"NAME": "Graceful Charity",
@@ -186,8 +186,8 @@
 	},
 	"theDuelist:HarpieFeather": {
 		"NAME": "Harpie Feather Duster",
-		"DESCRIPTION": "Remove all buffs from all enemies.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to the total Spell Counters removed to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to the total Spell Counters removed to ALL enemies."
 	},
 	"theDuelist:Hinotoma": {
 		"NAME": "Hinotoma",
@@ -196,13 +196,13 @@
 	},
 	"theDuelist:ImperialOrder": {
 		"NAME": "Imperial Order",
-		"DESCRIPTION": "Negate all enemy buffs and debuffs. At the start of turn, choose to take 7 damage or remove this effect.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "At the start of turn, gain !M! Gold and take !D! damage.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, gain !M! Gold and take !D! damage."
 	},
 	"theDuelist:InjectionFairy": {
 		"NAME": "Injection Fairy Lily",
-		"DESCRIPTION": "Summon 1. Choose one: take 5 damage and deal 15 damage; gain 15 HP and deal 5 damage.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Summon 1. Gain !M! HP and deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain !M! HP and deal !D! damage."
 	},
 	"theDuelist:InsectQueen": {
 		"NAME": "Insect Queen",
@@ -231,13 +231,13 @@
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "Legendary Fisherman",
-		"DESCRIPTION": "Tribute 3. Apply Mako's Tsunami to all enemies. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 1. Channel a Water.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Channel a Water."
 	},
 	"theDuelist:MagicCylinder": {
 		"NAME": "Magic Cylinder",
-		"DESCRIPTION": "The next time you take unblocked damage, gain Reflection.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "The next time you lose HP, gain Reflection.",
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain Reflection and a random buff."
 	},
 	"theDuelist:Mausoleum": {
 		"NAME": "Emperor Mausoleum",
@@ -251,8 +251,8 @@
 	},
 	"theDuelist:MirrorForce": {
 		"NAME": "Mirror Force",
-		"DESCRIPTION": "Gain 1 Divert.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "The next time you are attacked, deal that much damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "The next time you are attacked, deal 2x that much damage to ALL enemies."
 	},
 	"theDuelist:MonsterReborn": {
 		"NAME": "Monster Reborn",
@@ -261,8 +261,8 @@
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
-		"DESCRIPTION": "If an enemy attacks you for 20+ damage, heal for 40 HP before taking damage.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "If you have less than 40 HP, gain !M! HP and 4 random debuffs.",
+		"UPGRADE_DESCRIPTION": "If you have less than 45 HP, gain !M! HP and 4 random debuffs."
 	},
 	"theDuelist:ObeliskTormentor": {
 		"NAME": "Obelisk",
@@ -276,8 +276,8 @@
 	},
 	"theDuelist:Ojamagic": {
 		"NAME": "Ojamagic",
-		"DESCRIPTION": "Shuffle a random amount (1-10) of RedMedicine cards into your draw pile.",
-		"UPGRADE_DESCRIPTION": "Shuffle a random amount (5-10) of upgraded RedMedicine cards into your draw pile."
+		"DESCRIPTION": "Shuffle a random amount (1-10) of Red Medicine cards into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Shuffle a random amount (5-10) of upgraded, 0 cost Red Medicine cards into your draw pile."
 	},
 	"theDuelist:OjamaGreen": {
 		"NAME": "Ojama Green",
@@ -296,8 +296,8 @@
 	},
 	"theDuelist:OjamaYellow": {
 		"NAME": "Ojama Yellow",
-		"DESCRIPTION": "Summon 1. Add !M! randomized cards to your hand.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Add !M! randomized cards to your hand."
+		"DESCRIPTION": "Summon 1. Add !M! randomized monster cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Add !M! randomized monster cards to your hand."
 	},
 	"theDuelist:Ookazi": {
 		"NAME": "Ookazi",
@@ -306,8 +306,8 @@
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
-		"DESCRIPTION": "At the start of turn, have a chance to poison or debuff random enemies. Chances are raised with more Summon stacks.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "At the start of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks."
 	},
 	"theDuelist:PotAvarice": {
 		"NAME": "Pot of Avarice",
@@ -336,23 +336,23 @@
 	},
 	"theDuelist:Pumpking": {
 		"NAME": "Pumpking",
-		"DESCRIPTION": "Tribute 1. Play a random monster card from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 1. Play an upgraded copy of a random monster card from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Play a random monster card from your discard pile."
 	},
 	"theDuelist:Pumprincess": {
 		"NAME": "Pumprincess",
 		"DESCRIPTION": "Summon 1. Play a random monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"UPGRADE_DESCRIPTION": "Summon 1. Play a random monster from your discard pile."
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
-		"DESCRIPTION": "The next time you take unblocked damage, all enemies lose all block.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "The next time you lose HP, all enemies lose all block.",
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, all enemies lose all block and take 5 damage."
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "Rain of Mercy",
-		"DESCRIPTION": "Heal a random amount (0-25) of HP. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Heal a random amount (5-30) of HP. Exhaust."
+		"DESCRIPTION": "You and ALL enemies heal a random amount (0-25) of HP.",
+		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (0-30) of HP."
 	},
 	"theDuelist:RedEyes": {
 		"NAME": "R. Eyes Black Dragon",
@@ -361,8 +361,8 @@
 	},
 	"theDuelist:RedMedicine": {
 		"NAME": "Red Medicine",
-		"DESCRIPTION": "Gain a random buff effect.",
-		"UPGRADE_DESCRIPTION": "Gain 2 random buff effects."
+		"DESCRIPTION": "Gain a random buff.",
+		"UPGRADE_DESCRIPTION": "Gain 2 random buffs."
 	},
 	"theDuelist:Relinquished": {
 		"NAME": "Relinquished",
@@ -396,8 +396,8 @@
 	},
 	"theDuelist:SliferSky": {
 		"NAME": "Slifer Sky Dragon",
-		"DESCRIPTION": "Tribute 4. At the start of turn, Tribute all Summons and apply 1 Blessing of Ra for each. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 4. At the start of turn, Tribute all Summons and Channel a random Orb for each.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. At the start of turn, Tribute all Summons and Channel a random Orb for each."
 	},
 	"theDuelist:ShardGreed": {
 		"NAME": "Shard of Greed",
@@ -411,23 +411,23 @@
 	},
 	"theDuelist:SwordsBurning": {
 		"NAME": "Swords: Burning Light",
-		"DESCRIPTION": "Each time you deal 10 unblocked damage for the next 3 turns, Summon 1.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Each time you evoke an Orb, Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Each time you evoke an Orb, Channel a 2 random Orbs."
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "Swords: Concealing Light",
-		"DESCRIPTION": "For the next 3 turns, gain 15 block at the start of turn.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Each time you exhaust a card, have a chance to Channel a Dark.",
+		"UPGRADE_DESCRIPTION": "Each time you exhaust a card, have a high chance to Channel a Dark."
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
-		"DESCRIPTION": "For the next 3 turns, gain 1 Intangible. You may not play any attack cards while this effect is active.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Gain (1-2) more Orb slots.",
+		"UPGRADE_DESCRIPTION": "Gain (1-2) more Orb slots."
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "Time Wizard",
-		"DESCRIPTION": "Once per turn, either ALL enemies receive 1 Spell Counter or you receive 1 vulnerable. Chosen randomly.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Once per turn, either ALL enemies receive (1-5) Spell Counters or you receive a random debuff. Chosen randomly.",
+		"UPGRADE_DESCRIPTION": "Once per turn, either ALL enemies receive (1-5) Spell Counters or you receive a random debuff. Chosen randomly."
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
@@ -447,7 +447,7 @@
 	"theDuelist:DarkMirrorForce": {
 		"NAME": "Dark Mirror Force",
 		"DESCRIPTION": "The next time you take damage, gain Weak equal to the damage and take 0 damage.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"UPGRADE_DESCRIPTION": "The next time you take damage, gain Weak equal to the damage and take 0 damage."
 	},
 	"theDuelist:RedEyesToon": {
 		"NAME": "Red Eyes Toon",
@@ -456,8 +456,8 @@
 	},
 	"theDuelist:StormingMirrorForce": {
 		"NAME": "Storming Mirror Force",
-		"DESCRIPTION": "Each time an enemy attacks this turn, Summon 1.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Each time an enemy attacks, Summon 1.",
+		"UPGRADE_DESCRIPTION": "Each time an enemy attacks, Summon 1."
 	},
 	"theDuelist:SuperheavyBenkei": {
 		"NAME": "Superheavy Benkei",

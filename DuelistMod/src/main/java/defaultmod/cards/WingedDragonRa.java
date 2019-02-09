@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.SummonPower;
 
 public class WingedDragonRa extends DuelistCard 
 {
@@ -33,7 +34,10 @@ public class WingedDragonRa extends DuelistCard
 
     public WingedDragonRa() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.GOD);
+        this.misc = 0;
+        this.tributes = TRIBUTES;
     }
 
     // Actions the card should do.
@@ -48,7 +52,7 @@ public class WingedDragonRa extends DuelistCard
     	int damageTotal = (cardsPlayed + summons) * manaUsed;
     	if (upgraded) { damageTotal += maxSummons; }
     	attack(m, AFX, damageTotal);
-    	tribute(p, TRIBUTES, false);
+    	tribute(p, TRIBUTES, false, this);
     	useXEnergy();
     }
 
@@ -67,5 +71,24 @@ public class WingedDragonRa extends DuelistCard
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
     }
 }

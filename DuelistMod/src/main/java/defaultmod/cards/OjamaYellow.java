@@ -28,7 +28,7 @@ public class OjamaYellow extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int SUMMONS = 1;
     private static final int CARDS = 2;
     // /STAT DECLARATION/
@@ -36,6 +36,8 @@ public class OjamaYellow extends DuelistCard
     public OjamaYellow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = CARDS;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.OJAMA);
     }
 
     
@@ -49,9 +51,12 @@ public class OjamaYellow extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+			DuelistCard randomMonster = newCopyOfMonster("gimme random please");
 			int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			card.costForTurn = randomNum;
-			addCardToHand(card);
+			randomMonster.costForTurn = randomNum;
+			//addCardToHand(card);
+			addCardToHand(randomMonster);
 		}
     }
 

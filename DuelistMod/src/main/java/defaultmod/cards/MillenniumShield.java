@@ -37,13 +37,15 @@ public class MillenniumShield extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = TRIBUTES;
         this.exhaust = true;
+        this.tags.add(DefaultMod.MONSTER);
+        this.misc = 0;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false);
+    	tribute(p, TRIBUTES, false, this);
     	applyPower(new DexterityPower(p, DEX), p);
     }
 
@@ -71,6 +73,9 @@ public class MillenniumShield extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
+    	
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

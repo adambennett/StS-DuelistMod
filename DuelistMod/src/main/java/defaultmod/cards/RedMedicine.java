@@ -39,6 +39,7 @@ public class RedMedicine extends DuelistCard
     public RedMedicine() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = BUFFS;
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

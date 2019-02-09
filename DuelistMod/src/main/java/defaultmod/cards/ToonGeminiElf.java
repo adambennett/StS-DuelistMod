@@ -35,6 +35,9 @@ public class ToonGeminiElf extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = SUMMONS;
+        this.toon = true;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.TOON);
     }
 
     // Actions the card should do.
@@ -65,10 +68,14 @@ public class ToonGeminiElf extends DuelistCard
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.hasPower(ToonWorldPower.POWER_ID))
-    	{
-    		return true;
-    	}
+    	// Pumpking & Princess
+  		if (this.misc == 52) { return true; }
+  		
+  		// Toon World
+    	if (p.hasPower(ToonWorldPower.POWER_ID)) { return true; }
+    	
+    	// Otherwise
+    	this.cantUseMessage = "You need Toon World";
     	return false;
     }
 }

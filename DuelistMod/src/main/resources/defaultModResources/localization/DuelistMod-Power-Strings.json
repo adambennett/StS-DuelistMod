@@ -77,11 +77,31 @@
 },
 "theDuelist:CastlePower": {
         "NAME": "Castle of Dark Illusions",
-        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " Summon #b", "increase your max Summons by #b" ]
+        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", "increase your max #ySummons by #b" ]
 },
 "theDuelist:EmperorPower": {
         "NAME": "Mausoleum of the Emperor",
-        "DESCRIPTIONS": ["The first Tribute card you play each turn does not Tribute. Take #b", " damage each turn." ]
+        "DESCRIPTIONS": ["The first #yTribute card you play each turn does not #yTribute. Take #b", " damage each turn." ]
+},
+"theDuelist:MagicCylinderPower": {
+        "NAME": "Magic Cylinder",
+        "DESCRIPTIONS": ["The next time you lose HP, gain #b5 #yReflection", ".", ", and a random buff" ]
+},
+"theDuelist:MirrorForcePower": {
+        "NAME": "Mirror Force",
+        "DESCRIPTIONS": ["The next time you are attacked, deal ", "that much damage to ALL enemies.", "2x that much damage to ALL enemies." ]
+},
+"theDuelist:ImperialPower": {
+        "NAME": "Imperial Order",
+        "DESCRIPTIONS": ["At the start of turn, gain #b", " #yGold and take #b", " damage." ]
+},
+"theDuelist:SliferSkyPower": {
+        "NAME": "Slifer the Sky Dragon",
+        "DESCRIPTIONS": ["At the start of turn, #yTribute all #ySummons and #yChannel a random #yOrb for each." ]
+},
+"theDuelist:ExodiaPower": {
+        "NAME": "Power of Exodia",
+        "DESCRIPTIONS": ["If you have #b5 or more of this power at the end of turn, unleash a powerful effect on ALL enemies and remove this power." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

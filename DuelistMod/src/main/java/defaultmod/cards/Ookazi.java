@@ -60,6 +60,7 @@ public class Ookazi extends CustomCard {
     public Ookazi() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = 1;
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

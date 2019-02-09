@@ -35,4 +35,5 @@ public class SpellCounterPower extends AbstractPower
 	public void updateDescription() {
         this.description = DESCRIPTIONS[0];
     }
+    
 }

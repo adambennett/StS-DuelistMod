@@ -33,6 +33,7 @@ public class DarkHole extends DuelistCard
     public DarkHole() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

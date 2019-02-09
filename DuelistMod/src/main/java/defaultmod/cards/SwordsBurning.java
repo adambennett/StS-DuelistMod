@@ -30,6 +30,7 @@ public class SwordsBurning extends DuelistCard
 
     public SwordsBurning() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.SPELL);
 
     }
 

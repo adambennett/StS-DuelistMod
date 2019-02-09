@@ -52,7 +52,7 @@ public class BadReactionPower extends AbstractPower
     	if (AbstractDungeon.player.hasPower(BadReactionPower.POWER_ID))
 		{
 			int[] damageArray = new int[] {DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE};
-			for (int i : damageArray) { i = i * healAmount; }
+			for (int i = 0; i < damageArray.length; i++) { damageArray[i] = DAMAGE * healAmount; }
 			AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damageArray, DamageType.THORNS, AttackEffect.POISON)); 
 		}
     	return healAmount;

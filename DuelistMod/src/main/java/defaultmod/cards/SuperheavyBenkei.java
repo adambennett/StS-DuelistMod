@@ -37,13 +37,16 @@ public class SuperheavyBenkei extends DuelistCard
         this.baseDamage = this.damage = 12;
         this.tributes = 3;
         this.dex = 3;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.SUPERHEAVY);
+        this.misc = 0;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false);
+    	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
@@ -71,6 +74,9 @@ public class SuperheavyBenkei extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }

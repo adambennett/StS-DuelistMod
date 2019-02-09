@@ -37,6 +37,7 @@ public class Kuriboh extends DuelistCard
     public Kuriboh() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = INC_SUMMONS;
+        this.tags.add(DefaultMod.MONSTER);
     }
 
     // Actions the card should do.

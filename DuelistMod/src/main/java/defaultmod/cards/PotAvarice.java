@@ -35,6 +35,10 @@ public class PotAvarice extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
+        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.POT);
+        this.tags.add(DefaultMod.TRIBUTE);
+        this.misc = 0;
     }
 
     // Actions the card should do.
@@ -44,7 +48,7 @@ public class PotAvarice extends DuelistCard
 		int playerSummons = getSummons(p);
 		if (upgraded) { playerSummons += U_SUMMONS; }
 		incMaxSummons(p, playerSummons);
-    	tribute(p, 0, true);
+    	tribute(p, 0, true, this);
     }
 
     // Which card to return when making a copy of this card.

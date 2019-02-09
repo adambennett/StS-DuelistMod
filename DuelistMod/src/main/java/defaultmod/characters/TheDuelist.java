@@ -24,242 +24,244 @@ import defaultmod.relics.MillenniumPuzzle;
 
 
 public class TheDuelist extends CustomPlayer {
-    public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
+	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
-    // =============== BASE STATS =================
-    public static final int ENERGY_PER_TURN = 3;
-    public static final int STARTING_HP = 80;
-    public static final int MAX_HP = 80;
-    public static final int STARTING_GOLD = 99;
-    public static final int CARD_DRAW = 5;
-    public static final int ORB_SLOTS = 2;
-    // =============== /BASE STATS/ =================
+	// =============== BASE STATS =================
+	public static final int ENERGY_PER_TURN = 2;
+	public static final int STARTING_HP = 80;
+	public static final int MAX_HP = 80;
+	public static final int STARTING_GOLD = 99;
+	public static final int CARD_DRAW = 5;
+	public static final int ORB_SLOTS = 2;
+	// =============== /BASE STATS/ =================
 
-    
-    // =============== TEXTURES OF BIG ENERGY ORB ===============
-    public static final String[] orbTextures = 
-    {	
-		"defaultModResources/images/char/defaultCharacter/orb/layer1.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer2.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer3.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer4.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer5.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer6.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer1d.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer2d.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer3d.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer4d.png",
-        "defaultModResources/images/char/defaultCharacter/orb/layer5d.png", 
-    };
-    // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
-    
-    // =============== CHARACTER CLASS START =================
+	// =============== TEXTURES OF BIG ENERGY ORB ===============
+	public static final String[] orbTextures = 
+		{	
+				"defaultModResources/images/char/defaultCharacter/orb/layer1.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer2.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer3.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer4.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer5.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer6.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer1d.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer2d.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer3d.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer4d.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer5d.png", 
+		};
+	// =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
-    public TheDuelist(String name, PlayerClass setClass) 
-    {
-        super(name, setClass, orbTextures,
-                "defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
-                new SpriterAnimation(
-                        "defaultModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
-        
-        // =============== TEXTURES, ENERGY, LOADOUT =================  
+	// =============== CHARACTER CLASS START =================
 
-        initializeClass(null, // required call to load textures and setup energy/loadout
-                defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SHOULDER_1), // campfire pose
-                defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SHOULDER_2), // another campfire pose
-                defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_CORPSE), // dead corpse
-                getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
+	public TheDuelist(String name, PlayerClass setClass) 
+	{
+		super(name, setClass, orbTextures,
+				"defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
+				new SpriterAnimation(
+						"defaultModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
-        // =============== /TEXTURES, ENERGY, LOADOUT/ =================
 
-        
-        // =============== ANIMATIONS =================  
+		// =============== TEXTURES, ENERGY, LOADOUT =================  
 
-        this.loadAnimation(
-                defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SKELETON_ATLAS),
-                defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SKELETON_JSON),
-                1.0f);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
+		initializeClass(null, // required call to load textures and setup energy/loadout
+				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SHOULDER_1), // campfire pose
+				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SHOULDER_2), // another campfire pose
+				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_CORPSE), // dead corpse
+				getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
-        // =============== /ANIMATIONS/ =================
+		// =============== /TEXTURES, ENERGY, LOADOUT/ =================
 
-        
-        // =============== TEXT BUBBLE LOCATION =================
 
-        this.dialogX = (this.drawX + 0.0F * Settings.scale); // set location for text bubbles
-        this.dialogY = (this.drawY + 220.0F * Settings.scale); // you can just copy these values
+		// =============== ANIMATIONS =================  
 
-        // =============== /TEXT BUBBLE LOCATION/ =================
+		this.loadAnimation(
+				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SKELETON_ATLAS),
+				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SKELETON_JSON),
+				1.0f);
+		AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
+		e.setTime(e.getEndTime() * MathUtils.random());
 
-    }
+		// =============== /ANIMATIONS/ =================
 
-    // =============== /CHARACTER CLASS END/ =================
 
-    
-    // Starting description and loadout
-    @Override
-    public CharSelectInfo getLoadout() {
-        return new CharSelectInfo("The Duelist",
-                "The Duelist summons and tributes monster cards to slay the spire. NL " + "Play your favorite deckbuilding game with a Yu-Gi-Oh! twist.",
-                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
-                getStartingDeck(), false);
-    }
+		// =============== TEXT BUBBLE LOCATION =================
 
-    // Starting Deck
-    @Override
-    public ArrayList<String> getStartingDeck() {
-        ArrayList<String> retVal = new ArrayList<>();
+		this.dialogX = (this.drawX + 0.0F * Settings.scale); // set location for text bubbles
+		this.dialogY = (this.drawY + 220.0F * Settings.scale); // you can just copy these values
 
-        logger.info("Begin loading starter Deck Strings");
+		// =============== /TEXT BUBBLE LOCATION/ =================
 
-        // working base deck
-        retVal.add(SevenColoredFish.ID);
-        retVal.add(SevenColoredFish.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(GiantSoldier.ID);
-        retVal.add(CastleWalls.ID);
-        retVal.add(CastleWalls.ID);
-        retVal.add(ScrapFactory.ID);
-        retVal.add(Ookazi.ID);
-        retVal.add(Ookazi.ID);
-        retVal.add(SummonedSkull.ID);
+	}
 
-        // temp for testing
-        /*
-        retVal.add(OjamaBlack.ID);
-		retVal.add(OjamaGreen.ID);
-		retVal.add(OjamaKing.ID);
-		retVal.add(OjamaKnight.ID);
-		retVal.add(OjamaYellow.ID);
-		retVal.add(RainMercy.ID);
-		retVal.add(ShardGreed.ID);
-		retVal.add(SuperheavyBenkei.ID);
-		retVal.add(SuperheavyScales.ID);
-		retVal.add(SuperheavySwordsman.ID);
-		retVal.add(SuperheavyWaraji.ID);
-		retVal.add(WingedDragonRa.ID);
-		retVal.add(Mausoleum.ID);
-		retVal.add(DarkMagicianGirl.ID);
-		retVal.add(DarkMagicianGirl.ID);
-		retVal.add(DarkMagicianGirl.ID);
+	// =============== /CHARACTER CLASS END/ =================
+
+
+	// Starting description and loadout
+	@Override
+	public CharSelectInfo getLoadout() {
+		return new CharSelectInfo("The Duelist",
+				"The Duelist summons and tributes monster cards to slay the spire. NL " + "Play your favorite deckbuilding game with a Yu-Gi-Oh! twist.",
+				STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
+				getStartingDeck(), false);
+	}
+
+	// Starting Deck
+	@Override
+	public ArrayList<String> getStartingDeck() {
+		ArrayList<String> retVal = new ArrayList<>();
+
+		logger.info("Begin loading starter Deck Strings");
+
+		// working base deck
+		//retVal.add(SevenColoredFish.ID);
+		//retVal.add(SevenColoredFish.ID);
+		//retVal.add(GiantSoldier.ID);
+		//retVal.add(GiantSoldier.ID);
+		//retVal.add(CastleWalls.ID);
+		//retVal.add(CastleWalls.ID);
+		retVal.add(ScrapFactory.ID);
+		retVal.add(Ookazi.ID);
+		retVal.add(Ookazi.ID);
+		retVal.add(SummonedSkull.ID);
+
+		// temp for testing
+		/*
+		retVal.add(Ojamagic.ID);
+		retVal.add(RedMedicine.ID);
+		retVal.add(RedMedicine.ID);
+		retVal.add(RedMedicine.ID);
+		retVal.add(RedMedicine.ID);
+		
+		retVal.add(Pumpking.ID);
+		retVal.add(Pumprincess.ID);
+		retVal.add(FlameSwordsman.ID);
+		retVal.add(RedEyes.ID);
+		retVal.add(BlueEyes.ID);
+		retVal.add(AncientRules.ID);
+		retVal.add(AncientRules.ID);
+		retVal.add(AncientRules.ID);
+		retVal.add(AncientRules.ID);
+		retVal.add(Pumpking.ID);
+		retVal.add(Pumprincess.ID);
+		retVal.add(AncientRules.ID);
 		*/
-        
-        return retVal;
-    }
 
-    // Starting Relics	
-    @Override
+		return retVal;
+	}
+
+	// Starting Relics	
+	@Override
 	public ArrayList<String> getStartingRelics() 
-    {
-        ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(MillenniumPuzzle.ID);
-        UnlockTracker.markRelicAsSeen(MillenniumPuzzle.ID);
-        return retVal;
-    }
+	{
+		ArrayList<String> retVal = new ArrayList<>();
+		retVal.add(MillenniumPuzzle.ID);
+		UnlockTracker.markRelicAsSeen(MillenniumPuzzle.ID);
+		return retVal;
+	}
 
-    // Character Select screen effect
-    @Override
-    public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
-        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
-                false); // Screen Effect
-    }
+	// Character Select screen effect
+	@Override
+	public void doCharSelectScreenSelectEffect() {
+		CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
+		CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
+				false); // Screen Effect
+	}
 
-    // Character Select on-button-press sound effect
-    @Override
-    public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_DAGGER_1";
-    }
+	// Character Select on-button-press sound effect
+	@Override
+	public String getCustomModeCharacterButtonSoundKey() {
+		return "ATTACK_DAGGER_1";
+	}
 
-    // Should return how much HP your maximum HP reduces by when starting a run at
-    // Ascension 14 or higher. (ironclad loses 5, defect and silent lose 4 hp respectively)
-    @Override
-    public int getAscensionMaxHPLoss() {
-        return 0;
-    }
+	// Should return how much HP your maximum HP reduces by when starting a run at
+	// Ascension 14 or higher. (ironclad loses 5, defect and silent lose 4 hp respectively)
+	@Override
+	public int getAscensionMaxHPLoss() {
+		return 0;
+	}
 
-    // Should return the card color enum to be associated with your character.
-    @Override
-    public AbstractCard.CardColor getCardColor() {
-        return AbstractCardEnum.DEFAULT_GRAY;
-    }
+	// Should return the card color enum to be associated with your character.
+	@Override
+	public AbstractCard.CardColor getCardColor() {
+		return AbstractCardEnum.DEFAULT_GRAY;
+	}
 
-    // Should return a color object to be used to color the trail of moving cards
-    @Override
-    public Color getCardTrailColor() {
-        return defaultmod.DefaultMod.DEFAULT_GRAY;
-    }
+	// Should return a color object to be used to color the trail of moving cards
+	@Override
+	public Color getCardTrailColor() {
+		return defaultmod.DefaultMod.DEFAULT_GRAY;
+	}
 
-    // Should return a BitmapFont object that you can use to customize how your
-    // energy is displayed from within the energy orb.
-    @Override
-    public BitmapFont getEnergyNumFont() {
-        return FontHelper.energyNumFontRed;
-    }
+	// Should return a BitmapFont object that you can use to customize how your
+	// energy is displayed from within the energy orb.
+	@Override
+	public BitmapFont getEnergyNumFont() {
+		return FontHelper.energyNumFontRed;
+	}
 
-    // Should return class name as it appears in run history screen.
-    @Override
-    public String getLocalizedCharacterName() {
-        return "The Duelist";
-    }
+	// Should return class name as it appears in run history screen.
+	@Override
+	public String getLocalizedCharacterName() {
+		return "The Duelist";
+	}
 
-    //Which card should be obtainable from the Match and Keep event?
-    @Override
-    public AbstractCard getStartCardForEvent() {
-        return new SevenColoredFish();
-    }
+	//Which card should be obtainable from the Match and Keep event?
+	@Override
+	public AbstractCard getStartCardForEvent() {
+		return new SevenColoredFish();
+	}
 
-    // The class name as it appears next to your player name in-game
-    @Override
-    public String getTitle(AbstractPlayer.PlayerClass playerClass) {
-        return "the Duelist";
-    }
+	// The class name as it appears next to your player name in-game
+	@Override
+	public String getTitle(AbstractPlayer.PlayerClass playerClass) {
+		return "the Duelist";
+	}
 
-    // Should return a new instance of your character, sending this.name as its name parameter.
-    @Override
-    public AbstractPlayer newInstance() {
-        return new TheDuelist(this.name, this.chosenClass);
-    }
+	// Should return a new instance of your character, sending this.name as its name parameter.
+	@Override
+	public AbstractPlayer newInstance() {
+		return new TheDuelist(this.name, this.chosenClass);
+	}
 
-    // Should return a Color object to be used to color the miniature card images in run history.
-    @Override
-    public Color getCardRenderColor() {
-        return defaultmod.DefaultMod.DEFAULT_GRAY;
-    }
+	// Should return a Color object to be used to color the miniature card images in run history.
+	@Override
+	public Color getCardRenderColor() {
+		return defaultmod.DefaultMod.DEFAULT_GRAY;
+	}
 
-    // Should return a Color object to be used as screen tint effect when your
-    // character attacks the heart.
-    @Override
-    public Color getSlashAttackColor() {
-        return defaultmod.DefaultMod.DEFAULT_GRAY;
-    }
+	// Should return a Color object to be used as screen tint effect when your
+	// character attacks the heart.
+	@Override
+	public Color getSlashAttackColor() {
+		return defaultmod.DefaultMod.DEFAULT_GRAY;
+	}
 
-    // Should return an AttackEffect array of any size greater than 0. These effects
-    // will be played in sequence as your character's finishing combo on the heart.
-    // Attack effects are the same as used in DamageAction and the like.
-    @Override
-    public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
-        return new AbstractGameAction.AttackEffect[] {
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY };
-    }
+	// Should return an AttackEffect array of any size greater than 0. These effects
+	// will be played in sequence as your character's finishing combo on the heart.
+	// Attack effects are the same as used in DamageAction and the like.
+	@Override
+	public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
+		return new AbstractGameAction.AttackEffect[] {
+				AbstractGameAction.AttackEffect.BLUNT_HEAVY };
+	}
 
-    // Should return a string containing what text is shown when your character is
-    // about to attack the heart. For example, the defect is "NL You charge your
-    // core to its maximum..."
-    @Override
-    public String getSpireHeartText() {
-        return "You touch the heart. NL Is this the heart of the cards?";
-    }
+	// Should return a string containing what text is shown when your character is
+	// about to attack the heart. For example, the defect is "NL You charge your
+	// core to its maximum..."
+	@Override
+	public String getSpireHeartText() {
+		return "You touch the heart. NL Is this the heart of the cards?";
+	}
 
-    // The vampire events refer to the base game characters as "brother", "sister",
-    // and "broken one" respectively.This method should return a String containing
-    // the full text that will be displayed as the first screen of the vampires event.
-    @Override
-    public String getVampireText() {
-        return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~";
-    }
+	// The vampire events refer to the base game characters as "brother", "sister",
+	// and "broken one" respectively.This method should return a String containing
+	// the full text that will be displayed as the first screen of the vampires event.
+	@Override
+	public String getVampireText() {
+		return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~";
+	}
 
 }

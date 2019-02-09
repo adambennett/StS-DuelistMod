@@ -25,6 +25,7 @@ public class SummonPower extends AbstractPower
 		this.owner = owner;
 		this.amount = newAmount;
 		this.img = new Texture(IMG);
+		this.canGoNegative = false;
 		updateCount(this.amount);
 		updateDescription();
 	}

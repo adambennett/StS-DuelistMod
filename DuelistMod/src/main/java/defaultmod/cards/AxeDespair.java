@@ -43,6 +43,7 @@ public class AxeDespair extends DuelistCard
     public AxeDespair() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = STR_GAIN;
+        this.tags.add(DefaultMod.SPELL);
     }
 
 

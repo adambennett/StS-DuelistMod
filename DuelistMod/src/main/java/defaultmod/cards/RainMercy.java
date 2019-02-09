@@ -1,16 +1,19 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 
+@SuppressWarnings("unused")
 public class RainMercy extends DuelistCard 
 {
     // TEXT DECLARATION
@@ -30,21 +33,33 @@ public class RainMercy extends DuelistCard
     private static final int COST = 2;
     private static int MIN_HEAL = 0;
     private static int MAX_HEAL = 25;
-    private static final int MIN_HEAL_U = 5;
+	private static final int MIN_HEAL_U = 5;
     private static final int MAX_HEAL_U = 30;
     // /STAT DECLARATION/
 
     public RainMercy() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-       	this.exhaust = true;
+       	//this.exhaust = true;
+       	this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	// Heal player for random amount
     	int randomHealNum = ThreadLocalRandom.current().nextInt(MIN_HEAL, MAX_HEAL + 1); 
     	heal(p, randomHealNum);
+    	System.out.println("Healed player for: " + randomHealNum);
+    	
+    	// Heal enemies, each for a different random amount
+    	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
+    	for (AbstractMonster g : monsters)
+    	{
+    		int randomHealNumM = ThreadLocalRandom.current().nextInt(MIN_HEAL, MAX_HEAL + 1); 
+    		healMonster(g, randomHealNumM);
+    		System.out.println("Healed a monster for: " + randomHealNumM);
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -58,8 +73,8 @@ public class RainMercy extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
-            MIN_HEAL = MIN_HEAL_U;
+            //this.upgradeBaseCost(1);
+            //MIN_HEAL = MIN_HEAL_U;
             MAX_HEAL = MAX_HEAL_U;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -30,7 +30,8 @@ public class ToonBriefcase extends DuelistCard
 
     public ToonBriefcase() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-
+        this.tags.add(DefaultMod.TRAP);
+        this.tags.add(DefaultMod.TOON);
     }
 
     // Actions the card should do.

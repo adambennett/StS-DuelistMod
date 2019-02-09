@@ -30,6 +30,7 @@ public class SwordsConcealing extends DuelistCard
 
     public SwordsConcealing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.SPELL);
 
     }
 

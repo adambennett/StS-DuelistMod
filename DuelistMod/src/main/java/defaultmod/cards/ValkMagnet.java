@@ -39,6 +39,8 @@ public class ValkMagnet extends DuelistCard
     public ValkMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.MAGNETWARRIOR);
     }
 
     // Actions the card should do.
@@ -74,24 +76,22 @@ public class ValkMagnet extends DuelistCard
         }
     }
     
-    // If player doesn't have all three magnets, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.energy.energy >= COST)
-    	{
-	    	if (p.hasPower(AlphaMagPower.POWER_ID)) 
-	    	{
-	    		if (p.hasPower(BetaMagPower.POWER_ID)) 
-		    	{
-	    			if (p.hasPower(GammaMagPower.POWER_ID)) 
-	    	    	{
-	    	    		return true;
-	    	    	}
-		    	}
-	    	}
-    	}
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
     	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(AlphaMagPower.POWER_ID)) { if (p.hasPower(BetaMagPower.POWER_ID)) { if (p.hasPower(GammaMagPower.POWER_ID)) { return true; } } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Need all 3 Magnets";
     	return false;
     }
 }

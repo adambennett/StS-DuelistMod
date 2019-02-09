@@ -42,6 +42,7 @@ public class DarklordMarie extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
         this.baseDamage = DAMAGE;
+        this.tags.add(DefaultMod.MONSTER);
     }
 
     @Override

@@ -32,6 +32,7 @@ public class ShardGreed extends DuelistCard
 
     public ShardGreed() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.SPELL);
     }
 
 

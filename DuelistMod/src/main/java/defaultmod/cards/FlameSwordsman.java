@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.mod.replay.orbs.HellFireOrb;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -27,24 +29,27 @@ public class FlameSwordsman extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
-    private static final int DAMAGE = 6;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final AttackEffect AFX = AttackEffect.FIRE;
+    private static final int COST = 1;
+    private static final int DAMAGE = 8;
     private static final int TRIBUTES = 1;
     // /STAT DECLARATION/
 
     public FlameSwordsman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
+        this.tags.add(DefaultMod.MONSTER);
+        this.misc = 0;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false);
+    	tribute(p, TRIBUTES, false, this);
     	attack(m, AFX, this.damage);
+    	AbstractOrb fire = new HellFireOrb();
+    	channel(fire);
     }
 
     // Which card to return when making a copy of this card.
@@ -58,7 +63,7 @@ public class FlameSwordsman extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -71,6 +76,9 @@ public class FlameSwordsman extends DuelistCard
   		// Check super canUse()
   		boolean canUse = super.canUse(p, m); 
   		if (!canUse) { return false; }
+  		
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
 
   		// Check for # of summons >= tributes
   		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

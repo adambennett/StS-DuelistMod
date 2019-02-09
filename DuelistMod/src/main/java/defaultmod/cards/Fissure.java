@@ -1,5 +1,6 @@
 package defaultmod.cards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -21,23 +22,31 @@ public class Fissure extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+    private static final int COST = 1;
+    private static final int DAMAGE = 2;
+    private static final int U_DMG = 1;
     // /STAT DECLARATION/
 
     public Fissure() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-
+        this.baseDamage = this.damage = DAMAGE;
+        this.isMultiDamage = true;
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       
+       int playerSummons = getSummons(p);
+       this.damage = DAMAGE * playerSummons;
+       this.multiDamage = new int[] { this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, };
+       attackAllEnemies(AFX, this.multiDamage);
     }
 
     // Which card to return when making a copy of this card.
@@ -51,6 +60,7 @@ public class Fissure extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeDamage(U_DMG);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

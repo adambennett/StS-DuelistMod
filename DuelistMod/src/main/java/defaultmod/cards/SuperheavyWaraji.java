@@ -33,6 +33,8 @@ public class SuperheavyWaraji extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = 2;
         this.dex = 3;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.SUPERHEAVY);
     }
 
     // Actions the card should do.

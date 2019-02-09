@@ -36,6 +36,9 @@ public class InsectQueen extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.magicNumber = this.baseMagicNumber = POISON_MULT;
 		this.decSummons = 1;
+		this.tags.add(DefaultMod.MONSTER);
+		this.tags.add(DefaultMod.TRIBUTE);
+		this.misc = 0;
 	}
 
 	// Actions the card should do.
@@ -43,7 +46,7 @@ public class InsectQueen extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		// Tribute all
-		int playerSummons = tribute(p, 0, true);
+		int playerSummons = tribute(p, 0, true, this);
 
 		// Apply poison to all enemies
 		poisonAllEnemies(p, playerSummons * POISON_MULT);
@@ -77,7 +80,7 @@ public class InsectQueen extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
-    	
+
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
     	

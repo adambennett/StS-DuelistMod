@@ -1,5 +1,6 @@
 package defaultmod.cards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -21,23 +22,29 @@ public class InjectionFairy extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
     public InjectionFairy() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-
+        this.summons = 1;
+        this.heal = this.baseMagicNumber = this.magicNumber = 5;
+        this.baseDamage = this.damage = 5;
+        this.tags.add(DefaultMod.MONSTER);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       
+       summon(p, this.summons);
+       heal(p, this.heal);
+       attack(m, AFX, this.damage);
     }
 
     // Which card to return when making a copy of this card.

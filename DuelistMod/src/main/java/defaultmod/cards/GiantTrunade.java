@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.SpellCounterPower;
 
 public class GiantTrunade extends DuelistCard 
 {
@@ -21,23 +22,32 @@ public class GiantTrunade extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public GiantTrunade() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-
+        this.magicNumber = this.baseMagicNumber = 1;
+        this.damage = 3;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       
+       if (m.hasPower(SpellCounterPower.POWER_ID))
+       {
+    	   SpellCounterPower counterInstance = (SpellCounterPower)m.getPower(SpellCounterPower.POWER_ID);
+    	   int counters = counterInstance.amount;
+    	   counterInstance.amount = 0;
+    	   int thirdCounters = counters * (1/this.damage);
+    	   heal(p, thirdCounters * this.magicNumber);
+       }
     }
 
     // Which card to return when making a copy of this card.
@@ -51,6 +61,9 @@ public class GiantTrunade extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            //this.upgradeBaseCost(2);
+            this.damage = 2;
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

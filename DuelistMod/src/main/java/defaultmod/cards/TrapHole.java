@@ -30,7 +30,7 @@ public class TrapHole extends DuelistCard
 
     public TrapHole() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-
+        this.tags.add(DefaultMod.TRAP);
     }
 
     // Actions the card should do.

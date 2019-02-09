@@ -30,6 +30,7 @@ public class SwordsRevealing extends DuelistCard
 
     public SwordsRevealing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.SPELL);
 
     }
 

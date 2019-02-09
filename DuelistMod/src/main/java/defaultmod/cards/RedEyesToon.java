@@ -38,13 +38,18 @@ public class RedEyesToon extends DuelistCard
     public RedEyesToon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
+        this.toon = true;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.TOON);
+        this.tags.add(DefaultMod.DRAGON);
+        this.misc = 0;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false);
+    	tribute(p, TRIBUTES, false, this);
     	damageThroughBlock(m, p, this.damage, AFX);
     }
 
@@ -72,6 +77,9 @@ public class RedEyesToon extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
+    	
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
     	
     	// Check for Toon World
     	else if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; return false; }

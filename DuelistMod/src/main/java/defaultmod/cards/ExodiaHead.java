@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.ExodiaPower;
 
 public class ExodiaHead extends DuelistCard 
 {
@@ -22,7 +23,7 @@ public class ExodiaHead extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -31,13 +32,25 @@ public class ExodiaHead extends DuelistCard
 
     public ExodiaHead() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.EXODIA);
+        this.exhaust = true;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-       
+       if (p.hasPower(ExodiaPower.POWER_ID))
+       {
+    	   ExodiaPower powerInstance = (ExodiaPower)p.getPower(ExodiaPower.POWER_ID);
+    	   int count = powerInstance.amount;
+    	   if (count >= 4)
+    	   {
+    		   applyPowerToSelf(new ExodiaPower(p, p, this.magicNumber));
+    	   }
+       }
     }
 
     // Which card to return when making a copy of this card.
@@ -51,6 +64,7 @@ public class ExodiaHead extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

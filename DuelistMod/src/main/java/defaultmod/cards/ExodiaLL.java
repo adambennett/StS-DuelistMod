@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.ExodiaPower;
 
 public class ExodiaLL extends DuelistCard 
 {
@@ -26,18 +27,26 @@ public class ExodiaLL extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ExodiaLL() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.EXODIA);
+        this.baseBlock = this.block = 9;
+        this.summons = this.baseMagicNumber = this.magicNumber = 1;
+        this.damage = this.baseDamage = 1;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-       
+    	summon(p, this.summons);
+    	block(this.block);
+    	applyPowerToSelf(new ExodiaPower(p, p, this.damage));
     }
 
     // Which card to return when making a copy of this card.
@@ -51,6 +60,8 @@ public class ExodiaLL extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBlock(3);
+            //this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

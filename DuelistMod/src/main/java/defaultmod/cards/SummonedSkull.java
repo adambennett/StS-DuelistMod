@@ -37,13 +37,15 @@ public class SummonedSkull extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = DAMAGE;
 		this.magicNumber = this.baseMagicNumber = TRIBUTES;
+		this.tags.add(DefaultMod.MONSTER);
+		this.misc = 0;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, TRIBUTES, false);
+		tribute(p, TRIBUTES, false, this);
 		attack(m, AFX, this.damage);
 	}
 
@@ -74,6 +76,9 @@ public class SummonedSkull extends DuelistCard
     	
     	// If upgraded, don't need tributes
     	else if (this.upgraded) { return true; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

@@ -37,6 +37,9 @@ public class ToonMermaid extends DuelistCard
         this.baseDamage = 6;
         this.summons = 1;
         this.upgradeDmg = 4;
+        this.toon = true;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.TOON);
     }
 
     // Actions the card should do.
@@ -68,10 +71,14 @@ public class ToonMermaid extends DuelistCard
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (p.hasPower(ToonWorldPower.POWER_ID))
-    	{
-    		return true;
-    	}
+    	// Pumpking & Princess
+  		if (this.misc == 52) { return true; }
+  		
+  		// Toon World
+    	if (p.hasPower(ToonWorldPower.POWER_ID)) { return true; }
+    	
+    	// Otherwise
+    	this.cantUseMessage = "You need Toon World";
     	return false;
     }
 

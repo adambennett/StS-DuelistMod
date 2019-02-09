@@ -36,6 +36,7 @@ public class ChangeHeart extends DuelistCard
 
     public ChangeHeart() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

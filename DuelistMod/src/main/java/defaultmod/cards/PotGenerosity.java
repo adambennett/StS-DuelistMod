@@ -33,6 +33,8 @@ public class PotGenerosity extends DuelistCard
     public PotGenerosity() 
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    	this.tags.add(DefaultMod.SPELL);
+    	this.tags.add(DefaultMod.POT);
     }
 
     // Actions the card should do.

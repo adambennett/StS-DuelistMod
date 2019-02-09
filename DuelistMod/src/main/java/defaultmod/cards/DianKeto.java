@@ -36,6 +36,7 @@ public class DianKeto extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
        	this.magicNumber = this.baseMagicNumber = HEAL;
        	this.exhaust = true;
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

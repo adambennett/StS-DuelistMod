@@ -26,7 +26,7 @@ public class ObeliskTormentor extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 4;
+    private static final int COST = 3;
     private static final int DAMAGE = 6;
     private static final int TRIBUTES = 4;
     // /STAT DECLARATION/
@@ -35,6 +35,9 @@ public class ObeliskTormentor extends DuelistCard
     public ObeliskTormentor() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.GOD);
+        this.misc = 0;
     }
 
 
@@ -42,7 +45,7 @@ public class ObeliskTormentor extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false);
+    	tribute(p, TRIBUTES, false, this);
     	applyPower(new ObeliskPower(p, p), p);
     }
 
@@ -58,7 +61,7 @@ public class ObeliskTormentor extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(3);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -71,6 +74,9 @@ public class ObeliskTormentor extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
+    	
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

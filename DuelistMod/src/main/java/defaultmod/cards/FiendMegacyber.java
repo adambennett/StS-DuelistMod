@@ -38,13 +38,15 @@ public class FiendMegacyber extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = TRIBUTES;
+        this.tags.add(DefaultMod.MONSTER);
+        this.misc = 0;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.magicNumber, false);
+    	tribute(p, this.magicNumber, false, this);
 		
     	// Check if target has spell counters
 		if (m.hasPower(SpellCounterPower.POWER_ID))
@@ -79,6 +81,9 @@ public class FiendMegacyber extends DuelistCard
  		// Check super canUse()
  		boolean canUse = super.canUse(p, m); 
  		if (!canUse) { return false; }
+ 		
+ 		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
 
  		// Check for # of summons >= tributes
  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

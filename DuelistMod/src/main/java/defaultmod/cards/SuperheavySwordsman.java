@@ -36,6 +36,8 @@ public class SuperheavySwordsman extends DuelistCard
         this.baseDamage = this.damage = 7;
         this.summons = 1;
         this.dex = 1;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.SUPERHEAVY);
     }
 
     // Actions the card should do.
