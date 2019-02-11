@@ -18,4 +18,3 @@ Some in game screenshots taken of the first build with full card set + all descr
 ![CardsE](Screenshots/CardsE.PNG)
 ![CardsF](Screenshots/CardsF.PNG)
 ![CardsG](Screenshots/CardsG.PNG)
-![CardsH](Screenshots/CardsH.PNG)
