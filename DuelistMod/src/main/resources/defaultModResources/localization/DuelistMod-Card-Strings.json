@@ -221,8 +221,8 @@
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
-		"DESCRIPTION": "Increment !M!. Summon 1.",
-		"UPGRADE_DESCRIPTION": "Increment !M!. Summon 1. Gain 1 Intangible."
+		"DESCRIPTION": "Increment !M!. NL Summon 1.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 1. NL Gain 1 Intangible."
 	},
 	"theDuelist:BigLabyrinthWall": {
 		"NAME": "Big Labyrinth Wall",
@@ -256,8 +256,8 @@
 	},
 	"theDuelist:MillenniumShield": {
 		"NAME": "Millennium Shield",
-		"DESCRIPTION": "Tribute !M!. Gain 6 Dexterity. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute !M!. Gain 6 Dexterity."
+		"DESCRIPTION": "Tribute !M!. NL Gain 6 Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute !M!. NL Gain 6 Dexterity."
 	},
 	"theDuelist:MirrorForce": {
 		"NAME": "Mirror Force",
