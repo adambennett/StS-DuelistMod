@@ -30,9 +30,9 @@ public class DarkMagician extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 15;
-    private static final int TRIBUTES = 2;
-    private static final int COUNTERS = 3;
+    private static final int DAMAGE = 18;
+    private static int TRIBUTES = 2;
+    private static final int COUNTERS = 5;
     private static final int U_COUNTERS = 2;
     // /STAT DECLARATION/
 
@@ -65,6 +65,7 @@ public class DarkMagician extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(U_COUNTERS);
+            TRIBUTES = 1;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -80,6 +81,8 @@ public class DarkMagician extends DuelistCard
     	
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
+    	
+  		else if (upgraded) { return true; }
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

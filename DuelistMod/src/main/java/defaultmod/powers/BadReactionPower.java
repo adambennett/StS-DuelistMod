@@ -41,7 +41,7 @@ public class BadReactionPower extends AbstractPower
         if (upgrade)
         {
         	DAMAGE += uDmg;
-        	HP_GAIN_TRIGGER += uHeal;
+        	//HP_GAIN_TRIGGER += uHeal;
         }
 
     }

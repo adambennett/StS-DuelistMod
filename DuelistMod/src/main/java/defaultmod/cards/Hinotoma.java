@@ -30,19 +30,15 @@ public class Hinotoma extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static int MIN_DMG_ROLL = 1;
-    private static int MAX_DMG_ROLL = 7;
-    private static int MIN_DMG_ROLL_U = 3;
-    private static int MAX_DMG_ROLL_U = 8;
     private static int MIN_TIMES = 1;
-    private static int MAX_TIMES = 3;
-    private static int MIN_TIMES_U = 3;
+    private static int MAX_TIMES = 4;
+    private static int MIN_TIMES_U = 1;
     private static int MAX_TIMES_U = 5;
     // /STAT DECLARATION/
 
     public Hinotoma() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = 1;
+        this.baseDamage = this.damage = 3;
     }
 
     // Actions the card should do.
@@ -51,15 +47,13 @@ public class Hinotoma extends DuelistCard
     {
     	if (this.upgraded)
     	{
-    		int randomDmg = ThreadLocalRandom.current().nextInt(MIN_DMG_ROLL_U, MAX_DMG_ROLL_U + 1);
     		int randomTimes = ThreadLocalRandom.current().nextInt(MIN_TIMES_U, MAX_TIMES_U + 1);
-    		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, randomDmg); }
+    		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
     	}
     	else
     	{
-    		int randomDmg = ThreadLocalRandom.current().nextInt(MIN_DMG_ROLL, MAX_DMG_ROLL + 1);
     		int randomTimes = ThreadLocalRandom.current().nextInt(MIN_TIMES, MAX_TIMES + 1);
-	        for (int i = 0; i < randomTimes; i++) { attack(m, AFX, randomDmg); }
+	        for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
     	}	
     }
 
@@ -75,6 +69,7 @@ public class Hinotoma extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

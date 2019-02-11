@@ -29,7 +29,7 @@ public class SuperheavyBenkei extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SuperheavyBenkei() {
@@ -40,6 +40,7 @@ public class SuperheavyBenkei extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.misc = 0;
+        this.magicNumber = this.baseMagicNumber = this.tributes;
     }
 
     // Actions the card should do.
@@ -62,6 +63,7 @@ public class SuperheavyBenkei extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.dex = 5;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -55,7 +55,6 @@ public class OjamaYellow extends DuelistCard
 			int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			card.costForTurn = randomNum;
 			randomMonster.costForTurn = randomNum;
-			//addCardToHand(card);
 			addCardToHand(randomMonster);
 		}
     }
@@ -71,7 +70,7 @@ public class OjamaYellow extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(1);
             //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

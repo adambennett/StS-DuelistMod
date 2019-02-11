@@ -116,38 +116,16 @@ public class TheDuelist extends CustomPlayer {
 		logger.info("Begin loading starter Deck Strings");
 
 		// working base deck
-		//retVal.add(SevenColoredFish.ID);
-		//retVal.add(SevenColoredFish.ID);
-		//retVal.add(GiantSoldier.ID);
-		//retVal.add(GiantSoldier.ID);
-		//retVal.add(CastleWalls.ID);
-		//retVal.add(CastleWalls.ID);
+		retVal.add(SevenColoredFish.ID);
+		retVal.add(SevenColoredFish.ID);
+		retVal.add(SevenColoredFish.ID);
+		retVal.add(GiantSoldier.ID);
+		retVal.add(GiantSoldier.ID);
+		retVal.add(GiantSoldier.ID);
+		retVal.add(CastleWalls.ID);
 		retVal.add(ScrapFactory.ID);
 		retVal.add(Ookazi.ID);
-		retVal.add(Ookazi.ID);
 		retVal.add(SummonedSkull.ID);
-
-		// temp for testing
-		/*
-		retVal.add(Ojamagic.ID);
-		retVal.add(RedMedicine.ID);
-		retVal.add(RedMedicine.ID);
-		retVal.add(RedMedicine.ID);
-		retVal.add(RedMedicine.ID);
-		
-		retVal.add(Pumpking.ID);
-		retVal.add(Pumprincess.ID);
-		retVal.add(FlameSwordsman.ID);
-		retVal.add(RedEyes.ID);
-		retVal.add(BlueEyes.ID);
-		retVal.add(AncientRules.ID);
-		retVal.add(AncientRules.ID);
-		retVal.add(AncientRules.ID);
-		retVal.add(AncientRules.ID);
-		retVal.add(Pumpking.ID);
-		retVal.add(Pumprincess.ID);
-		retVal.add(AncientRules.ID);
-		*/
 
 		return retVal;
 	}

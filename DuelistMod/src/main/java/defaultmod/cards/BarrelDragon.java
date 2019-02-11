@@ -34,8 +34,8 @@ public class BarrelDragon extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 10;
-    private static final int TRIBUTES = 2;
+    private static final int DAMAGE = 9;
+    private static final int TRIBUTES = 1;
     private static int MIN_TURNS_ROLL = 1;
     private static int MAX_TURNS_ROLL = 10;
     private static final int RANDOM_ENEMIES = 3;

@@ -27,7 +27,7 @@ public class GiantSoldier extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
-    private static final int BLOCK = 5;
+    private static final int BLOCK = 6;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 

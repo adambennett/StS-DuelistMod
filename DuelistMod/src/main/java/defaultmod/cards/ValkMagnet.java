@@ -87,7 +87,7 @@ public class ValkMagnet extends DuelistCard
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
     	
-    	// Check for # of summons >= tributes
+    	// Check for magnets
     	else { if (p.hasPower(AlphaMagPower.POWER_ID)) { if (p.hasPower(BetaMagPower.POWER_ID)) { if (p.hasPower(GammaMagPower.POWER_ID)) { return true; } } } }
     	
     	// Player doesn't have something required at this point

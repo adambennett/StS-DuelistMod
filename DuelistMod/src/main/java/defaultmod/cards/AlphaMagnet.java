@@ -33,7 +33,7 @@ public class AlphaMagnet extends DuelistCard
 
     public AlphaMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = 5;
+        this.baseDamage = this.damage = 8;
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);

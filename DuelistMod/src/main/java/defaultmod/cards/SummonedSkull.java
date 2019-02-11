@@ -30,13 +30,13 @@ public class SummonedSkull extends DuelistCard
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
 	private static final int DAMAGE = 11;
-	private static int TRIBUTES = 1;
 	// /STAT DECLARATION/
 
 	public SummonedSkull() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = DAMAGE;
-		this.magicNumber = this.baseMagicNumber = TRIBUTES;
+		this.tributes = 1;
+		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(DefaultMod.MONSTER);
 		this.misc = 0;
 	}
@@ -45,7 +45,7 @@ public class SummonedSkull extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, TRIBUTES, false, this);
+		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
 	}
 
@@ -60,7 +60,7 @@ public class SummonedSkull extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			TRIBUTES = 0;
+			this.tributes = this.magicNumber = this.baseMagicNumber = 0;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -75,13 +75,13 @@ public class SummonedSkull extends DuelistCard
     	if (!canUse) { return false; }
     	
     	// If upgraded, don't need tributes
-    	else if (this.upgraded) { return true; }
+    	else if (this.tributes < 1) { return true; }
     	
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
 
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

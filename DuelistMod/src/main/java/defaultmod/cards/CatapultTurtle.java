@@ -29,7 +29,7 @@ public class CatapultTurtle extends DuelistCard
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static final int DAMAGE = 3;
+    private static final int DAMAGE = 4;
     private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 

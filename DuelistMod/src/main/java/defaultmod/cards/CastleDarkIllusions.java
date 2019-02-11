@@ -28,7 +28,7 @@ public class CastleDarkIllusions extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
 

@@ -25,7 +25,7 @@ public class GeminiElf extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int SUMMONS = 2;
     private static final int UPGRADE_SUMMONS = 1;
     // /STAT DECLARATION/
@@ -35,6 +35,7 @@ public class GeminiElf extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
+        this.exhaust = true;
     }
 
     // Actions the card should do.

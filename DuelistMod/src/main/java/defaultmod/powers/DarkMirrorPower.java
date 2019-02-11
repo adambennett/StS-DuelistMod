@@ -2,33 +2,23 @@ package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-
 import defaultmod.DefaultMod;
-import defaultmod.cards.ImperialOrder;
+import defaultmod.cards.DarkMirrorForce;
 
-/* 	
- * Lose 10 strength at the end of turn and
- * tribute 1 monster. Then, place this card on top of your draw pile. 
- * 
- * 
- */
 
-public class ImperialPower extends AbstractPower 
+public class DarkMirrorPower extends AbstractPower 
 {
     public AbstractCreature source;
-
-    public static final String POWER_ID = defaultmod.DefaultMod.makeID("ImperialPower");
+    public static final String POWER_ID = DefaultMod.makeID("DarkMirrorPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DefaultMod.makePath(DefaultMod.IMPERIAL_POWER);
-    private static int GOLD = 50;
-    private static int DAMAGE = 10;
-    
+    public static final String IMG = DefaultMod.makePath(DefaultMod.DARK_POWER);
 
-    public ImperialPower(AbstractCreature owner, int gold, int dmg) 
+    public DarkMirrorPower(AbstractCreature owner) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -36,20 +26,19 @@ public class ImperialPower extends AbstractPower
         this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
-        GOLD = gold;
-        DAMAGE = dmg;
     }
 
     @Override
-    public void atStartOfTurn() 
+    public int onLoseHp(int damageAmount)
     {
-    	ImperialOrder.gainGold(GOLD, this.owner, true);
-    	ImperialOrder.damageSelf(DAMAGE);
+    	DarkMirrorForce.applyPowerToSelf(DarkMirrorForce.getRandomPlayerDebuff(AbstractDungeon.player, damageAmount));
+    	DarkMirrorForce.removePower(this, AbstractDungeon.player);
+    	return 0;
     }
     
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0] + GOLD + DESCRIPTIONS[1] + DAMAGE + DESCRIPTIONS[2];
+    	this.description = DESCRIPTIONS[0];
     }
 }

@@ -28,14 +28,14 @@ public class SevenColoredFish extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
-    private static final int DAMAGE = 4;
+    private static final int DAMAGE = 5;
     private static final int SUMMONS = 1;
     private static final int U_SUMMONS = 1;
     // /STAT DECLARATION/
 
     public SevenColoredFish() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
     }

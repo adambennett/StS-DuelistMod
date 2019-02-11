@@ -28,7 +28,7 @@ public class CatapultPower extends AbstractPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DefaultMod.makePath(DefaultMod.CATAPULT_TURTLE_POWER);
-    private static int TURN_DMG = 3;
+    private static int TURN_DMG = 4;
 
     public CatapultPower(AbstractCreature owner) 
     {
@@ -40,8 +40,6 @@ public class CatapultPower extends AbstractPower
         this.isTurnBased = false;
     }
 
-
-    // At the end of the turn, remove gained Strength.
     @Override
     public void atStartOfTurn() 
     {

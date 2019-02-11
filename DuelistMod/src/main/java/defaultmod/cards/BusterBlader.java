@@ -66,7 +66,7 @@ public class BusterBlader extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.upgradeMagicNumber(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -35,8 +35,8 @@ public class DarkMagicianGirl extends DuelistCard
 	private static final int TRIBUTES = 1;
 	private static final int OVERFLOW_AMT = 3;
 	private static final int U_OVERFLOW = 2;
-	private static int MIN_TURNS_ROLL = 3;
-	private static int MAX_TURNS_ROLL = 7;
+	private static int MIN_TURNS_ROLL = 2;
+	private static int MAX_TURNS_ROLL = 5;
 	// /STAT DECLARATION/
 
 	public DarkMagicianGirl() {
@@ -67,7 +67,7 @@ public class DarkMagicianGirl extends DuelistCard
 			// Remove 1 overflow
 			AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this, -1));
 
-			// Get random number of turns for buff to apply for (1-5)
+			// Get random number of turns for buff to apply for
 			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
 
 			// Get random buff with random tumber of turns

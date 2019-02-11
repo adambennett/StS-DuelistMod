@@ -27,7 +27,7 @@ public class Scapegoat extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 3;
+    private static final int COST = 2;
     private static final int INTANGIBLE = 1;
     private static final int INC_SUMMONS = 4;
     // /STAT DECLARATION/

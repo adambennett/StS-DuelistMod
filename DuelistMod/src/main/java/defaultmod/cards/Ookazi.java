@@ -52,8 +52,8 @@ public class Ookazi extends CustomCard {
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 
     private static final int COST = 1;
-    private static int MIN_TURNS_ROLL = 1;
-    private static int MAX_TURNS_ROLL = 12;
+    private static int MIN_TURNS_ROLL = 3;
+    private static int MAX_TURNS_ROLL = 11;
 
     // /STAT DECLARATION/
 
@@ -68,7 +68,8 @@ public class Ookazi extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int randomDmg = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
-    	AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, randomDmg, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    	this.baseDamage = randomDmg;
+    	AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     // Which card to return when making a copy of this card.
@@ -83,7 +84,7 @@ public class Ookazi extends CustomCard {
         if (!this.upgraded) {
             this.upgradeName();
             MIN_TURNS_ROLL = 6;
-            MAX_TURNS_ROLL = 18;
+            MAX_TURNS_ROLL = 14;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

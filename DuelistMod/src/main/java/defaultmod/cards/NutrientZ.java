@@ -27,17 +27,18 @@ public class NutrientZ extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static int HEAL = 12;
+    private static int HEAL = 20;
     private static int U_HEAL = 3;
     private static int HP_CHK = 40;
     private static int HP_CHK_U = 45;
-    private static int debuffs = 4;
+    private static int debuffs = 3;
     // /STAT DECLARATION/
 
     public NutrientZ() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(DefaultMod.SPELL);
+        this.exhaust = true;
     }
 
     // Actions the card should do.

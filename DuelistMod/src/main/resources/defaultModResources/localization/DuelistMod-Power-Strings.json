@@ -1,7 +1,7 @@
 {
 "theDuelist:SummonPower": {
         "NAME": "Summons",
-        "DESCRIPTIONS": ["#b", " monsters summoned. Maximum of #b", " Summons."]
+        "DESCRIPTIONS": ["#b", " monsters summoned. Maximum of #b", " #ySummons."]
 },
 "theDuelist:DespairPower": {
         "NAME": "Axe of Despair",
@@ -9,15 +9,15 @@
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
-        "DESCRIPTIONS": ["At the start of your turn, Summon #b", " and deal #b5 damage to #b", " random enemy.", " random enemies.",]
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b5 damage to #b", " random enemy.", " random enemies.",]
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["Toon Monsters can be played."]
+        "DESCRIPTIONS": ["#yToon Monsters can be played."]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
-        "DESCRIPTIONS": ["Each time you Tribute, deal #b", "damage to ALL enemies"]
+        "DESCRIPTIONS": ["Each time you #yTribute, deal #b", " damage to ALL enemies"]
 },
 "theDuelist:AlphaMagPower": {
         "NAME": "Alpha Magnet",
@@ -39,29 +39,13 @@
         "NAME": "Mirror Force",
         "DESCRIPTIONS": ["The next time you take unblocked damage, deal the much damage to ALL enemies."]
 },
-"theDuelist:SwordsBurnPower": {
-        "NAME": "Swords of Burning Light",
-        "DESCRIPTIONS": ["Each time you deal #b", " unblocked damage for the next #b", " turns, Summon #b", "."]
-},
-"theDuelist:SwordsConcealPower": {
-        "NAME": "Swords of Concealing Light",
-        "DESCRIPTIONS": ["For the next #b", " turns, gain #b", " block at the start of your turn."]
-},
-"theDuelist:SwordsRevealPower": {
-        "NAME": "Swords of Revealing Light",
-        "DESCRIPTIONS": ["For the next #b", " turns, gain #b", " Intangible. You may not play any attack cards while this effect is active."]
-},
-"theDuelist:TimeWizardPower": {
-        "NAME": "Time Wizard",
-        "DESCRIPTIONS": ["At the start of turn, ALL enemies receive #b", " #ySpell #yCounter, or you receive #b", " #yVulnerable. Chosen randomly."]
-},
 "theDuelist:ToonBriefPower": {
         "NAME": "Toon Briefcase",
         "DESCRIPTIONS": ["#yToon monsters played this turn are added back to your hand at the end of your turn."]
 },
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",
-        "DESCRIPTIONS": ["Each time you #ySummon this turn, gain #b", " [E]"]
+        "DESCRIPTIONS": ["Each time you #ySummon, gain #b", " [E]"]
 },
 "theDuelist:CannonPower": {
         "NAME": "Cannon Soldier",
@@ -77,7 +61,7 @@
 },
 "theDuelist:CastlePower": {
         "NAME": "Castle of Dark Illusions",
-        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", "increase your max #ySummons by #b" ]
+        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", "#yRitual #b" ]
 },
 "theDuelist:EmperorPower": {
         "NAME": "Mausoleum of the Emperor",
@@ -100,8 +84,24 @@
         "DESCRIPTIONS": ["At the start of turn, #yTribute all #ySummons and #yChannel a random #yOrb for each." ]
 },
 "theDuelist:ExodiaPower": {
-        "NAME": "Power of Exodia",
-        "DESCRIPTIONS": ["If you have #b5 or more of this power at the end of turn, unleash a powerful effect on ALL enemies and remove this power." ]
+        "NAME": "The Forbidden One",
+        "DESCRIPTIONS": ["Assemble all five pieces of Exodia to unleash a powerful damage effect on ALL enemies. #yPieces #yof #yExodia: ", "#b", "The full power of #yExodia will be unleashed on ALL enemies at the end of turn. #yDamage: #b" ]
+},
+"theDuelist:DarkMirrorPower": {
+        "NAME": "Dark Mirror Force",
+        "DESCRIPTIONS": ["The next time you are about to take damage, gain a random debuff equal to the damage instead." ]
+},
+"theDuelist:ParasitePower": {
+        "NAME": "Parasite Paracide",
+        "DESCRIPTIONS": ["At the start of turn, have a chance to #ydebuff random enemies. Chances are raised with more #ysummon stacks. #yChance #yModifier: #b" ]
+},
+"theDuelist:StormingMirrorPower": {
+        "NAME": "Storming Mirror Force",
+        "DESCRIPTIONS": ["Each time an enemy attacks, #ySummon #b1." ]
+},
+"theDuelist:RadiantMirrorPower": {
+        "NAME": "Radiant Mirror Force",
+        "DESCRIPTIONS": ["The next time you lose HP, all enemies lose all block", ".", " and take 5 damage." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

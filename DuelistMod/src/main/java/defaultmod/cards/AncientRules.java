@@ -25,12 +25,12 @@ public class AncientRules extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public AncientRules() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.exhaust = true;
+        //this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 2;
         this.summons = this.magicNumber;
         this.upgradeSummons = 1;
@@ -55,8 +55,9 @@ public class AncientRules extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
         	this.upgradeName();
-        	//this.upgradeMagicNumber(this.upgradeSummons);
-        	this.exhaust = false;
+        	this.upgradeMagicNumber(this.upgradeSummons);
+        	this.upgradeBaseCost(0);
+        	//this.exhaust = false;
         	this.rawDescription = UPGRADE_DESCRIPTION;
         	this.initializeDescription();
         }

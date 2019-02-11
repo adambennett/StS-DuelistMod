@@ -29,7 +29,7 @@ public class BlueEyesToon extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 15;
+    private static final int DAMAGE = 25;
     private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 

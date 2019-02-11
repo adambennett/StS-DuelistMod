@@ -36,11 +36,11 @@ public class DiscardWithCallbackAction extends DiscardAction {
 
 	@Override
 	public void update() {
-		System.out.println("updating custom discard action");
+		System.out.println("theDuelist:DiscardWithCallbackAction --- > updating custom discard action");
 		int i;
 		if (this.duration == DURATION) {
-			System.out.println("in duration");
-			System.out.println("discard amt is " + this.amount);
+			System.out.println("theDuelist:DiscardWithCallbackAction --- > in duration");
+			System.out.println("theDuelist:DiscardWithCallbackAction --- > discard amt is " + this.amount);
 			if (this.p.hand.size() <= this.amount) {
 				this.amount = this.p.hand.size();
 				int tmp = this.p.hand.size();
@@ -74,7 +74,7 @@ public class DiscardWithCallbackAction extends DiscardAction {
 					return;
 				}
 				if (this.p.hand.size() > this.amount) {
-					System.out.println("trying to open hand card select screen");
+					System.out.println("theDuelist:DiscardWithCallbackAction --- > trying to open hand card select screen");
 					AbstractDungeon.handCardSelectScreen.open(TEXT[0], this.amount, this.anyNumber, this.canPickZero);
 				}
 

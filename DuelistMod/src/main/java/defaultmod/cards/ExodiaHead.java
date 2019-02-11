@@ -36,6 +36,7 @@ public class ExodiaHead extends DuelistCard
         this.tags.add(DefaultMod.EXODIA);
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 1;
+        this.exodiaName = "Head";
     }
 
     // Actions the card should do.
@@ -48,7 +49,7 @@ public class ExodiaHead extends DuelistCard
     	   int count = powerInstance.amount;
     	   if (count >= 4)
     	   {
-    		   applyPowerToSelf(new ExodiaPower(p, p, this.magicNumber));
+    		   powerInstance.addNewPiece(this);
     	   }
        }
     }

@@ -55,8 +55,10 @@ public class LabyrinthWall extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
+    public void upgrade() 
+    {
+        if (!this.upgraded) 
+        {
             this.upgradeName();
             this.upgradeBlock(UPGRADE_PLUS_BLK);
             this.rawDescription = UPGRADE_DESCRIPTION;
@@ -82,5 +84,4 @@ public class LabyrinthWall extends DuelistCard
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
-   
 }

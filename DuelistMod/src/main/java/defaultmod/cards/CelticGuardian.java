@@ -28,8 +28,8 @@ public class CelticGuardian extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
-    private static final int DAMAGE = 5;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int DAMAGE = 6;
+    private static final int UPGRADE_PLUS_DMG = 4;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
@@ -59,7 +59,6 @@ public class CelticGuardian extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
-            //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

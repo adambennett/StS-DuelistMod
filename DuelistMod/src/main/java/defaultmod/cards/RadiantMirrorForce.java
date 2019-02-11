@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.*;
 
 public class RadiantMirrorForce extends DuelistCard 
 {
@@ -25,7 +26,7 @@ public class RadiantMirrorForce extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public RadiantMirrorForce() {
@@ -37,7 +38,7 @@ public class RadiantMirrorForce extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       
+    	 applyPowerToSelf(new RadiantMirrorPower(p, this.upgraded));
     }
 
     // Which card to return when making a copy of this card.
@@ -51,6 +52,7 @@ public class RadiantMirrorForce extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

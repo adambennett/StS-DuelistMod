@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.mod.replay.orbs.*;
-import com.megacrit.cardcrawl.mod.replay.powers.*;
+import com.megacrit.cardcrawl.mod.replay.powers.NecroticPoisonPower;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
@@ -21,10 +21,9 @@ import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import basemod.abstracts.CustomCard;
-import blackrusemod.powers.*;
+import blackrusemod.powers.AmplifyDamagePower;
 import conspire.actions.ObtainGoldAction;
 import conspire.orbs.Water;
-import conspire.powers.HoldsTreasurePower;
 import defaultmod.actions.common.LoseXEnergyAction;
 import defaultmod.cards.*;
 import defaultmod.orbs.Gate;
@@ -35,6 +34,7 @@ public abstract class DuelistCard extends CustomCard
 {
 	// CARD FIELDS
 	public String upgradeType;
+	public String exodiaName;
 	public boolean isMonster = false;
 	public boolean isOverflow;
 	public boolean flag;
@@ -105,13 +105,18 @@ public abstract class DuelistCard extends CustomCard
 		return player().hasPower(power);
 	}
 
-	protected void applyPower(AbstractPower power, AbstractCreature target) {
+	protected static void applyPower(AbstractPower power, AbstractCreature target) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, power.amount));
 	}
 
 	protected void applyPower(AbstractPower power, AbstractCreature target, int amount) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, amount));
 	}
+	
+	public static void removePower(AbstractPower power, AbstractCreature target) {
+		AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
+	}
+
 
 	protected void heal(AbstractPlayer p, int amount)
 	{
@@ -131,12 +136,26 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player(), player(), amount));
 	}
 
-	public void applyPowerToSelf(AbstractPower power) {
+	public static void applyPowerToSelf(AbstractPower power) {
 		applyPower(power, player());
 	}
 
 	public void draw(int cards) {
+		AbstractDungeon.actionManager.addToTop(new DrawCardAction(player(), cards));
+	}
+	
+	public void drawBottom(int cards) {
 		AbstractDungeon.actionManager.addToBottom(new DrawCardAction(player(), cards));
+	}
+	
+	public void discard(int amount, boolean isRandom)
+	{
+		AbstractDungeon.actionManager.addToBottom(new DiscardAction(player(), player(), amount, isRandom));
+	}
+	
+	public void discardTop(int amount, boolean isRandom)
+	{
+		AbstractDungeon.actionManager.addToTop(new DiscardAction(player(), player(), amount, isRandom));
 	}
 
 	protected void gainEnergy(int energy) {
@@ -459,13 +478,11 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower poison = new PoisonPower(targetMonster, p, turnNum);
 		AbstractPower nPoison = new NecroticPoisonPower(targetMonster, p, turnNum);
 		AbstractPower weak = new WeakPower(targetMonster, turnNum, false);
-		AbstractPower matrix = new MatrixPower(targetMonster, turnNum);
 		AbstractPower goop = new SlimedPower(targetMonster, p, turnNum);
-		AbstractPower treasure = new HoldsTreasurePower(targetMonster);
-		AbstractPower lifeLink = new LifeLinkPower(targetMonster, turnNum, false);
-		AbstractPower aging = new AgingPower(targetMonster, turnNum);
+		//AbstractPower treasure = new HoldsTreasurePower(targetMonster);
+		//AbstractPower aging = new AgingPower(targetMonster, turnNum * 3);
 		AbstractPower blighted = new AmplifyDamagePower(targetMonster, turnNum);
-		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, goop, treasure, aging, blighted, lifeLink, matrix};
+		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, goop, blighted};
 
 		// Get randomized debuff
 		int randomDebuffNum = ThreadLocalRandom.current().nextInt(0, debuffs.length);
@@ -483,11 +500,10 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower poison = new PoisonPower(p, p, turnNum);
 		AbstractPower nPoison = new NecroticPoisonPower(p, p, turnNum);
 		AbstractPower weak = new WeakPower(p, turnNum, false);
-		//AbstractPower matrix = new MatrixPower(p, turnNum); is a buff
-		AbstractPower goop = new SlimedPower(p, p, turnNum);
-		AbstractPower aging = new AgingPower(p, turnNum);
-		AbstractPower blighted = new AmplifyDamagePower(p, turnNum);
-		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, goop,aging, blighted};
+		//AbstractPower aging = new AgingPower(p, turnNum * 5);
+		AbstractPower entangled = new EntanglePower(p);
+		AbstractPower hexed = new HexPower(p, turnNum);
+		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, entangled, hexed};
 
 		// Get randomized debuff
 		int randomDebuffNum = ThreadLocalRandom.current().nextInt(0, debuffs.length);
@@ -529,6 +545,8 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToBottom(new ObtainGoldAction(amount, owner, rain));
 	}
 	
+	// Returns a new copy of the monster passed (by its name)
+	// Or if the name does not match the set of monsters, returns a new random monster from the set
 	public DuelistCard newCopyOfMonster(String name)
 	{
 		switch(name)
@@ -581,7 +599,7 @@ public abstract class DuelistCard extends CustomCard
 				return new GammaMagnet();
 			case "Gate Guardian":
 				return new GateGuardian();
-			case "Giant Soldier":
+			case "Giant Stone Soldier":
 				return new GiantSoldier();
 			case "Injection Fairly Lily":
 				return new InjectionFairy();
@@ -661,6 +679,8 @@ public abstract class DuelistCard extends CustomCard
 				return new GeminiElf();
 			case "Winged Dragon Ra":
 				return new WingedDragonRa();
+			case "Mini L. Wall":
+				return new SmallLabyrinthWall();
 			default:
 				String[] monsters = new String[] 
 				{		
@@ -672,10 +692,150 @@ public abstract class DuelistCard extends CustomCard
 					"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
 					"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Time Wizard", "Valkyrion", "Red Eyes Toon",
 					"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
-					"Toon D.M. Girl", "Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra"
+					"Toon D.M. Girl", "Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall"
 				};
 				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
 				return newCopyOfMonster(monsters[randomCard]);
+		}
+	}
+	
+	// Same as above but defaults instead to just return 7-colored fish. Makes it much less likely the player will ever notice a bug
+	public DuelistCard newCopyOfMonsterPumpkin(String name)
+	{
+		switch(name)
+		{
+			case "A. Magnet Warrior":
+				return new AlphaMagnet();
+			case "Barrel Dragon":
+				return new BarrelDragon();
+			case "B. Magnet Warrior":
+				return new BetaMagnet();
+			case "B.E. White Dragon":
+				return new BlueEyes();
+			case "B. E. Toon Dragon":
+				return new BlueEyesToon();
+			case "B. Eyes Ultimate":
+				return new BlueEyesUltimate();
+			case "Buster Blader":
+				return new BusterBlader();
+			case "Cannon Soldier":
+				return new CannonSoldier();
+			case "Castle Dark Illusion":
+				return new CastleDarkIllusions();
+			case "Catapult Turtle":
+				return new CatapultTurtle();
+			case "Celtic Guardian":
+				return new CelticGuardian();
+			case "Darklord Marie":
+				return new DarklordMarie();
+			case "Dark Magician":
+				return new DarkMagician();
+			case "D.M. Girl":
+				return new DarkMagicianGirl();
+			case "Exodia Head":
+				return new ExodiaHead();
+			case "Exodia L. Arm":
+				return new ExodiaLA();
+			case "Exodia L. Leg":
+				return new ExodiaLL();
+			case "Exodia R. Arm":
+				return new ExodiaRA();
+			case "Exodia R. Leg":
+				return new ExodiaRL();
+			case "Fiend Megacyber":
+				return new FiendMegacyber();
+			case "Flame Swordsman":
+				return new FlameSwordsman();
+			case "G. Fierce Knight":
+				return new GaiaFierce();
+			case "G. Magnet Warrior":
+				return new GammaMagnet();
+			case "Gate Guardian":
+				return new GateGuardian();
+			case "Giant Stone Soldier":
+				return new GiantSoldier();
+			case "Injection Fairly Lily":
+				return new InjectionFairy();
+			case "Insect Queen":
+				return new InsectQueen();
+			case "Judge Man":
+				return new JudgeMan();
+			case "Kuriboh":
+				return new Kuriboh();
+			case "Labyrinth Wall":
+				return new LabyrinthWall();
+			case "Legendary Fisherman":
+				return new LegendaryFisherman();
+			case "Millennium Shield":
+				return new MillenniumShield();
+			case "Obelisk":
+				return new ObeliskTormentor();
+			case "Ojama Black":
+				return new OjamaBlack();
+			case "Ojama Green":
+				return new OjamaGreen();
+			case "Ojama King":
+				return new OjamaKing();
+			case "Ojama Knight":
+				return new OjamaKnight();
+			case "Ojama Yellow":
+				return new OjamaYellow();
+			case "Parasite Paracide":
+				return new Parasite();
+			case "Pumpking":
+				return new Pumpking();
+			case "Pumprincess":
+				return new Pumprincess();
+			case "R. Eyes Black Dragon":
+				return new RedEyes();
+			case "Relinquished":
+				return new Relinquished();
+			case "Kazejin":
+				return new SangaEarth();
+			case "Sanga of Thunder":
+				return new SangaThunder();
+			case "Suijin":
+				return new SangaWater();
+			case "7-Colored Fish":
+				return new SevenColoredFish();
+			case "Slifer Sky Dragon":
+				return new SliferSky();
+			case "Summoned Skull":
+				return new SummonedSkull();
+			case "Time Wizard":
+				return new TimeWizard();
+			case "Valkyrion":
+				return new ValkMagnet();
+			case "Red Eyes Toon":
+				return new RedEyesToon();
+			case "Superheavy Benkei":
+				return new SuperheavyBenkei();
+			case "Superheavy Scales":
+				return new SuperheavyScales();
+			case "Superheavy Swordsman":
+				return new SuperheavySwordsman();
+			case "Superheavy Waraji":
+				return new SuperheavyWaraji();
+			case "Toon Barrel Dragon":
+				return new ToonBarrelDragon();
+			case "Toon Dark Magician":
+				return new ToonDarkMagician();
+			case "Toon D.M. Girl":
+				return new ToonDarkMagicianGirl();
+			case "Toon Gemini Elf":
+				return new ToonGeminiElf();
+			case "Toon Mermaid":
+				return new ToonMermaid();
+			case "Toon S. Skull":
+				return new ToonSummonedSkull();
+			case "Gemini Elf":
+				return new GeminiElf();
+			case "Winged Dragon Ra":
+				return new WingedDragonRa();
+			case "Mini L. Wall":
+				return new SmallLabyrinthWall();
+			default:
+				return newCopyOfMonster("7-Colored Fish");
 		}
 	}
 }

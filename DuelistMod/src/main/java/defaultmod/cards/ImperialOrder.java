@@ -34,6 +34,8 @@ public class ImperialOrder extends DuelistCard
     public ImperialOrder() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
+        this.magicNumber = this.baseMagicNumber = GOLD;
+        this.damage = this.baseDamage = DMG;
     }
 
     // Actions the card should do.
@@ -55,7 +57,7 @@ public class ImperialOrder extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(0);
-            DMG = 8;
+            //DMG = 8;
             GOLD = 60;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

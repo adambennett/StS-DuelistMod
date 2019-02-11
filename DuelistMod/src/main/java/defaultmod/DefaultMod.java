@@ -238,7 +238,6 @@ public class DefaultMod
     public static final String BETA_MAG_POWER = "powers/BetaMagPower.png";
     public static final String GAMMA_MAG_POWER = "powers/GammaMagPower.png";
     public static final String GREED_SHARD_POWER = "powers/GreedShardPower.png";
-    public static final String MIRROR_POWER = "powers/MirrorPower.png";
     public static final String SWORDS_BURNING_POWER = "powers/SwordsBurnPower.png";
     public static final String SWORDS_CONCEALING_POWER = "powers/SwordsConcealPower.png";
     public static final String SWORDS_REVEALING_POWER = "powers/SwordsRevealPower.png";
@@ -251,9 +250,14 @@ public class DefaultMod
     public static final String CASTLE_POWER = "powers/CastlePower.png";
     public static final String EMPEROR_POWER = "powers/EmperorPower.png";
     public static final String MAGIC_CYLINDER_POWER = "powers/MagicCylinderPower.png";
-    public static final String MIRROR_FORCE_POWER = "powers/MirrorForcePower.png";
+    public static final String MIRROR_FORCE_POWER = "powers/MirrorPower.png";
     public static final String SLIFER_SKY_POWER = "powers/SliferSkyPower.png";
     public static final String EXODIA_POWER = "powers/ExodiaPower.png";
+    public static final String IMPERIAL_POWER = "powers/ImperialPower.png";
+    public static final String DARK_POWER = "powers/DarkMirrorPower.png";
+    public static final String RADIANT_POWER = "powers/DarkMirrorPower.png";
+    public static final String PARASITE_POWER = "powers/ParasitePower.png";
+    public static final String STORMING_POWER = "powers/StormingMirrorPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -441,7 +445,7 @@ public class DefaultMod
 		BaseMod.addCard(new ExodiaLL());
 		BaseMod.addCard(new ExodiaRA());
 		BaseMod.addCard(new ExodiaRL());
-		//BaseMod.addCard(new FeatherPho());
+		BaseMod.addCard(new FeatherPho());
 		BaseMod.addCard(new FiendMegacyber());
 		BaseMod.addCard(new Fissure());
 		BaseMod.addCard(new FlameSwordsman());
@@ -460,6 +464,7 @@ public class DefaultMod
 		BaseMod.addCard(new JamBreeding());
 		BaseMod.addCard(new JudgeMan());
 		BaseMod.addCard(new Kuriboh());
+		BaseMod.addCard(new SmallLabyrinthWall());
 		BaseMod.addCard(new LabyrinthWall());
 		BaseMod.addCard(new LegendaryFisherman());
 		BaseMod.addCard(new MagicCylinder());
@@ -476,7 +481,7 @@ public class DefaultMod
 		BaseMod.addCard(new OjamaYellow());
 		BaseMod.addCard(new Ojamagic());
 		BaseMod.addCard(new Ookazi());
-		//BaseMod.addCard(new Parasite());
+		BaseMod.addCard(new Parasite());
 		BaseMod.addCard(new PotAvarice());
 		BaseMod.addCard(new PotDichotomy());
 		//BaseMod.addCard(new PotDuality());
@@ -484,12 +489,12 @@ public class DefaultMod
 		BaseMod.addCard(new PotGreed());
 		BaseMod.addCard(new Pumpking());
 		BaseMod.addCard(new Pumprincess());
-		//BaseMod.addCard(new RadiantMirrorForce());
+		BaseMod.addCard(new RadiantMirrorForce());
 		BaseMod.addCard(new RainMercy());
 		BaseMod.addCard(new RedEyes());
 		BaseMod.addCard(new RedEyesToon());
 		BaseMod.addCard(new RedMedicine());
-		//BaseMod.addCard(new Relinquished());
+		BaseMod.addCard(new Relinquished());
 		BaseMod.addCard(new SangaEarth());
 		BaseMod.addCard(new SangaThunder());
 		BaseMod.addCard(new SangaWater());
@@ -498,7 +503,7 @@ public class DefaultMod
 		BaseMod.addCard(new SevenColoredFish());
 		BaseMod.addCard(new ShardGreed());
 		BaseMod.addCard(new SliferSky());
-		//BaseMod.addCard(new StormingMirrorForce());
+		BaseMod.addCard(new StormingMirrorForce());
 		BaseMod.addCard(new SummonedSkull());
 		BaseMod.addCard(new SuperheavyBenkei());
 		BaseMod.addCard(new SuperheavyScales());
@@ -551,7 +556,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(ExodiaLL.ID);
 		UnlockTracker.unlockCard(ExodiaRA.ID);
 		UnlockTracker.unlockCard(ExodiaRL.ID);
-		//UnlockTracker.unlockCard(FeatherPho.ID);
+		UnlockTracker.unlockCard(FeatherPho.ID);
 		UnlockTracker.unlockCard(FiendMegacyber.ID);
 		UnlockTracker.unlockCard(Fissure.ID);
 		UnlockTracker.unlockCard(FlameSwordsman.ID);
@@ -561,7 +566,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(GeminiElf.ID);
 		UnlockTracker.unlockCard(GiantSoldier.ID);
 		UnlockTracker.unlockCard(GiantTrunade.ID);
-		//UnlockTracker.unlockCard(GracefulCharity.ID);
+		UnlockTracker.unlockCard(GracefulCharity.ID);
 		UnlockTracker.unlockCard(HarpieFeather.ID);
 		UnlockTracker.unlockCard(Hinotoma.ID);
 		UnlockTracker.unlockCard(ImperialOrder.ID);
@@ -571,6 +576,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(JudgeMan.ID);
 		UnlockTracker.unlockCard(Kuriboh.ID);
 		UnlockTracker.unlockCard(LabyrinthWall.ID);
+		UnlockTracker.unlockCard(SmallLabyrinthWall.ID);
 		UnlockTracker.unlockCard(LegendaryFisherman.ID);
 		UnlockTracker.unlockCard(MagicCylinder.ID);
 		UnlockTracker.unlockCard(Mausoleum.ID);
@@ -586,7 +592,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(OjamaYellow.ID);
 		UnlockTracker.unlockCard(Ojamagic.ID);
 		UnlockTracker.unlockCard(Ookazi.ID);
-		//UnlockTracker.unlockCard(Parasite.ID);
+		UnlockTracker.unlockCard(Parasite.ID);
 		UnlockTracker.unlockCard(PotAvarice.ID);
 		UnlockTracker.unlockCard(PotDichotomy.ID);
 		//UnlockTracker.unlockCard(PotDuality.ID);
@@ -594,12 +600,12 @@ public class DefaultMod
 		UnlockTracker.unlockCard(PotGreed.ID);
 		UnlockTracker.unlockCard(Pumpking.ID);
 		UnlockTracker.unlockCard(Pumprincess.ID);
-		//UnlockTracker.unlockCard(RadiantMirrorForce.ID);
+		UnlockTracker.unlockCard(RadiantMirrorForce.ID);
 		UnlockTracker.unlockCard(RainMercy.ID);
 		UnlockTracker.unlockCard(RedEyes.ID);
 		UnlockTracker.unlockCard(RedEyesToon.ID);
 		UnlockTracker.unlockCard(RedMedicine.ID);
-		//UnlockTracker.unlockCard(Relinquished.ID);
+		UnlockTracker.unlockCard(Relinquished.ID);
 		UnlockTracker.unlockCard(SangaEarth.ID);
 		UnlockTracker.unlockCard(SangaThunder.ID);
 		UnlockTracker.unlockCard(SangaWater.ID);
@@ -608,7 +614,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(SevenColoredFish.ID);
 		UnlockTracker.unlockCard(ShardGreed.ID);
 		UnlockTracker.unlockCard(SliferSky.ID);
-		//UnlockTracker.unlockCard(StormingMirrorForce.ID);
+		UnlockTracker.unlockCard(StormingMirrorForce.ID);
 		UnlockTracker.unlockCard(SummonedSkull.ID);
 		UnlockTracker.unlockCard(SuperheavyBenkei.ID);
 		UnlockTracker.unlockCard(SuperheavyScales.ID);
@@ -677,15 +683,14 @@ public class DefaultMod
         BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
         BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of 5 #ySummons.");
         BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes", "sacrifice"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
+        BaseMod.addKeyword(new String[] {"Increment", "increment" }, "Increase your maximum #ySummons by X.");
         BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "#ySpell #yCounters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
-        BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "#yOBLITERATE");
-        BaseMod.addKeyword(new String[] {"Mako's"}, "Each time target attacks, gain #b1 #yDexterity.");
-        BaseMod.addKeyword(new String[] {"Ra"}, "Gain #b1 #yStrength. Gain #b3 #yDexterity.");
+        BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "A powerful monster found within your Grandpa's deck.");
         BaseMod.addKeyword(new String[] {"Gate", "gate"}, "Orb: Deal damage to ALL enemies, gain #yEnergy and #yBlock.");
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
         BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if Toon World is active.");
-        BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the Magnet Warrior monsters. Magnets have no inherent effect.");
-        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add 3 random cards to your hand, they cost 0 this turn. Apply 3 random buffs. Apply 3 random debuffs and 3 Spell Counters to an enemy.");
+        BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the Magnet Warrior monsters. #yMagnets have no inherent effect.");
+        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add 3 random cards to your hand, they cost 0 this turn. Apply 3 random #ybuffs. Apply 3 random #ydebuffs and 3 #ySpell #yCounters to an enemy.");
        
     }
 
@@ -701,7 +706,6 @@ public class DefaultMod
     public static String getExistingOrPlaceholder(String prefix, String id, String postfix) {
     	String idWithoutModName = id.replaceAll(MOD_ID_PREFIX, "");
     	String maybeExisting = prefix + idWithoutModName + postfix;
-    	System.out.println("BIG OLD DICKS IN YA BUTTTTTTTTTTTTTTTTTTTTTTTT::: " + maybeExisting);
     	if (Gdx.files.internal(maybeExisting).exists()) {
     		return maybeExisting;
     	} else {

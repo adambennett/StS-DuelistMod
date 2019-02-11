@@ -6,7 +6,7 @@
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "Ancient Rules",
-		"DESCRIPTION": "Summon !M!. Exhaust.",
+		"DESCRIPTION": "Summon !M!.",
 		"UPGRADE_DESCRIPTION": "Summon !M!."
 	},
 	"theDuelist:AxeDespair": {
@@ -16,13 +16,13 @@
 	},
 	"theDuelist:BadReaction": {
 		"NAME": "Bad Reaction",
-		"DESCRIPTION": "During your turn, deal !D! damage to all enemies for every !M! HP you heal.",
-		"UPGRADE_DESCRIPTION": "During your turn, deal !D! damage to all enemies for every !M! HP you heal."
+		"DESCRIPTION": "During your turn, deal !D! damage to all enemies for every HP healed.",
+		"UPGRADE_DESCRIPTION": "During your turn, deal !D! damage to all enemies for every HP healed."
 	},
 	"theDuelist:BarrelDragon": {
 		"NAME": "Barrel Dragon",
-		"DESCRIPTION": "Tribute 2. Deal !D! damage. Apply a random debuff to !M! random enemies.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage. Apply 2 random debuffs to !M! random enemies."
+		"DESCRIPTION": "Tribute 1. Deal !D! damage. Apply a random debuff to !M! random enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Deal !D! damage. Apply 2 random debuffs to !M! random enemies."
 	},
 	"theDuelist:BetaMagnet": {
 		"NAME": "B. Magnet Warrior",
@@ -62,7 +62,7 @@
 	"theDuelist:CastleDarkIllusions": {
 		"NAME": "Castle Dark Illusion",
 		"DESCRIPTION": "Whenever you shuffle your deck, Summon 5.",
-		"UPGRADE_DESCRIPTION": "Whenever you shuffle your deck, increase your max Summons by 5."
+		"UPGRADE_DESCRIPTION": "Whenever you shuffle your deck, Increment 5."
 	},
 	"theDuelist:CastleWalls": {
 		"NAME": "Castle Walls",
@@ -97,7 +97,7 @@
 	"theDuelist:DarkMagician": {
 		"NAME": "Dark Magician",
 		"DESCRIPTION": "Tribute 2.  Deal !D! damage. Apply !M! Spell Counters.",
-		"UPGRADE_DESCRIPTION": "Tribute 2.  Deal !D! damage. Apply !M! Spell Counters."
+		"UPGRADE_DESCRIPTION": "Tribute 1.  Deal !D! damage. Apply !M! Spell Counters."
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"NAME": "D.M. Girl",
@@ -111,33 +111,33 @@
 	},
 	"theDuelist:ExodiaHead": {
 		"NAME": "Exodia Head",
-		"DESCRIPTION": "If you have 4 Exodia, gain !M! Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "If you have 4 Exodia, gain !M! Exodia."
+		"DESCRIPTION": "If you have all 4 other pieces of Exodia, gain 1 Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "If you have all 4 other pieces of Exodia, gain 1 Exodia."
 	},
 	"theDuelist:ExodiaLA": {
 		"NAME": "Exodia L. Arm",
-		"DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust."
+		"DESCRIPTION": "Summon !M!. Deal !D! damage. Gain 1 Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Deal !D! damage. Gain 1 Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaLL": {
 		"NAME": "Exodia L. Leg",
-		"DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust."
+		"DESCRIPTION": "Summon !M!. Block !B!. Gain 1 Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Block !B!. Gain 1 Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaRA": {
 		"NAME": "Exodia R. Arm",
-		"DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. Deal !D! damage. Gain !B! Exodia. Exhaust."
+		"DESCRIPTION": "Summon !M!. Deal !D! damage. Gain 1 Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Deal !D! damage. Gain 1 Exodia. Exhaust."
 	},
 	"theDuelist:ExodiaRL": {
 		"NAME": "Exodia R. Leg",
-		"DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. Block !B!. Gain !D! Exodia. Exhaust."
+		"DESCRIPTION": "Summon !M!. Block !B!. Gain 1 Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Block !B!. Gain 1 Exodia. Exhaust."
 	},
 	"theDuelist:FeatherPho": {
 		"NAME": "Phoenix Feather",
-		"DESCRIPTION": "Discard 1 card from your hand. Place 1 card from your discard pile into your draw pile.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Discard 1 card from your hand. Place !M! card from your discard pile into your hand.",
+		"UPGRADE_DESCRIPTION": "Discard 1 card from your hand. Place !M! cards from your discard pile into your hand."
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "Fiend Megacyber",
@@ -177,12 +177,12 @@
 	"theDuelist:GiantTrunade": {
 		"NAME": "Giant Trunade",
 		"DESCRIPTION": "Remove all Spell Counters from an enemy. Gain !M! HP for every !D! Spell Counters removed. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from an enemy. Gain !M! HP for !D! Spell Counters removed. Exhaust."
+		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from an enemy. Gain !M! HP for every !D! Spell Counters removed. Exhaust."
 	},
 	"theDuelist:GracefulCharity": {
 		"NAME": "Graceful Charity",
 		"DESCRIPTION": "Draw 3 cards. Discard 2 cards.",
-		"UPGRADE_DESCRIPTION": "Draw 3 cards. Discard a card."
+		"UPGRADE_DESCRIPTION": "Draw 3 cards. Discard 2 cards."
 	},
 	"theDuelist:HarpieFeather": {
 		"NAME": "Harpie Feather Duster",
@@ -191,13 +191,13 @@
 	},
 	"theDuelist:Hinotoma": {
 		"NAME": "Hinotoma",
-		"DESCRIPTION": "Deal a random amount (1-7) of damage a random amount (1-3) of times.",
-		"UPGRADE_DESCRIPTION": "Deal a random amount (3-8) of damage a random amount (3-5) of times."
+		"DESCRIPTION": "Deal !D! of damage a random amount (1-4) of times.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage a random amount (1-5) of times."
 	},
 	"theDuelist:ImperialOrder": {
 		"NAME": "Imperial Order",
-		"DESCRIPTION": "At the start of turn, gain !M! Gold and take !D! damage.",
-		"UPGRADE_DESCRIPTION": "At the start of turn, gain !M! Gold and take !D! damage."
+		"DESCRIPTION": "At the start of turn, gain !M! Gold and take 10 damage.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, gain !M! Gold and take 10 damage."
 	},
 	"theDuelist:InjectionFairy": {
 		"NAME": "Injection Fairy Lily",
@@ -221,12 +221,22 @@
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
-		"DESCRIPTION": "Increase your max Summons by !M!. Summon 1.",
-		"UPGRADE_DESCRIPTION": "Increase your max Summons by !M!. Summon 1. Gain 1 Intangible."
+		"DESCRIPTION": "Increment !M!. Summon 1.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. Summon 1. Gain 1 Intangible."
+	},
+	"theDuelist:BigLabyrinthWall": {
+		"NAME": "Big Labyrinth Wall",
+		"DESCRIPTION": "Tribute 1. Block !B!.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Block !B!."
 	},
 	"theDuelist:LabyrinthWall": {
 		"NAME": "Labyrinth Wall",
 		"DESCRIPTION": "Tribute 2. Block !B!.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. Block !B!."
+	},
+	"theDuelist:SmallLabyrinthWall": {
+		"NAME": "Mini L. Wall",
+		"DESCRIPTION": "Tribute 1. Block !B!.",
 		"UPGRADE_DESCRIPTION": "Tribute 2. Block !B!."
 	},
 	"theDuelist:LegendaryFisherman": {
@@ -236,8 +246,8 @@
 	},
 	"theDuelist:MagicCylinder": {
 		"NAME": "Magic Cylinder",
-		"DESCRIPTION": "The next time you lose HP, gain Reflection.",
-		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain Reflection and a random buff."
+		"DESCRIPTION": "The next time you lose HP, gain 5 Reflection.",
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain 5 Reflection and a random buff."
 	},
 	"theDuelist:Mausoleum": {
 		"NAME": "Emperor Mausoleum",
@@ -247,7 +257,7 @@
 	"theDuelist:MillenniumShield": {
 		"NAME": "Millennium Shield",
 		"DESCRIPTION": "Tribute !M!. Gain 6 Dexterity. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute !M!. Gain 6 Dexterity. Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute !M!. Gain 6 Dexterity."
 	},
 	"theDuelist:MirrorForce": {
 		"NAME": "Mirror Force",
@@ -261,8 +271,8 @@
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
-		"DESCRIPTION": "If you have less than 40 HP, gain !M! HP and 4 random debuffs.",
-		"UPGRADE_DESCRIPTION": "If you have less than 45 HP, gain !M! HP and 4 random debuffs."
+		"DESCRIPTION": "If you have less than 40 HP, gain !M! HP and 3 random debuffs. Exhaust.",
+		"UPGRADE_DESCRIPTION": "If you have less than 45 HP, gain !M! HP and 3 random debuffs. Exhaust."
 	},
 	"theDuelist:ObeliskTormentor": {
 		"NAME": "Obelisk",
@@ -277,7 +287,7 @@
 	"theDuelist:Ojamagic": {
 		"NAME": "Ojamagic",
 		"DESCRIPTION": "Shuffle a random amount (1-10) of Red Medicine cards into your draw pile.",
-		"UPGRADE_DESCRIPTION": "Shuffle a random amount (5-10) of upgraded, 0 cost Red Medicine cards into your draw pile."
+		"UPGRADE_DESCRIPTION": "Shuffle a random amount (5-10) of upgraded Red Medicine cards into your draw pile."
 	},
 	"theDuelist:OjamaGreen": {
 		"NAME": "Ojama Green",
@@ -301,8 +311,8 @@
 	},
 	"theDuelist:Ookazi": {
 		"NAME": "Ookazi",
-		"DESCRIPTION": "Deal a random amount (1-12) of damage.",
-		"UPGRADE_DESCRIPTION": "Deal a random amount (6-18) of damage."
+		"DESCRIPTION": "Deal a random amount (3-11) of damage.",
+		"UPGRADE_DESCRIPTION": "Deal a random amount (6-14) of damage."
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
@@ -311,8 +321,8 @@
 	},
 	"theDuelist:PotAvarice": {
 		"NAME": "Pot of Avarice",
-		"DESCRIPTION": "Tribute all Summons. NL Increase your max Summons by the amount tributed. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute all Summons. NL Increase your max Summons by the amount tributed (+3). NL Exhaust."
+		"DESCRIPTION": "Tribute all Summons. NL Increment (the amount tributed). NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute all Summons. NL Increment (the amount tributed + 3). NL Exhaust."
 	},
 	"theDuelist:PotDichotomy": {
 		"NAME": "Pot of Dichotomy",
@@ -337,7 +347,7 @@
 	"theDuelist:Pumpking": {
 		"NAME": "Pumpking",
 		"DESCRIPTION": "Tribute 1. Play an upgraded copy of a random monster card from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Play a random monster card from your discard pile."
+		"UPGRADE_DESCRIPTION": "Tribute 1. Play an upgraded copy of a random monster card from your discard pile."
 	},
 	"theDuelist:Pumprincess": {
 		"NAME": "Pumprincess",
@@ -366,8 +376,8 @@
 	},
 	"theDuelist:Relinquished": {
 		"NAME": "Relinquished",
-		"DESCRIPTION": "Tribute 2. Copy each enemy action this turn.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Tribute 2. Channel 1 Dark.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Channel 1 Dark."
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
@@ -386,8 +396,8 @@
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "Scapegoat",
-		"DESCRIPTION": "Gain !M! Intangible. NL Increase your maximum Summons by 4. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Gain !M! Intangible. NL Increase your maximum Summons by 4."
+		"DESCRIPTION": "Gain !M! Intangible. NL Increment 4. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Gain !M! Intangible. NL Increment 4."
 	},
 	"theDuelist:SevenColoredFish": {
 		"NAME": "7-Colored Fish",
@@ -412,12 +422,12 @@
 	"theDuelist:SwordsBurning": {
 		"NAME": "Swords: Burning Light",
 		"DESCRIPTION": "Each time you evoke an Orb, Channel a random Orb.",
-		"UPGRADE_DESCRIPTION": "Each time you evoke an Orb, Channel a 2 random Orbs."
+		"UPGRADE_DESCRIPTION": "Each time you evoke an Orb, Channel a random Orb."
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "Swords: Concealing Light",
-		"DESCRIPTION": "Each time you exhaust a card, have a chance to Channel a Dark.",
-		"UPGRADE_DESCRIPTION": "Each time you exhaust a card, have a high chance to Channel a Dark."
+		"DESCRIPTION": "Increase your max hand size by !M!.",
+		"UPGRADE_DESCRIPTION": "Increase your max hand size by !M!."
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
@@ -446,8 +456,8 @@
 	},
 	"theDuelist:DarkMirrorForce": {
 		"NAME": "Dark Mirror Force",
-		"DESCRIPTION": "The next time you take damage, gain Weak equal to the damage and take 0 damage.",
-		"UPGRADE_DESCRIPTION": "The next time you take damage, gain Weak equal to the damage and take 0 damage."
+		"DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage.",
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage."
 	},
 	"theDuelist:RedEyesToon": {
 		"NAME": "Red Eyes Toon",
@@ -461,8 +471,8 @@
 	},
 	"theDuelist:SuperheavyBenkei": {
 		"NAME": "Superheavy Benkei",
-		"DESCRIPTION": "Tribute 3. Deal !D! damage. Gain 3 dexterity.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. Deal !D! damage. Gain 3 dexterity."
+		"DESCRIPTION": "Tribute !M!. Deal !D! damage. Gain 3 dexterity.",
+		"UPGRADE_DESCRIPTION": "Tribute !M!. Deal !D! damage. Gain 5 dexterity."
 	},
 	"theDuelist:SuperheavyScales": {
 		"NAME": "Superheavy Scales",
@@ -521,12 +531,12 @@
 	},
 	"theDuelist:GeminiElf": {
 		"NAME": "Gemini Elf",
-		"DESCRIPTION": "Summon !M!.",
-		"UPGRADE_DESCRIPTION": "Summon !M!."
+		"DESCRIPTION": "Summon !M!. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Exhaust."
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
-		"DESCRIPTION": "Tribute 4. Deal damage equal to ((3* number of cards played this turn) + (2 * Summons)) multiplied by X.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. Deal damage equal to ((3* number of cards played this turn) + (2 * Summons) + max Summons) multiplied by X."
+		"DESCRIPTION": "Tribute 4. Deal damage equal to ((4* number of cards played this turn) + (3 * Summons)) * X.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Deal damage equal to ((4* number of cards played this turn) + (3 * Summons) + max Summons) * X."
 	}
 }

@@ -45,10 +45,10 @@ public class WingedDragonRa extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int manaUsed = getXEffect();
-    	int summons = getSummons(p) * 2;
-    	int cardsPlayed = (p.cardsPlayedThisTurn - 1) * 3;
+    	int summons = 0; int maxSummons = 0;
+    	if (player().hasPower(SummonPower.POWER_ID)) { summons = getSummons(p) * 3;  maxSummons = getMaxSummons(p); }
+    	int cardsPlayed = (p.cardsPlayedThisTurn - 1) * 4;
     	if (cardsPlayed < 0) { cardsPlayed = 0; }
-    	int maxSummons = getMaxSummons(p);
     	int damageTotal = (cardsPlayed + summons) * manaUsed;
     	if (upgraded) { damageTotal += maxSummons; }
     	attack(m, AFX, damageTotal);

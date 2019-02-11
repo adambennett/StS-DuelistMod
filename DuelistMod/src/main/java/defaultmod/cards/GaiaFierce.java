@@ -29,7 +29,7 @@ public class GaiaFierce extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 16;
+    private static final int DAMAGE = 14;
     private static final int UPGRADE_PLUS_DMG = 4;
     private static final int TRIBUTES = 1;
     // /STAT DECLARATION/

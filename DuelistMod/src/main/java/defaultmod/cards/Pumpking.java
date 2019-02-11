@@ -48,14 +48,14 @@ public class Pumpking extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	ArrayList<AbstractCard> discards = player().discardPile.group;
     	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(c); } }
+    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN) && !c.upgraded) { toChooseFrom.add(c); } }
     	if (toChooseFrom.size() > 0)
     	{
 	    	int randomAttack = ThreadLocalRandom.current().nextInt(0, toChooseFrom.size());
 	    	AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
 	    	String cardName = chosen.name;
-	    	System.out.println("Found: " + cardName);
-	    	DuelistCard cardCopy = newCopyOfMonster(cardName);
+	    	System.out.println("theDuelist:Pumpking --- > Found: " + cardName);
+	    	DuelistCard cardCopy = newCopyOfMonsterPumpkin(cardName);
 	    	if (cardCopy != null)
 	    	{
 		    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
@@ -79,6 +79,7 @@ public class Pumpking extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

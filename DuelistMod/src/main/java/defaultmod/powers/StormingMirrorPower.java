@@ -1,28 +1,24 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import defaultmod.DefaultMod;
+import defaultmod.cards.StormingMirrorForce;
 
-// Passive no-effect power, just lets Toon Monsters check for playability
-
-public class GreedShardPower extends AbstractPower 
+public class StormingMirrorPower extends AbstractPower 
 {
     public AbstractCreature source;
-
-    public static final String POWER_ID = defaultmod.DefaultMod.makeID("GreedShardPower");
+    public static final String POWER_ID = defaultmod.DefaultMod.makeID("StormingMirrorPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DefaultMod.makePath(DefaultMod.GREED_SHARD_POWER);
-    
-    private static int turnCounter = 0;
+    public static final String IMG = DefaultMod.makePath(DefaultMod.STORMING_POWER);
 
-    public GreedShardPower(final AbstractCreature owner, final AbstractCreature source) 
+    public StormingMirrorPower(final AbstractCreature owner, final AbstractCreature source) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -32,23 +28,17 @@ public class GreedShardPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-        turnCounter = 0;
     }
     
     @Override
-    public void atStartOfTurn() 
+    public int onAttacked(DamageInfo info, int damageAmount)
     {
-    	if (turnCounter >= 3) 
-    	{ 
-    		turnCounter = 0; 
-    		AbstractDungeon.actionManager.addToTop(new DrawCardAction(AbstractDungeon.player, 1));
-    	}
-    	turnCounter++;
-    	updateDescription();
+    	StormingMirrorForce.summon(AbstractDungeon.player, 1);
+    	return damageAmount;
     }
 
     @Override
 	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + turnCounter;
+        this.description = DESCRIPTIONS[0];
     }
 }

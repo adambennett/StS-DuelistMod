@@ -38,6 +38,7 @@ public class ExodiaRL extends DuelistCard
         this.damage =  this.baseDamage = 1;
         this.baseBlock = this.block = 9;
         this.exhaust = true;
+        this.exodiaName = "Right Leg";
     }
 
     // Actions the card should do.
@@ -46,7 +47,27 @@ public class ExodiaRL extends DuelistCard
     {
     	summon(p, this.summons);
     	block(this.block);
-    	applyPowerToSelf(new ExodiaPower(p, p, this.damage));
+    	
+    	// If player has already played at least 1 other piece of exodia
+    	if (p.hasPower(ExodiaPower.POWER_ID))
+    	{
+    		// If power has not already triggered once or this is not the first piece played in second set
+    		if (p.getPower(ExodiaPower.POWER_ID).amount > 0)
+    		{
+    			ExodiaPower power = (ExodiaPower) p.getPower(ExodiaPower.POWER_ID);
+    			power.addNewPiece(this);
+    		}
+    		
+    		// If power has already triggered and player has the power but it's 0
+    		// Just reroll the power
+    		else
+    		{
+    			applyPowerToSelf(new ExodiaPower(p, p, this));
+    		}
+    	}
+    	
+    	// If player doesn't yet have any pieces assembled
+    	else { applyPowerToSelf(new ExodiaPower(p, p, this)); }
     }
 
     // Which card to return when making a copy of this card.

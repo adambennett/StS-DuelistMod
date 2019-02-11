@@ -24,9 +24,9 @@ public class ExodiaRA extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.BLUNT_HEAVY;
     private static final int COST = 1;
@@ -40,6 +40,7 @@ public class ExodiaRA extends DuelistCard
         this.summons = this.magicNumber = this.baseMagicNumber = 1;
         this.block = this.baseBlock = 1;
         this.exhaust = true;
+        this.exodiaName = "Right Arm";
     }
 
     // Actions the card should do.
@@ -48,7 +49,28 @@ public class ExodiaRA extends DuelistCard
     {
     	summon(p, this.summons);
     	attack(m, AFX, this.damage);
-    	applyPowerToSelf(new ExodiaPower(p, p, this.block));
+    	
+    	// If player has already played at least 1 other piece of exodia
+    	if (p.hasPower(ExodiaPower.POWER_ID))
+    	{
+    		// If power has not already triggered once or this is not the first piece played in second set
+    		if (p.getPower(ExodiaPower.POWER_ID).amount > 0)
+    		{
+    			ExodiaPower power = (ExodiaPower) p.getPower(ExodiaPower.POWER_ID);
+    			power.addNewPiece(this);
+    		}
+    		
+    		// If power has already triggered and player has the power but it's 0
+    		// Just reroll the power
+    		else
+    		{
+    			applyPowerToSelf(new ExodiaPower(p, p, this));
+    		}
+    	}
+    	
+    	// If player doesn't yet have any pieces assembled
+    	else { applyPowerToSelf(new ExodiaPower(p, p, this)); }
+    	
     }
 
     // Which card to return when making a copy of this card.

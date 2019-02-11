@@ -60,7 +60,7 @@ public class Ojamagic extends CustomCard
 		if (upgraded) 
 		{
 			redMedicine.upgrade();
-			redMedicine.modifyCostForCombat(0);
+			//redMedicine.modifyCostForCombat(0); upgraded Red Medicine already costs 0...
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(redMedicine, randomNumCards, true, true));
 		} 
 		else 
