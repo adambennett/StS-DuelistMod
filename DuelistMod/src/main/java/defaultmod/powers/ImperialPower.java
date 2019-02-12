@@ -50,6 +50,12 @@ public class ImperialPower extends AbstractPower
     	ImperialOrder.damageSelf(DAMAGE);
     	if (this.amount > 0) { this.amount = 0; }
     }
+    
+    @Override
+    public void onDrawOrDiscard() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
 
     
     @Override

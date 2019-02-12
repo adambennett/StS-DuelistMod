@@ -34,6 +34,12 @@ public class ToonWorldPower extends AbstractPower
     }
     
     @Override
+    public void onDrawOrDiscard() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
     public void atStartOfTurn() 
     {
     	if (this.amount > 0) { this.amount = 0; }

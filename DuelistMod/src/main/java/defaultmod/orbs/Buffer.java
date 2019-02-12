@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
@@ -81,7 +82,7 @@ public class Buffer extends AbstractOrb
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
 		for (AbstractPower a : playerPowers)
 		{
-			if (!a.name.equals("Summons")) { a.amount += this.passiveAmount; }
+			if ((!a.name.equals("Summons")) && !(a.type == PowerType.DEBUFF)) { a.amount += this.passiveAmount; }
 			//else { DuelistCard.summonLite(AbstractDungeon.player, this.passiveAmount); }
 		}
 	}

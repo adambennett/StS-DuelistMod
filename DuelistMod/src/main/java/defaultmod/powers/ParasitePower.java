@@ -44,6 +44,12 @@ public class ParasitePower extends AbstractPower
     }
     
     @Override
+    public void onDrawOrDiscard() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
     	updateChances();

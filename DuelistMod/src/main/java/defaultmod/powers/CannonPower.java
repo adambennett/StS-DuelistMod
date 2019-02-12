@@ -50,10 +50,14 @@ public class CannonPower extends AbstractPower
 			{
     			if (this.owner.hasPower(SummonPower.POWER_ID))
     			{
-    				CannonSoldier.tribute(AbstractDungeon.player, TRIBUTES, false);
-    				// Deal 5 damage to a random enemy for each copy of Cannon Soldier
-					AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-					AbstractDungeon.actionManager.addToTop(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+    				int tribs = CannonSoldier.tribute(AbstractDungeon.player, TRIBUTES, false);
+    				
+    				if (tribs > 0)
+    				{
+	    				// Deal 5 damage to a random enemy for each copy of Cannon Soldier
+						AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
+						AbstractDungeon.actionManager.addToTop(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+    				}
     			}
     		}
 		}

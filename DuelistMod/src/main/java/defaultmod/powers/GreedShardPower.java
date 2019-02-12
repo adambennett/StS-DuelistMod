@@ -37,6 +37,12 @@ public class GreedShardPower extends AbstractPower
         this.amount = 0;
         turnCounter = 0;
     }
+    
+    @Override
+    public void onDrawOrDiscard() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
    
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 

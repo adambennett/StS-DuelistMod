@@ -81,7 +81,7 @@
 },
 "theDuelist:SliferSkyPower": {
         "NAME": "Slifer the Sky Dragon",
-        "DESCRIPTIONS": ["At the start of turn, #yTribute all #ySummons and #yChannel a random #yOrb for each." ]
+        "DESCRIPTIONS": ["Whenever you #ySummon, #yChannel a random #yOrb." ]
 },
 "theDuelist:ExodiaPower": {
         "NAME": "The Forbidden One",

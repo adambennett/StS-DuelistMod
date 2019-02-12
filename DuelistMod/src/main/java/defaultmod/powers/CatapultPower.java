@@ -3,10 +3,12 @@ package defaultmod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
@@ -40,6 +42,24 @@ public class CatapultPower extends AbstractPower
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
     }
+    
+    @Override
+    public void onDrawOrDiscard() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+    	if (this.amount > 0) { this.amount = 0; }
+	}
 
     @Override
     public void atStartOfTurn() 
@@ -62,6 +82,8 @@ public class CatapultPower extends AbstractPower
     			}
 	        }
     	}
+    	
+    	if (this.amount > 0) { this.amount = 0; }
     }
     
     @Override

@@ -45,7 +45,8 @@ public class PotGreed extends DuelistCard
     { 
     	if (!this.upgraded) 
     	{
-    		this.upgradeName("GreedMaster xx420"); this.isInnate = true; 
+    		this.upgradeName(); 
+    		this.isInnate = true; 
     		this.exhaust = false; this.rawDescription = UPGRADE_DESCRIPTION;
     		this.initializeDescription();
     	}

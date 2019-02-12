@@ -32,9 +32,9 @@ public class SangaWater extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 10;
+    private static final int DAMAGE = 11;
     private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int TRIBUTES = 1;
+    private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public SangaWater() {

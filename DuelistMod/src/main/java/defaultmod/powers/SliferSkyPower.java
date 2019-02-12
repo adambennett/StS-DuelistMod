@@ -29,6 +29,12 @@ public class SliferSkyPower extends AbstractPower
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
     }
+    
+    @Override
+    public void onDrawOrDiscard() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
 
     @Override
     public void atStartOfTurn() 
