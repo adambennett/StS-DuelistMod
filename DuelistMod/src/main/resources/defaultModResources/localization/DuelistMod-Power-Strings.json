@@ -115,6 +115,10 @@
         "NAME": "Pharaoh's Curse",
         "DESCRIPTIONS": ["Each time you #yTribute, take #b", " damage." ]
 },
+"theDuelist:EvokeSicknessPower": {
+        "NAME": "Fury of Ra",
+        "DESCRIPTIONS": ["Each time you #yEvoke, take #b", " damage." ]
+},
 "theDuelist:OrbHealPower": {
         "NAME": "Orbmaster",
         "DESCRIPTIONS": ["Each time you #yEvoke, gain #b", " HP." ]

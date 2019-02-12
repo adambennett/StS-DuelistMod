@@ -37,6 +37,7 @@ public class CatapultPower extends AbstractPower
         this.owner = owner;
         this.updateDescription();
         this.img = new Texture(IMG);
+        this.type = PowerType.BUFF;
         this.isTurnBased = false;
     }
 

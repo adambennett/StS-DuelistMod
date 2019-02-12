@@ -27,7 +27,7 @@ public class TributeSicknessPower extends AbstractPower
         this.ID = POWER_ID;
         this.owner = owner;
         this.updateDescription();
-        this.type = PowerType.BUFF;
+        this.type = PowerType.DEBUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.amount = newAmount;

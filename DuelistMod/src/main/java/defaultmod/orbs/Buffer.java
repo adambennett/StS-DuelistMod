@@ -61,13 +61,13 @@ public class Buffer extends AbstractOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount;
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard.applyPowerToSelf(DuelistCard.getRandomPlayerDebuff(AbstractDungeon.player, this.evokeAmount));
+		DuelistCard.applyPowerToSelf(DuelistCard.getRandomBuff(AbstractDungeon.player, this.evokeAmount));
 	}
 
 	@Override

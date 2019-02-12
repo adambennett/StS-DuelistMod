@@ -27,6 +27,7 @@ public class SliferSkyPower extends AbstractPower
         this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
+        this.type = PowerType.BUFF;
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+
 import defaultmod.DefaultMod;
 import defaultmod.cards.DarkMirrorForce;
 
@@ -37,6 +38,7 @@ public class RadiantMirrorPower extends AbstractPower
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.upgrade = upgrade;
+        this.type = PowerType.BUFF;
     }
 
     @Override

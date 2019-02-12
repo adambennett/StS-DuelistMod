@@ -36,6 +36,7 @@ public class CannonPower extends AbstractPower
         this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
+        this.type = PowerType.BUFF;
         TRIBUTES = tributes;
     }
 

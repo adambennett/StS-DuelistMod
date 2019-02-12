@@ -536,7 +536,8 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower hexed = new HexPower(p, turnNum);
 		AbstractPower summonSick = new SummonSicknessPower(p, turnNum);
 		AbstractPower tributeSick = new TributeSicknessPower(p, turnNum);
-		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, entangled, hexed, summonSick, tributeSick};
+		AbstractPower evokeSick = new EvokeSicknessPower(p, turnNum);
+		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, entangled, hexed, summonSick, tributeSick, evokeSick};
 
 		// Get randomized debuff
 		int randomDebuffNum = ThreadLocalRandom.current().nextInt(0, debuffs.length);

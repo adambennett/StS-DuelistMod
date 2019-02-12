@@ -261,6 +261,7 @@ public class DefaultMod
     public static final String SWORDS_BURN_POWER = "powers/SwordsBurnPower.png";
     public static final String SUMMON_SICKNESS_POWER = "powers/SummonSicknessPower.png";
     public static final String TRIBUTE_SICKNESS_POWER = "powers/TributeSicknessPower.png";
+    public static final String EVOKE_SICKNESS_POWER = "powers/EvokeSicknessPower.png";
     public static final String ORB_HEAL_POWER = "powers/OrbHealPower.png";
     public static final String ENERGY_TREASURE_POWER = "powers/EnergyTreasurePower.png";
     

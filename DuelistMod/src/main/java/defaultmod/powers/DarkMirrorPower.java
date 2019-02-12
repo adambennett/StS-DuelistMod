@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+
 import defaultmod.DefaultMod;
 import defaultmod.cards.DarkMirrorForce;
 
@@ -26,6 +27,7 @@ public class DarkMirrorPower extends AbstractPower
         this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
+        this.type = PowerType.BUFF;
     }
 
     @Override

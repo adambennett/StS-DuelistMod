@@ -1,12 +1,13 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.relics.*;
 
 public class SummonPower extends AbstractPower
 {
@@ -26,6 +27,7 @@ public class SummonPower extends AbstractPower
 		this.amount = newAmount;
 		this.img = new Texture(IMG);
 		this.canGoNegative = false;
+		this.type = PowerType.BUFF;
 		updateCount(this.amount);
 		updateDescription();
 	}
@@ -37,6 +39,8 @@ public class SummonPower extends AbstractPower
 		this.amount = newAmount;
 		this.img = new Texture(IMG);
 		this.description = desc;
+		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 3; }
+		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 10; }
 		updateCount(this.amount);
 		updateDescription();
 	}

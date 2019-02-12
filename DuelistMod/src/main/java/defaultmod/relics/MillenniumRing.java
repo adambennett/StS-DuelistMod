@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import defaultmod.DefaultMod;
-import defaultmod.cards.AlphaMagnet;
+import defaultmod.patches.DuelistCard;
 
 public class MillenniumRing extends CustomRelic {
 
@@ -30,8 +30,7 @@ public class MillenniumRing extends CustomRelic {
 	public void atBattleStart() 
 	{
 		this.flash();
-		AlphaMagnet.incMaxSummons(AbstractDungeon.player, 5);
-
+		DuelistCard.incMaxSummons(AbstractDungeon.player, 5);
 	}
 
 	// Description

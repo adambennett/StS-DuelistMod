@@ -42,6 +42,7 @@ public class MagicCylinderPower extends AbstractPower
         this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
+        this.type = PowerType.BUFF;
         if (upgrade) { upgraded = true; }
     }
 

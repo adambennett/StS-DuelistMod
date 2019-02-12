@@ -2,13 +2,13 @@
   "theDuelist:Gate": {
     "NAME": "Gate",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " #yBlock, and gain #b1 #yEnergy. NL #yEvoke: #ySummon #b", "."
+      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " #yBlock, and gain #b1 #yEnergy. NL #yEvoke: #ySummon #b", ". NL Gate is unaffected by #yFocus."
     ]
   },
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase ALL your powers by #b", ". NL #yEvoke: Gain a random buff that lasts for #b"
+      "#yPassive: At the start of turn, increase ALL your powers by #b", ". NL #yEvoke: Gain a random buff that lasts for #b", " turns."
     ]
   },
   "theDuelist:Summoner": {

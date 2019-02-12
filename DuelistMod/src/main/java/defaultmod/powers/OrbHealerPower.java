@@ -49,6 +49,7 @@ public class OrbHealerPower extends AbstractPower
     	
     }
     
+    @Override
     public void onEvokeOrb(AbstractOrb orb) 
     {
     	DuelistCard.heal(AbstractDungeon.player, this.amount);
