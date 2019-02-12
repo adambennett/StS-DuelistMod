@@ -40,7 +40,7 @@ public class OrbHealerPower extends AbstractPower
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	
+    	updateDescription();
     }
     
     @Override

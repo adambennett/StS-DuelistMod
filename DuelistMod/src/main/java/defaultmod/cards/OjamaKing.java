@@ -80,7 +80,7 @@ public class OjamaKing extends DuelistCard
 		}
 		
 		// Give 3 Spell Counters to enemy
-		applyPower(new SpellCounterPower(p, p, COUNTERS), m);
+		//applyPower(new SpellCounterPower(p, p, COUNTERS), m);
 
     }
 

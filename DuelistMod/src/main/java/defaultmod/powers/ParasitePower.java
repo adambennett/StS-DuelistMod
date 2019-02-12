@@ -44,14 +44,14 @@ public class ParasitePower extends AbstractPower
     }
     
     @Override
-    public void atStartOfTurn() 
-    {
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
     	updateChances();
     	updateDescription();
     	int randomTurnNum = ThreadLocalRandom.current().nextInt(1, turnChance + 1);
     	int chance = ThreadLocalRandom.current().nextInt(0, debuffChance + 1);
     	System.out.println("theDuelist:ParasitePower --- > Rolled: " + chance);
-    	if (chance == 1) 
+    	if (chance < 2) 
     	{
     		this.flash();
     		
@@ -70,6 +70,20 @@ public class ParasitePower extends AbstractPower
     			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, AbstractDungeon.player, randomDebuff));
     		}
     	}
+    	
+    	if (this.amount > 0) { this.amount = 0; }
+	}
+    
+    @Override
+    public void atStartOfTurn() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
     }
     
     @Override
@@ -89,11 +103,11 @@ public class ParasitePower extends AbstractPower
 	    	if (percent == 1) { debuffChance = 1; turnChance = 5; }
 	    	else if (percent >= 0.8) { debuffChance = 2; turnChance = 4; }
 	    	else if (percent >= 0.6) { debuffChance = 3; turnChance = 4; }
-	    	else if (percent >= 0.5) { debuffChance = 3; turnChance = 3; }
-	    	else if (percent >= 0.4) { debuffChance = 3; turnChance = 3; }
-	    	else if (percent >= 0.25) { debuffChance = 4; turnChance = 2; }
-	    	else if (percent >= 0.2) { debuffChance = 4; turnChance = 2; }
-	    	else { debuffChance = 4;  turnChance = 2; }
+	    	else if (percent >= 0.5) { debuffChance = 4; turnChance = 3; }
+	    	else if (percent >= 0.4) { debuffChance = 5; turnChance = 3; }
+	    	else if (percent >= 0.25) { debuffChance = 6; turnChance = 2; }
+	    	else if (percent >= 0.2) { debuffChance = 7; turnChance = 2; }
+	    	else { debuffChance = 8;  turnChance = 2; }
 	    	System.out.println("theDuelist:ParasitePower --- > Debuff chance changed: " + debuffChance);
 	    	System.out.println("theDuelist:ParasitePower --- > Percent was: " + percent);
     	}

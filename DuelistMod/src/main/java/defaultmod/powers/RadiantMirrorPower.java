@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -40,6 +40,24 @@ public class RadiantMirrorPower extends AbstractPower
         this.upgrade = upgrade;
         this.type = PowerType.BUFF;
     }
+    
+    @Override
+    public void atStartOfTurn() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+    	if (this.amount > 0) { this.amount = 0; }
+	}
 
     @Override
     public int onLoseHp(int damageAmount)

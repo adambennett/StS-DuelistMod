@@ -33,7 +33,7 @@
 },
 "theDuelist:GreedShardPower": {
         "NAME": "Shard of Greed",
-        "DESCRIPTIONS": ["Every #b3 turns, draw #b1 extra card at the start of turn. TURN: #b"]
+        "DESCRIPTIONS": ["Every #b3 turns, draw #b", " extra card(s) at the start of turn. TURN: #b"]
 },
 "theDuelist:MirrorPower": {
         "NAME": "Mirror Force",
@@ -93,7 +93,7 @@
 },
 "theDuelist:ParasitePower": {
         "NAME": "Parasite Paracide",
-        "DESCRIPTIONS": ["At the start of turn, have a chance to #ydebuff random enemies. Chances are raised with more #ysummon stacks. #yChance #yModifier: #b" ]
+        "DESCRIPTIONS": ["At the end of turn, have a chance to #ydebuff random enemies. Chances are raised with more #ysummon stacks. #yChance #yModifier: #b" ]
 },
 "theDuelist:StormingMirrorPower": {
         "NAME": "Storming Mirror Force",

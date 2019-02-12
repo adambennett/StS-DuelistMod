@@ -26,14 +26,14 @@ public class SliferSky extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 4;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public SliferSky() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.GOD);
-        this.tributes = 4;
+        this.tributes = 5;
         this.misc = 0;
     }
 
@@ -56,7 +56,7 @@ public class SliferSky extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(3);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

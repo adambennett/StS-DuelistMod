@@ -7,13 +7,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.mod.replay.orbs.CrystalOrb;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.ModifyMagicNumberAction;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
+import defaultmod.powers.ToonWorldPower;
 
 public class ToonDarkMagicianGirl extends DuelistCard 
 {
@@ -33,7 +35,6 @@ public class ToonDarkMagicianGirl extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
     private static final int SUMMONS = 1;
-    private static final int COUNTERS = 6;
     private static final int OVERFLOW_AMT = 3;
     private static final int U_OVERFLOW = 2;
     private static int MIN_TURNS_ROLL = 4;
@@ -53,7 +54,9 @@ public class ToonDarkMagicianGirl extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, SUMMONS);
-    	applyPower(new SpellCounterPower(p, p, COUNTERS), m);
+    	//applyPower(new SpellCounterPower(p, p, COUNTERS), m);
+    	AbstractOrb crystal = new CrystalOrb();
+    	channel(crystal);
     }
     
     @Override

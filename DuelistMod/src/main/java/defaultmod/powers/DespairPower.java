@@ -2,9 +2,11 @@ package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.abstracts.CustomCard;
@@ -48,11 +50,24 @@ public class DespairPower extends AbstractPower
 		ATTACHED_AXE = card;
 		STR_LOSS = strLoss;
 	}
-
+	
+	@Override
+    public void atStartOfTurn() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
 	// At the end of the turn, remove gained Strength.
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
+		if (this.amount > 0) { this.amount = 0; }
 		int tribs = AxeDespair.tribute(AbstractDungeon.player, TRIBUTES, false);
 		if (tribs < TRIBUTES)
 		{

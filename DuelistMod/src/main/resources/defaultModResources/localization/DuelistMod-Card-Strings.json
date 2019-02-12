@@ -176,8 +176,8 @@
 	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "Giant Trunade",
-		"DESCRIPTION": "Remove all Spell Counters from an enemy. Gain !M! HP for every !D! Spell Counters removed. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from an enemy. Gain !M! HP for every !D! Spell Counters removed. Exhaust."
+		"DESCRIPTION": "Evoke all Orbs. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Evoke all Orbs."
 	},
 	"theDuelist:GracefulCharity": {
 		"NAME": "Graceful Charity",
@@ -316,8 +316,8 @@
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
-		"DESCRIPTION": "At the start of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks.",
-		"UPGRADE_DESCRIPTION": "At the start of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks."
+		"DESCRIPTION": "At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks.",
+		"UPGRADE_DESCRIPTION": "At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks."
 	},
 	"theDuelist:PotAvarice": {
 		"NAME": "Pot of Avarice",
@@ -406,8 +406,8 @@
 	},
 	"theDuelist:SliferSky": {
 		"NAME": "Slifer Sky Dragon",
-		"DESCRIPTION": "Tribute 4. At the start of turn, Tribute all Summons and Channel a random Orb for each.",
-		"UPGRADE_DESCRIPTION": "Tribute 4. At the start of turn, Tribute all Summons and Channel a random Orb for each."
+		"DESCRIPTION": "Tribute 5. Whenever you Summon,  Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Tribute 5. Whenever you Summon,  Channel a random Orb."
 	},
 	"theDuelist:ShardGreed": {
 		"NAME": "Shard of Greed",
@@ -417,7 +417,7 @@
 	"theDuelist:SummonedSkull": {
 		"NAME": "Summoned Skull",
 		"DESCRIPTION": "Tribute !M!. Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Tribute !M!. Deal !D! damage."
 	},
 	"theDuelist:SwordsBurning": {
 		"NAME": "Swords: Burning Light",
@@ -456,13 +456,13 @@
 	},
 	"theDuelist:DarkMirrorForce": {
 		"NAME": "Dark Mirror Force",
-		"DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage.",
-		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage."
+		"DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage. Exhaust."
 	},
 	"theDuelist:RedEyesToon": {
 		"NAME": "Red Eyes Toon",
-		"DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through block).",
-		"UPGRADE_DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through block)."
+		"DESCRIPTION": "Toon NL Tribute 3. NL Deal !D! damage (through block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Tribute 3. NL Deal !D! damage (through block)."
 	},
 	"theDuelist:StormingMirrorForce": {
 		"NAME": "Storming Mirror Force",
@@ -506,8 +506,8 @@
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",
-		"DESCRIPTION": "Toon NL Summon 1. NL Apply 6 Spell Counters. NL Overflow !M! - Apply a random buff.",
-		"UPGRADE_DESCRIPTION": "Toon NL Summon 1. NL Apply 6 Spell Counters. NL Overflow !M! - Apply a random buff."
+		"DESCRIPTION": "Toon NL Summon 1. NL Channel a Crystal. NL Overflow !M! - Apply a random buff.",
+		"UPGRADE_DESCRIPTION": "Toon NL Summon 1. NL Channel a Crystal. NL Overflow !M! - Apply a random buff."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "Toon Gemini Elf",

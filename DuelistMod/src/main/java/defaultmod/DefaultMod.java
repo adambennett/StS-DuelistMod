@@ -469,7 +469,7 @@ public class DefaultMod
 		BaseMod.addCard(new GateGuardian());
 		BaseMod.addCard(new GeminiElf());
 		BaseMod.addCard(new GiantSoldier());
-		//BaseMod.addCard(new GiantTrunade());
+		BaseMod.addCard(new GiantTrunade());
 		BaseMod.addCard(new GracefulCharity());
 		//BaseMod.addCard(new HarpieFeather());
 		BaseMod.addCard(new Hinotoma());
@@ -531,7 +531,7 @@ public class DefaultMod
 		BaseMod.addCard(new ToonBarrelDragon());
 		//BaseMod.addCard(new ToonBriefcase());
 		BaseMod.addCard(new ToonDarkMagician());
-		//BaseMod.addCard(new ToonDarkMagicianGirl());
+		BaseMod.addCard(new ToonDarkMagicianGirl());
 		BaseMod.addCard(new ToonGeminiElf());
 		BaseMod.addCard(new ToonMermaid());
 		BaseMod.addCard(new ToonSummonedSkull());
@@ -580,7 +580,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(GateGuardian.ID);
 		UnlockTracker.unlockCard(GeminiElf.ID);
 		UnlockTracker.unlockCard(GiantSoldier.ID);
-		//UnlockTracker.unlockCard(GiantTrunade.ID);
+		UnlockTracker.unlockCard(GiantTrunade.ID);
 		UnlockTracker.unlockCard(GracefulCharity.ID);
 		//UnlockTracker.unlockCard(HarpieFeather.ID);
 		UnlockTracker.unlockCard(Hinotoma.ID);
@@ -642,7 +642,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(ToonBarrelDragon.ID);
 		//UnlockTracker.unlockCard(ToonBriefcase.ID);
 		UnlockTracker.unlockCard(ToonDarkMagician.ID);
-		//UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
+		UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
 		UnlockTracker.unlockCard(ToonGeminiElf.ID);
 		UnlockTracker.unlockCard(ToonMermaid.ID);
 		UnlockTracker.unlockCard(ToonSummonedSkull.ID);
@@ -696,16 +696,18 @@ public class DefaultMod
     public void receiveEditKeywords() {
         final String[] placeholder = { "keyword", "keywords", "Keyword", "Keywords" };
         BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
-        BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of 5 #ySummons.");
+        BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of #b5 #ySummons.");
         BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes", "sacrifice"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
-        BaseMod.addKeyword(new String[] {"Increment", "increment" }, "Increase your maximum #ySummons by X.");
-        BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "#ySpell #yCounters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
+        BaseMod.addKeyword(new String[] {"Increment", "increment" }, "Increase your maximum #ySummons by the number given.");
+        //BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "#ySpell #yCounters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
         BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "A powerful monster found within your Grandpa's deck.");
-        BaseMod.addKeyword(new String[] {"Gate", "gate"}, "Orb: Deal damage to ALL enemies, gain #yEnergy and #yBlock.");
+        BaseMod.addKeyword(new String[] {"Gate", "gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock.");
+        BaseMod.addKeyword(new String[] {"Buffer", "buffer"}, "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ydebuffs.");
+        BaseMod.addKeyword(new String[] {"Summoner", "summoner"}, "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons.");
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
-        BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if Toon World is active.");
-        BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the Magnet Warrior monsters. #yMagnets have no inherent effect.");
-        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add 3 random cards to your hand, they cost 0 this turn. Apply 3 random #ybuffs. Apply 3 random #ydebuffs and 3 #ySpell #yCounters to an enemy.");
+        BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active.");
+        BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
+        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add #b3 random cards to your hand, they cost #b0 this turn. Apply #b3 random #ybuffs. Apply #b3 random #ydebuffs to an enemy.");
        
     }
 

@@ -1,9 +1,11 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
@@ -46,7 +48,16 @@ public class TributeSicknessPower extends AbstractPower
     			DuelistCard.removePower(instance, AbstractDungeon.player);
     		}
     	}
+    	
+    	updateDescription();
 	}
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	updateDescription();
+    }
+    
 
     @Override
 	public void updateDescription() 

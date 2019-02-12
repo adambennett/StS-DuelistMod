@@ -81,7 +81,8 @@ public class Buffer extends AbstractOrb
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
 		for (AbstractPower a : playerPowers)
 		{
-			a.amount += this.passiveAmount;
+			if (!a.name.equals("Summons")) { a.amount += this.passiveAmount; }
+			//else { DuelistCard.summonLite(AbstractDungeon.player, this.passiveAmount); }
 		}
 	}
 

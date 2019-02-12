@@ -1,9 +1,11 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
@@ -30,6 +32,24 @@ public class ToonWorldPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
     }
+    
+    @Override
+    public void atStartOfTurn() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+    	if (this.amount > 0) { this.amount = 0; }
+	}
 
     @Override
 	public void updateDescription() {

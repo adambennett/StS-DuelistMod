@@ -2,9 +2,11 @@ package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import defaultmod.DefaultMod;
 
@@ -32,8 +34,22 @@ public class GreedShardPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.amount = 0;
         turnCounter = 0;
     }
+   
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+    	if (this.amount > 0) { this.amount = 0; }
+	}
+
     
     @Override
     public void atStartOfTurn() 
@@ -44,11 +60,12 @@ public class GreedShardPower extends AbstractPower
     		AbstractDungeon.actionManager.addToTop(new DrawCardAction(AbstractDungeon.player, 1));
     	}
     	turnCounter++;
+    	if (this.amount > 0) { this.amount = 0; }
     	updateDescription();
     }
 
     @Override
 	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + turnCounter;
+        this.description = DESCRIPTIONS[0] + 1 + DESCRIPTIONS[1] + turnCounter;
     }
 }

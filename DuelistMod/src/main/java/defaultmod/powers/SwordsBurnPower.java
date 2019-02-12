@@ -35,17 +35,20 @@ public class SwordsBurnPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
     }
+ 
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
     	finished = false;
+    	if (this.amount > 0) { this.amount = 0; }
     }
     
     @Override
     public void atStartOfTurn() 
     {
     	finished = false;
+    	if (this.amount > 0) { this.amount = 0; }
     }
     
     public void onEvokeOrb(AbstractOrb orb) 
@@ -58,6 +61,7 @@ public class SwordsBurnPower extends AbstractPower
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
     	finished = false;
+    	if (this.amount > 0) { this.amount = 0; }
 	}
     
 

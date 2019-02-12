@@ -1,8 +1,10 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
@@ -46,7 +48,21 @@ public class ImperialPower extends AbstractPower
     {
     	ImperialOrder.gainGold(GOLD, this.owner, true);
     	ImperialOrder.damageSelf(DAMAGE);
+    	if (this.amount > 0) { this.amount = 0; }
     }
+
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+    	if (this.amount > 0) { this.amount = 0; }
+	}
     
     @Override
 	public void updateDescription() 

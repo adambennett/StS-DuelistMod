@@ -3,11 +3,12 @@ package defaultmod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
@@ -38,13 +39,31 @@ public class MirrorForcePower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.amount = newAmount;
+        this.amount = 0;
         this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
         if (upgrade) { MULT = 2; }
     }
+    
+    @Override
+    public void atStartOfTurn() 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount > 0) { this.amount = 0; }
+    }
+    
+    @Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+    	if (this.amount > 0) { this.amount = 0; }
+	}
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount)

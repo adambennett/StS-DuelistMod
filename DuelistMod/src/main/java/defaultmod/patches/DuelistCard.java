@@ -237,6 +237,25 @@ public abstract class DuelistCard extends CustomCard
 		
 		// Check for Summoning Sickness
 		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(SUMMONS * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+		
+		// Check for Slifer
+		if (p.hasPower(SliferSkyPower.POWER_ID)) { channelRandomOrb(); } 
+
+		// Update UI
+		summonsInstance.updateCount(summonsInstance.amount);
+		summonsInstance.updateDescription();
+	}
+	
+	public static void summonLite(AbstractPlayer p, int SUMMONS)
+	{
+		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
+		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 0), 0)); }
+
+		// Get summon power instance
+		SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+		
+		// Add SUMMONS
+		summonsInstance.amount += SUMMONS;
 
 		// Update UI
 		summonsInstance.updateCount(summonsInstance.amount);
@@ -449,10 +468,10 @@ public abstract class DuelistCard extends CustomCard
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
 
 		// Deal direct damage to target HP
-		AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
 
 		// Restore original target block
-		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new GainBlockAction(m, m, targetArmor)); }
+		if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }
 	}
 
 	protected void upgradeName(String newName) 
@@ -513,7 +532,8 @@ public abstract class DuelistCard extends CustomCard
 		//AbstractPower treasure = new HoldsTreasurePower(targetMonster);
 		//AbstractPower aging = new AgingPower(targetMonster, turnNum * 3);
 		AbstractPower blighted = new AmplifyDamagePower(targetMonster, turnNum);
-		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, goop, blighted};
+		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
+		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, goop, blighted, constricted};
 
 		// Get randomized debuff
 		int randomDebuffNum = ThreadLocalRandom.current().nextInt(0, debuffs.length);
@@ -721,6 +741,7 @@ public abstract class DuelistCard extends CustomCard
 			case "Mini L. Wall":
 				return new SmallLabyrinthWall();
 			default:
+				/*
 				String[] monsters = new String[] 
 				{		
 					"A. Magnet Warrior", "Barrel Dragon", "B. Magnet Warrior", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
@@ -733,6 +754,19 @@ public abstract class DuelistCard extends CustomCard
 					"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
 					"Toon D.M. Girl", "Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall"
 				};
+				*/
+				String[] monsters = new String[] 
+						{		
+							"A. Magnet Warrior", "Barrel Dragon", "B. Magnet Warrior", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
+							"Buster Blader", "Cannon Soldier", "Castle Dark Illusion", "Catapult Turtle", "Celtic Guardian", "Darklord Marie", "Dark Magician",
+							"D.M. Girl", "Exodia Head", "Exodia L. Arm", "Exodia L. Leg", "Exodia R. Arm", "Exodia R. Leg", "Fiend Megacyber", "Flame Swordsman",
+							"G. Fierce Knight", "G. Magnet Warrior", "Gate Guardian", "Giant Soldier", "Injection Fairly Lily", "Insect Queen", "Judge Man",
+							"Kuriboh", "Labyrinth Wall", "Legendary Fisherman", "Millennium Shield", "Obelisk", "Ojama Black", "Ojama Green", "Ojama King",
+							"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
+							"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Valkyrion", "Red Eyes Toon",
+							"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
+							"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall"
+						};
 				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
 				return newCopyOfMonster(monsters[randomCard]);
 		}
