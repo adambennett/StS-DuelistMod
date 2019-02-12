@@ -1,6 +1,6 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.Make0CostHandCardAction;
 import defaultmod.patches.*;
 
 public class CardDestruction extends DuelistCard 
@@ -55,9 +56,7 @@ public class CardDestruction extends DuelistCard
 	    	// For each discarded card, add a random card to hand
 	    	for (int i = 0; i < handSize; i++)
 	    	{
-	    		AbstractCard monsterCard = newCopyOfMonster("big ol' monster pls");
-	    		monsterCard.modifyCostForTurn(0);
-	    		addCardToHand(monsterCard);
+	    		AbstractDungeon.actionManager.addToBottom(new Make0CostHandCardAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
 	    	}
     	}
     	else
@@ -65,12 +64,8 @@ public class CardDestruction extends DuelistCard
     		// For each discarded card, add 2 random cards to hand
 	    	for (int i = 0; i < handSize; i++)
 	    	{
-	    		AbstractCard monsterCard = newCopyOfMonster("big ol' monster pls");
-	    		AbstractCard monsterCardB = newCopyOfMonster("big ol' monster pls");
-	    		monsterCard.modifyCostForTurn(0);
-	    		monsterCardB.modifyCostForTurn(0);
-	    		addCardToHand(monsterCard);
-	    		addCardToHand(monsterCardB);
+	    		AbstractDungeon.actionManager.addToBottom(new Make0CostHandCardAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
+	    		AbstractDungeon.actionManager.addToBottom(new Make0CostHandCardAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
 	    	}
     	}
 

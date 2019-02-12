@@ -16,6 +16,7 @@ public class Make0CostHandCardAction extends AbstractGameAction
 
 	public Make0CostHandCardAction(AbstractCard card, boolean isOtherCardInCenter) {
 		com.megacrit.cardcrawl.unlock.UnlockTracker.markCardAsSeen(card.cardID);
+		card.costForTurn = 0;
 		this.amount = 1;
 		this.actionType = com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = 0.35F;
@@ -30,6 +31,7 @@ public class Make0CostHandCardAction extends AbstractGameAction
 
 	public Make0CostHandCardAction(AbstractCard card, int amount) {
 		com.megacrit.cardcrawl.unlock.UnlockTracker.markCardAsSeen(card.cardID);
+		card.costForTurn = 0;
 		this.amount = amount;
 		this.actionType = com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = 0.35F;

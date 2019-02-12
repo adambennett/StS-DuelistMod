@@ -1,14 +1,18 @@
 package defaultmod.cards;
 
+import java.util.concurrent.ThreadLocalRandom;
+
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.MagicCylinderPower;
 
 public class MagicCylinder extends DuelistCard 
 {
@@ -27,7 +31,9 @@ public class MagicCylinder extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 1;
-	private static boolean uSwitch = false;
+	//private static boolean uSwitch = false;
+	public int MIN_TURNS = 1;
+	public int MAX_TURNS = 4;
 	// /STAT DECLARATION/
 
 	public MagicCylinder() {
@@ -39,8 +45,15 @@ public class MagicCylinder extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		if (upgraded) { uSwitch = true; }
-		applyPowerToSelf(new MagicCylinderPower(p, 1, uSwitch));
+		//if (upgraded) { uSwitch = true; }
+		//applyPowerToSelf(new MagicCylinderPower(p, 1, uSwitch));
+		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReflectionPower(AbstractDungeon.player, 5), 5));
+		if (upgraded) 
+    	{
+    		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS, MAX_TURNS);
+    		AbstractPower buff = MagicCylinder.getRandomBuff(AbstractDungeon.player, randomTurnNum);
+    		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, buff, randomTurnNum));
+    	}
 	}
 
 	// Which card to return when making a copy of this card.

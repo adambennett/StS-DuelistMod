@@ -56,8 +56,8 @@
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
-		"DESCRIPTION": "Discard your entire hand. Add !M! random 0 cost monsters to your hand for each card discarded. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Discard your entire hand. Add !M! random 0 cost monsters to your hand for each card discarded. Exhaust."
+		"DESCRIPTION": "Discard your entire hand. Add !M! random 0 cost cards to your hand for each card discarded. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Discard your entire hand. Add !M! random 0 cost cards to your hand for each card discarded. Exhaust."
 	},
 	"theDuelist:CastleDarkIllusions": {
 		"NAME": "Castle Dark Illusion",
@@ -246,8 +246,8 @@
 	},
 	"theDuelist:MagicCylinder": {
 		"NAME": "Magic Cylinder",
-		"DESCRIPTION": "The next time you lose HP, gain 5 Reflection.",
-		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain 5 Reflection and a random buff."
+		"DESCRIPTION": "Gain 5 Reflection.",
+		"UPGRADE_DESCRIPTION": "Gain 5 Reflection and a random buff."
 	},
 	"theDuelist:Mausoleum": {
 		"NAME": "Emperor Mausoleum",
