@@ -33,7 +33,7 @@ public class SuperheavySwordsman extends DuelistCard
 
     public SuperheavySwordsman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = 5;
         this.summons = 1;
         this.dex = 1;
         this.tags.add(DefaultMod.MONSTER);
@@ -45,7 +45,7 @@ public class SuperheavySwordsman extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons);
-    	attack(m, AFX, this.damage);
+    	if (upgraded) { attack(m, AFX, this.damage); }
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 
@@ -60,7 +60,7 @@ public class SuperheavySwordsman extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            //this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

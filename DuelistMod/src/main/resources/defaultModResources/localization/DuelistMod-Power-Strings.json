@@ -103,6 +103,10 @@
         "NAME": "Radiant Mirror Force",
         "DESCRIPTIONS": ["The next time you lose HP, all enemies lose all block", ".", " and take 5 damage." ]
 },
+"theDuelist:SwordsBurnPower": {
+        "NAME": "Swords of Burning Light",
+        "DESCRIPTIONS": ["Each time you #yEvoke an #yOrb, #yChannel a random #yOrb." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

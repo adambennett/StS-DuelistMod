@@ -28,7 +28,7 @@ public class BlueEyesToon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final int COST = 0;
     private static final int DAMAGE = 25;
     private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
@@ -63,7 +63,8 @@ public class BlueEyesToon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            //this.upgradeBaseCost(1);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

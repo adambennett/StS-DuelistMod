@@ -6,7 +6,7 @@ TODO
 - Add character sprite/button/overall thematic art
 - Design and add some relics
 - Design and add some potions
-- Finish implementing rest of the cards (99/112 planned)
+- Finish implementing rest of the cards (100/112 planned)
 - Balance and QA
 
 Some in game screenshots taken of the current build (2-11-19). Everything is absolutely always subject to change.

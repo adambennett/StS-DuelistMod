@@ -31,7 +31,7 @@ public class AncientRules extends DuelistCard
     public AncientRules() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         //this.exhaust = true;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.summons = this.magicNumber;
         this.upgradeSummons = 1;
         this.tags.add(DefaultMod.SPELL);

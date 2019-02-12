@@ -27,15 +27,14 @@ public class ImperialOrder extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static int GOLD = 50;
-    private static int DMG = 10;
+    private static int GOLD = 25;
+    private static int DMG = 3;
     // /STAT DECLARATION/
 
     public ImperialOrder() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
         this.magicNumber = this.baseMagicNumber = GOLD;
-        this.damage = this.baseDamage = DMG;
     }
 
     // Actions the card should do.

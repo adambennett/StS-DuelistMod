@@ -27,7 +27,7 @@ public class TheDuelist extends CustomPlayer {
 	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
 	// =============== BASE STATS =================
-	public static final int ENERGY_PER_TURN = 2;
+	public static final int ENERGY_PER_TURN = 3;
 	public static final int STARTING_HP = 80;
 	public static final int MAX_HP = 80;
 	public static final int STARTING_GOLD = 99;
@@ -123,7 +123,9 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(GiantSoldier.ID);
 		retVal.add(GiantSoldier.ID);
 		retVal.add(CastleWalls.ID);
+		retVal.add(CastleWalls.ID);
 		retVal.add(ScrapFactory.ID);
+		retVal.add(Ookazi.ID);
 		retVal.add(Ookazi.ID);
 		retVal.add(SummonedSkull.ID);
 

@@ -22,27 +22,29 @@ public class SuperheavyWaraji extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 2;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public SuperheavyWaraji() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = 2;
+        this.tributes = 4;
         this.dex = 3;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
+        this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = this.dex;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons);
-    	applyPowerToSelf(new DexterityPower(p, this.dex));
+    	tribute(p, this.tributes, false);
+    	applyPowerToSelf(new DexterityPower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -56,7 +58,8 @@ public class SuperheavyWaraji extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            //this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

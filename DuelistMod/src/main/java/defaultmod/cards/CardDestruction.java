@@ -55,8 +55,9 @@ public class CardDestruction extends DuelistCard
 	    	// For each discarded card, add a random card to hand
 	    	for (int i = 0; i < handSize; i++)
 	    	{
-	    		//AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
-	    		addRandomCardToHand();
+	    		AbstractCard monsterCard = newCopyOfMonster("big ol' monster pls");
+	    		monsterCard.modifyCostForTurn(0);
+	    		addCardToHand(monsterCard);
 	    	}
     	}
     	else
@@ -64,8 +65,12 @@ public class CardDestruction extends DuelistCard
     		// For each discarded card, add 2 random cards to hand
 	    	for (int i = 0; i < handSize; i++)
 	    	{
-	    		AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
-	    		AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
+	    		AbstractCard monsterCard = newCopyOfMonster("big ol' monster pls");
+	    		AbstractCard monsterCardB = newCopyOfMonster("big ol' monster pls");
+	    		monsterCard.modifyCostForTurn(0);
+	    		monsterCardB.modifyCostForTurn(0);
+	    		addCardToHand(monsterCard);
+	    		addCardToHand(monsterCardB);
 	    	}
     	}
 

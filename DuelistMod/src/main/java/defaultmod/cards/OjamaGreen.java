@@ -27,10 +27,10 @@ public class OjamaGreen extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int SUMMONS = 1;
-    private static int MIN_TURNS_ROLL = 1;
-    private static int MAX_TURNS_ROLL = 2;
+    private static int MIN_TURNS_ROLL = 3;
+    private static int MAX_TURNS_ROLL = 5;
     // /STAT DECLARATION/
 
     public OjamaGreen() {
@@ -76,8 +76,8 @@ public class OjamaGreen extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            MIN_TURNS_ROLL = 1;
-            MAX_TURNS_ROLL = 4;
+            MIN_TURNS_ROLL = 5;
+            MAX_TURNS_ROLL = 7;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

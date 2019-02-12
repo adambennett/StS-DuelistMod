@@ -33,8 +33,8 @@ public class InjectionFairy extends DuelistCard
     public InjectionFairy() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = 1;
-        this.heal = this.baseMagicNumber = this.magicNumber = 5;
-        this.baseDamage = this.damage = 5;
+        this.heal = this.baseMagicNumber = this.magicNumber = 6;
+        this.baseDamage = this.damage = 6;
         this.tags.add(DefaultMod.MONSTER);
     }
 
@@ -44,7 +44,7 @@ public class InjectionFairy extends DuelistCard
     {
        summon(p, this.summons);
        heal(p, this.heal);
-       attack(m, AFX, this.damage);
+       if (upgraded) { attack(m, AFX, this.damage); }
     }
 
     // Which card to return when making a copy of this card.
@@ -58,7 +58,7 @@ public class InjectionFairy extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

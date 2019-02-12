@@ -258,6 +258,7 @@ public class DefaultMod
     public static final String RADIANT_POWER = "powers/DarkMirrorPower.png";
     public static final String PARASITE_POWER = "powers/ParasitePower.png";
     public static final String STORMING_POWER = "powers/StormingMirrorPower.png";
+    public static final String SWORDS_BURN_POWER = "powers/SwordsBurnPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -509,7 +510,7 @@ public class DefaultMod
 		BaseMod.addCard(new SuperheavyScales());
 		BaseMod.addCard(new SuperheavySwordsman());
 		BaseMod.addCard(new SuperheavyWaraji());
-		//BaseMod.addCard(new SwordsBurning());
+		BaseMod.addCard(new SwordsBurning());
 		//BaseMod.addCard(new SwordsConcealing());
 		//BaseMod.addCard(new SwordsRevealing());
 		//BaseMod.addCard(new TimeWizard());
@@ -620,7 +621,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(SuperheavyScales.ID);
 		UnlockTracker.unlockCard(SuperheavySwordsman.ID);
 		UnlockTracker.unlockCard(SuperheavyWaraji.ID);
-		//UnlockTracker.unlockCard(SwordsBurning.ID);
+		UnlockTracker.unlockCard(SwordsBurning.ID);
 		//UnlockTracker.unlockCard(SwordsConcealing.ID);
 		//UnlockTracker.unlockCard(SwordsRevealing.ID);
 		//UnlockTracker.unlockCard(TimeWizard.ID);

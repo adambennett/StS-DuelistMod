@@ -58,7 +58,7 @@ public class HarpieFeather extends DuelistCard
     	}
     	
     	if (damageTotal < 0) { damageTotal = 0; }
-    	this.baseDamage = damageTotal;
+    	this.baseDamage = damageTotal * 2;
     	this.multiDamage = new int[] {damageTotal, damageTotal, damageTotal,damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal };
     	attackAllEnemies(AFX, this.multiDamage);
     }

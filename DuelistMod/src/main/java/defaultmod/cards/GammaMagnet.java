@@ -29,9 +29,8 @@ public class GammaMagnet extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int SUMMONS = 1;
-    private static final int DRAW = 1;
     // /STAT DECLARATION/
 
     public GammaMagnet() 
@@ -39,6 +38,7 @@ public class GammaMagnet extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
+        this.draw = 1;
     }
 
     // Actions the card should do.
@@ -51,7 +51,7 @@ public class GammaMagnet extends DuelistCard
     	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p)));
     	
     	// Draw cards
-    	draw(DRAW);
+    	draw(this.draw);
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +65,8 @@ public class GammaMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            //this.upgradeBaseCost(0);
+            this.draw = 2;
             this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

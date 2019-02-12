@@ -30,10 +30,10 @@ public class OjamaKnight extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
     private static int TRIBUTES = 1;
-    private static int MIN_BUFF_TURNS_ROLL = 1;
-    private static int MAX_BUFF_TURNS_ROLL = 2;
-    private static int MIN_DEBUFF_TURNS_ROLL = 1;
-    private static int MAX_DEBUFF_TURNS_ROLL = 4;
+    private static int MIN_BUFF_TURNS_ROLL = 5;
+    private static int MAX_BUFF_TURNS_ROLL = 8;
+    private static int MIN_DEBUFF_TURNS_ROLL = 5;
+    private static int MAX_DEBUFF_TURNS_ROLL = 8;
     // /STAT DECLARATION/
 
     public OjamaKnight() {
@@ -88,8 +88,8 @@ public class OjamaKnight extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            MAX_DEBUFF_TURNS_ROLL = 6;
-            MAX_BUFF_TURNS_ROLL = 4;
+            MAX_DEBUFF_TURNS_ROLL = 11;
+            MAX_BUFF_TURNS_ROLL = 9;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

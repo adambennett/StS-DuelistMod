@@ -23,11 +23,11 @@ public class DarkHole extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DarkHole() 
@@ -44,8 +44,8 @@ public class DarkHole extends DuelistCard
     	if (m.currentBlock > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
 
     	// Set max summons to 4 or 5
-    	if (this.upgraded) { setMaxSummons(p, 5); }
-    	else { setMaxSummons(p, 4); }
+    	//if (this.upgraded) { setMaxSummons(p, 5); }
+    	//else { setMaxSummons(p, 4); }
     }
 
     // Which card to return when making a copy of this card.
@@ -59,7 +59,7 @@ public class DarkHole extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

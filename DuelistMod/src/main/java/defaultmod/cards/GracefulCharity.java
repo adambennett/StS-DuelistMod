@@ -25,7 +25,7 @@ public class GracefulCharity extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public GracefulCharity() {
@@ -39,7 +39,8 @@ public class GracefulCharity extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
        draw(3);
-       discard(2, false);
+       if (!upgraded) { discard(2, false); }
+       else { discard(1, false); }
     }
 
     // Which card to return when making a copy of this card.
@@ -53,7 +54,7 @@ public class GracefulCharity extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

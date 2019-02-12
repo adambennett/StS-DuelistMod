@@ -42,24 +42,20 @@ public class CannonPower extends AbstractPower
     @Override
     public void atStartOfTurn() 
     {
-    	// Only do this if player does not also have Catapult Turtle - in that case they would want the 10 damage to all over 5 a random enemy
-	    if (!this.owner.hasPower(CatapultPower.POWER_ID))
-	    {
-    		// If owner still has power
-	    	if (this.owner.hasPower(CannonPower.POWER_ID))
-	    	{
-	    		for (int i = 0; i < this.amount; i++)
-				{
-	    			if (this.owner.hasPower(SummonPower.POWER_ID))
-	    			{
-	    				CannonSoldier.tribute(AbstractDungeon.player, TRIBUTES, false);
-	    				// Deal 5 damage to a random enemy for each copy of Cannon Soldier
-						AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-						AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
-	    			}
-	    		}
-			}
-	    }
+		// If owner still has power
+    	if (this.owner.hasPower(CannonPower.POWER_ID))
+    	{
+    		for (int i = 0; i < this.amount; i++)
+			{
+    			if (this.owner.hasPower(SummonPower.POWER_ID))
+    			{
+    				CannonSoldier.tribute(AbstractDungeon.player, TRIBUTES, false);
+    				// Deal 5 damage to a random enemy for each copy of Cannon Soldier
+					AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
+					AbstractDungeon.actionManager.addToTop(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+    			}
+    		}
+		}
     }
     
     @Override

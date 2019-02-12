@@ -60,7 +60,8 @@ public class SummonedSkull extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.tributes = this.magicNumber = this.baseMagicNumber = 0;
+			//this.tributes = this.magicNumber = this.baseMagicNumber = 0;
+			this.upgradeDamage(4);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -75,7 +76,7 @@ public class SummonedSkull extends DuelistCard
     	if (!canUse) { return false; }
     	
     	// If upgraded, don't need tributes
-    	else if (this.tributes < 1) { return true; }
+    	//else if (this.tributes < 1) { return true; }
     	
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }

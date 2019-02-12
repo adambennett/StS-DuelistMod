@@ -30,15 +30,15 @@ public class Hinotoma extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static int MIN_TIMES = 1;
-    private static int MAX_TIMES = 4;
-    private static int MIN_TIMES_U = 1;
-    private static int MAX_TIMES_U = 5;
+    private static int MIN_TIMES = 2;
+    private static int MAX_TIMES = 6;
+    private static int MIN_TIMES_U = 3;
+    private static int MAX_TIMES_U = 7;
     // /STAT DECLARATION/
 
     public Hinotoma() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 3;
+        this.baseDamage = this.damage = 4;
     }
 
     // Actions the card should do.
@@ -69,7 +69,7 @@ public class Hinotoma extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeDamage(2);
+            //this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

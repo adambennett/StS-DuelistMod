@@ -27,8 +27,8 @@ public class SevenColoredFish extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 0;
-    private static final int DAMAGE = 5;
+    private static final int COST = 1;
+    private static final int DAMAGE = 6;
     private static final int SUMMONS = 1;
     private static final int U_SUMMONS = 1;
     // /STAT DECLARATION/

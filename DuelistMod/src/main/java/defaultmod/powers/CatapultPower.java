@@ -56,7 +56,7 @@ public class CatapultPower extends AbstractPower
 		        	int[] catapultDmg = new int[] {TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG};
 		        	for (int i = 0; i < playerSummons; i++)
 		        	{
-		        		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(this.owner, catapultDmg, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH));
+		        		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.owner, catapultDmg, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH));
 		        	}
     			}
 	        }

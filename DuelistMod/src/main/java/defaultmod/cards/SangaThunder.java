@@ -30,9 +30,9 @@ public class SangaThunder extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int DAMAGE = 10;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 3;
     private static final int TRIBUTES = 1;
     // /STAT DECLARATION/
 
@@ -51,6 +51,8 @@ public class SangaThunder extends DuelistCard
     	tribute(p, TRIBUTES, false, this);
     	attack(m, AFX, this.damage);
     	AbstractOrb orb = new Lightning();
+    	orb.passiveAmount += 1;
+    	if (upgraded) { orb.passiveAmount += 1; }
     	channel(orb);
     }
 
@@ -66,7 +68,7 @@ public class SangaThunder extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.upgradeBaseCost(1);
+            //this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

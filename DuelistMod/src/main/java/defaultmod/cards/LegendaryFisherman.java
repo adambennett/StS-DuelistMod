@@ -36,6 +36,7 @@ public class LegendaryFisherman extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -58,7 +59,8 @@ public class LegendaryFisherman extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            //this.upgradeBaseCost(0);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

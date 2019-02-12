@@ -26,11 +26,10 @@ public class NutrientZ extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 2;
-    private static int HEAL = 20;
-    private static int U_HEAL = 3;
+    private static final int COST = 1;
+    private static int HEAL = 40;
+    private static int U_HEAL = 10;
     private static int HP_CHK = 40;
-    private static int HP_CHK_U = 45;
     private static int debuffs = 3;
     // /STAT DECLARATION/
 
@@ -67,9 +66,8 @@ public class NutrientZ extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeBaseCost(0);
             this.upgradeMagicNumber(U_HEAL);
-            HP_CHK = HP_CHK_U;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

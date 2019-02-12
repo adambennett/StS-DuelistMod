@@ -30,16 +30,16 @@ public class BusterBlader extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
-    private static final int DAMAGE = 10;
+    private static final int COST = 1;
+    private static final int DAMAGE = 14;
     //private static final int UPGRADE_PLUS_DMG = 2;
-    private static final int TRIBUTES = 2;
+    private static final int TRIBUTES = 3;
     // /STAT DECLARATION/
 
     public BusterBlader() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = DAMAGE;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
     }

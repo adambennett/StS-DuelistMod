@@ -28,9 +28,9 @@ public class ChangeHeart extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
-    private static final int MIN_ROLL = 0;
+    private static final int MIN_ROLL = 3;
     private static final int MAX_ROLL = 10;
-    private static final int MIN_ROLL_UPGRADE = 1;
+    private static final int MIN_ROLL_UPGRADE = 5;
     private static final int MAX_ROLL_UPGRADE = 15;
     // /STAT DECLARATION/
 
@@ -63,7 +63,6 @@ public class ChangeHeart extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

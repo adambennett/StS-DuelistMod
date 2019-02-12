@@ -32,11 +32,13 @@ public class ToonBarrelDragon extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	private static final int COST = 2;
+	private static final int COST = 1;
 	private static final int DAMAGE = 0;
-	private static final int TRIBUTES = 2;
-	private static int MIN_DMG = 3;
-	private static int MAX_DMG = 15;
+	private static final int TRIBUTES = 3;
+	private static int MIN_DMG = 15;
+	private static int MAX_DMG = 35;
+	private static int MIN_DMG_U = 20;
+	private static int MAX_DMG_U = 40;
 	// /STAT DECLARATION/
 
 	public ToonBarrelDragon() {
@@ -60,7 +62,9 @@ public class ToonBarrelDragon extends DuelistCard
 		for (int i = 0; i < 5; i++)
 		{
 			int randomNum = ThreadLocalRandom.current().nextInt(MIN_DMG, MAX_DMG + 1);
-			test[i] = randomNum;
+			int randomNumU = ThreadLocalRandom.current().nextInt(MIN_DMG_U, MAX_DMG_U + 1);
+			if (upgraded) { test[i] = randomNum; }
+			else { test[i] = randomNumU; }
 		}
 		this.multiDamage = test;
 		tribute(p, TRIBUTES, false, this);
@@ -78,9 +82,7 @@ public class ToonBarrelDragon extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBaseCost(1);
-			MIN_DMG = 8;
-			MAX_DMG = 20;
+			//this.upgradeBaseCost(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

@@ -31,7 +31,7 @@ public class GiantTrunade extends DuelistCard
 
     public GiantTrunade() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 15;
         this.damage = this.baseDamage = 3;
         this.exhaust = true;
     }

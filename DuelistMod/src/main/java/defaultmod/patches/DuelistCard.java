@@ -24,7 +24,7 @@ import basemod.abstracts.CustomCard;
 import blackrusemod.powers.AmplifyDamagePower;
 import conspire.actions.ObtainGoldAction;
 import conspire.orbs.Water;
-import defaultmod.actions.common.LoseXEnergyAction;
+import defaultmod.actions.common.*;
 import defaultmod.cards.*;
 import defaultmod.orbs.Gate;
 import defaultmod.powers.*;
@@ -60,6 +60,10 @@ public abstract class DuelistCard extends CustomCard
 	public int str;
 	public int magnets;
 	public int chanceMod;
+	public int damageA;
+	public int damageB;
+	public int damageC;
+	public int damageD;
 	// CARD FIELDS
 
 	public DuelistCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET)
@@ -517,6 +521,11 @@ public abstract class DuelistCard extends CustomCard
 	{
 		AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
 	}
+	
+	public static void addRandomCardToHand0Cost()
+	{
+		AbstractDungeon.actionManager.addToBottom(new Make0CostHandCardAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy(), false));
+	}
 
 	public static void addCardToHand(AbstractCard card)
 	{
@@ -838,4 +847,24 @@ public abstract class DuelistCard extends CustomCard
 				return newCopyOfMonster("7-Colored Fish");
 		}
 	}
+	
+	/*
+	public static DuelistCard randomDuelistCard()
+	{
+		String[] monsters = new String[] 
+		{		
+					"A. Magnet Warrior", "Barrel Dragon", "B. Magnet Warrior", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
+					"Buster Blader", "Cannon Soldier", "Castle Dark Illusion", "Catapult Turtle", "Celtic Guardian", "Darklord Marie", "Dark Magician",
+					"D.M. Girl", "Exodia Head", "Exodia L. Arm", "Exodia L. Leg", "Exodia R. Arm", "Exodia R. Leg", "Fiend Megacyber", "Flame Swordsman",
+					"G. Fierce Knight", "G. Magnet Warrior", "Gate Guardian", "Giant Soldier", "Injection Fairly Lily", "Insect Queen", "Judge Man",
+					"Kuriboh", "Labyrinth Wall", "Legendary Fisherman", "Millennium Shield", "Obelisk", "Ojama Black", "Ojama Green", "Ojama King",
+					"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
+					"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Time Wizard", "Valkyrion", "Red Eyes Toon",
+					"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
+					"Toon D.M. Girl", "Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall"
+		};
+		int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
+		return newCopyOfCard(monsters[randomCard]);
+	}
+	*/
 }

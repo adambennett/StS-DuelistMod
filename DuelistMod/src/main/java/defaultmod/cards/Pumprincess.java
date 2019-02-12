@@ -25,11 +25,11 @@ public class Pumprincess extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public Pumprincess() {
@@ -76,7 +76,7 @@ public class Pumprincess extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

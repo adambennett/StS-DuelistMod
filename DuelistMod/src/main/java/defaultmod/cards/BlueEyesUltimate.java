@@ -28,8 +28,8 @@ public class BlueEyesUltimate extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 4;
-    private static final int DAMAGE = 35;
+    private static final int COST = 3;
+    private static final int DAMAGE = 45;
     private static final int UPGRADE_PLUS_DMG = 10;
     private static final int TRIBUTES = 3;
     // /STAT DECLARATION/

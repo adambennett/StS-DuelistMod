@@ -26,11 +26,11 @@ public class Pumpking extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Pumpking() {
@@ -55,15 +55,34 @@ public class Pumpking extends DuelistCard
 	    	AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
 	    	String cardName = chosen.name;
 	    	System.out.println("theDuelist:Pumpking --- > Found: " + cardName);
-	    	DuelistCard cardCopy = newCopyOfMonsterPumpkin(cardName);
-	    	if (cardCopy != null)
+	    	if (!upgraded)
 	    	{
-		    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-		    	cardCopy.upgrade();
-		        cardCopy.freeToPlayOnce = true;
-		        cardCopy.applyPowers();
-		        cardCopy.purgeOnUse = true;
-		        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+		    	DuelistCard cardCopy = newCopyOfMonsterPumpkin(cardName);
+		    	if (cardCopy != null)
+		    	{
+			    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+			    	cardCopy.upgrade();
+			        cardCopy.freeToPlayOnce = true;
+			        cardCopy.applyPowers();
+			        cardCopy.purgeOnUse = true;
+			        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+		    	}
+	    	}
+	    	else
+	    	{
+	    		for (int i = 0; i < 2; i++)
+	    		{
+		    		DuelistCard cardCopy = newCopyOfMonsterPumpkin(cardName);
+			    	if (cardCopy != null)
+			    	{
+				    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+				    	cardCopy.upgrade();
+				        cardCopy.freeToPlayOnce = true;
+				        cardCopy.applyPowers();
+				        cardCopy.purgeOnUse = true;
+				        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+			    	}
+	    		}
 	    	}
     	}
     }
@@ -79,7 +98,7 @@ public class Pumpking extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

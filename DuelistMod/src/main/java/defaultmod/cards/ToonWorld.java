@@ -22,11 +22,11 @@ public class ToonWorld extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION 	
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ToonWorld() {
@@ -54,7 +54,7 @@ public class ToonWorld extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

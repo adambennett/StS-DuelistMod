@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -13,11 +13,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
-import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
-import defaultmod.patches.AbstractCardEnum;
+import defaultmod.patches.*;
 
-public class Ojamagic extends CustomCard 
+public class Ojamagic extends DuelistCard 
 {
     // TEXT DECLARATION
     public static final String ID = defaultmod.DefaultMod.makeID("Ojamagic");
@@ -36,8 +35,7 @@ public class Ojamagic extends CustomCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
     private static final int MIN_CARDS = 1;
-    private static final int MAX_CARDS = 10;
-    private static final int MIN_CARDS_U = 5;
+    private static final int MAX_CARDS = 5;
     private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
@@ -53,19 +51,18 @@ public class Ojamagic extends CustomCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		int randomNumCards = 1;
-		if (this.upgraded) { randomNumCards = ThreadLocalRandom.current().nextInt(MIN_CARDS_U, MAX_CARDS + 1); }
+		if (this.upgraded) { randomNumCards = ThreadLocalRandom.current().nextInt(MIN_CARDS, MAX_CARDS + 1); }
 		else { randomNumCards = ThreadLocalRandom.current().nextInt(MIN_CARDS, MAX_CARDS + 1); }
 		
 		AbstractCard redMedicine = new RedMedicine();
 		if (upgraded) 
 		{
 			redMedicine.upgrade();
-			//redMedicine.modifyCostForCombat(0); upgraded Red Medicine already costs 0...
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(redMedicine, randomNumCards, true, true));
 		} 
 		else 
 		{
-			//redMedicine.modifyCostForCombat(0);
+			redMedicine.modifyCostForCombat(0);
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(redMedicine, randomNumCards, true, true));
 		}
 	}

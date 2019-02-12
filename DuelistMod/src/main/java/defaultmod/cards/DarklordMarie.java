@@ -32,11 +32,11 @@ public class DarklordMarie extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int SUMMONS = 1;
-    private static final int OVERFLOW_AMT = 10;
+    private static final int OVERFLOW_AMT = 4;
     private static final int COST = 1;
-    private static int HEAL = 2;
+    private static int HEAL = 5;
     private static final int U_HEAL = 1;
-    private static final int DAMAGE = 4;
+    private static final int DAMAGE = 8;
 
     public DarklordMarie() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);

@@ -21,8 +21,8 @@
 	},
 	"theDuelist:BarrelDragon": {
 		"NAME": "Barrel Dragon",
-		"DESCRIPTION": "Tribute 1. Deal !D! damage. Apply a random debuff to !M! random enemies.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Deal !D! damage. Apply 2 random debuffs to !M! random enemies."
+		"DESCRIPTION": "Tribute 3. Deal !D! damage. Apply a randomized debuff to !M! random enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Deal !D! damage. Apply 2 randomized debuffs to !M! random enemies."
 	},
 	"theDuelist:BetaMagnet": {
 		"NAME": "B. Magnet Warrior",
@@ -56,8 +56,8 @@
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
-		"DESCRIPTION": "Discard your entire hand. Add !M! random card to your hand for each card discarded. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Discard your entire hand. Add !M! random cards to your hand for each card discarded. Exhaust."
+		"DESCRIPTION": "Discard your entire hand. Add !M! random 0 cost monsters to your hand for each card discarded. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Discard your entire hand. Add !M! random 0 cost monsters to your hand for each card discarded. Exhaust."
 	},
 	"theDuelist:CastleDarkIllusions": {
 		"NAME": "Castle Dark Illusion",
@@ -81,18 +81,18 @@
 	},
 	"theDuelist:ChangeHeart": {
 		"NAME": "Change of Heart",
-		"DESCRIPTION": "Set your maximum Summons to a random value (0-10).",
-		"UPGRADE_DESCRIPTION": "Set your maximum Summons to a random value (1-15)."
+		"DESCRIPTION": "Set your maximum Summons to a random value (3-10).",
+		"UPGRADE_DESCRIPTION": "Set your maximum Summons to a random value (5-15)."
 	},
 	"theDuelist:DarkHole": {
 		"NAME": "Dark Hole",
-		"DESCRIPTION": "Remove all block from an enemy. Set your max Summons to 4.",
-		"UPGRADE_DESCRIPTION": "Remove all block from an enemy. Reset your max Summons to 5."
+		"DESCRIPTION": "Remove all block from an enemy.",
+		"UPGRADE_DESCRIPTION": "Remove all block from an enemy."
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "Darklord Marie",
-		"DESCRIPTION": "Summon 1. Deal !D! damage. Overflow !M! - gain 2 HP.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. Overflow !M! - gain 3 HP."
+		"DESCRIPTION": "Summon 1. Deal !D! damage. Overflow !M! - gain 5 HP.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. Overflow !M! - gain 6 HP."
 	},
 	"theDuelist:DarkMagician": {
 		"NAME": "Dark Magician",
@@ -162,7 +162,7 @@
 	"theDuelist:GammaMagnet": {
 		"NAME": "G. Magnet Warrior",
 		"DESCRIPTION": "Summon 1. Gain Gamma Magnet. Draw 1 card.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Gain Gamma Magnet. Draw 1 card. Exhaust."
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain Gamma Magnet. Draw 2 cards. Exhaust."
 	},
 	"theDuelist:GateGuardian": {
 		"NAME": "Gate Guardian",
@@ -182,26 +182,26 @@
 	"theDuelist:GracefulCharity": {
 		"NAME": "Graceful Charity",
 		"DESCRIPTION": "Draw 3 cards. Discard 2 cards.",
-		"UPGRADE_DESCRIPTION": "Draw 3 cards. Discard 2 cards."
+		"UPGRADE_DESCRIPTION": "Draw 3 cards. Discard a card."
 	},
 	"theDuelist:HarpieFeather": {
 		"NAME": "Harpie Feather Duster",
-		"DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to the total Spell Counters removed to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to the total Spell Counters removed to ALL enemies."
+		"DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to 2x the total Spell Counters removed to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to 2x the total Spell Counters removed to ALL enemies."
 	},
 	"theDuelist:Hinotoma": {
 		"NAME": "Hinotoma",
-		"DESCRIPTION": "Deal !D! of damage a random amount (1-4) of times.",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage a random amount (1-5) of times."
+		"DESCRIPTION": "Deal !D! of damage a random amount (2-6) of times.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage a random amount (3-7) of times."
 	},
 	"theDuelist:ImperialOrder": {
 		"NAME": "Imperial Order",
-		"DESCRIPTION": "At the start of turn, gain !M! Gold and take 10 damage.",
-		"UPGRADE_DESCRIPTION": "At the start of turn, gain !M! Gold and take 10 damage."
+		"DESCRIPTION": "At the start of turn, gain !M! Gold and take 3 damage.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, gain !M! Gold and take 3 damage."
 	},
 	"theDuelist:InjectionFairy": {
 		"NAME": "Injection Fairy Lily",
-		"DESCRIPTION": "Summon 1. Gain !M! HP and deal !D! damage.",
+		"DESCRIPTION": "Summon 1. Gain !M! HP.",
 		"UPGRADE_DESCRIPTION": "Summon 1. Gain !M! HP and deal !D! damage."
 	},
 	"theDuelist:InsectQueen": {
@@ -241,7 +241,7 @@
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "Legendary Fisherman",
-		"DESCRIPTION": "Tribute 1. Channel a Water.",
+		"DESCRIPTION": "Tribute 1. Channel a Water. Exhaust.",
 		"UPGRADE_DESCRIPTION": "Tribute 1. Channel a Water."
 	},
 	"theDuelist:MagicCylinder": {
@@ -286,8 +286,8 @@
 	},
 	"theDuelist:Ojamagic": {
 		"NAME": "Ojamagic",
-		"DESCRIPTION": "Shuffle a random amount (1-10) of Red Medicine cards into your draw pile.",
-		"UPGRADE_DESCRIPTION": "Shuffle a random amount (5-10) of upgraded Red Medicine cards into your draw pile."
+		"DESCRIPTION": "Shuffle a random amount (1-5) of 0 cost Red Medicine cards into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Shuffle a random amount (1-5) of upgraded Red Medicine cards into your draw pile."
 	},
 	"theDuelist:OjamaGreen": {
 		"NAME": "Ojama Green",
@@ -346,13 +346,13 @@
 	},
 	"theDuelist:Pumpking": {
 		"NAME": "Pumpking",
-		"DESCRIPTION": "Tribute 1. Play an upgraded copy of a random monster card from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Play an upgraded copy of a random monster card from your discard pile."
+		"DESCRIPTION": "Tribute 1. Play an upgraded copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Play 2 upgraded copies of a random monster from your discard pile."
 	},
 	"theDuelist:Pumprincess": {
 		"NAME": "Pumprincess",
-		"DESCRIPTION": "Summon 1. Play a random monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Play a random monster from your discard pile."
+		"DESCRIPTION": "Summon 1. Play a copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Play an upgraded copy of a random monster from your discard pile."
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
@@ -481,18 +481,18 @@
 	},
 	"theDuelist:SuperheavySwordsman": {
 		"NAME": "Superheavy Swordsman",
-		"DESCRIPTION": "Summon 1. Deal !D! damage. Gain 1 dexterity.",
+		"DESCRIPTION": "Summon 1. Gain 1 dexterity.",
 		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. Gain 1 dexterity."
 	},
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "Superheavy Waraji",
-		"DESCRIPTION": "Summon 2. Gain 3 dexterity.",
-		"UPGRADE_DESCRIPTION": "Summon 2. Gain 3 dexterity."
+		"DESCRIPTION": "Tribute 4. Gain !M! dexterity. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. Gain !M! dexterity. Exhaust."
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
-		"DESCRIPTION": "Toon NL Tribute 2. NL Deal a random amount of damage (3-15) to each enemy.",
-		"UPGRADE_DESCRIPTION": "Toon NL Tribute 2. NL Deal a random amount of damage (8-20) to each enemy."
+		"DESCRIPTION": "Toon NL Tribute 1. NL Deal a random amount of damage (15-35) to each enemy.",
+		"UPGRADE_DESCRIPTION": "Toon NL Tribute 1. NL Deal a random amount of damage (20-40) to each enemy."
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",

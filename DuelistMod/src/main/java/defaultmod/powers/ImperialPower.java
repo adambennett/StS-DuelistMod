@@ -24,8 +24,8 @@ public class ImperialPower extends AbstractPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DefaultMod.makePath(DefaultMod.IMPERIAL_POWER);
-    private static int GOLD = 50;
-    private static int DAMAGE = 10;
+    private static int GOLD = 25;
+    private static int DAMAGE = 3;
     
 
     public ImperialPower(AbstractCreature owner, int gold, int dmg) 

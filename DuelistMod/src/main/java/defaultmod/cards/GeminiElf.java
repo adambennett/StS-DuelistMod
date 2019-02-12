@@ -26,7 +26,7 @@ public class GeminiElf extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
-    private static final int SUMMONS = 2;
+    private static final int SUMMONS = 3;
     private static final int UPGRADE_SUMMONS = 1;
     // /STAT DECLARATION/
 

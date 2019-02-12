@@ -33,9 +33,9 @@ public class BarrelDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
-    private static final int DAMAGE = 9;
-    private static final int TRIBUTES = 1;
+    private static final int COST = 0;
+    private static final int DAMAGE = 12;
+    private static final int TRIBUTES = 3;
     private static int MIN_TURNS_ROLL = 1;
     private static int MAX_TURNS_ROLL = 10;
     private static final int RANDOM_ENEMIES = 3;
@@ -59,10 +59,10 @@ public class BarrelDragon extends DuelistCard
 		attack(m, AFX, this.damage);
     
 		// Get number of enemies
-		int monsters = AbstractDungeon.getMonsters().monsters.size();
+		//int monsters = AbstractDungeon.getMonsters().monsters.size();
 		
 		// If number of enemies < debuff targets, set debuff targets # to number of enemies
-		if (monsters < this.magicNumber) { this.magicNumber = this.baseMagicNumber = monsters; }
+		//if (monsters < this.magicNumber) { this.magicNumber = this.baseMagicNumber = monsters; }
 		
 		// 3-4 times, apply 1 or 2 random debuffs to a random enemy
 		for (int i = 0; i < this.magicNumber; i++)
