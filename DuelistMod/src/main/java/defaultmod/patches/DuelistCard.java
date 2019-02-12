@@ -26,8 +26,9 @@ import conspire.actions.ObtainGoldAction;
 import conspire.orbs.Water;
 import defaultmod.actions.common.*;
 import defaultmod.cards.*;
-import defaultmod.orbs.Gate;
+import defaultmod.orbs.*;
 import defaultmod.powers.*;
+import defaultmod.relics.MillenniumKey;
 import slimebound.powers.SlimedPower;
 
 public abstract class DuelistCard extends CustomCard 
@@ -122,7 +123,7 @@ public abstract class DuelistCard extends CustomCard
 	}
 
 
-	protected void heal(AbstractPlayer p, int amount)
+	public static void heal(AbstractPlayer p, int amount)
 	{
 		AbstractDungeon.actionManager.addToTop(new HealAction(p, p, amount));
 	}
@@ -233,6 +234,9 @@ public abstract class DuelistCard extends CustomCard
 
 		// Check for Pot of Generosity
 		if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
+		
+		// Check for Summoning Sickness
+		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(SUMMONS * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 		// Update UI
 		summonsInstance.updateCount(summonsInstance.amount);
@@ -264,10 +268,12 @@ public abstract class DuelistCard extends CustomCard
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			summonsInstance.MAX_SUMMONS = amount;
+			if (!p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = amount; }
+			else { summonsInstance.MAX_SUMMONS = 3; }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateDescription();
 		}
+		
 	}
 
 	public static void incMaxSummons(AbstractPlayer p, int amount)
@@ -275,7 +281,8 @@ public abstract class DuelistCard extends CustomCard
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			summonsInstance.MAX_SUMMONS += amount;
+			if (!p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS += amount; }
+			else { summonsInstance.MAX_SUMMONS = 3; }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateDescription();
 		}
@@ -286,7 +293,8 @@ public abstract class DuelistCard extends CustomCard
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			summonsInstance.MAX_SUMMONS -= amount;
+			if (!p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS -= amount; }
+			else { summonsInstance.MAX_SUMMONS = 3; }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateDescription();
 		}
@@ -322,6 +330,10 @@ public abstract class DuelistCard extends CustomCard
 
 						summonsInstance.updateCount(summonsInstance.amount);
 						summonsInstance.updateDescription();
+
+						// Check for Pharaoh's Curse
+						if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+						
 						return tributes;
 					}
 					else
@@ -348,6 +360,10 @@ public abstract class DuelistCard extends CustomCard
 
 					summonsInstance.updateCount(summonsInstance.amount);
 					summonsInstance.updateDescription();
+					
+					// Check for Pharaoh's Curse
+					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+					
 					return tributes;
 				}
 			}
@@ -387,6 +403,10 @@ public abstract class DuelistCard extends CustomCard
 
 					summonsInstance.updateCount(summonsInstance.amount);
 					summonsInstance.updateDescription();
+					
+					// Check for Pharaoh's Curse
+					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+					
 					return tributes;
 				}
 				else
@@ -413,6 +433,10 @@ public abstract class DuelistCard extends CustomCard
 
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateDescription();
+				
+				// Check for Pharaoh's Curse
+				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+				
 				return tributes;
 			}
 		}
@@ -465,7 +489,10 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower penNib = new PenNibPower(p, 1);
 		AbstractPower sadistic = new SadisticPower(p, turnNum);
 		AbstractPower storm = new StormPower(p, turnNum);
-		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm };
+		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
+		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
+		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
+				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot };
 
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
@@ -507,7 +534,9 @@ public abstract class DuelistCard extends CustomCard
 		//AbstractPower aging = new AgingPower(p, turnNum * 5);
 		AbstractPower entangled = new EntanglePower(p);
 		AbstractPower hexed = new HexPower(p, turnNum);
-		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, entangled, hexed};
+		AbstractPower summonSick = new SummonSicknessPower(p, turnNum);
+		AbstractPower tributeSick = new TributeSicknessPower(p, turnNum);
+		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, entangled, hexed, summonSick, tributeSick};
 
 		// Get randomized debuff
 		int randomDebuffNum = ThreadLocalRandom.current().nextInt(0, debuffs.length);
@@ -539,7 +568,7 @@ public abstract class DuelistCard extends CustomCard
 
 	public static void channelRandomOrb()
 	{
-		AbstractOrb[] orbs = new AbstractOrb[] { new Water(), new Lightning(), new Plasma(), new Dark(), new HellFireOrb(), new Frost(), new CrystalOrb(), new GlassOrb(), new Gate() };
+		AbstractOrb[] orbs = new AbstractOrb[] { new Water(), new Lightning(), new Plasma(), new Dark(), new HellFireOrb(), new Frost(), new CrystalOrb(), new GlassOrb(), new Gate(), new Buffer(), new Summoner() };
 		int randomOrb = ThreadLocalRandom.current().nextInt(0, orbs.length);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs[randomOrb]));
 	}

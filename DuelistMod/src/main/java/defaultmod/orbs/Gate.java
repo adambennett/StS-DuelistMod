@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
+import defaultmod.patches.DuelistCard;
 import defaultmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
@@ -68,7 +69,7 @@ public class Gate extends AbstractOrb
 	@Override
 	public void onEvoke()
 	{
-		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS), SUMMONS));
+		DuelistCard.summon(AbstractDungeon.player, SUMMONS);
 	}
 
 	@Override

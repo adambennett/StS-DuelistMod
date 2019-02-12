@@ -4,5 +4,17 @@
     "DESCRIPTION": [
       "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " #yBlock, and gain #b1 #yEnergy. NL #yEvoke: #ySummon #b", "."
     ]
+  },
+  "theDuelist:Buffer": {
+    "NAME": "Buffer",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, increase ALL your powers by #b", ". NL #yEvoke: Gain a random buff that lasts for #b"
+    ]
+  },
+  "theDuelist:Summoner": {
+    "NAME": "Summoner",
+    "DESCRIPTION": [
+      "#yPassive: At the end of turn, #ySummon #b", ". NL #yEvoke: #yIncrement #b"
+    ]
   }
 }

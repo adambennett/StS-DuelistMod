@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
+import defaultmod.orbs.Summoner;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
+import defaultmod.powers.SummonPower;
 
 public class DarkMagician extends DuelistCard 
 {
@@ -50,7 +52,9 @@ public class DarkMagician extends DuelistCard
     {
     	tribute(p, TRIBUTES, false, this);
     	attack(m, AFX, this.damage);
-    	applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
+    	//applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
+    	AbstractOrb summoner = new Summoner();
+    	channel(summoner);
     }
 
     // Which card to return when making a copy of this card.

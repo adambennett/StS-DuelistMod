@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -29,17 +30,16 @@ public class FiendMegacyber extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
-    private static final int DAMAGE = 40;
-    private static final int TRIBUTES = 1;
+    private static final int TRIBUTES = 3;
     private static final int U_TRIBUTES = -1;
     // /STAT DECLARATION/
 
     public FiendMegacyber() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = TRIBUTES;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -47,7 +47,7 @@ public class FiendMegacyber extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.magicNumber, false, this);
-		
+		/*
     	// Check if target has spell counters
 		if (m.hasPower(SpellCounterPower.POWER_ID))
 		{
@@ -55,6 +55,10 @@ public class FiendMegacyber extends DuelistCard
 	    	int counters = m.getPower(SpellCounterPower.POWER_ID).amount;
 	    	if (counters >= 10) { attack(m, AFX, this.damage); }
 		}
+		*/
+    	
+    	applyPowerToSelf(new StrengthPower(player(), 3));
+    	channelRandomOrb();
     }
 
     // Which card to return when making a copy of this card.
@@ -68,7 +72,8 @@ public class FiendMegacyber extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(U_TRIBUTES);
+            this.exhaust = false;
+            //this.upgradeMagicNumber(U_TRIBUTES);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

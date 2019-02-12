@@ -1,26 +1,26 @@
 package defaultmod.potions;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import java.util.concurrent.ThreadLocalRandom;
+
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
-import com.megacrit.cardcrawl.potions.*;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class PlaceholderPotion extends AbstractPotion {
+import defaultmod.patches.DuelistCard;
+
+public class MillenniumElixir extends AbstractPotion {
 
 
-    public static final String POTION_ID = defaultmod.DefaultMod.makeID("PlaceholderPotion");
+    public static final String POTION_ID = defaultmod.DefaultMod.makeID("MillenniumElixir");
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
-    public PlaceholderPotion() {
+    public MillenniumElixir() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
         super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.SMOKE);
         
@@ -28,7 +28,7 @@ public class PlaceholderPotion extends AbstractPotion {
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[2] + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];
+        this.description = DESCRIPTIONS[0];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = false;
@@ -39,18 +39,27 @@ public class PlaceholderPotion extends AbstractPotion {
     }
 
     @Override
-    public void use(AbstractCreature target) {
+    public void use(AbstractCreature target) 
+    {
         target = AbstractDungeon.player;
-        // If you are in combat, gain strength and the "lose strength at the end of your turn" power, equal to the potency of this potion.
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new StrengthPower(target, this.potency), this.potency));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new LoseStrengthPower(target, this.potency), this.potency));
-        }
+        int randomTurnNum = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+		int randomTurnNumB = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+		//int randomTurnNumC = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+
+		// Get two random buffs
+		AbstractPower randomBuff = DuelistCard.getRandomBuff(AbstractDungeon.player, randomTurnNum);
+		AbstractPower randomBuffB = DuelistCard.getRandomBuff(AbstractDungeon.player, randomTurnNumB);
+		//AbstractPower randomBuffC = DuelistCard.getRandomBuff(AbstractDungeon.player, randomTurnNumC);
+
+		// Apply random buff(s)
+		DuelistCard.applyPowerToSelf(randomBuff);
+		DuelistCard.applyPowerToSelf(randomBuffB);
+		//DuelistCard.applyPowerToSelf(randomBuffC);
     }
     
     @Override
     public AbstractPotion makeCopy() {
-        return new PlaceholderPotion();
+        return new MillenniumElixir();
     }
 
     // This is your potency.

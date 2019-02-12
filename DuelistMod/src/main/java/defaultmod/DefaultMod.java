@@ -15,8 +15,8 @@ import basemod.interfaces.*;
 import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
 import defaultmod.patches.*;
-import defaultmod.potions.PlaceholderPotion;
-import defaultmod.relics.MillenniumPuzzle;
+import defaultmod.potions.MillenniumElixir;
+import defaultmod.relics.*;
 import defaultmod.variables.DefaultCustomVariable;
 
 
@@ -259,10 +259,20 @@ public class DefaultMod
     public static final String PARASITE_POWER = "powers/ParasitePower.png";
     public static final String STORMING_POWER = "powers/StormingMirrorPower.png";
     public static final String SWORDS_BURN_POWER = "powers/SwordsBurnPower.png";
+    public static final String SUMMON_SICKNESS_POWER = "powers/SummonSicknessPower.png";
+    public static final String TRIBUTE_SICKNESS_POWER = "powers/TributeSicknessPower.png";
+    public static final String ORB_HEAL_POWER = "powers/OrbHealPower.png";
+    public static final String ENERGY_TREASURE_POWER = "powers/EnergyTreasurePower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
     public static final String PLACEHOLDER_RELIC_OUTLINE = "relics/outline/placeholder_relic.png";
+    
+    public static final String M_EYE_RELIC = "relics/MEye.png";
+    public static final String M_EYE_RELIC_OUTLINE = "relics/MEye.png";
+    
+    public static final String M_RING_RELIC = "relics/MEye.png";
+    public static final String M_RING_RELIC_OUTLINE = "relics/MEye.png";
 
     public static final String PLACEHOLDER_RELIC_2 = "relics/placeholder_relic2.png";
     public static final String PLACEHOLDER_RELIC_OUTLINE_2 = "relics/outline/placeholder_relic2.png";
@@ -380,7 +390,7 @@ public class DefaultMod
         logger.info("Beginning to edit potions");
        
         // Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
-        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, TheDuelistEnum.THE_DUELIST);
+        BaseMod.addPotion(MillenniumElixir.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, MillenniumElixir.POTION_ID, TheDuelistEnum.THE_DUELIST);
       
         logger.info("Done editing potions");
     }
@@ -397,6 +407,9 @@ public class DefaultMod
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
         //BaseMod.addRelicToCustomPool(new PlaceholderRelic(), AbstractCardEnum.DEFAULT_GRAY);
         BaseMod.addRelicToCustomPool(new MillenniumPuzzle(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new MillenniumEye(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new MillenniumRing(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new MillenniumKey(), AbstractCardEnum.DEFAULT_GRAY);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
         //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
@@ -455,9 +468,9 @@ public class DefaultMod
 		BaseMod.addCard(new GateGuardian());
 		BaseMod.addCard(new GeminiElf());
 		BaseMod.addCard(new GiantSoldier());
-		BaseMod.addCard(new GiantTrunade());
+		//BaseMod.addCard(new GiantTrunade());
 		BaseMod.addCard(new GracefulCharity());
-		BaseMod.addCard(new HarpieFeather());
+		//BaseMod.addCard(new HarpieFeather());
 		BaseMod.addCard(new Hinotoma());
 		BaseMod.addCard(new ImperialOrder());
 		BaseMod.addCard(new InjectionFairy());
@@ -517,7 +530,7 @@ public class DefaultMod
 		BaseMod.addCard(new ToonBarrelDragon());
 		//BaseMod.addCard(new ToonBriefcase());
 		BaseMod.addCard(new ToonDarkMagician());
-		BaseMod.addCard(new ToonDarkMagicianGirl());
+		//BaseMod.addCard(new ToonDarkMagicianGirl());
 		BaseMod.addCard(new ToonGeminiElf());
 		BaseMod.addCard(new ToonMermaid());
 		BaseMod.addCard(new ToonSummonedSkull());
@@ -566,9 +579,9 @@ public class DefaultMod
 		UnlockTracker.unlockCard(GateGuardian.ID);
 		UnlockTracker.unlockCard(GeminiElf.ID);
 		UnlockTracker.unlockCard(GiantSoldier.ID);
-		UnlockTracker.unlockCard(GiantTrunade.ID);
+		//UnlockTracker.unlockCard(GiantTrunade.ID);
 		UnlockTracker.unlockCard(GracefulCharity.ID);
-		UnlockTracker.unlockCard(HarpieFeather.ID);
+		//UnlockTracker.unlockCard(HarpieFeather.ID);
 		UnlockTracker.unlockCard(Hinotoma.ID);
 		UnlockTracker.unlockCard(ImperialOrder.ID);
 		UnlockTracker.unlockCard(InjectionFairy.ID);
@@ -628,7 +641,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(ToonBarrelDragon.ID);
 		//UnlockTracker.unlockCard(ToonBriefcase.ID);
 		UnlockTracker.unlockCard(ToonDarkMagician.ID);
-		UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
+		//UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
 		UnlockTracker.unlockCard(ToonGeminiElf.ID);
 		UnlockTracker.unlockCard(ToonMermaid.ID);
 		UnlockTracker.unlockCard(ToonSummonedSkull.ID);

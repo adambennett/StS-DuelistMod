@@ -96,13 +96,13 @@
 	},
 	"theDuelist:DarkMagician": {
 		"NAME": "Dark Magician",
-		"DESCRIPTION": "Tribute 2.  Deal !D! damage. Apply !M! Spell Counters.",
-		"UPGRADE_DESCRIPTION": "Tribute 1.  Deal !D! damage. Apply !M! Spell Counters."
+		"DESCRIPTION": "Tribute 2.  Deal !D! damage. Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Tribute 1.  Deal !D! damage. Channel a Summoner."
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"NAME": "D.M. Girl",
-		"DESCRIPTION": "Tribute 1. NL Apply 10 Spell Counters. NL Overflow !M! - Apply a random buff.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Apply 10 Spell Counters. NL Overflow !M! - Apply a random buff."
+		"DESCRIPTION": "Tribute 1. NL Channel a Buffer. NL Overflow !M! - Apply a random buff.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel a Buffer. NL Overflow !M! - Apply a random buff."
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "Dian Keto",
@@ -141,8 +141,8 @@
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "Fiend Megacyber",
-		"DESCRIPTION": "Tribute 1. If target enemy has 10 or more Spell Counters, deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "If target enemy has 10 or more Spell Counters, deal !D! damage."
+		"DESCRIPTION": "Tribute 3. Gain 3 Strength. Channel a random Orb. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Gain 3 Strength. Channel a random Orb."
 	},
 	"theDuelist:Fissure": {
 		"NAME": "Fissure",
@@ -501,8 +501,8 @@
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",
-		"DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through block). Apply !M! Spell Counters.",
-		"UPGRADE_DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through block). Apply !M! Spell Counters."
+		"DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through block). Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through block). Channel a Summoner."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",

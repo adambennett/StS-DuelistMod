@@ -1,6 +1,6 @@
 {
-"theDuelist:PlaceholderPotion": {
+"theDuelist:MillenniumElixir": {
         "NAME": "Millennium Elixir",
-        "DESCRIPTIONS": ["Gain ", " At the end of your turn, lose ", " Strength."]
+        "DESCRIPTIONS": ["Gain 2 random #ybuffs."]
 }
 }

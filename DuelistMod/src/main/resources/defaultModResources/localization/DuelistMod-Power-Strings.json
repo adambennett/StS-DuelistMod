@@ -107,6 +107,22 @@
         "NAME": "Swords of Burning Light",
         "DESCRIPTIONS": ["Each time you #yEvoke an #yOrb, #yChannel a random #yOrb." ]
 },
+"theDuelist:SummonSicknessPower": {
+        "NAME": "Summoning Sickness",
+        "DESCRIPTIONS": ["Each time you #ySummon, take #b", " damage." ]
+},
+"theDuelist:TributeSicknessPower": {
+        "NAME": "Pharaoh's Curse",
+        "DESCRIPTIONS": ["Each time you #yTribute, take #b", " damage." ]
+},
+"theDuelist:OrbHealPower": {
+        "NAME": "Orbmaster",
+        "DESCRIPTIONS": ["Each time you #yEvoke, gain #b", " HP." ]
+},
+"theDuelist:EnergyTreasurePower": {
+        "NAME": "Tomb Looter",
+        "DESCRIPTIONS": ["Each time you gain [E], gain #b", " #yGold." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

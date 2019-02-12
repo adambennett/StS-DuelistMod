@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import defaultmod.DefaultMod;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
-public class MillenniumPuzzle extends CustomRelic {
+public class MillenniumEye extends CustomRelic {
     
     /*
      * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -18,12 +18,11 @@ public class MillenniumPuzzle extends CustomRelic {
      */
 
     // ID, images, text.
-    public static final String ID = defaultmod.DefaultMod.makeID("MillenniumPuzzle");
+    public static final String ID = defaultmod.DefaultMod.makeID("MillenniumEye");
     public static final String IMG = DefaultMod.makePath(DefaultMod.M_EYE_RELIC);
     public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_EYE_RELIC_OUTLINE);
-    private int SUMMONS = 1;
 
-    public MillenniumPuzzle() {
+    public MillenniumEye() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
     }
 
@@ -32,7 +31,7 @@ public class MillenniumPuzzle extends CustomRelic {
     public void atBattleStart() 
     {
         this.flash();
-        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, "#b1 monster summoned. Maximum of 5 Summons."), SUMMONS));
+        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player)));
     
     }
 
@@ -45,6 +44,6 @@ public class MillenniumPuzzle extends CustomRelic {
     // Which relic to return on making a copy of this relic.
     @Override
     public AbstractRelic makeCopy() {
-        return new MillenniumPuzzle();
+        return new MillenniumEye();
     }
 }

@@ -51,8 +51,8 @@ public class SangaThunder extends DuelistCard
     	tribute(p, TRIBUTES, false, this);
     	attack(m, AFX, this.damage);
     	AbstractOrb orb = new Lightning();
-    	orb.passiveAmount += 1;
-    	if (upgraded) { orb.passiveAmount += 1; }
+    	orb.passiveAmount += 2;
+    	orb.applyFocus();
     	channel(orb);
     }
 

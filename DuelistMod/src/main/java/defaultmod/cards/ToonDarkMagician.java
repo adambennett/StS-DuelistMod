@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
+import defaultmod.orbs.*;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -52,7 +54,9 @@ public class ToonDarkMagician extends DuelistCard
 	{
 		tribute(p, TRIBUTES, false, this);
 		damageThroughBlock(m, p, this.damage, AFX);
-		applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
+		//applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
+		AbstractOrb buffer = new Summoner();
+		channel(buffer);
 	}
 
 	// Which card to return when making a copy of this card.

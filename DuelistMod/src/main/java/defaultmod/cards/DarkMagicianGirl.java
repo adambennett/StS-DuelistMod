@@ -8,12 +8,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.ModifyMagicNumberAction;
+import defaultmod.orbs.Buffer;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
+import defaultmod.powers.SummonPower;
 
 public class DarkMagicianGirl extends DuelistCard 
 {
@@ -52,7 +54,9 @@ public class DarkMagicianGirl extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, TRIBUTES, false, this);
-		applyPower(new SpellCounterPower(p, p, this.counters), m);
+		//applyPower(new SpellCounterPower(p, p, this.counters), m);
+		AbstractOrb buffer = new Buffer();
+		channel(buffer);
 	}
 
 	@Override

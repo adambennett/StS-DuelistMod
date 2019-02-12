@@ -13,6 +13,27 @@
 			"At the start of each combat, #ySummon #b1."
 		]
 	},
+	"theDuelist:MillenniumEye": {
+		"NAME": "Millennium Eye",
+		"FLAVOR": "The Millennium Eye is one of the Millennium Items. It was created 3,000 years prior with other Millennium Items by Aknadin. After its creation, Aknadin himself put on the Eye, sacrificing his left eye in the process, wishing for his son Seto to become pharaoh.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain Toon World."
+		]
+	},
+	"theDuelist:MillenniumRing": {
+		"NAME": "Millennium Ring",
+		"FLAVOR": "The Millennium Ring is one of the Millennium Items. 3,000 years before present day events, the Millennium Ring and the other Millennium Items were forged in Kul Elna by sacrificing 99 souls of the Kul Elna villagers.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, #yIncrement #b5"
+		]
+	},
+	"theDuelist:MillenniumKey": {
+		"NAME": "Millennium Key",
+		"FLAVOR": "After it was made, the Millennium Key was given to Solomon Muto's Egyptian incarnate, Shimon, but later it was passed on to Shada. In Ancient Egypt, Shimon used the Millenium Key to seal Exodia the Forbidden One into five stone tablets. During the battle with Zorc, Shimon was forced to use the Key to release Exodia. The Millenium Key allowed Shimon to control Exodia, but it also forced him to feel all of Exodia's injuries, which eventually lead to his death.",
+		"DESCRIPTIONS": [
+			"Gain 1 [E] at the start of each turn. Your max #Summons cannot be higher than 3."
+		]
+	},
 	"theDuelist:PlaceholderRelic2": {
 		"NAME": "Placeholder Relic 2",
 		"FLAVOR": "You feel stronger.",
