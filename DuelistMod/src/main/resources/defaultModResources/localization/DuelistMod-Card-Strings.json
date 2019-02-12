@@ -286,7 +286,7 @@
 	},
 	"theDuelist:Ojamagic": {
 		"NAME": "Ojamagic",
-		"DESCRIPTION": "Shuffle a random amount (1-5) of 0 cost Red Medicine cards into your draw pile.",
+		"DESCRIPTION": "Shuffle a random amount (1-5) of Red Medicine cards into your draw pile.",
 		"UPGRADE_DESCRIPTION": "Shuffle a random amount (1-5) of upgraded Red Medicine cards into your draw pile."
 	},
 	"theDuelist:OjamaGreen": {
