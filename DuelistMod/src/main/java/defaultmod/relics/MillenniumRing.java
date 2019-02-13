@@ -22,7 +22,7 @@ public class MillenniumRing extends CustomRelic {
 	public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_RING_RELIC_OUTLINE);
 
 	public MillenniumRing() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 	}
 
 	// Summon 1 on turn start

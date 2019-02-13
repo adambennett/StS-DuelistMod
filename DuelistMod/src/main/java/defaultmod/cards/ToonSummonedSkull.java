@@ -31,10 +31,10 @@ public class ToonSummonedSkull extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	  private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 2;
-	private static final int DAMAGE = 15;
+	private static final int DAMAGE = 18;
 	private static final int TRIBUTES = 1;
 	private static final int U_DMG = 3;
-	private static int STR_GAIN = 1;
+	private static int STR_GAIN = 2;
 	// /STAT DECLARATION/
 
 	public ToonSummonedSkull() {

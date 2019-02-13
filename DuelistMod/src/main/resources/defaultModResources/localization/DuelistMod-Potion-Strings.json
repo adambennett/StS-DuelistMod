@@ -2,5 +2,9 @@
 "theDuelist:MillenniumElixir": {
         "NAME": "Millennium Elixir",
         "DESCRIPTIONS": ["Gain 2 random #ybuffs."]
+},
+"theDuelist:JoeyJuice": {
+        "NAME": "Joey Juice",
+        "DESCRIPTIONS": ["Apply 2 random #ydebuffs."]
 }
 }

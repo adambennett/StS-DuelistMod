@@ -136,8 +136,8 @@ public abstract class DuelistCard extends CustomCard
 	protected void block() {
 		block(block);
 	}
-
-	protected void block(int amount) {
+	
+	public static void block(int amount) {
 		AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player(), player(), amount));
 	}
 
@@ -487,7 +487,6 @@ public abstract class DuelistCard extends CustomCard
 		// Setup powers array for random buff selection
 		AbstractPower str = new StrengthPower(p, turnNum);
 		AbstractPower dex = new DexterityPower(p, turnNum);
-		//AbstractPower summons = new SummonPower(p, turnNum); kinda boring, plus this is a bad way to stack summons
 		AbstractPower art = new ArtifactPower(p, turnNum);
 		AbstractPower plate = new PlatedArmorPower(p, turnNum);
 		AbstractPower intan = new IntangiblePower(p, 1);
@@ -497,7 +496,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower barricade = new BarricadePower(p);
 		AbstractPower blur = new BlurPower(p, turnNum);
 		AbstractPower burst = new BurstPower(p, turnNum);
-		//AbstractPower creative = new CreativeAIPower(p, turnNum); probably too good
+		AbstractPower creative = new CreativeAIPower(p, turnNum); //probably too good
 		AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
 		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
 		AbstractPower equal = new EquilibriumPower(p, turnNum);
@@ -510,8 +509,13 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower storm = new StormPower(p, turnNum);
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
 		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
+		AbstractPower swordsBurn = new SwordsBurnPower(p, p);
+		AbstractPower swordsConceal = new SwordsConcealPower(p, p, turnNum, false);
+		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
+		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
-				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot };
+				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
+				swordsBurn, orbEvoker, tombPilfer, swordsConceal, creative };
 
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
@@ -529,8 +533,6 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower nPoison = new NecroticPoisonPower(targetMonster, p, turnNum);
 		AbstractPower weak = new WeakPower(targetMonster, turnNum, false);
 		AbstractPower goop = new SlimedPower(targetMonster, p, turnNum);
-		//AbstractPower treasure = new HoldsTreasurePower(targetMonster);
-		//AbstractPower aging = new AgingPower(targetMonster, turnNum * 3);
 		AbstractPower blighted = new AmplifyDamagePower(targetMonster, turnNum);
 		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
 		AbstractPower[] debuffs = new AbstractPower[] {slow, vulnerable, poison, nPoison, weak, goop, blighted, constricted};
@@ -551,7 +553,6 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower poison = new PoisonPower(p, p, turnNum);
 		AbstractPower nPoison = new NecroticPoisonPower(p, p, turnNum);
 		AbstractPower weak = new WeakPower(p, turnNum, false);
-		//AbstractPower aging = new AgingPower(p, turnNum * 5);
 		AbstractPower entangled = new EntanglePower(p);
 		AbstractPower hexed = new HexPower(p, turnNum);
 		AbstractPower summonSick = new SummonSicknessPower(p, turnNum);
@@ -604,6 +605,82 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToBottom(new ObtainGoldAction(amount, owner, rain));
 	}
 	
+	public static DuelistCard randomToon(String name)
+	{
+		switch(name)
+		{
+			case "B.E. Toon Dragon":
+				return new BlueEyesToon();
+			case "Red Eyes Toon":
+				return new RedEyesToon();
+			case "Toon Barrel Dragon":
+				return new ToonBarrelDragon();
+			case "Toon Dark Magician":
+				return new ToonDarkMagician();
+			case "Toon D.M. Girl":
+				return new ToonDarkMagicianGirl();
+			case "Toon Gemini Elf":
+				return new ToonGeminiElf();
+			case "Toon Mermaid":
+				return new ToonMermaid();
+			case "Toon S. Skull":
+				return new ToonSummonedSkull();
+			default:
+				return null;
+		}
+	}
+	
+	public static DuelistCard randomToon(AbstractCard c)
+	{
+		String name = c.name;
+		switch(name)
+		{
+			case "B.E. Toon Dragon":
+				return new BlueEyesToon();
+			case "Red Eyes Toon":
+				return new RedEyesToon();
+			case "Toon Barrel Dragon":
+				return new ToonBarrelDragon();
+			case "Toon Dark Magician":
+				return new ToonDarkMagician();
+			case "Toon D.M. Girl":
+				return new ToonDarkMagicianGirl();
+			case "Toon Gemini Elf":
+				return new ToonGeminiElf();
+			case "Toon Mermaid":
+				return new ToonMermaid();
+			case "Toon S. Skull":
+				return new ToonSummonedSkull();
+			default:
+				return null;
+		}
+	}
+	
+	public static boolean isToon(String name)
+	{
+		switch(name)
+		{
+			case "B.E. Toon Dragon":
+				return true;
+			case "Red Eyes Toon":
+				return true;
+			case "Toon Barrel Dragon":
+				return true;
+			case "Toon Dark Magician":
+				return true;
+			case "Toon D.M. Girl":
+				return true;
+			case "Toon Gemini Elf":
+				return true;
+			case "Toon Mermaid":
+				return true;
+			case "Toon S. Skull":
+				return true;
+			default:
+				return false;
+		}
+	}
+	
 	// Returns a new copy of the monster passed (by its name)
 	// Or if the name does not match the set of monsters, returns a new random monster from the set
 	public DuelistCard newCopyOfMonster(String name)
@@ -618,7 +695,7 @@ public abstract class DuelistCard extends CustomCard
 				return new BetaMagnet();
 			case "B.E. White Dragon":
 				return new BlueEyes();
-			case "B. E. Toon Dragon":
+			case "B.E. Toon Dragon":
 				return new BlueEyesToon();
 			case "B. Eyes Ultimate":
 				return new BlueEyesUltimate();
@@ -785,7 +862,7 @@ public abstract class DuelistCard extends CustomCard
 				return new BetaMagnet();
 			case "B.E. White Dragon":
 				return new BlueEyes();
-			case "B. E. Toon Dragon":
+			case "B.E. Toon Dragon":
 				return new BlueEyesToon();
 			case "B. Eyes Ultimate":
 				return new BlueEyesUltimate();

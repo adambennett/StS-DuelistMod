@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
+import defaultmod.powers.SummonPower;
 
 public class OjamaKing extends DuelistCard 
 {
@@ -38,7 +38,6 @@ public class OjamaKing extends DuelistCard
     private static int RAND_CARDS = 3;
     private static int RAND_BUFFS = 3;
     private static int RAND_DEBUFFS = 3;
-    private static int COUNTERS = 3;
     // /STAT DECLARATION/
 
     public OjamaKing() {

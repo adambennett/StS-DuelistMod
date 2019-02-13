@@ -26,7 +26,7 @@ public class ToonWorld extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public ToonWorld() {
@@ -40,7 +40,8 @@ public class ToonWorld extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new ToonWorldPower(p, p));
+    	if (!upgraded) { applyPowerToSelf(new ToonWorldPower(p, p, 5)); }
+    	else { applyPowerToSelf(new ToonWorldPower(p, p, 3)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -54,7 +55,7 @@ public class ToonWorld extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

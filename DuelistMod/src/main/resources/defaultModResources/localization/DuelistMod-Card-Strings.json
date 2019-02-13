@@ -46,8 +46,8 @@
 	},
 	"theDuelist:BusterBlader": {
 		"NAME": "Buster Blader",
-		"DESCRIPTION": "Tribute 2. Deal !D! damage. Add !M! damage for each enemy in combat.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage. Add !M! damage for each enemy in combat."
+		"DESCRIPTION": "Tribute 3. Deal !D! damage. Add !M! damage for each enemy in combat.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Deal !D! damage. Add !M! damage for each enemy in combat."
 	},
 	"theDuelist:CannonSoldier": {
 		"NAME": "Cannon Soldier",
@@ -266,8 +266,8 @@
 	},
 	"theDuelist:MonsterReborn": {
 		"NAME": "Monster Reborn",
-		"DESCRIPTION": "Play a monster card from your discard pile. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Play a monster card from your discard pile."
+		"DESCRIPTION": "Play 5 copies of random monsters in your discard pile on an enemy. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Play 5 upgraded copies of random monsters in your discard pile on an enemy."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
@@ -381,18 +381,18 @@
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
-		"DESCRIPTION": "Tribute 1. NL Channel 1 plasma. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel 1 plasma. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 2. NL Channel 1 plasma. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel 1 plasma. NL Deal !D! damage."
 	},
 	"theDuelist:SangaThunder": {
 		"NAME": "Sanga of Thunder",
-		"DESCRIPTION": "Tribute 1. NL Channel 1 lightning. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel 1 lightning. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 2. NL Channel 1 lightning. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel 1 lightning. NL Deal !D! damage."
 	},
 	"theDuelist:SangaWater": {
 		"NAME": "Suijin",
-		"DESCRIPTION": "Tribute 1. NL Channel 1 Water. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel 1 Water. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 2. NL Channel 1 Water. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel 1 Water. NL Deal !D! damage."
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "Scapegoat",
@@ -426,8 +426,8 @@
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "Swords: Concealing Light",
-		"DESCRIPTION": "Increase your max hand size by !M!.",
-		"UPGRADE_DESCRIPTION": "Increase your max hand size by !M!."
+		"DESCRIPTION": "Each time you play a card, gain 3 block.",
+		"UPGRADE_DESCRIPTION": "Each time you play a card, gain 3 block."
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
@@ -441,8 +441,8 @@
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
-		"DESCRIPTION": "Allows you to play Toon monster cards.",
-		"UPGRADE_DESCRIPTION": "Allows you to play Toon monster cards."
+		"DESCRIPTION": "Allows you to play Toon monster cards. Take a decreasing amount of damage for each Toon monster played.",
+		"UPGRADE_DESCRIPTION": "Allows you to play Toon monster cards. Take a decreasing amount of damage for each Toon monster played."
 	},
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",
@@ -496,8 +496,8 @@
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
-		"DESCRIPTION": "Toon monsters played this turn are added back to your hand at the end of turn.",
-		"UPGRADE_DESCRIPTION": "Toon monsters played this turn are added back to your hand at the end of turn."
+		"DESCRIPTION": "Toon monsters that are played are added back to your hand at the start of your next turn.",
+		"UPGRADE_DESCRIPTION": "Toon monsters that are played are added back to your hand at the start of your next turn."
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",
@@ -506,8 +506,8 @@
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",
-		"DESCRIPTION": "Toon NL Summon 1. NL Channel a Crystal. NL Overflow !M! - Apply a random buff.",
-		"UPGRADE_DESCRIPTION": "Toon NL Summon 1. NL Channel a Crystal. NL Overflow !M! - Apply a random buff."
+		"DESCRIPTION": "Toon NL Summon 2. NL Channel a Crystal. NL Overflow !M! - Apply a random buff.",
+		"UPGRADE_DESCRIPTION": "Toon NL Summon 2. NL Channel a Crystal. NL Overflow !M! - Apply a random buff."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "Toon Gemini Elf",
@@ -521,8 +521,8 @@
 	},
 	"theDuelist:ToonSummonedSkull": {
 		"NAME": "Toon S. Skull",
-		"DESCRIPTION": "Toon NL Tribute 1. NL Deal !D! damage (through block). NL Gain 1 Strength.",
-		"UPGRADE_DESCRIPTION": "Toon NL Tribute 1. NL Deal !D! damage (through block). NL Gain 2 Strength."
+		"DESCRIPTION": "Toon NL Tribute 1. NL Deal !D! damage (through block). NL Gain 2 Strength.",
+		"UPGRADE_DESCRIPTION": "Toon NL Tribute 1. NL Deal !D! damage (through block). NL Gain 3 Strength."
 	},
 	"theDuelist:ScrapFactory": {
 		"NAME": "Scrap Factory",

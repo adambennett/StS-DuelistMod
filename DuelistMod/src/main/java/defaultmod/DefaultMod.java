@@ -15,7 +15,7 @@ import basemod.interfaces.*;
 import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
 import defaultmod.patches.*;
-import defaultmod.potions.MillenniumElixir;
+import defaultmod.potions.*;
 import defaultmod.relics.*;
 import defaultmod.variables.DefaultCustomVariable;
 
@@ -228,7 +228,7 @@ public class DefaultMod
     public static final String WINGED_DRAGON_RA = "cards/Winged_Dragon_Ra.png";
   
     // Power images
-    public static final String SUMMON_POWER = "powers/SummonPower.png";
+    public static final String SUMMON_POWER = "powers/SummonPowerTest.png";
     public static final String JAM_POWER = "powers/JamPower.png";
     public static final String DESPAIR_POWER = "powers/DespairPower.png";
     public static final String TOON_WORLD_POWER = "powers/ToonWorldPower.png";
@@ -259,6 +259,8 @@ public class DefaultMod
     public static final String PARASITE_POWER = "powers/ParasitePower.png";
     public static final String STORMING_POWER = "powers/StormingMirrorPower.png";
     public static final String SWORDS_BURN_POWER = "powers/SwordsBurnPower.png";
+    public static final String SWORDS_CONCEAL_POWER = "powers/SwordsConcealPower.png";
+    public static final String SWORDS_REVEAL_POWER = "powers/SwordsRevealPower.png";
     public static final String SUMMON_SICKNESS_POWER = "powers/SummonSicknessPower.png";
     public static final String TRIBUTE_SICKNESS_POWER = "powers/TributeSicknessPower.png";
     public static final String EVOKE_SICKNESS_POWER = "powers/EvokeSicknessPower.png";
@@ -392,6 +394,7 @@ public class DefaultMod
        
         // Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
         BaseMod.addPotion(MillenniumElixir.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, MillenniumElixir.POTION_ID, TheDuelistEnum.THE_DUELIST);
+        BaseMod.addPotion(JoeyJuice.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, JoeyJuice.POTION_ID, TheDuelistEnum.THE_DUELIST);
       
         logger.info("Done editing potions");
     }
@@ -486,7 +489,7 @@ public class DefaultMod
 		BaseMod.addCard(new Mausoleum());
 		BaseMod.addCard(new MillenniumShield());
 		BaseMod.addCard(new MirrorForce());
-		//BaseMod.addCard(new MonsterReborn());
+		BaseMod.addCard(new MonsterReborn());
 		BaseMod.addCard(new NutrientZ());
 		BaseMod.addCard(new ObeliskTormentor());
 		BaseMod.addCard(new OjamaBlack());
@@ -525,11 +528,11 @@ public class DefaultMod
 		BaseMod.addCard(new SuperheavySwordsman());
 		BaseMod.addCard(new SuperheavyWaraji());
 		BaseMod.addCard(new SwordsBurning());
-		//BaseMod.addCard(new SwordsConcealing());
+		BaseMod.addCard(new SwordsConcealing());
 		//BaseMod.addCard(new SwordsRevealing());
 		//BaseMod.addCard(new TimeWizard());
 		BaseMod.addCard(new ToonBarrelDragon());
-		//BaseMod.addCard(new ToonBriefcase());
+		BaseMod.addCard(new ToonBriefcase());
 		BaseMod.addCard(new ToonDarkMagician());
 		BaseMod.addCard(new ToonDarkMagicianGirl());
 		BaseMod.addCard(new ToonGeminiElf());
@@ -597,7 +600,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(Mausoleum.ID);
 		UnlockTracker.unlockCard(MillenniumShield.ID);
 		UnlockTracker.unlockCard(MirrorForce.ID);
-		//UnlockTracker.unlockCard(MonsterReborn.ID);
+		UnlockTracker.unlockCard(MonsterReborn.ID);
 		UnlockTracker.unlockCard(NutrientZ.ID);
 		UnlockTracker.unlockCard(ObeliskTormentor.ID);
 		UnlockTracker.unlockCard(OjamaBlack.ID);
@@ -636,11 +639,11 @@ public class DefaultMod
 		UnlockTracker.unlockCard(SuperheavySwordsman.ID);
 		UnlockTracker.unlockCard(SuperheavyWaraji.ID);
 		UnlockTracker.unlockCard(SwordsBurning.ID);
-		//UnlockTracker.unlockCard(SwordsConcealing.ID);
+		UnlockTracker.unlockCard(SwordsConcealing.ID);
 		//UnlockTracker.unlockCard(SwordsRevealing.ID);
 		//UnlockTracker.unlockCard(TimeWizard.ID);
 		UnlockTracker.unlockCard(ToonBarrelDragon.ID);
-		//UnlockTracker.unlockCard(ToonBriefcase.ID);
+		UnlockTracker.unlockCard(ToonBriefcase.ID);
 		UnlockTracker.unlockCard(ToonDarkMagician.ID);
 		UnlockTracker.unlockCard(ToonDarkMagicianGirl.ID);
 		UnlockTracker.unlockCard(ToonGeminiElf.ID);

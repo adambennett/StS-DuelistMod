@@ -13,7 +13,7 @@
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["#yToon Monsters can be played."]
+        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon monster." ]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
@@ -39,9 +39,9 @@
         "NAME": "Mirror Force",
         "DESCRIPTIONS": ["The next time you take unblocked damage, deal the much damage to ALL enemies."]
 },
-"theDuelist:ToonBriefPower": {
+"theDuelist:ToonBriefcasePower": {
         "NAME": "Toon Briefcase",
-        "DESCRIPTIONS": ["#yToon monsters played this turn are added back to your hand at the end of your turn."]
+        "DESCRIPTIONS": ["#yToon monsters played this turn are added back to your hand at the end of your turn. Toons: "]
 },
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",
@@ -107,6 +107,14 @@
         "NAME": "Swords of Burning Light",
         "DESCRIPTIONS": ["Each time you #yEvoke an #yOrb, #yChannel a random #yOrb." ]
 },
+"theDuelist:SwordsConcealPower": {
+        "NAME": "Swords of Concealing Light",
+        "DESCRIPTIONS": ["Each time you play a card, gain #b", " block." ]
+},
+"theDuelist:SwordsRevealPower": {
+        "NAME": "Swords of Revealing Light",
+        "DESCRIPTIONS": ["" ]
+},
 "theDuelist:SummonSicknessPower": {
         "NAME": "Summoning Sickness",
         "DESCRIPTIONS": ["Each time you #ySummon, take #b", " damage." ]
@@ -120,12 +128,20 @@
         "DESCRIPTIONS": ["Each time you #yEvoke, take #b", " damage." ]
 },
 "theDuelist:OrbHealPower": {
-        "NAME": "Orbmaster",
+        "NAME": "Gaze of Anubis",
         "DESCRIPTIONS": ["Each time you #yEvoke, gain #b", " HP." ]
+},
+"theDuelist:OrbEvokerPower": {
+        "NAME": "Blessing of Ra",
+        "DESCRIPTIONS": ["Each time you #yEvoke, gain a random buff that lasts for #b", " turns" ]
 },
 "theDuelist:EnergyTreasurePower": {
         "NAME": "Tomb Looter",
         "DESCRIPTIONS": ["Each time you gain [E], gain #b", " #yGold." ]
+},
+"theDuelist:HealGoldPower": {
+        "NAME": "Tomb Pilferer",
+        "DESCRIPTIONS": ["Each time you gain HP, gain #b", " #yGold." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

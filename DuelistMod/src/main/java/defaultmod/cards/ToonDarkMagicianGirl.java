@@ -30,11 +30,11 @@ public class ToonDarkMagicianGirl extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int SUMMONS = 1;
+    private static final int SUMMONS = 2;
     private static final int OVERFLOW_AMT = 3;
     private static final int U_OVERFLOW = 2;
     private static int MIN_TURNS_ROLL = 4;

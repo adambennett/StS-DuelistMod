@@ -67,9 +67,9 @@ public class TheDuelist extends CustomPlayer {
 		// =============== TEXTURES, ENERGY, LOADOUT =================  
 
 		initializeClass(null, // required call to load textures and setup energy/loadout
-				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SHOULDER_1), // campfire pose
-				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SHOULDER_2), // another campfire pose
-				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_CORPSE), // dead corpse
+				DefaultMod.makePath(DefaultMod.THE_DEFAULT_SHOULDER_1), // campfire pose
+				DefaultMod.makePath(DefaultMod.THE_DEFAULT_SHOULDER_2), // another campfire pose
+				DefaultMod.makePath(DefaultMod.THE_DEFAULT_CORPSE), // dead corpse
 				getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
 		// =============== /TEXTURES, ENERGY, LOADOUT/ =================
@@ -78,8 +78,8 @@ public class TheDuelist extends CustomPlayer {
 		// =============== ANIMATIONS =================  
 
 		this.loadAnimation(
-				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SKELETON_ATLAS),
-				defaultmod.DefaultMod.makePath(defaultmod.DefaultMod.THE_DEFAULT_SKELETON_JSON),
+				DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_ATLAS),
+				DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_JSON),
 				1.0f);
 		AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
 		e.setTime(e.getEndTime() * MathUtils.random());

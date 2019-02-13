@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.cards.ExodiaHead;
 import defaultmod.patches.DuelistCard;
@@ -25,7 +24,6 @@ public class ExodiaPower extends AbstractPower
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DefaultMod.makePath(DefaultMod.EXODIA_POWER);
-	public static CustomCard ATTACHED_AXE = null;
 	private static int DAMAGE = 7;
 	public ArrayList<DuelistCard> pieces = new ArrayList<DuelistCard>();
 	

@@ -4,9 +4,9 @@ A Slay the Spire adaptation of Yu-Gi-Oh!
 TODO
 - Make cards say Monster/Spell/Trap in-game
 - Add character sprite/button/overall thematic art
-- Design and add some relics
-- Design and add some potions
-- Finish implementing rest of the cards (100/112 planned)
+- Design and add some more relics
+- Design and add some more potions
+- Finish implementing rest of the cards (102/112 planned)
 - Balance and QA
 
 Some in game screenshots taken of the current build (2-11-19). Everything is absolutely always subject to change.
