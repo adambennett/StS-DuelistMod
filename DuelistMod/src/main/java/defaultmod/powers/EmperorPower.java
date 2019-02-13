@@ -27,11 +27,11 @@ public class EmperorPower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.amount = newAmount;
-        this.updateDescription();
+        this.amount = newAmount;        
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
+        this.updateDescription();
     }
     
     @Override

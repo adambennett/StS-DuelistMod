@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.ModifyMagicNumberAction;
@@ -74,12 +73,7 @@ public class DarkMagicianGirl extends DuelistCard
 			// Get random number of turns for buff to apply for
 			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
 
-			// Get random buff with random tumber of turns
-			AbstractPower randomBuff = getRandomBuff(p, randomTurnNum);
-
-			// Apply random buff
-			//AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, randomBuff));
-			applyPower(randomBuff, p);
+			applyRandomBuffPlayer(p, randomTurnNum, true);
 		}
 	}
 

@@ -28,19 +28,35 @@ public class EvokeSicknessPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;        
         this.type = PowerType.DEBUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.amount = newAmount;
+        this.updateDescription();
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount >= 2) { this.amount -= 2; }
-    	else if (this.amount > 0) { this.amount--; }
+    	if (this.amount >= 2) 
+    	{ 
+    		this.amount -= 2; 
+    		if (this.amount < 1)
+    		{
+    			AbstractPower instance = AbstractDungeon.player.getPower(EvokeSicknessPower.POWER_ID);
+    			DuelistCard.removePower(instance, AbstractDungeon.player);
+    		}
+    	}
+    	else if (this.amount > 0) 
+    	{ 
+    		this.amount--; 
+    		if (this.amount < 1)
+    		{
+    			AbstractPower instance = AbstractDungeon.player.getPower(EvokeSicknessPower.POWER_ID);
+    			DuelistCard.removePower(instance, AbstractDungeon.player);
+    		}
+    	}
     	else 
     	{ 
     		if (AbstractDungeon.player.hasPower(EvokeSicknessPower.POWER_ID)) 

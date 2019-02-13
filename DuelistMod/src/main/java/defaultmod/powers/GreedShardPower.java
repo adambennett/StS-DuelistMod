@@ -28,14 +28,14 @@ public class GreedShardPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = 0;
         turnCounter = 0;
+        this.updateDescription();
     }
     
     @Override

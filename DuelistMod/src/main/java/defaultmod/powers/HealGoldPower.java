@@ -28,36 +28,36 @@ public class HealGoldPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;     
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.amount = newAmount;
+        this.updateDescription();
     }
     
     @Override
     public void onDrawOrDiscard() 
     {
-    	
+    	updateDescription();
     }
     
     @Override
     public void atStartOfTurn() 
     {
-    	
+    	updateDescription();
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	
+    	updateDescription();
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	
+    	updateDescription();
 	}
 
     @Override

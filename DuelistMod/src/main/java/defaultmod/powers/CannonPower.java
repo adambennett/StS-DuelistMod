@@ -33,11 +33,12 @@ public class CannonPower extends AbstractPower
         this.ID = POWER_ID;
         this.owner = owner;
         this.amount = newAmount;
-        this.updateDescription();
+        
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
         TRIBUTES = tributes;
+        this.updateDescription();
     }
 
     @Override
@@ -50,7 +51,7 @@ public class CannonPower extends AbstractPower
 			{
     			if (this.owner.hasPower(SummonPower.POWER_ID))
     			{
-    				int tribs = CannonSoldier.tribute(AbstractDungeon.player, TRIBUTES, false);
+    				int tribs = CannonSoldier.powerTribute(AbstractDungeon.player, TRIBUTES, false);
     				
     				if (tribs > 0)
     				{

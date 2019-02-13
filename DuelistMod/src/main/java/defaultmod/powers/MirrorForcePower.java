@@ -39,12 +39,12 @@ public class MirrorForcePower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.amount = 0;
-        this.updateDescription();
+        this.amount = 0;       
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
         if (upgrade) { MULT = 2; }
+        this.updateDescription();
     }
     
     @Override

@@ -25,11 +25,11 @@ public class DarkMirrorPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;        
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
+        this.updateDescription();
     }
     
     @Override

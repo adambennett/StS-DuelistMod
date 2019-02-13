@@ -40,8 +40,7 @@ public class DespairPower extends AbstractPower
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;
-		this.owner = owner;
-		this.updateDescription();
+		this.owner = owner;		
 		this.type = PowerType.DEBUFF;
 		this.isTurnBased = false;
 		this.img = new Texture(IMG);
@@ -49,6 +48,7 @@ public class DespairPower extends AbstractPower
 		this.amount = 1;
 		ATTACHED_AXE = card;
 		STR_LOSS = strLoss;
+		this.updateDescription();
 	}
 	
 	@Override
@@ -74,7 +74,7 @@ public class DespairPower extends AbstractPower
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
 		if (this.amount > 0) { this.amount = 0; }
-		int tribs = AxeDespair.tribute(AbstractDungeon.player, TRIBUTES, false);
+		int tribs = AxeDespair.powerTribute(AbstractDungeon.player, TRIBUTES, false);
 		if (tribs < TRIBUTES)
 		{
 			AxeDespair.damageSelf(DAMAGE);

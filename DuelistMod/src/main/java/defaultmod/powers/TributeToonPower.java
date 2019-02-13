@@ -28,18 +28,34 @@ public class TributeToonPower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.updateDescription();
         this.type = PowerType.DEBUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.amount = newAmount;
+        this.updateDescription();
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount >= 2) { this.amount -= 2; }
-    	else if (this.amount > 0) { this.amount--; }
+    	if (this.amount >= 2) 
+    	{ 
+    		this.amount -= 2; 
+    		if (this.amount < 1)
+    		{
+    			AbstractPower instance = AbstractDungeon.player.getPower(TributeToonPower.POWER_ID);
+    			DuelistCard.removePower(instance, AbstractDungeon.player);
+    		}
+    	}
+    	else if (this.amount > 0) 
+    	{ 
+    		this.amount--; 
+    		if (this.amount < 1)
+    		{
+    			AbstractPower instance = AbstractDungeon.player.getPower(TributeToonPower.POWER_ID);
+    			DuelistCard.removePower(instance, AbstractDungeon.player);
+    		}
+    	}
     	else 
     	{ 
     		if (AbstractDungeon.player.hasPower(TributeToonPower.POWER_ID)) 
@@ -62,6 +78,6 @@ public class TributeToonPower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+    	this.description = DESCRIPTIONS[0];
     }
 }

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
-import defaultmod.cards.MagicCylinder;
+import defaultmod.patches.DuelistCard;
 
 /* 	
  * Lose 10 strength at the end of turn and
@@ -39,11 +39,11 @@ public class MagicCylinderPower extends AbstractPower
         this.ID = POWER_ID;
         this.owner = owner;
         this.amount = newAmount;
-        this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
         if (upgrade) { upgraded = true; }
+        this.updateDescription();
     }
 
     @Override
@@ -53,8 +53,7 @@ public class MagicCylinderPower extends AbstractPower
     	if (upgraded) 
     	{
     		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS, MAX_TURNS);
-    		AbstractPower buff = MagicCylinder.getRandomBuff(AbstractDungeon.player, randomTurnNum);
-    		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, buff, randomTurnNum));
+    		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, true);
     	}
     	
     	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, this, this.amount));

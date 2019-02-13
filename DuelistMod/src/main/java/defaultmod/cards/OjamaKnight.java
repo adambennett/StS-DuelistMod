@@ -66,7 +66,7 @@ public class OjamaKnight extends DuelistCard
 		for (int i = 0; i < primaryB; i++)
 		{
 			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL + 1);
-			applyPower(getRandomBuff(p, randomTurnNum), p);
+			applyRandomBuffPlayer(p, randomTurnNum, false);
 		}
 		
 		// Give 'primary' random debuffs to enemy

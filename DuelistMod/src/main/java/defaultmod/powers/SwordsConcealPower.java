@@ -3,6 +3,7 @@ package defaultmod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -30,13 +31,13 @@ public class SwordsConcealPower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.updateDescription();
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = newAmount;
         isPlayed = playedCard;
+        this.updateDescription();
     }
  
     @Override
@@ -68,7 +69,14 @@ public class SwordsConcealPower extends AbstractPower
 	{
     	if (!isPlayed)
     	{
-    		if (this.amount > 0) { this.amount--; }
+    		if (this.amount > 0) 
+    		{ 
+    			this.amount--; 
+    			if (this.amount < 1)
+    			{
+    				DuelistCard.removePower(this, AbstractDungeon.player);
+    			}
+    		}
     	}
     	updateDescription();
 	}

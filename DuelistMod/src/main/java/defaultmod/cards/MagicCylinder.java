@@ -51,8 +51,7 @@ public class MagicCylinder extends DuelistCard
 		if (upgraded) 
     	{
     		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS, MAX_TURNS);
-    		AbstractPower buff = MagicCylinder.getRandomBuff(AbstractDungeon.player, randomTurnNum);
-    		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, buff, randomTurnNum));
+    		applyRandomBuffPlayer(p, randomTurnNum, true);
     	}
 	}
 

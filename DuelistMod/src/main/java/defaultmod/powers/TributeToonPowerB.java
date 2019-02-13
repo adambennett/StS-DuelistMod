@@ -13,17 +13,17 @@ import defaultmod.patches.DuelistCard;
 
 
 
-public class SummonSicknessPower extends AbstractPower
+public class TributeToonPowerB extends AbstractPower
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = defaultmod.DefaultMod.makeID("SummonSicknessPower");
+    public static final String POWER_ID = defaultmod.DefaultMod.makeID("TributeToonPowerB");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DefaultMod.makePath(DefaultMod.SUMMON_SICKNESS_POWER);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.TRIBUTE_TOON_POWER);
     
-    public SummonSicknessPower(final AbstractCreature owner, int newAmount) 
+    public TributeToonPowerB(final AbstractCreature owner, int newAmount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -43,7 +43,7 @@ public class SummonSicknessPower extends AbstractPower
     		this.amount -= 2; 
     		if (this.amount < 1)
     		{
-    			AbstractPower instance = AbstractDungeon.player.getPower(SummonSicknessPower.POWER_ID);
+    			AbstractPower instance = AbstractDungeon.player.getPower(TributeToonPowerB.POWER_ID);
     			DuelistCard.removePower(instance, AbstractDungeon.player);
     		}
     	}
@@ -52,15 +52,15 @@ public class SummonSicknessPower extends AbstractPower
     		this.amount--; 
     		if (this.amount < 1)
     		{
-    			AbstractPower instance = AbstractDungeon.player.getPower(SummonSicknessPower.POWER_ID);
+    			AbstractPower instance = AbstractDungeon.player.getPower(TributeToonPowerB.POWER_ID);
     			DuelistCard.removePower(instance, AbstractDungeon.player);
     		}
     	}
     	else 
     	{ 
-    		if (AbstractDungeon.player.hasPower(SummonSicknessPower.POWER_ID)) 
+    		if (AbstractDungeon.player.hasPower(TributeToonPowerB.POWER_ID)) 
     		{
-    			AbstractPower instance = AbstractDungeon.player.getPower(SummonSicknessPower.POWER_ID);
+    			AbstractPower instance = AbstractDungeon.player.getPower(TributeToonPowerB.POWER_ID);
     			DuelistCard.removePower(instance, AbstractDungeon.player);
     		}
     	}
@@ -73,10 +73,11 @@ public class SummonSicknessPower extends AbstractPower
     {
     	updateDescription();
     }
+    
 
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+    	this.description = DESCRIPTIONS[0];
     }
 }

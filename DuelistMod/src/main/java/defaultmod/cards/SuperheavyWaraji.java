@@ -44,7 +44,7 @@ public class SuperheavyWaraji extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false);
+    	tribute(p, this.tributes, false, this);
     	applyPowerToSelf(new DexterityPower(p, this.magicNumber));
     }
 

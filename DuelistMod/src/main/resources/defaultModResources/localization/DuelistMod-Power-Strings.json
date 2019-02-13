@@ -137,11 +137,19 @@
 },
 "theDuelist:EnergyTreasurePower": {
         "NAME": "Tomb Looter",
-        "DESCRIPTIONS": ["Each time you gain [E], gain #b", " #yGold." ]
+        "DESCRIPTIONS": ["Each time you gain [E] , gain #b", " #yGold." ]
 },
 "theDuelist:HealGoldPower": {
         "NAME": "Tomb Pilferer",
         "DESCRIPTIONS": ["Each time you gain HP, gain #b", " #yGold." ]
+},
+"theDuelist:TributeToonPower": {
+        "NAME": "Pegasus Wings",
+        "DESCRIPTIONS": ["Each time you #yTribute, add a random #yToon monster to your hand." ]
+},
+"theDuelist:TributeToonPowerB": {
+        "NAME": "Pegasus Wings+",
+        "DESCRIPTIONS": ["Each time you #yTribute, add a random #yToon card to your hand." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

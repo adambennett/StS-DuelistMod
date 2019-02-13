@@ -30,11 +30,11 @@ public class OrbHealerPower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.updateDescription();
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.amount = newAmount;
+        this.updateDescription();
     }
     
     @Override

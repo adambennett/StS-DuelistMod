@@ -60,7 +60,7 @@ public class OjamaGreen extends DuelistCard
     	for (int i = 0; i < primary; i++)
     	{
     		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
-    		applyPower(getRandomBuff(p, randomTurnNum), p);
+    		applyRandomBuffPlayer(p, randomTurnNum, false);
     	}
     }
 

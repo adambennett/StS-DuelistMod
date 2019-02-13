@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.mod.replay.orbs.CrystalOrb;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.ModifyMagicNumberAction;
@@ -75,11 +74,8 @@ public class ToonDarkMagicianGirl extends DuelistCard
         	int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
 
         	// Get random buff with random tumber of turns
-        	AbstractPower randomBuff = getRandomBuff(p, randomTurnNum);
+        	applyRandomBuffPlayer(p, randomTurnNum, false);
 
-        	// Apply random buff
-        	//AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, randomBuff));
-        	applyPower(randomBuff, p);
         }
     }
 

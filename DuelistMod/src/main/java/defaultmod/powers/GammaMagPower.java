@@ -26,12 +26,12 @@ public class GammaMagPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.updateDescription();
 
     }
     

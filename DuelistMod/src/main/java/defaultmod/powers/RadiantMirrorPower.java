@@ -34,11 +34,11 @@ public class RadiantMirrorPower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.upgrade = upgrade;
         this.type = PowerType.BUFF;
+        this.updateDescription();
     }
     
     @Override

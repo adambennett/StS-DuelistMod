@@ -38,11 +38,11 @@ public class JamPower extends AbstractPower
         this.ID = POWER_ID;
         this.owner = owner;
         this.amount = newAmount;
-        this.updateDescription();
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
         SUMMONS = summons;
+        this.updateDescription();
     }
 
 

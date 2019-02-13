@@ -68,7 +68,7 @@ public class OjamaKing extends DuelistCard
 		for (int i = 0; i < RAND_BUFFS; i++)
 		{
 			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL + 1);
-			applyPower(getRandomBuff(p, randomTurnNum), p);
+			applyRandomBuffPlayer(p, randomTurnNum, false);
 		}
 		
 		// Give 3 random debuffs to enemy

@@ -23,12 +23,12 @@ public class SpellCounterPower extends AbstractPower
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.updateDescription();
         this.type = PowerType.DEBUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = amount;
+        this.updateDescription();
     }
 
     @Override

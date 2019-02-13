@@ -68,7 +68,7 @@ public class Buffer extends AbstractOrb
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard.applyPowerToSelf(DuelistCard.getRandomBuff(AbstractDungeon.player, this.evokeAmount));
+		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, true);
 	}
 
 	@Override

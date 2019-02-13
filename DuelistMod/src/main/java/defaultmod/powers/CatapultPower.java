@@ -36,11 +36,11 @@ public class CatapultPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;        
         this.img = new Texture(IMG);
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
+        this.updateDescription();
     }
     
     @Override
@@ -70,7 +70,7 @@ public class CatapultPower extends AbstractPower
     		if (this.owner.hasPower(SummonPower.POWER_ID))
     		{
     			// Get # of summons and tribute all
-    			int playerSummons = CatapultTurtle.tribute(AbstractDungeon.player, 0, true);
+    			int playerSummons = CatapultTurtle.powerTribute(AbstractDungeon.player, 0, true);
     			if (playerSummons > 0)
     			{
 					// Deal 10 damage to all enemies for each Tribute

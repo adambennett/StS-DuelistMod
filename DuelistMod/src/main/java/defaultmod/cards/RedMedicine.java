@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -31,7 +30,7 @@ public class RedMedicine extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
-    private static int MIN_TURNS_ROLL = 2;
+    private static int MIN_TURNS_ROLL = 1;
     private static int MAX_TURNS_ROLL = 6;
     private static final int BUFFS = 1;
     // /STAT DECLARATION/
@@ -50,13 +49,18 @@ public class RedMedicine extends DuelistCard
 		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
 		int randomTurnNumB = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
 
+		/*
 		// Get two random buffs
-		AbstractPower randomBuff = getRandomBuff(p, randomTurnNum);
-		AbstractPower randomBuffB = getRandomBuff(p, randomTurnNumB);
+		AbstractPower randomBuff = getRandomBuffSmall(p, randomTurnNum);
+		AbstractPower randomBuffB = getRandomBuffSmall(p, randomTurnNumB);
 
 		// Apply random buff(s)
 		applyPowerToSelf(randomBuff);
-		if (this.upgraded) { applyPowerToSelf(randomBuffB); }
+		*/
+		applyRandomBuffPlayer(p, randomTurnNum, false);
+		System.out.println("theDuelist:RedMedicine --- > Generated buff: " );
+		//if (this.upgraded) { applyPowerToSelf(randomBuffB); }
+		if (this.upgraded) { applyRandomBuffPlayer(p, randomTurnNumB, false); System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " ); }
     }
 
     // Which card to return when making a copy of this card.

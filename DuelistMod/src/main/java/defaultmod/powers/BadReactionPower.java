@@ -34,8 +34,7 @@ public class BadReactionPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;       
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
@@ -45,7 +44,7 @@ public class BadReactionPower extends AbstractPower
         	DAMAGE += uDmg;
         	//HP_GAIN_TRIGGER += uHeal;
         }
-
+        this.updateDescription();
     }
     
     @Override

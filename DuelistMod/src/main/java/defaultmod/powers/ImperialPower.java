@@ -34,13 +34,13 @@ public class ImperialPower extends AbstractPower
     {
         this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.updateDescription();
+        this.owner = owner;     
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
         GOLD = gold;
         DAMAGE = dmg;
+        this.updateDescription();
     }
 
     @Override
