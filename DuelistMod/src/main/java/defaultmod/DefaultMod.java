@@ -266,6 +266,7 @@ public class DefaultMod
     public static final String EVOKE_SICKNESS_POWER = "powers/EvokeSicknessPower.png";
     public static final String ORB_HEAL_POWER = "powers/OrbHealPower.png";
     public static final String ENERGY_TREASURE_POWER = "powers/EnergyTreasurePower.png";
+    public static final String TRIBUTE_TOON_POWER = "powers/TributeToonPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";

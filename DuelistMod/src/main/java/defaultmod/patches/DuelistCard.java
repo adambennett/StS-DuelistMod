@@ -626,7 +626,13 @@ public abstract class DuelistCard extends CustomCard
 			case "Toon S. Skull":
 				return new ToonSummonedSkull();
 			default:
-				return null;
+				String[] monsters = new String[] 
+						{		
+							"B. E. Toon Dragon", "Red Eyes Toon", "Toon Barrel Dragon", "Toon Dark Magician", 
+							"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull"
+						};
+				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
+				return randomToon(monsters[randomCard]);
 		}
 	}
 	
@@ -652,7 +658,13 @@ public abstract class DuelistCard extends CustomCard
 			case "Toon S. Skull":
 				return new ToonSummonedSkull();
 			default:
-				return null;
+				String[] monsters = new String[] 
+						{		
+							"B. E. Toon Dragon", "Red Eyes Toon", "Toon Barrel Dragon", "Toon Dark Magician", 
+							"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull"
+						};
+				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
+				return randomToon(monsters[randomCard]);
 		}
 	}
 	
