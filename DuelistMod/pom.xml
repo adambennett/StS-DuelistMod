@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>0.102.1</version>
+    <version>1.128.0</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
@@ -18,7 +18,6 @@
         <SlayTheSpire.version>1-23-2019</SlayTheSpire.version>
         <ModTheSpire.version>3.8.3</ModTheSpire.version>
         <StSLib.version>1.14.0</StSLib.version>
-        <FriendlyMinions.version>0.1.2</FriendlyMinions.version>
         <ReplayTheSpireMod.version>1.3.25</ReplayTheSpireMod.version>
         <Conspire.version>1.5.5</Conspire.version>
         <StS-BlackRuse.version>0.9.3</StS-BlackRuse.version>
@@ -50,13 +49,6 @@
             <version>${BaseMod.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/BaseMod.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>friendlyminions</groupId>
-            <artifactId>FriendlyMinions</artifactId>
-            <version>${FriendlyMinions.version}</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/../lib/FriendlyMinions.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl</groupId>

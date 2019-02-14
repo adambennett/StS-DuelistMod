@@ -44,7 +44,7 @@ public class InjectionFairy extends DuelistCard
     {
        summon(p, this.summons);
        heal(p, this.heal);
-       if (upgraded) { attack(m, AFX, this.damage); }
+       if (upgraded) { attack(m, AFX, this.baseDamage); }
     }
 
     // Which card to return when making a copy of this card.

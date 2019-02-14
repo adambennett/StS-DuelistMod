@@ -46,7 +46,7 @@ public class GaiaFierce extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.baseDamage);
     }
 
     // Which card to return when making a copy of this card.

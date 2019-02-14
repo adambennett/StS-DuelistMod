@@ -2,8 +2,8 @@ package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -16,7 +16,7 @@ import defaultmod.patches.DuelistCard;
 public class ToonWorldPower extends AbstractPower 
 {
     public AbstractCreature source;
-    public static final String POWER_ID = defaultmod.DefaultMod.makeID("ToonWorldPower");
+    public static final String POWER_ID = DefaultMod.makeID("ToonWorldPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -41,32 +41,51 @@ public class ToonWorldPower extends AbstractPower
     public void onDrawOrDiscard() 
     {
     	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
+    	if (AbstractDungeon.player.hasPower("ToonKingdomPower"))
+    	{
+    		DuelistCard.removePower(this, AbstractDungeon.player);
+    	}
     }
     
     @Override
     public void atStartOfTurn() 
     {
     	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
+    	if (AbstractDungeon.player.hasPower("ToonKingdomPower"))
+    	{
+    		DuelistCard.removePower(this, AbstractDungeon.player);
+    	}
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
-    	if (DuelistCard.isToon(c.name)) 
-    	{ 
-    		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); }
-    		if (TOON_DMG > 0) { TOON_DMG--; } 
+    	if (AbstractDungeon.player.hasPower("ToonKingdomPower"))
+    	{
+    		DuelistCard.removePower(this, AbstractDungeon.player);
     	}
-    	
-    	this.amount = TOON_DMG;
-    	updateDescription();
+    	else
+    	{
+	    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
+	    	if (DuelistCard.isToon(c.name)) 
+	    	{ 
+	    		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); }
+	    		if (TOON_DMG > 0) { TOON_DMG--; } 
+	    	}
+	    	
+	    	this.amount = TOON_DMG;
+	    	updateDescription();
+    	}
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
     	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
+    	if (AbstractDungeon.player.hasPower("ToonKingdomPower"))
+    	{
+    		DuelistCard.removePower(this, AbstractDungeon.player);
+    	}
 	}
 
     @Override

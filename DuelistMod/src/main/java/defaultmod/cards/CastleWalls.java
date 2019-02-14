@@ -21,12 +21,12 @@ public class CastleWalls extends DuelistCard
     // /TEXT DECLARATION/ 
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int BLOCK = 8;
+    private static final int BLOCK = 9;
     private static final int UPGRADE_PLUS_BLK = 3;
     // /STAT DECLARATION/
 
@@ -40,7 +40,7 @@ public class CastleWalls extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	block(this.block);
+    	block(this.baseBlock);
     }
 
     // Which card to return when making a copy of this card.

@@ -45,6 +45,7 @@ public class MagicCylinderPower extends AbstractPower
         if (upgrade) { upgraded = true; }
         this.updateDescription();
     }
+    
 
     @Override
     public int onLoseHp(int damageAmount)

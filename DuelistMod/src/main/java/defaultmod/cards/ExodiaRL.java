@@ -36,7 +36,7 @@ public class ExodiaRL extends DuelistCard
         this.tags.add(DefaultMod.EXODIA);
         this.summons = this.baseMagicNumber = this.magicNumber = 1;
         this.damage =  this.baseDamage = 1;
-        this.baseBlock = this.block = 9;
+        this.baseBlock = this.block = 8;
         this.exhaust = true;
         this.exodiaName = "Right Leg";
     }
@@ -46,7 +46,7 @@ public class ExodiaRL extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	summon(p, this.summons);
-    	block(this.block);
+    	block(this.baseBlock);
     	
     	// If player has already played at least 1 other piece of exodia
     	if (p.hasPower(ExodiaPower.POWER_ID))

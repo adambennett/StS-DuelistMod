@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.ToonWorldPower;
+import defaultmod.powers.*;
 
 public class ToonGeminiElf extends DuelistCard 
 {
@@ -71,7 +71,7 @@ public class ToonGeminiElf extends DuelistCard
   		if (this.misc == 52) { return true; }
   		
   		// Toon World
-    	if (p.hasPower(ToonWorldPower.POWER_ID)) { return true; }
+    	if (p.hasPower(ToonWorldPower.POWER_ID) || p.hasPower(ToonKingdomPower.POWER_ID)) { return true; }
     	
     	// Otherwise
     	this.cantUseMessage = "You need Toon World";

@@ -45,7 +45,7 @@ public class SuperheavySwordsman extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons);
-    	if (upgraded) { attack(m, AFX, this.damage); }
+    	if (upgraded) { attack(m, AFX, this.baseDamage); }
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 

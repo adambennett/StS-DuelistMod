@@ -41,7 +41,8 @@ public class DarkHole extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Get target block and remove all of it
-    	if (m.currentBlock > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
+    	int block = m.currentBlock;
+    	if (block > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); this.baseBlock = block; block(this.baseBlock); }
 
     	// Set max summons to 4 or 5
     	//if (this.upgraded) { setMaxSummons(p, 5); }

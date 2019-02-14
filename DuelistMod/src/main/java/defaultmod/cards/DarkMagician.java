@@ -51,7 +51,7 @@ public class DarkMagician extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.baseDamage);
     	//applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
     	AbstractOrb summoner = new Summoner();
     	channel(summoner);

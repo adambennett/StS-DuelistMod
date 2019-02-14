@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.ToonWorldPower;
+import defaultmod.powers.*;
 
 public class ToonWorld extends DuelistCard 
 {
@@ -40,8 +40,8 @@ public class ToonWorld extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!upgraded) { applyPowerToSelf(new ToonWorldPower(p, p, 5)); }
-    	else { applyPowerToSelf(new ToonWorldPower(p, p, 3)); }
+    	if (!upgraded && !p.hasPower(ToonKingdomPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 5)); }
+    	else if (!p.hasPower(ToonKingdomPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 3)); }
     }
 
     // Which card to return when making a copy of this card.

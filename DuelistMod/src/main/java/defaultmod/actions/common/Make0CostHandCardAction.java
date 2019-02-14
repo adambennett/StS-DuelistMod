@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
+@SuppressWarnings("unused")
 public class Make0CostHandCardAction extends AbstractGameAction
 {
 	private static final float DURATION_PER_CARD = 0.35F;

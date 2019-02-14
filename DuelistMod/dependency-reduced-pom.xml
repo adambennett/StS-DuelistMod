@@ -4,7 +4,7 @@
   <groupId>duelistmod</groupId>
   <artifactId>DuelistMod</artifactId>
   <name>DuelistMod</name>
-  <version>0.102.1</version>
+  <version>1.128.0</version>
   <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
   <build>
     <finalName>DuelistMod</finalName>
@@ -71,13 +71,6 @@
       <systemPath>${basedir}/../lib/BaseMod.jar</systemPath>
     </dependency>
     <dependency>
-      <groupId>friendlyminions</groupId>
-      <artifactId>FriendlyMinions</artifactId>
-      <version>${FriendlyMinions.version}</version>
-      <scope>system</scope>
-      <systemPath>${basedir}/../lib/FriendlyMinions.jar</systemPath>
-    </dependency>
-    <dependency>
       <groupId>com.evacipated.cardcrawl</groupId>
       <artifactId>stslib</artifactId>
       <version>${StSLib.version}</version>
@@ -124,7 +117,6 @@
     <StS-BlackRuse.version>0.9.3</StS-BlackRuse.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <StSLib.version>1.14.0</StSLib.version>
-    <FriendlyMinions.version>0.1.2</FriendlyMinions.version>
     <ModTheSpire.version>3.8.3</ModTheSpire.version>
     <BaseMod.version>5.11.0</BaseMod.version>
     <SpikesRelics.version>0.023</SpikesRelics.version>

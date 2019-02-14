@@ -46,7 +46,7 @@ public class SmallLabyrinthWall extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	block(this.block);
+    	block(this.baseBlock);
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +65,7 @@ public class SmallLabyrinthWall extends DuelistCard
             this.upgradeBlock(UPGRADE_PLUS_BLK);
             this.tributes = 2;
             this.upgradeBaseCost(2);
-            this.rarity = CardRarity.UNCOMMON;
+            //this.rarity = CardRarity.UNCOMMON;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

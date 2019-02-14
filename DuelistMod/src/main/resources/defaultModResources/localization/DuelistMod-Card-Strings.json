@@ -64,6 +64,11 @@
 		"DESCRIPTION": "Whenever you shuffle your deck, Summon 5.",
 		"UPGRADE_DESCRIPTION": "Whenever you shuffle your deck, Increment 5."
 	},
+	"theDuelist:BigCastleWalls": {
+		"NAME": "Big Castle Wall",
+		"DESCRIPTION": "Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Gain !B! block."
+	},
 	"theDuelist:CastleWalls": {
 		"NAME": "Castle Walls",
 		"DESCRIPTION": "Gain !B! block.",
@@ -86,8 +91,8 @@
 	},
 	"theDuelist:DarkHole": {
 		"NAME": "Dark Hole",
-		"DESCRIPTION": "Remove all block from an enemy.",
-		"UPGRADE_DESCRIPTION": "Remove all block from an enemy."
+		"DESCRIPTION": "Steal all block from an enemy.",
+		"UPGRADE_DESCRIPTION": "Steal all block from an enemy."
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "Darklord Marie",
@@ -186,8 +191,8 @@
 	},
 	"theDuelist:HarpieFeather": {
 		"NAME": "Harpie Feather Duster",
-		"DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to 2x the total Spell Counters removed to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Remove all Spell Counters from ALL enemies. Deal damage equal to 2x the total Spell Counters removed to ALL enemies."
+		"DESCRIPTION": "Remove !M! stack from every buff you have. Gain block equal to the number of stacks removed.",
+		"UPGRADE_DESCRIPTION": "Remove !M! stacks from every buff you have. Gain block equal to the number of stacks removed."
 	},
 	"theDuelist:Hinotoma": {
 		"NAME": "Hinotoma",
@@ -256,7 +261,7 @@
 	},
 	"theDuelist:MillenniumShield": {
 		"NAME": "Millennium Shield",
-		"DESCRIPTION": "Tribute !M!. NL Gain 6 Dexterity. NL Exhaust.",
+		"DESCRIPTION": "Tribute !M!. NL Gain 5 Dexterity. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Tribute !M!. NL Gain 6 Dexterity."
 	},
 	"theDuelist:MirrorForce": {
@@ -281,8 +286,8 @@
 	},
 	"theDuelist:OjamaBlack": {
 		"NAME": "Ojama Black",
-		"DESCRIPTION": "Summon 1. Apply (1-2) random debuffs to a random enemy.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random debuffs to a random enemy."
+		"DESCRIPTION": "Summon 1. Apply (1-2) random debuffs to a random enemy. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random debuffs to a random enemy. Gain !B! block."
 	},
 	"theDuelist:Ojamagic": {
 		"NAME": "Ojamagic",
@@ -291,8 +296,8 @@
 	},
 	"theDuelist:OjamaGreen": {
 		"NAME": "Ojama Green",
-		"DESCRIPTION": "Summon 1. Apply (1-2) random buffs.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random buffs."
+		"DESCRIPTION": "Summon 1. Apply (1-2) random buffs. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random buffs. Gain !B! block."
 	},
 	"theDuelist:OjamaKing": {
 		"NAME": "Ojama King",
@@ -311,8 +316,8 @@
 	},
 	"theDuelist:Ookazi": {
 		"NAME": "Ookazi",
-		"DESCRIPTION": "Deal a random amount (3-11) of damage.",
-		"UPGRADE_DESCRIPTION": "Deal a random amount (6-14) of damage."
+		"DESCRIPTION": "Deal a random amount (3-11) of damage. [!D!]",
+		"UPGRADE_DESCRIPTION": "Deal a random amount (6-14) of damage. [!D!]"
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
@@ -331,8 +336,8 @@
 	},
 	"theDuelist:PotDuality": {
 		"NAME": "Pot of Duality",
-		"DESCRIPTION": "Look at the top 3 cards of your deck - add one to your hand and shuffle the other two back in.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Draw !M! cards. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. Gain !B! block."
 	},
 	"theDuelist:PotGenerosity": {
 		"NAME": "Pot of Generosity",
@@ -471,8 +476,8 @@
 	},
 	"theDuelist:SuperheavyBenkei": {
 		"NAME": "Superheavy Benkei",
-		"DESCRIPTION": "Tribute !M!. Deal !D! damage. Gain 3 dexterity.",
-		"UPGRADE_DESCRIPTION": "Tribute !M!. Deal !D! damage. Gain 5 dexterity."
+		"DESCRIPTION": "Tribute 3. Deal !D! damage. Gain !M! dexterity.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Deal !D! damage. Gain !M! dexterity."
 	},
 	"theDuelist:SuperheavyScales": {
 		"NAME": "Superheavy Scales",
@@ -487,7 +492,7 @@
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "Superheavy Waraji",
 		"DESCRIPTION": "Tribute 4. Gain !M! dexterity. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 4. Gain !M! dexterity. Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute 4. Gain !M! dexterity. Gain !B! block. Exhaust."
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
@@ -533,6 +538,126 @@
 		"NAME": "Gemini Elf",
 		"DESCRIPTION": "Summon !M!. Exhaust.",
 		"UPGRADE_DESCRIPTION": "Summon !M!. Exhaust."
+	},
+	"theDuelist:BigFire": {
+		"NAME": "Tremendous Fire",
+		"DESCRIPTION": "You and ALL enemies take a random amount (0-25) of damage.",
+		"UPGRADE_DESCRIPTION": "You and ALL enemies take a random amount (0-30) of damage."
+	},
+	"theDuelist:ToonMask": {
+		"NAME": "Toon Mask",
+		"DESCRIPTION": "Deal a random amount of damage (10-40) to each enemy.",
+		"UPGRADE_DESCRIPTION": "Deal a random amount of damage (15-50) to each enemy."
+	},
+	"theDuelist:ToonMagic": {
+		"NAME": "Toon Magic",
+		"DESCRIPTION": "Set the cost of all Toon cards in your hand to 0 for this turn.",
+		"UPGRADE_DESCRIPTION": "Set the cost of all Toon cards in your hand to 0 for this turn."
+	},
+	"theDuelist:ToonKingdom": {
+		"NAME": "Toon Kingdom",
+		"DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon monster into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon monster into your draw pile."
+	},
+	"theDuelist:ToonRollback": {
+		"NAME": "Toon Rollback",
+		"DESCRIPTION": "All Toons played are copied into your hand this turn.",
+		"UPGRADE_DESCRIPTION": "All Toons played are copied into your hand this turn."
+	},
+	"theDuelist:SuperheavyOgre": {
+		"NAME": "Superheavy Ogre",
+		"DESCRIPTION": "Summon 2. Gain !M! Dexterity.",
+		"UPGRADE_DESCRIPTION": "Summon 2. Deal !D! damage. Gain !M! Dexterity."
+	},
+	"theDuelist:SuperheavyMagnet": {
+		"NAME": "Superheavy Magnet",
+		"DESCRIPTION": "Summon 2. Gain !B! block. Gain 2 random Magnets.",
+		"UPGRADE_DESCRIPTION": "Summon 2. Gain !B! block. Gain 2 random Magnets."
+	},
+	"theDuelist:SuperheavyGeneral": {
+		"NAME": "Superheavy General",
+		"DESCRIPTION": "Tribute 4. Deal !D! damage. Gain !M! Dexterity.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. Deal !D! damage. Gain !M! Dexterity."
+	},
+	"theDuelist:SuperheavyFlutist": {
+		"NAME": "Superheavy Flutist",
+		"DESCRIPTION": "Summon 1. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain !B! block."
+	},
+	"theDuelist:SuperheavyDaihachi": {
+		"NAME": "Superheavy Daihachi",
+		"DESCRIPTION": "Tribute 5. Gain !M! Dexterity. Gain !B! block. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 5. Gain !M! Dexterity. Gain !B! block. Exhaust."
+	},
+	"theDuelist:SuperheavyBlueBrawler": {
+		"NAME": "Superheavy Brawler",
+		"DESCRIPTION": "Tribute 2. Deal !D! damage. Gain !M! dexterity. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage. Gain !M! dexterity. Exhaust."
+	},
+	"theDuelist:SpiritHarp": {
+		"NAME": "Spirit of the Harp",
+		"DESCRIPTION": "Summon 2. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 2. Gain !B! block."
+	},
+	"theDuelist:SnowDragon": {
+		"NAME": "Snow Dragon",
+		"DESCRIPTION": "Summon 1. Deal !D! damage. Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. Channel a Frost."
+	},
+	"theDuelist:SnowdustDragon": {
+		"NAME": "Snowdust Dragon",
+		"DESCRIPTION": "Tribute 4. Deal !D! damage. Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. Deal !D! damage. Channel a Frost."
+	},
+	"theDuelist:Raigeki": {
+		"NAME": "Raigeki",
+		"DESCRIPTION": "Gain !B! block. Steal ALL block from an enemy.",
+		"UPGRADE_DESCRIPTION": "Gain !B! block. Steal ALL block from an enemy."
+	},
+	"theDuelist:PreventRat": {
+		"NAME": "Prevent Rat",
+		"DESCRIPTION": "Summon 1. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain !B! block."
+	},
+	"theDuelist:Ojamuscle": {
+		"NAME": "Ojamuscle",
+		"DESCRIPTION": "Shuffle a random amount (1-5) of Ojama Yellow cards into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Shuffle a random amount (1-5) of upgraded Ojama Yellow cards into your draw pile."
+	},
+	"theDuelist:MysticalElf": {
+		"NAME": "Mystical Elf",
+		"DESCRIPTION": "Summon 1. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain !B! block."
+	},
+	"theDuelist:IslandTurtle": {
+		"NAME": "Island Turtle",
+		"DESCRIPTION": "Summon 1. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain !B! block."
+	},
+	"theDuelist:GravityAxe": {
+		"NAME": "Gravity Axe",
+		"DESCRIPTION": "Gain !M! Strength. You cannot gain or lose Strength for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength. You cannot gain or lose Strength for the rest of combat."
+	},
+	"theDuelist:FortressWarrior": {
+		"NAME": "Fortress Warrior",
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Deal !D! damage. NL Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Summon 1. NL Deal !D! damage. NL Gain !B! block."
+	},
+	"theDuelist:CaveDragon": {
+		"NAME": "Cave Dragon",
+		"DESCRIPTION": "Summon 2. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 2. Gain !B! block."
+	},
+	"theDuelist:BlizzardDragon": {
+		"NAME": "Blizzard Dragon",
+		"DESCRIPTION": "Tribute 2. Deal !D! damage. Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. Deal !D! damage. Channel a Frost."
+	},
+	"theDuelist:BabyDragon": {
+		"NAME": "Baby Dragon",
+		"DESCRIPTION": "Summon 2. Gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon 2. Gain !B! block."
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",

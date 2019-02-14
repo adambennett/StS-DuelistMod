@@ -43,7 +43,7 @@ public class SuperheavyScales extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, SUMMONS);
-    	block(this.block);
+    	block(this.baseBlock);
     }
 
     // Which card to return when making a copy of this card.
@@ -57,7 +57,7 @@ public class SuperheavyScales extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBlock(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

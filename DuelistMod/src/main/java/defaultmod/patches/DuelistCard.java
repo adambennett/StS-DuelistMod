@@ -44,6 +44,7 @@ public abstract class DuelistCard extends CustomCard
 	public int summons = 0;
 	public int tributes = 0;
 	public int upgradeDmg;
+	public int upgradeBlk;
 	public int upgradeSummons;
 	public int counters;
 	public int buffs;
@@ -101,6 +102,11 @@ public abstract class DuelistCard extends CustomCard
 	public static void damageSelf(int DAMAGE)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+	}
+	
+	public static void damageSelfFire(int DAMAGE)
+	{
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
 	}
 
 	protected static AbstractPlayer player() {
@@ -775,11 +781,20 @@ public abstract class DuelistCard extends CustomCard
 				return new ToonBriefcase();
 			case "Toon World":
 				return new ToonWorld();
+			case "Toon Kingdom":
+				return new ToonKingdom();
+			case "Toon Magic":
+				return new ToonMagic();
+			case "Toon Mask":
+				return new ToonMask();
+			case "Toon Rollback":
+				return new ToonRollback();
 			default:
 				String[] monsters = new String[] 
 				{		
 						"B. E. Toon Dragon", "Red Eyes Toon", "Toon Barrel Dragon", "Toon Dark Magician", 
-						"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Toon Briefcase", "Toon World"
+						"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Toon Briefcase", "Toon World",
+						"Toon Kingdom", "Toon Magic", "Toon Mask", "Toon Rolback"
 				};
 				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
 				return randomToonMonster(monsters[randomCard]);
@@ -811,11 +826,20 @@ public abstract class DuelistCard extends CustomCard
 				return new ToonBriefcase();
 			case "Toon World":
 				return new ToonWorld();
+			case "Toon Kingdom":
+				return new ToonKingdom();
+			case "Toon Magic":
+				return new ToonMagic();
+			case "Toon Mask":
+				return new ToonMask();
+			case "Toon Rollback":
+				return new ToonRollback();
 			default:
 				String[] monsters = new String[] 
 				{		
 						"B. E. Toon Dragon", "Red Eyes Toon", "Toon Barrel Dragon", "Toon Dark Magician", 
-						"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Toon Briefcase", "Toon World"
+						"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Toon Briefcase", "Toon World",
+						"Toon Kingdom", "Toon Magic", "Toon Mask", "Toon Rolback"
 				};
 				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
 				return randomToonMonster(monsters[randomCard]);
@@ -841,6 +865,14 @@ public abstract class DuelistCard extends CustomCard
 		case "Toon Mermaid":
 			return true;
 		case "Toon S. Skull":
+			return true;
+		case "Toon Kingdom":
+			return true;
+		case "Toon Magic":
+			return true;
+		case "Toon Mask":
+			return true;
+		case "Toon Rollback":
 			return true;
 		default:
 			return false;
@@ -983,6 +1015,38 @@ public abstract class DuelistCard extends CustomCard
 			return new WingedDragonRa();
 		case "Mini L. Wall":
 			return new SmallLabyrinthWall();
+		case "Baby Dragon":								
+			return new BabyDragon();					
+		case "Blizzard Dragon":							
+			return new BlizzardDragon();
+		case "Cave Dragon":
+			return new CaveDragon();
+		case "Fortress Warrior":
+			return new FortressWarrior();
+		case "Island Turtle":
+			return new IslandTurtle();
+		case "Mystical Elf":
+			return new MysticalElf();
+		case "Prevent Rat":
+			return new PreventRat();
+		case "Snowdust Dragon":
+			return new SnowdustDragon();
+		case "Snow Dragon":
+			return new SnowDragon();
+		case "Spirit of the Harp":
+			return new SpiritHarp();
+		case "Superheavy Brawler":
+			return new SuperheavyBlueBrawler();
+		case "Superheavy Daihachi":
+			return new SuperheavyDaihachi();
+		case "Superheavy Flutist":
+			return new SuperheavyFlutist();
+		case "Superheavy General":
+			return new SuperheavyGeneral();
+		case "Superheavy Magnet":
+			return new SuperheavyMagnet();
+		case "Superheavy Ogre":
+			return new SuperheavyOgre();
 		default:
 			/*
 				String[] monsters = new String[] 
@@ -995,7 +1059,10 @@ public abstract class DuelistCard extends CustomCard
 					"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
 					"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Time Wizard", "Valkyrion", "Red Eyes Toon",
 					"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
-					"Toon D.M. Girl", "Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall"
+					"Toon D.M. Girl", "Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall",
+					"Baby Dragon", "Blizzard Dragon", "Cave Dragon", "Fortress Warrior", "Island Turtle", "Mystical Elf",
+					"Prevent Rat", "Snowdust Dragon", "Snow Dragon", "Spirit of the Harp", "Superheavy Brawler", 
+					"Superheavy Daihachi", "Superheavy Flutist", "Superheavy General", "Superheavy Magnet", "Superheavy Ogre"
 				};
 			 */
 			String[] monsters = new String[] 
@@ -1008,7 +1075,10 @@ public abstract class DuelistCard extends CustomCard
 							"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
 							"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Valkyrion", "Red Eyes Toon",
 							"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
-							"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall"
+							"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall",
+							"Baby Dragon", "Blizzard Dragon", "Cave Dragon", "Fortress Warrior", "Island Turtle", "Mystical Elf",
+							"Prevent Rat", "Snowdust Dragon", "Snow Dragon", "Spirit of the Harp", "Superheavy Brawler", 
+							"Superheavy Daihachi", "Superheavy Flutist", "Superheavy General", "Superheavy Magnet", "Superheavy Ogre"
 					};
 			int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
 			return newCopyOfMonster(monsters[randomCard]);
@@ -1150,6 +1220,38 @@ public abstract class DuelistCard extends CustomCard
 			return new WingedDragonRa();
 		case "Mini L. Wall":
 			return new SmallLabyrinthWall();
+		case "Baby Dragon":
+			return new BabyDragon();
+		case "Blizzard Dragon":
+			return new BlizzardDragon();
+		case "Cave Dragon":
+			return new CaveDragon();
+		case "Fortress Warrior":
+			return new FortressWarrior();
+		case "Island Turtle":
+			return new IslandTurtle();
+		case "Mystical Elf":
+			return new MysticalElf();
+		case "Prevent Rat":
+			return new PreventRat();
+		case "Snowdust Dragon":
+			return new SnowdustDragon();
+		case "Snow Dragon":
+			return new SnowDragon();
+		case "Spirit of the Harp":
+			return new SpiritHarp();
+		case "Superheavy Brawler":
+			return new SuperheavyBlueBrawler();
+		case "Superheavy Daihachi":
+			return new SuperheavyDaihachi();
+		case "Superheavy Flutist":
+			return new SuperheavyFlutist();
+		case "Superheavy General":
+			return new SuperheavyGeneral();
+		case "Superheavy Magnet":
+			return new SuperheavyMagnet();
+		case "Superheavy Ogre":
+			return new SuperheavyOgre();
 		default:
 			return newCopyOfMonster("7-Colored Fish");
 		}

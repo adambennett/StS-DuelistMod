@@ -47,7 +47,7 @@ public class FlameSwordsman extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.baseDamage);
     	AbstractOrb fire = new HellFireOrb();
     	channel(fire);
     }

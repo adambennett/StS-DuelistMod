@@ -226,6 +226,32 @@ public class DefaultMod
     public static final String TRAP_HOLE = "cards/Trap_Hole.png";
     public static final String VALK_MAGNET = "cards/Valk_Magnet.png";
     public static final String WINGED_DRAGON_RA = "cards/Winged_Dragon_Ra.png";
+    
+    // Second Set
+    public static final String TREMENDOUS_FIRE = "cards/Tremendous_Fire.png";
+    public static final String TOON_MASK = "cards/Toon_Mask.png";
+    public static final String TOON_MAGIC = "cards/Toon_Magic.png";
+    public static final String TOON_KINGDOM = "cards/Toon_Kingdom.png";
+    public static final String TOON_ROLLBACK = "cards/Toon_Rollback.png";
+    public static final String SUPERHEAVY_OGRE = "cards/Superheavy_Ogre.png";
+    public static final String SUPERHEAVY_MAGNET = "cards/Superheavy_Magnet.png";
+    public static final String SUPERHEAVY_GENERAL = "cards/Superheavy_General.png";
+    public static final String SUPERHEAVY_FLUTIST = "cards/Superheavy_Flutist.png";
+    public static final String SUPERHEAVY_DAIHACHI = "cards/Superheavy_Daihachi.png";
+    public static final String SUPERHEAVY_BLUE_BRAWLER = "cards/Superheavy_Blue_Brawler.png";
+    public static final String SPIRIT_HARP = "cards/Spirit_Harp.png";
+    public static final String SNOW_DRAGON = "cards/Snow_Dragon.png";
+    public static final String SNOWDUST_DRAGON = "cards/Snowdust_Dragon.png";
+    public static final String RAIGEKI = "cards/Raigeki.png";
+    public static final String PREVENT_RAT = "cards/Prevent_Rat.png";
+    public static final String OJAMUSCLE = "cards/Ojamuscle.png";
+    public static final String MYSTICAL_ELF = "cards/Mystical_Elf.png";
+    public static final String ISALND_TURTLE = "cards/Island_Turtle.png";
+    public static final String GRAVITY_AXE = "cards/Gravity_Axe.png";
+    public static final String FORTRESS_WARRIOR = "cards/Fortress_Warrior.png";
+    public static final String CAVE_DRAGON = "cards/Cave_Dragon.png";
+    public static final String BLIZZARD_DRAGON = "cards/Blizzard_Dragon.png";
+    public static final String BABY_DRAGON = "cards/Baby_Dragon.png";
   
     // Power images
     public static final String SUMMON_POWER = "powers/SummonPowerTest.png";
@@ -267,6 +293,8 @@ public class DefaultMod
     public static final String ORB_HEAL_POWER = "powers/OrbHealPower.png";
     public static final String ENERGY_TREASURE_POWER = "powers/EnergyTreasurePower.png";
     public static final String TRIBUTE_TOON_POWER = "powers/TributeToonPower.png";
+    public static final String GRAVITY_AXE_POWER = "powers/GravityAxePower.png";
+    public static final String TOON_ROLLBACK_POWER = "powers/ToonRollbackPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -442,6 +470,7 @@ public class DefaultMod
 		BaseMod.addCard(new BadReaction());
 		BaseMod.addCard(new BarrelDragon());
 		BaseMod.addCard(new BetaMagnet());
+		BaseMod.addCard(new BigCastleWalls());
 		BaseMod.addCard(new BlueEyes());
 		BaseMod.addCard(new BlueEyesToon());
 		BaseMod.addCard(new BlueEyesUltimate());
@@ -475,7 +504,7 @@ public class DefaultMod
 		BaseMod.addCard(new GiantSoldier());
 		BaseMod.addCard(new GiantTrunade());
 		BaseMod.addCard(new GracefulCharity());
-		//BaseMod.addCard(new HarpieFeather());
+		BaseMod.addCard(new HarpieFeather());
 		BaseMod.addCard(new Hinotoma());
 		BaseMod.addCard(new ImperialOrder());
 		BaseMod.addCard(new InjectionFairy());
@@ -543,6 +572,32 @@ public class DefaultMod
 		//BaseMod.addCard(new TrapHole());
 		BaseMod.addCard(new ValkMagnet());
 		BaseMod.addCard(new WingedDragonRa());
+		
+		// Second wave
+		BaseMod.addCard(new BigFire());
+	    BaseMod.addCard(new ToonMask());
+	    BaseMod.addCard(new ToonMagic());
+	    BaseMod.addCard(new ToonKingdom());
+	    BaseMod.addCard(new ToonRollback());
+	    BaseMod.addCard(new SuperheavyOgre());
+	    BaseMod.addCard(new SuperheavyMagnet());
+	    BaseMod.addCard(new SuperheavyGeneral());
+	    BaseMod.addCard(new SuperheavyFlutist());
+	    BaseMod.addCard(new SuperheavyDaihachi());
+	    BaseMod.addCard(new SuperheavyBlueBrawler());
+	    BaseMod.addCard(new SpiritHarp());
+	    BaseMod.addCard(new SnowDragon());
+	    BaseMod.addCard(new SnowdustDragon());
+	    BaseMod.addCard(new Raigeki());
+	    BaseMod.addCard(new PreventRat());
+	    BaseMod.addCard(new Ojamuscle());
+	    BaseMod.addCard(new MysticalElf());
+	    BaseMod.addCard(new IslandTurtle());
+	    BaseMod.addCard(new GravityAxe());
+	    BaseMod.addCard(new FortressWarrior());
+	    BaseMod.addCard(new CaveDragon());
+	    BaseMod.addCard(new BlizzardDragon());
+	    BaseMod.addCard(new BabyDragon());
     	
         
 		logger.info("Making sure the cards are unlocked.");
@@ -553,6 +608,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(BadReaction.ID);
 		UnlockTracker.unlockCard(BarrelDragon.ID);
 		UnlockTracker.unlockCard(BetaMagnet.ID);
+		UnlockTracker.unlockCard(BigCastleWalls.ID);
 		UnlockTracker.unlockCard(BlueEyes.ID);
 		UnlockTracker.unlockCard(BlueEyesToon.ID);
 		UnlockTracker.unlockCard(BlueEyesUltimate.ID);
@@ -586,7 +642,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(GiantSoldier.ID);
 		UnlockTracker.unlockCard(GiantTrunade.ID);
 		UnlockTracker.unlockCard(GracefulCharity.ID);
-		//UnlockTracker.unlockCard(HarpieFeather.ID);
+		UnlockTracker.unlockCard(HarpieFeather.ID);
 		UnlockTracker.unlockCard(Hinotoma.ID);
 		UnlockTracker.unlockCard(ImperialOrder.ID);
 		UnlockTracker.unlockCard(InjectionFairy.ID);
@@ -655,6 +711,32 @@ public class DefaultMod
 		UnlockTracker.unlockCard(ValkMagnet.ID);
 		UnlockTracker.unlockCard(WingedDragonRa.ID);
 		
+		// Second wave
+		UnlockTracker.unlockCard(BigFire.ID);
+	    UnlockTracker.unlockCard(ToonMask.ID);
+	    UnlockTracker.unlockCard(ToonMagic.ID);
+	    UnlockTracker.unlockCard(ToonKingdom.ID);
+	    UnlockTracker.unlockCard(ToonRollback.ID);
+	    UnlockTracker.unlockCard(SuperheavyOgre.ID);
+	    UnlockTracker.unlockCard(SuperheavyMagnet.ID);
+	    UnlockTracker.unlockCard(SuperheavyGeneral.ID);
+	    UnlockTracker.unlockCard(SuperheavyFlutist.ID);
+	    UnlockTracker.unlockCard(SuperheavyDaihachi.ID);
+	    UnlockTracker.unlockCard(SuperheavyBlueBrawler.ID);
+	    UnlockTracker.unlockCard(SpiritHarp.ID);
+	    UnlockTracker.unlockCard(SnowDragon.ID);
+	    UnlockTracker.unlockCard(SnowdustDragon.ID);
+	    UnlockTracker.unlockCard(Raigeki.ID);
+	    UnlockTracker.unlockCard(PreventRat.ID);
+	    UnlockTracker.unlockCard(Ojamuscle.ID);
+	    UnlockTracker.unlockCard(MysticalElf.ID);
+	    UnlockTracker.unlockCard(IslandTurtle.ID);
+	    UnlockTracker.unlockCard(GravityAxe.ID);
+	    UnlockTracker.unlockCard(FortressWarrior.ID);
+	    UnlockTracker.unlockCard(CaveDragon.ID);
+	    UnlockTracker.unlockCard(BlizzardDragon.ID);
+	    UnlockTracker.unlockCard(BabyDragon.ID);
+		
         logger.info("Done adding cards!");
 
     }
@@ -705,7 +787,7 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"Increment", "increment" }, "Increase your maximum #ySummons by the number given.");
         //BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "#ySpell #yCounters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
         BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "A powerful monster found within your Grandpa's deck.");
-        BaseMod.addKeyword(new String[] {"Gate", "gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock.");
+        BaseMod.addKeyword(new String[] {"Gate", "gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus.");
         BaseMod.addKeyword(new String[] {"Buffer", "buffer"}, "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ydebuffs.");
         BaseMod.addKeyword(new String[] {"Summoner", "summoner"}, "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons.");
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");

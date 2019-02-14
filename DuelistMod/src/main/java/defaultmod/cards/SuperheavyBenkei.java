@@ -40,7 +40,7 @@ public class SuperheavyBenkei extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.misc = 0;
-        this.magicNumber = this.baseMagicNumber = this.tributes;
+        this.magicNumber = this.baseMagicNumber = this.dex;
     }
 
     // Actions the card should do.
@@ -48,7 +48,7 @@ public class SuperheavyBenkei extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.baseDamage);
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 
@@ -63,7 +63,7 @@ public class SuperheavyBenkei extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.dex = 5;
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

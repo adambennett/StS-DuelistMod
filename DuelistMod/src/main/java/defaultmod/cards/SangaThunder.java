@@ -49,7 +49,7 @@ public class SangaThunder extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.baseDamage);
     	AbstractOrb orb = new Lightning();
     	orb.passiveAmount += 2;
     	orb.applyFocus();

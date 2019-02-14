@@ -45,7 +45,7 @@ public class SevenColoredFish extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.magicNumber);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.baseDamage);
     }
 
     // Which card to return when making a copy of this card.

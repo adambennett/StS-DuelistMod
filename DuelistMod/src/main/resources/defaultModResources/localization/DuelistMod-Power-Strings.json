@@ -13,7 +13,7 @@
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon monster." ]
+        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon card." ]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
@@ -150,6 +150,18 @@
 "theDuelist:TributeToonPowerB": {
         "NAME": "Pegasus Wings+",
         "DESCRIPTIONS": ["Each time you #yTribute, add a random #yToon card to your hand." ]
+},
+"theDuelist:GravityAxePower": {
+        "NAME": "Gravity Axe",
+        "DESCRIPTIONS": ["Cannot gain or lose #yStrength." ]
+},
+"theDuelist:ToonRollbackPower": {
+        "NAME": "Toon Rollback",
+        "DESCRIPTIONS": ["Copy #yToon monsters when you play them this turn." ]
+},
+"theDuelist:ToonKingdomPower": {
+        "NAME": "Toon Kingdom",
+        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon card, and shuffle a random #yToon monster into your draw pile." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

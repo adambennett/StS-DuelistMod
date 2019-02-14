@@ -49,7 +49,7 @@ public class SangaEarth extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.baseDamage);
     	AbstractOrb orb = new Plasma();
     	channel(orb);
     }

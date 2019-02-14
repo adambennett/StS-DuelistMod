@@ -30,7 +30,6 @@ public class MillenniumShield extends DuelistCard
     private static final int COST = 2;
     private static final int TRIBUTES = 2;
     private static final int U_TRIBUTES = -1;
-    private static final int DEX = 6;
     // /STAT DECLARATION/
 
     public MillenniumShield() {
@@ -39,6 +38,7 @@ public class MillenniumShield extends DuelistCard
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
+        this.dex = 5;
     }
 
     // Actions the card should do.
@@ -46,7 +46,7 @@ public class MillenniumShield extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	applyPower(new DexterityPower(p, DEX), p);
+    	applyPower(new DexterityPower(p, this.dex), p);
     }
 
     // Which card to return when making a copy of this card.
@@ -62,6 +62,7 @@ public class MillenniumShield extends DuelistCard
             this.upgradeName();
             this.upgradeMagicNumber(U_TRIBUTES);
             this.exhaust = false;
+            this.dex = 6;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

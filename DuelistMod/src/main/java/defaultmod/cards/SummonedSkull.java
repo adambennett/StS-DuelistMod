@@ -46,7 +46,7 @@ public class SummonedSkull extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		attack(m, AFX, this.damage);
+		attack(m, AFX, this.baseDamage);
 	}
 
 	// Which card to return when making a copy of this card.

@@ -28,16 +28,17 @@ public class OjamaBlack extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int SUMMONS = 1;
     private static int MIN_TURNS_ROLL = 3;
-    private static int MAX_TURNS_ROLL = 8;
+    private static int MAX_TURNS_ROLL = 7;
     // /STAT DECLARATION/
 
     public OjamaBlack() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.OJAMA);
+        this.baseBlock = this.block = 5;
     }
 
     
@@ -66,6 +67,8 @@ public class OjamaBlack extends DuelistCard
     		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
     		applyPower(getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
     	}
+    	
+    	block(this.baseBlock);
     }
 
     // Which card to return when making a copy of this card.
@@ -80,8 +83,9 @@ public class OjamaBlack extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            MIN_TURNS_ROLL = 5;
-            MAX_TURNS_ROLL = 10;
+            this.upgradeBlock(3);
+            MIN_TURNS_ROLL = 4;
+            MAX_TURNS_ROLL = 8;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

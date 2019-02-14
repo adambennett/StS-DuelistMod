@@ -48,7 +48,7 @@ public class JudgeMan extends DuelistCard
     {
 		tribute(p, TRIBUTES, false, this);
 		summon(p, SUMMONS);
-		attack(m, AFX, this.damage);
+		attack(m, AFX, this.baseDamage);
     }
 		
     // Which card to return when making a copy of this card.
