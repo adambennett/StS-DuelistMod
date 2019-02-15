@@ -34,7 +34,7 @@ public class ToonMermaid extends DuelistCard
 
     public ToonMermaid() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = 14;
+        this.baseDamage = this.damage = 14;
         this.summons = 1;
         this.upgradeDmg = 4;
         this.toon = true;

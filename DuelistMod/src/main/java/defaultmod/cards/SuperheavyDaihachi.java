@@ -47,7 +47,7 @@ public class SuperheavyDaihachi extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	applyPowerToSelf(new DexterityPower(p, this.magicNumber));
-    	block(this.baseBlock);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.

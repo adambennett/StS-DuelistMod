@@ -51,7 +51,8 @@ public class WingedDragonRa extends DuelistCard
     	if (cardsPlayed < 0) { cardsPlayed = 0; }
     	int damageTotal = (cardsPlayed + summons) * manaUsed;
     	if (upgraded) { damageTotal += maxSummons; }
-    	attack(m, AFX, damageTotal);
+    	this.baseDamage = this.damage = damageTotal;
+    	attack(m, AFX, this.baseDamage);
     	tribute(p, TRIBUTES, false, this);
     	useXEnergy();
     }

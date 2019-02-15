@@ -37,7 +37,7 @@ public class JudgeMan extends DuelistCard
 
     public JudgeMan() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
     }
@@ -48,7 +48,7 @@ public class JudgeMan extends DuelistCard
     {
 		tribute(p, TRIBUTES, false, this);
 		summon(p, SUMMONS);
-		attack(m, AFX, this.baseDamage);
+		attack(m, AFX, this.damage);
     }
 		
     // Which card to return when making a copy of this card.

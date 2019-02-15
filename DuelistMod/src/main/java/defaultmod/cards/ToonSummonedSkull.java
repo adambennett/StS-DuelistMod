@@ -39,7 +39,7 @@ public class ToonSummonedSkull extends DuelistCard
 
 	public ToonSummonedSkull() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = DAMAGE;
+		this.baseDamage = this.damage = DAMAGE;
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);

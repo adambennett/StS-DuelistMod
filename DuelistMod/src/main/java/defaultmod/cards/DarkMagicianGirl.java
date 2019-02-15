@@ -53,7 +53,6 @@ public class DarkMagicianGirl extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, TRIBUTES, false, this);
-		//applyPower(new SpellCounterPower(p, p, this.counters), m);
 		AbstractOrb buffer = new Buffer();
 		channel(buffer);
 	}

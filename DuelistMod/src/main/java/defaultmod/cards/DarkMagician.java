@@ -40,7 +40,7 @@ public class DarkMagician extends DuelistCard
 
     public DarkMagician() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = COUNTERS;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
@@ -51,7 +51,7 @@ public class DarkMagician extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	//applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
     	AbstractOrb summoner = new Summoner();
     	channel(summoner);

@@ -38,7 +38,7 @@ public class BusterBlader extends DuelistCard
 
     public BusterBlader() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage =DAMAGE;
         this.magicNumber = this.baseMagicNumber = 5;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
@@ -51,7 +51,7 @@ public class BusterBlader extends DuelistCard
     	tribute(p, TRIBUTES, false, this);
     	int monsters = AbstractDungeon.getMonsters().monsters.size();
     	this.damage = this.baseDamage = (this.magicNumber * monsters) + DAMAGE;
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     }
 
     // Which card to return when making a copy of this card.

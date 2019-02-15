@@ -41,7 +41,7 @@ public class DarklordMarie extends DuelistCard
     public DarklordMarie() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
     }
 
@@ -64,7 +64,7 @@ public class DarklordMarie extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	summon(p, SUMMONS);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     }
 
     @Override

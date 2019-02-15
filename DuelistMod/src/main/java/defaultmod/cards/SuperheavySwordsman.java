@@ -24,7 +24,7 @@ public class SuperheavySwordsman extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
@@ -36,6 +36,7 @@ public class SuperheavySwordsman extends DuelistCard
         this.baseDamage = this.damage = 5;
         this.summons = 1;
         this.dex = 1;
+        this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
     }
@@ -45,7 +46,7 @@ public class SuperheavySwordsman extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons);
-    	if (upgraded) { attack(m, AFX, this.baseDamage); }
+    	if (upgraded) { attack(m, AFX, this.damage); }
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 
@@ -60,6 +61,7 @@ public class SuperheavySwordsman extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.target = CardTarget.ENEMY;
             //this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

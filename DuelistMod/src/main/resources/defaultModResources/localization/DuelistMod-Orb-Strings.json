@@ -8,7 +8,7 @@
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase ALL your powers by #b", ". NL #yEvoke: Gain a random buff that lasts for #b", " turns."
+      "#yPassive: At the start of turn, increase ALL your buffs by #b", ". NL #yEvoke: Gain a random buff that lasts for #b", " turns."
     ]
   },
   "theDuelist:Summoner": {

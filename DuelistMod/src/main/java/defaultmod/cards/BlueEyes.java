@@ -33,7 +33,7 @@ public class BlueEyes extends DuelistCard
 
     public BlueEyes() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = 25;
+        this.baseDamage = this.damage = 25;
         this.upgradeDmg = 5;
         this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
@@ -46,7 +46,7 @@ public class BlueEyes extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     }
 
     // Which card to return when making a copy of this card.

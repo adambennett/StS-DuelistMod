@@ -36,7 +36,7 @@ public class CannonSoldier extends DuelistCard
 
     public CannonSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
     }
 

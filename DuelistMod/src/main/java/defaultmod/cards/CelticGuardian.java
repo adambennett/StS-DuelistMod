@@ -35,7 +35,7 @@ public class CelticGuardian extends DuelistCard
 
     public CelticGuardian() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
     }
 
@@ -44,7 +44,7 @@ public class CelticGuardian extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, SUMMONS);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     }
 
     // Which card to return when making a copy of this card.

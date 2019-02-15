@@ -34,7 +34,7 @@ public class SummonedSkull extends DuelistCard
 
 	public SummonedSkull() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = DAMAGE;
+		this.baseDamage = this.damage = DAMAGE;
 		this.tributes = 1;
 		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(DefaultMod.MONSTER);
@@ -46,7 +46,7 @@ public class SummonedSkull extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		attack(m, AFX, this.baseDamage);
+		attack(m, AFX, this.damage);
 	}
 
 	// Which card to return when making a copy of this card.

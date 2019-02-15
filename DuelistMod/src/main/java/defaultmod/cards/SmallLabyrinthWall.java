@@ -35,7 +35,7 @@ public class SmallLabyrinthWall extends DuelistCard
 
     public SmallLabyrinthWall() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = BLOCK;
+        this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
         this.tributes = 1;
@@ -46,7 +46,7 @@ public class SmallLabyrinthWall extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	block(this.baseBlock);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.

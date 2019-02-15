@@ -522,7 +522,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower barricade = new BarricadePower(p);
 		AbstractPower blur = new BlurPower(p, turnNum);
 		AbstractPower burst = new BurstPower(p, turnNum);
-		AbstractPower creative = new CreativeAIPower(p, turnNum); //probably too good
+		AbstractPower creative = new CreativeAIPower(p, 1); //probably too good
 		AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
 		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
 		AbstractPower equal = new EquilibriumPower(p, 2);
@@ -542,9 +542,10 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower toonTribute = new TributeToonPower(p, turnNum);
 		AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
 		AbstractPower magicCylinder = new MagicCylinderPower(p, turnNum, false);
+		AbstractPower retainCards = new RetainCardPower(p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTribute, toonTributeB, magicCylinder, creative };
+				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTribute, toonTributeB, magicCylinder, retainCards, creative };
 
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);

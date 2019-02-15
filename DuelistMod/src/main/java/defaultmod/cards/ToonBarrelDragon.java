@@ -43,7 +43,7 @@ public class ToonBarrelDragon extends DuelistCard
 
 	public ToonBarrelDragon() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = DAMAGE;
+		this.baseDamage = this.damage = DAMAGE;
 		this.isMultiDamage = true;
 		this.multiDamage = new int[]{0, 0, 0, 0, 0};
 		this.magicNumber = this.baseMagicNumber = 20;
@@ -58,15 +58,15 @@ public class ToonBarrelDragon extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		int[] test = new int[5];
+		int[] damageArray = new int[5];
 		for (int i = 0; i < 5; i++)
 		{
 			int randomNum = ThreadLocalRandom.current().nextInt(MIN_DMG, MAX_DMG + 1);
 			int randomNumU = ThreadLocalRandom.current().nextInt(MIN_DMG_U, MAX_DMG_U + 1);
-			if (upgraded) { test[i] = randomNum; }
-			else { test[i] = randomNumU; }
+			if (upgraded) { damageArray[i] = randomNum; }
+			else { damageArray[i] = randomNumU; }
 		}
-		this.multiDamage = test;
+		this.multiDamage = damageArray;
 		tribute(p, TRIBUTES, false, this);
 		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
 	}

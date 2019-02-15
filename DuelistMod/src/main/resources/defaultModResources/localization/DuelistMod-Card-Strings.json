@@ -286,8 +286,8 @@
 	},
 	"theDuelist:OjamaBlack": {
 		"NAME": "Ojama Black",
-		"DESCRIPTION": "Summon 1. Apply (1-2) random debuffs to a random enemy. Gain !B! block.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random debuffs to a random enemy. Gain !B! block."
+		"DESCRIPTION": "Summon 1. Apply (1-2) random debuffs to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random debuffs to a random enemy."
 	},
 	"theDuelist:Ojamagic": {
 		"NAME": "Ojamagic",
@@ -296,8 +296,8 @@
 	},
 	"theDuelist:OjamaGreen": {
 		"NAME": "Ojama Green",
-		"DESCRIPTION": "Summon 1. Apply (1-2) random buffs. Gain !B! block.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random buffs. Gain !B! block."
+		"DESCRIPTION": "Summon 1. Apply (1-2) random buffs.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Apply (2-4) random buffs."
 	},
 	"theDuelist:OjamaKing": {
 		"NAME": "Ojama King",
@@ -316,8 +316,8 @@
 	},
 	"theDuelist:Ookazi": {
 		"NAME": "Ookazi",
-		"DESCRIPTION": "Deal a random amount (3-11) of damage. [!D!]",
-		"UPGRADE_DESCRIPTION": "Deal a random amount (6-14) of damage. [!D!]"
+		"DESCRIPTION": "Deal a random amount (3-11) of damage.",
+		"UPGRADE_DESCRIPTION": "Deal a random amount (6-14) of damage."
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
@@ -431,8 +431,8 @@
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "Swords: Concealing Light",
-		"DESCRIPTION": "Each time you play a card, gain 3 block.",
-		"UPGRADE_DESCRIPTION": "Each time you play a card, gain 3 block."
+		"DESCRIPTION": "Each time you play a card, gain 1 block.",
+		"UPGRADE_DESCRIPTION": "Each time you play a card, gain 1 block."
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
@@ -486,8 +486,8 @@
 	},
 	"theDuelist:SuperheavySwordsman": {
 		"NAME": "Superheavy Swordsman",
-		"DESCRIPTION": "Summon 1. Gain 1 dexterity.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. Gain 1 dexterity."
+		"DESCRIPTION": "Summon 1. Gain 1 dexterity. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. Gain 1 dexterity. Exhaust."
 	},
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "Superheavy Waraji",
@@ -566,8 +566,8 @@
 	},
 	"theDuelist:SuperheavyOgre": {
 		"NAME": "Superheavy Ogre",
-		"DESCRIPTION": "Summon 2. Gain !M! Dexterity.",
-		"UPGRADE_DESCRIPTION": "Summon 2. Deal !D! damage. Gain !M! Dexterity."
+		"DESCRIPTION": "Summon 2. Gain !M! Dexterity. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon 2. Deal !D! damage. Gain !M! Dexterity. Exhaust."
 	},
 	"theDuelist:SuperheavyMagnet": {
 		"NAME": "Superheavy Magnet",
@@ -576,8 +576,8 @@
 	},
 	"theDuelist:SuperheavyGeneral": {
 		"NAME": "Superheavy General",
-		"DESCRIPTION": "Tribute 4. Deal !D! damage. Gain !M! Dexterity.",
-		"UPGRADE_DESCRIPTION": "Tribute 4. Deal !D! damage. Gain !M! Dexterity."
+		"DESCRIPTION": "Tribute 4. Deal !D! damage. Gain !M! Dexterity. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. Deal !D! damage. Gain !M! Dexterity. Exhaust."
 	},
 	"theDuelist:SuperheavyFlutist": {
 		"NAME": "Superheavy Flutist",
@@ -661,7 +661,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
-		"DESCRIPTION": "Tribute 4. Deal damage equal to ((4* number of cards played this turn) + (3 * Summons)) * X.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. Deal damage equal to ((4* number of cards played this turn) + (3 * Summons) + max Summons) * X."
+		"DESCRIPTION": "Tribute 4. Deal damage equal to ((4* number of cards played this turn) +  NL (3* Summons)) *X.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Deal damage equal to ((4* number of cards played this turn) + NL (3* Summons) + max Summons) *X."
 	}
 }

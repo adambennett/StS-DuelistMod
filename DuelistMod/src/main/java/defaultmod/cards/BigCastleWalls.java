@@ -32,7 +32,7 @@ public class BigCastleWalls extends DuelistCard
 
     public BigCastleWalls() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = BLOCK;
+        this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.SPELL);
     }
 
@@ -40,7 +40,7 @@ public class BigCastleWalls extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	block(this.baseBlock);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.

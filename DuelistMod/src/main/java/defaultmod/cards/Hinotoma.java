@@ -48,12 +48,12 @@ public class Hinotoma extends DuelistCard
     	if (this.upgraded)
     	{
     		int randomTimes = ThreadLocalRandom.current().nextInt(MIN_TIMES_U, MAX_TIMES_U + 1);
-    		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.baseDamage); }
+    		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
     	}
     	else
     	{
     		int randomTimes = ThreadLocalRandom.current().nextInt(MIN_TIMES, MAX_TIMES + 1);
-	        for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.baseDamage); }
+	        for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
     	}	
     }
 

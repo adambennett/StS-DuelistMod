@@ -39,7 +39,7 @@ public class SwordsConcealing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SwordsConcealPower(p, p, 3, true));
+    	applyPowerToSelf(new SwordsConcealPower(p, p, 1, true));
     }
 
     // Which card to return when making a copy of this card.

@@ -46,7 +46,7 @@ public class SnowDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	AbstractOrb frost = new Frost();
     	channel(frost);
     }

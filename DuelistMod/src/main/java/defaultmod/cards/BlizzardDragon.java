@@ -47,7 +47,7 @@ public class BlizzardDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	AbstractOrb frost = new Frost();
     	channel(frost);
     }

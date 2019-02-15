@@ -38,7 +38,7 @@ public class ValkMagnet extends DuelistCard
 
     public ValkMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
     }
@@ -48,7 +48,7 @@ public class ValkMagnet extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, SUMMONS);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	
     	// Remove magnets
     	if (!this.upgraded)

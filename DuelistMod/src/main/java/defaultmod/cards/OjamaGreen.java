@@ -64,7 +64,7 @@ public class OjamaGreen extends DuelistCard
     		applyRandomBuffPlayer(p, randomTurnNum, false);
     	}
     	
-    	block(this.baseBlock);
+    	//block(this.block);
     }
 
     // Which card to return when making a copy of this card.

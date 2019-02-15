@@ -48,7 +48,7 @@ public class ExodiaRA extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	summon(p, this.summons);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	
     	// If player has already played at least 1 other piece of exodia
     	if (p.hasPower(ExodiaPower.POWER_ID))

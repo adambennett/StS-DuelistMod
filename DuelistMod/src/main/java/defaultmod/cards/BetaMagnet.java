@@ -35,7 +35,7 @@ public class BetaMagnet extends DuelistCard
 
     public BetaMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = BLOCK;
+        this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
     }

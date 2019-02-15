@@ -44,16 +44,6 @@ public class FiendMegacyber extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.magicNumber, false, this);
-		/*
-    	// Check if target has spell counters
-		if (m.hasPower(SpellCounterPower.POWER_ID))
-		{
-        	// Get target spell counter count
-	    	int counters = m.getPower(SpellCounterPower.POWER_ID).amount;
-	    	if (counters >= 10) { attack(m, AFX, this.damage); }
-		}
-		*/
-    	
     	applyPowerToSelf(new StrengthPower(player(), 3));
     	channelRandomOrb();
     }

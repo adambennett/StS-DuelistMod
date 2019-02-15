@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.SummonPower;
 
 public class SuperheavyBlueBrawler extends DuelistCard 
 {
@@ -23,7 +24,7 @@ public class SuperheavyBlueBrawler extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -33,7 +34,7 @@ public class SuperheavyBlueBrawler extends DuelistCard
 
     public SuperheavyBlueBrawler() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 25;
+        this.baseDamage = this.damage = 20;
         this.tributes = 2;
         this.dex = 2;
         this.exhaust = true;
@@ -46,8 +47,8 @@ public class SuperheavyBlueBrawler extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons);
-    	attack(m, AFX, this.baseDamage);
+    	tribute(p, this.tributes, false, this);
+    	attack(m, AFX, this.damage);
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 
@@ -66,5 +67,24 @@ public class SuperheavyBlueBrawler extends DuelistCard
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
     }
 }

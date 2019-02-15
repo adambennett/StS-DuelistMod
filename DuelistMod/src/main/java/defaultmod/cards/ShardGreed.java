@@ -40,7 +40,7 @@ public class ShardGreed extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPower(new GreedShardPower(p, p), p);
+    	if (!p.hasPower(GreedShardPower.POWER_ID)) { applyPower(new GreedShardPower(p, p), p); }
     }
 
 

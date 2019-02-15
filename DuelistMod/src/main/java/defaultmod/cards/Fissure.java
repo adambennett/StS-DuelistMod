@@ -44,7 +44,7 @@ public class Fissure extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
        int playerSummons = getSummons(p);
-       this.damage = DAMAGE * playerSummons;
+       this.baseDamage = this.damage = DAMAGE * playerSummons;
        this.multiDamage = new int[] { this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, };
        attackAllEnemies(AFX, this.multiDamage);
     }

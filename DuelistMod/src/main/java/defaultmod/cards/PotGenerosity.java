@@ -27,7 +27,7 @@ public class PotGenerosity extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 3;
+    private static final int COST = 4;
     // /STAT DECLARATION/
     
     public PotGenerosity() 
@@ -56,7 +56,7 @@ public class PotGenerosity extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

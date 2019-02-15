@@ -34,7 +34,7 @@ public class SnowdustDragon extends DuelistCard
 
     public SnowdustDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = 22;
+        this.baseDamage = this.damage = 22;
         this.upgradeDmg = 8;
         this.tributes = 4;
         this.tags.add(DefaultMod.MONSTER);
@@ -47,7 +47,7 @@ public class SnowdustDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	AbstractOrb frost = new Frost();
     	channel(frost);
     }

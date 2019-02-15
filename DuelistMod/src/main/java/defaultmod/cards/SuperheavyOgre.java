@@ -24,7 +24,7 @@ public class SuperheavyOgre extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
@@ -36,6 +36,7 @@ public class SuperheavyOgre extends DuelistCard
         this.baseDamage = this.damage = 12;
         this.summons = 2;
         this.dex = 2;
+        this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.magicNumber = this.baseMagicNumber = this.dex;
@@ -46,7 +47,7 @@ public class SuperheavyOgre extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons);
-    	if (upgraded) { attack(m, AFX, this.baseDamage); }
+    	if (upgraded) { attack(m, AFX, this.damage); }
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 
@@ -61,6 +62,7 @@ public class SuperheavyOgre extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.target = CardTarget.ENEMY;
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

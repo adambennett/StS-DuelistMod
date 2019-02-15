@@ -45,7 +45,7 @@ public class AlphaMagnet extends DuelistCard
     {
     	summon(p, this.summons);
     	applyPowerToSelf(new AlphaMagPower(p, p));
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     }
 
     // Which card to return when making a copy of this card.

@@ -40,7 +40,7 @@ public class ToonDarkMagician extends DuelistCard
 
 	public ToonDarkMagician() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = DAMAGE;
+		this.baseDamage = this.damage = DAMAGE;
 		this.magicNumber = this.baseMagicNumber = COUNTERS;
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);

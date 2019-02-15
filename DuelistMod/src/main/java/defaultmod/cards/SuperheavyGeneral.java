@@ -37,6 +37,7 @@ public class SuperheavyGeneral extends DuelistCard
         this.baseDamage = this.damage = 24;
         this.tributes = 4;
         this.dex = 6;
+        this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.misc = 0;
@@ -48,7 +49,7 @@ public class SuperheavyGeneral extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 

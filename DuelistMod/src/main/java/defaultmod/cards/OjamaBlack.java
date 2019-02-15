@@ -68,7 +68,7 @@ public class OjamaBlack extends DuelistCard
     		applyPower(getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
     	}
     	
-    	block(this.baseBlock);
+    	//block(this.block);
     }
 
     // Which card to return when making a copy of this card.

@@ -48,7 +48,7 @@ public class SuperheavyBenkei extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.baseDamage);
+    	attack(m, AFX, this.damage);
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
 
@@ -69,7 +69,7 @@ public class SuperheavyBenkei extends DuelistCard
         }
     }
     
- // If player doesn't have enough summons, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {

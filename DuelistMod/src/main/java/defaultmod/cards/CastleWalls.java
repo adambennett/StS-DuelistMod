@@ -26,13 +26,13 @@ public class CastleWalls extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int BLOCK = 9;
+    private static final int BLOCK = 8;
     private static final int UPGRADE_PLUS_BLK = 3;
     // /STAT DECLARATION/
 
     public CastleWalls() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = BLOCK;
+        this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.SPELL);
     }
 
@@ -40,7 +40,7 @@ public class CastleWalls extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	block(this.baseBlock);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.

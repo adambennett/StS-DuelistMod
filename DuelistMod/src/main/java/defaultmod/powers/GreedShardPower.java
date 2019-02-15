@@ -33,45 +33,47 @@ public class GreedShardPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-        this.amount = 0;
-        turnCounter = 0;
+        this.amount = 1;
+        turnCounter = 1;
         this.updateDescription();
     }
     
     @Override
     public void onDrawOrDiscard() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount != turnCounter) { this.amount = turnCounter; }
     }
    
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount != turnCounter) { this.amount = turnCounter; }
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount != turnCounter) { this.amount = turnCounter; }
 	}
 
     
     @Override
     public void atStartOfTurn() 
     {
-    	if (turnCounter >= 3) 
-    	{ 
-    		turnCounter = 0; 
-    		AbstractDungeon.actionManager.addToTop(new DrawCardAction(AbstractDungeon.player, 1));
-    	}
     	turnCounter++;
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (turnCounter > 3) 
+    	{ 
+    		turnCounter = 1; 
+    		AbstractDungeon.actionManager.addToTop(new DrawCardAction(AbstractDungeon.player, 1));
+    		System.out.println("theDuelist:GreedShardPower --- > Drew a card!");
+    	}
+    	if (this.amount != turnCounter) { this.amount = turnCounter; }
     	updateDescription();
     }
 
     @Override
-	public void updateDescription() {
+	public void updateDescription() 
+    {
         this.description = DESCRIPTIONS[0] + 1 + DESCRIPTIONS[1] + turnCounter;
     }
 }

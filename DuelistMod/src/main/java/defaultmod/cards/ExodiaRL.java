@@ -46,7 +46,7 @@ public class ExodiaRL extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	summon(p, this.summons);
-    	block(this.baseBlock);
+    	block(this.block);
     	
     	// If player has already played at least 1 other piece of exodia
     	if (p.hasPower(ExodiaPower.POWER_ID))

@@ -33,7 +33,7 @@ public class SuperheavyScales extends DuelistCard
 
     public SuperheavyScales() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = BLOCK;
+        this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
     }
@@ -43,7 +43,7 @@ public class SuperheavyScales extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, SUMMONS);
-    	block(this.baseBlock);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.

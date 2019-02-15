@@ -27,13 +27,13 @@ public class GiantSoldier extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int BLOCK = 6;
+    private static final int BLOCK = 5;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public GiantSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = BLOCK;
+        this.baseBlock = this.block = BLOCK;
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
     }
@@ -43,7 +43,7 @@ public class GiantSoldier extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.magicNumber);
-    	block(this.baseBlock);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.

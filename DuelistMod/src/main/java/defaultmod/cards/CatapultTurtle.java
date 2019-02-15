@@ -35,7 +35,7 @@ public class CatapultTurtle extends DuelistCard
 
     public CatapultTurtle() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
     }
