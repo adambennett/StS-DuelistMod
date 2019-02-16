@@ -45,6 +45,7 @@ public class DarkMagicianGirl extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
 		this.tags.add(DefaultMod.MONSTER);
 		this.misc = 0;
+		this.originalName = this.name;
 	}
 
 	// Actions the card should do.

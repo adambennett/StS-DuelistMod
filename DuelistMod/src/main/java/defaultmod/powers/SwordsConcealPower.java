@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.DuelistCard;
@@ -49,7 +49,13 @@ public class SwordsConcealPower extends AbstractPower
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	DuelistCard.block(this.amount);
+    	int blockGain = 0;
+    	if (this.owner.hasPower(DexterityPower.POWER_ID))
+    	{
+    		blockGain += this.owner.getPower(DexterityPower.POWER_ID).amount;
+    	}
+    	blockGain+= this.amount;
+    	DuelistCard.block(blockGain);
     	updateDescription();
     }
     
@@ -85,6 +91,7 @@ public class SwordsConcealPower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+    	if (this.owner.hasPower(DexterityPower.POWER_ID)) { this.description = DESCRIPTIONS[0] + (this.amount + this.owner.getPower(DexterityPower.POWER_ID).amount) + DESCRIPTIONS[1]; }
+    	else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
     }
 }

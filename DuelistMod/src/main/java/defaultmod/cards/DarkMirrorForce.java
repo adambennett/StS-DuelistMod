@@ -33,7 +33,7 @@ public class DarkMirrorForce extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
         this.exhaust = true;
-
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

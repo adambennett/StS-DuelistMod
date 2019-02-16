@@ -39,6 +39,7 @@ public class ExodiaRL extends DuelistCard
         this.baseBlock = this.block = 5;
         this.exhaust = true;
         this.exodiaName = "Right Leg";
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

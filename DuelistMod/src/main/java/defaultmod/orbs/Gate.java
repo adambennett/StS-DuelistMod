@@ -52,7 +52,7 @@ public class Gate extends AbstractOrb
 	{
 		this.img = com.megacrit.cardcrawl.helpers.ImageMaster.ORB_LIGHTNING;
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = 4;
 		this.basePassiveAmount = this.passiveAmount = 0;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);

@@ -36,6 +36,7 @@ public class InjectionFairy extends DuelistCard
         this.heal = this.baseMagicNumber = this.magicNumber = 6;
         this.baseDamage = this.damage = 6;
         this.tags.add(DefaultMod.MONSTER);
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

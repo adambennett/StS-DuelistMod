@@ -38,6 +38,7 @@ public class SevenColoredFish extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

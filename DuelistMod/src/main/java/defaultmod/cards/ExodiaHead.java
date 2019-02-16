@@ -37,6 +37,7 @@ public class ExodiaHead extends DuelistCard
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 1;
         this.exodiaName = "Head";
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

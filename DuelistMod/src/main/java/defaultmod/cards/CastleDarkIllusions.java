@@ -35,6 +35,7 @@ public class CastleDarkIllusions extends DuelistCard
     public CastleDarkIllusions() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
+        this.originalName = this.name;
     }
 
 

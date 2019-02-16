@@ -37,6 +37,7 @@ public class AlphaMagnet extends DuelistCard
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

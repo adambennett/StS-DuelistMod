@@ -15,7 +15,7 @@ import defaultmod.powers.SummonPower;
 public class SuperheavyBenkei extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("SuperheavyBenkei");
+    public static final String ID = DefaultMod.makeID("SuperheavyBenkei");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.SUPERHEAVY_BENKEI);
     public static final String NAME = cardStrings.NAME;

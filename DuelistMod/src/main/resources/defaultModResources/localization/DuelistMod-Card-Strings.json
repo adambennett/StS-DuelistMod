@@ -431,8 +431,8 @@
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "Swords: Concealing Light",
-		"DESCRIPTION": "Each time you play a card, gain !M! block.",
-		"UPGRADE_DESCRIPTION": "Each time you play a card, gain !M! block."
+		"DESCRIPTION": "Each time you play a card, gain !M! block. Affected by Dexterity.",
+		"UPGRADE_DESCRIPTION": "Each time you play a card, gain !M! block. Affected by Dexterity."
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
@@ -546,8 +546,8 @@
 	},
 	"theDuelist:ToonMask": {
 		"NAME": "Toon Mask",
-		"DESCRIPTION": "Deal a random amount of damage (10-40) to each enemy.",
-		"UPGRADE_DESCRIPTION": "Deal a random amount of damage (15-50) to each enemy."
+		"DESCRIPTION": "Toon NL Deal a random amount of damage (10-40) to each enemy.",
+		"UPGRADE_DESCRIPTION": "Toon NL Deal a random amount of damage (15-50) to each enemy."
 	},
 	"theDuelist:ToonMagic": {
 		"NAME": "Toon Magic",

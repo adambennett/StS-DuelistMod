@@ -37,6 +37,7 @@ public abstract class DuelistCard extends CustomCard
 	// CARD FIELDS
 	public String upgradeType;
 	public String exodiaName;
+	public String originalName;
 	public boolean isMonster = false;
 	public boolean isOverflow;
 	public boolean flag;
@@ -72,6 +73,7 @@ public abstract class DuelistCard extends CustomCard
 	public DuelistCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET)
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		this.originalName = NAME;
 	}
 
 	public DuelistCard getCard()
@@ -101,7 +103,7 @@ public abstract class DuelistCard extends CustomCard
 
 	public static void damageSelf(int DAMAGE)
 	{
-		AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+		AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, DAMAGE, AbstractGameAction.AttackEffect.POISON));
 	}
 	
 	public static void damageSelfFire(int DAMAGE)
@@ -527,7 +529,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
 		AbstractPower equal = new EquilibriumPower(p, 2);
 		AbstractPower noPain = new FeelNoPainPower(p, turnNum);
-		AbstractPower fire = new FireBreathingPower(p, turnNum);
+		AbstractPower fire = new FireBreathingPower(p, 3);
 		AbstractPower jugger = new JuggernautPower(p, turnNum);
 		AbstractPower metal = new MetallicizePower(p, turnNum);
 		AbstractPower penNib = new PenNibPower(p, 1);
@@ -543,10 +545,11 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower magicCylinder = new MagicCylinderPower(p, turnNum, false);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
+		AbstractPower focus = new FocusPower(p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTributeB, magicCylinder, retainCards, 
-				generosity, creative };
+				generosity, focus, creative };
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
 		AbstractPower randomBuff = buffs[randomBuffNum];
@@ -578,14 +581,19 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower regen = new RegenPower(p, turnNum);
 		AbstractPower energy = new EnergizedPower(p, 1);
 		AbstractPower thorns = new ThornsPower(p, turnNum);
+		/*
 		AbstractPower blur = new BlurPower(p, turnNum);
 		AbstractPower burst = new BurstPower(p, 1);
 		AbstractPower sadistic = new SadisticPower(p, turnNum);
-		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
+		*/
+		AbstractPower focus = new FocusPower(p, turnNum);
+		/*
 		AbstractPower[] buffs = new AbstractPower[] { str, dex, art, plate, regen, energy, thorns,
-				blur, burst, sadistic, orbHeal, retainCards, toonTributeB };
+				blur, burst, sadistic, focus, retainCards, toonTributeB };
+		*/
+		AbstractPower[] buffs = new AbstractPower[] { str, dex, art, plate, regen, energy, thorns, focus };
 
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
@@ -1141,7 +1149,7 @@ public abstract class DuelistCard extends CustomCard
 			return new GateGuardian();
 		case "Giant Stone Soldier":
 			return new GiantSoldier();
-		case "Injection Fairly Lily":
+		case "Injection Fairy Lily":
 			return new InjectionFairy();
 		case "Insect Queen":
 			return new InsectQueen();

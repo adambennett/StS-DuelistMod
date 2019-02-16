@@ -38,6 +38,7 @@ public class CardDestruction extends DuelistCard
         this.magicNumber = this.baseMagicNumber = CARDS;
         this.exhaust = true;
         this.tags.add(DefaultMod.SPELL);
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

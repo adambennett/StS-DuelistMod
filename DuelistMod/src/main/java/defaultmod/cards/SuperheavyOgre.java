@@ -63,7 +63,7 @@ public class SuperheavyOgre extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.target = CardTarget.ENEMY;
-            this.upgradeMagicNumber(1);
+            //this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
