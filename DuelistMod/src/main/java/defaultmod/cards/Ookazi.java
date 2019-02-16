@@ -38,10 +38,10 @@ public class Ookazi extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = 1;
         this.tags.add(DefaultMod.SPELL);
-        this.damageA = 3;
-        this.damageB = 11;
+        this.damageA = 4;
+        this.damageB = 10;
         this.damageC = 6;
-        this.damageD = 14;
+        this.damageD = 12;
     }
 
     // Actions the card should do.

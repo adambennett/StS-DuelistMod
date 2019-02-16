@@ -24,14 +24,14 @@
 		"NAME": "Millennium Ring",
 		"FLAVOR": "The Millennium Ring is one of the Millennium Items. 3,000 years before present day events, the Millennium Ring and the other Millennium Items were forged in Kul Elna by sacrificing 99 souls of the Kul Elna villagers.",
 		"DESCRIPTIONS": [
-			"At the start of each combat, #yIncrement #b5."
+			"At the start of each combat, #yIncrement #b3."
 		]
 	},
 	"theDuelist:MillenniumKey": {
 		"NAME": "Millennium Key",
 		"FLAVOR": "After it was made, the Millennium Key was given to Solomon Muto's Egyptian incarnate, Shimon, but later it was passed on to Shada. In Ancient Egypt, Shimon used the Millenium Key to seal Exodia the Forbidden One into five stone tablets. During the battle with Zorc, Shimon was forced to use the Key to release Exodia. The Millenium Key allowed Shimon to control Exodia, but it also forced him to feel all of Exodia's injuries, which eventually lead to his death.",
 		"DESCRIPTIONS": [
-			"Gain 1 [E] at the start of each turn. Your max #ySummons cannot be higher than #b3."
+			"Gain 1 [E] at the start of each turn. Your max #ySummons cannot be higher than #b4."
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {

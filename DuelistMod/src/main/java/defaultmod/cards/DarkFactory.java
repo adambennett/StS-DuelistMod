@@ -10,65 +10,58 @@ import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 import defaultmod.powers.SummonPower;
 
-public class InsectQueen extends DuelistCard
+public class DarkFactory extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = defaultmod.DefaultMod.makeID("InsectQueen");
+
+	public static final String ID = defaultmod.DefaultMod.makeID("DarkFactory");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DefaultMod.makePath(DefaultMod.INSECT_QUEEN);
+	public static final String IMG = DefaultMod.makePath(DefaultMod.DARK_FACTORY);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.RARE;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	private static final int COST = 2;
-	private static final int POISON_MULT = 3;
-	private static final int TRIBUTES = 1;
+	private static final int COST = 0;
+	private static final int ENERGY = 2;
+	private static final int U_ENERGY = 1;
 	// /STAT DECLARATION/
 
-	public InsectQueen() 
+	public DarkFactory() 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = POISON_MULT;
-		this.decSummons = 2;
-		this.tags.add(DefaultMod.MONSTER);
-		this.tags.add(DefaultMod.TRIBUTE);
+		this.magicNumber = this.baseMagicNumber = ENERGY;
+		this.energyOnUse = ENERGY;
+		this.tags.add(DefaultMod.SPELL);
 		this.misc = 0;
+		this.tributes = 2;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		// Tribute all
-		int playerSummons = tribute(p, 0, true, this);
-
-		// Apply poison to all enemies
-		poisonAllEnemies(p, playerSummons * POISON_MULT);
-		
-		// If unupgraded, reduce max summons by 1.
-		decMaxSummons(p, this.decSummons);
-		
+		tribute(p, this.tributes, false, this);
+		gainEnergy(this.magicNumber);
 	}
 
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {
-		return new InsectQueen();
+		return new DarkFactory();
 	}
 
 	// Upgraded stats.
 	@Override
 	public void upgrade() {
 		if (!this.upgraded) {
-			this.upgradeName();			
-			this.upgradeMagicNumber(1);
-			this.decSummons = 1;
+			this.upgradeName();
+			this.upgradeMagicNumber(U_ENERGY);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -81,13 +74,15 @@ public class InsectQueen extends DuelistCard
     	// Check super canUse()
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
-
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
-    	this.cantUseMessage = "You need at least 1 Summon to Tribute";
+    	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
-
 }

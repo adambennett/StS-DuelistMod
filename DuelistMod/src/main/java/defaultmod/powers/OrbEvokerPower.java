@@ -52,7 +52,7 @@ public class OrbEvokerPower extends AbstractPower
     @Override
     public void onEvokeOrb(AbstractOrb orb) 
     {
-    	DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.amount, true);
+    	DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.amount, false);
     }
     
     @Override

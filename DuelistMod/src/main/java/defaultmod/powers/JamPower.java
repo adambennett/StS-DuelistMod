@@ -29,7 +29,7 @@ public class JamPower extends AbstractPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DefaultMod.makePath(DefaultMod.JAM_POWER);
-    private static int TURN_DMG = 5;
+    private static int TURN_DMG = 3;
     private static int SUMMONS = 1;
 
     public JamPower(AbstractCreature owner, int newAmount, int summons) 

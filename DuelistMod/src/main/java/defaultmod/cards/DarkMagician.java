@@ -32,16 +32,13 @@ public class DarkMagician extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 18;
+    private static final int DAMAGE = 15;
     private static int TRIBUTES = 2;
-    private static final int COUNTERS = 5;
-    private static final int U_COUNTERS = 2;
     // /STAT DECLARATION/
 
     public DarkMagician() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
-        this.magicNumber = this.baseMagicNumber = COUNTERS;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
     }
@@ -52,7 +49,6 @@ public class DarkMagician extends DuelistCard
     {
     	tribute(p, TRIBUTES, false, this);
     	attack(m, AFX, this.damage);
-    	//applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
     	AbstractOrb summoner = new Summoner();
     	channel(summoner);
     }
@@ -68,7 +64,6 @@ public class DarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(U_COUNTERS);
             TRIBUTES = 1;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -36,7 +36,7 @@ public class ExodiaRL extends DuelistCard
         this.tags.add(DefaultMod.EXODIA);
         this.summons = this.baseMagicNumber = this.magicNumber = 1;
         this.damage =  this.baseDamage = 1;
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 5;
         this.exhaust = true;
         this.exodiaName = "Right Leg";
     }

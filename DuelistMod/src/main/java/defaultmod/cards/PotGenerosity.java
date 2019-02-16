@@ -27,7 +27,7 @@ public class PotGenerosity extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 4;
+    private static final int COST = 2;
     // /STAT DECLARATION/
     
     public PotGenerosity() 
@@ -35,13 +35,14 @@ public class PotGenerosity extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(DefaultMod.SPELL);
     	this.tags.add(DefaultMod.POT);
+    	this.magicNumber = this.baseMagicNumber = 3;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new PotGenerosityPower(p, p));
+    	applyPowerToSelf(new PotGenerosityPower(p, p, this.magicNumber));
     }
 
 
@@ -56,7 +57,7 @@ public class PotGenerosity extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -29,8 +29,8 @@ public class RedEyes extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int DAMAGE = 18;
-    private static final int UPGRADE_PLUS_DMG = 6;
+    private static final int DAMAGE = 20;
+    private static final int UPGRADE_PLUS_DMG = 4;
     private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 

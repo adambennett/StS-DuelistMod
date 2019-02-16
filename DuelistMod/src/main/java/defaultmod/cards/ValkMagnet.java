@@ -32,7 +32,7 @@ public class ValkMagnet extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 65;
+    private static final int DAMAGE = 60;
     private static final int SUMMONS = 3;
     // /STAT DECLARATION/
 

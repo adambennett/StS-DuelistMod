@@ -298,7 +298,7 @@ public abstract class DuelistCard extends CustomCard
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			if (!p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = amount; }
-			else { summonsInstance.MAX_SUMMONS = 3; }
+			else { summonsInstance.MAX_SUMMONS = 4; }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateDescription();
 		}
@@ -311,7 +311,7 @@ public abstract class DuelistCard extends CustomCard
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			if (!p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS += amount; }
-			else { summonsInstance.MAX_SUMMONS = 3; }
+			else { summonsInstance.MAX_SUMMONS = 4; }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateDescription();
 		}
@@ -323,7 +323,7 @@ public abstract class DuelistCard extends CustomCard
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			if (!p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS -= amount; }
-			else { summonsInstance.MAX_SUMMONS = 3; }
+			else { summonsInstance.MAX_SUMMONS = 4; }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateDescription();
 		}
@@ -512,7 +512,7 @@ public abstract class DuelistCard extends CustomCard
 	{
 		// Setup powers array for random buff selection
 		AbstractPower str = new StrengthPower(p, turnNum);
-		AbstractPower dex = new DexterityPower(p, turnNum);
+		AbstractPower dex = new DexterityPower(p, 1);
 		AbstractPower art = new ArtifactPower(p, turnNum);
 		AbstractPower plate = new PlatedArmorPower(p, turnNum);
 		AbstractPower intan = new IntangiblePower(p, 1);
@@ -536,17 +536,17 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
 		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
 		AbstractPower swordsBurn = new SwordsBurnPower(p, p);
-		AbstractPower swordsConceal = new SwordsConcealPower(p, p, turnNum, false);
+		AbstractPower swordsConceal = new SwordsConcealPower(p, p, 1, false);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
-		AbstractPower toonTribute = new TributeToonPower(p, turnNum);
 		AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
 		AbstractPower magicCylinder = new MagicCylinderPower(p, turnNum, false);
-		AbstractPower retainCards = new RetainCardPower(p, turnNum);
+		AbstractPower retainCards = new RetainCardPower(p, 1);
+		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTribute, toonTributeB, magicCylinder, retainCards, creative };
-
+				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTributeB, magicCylinder, retainCards, 
+				generosity, creative };
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
 		AbstractPower randomBuff = buffs[randomBuffNum];
@@ -572,7 +572,7 @@ public abstract class DuelistCard extends CustomCard
 	{
 		// Setup powers array for random buff selection
 		AbstractPower str = new StrengthPower(p, turnNum);
-		AbstractPower dex = new DexterityPower(p, turnNum);
+		AbstractPower dex = new DexterityPower(p, 1);
 		AbstractPower art = new ArtifactPower(p, turnNum);
 		AbstractPower plate = new PlatedArmorPower(p, turnNum);
 		AbstractPower regen = new RegenPower(p, turnNum);
@@ -582,10 +582,10 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower burst = new BurstPower(p, 1);
 		AbstractPower sadistic = new SadisticPower(p, turnNum);
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
-		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
-		AbstractPower toonTribute = new TributeToonPower(p, turnNum);
+		AbstractPower retainCards = new RetainCardPower(p, 1);
+		AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] { str, dex, art, plate, regen, energy, thorns,
-				blur, burst, sadistic, orbHeal, tombLoot, toonTribute };
+				blur, burst, sadistic, orbHeal, retainCards, toonTributeB };
 
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);

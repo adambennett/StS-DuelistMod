@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 @SuppressWarnings("unused")
@@ -37,6 +38,18 @@ public class Make0CostHandCardAction extends AbstractGameAction
 		this.actionType = com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = 0.35F;
 		this.c = card;
+	}
+	
+	public Make0CostHandCardAction(AbstractCard card, boolean isOtherCardInCenter, String justUseThisFunctionToUpgrade) {
+		UnlockTracker.markCardAsSeen(card.cardID);
+		card.costForTurn = 0;
+		card.upgrade();
+		this.amount = 1;
+		this.actionType = com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = 0.35F;
+		this.c = card;
+		this.isOtherCardInCenter = isOtherCardInCenter;
+		
 	}
 
 	public Make0CostHandCardAction(AbstractCard card, int amount, boolean isOtherCardInCenter) {

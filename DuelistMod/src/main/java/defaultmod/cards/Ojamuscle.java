@@ -35,7 +35,7 @@ public class Ojamuscle extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
     private static final int MIN_CARDS = 1;
-    private static final int MAX_CARDS = 5;
+    private static final int MAX_CARDS = 3;
     private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 

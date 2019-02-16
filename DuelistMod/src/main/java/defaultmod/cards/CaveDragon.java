@@ -34,7 +34,7 @@ public class CaveDragon extends DuelistCard
         this.baseBlock = this.block = 12;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
-        this.summons = 2;
+        this.summons = 1;
     }
 
     // Actions the card should do.

@@ -36,7 +36,7 @@ public class ExodiaRA extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.EXODIA);
-        this.damage = this.baseDamage = 9;
+        this.damage = this.baseDamage = 7;
         this.summons = this.magicNumber = this.baseMagicNumber = 1;
         this.block = this.baseBlock = 1;
         this.exhaust = true;

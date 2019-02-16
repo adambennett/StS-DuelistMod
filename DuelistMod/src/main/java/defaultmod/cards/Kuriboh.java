@@ -31,7 +31,7 @@ public class Kuriboh extends DuelistCard
     private static final int INTANGIBLE = 1;
     private static final int SUMMONS = 1;
     private static final int INC_SUMMONS = 1;
-    private static final int U_INC_SUMMONS = 1;
+   // private static final int U_INC_SUMMONS = 1;
     // /STAT DECLARATION/
 
     public Kuriboh() {
@@ -60,7 +60,7 @@ public class Kuriboh extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(U_INC_SUMMONS);
+            //this.upgradeMagicNumber(U_INC_SUMMONS);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

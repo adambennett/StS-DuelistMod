@@ -27,8 +27,8 @@ public class LabyrinthWall extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static final int BLOCK = 25;
-    private static final int UPGRADE_PLUS_BLK = 7;
+    private static final int BLOCK = 20;
+    private static final int UPGRADE_PLUS_BLK = 5;
     private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 

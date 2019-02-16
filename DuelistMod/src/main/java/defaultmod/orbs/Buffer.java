@@ -51,7 +51,7 @@ public class Buffer extends AbstractOrb
 	{
 		this.img = com.megacrit.cardcrawl.helpers.ImageMaster.ORB_LIGHTNING;
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -68,7 +68,7 @@ public class Buffer extends AbstractOrb
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, true);
+		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
 	}
 
 	@Override

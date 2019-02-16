@@ -33,7 +33,7 @@ public class SuperheavyOgre extends DuelistCard
 
     public SuperheavyOgre() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
+        this.baseDamage = this.damage = 6;
         this.summons = 2;
         this.dex = 2;
         this.exhaust = true;

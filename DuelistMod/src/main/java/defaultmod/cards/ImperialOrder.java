@@ -26,22 +26,21 @@ public class ImperialOrder extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
-    private static int GOLD = 25;
-    private static int DMG = 3;
+    private static final int COST = 2;
+    private static int CARDS = 1;
     // /STAT DECLARATION/
 
     public ImperialOrder() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
-        this.magicNumber = this.baseMagicNumber = GOLD;
+        this.magicNumber = this.baseMagicNumber = CARDS;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       applyPowerToSelf(new ImperialPower(p, GOLD, DMG));
+    	if (!p.hasPower(ImperialPower.POWER_ID)) { applyPowerToSelf(new ImperialPower(p, this.magicNumber)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -55,9 +54,8 @@ public class ImperialOrder extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
-            //DMG = 8;
-            GOLD = 60;
+            //this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -31,7 +31,7 @@ public class MysticalElf extends DuelistCard
 
     public MysticalElf() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 9;
         this.tags.add(DefaultMod.MONSTER);
         this.summons = 1;
     }
@@ -56,7 +56,7 @@ public class MysticalElf extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeBaseCost(0);
-            this.upgradeBlock(9);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

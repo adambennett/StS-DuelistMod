@@ -43,9 +43,9 @@ public class Gate extends AbstractOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	private int DAMAGE = 5;
-	private int BLOCK = 7;
-	private int SUMMONS = 3;
+	private int DAMAGE = 4;
+	private int BLOCK = 5;
+	private int SUMMONS = 2;
 	private int MANA = 1;
 	
 	public Gate()

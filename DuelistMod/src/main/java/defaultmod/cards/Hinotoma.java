@@ -31,9 +31,9 @@ public class Hinotoma extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
     private static int MIN_TIMES = 2;
-    private static int MAX_TIMES = 6;
-    private static int MIN_TIMES_U = 3;
-    private static int MAX_TIMES_U = 7;
+    private static int MAX_TIMES = 3;
+    private static int MIN_TIMES_U = 2;
+    private static int MAX_TIMES_U = 4;
     // /STAT DECLARATION/
 
     public Hinotoma() {

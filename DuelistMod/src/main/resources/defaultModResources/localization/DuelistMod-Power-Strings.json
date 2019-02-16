@@ -9,7 +9,7 @@
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
-        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b5 damage to #b", " random enemy.", " random enemies.",]
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b3 damage to #b", " random enemy.", " random enemies.",]
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
@@ -45,7 +45,7 @@
 },
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",
-        "DESCRIPTIONS": ["Each time you #ySummon, gain #b", " [E]"]
+        "DESCRIPTIONS": ["Each time you #ySummon, gain #b", " [E] "]
 },
 "theDuelist:CannonPower": {
         "NAME": "Cannon Soldier",
@@ -69,7 +69,7 @@
 },
 "theDuelist:MagicCylinderPower": {
         "NAME": "Magic Cylinder",
-        "DESCRIPTIONS": ["The next time you lose HP, gain #b5 #yReflection", ".", ", and a random buff" ]
+        "DESCRIPTIONS": ["The next time you lose HP, gain #b", " #yReflection", ".", ", and a random buff" ]
 },
 "theDuelist:MirrorForcePower": {
         "NAME": "Mirror Force",
@@ -77,7 +77,7 @@
 },
 "theDuelist:ImperialPower": {
         "NAME": "Imperial Order",
-        "DESCRIPTIONS": ["At the start of turn, gain #b", " #yGold and take #b", " damage." ]
+        "DESCRIPTIONS": ["At the start of turn, set the cost of #b", " random trap or spell card in your hand to #b0.", " random trap or spell cards in your hand to #b0." ]
 },
 "theDuelist:SliferSkyPower": {
         "NAME": "Slifer the Sky Dragon",
@@ -133,15 +133,15 @@
 },
 "theDuelist:OrbEvokerPower": {
         "NAME": "Blessing of Ra",
-        "DESCRIPTIONS": ["Each time you #yEvoke, gain a random buff that lasts for #b", " turns" ]
+        "DESCRIPTIONS": ["Each time you #yEvoke, gain a random buff that lasts for #b", " turns." ]
 },
 "theDuelist:EnergyTreasurePower": {
         "NAME": "Tomb Looter",
-        "DESCRIPTIONS": ["Each time you gain [E] , gain #b", " #yGold." ]
+        "DESCRIPTIONS": ["Each time you attack with a max stack of #ySummons, gain #b", " Gold. Reduces by #b33% at the end of turn." ]
 },
 "theDuelist:HealGoldPower": {
         "NAME": "Tomb Pilferer",
-        "DESCRIPTIONS": ["Each time you gain HP, gain #b", " #yGold." ]
+        "DESCRIPTIONS": ["Each time you gain HP, gain #b", " Gold." ]
 },
 "theDuelist:TributeToonPower": {
         "NAME": "Pegasus Wings",

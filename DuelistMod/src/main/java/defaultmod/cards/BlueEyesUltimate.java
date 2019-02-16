@@ -30,7 +30,7 @@ public class BlueEyesUltimate extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 3;
     private static final int DAMAGE = 45;
-    private static final int UPGRADE_PLUS_DMG = 10;
+    private static final int UPGRADE_PLUS_DMG = 5;
     private static final int TRIBUTES = 3;
     // /STAT DECLARATION/
 
@@ -63,7 +63,7 @@ public class BlueEyesUltimate extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.upgradeBaseCost(3);
+            //this.upgradeBaseCost(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

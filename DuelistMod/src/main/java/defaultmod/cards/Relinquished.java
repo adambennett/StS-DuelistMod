@@ -33,7 +33,7 @@ public class Relinquished extends DuelistCard
 	public Relinquished() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.MONSTER);
-		this.tributes = 2;
+		this.tributes = 1;
 
 	}
 
@@ -57,7 +57,7 @@ public class Relinquished extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.tributes = 1;
+			//this.tributes = 1;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

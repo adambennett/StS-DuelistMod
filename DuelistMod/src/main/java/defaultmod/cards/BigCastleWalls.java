@@ -27,7 +27,7 @@ public class BigCastleWalls extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
     private static final int BLOCK = 14;
-    private static final int UPGRADE_PLUS_BLK = 6;
+    private static final int UPGRADE_PLUS_BLK = 4;
     // /STAT DECLARATION/
 
     public BigCastleWalls() {

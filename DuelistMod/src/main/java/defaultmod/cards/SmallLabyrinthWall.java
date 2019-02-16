@@ -28,7 +28,7 @@ public class SmallLabyrinthWall extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
     private static final int BLOCK = 15;
-    private static final int UPGRADE_PLUS_BLK = 10;
+    private static final int UPGRADE_PLUS_BLK = 5;
     private static final int TRIBUTES = 1;
     private boolean secondUpgrade = false;
     // /STAT DECLARATION/
@@ -73,7 +73,7 @@ public class SmallLabyrinthWall extends DuelistCard
         else if (this.upgraded && !this.secondUpgrade)
         {
         	this.name = "Labyrinth Wall+";
-        	this.upgradeBlock(7);
+        	this.upgradeBlock(5);
             this.initializeDescription();
             this.secondUpgrade = true;
             this.upgraded = true;

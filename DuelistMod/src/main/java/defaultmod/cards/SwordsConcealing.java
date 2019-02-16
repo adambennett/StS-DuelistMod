@@ -32,6 +32,7 @@ public class SwordsConcealing extends DuelistCard
     public SwordsConcealing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
+        this.magicNumber = this.baseMagicNumber = 1;
 
     }
 
@@ -39,7 +40,7 @@ public class SwordsConcealing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SwordsConcealPower(p, p, 1, true));
+    	applyPowerToSelf(new SwordsConcealPower(p, p, this.magicNumber, true));
     }
 
     // Which card to return when making a copy of this card.
@@ -53,7 +54,8 @@ public class SwordsConcealing extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            //this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

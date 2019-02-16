@@ -30,7 +30,7 @@ public class SuperheavyMagnet extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
-    private static final int BLOCK = 8;
+    private static final int BLOCK = 4;
     private static final int SUMMONS = 2;
     // /STAT DECLARATION/
 

@@ -66,11 +66,11 @@ public class MagicCylinderPower extends AbstractPower
     {
     	if (upgraded)
     	{
-    		this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2];
+    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
     	}
     	else
     	{
-    		this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1];
+    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     	}
     }
 }

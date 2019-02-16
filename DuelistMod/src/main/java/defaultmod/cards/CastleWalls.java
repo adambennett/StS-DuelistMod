@@ -26,7 +26,7 @@ public class CastleWalls extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int BLOCK = 8;
+    private static final int BLOCK = 9;
     private static final int UPGRADE_PLUS_BLK = 3;
     // /STAT DECLARATION/
 

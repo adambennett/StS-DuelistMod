@@ -36,14 +36,13 @@ public class DarkMagicianGirl extends DuelistCard
 	private static final int TRIBUTES = 1;
 	private static final int OVERFLOW_AMT = 3;
 	private static final int U_OVERFLOW = 2;
-	private static int MIN_TURNS_ROLL = 2;
-	private static int MAX_TURNS_ROLL = 5;
+	private static int MIN_TURNS_ROLL = 1;
+	private static int MAX_TURNS_ROLL = 4;
 	// /STAT DECLARATION/
 
 	public DarkMagicianGirl() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
-		this.counters = 10;
 		this.tags.add(DefaultMod.MONSTER);
 		this.misc = 0;
 	}

@@ -1,14 +1,13 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.patches.DuelistCard;
 
 
 public class PotGenerosityPower extends AbstractPower 
@@ -23,7 +22,7 @@ public class PotGenerosityPower extends AbstractPower
     
     private static int MANA = 1;
 
-    public PotGenerosityPower(final AbstractCreature owner, final AbstractCreature source) 
+    public PotGenerosityPower(final AbstractCreature owner, final AbstractCreature source, int newAmount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -32,31 +31,15 @@ public class PotGenerosityPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.amount = newAmount;
         this.updateDescription();
-    }
-    
-    @Override
-    public void onDrawOrDiscard() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void atStartOfTurn() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m) 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount > 0) { this.amount--; if (this.amount < 1) { DuelistCard.removePower(this, AbstractDungeon.player); } }
+    	else { DuelistCard.removePower(this, AbstractDungeon.player); }
 	}
 
     @Override

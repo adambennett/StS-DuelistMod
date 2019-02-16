@@ -1,6 +1,7 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -27,18 +28,25 @@ public class EnergyTreasurePower extends AbstractPower
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
-        this.amount = newAmount;
+        this.amount = 15 + newAmount;
         this.updateDescription();
     }
 
     @Override
 	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + (50 + this.amount) + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     }
     
     @Override
-    public void atEnergyGain() 
+    public void atEndOfTurn(boolean isPlayer)
     {
-    	DuelistCard.gainGold(this.amount + 50, AbstractDungeon.player, true);
+    	if (this.amount > 0) { this.amount -= Math.floor(this.amount/3); if (this.amount < 1) { DuelistCard.removePower(this, AbstractDungeon.player); } }
+    	updateDescription();
+    } 
+    
+    @Override
+    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
+    {
+    	if (DuelistCard.getSummons(AbstractDungeon.player) == DuelistCard.getMaxSummons(AbstractDungeon.player)) { DuelistCard.gainGold(this.amount, AbstractDungeon.player, true); }
     }
 }

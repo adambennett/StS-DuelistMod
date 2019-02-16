@@ -32,7 +32,7 @@ public class JudgeMan extends DuelistCard
     private static final int DAMAGE = 8;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int TRIBUTES = 1;
-    private static final int SUMMONS = 2;
+    private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public JudgeMan() {

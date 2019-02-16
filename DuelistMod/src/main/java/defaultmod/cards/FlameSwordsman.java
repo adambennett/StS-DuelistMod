@@ -31,8 +31,8 @@ public class FlameSwordsman extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int DAMAGE = 8;
-    private static final int TRIBUTES = 1;
+    private static final int DAMAGE = 10;
+    private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public FlameSwordsman() {

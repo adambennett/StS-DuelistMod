@@ -28,16 +28,16 @@ public class FortressWarrior extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public FortressWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 15;
-        this.baseBlock = this.block = 15;
+        this.baseDamage = this.damage = 12;
+        this.baseBlock = this.block = 12;
         this.upgradeDmg = 5;
         this.upgradeBlk = 5;
-        this.tributes = 3;
+        this.tributes = 2;
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;

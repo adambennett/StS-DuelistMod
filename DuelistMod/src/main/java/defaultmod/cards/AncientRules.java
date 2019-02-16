@@ -55,7 +55,7 @@ public class AncientRules extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
         	this.upgradeName();
-        	this.upgradeMagicNumber(this.upgradeSummons);
+        	//this.upgradeMagicNumber(this.upgradeSummons);
         	this.upgradeBaseCost(0);
         	//this.exhaust = false;
         	this.rawDescription = UPGRADE_DESCRIPTION;

@@ -47,7 +47,7 @@ public class PotGreed extends DuelistCard
     	{
     		this.upgradeName(); 
     		this.isInnate = true; 
-    		this.exhaust = false; this.rawDescription = UPGRADE_DESCRIPTION;
+    		this.rawDescription = UPGRADE_DESCRIPTION;
     		this.initializeDescription();
     	}
     }

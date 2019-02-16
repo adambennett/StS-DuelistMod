@@ -33,7 +33,7 @@ public class GateGuardian extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 3;
     private static int TRIBUTES = 3;
-    private static final int SUMMONS = 1;
+    //private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public GateGuardian() 
@@ -49,7 +49,7 @@ public class GateGuardian extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
-    	summon(p, SUMMONS);
+    	//summon(p, SUMMONS);
     	AbstractDungeon.actionManager.addToTop(new EvokeAllOrbsAction());
     	AbstractOrb orb = new Gate();
     	AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));

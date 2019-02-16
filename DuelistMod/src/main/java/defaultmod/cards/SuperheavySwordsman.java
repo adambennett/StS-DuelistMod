@@ -33,7 +33,7 @@ public class SuperheavySwordsman extends DuelistCard
 
     public SuperheavySwordsman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 5;
+        this.baseDamage = this.damage = 3;
         this.summons = 1;
         this.dex = 1;
         this.exhaust = true;

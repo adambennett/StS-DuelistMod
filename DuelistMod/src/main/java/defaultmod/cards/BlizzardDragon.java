@@ -34,7 +34,7 @@ public class BlizzardDragon extends DuelistCard
 
     public BlizzardDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 14;
+        this.baseDamage = this.damage = 10;
         this.upgradeDmg = 3;
         this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);

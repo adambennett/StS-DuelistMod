@@ -17,7 +17,6 @@ import defaultmod.characters.TheDuelist;
 import defaultmod.patches.*;
 import defaultmod.potions.*;
 import defaultmod.relics.*;
-import defaultmod.variables.DefaultCustomVariable;
 
 
 
@@ -138,6 +137,7 @@ public class DefaultMod
     public static final String CELTIC_GUARDIAN = "cards/Celtic_Guardian.png";
     public static final String CHANGE_HEART = "cards/Change_Heart.png";
     public static final String DARKLORD_MARIE = "cards/Darklord_Marie.png";
+    public static final String DARK_FACTORY = "cards/Dark_Factory.png";
     public static final String DARK_HOLE = "cards/Dark_Hole.png";
     public static final String DARK_MAGICIAN = "cards/Dark_Magician.png";
     public static final String DARK_MAGICIAN_GIRL = "cards/Dark_Magician_Girl.png";
@@ -460,7 +460,7 @@ public class DefaultMod
     public void receiveEditCards() {
         logger.info("Adding variables");
         // Add the Custom Dynamic Variables
-        BaseMod.addDynamicVariable(new DefaultCustomVariable());
+        //BaseMod.addDynamicVariable(new TributeCustomVariable());
         
         logger.info("Adding cards");
         // Add the cards
@@ -482,6 +482,7 @@ public class DefaultMod
 		BaseMod.addCard(new CatapultTurtle());
 		BaseMod.addCard(new CelticGuardian());
 		BaseMod.addCard(new ChangeHeart());
+		BaseMod.addCard(new DarkFactory());
 		BaseMod.addCard(new DarkHole());
 		BaseMod.addCard(new DarkMagician());
 		BaseMod.addCard(new DarkMagicianGirl());
@@ -532,7 +533,7 @@ public class DefaultMod
 		BaseMod.addCard(new Parasite());
 		BaseMod.addCard(new PotAvarice());
 		BaseMod.addCard(new PotDichotomy());
-		//BaseMod.addCard(new PotDuality());
+		BaseMod.addCard(new PotDuality());
 		BaseMod.addCard(new PotGenerosity());
 		BaseMod.addCard(new PotGreed());
 		BaseMod.addCard(new Pumpking());
@@ -620,6 +621,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(CatapultTurtle.ID);
 		UnlockTracker.unlockCard(CelticGuardian.ID);
 		UnlockTracker.unlockCard(ChangeHeart.ID);
+		UnlockTracker.unlockCard(DarkFactory.ID);
 		UnlockTracker.unlockCard(DarkHole.ID);
 		UnlockTracker.unlockCard(DarkMagician.ID);
 		UnlockTracker.unlockCard(DarkMagicianGirl.ID);
@@ -670,7 +672,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(Parasite.ID);
 		UnlockTracker.unlockCard(PotAvarice.ID);
 		UnlockTracker.unlockCard(PotDichotomy.ID);
-		//UnlockTracker.unlockCard(PotDuality.ID);
+		UnlockTracker.unlockCard(PotDuality.ID);
 		UnlockTracker.unlockCard(PotGenerosity.ID);
 		UnlockTracker.unlockCard(PotGreed.ID);
 		UnlockTracker.unlockCard(Pumpking.ID);

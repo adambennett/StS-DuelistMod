@@ -34,7 +34,7 @@ public class ExodiaLL extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.EXODIA);
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 5;
         this.summons = this.baseMagicNumber = this.magicNumber = 1;
         this.damage = this.baseDamage = 1;
         this.exhaust = true;

@@ -32,7 +32,7 @@ public class TheDuelist extends CustomPlayer {
 	public static final int MAX_HP = 80;
 	public static final int STARTING_GOLD = 99;
 	public static final int CARD_DRAW = 5;
-	public static final int ORB_SLOTS = 2;
+	public static final int ORB_SLOTS = 3;
 	// =============== /BASE STATS/ =================
 
 
@@ -118,15 +118,15 @@ public class TheDuelist extends CustomPlayer {
 		// working base deck
 		retVal.add(SevenColoredFish.ID);
 		retVal.add(SevenColoredFish.ID);
-		retVal.add(SevenColoredFish.ID);
 		retVal.add(GiantSoldier.ID);
 		retVal.add(GiantSoldier.ID);
-		retVal.add(GiantSoldier.ID);
+		retVal.add(CastleWalls.ID);
 		retVal.add(CastleWalls.ID);
 		retVal.add(CastleWalls.ID);
 		retVal.add(ScrapFactory.ID);
 		retVal.add(Ookazi.ID);
 		retVal.add(Ookazi.ID);
+		retVal.add(SummonedSkull.ID);
 		retVal.add(SummonedSkull.ID);
 
 		return retVal;

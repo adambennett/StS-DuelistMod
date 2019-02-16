@@ -35,8 +35,8 @@ public class AxeDespair extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int STR_GAIN = 9;
-    private static final int UPGRADE_STR_GAIN = 2;
+    private static final int STR_GAIN = 8;
+    private static final int UPGRADE_STR_GAIN = 1;
     // /STAT DECLARATION/
 
 

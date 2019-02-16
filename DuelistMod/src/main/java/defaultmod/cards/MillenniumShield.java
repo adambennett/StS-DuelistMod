@@ -38,7 +38,7 @@ public class MillenniumShield extends DuelistCard
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
-        this.dex = 5;
+        this.dex = 4;
     }
 
     // Actions the card should do.
@@ -61,8 +61,6 @@ public class MillenniumShield extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(U_TRIBUTES);
-            this.exhaust = false;
-            this.dex = 6;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
