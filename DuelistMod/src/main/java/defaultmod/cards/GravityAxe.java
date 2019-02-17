@@ -33,6 +33,7 @@ public class GravityAxe extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
         this.magicNumber = this.baseMagicNumber = 3;
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

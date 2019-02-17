@@ -38,6 +38,7 @@ public class ObeliskTormentor extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.GOD);
         this.misc = 0;
+		this.originalName = this.name;
     }
 
 

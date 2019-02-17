@@ -39,6 +39,7 @@ public class InsectQueen extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TRIBUTE);
 		this.misc = 0;
+		this.originalName = this.name;
 	}
 
 	// Actions the card should do.

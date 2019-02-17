@@ -36,6 +36,7 @@ public class SuperheavyScales extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

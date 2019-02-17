@@ -36,6 +36,7 @@ public class GeminiElf extends DuelistCard
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.exhaust = true;
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

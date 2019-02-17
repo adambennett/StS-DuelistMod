@@ -45,6 +45,7 @@ public class OjamaKing extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.OJAMA);
         this.misc = 0;
+		this.originalName = this.name;
     }
 
     

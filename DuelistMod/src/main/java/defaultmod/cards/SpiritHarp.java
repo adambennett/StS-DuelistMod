@@ -34,6 +34,7 @@ public class SpiritHarp extends DuelistCard
         this.baseBlock = this.block = 5;
         this.tags.add(DefaultMod.MONSTER);
         this.summons = 2;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

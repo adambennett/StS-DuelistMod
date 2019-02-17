@@ -39,6 +39,7 @@ public class Hinotoma extends DuelistCard
     public Hinotoma() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 4;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

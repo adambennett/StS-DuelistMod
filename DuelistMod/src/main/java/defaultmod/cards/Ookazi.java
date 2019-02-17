@@ -42,6 +42,7 @@ public class Ookazi extends DuelistCard
         this.damageB = 10;
         this.damageC = 6;
         this.damageD = 12;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

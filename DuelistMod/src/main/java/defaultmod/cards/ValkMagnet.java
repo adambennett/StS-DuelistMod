@@ -41,6 +41,7 @@ public class ValkMagnet extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

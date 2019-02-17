@@ -36,6 +36,7 @@ public class PotGenerosity extends DuelistCard
     	this.tags.add(DefaultMod.SPELL);
     	this.tags.add(DefaultMod.POT);
     	this.magicNumber = this.baseMagicNumber = 3;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

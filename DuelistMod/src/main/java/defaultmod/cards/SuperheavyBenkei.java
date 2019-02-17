@@ -41,6 +41,7 @@ public class SuperheavyBenkei extends DuelistCard
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.misc = 0;
         this.magicNumber = this.baseMagicNumber = this.dex;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

@@ -31,7 +31,7 @@ public class TimeWizard extends DuelistCard
     public TimeWizard() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
-
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

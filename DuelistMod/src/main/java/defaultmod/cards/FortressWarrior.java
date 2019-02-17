@@ -41,6 +41,7 @@ public class FortressWarrior extends DuelistCard
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

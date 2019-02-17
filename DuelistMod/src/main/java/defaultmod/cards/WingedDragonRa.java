@@ -38,6 +38,7 @@ public class WingedDragonRa extends DuelistCard
         this.tags.add(DefaultMod.GOD);
         this.misc = 0;
         this.tributes = TRIBUTES;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

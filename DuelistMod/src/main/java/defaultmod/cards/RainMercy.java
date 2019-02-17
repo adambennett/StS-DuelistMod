@@ -41,6 +41,7 @@ public class RainMercy extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
        	//this.exhaust = true;
        	this.tags.add(DefaultMod.SPELL);
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

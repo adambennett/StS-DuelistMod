@@ -39,6 +39,7 @@ public class SuperheavySwordsman extends DuelistCard
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

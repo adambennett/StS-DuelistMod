@@ -39,6 +39,7 @@ public class SuperheavyWaraji extends DuelistCard
         this.exhaust = true;
         this.baseMagicNumber = this.magicNumber = this.dex;
         this.baseBlock = this.block = 5;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

@@ -34,6 +34,7 @@ public class PotDuality extends DuelistCard
         this.tags.add(DefaultMod.POT);
         this.baseBlock = this.block = 15;
         this.magicNumber = this.baseMagicNumber = 2;
+		this.originalName = this.name;
 
     }
 

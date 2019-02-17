@@ -32,6 +32,7 @@ public class StormingMirrorForce extends DuelistCard
     public StormingMirrorForce() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

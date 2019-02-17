@@ -50,6 +50,7 @@ public class ToonMask extends DuelistCard
 		this.tags.add(DefaultMod.TOON);
 		this.tags.add(DefaultMod.TRAP);
 		this.misc = 0;
+		this.originalName = this.name;
 	}
 
 	// Actions the card should do.

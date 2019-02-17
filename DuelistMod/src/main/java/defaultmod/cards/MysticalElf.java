@@ -34,6 +34,7 @@ public class MysticalElf extends DuelistCard
         this.baseBlock = this.block = 9;
         this.tags.add(DefaultMod.MONSTER);
         this.summons = 1;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

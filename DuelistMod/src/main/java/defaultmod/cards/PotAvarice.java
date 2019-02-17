@@ -39,6 +39,7 @@ public class PotAvarice extends DuelistCard
         this.tags.add(DefaultMod.POT);
         this.tags.add(DefaultMod.TRIBUTE);
         this.misc = 0;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

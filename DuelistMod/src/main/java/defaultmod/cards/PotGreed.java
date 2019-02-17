@@ -32,6 +32,7 @@ public class PotGreed extends DuelistCard
     	this.exhaust = true; 
     	this.tags.add(DefaultMod.SPELL);
     	this.tags.add(DefaultMod.POT);
+		this.originalName = this.name;
     }
 
     @Override

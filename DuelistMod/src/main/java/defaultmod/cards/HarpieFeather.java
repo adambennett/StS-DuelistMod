@@ -37,6 +37,7 @@ public class HarpieFeather extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.damage = this.baseDamage = 0;
     	this.magicNumber = this.baseMagicNumber = 1;
+    	this.originalName = this.name;
     }
 
     // Actions the card should do.

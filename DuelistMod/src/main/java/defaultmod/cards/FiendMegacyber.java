@@ -37,6 +37,7 @@ public class FiendMegacyber extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
         this.exhaust = true;
+        this.originalName = this.name;
     }
 
     // Actions the card should do.

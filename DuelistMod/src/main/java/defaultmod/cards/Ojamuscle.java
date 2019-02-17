@@ -45,6 +45,7 @@ public class Ojamuscle extends DuelistCard
         this.tags.add(DefaultMod.OJAMA);
 		tooltips = new ArrayList<>();
 		tooltips.add(new OjamaYellow());
+		this.originalName = this.name;
 	}
 
 	@Override

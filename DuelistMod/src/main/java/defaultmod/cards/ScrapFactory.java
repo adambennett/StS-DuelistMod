@@ -40,6 +40,7 @@ public class ScrapFactory extends DuelistCard
 		this.tags.add(DefaultMod.SPELL);
 		this.misc = 0;
 		this.tributes = 1;
+		this.originalName = this.name;
 	}
 
 	// Actions the card should do.

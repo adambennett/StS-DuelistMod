@@ -38,6 +38,7 @@ public class OjamaYellow extends DuelistCard
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.OJAMA);
+		this.originalName = this.name;
     }
 
     

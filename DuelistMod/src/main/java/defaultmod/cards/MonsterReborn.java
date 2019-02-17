@@ -36,6 +36,7 @@ public class MonsterReborn extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
         this.exhaust = true;
+		this.originalName = this.name;
 
     }
 

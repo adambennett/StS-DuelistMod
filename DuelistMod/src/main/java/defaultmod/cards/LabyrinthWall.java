@@ -37,6 +37,7 @@ public class LabyrinthWall extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.

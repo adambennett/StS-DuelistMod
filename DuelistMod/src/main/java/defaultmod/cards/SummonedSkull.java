@@ -39,6 +39,7 @@ public class SummonedSkull extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(DefaultMod.MONSTER);
 		this.misc = 0;
+		this.originalName = this.name;
 	}
 
 	// Actions the card should do.

@@ -39,6 +39,7 @@ public class MillenniumShield extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
         this.dex = 4;
+		this.originalName = this.name;
     }
 
     // Actions the card should do.
