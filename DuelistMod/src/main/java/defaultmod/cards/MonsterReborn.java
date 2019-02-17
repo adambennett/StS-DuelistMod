@@ -53,7 +53,7 @@ public class MonsterReborn extends DuelistCard
     		{
 	    		int randomAttack = ThreadLocalRandom.current().nextInt(0, toChooseFrom.size());
 	    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
-	    		String cardName = chosen.name;
+	    		String cardName = chosen.originalName;
 	    		System.out.println("theDuelist:MonsterReborn --- > Found: " + cardName);
 	    		if (upgraded)
 	    		{
@@ -61,7 +61,7 @@ public class MonsterReborn extends DuelistCard
 	    			if (cardCopy != null)
 	    			{
 	    				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-	    				cardCopy.upgrade();
+	    				if (!chosen.upgraded) { cardCopy.upgrade(); }
 	    				cardCopy.freeToPlayOnce = true;
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
@@ -77,6 +77,7 @@ public class MonsterReborn extends DuelistCard
 	    				cardCopy.freeToPlayOnce = true;
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
+	    				if (chosen.upgraded) { cardCopy.upgrade(); }
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 	    			}
 	    		}

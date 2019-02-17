@@ -5,7 +5,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -39,6 +38,7 @@ public class OjamaYellow extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.OJAMA);
 		this.originalName = this.name;
+		this.exhaust = true;
     }
 
     
@@ -51,10 +51,10 @@ public class OjamaYellow extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 			DuelistCard randomMonster = newCopyOfMonster("gimme random please");
-			int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
-			card.costForTurn = randomNum;
+			int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
+			//card.costForTurn = randomNum;
 			randomMonster.costForTurn = randomNum;
 			addCardToHand(randomMonster);
 		}

@@ -1,27 +1,26 @@
 package defaultmod.orbs;
 
-import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
+import defaultmod.DefaultMod;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Buffer extends AbstractOrb
+public class MonsterOrb extends AbstractOrb
 {
-	public static final String ID = defaultmod.DefaultMod.makeID("Buffer");
+	public static final String ID = DefaultMod.makeID("MonsterOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 1.0F; 
@@ -32,7 +31,7 @@ public class Buffer extends AbstractOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public Buffer()
+	public MonsterOrb()
 	{
 		this.img = ImageMaster.ORB_LIGHTNING;
 		this.name = orbString.NAME;
@@ -53,8 +52,15 @@ public class Buffer extends AbstractOrb
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
-		System.out.println("theDuelist:Buffer --- > triggered evoke!");
+		for (int i = 0; i < this.evokeAmount; i++)
+		{
+			DuelistCard randomMonster = DuelistCard.newCopyOfMonster("gimme random please");
+			//int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+			//randomMonster.costForTurn = randomNum;
+			DuelistCard.addCardToHand(randomMonster);
+			System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
+		}
+		System.out.println("theDuelist:MonsterOrb --- > triggered evoke!");
 	}
 
 	@Override
@@ -65,20 +71,14 @@ public class Buffer extends AbstractOrb
 
 	private void triggerPassiveEffect()
 	{
-		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			int randomNum = ThreadLocalRandom.current().nextInt(0, playerPowers.size());
-			playerPowers.get(randomNum).amount += 1;
-			System.out.println("theDuelist:Buffer --- > Buffed " + playerPowers.get(randomNum).name + " on passive trigger");
+			DuelistCard randomMonster = DuelistCard.newCopyOfMonster("gimme random please");
+			//int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+			//randomMonster.costForTurn = randomNum;
+			DuelistCard.addCardToHand(randomMonster);
+			System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
 		}
-		/*
-		for (AbstractPower a : playerPowers)
-		{
-			if ((!a.name.equals("Summons")) && !(a.type == PowerType.DEBUFF)) { a.amount += this.passiveAmount; }
-			//else { DuelistCard.summonLite(AbstractDungeon.player, this.passiveAmount); }
-		}
-		*/
 	}
 
 	@Override
@@ -124,7 +124,7 @@ public class Buffer extends AbstractOrb
 	@Override
 	public AbstractOrb makeCopy()
 	{
-		return new Buffer();
+		return new MonsterOrb();
 	}
 	
 	@Override

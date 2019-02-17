@@ -47,8 +47,7 @@ public class ExodiaHead extends DuelistCard
        if (p.hasPower(ExodiaPower.POWER_ID))
        {
     	   ExodiaPower powerInstance = (ExodiaPower)p.getPower(ExodiaPower.POWER_ID);
-    	   int count = powerInstance.amount;
-    	   if (count >= 4)
+    	   if (powerInstance.checkForAllPieces())
     	   {
     		   powerInstance.addNewPiece(this);
     	   }

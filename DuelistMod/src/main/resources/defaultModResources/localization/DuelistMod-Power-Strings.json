@@ -163,6 +163,10 @@
         "NAME": "Toon Kingdom",
         "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon card, and shuffle a random #yToon monster into your draw pile." ]
 },
+"theDuelist:ReducerPower": {
+        "NAME": "Reductionist",
+        "DESCRIPTIONS": ["At the start of turn, reduce the cost of #b", " card in your hand by #b1.", " cards in your hand by #b1." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

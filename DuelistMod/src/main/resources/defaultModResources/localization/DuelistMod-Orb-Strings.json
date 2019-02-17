@@ -2,13 +2,31 @@
   "theDuelist:Gate": {
     "NAME": "Gate",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " #yBlock, and gain #b1 #yEnergy. NL #yEvoke: #ySummon #b", ". NL Gate is unaffected by #yFocus."
+      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain #b1 #yEnergy. NL #yEvoke: #ySummon #b", ". NL Gate is unaffected by #yFocus."
     ]
   },
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase ALL your buffs by #b", ". NL #yEvoke: Gain a random buff that lasts for #b", " turns."
+      "#yPassive: At the start of turn, increase #b", " random #ybuff stacks by #b1. NL #yEvoke: Gain a random #ybuff that lasts for #b", " turns."
+    ]
+  },
+  "theDuelist:MonsterOrb": {
+    "NAME": "MonsterOrb",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " random monster to your hand. NL #yEvoke: Add #b", " random monsters to your hand."
+    ]
+  },
+  "theDuelist:DragonOrb": {
+    "NAME": "DragonOrb",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " random #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to #b0."
+    ]
+  },
+  "theDuelist:ReducerOrb": {
+    "NAME": "Reducer",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, increase the number of cards reduced when evoked by #b", ". NL #yEvoke: Change the cost of #b", " random cards in your hand to 0."
     ]
   },
   "theDuelist:Summoner": {

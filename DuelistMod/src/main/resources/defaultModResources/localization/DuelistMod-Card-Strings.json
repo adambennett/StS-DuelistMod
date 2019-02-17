@@ -311,8 +311,8 @@
 	},
 	"theDuelist:OjamaYellow": {
 		"NAME": "Ojama Yellow",
-		"DESCRIPTION": "Summon 1. Add !M! randomized monster cards to your hand.",
-		"UPGRADE_DESCRIPTION": "Summon 1. Add !M! randomized monster cards to your hand."
+		"DESCRIPTION": "Summon 1. Add !M! randomized monster cards to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Add !M! randomized monster cards to your hand. Exhaust."
 	},
 	"theDuelist:Ookazi": {
 		"NAME": "Ookazi",

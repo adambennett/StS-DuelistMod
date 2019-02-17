@@ -546,10 +546,12 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower focus = new FocusPower(p, turnNum);
-		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
+		AbstractPower reductionist = new ReducerPower(p, turnNum);
+		/*AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTributeB, magicCylinder, retainCards, 
-				generosity, focus, creative };
+				generosity, focus, reductionist, creative }; */
+		AbstractPower[] buffs = new AbstractPower[] { reductionist };
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
 		AbstractPower randomBuff = buffs[randomBuffNum];
@@ -688,7 +690,13 @@ public abstract class DuelistCard extends CustomCard
 
 	public static void channelRandomOrb()
 	{
-		AbstractOrb[] orbs = new AbstractOrb[] { new Water(), new Lightning(), new Plasma(), new Dark(), new HellFireOrb(), new Frost(), new CrystalOrb(), new GlassOrb(), new Gate(), new Buffer(), new Summoner() };
+		AbstractOrb[] orbs = new AbstractOrb[] 
+		{	
+				new Water(), new Lightning(), new Plasma(), new Dark(), 
+				new HellFireOrb(),new Frost(), new CrystalOrb(), new GlassOrb(), 
+				new Gate(), new Buffer(), new Summoner(), new MonsterOrb(),
+				new DragonOrb(), new ReducerOrb()
+		};
 		int randomOrb = ThreadLocalRandom.current().nextInt(0, orbs.length);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs[randomOrb]));
 	}
@@ -890,7 +898,7 @@ public abstract class DuelistCard extends CustomCard
 
 	// Returns a new copy of the monster passed (by its name)
 	// Or if the name does not match the set of monsters, returns a new random monster from the set
-	public DuelistCard newCopyOfMonster(String name)
+	public static DuelistCard newCopyOfMonster(String name)
 	{
 		switch(name)
 		{
@@ -1075,26 +1083,71 @@ public abstract class DuelistCard extends CustomCard
 				};
 			 */
 			String[] monsters = new String[] 
-					{		
-							"A. Magnet Warrior", "Barrel Dragon", "B. Magnet Warrior", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
-							"Buster Blader", "Cannon Soldier", "Castle Dark Illusion", "Catapult Turtle", "Celtic Guardian", "Darklord Marie", "Dark Magician",
-							"D.M. Girl", "Exodia Head", "Exodia L. Arm", "Exodia L. Leg", "Exodia R. Arm", "Exodia R. Leg", "Fiend Megacyber", "Flame Swordsman",
-							"G. Fierce Knight", "G. Magnet Warrior", "Gate Guardian", "Giant Soldier", "Injection Fairly Lily", "Insect Queen", "Judge Man",
-							"Kuriboh", "Labyrinth Wall", "Legendary Fisherman", "Millennium Shield", "Obelisk", "Ojama Black", "Ojama Green", "Ojama King",
-							"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
-							"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Valkyrion", "Red Eyes Toon",
-							"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
-							"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall",
-							"Baby Dragon", "Blizzard Dragon", "Cave Dragon", "Fortress Warrior", "Island Turtle", "Mystical Elf",
-							"Prevent Rat", "Snowdust Dragon", "Snow Dragon", "Spirit of the Harp", "Superheavy Brawler", 
-							"Superheavy Daihachi", "Superheavy Flutist", "Superheavy General", "Superheavy Magnet", "Superheavy Ogre"
-					};
+			{		
+					"A. Magnet Warrior", "Barrel Dragon", "B. Magnet Warrior", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
+					"Buster Blader", "Cannon Soldier", "Castle Dark Illusion", "Catapult Turtle", "Celtic Guardian", "Darklord Marie", "Dark Magician",
+					"D.M. Girl", "Exodia Head", "Exodia L. Arm", "Exodia L. Leg", "Exodia R. Arm", "Exodia R. Leg", "Fiend Megacyber", "Flame Swordsman",
+					"G. Fierce Knight", "G. Magnet Warrior", "Gate Guardian", "Giant Soldier", "Injection Fairly Lily", "Insect Queen", "Judge Man",
+					"Kuriboh", "Labyrinth Wall", "Legendary Fisherman", "Millennium Shield", "Obelisk", "Ojama Black", "Ojama Green", "Ojama King",
+					"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
+					"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Valkyrion", "Red Eyes Toon",
+					"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
+					"Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall",
+					"Baby Dragon", "Blizzard Dragon", "Cave Dragon", "Fortress Warrior", "Island Turtle", "Mystical Elf",
+					"Prevent Rat", "Snowdust Dragon", "Snow Dragon", "Spirit of the Harp", "Superheavy Brawler", 
+					"Superheavy Daihachi", "Superheavy Flutist", "Superheavy General", "Superheavy Magnet", "Superheavy Ogre"
+			};
 			int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
 			return newCopyOfMonster(monsters[randomCard]);
 		}
 	}
+	
+		// Returns a new copy of the dragon passed (by its name)
+		// Or if the name does not match the set of dragons, returns a new random dragon from the set
+		public static DuelistCard newCopyOfDragon(String name)
+		{
+			switch(name)
+			{
+			case "Barrel Dragon":
+				return new BarrelDragon();			
+			case "B.E. White Dragon":
+				return new BlueEyes();
+			case "B.E. Toon Dragon":
+				return new BlueEyesToon();
+			case "B. Eyes Ultimate":
+				return new BlueEyesUltimate();
+			case "Slifer Sky Dragon":
+				return new SliferSky();
+			case "Red Eyes Toon":
+				return new RedEyesToon();
+			case "Toon Barrel Dragon":
+				return new ToonBarrelDragon();
+			case "Winged Dragon Ra":
+				return new WingedDragonRa();
+			case "Baby Dragon":								
+				return new BabyDragon();					
+			case "Blizzard Dragon":							
+				return new BlizzardDragon();
+			case "Cave Dragon":
+				return new CaveDragon();
+			case "Snowdust Dragon":
+				return new SnowdustDragon();
+			case "Snow Dragon":
+				return new SnowDragon();
+			default:
+				String[] monsters = new String[] 
+				{		
+						"Barrel Dragon", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
+						"R. Eyes Black Dragon", "Slifer Sky Dragon", "Summoned Skull", "Valkyrion", 
+						"Red Eyes Toon", "Toon Barrel Dragon", "Winged Dragon Ra", "Baby Dragon", "Blizzard Dragon", 
+						"Cave Dragon", "Snowdust Dragon", "Snow Dragon", 
+				};
+				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
+				return newCopyOfDragon(monsters[randomCard]);
+			}
+		}
 
-	// Same as above but defaults instead to just return 7-colored fish. Makes it much less likely the player will ever notice a bug
+	// Same as above but defaults instead to just return 7-colored fish. Makes it less likely the player will notice a bug
 	public DuelistCard newCopyOfMonsterPumpkin(String name)
 	{
 		switch(name)
@@ -1265,24 +1318,4 @@ public abstract class DuelistCard extends CustomCard
 			return newCopyOfMonster("7-Colored Fish");
 		}
 	}
-
-	/*
-	public static DuelistCard randomDuelistCard()
-	{
-		String[] monsters = new String[] 
-		{		
-					"A. Magnet Warrior", "Barrel Dragon", "B. Magnet Warrior", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
-					"Buster Blader", "Cannon Soldier", "Castle Dark Illusion", "Catapult Turtle", "Celtic Guardian", "Darklord Marie", "Dark Magician",
-					"D.M. Girl", "Exodia Head", "Exodia L. Arm", "Exodia L. Leg", "Exodia R. Arm", "Exodia R. Leg", "Fiend Megacyber", "Flame Swordsman",
-					"G. Fierce Knight", "G. Magnet Warrior", "Gate Guardian", "Giant Soldier", "Injection Fairly Lily", "Insect Queen", "Judge Man",
-					"Kuriboh", "Labyrinth Wall", "Legendary Fisherman", "Millennium Shield", "Obelisk", "Ojama Black", "Ojama Green", "Ojama King",
-					"Ojama Knight", "Ojama Yellow", "Parasite Paracide", "Pumpking", "Pumprincess", "R. Eyes Black Dragon", "Relinquished", "Kazejin",
-					"Sanga of Thunder", "Suijin", "7-Colored Fish", "Slifer Sky Dragon", "Summoned Skull", "Time Wizard", "Valkyrion", "Red Eyes Toon",
-					"Superheavy Benkei", "Superheavy Scales", "Superheavy Swordsman", "Superheavy Waraji", "Toon Barrel Dragon", "Toon Dark Magician", 
-					"Toon D.M. Girl", "Toon Gemini Elf","Toon Mermaid", "Toon S. Skull", "Gemini Elf", "Winged Dragon Ra", "Mini L. Wall"
-		};
-		int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
-		return newCopyOfCard(monsters[randomCard]);
-	}
-	 */
 }

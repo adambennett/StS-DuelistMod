@@ -33,6 +33,7 @@ public class SliferSky extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.GOD);
+        this.tags.add(DefaultMod.DRAGON);
         this.tributes = 5;
         this.misc = 0;
 		this.originalName = this.name;

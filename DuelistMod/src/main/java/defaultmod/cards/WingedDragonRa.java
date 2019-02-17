@@ -36,6 +36,7 @@ public class WingedDragonRa extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.GOD);
+        this.tags.add(DefaultMod.DRAGON);
         this.misc = 0;
         this.tributes = TRIBUTES;
 		this.originalName = this.name;

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
@@ -40,6 +42,24 @@ public class ExodiaPower extends AbstractPower
 		this.amount++; 
 		this.updateDescription();
 	}
+	
+	@Override
+    public void onDrawOrDiscard() 
+    {
+		if (this.amount != this.pieces.size()) { this.amount = this.pieces.size(); }
+    }
+	
+	@Override
+    public void atStartOfTurn() 
+    {
+		if (this.amount != this.pieces.size()) { this.amount = this.pieces.size(); }
+    }
+    
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) 
+    {
+    	if (this.amount != this.pieces.size()) { this.amount = this.pieces.size(); }
+    }
 
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) 
@@ -113,6 +133,7 @@ public class ExodiaPower extends AbstractPower
 	@Override
 	public void updateDescription() 
 	{
+		if (this.amount != this.pieces.size()) { this.amount = this.pieces.size(); }
 		if (this.amount == 0) 
 		{ 
 			this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + pieces.size(); 

@@ -295,6 +295,7 @@ public class DefaultMod
     public static final String TRIBUTE_TOON_POWER = "powers/TributeToonPower.png";
     public static final String GRAVITY_AXE_POWER = "powers/GravityAxePower.png";
     public static final String TOON_ROLLBACK_POWER = "powers/ToonRollbackPower.png";
+    public static final String REDUCER_POWER = "powers/ReducerPower.png";
     
     // Relic images  
     public static final String PLACEHOLDER_RELIC = "relics/placeholder_relic.png";
@@ -792,6 +793,9 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"Gate", "gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus.");
         BaseMod.addKeyword(new String[] {"Buffer", "buffer"}, "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ydebuffs.");
         BaseMod.addKeyword(new String[] {"Summoner", "summoner"}, "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons.");
+        BaseMod.addKeyword(new String[] {"Reducer", "reducer"}, "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0.");
+        BaseMod.addKeyword(new String[] {"MonsterOrb", "monsterorb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
+        BaseMod.addKeyword(new String[] {"Dragonorb", "dragonorb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
         BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active.");
         BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
