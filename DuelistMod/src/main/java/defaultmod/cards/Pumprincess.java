@@ -61,7 +61,7 @@ public class Pumprincess extends DuelistCard
 		        cardCopy.freeToPlayOnce = true;
 		        cardCopy.applyPowers();
 		        cardCopy.purgeOnUse = true;
-		        if (chosen.upgraded) { cardCopy.upgrade(); }
+		        if (chosen.upgraded || this.upgraded) { cardCopy.upgrade(); }
 		        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 	    	}
     	}

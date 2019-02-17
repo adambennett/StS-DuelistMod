@@ -23,6 +23,12 @@
       "#yPassive: At the start of turn, add #b", " random #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to #b0."
     ]
   },
+   "theDuelist:DragonPlusOrb": {
+    "NAME": "DragonOrb+",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " random upgraded #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to #b0."
+    ]
+  },
   "theDuelist:ReducerOrb": {
     "NAME": "Reducer",
     "DESCRIPTION": [

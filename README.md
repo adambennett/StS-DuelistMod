@@ -6,10 +6,10 @@ TODO
 - Add character sprite/button/overall thematic art
 - Design and add some more relics
 - Design and add some more potions
-- Finish implementing rest of the cards (128/??? planned)
+- Continue adding cards, mainly to random card generation pools (random toons, dragons, monsters, etc.)
 - Balance and QA
 
-Some in game screenshots taken of the current build (2-11-19). Everything is absolutely always subject to change.
+Some in game screenshots taken of a recent build (2-11-19). Everything is absolutely always subject to change.
 
 ![CardsA](Screenshots/CardsA.PNG)
 ![CardsB](Screenshots/CardsB.PNG)

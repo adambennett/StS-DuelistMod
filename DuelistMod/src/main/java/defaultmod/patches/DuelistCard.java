@@ -547,11 +547,10 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower focus = new FocusPower(p, turnNum);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
-		/*AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
+		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTributeB, magicCylinder, retainCards, 
-				generosity, focus, reductionist, creative }; */
-		AbstractPower[] buffs = new AbstractPower[] { reductionist };
+				generosity, focus, reductionist, creative }; 
 		// Get randomized buff
 		int randomBuffNum = ThreadLocalRandom.current().nextInt(0, buffs.length);
 		AbstractPower randomBuff = buffs[randomBuffNum];
@@ -814,7 +813,7 @@ public abstract class DuelistCard extends CustomCard
 						"Toon Kingdom", "Toon Magic", "Toon Mask", "Toon Rolback"
 				};
 				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
-				return randomToonMonster(monsters[randomCard]);
+				return randomToonCard(monsters[randomCard]);
 		}
 	}
 
@@ -859,7 +858,7 @@ public abstract class DuelistCard extends CustomCard
 						"Toon Kingdom", "Toon Magic", "Toon Mask", "Toon Rolback"
 				};
 				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
-				return randomToonMonster(monsters[randomCard]);
+				return randomToonCard(monsters[randomCard]);
 		}
 	}
 
@@ -1102,9 +1101,67 @@ public abstract class DuelistCard extends CustomCard
 		}
 	}
 	
-		// Returns a new copy of the dragon passed (by its name)
+	// Returns a new copy of the dragon passed (by its name)
+	// Or if the name does not match the set of dragons, returns a new random dragon from the set
+	public static DuelistCard newCopyOfDragon(String name)
+	{
+		switch(name)
+		{
+		case "Barrel Dragon":
+			return new BarrelDragon();			
+		case "B.E. White Dragon":
+			return new BlueEyes();
+		case "B.E. Toon Dragon":
+			return new BlueEyesToon();
+		case "B. Eyes Ultimate":
+			return new BlueEyesUltimate();
+		case "Slifer Sky Dragon":
+			return new SliferSky();
+		case "Red Eyes Toon":
+			return new RedEyesToon();
+		case "Toon Barrel Dragon":
+			return new ToonBarrelDragon();
+		case "Winged Dragon Ra":
+			return new WingedDragonRa();
+		case "Baby Dragon":								
+			return new BabyDragon();					
+		case "Blizzard Dragon":							
+			return new BlizzardDragon();
+		case "Cave Dragon":
+			return new CaveDragon();
+		case "Snowdust Dragon":
+			return new SnowdustDragon();
+		case "Snow Dragon":
+			return new SnowDragon();
+		case "Dragon Master Knight":
+			return new DragonMaster();
+		case "Fiend Skull Dragon":
+			return new FiendSkull();
+		case "Five Headed Dragon":
+			return new FiveHeaded();
+		case "Curse Dragon":
+			return new CurseDragon();
+		case "Cyber Dragon":
+			return new CyberDragon();
+		case "Gandora":
+			return new Gandora();
+		default:
+			String[] monsters = new String[] 
+			{		
+					"Barrel Dragon", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
+					"R. Eyes Black Dragon", "Slifer Sky Dragon", "Dragon Master Knight", "Fiend Skull Dragon",
+					"Red Eyes Toon", "Toon Barrel Dragon", "Winged Dragon Ra", "Baby Dragon", "Blizzard Dragon", 
+					"Cave Dragon", "Snowdust Dragon", "Snow Dragon", "Five Headed Dragon", "Curse of Dragon",
+					"Cyber Dragon", "Gandora"
+			};
+			int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
+			return newCopyOfDragon(monsters[randomCard]);
+		}
+	}
+	
+	// Returns a new copy of the dragon passed (by its name)
 		// Or if the name does not match the set of dragons, returns a new random dragon from the set
-		public static DuelistCard newCopyOfDragon(String name)
+		public static DuelistCard newCopyOfDragonNoToon(String name)
 		{
 			switch(name)
 			{
@@ -1112,16 +1169,10 @@ public abstract class DuelistCard extends CustomCard
 				return new BarrelDragon();			
 			case "B.E. White Dragon":
 				return new BlueEyes();
-			case "B.E. Toon Dragon":
-				return new BlueEyesToon();
 			case "B. Eyes Ultimate":
 				return new BlueEyesUltimate();
 			case "Slifer Sky Dragon":
 				return new SliferSky();
-			case "Red Eyes Toon":
-				return new RedEyesToon();
-			case "Toon Barrel Dragon":
-				return new ToonBarrelDragon();
 			case "Winged Dragon Ra":
 				return new WingedDragonRa();
 			case "Baby Dragon":								
@@ -1134,16 +1185,29 @@ public abstract class DuelistCard extends CustomCard
 				return new SnowdustDragon();
 			case "Snow Dragon":
 				return new SnowDragon();
+			case "Dragon Master Knight":
+				return new DragonMaster();
+			case "Fiend Skull Dragon":
+				return new FiendSkull();
+			case "Five Headed Dragon":
+				return new FiveHeaded();
+			case "Curse Dragon":
+				return new CurseDragon();
+			case "Cyber Dragon":
+				return new CyberDragon();
+			case "Gandora":
+				return new Gandora();
 			default:
 				String[] monsters = new String[] 
 				{		
-						"Barrel Dragon", "B.E. White Dragon",  "B. E. Toon Dragon", "B. Eyes Ultimate",
-						"R. Eyes Black Dragon", "Slifer Sky Dragon", "Summoned Skull", "Valkyrion", 
-						"Red Eyes Toon", "Toon Barrel Dragon", "Winged Dragon Ra", "Baby Dragon", "Blizzard Dragon", 
-						"Cave Dragon", "Snowdust Dragon", "Snow Dragon", 
+						"Barrel Dragon", "B.E. White Dragon",  "B. Eyes Ultimate",
+						"R. Eyes Black Dragon", "Slifer Sky Dragon", "Dragon Master Knight", "Fiend Skull Dragon",
+						"Winged Dragon Ra", "Baby Dragon", "Blizzard Dragon", 
+						"Cave Dragon", "Snowdust Dragon", "Snow Dragon", "Five Headed Dragon", "Curse of Dragon",
+						"Cyber Dragon", "Gandora"
 				};
 				int randomCard = ThreadLocalRandom.current().nextInt(0, monsters.length);
-				return newCopyOfDragon(monsters[randomCard]);
+				return newCopyOfDragonNoToon(monsters[randomCard]);
 			}
 		}
 
@@ -1314,6 +1378,18 @@ public abstract class DuelistCard extends CustomCard
 			return new SuperheavyMagnet();
 		case "Superheavy Ogre":
 			return new SuperheavyOgre();
+		case "Dragon Master Knight":
+			return new DragonMaster();
+		case "Fiend Skull Dragon":
+			return new FiendSkull();
+		case "Five Headed Dragon":
+			return new FiveHeaded();
+		case "Curse Dragon":
+			return new CurseDragon();
+		case "Cyber Dragon":
+			return new CyberDragon();
+		case "Gandora":
+			return new Gandora();
 		default:
 			return newCopyOfMonster("7-Colored Fish");
 		}

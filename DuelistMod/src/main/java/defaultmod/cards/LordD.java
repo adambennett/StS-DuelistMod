@@ -5,35 +5,36 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
+import defaultmod.orbs.*;
 import defaultmod.patches.*;
 import defaultmod.powers.SummonPower;
 
-public class Relinquished extends DuelistCard 
+public class LordD extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = defaultmod.DefaultMod.makeID("Relinquished");
+	public static final String ID = defaultmod.DefaultMod.makeID("LordD");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DefaultMod.makePath(DefaultMod.RELINQUISHED);
+	public static final String IMG = DefaultMod.makePath(DefaultMod.LORD_D);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.UNCOMMON;
+	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
-	public Relinquished() {
+	public LordD() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.MONSTER);
-		this.tributes = 1;
+		this.tributes = 2;
 		this.originalName = this.name;
 
 	}
@@ -43,14 +44,16 @@ public class Relinquished extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		AbstractOrb dark = new Dark();
-		channel(dark);
+		AbstractOrb dragon = new DragonOrb();
+		AbstractOrb dragonPlus = new DragonPlusOrb();
+		if (!upgraded) { channel(dragon); }
+		else { channel(dragonPlus); }
 	}
 
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {
-		return new Relinquished();
+		return new LordD();
 	}
 
 	// Upgraded stats.
@@ -58,7 +61,7 @@ public class Relinquished extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.tributes = 0;
+			//this.tributes = 1;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

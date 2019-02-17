@@ -252,7 +252,30 @@ public class DefaultMod
     public static final String CAVE_DRAGON = "cards/Cave_Dragon.png";
     public static final String BLIZZARD_DRAGON = "cards/Blizzard_Dragon.png";
     public static final String BABY_DRAGON = "cards/Baby_Dragon.png";
-  
+    
+    // Third Set
+    public static final String CURSE_DRAGON = "cards/Curse_of_Dragon.png";
+    public static final String CYBER_DRAGON = "cards/Cyber_Dragon.png";
+    public static final String DRAGON_MASTER = "cards/Dragon_Master_Knight.png";
+    public static final String FIEND_SKULL = "cards/Fiend_Skull_Dragon.png";
+    public static final String FIVE_HEADED = "cards/Five_Headed_Dragon.png";
+    public static final String FLUTE_SUMMONING = "cards/Flute_Summoning_Dragon.png";
+    public static final String GANDORA = "cards/Gandora.png";
+    public static final String INFINITY_DRAGON = "cards/Infinity_Dragon.png";
+    public static final String LORD_D = "cards/Lord_D.png";
+    public static final String LUSTER_DRAGON = "cards/Luster_Dragon.png";
+    public static final String LUSTER_DRAGON2 = "cards/Luster_Dragon2.png";
+    public static final String MANGA_RYU_RAN = "cards/Manga_Ryu_Ran.png";
+    public static final String RED_EYES_ZOMBIE = "cards/Red_Eyes_Zombie.png";
+    public static final String RYU_RAN = "cards/Ryu_Ran.png";
+    public static final String TOON_CYBER_DRAGON = "cards/Toon_Cyber_Dragon.png";
+    public static final String TWIN_BARREL_DRAGON = "cards/Twin_Barrel_Dragon.png";
+    public static final String TWIN_HEADED = "cards/Twin_Headed_Thunder_Dragon.png";
+    public static final String TYRANT_DRAGON = "cards/Tyrant_Dragon.png";
+    public static final String WHITE_HORNED = "cards/White_Horned_Dragon.png";
+    public static final String WHITE_NIGHT = "cards/White_Night_Dragon.png";
+    public static final String YAMATA_DRAGON = "cards/Yamata_Dragon.png";
+    
     // Power images
     public static final String SUMMON_POWER = "powers/SummonPowerTest.png";
     public static final String JAM_POWER = "powers/JamPower.png";
@@ -600,7 +623,18 @@ public class DefaultMod
 	    BaseMod.addCard(new CaveDragon());
 	    BaseMod.addCard(new BlizzardDragon());
 	    BaseMod.addCard(new BabyDragon());
-    	
+	    BaseMod.addCard(new LordD());
+	    BaseMod.addCard(new FluteSummoning());
+	    
+    	// random only
+	    /*
+    	BaseMod.addCard(new CurseDragon());
+    	BaseMod.addCard(new CyberDragon());
+    	BaseMod.addCard(new DragonMaster());
+    	BaseMod.addCard(new FiendSkull());
+    	BaseMod.addCard(new FiveHeaded());
+    	BaseMod.addCard(new Gandora());
+    	*/
         
 		logger.info("Making sure the cards are unlocked.");
         // Unlock the cards
@@ -739,6 +773,16 @@ public class DefaultMod
 	    UnlockTracker.unlockCard(CaveDragon.ID);
 	    UnlockTracker.unlockCard(BlizzardDragon.ID);
 	    UnlockTracker.unlockCard(BabyDragon.ID);
+	    UnlockTracker.unlockCard(LordD.ID);
+	    UnlockTracker.unlockCard(FluteSummoning.ID);
+	    
+    	// random only
+    	UnlockTracker.unlockCard(CurseDragon.ID);
+    	UnlockTracker.unlockCard(CyberDragon.ID);
+    	UnlockTracker.unlockCard(DragonMaster.ID);
+    	UnlockTracker.unlockCard(FiendSkull.ID);
+    	UnlockTracker.unlockCard(FiveHeaded.ID);
+    	UnlockTracker.unlockCard(Gandora.ID);
 		
         logger.info("Done adding cards!");
 
@@ -794,8 +838,8 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"Buffer", "buffer"}, "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ydebuffs.");
         BaseMod.addKeyword(new String[] {"Summoner", "summoner"}, "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons.");
         BaseMod.addKeyword(new String[] {"Reducer", "reducer"}, "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0.");
-        BaseMod.addKeyword(new String[] {"MonsterOrb", "monsterorb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
-        BaseMod.addKeyword(new String[] {"Dragonorb", "dragonorb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
+        BaseMod.addKeyword(new String[] {"MonsterOrb", "monsterorb", "MonsterOrb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
+        BaseMod.addKeyword(new String[] {"Dragonorb", "dragonorb", "DragonOrb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
         BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active.");
         BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");

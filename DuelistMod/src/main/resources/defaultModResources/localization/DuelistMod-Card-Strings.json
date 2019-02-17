@@ -382,7 +382,7 @@
 	"theDuelist:Relinquished": {
 		"NAME": "Relinquished",
 		"DESCRIPTION": "Tribute 1. Channel 1 Dark.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. Channel 1 Dark."
+		"UPGRADE_DESCRIPTION": "Channel 1 Dark."
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
@@ -663,6 +663,46 @@
 		"NAME": "Dark Factory",
 		"DESCRIPTION": "Tribute 2. Gain [R] [R].",
 		"UPGRADE_DESCRIPTION": "Tribute 2. Gain [R] [R] [R]."
+	},
+	"theDuelist:CurseDragon": {
+		"NAME": "Curse of Dragon",
+		"DESCRIPTION": "Tribute 1. Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Deal !D! damage."
+	},
+	"theDuelist:CyberDragon": {
+		"NAME": "Cyber Dragon",
+		"DESCRIPTION": "Tribute 1. Deal !D! damage (through block).",
+		"UPGRADE_DESCRIPTION": "Tribute 1. Deal !D! damage (through block)."
+	},
+	"theDuelist:DragonMaster": {
+		"NAME": "Dragon Master Knight",
+		"DESCRIPTION": "Tribute 3. Deal !D! damage. Create 2 random Dragons and play them on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Deal !D! damage. Create 2 random upgraded Dragons and play them on the target enemy."
+	},
+	"theDuelist:FiendSkull": {
+		"NAME": "Fiend Skull Dragon",
+		"DESCRIPTION": "Tribute 3. Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. Deal !D! damage."
+	},
+	"theDuelist:FiveHeaded": {
+		"NAME": "Five Headed Dragon",
+		"DESCRIPTION": "Tribute 4. Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 5. Deal !D! damage."
+	},
+	"theDuelist:FluteSummoning": {
+		"NAME": "Flute of Summoning Dragon",
+		"DESCRIPTION": "Add 2 randomized Dragons to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add 3 randomized, upgraded Dragons to your hand. Exhaust."
+	},
+	"theDuelist:Gandora": {
+		"NAME": "Gandora",
+		"DESCRIPTION": "Tribute 5. Take damage equal to half your current HP. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded, 0 cost dragons to your draw pile. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. Take damage equal to half your current HP. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded, 0 cost dragons to your draw pile. Exhaust."
+	},
+	"theDuelist:LordD": {
+		"NAME": "Lord of D.",
+		"DESCRIPTION": "Tribute 2. Channel a DragonOrb.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. Channel a DragonOrb+."
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
