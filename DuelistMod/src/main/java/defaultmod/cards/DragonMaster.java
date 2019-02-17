@@ -29,7 +29,7 @@ public class DragonMaster extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public DragonMaster() {
@@ -84,7 +84,7 @@ public class DragonMaster extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(1);
+            //this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

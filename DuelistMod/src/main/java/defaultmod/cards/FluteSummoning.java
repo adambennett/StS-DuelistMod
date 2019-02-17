@@ -49,7 +49,7 @@ public class FluteSummoning extends DuelistCard
 		{
 			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 			DuelistCard randomMonster = newCopyOfDragon("gimme random please");
-			int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
+			int randomNum = ThreadLocalRandom.current().nextInt(1, 4 + 1);
 			//card.costForTurn = randomNum;
 			randomMonster.costForTurn = randomNum;
 			if (this.upgraded) { randomMonster.upgrade(); }

@@ -696,8 +696,8 @@
 	},
 	"theDuelist:Gandora": {
 		"NAME": "Gandora",
-		"DESCRIPTION": "Tribute 5. Take damage equal to half your current HP. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded, 0 cost dragons to your draw pile. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 4. Take damage equal to half your current HP. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded, 0 cost dragons to your draw pile. Exhaust."
+		"DESCRIPTION": "Tribute 5. Take damage equal to half your current HP. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your draw pile. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. Take damage equal to half your current HP. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your draw pile. Exhaust."
 	},
 	"theDuelist:LordD": {
 		"NAME": "Lord of D.",
