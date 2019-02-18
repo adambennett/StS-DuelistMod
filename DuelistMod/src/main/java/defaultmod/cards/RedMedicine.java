@@ -1,10 +1,9 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -47,8 +46,8 @@ public class RedMedicine extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Get random number of turns for buff to apply for
-		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
-		int randomTurnNumB = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
+		int randomTurnNumB = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
 
 		/*
 		// Get two random buffs

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,7 +16,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.ImperialOrderAction;
+import defaultmod.actions.common.*;
 import defaultmod.actions.unique.DragonOrbEvokeAction;
 import defaultmod.patches.DuelistCard;
 
@@ -68,9 +69,8 @@ public class DragonPlusOrb extends AbstractOrb
 	{
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			DuelistCard randomMonster = DuelistCard.newCopyOfDragon("gimme random please");
-			randomMonster.upgrade();
-			DuelistCard.addCardToHand(randomMonster);
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
+			AbstractDungeon.actionManager.addToBottom(new MakeEtherealCopyInHandAction(randomMonster, false, true));
 			System.out.println("theDuelist:DragonOrb --- > Added: " + randomMonster.name + " to player hand.");
 		}
 	}

@@ -51,7 +51,7 @@ public class BigFire extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Damage player for random amount
-    	int randomDmgNum = ThreadLocalRandom.current().nextInt(MIN_HEAL, MAX_HEAL + 1); 
+    	int randomDmgNum = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
     	damageSelfFire(randomDmgNum);
     	System.out.println("theDuelist:BigFire --- > Damaged player for: " + randomDmgNum);
     	
@@ -59,7 +59,7 @@ public class BigFire extends DuelistCard
     	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
     	for (AbstractMonster g : monsters)
     	{
-    		int randomDmgNumM = ThreadLocalRandom.current().nextInt(MIN_HEAL, MAX_HEAL + 1); 
+    		int randomDmgNumM = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
     		AbstractDungeon.actionManager.addToTop(new DamageAction(g, new DamageInfo(p, randomDmgNumM, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
     		System.out.println("theDuelist:BigFire --- > Damaged a monster for: " + randomDmgNumM);
     	}

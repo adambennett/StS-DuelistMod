@@ -64,7 +64,7 @@ public class ImperialOrderAction extends AbstractGameAction
     	{
     		if (modCards.size() > 0)
     		{
-	    		int randomNum = ThreadLocalRandom.current().nextInt(0, modCards.size());
+	    		int randomNum = AbstractDungeon.cardRandomRng.random(modCards.size() - 1);
 	        	modCards.get(randomNum).setCostForTurn(-9);
 	        	modCards.remove(randomNum);
     		}

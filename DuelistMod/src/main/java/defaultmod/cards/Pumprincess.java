@@ -1,7 +1,6 @@
 package defaultmod.cards;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -50,11 +49,11 @@ public class Pumprincess extends DuelistCard
     	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(c); } }
     	if (toChooseFrom.size() > 0)
     	{
-	    	int randomAttack = ThreadLocalRandom.current().nextInt(0, toChooseFrom.size());
+	    	int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
 	    	AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
 	    	String cardName = chosen.originalName;
 	    	System.out.println("theDuelist:Pumprincess --- > Found: " + cardName);
-	    	DuelistCard cardCopy = newCopyOfMonsterPumpkin(cardName);
+	    	DuelistCard cardCopy = newCopyOfMonster(cardName);
 	    	if (cardCopy != null)
 	    	{
 		    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }

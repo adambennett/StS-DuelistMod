@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.ReflectionPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -51,7 +49,7 @@ public class MagicCylinder extends DuelistCard
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReflectionPower(AbstractDungeon.player, 5), 5));
 		if (upgraded) 
     	{
-    		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS, MAX_TURNS);
+    		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS, MAX_TURNS);
     		applyRandomBuffPlayer(p, randomTurnNum, true);
     	}
 	}

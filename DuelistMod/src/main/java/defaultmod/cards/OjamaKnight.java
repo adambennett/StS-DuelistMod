@@ -1,10 +1,9 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -53,10 +52,10 @@ public class OjamaKnight extends DuelistCard
 		tribute(p, TRIBUTES, false, this);
 
 		// Get number of buffs & debuffs
-		int randomDebuffNum = ThreadLocalRandom.current().nextInt(1, 2 + 1); 
-    	int randomDebuffNumU = ThreadLocalRandom.current().nextInt(2, 4 + 1); 
-    	int randomBuffNum = ThreadLocalRandom.current().nextInt(1, 2 + 1); 
-    	int randomBuffNumU = ThreadLocalRandom.current().nextInt(2, 4 + 1); 
+		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
+    	int randomDebuffNumU = AbstractDungeon.cardRandomRng.random(2, 4); 
+    	int randomBuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
+    	int randomBuffNumU = AbstractDungeon.cardRandomRng.random(2, 4); 
     	
     	// Set number of buffs & debuffs to right number (based on upgrade status)
     	int primary = 4;	int primaryB = 4;
@@ -66,14 +65,14 @@ public class OjamaKnight extends DuelistCard
 		// Give self 'primaryB' random buffs
 		for (int i = 0; i < primaryB; i++)
 		{
-			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL + 1);
+			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL);
 			applyRandomBuffPlayer(p, randomTurnNum, true);
 		}
 		
 		// Give 'primary' random debuffs to enemy
 		for (int i = 0; i < primary; i++)
 		{
-			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL + 1);
+			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
 			applyPower(getRandomDebuff(p, m, randomTurnNum), m);
 		}
     }

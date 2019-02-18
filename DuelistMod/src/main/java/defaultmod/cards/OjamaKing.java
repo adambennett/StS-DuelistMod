@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -30,14 +28,14 @@ public class OjamaKing extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 3;
-    private static final int TRIBUTES = 3;
+    private static final int TRIBUTES = 2;
     private static int MIN_BUFF_TURNS_ROLL = 1;
     private static int MAX_BUFF_TURNS_ROLL = 3;
     private static int MIN_DEBUFF_TURNS_ROLL = 1;
     private static int MAX_DEBUFF_TURNS_ROLL = 6;
-    private static int RAND_CARDS = 3;
-    private static int RAND_BUFFS = 3;
-    private static int RAND_DEBUFFS = 3;
+    private static int RAND_CARDS = 2;
+    private static int RAND_BUFFS = 1;
+    private static int RAND_DEBUFFS = 2;
     // /STAT DECLARATION/
 
     public OjamaKing() {
@@ -62,20 +60,22 @@ public class OjamaKing extends DuelistCard
 			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 			card.costForTurn = 0;
 			if (upgraded) { card.upgrade(); }
+			card.isEthereal = true;
+			card.rawDescription = "Ethereal. NL " + card.rawDescription;
 			addCardToHand(card);
 		}
 		
 		// Give self 3 random buffs
 		for (int i = 0; i < RAND_BUFFS; i++)
 		{
-			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL + 1);
+			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL);
 			applyRandomBuffPlayer(p, randomTurnNum, false);
 		}
 		
 		// Give 3 random debuffs to enemy
 		for (int i = 0; i < RAND_DEBUFFS; i++)
 		{
-			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL + 1);
+			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
 			applyPower(getRandomDebuff(p, m, randomTurnNum), m);
 		}
 		

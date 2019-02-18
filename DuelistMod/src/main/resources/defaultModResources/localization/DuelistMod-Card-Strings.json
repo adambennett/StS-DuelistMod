@@ -56,7 +56,7 @@
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
-		"DESCRIPTION": "Discard your entire hand. Add !M! random cards to your hand for each card discarded. Each card costs 0 this turn. Exhaust.",
+		"DESCRIPTION": "Discard your entire hand. Add !M! random card to your hand for each card discarded. Each card costs 0 this turn. Exhaust.",
 		"UPGRADE_DESCRIPTION": "Discard your entire hand. Add !M! random upgraded cards to your hand for each card discarded. Each card costs 0 this turn. Exhaust."
 	},
 	"theDuelist:CastleDarkIllusions": {
@@ -271,8 +271,8 @@
 	},
 	"theDuelist:MonsterReborn": {
 		"NAME": "Monster Reborn",
-		"DESCRIPTION": "Play 5 copies of random monsters in your discard pile on an enemy. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Play 5 upgraded copies of random monsters in your discard pile on an enemy."
+		"DESCRIPTION": "Play !M! copies of random monsters in your discard pile on an enemy. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Play !M! upgraded copies of random monsters in your discard pile on an enemy. Exhaust."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
@@ -301,8 +301,8 @@
 	},
 	"theDuelist:OjamaKing": {
 		"NAME": "Ojama King",
-		"DESCRIPTION": "Tribute 3. NL Ojamania. NL",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Ojamania. NL"
+		"DESCRIPTION": "Tribute 2. NL Ojamania. NL",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Ojamania. NL"
 	},
 	"theDuelist:OjamaKnight": {
 		"NAME": "Ojama Knight",
@@ -556,8 +556,8 @@
 	},
 	"theDuelist:ToonKingdom": {
 		"NAME": "Toon Kingdom",
-		"DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon monster into your draw pile.",
-		"UPGRADE_DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon monster into your draw pile."
+		"DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon card into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon card into your draw pile."
 	},
 	"theDuelist:ToonRollback": {
 		"NAME": "Toon Rollback",

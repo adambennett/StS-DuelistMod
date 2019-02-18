@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -69,8 +67,8 @@ public class BarrelDragon extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			// Get random number of turns for debuff to apply for (1-10)
-			int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
-			int randomTurnNumB = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
+			int randomTurnNumB = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
 			
 			// Get random monster target
 			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();

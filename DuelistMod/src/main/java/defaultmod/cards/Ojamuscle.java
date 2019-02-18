@@ -1,7 +1,6 @@
 package defaultmod.cards;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
@@ -52,8 +51,8 @@ public class Ojamuscle extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		int randomNumCards = 1;
-		if (this.upgraded) { randomNumCards = ThreadLocalRandom.current().nextInt(MIN_CARDS, MAX_CARDS + 1); }
-		else { randomNumCards = ThreadLocalRandom.current().nextInt(MIN_CARDS, MAX_CARDS + 1); }
+		if (this.upgraded) { randomNumCards = AbstractDungeon.cardRandomRng.random(MIN_CARDS, MAX_CARDS); }
+		else { randomNumCards = AbstractDungeon.cardRandomRng.random(MIN_CARDS, MAX_CARDS); }
 		
 		AbstractCard ojamaCard = new OjamaYellow();
 		if (upgraded) 

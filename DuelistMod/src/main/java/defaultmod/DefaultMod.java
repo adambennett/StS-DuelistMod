@@ -549,7 +549,7 @@ public class DefaultMod
 		BaseMod.addCard(new ObeliskTormentor());
 		BaseMod.addCard(new OjamaBlack());
 		BaseMod.addCard(new OjamaGreen());
-		BaseMod.addCard(new OjamaKing());
+		//BaseMod.addCard(new OjamaKing());
 		BaseMod.addCard(new OjamaKnight());
 		BaseMod.addCard(new OjamaYellow());
 		BaseMod.addCard(new Ojamagic());
@@ -606,9 +606,9 @@ public class DefaultMod
 	    BaseMod.addCard(new ToonRollback());
 	    BaseMod.addCard(new SuperheavyOgre());
 	    BaseMod.addCard(new SuperheavyMagnet());
-	    BaseMod.addCard(new SuperheavyGeneral());
+	    //BaseMod.addCard(new SuperheavyGeneral());
 	    BaseMod.addCard(new SuperheavyFlutist());
-	    BaseMod.addCard(new SuperheavyDaihachi());
+	    //BaseMod.addCard(new SuperheavyDaihachi());
 	    BaseMod.addCard(new SuperheavyBlueBrawler());
 	    BaseMod.addCard(new SpiritHarp());
 	    BaseMod.addCard(new SnowDragon());
@@ -843,7 +843,7 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
         BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active.");
         BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
-        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add #b3 random cards to your hand, they cost #b0 this turn. Apply #b3 random #ybuffs. Apply #b3 random #ydebuffs to an enemy.");
+        BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
        
     }
 

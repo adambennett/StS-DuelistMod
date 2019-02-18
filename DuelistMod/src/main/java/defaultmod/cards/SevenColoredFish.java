@@ -30,7 +30,7 @@ public class SevenColoredFish extends DuelistCard
     private static final int COST = 1;
     private static final int DAMAGE = 5;
     private static final int SUMMONS = 1;
-    private static final int U_SUMMONS = 1;
+    //private static final int U_SUMMONS = 1;
     // /STAT DECLARATION/
 
     public SevenColoredFish() {
@@ -60,7 +60,8 @@ public class SevenColoredFish extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(U_SUMMONS);
+            //this.upgradeMagicNumber(U_SUMMONS);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

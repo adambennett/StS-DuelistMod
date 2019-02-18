@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -28,7 +26,7 @@ public class ToonMask extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.RARE;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -47,7 +45,7 @@ public class ToonMask extends DuelistCard
 		this.multiDamage = new int[]{0, 0, 0, 0, 0};
 		this.magicNumber = this.baseMagicNumber = 20;
 		this.toon = true;
-		this.tags.add(DefaultMod.TOON);
+		 this.tags.add(DefaultMod.TOON);
 		this.tags.add(DefaultMod.TRAP);
 		this.misc = 0;
 		this.originalName = this.name;
@@ -60,8 +58,8 @@ public class ToonMask extends DuelistCard
 		int[] test = new int[5];
 		for (int i = 0; i < 5; i++)
 		{
-			int randomNum = ThreadLocalRandom.current().nextInt(MIN_DMG, MAX_DMG + 1);
-			int randomNumU = ThreadLocalRandom.current().nextInt(MIN_DMG_U, MAX_DMG_U + 1);
+			int randomNum = AbstractDungeon.cardRandomRng.random(MIN_DMG, MAX_DMG);
+			int randomNumU = AbstractDungeon.cardRandomRng.random(MIN_DMG_U, MAX_DMG_U);
 			if (upgraded) { test[i] = randomNum; }
 			else { test[i] = randomNumU; }
 		}

@@ -1,10 +1,9 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -48,7 +47,7 @@ public class SuperheavyMagnet extends DuelistCard
     {
     	summon(p, SUMMONS);
     	block(this.block);
-    	int randomMagnetNum = ThreadLocalRandom.current().nextInt(0, 2);
+    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
     	switch (randomMagnetNum)
     	{
     		case 0: applyPowerToSelf(new AlphaMagPower(p, p));

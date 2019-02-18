@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -62,8 +60,8 @@ public class ToonBarrelDragon extends DuelistCard
 		int[] damageArray = new int[5];
 		for (int i = 0; i < 5; i++)
 		{
-			int randomNum = ThreadLocalRandom.current().nextInt(MIN_DMG, MAX_DMG + 1);
-			int randomNumU = ThreadLocalRandom.current().nextInt(MIN_DMG_U, MAX_DMG_U + 1);
+			int randomNum = AbstractDungeon.cardRandomRng.random(MIN_DMG, MAX_DMG );
+			int randomNumU = AbstractDungeon.cardRandomRng.random(MIN_DMG_U, MAX_DMG_U);
 			if (upgraded) { damageArray[i] = randomNum; }
 			else { damageArray[i] = randomNumU; }
 		}

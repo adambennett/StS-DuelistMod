@@ -1,10 +1,9 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -48,8 +47,8 @@ public class FluteSummoning extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			DuelistCard randomMonster = newCopyOfDragon("gimme random please");
-			int randomNum = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.DRAGON);
+			int randomNum = AbstractDungeon.cardRandomRng.random(1, 4);
 			//card.costForTurn = randomNum;
 			randomMonster.costForTurn = randomNum;
 			if (this.upgraded) { randomMonster.upgrade(); }

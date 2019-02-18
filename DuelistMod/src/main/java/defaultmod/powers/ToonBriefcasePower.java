@@ -38,7 +38,7 @@ public class ToonBriefcasePower extends AbstractPower
 	@Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-		if(DuelistCard.isToon(c.name)) { pieces.add(c); this.amount++; }
+		if(DuelistCard.isToon(c)) { pieces.add(c); this.amount++; }
 		updateDescription();
     }
 	

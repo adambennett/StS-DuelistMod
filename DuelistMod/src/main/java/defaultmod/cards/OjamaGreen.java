@@ -1,10 +1,9 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -51,8 +50,8 @@ public class OjamaGreen extends DuelistCard
 		summon(p, SUMMONS);
 		
 		// Get number of buffs
-		int randomBuffNum = ThreadLocalRandom.current().nextInt(1, 2 + 1); 
-    	int randomBuffNumU = ThreadLocalRandom.current().nextInt(2, 4 + 1); 
+		int randomBuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
+    	int randomBuffNumU = AbstractDungeon.cardRandomRng.random(2, 4); 
     	
     	// Set number of buffs to right number (based on upgrade status)
     	int primary = 4;
@@ -62,7 +61,7 @@ public class OjamaGreen extends DuelistCard
     	// For each buff to apply, apply a random buff with a new random turn number
     	for (int i = 0; i < primary; i++)
     	{
-    		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+    		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
     		applyRandomBuffPlayer(p, randomTurnNum, false);
     	}
     	

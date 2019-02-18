@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -71,7 +69,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
         	AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this, -1));
 
         	// Get random number of turns for buff to apply for
-        	int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+        	int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
 
         	// Get random buff with random tumber of turns
         	applyRandomBuffPlayer(p, randomTurnNum, false);

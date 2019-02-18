@@ -67,7 +67,7 @@ public class ToonWorldPower extends AbstractPower
     	else
     	{
 	    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
-	    	if (DuelistCard.isToon(c.name)) 
+	    	if (DuelistCard.isToon(c)) 
 	    	{ 
 	    		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); }
 	    		if (TOON_DMG > 0) { TOON_DMG--; } 

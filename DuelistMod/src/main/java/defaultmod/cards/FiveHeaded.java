@@ -29,8 +29,8 @@ public class FiveHeaded extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 4;
-    private static final int DAMAGE = 70;
-    private static final int UPGRADE_PLUS_DMG = 30;
+    private static final int DAMAGE = 60;
+    private static final int UPGRADE_PLUS_DMG = 10;
     private static final int TRIBUTES = 4;
     // /STAT DECLARATION/
 

@@ -1,7 +1,6 @@
 package defaultmod.cards;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -25,11 +24,13 @@ public class MonsterReborn extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
+    private static final int MONSTERS = 3;
+    private static final int U_MONSTERS = 1;
     // /STAT DECLARATION/
 
     public MonsterReborn() {
@@ -37,6 +38,7 @@ public class MonsterReborn extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.exhaust = true;
 		this.originalName = this.name;
+		this.magicNumber = this.baseMagicNumber = MONSTERS;
 
     }
 
@@ -49,15 +51,15 @@ public class MonsterReborn extends DuelistCard
     	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.upgraded) { toChooseFrom.add(c); } }
     	if (toChooseFrom.size() > 0)
     	{
-    		for (int i = 0; i < 5; i++)
+    		for (int i = 0; i < this.magicNumber; i++)
     		{
-	    		int randomAttack = ThreadLocalRandom.current().nextInt(0, toChooseFrom.size());
+	    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
 	    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
 	    		String cardName = chosen.originalName;
 	    		System.out.println("theDuelist:MonsterReborn --- > Found: " + cardName);
 	    		if (upgraded)
 	    		{
-	    			DuelistCard cardCopy = newCopyOfMonsterPumpkin(cardName);
+	    			DuelistCard cardCopy = newCopyOfMonster(cardName);
 	    			if (cardCopy != null)
 	    			{
 	    				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
@@ -70,7 +72,7 @@ public class MonsterReborn extends DuelistCard
 	    		}
 	    		else
 	    		{
-	    			DuelistCard cardCopy = newCopyOfMonsterPumpkin(cardName);
+	    			DuelistCard cardCopy = newCopyOfMonster(cardName);
 	    			if (cardCopy != null)
 	    			{
 	    				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
@@ -96,7 +98,8 @@ public class MonsterReborn extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            //this.exhaust = false;
+            this.upgradeMagicNumber(U_MONSTERS);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

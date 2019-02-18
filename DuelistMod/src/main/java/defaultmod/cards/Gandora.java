@@ -66,7 +66,7 @@ public class Gandora extends DuelistCard
     	// Add 5 random 0 cost, upgraded dragons to draw pile
     	for (int i = 0; i < 5; i++)
     	{
-	    	AbstractCard randomDragon = newCopyOfDragon("random");
+	    	AbstractCard randomDragon = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.DRAGON);
 	    	randomDragon.upgrade();
 	    	randomDragon.updateCost(0);
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(randomDragon, 1, true, true));

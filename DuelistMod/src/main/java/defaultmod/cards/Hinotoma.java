@@ -1,11 +1,10 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -48,12 +47,12 @@ public class Hinotoma extends DuelistCard
     {
     	if (this.upgraded)
     	{
-    		int randomTimes = ThreadLocalRandom.current().nextInt(MIN_TIMES_U, MAX_TIMES_U + 1);
+    		int randomTimes = AbstractDungeon.cardRandomRng.random(MIN_TIMES_U, MAX_TIMES_U);
     		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
     	}
     	else
     	{
-    		int randomTimes = ThreadLocalRandom.current().nextInt(MIN_TIMES, MAX_TIMES + 1);
+    		int randomTimes = AbstractDungeon.cardRandomRng.random(MIN_TIMES, MAX_TIMES );
 	        for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
     	}	
     }

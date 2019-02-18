@@ -1,10 +1,9 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -52,10 +51,12 @@ public class OjamaYellow extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			DuelistCard randomMonster = newCopyOfMonster("gimme random please");
-			int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
+			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
 			//card.costForTurn = randomNum;
 			randomMonster.costForTurn = randomNum;
+			randomMonster.isEthereal = true;
+			randomMonster.rawDescription = "Ethereal. NL " + randomMonster.rawDescription;
 			addCardToHand(randomMonster);
 		}
     }

@@ -54,7 +54,7 @@ public class MonsterOrb extends AbstractOrb
 	{
 		for (int i = 0; i < this.evokeAmount; i++)
 		{
-			DuelistCard randomMonster = DuelistCard.newCopyOfMonster("gimme random please");
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
 			//int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			//randomMonster.costForTurn = randomNum;
 			DuelistCard.addCardToHand(randomMonster);
@@ -73,7 +73,7 @@ public class MonsterOrb extends AbstractOrb
 	{
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			DuelistCard randomMonster = DuelistCard.newCopyOfMonster("gimme random please");
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
 			//int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			//randomMonster.costForTurn = randomNum;
 			DuelistCard.addCardToHand(randomMonster);

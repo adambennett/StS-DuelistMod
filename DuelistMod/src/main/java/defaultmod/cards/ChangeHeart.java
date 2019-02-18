@@ -1,10 +1,9 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -45,8 +44,8 @@ public class ChangeHeart extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	// Generate random numbers to set max summons to
-    	int randomNum = ThreadLocalRandom.current().nextInt(MIN_ROLL, MAX_ROLL + 1);
-    	int randomNumUpgraded = ThreadLocalRandom.current().nextInt(MIN_ROLL_UPGRADE, MAX_ROLL_UPGRADE + 1);
+    	int randomNum = AbstractDungeon.cardRandomRng.random(MIN_ROLL, MAX_ROLL);
+    	int randomNumUpgraded = AbstractDungeon.cardRandomRng.random(MIN_ROLL_UPGRADE, MAX_ROLL_UPGRADE);
     	
     	// Set max summons
     	if (this.upgraded) { setMaxSummons(p, randomNumUpgraded); }

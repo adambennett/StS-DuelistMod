@@ -1,7 +1,6 @@
 package defaultmod.orbs;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -68,7 +67,7 @@ public class Buffer extends AbstractOrb
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			int randomNum = ThreadLocalRandom.current().nextInt(0, playerPowers.size());
+			int randomNum = AbstractDungeon.cardRandomRng.random(playerPowers.size() - 1);
 			playerPowers.get(randomNum).amount += 1;
 			System.out.println("theDuelist:Buffer --- > Buffed " + playerPowers.get(randomNum).name + " on passive trigger");
 		}

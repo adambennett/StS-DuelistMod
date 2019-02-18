@@ -1,7 +1,5 @@
 package defaultmod.potions;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -46,8 +44,8 @@ public class JoeyJuice extends AbstractPotion {
     	if (!target.isPlayer)
     	{
 	    	AbstractMonster monster = (AbstractMonster) target;
-	        int randomTurnNum = ThreadLocalRandom.current().nextInt(2, 4 + 1);
-			int randomTurnNumB = ThreadLocalRandom.current().nextInt(2, 4 + 1);
+	        int randomTurnNum = AbstractDungeon.cardRandomRng.random(2, 4);
+			int randomTurnNumB = AbstractDungeon.cardRandomRng.random(2, 4);
 			//int randomTurnNumC = ThreadLocalRandom.current().nextInt(2, 4 + 1);
 	
 			// Get random debuffs

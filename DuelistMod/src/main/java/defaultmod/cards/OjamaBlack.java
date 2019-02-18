@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -54,8 +52,8 @@ public class OjamaBlack extends DuelistCard
 		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
 		
 		// Get number of debuffs
-		int randomDebuffNum = ThreadLocalRandom.current().nextInt(1, 2 + 1); 
-    	int randomDebuffNumU = ThreadLocalRandom.current().nextInt(2, 4 + 1); 
+		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
+    	int randomDebuffNumU = AbstractDungeon.cardRandomRng.random(2, 4); 
     	
     	// Set number of debuffs to right number (based on upgrade status)
     	int primary = 4;
@@ -65,7 +63,7 @@ public class OjamaBlack extends DuelistCard
     	// For each debuff to apply, apply a random debuff with a new random turn number
     	for (int i = 0; i < primary; i++)
     	{
-    		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS_ROLL, MAX_TURNS_ROLL + 1);
+    		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
     		applyPower(getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
     	}
     	

@@ -52,8 +52,8 @@ public class DragonMaster extends DuelistCard
     	
     	// Generate 2 random dragons and target them at the same target as the attack() above
     	// If this card is upgraded, the two dragons get upgraded as well
-    	DuelistCard extraDragA = newCopyOfDragonNoToon("random");
-    	DuelistCard extraDragB = newCopyOfDragonNoToon("random");
+    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
+    	DuelistCard extraDragB = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
     	String cardNameA = extraDragA.originalName;
     	String cardNameB = extraDragB.originalName;
 	    	System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA);

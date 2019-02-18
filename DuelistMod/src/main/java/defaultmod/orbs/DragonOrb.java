@@ -68,7 +68,9 @@ public class DragonOrb extends AbstractOrb
 	{
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			DuelistCard randomMonster = DuelistCard.newCopyOfDragon("gimme random please");
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.DRAGON);
+			randomMonster.isEthereal = true;
+			randomMonster.rawDescription = "Ethereal. NL " + randomMonster.rawDescription;
 			DuelistCard.addCardToHand(randomMonster);
 			System.out.println("theDuelist:DragonOrb --- > Added: " + randomMonster.name + " to player hand.");
 		}

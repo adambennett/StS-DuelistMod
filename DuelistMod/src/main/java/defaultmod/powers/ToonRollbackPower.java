@@ -39,7 +39,7 @@ public class ToonRollbackPower extends AbstractPower
 	@Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-		if(DuelistCard.isToon(c.name)) { DuelistCard.addCardToHand(c); }
+		if(DuelistCard.isToon(c)) { DuelistCard.addCardToHand(c); }
 		updateDescription();
     }
 	

@@ -1,7 +1,5 @@
 package defaultmod.powers;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -54,8 +52,8 @@ public class ParasitePower extends AbstractPower
 	{
     	updateChances();
     	updateDescription();
-    	int randomTurnNum = ThreadLocalRandom.current().nextInt(1, turnChance + 1);
-    	int chance = ThreadLocalRandom.current().nextInt(0, debuffChance + 1);
+    	int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, turnChance);
+    	int chance = AbstractDungeon.cardRandomRng.random(0, debuffChance + 1);
     	System.out.println("theDuelist:ParasitePower --- > Rolled: " + chance);
     	if (chance < 2) 
     	{
@@ -65,7 +63,7 @@ public class ParasitePower extends AbstractPower
     		int monsters = AbstractDungeon.getMonsters().monsters.size();
     		
     		// Get random number of debuffs to apply randomly (1 - # monsters)
-    		int enemiesToDebuff = ThreadLocalRandom.current().nextInt(1, monsters + 1);
+    		int enemiesToDebuff = AbstractDungeon.cardRandomRng.random(1, monsters);
     		if (enemiesToDebuff < 1) { enemiesToDebuff = 1; }
     		
     		// Debuff enemies randomly for the number of times generated above

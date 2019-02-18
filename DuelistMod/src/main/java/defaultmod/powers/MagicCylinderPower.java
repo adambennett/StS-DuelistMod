@@ -1,7 +1,5 @@
 package defaultmod.powers;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.core.*;
@@ -53,7 +51,7 @@ public class MagicCylinderPower extends AbstractPower
     	AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReflectionPower(AbstractDungeon.player, 5), 5));
     	if (upgraded) 
     	{
-    		int randomTurnNum = ThreadLocalRandom.current().nextInt(MIN_TURNS, MAX_TURNS);
+    		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS, MAX_TURNS);
     		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, true);
     	}
     	

@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.*;
@@ -49,8 +47,8 @@ public class Ookazi extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int randomDmg = ThreadLocalRandom.current().nextInt(this.damageA, this.damageB + 1);
-    	int randomDmgU = ThreadLocalRandom.current().nextInt(this.damageC, this.damageD + 1);
+    	int randomDmg = AbstractDungeon.cardRandomRng.random(this.damageA, this.damageB);
+    	int randomDmgU = AbstractDungeon.cardRandomRng.random(this.damageC, this.damageD);
     	if (!upgraded) { this.baseDamage = this.damage = randomDmg; AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)); }
     	else { this.baseDamage = this.damage = randomDmgU; AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)); }
     }

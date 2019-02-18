@@ -67,7 +67,7 @@ public class ReduceRandomCardsAction extends AbstractGameAction
     	{
     		if (modCards.size() > 0)
     		{
-	    		int randomNum = ThreadLocalRandom.current().nextInt(0, modCards.size());
+    			int randomNum = AbstractDungeon.cardRandomRng.random(modCards.size() - 1);
 	        	modCards.get(randomNum).setCostForTurn(-1 * reduction);
 	        	System.out.println("theDuelist:ReducerOrbPassiveAction --- > card reduced: " + modCards.get(randomNum).name);
 	        	modCards.remove(randomNum);

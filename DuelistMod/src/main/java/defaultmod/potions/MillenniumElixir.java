@@ -1,7 +1,5 @@
 package defaultmod.potions;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -41,8 +39,8 @@ public class MillenniumElixir extends AbstractPotion {
     public void use(AbstractCreature target) 
     {
         target = AbstractDungeon.player;
-        int randomTurnNum = ThreadLocalRandom.current().nextInt(1, 6 + 1);
-		int randomTurnNumB = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 6);
+		int randomTurnNumB = AbstractDungeon.cardRandomRng.random(1, 6);
 		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, false);
 		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNumB, false);
     }
