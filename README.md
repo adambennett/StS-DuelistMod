@@ -1,6 +1,15 @@
 # StS-DuelistMod
 A Slay the Spire adaptation of Yu-Gi-Oh!
 
+REQUIREMENTS
+- Basemod
+- StSLib
+- Replay the Spire
+- Conspire
+- Spike's Relics
+- The Servant
+- Slimebound
+
 TODO
 - Make cards say Monster/Spell/Trap in-game
 - Add character sprite/button/overall thematic art
