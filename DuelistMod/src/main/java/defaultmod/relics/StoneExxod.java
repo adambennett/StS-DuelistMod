@@ -21,6 +21,7 @@ public class StoneExxod extends CustomRelic
 	@Override
 	public void onShuffle() 
 	{
+		flash();
 		DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.EXODIA);
 		DuelistCard.addCardToHand(randomCard);
 	}

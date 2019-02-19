@@ -55,7 +55,7 @@ public class Raigeki extends DuelistCard
     	this.multiDamage = new int[] { monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock};
     	AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, new Color(0.1F, 0.0F, 0.2F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
         AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
-    	attackAllEnemies(AFX, this.multiDamage);
+    	if (monsterBlock > 0) { attackAllEnemies(AFX, this.multiDamage); }
     }
 
     // Which card to return when making a copy of this card.
@@ -69,7 +69,7 @@ public class Raigeki extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(5);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

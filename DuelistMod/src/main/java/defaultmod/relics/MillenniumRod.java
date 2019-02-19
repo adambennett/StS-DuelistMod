@@ -34,6 +34,7 @@ public class MillenniumRod extends CustomRelic {
 	@Override
 	public void atTurnStart()
 	{
+		flash();
 		DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
 		DuelistCard.addCardToHand(randomCard);
 	}

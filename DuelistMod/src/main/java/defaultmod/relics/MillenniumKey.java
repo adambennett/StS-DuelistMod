@@ -22,6 +22,7 @@ public class MillenniumKey extends CustomRelic
     @Override
     public void atBattleStart() 
     {
+    	flash();
     	DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
     }
 

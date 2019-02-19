@@ -53,7 +53,7 @@ public class SealedPackB extends AbstractPotion {
 	// This is your potency.
 	@Override
 	public int getPotency(final int potency) {
-		return 2;
+		return 3;
 	}
 
 	public void upgradePotion()

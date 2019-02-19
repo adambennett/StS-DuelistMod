@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>1.138.0</version>
+    <version>1.138.1</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
@@ -22,7 +22,6 @@
         <Conspire.version>1.5.5</Conspire.version>
         <StS-BlackRuse.version>0.9.3</StS-BlackRuse.version>
         <slimebound.version>2.2.3</slimebound.version>
-        <SpikesRelics.version>0.023</SpikesRelics.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -84,13 +83,6 @@
             <version>${slimebound.version}</version>
             <scope>system</scope>
             <systemPath>${basedir}/../lib/SlimeboundMod.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>spikeRelic</groupId>
-            <artifactId>SpikesRelics</artifactId>
-            <version>${SpikesRelics.version}</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/../lib/SpikesRelics.jar</systemPath>
         </dependency>
         
     </dependencies>

@@ -6,17 +6,14 @@ REQUIREMENTS
 - StSLib
 - Replay the Spire
 - Conspire
-- Spike's Relics
 - The Servant
 - Slimebound
 
 TODO
-- Make cards say Monster/Spell/Trap in-game
-- Add character sprite/button/overall thematic art
+- Balance/QA
 - Design and add some more relics
 - Design and add some more potions
 - Continue adding cards, mainly to random card generation pools (random toons, dragons, monsters, etc.)
-- Balance and QA
 
 Some in game screenshots taken of a recent build (2-11-19). Everything is absolutely always subject to change.
 

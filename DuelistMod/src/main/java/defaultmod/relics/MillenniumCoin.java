@@ -23,6 +23,7 @@ public class MillenniumCoin extends CustomRelic
 	@Override
 	public void onEvokeOrb(AbstractOrb ammo) 
 	{
+		flash();
 		DuelistCard.gainGold(15, AbstractDungeon.player, true);
 	}
 

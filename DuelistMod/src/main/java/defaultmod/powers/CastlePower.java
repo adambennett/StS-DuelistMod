@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import SpikesRelics.interfaces.IShufflePower;
 import defaultmod.DefaultMod;
 import defaultmod.cards.CastleDarkIllusions;
+import defaultmod.interfaces.IShufflePower;
 
 // 
 
@@ -83,7 +83,7 @@ public class CastlePower extends AbstractPower implements IShufflePower
     @Override
 	public void updateDescription() 
     {
-    	if (UPGRADE) { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + INC_SUMMONS; }
-    	else { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + SUMMONS;} 
+    	if (UPGRADE) { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + INC_SUMMONS + DESCRIPTIONS[3]; }
+    	else { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + SUMMONS + DESCRIPTIONS[3];} 
     }
 }

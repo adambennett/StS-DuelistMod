@@ -17,7 +17,7 @@
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
-        "DESCRIPTIONS": ["Each time you #yTribute, deal #b", " damage to ALL enemies"]
+        "DESCRIPTIONS": ["Each time you #yTribute, deal #b", " damage to ALL enemies."]
 },
 "theDuelist:AlphaMagPower": {
         "NAME": "Alpha Magnet",
@@ -45,11 +45,11 @@
 },
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",
-        "DESCRIPTIONS": ["Each time you #ySummon, gain #b", " [E] "]
+        "DESCRIPTIONS": ["Each time you #ySummon, gain #b", " [E] ."]
 },
 "theDuelist:CannonPower": {
         "NAME": "Cannon Soldier",
-        "DESCRIPTIONS": ["At the start of turn, #yTribute #b", " and deal #b", " damage to #b", " random enemy. (5 total damage)", " damage to random enemies. (", " total damage)" ]
+        "DESCRIPTIONS": ["At the start of turn, #yTribute #b", " and deal #b", " damage to #b", " random enemy. (5 total damage).", " damage to random enemies. (", " total damage)." ]
 },
 "theDuelist:CatapultPower": {
         "NAME": "Catapult Power",
@@ -61,7 +61,7 @@
 },
 "theDuelist:CastlePower": {
         "NAME": "Castle of Dark Illusions",
-        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", "#yRitual #b" ]
+        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", "#yIncrement #b", "." ]
 },
 "theDuelist:EmperorPower": {
         "NAME": "Mausoleum of the Emperor",
@@ -69,7 +69,7 @@
 },
 "theDuelist:MagicCylinderPower": {
         "NAME": "Magic Cylinder",
-        "DESCRIPTIONS": ["The next time you lose HP, gain #b", " #yReflection", ".", ", and a random buff" ]
+        "DESCRIPTIONS": ["The next time you lose HP, gain #b", " #yReflection", ".", ", and a random buff." ]
 },
 "theDuelist:MirrorForcePower": {
         "NAME": "Mirror Force",
