@@ -33,6 +33,7 @@ public class MirrorForce extends DuelistCard
 	public MirrorForce() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.TRAP);
+		this.tags.add(DefaultMod.METAL_RAIDERS);
 		this.originalName = this.name;
 	}
 

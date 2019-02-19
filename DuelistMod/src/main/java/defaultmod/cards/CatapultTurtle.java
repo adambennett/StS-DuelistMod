@@ -37,6 +37,7 @@ public class CatapultTurtle extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -78,6 +79,16 @@ public class CatapultTurtle extends DuelistCard
     	
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
+    	
+    	// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
 
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

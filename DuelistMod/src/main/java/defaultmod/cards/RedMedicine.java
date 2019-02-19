@@ -38,6 +38,7 @@ public class RedMedicine extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = BUFFS;
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
 		this.originalName = this.name;
     }
 

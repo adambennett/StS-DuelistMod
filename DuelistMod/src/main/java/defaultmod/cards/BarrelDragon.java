@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class BarrelDragon extends DuelistCard 
 {
@@ -45,6 +45,7 @@ public class BarrelDragon extends DuelistCard
         this.magicNumber = this.baseMagicNumber = RANDOM_ENEMIES;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
+        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -113,6 +114,16 @@ public class BarrelDragon extends DuelistCard
     	
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
+    	
+    	// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
     
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

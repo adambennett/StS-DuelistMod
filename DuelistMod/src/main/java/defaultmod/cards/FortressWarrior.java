@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class FortressWarrior extends DuelistCard 
 {
@@ -33,8 +33,8 @@ public class FortressWarrior extends DuelistCard
 
     public FortressWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
-        this.baseBlock = this.block = 12;
+        this.baseDamage = this.damage = 10;
+        this.baseBlock = this.block = 10;
         this.upgradeDmg = 5;
         this.upgradeBlk = 5;
         this.tributes = 2;
@@ -83,6 +83,16 @@ public class FortressWarrior extends DuelistCard
     	
   		// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
+    	
+  		// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }

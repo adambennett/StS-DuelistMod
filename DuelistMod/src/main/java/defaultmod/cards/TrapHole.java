@@ -31,6 +31,7 @@ public class TrapHole extends DuelistCard
     public TrapHole() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
 		this.originalName = this.name;
     }
 

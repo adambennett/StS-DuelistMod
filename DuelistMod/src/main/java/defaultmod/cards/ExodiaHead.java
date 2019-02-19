@@ -34,6 +34,7 @@ public class ExodiaHead extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.EXODIA);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 1;
         this.exodiaName = "Head";

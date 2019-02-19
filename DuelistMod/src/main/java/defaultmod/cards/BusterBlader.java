@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class BusterBlader extends DuelistCard 
 {
@@ -30,7 +30,7 @@ public class BusterBlader extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int DAMAGE = 12;
     //private static final int UPGRADE_PLUS_DMG = 2;
     private static final int TRIBUTES = 3;
@@ -41,6 +41,7 @@ public class BusterBlader extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = 5;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.PHARAOH_SERVANT);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -83,6 +84,16 @@ public class BusterBlader extends DuelistCard
     	
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
+    	
+    	// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

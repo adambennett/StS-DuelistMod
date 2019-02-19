@@ -36,6 +36,7 @@ public class OjamaYellow extends DuelistCard
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.OJAMA);
+        this.tags.add(DefaultMod.INVASION_CHAOS);
 		this.originalName = this.name;
 		this.exhaust = true;
     }
@@ -50,13 +51,9 @@ public class OjamaYellow extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
 			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
-			//card.costForTurn = randomNum;
 			randomMonster.costForTurn = randomNum;
-			randomMonster.isEthereal = true;
-			randomMonster.rawDescription = "Ethereal. NL " + randomMonster.rawDescription;
 			addCardToHand(randomMonster);
 		}
     }

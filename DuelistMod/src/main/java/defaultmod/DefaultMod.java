@@ -1,5 +1,7 @@
 package defaultmod;
 
+import java.util.ArrayList;
+
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.Gdx;
@@ -34,21 +36,30 @@ public class DefaultMod
     private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
     
     
+    // Arraylist full of my cards, basically a copy of CardLibrary for this set only
+    // Potentially speed up all the random generation
+    // But more importantly, make sure random effects can pull from cards that are not actually in the compendium
+    public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
+    
     // Tag Enums
     @SpireEnum
     public static AbstractCard.CardTags MONSTER;
+    // 86 cards
     
     @SpireEnum
     public static AbstractCard.CardTags SPELL;
+    // 43 cards
     
     @SpireEnum
     public static AbstractCard.CardTags TRAP;
+    // 8 cards
     
     @SpireEnum
     public static AbstractCard.CardTags POT;
     
     @SpireEnum
     public static AbstractCard.CardTags TOON;
+    // 15 cards
     
     @SpireEnum
     public static AbstractCard.CardTags GUARDIAN;
@@ -64,6 +75,7 @@ public class DefaultMod
     
     @SpireEnum
     public static AbstractCard.CardTags DRAGON;
+    // 23 cards
     
     @SpireEnum
     public static AbstractCard.CardTags OJAMA;
@@ -76,6 +88,42 @@ public class DefaultMod
     
     @SpireEnum
     public static AbstractCard.CardTags NO_PUMPKIN;
+    
+    @SpireEnum
+    public static AbstractCard.CardTags MAGIC_RULER;
+    // 3 cards
+    
+    @SpireEnum
+    public static AbstractCard.CardTags LEGEND_BLUE_EYES;
+    // 24 cards
+    
+    @SpireEnum
+    public static AbstractCard.CardTags PHARAOH_SERVANT;
+    //7 cards
+    
+    @SpireEnum
+    public static AbstractCard.CardTags METAL_RAIDERS;
+    // 17 cards
+    
+    @SpireEnum
+    public static AbstractCard.CardTags LABYRINTH_NIGHTMARE;
+    // 4 cards
+    
+    @SpireEnum
+    public static AbstractCard.CardTags LEGACY_DARKNESS;
+    // 4 cards
+    
+    @SpireEnum
+    public static AbstractCard.CardTags MAGICIANS_FORCE;
+    // 1 card
+    
+    @SpireEnum
+    public static AbstractCard.CardTags INVASION_CHAOS;
+    // 3 cards
+    
+    @SpireEnum
+    public static AbstractCard.CardTags DARK_CRISIS;
+    // 2 cards
 
     // =============== INPUT TEXTURE LOCATION =================
 
@@ -329,13 +377,24 @@ public class DefaultMod
     
     public static final String M_RING_RELIC = "relics/MEye.png";
     public static final String M_RING_RELIC_OUTLINE = "relics/MEye.png";
+    
+    public static final String M_ROD_RELIC = "relics/MEye.png";
+    public static final String M_ROD_RELIC_OUTLINE = "relics/MEye.png";
+    
+    public static final String M_COIN_RELIC = "relics/MEye.png";
+    public static final String M_COIN_RELIC_OUTLINE = "relics/MEye.png";
+    
+    public static final String EXXOD_STONE_RELIC = "relics/MEye.png";
+    public static final String EXXOD_STONE_RELIC_OUTLINE = "relics/MEye.png";
 
     public static final String PLACEHOLDER_RELIC_2 = "relics/placeholder_relic2.png";
     public static final String PLACEHOLDER_RELIC_OUTLINE_2 = "relics/outline/placeholder_relic2.png";
     
     // Character assets
-    private static final String THE_DEFAULT_BUTTON = "charSelect/DefaultCharacterButton.png";
-    private static final String THE_DEFAULT_PORTRAIT = "charSelect/DefaultCharacterPortraitBG.png";
+    //private static final String THE_DEFAULT_BUTTON = "charSelect/DefaultCharacterButton.png";
+    private static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButton.png";
+    //private static final String THE_DEFAULT_PORTRAIT = "charSelect/DefaultCharacterPortraitBG.png";
+    private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD.png";
     public static final String THE_DEFAULT_SHOULDER_1 = "char/defaultCharacter/shoulder.png";
     public static final String THE_DEFAULT_SHOULDER_2 = "char/defaultCharacter/shoulder2.png";
     public static final String THE_DEFAULT_CORPSE = "char/defaultCharacter/corpse.png";
@@ -344,8 +403,8 @@ public class DefaultMod
     public static final String BADGE_IMAGE = "Badge.png";
 
     // Animations atlas and JSON files
-    public static final String THE_DEFAULT_SKELETON_ATLAS = "char/defaultCharacter/skeleton.atlas";
-    public static final String THE_DEFAULT_SKELETON_JSON = "char/defaultCharacter/skeleton.json";
+    //public static final String THE_DEFAULT_SKELETON_ATLAS = "char/defaultCharacter/skeleton.atlas";
+    //public static final String THE_DEFAULT_SKELETON_JSON = "char/defaultCharacter/skeleton.json";
 
 	
 
@@ -448,7 +507,11 @@ public class DefaultMod
         // Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
         BaseMod.addPotion(MillenniumElixir.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, MillenniumElixir.POTION_ID, TheDuelistEnum.THE_DUELIST);
         BaseMod.addPotion(JoeyJuice.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, JoeyJuice.POTION_ID, TheDuelistEnum.THE_DUELIST);
-      
+        BaseMod.addPotion(SealedPack.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPack.POTION_ID, TheDuelistEnum.THE_DUELIST);
+        BaseMod.addPotion(SealedPackB.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPackB.POTION_ID, TheDuelistEnum.THE_DUELIST);
+        
+        
+        
         logger.info("Done editing potions");
     }
     
@@ -467,6 +530,9 @@ public class DefaultMod
         BaseMod.addRelicToCustomPool(new MillenniumEye(), AbstractCardEnum.DEFAULT_GRAY);
         BaseMod.addRelicToCustomPool(new MillenniumRing(), AbstractCardEnum.DEFAULT_GRAY);
         BaseMod.addRelicToCustomPool(new MillenniumKey(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new MillenniumRod(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new MillenniumCoin(), AbstractCardEnum.DEFAULT_GRAY);
+        BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DEFAULT_GRAY);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
         //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
@@ -785,6 +851,155 @@ public class DefaultMod
     	UnlockTracker.unlockCard(Gandora.ID);
 		
         logger.info("Done adding cards!");
+        
+        // Adding to array for random generation
+        myCards.add(new AlphaMagnet()); 
+		myCards.add(new AncientRules());
+		myCards.add(new AxeDespair());
+		myCards.add(new BadReaction());
+		myCards.add(new BarrelDragon());
+		myCards.add(new BetaMagnet());
+		myCards.add(new BigCastleWalls());
+		myCards.add(new BlueEyes());
+		myCards.add(new BlueEyesToon());
+		myCards.add(new BlueEyesUltimate());
+		myCards.add(new BusterBlader());
+		myCards.add(new CannonSoldier());
+		myCards.add(new CardDestruction());
+		myCards.add(new CastleDarkIllusions());
+		myCards.add(new CastleWalls());
+		myCards.add(new CatapultTurtle());
+		myCards.add(new CelticGuardian());
+		myCards.add(new ChangeHeart());
+		myCards.add(new DarkFactory());
+		myCards.add(new DarkHole());
+		myCards.add(new DarkMagician());
+		myCards.add(new DarkMagicianGirl());
+		myCards.add(new DarkMirrorForce());
+		myCards.add(new DarklordMarie());
+		myCards.add(new DianKeto());
+		myCards.add(new ExodiaHead());
+		myCards.add(new ExodiaLA());
+		myCards.add(new ExodiaLL());
+		myCards.add(new ExodiaRA());
+		myCards.add(new ExodiaRL());
+		myCards.add(new FeatherPho());
+		myCards.add(new FiendMegacyber());
+		myCards.add(new Fissure());
+		myCards.add(new FlameSwordsman());
+		myCards.add(new GaiaFierce());
+		myCards.add(new GammaMagnet());
+		myCards.add(new GateGuardian());
+		myCards.add(new GeminiElf());
+		myCards.add(new GiantSoldier());
+		myCards.add(new GiantTrunade());
+		myCards.add(new GracefulCharity());
+		myCards.add(new HarpieFeather());
+		myCards.add(new Hinotoma());
+		myCards.add(new ImperialOrder());
+		myCards.add(new InjectionFairy());
+		myCards.add(new InsectQueen());
+		myCards.add(new JamBreeding());
+		myCards.add(new JudgeMan());
+		myCards.add(new Kuriboh());
+		myCards.add(new SmallLabyrinthWall());
+		myCards.add(new LabyrinthWall());
+		myCards.add(new LegendaryFisherman());
+		myCards.add(new MagicCylinder());
+		myCards.add(new Mausoleum());
+		myCards.add(new MillenniumShield());
+		myCards.add(new MirrorForce());
+		myCards.add(new MonsterReborn());
+		myCards.add(new NutrientZ());
+		myCards.add(new ObeliskTormentor());
+		myCards.add(new OjamaBlack());
+		myCards.add(new OjamaGreen());
+		myCards.add(new OjamaKing());
+		myCards.add(new OjamaKnight());
+		myCards.add(new OjamaYellow());
+		myCards.add(new Ojamagic());
+		myCards.add(new Ookazi());
+		myCards.add(new Parasite());
+		myCards.add(new PotAvarice());
+		myCards.add(new PotDichotomy());
+		myCards.add(new PotDuality());
+		myCards.add(new PotGenerosity());
+		myCards.add(new PotGreed());
+		myCards.add(new Pumpking());
+		myCards.add(new Pumprincess());
+		myCards.add(new RadiantMirrorForce());
+		myCards.add(new RainMercy());
+		myCards.add(new RedEyes());
+		myCards.add(new RedEyesToon());
+		myCards.add(new RedMedicine());
+		myCards.add(new Relinquished());
+		myCards.add(new SangaEarth());
+		myCards.add(new SangaThunder());
+		myCards.add(new SangaWater());
+		myCards.add(new Scapegoat());
+		myCards.add(new ScrapFactory());
+		myCards.add(new SevenColoredFish());
+		myCards.add(new ShardGreed());
+		myCards.add(new SliferSky());
+		myCards.add(new StormingMirrorForce());
+		myCards.add(new SummonedSkull());
+		myCards.add(new SuperheavyBenkei());
+		myCards.add(new SuperheavyScales());
+		myCards.add(new SuperheavySwordsman());
+		myCards.add(new SuperheavyWaraji());
+		myCards.add(new SwordsBurning());
+		myCards.add(new SwordsConcealing());
+		//myCards.add(new SwordsRevealing());
+		//myCards.add(new TimeWizard());
+		myCards.add(new ToonBarrelDragon());
+		myCards.add(new ToonBriefcase());
+		myCards.add(new ToonDarkMagician());
+		myCards.add(new ToonDarkMagicianGirl());
+		myCards.add(new ToonGeminiElf());
+		myCards.add(new ToonMermaid());
+		myCards.add(new ToonSummonedSkull());
+		myCards.add(new ToonWorld());
+		//myCards.add(new TrapHole());
+		myCards.add(new ValkMagnet());
+		myCards.add(new WingedDragonRa());
+		myCards.add(new BigFire());
+	    myCards.add(new ToonMask());
+	    myCards.add(new ToonMagic());
+	    myCards.add(new ToonKingdom());
+	    myCards.add(new ToonRollback());
+	    myCards.add(new SuperheavyOgre());
+	    myCards.add(new SuperheavyMagnet());
+	    myCards.add(new SuperheavyGeneral());
+	    myCards.add(new SuperheavyFlutist());
+	    myCards.add(new SuperheavyDaihachi());
+	    myCards.add(new SuperheavyBlueBrawler());
+	    myCards.add(new SpiritHarp());
+	    myCards.add(new SnowDragon());
+	    myCards.add(new SnowdustDragon());
+	    myCards.add(new Raigeki());
+	    myCards.add(new PreventRat());
+	    myCards.add(new Ojamuscle());
+	    myCards.add(new MysticalElf());
+	    myCards.add(new IslandTurtle());
+	    myCards.add(new GravityAxe());
+	    myCards.add(new FortressWarrior());
+	    myCards.add(new CaveDragon());
+	    myCards.add(new BlizzardDragon());
+	    myCards.add(new BabyDragon());
+	    myCards.add(new LordD());
+	    myCards.add(new FluteSummoning());
+    	myCards.add(new CurseDragon());
+    	myCards.add(new CyberDragon());
+    	myCards.add(new DragonMaster());
+    	myCards.add(new FiendSkull());
+    	myCards.add(new FiveHeaded());
+    	myCards.add(new Gandora());
+    	
+        
+        
+        
+        
+        
 
     }
 

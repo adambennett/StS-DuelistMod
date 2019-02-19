@@ -38,6 +38,7 @@ public class CannonSoldier extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
     }
 

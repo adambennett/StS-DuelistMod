@@ -33,6 +33,7 @@ public class SpiritHarp extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 5;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.summons = 2;
 		this.originalName = this.name;
     }

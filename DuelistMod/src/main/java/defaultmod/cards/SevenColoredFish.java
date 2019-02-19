@@ -38,6 +38,7 @@ public class SevenColoredFish extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
     }
 
@@ -47,6 +48,9 @@ public class SevenColoredFish extends DuelistCard
     {
     	summon(p, this.magicNumber);
     	attack(m, AFX, this.damage);
+    	
+    	// for testing
+    	printSetDetails(new CardTags[] {DefaultMod.MONSTER, DefaultMod.SPELL, DefaultMod.TRAP, DefaultMod.DRAGON, DefaultMod.LEGEND_BLUE_EYES, DefaultMod.METAL_RAIDERS, DefaultMod.PHARAOH_SERVANT});
     }
 
     // Which card to return when making a copy of this card.

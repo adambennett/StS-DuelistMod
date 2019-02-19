@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class Relinquished extends DuelistCard 
 {
@@ -33,6 +33,7 @@ public class Relinquished extends DuelistCard
 	public Relinquished() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.MONSTER);
+		this.tags.add(DefaultMod.MAGIC_RULER);
 		this.tributes = 1;
 		this.originalName = this.name;
 
@@ -74,6 +75,16 @@ public class Relinquished extends DuelistCard
 
 		// Pumpking & Princess
 		else if (this.misc == 52) { return true; }
+		
+  		// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
 
 		// Check for # of summons >= tributes
 		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }

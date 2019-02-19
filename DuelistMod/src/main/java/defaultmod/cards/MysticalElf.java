@@ -33,6 +33,7 @@ public class MysticalElf extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 9;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.summons = 1;
 		this.originalName = this.name;
     }

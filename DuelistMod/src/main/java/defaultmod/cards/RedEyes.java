@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class RedEyes extends DuelistCard
 {
@@ -29,7 +29,7 @@ public class RedEyes extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int DAMAGE = 20;
+    private static final int DAMAGE = 17;
     private static final int UPGRADE_PLUS_DMG = 4;
     private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
@@ -39,6 +39,7 @@ public class RedEyes extends DuelistCard
     	this.baseDamage = this.damage = DAMAGE;
     	this.tags.add(DefaultMod.MONSTER);
     	this.tags.add(DefaultMod.DRAGON);
+    	this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
     	this.misc = 0;
 		this.originalName = this.name;
     }
@@ -78,6 +79,16 @@ public class RedEyes extends DuelistCard
     	
     	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
+    	
+  		// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

@@ -32,7 +32,7 @@
   "theDuelist:ReducerOrb": {
     "NAME": "Reducer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase the number of cards reduced when evoked by #b", ". NL #yEvoke: Change the cost of #b", " random cards in your hand to 0."
+      "#yPassive: At the start of turn, increase the number of cards reduced when evoked by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
     ]
   },
   "theDuelist:Summoner": {

@@ -36,6 +36,7 @@ public class JamBreeding extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
 		this.originalName = this.name;
     }
 

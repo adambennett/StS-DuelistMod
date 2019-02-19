@@ -36,6 +36,7 @@ public class MonsterReborn extends DuelistCard
     public MonsterReborn() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.exhaust = true;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = MONSTERS;

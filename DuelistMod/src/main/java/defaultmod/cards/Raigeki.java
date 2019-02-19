@@ -1,12 +1,17 @@
 package defaultmod.cards;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -27,6 +32,7 @@ public class Raigeki extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    private static final AttackEffect AFX = AttackEffect.NONE;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
@@ -34,7 +40,8 @@ public class Raigeki extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
-        this.baseBlock = this.block = 15;
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.isMultiDamage = true;
 		this.originalName = this.name;
     }
 
@@ -45,7 +52,10 @@ public class Raigeki extends DuelistCard
     	// Get target block and remove all of it
     	int monsterBlock = m.currentBlock;
     	if (monsterBlock > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
-    	block(this.block + monsterBlock);
+    	this.multiDamage = new int[] { monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock};
+    	AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, new Color(0.1F, 0.0F, 0.2F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
+    	attackAllEnemies(AFX, this.multiDamage);
     }
 
     // Which card to return when making a copy of this card.

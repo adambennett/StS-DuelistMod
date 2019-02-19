@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class SangaEarth extends DuelistCard 
 {
@@ -41,6 +41,7 @@ public class SangaEarth extends DuelistCard
     	this.baseDamage = this.damage = DAMAGE;
     	this.tags.add(DefaultMod.MONSTER);
     	this.tags.add(DefaultMod.GUARDIAN);
+    	this.tags.add(DefaultMod.METAL_RAIDERS);
     	this.misc = 0;
 		this.originalName = this.name;
     }
@@ -83,6 +84,16 @@ public class SangaEarth extends DuelistCard
     	
   		// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
+    	
+  		// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
     	
     	// Check for # of summons >= tributes
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }

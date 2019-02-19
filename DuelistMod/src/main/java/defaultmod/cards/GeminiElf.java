@@ -35,6 +35,7 @@ public class GeminiElf extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
         this.exhaust = true;
         this.originalName = this.name;
     }

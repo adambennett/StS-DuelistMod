@@ -37,9 +37,9 @@ public class Ookazi extends DuelistCard
         this.baseDamage = 1;
         this.tags.add(DefaultMod.SPELL);
         this.damageA = 4;
-        this.damageB = 10;
+        this.damageB = 9;
         this.damageC = 6;
-        this.damageD = 12;
+        this.damageD = 11;
 		this.originalName = this.name;
     }
 

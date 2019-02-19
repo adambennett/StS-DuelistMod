@@ -37,6 +37,7 @@ public class MagicCylinder extends DuelistCard
 	public MagicCylinder() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.TRAP);
+		this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
 		this.originalName = this.name;
 	}
 

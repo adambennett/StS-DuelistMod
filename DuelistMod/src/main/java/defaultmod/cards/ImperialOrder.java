@@ -33,6 +33,7 @@ public class ImperialOrder extends DuelistCard
     public ImperialOrder() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
+        this.tags.add(DefaultMod.PHARAOH_SERVANT);
         this.magicNumber = this.baseMagicNumber = CARDS;
         this.originalName = this.name;
     }

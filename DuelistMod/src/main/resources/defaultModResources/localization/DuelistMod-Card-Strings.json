@@ -316,8 +316,8 @@
 	},
 	"theDuelist:Ookazi": {
 		"NAME": "Ookazi",
-		"DESCRIPTION": "Deal a random amount (4-10) of damage.",
-		"UPGRADE_DESCRIPTION": "Deal a random amount (6-12) of damage."
+		"DESCRIPTION": "Deal a random amount (4-9) of damage.",
+		"UPGRADE_DESCRIPTION": "Deal a random amount (6-11) of damage."
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
@@ -496,8 +496,8 @@
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
-		"DESCRIPTION": "Toon NL Tribute 1. NL Deal a random amount of damage (15-35) to each enemy.",
-		"UPGRADE_DESCRIPTION": "Toon NL Tribute 1. NL Deal a random amount of damage (20-40) to each enemy."
+		"DESCRIPTION": "Toon NL Tribute 3. NL Deal a random amount of damage (15-35) to each enemy.",
+		"UPGRADE_DESCRIPTION": "Toon NL Tribute 3. NL Deal a random amount of damage (20-40) to each enemy."
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
@@ -611,8 +611,8 @@
 	},
 	"theDuelist:Raigeki": {
 		"NAME": "Raigeki",
-		"DESCRIPTION": "Gain !B! block. Steal ALL block from an enemy.",
-		"UPGRADE_DESCRIPTION": "Gain !B! block. Steal ALL block from an enemy."
+		"DESCRIPTION": "Steal ALL block from an enemy. Deal that much damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Steal ALL block from an enemy. Deal that much damage to ALL enemies."
 	},
 	"theDuelist:PreventRat": {
 		"NAME": "Prevent Rat",

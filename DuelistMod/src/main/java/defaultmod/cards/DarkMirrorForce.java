@@ -32,6 +32,7 @@ public class DarkMirrorForce extends DuelistCard
     public DarkMirrorForce() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
+        this.tags.add(DefaultMod.INVASION_CHAOS);
         this.exhaust = true;
         this.originalName = this.name;
     }

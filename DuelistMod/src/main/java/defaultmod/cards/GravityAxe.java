@@ -32,6 +32,7 @@ public class GravityAxe extends DuelistCard
     public GravityAxe() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.DARK_CRISIS);
         this.magicNumber = this.baseMagicNumber = 3;
         this.originalName = this.name;
     }

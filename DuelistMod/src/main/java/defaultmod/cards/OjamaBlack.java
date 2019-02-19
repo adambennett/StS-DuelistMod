@@ -36,6 +36,7 @@ public class OjamaBlack extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.OJAMA);
+        this.tags.add(DefaultMod.INVASION_CHAOS);
         this.baseBlock = this.block = 5;
 		this.originalName = this.name;
     }

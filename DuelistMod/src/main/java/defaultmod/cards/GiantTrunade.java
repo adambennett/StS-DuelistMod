@@ -32,6 +32,8 @@ public class GiantTrunade extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
         this.originalName = this.name;
+        this.tags.add(DefaultMod.MAGIC_RULER);
+        this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

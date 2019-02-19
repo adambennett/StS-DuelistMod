@@ -39,6 +39,8 @@ public class Hinotoma extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 4;
 		this.originalName = this.name;
+		this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+		this.tags.add(DefaultMod.SPELL);
     }
 
     // Actions the card should do.

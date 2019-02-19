@@ -33,6 +33,7 @@ public class IslandTurtle extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 10;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.PHARAOH_SERVANT);
         this.summons = 1;
 		this.originalName = this.name;
     }

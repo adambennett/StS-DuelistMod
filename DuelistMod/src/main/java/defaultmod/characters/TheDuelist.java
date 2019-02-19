@@ -6,8 +6,6 @@ import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,6 +13,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
@@ -61,7 +60,8 @@ public class TheDuelist extends CustomPlayer {
 		super(name, setClass, orbTextures,
 				"defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
 				new SpriterAnimation(
-						"defaultModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
+						"defaultModResources/images/char/duelistCharacter/theDuelistAnimation.scml"));
+						//"defaultModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
 
 		// =============== TEXTURES, ENERGY, LOADOUT =================  
@@ -77,12 +77,12 @@ public class TheDuelist extends CustomPlayer {
 
 		// =============== ANIMATIONS =================  
 
-		this.loadAnimation(
-				DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_ATLAS),
-				DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_JSON),
-				1.0f);
-		AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
-		e.setTime(e.getEndTime() * MathUtils.random());
+		//this.loadAnimation(
+		//		DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_ATLAS),
+		//		DefaultMod.makePath(DefaultMod.THE_DEFAULT_SKELETON_JSON),
+		//		1.0f);
+		//AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
+		//e.setTime(e.getEndTime() * MathUtils.random());
 
 		// =============== /ANIMATIONS/ =================
 
@@ -172,7 +172,7 @@ public class TheDuelist extends CustomPlayer {
 	// Should return a color object to be used to color the trail of moving cards
 	@Override
 	public Color getCardTrailColor() {
-		return defaultmod.DefaultMod.DEFAULT_GRAY;
+		return DefaultMod.DEFAULT_GRAY;
 	}
 
 	// Should return a BitmapFont object that you can use to customize how your
@@ -209,14 +209,14 @@ public class TheDuelist extends CustomPlayer {
 	// Should return a Color object to be used to color the miniature card images in run history.
 	@Override
 	public Color getCardRenderColor() {
-		return defaultmod.DefaultMod.DEFAULT_GRAY;
+		return DefaultMod.DEFAULT_GRAY;
 	}
 
 	// Should return a Color object to be used as screen tint effect when your
 	// character attacks the heart.
 	@Override
 	public Color getSlashAttackColor() {
-		return defaultmod.DefaultMod.DEFAULT_GRAY;
+		return DefaultMod.DEFAULT_GRAY;
 	}
 
 	// Should return an AttackEffect array of any size greater than 0. These effects

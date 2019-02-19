@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import defaultmod.DefaultMod;
 import defaultmod.orbs.*;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class LordD extends DuelistCard 
 {
@@ -77,6 +77,16 @@ public class LordD extends DuelistCard
 
 		// Pumpking & Princess
 		else if (this.misc == 52) { return true; }
+		
+  		// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+		}
 
 		// Check for # of summons >= tributes
 		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }

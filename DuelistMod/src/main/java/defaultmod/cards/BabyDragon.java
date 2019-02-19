@@ -34,6 +34,7 @@ public class BabyDragon extends DuelistCard
         this.baseBlock = this.block = 3;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
+        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.summons = 2;
         this.originalName = this.name;
     }

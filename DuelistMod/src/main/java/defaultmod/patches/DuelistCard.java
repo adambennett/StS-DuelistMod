@@ -1,6 +1,7 @@
 package defaultmod.patches;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
@@ -80,13 +81,13 @@ public abstract class DuelistCard extends CustomCard
 	{
 		return this;
 	}
-	
+
 	public void becomeEthereal()
-    {
-    	this.isEthereal = true;
-    	this.rawDescription = "Ethereal. NL " + this.rawDescription;
-    	this.initializeDescription();
-    } 
+	{
+		this.isEthereal = true;
+		this.rawDescription = "Ethereal. NL " + this.rawDescription;
+		this.initializeDescription();
+	} 
 
 	protected int getXEffect() {
 		if (energyOnUse < EnergyPanel.totalCount) {
@@ -112,7 +113,7 @@ public abstract class DuelistCard extends CustomCard
 	{
 		AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, DAMAGE, AbstractGameAction.AttackEffect.POISON));
 	}
-	
+
 	public static void damageSelfFire(int DAMAGE)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
@@ -375,7 +376,7 @@ public abstract class DuelistCard extends CustomCard
 						// Check for Toon Tribute power
 						if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 						if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
-						
+
 						return tributes;
 					}
 					else
@@ -456,7 +457,7 @@ public abstract class DuelistCard extends CustomCard
 					// Check for Toon Tribute power
 					if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 					if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
-					
+
 					return tributes;
 				}
 				else
@@ -490,7 +491,7 @@ public abstract class DuelistCard extends CustomCard
 				// Check for Toon Tribute power
 				if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 				if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
-				
+
 				return tributes;
 			}
 		}
@@ -544,8 +545,8 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower storm = new StormPower(p, 1);
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
 		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
-		AbstractPower swordsBurn = new SwordsBurnPower(p, p);
-		AbstractPower swordsConceal = new SwordsConcealPower(p, p, 1, false);
+		//AbstractPower swordsBurn = new SwordsBurnPower(p, p);
+		//AbstractPower swordsConceal = new SwordsConcealPower(p, p, 1, false);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
@@ -556,12 +557,12 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				swordsBurn, orbEvoker, tombPilfer, swordsConceal, toonTributeB, magicCylinder, retainCards, 
+				orbEvoker, tombPilfer, toonTributeB, magicCylinder, retainCards, 
 				generosity, focus, reductionist, creative }; 
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
 		AbstractPower randomBuff = buffs[randomBuffNum];
-		
+
 		ArrayList<AbstractPower> powers = p.powers;
 		boolean found = false;
 		for (AbstractPower a : powers)
@@ -573,12 +574,12 @@ public abstract class DuelistCard extends CustomCard
 				a.updateDescription();
 			}
 		}
-		
+
 		if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
-		
+
 		return randomBuff;
 	}
-	
+
 	public static AbstractPower applyRandomBuffSmall(AbstractCreature p, int turnNum)
 	{
 		// Setup powers array for random buff selection
@@ -595,18 +596,18 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower sadistic = new SadisticPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
-		*/
+		 */
 		AbstractPower focus = new FocusPower(p, turnNum);
 		/*
 		AbstractPower[] buffs = new AbstractPower[] { str, dex, art, plate, regen, energy, thorns,
 				blur, burst, sadistic, focus, retainCards, toonTributeB };
-		*/
+		 */
 		AbstractPower[] buffs = new AbstractPower[] { str, dex, art, plate, regen, energy, thorns, focus };
 
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
 		AbstractPower randomBuff = buffs[randomBuffNum];
-		
+
 		ArrayList<AbstractPower> powers = p.powers;
 		boolean found = false;
 		for (AbstractPower a : powers)
@@ -618,12 +619,12 @@ public abstract class DuelistCard extends CustomCard
 				a.updateDescription();
 			}
 		}
-		
+
 		if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
-		
+
 		return randomBuff;
 	}
-	
+
 	public static AbstractPower applyRandomBuffPlayer(AbstractPlayer p, int turnNum, boolean smallSet)
 	{
 		if (smallSet) { return applyRandomBuffSmall(p, turnNum); }
@@ -697,12 +698,12 @@ public abstract class DuelistCard extends CustomCard
 	public static void channelRandomOrb()
 	{
 		AbstractOrb[] orbs = new AbstractOrb[] 
-		{	
-				new Water(), new Lightning(), new Plasma(), new Dark(), 
-				new HellFireOrb(),new Frost(), new CrystalOrb(), new GlassOrb(), 
-				new Gate(), new Buffer(), new Summoner(), new MonsterOrb(),
-				new DragonOrb(), new ReducerOrb()
-		};
+				{	
+						new Water(), new Lightning(), new Plasma(), new Dark(), 
+						new HellFireOrb(),new Frost(), new CrystalOrb(), new GlassOrb(), 
+						new Gate(), new Buffer(), new Summoner(), new MonsterOrb(),
+						new DragonOrb(), new ReducerOrb()
+				};
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.length - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs[randomOrb]));
 	}
@@ -719,107 +720,182 @@ public abstract class DuelistCard extends CustomCard
 
 	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom) 
 	{
-        ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-        for (Map.Entry<String, AbstractCard> potentialArte : CardLibrary.cards.entrySet()) 
-        {
-            AbstractCard card = potentialArte.getValue();
-            if (card.hasTag(setToFindFrom)) 
-            {
-                dragonGroup.add(card.makeCopy());
-            }
-        }
-        return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-    }
-	
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (card.hasTag(setToFindFrom)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+	}
+
+	public static AbstractCard returnTrulyRandomDuelistCard() 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (card instanceof DuelistCard) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+	}
+
 	public static AbstractCard returnTrulyRandomFromSets(CardTags setToFindFrom, CardTags anotherSetToFindFrom) 
 	{
-        ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-        for (Map.Entry<String, AbstractCard> potentialArte : CardLibrary.cards.entrySet()) 
-        {
-            AbstractCard card = potentialArte.getValue();
-            if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom)) 
-            {
-                dragonGroup.add(card.makeCopy());
-            }
-        }
-        return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-    }
-	
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (card.hasTag(setToFindFrom) && card.hasTag(anotherSetToFindFrom)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+	}
+
+	public static AbstractCard returnTrulyRandomFromEitherSet(CardTags setToFindFrom, CardTags anotherSetToFindFrom) 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (card.hasTag(setToFindFrom) || card.hasTag(anotherSetToFindFrom)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+	}
+
 	public static AbstractCard returnTrulyRandomFromOnlyFirstSet(CardTags setToFindFrom, CardTags excludeSet) 
 	{
-        ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-        for (Map.Entry<String, AbstractCard> potentialArte : CardLibrary.cards.entrySet()) 
-        {
-            AbstractCard card = potentialArte.getValue();
-            if (card.hasTag(setToFindFrom) && !card.hasTag(excludeSet)) 
-            {
-                dragonGroup.add(card.makeCopy());
-            }
-        }
-        return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
-    }
-	
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (card.hasTag(setToFindFrom) && !card.hasTag(excludeSet)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+	}
+
+	public static AbstractCard returnTrulyRandomFromMultiSet(CardTags[] setsToFindFrom) 
+	{
+		// Assume card has all tags we want, until we find a missing one
+		boolean matchedSet = true;
+
+		// List to randomly select from after checking all cards
+		ArrayList<AbstractCard> matchingGroup = new ArrayList<>();
+
+		// Check all cards in library
+		for (DuelistCard potentialMatchCard : DefaultMod.myCards)
+		{
+			// See if check card is missing any match tags
+			for (CardTags t : setsToFindFrom) { if (!potentialMatchCard.hasTag(t)) { matchedSet = false; } }
+
+			// If tags match every match set and card has no tags matching exclude sets, add to the list
+			if (matchedSet) { matchingGroup.add(potentialMatchCard.makeCopy()); }
+		}
+
+		// Return a random card from the final list of cards that have tags from each matched set, and no tags from any of the exclude sets
+		return matchingGroup.get(AbstractDungeon.cardRandomRng.random(matchingGroup.size() - 1));
+	}
+
+
 	public static AbstractCard returnTrulyRandomFromMultiSet(CardTags[] setsToFindFrom, CardTags[] excludeSets) 
 	{
 		// Assume card has all tags we want, until we find a missing one
 		boolean matchedSet = true;
-		
+
 		// Assume the card does not have any bad tags, until we find one
 		boolean matchedBadSet = false;
-		
+
 		// List to randomly select from after checking all cards
-        ArrayList<AbstractCard> matchingGroup = new ArrayList<>();
-        
-        // Check all cards in library
-        for (Map.Entry<String, AbstractCard> potentialMatchLibCard : CardLibrary.cards.entrySet()) 
-        {
-        	// Card we are currently checking
-            AbstractCard potentialMatchCard = potentialMatchLibCard.getValue();
-            
-            // See if check card is missing any match tags
-        	for (CardTags t : setsToFindFrom) { if (!potentialMatchCard.hasTag(t)) { matchedSet = false; } }
-        	
-        	// If all the necessary tags are present on a card, now we need to make sure it does not have any of the exclude tags
-        	if (matchedSet)
-        	{
-        		// So check against every exclude tag
-        		for (CardTags s : excludeSets) { if (potentialMatchCard.hasTag(s)) { matchedBadSet = true; } }
-        	}
-        	
-        	// If tags match every match set and card has no tags matching exclude sets, add to the list
-        	if (matchedSet && !matchedBadSet) { matchingGroup.add(potentialMatchCard.makeCopy()); }
-        }
-        
-        // Return a random card from the final list of cards that have tags from each matched set, and no tags from any of the exclude sets
-        return matchingGroup.get(AbstractDungeon.cardRandomRng.random(matchingGroup.size() - 1));
-    }
+		ArrayList<AbstractCard> matchingGroup = new ArrayList<>();
+
+		for (DuelistCard potentialMatchCard : DefaultMod.myCards)
+		{
+			// See if check card is missing any match tags
+			for (CardTags t : setsToFindFrom) { if (!potentialMatchCard.hasTag(t)) { matchedSet = false; } }
+
+			// If all the necessary tags are present on a card, now we need to make sure it does not have any of the exclude tags
+			if (matchedSet)
+			{
+				// So check against every exclude tag
+				for (CardTags s : excludeSets) { if (potentialMatchCard.hasTag(s)) { matchedBadSet = true; } }
+			}
+
+			// If tags match every match set and card has no tags matching exclude sets, add to the list
+			if (matchedSet && !matchedBadSet) { matchingGroup.add(potentialMatchCard.makeCopy()); }
+		}
+
+		// Return a random card from the final list of cards that have tags from each matched set, and no tags from any of the exclude sets
+		return matchingGroup.get(AbstractDungeon.cardRandomRng.random(matchingGroup.size() - 1));
+	}
 
 	public static boolean isToon(AbstractCard testCard)
 	{
-        for (Map.Entry<String, AbstractCard> potentialToon : CardLibrary.cards.entrySet()) 
-        {
-            AbstractCard card = potentialToon.getValue();
-            if (card.hasTag(DefaultMod.TOON))
-            {
-            	if (testCard.originalName.equals(card.originalName))
-            	{
-            		return true;
-            	}
-            }
-        }
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (card.hasTag(DefaultMod.TOON))
+			{
+				if (testCard.originalName.equals(card.originalName))
+				{
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
 	public DuelistCard newCopyOfMonster(String name)
 	{
-		for (Map.Entry<String, AbstractCard> potentialToon : CardLibrary.cards.entrySet()) 
-        {
-            AbstractCard card = potentialToon.getValue();
-        	if (name.equals(card.originalName))
-        	{
-        		return (DuelistCard) card.makeCopy();
-        	}
-        }
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (name.equals(card.originalName))
+			{
+				return (DuelistCard) card.makeCopy();
+			}
+		}
 		return new SevenColoredFish();
+	}
+
+	public static void printSetDetails(CardTags[] setsToFindFrom) 
+	{
+		// Map that holds set info for printing at end
+		Map<CardTags, Integer> tagMap = new HashMap<CardTags, Integer>();
+		Map<CardTags, ArrayList<DuelistCard>> tagSet = new HashMap<CardTags, ArrayList<DuelistCard>>();
+		for (CardTags t : setsToFindFrom) { tagMap.put(t, 0); tagSet.put(t, new ArrayList<DuelistCard>()); }
+
+		// Check all cards in library
+		for (DuelistCard potentialMatchCard : DefaultMod.myCards)
+		{
+			// See if check card is missing any match tags
+			for (CardTags t : setsToFindFrom) 
+			{
+				if (potentialMatchCard.hasTag(t))
+				{
+					tagMap.put(t, tagMap.get(t) + 1);
+					tagSet.get(t).add(potentialMatchCard);
+				}
+				
+			}
+		}
+
+		Set<Entry<CardTags, Integer>> set = tagMap.entrySet();
+		for (Entry<CardTags, Integer> t : set)
+		{
+			System.out.println("theDuelist:DuelistCard:printSetDetails() --- > START OF SET: " + t.getKey() + " --- " + t.getValue());
+			for (DuelistCard c : tagSet.get(t.getKey()))
+			{
+				System.out.println(c.name);
+			}
+			System.out.println("theDuelist:DuelistCard:printSetDetails() --- > END OF SET: " + t.getKey());
+		} 
+
 	}
 }

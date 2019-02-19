@@ -36,6 +36,7 @@ public class GiantSoldier extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.originalName = this.name;
     }
 
