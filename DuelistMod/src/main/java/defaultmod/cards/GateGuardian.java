@@ -1,5 +1,7 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,8 +9,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.*;
 
+import conspire.orbs.Water;
 import defaultmod.DefaultMod;
 import defaultmod.orbs.Gate;
 import defaultmod.patches.*;
@@ -50,8 +53,30 @@ public class GateGuardian extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
-    	//summon(p, SUMMONS);
+    	ArrayList<DuelistCard> tributeList = tribute(p, TRIBUTES, false, this);
+    	if (tributeList.size() > 0)
+    	{
+    		for (DuelistCard c : tributeList)
+    		{
+    			switch(c.originalName)
+    			{
+	    			case "Sanga of Thunder":
+	    				AbstractOrb orb = new Lightning();
+	    				channel(orb);
+	    				break;
+	    			case "Kazejin":
+	    				AbstractOrb orbB = new Plasma();
+	    				channel(orbB);
+	    				break;
+	    			case "Suijin":
+	    				AbstractOrb orbC = new Water();
+	    				channel(orbC);
+	    				break;
+	    			default:
+	    				break;
+    			}
+    		}
+    	}
     	AbstractDungeon.actionManager.addToTop(new EvokeAllOrbsAction());
     	AbstractOrb orb = new Gate();
     	AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
@@ -69,7 +94,6 @@ public class GateGuardian extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(2);
-            TRIBUTES = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -113,6 +137,18 @@ public class GateGuardian extends DuelistCard
 
 	@Override
 	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
 	}

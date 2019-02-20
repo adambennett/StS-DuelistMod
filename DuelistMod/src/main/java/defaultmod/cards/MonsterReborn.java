@@ -69,6 +69,7 @@ public class MonsterReborn extends DuelistCard
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 	    		}
 	    		else
@@ -82,6 +83,7 @@ public class MonsterReborn extends DuelistCard
 	    				cardCopy.purgeOnUse = true;
 	    				if (chosen.upgraded) { cardCopy.upgrade(); }
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 	    		}
     		}
@@ -115,6 +117,18 @@ public class MonsterReborn extends DuelistCard
 
 	@Override
 	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
 	}

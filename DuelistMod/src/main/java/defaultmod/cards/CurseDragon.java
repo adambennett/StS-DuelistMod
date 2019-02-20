@@ -1,5 +1,7 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -48,8 +50,17 @@ public class CurseDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	int dragons = 0;
+    	ArrayList<DuelistCard> tributeList = tribute(p, TRIBUTES, false, this);
+    	if (tributeList.size() > 0)
+    	{
+    		for (DuelistCard c : tributeList)
+    		{
+    			if (c.hasTag(DefaultMod.DRAGON)) { dragons++; }
+    		}
+    	}
     	attack(m, AFX, this.damage);
+    	if (dragons > 0) { heal(p, dragons * 5); }
     }
 
     // Which card to return when making a copy of this card.
@@ -108,6 +119,18 @@ public class CurseDragon extends DuelistCard
 
 	@Override
 	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
 	}

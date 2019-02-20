@@ -39,6 +39,8 @@ public class SuperheavyMagnet extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
 		this.originalName = this.name;
+		  this.summons = SUMMONS;
+	        this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -84,6 +86,39 @@ public class SuperheavyMagnet extends DuelistCard
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	block(this.block);
+    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
+    	switch (randomMagnetNum)
+    	{
+    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
+    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
+    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
+    		default: applyPowerToSelf(new BetaMagPower(p, p));
+    	}
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	block(this.block);
+    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
+    	switch (randomMagnetNum)
+    	{
+    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
+    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
+    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
+    		default: applyPowerToSelf(new BetaMagPower(p, p));
+    	}
 		
 	}
 }

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -41,6 +42,7 @@ public class SuperheavyOgre extends DuelistCard
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.magicNumber = this.baseMagicNumber = this.dex;
 		this.originalName = this.name;
+		this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -80,5 +82,24 @@ public class SuperheavyOgre extends DuelistCard
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	if (upgraded) { attack(m, AFX, this.damage); }
+    	applyPowerToSelf(new DexterityPower(p, this.dex));
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	if (upgraded) { attack(m, AFX, this.damage); }
+    	applyPowerToSelf(new DexterityPower(p, this.dex));
 	}
 }

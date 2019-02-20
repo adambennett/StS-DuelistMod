@@ -87,5 +87,17 @@ public class BadReaction extends DuelistCard
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		// TODO Auto-generated method stub
+		
 	}  
 }

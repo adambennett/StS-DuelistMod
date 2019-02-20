@@ -72,14 +72,28 @@ public class HaneHane extends DuelistCard
 	{
 		if (!resummoned) 
 		{ 
-			summon(player(), this.magicNumber, this); resummoned = true;
-			block(this.block);
+			summon(player(), 1, this);
+	    	block(this.block);
 		}
 	}
 
 	@Override
 	public void onSummon(int summons) 
 	{
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		summon(player(), summons, this); 
+		block(this.block);
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		summon(player(), summons, this);
+		block(this.block);
 		
 	}
 }

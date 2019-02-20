@@ -51,11 +51,11 @@ public class Raigeki extends DuelistCard
     {
     	// Get target block and remove all of it
     	int monsterBlock = m.currentBlock;
-    	if (monsterBlock > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
     	this.multiDamage = new int[] { monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock};
     	AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, new Color(0.1F, 0.0F, 0.2F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
         AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
-    	if (monsterBlock > 0) { attackAllEnemies(AFX, this.multiDamage); }
+    	if (monsterBlock > 0) { damageThroughBlockAllEnemies(p, monsterBlock, AFX); }
+    	if (monsterBlock > 0) {  if (!m.isDead) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); } }
     }
 
     // Which card to return when making a copy of this card.
@@ -84,6 +84,18 @@ public class Raigeki extends DuelistCard
 
 	@Override
 	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
 	}

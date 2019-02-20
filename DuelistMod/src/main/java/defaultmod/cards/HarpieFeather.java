@@ -98,4 +98,16 @@ public class HarpieFeather extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -38,11 +38,12 @@ public class MillenniumElixir extends AbstractPotion {
     @Override
     public void use(AbstractCreature target) 
     {
-        target = AbstractDungeon.player;
-        int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 6);
-		int randomTurnNumB = AbstractDungeon.cardRandomRng.random(1, 6);
-		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, false);
-		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNumB, false);
+    	target = AbstractDungeon.player;
+    	for (int i = 0; i < this.potency; i++)
+    	{
+	        int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 6);
+			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, false);
+    	}
     }
     
     @Override

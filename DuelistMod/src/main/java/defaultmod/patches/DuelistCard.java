@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.mod.replay.orbs.*;
 import com.megacrit.cardcrawl.mod.replay.powers.NecroticPoisonPower;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.ChemicalX;
@@ -27,7 +27,7 @@ import conspire.actions.ObtainGoldAction;
 import conspire.orbs.Water;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.*;
-import defaultmod.cards.SevenColoredFish;
+import defaultmod.cards.*;
 import defaultmod.orbs.*;
 import defaultmod.powers.*;
 import defaultmod.relics.MillenniumKey;
@@ -43,6 +43,9 @@ public abstract class DuelistCard extends CustomCard
 	public boolean isOverflow;
 	public boolean flag;
 	public boolean toon = false;
+	public boolean isSummon = false;
+	public boolean isTribute = false;
+	public boolean isCastle = false;
 	public int summons = 0;
 	public int tributes = 0;
 	public int upgradeDmg;
@@ -84,6 +87,8 @@ public abstract class DuelistCard extends CustomCard
 	
 	public abstract void onTribute(DuelistCard tributingCard);
 	public abstract void onSummon(int summons);
+	public abstract void summonThis(int summons, DuelistCard c, int var);
+	public abstract void summonThis(int summons, DuelistCard c, int var, AbstractMonster m);
 
 	public void becomeEthereal()
 	{
@@ -211,6 +216,43 @@ public abstract class DuelistCard extends CustomCard
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(player(), damageAmounts, dmgForTurn, effect));
 	}
+	
+	public static void damageAllEnemies(int damage)
+	{
+		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
+		attackAll(AbstractGameAction.AttackEffect.POISON, damageArray, DamageType.NORMAL);
+	}
+	
+	public void damageThroughBlock(AbstractCreature m, AbstractPlayer p, int damage, AttackEffect effect)
+	{
+		// Record target block and remove all of it
+		int targetArmor = m.currentBlock;
+		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
+
+		// Deal direct damage to target HP
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
+
+		// Restore original target block
+		if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }
+	}
+	
+	public void damageThroughBlockAllEnemies(AbstractPlayer p, int damage, AttackEffect effect)
+	{
+		ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
+		for (AbstractMonster m : monsters)
+		{
+			if (!m.isDead) 
+			{ 
+				damageThroughBlock(m, p, damage, effect); 
+			}
+		}
+	}
+	
+	public static void damageAllEnemiesThorns(int damage)
+	{
+		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
+		attackAll(AbstractGameAction.AttackEffect.POISON, damageArray, DamageType.THORNS);
+	}
 
 	protected void poisonAllEnemies(AbstractPlayer p, int amount)
 	{
@@ -252,24 +294,29 @@ public abstract class DuelistCard extends CustomCard
 		if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
 		else { potSummons = SUMMONS; }
 
-		// Add SUMMONS
-		summonsInstance.amount += SUMMONS;
 		
-		if (SUMMONS > 0) 
+		
+		
+		
+		// Add SUMMONS
+		summonsInstance.amount += potSummons;
+		
+		if (potSummons > 0) 
 		{ 
-			for (int i = 0; i < SUMMONS; i++) 
+			for (int i = 0; i < potSummons; i++) 
 			{ 
 				summonsInstance.summonList.add(c.originalName); summonsInstance.summonMap.put(c.originalName, c); 
 			} 
 			
-			c.onSummon(SUMMONS);
+			c.onSummon(potSummons);
+			System.out.println("theDuelist:DuelistCard:summon() ---> Called " + c.originalName + "'s onSummon()");
 		}
 
 		// Check for Pot of Generosity
 		if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
 		// Check for Summoning Sickness
-		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(SUMMONS * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 		// Check for Slifer
 		if (p.hasPower(SliferSkyPower.POWER_ID)) { channelRandomOrb(); } 
@@ -294,15 +341,15 @@ public abstract class DuelistCard extends CustomCard
 		else { potSummons = SUMMONS; }
 
 		// Add SUMMONS
-		summonsInstance.amount += SUMMONS;
+		summonsInstance.amount += potSummons;
 		
-		if (SUMMONS > 0) { for (int i = 0; i < SUMMONS; i++) { summonsInstance.summonList.add(cardName); } }
+		if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); summonsInstance.summonMap.put(cardName, new Token()); } }
 
 		// Check for Pot of Generosity
 		if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
 		// Check for Summoning Sickness
-		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(SUMMONS * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 		// Check for Slifer
 		if (p.hasPower(SliferSkyPower.POWER_ID)) { channelRandomOrb(); } 
@@ -323,7 +370,7 @@ public abstract class DuelistCard extends CustomCard
 		// Add SUMMONS
 		summonsInstance.amount += SUMMONS;
 		
-		if (SUMMONS > 0) { for (int i = 0; i < SUMMONS; i++) { summonsInstance.summonList.add(cardName); summonsInstance.summonMap.put(cardName, null); } }
+		if (SUMMONS > 0) { for (int i = 0; i < SUMMONS; i++) { summonsInstance.summonList.add(cardName); summonsInstance.summonMap.put(cardName, new Token()); } }
 		
 		// Update UI
 		summonsInstance.updateCount(summonsInstance.amount);
@@ -433,7 +480,7 @@ public abstract class DuelistCard extends CustomCard
 									int endIndex = summonsInstance.summonList.size() - 1;
 									DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
 									if (temp != null) { tributeList.add(temp); }
-									summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+									//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 									summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
 								}
 							}
@@ -442,7 +489,7 @@ public abstract class DuelistCard extends CustomCard
 						
 						summonsInstance.updateCount(summonsInstance.amount);
 						summonsInstance.updateDescription();
-						for (DuelistCard c : tributeList) {c.onTribute(card); }
+						for (DuelistCard c : tributeList) { c.onTribute(card); System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
 						return tributeList;
 					}
 					else
@@ -484,7 +531,7 @@ public abstract class DuelistCard extends CustomCard
 								int endIndex = summonsInstance.summonList.size() - 1;
 								DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
 								if (temp != null) { tributeList.add(temp); }
-								summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
 							}
 						}
@@ -493,7 +540,7 @@ public abstract class DuelistCard extends CustomCard
 					
 					summonsInstance.updateCount(summonsInstance.amount);
 					summonsInstance.updateDescription();
-					for (DuelistCard c : tributeList) {c.onTribute(card); }
+					for (DuelistCard c : tributeList) {c.onTribute(card); System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
 					return tributeList;
 				}
 			}
@@ -549,7 +596,7 @@ public abstract class DuelistCard extends CustomCard
 								int endIndex = summonsInstance.summonList.size() - 1;
 								DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
 								if (temp != null) { tributeList.add(temp); }
-								summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
 							}
 						}
@@ -558,7 +605,7 @@ public abstract class DuelistCard extends CustomCard
 					
 					summonsInstance.updateCount(summonsInstance.amount);
 					summonsInstance.updateDescription();
-					for (DuelistCard c : tributeList) {c.onTribute(null); }
+					for (DuelistCard c : tributeList) { c.onTribute(new Token()); System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
 					return tributes;
 				}
 				else
@@ -600,7 +647,7 @@ public abstract class DuelistCard extends CustomCard
 							int endIndex = summonsInstance.summonList.size() - 1;
 							DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
 							if (temp != null) { tributeList.add(temp); }
-							summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 							summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
 						}
 					}
@@ -609,23 +656,10 @@ public abstract class DuelistCard extends CustomCard
 				
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateDescription();
-				for (DuelistCard c : tributeList) {c.onTribute(null); }
+				for (DuelistCard c : tributeList) {c.onTribute(new Token()); System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
 				return tributes;
 			}
 		}
-	}
-
-	public void damageThroughBlock(AbstractCreature m, AbstractPlayer p, int damage, AttackEffect effect)
-	{
-		// Record target block and remove all of it
-		int targetArmor = m.currentBlock;
-		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
-
-		// Deal direct damage to target HP
-		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
-
-		// Restore original target block
-		if (targetArmor > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m, m, targetArmor)); }
 	}
 
 	protected void upgradeName(String newName) 
@@ -769,6 +803,27 @@ public abstract class DuelistCard extends CustomCard
 		return randomDebuff;
 
 	}
+	
+	public static AbstractPower getRandomDebuffPotion(AbstractPlayer p, AbstractMonster targetMonster, int turnNum)
+	{
+		// Setup powers array for random debuff selection
+		//AbstractPower slow = new SlowPower(targetMonster, turnNum );
+		AbstractPower vulnerable = new VulnerablePower(targetMonster, turnNum, true);
+		AbstractPower poison = new PoisonPower(targetMonster, p, turnNum);
+		AbstractPower nPoison = new NecroticPoisonPower(targetMonster, p, turnNum);
+		AbstractPower weak = new WeakPower(targetMonster, turnNum, true);
+		AbstractPower goop = new SlimedPower(targetMonster, p, turnNum);
+		AbstractPower blighted = new AmplifyDamagePower(targetMonster, turnNum);
+		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
+		AbstractPower[] debuffs = new AbstractPower[] {vulnerable, poison, nPoison, weak, goop, blighted, constricted};
+
+		// Get randomized debuff
+		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.length - 1);
+		AbstractPower randomDebuff = debuffs[randomDebuffNum];
+
+		return randomDebuff;
+
+	}
 
 	public static AbstractPower getRandomPlayerDebuff(AbstractPlayer p, int turnNum)
 	{
@@ -834,6 +889,11 @@ public abstract class DuelistCard extends CustomCard
 	public static void gainGold(int amount, AbstractCreature owner, boolean rain)
 	{
 		AbstractDungeon.actionManager.addToBottom(new ObtainGoldAction(amount, owner, rain));
+	}
+	
+	public static DuelistCard returnRandomFromArray(ArrayList<DuelistCard> tributeList)
+	{
+		return tributeList.get(AbstractDungeon.cardRandomRng.random(tributeList.size() - 1));
 	}
 
 	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom) 
@@ -960,6 +1020,21 @@ public abstract class DuelistCard extends CustomCard
 		for (DuelistCard card : DefaultMod.myCards)
 		{
 			if (card.hasTag(DefaultMod.TOON))
+			{
+				if (testCard.originalName.equals(card.originalName))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isDragon(AbstractCard testCard)
+	{
+		for (DuelistCard card : DefaultMod.myCards)
+		{
+			if (card.hasTag(DefaultMod.DRAGON))
 			{
 				if (testCard.originalName.equals(card.originalName))
 				{

@@ -37,6 +37,7 @@ public class Pumprincess extends DuelistCard
         this.tags.add(DefaultMod.NO_PUMPKIN);
         this.summons = 1;
 		this.originalName = this.name;
+		this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -46,7 +47,7 @@ public class Pumprincess extends DuelistCard
     	summon(p, this.summons, this);
     	ArrayList<AbstractCard> discards = player().discardPile.group;
     	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(c); } }
+    	for (AbstractCard card : discards) { if (card.tags.contains(DefaultMod.MONSTER) && !card.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(card); } }
     	if (toChooseFrom.size() > 0)
     	{
 	    	int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
@@ -93,6 +94,62 @@ public class Pumprincess extends DuelistCard
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		summon(p, summons, this);
+    	ArrayList<AbstractCard> discards = player().discardPile.group;
+    	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
+    	for (AbstractCard card : discards) { if (card.tags.contains(DefaultMod.MONSTER) && !card.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(card); } }
+    	if (toChooseFrom.size() > 0)
+    	{
+	    	int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
+	    	AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
+	    	String cardName = chosen.originalName;
+	    	System.out.println("theDuelist:Pumprincess:summonThis() --- > Found: " + cardName);
+	    	DuelistCard cardCopy = newCopyOfMonster(cardName);
+	    	if (cardCopy != null)
+	    	{
+		    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+		        cardCopy.freeToPlayOnce = true;
+		        cardCopy.applyPowers();
+		        cardCopy.purgeOnUse = true;
+		        if (chosen.upgraded || this.upgraded) { cardCopy.upgrade(); }
+		        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+	    	}
+    	}
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	ArrayList<AbstractCard> discards = player().discardPile.group;
+    	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
+    	for (AbstractCard card : discards) { if (card.tags.contains(DefaultMod.MONSTER) && !card.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(card); } }
+    	if (toChooseFrom.size() > 0)
+    	{
+	    	int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
+	    	AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
+	    	String cardName = chosen.originalName;
+	    	System.out.println("theDuelist:Pumprincess:summonThis() --- > Found: " + cardName);
+	    	DuelistCard cardCopy = newCopyOfMonster(cardName);
+	    	if (cardCopy != null)
+	    	{
+		    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+		        cardCopy.freeToPlayOnce = true;
+		        cardCopy.applyPowers();
+		        cardCopy.purgeOnUse = true;
+		        if (chosen.upgraded || this.upgraded) { cardCopy.upgrade(); }
+		        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+	    	}
+    	}
 		
 	}
 }

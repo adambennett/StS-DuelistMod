@@ -40,6 +40,8 @@ public class GammaMagnet extends DuelistCard
         this.tags.add(DefaultMod.MAGNETWARRIOR);
         this.draw = 1;
         this.originalName = this.name;
+        this.summons = SUMMONS;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -75,7 +77,8 @@ public class GammaMagnet extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
@@ -83,8 +86,27 @@ public class GammaMagnet extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onSummon(int summons) 
+	{
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p)));
+    	draw(this.draw);
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p)));
+    	draw(this.draw);
 		
 	}
 }

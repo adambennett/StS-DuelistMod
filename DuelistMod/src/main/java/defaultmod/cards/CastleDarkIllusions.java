@@ -37,6 +37,8 @@ public class CastleDarkIllusions extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
+        this.summons = 1;
+        this.isCastle = true;
     }
 
 
@@ -44,6 +46,7 @@ public class CastleDarkIllusions extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	summon(p, this.summons, this);
     	if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, true))); }
     	else {  AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, false))); }
     }
@@ -68,17 +71,35 @@ public class CastleDarkIllusions extends DuelistCard
 
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+
+	}
+
+	@Override
+	public void onSummon(int summons) 
+	{
+	
 	}
 
 
-	
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, true))); }
+    	else {  AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, false))); }
+	}
+
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, true))); }
+    	else {  AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, false))); }
 		
 	}
 }

@@ -258,10 +258,12 @@ public class DefaultMod
     
     // Fourth Set
     public static final String HANE_HANE = "cards/Hane_Hane.png";
+    public static final String LESSER_DRAGON = "cards/Lesser_Dragon.png";
+    public static final String GAIA_DRAGON_CHAMP = "cards/Gaia_Dragon_Champion.png";
+    
     public static final String BOOK_SECRET = "cards/Book_Secret_Arts.png";
     public static final String DRAGON_CAPTURE = "cards/Dragon_Capture_Jar.png";
     public static final String FINAL_FLAME = "cards/Final_Flame.png";
-    public static final String GAIA_DRAGON_CHAMP = "cards/Gaia_Dragon_Champion.png";
     public static final String GOBLIN_SECRET = "cards/Goblin_Secret_Remedy.png";
     public static final String MACHINE_FACTORY = "cards/Machine_Conversion_Factory.png";
     public static final String MOUNTAIN = "cards/Mountain.png";
@@ -299,7 +301,6 @@ public class DefaultMod
     public static final String BLACKLAND_FIRE_DRAGON = "cards/Blackland_Fire_Dragon.png";
     public static final String B_SKULL_DRAGON = "cards/B_Skull_Dragon.png";
     public static final String DARKFIRE_DRAGON = "cards/Darkfire_Dragon.png";
-    public static final String LESSER_DRAGON = "cards/Lesser_Dragon.png";
     public static final String LEVIA_DRAGON = "cards/Levia_Dragon_Daedalus.png";
     public static final String LUSTER_DRAGON = "cards/Luster_Dragon.png";
     public static final String LUSTER_DRAGON2 = "cards/Luster_Dragon2.png";
@@ -586,7 +587,7 @@ public class DefaultMod
        
         // Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
         BaseMod.addPotion(MillenniumElixir.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, MillenniumElixir.POTION_ID, TheDuelistEnum.THE_DUELIST);
-        BaseMod.addPotion(JoeyJuice.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, JoeyJuice.POTION_ID, TheDuelistEnum.THE_DUELIST);
+        //BaseMod.addPotion(JoeyJuice.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, JoeyJuice.POTION_ID, TheDuelistEnum.THE_DUELIST);
         BaseMod.addPotion(SealedPack.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPack.POTION_ID, TheDuelistEnum.THE_DUELIST);
         BaseMod.addPotion(SealedPackB.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPackB.POTION_ID, TheDuelistEnum.THE_DUELIST);
         
@@ -772,6 +773,9 @@ public class DefaultMod
 	    BaseMod.addCard(new LordD());
 	    BaseMod.addCard(new FluteSummoning());
 	    BaseMod.addCard(new HaneHane());
+	    BaseMod.addCard(new LesserDragon());
+	    BaseMod.addCard(new GaiaDragonChamp());
+	    BaseMod.addCard(new DragonCaptureJar());
 	    
     	// random only
 	    /*
@@ -923,6 +927,9 @@ public class DefaultMod
 	    UnlockTracker.unlockCard(LordD.ID);
 	    UnlockTracker.unlockCard(FluteSummoning.ID);
 	    UnlockTracker.unlockCard(HaneHane.ID);
+	    UnlockTracker.unlockCard(LesserDragon.ID);
+	    UnlockTracker.unlockCard(GaiaDragonChamp.ID);
+	    UnlockTracker.unlockCard(DragonCaptureJar.ID);
 	    
     	// random only
     	UnlockTracker.unlockCard(CurseDragon.ID);
@@ -931,6 +938,7 @@ public class DefaultMod
     	UnlockTracker.unlockCard(FiendSkull.ID);
     	UnlockTracker.unlockCard(FiveHeaded.ID);
     	UnlockTracker.unlockCard(Gandora.ID);
+    	
 		
         logger.info("Done adding cards!");
         
@@ -1077,13 +1085,10 @@ public class DefaultMod
     	myCards.add(new FiveHeaded());
     	myCards.add(new Gandora());
     	myCards.add(new HaneHane());
+    	myCards.add(new LesserDragon());
+    	myCards.add(new GaiaDragonChamp());
+    	myCards.add(new DragonCaptureJar());
     	
-        
-        
-        
-        
-        
-
     }
 
     // ================ /ADD CARDS/ ===================
@@ -1127,7 +1132,7 @@ public class DefaultMod
     public void receiveEditKeywords() {
         final String[] placeholder = { "keyword", "keywords", "Keyword", "Keywords" };
         BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
-        BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of #b5 #ySummons.");
+        BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons", "Resummon", "resummon"}, "Counts monsters currently summoned. Maximum of #b5 #ySummons.");
         BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes", "sacrifice"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
         BaseMod.addKeyword(new String[] {"Increment", "increment" }, "Increase your maximum #ySummons by the number given.");
         //BaseMod.addKeyword(new String[] {"counter", "Counter", "Counters", "counters"}, "#ySpell #yCounters have no inherent effect. Used in tandem with magic monsters to trigger powerful effects.");	
@@ -1139,7 +1144,7 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"MonsterOrb", "monsterorb", "MonsterOrb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
         BaseMod.addKeyword(new String[] {"Dragonorb", "dragonorb", "DragonOrb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
-        BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active.");
+        BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the triubte, deal #b5 damage to all enemies.");
         BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
         BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
        

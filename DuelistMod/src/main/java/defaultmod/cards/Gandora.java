@@ -69,7 +69,7 @@ public class Gandora extends DuelistCard
 	    	AbstractCard randomDragon = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.DRAGON);
 	    	randomDragon.upgrade();
 	    	randomDragon.updateCost(0);
-			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(randomDragon, 1, true, true));
+			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(randomDragon, 1, false));
     	}
     }
 
@@ -128,6 +128,18 @@ public class Gandora extends DuelistCard
 
 	@Override
 	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
 	}

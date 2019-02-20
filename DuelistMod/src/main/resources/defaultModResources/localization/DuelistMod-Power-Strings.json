@@ -43,6 +43,10 @@
         "NAME": "Toon Briefcase",
         "DESCRIPTIONS": ["#yToon monsters played this turn are added back to your hand at the end of your turn. Toons: "]
 },
+"theDuelist:DragonCapturePower": {
+        "NAME": "Dragon Capture Jar",
+        "DESCRIPTIONS": ["#yDragon monsters played this turn are added back to your hand at the end of your turn. Dragons: "]
+},
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",
         "DESCRIPTIONS": ["Each time you #ySummon, gain #b", " [E] ."]

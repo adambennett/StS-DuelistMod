@@ -41,22 +41,12 @@ public class JoeyJuice extends AbstractPotion {
     @Override
     public void use(AbstractCreature target) 
     {
-    	if (!target.isPlayer)
+    	AbstractMonster monster = (AbstractMonster) target;
+    	for (int i = 0; i < this.potency; i++)
     	{
-	    	AbstractMonster monster = (AbstractMonster) target;
 	        int randomTurnNum = AbstractDungeon.cardRandomRng.random(2, 4);
-			int randomTurnNumB = AbstractDungeon.cardRandomRng.random(2, 4);
-			//int randomTurnNumC = ThreadLocalRandom.current().nextInt(2, 4 + 1);
-	
-			// Get random debuffs
-			AbstractPower randomDebuff = DuelistCard.getRandomDebuff(AbstractDungeon.player, monster, randomTurnNum + this.potency);
-			AbstractPower randomDebuffB = DuelistCard.getRandomDebuff(AbstractDungeon.player, monster, randomTurnNumB + this.potency);
-			//AbstractPower randomDebuffC = DuelistCard.getRandomDebuff(AbstractDungeon.player, monster, randomTurnNumC + this.potentcy);
-	
-			// Apply random debuff(s)
-			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, randomDebuff, randomTurnNum + this.potency));
-			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, randomDebuffB, randomTurnNumB + this.potency));
-			//AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, randomDebuffC, randomTurnNumC + this.potency));
+			AbstractPower randomDebuff = DuelistCard.getRandomDebuffPotion(AbstractDungeon.player, monster, randomTurnNum + this.potency);
+			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, AbstractDungeon.player, randomDebuff, randomTurnNum + this.potency));
     	}
     }
     

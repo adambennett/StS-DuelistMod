@@ -3,6 +3,7 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -38,6 +39,8 @@ public class GiantSoldier extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.originalName = this.name;
+        this.summons = SUMMONS;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -77,6 +80,22 @@ public class GiantSoldier extends DuelistCard
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	block(this.block);
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	block(this.block);
 		
 	}
 }

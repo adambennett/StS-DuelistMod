@@ -12,42 +12,44 @@ import defaultmod.patches.*;
 
 public class OjamaYellow extends DuelistCard 
 {
-    // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("OjamaYellow");
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.OJAMA_YELLOW);
-    public static final String NAME = cardStrings.NAME;
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    // /TEXT DECLARATION/
+	// TEXT DECLARATION
+	public static final String ID = defaultmod.DefaultMod.makeID("OjamaYellow");
+	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+	public static final String IMG = DefaultMod.makePath(DefaultMod.OJAMA_YELLOW);
+	public static final String NAME = cardStrings.NAME;
+	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+	// /TEXT DECLARATION/
 
-    // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
-    private static final int SUMMONS = 1;
-    private static final int CARDS = 2;
-    // /STAT DECLARATION/
+	// STAT DECLARATION
+	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardType TYPE = CardType.SKILL;
+	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	private static final int COST = 0;
+	private static final int SUMMONS = 1;
+	private static final int CARDS = 2;
+	// /STAT DECLARATION/
 
-    public OjamaYellow() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = CARDS;
-        this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.OJAMA);
-        this.tags.add(DefaultMod.INVASION_CHAOS);
+	public OjamaYellow() {
+		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+		this.baseMagicNumber = this.magicNumber = CARDS;
+		this.tags.add(DefaultMod.MONSTER);
+		this.tags.add(DefaultMod.OJAMA);
+		this.tags.add(DefaultMod.INVASION_CHAOS);
 		this.originalName = this.name;
 		this.exhaust = true;
-    }
+		this.summons = SUMMONS;
+		this.isSummon = true;
+	}
 
-    
-    // Actions the card should do.
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	summon(p, SUMMONS, this);
-		
+
+	// Actions the card should do.
+	@Override
+	public void use(AbstractPlayer p, AbstractMonster m) 
+	{
+		summon(p, SUMMONS, this);
+
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
@@ -56,37 +58,68 @@ public class OjamaYellow extends DuelistCard
 			randomMonster.costForTurn = randomNum;
 			addCardToHand(randomMonster);
 		}
-    }
+	}
 
-    // Which card to return when making a copy of this card.
-    @Override
-    public AbstractCard makeCopy() {
-        return new OjamaYellow();
-    }
+	// Which card to return when making a copy of this card.
+	@Override
+	public AbstractCard makeCopy() {
+		return new OjamaYellow();
+	}
 
-    // Upgraded stats.
-    @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeMagicNumber(2);
-            //this.upgradeBaseCost(0);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
-    }
+	// Upgraded stats.
+	@Override
+	public void upgrade() {
+		if (!this.upgraded) {
+			this.upgradeName();
+			this.upgradeMagicNumber(2);
+			//this.upgradeBaseCost(0);
+			this.rawDescription = UPGRADE_DESCRIPTION;
+			this.initializeDescription();
+		}
+	}
 
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+
+	}
+
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+		for (int i = 0; i < this.magicNumber; i++)
+		{
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
+			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
+			randomMonster.costForTurn = randomNum;
+			addCardToHand(randomMonster);
+		}
+
+	}
+
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+		for (int i = 0; i < this.magicNumber; i++)
+		{
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
+			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
+			randomMonster.costForTurn = randomNum;
+			addCardToHand(randomMonster);
+		}
 		
 	}
 }

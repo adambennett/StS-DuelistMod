@@ -46,7 +46,12 @@ public class Pumpking extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
+    	// Tribute and check for Castle of Dark Illusions
+    	int castleDarkMod = 0;
+    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
+    	if (tributeList.size() > 0) { for (DuelistCard c : tributeList) { if (c.isCastle) { castleDarkMod += 3; }}}
+    	
+    	// Look through discard pile, find the right amount of cards to play, then play them
     	ArrayList<AbstractCard> discards = player().discardPile.group;
     	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
     	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(c); } }
@@ -58,20 +63,23 @@ public class Pumpking extends DuelistCard
 	    	System.out.println("theDuelist:Pumpking --- > Found: " + cardName);
 	    	if (!upgraded)
 	    	{
-		    	DuelistCard cardCopy = newCopyOfMonster(cardName);
-		    	if (cardCopy != null)
-		    	{
-			    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-			    	cardCopy.upgrade();
-			        cardCopy.freeToPlayOnce = true;
-			        cardCopy.applyPowers();
-			        cardCopy.purgeOnUse = true;
-			        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-		    	}
+	    		for (int i = 0; i < 1 + castleDarkMod; i++)
+	    		{
+			    	DuelistCard cardCopy = newCopyOfMonster(cardName);
+			    	if (cardCopy != null)
+			    	{
+				    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+				    	cardCopy.upgrade();
+				        cardCopy.freeToPlayOnce = true;
+				        cardCopy.applyPowers();
+				        cardCopy.purgeOnUse = true;
+				        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+			    	}
+	    		}
 	    	}
 	    	else
 	    	{
-	    		for (int i = 0; i < 2; i++)
+	    		for (int i = 0; i < 2 + castleDarkMod; i++)
 	    		{
 		    		DuelistCard cardCopy = newCopyOfMonster(cardName);
 			    	if (cardCopy != null)
@@ -143,6 +151,18 @@ public class Pumpking extends DuelistCard
 
 	@Override
 	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
 	}

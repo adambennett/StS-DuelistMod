@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -40,6 +41,8 @@ public class SevenColoredFish extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
+        this.summons = SUMMONS;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -50,7 +53,7 @@ public class SevenColoredFish extends DuelistCard
     	attack(m, AFX, this.damage);
     	
     	// for testing
-    	printSetDetails(new CardTags[] {DefaultMod.MONSTER, DefaultMod.SPELL, DefaultMod.TRAP, DefaultMod.DRAGON, DefaultMod.LEGEND_BLUE_EYES, DefaultMod.METAL_RAIDERS, DefaultMod.PHARAOH_SERVANT});
+    	//printSetDetails(new CardTags[] {DefaultMod.MONSTER, DefaultMod.SPELL, DefaultMod.TRAP, DefaultMod.DRAGON, DefaultMod.LEGEND_BLUE_EYES, DefaultMod.METAL_RAIDERS, DefaultMod.PHARAOH_SERVANT});
     }
 
     // Which card to return when making a copy of this card.
@@ -81,6 +84,24 @@ public class SevenColoredFish extends DuelistCard
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var)
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	attack(m, AFX, this.damage);
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	attack(m, AFX, this.damage);
 		
 	}
 }

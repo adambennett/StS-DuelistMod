@@ -39,6 +39,7 @@ public class BetaMagnet extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
         this.originalName = this.name;
+        this.summons = SUMMONS;
     }
 
     // Actions the card should do.
@@ -83,6 +84,24 @@ public class BetaMagnet extends DuelistCard
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p)));
+    	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p)));
+    	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
 		
 	}
 }

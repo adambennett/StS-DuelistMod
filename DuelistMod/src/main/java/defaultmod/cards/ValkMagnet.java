@@ -42,6 +42,8 @@ public class ValkMagnet extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
 		this.originalName = this.name;
+		this.summons = SUMMONS;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -97,7 +99,8 @@ public class ValkMagnet extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
@@ -106,6 +109,23 @@ public class ValkMagnet extends DuelistCard
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	attack(m, AFX, this.damage);
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	attack(m, AFX, this.damage);
 		
 	}
 }

@@ -3,6 +3,7 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -25,7 +26,7 @@ public class GeminiElf extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int SUMMONS = 2;
     //private static final int UPGRADE_SUMMONS = 1;
     // /STAT DECLARATION/
@@ -36,8 +37,10 @@ public class GeminiElf extends DuelistCard
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
-        this.exhaust = true;
+        //this.exhaust = true;
         this.originalName = this.name;
+        this.summons = this.magicNumber;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
@@ -59,7 +62,9 @@ public class GeminiElf extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeMagicNumber(UPGRADE_SUMMONS);
-            this.exhaust = false;
+            //this.exhaust = false;
+            this.upgradeMagicNumber(1);
+            this.summons += 1;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -80,6 +85,20 @@ public class GeminiElf extends DuelistCard
 	@Override
 	public void onSummon(int summons) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
 		
 	}
 }
