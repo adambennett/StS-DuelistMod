@@ -43,7 +43,7 @@ public class Pumprincess extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons);
+    	summon(p, this.summons, this);
     	ArrayList<AbstractCard> discards = player().discardPile.group;
     	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
     	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(c); } }
@@ -82,4 +82,17 @@ public class Pumprincess extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -105,4 +105,17 @@ public class MonsterReborn extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

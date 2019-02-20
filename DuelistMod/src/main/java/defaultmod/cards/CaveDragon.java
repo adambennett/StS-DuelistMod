@@ -44,7 +44,7 @@ public class CaveDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons);
+    	summon(p, this.summons, this);
     	block(this.block);
     }
 
@@ -64,4 +64,18 @@ public class CaveDragon extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

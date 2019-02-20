@@ -42,7 +42,7 @@ public class AncientRules extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber);
+    	summon(p, this.magicNumber, this);
     }
 
     // Which card to return when making a copy of this card.
@@ -63,4 +63,18 @@ public class AncientRules extends DuelistCard
         	this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

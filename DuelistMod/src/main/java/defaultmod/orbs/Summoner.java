@@ -58,7 +58,7 @@ public class Summoner extends AbstractOrb
 	
 	private void triggerPassiveEffect()
 	{
-		DuelistCard.summon(AbstractDungeon.player, this.passiveAmount);
+		DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token");
 	}
 	
 

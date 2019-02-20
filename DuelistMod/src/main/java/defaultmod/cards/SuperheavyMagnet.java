@@ -45,7 +45,7 @@ public class SuperheavyMagnet extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS);
+    	summon(p, SUMMONS, this);
     	block(this.block);
     	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
     	switch (randomMagnetNum)
@@ -73,4 +73,17 @@ public class SuperheavyMagnet extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

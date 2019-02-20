@@ -51,7 +51,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS);
+    	summon(p, SUMMONS, this);
     	AbstractOrb crystal = new CrystalOrb();
     	channel(crystal);
     }
@@ -108,5 +108,18 @@ public class ToonDarkMagicianGirl extends DuelistCard
     	this.cantUseMessage = "You need Toon World";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

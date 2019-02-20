@@ -48,7 +48,7 @@ public class JudgeMan extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		tribute(p, TRIBUTES, false, this);
-		summon(p, SUMMONS);
+		summon(p, SUMMONS, this);
 		attack(m, AFX, this.damage);
     }
 		
@@ -98,4 +98,18 @@ public class JudgeMan extends DuelistCard
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

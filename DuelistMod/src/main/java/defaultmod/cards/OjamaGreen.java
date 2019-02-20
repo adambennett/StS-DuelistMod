@@ -48,7 +48,7 @@ public class OjamaGreen extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Summon
-		summon(p, SUMMONS);
+		summon(p, SUMMONS, this);
 		
 		// Get number of buffs
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
@@ -88,4 +88,17 @@ public class OjamaGreen extends DuelistCard
             this.initializeDescription();
         }
     }
+
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

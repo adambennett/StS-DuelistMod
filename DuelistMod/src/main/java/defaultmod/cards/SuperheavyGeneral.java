@@ -71,7 +71,7 @@ public class SuperheavyGeneral extends DuelistCard
         }
     }
     
- // If player doesn't have enough summons, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
@@ -99,4 +99,16 @@ public class SuperheavyGeneral extends DuelistCard
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

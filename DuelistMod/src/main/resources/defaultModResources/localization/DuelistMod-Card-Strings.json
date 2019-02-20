@@ -536,8 +536,8 @@
 	},
 	"theDuelist:GeminiElf": {
 		"NAME": "Gemini Elf",
-		"DESCRIPTION": "Summon !M!. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!."
+		"DESCRIPTION": "Summon !M!. If you Tribute this monster for a Dragon, take 2 damage.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. If you Tribute this monster for a Dragon, take 1 damage."
 	},
 	"theDuelist:BigFire": {
 		"NAME": "Tremendous Fire",
@@ -703,6 +703,11 @@
 		"NAME": "Lord of D.",
 		"DESCRIPTION": "Tribute 2. Channel a DragonOrb.",
 		"UPGRADE_DESCRIPTION": "Tribute 2. Channel a DragonOrb+."
+	},
+	"theDuelist:HaneHane": {
+		"NAME": "Hane Hane",
+		"DESCRIPTION": "Summon !M!. Gain !B! block. If this monster is tributed, Summon 1 and gain !B! block.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. Gain !B! block. If this monster is tributed, Summon 1 and gain !B! block."
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",

@@ -81,6 +81,9 @@ public abstract class DuelistCard extends CustomCard
 	{
 		return this;
 	}
+	
+	public abstract void onTribute(DuelistCard tributingCard);
+	public abstract void onSummon(int summons);
 
 	public void becomeEthereal()
 	{
@@ -236,10 +239,10 @@ public abstract class DuelistCard extends CustomCard
 		}
 	}
 
-	public static void summon(AbstractPlayer p, int SUMMONS)
+	public static void summon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
-		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 0), 0)); }
+		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p), 0)); }
 
 		// Setup Pot of Generosity
 		int potSummons = 0;
@@ -251,6 +254,49 @@ public abstract class DuelistCard extends CustomCard
 
 		// Add SUMMONS
 		summonsInstance.amount += SUMMONS;
+		
+		if (SUMMONS > 0) 
+		{ 
+			for (int i = 0; i < SUMMONS; i++) 
+			{ 
+				summonsInstance.summonList.add(c.originalName); summonsInstance.summonMap.put(c.originalName, c); 
+			} 
+			
+			c.onSummon(SUMMONS);
+		}
+
+		// Check for Pot of Generosity
+		if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
+
+		// Check for Summoning Sickness
+		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(SUMMONS * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+
+		// Check for Slifer
+		if (p.hasPower(SliferSkyPower.POWER_ID)) { channelRandomOrb(); } 
+	
+		
+		// Update UI
+		summonsInstance.updateCount(summonsInstance.amount);
+		summonsInstance.updateDescription();
+	}
+	
+	public static void powerSummon(AbstractPlayer p, int SUMMONS, String cardName)
+	{
+		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
+		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p), 0)); }
+
+		// Setup Pot of Generosity
+		int potSummons = 0;
+		int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+		SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+		int maxSummons = summonsInstance.MAX_SUMMONS;
+		if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
+		else { potSummons = SUMMONS; }
+
+		// Add SUMMONS
+		summonsInstance.amount += SUMMONS;
+		
+		if (SUMMONS > 0) { for (int i = 0; i < SUMMONS; i++) { summonsInstance.summonList.add(cardName); } }
 
 		// Check for Pot of Generosity
 		if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
@@ -266,17 +312,19 @@ public abstract class DuelistCard extends CustomCard
 		summonsInstance.updateDescription();
 	}
 
-	public static void summonLite(AbstractPlayer p, int SUMMONS)
+	public static void summonLite(AbstractPlayer p, int SUMMONS, String cardName)
 	{
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
-		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p, 0), 0)); }
+		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p), 0)); }
 
 		// Get summon power instance
 		SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 
 		// Add SUMMONS
 		summonsInstance.amount += SUMMONS;
-
+		
+		if (SUMMONS > 0) { for (int i = 0; i < SUMMONS; i++) { summonsInstance.summonList.add(cardName); summonsInstance.summonMap.put(cardName, null); } }
+		
 		// Update UI
 		summonsInstance.updateCount(summonsInstance.amount);
 		summonsInstance.updateDescription();
@@ -339,13 +387,14 @@ public abstract class DuelistCard extends CustomCard
 		}
 	}
 
-	public static int tribute(AbstractPlayer p, int tributes, boolean tributeAll, DuelistCard card)
+	public static ArrayList<DuelistCard> tribute(AbstractPlayer p, int tributes, boolean tributeAll, DuelistCard card)
 	{
+		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
 		if (card.misc != 52)
 		{
 			// If no summons, just skip this so we don't crash
 			// This should never be called without summons due to canUse() checking for tributes before use() can be run
-			if (!p.hasPower(SummonPower.POWER_ID)) { return 0; }
+			if (!p.hasPower(SummonPower.POWER_ID)) { return null; }
 			else
 			{
 				//	Check for Mausoleum of the Emperor
@@ -367,9 +416,6 @@ public abstract class DuelistCard extends CustomCard
 							AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
 						}
 
-						summonsInstance.updateCount(summonsInstance.amount);
-						summonsInstance.updateDescription();
-
 						// Check for Pharaoh's Curse
 						if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
@@ -377,12 +423,32 @@ public abstract class DuelistCard extends CustomCard
 						if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 						if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-						return tributes;
+						// Look through summonsList and remove #tributes strings
+						if (tributes > 0) 
+						{
+							for (int i = 0; i < tributes; i++)
+							{
+								if (summonsInstance.summonList.size() > 0)
+								{
+									int endIndex = summonsInstance.summonList.size() - 1;
+									DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+									if (temp != null) { tributeList.add(temp); }
+									summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+									summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+								}
+							}
+						}
+						
+						
+						summonsInstance.updateCount(summonsInstance.amount);
+						summonsInstance.updateDescription();
+						for (DuelistCard c : tributeList) {c.onTribute(card); }
+						return tributeList;
 					}
 					else
 					{
 						empInstance.flag = true;
-						return 0;
+						return null;
 					}
 				}
 				else
@@ -401,9 +467,6 @@ public abstract class DuelistCard extends CustomCard
 						AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
 					}
 
-					summonsInstance.updateCount(summonsInstance.amount);
-					summonsInstance.updateDescription();
-
 					// Check for Pharaoh's Curse
 					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
@@ -411,19 +474,40 @@ public abstract class DuelistCard extends CustomCard
 					if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 					if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-					return tributes;
+					// Look through summonsList and remove #tributes strings
+					if (tributes > 0) 
+					{
+						for (int i = 0; i < tributes; i++)
+						{
+							if (summonsInstance.summonList.size() > 0)
+							{
+								int endIndex = summonsInstance.summonList.size() - 1;
+								DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+								if (temp != null) { tributeList.add(temp); }
+								summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+							}
+						}
+					}
+					
+					
+					summonsInstance.updateCount(summonsInstance.amount);
+					summonsInstance.updateDescription();
+					for (DuelistCard c : tributeList) {c.onTribute(card); }
+					return tributeList;
 				}
 			}
 		}
 		else
 		{
-			return 0;
+			return null;
 		}
 
 	}
 
 	public static int powerTribute(AbstractPlayer p, int tributes, boolean tributeAll)
 	{
+		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
 		// If no summons, just skip this so we don't crash
 		// This should never be called without summons due to canUse() checking for tributes before use() can be run
 		if (!p.hasPower(SummonPower.POWER_ID)) { return 0; }
@@ -448,9 +532,6 @@ public abstract class DuelistCard extends CustomCard
 						AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
 					}
 
-					summonsInstance.updateCount(summonsInstance.amount);
-					summonsInstance.updateDescription();
-
 					// Check for Pharaoh's Curse
 					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
@@ -458,6 +539,26 @@ public abstract class DuelistCard extends CustomCard
 					if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 					if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
+					// Look through summonsList and remove #tributes strings					
+					if (tributes > 0) 
+					{
+						for (int i = 0; i < tributes; i++)
+						{
+							if (summonsInstance.summonList.size() > 0)
+							{
+								int endIndex = summonsInstance.summonList.size() - 1;
+								DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+								if (temp != null) { tributeList.add(temp); }
+								summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+							}
+						}
+					}
+					
+					
+					summonsInstance.updateCount(summonsInstance.amount);
+					summonsInstance.updateDescription();
+					for (DuelistCard c : tributeList) {c.onTribute(null); }
 					return tributes;
 				}
 				else
@@ -482,16 +583,33 @@ public abstract class DuelistCard extends CustomCard
 					AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
 				}
 
-				summonsInstance.updateCount(summonsInstance.amount);
-				summonsInstance.updateDescription();
-
 				// Check for Pharaoh's Curse
 				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 				// Check for Toon Tribute power
 				if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 				if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
-
+				
+				// Look through summonsList and remove #tributes strings
+				if (tributes > 0) 
+				{
+					for (int i = 0; i < tributes; i++)
+					{
+						if (summonsInstance.summonList.size() > 0)
+						{
+							int endIndex = summonsInstance.summonList.size() - 1;
+							DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+							if (temp != null) { tributeList.add(temp); }
+							summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+							summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+						}
+					}
+				}
+				
+				
+				summonsInstance.updateCount(summonsInstance.amount);
+				summonsInstance.updateDescription();
+				for (DuelistCard c : tributeList) {c.onTribute(null); }
 				return tributes;
 			}
 		}

@@ -43,7 +43,7 @@ public class BabyDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons);
+    	summon(p, this.summons, this);
     	block(this.block);
     	// check for Time Wizard?
     }
@@ -64,4 +64,16 @@ public class BabyDragon extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

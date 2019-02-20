@@ -46,7 +46,7 @@ public class SevenColoredFish extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber);
+    	summon(p, this.magicNumber, this);
     	attack(m, AFX, this.damage);
     	
     	// for testing
@@ -70,4 +70,17 @@ public class SevenColoredFish extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) 
+	{
+	
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

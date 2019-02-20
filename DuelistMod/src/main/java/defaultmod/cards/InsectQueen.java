@@ -47,7 +47,7 @@ public class InsectQueen extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		// Tribute all
-		int playerSummons = tribute(p, 0, true, this);
+		int playerSummons = tribute(p, 0, true, this).size();
 
 		// Apply poison to all enemies
 		poisonAllEnemies(p, playerSummons * POISON_MULT);
@@ -90,5 +90,19 @@ public class InsectQueen extends DuelistCard
     	this.cantUseMessage = "You need at least 1 Summon to Tribute";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

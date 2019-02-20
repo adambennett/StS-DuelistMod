@@ -84,4 +84,17 @@ public class PotAvarice extends DuelistCard
     	this.cantUseMessage = "You need at least 1 Summon to Tribute";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

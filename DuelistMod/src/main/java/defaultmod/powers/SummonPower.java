@@ -1,5 +1,7 @@
 package defaultmod.powers;
 
+import java.util.*;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -7,6 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.patches.DuelistCard;
 import defaultmod.relics.*;
 
 public class SummonPower extends AbstractPower
@@ -19,12 +22,15 @@ public class SummonPower extends AbstractPower
 
 	public int MAX_SUMMONS = 5;
 	public int test = 5;
+	public ArrayList<String> summonList = new ArrayList<String>();
+	public HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
 
-	public SummonPower(AbstractCreature owner, int newAmount) {
+	// Constructor for DuelistCard (primary summon methods)
+	public SummonPower(AbstractCreature owner) {
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
-		this.amount = newAmount;
+		this.amount = 0;
 		this.img = new Texture(IMG);
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
@@ -32,26 +38,21 @@ public class SummonPower extends AbstractPower
 		updateDescription();
 	}
 
-	public SummonPower(AbstractCreature owner, int newAmount, String desc) {
+	
+	// Constructor for Starter Relic
+	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) {
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
 		this.amount = newAmount;
 		this.img = new Texture(IMG);
 		this.description = desc;
+		this.canGoNegative = false;
+		this.type = PowerType.BUFF;
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 3; }
 		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 10; }
-		updateCount(this.amount);
-		updateDescription();
-	}
-
-	public SummonPower(AbstractCreature owner, int newMax, boolean increment) {
-		this.name = NAME;
-		this.ID = POWER_ID;
-		this.owner = owner;
-		this.img = new Texture(IMG);
-		if (increment) { MAX_SUMMONS += newMax; }
-		else { MAX_SUMMONS = newMax; }
+		summonList.add(newSummon);
+		summonMap.put("Puzzle Token", null);
 		updateCount(this.amount);
 		updateDescription();
 	}
@@ -69,11 +70,16 @@ public class SummonPower extends AbstractPower
 	{
 		if (this.amount > 0)
 		{
-			this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2];
+			String summonsString = "";
+			for (String s : summonList) { summonsString += s + ", "; }
+			int endingIndex = summonsString.lastIndexOf(",");
+	        String finalSummonsString = summonsString.substring(0, endingIndex) + ".";
+			this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + finalSummonsString;
 		}
 		else
 		{
-			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2];
+			summonList = new ArrayList<String>();
+			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "None.";
 		} 
 	}
 

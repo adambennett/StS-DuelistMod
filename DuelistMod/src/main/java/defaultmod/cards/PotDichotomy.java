@@ -44,7 +44,7 @@ public class PotDichotomy extends DuelistCard
     {
     	this.summons = getXEffect();
     	if (this.upgraded) { this.summons += this.upgradeSummons; }
-    	summon(p, this.summons);
+    	summon(p, this.summons, this);
     	useXEnergy();
     }
 
@@ -61,4 +61,16 @@ public class PotDichotomy extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

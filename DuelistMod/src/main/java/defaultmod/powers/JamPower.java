@@ -53,7 +53,7 @@ public class JamPower extends AbstractPower
     	// If owner still has power
     	if (this.owner.hasPower(JamPower.POWER_ID))
     	{
-    		JamBreeding.summon(AbstractDungeon.player, SUMMONS);
+    		JamBreeding.powerSummon(AbstractDungeon.player, SUMMONS, "Jam Token");
 			
 			// Deal 5 damage to a random enemy for each copy of Jam Breeding Machine that has been played
 			for (int i = 0; i < this.amount; i++)

@@ -47,7 +47,7 @@ public class ToonMermaid extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons);
+    	summon(p, this.summons, this);
     	damageThroughBlock(m, p, this.damage, AFX);
     }
 
@@ -82,5 +82,18 @@ public class ToonMermaid extends DuelistCard
     	this.cantUseMessage = "You need Toon World";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

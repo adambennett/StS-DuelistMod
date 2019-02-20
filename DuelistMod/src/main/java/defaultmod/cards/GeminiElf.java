@@ -44,7 +44,7 @@ public class GeminiElf extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber);
+    	summon(p, this.magicNumber, this);
     }
  
     // Which card to return when making a copy of this card.
@@ -64,4 +64,22 @@ public class GeminiElf extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON))
+		{
+			if (upgraded) { damageSelf(1); }
+			else { damageSelf(2); }
+		}
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

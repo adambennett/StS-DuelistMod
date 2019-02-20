@@ -47,7 +47,7 @@ public class SuperheavyOgre extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons);
+    	summon(p, this.summons, this);
     	if (upgraded) { attack(m, AFX, this.damage); }
     	applyPowerToSelf(new DexterityPower(p, this.dex));
     }
@@ -69,4 +69,16 @@ public class SuperheavyOgre extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

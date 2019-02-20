@@ -20,7 +20,7 @@ public class AbstractCardRenderTypePatch
         boolean isTrap = DefaultMod.isTrap(__instance);
         boolean isMonster = DefaultMod.isMonster(__instance);
         
-        if (isMonster) 		{ text[0] = "  Monster  "; 	} 
+        if (isMonster) 		{ text[0] = "Monster"; 	} 
         else if (isTrap) 	{ text[0] = "Trap";  	} 
         else if (isSpell) 	{ text[0] = "Spell";    }
     }

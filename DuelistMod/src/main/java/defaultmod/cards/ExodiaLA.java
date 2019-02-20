@@ -49,7 +49,7 @@ public class ExodiaLA extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	summon(p, this.summons);
+    	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     	
     	// If player has already played at least 1 other piece of exodia
@@ -91,4 +91,17 @@ public class ExodiaLA extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

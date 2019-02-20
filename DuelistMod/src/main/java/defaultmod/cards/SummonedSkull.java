@@ -1,5 +1,7 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -47,8 +49,15 @@ public class SummonedSkull extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
+		ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
+		for (DuelistCard c : tributeList)
+		{
+			if (c.hasTag(DefaultMod.MONSTER))
+			{
+				System.out.println("Summoned Skull tributed a monster! The monster was: " + c.originalName);
+			}
+		}
 	}
 
 	// Which card to return when making a copy of this card.
@@ -100,4 +109,17 @@ public class SummonedSkull extends DuelistCard
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
+
+	
+	@Override
+	public void onTribute(DuelistCard tributingCard)
+	{
+		
+	}
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

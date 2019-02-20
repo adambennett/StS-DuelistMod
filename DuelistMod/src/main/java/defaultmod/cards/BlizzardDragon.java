@@ -99,5 +99,19 @@ public class BlizzardDragon extends DuelistCard
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
    
 }

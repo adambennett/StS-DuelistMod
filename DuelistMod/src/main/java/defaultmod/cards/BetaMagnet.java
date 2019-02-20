@@ -45,7 +45,7 @@ public class BetaMagnet extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS);
+    	summon(p, SUMMONS, this);
     	
     	// Gain Beta Magnet
     	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p)));
@@ -71,4 +71,18 @@ public class BetaMagnet extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

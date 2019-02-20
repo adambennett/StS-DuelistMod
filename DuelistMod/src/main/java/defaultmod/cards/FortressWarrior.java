@@ -49,7 +49,7 @@ public class FortressWarrior extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		tribute(p, this.tributes, false, this);
-		summon(p, this.summons);
+		summon(p, this.summons, this);
 		attack(m, AFX, this.damage);
 		block(this.block);
     }
@@ -101,4 +101,18 @@ public class FortressWarrior extends DuelistCard
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

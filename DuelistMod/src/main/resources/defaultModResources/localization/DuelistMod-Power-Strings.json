@@ -1,7 +1,7 @@
 {
 "theDuelist:SummonPower": {
         "NAME": "Summons",
-        "DESCRIPTIONS": ["#b", " monsters summoned. Maximum of #b", " #ySummons."]
+        "DESCRIPTIONS": ["#b", " monsters summoned. Maximum of #b", " Summons. #yMonsters #ySummoned: "]
 },
 "theDuelist:DespairPower": {
         "NAME": "Axe of Despair",

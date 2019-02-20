@@ -46,7 +46,7 @@ public class OjamaYellow extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS);
+    	summon(p, SUMMONS, this);
 		
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
@@ -75,4 +75,18 @@ public class OjamaYellow extends DuelistCard
             this.initializeDescription();
         }
     }
+
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

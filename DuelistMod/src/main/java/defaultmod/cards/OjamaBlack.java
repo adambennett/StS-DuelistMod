@@ -47,7 +47,7 @@ public class OjamaBlack extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Summon
-		summon(p, SUMMONS);
+		summon(p, SUMMONS, this);
 		
 		// Get random monster target
 		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
@@ -90,4 +90,18 @@ public class OjamaBlack extends DuelistCard
             this.initializeDescription();
         }
     }
+
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }

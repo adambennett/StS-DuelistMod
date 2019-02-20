@@ -46,7 +46,7 @@ public class CannonSoldier extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS);
+    	summon(p, SUMMONS, this);
     	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CannonPower(p, 1, POWER_TRIBUTES), 1));
     }
 
@@ -67,4 +67,18 @@ public class CannonSoldier extends DuelistCard
             this.initializeDescription();
         }
     }
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	@Override
+	public void onSummon(int summons) {
+		// TODO Auto-generated method stub
+		
+	}
 }
