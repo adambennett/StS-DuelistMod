@@ -32,7 +32,7 @@ public class PotDichotomy extends DuelistCard
     {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.summons = 0;
-    	this.upgradeSummons = 3;
+    	this.upgradeSummons = 2;
     	this.tags.add(DefaultMod.SPELL);
     	this.tags.add(DefaultMod.POT);
 		this.originalName = this.name;
@@ -43,6 +43,7 @@ public class PotDichotomy extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	this.summons = getXEffect();
+    	this.summons += 2;
     	if (this.upgraded) { this.summons += this.upgradeSummons; }
     	summon(p, this.summons, this);
     	useXEnergy();

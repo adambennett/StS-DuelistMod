@@ -677,7 +677,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower dex = new DexterityPower(p, 1);
 		AbstractPower art = new ArtifactPower(p, turnNum);
 		AbstractPower plate = new PlatedArmorPower(p, turnNum);
-		AbstractPower intan = new IntangiblePower(p, 1);
+		AbstractPower intan = new IntangiblePlayerPower(p, 1);
 		AbstractPower regen = new RegenPower(p, turnNum);
 		AbstractPower energy = new EnergizedPower(p, 1);
 		AbstractPower thorns = new ThornsPower(p, turnNum);
@@ -884,6 +884,11 @@ public abstract class DuelistCard extends CustomCard
 	public static void evokeAll()
 	{
 		AbstractDungeon.actionManager.addToTop(new EvokeAllOrbsAction());
+	}
+	
+	public static void evoke(int amount)
+	{
+		AbstractDungeon.actionManager.addToTop(new EvokeOrbAction(amount));
 	}
 
 	public static void gainGold(int amount, AbstractCreature owner, boolean rain)

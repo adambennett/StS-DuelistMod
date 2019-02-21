@@ -47,8 +47,10 @@ public class Fissure extends DuelistCard
     {
        int playerSummons = getSummons(p);
        this.baseDamage = this.damage = DAMAGE * playerSummons;
-       this.multiDamage = new int[] { this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, };
-       attackAllEnemies(AFX, this.multiDamage);
+       System.out.println("theDuelist:Fissure:use() ---> this.damage: " + this.damage);
+       int[] damageArray = new int[] { this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, };
+       System.out.println("theDuelist:Fissure:use() ---> damageArray[0]: " + damageArray[0]);
+       attackAllEnemies(AFX, damageArray);
     }
 
     // Which card to return when making a copy of this card.

@@ -28,7 +28,7 @@ public class DarkFactory extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 0;
-	private static final int ENERGY = 2;
+	private static final int ENERGY = 3;
 	private static final int U_ENERGY = 1;
 	// /STAT DECLARATION/
 

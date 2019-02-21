@@ -73,8 +73,12 @@ public class SuperheavyOgre extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.hasTag(DefaultMod.SUPERHEAVY))
+		{
+			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, 1));
+		}
 		
 	}
 

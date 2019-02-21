@@ -81,7 +81,7 @@
 },
 "theDuelist:ImperialPower": {
         "NAME": "Imperial Order",
-        "DESCRIPTIONS": ["At the start of turn, set the cost of #b", " random trap or spell card in your hand to #b0.", " random trap or spell cards in your hand to #b0." ]
+        "DESCRIPTIONS": ["At the start of turn, set the cost of #b", " random trap or spell card in your hand to #b0.", " random trap or spell cards in your hand to #b0 for this turn." ]
 },
 "theDuelist:SliferSkyPower": {
         "NAME": "Slifer the Sky Dragon",

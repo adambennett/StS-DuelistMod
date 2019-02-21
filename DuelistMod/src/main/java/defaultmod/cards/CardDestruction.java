@@ -29,7 +29,6 @@ public class CardDestruction extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 0;
     private static final int CARDS = 1;
-    private static final int U_CARDS = 1;
     // /STAT DECLARATION/
 
     public CardDestruction() {
@@ -86,7 +85,6 @@ public class CardDestruction extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(U_CARDS);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

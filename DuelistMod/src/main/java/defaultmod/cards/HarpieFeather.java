@@ -64,7 +64,7 @@ public class HarpieFeather extends DuelistCard
 			}
 		}
 		
-		block(totalPowered);
+		block(totalPowered * 2);
     }
 
     // Which card to return when making a copy of this card.

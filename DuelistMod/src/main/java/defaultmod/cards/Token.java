@@ -3,6 +3,7 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -28,54 +29,13 @@ public class Token extends DuelistCard
     private static final int COST = -1;
     // /STAT DECLARATION/
 
-    public Token() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    }
-
-    // Actions the card should do.
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	
-    }
-
-    // Which card to return when making a copy of this card.
-    @Override
-    public AbstractCard makeCopy() {
-        return new Token();
-    }
-
-    // Upgraded stats.
-    @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            
-        }
-    }
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
-		
-	}
+    public Token() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) { }
+    @Override public AbstractCard makeCopy() { return new Token(); }
+    @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
+	@Override public void onTribute(DuelistCard tributingCard) {}
+	@Override public void onSummon(int summons) { summon(AbstractDungeon.player, 1, this); }
+	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
+	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
+	@Override public void upgrade() {}
 }

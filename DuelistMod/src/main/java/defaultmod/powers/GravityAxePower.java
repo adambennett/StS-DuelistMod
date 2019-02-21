@@ -208,6 +208,6 @@ public class GravityAxePower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0] + FINAL_STRENGTH + DESCRIPTIONS[1];
+    	this.description = DESCRIPTIONS[0];
     }
 }

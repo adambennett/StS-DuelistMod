@@ -41,8 +41,8 @@ public class ToonKingdom extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!upgraded) { applyPowerToSelf(new ToonKingdomPower(p, p, 6)); }
-    	else { applyPowerToSelf(new ToonKingdomPower(p, p, 4)); }
+    	if (!upgraded) { applyPowerToSelf(new ToonKingdomPower(p, p, 2)); }
+    	else { applyPowerToSelf(new ToonKingdomPower(p, p, 1)); }
     	
     	if (p.hasPower(ToonWorldPower.POWER_ID))
     	{

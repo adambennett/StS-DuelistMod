@@ -24,7 +24,7 @@ public class Ookazi extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -36,10 +36,10 @@ public class Ookazi extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = 1;
         this.tags.add(DefaultMod.SPELL);
-        this.damageA = 4;
+        this.damageA = 5;
         this.damageB = 9;
-        this.damageC = 6;
-        this.damageD = 11;
+        this.damageC = 7;
+        this.damageD = 12;
 		this.originalName = this.name;
     }
 

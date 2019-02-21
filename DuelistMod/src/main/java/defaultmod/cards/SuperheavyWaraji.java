@@ -69,7 +69,7 @@ public class SuperheavyWaraji extends DuelistCard
         }
     }
     
- // If player doesn't have enough summons, can't play card
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {

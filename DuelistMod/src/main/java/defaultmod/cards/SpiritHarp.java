@@ -67,8 +67,13 @@ public class SpiritHarp extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON))
+		{
+			if (upgraded) { damageSelf(1); }
+			else { damageSelf(2); }
+		}
 		
 	}
 

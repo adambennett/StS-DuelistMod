@@ -122,7 +122,32 @@ public class ParasitePower extends AbstractPower
     }
 
     @Override
-	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + debuffChance;
+	public void updateDescription() 
+    {
+    	int chanceMod = 0;
+    	switch (debuffChance)
+    	{
+	    	case 1:
+	    		chanceMod = 10;
+	    	case 2:
+	    		chanceMod = 9;
+	    	case 3:
+	    		chanceMod = 8;
+	    	case 4:
+	    		chanceMod = 7;
+	    	case 5:
+	    		chanceMod = 6;
+	    	case 6:
+	    		chanceMod = 5;
+	    	case 7:
+	    		chanceMod = 4;
+	    	case 8:
+	    		chanceMod = 3;
+	    	case 9:
+	    		chanceMod = 2;
+    		default:
+    			chanceMod = 1;
+    	}
+        this.description = DESCRIPTIONS[0] + chanceMod;
     }
 }

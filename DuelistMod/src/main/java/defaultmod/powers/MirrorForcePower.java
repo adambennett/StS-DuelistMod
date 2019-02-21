@@ -33,51 +33,57 @@ public class MirrorForcePower extends AbstractPower
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     public boolean upgraded = false;
     public int MULT = 1;
+    public int PLAYER_BLOCK = 0;
 
     public MirrorForcePower(AbstractCreature owner, int newAmount, boolean upgrade) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.amount = 0;       
+        this.amount = newAmount;       
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
         if (upgrade) { MULT = 2; }
+        PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
         this.updateDescription();
     }
     
     @Override
     public void onDrawOrDiscard() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
     }
     
     @Override
     public void atStartOfTurn() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount > 0) { this.amount = 0; }
+    	PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
 	}
-
+   
     @Override
     public int onAttacked(DamageInfo info, int damageAmount)
     {
-    	int[] damageAmounts = new int[] {damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount};
-    	for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = damageAmount * MULT; }
-    	MirrorForce.attackAll(AFX, damageAmounts, DamageType.THORNS);
-    	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, this, this.amount));
+    	//PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
+    	if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner && this.amount > 0) 
+    	{
+	    	int[] damageAmounts = new int[] {damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount};
+	    	for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = damageAmount + PLAYER_BLOCK; damageAmounts[i] = damageAmounts[i] * MULT; }
+	    	MirrorForce.attackAll(AFX, damageAmounts, DamageType.THORNS);
+	    	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, this, 1));
+    	}
     	return damageAmount;
     }
     

@@ -77,7 +77,8 @@ public class GateGuardian extends DuelistCard
     			}
     		}
     	}
-    	AbstractDungeon.actionManager.addToTop(new EvokeAllOrbsAction());
+    	if (!upgraded) { AbstractDungeon.actionManager.addToTop(new EvokeAllOrbsAction()); }
+    	else { evoke(2); }
     	AbstractOrb orb = new Gate();
     	AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
     }

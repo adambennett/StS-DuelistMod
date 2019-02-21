@@ -26,7 +26,7 @@ public class HaneHane extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int BLOCK = 2;
     private static final int SUMMONS = 1;
     private static boolean resummoned = false;
@@ -61,7 +61,7 @@ public class HaneHane extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeMagicNumber(1);
-            this.upgradeBaseCost(1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

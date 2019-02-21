@@ -23,12 +23,12 @@ public class ScrapFactory extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardRarity RARITY = CardRarity.BASIC;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 0;
-	private static final int ENERGY = 1;
+	private static final int ENERGY = 2;
 	private static final int U_ENERGY = 1;
 	// /STAT DECLARATION/
 

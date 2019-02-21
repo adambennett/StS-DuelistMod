@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -51,7 +51,7 @@ public class Kuriboh extends DuelistCard
 	{
 		incMaxSummons(p, this.magicNumber);
 		summon(p, SUMMONS, this);
-		if (this.upgraded) { applyPower(new IntangiblePower(p, INTANGIBLE), p); }
+		if (this.upgraded) { applyPower(new IntangiblePlayerPower(p, INTANGIBLE), p); }
 	}
 
 	// Which card to return when making a copy of this card.
@@ -91,7 +91,7 @@ public class Kuriboh extends DuelistCard
 		AbstractPlayer p = AbstractDungeon.player;
 		incMaxSummons(p, this.magicNumber);
 		summon(p, summons, this);
-		if (this.upgraded) { applyPower(new IntangiblePower(p, INTANGIBLE), p); }
+		if (this.upgraded) { applyPower(new IntangiblePlayerPower(p, INTANGIBLE), p); }
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class Kuriboh extends DuelistCard
 		AbstractPlayer p = AbstractDungeon.player;
 		incMaxSummons(p, this.magicNumber);
 		summon(p, summons, this);
-		if (this.upgraded) { applyPower(new IntangiblePower(p, INTANGIBLE), p); }
+		if (this.upgraded) { applyPower(new IntangiblePlayerPower(p, INTANGIBLE), p); }
 		
 	}
 }

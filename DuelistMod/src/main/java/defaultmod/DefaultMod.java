@@ -260,16 +260,19 @@ public class DefaultMod
     public static final String HANE_HANE = "cards/Hane_Hane.png";
     public static final String LESSER_DRAGON = "cards/Lesser_Dragon.png";
     public static final String GAIA_DRAGON_CHAMP = "cards/Gaia_Dragon_Champion.png";
+    public static final String DRAGON_CAPTURE = "cards/Dragon_Capture_Jar.png";
+    public static final String THUNDER_DRAGON = "cards/Thunder_Dragon.png";
+    public static final String BLAST_JUGGLER = "cards/Blast_Juggler.png";
+    public static final String LEGENDARY_EXODIA = "cards/Legendary_Exodia_Incarnate.png";
+    public static final String SUPERANCIENT_DINOBEAST = "cards/Superancient_Dinobeast.png";
     
     public static final String BOOK_SECRET = "cards/Book_Secret_Arts.png";
-    public static final String DRAGON_CAPTURE = "cards/Dragon_Capture_Jar.png";
     public static final String FINAL_FLAME = "cards/Final_Flame.png";
     public static final String GOBLIN_SECRET = "cards/Goblin_Secret_Remedy.png";
     public static final String MACHINE_FACTORY = "cards/Machine_Conversion_Factory.png";
     public static final String MOUNTAIN = "cards/Mountain.png";
     public static final String POLYMERIZATION = "cards/Polymerization.png";
-    public static final String SPARKS = "cards/Sparks.png";
-    public static final String BLAST_JUGGLER = "cards/Blast_Juggler.png";
+    public static final String SPARKS = "cards/Sparks.png";    
     public static final String CHEERFUL_COFFIN = "cards/Cheerful_Coffin.png";
     public static final String PETIT_MOTH = "cards/Petit_Moth.png";
     public static final String COCOON_EVOLUTION = "cards/Cocoon_Evolution.png";
@@ -277,8 +280,7 @@ public class DefaultMod
     public static final String HEAVY_STORM = "cards/Heavy_Storm.png";
     public static final String LAVA_BATTLEGUARD = "cards/Lava_Battleguard.png";
     public static final String SWAMP_BATTLEGUARD = "cards/Swamp_Battleguard.png";
-    public static final String SWORD_DEEP_SEATED = "cards/Sword_Deep_Seated.png";
-    public static final String THUNDER_DRAGON = "cards/Thunder_Dragon.png";
+    public static final String SWORD_DEEP_SEATED = "cards/Sword_Deep_Seated.png";    
     public static final String TWIN_HEADED_FIRE = "cards/Twin_Headed_Fire_Dragon.png";
     public static final String TWIN_HEADED_THUNDER = "cards/Twin_Headed_Thunder_Dragon.png";
     public static final String REVIVAL_JAM = "cards/Revival_Jam.png";
@@ -346,7 +348,7 @@ public class DefaultMod
     public static final String KAISER_SEA_HORSE = "cards/Kaiser_Sea_Horse.png";
     public static final String KING_YAMIMAKAI = "cards/King_Yamimakai.png";
     public static final String LAJINN = "cards/LaJinn.png";
-    public static final String LEGENDARY_EXODIA = "cards/Legendary_Exodia_Incarnate.png";
+   
     public static final String LEGENDARY_SWORD = "cards/Legendary_Sword.png";
     public static final String LEGEND_EXODIA = "cards/Legend_Exodia.png";
     public static final String MAMMOTH_GRAVEYARD = "cards/Mammoth_Graveyard.png";
@@ -386,7 +388,7 @@ public class DefaultMod
     public static final String STEAM_TRAIN_KING = "cards/Steam_Train_King.png";
     public static final String STIM_PACK = "cards/Stim_Pack.png";
     public static final String STRAY_LAMBS = "cards/Stray_Lambs.png";
-    public static final String SUPERANCIENT_DINOBEAST = "cards/Superancient_Dinobeast.png";
+   
     public static final String SUPERCONDUCTOR_TYRANNO = "cards/Super_Conductor_Tyranno.png";
     public static final String SUPER_SOLAR_NUTRIENT = "cards/Super_Solar_Nutrient.png";
     public static final String SWORD_HUNTER = "cards/Sword_Hunter.png";
@@ -641,7 +643,6 @@ public class DefaultMod
 		BaseMod.addCard(new BadReaction());
 		BaseMod.addCard(new BarrelDragon());
 		BaseMod.addCard(new BetaMagnet());
-		BaseMod.addCard(new BigCastleWalls());
 		BaseMod.addCard(new BlueEyes());
 		BaseMod.addCard(new BlueEyesToon());
 		BaseMod.addCard(new BlueEyesUltimate());
@@ -695,8 +696,7 @@ public class DefaultMod
 		BaseMod.addCard(new NutrientZ());
 		BaseMod.addCard(new ObeliskTormentor());
 		BaseMod.addCard(new OjamaBlack());
-		BaseMod.addCard(new OjamaGreen());
-		//BaseMod.addCard(new OjamaKing());
+		BaseMod.addCard(new OjamaGreen());		
 		BaseMod.addCard(new OjamaKnight());
 		BaseMod.addCard(new OjamaYellow());
 		BaseMod.addCard(new Ojamagic());
@@ -752,10 +752,8 @@ public class DefaultMod
 	    BaseMod.addCard(new ToonKingdom());
 	    BaseMod.addCard(new ToonRollback());
 	    BaseMod.addCard(new SuperheavyOgre());
-	    BaseMod.addCard(new SuperheavyMagnet());
-	    //BaseMod.addCard(new SuperheavyGeneral());
-	    BaseMod.addCard(new SuperheavyFlutist());
-	    //BaseMod.addCard(new SuperheavyDaihachi());
+	    BaseMod.addCard(new SuperheavyMagnet());	    
+	    BaseMod.addCard(new SuperheavyFlutist());	    
 	    BaseMod.addCard(new SuperheavyBlueBrawler());
 	    BaseMod.addCard(new SpiritHarp());
 	    BaseMod.addCard(new SnowDragon());
@@ -776,16 +774,24 @@ public class DefaultMod
 	    BaseMod.addCard(new LesserDragon());
 	    BaseMod.addCard(new GaiaDragonChamp());
 	    BaseMod.addCard(new DragonCaptureJar());
+	    BaseMod.addCard(new BlastJuggler());
+	    BaseMod.addCard(new LegendaryExodia());
+	    BaseMod.addCard(new ThunderDragon());
+	    BaseMod.addCard(new SuperancientDinobeast());
 	    
     	// random only
-	    /*
+	    
+	    //BaseMod.addCard(new BigCastleWalls());
     	BaseMod.addCard(new CurseDragon());
     	BaseMod.addCard(new CyberDragon());
     	BaseMod.addCard(new DragonMaster());
     	BaseMod.addCard(new FiendSkull());
     	BaseMod.addCard(new FiveHeaded());
     	BaseMod.addCard(new Gandora());
-    	*/
+    	BaseMod.addCard(new SuperheavyDaihachi());
+    	BaseMod.addCard(new SuperheavyGeneral());
+    	BaseMod.addCard(new OjamaKing());
+    	
         
 		logger.info("Making sure the cards are unlocked.");
         // Unlock the cards
@@ -795,7 +801,7 @@ public class DefaultMod
 		UnlockTracker.unlockCard(BadReaction.ID);
 		UnlockTracker.unlockCard(BarrelDragon.ID);
 		UnlockTracker.unlockCard(BetaMagnet.ID);
-		UnlockTracker.unlockCard(BigCastleWalls.ID);
+		//UnlockTracker.unlockCard(BigCastleWalls.ID);
 		UnlockTracker.unlockCard(BlueEyes.ID);
 		UnlockTracker.unlockCard(BlueEyesToon.ID);
 		UnlockTracker.unlockCard(BlueEyesUltimate.ID);
@@ -930,6 +936,10 @@ public class DefaultMod
 	    UnlockTracker.unlockCard(LesserDragon.ID);
 	    UnlockTracker.unlockCard(GaiaDragonChamp.ID);
 	    UnlockTracker.unlockCard(DragonCaptureJar.ID);
+	    UnlockTracker.unlockCard(BlastJuggler.ID);
+	    UnlockTracker.unlockCard(LegendaryExodia.ID);
+	    UnlockTracker.unlockCard(ThunderDragon.ID);
+	    UnlockTracker.unlockCard(SuperancientDinobeast.ID);
 	    
     	// random only
     	UnlockTracker.unlockCard(CurseDragon.ID);
@@ -1088,6 +1098,10 @@ public class DefaultMod
     	myCards.add(new LesserDragon());
     	myCards.add(new GaiaDragonChamp());
     	myCards.add(new DragonCaptureJar());
+    	myCards.add(new BlastJuggler());
+    	myCards.add(new LegendaryExodia());
+    	myCards.add(new ThunderDragon());
+    	myCards.add(new SuperancientDinobeast());
     	
     }
 
@@ -1144,7 +1158,7 @@ public class DefaultMod
         BaseMod.addKeyword(new String[] {"MonsterOrb", "monsterorb", "MonsterOrb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
         BaseMod.addKeyword(new String[] {"Dragonorb", "dragonorb", "DragonOrb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
         BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
-        BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the triubte, deal #b5 damage to all enemies.");
+        BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the tribute, deal #b5 damage to all enemies.");
         BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
         BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
        
