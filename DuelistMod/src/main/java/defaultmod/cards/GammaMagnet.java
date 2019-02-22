@@ -109,4 +109,9 @@ public class GammaMagnet extends DuelistCard
     	draw(this.draw);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

@@ -122,5 +122,10 @@ public class GaiaFierce extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
    
 }

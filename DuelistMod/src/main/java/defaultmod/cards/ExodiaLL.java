@@ -161,4 +161,9 @@ public class ExodiaLL extends DuelistCard
     	else { applyPowerToSelf(new ExodiaPower(p, p, this)); }
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

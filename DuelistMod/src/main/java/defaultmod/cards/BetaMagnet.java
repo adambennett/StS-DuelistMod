@@ -104,4 +104,9 @@ public class BetaMagnet extends DuelistCard
     	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

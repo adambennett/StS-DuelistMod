@@ -102,4 +102,10 @@ public class CastleDarkIllusions extends DuelistCard
     	else {  AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, false))); }
 		
 	}
+
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

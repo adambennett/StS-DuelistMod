@@ -119,4 +119,9 @@ public class ToonMermaid extends DuelistCard
 		
 	}
 
+	@Override
+	public String getID() {
+		return ID;
+	}
+
 }

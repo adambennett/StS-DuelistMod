@@ -103,4 +103,9 @@ public class SuperheavySwordsman extends DuelistCard
 		applyPowerToSelf(new DexterityPower(p, this.dex));
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ReflectionPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.ReflectionPower;
 
 public class MagicCylinder extends DuelistCard 
 {
@@ -95,5 +95,10 @@ public class MagicCylinder extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

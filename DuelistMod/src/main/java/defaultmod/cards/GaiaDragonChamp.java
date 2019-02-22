@@ -40,6 +40,7 @@ public class GaiaDragonChamp extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.misc = 0;
         this.originalName = this.name;
@@ -55,12 +56,14 @@ public class GaiaDragonChamp extends DuelistCard
     	{
     		DuelistCard summon = returnRandomFromArray(tributeList);
     		summon.summonThis(summon.summons, summon, 0, m);
+    		summon.onSummon(1);
     	}
     	
     	else if (upgraded && tributeList.size() > 0)
     	{
     		DuelistCard summon = tributeList.get(0);
     		summon.summonThis(summon.summons, summon, 0, m);
+    		summon.onSummon(1);
     	}
     }
 
@@ -135,6 +138,11 @@ public class GaiaDragonChamp extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
    
 }

@@ -51,7 +51,6 @@ public class Kuriboh extends DuelistCard
 	{
 		incMaxSummons(p, this.magicNumber);
 		summon(p, SUMMONS, this);
-		if (this.upgraded) { applyPower(new IntangiblePlayerPower(p, INTANGIBLE), p); }
 	}
 
 	// Which card to return when making a copy of this card.
@@ -72,17 +71,17 @@ public class Kuriboh extends DuelistCard
 	}
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (!tributingCard.hasTag(DefaultMod.DRAGON)) {applyPower(new IntangiblePlayerPower(AbstractDungeon.player, INTANGIBLE), AbstractDungeon.player);}
 	}
 
 
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
-
+	public void onSummon(int summons) 
+	{
+		
 	}
 
 	@Override
@@ -101,5 +100,10 @@ public class Kuriboh extends DuelistCard
 		summon(p, summons, this);
 		if (this.upgraded) { applyPower(new IntangiblePlayerPower(p, INTANGIBLE), p); }
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import defaultmod.patches.DuelistCard;
+import defaultmod.patches.*;
 
 public class JoeyJuice extends AbstractPotion {
 
@@ -45,7 +45,7 @@ public class JoeyJuice extends AbstractPotion {
     	for (int i = 0; i < this.potency; i++)
     	{
 	        int randomTurnNum = AbstractDungeon.cardRandomRng.random(2, 4);
-			AbstractPower randomDebuff = DuelistCard.getRandomDebuffPotion(AbstractDungeon.player, monster, randomTurnNum + this.potency);
+			AbstractPower randomDebuff = RandomEffectsHelper.getRandomDebuffPotion(AbstractDungeon.player, monster, randomTurnNum + this.potency);
 			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, AbstractDungeon.player, randomDebuff, randomTurnNum + this.potency));
     	}
     }

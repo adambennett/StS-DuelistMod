@@ -122,11 +122,9 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(GiantSoldier.ID);
 		retVal.add(CastleWalls.ID);
 		retVal.add(CastleWalls.ID);
-		retVal.add(CastleWalls.ID);
 		retVal.add(ScrapFactory.ID);
 		retVal.add(Ookazi.ID);
 		retVal.add(Ookazi.ID);
-		retVal.add(SummonedSkull.ID);
 		retVal.add(SummonedSkull.ID);
 
 		return retVal;

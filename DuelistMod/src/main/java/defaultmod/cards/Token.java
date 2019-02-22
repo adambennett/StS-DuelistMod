@@ -30,12 +30,17 @@ public class Token extends DuelistCard
     // /STAT DECLARATION/
 
     public Token() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
+    public Token(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { }
     @Override public AbstractCard makeCopy() { return new Token(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) {}
-	@Override public void onSummon(int summons) { summon(AbstractDungeon.player, 1, this); }
+	@Override public void onSummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void upgrade() {}
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.cards.DarkMirrorForce;
+import defaultmod.patches.RandomEffectsHelper;
 
 
 public class DarkMirrorPower extends AbstractPower 
@@ -59,7 +60,7 @@ public class DarkMirrorPower extends AbstractPower
     @Override
     public int onLoseHp(int damageAmount)
     {
-    	DarkMirrorForce.applyPowerToSelf(DarkMirrorForce.getRandomPlayerDebuff(AbstractDungeon.player, damageAmount));
+    	DarkMirrorForce.applyPowerToSelf(RandomEffectsHelper.getRandomPlayerDebuff(AbstractDungeon.player, damageAmount));
     	DarkMirrorForce.removePower(this, AbstractDungeon.player);
     	return 0;
     }

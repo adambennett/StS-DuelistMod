@@ -63,6 +63,7 @@ public class Pumprincess extends DuelistCard
 		        cardCopy.purgeOnUse = true;
 		        if (chosen.upgraded || this.upgraded) { cardCopy.upgrade(); }
 		        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+		        cardCopy.onSummon(1);
 	    	}
     	}
     }
@@ -151,5 +152,10 @@ public class Pumprincess extends DuelistCard
 	    	}
     	}
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

@@ -129,4 +129,9 @@ public class WingedDragonRa extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

@@ -123,4 +123,9 @@ public class SuperheavyWaraji extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

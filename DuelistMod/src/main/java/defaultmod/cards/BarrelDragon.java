@@ -75,8 +75,8 @@ public class BarrelDragon extends DuelistCard
 			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
 
 			// Get two random debuffs
-			AbstractPower randomDebuffA = getRandomDebuff(p, targetMonster, randomTurnNum);
-			AbstractPower randomDebuffB = getRandomDebuff(p, targetMonster, randomTurnNumB);
+			AbstractPower randomDebuffA = RandomEffectsHelper.getRandomDebuff(p, targetMonster, randomTurnNum);
+			AbstractPower randomDebuffB = RandomEffectsHelper.getRandomDebuff(p, targetMonster, randomTurnNumB);
 	    
 			// Apply random debuff(s)
 			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, p, randomDebuffA));
@@ -135,31 +135,32 @@ public class BarrelDragon extends DuelistCard
 
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		
+	}
+
+	@Override
+	public void onSummon(int summons) 
+	{
+	
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
 		
 	}
 
 
-
-
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
+	public String getID() {
+		return ID;
 	}
 }

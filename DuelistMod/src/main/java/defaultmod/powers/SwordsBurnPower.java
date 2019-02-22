@@ -1,6 +1,7 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -9,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.cards.SwordsBurning;
+import defaultmod.patches.*;
 
 // 
 
@@ -58,7 +59,13 @@ public class SwordsBurnPower extends AbstractPower
     
     public void onEvokeOrb(AbstractOrb orb) 
     {
-    	if (!finished) { SwordsBurning.channelRandomOrb(); }
+    	if (!finished) 
+    	{ 
+    		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+    		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+    		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+    		else { RandomOrbHelper.channelRandomOrb(); }
+    	}
     	finished = true;
     }
     

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import defaultmod.DefaultMod;
-import defaultmod.powers.*;
+import defaultmod.powers.ToonWorldPower;
 
 public class MillenniumEye extends CustomRelic {
     
@@ -31,7 +31,7 @@ public class MillenniumEye extends CustomRelic {
     public void atBattleStart() 
     {
         this.flash();
-        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 2)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 2)));
     
     }
 
@@ -46,4 +46,5 @@ public class MillenniumEye extends CustomRelic {
     public AbstractRelic makeCopy() {
         return new MillenniumEye();
     }
+
 }

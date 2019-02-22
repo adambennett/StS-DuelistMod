@@ -112,4 +112,9 @@ public class ToonGeminiElf extends DuelistCard
 		summon(p, summons, this);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

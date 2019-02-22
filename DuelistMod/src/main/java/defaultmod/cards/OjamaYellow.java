@@ -122,4 +122,10 @@ public class OjamaYellow extends DuelistCard
 		}
 		
 	}
+
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

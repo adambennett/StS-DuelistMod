@@ -4,10 +4,10 @@ A Slay the Spire adaptation of Yu-Gi-Oh!
 REQUIREMENTS
 - Basemod
 - StSLib
+
+CROSSOVER CONTENT FOR
 - Replay the Spire
 - Conspire
-- The Servant
-- Slimebound
 
 TODO
 - Balance/QA

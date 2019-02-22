@@ -12,15 +12,15 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
+import defaultmod.DefaultMod;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
 public class Buffer extends AbstractOrb
 {
-	public static final String ID = defaultmod.DefaultMod.makeID("Buffer");
+	public static final String ID = DefaultMod.makeID("Buffer");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 1.0F; 

@@ -12,7 +12,6 @@ import defaultmod.DefaultMod;
 import defaultmod.actions.common.ModifyMagicNumberAction;
 import defaultmod.orbs.Buffer;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
 
 public class DarkMagicianGirl extends DuelistCard 
 {
@@ -31,7 +30,6 @@ public class DarkMagicianGirl extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 1;
-	private static final int TRIBUTES = 1;
 	private static final int OVERFLOW_AMT = 3;
 	private static final int U_OVERFLOW = 2;
 	private static int MIN_TURNS_ROLL = 1;
@@ -45,13 +43,15 @@ public class DarkMagicianGirl extends DuelistCard
 		this.tags.add(DefaultMod.MAGICIANS_FORCE);
 		this.misc = 0;
 		this.originalName = this.name;
+		this.summons = 1;
+		this.isSummon = true;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, TRIBUTES, false, this);
+		summon(p, this.summons, this);
 		AbstractOrb buffer = new Buffer();
 		channel(buffer);
 	}
@@ -92,59 +92,44 @@ public class DarkMagicianGirl extends DuelistCard
 		}
 	}
 
-	// If player doesn't have enough summons, can't play card
+	
+
 	@Override
-	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check super canUse()
-		boolean canUse = super.canUse(p, m); 
-		if (!canUse) { return false; }
 		
-		// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-		
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-		}
-
-		// Check for # of summons >= tributes
-		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
-
-		// Player doesn't have something required at this point
-		this.cantUseMessage = "Not enough Summons";
-		return false;
-	}
-
-	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
 		
 	}
 
 
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
+	public void onSummon(int summons)
+	{
+		
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		summon(player(), this.summons, this);
+		AbstractOrb buffer = new Buffer();
+		channel(buffer);
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
+		summon(player(), this.summons, this);
+		AbstractOrb buffer = new Buffer();
+		channel(buffer);
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 
 }

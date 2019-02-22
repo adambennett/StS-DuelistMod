@@ -90,4 +90,9 @@ public class Scapegoat extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

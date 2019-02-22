@@ -19,18 +19,25 @@ public class MillenniumCoin extends CustomRelic
 	public MillenniumCoin() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
+	
+	@Override
+	public void onEquip()
+	{
+		this.counter = 10;
+	}
 
 	@Override
 	public void onEvokeOrb(AbstractOrb ammo) 
 	{
 		flash();
-		DuelistCard.gainGold(15, AbstractDungeon.player, true);
+		DuelistCard.gainGold(this.counter, AbstractDungeon.player, true);
+		this.counter += 5;
 	}
 
 	// Description
 	@Override
 	public String getUpdatedDescription() {
-		return DESCRIPTIONS[0];
+		return DESCRIPTIONS[0] + this.counter + DESCRIPTIONS[1];
 	}
 
 	// Which relic to return on making a copy of this relic.

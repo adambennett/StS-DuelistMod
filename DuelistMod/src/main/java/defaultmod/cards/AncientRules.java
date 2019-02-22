@@ -43,7 +43,7 @@ public class AncientRules extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
+    	summon(p, this.magicNumber, new Token("Ancient Token"));
     }
 
     // Which card to return when making a copy of this card.
@@ -83,14 +83,19 @@ public class AncientRules extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
 		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
+		summon(p, summons, new Token("Ancient Token"));
 		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
+		summon(p, summons, new Token("Ancient Token"));
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

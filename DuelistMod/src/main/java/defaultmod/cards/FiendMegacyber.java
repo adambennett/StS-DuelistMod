@@ -1,5 +1,6 @@
 package defaultmod.cards;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -47,7 +48,10 @@ public class FiendMegacyber extends DuelistCard
     {
     	tribute(p, this.magicNumber, false, this);
     	applyPowerToSelf(new StrengthPower(player(), 1));
-    	channelRandomOrb();
+    	if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+		else { RandomOrbHelper.channelRandomOrb(); }
     }
 
     // Which card to return when making a copy of this card.
@@ -120,5 +124,10 @@ public class FiendMegacyber extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

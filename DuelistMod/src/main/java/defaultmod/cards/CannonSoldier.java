@@ -98,4 +98,9 @@ public class CannonSoldier extends DuelistCard
     	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CannonPower(p, 1, POWER_TRIBUTES), 1));
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

@@ -17,7 +17,7 @@
 		"NAME": "Millennium Eye",
 		"FLAVOR": "It was created 3,000 years prior with other Millennium Items by Aknadin. After its creation, Aknadin himself put on the Eye, sacrificing his left eye in the process.",
 		"DESCRIPTIONS": [
-			"At the start of each combat, gain Toon World."
+			"At the start of each combat, gain #yToon #yWorld."
 		]
 	},
 	"theDuelist:MillenniumRing": {
@@ -45,7 +45,7 @@
 		"NAME": "Millennium Coin",
 		"FLAVOR": "A beautiful coin.",
 		"DESCRIPTIONS": [
-			"Each time you #yEvoke, gain #b15 #yGold."
+			"Each time you #yEvoke, gain #b", " Gold. NL Gain 5 extra Gold each time you trigger this effect."
 		]
 	},
 	"theDuelist:StoneExxod": {
@@ -53,6 +53,13 @@
 		"FLAVOR": "A fragment of the Forbidden One?",
 		"DESCRIPTIONS": [
 			"Each time you shuffle your deck, add a random #yExodia card to your hand."
+		]
+	},
+	"theDuelist:GiftAnubis": {
+		"NAME": "Gift of Anubis",
+		"FLAVOR": "A Gift from Anubis himself.",
+		"DESCRIPTIONS": [
+			" NL Summon #b1 and consume #b1 #yCharge. NL Starts with #b2 #yCharges. NL Upon defeating Bosses and Elites, gain #b3 #yCharges."
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {

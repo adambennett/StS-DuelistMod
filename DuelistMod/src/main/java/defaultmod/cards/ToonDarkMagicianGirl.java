@@ -145,4 +145,9 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		
 	}
 
+	@Override
+	public String getID() {
+		return ID;
+	}
+
 }

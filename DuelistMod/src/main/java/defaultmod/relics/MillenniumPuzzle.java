@@ -19,8 +19,8 @@ public class MillenniumPuzzle extends CustomRelic {
 
     // ID, images, text.
     public static final String ID = defaultmod.DefaultMod.makeID("MillenniumPuzzle");
-    public static final String IMG = DefaultMod.makePath(DefaultMod.M_EYE_RELIC);
-    public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_EYE_RELIC_OUTLINE);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.M_PUZZLE_RELC);
+    public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_PUZZLE_RELIC_OUTLINE);
     private int SUMMONS = 1;
 
     public MillenniumPuzzle() {
@@ -33,7 +33,6 @@ public class MillenniumPuzzle extends CustomRelic {
     {
         this.flash();
         AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, "Puzzle Token", "#b1 monster summoned. Maximum of 5 Summons."), SUMMONS));
-    
     }
 
     // Description

@@ -51,7 +51,7 @@ public class NutrientZ extends DuelistCard
     	   heal(p, HEAL);
     	   for (int i = 0; i < debuffs; i++)
     	   {
-    		   AbstractPower randomDebuff = getRandomPlayerDebuff(p, 3);
+    		   AbstractPower randomDebuff = RandomEffectsHelper.getRandomPlayerDebuff(p, 3);
     		   applyPowerToSelf(randomDebuff);
     	   }
        }
@@ -98,5 +98,10 @@ public class NutrientZ extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

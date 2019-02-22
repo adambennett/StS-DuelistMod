@@ -94,4 +94,9 @@ public class IslandTurtle extends DuelistCard
 		block(this.block);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

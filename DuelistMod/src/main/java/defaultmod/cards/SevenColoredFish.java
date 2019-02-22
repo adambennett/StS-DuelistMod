@@ -104,4 +104,9 @@ public class SevenColoredFish extends DuelistCard
     	attack(m, AFX, this.damage);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

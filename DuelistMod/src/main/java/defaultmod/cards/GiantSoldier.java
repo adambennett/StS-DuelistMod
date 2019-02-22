@@ -98,4 +98,9 @@ public class GiantSoldier extends DuelistCard
     	block(this.block);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

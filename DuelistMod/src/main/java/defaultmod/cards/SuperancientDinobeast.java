@@ -31,9 +31,9 @@ public class SuperancientDinobeast extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 2;
-    private static final int DAMAGE = 38;
+    private static final int DAMAGE = 20;
     private static final int UPGRADE_PLUS_DMG = 2;
-    private static final int TRIBUTES = 3;
+    private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public SuperancientDinobeast() {
@@ -143,6 +143,11 @@ public class SuperancientDinobeast extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
     
 }

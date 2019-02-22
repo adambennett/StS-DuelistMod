@@ -12,8 +12,8 @@ public class MillenniumKey extends CustomRelic
 {
     // ID, images, text.
     public static final String ID = DefaultMod.makeID("MillenniumKey");
-    public static final String IMG = DefaultMod.makePath(DefaultMod.M_EYE_RELIC);
-    public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_EYE_RELIC_OUTLINE);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.M_KEY_RELIC);
+    public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_KEY_RELIC_OUTLINE);
 
     public MillenniumKey() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

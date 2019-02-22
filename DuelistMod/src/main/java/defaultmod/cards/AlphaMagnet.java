@@ -101,4 +101,9 @@ public class AlphaMagnet extends DuelistCard
     	applyPowerToSelf(new AlphaMagPower(p, p));
     	attack(m, AFX, this.damage);
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

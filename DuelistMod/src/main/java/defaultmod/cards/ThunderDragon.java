@@ -102,4 +102,9 @@ public class ThunderDragon extends DuelistCard
 		summon(p, summons, this);
     	attack(m, AFX, this.damage);
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

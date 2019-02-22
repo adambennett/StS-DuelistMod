@@ -128,4 +128,9 @@ public class ValkMagnet extends DuelistCard
     	attack(m, AFX, this.damage);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

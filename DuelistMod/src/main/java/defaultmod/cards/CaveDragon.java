@@ -100,4 +100,9 @@ public class CaveDragon extends DuelistCard
     	block(this.block);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

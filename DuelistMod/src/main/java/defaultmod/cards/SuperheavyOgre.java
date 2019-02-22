@@ -106,4 +106,9 @@ public class SuperheavyOgre extends DuelistCard
     	if (upgraded) { attack(m, AFX, this.damage); }
     	applyPowerToSelf(new DexterityPower(p, this.dex));
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

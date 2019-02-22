@@ -26,7 +26,7 @@ public class GeminiElf extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int SUMMONS = 2;
     //private static final int UPGRADE_SUMMONS = 1;
     // /STAT DECLARATION/
@@ -73,19 +73,14 @@ public class GeminiElf extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON))
-		{
-			if (upgraded) { damageSelf(1); }
-			else { damageSelf(2); }
-		}
-		
+
 	}
 
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
-		
+	public void onSummon(int summons)
+	{
+		heal(AbstractDungeon.player, 15);
 	}
 
 	@Override
@@ -96,9 +91,15 @@ public class GeminiElf extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

@@ -143,4 +143,9 @@ public class SmallLabyrinthWall extends DuelistCard
 		
 	}
 
+	@Override
+	public String getID() {
+		return ID;
+	}
+
 }

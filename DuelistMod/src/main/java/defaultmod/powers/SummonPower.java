@@ -79,7 +79,7 @@ public class SummonPower extends AbstractPower
 		else
 		{
 			summonList = new ArrayList<String>();
-			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "None.";
+			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
 		} 
 	}
 

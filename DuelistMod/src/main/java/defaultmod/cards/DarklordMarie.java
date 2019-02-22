@@ -36,7 +36,7 @@ public class DarklordMarie extends DuelistCard
     private static final int COST = 1;
     private static int HEAL = 3;
     private static final int U_HEAL = 1;
-    private static final int DAMAGE = 6;
+    private static final int DAMAGE = 8;
 
     public DarklordMarie() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -86,9 +86,9 @@ public class DarklordMarie extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 
@@ -113,5 +113,10 @@ public class DarklordMarie extends DuelistCard
 		summon(p, summons, this);
     	attack(m, AFX, this.damage);
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

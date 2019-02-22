@@ -73,7 +73,7 @@ public class OjamaKnight extends DuelistCard
 		for (int i = 0; i < primary; i++)
 		{
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-			applyPower(getRandomDebuff(p, m, randomTurnNum), m);
+			applyPower(RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum), m);
 		}
     }
 
@@ -150,5 +150,11 @@ public class OjamaKnight extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

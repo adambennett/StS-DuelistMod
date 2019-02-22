@@ -81,7 +81,7 @@ public class BlastJuggler extends DuelistCard
 		{
 			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			applyPower(getRandomDebuff(AbstractDungeon.player, targetMonster, randomTurnNum), targetMonster);
+			applyPower(RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, randomTurnNum), targetMonster);
 		}
 	}
 
@@ -105,5 +105,11 @@ public class BlastJuggler extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
+	}
+
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

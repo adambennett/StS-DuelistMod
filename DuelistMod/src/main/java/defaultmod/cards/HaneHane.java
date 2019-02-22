@@ -96,4 +96,9 @@ public class HaneHane extends DuelistCard
 		block(this.block);
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

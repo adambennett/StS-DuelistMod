@@ -123,4 +123,9 @@ public class ToonMask extends DuelistCard
 		
 	}
 
+	@Override
+	public String getID() {
+		return ID;
+	}
+
 }

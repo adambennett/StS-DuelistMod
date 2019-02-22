@@ -36,7 +36,7 @@ public class SnowDragon extends DuelistCard
     public SnowDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 3;
-        this.upgradeDmg = 3;
+        this.upgradeDmg = 2;
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
@@ -107,5 +107,10 @@ public class SnowDragon extends DuelistCard
     	attack(m, AFX, this.damage);
     	AbstractOrb frost = new Frost();
     	channel(frost);
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

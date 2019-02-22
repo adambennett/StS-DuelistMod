@@ -112,9 +112,11 @@ public class JudgeMan extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
-
+	public void onSummon(int summons) 
+	{
+		summon(AbstractDungeon.player, summons, this);
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		attack(m, AFX, 15);
 	}
 
 	@Override
@@ -135,5 +137,10 @@ public class JudgeMan extends DuelistCard
 		summon(p, summons, this);
 		attack(m, AFX, this.damage);
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

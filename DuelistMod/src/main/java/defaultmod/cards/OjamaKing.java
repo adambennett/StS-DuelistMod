@@ -27,7 +27,7 @@ public class OjamaKing extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 3;
+    private static final int COST = 2;
     private static final int TRIBUTES = 2;
     private static int MIN_BUFF_TURNS_ROLL = 1;
     private static int MAX_BUFF_TURNS_ROLL = 3;
@@ -76,7 +76,7 @@ public class OjamaKing extends DuelistCard
 		for (int i = 0; i < RAND_DEBUFFS; i++)
 		{
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-			applyPower(getRandomDebuff(p, m, randomTurnNum), m);
+			applyPower(RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum), m);
 		}
 		
 		// Give 3 Spell Counters to enemy
@@ -95,7 +95,7 @@ public class OjamaKing extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(1);
             MAX_DEBUFF_TURNS_ROLL = 8;
             MAX_BUFF_TURNS_ROLL = 5;
             this.rawDescription = UPGRADE_DESCRIPTION;
@@ -158,5 +158,11 @@ public class OjamaKing extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

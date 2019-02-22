@@ -147,4 +147,9 @@ public class SuperheavyMagnet extends DuelistCard
 	{
 	
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

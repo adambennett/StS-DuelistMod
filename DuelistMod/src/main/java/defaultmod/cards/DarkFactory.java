@@ -111,4 +111,9 @@ public class DarkFactory extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getID() {
+		return ID;
+	}
 }

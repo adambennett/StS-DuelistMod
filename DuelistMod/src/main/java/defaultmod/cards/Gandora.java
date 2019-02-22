@@ -51,7 +51,7 @@ public class Gandora extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	
     	// Deal half your HP damage to yourself
-    	damageSelf(player().currentHealth/2);
+    	//damageSelf(player().currentHealth/2);
 
     	// Record hand size
     	int handSize = AbstractDungeon.player.hand.size() - 1;
@@ -142,5 +142,10 @@ public class Gandora extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 }

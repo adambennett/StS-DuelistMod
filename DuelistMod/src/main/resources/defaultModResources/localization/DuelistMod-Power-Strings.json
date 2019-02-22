@@ -171,6 +171,10 @@
         "NAME": "Reductionist",
         "DESCRIPTIONS": ["At the start of turn, reduce the cost of #b", " card in your hand by #b1.", " cards in your hand by #b1." ]
 },
+"theDuelist:CrystallizerPower": {
+        "NAME": "Crystallizer",
+        "DESCRIPTIONS": ["Crystal orbs give an additional #b", " #yFocus to adjacent orbs. NL At the end of your turn, if at least half your orb slots are empty, #yChannel #b", " #yCrystal. NL Counts slots containing #yGlass as empty." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]
