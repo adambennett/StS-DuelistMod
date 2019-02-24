@@ -37,6 +37,7 @@ public class BabyDragon extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.summons = 2;
         this.originalName = this.name;
     }
@@ -70,10 +71,7 @@ public class BabyDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null)
-		{
-			if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-		}
+		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 	}
 
 	@Override

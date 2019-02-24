@@ -40,6 +40,7 @@ public class Kuriboh extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = INC_SUMMONS;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.METAL_RAIDERS);
+		this.tags.add(DefaultMod.GOOD_TRIB);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;

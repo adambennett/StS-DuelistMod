@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -36,7 +37,9 @@ public class Gandora extends DuelistCard
     public Gandora() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.DRAGON);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.originalName = this.name;
         this.baseDamage = this.damage = 50;
         this.tributes = 5;
@@ -121,7 +124,7 @@ public class Gandora extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 		
 	}
 

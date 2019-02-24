@@ -40,6 +40,7 @@ public class LesserDragon extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -74,10 +75,7 @@ public class LesserDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(DefaultMod.DRAGON))
-		{
-			applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1));
-		}
+		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 	}
 
 	@Override

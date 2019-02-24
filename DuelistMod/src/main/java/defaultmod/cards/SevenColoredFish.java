@@ -39,6 +39,7 @@ public class SevenColoredFish extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
         this.summons = SUMMONS;
@@ -77,9 +78,8 @@ public class SevenColoredFish extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-	
+		if (tributingCard.originalName.equals("Legendary Fisherman")) { draw(2); }
 	}
-
 
 	@Override
 	public void onSummon(int summons) {

@@ -251,8 +251,8 @@
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "Legendary Fisherman",
-		"DESCRIPTION": "Tribute 1. NL Channel a Water. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel a Water."
+		"DESCRIPTION": "Tribute 1. NL Channel a Water. NL Exhaust. NL If you Tribute 7-Colored Fish for this card, draw 2 cards.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 cards."
 	},
 	"theDuelist:MagicCylinder": {
 		"NAME": "Magic Cylinder",
@@ -396,18 +396,18 @@
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
-		"DESCRIPTION": "Tribute 2. NL Channel 1 plasma. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel 1 plasma. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 plasma. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 plasma. NL Deal !D! damage."
 	},
 	"theDuelist:SangaThunder": {
 		"NAME": "Sanga of Thunder",
-		"DESCRIPTION": "Tribute 2. NL Channel 1 lightning. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel 1 lightning. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage."
 	},
 	"theDuelist:SangaWater": {
 		"NAME": "Suijin",
-		"DESCRIPTION": "Tribute 2. NL Channel 1 Water. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel 1 Water. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage."
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "Scapegoat",
@@ -753,6 +753,16 @@
 		"NAME": "Molten Zombie",
 		"DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Resummon: Deal 20 damage to ALL enemies.",
 		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Resummon: Deal 20 damage to ALL enemies."
+	},
+	"theDuelist:TokenVacuum": {
+		"NAME": "Token Vacuum",
+		"DESCRIPTION": "Tribute ALL of your tokens. Summon a random monster and deal !D! damage to a random enemy for each token Tributed.",
+		"UPGRADE_DESCRIPTION": "Tribute ALL of your tokens. Summon a random monster and deal !D! damage to a random enemy for each token Tributed."
+	},
+	"theDuelist:BadToken": {
+		"NAME": "DEBUG: POWER REMOVER",
+		"DESCRIPTION": "Remove all your powers.",
+		"UPGRADE_DESCRIPTION": "Remove all your powers."
 	},
 	"theDuelist:Token": {
 		"NAME": "Token",

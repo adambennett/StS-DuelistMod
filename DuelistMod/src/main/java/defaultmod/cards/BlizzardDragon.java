@@ -4,9 +4,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -39,6 +41,7 @@ public class BlizzardDragon extends DuelistCard
         this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -101,9 +104,9 @@ public class BlizzardDragon extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 	}
 
 	

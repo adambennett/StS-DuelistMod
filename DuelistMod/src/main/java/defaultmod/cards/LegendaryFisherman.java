@@ -98,12 +98,10 @@ public class LegendaryFisherman extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		
 	}
-
-
 
 	@Override
 	public void onSummon(int summons) {

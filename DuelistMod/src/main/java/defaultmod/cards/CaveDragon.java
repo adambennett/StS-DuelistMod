@@ -37,6 +37,7 @@ public class CaveDragon extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.LEGACY_DARKNESS);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.summons = 1;
         this.originalName = this.name;
         this.originalName = this.name;
@@ -70,10 +71,7 @@ public class CaveDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null)
-		{
-			if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-		}
+		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 	}
 
 	

@@ -1,6 +1,7 @@
 package defaultmod;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import org.apache.logging.log4j.*;
 
@@ -52,6 +53,9 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	private static boolean button2Bool = false;
 	private static boolean button3Bool = false;
 	private static boolean button4Bool = false;
+	
+	public static int lastMaxSummons = 5;
+	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
 
 
 	// Arraylist full of my cards, basically a copy of CardLibrary for this set only
@@ -74,6 +78,8 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
 	@SpireEnum public static AbstractCard.CardTags NO_PUMPKIN;
+	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
+	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES; // 24 cards
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_SERVANT; //7 cards
@@ -283,10 +289,10 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String BLAST_JUGGLER = "cards/Blast_Juggler.png";
 	public static final String LEGENDARY_EXODIA = "cards/Legendary_Exodia_Incarnate.png";
 	public static final String SUPERANCIENT_DINOBEAST = "cards/Superancient_Dinobeast.png";
-
 	public static final String MOLTEN_ZOMBIE = "cards/Molten_Zombie.png";
 	public static final String RED_EYES_ZOMBIE = "cards/Red_Eyes_Zombie.png";
 	public static final String ARMORED_ZOMBIE = "cards/Armored_Zombie.png";
+	public static final String TOKEN_VACUUM = "cards/Token_Vacuum.png";
 
 	public static final String BOOK_SECRET = "cards/Book_Secret_Arts.png";
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
@@ -809,6 +815,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.addCard(new RedEyesZombie());
 		BaseMod.addCard(new LegendaryExodia());
 		BaseMod.addCard(new RadiantMirrorForce());
+		BaseMod.addCard(new TokenVacuum());
 		//BaseMod.addCard(new TimeWizard());
 
 
@@ -938,7 +945,8 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		myCards.add(new ArmoredZombie());
 		myCards.add(new MoltenZombie());
 		myCards.add(new RedEyesZombie());
-
+		myCards.add(new TokenVacuum());
+		
 		// Add Replay-dependent cards
 		if (Loader.isModLoaded("ReplayTheSpireMod"))
 		{
@@ -1003,11 +1011,27 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 			myCards.add(new ToonWorld());
 			myCards.add(new RedEyesToon());
 		}
-
+		
+		// Debug Cards
+		//BaseMod.addCard(new BadToken());
+		//myCards.add(new BadToken());
+		
+		
+		// Unlock all cards
 		logger.info("Making sure the cards are unlocked.");
-		// Unlock the cards
-		for (DuelistCard c : myCards) {UnlockTracker.unlockCard(c.getID()); }
-
+		for (DuelistCard c : myCards) {UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); }
+		summonMap.put("Puzzle Token", new Token());
+		summonMap.put("Ancient Token", new Token());
+		summonMap.put("Anubis Token", new Token());
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards ---> Map Test");
+		Set<Entry<String, DuelistCard>> set = summonMap.entrySet();
+		for (Entry<String, DuelistCard> e : set)
+		{
+			logger.info(e.toString());
+		}
+		
+		
 		logger.info("Done adding cards!");
 
 	}
@@ -1056,24 +1080,21 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of #b5 #ySummons.");
 		BaseMod.addKeyword(new String[] {"resummon", "Resummon", "Resummons", "resummons"}, "Replays the card, ignoring Tribute costs. Some monsters trigger extra special effects when Resummoned.");
 		BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes", "sacrifice"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
-		BaseMod.addKeyword(new String[] {"Increment", "increment" }, "Increase your maximum #ySummons by the number given.");
+		BaseMod.addKeyword(new String[] {"increment", "Increment" }, "Increase your maximum #ySummons by the number given.");
 		BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "A powerful monster found within your Grandpa's deck.");
-		BaseMod.addKeyword(new String[] {"Gate", "gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus.");
-		BaseMod.addKeyword(new String[] {"Buffer", "buffer"}, "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ydebuffs.");
-		BaseMod.addKeyword(new String[] {"Summoner", "summoner"}, "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons.");
-		BaseMod.addKeyword(new String[] {"Reducer", "reducer"}, "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0.");
-		BaseMod.addKeyword(new String[] {"MonsterOrb", "monsterorb", "MonsterOrb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
-		BaseMod.addKeyword(new String[] {"Dragonorb", "dragonorb", "DragonOrb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
-		BaseMod.addKeyword(new String[] {"Overflow", "overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
-		BaseMod.addKeyword(new String[] {"Toon", "toon"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the tribute, deal #b5 damage to all enemies.");
-		BaseMod.addKeyword(new String[] {"Magnet", "magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
-		BaseMod.addKeyword(new String[] {"Ojamania", "ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
+		BaseMod.addKeyword(new String[] {"gate", "Gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus.");
+		BaseMod.addKeyword(new String[] {"buffer", "Buffer"}, "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ydebuffs.");
+		BaseMod.addKeyword(new String[] {"summoner", "Summoner"}, "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons.");
+		BaseMod.addKeyword(new String[] {"reducer", "Reducer"}, "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0.");
+		BaseMod.addKeyword(new String[] {"monsterOrb", "Monsterorb", "MonsterOrb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
+		BaseMod.addKeyword(new String[] {"dragonorb", "Dragonorb", "DragonOrb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
+		BaseMod.addKeyword(new String[] {"overflow", "Overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
+		BaseMod.addKeyword(new String[] {"toon", "Toon"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the tribute, deal #b5 damage to all enemies.");
+		BaseMod.addKeyword(new String[] {"magnet", "Magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
+		BaseMod.addKeyword(new String[] {"ojamania", "Ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
 		BaseMod.addKeyword(new String[] {"dragon", "Dragon"}, "Powerful monster cards. When you Tribute a Dragon for another Dragon, Gain 1 Strength.");
 		BaseMod.addKeyword(new String[] {"mystical", "Mystical"}, "Powerful monster cards. When you Tribute a Mystical monster for a Dragon, take 2 damage.");
-		BaseMod.addKeyword(new String[] {"water", "Water"}, "Orb: Draws cards.");
-		BaseMod.addKeyword(new String[] {"crystal", "Crystal"}, "Orb: Gives adjacent orbs #b+2 #yFocus. When #yEvoked, if you have fewer than #b3 orb slots, gain an orb slot. NL #yPassive effect is not affected by #yFocus.");
-		BaseMod.addKeyword(new String[] {"glass", "Glass"}, "Orb: No #yPassive effect. When #yEvoked while you have more than #b3 orb slots, consumes your leftmost orb slot and #yEvokes the occupying orb.");
-		BaseMod.addKeyword(new String[] {"hellfire", "Hellfire"}, "Orb: At the start of your turn, gain #b+2 #yStrength until the end of your turn. NL When #yEvoked, applies 1 #yVulnerable to a random enemy.");
+		
 	}
 
 	// ================ /LOAD THE KEYWORDS/ ===================    

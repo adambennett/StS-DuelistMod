@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.*;
@@ -90,6 +91,12 @@ public abstract class DuelistCard extends CustomCard
 		this.rawDescription = "Ethereal. NL " + this.rawDescription;
 		this.initializeDescription();
 	} 
+	
+	public static AbstractMonster getRandomMonster()
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		return m;
+	}
 
 	protected int getXEffect() {
 		if (energyOnUse < EnergyPanel.totalCount) {
@@ -280,109 +287,135 @@ public abstract class DuelistCard extends CustomCard
 			nc.playCount++;
 		}
 	}
-
+	
 	public static void summon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
-		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p), 0)); }
-
-		// Setup Pot of Generosity
-		int potSummons = 0;
-		int startSummons = p.getPower(SummonPower.POWER_ID).amount;
-		SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-		int maxSummons = summonsInstance.MAX_SUMMONS;
-		if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
-		else { potSummons = SUMMONS; }
-
-		// Add SUMMONS
-		summonsInstance.amount += potSummons;
-		
-		if (potSummons > 0) 
-		{ 
-			for (int i = 0; i < potSummons; i++) 
-			{ 
-				summonsInstance.summonList.add(c.originalName); summonsInstance.summonMap.put(c.originalName, c); 
-			} 
-			
-			//c.onSummon(potSummons);
-			//System.out.println("theDuelist:DuelistCard:summon() ---> Called " + c.originalName + "'s onSummon()");
-		}
-
-		// Check for Pot of Generosity
-		if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-		// Check for Summoning Sickness
-		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-		// Check for Slifer
-		if (p.hasPower(SliferSkyPower.POWER_ID)) 
-		{ 
-			if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-			else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-			else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-			else { RandomOrbHelper.channelRandomOrb(); }
-		} 
+		if (!p.hasPower(SummonPower.POWER_ID))
+		{
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, c.originalName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
+			int startSummons = SUMMONS;
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
 	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			{ 
+				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+				else { RandomOrbHelper.channelRandomOrb(); }
+			} 
+		}
 		
-		// Update UI
-		summonsInstance.updateCount(summonsInstance.amount);
-		summonsInstance.updateDescription();
+		else
+		{
+			// Setup Pot of Generosity
+			int potSummons = 0;
+			int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			int maxSummons = summonsInstance.MAX_SUMMONS;
+			if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
+			else { potSummons = SUMMONS; }
+	
+			// Add SUMMONS
+			summonsInstance.amount += potSummons;
+			
+			if (potSummons > 0) 
+			{ 
+				for (int i = 0; i < potSummons; i++) 
+				{ 
+					summonsInstance.summonList.add(c.originalName);
+				} 
+				
+				//c.onSummon(potSummons);
+				//System.out.println("theDuelist:DuelistCard:summon() ---> Called " + c.originalName + "'s onSummon()");
+			}
+	
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
+	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			{ 
+				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+				else { RandomOrbHelper.channelRandomOrb(); }
+			} 
+		
+			
+			// Update UI
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
+		}
 	}
 
 	public static void powerSummon(AbstractPlayer p, int SUMMONS, String cardName)
 	{
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
-		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p), 0)); }
-
-		// Setup Pot of Generosity
-		int potSummons = 0;
-		int startSummons = p.getPower(SummonPower.POWER_ID).amount;
-		SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-		int maxSummons = summonsInstance.MAX_SUMMONS;
-		if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
-		else { potSummons = SUMMONS; }
-
-		// Add SUMMONS
-		summonsInstance.amount += potSummons;
-		
-		if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); summonsInstance.summonMap.put(cardName, new Token(cardName)); } }
-
-		// Check for Pot of Generosity
-		if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-		// Check for Summoning Sickness
-		if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-		// Check for Slifer
-		if (p.hasPower(SliferSkyPower.POWER_ID)) 
+		if (!p.hasPower(SummonPower.POWER_ID))
 		{
-			if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-			else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-			else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-			else { RandomOrbHelper.channelRandomOrb(); }
-		} 
-
-		// Update UI
-		summonsInstance.updateCount(summonsInstance.amount);
-		summonsInstance.updateDescription();
-	}
-
-	public static void summonLite(AbstractPlayer p, int SUMMONS, String cardName)
-	{
-		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
-		if (!p.hasPower(SummonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SummonPower(p), 0)); }
-
-		// Get summon power instance
-		SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-
-		// Add SUMMONS
-		summonsInstance.amount += SUMMONS;
-		
-		if (SUMMONS > 0) { for (int i = 0; i < SUMMONS; i++) { summonsInstance.summonList.add(cardName); summonsInstance.summonMap.put(cardName, new Token()); } }
-		
-		// Update UI
-		summonsInstance.updateCount(summonsInstance.amount);
-		summonsInstance.updateDescription();
+			//DuelistCard newSummonCard = (DuelistCard) DefaultMod.summonMap.get(cardName).makeCopy();
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, cardName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons."), SUMMONS));
+			int startSummons = SUMMONS;
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
+	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			{ 
+				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+				else { RandomOrbHelper.channelRandomOrb(); }
+			} 
+		}
+		else
+		{
+			// Setup Pot of Generosity
+			int potSummons = 0;
+			int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			int maxSummons = summonsInstance.MAX_SUMMONS;
+			if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
+			else { potSummons = SUMMONS; }
+	
+			// Add SUMMONS
+			summonsInstance.amount += potSummons;
+			
+			if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); } }
+	
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
+	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			{
+				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+				else { RandomOrbHelper.channelRandomOrb(); }
+			} 
+	
+			// Update UI
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
+		}
 	}
 
 	public static int getSummons(AbstractPlayer p)
@@ -415,9 +448,10 @@ public abstract class DuelistCard extends CustomCard
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			summonsInstance.MAX_SUMMONS = amount;
-			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4;}
+			summonsInstance.MAX_SUMMONS = amount; DefaultMod.lastMaxSummons = amount;
+			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4; DefaultMod.lastMaxSummons = 4;}
 			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
 		}
 
@@ -428,9 +462,10 @@ public abstract class DuelistCard extends CustomCard
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			summonsInstance.MAX_SUMMONS += amount;
-			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4;}
+			summonsInstance.MAX_SUMMONS += amount; DefaultMod.lastMaxSummons += amount;
+			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4; DefaultMod.lastMaxSummons = 4;}
 			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
 		}
 	}
@@ -440,9 +475,10 @@ public abstract class DuelistCard extends CustomCard
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			summonsInstance.MAX_SUMMONS -= amount;
-			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4;}
+			summonsInstance.MAX_SUMMONS -= amount; DefaultMod.lastMaxSummons -= amount;
+			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4; DefaultMod.lastMaxSummons = 4;}
 			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
 		}
 	}
@@ -491,7 +527,7 @@ public abstract class DuelistCard extends CustomCard
 								if (summonsInstance.summonList.size() > 0)
 								{
 									int endIndex = summonsInstance.summonList.size() - 1;
-									DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+									DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 									if (temp != null) { tributeList.add(temp); }
 									//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 									summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
@@ -501,6 +537,7 @@ public abstract class DuelistCard extends CustomCard
 						
 						
 						summonsInstance.updateCount(summonsInstance.amount);
+						summonsInstance.updateStringColors();
 						summonsInstance.updateDescription();
 						for (DuelistCard c : tributeList) { c.onTribute(card); System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
 						return tributeList;
@@ -542,7 +579,7 @@ public abstract class DuelistCard extends CustomCard
 							if (summonsInstance.summonList.size() > 0)
 							{
 								int endIndex = summonsInstance.summonList.size() - 1;
-								DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+								DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 								if (temp != null) { tributeList.add(temp); }
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
@@ -552,6 +589,7 @@ public abstract class DuelistCard extends CustomCard
 					
 					
 					summonsInstance.updateCount(summonsInstance.amount);
+					summonsInstance.updateStringColors();
 					summonsInstance.updateDescription();
 					for (DuelistCard c : tributeList) {c.onTribute(card); System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
 					return tributeList;
@@ -607,7 +645,7 @@ public abstract class DuelistCard extends CustomCard
 							if (summonsInstance.summonList.size() > 0)
 							{
 								int endIndex = summonsInstance.summonList.size() - 1;
-								DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+								DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 								if (temp != null) { tributeList.add(temp); }
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
@@ -617,6 +655,7 @@ public abstract class DuelistCard extends CustomCard
 					
 					
 					summonsInstance.updateCount(summonsInstance.amount);
+					summonsInstance.updateStringColors();
 					summonsInstance.updateDescription();
 					for (DuelistCard c : tributeList) { c.onTribute(new Token()); System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
 					return tributes;
@@ -658,7 +697,7 @@ public abstract class DuelistCard extends CustomCard
 						if (summonsInstance.summonList.size() > 0)
 						{
 							int endIndex = summonsInstance.summonList.size() - 1;
-							DuelistCard temp = summonsInstance.summonMap.get(summonsInstance.summonList.get(endIndex));
+							DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 							if (temp != null) { tributeList.add(temp); }
 							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 							summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
@@ -668,11 +707,31 @@ public abstract class DuelistCard extends CustomCard
 				
 				
 				summonsInstance.updateCount(summonsInstance.amount);
+				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
 				for (DuelistCard c : tributeList) {c.onTribute(new Token()); System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
 				return tributes;
 			}
 		}
+	}
+	
+	
+	public static void tributeChecker(AbstractPlayer p, int tributes)
+	{
+		// Check for Obelisk after tributing
+		if (p.hasPower(ObeliskPower.POWER_ID))
+		{
+			int[] temp = new int[] {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
+			for (int i : temp) { i = i * tributes; }
+			AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
+		}
+	
+		// Check for Pharaoh's Curse
+		if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+	
+		// Check for Toon Tribute powers
+		if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 	}
 
 	protected void upgradeName(String newName) 

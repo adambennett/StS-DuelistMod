@@ -38,6 +38,7 @@ public class SuperheavyScales extends DuelistCard
 		this.baseBlock = this.block = BLOCK;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.SUPERHEAVY);
+		this.tags.add(DefaultMod.GOOD_TRIB);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;

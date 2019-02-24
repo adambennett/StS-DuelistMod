@@ -43,6 +43,7 @@ public class DarklordMarie extends DuelistCard
         this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.BAD_TRIB);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
         this.originalName = this.name;
         this.summons = SUMMONS;

@@ -15,7 +15,7 @@ public class Token extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DefaultMod.makeID("Token");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.ALPHA_MAGNET);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.GREEDPOT_AVATAR);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -23,8 +23,8 @@ public class Token extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = -1;
     // /STAT DECLARATION/
@@ -34,7 +34,13 @@ public class Token extends DuelistCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) { }
     @Override public AbstractCard makeCopy() { return new Token(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
-	@Override public void onTribute(DuelistCard tributingCard) {}
+	@Override public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.originalName.equals(""))
+		{
+			
+		}
+	}
 	@Override public void onSummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
@@ -31,9 +32,9 @@ public class SangaThunder extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 12;
+    private static final int DAMAGE = 20;
     private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int TRIBUTES = 2;
+    private static final int TRIBUTES = 3;
     // /STAT DECLARATION/
 
     public SangaThunder() {
@@ -42,8 +43,11 @@ public class SangaThunder extends DuelistCard
     	this.tags.add(DefaultMod.MONSTER);
     	this.tags.add(DefaultMod.GUARDIAN);
     	this.tags.add(DefaultMod.METAL_RAIDERS);
+    	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
+		this.isSummon = true;
+		this.summons = 1;
     }
 
     // Actions the card should do.
@@ -51,10 +55,9 @@ public class SangaThunder extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, TRIBUTES, false, this);
+    	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     	AbstractOrb orb = new Lightning();
-    	orb.passiveAmount += 2;
-    	orb.applyFocus();
     	channel(orb);
     }
 
@@ -70,7 +73,6 @@ public class SangaThunder extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
-            //this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -118,15 +120,22 @@ public class SangaThunder extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		summon(player(), this.summons, this);
+    	attack(m, AFX, this.damage);
+    	AbstractOrb orb = new Lightning();
+    	channel(orb);
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
+		summon(player(), this.summons, this);
+    	attack(m, AFX, this.damage);
+    	AbstractOrb orb = new Lightning();
+    	channel(orb);
 	}
 
 	@Override

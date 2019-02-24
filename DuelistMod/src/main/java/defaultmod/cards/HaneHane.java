@@ -38,6 +38,7 @@ public class HaneHane extends DuelistCard
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.originalName = this.name;
     }
 

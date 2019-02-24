@@ -39,7 +39,7 @@ public class InjectionFairy extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGACY_DARKNESS);
 		this.originalName = this.name;
-		this.summons = this.magicNumber;
+		this.summons = 1;
 		this.isSummon = true;
 	}
 

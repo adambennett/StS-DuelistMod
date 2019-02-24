@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -40,6 +41,7 @@ public class ThunderDragon extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -77,6 +79,7 @@ public class ThunderDragon extends DuelistCard
 		{
 			AbstractOrb orb = new Lightning();
 			channel(orb);
+			applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1));
 		}
 	}
 
