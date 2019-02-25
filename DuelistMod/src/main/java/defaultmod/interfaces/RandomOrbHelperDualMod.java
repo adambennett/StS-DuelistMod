@@ -31,6 +31,7 @@ public class RandomOrbHelperDualMod
 		orbs.add(new DragonOrb());
 		orbs.add(new ReducerOrb()); 
 		orbs.add(new ReplayLightOrb());
+		/*
 		orbs.add(new Air());
 		orbs.add(new Black());
 		orbs.add(new Earth());
@@ -38,6 +39,7 @@ public class RandomOrbHelperDualMod
 		orbs.add(new Glitch());
 		orbs.add(new Shadow());
 		orbs.add(new Splash());
+		*/
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
 	}

@@ -2,7 +2,7 @@
   "modid": "duelistmod",
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
-  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.152.0\n- Big stability update + 3 new cards\n\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
+  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.152.0\n- Lots of backend fixes\n- Stability and bug fixes\n- Added 3 new cards: Mountain, Yami, Token Vacuum\n- Changed Mystical keyword to Spellcaster\n- Summoning power logic is vastly improved\n- Added mod settings config panel options: remove toons, remove exodia cards, remove crossover mod cards, change card set size\n\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
   "version": "1.152.0",
   "sts_version": "1-23-2019",
   "mts_version": "3.8.3",

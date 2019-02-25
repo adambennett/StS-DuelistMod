@@ -898,7 +898,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		myCards.add(new ThunderDragon());
 		myCards.add(new WingedDragonRa());
 		myCards.add(new Yami());
-		myCards.add(new BadToken()); 		//debug card
+		//myCards.add(new BadToken()); 		//debug card
 		// END CORE SET
 		
 		// ALL Set - 48 cards ( need 47 more cards here)
