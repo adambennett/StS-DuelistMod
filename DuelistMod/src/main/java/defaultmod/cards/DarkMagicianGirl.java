@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.ModifyMagicNumberAction;
-import defaultmod.orbs.Buffer;
 import defaultmod.patches.*;
 
 public class DarkMagicianGirl extends DuelistCard 
@@ -41,6 +39,8 @@ public class DarkMagicianGirl extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.MAGICIANS_FORCE);
+		this.tags.add(DefaultMod.SPELLCASTER);
+		this.tags.add(DefaultMod.LIMITED);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = 1;
@@ -52,8 +52,8 @@ public class DarkMagicianGirl extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		AbstractOrb buffer = new Buffer();
-		channel(buffer);
+		//AbstractOrb buffer = new Buffer();
+		//channel(buffer);
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class DarkMagicianGirl extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 		
 	}
 
@@ -114,8 +114,8 @@ public class DarkMagicianGirl extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
 		summon(player(), this.summons, this);
-		AbstractOrb buffer = new Buffer();
-		channel(buffer);
+		//AbstractOrb buffer = new Buffer();
+		//channel(buffer);
 		
 	}
 
@@ -123,8 +123,8 @@ public class DarkMagicianGirl extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
 		summon(player(), this.summons, this);
-		AbstractOrb buffer = new Buffer();
-		channel(buffer);
+		//AbstractOrb buffer = new Buffer();
+		//channel(buffer);
 	}
 
 	@Override

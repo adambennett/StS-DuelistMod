@@ -33,6 +33,7 @@ public class Parasite extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
+        this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.originalName = this.name;
 
     }

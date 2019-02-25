@@ -40,6 +40,7 @@ public class SuperheavyMagnet extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
+        this.tags.add(DefaultMod.REDUCED);
 		this.originalName = this.name;
 		this.tributes = 2;
     }

@@ -32,6 +32,7 @@ public class PotDuality extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.POT);
+        this.tags.add(DefaultMod.REDUCED);
         this.baseBlock = this.block = 15;
         this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;

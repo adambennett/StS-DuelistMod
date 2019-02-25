@@ -34,6 +34,7 @@ public class FeatherPho extends DuelistCard
     public FeatherPho() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.LIMITED);
         this.magicNumber = this.baseMagicNumber = pickup;
         this.originalName = this.name;
     }

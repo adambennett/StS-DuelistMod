@@ -1,16 +1,14 @@
 package defaultmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
+import defaultmod.orbs.Earth;
 import defaultmod.patches.*;
 
 public class BadToken extends DuelistCard 
@@ -34,12 +32,27 @@ public class BadToken extends DuelistCard
 
     public BadToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
     public BadToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { ArrayList<AbstractPower> test = p.powers; for (AbstractPower a : test) { removePower(a, p); }}
+    
+    
+    @Override public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	// Remove all player powers
+    	//ArrayList<AbstractPower> test = p.powers; for (AbstractPower a : test) { removePower(a, p);  }
+    	
+    	// Channel test orb
+    	AbstractOrb testOrb = new Earth();
+    	channel(testOrb);
+    }
+   
+    
+    
+    
+    
     @Override public AbstractCard makeCopy() { return new BadToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) {}
 	@Override public void onSummon(int summons) { }
-	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
-	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
+	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
+	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}
 	@Override
 	public String getID() {

@@ -37,6 +37,7 @@ public class MillenniumShield extends DuelistCard
         this.magicNumber = this.baseMagicNumber = TRIBUTES;
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.LIMITED);
         this.misc = 0;
         this.dex = 4;
 		this.originalName = this.name;

@@ -40,6 +40,7 @@ public class SuperheavyBlueBrawler extends DuelistCard
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
+        this.tags.add(DefaultMod.REDUCED);
         this.magicNumber = this.baseMagicNumber = this.dex;
 		this.originalName = this.name;
     }

@@ -51,6 +51,7 @@ public class ToonBarrelDragon extends DuelistCard
 		this.tags.add(DefaultMod.TOON);
 		this.tags.add(DefaultMod.DRAGON);
 		this.tags.add(DefaultMod.GOOD_TRIB);
+		 this.tags.add(DefaultMod.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -67,6 +68,15 @@ public class ToonBarrelDragon extends DuelistCard
 			if (upgraded) { damageArray[i] = randomNum; }
 			else { damageArray[i] = randomNumU; }
 		}
+		
+		if (player().hasPower(MountainPower.POWER_ID))
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				damageArray[i] = (int)Math.floor(damageArray[i] * 1.5);
+			}
+		}
+		
 		this.multiDamage = damageArray;
 		tribute(p, TRIBUTES, false, this);
 		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
@@ -125,7 +135,7 @@ public class ToonBarrelDragon extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-		
+		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
 	}
 
 

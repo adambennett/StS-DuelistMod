@@ -40,6 +40,7 @@ public class BadReaction extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.LIMITED);
         this.originalName = this.name;
     }
 

@@ -23,24 +23,13 @@ public class SummonPower extends AbstractPower
 	public int MAX_SUMMONS = 5;
 	public int test = 5;
 	public ArrayList<String> summonList = new ArrayList<String>();
+	public ArrayList<String> coloredSummonList = new ArrayList<String>();
 	public boolean firstOfBattle = true;
 
-	// Constructor for DuelistCard (primary summon methods)
-	public SummonPower(AbstractCreature owner) {
-		this.name = NAME;
-		this.ID = POWER_ID;
-		this.owner = owner;
-		this.amount = 0;
-		this.img = new Texture(IMG);
-		this.canGoNegative = false;
-		this.type = PowerType.BUFF;
-		if (DefaultMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DefaultMod.lastMaxSummons; }
-		updateCount(this.amount);
-		updateStringColors();
-		updateDescription();
-	}
 	
+	// Constructor for summon() in DuelistCard
 	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc, DuelistCard c) {
+		// Set power fields
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
@@ -49,17 +38,25 @@ public class SummonPower extends AbstractPower
 		this.description = desc;
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
+		
+		// Change Max Summons if player has either of the two relics that effect it
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 3; }
 		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 10; }
+		
+		// Add the new summon(s) to the list
 		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); }}
+		
+		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
 		if (DefaultMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DefaultMod.lastMaxSummons; }
+		
+		// Update the description properly
 		updateCount(this.amount);
 		updateStringColors();
 		updateDescription();
 	}
 
 	
-	// Constructor for Starter Relic
+	// Constructor for powerSummon() in DuelistCard
 	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) {
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -71,7 +68,7 @@ public class SummonPower extends AbstractPower
 		this.type = PowerType.BUFF;
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 3; }
 		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 10; }
-		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon); }}
+		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon);  }}
 		if (DefaultMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DefaultMod.lastMaxSummons; }
 		updateCount(this.amount);
 		updateStringColors();
@@ -80,6 +77,12 @@ public class SummonPower extends AbstractPower
 	
 	@Override
 	public void onVictory()
+	{
+		DefaultMod.lastMaxSummons = 5;
+	}
+	
+	@Override
+	public void onDeath()
 	{
 		DefaultMod.lastMaxSummons = 5;
 	}
@@ -94,14 +97,28 @@ public class SummonPower extends AbstractPower
 	
 	public void updateStringColors()
 	{
-		ArrayList<String> coloredSummonList = new ArrayList<String>();
+		coloredSummonList = new ArrayList<String>();
 		for (String s : summonList)
 		{
 			DuelistCard ref = DefaultMod.summonMap.get(s);
-			if (ref.hasTag(DefaultMod.GOOD_TRIB)) { s = "#b" + s; s.replaceAll("\\s", " #b"); coloredSummonList.add(s); }
-			else if (ref.hasTag(DefaultMod.BAD_TRIB)) { s = "[#FF5252]" + s; s.replaceAll("\\s", " [#FF5252]"); coloredSummonList.add(s);  }
-			else { coloredSummonList.add(s); }
-			summonList = coloredSummonList;
+			String coloredString = "";
+			if (ref.hasTag(DefaultMod.GOOD_TRIB)) 
+			{
+				coloredString = "#b" + s;
+				coloredString = coloredString.replaceAll("\\s", " #b"); 
+				coloredSummonList.add(coloredString);
+			}
+			else if (ref.hasTag(DefaultMod.BAD_TRIB))
+			{
+				coloredString = "[#FF5252]" + s;
+				coloredString = coloredString.replaceAll("\\s", " [#FF5252]");
+				coloredSummonList.add(coloredString);
+			}
+			else
+			{
+				coloredString = s;
+				coloredSummonList.add(coloredString);
+			}
 		}
 	}
 
@@ -113,10 +130,9 @@ public class SummonPower extends AbstractPower
 		if (this.amount > 0)
 		{
 			String summonsString = "";
-			for (String s : summonList) { System.out.println("theDuelist:SummonPower:updateDescription() ---> s: " + s); summonsString += s + ", "; }
+			for (String s : coloredSummonList) { summonsString += s + ", "; }
 			int endingIndex = summonsString.lastIndexOf(",");
 	        String finalSummonsString = summonsString.substring(0, endingIndex) + ".";
-	        System.out.println("theDuelist:SummonPower:updateDescription() --->  finalSummonsString: " + finalSummonsString);
 			this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + finalSummonsString;
 		}
 		else

@@ -37,7 +37,7 @@ public class GeminiElf extends DuelistCard
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
-        //this.exhaust = true;
+        this.tags.add(DefaultMod.SPELLCASTER);
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
@@ -61,8 +61,6 @@ public class GeminiElf extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeMagicNumber(UPGRADE_SUMMONS);
-            //this.exhaust = false;
             this.upgradeMagicNumber(1);
             this.summons += 1;
             this.rawDescription = UPGRADE_DESCRIPTION;
@@ -73,7 +71,7 @@ public class GeminiElf extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 

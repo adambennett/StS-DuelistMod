@@ -35,6 +35,48 @@
       "#yPassive: At the start of turn, increase the number of cards reduced when evoked by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
     ]
   },
+  "theDuelist:Earth": {
+    "NAME": "Earth",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " random #ySpells to your hand. NL #yEvoke: Add #b", " random #ySpell to your hand.", " random #ySpells to your hand."
+    ]
+  },
+  "theDuelist:Air": {
+    "NAME": "Air",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, #yChannel a random #yOrb.", " NL #yEvoke: Gain #b", " #yOrb slot.", " #yOrb slots."
+    ]
+  },
+  "theDuelist:Black": {
+    "NAME": "Black",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " black cards to your hand. NL #yEvoke: Add #b", " black card to your hand.", " black cards to your hand."
+    ]
+  },
+  "theDuelist:FireOrb": {
+    "NAME": "Fire",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, increase your #yStrength by #b", " for each stack of #yDexterity you have. NL #yEvoke: Add #b", " random monster to your hand. It cost #b0 this turn.", " random monsters to your hand. They cost #b0 this turn.."
+    ]
+  },
+  "theDuelist:Glitch": {
+    "NAME": "Glitch",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, do #b", " random effects. NL #yEvoke: Do #b", " random effect.", " random effects."
+    ]
+  },
+  "theDuelist:Shadow": {
+    "NAME": "Shadow",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, #yResummon #b", " random monsters that you have currently #ySummoned. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies."
+    ]
+  },
+  "theDuelist:Splash": {
+    "NAME": "Splash",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, #b", " chance to draw #b3 extra cards. NL #yEvoke: #b", " chance to draw #b5 cards."
+    ]
+  },
   "theDuelist:Summoner": {
     "NAME": "Summoner",
     "DESCRIPTION": [

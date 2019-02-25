@@ -1,5 +1,6 @@
 package defaultmod.cards;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -39,7 +40,7 @@ public class SevenColoredFish extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.GOOD_TRIB);
+        if (Loader.isModLoaded("conspire")) { this.tags.add(DefaultMod.GOOD_TRIB); }
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
         this.summons = SUMMONS;

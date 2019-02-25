@@ -37,6 +37,7 @@ public class SuperheavyDaihachi extends DuelistCard
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
+        this.tags.add(DefaultMod.REDUCED);
         this.baseMagicNumber = this.magicNumber = this.dex;
         this.baseBlock = this.block = 15;
 		this.originalName = this.name;

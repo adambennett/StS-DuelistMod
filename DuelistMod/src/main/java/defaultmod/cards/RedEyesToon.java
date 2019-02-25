@@ -45,6 +45,7 @@ public class RedEyesToon extends DuelistCard
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.FULL);
         this.misc = 0;
 		this.originalName = this.name;
     }
@@ -109,7 +110,7 @@ public class RedEyesToon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
 		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-		
+		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }	
 	}
 
 	@Override

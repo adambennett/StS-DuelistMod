@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.cards.Parasite;
-import defaultmod.patches.RandomEffectsHelper;
+import defaultmod.interfaces.RandomEffectsHelper;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 

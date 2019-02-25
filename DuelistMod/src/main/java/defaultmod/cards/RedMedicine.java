@@ -39,6 +39,7 @@ public class RedMedicine extends DuelistCard
         this.magicNumber = this.baseMagicNumber = BUFFS;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.tags.add(DefaultMod.REDUCED);
 		this.originalName = this.name;
     }
 

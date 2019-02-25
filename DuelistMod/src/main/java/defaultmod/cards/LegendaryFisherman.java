@@ -36,6 +36,7 @@ public class LegendaryFisherman extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
+        this.tags.add(DefaultMod.CONSPIRE);
         this.misc = 0;
         this.exhaust = true;
 		this.originalName = this.name;

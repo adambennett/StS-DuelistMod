@@ -37,6 +37,7 @@ public class OjamaYellow extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.OJAMA);
 		this.tags.add(DefaultMod.INVASION_CHAOS);
+		this.tags.add(DefaultMod.REDUCED);
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.summons = SUMMONS;

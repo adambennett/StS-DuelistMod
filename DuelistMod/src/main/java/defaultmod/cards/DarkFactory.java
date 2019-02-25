@@ -38,6 +38,7 @@ public class DarkFactory extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = ENERGY;
 		this.energyOnUse = ENERGY;
 		this.tags.add(DefaultMod.SPELL);
+		this.tags.add(DefaultMod.REDUCED);
 		this.misc = 0;
 		this.tributes = 2;
 		this.originalName = this.name;

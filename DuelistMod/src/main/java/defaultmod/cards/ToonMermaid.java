@@ -41,6 +41,7 @@ public class ToonMermaid extends DuelistCard
         this.toon = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.TOON);
+        this.tags.add(DefaultMod.FULL);
 		this.originalName = this.name;
         this.isSummon = true;
     }

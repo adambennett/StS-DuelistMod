@@ -45,6 +45,7 @@ public class CurseDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.REDUCED);
         this.misc = 0;
         this.originalName = this.name;
     }

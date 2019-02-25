@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -47,6 +48,7 @@ public class BarrelDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.REPLAYSPIRE);
         this.misc = 0;
         this.originalName = this.name;
     }

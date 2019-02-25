@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
 
 public class NutrientZ extends DuelistCard 
@@ -27,7 +28,7 @@ public class NutrientZ extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static int HEAL = 40;
+    private static int HEAL = 25;
     private static int U_HEAL = 10;
     private static int HP_CHK = 40;
     private static int debuffs = 3;
@@ -38,6 +39,7 @@ public class NutrientZ extends DuelistCard
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.LEGACY_DARKNESS);
+        this.tags.add(DefaultMod.REPLAYSPIRE);
         this.exhaust = true;
 		this.originalName = this.name;
     }

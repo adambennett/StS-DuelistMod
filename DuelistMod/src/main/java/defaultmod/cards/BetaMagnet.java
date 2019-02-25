@@ -38,6 +38,7 @@ public class BetaMagnet extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
+        this.tags.add(DefaultMod.LIMITED);
         this.originalName = this.name;
         this.summons = SUMMONS;
     }

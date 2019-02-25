@@ -33,7 +33,7 @@ public class Earth extends AbstractOrb
 	
 	public Earth()
 	{
-		this.img = ImageMaster.loadImage("images/orbs/Earth.png");
+		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Earth2.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;

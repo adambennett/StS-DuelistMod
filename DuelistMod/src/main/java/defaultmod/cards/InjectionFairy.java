@@ -38,6 +38,7 @@ public class InjectionFairy extends DuelistCard
 		this.baseDamage = this.damage = 6;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGACY_DARKNESS);
+		this.tags.add(DefaultMod.SPELLCASTER);
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;
@@ -71,9 +72,9 @@ public class InjectionFairy extends DuelistCard
 	}
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-
+	public void onTribute(DuelistCard tributingCard)
+	{
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 

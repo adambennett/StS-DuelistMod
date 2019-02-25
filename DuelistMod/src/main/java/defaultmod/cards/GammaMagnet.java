@@ -38,6 +38,7 @@ public class GammaMagnet extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.MAGNETWARRIOR);
+        this.tags.add(DefaultMod.LIMITED);
         this.draw = 1;
         this.originalName = this.name;
         this.summons = SUMMONS;

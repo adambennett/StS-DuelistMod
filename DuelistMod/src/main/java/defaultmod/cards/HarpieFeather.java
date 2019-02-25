@@ -39,6 +39,7 @@ public class HarpieFeather extends DuelistCard
     	this.magicNumber = this.baseMagicNumber = 1;
     	this.originalName = this.name;
     	this.tags.add(DefaultMod.SPELL);
+    	this.tags.add(DefaultMod.REDUCED);
     }
 
     // Actions the card should do.

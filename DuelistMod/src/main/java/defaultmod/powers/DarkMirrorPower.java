@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.cards.DarkMirrorForce;
-import defaultmod.patches.RandomEffectsHelper;
+import defaultmod.interfaces.RandomEffectsHelper;
 
 
 public class DarkMirrorPower extends AbstractPower 

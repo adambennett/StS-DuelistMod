@@ -43,6 +43,7 @@ public class ToonSummonedSkull extends DuelistCard
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);
+		 this.tags.add(DefaultMod.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -108,9 +109,9 @@ public class ToonSummonedSkull extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
 	}
 
 	@Override

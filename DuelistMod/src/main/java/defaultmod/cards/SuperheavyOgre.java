@@ -41,6 +41,7 @@ public class SuperheavyOgre extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.REDUCED);
         this.magicNumber = this.baseMagicNumber = this.dex;
 		this.originalName = this.name;
 		this.isSummon = true;

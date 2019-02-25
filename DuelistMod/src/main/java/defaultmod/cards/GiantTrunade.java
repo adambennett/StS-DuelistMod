@@ -34,6 +34,7 @@ public class GiantTrunade extends DuelistCard
         this.originalName = this.name;
         this.tags.add(DefaultMod.MAGIC_RULER);
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.REDUCED);
     }
 
     // Actions the card should do.

@@ -1,4 +1,4 @@
-package defaultmod.patches;
+package defaultmod.interfaces;
 
 import java.util.ArrayList;
 

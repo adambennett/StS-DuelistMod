@@ -11,8 +11,8 @@
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "Axe of Despair",
-		"DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or take 30 damage). NL Place this card on top of your draw pile.",
-		"UPGRADE_DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or take 30 damage). NL Place this card on top of your draw pile."
+		"DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or lose 30 HP). NL Place this card on top of your draw pile.",
+		"UPGRADE_DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or lose 30 HP). NL Place this card on top of your draw pile."
 	},
 	"theDuelist:BadReaction": {
 		"NAME": "Bad Reaction",
@@ -76,8 +76,8 @@
 	},
 	"theDuelist:CatapultTurtle": {
 		"NAME": "Catapult Turtle",
-		"DESCRIPTION": "Tribute 2. NL Once per turn, Tribute all Summons and deal !D! damage for each to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Once per turn, Tribute all Summons and deal !D! damage for each to ALL enemies."
+		"DESCRIPTION": "Tribute 2. NL Once per turn, Tribute ALL Summons and deal !D! damage for each to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Once per turn, Tribute ALL Summons and deal !D! damage for each to ALL enemies."
 	},
 	"theDuelist:CelticGuardian": {
 		"NAME": "Celtic Guardian",
@@ -91,23 +91,23 @@
 	},
 	"theDuelist:DarkHole": {
 		"NAME": "Dark Hole",
-		"DESCRIPTION": "Steal all Block from an enemy.",
-		"UPGRADE_DESCRIPTION": "Steal all Block from an enemy."
+		"DESCRIPTION": "Steal ALL Block from an enemy.",
+		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy."
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "Darklord Marie",
-		"DESCRIPTION": "Mystical NL Summon 1. NL Deal !D! damage. Overflow !M! - gain 3 HP.",
-		"UPGRADE_DESCRIPTION": "Mystical NL Summon 1. NL Deal !D! damage. Overflow !M! - gain 4 HP."
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage. Overflow !M! - gain 3 HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage. Overflow !M! - gain 4 HP."
 	},
 	"theDuelist:DarkMagician": {
 		"NAME": "Dark Magician",
-		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. Channel a Summoner.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Deal !D! damage. Channel a Summoner."
+		"DESCRIPTION": "Spellcaster NL Tribute 2. NL Deal !D! damage. Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute 1. NL Deal !D! damage. Channel a Summoner."
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"NAME": "D.M. Girl",
-		"DESCRIPTION": "Summon 1. NL Channel a Buffer. NL Overflow !M! - Apply a random buff.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Channel a Buffer. NL Overflow !M! - Apply a random buff."
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Overflow !M! - Apply a random buff.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Overflow !M! - Apply a random buff."
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "Dian Keto",
@@ -151,8 +151,8 @@
 	},
 	"theDuelist:Fissure": {
 		"NAME": "Fissure",
-		"DESCRIPTION": "Deal !D! damage all enemies for each of your Summons.",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage all enemies for each of your Summons."
+		"DESCRIPTION": "Deal !D! damage to ALL enemies for each of your Summons.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each of your Summons."
 	},
 	"theDuelist:FlameSwordsman": {
 		"NAME": "Flame Swordsman",
@@ -176,7 +176,7 @@
 	},
 	"theDuelist:GateGuardian": {
 		"NAME": "Gate Guardian",
-		"DESCRIPTION": "Tribute 3. NL If you Tribute a Guardian to play this, Channel the matching Orb. NL Evoke all orbs. NL Channel a Gate.",
+		"DESCRIPTION": "Tribute 3. NL If you Tribute a Guardian to play this, Channel the matching Orb. NL Evoke ALL orbs. NL Channel a Gate.",
 		"UPGRADE_DESCRIPTION": "Tribute 3. NL If you Tribute a Guardian to play this, Channel the matching Orb. NL Evoke 2 orbs. NL Channel a Gate."
 	},
 	"theDuelist:GiantSoldier": {
@@ -186,8 +186,8 @@
 	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "Giant Trunade",
-		"DESCRIPTION": "Evoke all Orbs. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Evoke all Orbs."
+		"DESCRIPTION": "Evoke ALL Orbs. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Evoke ALL Orbs."
 	},
 	"theDuelist:GracefulCharity": {
 		"NAME": "Graceful Charity",
@@ -211,13 +211,13 @@
 	},
 	"theDuelist:InjectionFairy": {
 		"NAME": "Injection Fairy Lily",
-		"DESCRIPTION": "Summon 1. NL Gain !M! HP.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !M! HP. NL Deal !D! damage."
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !M! HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !M! HP. NL Deal !D! damage."
 	},
 	"theDuelist:InsectQueen": {
 		"NAME": "Insect Queen",
-		"DESCRIPTION": "Tribute all Summons. Apply !M! times that much poison to all enemies. Reduce your max Summons by 2.",
-		"UPGRADE_DESCRIPTION": "Tribute all Summons. Apply !M! times that much poison to all enemies. Reduce your max Summons by 1."
+		"DESCRIPTION": "Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 2.",
+		"UPGRADE_DESCRIPTION": "Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1."
 	},
 	"theDuelist:JamBreeding": {
 		"NAME": "Jam Breed Machine",
@@ -231,8 +231,8 @@
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
-		"DESCRIPTION": "Increment !M!. NL Summon 1. NL If you Tribute this monster for anything other than a Dragon, gain 1 Intangible.",
-		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 1. NL If you Tribute this monster for anything other than a Dragon, gain 1 Intangible."
+		"DESCRIPTION": "Increment !M!. NL Summon 1. NL Exhaust. NL If you Tribute this monster for anything other than a Dragon, gain 1 Intangible.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 2. NL Exhaust. NL If you Tribute this monster for anything other than a Dragon, gain 1 Intangible."
 	},
 	"theDuelist:BigLabyrinthWall": {
 		"NAME": "Big Labyrinth Wall",
@@ -331,8 +331,8 @@
 	},
 	"theDuelist:PotAvarice": {
 		"NAME": "Pot of Avarice",
-		"DESCRIPTION": "Tribute all Summons. NL Increment (the amount tributed). NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute all Summons. NL Increment (the amount tributed + 3). NL Exhaust."
+		"DESCRIPTION": "Tribute ALL Summons. NL Increment (the amount tributed). NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute ALL Summons. NL Increment (the amount tributed + 3). NL Exhaust."
 	},
 	"theDuelist:PotDichotomy": {
 		"NAME": "Pot of Dichotomy",
@@ -366,8 +366,8 @@
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
-		"DESCRIPTION": "The next time you lose HP, all enemies lose all Block.",
-		"UPGRADE_DESCRIPTION": "The next time you lose HP, all enemies lose all Block and take 5 damage."
+		"DESCRIPTION": "The next time you lose HP, ALL enemies lose ALL Block.",
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, ALL enemies lose ALL Block and take 5 damage."
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "Rain of Mercy",
@@ -397,17 +397,17 @@
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
 		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 plasma. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 plasma. NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 plasma. NL Deal !D! damage."
 	},
 	"theDuelist:SangaThunder": {
 		"NAME": "Sanga of Thunder",
 		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage."
 	},
 	"theDuelist:SangaWater": {
 		"NAME": "Suijin",
 		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage."
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "Scapegoat",
@@ -466,7 +466,7 @@
 	},
 	"theDuelist:ValkMagnet": {
 		"NAME": "Valkyrion",
-		"DESCRIPTION": "If you have all three Magnets: Summon 3 and deal !D! damage. Remove all magnets.",
+		"DESCRIPTION": "If you have all three Magnets: Summon 3 and deal !D! damage. Remove ALL magnets.",
 		"UPGRADE_DESCRIPTION": "If you have all three Magnets: Summon 3 and deal !D! damage."
 	},
 	"theDuelist:DarkMirrorForce": {
@@ -516,18 +516,18 @@
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",
-		"DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through Block). Channel a Summoner.",
-		"UPGRADE_DESCRIPTION": "Toon NL Tribute 2. NL Deal !D! damage (through Block). Channel a Summoner."
+		"DESCRIPTION": "Toon NL Spellcaster NL  Tribute 2. NL Deal !D! damage (through Block). Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL NL Tribute 2. NL Deal !D! damage (through Block). Channel a Summoner."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",
-		"DESCRIPTION": "Toon NL Summon 2. NL Channel a Crystal. NL Overflow !M! - Apply a random buff.",
-		"UPGRADE_DESCRIPTION": "Toon NL Summon 2. NL Channel a Crystal. NL Overflow !M! - Apply a random buff."
+		"DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Channel a Crystal.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Channel a Crystal."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "Toon Gemini Elf",
-		"DESCRIPTION": "Toon NL Summon !M!.",
-		"UPGRADE_DESCRIPTION": "Toon NL Summon !M!."
+		"DESCRIPTION": "Toon NL Spellcaster NL Summon !M!.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL Summon !M!."
 	},
 	"theDuelist:ToonMermaid": {
 		"NAME": "Toon Mermaid",
@@ -546,8 +546,8 @@
 	},
 	"theDuelist:GeminiElf": {
 		"NAME": "Gemini Elf",
-		"DESCRIPTION": "Summon !M!. NL Resummon: Gain 15 HP.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. NL Resummon: Gain 15 HP."
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Resummon: Gain 15 HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Resummon: Gain 15 HP."
 	},
 	"theDuelist:BigFire": {
 		"NAME": "Tremendous Fire",
@@ -561,8 +561,8 @@
 	},
 	"theDuelist:ToonMagic": {
 		"NAME": "Toon Magic",
-		"DESCRIPTION": "Set the cost of all Toon cards in your hand to 0 for this turn.",
-		"UPGRADE_DESCRIPTION": "Set the cost of all Toon cards in your hand to 0 for this turn."
+		"DESCRIPTION": "Set the cost of ALL Toon cards in your hand to 0 for this turn.",
+		"UPGRADE_DESCRIPTION": "Set the cost of ALL Toon cards in your hand to 0 for this turn."
 	},
 	"theDuelist:ToonKingdom": {
 		"NAME": "Toon Kingdom",
@@ -571,8 +571,8 @@
 	},
 	"theDuelist:ToonRollback": {
 		"NAME": "Toon Rollback",
-		"DESCRIPTION": "All Toons played are copied into your hand this turn.",
-		"UPGRADE_DESCRIPTION": "All Toons played are copied into your hand this turn."
+		"DESCRIPTION": "ALL Toons played are copied into your hand this turn.",
+		"UPGRADE_DESCRIPTION": "ALL Toons played are copied into your hand this turn."
 	},
 	"theDuelist:SuperheavyOgre": {
 		"NAME": "Superheavy Ogre",
@@ -606,8 +606,8 @@
 	},
 	"theDuelist:SpiritHarp": {
 		"NAME": "Spirit of the Harp",
-		"DESCRIPTION": "Mystical NL Summon 2. NL Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Mystical NL Summon 2. NL Gain !B! Block."
+		"DESCRIPTION": "Spellcaster NL Summon 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 2. NL Gain !B! Block."
 	},
 	"theDuelist:SnowDragon": {
 		"NAME": "Snow Dragon",
@@ -636,8 +636,8 @@
 	},
 	"theDuelist:MysticalElf": {
 		"NAME": "Mystical Elf",
-		"DESCRIPTION": "Mystical NL Summon 1. NL Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Mystical NL Summon 1. NL Gain !B! Block."
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block."
 	},
 	"theDuelist:IslandTurtle": {
 		"NAME": "Island Turtle",
@@ -759,10 +759,20 @@
 		"DESCRIPTION": "Tribute ALL of your tokens. Summon a random monster and deal !D! damage to a random enemy for each token Tributed.",
 		"UPGRADE_DESCRIPTION": "Tribute ALL of your tokens. Summon a random monster and deal !D! damage to a random enemy for each token Tributed."
 	},
+	"theDuelist:Mountain": {
+		"NAME": "Mountain",
+		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block.",
+		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block."
+	},
+	"theDuelist:Yami": {
+		"NAME": "Yami",
+		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block.",
+		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block."
+	},
 	"theDuelist:BadToken": {
 		"NAME": "DEBUG: POWER REMOVER",
-		"DESCRIPTION": "Remove all your powers.",
-		"UPGRADE_DESCRIPTION": "Remove all your powers."
+		"DESCRIPTION": "Channel an Earth.",
+		"UPGRADE_DESCRIPTION": "Channel an Earth."
 	},
 	"theDuelist:Token": {
 		"NAME": "Token",
@@ -771,7 +781,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
-		"DESCRIPTION": "Tribute 4. NL Deal damage equal to: NL ((4* number of cards played this turn) NL +  (3* Summons)) *X.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal damage equal to: NL ((4* number of cards played this turn) NL + (3* Summons) + (max Summons)) *X."
+		"DESCRIPTION": "Tribute 4. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL +  (3* Summons)) *X.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL + (3* Summons) + (max Summons)) *X."
 	}
 }

@@ -40,6 +40,7 @@ public class SuperancientDinobeast extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.FULL);
         this.misc = 0;
         this.originalName = this.name;
     }

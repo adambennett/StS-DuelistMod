@@ -1,5 +1,6 @@
 package defaultmod.cards;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -32,9 +33,8 @@ public class SangaThunder extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 20;
-    private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int TRIBUTES = 3;
+    private static final int DAMAGE = 16;
+    //private static final int UPGRADE_PLUS_DMG = 3;
     // /STAT DECLARATION/
 
     public SangaThunder() {
@@ -43,18 +43,20 @@ public class SangaThunder extends DuelistCard
     	this.tags.add(DefaultMod.MONSTER);
     	this.tags.add(DefaultMod.GUARDIAN);
     	this.tags.add(DefaultMod.METAL_RAIDERS);
-    	this.tags.add(DefaultMod.GOOD_TRIB);
+    	if (Loader.isModLoaded("conspire")) { this.tags.add(DefaultMod.GOOD_TRIB); }
     	this.misc = 0;
 		this.originalName = this.name;
+		this.tributes = 3;
 		this.isSummon = true;
 		this.summons = 1;
+		
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     	AbstractOrb orb = new Lightning();
@@ -72,7 +74,8 @@ public class SangaThunder extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            //this.upgradeDamage(UPGRADE_PLUS_DMG);
+            if (this.tributes > 0) { this.tributes -= 1; }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -100,7 +103,7 @@ public class SangaThunder extends DuelistCard
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
 
 public class OjamaBlack extends DuelistCard 
@@ -37,6 +38,7 @@ public class OjamaBlack extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.OJAMA);
 		this.tags.add(DefaultMod.INVASION_CHAOS);
+		this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.baseBlock = this.block = 5;
 		this.originalName = this.name;
 		this.summons = SUMMONS;

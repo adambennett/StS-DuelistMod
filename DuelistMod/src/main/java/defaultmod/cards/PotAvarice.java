@@ -38,6 +38,7 @@ public class PotAvarice extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.POT);
         this.tags.add(DefaultMod.TRIBUTE);
+        this.tags.add(DefaultMod.REDUCED);
         this.misc = 0;
 		this.originalName = this.name;
     }

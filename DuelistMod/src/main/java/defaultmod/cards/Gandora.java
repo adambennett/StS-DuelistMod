@@ -40,6 +40,7 @@ public class Gandora extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.FULL);
         this.originalName = this.name;
         this.baseDamage = this.damage = 50;
         this.tributes = 5;

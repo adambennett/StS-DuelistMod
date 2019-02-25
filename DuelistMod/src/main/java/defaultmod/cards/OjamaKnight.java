@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -39,6 +40,7 @@ public class OjamaKnight extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.OJAMA);
+        this.tags.add(DefaultMod.REPLAYSPIRE);
         this.misc = 0;
 		this.originalName = this.name;
     }

@@ -38,6 +38,7 @@ public class LegendaryExodia extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.EXODIA);
+        this.tags.add(DefaultMod.FULL);
         this.damage = this.baseDamage = 20;
         this.exhaust = true;
         this.originalName = this.name;

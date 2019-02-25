@@ -39,6 +39,7 @@ public class SuperheavyFlutist extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.REDUCED);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;

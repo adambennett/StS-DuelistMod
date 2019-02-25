@@ -40,6 +40,7 @@ public class SuperheavyGeneral extends DuelistCard
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
+        this.tags.add(DefaultMod.REDUCED);
         this.misc = 0;
         this.magicNumber = this.baseMagicNumber = this.dex;
 		this.originalName = this.name;

@@ -36,6 +36,7 @@ public class ExodiaRL extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.EXODIA);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.tags.add(DefaultMod.LIMITED);
         this.summons = this.baseMagicNumber = this.magicNumber = 1;
         this.damage =  this.baseDamage = 1;
         this.baseBlock = this.block = 5;

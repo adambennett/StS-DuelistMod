@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.ModifyMagicNumberAction;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -33,9 +32,9 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	private static final int COST = 1;
 	private static final int SUMMONS = 2;
 	private static final int OVERFLOW_AMT = 3;
-	private static final int U_OVERFLOW = 2;
-	private static int MIN_TURNS_ROLL = 4;
-	private static int MAX_TURNS_ROLL = 8;
+	//private static final int U_OVERFLOW = 2;
+	//private static int MIN_TURNS_ROLL = 4;
+	//private static int MAX_TURNS_ROLL = 8;
 	// /STAT DECLARATION/
 
 	public ToonDarkMagicianGirl() {
@@ -44,6 +43,9 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);
+		this.tags.add(DefaultMod.SPELLCASTER);
+		 this.tags.add(DefaultMod.FULL);
+		 this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;
@@ -61,6 +63,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	@Override
 	public void triggerOnEndOfPlayerTurn() 
 	{
+		/*
 		// If overflows remaining
 		if (this.magicNumber > 0) 
 		{
@@ -77,6 +80,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 			applyRandomBuffPlayer(p, randomTurnNum, false);
 
 		}
+		*/
 	}
 
 	// Which card to return when making a copy of this card.
@@ -90,7 +94,8 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(U_OVERFLOW);
+			//this.upgradeMagicNumber(U_OVERFLOW);
+			this.upgradeBaseCost(0);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -114,10 +119,8 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(DefaultMod.TOON))
-		{
-			damageAllEnemiesThorns(5);
-		}
+		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
 
 public class BlastJuggler extends DuelistCard 
@@ -39,6 +40,7 @@ public class BlastJuggler extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.METAL_RAIDERS);
 		this.tags.add(DefaultMod.GOOD_TRIB);
+		this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;

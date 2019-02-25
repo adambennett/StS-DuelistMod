@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.*;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 

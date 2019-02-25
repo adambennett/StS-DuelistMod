@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import defaultmod.patches.*;
+import defaultmod.interfaces.RandomEffectsHelper;
 
 public class JoeyJuice extends AbstractPotion {
 

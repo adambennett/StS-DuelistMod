@@ -31,7 +31,6 @@ public class WingedDragonRa extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = -1;
-    private static int TRIBUTES = 4;
     // /STAT DECLARATION/
 
     public WingedDragonRa() {
@@ -41,8 +40,9 @@ public class WingedDragonRa extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
-        this.tributes = TRIBUTES;
+        this.tributes = 4;
 		this.originalName = this.name;
+		this.damage = this.baseDamage = 0;
     }
 
     // Actions the card should do.
@@ -58,7 +58,7 @@ public class WingedDragonRa extends DuelistCard
     	if (upgraded) { damageTotal += maxSummons; }
     	this.baseDamage = this.damage = damageTotal;
     	attack(m, AFX, this.baseDamage);
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	useXEnergy();
     }
 
@@ -73,7 +73,7 @@ public class WingedDragonRa extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            TRIBUTES = 3;
+            this.tributes = 3;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

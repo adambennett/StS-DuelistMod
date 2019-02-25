@@ -35,6 +35,7 @@ public class Pumprincess extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.NO_PUMPKIN);
+        this.tags.add(DefaultMod.REDUCED);
         this.summons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;

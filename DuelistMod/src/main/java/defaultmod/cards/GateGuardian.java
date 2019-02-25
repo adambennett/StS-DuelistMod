@@ -45,6 +45,7 @@ public class GateGuardian extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.GUARDIAN);
         this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.CONSPIRE);
         this.misc = 0;
         this.originalName = this.name;
     }

@@ -38,6 +38,8 @@ public class ToonGeminiElf extends DuelistCard
         this.toon = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.TOON);
+        this.tags.add(DefaultMod.SPELLCASTER);
+        this.tags.add(DefaultMod.FULL);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
         this.isSummon = true;
@@ -85,10 +87,8 @@ public class ToonGeminiElf extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(DefaultMod.TOON))
-		{
-			damageAllEnemiesThorns(5);
-		}
+		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 

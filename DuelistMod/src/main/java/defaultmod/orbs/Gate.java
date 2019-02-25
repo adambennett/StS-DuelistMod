@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -26,6 +27,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
+import defaultmod.DefaultMod;
 import defaultmod.patches.DuelistCard;
 import defaultmod.powers.SummonPower;
 
@@ -50,7 +52,7 @@ public class Gate extends AbstractOrb
 	
 	public Gate()
 	{
-		this.img = com.megacrit.cardcrawl.helpers.ImageMaster.ORB_LIGHTNING;
+		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Gate.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 4;
 		this.basePassiveAmount = this.passiveAmount = 0;
@@ -75,12 +77,7 @@ public class Gate extends AbstractOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
-		if (Settings.FAST_MODE) 
-		{
-			speedTime = 0.0F;
-		}
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
+		
 	}
 	
 	@Override
@@ -106,53 +103,28 @@ public class Gate extends AbstractOrb
 					speedTime = 0.0F;
 				}
 				AbstractDungeon.actionManager.addToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.NONE, true));
-				AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
-				AbstractDungeon.actionManager.addToBottom(new VFXAction(new LightningEffect(m.drawX, m.drawY), speedTime));
-				AbstractDungeon.actionManager.addToBottom(new SFXAction("ORB_FROST_EVOKE"));
+				
 			}
 		} 
 		else 
 		{
-			speedTime = 0.2F / AbstractDungeon.player.orbs.size();
-			if (Settings.FAST_MODE) 
-			{
-				speedTime = 0.0F;
-			}
-			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
+	
 			AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(AbstractDungeon.player, 
 			DamageInfo.createDamageMatrix(info.base, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
-			for (AbstractMonster m3 : AbstractDungeon.getMonsters().monsters) 
-			{
-				if ((!m3.isDeadOrEscaped()) && (!m3.halfDead)) 
-				{
-					AbstractDungeon.actionManager.addToBottom(new VFXAction(new LightningEffect(m3.drawX, m3.drawY), speedTime));
-				}
-			}
-			AbstractDungeon.actionManager.addToBottom(new SFXAction("ORB_FROST_EVOKE"));
+			
 		}
 	}
 
 	@Override
 	public void triggerEvokeAnimation()
 	{
-		CardCrawlGame.sound.play("ORB_FROST_EVOKE", 0.1F);
-		AbstractDungeon.effectsQueue.add(new LightningOrbActivateEffect(this.cX, this.cY));
+
 	}
 
 	@Override
 	public void updateAnimation()
 	{
 		super.updateAnimation();
-		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
-
-		this.vfxTimer -= Gdx.graphics.getDeltaTime();
-		if (this.vfxTimer < 0.0F) {
-			AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
-			if (MathUtils.randomBoolean()) {
-				AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
-			}
-			this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
-		}
 	}
 
 	@Override

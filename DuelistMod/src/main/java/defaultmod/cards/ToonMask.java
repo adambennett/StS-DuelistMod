@@ -45,8 +45,9 @@ public class ToonMask extends DuelistCard
 		this.multiDamage = new int[]{0, 0, 0, 0, 0};
 		this.magicNumber = this.baseMagicNumber = 20;
 		this.toon = true;
-		 this.tags.add(DefaultMod.TOON);
+		this.tags.add(DefaultMod.TOON);
 		this.tags.add(DefaultMod.TRAP);
+		this.tags.add(DefaultMod.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
 	}

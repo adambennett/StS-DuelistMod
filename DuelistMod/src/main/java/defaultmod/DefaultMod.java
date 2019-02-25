@@ -9,7 +9,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.audio.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
@@ -41,21 +40,25 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
 	public static Properties duelistDefaults = new Properties();
 	public static final String PROP_TOON_BTN = "toonBtnBool";
-	public static final String PROP_CRAZY_RITUALS = "crazyRituals";
-	public static final String PROP_B = "B";
-	public static final String PROP_C = "C";
-	public static final String PROP_D = "D";
-	public static final String PROP_E = "E";
-	public static final String PROP_F = "F";
-	public static final String PROP_G = "G";
+	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
+	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
+	public static final String PROP_OTHERC_BTN = "otherBtnBoolC";
+	public static final String PROP_OTHERD_BTN = "otherBtnBoolD";
+	public static final String PROP_SET = "setIndex";
+	public static final String PROP_CARDS = "cardCount";
 	private static boolean toonBtnBool = false;
-	public static boolean crazyRituals = false;
-	private static boolean button2Bool = false;
-	private static boolean button3Bool = false;
-	private static boolean button4Bool = false;
+	private static boolean exodiaBtnBool = false;
+	private static boolean crossoverBtnBool = true;
+	private static boolean otherBtnBoolC = false;
+	private static boolean otherBtnBoolD = false;
 	
 	public static int lastMaxSummons = 5;
+	private static int setIndex = 0;
+	private static final int SETS = 5;
+	private static int cardCount = 75;
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
+	private static ArrayList<String> cardSets = new ArrayList<String>();
+	
 
 
 	// Arraylist full of my cards, basically a copy of CardLibrary for this set only
@@ -67,6 +70,8 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	@SpireEnum public static AbstractCard.CardTags MONSTER;  // 86 cards
 	@SpireEnum public static AbstractCard.CardTags SPELL; // 43 cards
 	@SpireEnum public static AbstractCard.CardTags TRAP; // 8 cards
+	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
+	@SpireEnum public static AbstractCard.CardTags EQUIPSPELL;
 	@SpireEnum public static AbstractCard.CardTags POT;
 	@SpireEnum public static AbstractCard.CardTags TOON;// 15 cards
 	@SpireEnum public static AbstractCard.CardTags GUARDIAN;
@@ -74,12 +79,19 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	@SpireEnum public static AbstractCard.CardTags MAGNETWARRIOR;
 	@SpireEnum public static AbstractCard.CardTags SUPERHEAVY;
 	@SpireEnum public static AbstractCard.CardTags DRAGON; // 23 cards
+	@SpireEnum public static AbstractCard.CardTags SPELLCASTER; // 23 cards
 	@SpireEnum public static AbstractCard.CardTags OJAMA;
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
 	@SpireEnum public static AbstractCard.CardTags NO_PUMPKIN;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
+	@SpireEnum public static AbstractCard.CardTags CONSPIRE;
+	@SpireEnum public static AbstractCard.CardTags REPLAYSPIRE;
+	@SpireEnum public static AbstractCard.CardTags LIMITED;
+	@SpireEnum public static AbstractCard.CardTags REDUCED;
+	@SpireEnum public static AbstractCard.CardTags FULL;
+	@SpireEnum public static AbstractCard.CardTags ALL;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES; // 24 cards
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_SERVANT; //7 cards
@@ -293,12 +305,13 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String RED_EYES_ZOMBIE = "cards/Red_Eyes_Zombie.png";
 	public static final String ARMORED_ZOMBIE = "cards/Armored_Zombie.png";
 	public static final String TOKEN_VACUUM = "cards/Token_Vacuum.png";
+	public static final String MOUNTAIN = "cards/Mountain.png";
+	public static final String YAMI = "cards/Yami.png";
 
 	public static final String BOOK_SECRET = "cards/Book_Secret_Arts.png";
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
 	public static final String GOBLIN_SECRET = "cards/Goblin_Secret_Remedy.png";
 	public static final String MACHINE_FACTORY = "cards/Machine_Conversion_Factory.png";
-	public static final String MOUNTAIN = "cards/Mountain.png";
 	public static final String POLYMERIZATION = "cards/Polymerization.png";
 	public static final String SPARKS = "cards/Sparks.png";    
 	public static final String CHEERFUL_COFFIN = "cards/Cheerful_Coffin.png";
@@ -476,6 +489,8 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String GRAVITY_AXE_POWER = "powers/GravityAxePower.png";
 	public static final String TOON_ROLLBACK_POWER = "powers/ToonRollbackPower.png";
 	public static final String REDUCER_POWER = "powers/ReducerPower.png";
+	public static final String MOUNTAIN_POWER = "powers/MountainPower.png";
+	public static final String YAMI_POWER = "powers/YamiPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -558,19 +573,38 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 				makePath(ENERGY_ORB_DEFAULT_GRAY_PORTRAIT), makePath(CARD_ENERGY_ORB));
 
 		duelistDefaults.setProperty(PROP_TOON_BTN, "FALSE");
-		duelistDefaults.setProperty(PROP_B, "TRUE");
-		duelistDefaults.setProperty(PROP_C, "TRUE");
-		duelistDefaults.setProperty(PROP_D, "TRUE");
-		duelistDefaults.setProperty(PROP_E, "0");
-		duelistDefaults.setProperty(PROP_F, "2");
-		duelistDefaults.setProperty(PROP_G,"2");
-		duelistDefaults.setProperty(PROP_CRAZY_RITUALS, "FALSE");
+		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
+		duelistDefaults.setProperty(PROP_CROSSOVER_BTN, "TRUE");
+		duelistDefaults.setProperty(PROP_OTHERC_BTN, "FALSE");
+		duelistDefaults.setProperty(PROP_OTHERD_BTN, "FALSE");
+		duelistDefaults.setProperty(PROP_SET, "1");
+		duelistDefaults.setProperty(PROP_CARDS, "151");
+		
+		cardSets.add("All (187 cards)");
+		cardSets.add("Full (138 cards)");
+		cardSets.add("Reduced (119 cards)");
+		cardSets.add("Limited (91 cards)");
+		cardSets.add("Core (62 cards)");
+		
+		try 
+		{
+            SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+            config.load();
+            toonBtnBool = config.getBool(PROP_TOON_BTN);
+            exodiaBtnBool = config.getBool(PROP_EXODIA_BTN);
+            crossoverBtnBool = config.getBool(PROP_CROSSOVER_BTN);
+            otherBtnBoolC = config.getBool(PROP_OTHERC_BTN);
+            otherBtnBoolD = config.getBool(PROP_OTHERD_BTN);
+            setIndex = config.getInt(PROP_SET);
+            cardCount = config.getInt(PROP_CARDS);
+            
+        } catch (Exception e) { e.printStackTrace(); }
 
 		logger.info("Done creating the color");
 	}
 
 	public static void initialize() {
-		logger.info("========================= Initializing Duelist Mod. Hi. =========================");
+		logger.info("========================= Initializing Duelist Mod  =========================");
 		DefaultMod defaultmod = new DefaultMod();
 		logger.info("========================= /Duelist Mod Initialized/ =========================");
 	}
@@ -606,23 +640,118 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
 		// Check Box A
-		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton("Remove all Toons. (DOES NOT WORK YET)",
-				350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
-				toonBtnBool, settingsPanel, (label) -> {
-				}, (button) -> {
-					toonBtnBool = button.enabled;
-					try {
-						SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-						System.out.println("theDuelist:DefaultMod:receivePostInitialize() ---> try catch is inside try block");
-						config.setBool(PROP_TOON_BTN, toonBtnBool);
-						config.save();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					resetCharSelect();
-				});
+		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton("Remove ALL Toons (REQUIRES RESTART)",350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		{
+			toonBtnBool = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_TOON_BTN, toonBtnBool);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			resetCharSelect();
+		});
 		settingsPanel.addUIElement(toonBtn);
 		// END Check Box A
+		
+		// Check Box B
+		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton("Remove Exodia cards (REQUIRES RESTART)",350.0f, 650.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		{
+			exodiaBtnBool = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_EXODIA_BTN, exodiaBtnBool);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			resetCharSelect();
+		});
+		settingsPanel.addUIElement(exodiaBtn);
+		// END Check Box B
+		
+		// Check Box C
+		ModLabeledToggleButton crossoverBtn = new ModLabeledToggleButton("Allow 13 extra crossover mod cards (REQUIRES RESTART)",350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, crossoverBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		{
+			crossoverBtnBool = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_CROSSOVER_BTN, crossoverBtnBool);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			resetCharSelect();
+		});
+		settingsPanel.addUIElement(crossoverBtn);
+		// END Check Box C
+		
+		// Check Box D
+		ModLabeledToggleButton fourthBtn = new ModLabeledToggleButton("Placeholder",350.0f, 550.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, otherBtnBoolC, settingsPanel, (label) -> {}, (button) -> 
+		{
+			otherBtnBoolC = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_OTHERC_BTN, otherBtnBoolC);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			resetCharSelect();
+		});
+		settingsPanel.addUIElement(fourthBtn);
+		// END Check Box D
+		
+		// Check Box D
+		ModLabeledToggleButton fifthBtn = new ModLabeledToggleButton("Placeholder",350.0f, 500.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, otherBtnBoolD, settingsPanel, (label) -> {}, (button) -> 
+		{
+			otherBtnBoolD = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_OTHERD_BTN, otherBtnBoolD);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			resetCharSelect();
+		});
+		settingsPanel.addUIElement(fifthBtn);
+		// END Check Box D
+		
+		// Set Size Selector
+		ModLabel setSelectLabelTxt = new ModLabel("Card Set size:",350.0f, 415.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(setSelectLabelTxt);
+		ModLabel setSelectColorTxt = new ModLabel(cardSets.get(setIndex),670.0f, 415.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(setSelectColorTxt);
+
+		ModButton setSelectLeftBtn = new ModButton(605.0f, 400.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+			setIndex = setIndex-1>=0?setIndex-1:SETS-1;
+			setSelectColorTxt.text = cardSets.get(setIndex);
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt(PROP_SET, setIndex);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		settingsPanel.addUIElement(setSelectLeftBtn);
+		ModButton setSelectRightBtn = new ModButton(950.0f, 400.0f, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
+			setIndex = (setIndex+1)%SETS;
+			setSelectColorTxt.text = cardSets.get(setIndex);
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt(PROP_SET, setIndex);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		settingsPanel.addUIElement(setSelectRightBtn);
+		ModLabel extraLabelTxt = new ModLabel("Changing the card set requires a restart to take effect.",350.0f, 350.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(extraLabelTxt);
+		// END Set Size Selector
+		
+		// Card Count Label
+		ModLabel cardLabelTxt = new ModLabel("Active Duelist Cards: " + cardCount,350.0f, 300.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(cardLabelTxt);
+		// END Card Count Label
 
 		logger.info("Done loading badge Image and mod options");
 
@@ -684,354 +813,335 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public void receiveEditCards() {
 		//logger.info("Adding variables");
 		// Add the Custom Dynamic Variables
-		//BaseMod.addDynamicVariable(new TributeCustomVariable());
+		//BaseMod.addDynamicVariable(new WingedDragonVariable());
 
+		
+		
 		logger.info("Adding cards");
 		// Add the cards
-		BaseMod.addCard(new AlphaMagnet());
-		BaseMod.addCard(new AncientRules());
-		BaseMod.addCard(new AxeDespair());
-		BaseMod.addCard(new BadReaction());
-		BaseMod.addCard(new BetaMagnet());
-		BaseMod.addCard(new BlueEyes());
-		BaseMod.addCard(new BlueEyesUltimate());
-		BaseMod.addCard(new BusterBlader());
-		BaseMod.addCard(new CannonSoldier());
-		BaseMod.addCard(new CardDestruction());
-		BaseMod.addCard(new CastleDarkIllusions());
-		BaseMod.addCard(new CastleWalls());
-		BaseMod.addCard(new CatapultTurtle());
-		BaseMod.addCard(new CelticGuardian());
-		BaseMod.addCard(new ChangeHeart());
-		BaseMod.addCard(new DarkFactory());
-		BaseMod.addCard(new DarkHole());
-		BaseMod.addCard(new DarkMagician());
-		BaseMod.addCard(new DarkMagicianGirl());
-		BaseMod.addCard(new DarklordMarie());
-		BaseMod.addCard(new DianKeto());
-		BaseMod.addCard(new ExodiaHead());
-		BaseMod.addCard(new ExodiaLA());
-		BaseMod.addCard(new ExodiaLL());
-		BaseMod.addCard(new ExodiaRA());
-		BaseMod.addCard(new ExodiaRL());
-		BaseMod.addCard(new FeatherPho());
-		BaseMod.addCard(new FiendMegacyber());
-		BaseMod.addCard(new Fissure());
-		BaseMod.addCard(new GaiaFierce());
-		BaseMod.addCard(new GammaMagnet());		
-		BaseMod.addCard(new GeminiElf());
-		BaseMod.addCard(new GiantSoldier());
-		BaseMod.addCard(new GiantTrunade());
-		BaseMod.addCard(new GracefulCharity());
-		BaseMod.addCard(new HarpieFeather());
-		BaseMod.addCard(new Hinotoma());
-		BaseMod.addCard(new ImperialOrder());
-		BaseMod.addCard(new InjectionFairy());
-		BaseMod.addCard(new InsectQueen());
-		BaseMod.addCard(new JamBreeding());
-		BaseMod.addCard(new JudgeMan());
-		BaseMod.addCard(new Kuriboh());
-		BaseMod.addCard(new SmallLabyrinthWall());
-		BaseMod.addCard(new LabyrinthWall());		
-		BaseMod.addCard(new MagicCylinder());
-		BaseMod.addCard(new Mausoleum());
-		BaseMod.addCard(new MillenniumShield());
-		BaseMod.addCard(new MirrorForce());
-		BaseMod.addCard(new MonsterReborn());
-		BaseMod.addCard(new ObeliskTormentor());
-		BaseMod.addCard(new OjamaGreen());
-		BaseMod.addCard(new OjamaYellow());
-		BaseMod.addCard(new Ojamagic());
-		BaseMod.addCard(new Ookazi());
-		BaseMod.addCard(new PotAvarice());
-		BaseMod.addCard(new PotDichotomy());
-		BaseMod.addCard(new PotDuality());
-		BaseMod.addCard(new PotGenerosity());
-		BaseMod.addCard(new PotGreed());
-		BaseMod.addCard(new Pumpking());
-		BaseMod.addCard(new Pumprincess());		
-		BaseMod.addCard(new RainMercy());
-		BaseMod.addCard(new RedEyes());
-		BaseMod.addCard(new RedMedicine());
-		BaseMod.addCard(new Relinquished());
-		BaseMod.addCard(new SangaEarth());
-		BaseMod.addCard(new SangaThunder());		
-		BaseMod.addCard(new Scapegoat());
-		BaseMod.addCard(new ScrapFactory());
-		BaseMod.addCard(new SevenColoredFish());
-		BaseMod.addCard(new ShardGreed());
-		BaseMod.addCard(new SliferSky());
-		BaseMod.addCard(new StormingMirrorForce());
-		BaseMod.addCard(new SummonedSkull());
-		BaseMod.addCard(new SuperheavyBenkei());
-		BaseMod.addCard(new SuperheavyScales());
-		BaseMod.addCard(new SuperheavySwordsman());
-		BaseMod.addCard(new SuperheavyWaraji());
-		BaseMod.addCard(new SwordsConcealing());
-		//BaseMod.addCard(new SwordsRevealing());
-		//BaseMod.addCard(new TrapHole());
-		BaseMod.addCard(new ValkMagnet());
-		BaseMod.addCard(new WingedDragonRa());
-		BaseMod.addCard(new BigFire());
-		BaseMod.addCard(new ToonKingdom());
-		BaseMod.addCard(new SuperheavyOgre());
-		BaseMod.addCard(new SuperheavyMagnet());	    
-		BaseMod.addCard(new SuperheavyFlutist());	    
-		BaseMod.addCard(new SuperheavyBlueBrawler());
-		BaseMod.addCard(new SpiritHarp());
-		BaseMod.addCard(new SnowDragon());
-		BaseMod.addCard(new SnowdustDragon());
-		BaseMod.addCard(new Raigeki());
-		BaseMod.addCard(new PreventRat());
-		BaseMod.addCard(new Ojamuscle());
-		BaseMod.addCard(new MysticalElf());
-		BaseMod.addCard(new IslandTurtle());
-		BaseMod.addCard(new GravityAxe());
-		BaseMod.addCard(new FortressWarrior());
-		BaseMod.addCard(new CaveDragon());
-		BaseMod.addCard(new BlizzardDragon());
-		BaseMod.addCard(new BabyDragon());
-		BaseMod.addCard(new LordD());
-		BaseMod.addCard(new FluteSummoning());
-		BaseMod.addCard(new HaneHane());
-		BaseMod.addCard(new LesserDragon());
-		BaseMod.addCard(new GaiaDragonChamp());
-		BaseMod.addCard(new DragonCaptureJar());
-		BaseMod.addCard(new ThunderDragon());
-		BaseMod.addCard(new SuperancientDinobeast());
-
-		// random only
-		//BaseMod.addCard(new BigCastleWalls());
-		BaseMod.addCard(new CurseDragon());
-		BaseMod.addCard(new CyberDragon());
-		BaseMod.addCard(new DragonMaster());
-		BaseMod.addCard(new FiendSkull());
-		BaseMod.addCard(new FiveHeaded());
-		BaseMod.addCard(new Gandora());
-		BaseMod.addCard(new SuperheavyDaihachi());
-		BaseMod.addCard(new SuperheavyGeneral());
-		BaseMod.addCard(new ArmoredZombie());
-		BaseMod.addCard(new MoltenZombie());
-		BaseMod.addCard(new RedEyesZombie());
-		BaseMod.addCard(new LegendaryExodia());
-		BaseMod.addCard(new RadiantMirrorForce());
-		BaseMod.addCard(new TokenVacuum());
-		//BaseMod.addCard(new TimeWizard());
-
-
-		// Adding to array for random generation
-		myCards.add(new AlphaMagnet()); 
-		myCards.add(new AncientRules());
+		
+		// CORE Set - 74 cards
+			// Starting Deck - 6 cards
+		myCards.add(new CastleWalls());
+		myCards.add(new GiantSoldier());
+		myCards.add(new Ookazi());
+		myCards.add(new ScrapFactory());
+		myCards.add(new SevenColoredFish());
+		myCards.add(new SummonedSkull());
+			// Other core cards - 69 cards
+		myCards.add(new ArmoredZombie());
 		myCards.add(new AxeDespair());
-		myCards.add(new BadReaction());
-		myCards.add(new BetaMagnet());
-		myCards.add(new BigCastleWalls());
+		myCards.add(new BabyDragon());
+		myCards.add(new BigFire());
+		myCards.add(new BlizzardDragon());
 		myCards.add(new BlueEyes());
 		myCards.add(new BlueEyesUltimate());
 		myCards.add(new BusterBlader());
 		myCards.add(new CannonSoldier());
 		myCards.add(new CardDestruction());
 		myCards.add(new CastleDarkIllusions());
-		myCards.add(new CastleWalls());
 		myCards.add(new CatapultTurtle());
+		myCards.add(new CaveDragon());
 		myCards.add(new CelticGuardian());
 		myCards.add(new ChangeHeart());
-		myCards.add(new DarkFactory());
-		myCards.add(new DarkHole());
 		myCards.add(new DarkMagician());
-		myCards.add(new DarkMagicianGirl());		
 		myCards.add(new DarklordMarie());
 		myCards.add(new DianKeto());
+		myCards.add(new DragonCaptureJar());
+		myCards.add(new FiendMegacyber());
+		myCards.add(new Fissure());
+		myCards.add(new FluteSummoning());
+		myCards.add(new FortressWarrior());
+		myCards.add(new GaiaDragonChamp());
+		myCards.add(new GaiaFierce());
+		myCards.add(new GeminiElf());
+		myCards.add(new GracefulCharity());
+		myCards.add(new GravityAxe());
+		myCards.add(new HaneHane());
+		myCards.add(new Hinotoma());
+		myCards.add(new ImperialOrder());
+		myCards.add(new InjectionFairy());
+		myCards.add(new InsectQueen());
+		myCards.add(new IslandTurtle());
+		myCards.add(new JamBreeding());
+		myCards.add(new JudgeMan());
+		myCards.add(new Kuriboh());
+		myCards.add(new LabyrinthWall());		
+		myCards.add(new LesserDragon());
+		myCards.add(new LordD());
+		myCards.add(new MagicCylinder());
+		myCards.add(new MirrorForce());
+		myCards.add(new MonsterReborn());
+		myCards.add(new Mountain());
+		myCards.add(new MysticalElf());
+		myCards.add(new ObeliskTormentor());
+		myCards.add(new PotGenerosity());
+		myCards.add(new PotGreed());
+		myCards.add(new PreventRat());
+		myCards.add(new Pumpking());
+		myCards.add(new Raigeki());
+		myCards.add(new RainMercy());
+		myCards.add(new RedEyes());
+		myCards.add(new Relinquished());
+		myCards.add(new SangaEarth());
+		myCards.add(new SangaThunder());		
+		myCards.add(new Scapegoat());			
+		myCards.add(new SliferSky());
+		myCards.add(new SmallLabyrinthWall());
+		myCards.add(new SnowDragon());
+		myCards.add(new SnowdustDragon());
+		myCards.add(new SpiritHarp());		
+		myCards.add(new SuperheavyBenkei());
+		myCards.add(new SuperheavyScales());
+		myCards.add(new SuperheavySwordsman());
+		myCards.add(new SuperheavyWaraji());
+		myCards.add(new ThunderDragon());
+		myCards.add(new WingedDragonRa());
+		myCards.add(new Yami());
+		myCards.add(new BadToken()); 		//debug card
+		// END CORE SET
+		
+		// ALL Set - 48 cards ( need 47 more cards here)
+		myCards.add(new BigCastleWalls());
+		// END ALL Set
+		
+		// FULL Set - 22 cards ( need to complete the 3 unfinished cards here )
+		//myCards.add(new SwordsRevealing());
+		//myCards.add(new TimeWizard()); 
+		//myCards.add(new TrapHole());
+		myCards.add(new BlueEyesToon());
+		myCards.add(new DragonMaster());
+		myCards.add(new Gandora());
+		myCards.add(new LegendaryExodia());
+		myCards.add(new RadiantMirrorForce());
+		myCards.add(new RedEyesToon());
+		myCards.add(new SuperancientDinobeast());
+		myCards.add(new TokenVacuum());
+		myCards.add(new ToonBarrelDragon());
+		myCards.add(new ToonBriefcase());
+		myCards.add(new ToonDarkMagician());
+		myCards.add(new ToonGeminiElf());
+		myCards.add(new ToonMagic());	   
+		myCards.add(new ToonMask());
+		myCards.add(new ToonMermaid());
+		myCards.add(new ToonRollback());
+		myCards.add(new ToonSummonedSkull());
+		myCards.add(new ToonWorld());
+		myCards.add(new ToonKingdom());
+		// END FULL Set
+		
+		// REDUCED Set - 28 cards
+		myCards.add(new CurseDragon());
+		myCards.add(new CyberDragon());
+		myCards.add(new DarkFactory());
+		myCards.add(new FiendSkull());
+		myCards.add(new FiveHeaded());
+		myCards.add(new GiantTrunade());
+		myCards.add(new HarpieFeather());
+		myCards.add(new MoltenZombie());
+		myCards.add(new OjamaGreen());
+		myCards.add(new OjamaYellow());
+		myCards.add(new Ojamagic());
+		myCards.add(new Ojamuscle());
+		myCards.add(new PotAvarice());
+		myCards.add(new PotDichotomy());
+		myCards.add(new PotDuality());
+		myCards.add(new Pumprincess());		
+		myCards.add(new RedEyesZombie());
+		myCards.add(new RedMedicine());
+		myCards.add(new ShardGreed());
+		myCards.add(new StormingMirrorForce());
+		myCards.add(new SuperheavyBlueBrawler());
+		myCards.add(new SuperheavyDaihachi());
+		myCards.add(new SuperheavyFlutist());	    
+		myCards.add(new SuperheavyGeneral());
+		myCards.add(new SuperheavyMagnet());	    
+		myCards.add(new SuperheavyOgre());
+		myCards.add(new SwordsBurning());
+		myCards.add(new SwordsConcealing());
+		// END REDUCED Set
+		
+		// LIMITED Set - 16 cards
+		myCards.add(new AlphaMagnet());
+		myCards.add(new AncientRules());
+		myCards.add(new BadReaction());
+		myCards.add(new BetaMagnet());
+		myCards.add(new DarkHole());
+		myCards.add(new DarkMagicianGirl());
 		myCards.add(new ExodiaHead());
 		myCards.add(new ExodiaLA());
 		myCards.add(new ExodiaLL());
 		myCards.add(new ExodiaRA());
 		myCards.add(new ExodiaRL());
 		myCards.add(new FeatherPho());
-		myCards.add(new FiendMegacyber());
-		myCards.add(new Fissure());
-		myCards.add(new GaiaFierce());
 		myCards.add(new GammaMagnet());		
-		myCards.add(new GeminiElf());
-		myCards.add(new GiantSoldier());
-		myCards.add(new GiantTrunade());
-		myCards.add(new GracefulCharity());
-		myCards.add(new HarpieFeather());
-		myCards.add(new Hinotoma());
-		myCards.add(new ImperialOrder());
-		myCards.add(new InjectionFairy());
-		myCards.add(new InsectQueen());
-		myCards.add(new JamBreeding());
-		myCards.add(new JudgeMan());
-		myCards.add(new Kuriboh());
-		myCards.add(new SmallLabyrinthWall());
-		myCards.add(new LabyrinthWall());		
-		myCards.add(new MagicCylinder());
 		myCards.add(new Mausoleum());
 		myCards.add(new MillenniumShield());
-		myCards.add(new MirrorForce());
-		myCards.add(new MonsterReborn());
-		myCards.add(new ObeliskTormentor());
-		myCards.add(new OjamaGreen());
-		myCards.add(new OjamaYellow());
-		myCards.add(new Ojamagic());
-		myCards.add(new Ookazi());
-		myCards.add(new PotAvarice());
-		myCards.add(new PotDichotomy());
-		myCards.add(new PotDuality());
-		myCards.add(new PotGenerosity());
-		myCards.add(new PotGreed());
-		myCards.add(new Pumpking());
-		myCards.add(new Pumprincess());
-		myCards.add(new RadiantMirrorForce());
-		myCards.add(new RainMercy());
-		myCards.add(new RedEyes());
-		myCards.add(new RedMedicine());
-		myCards.add(new Relinquished());
-		myCards.add(new SangaEarth());
-		myCards.add(new SangaThunder());
-		myCards.add(new Scapegoat());
-		myCards.add(new ScrapFactory());
-		myCards.add(new SevenColoredFish());
-		myCards.add(new ShardGreed());
-		myCards.add(new SliferSky());
-		myCards.add(new StormingMirrorForce());
-		myCards.add(new SummonedSkull());
-		myCards.add(new SuperheavyBenkei());
-		myCards.add(new SuperheavyScales());
-		myCards.add(new SuperheavySwordsman());
-		myCards.add(new SuperheavyWaraji());
-		myCards.add(new SwordsConcealing());
-		//myCards.add(new SwordsRevealing());
-		//myCards.add(new TimeWizard());
-		//myCards.add(new TrapHole());
 		myCards.add(new ValkMagnet());
-		myCards.add(new WingedDragonRa());
-		myCards.add(new BigFire());
-		myCards.add(new SuperheavyOgre());
-		myCards.add(new SuperheavyMagnet());
-		myCards.add(new SuperheavyGeneral());
-		myCards.add(new SuperheavyFlutist());
-		myCards.add(new SuperheavyDaihachi());
-		myCards.add(new SuperheavyBlueBrawler());
-		myCards.add(new SpiritHarp());
-		myCards.add(new SnowDragon());
-		myCards.add(new SnowdustDragon());
-		myCards.add(new Raigeki());
-		myCards.add(new PreventRat());
-		myCards.add(new Ojamuscle());
-		myCards.add(new MysticalElf());
-		myCards.add(new IslandTurtle());
-		myCards.add(new GravityAxe());
-		myCards.add(new FortressWarrior());
-		myCards.add(new CaveDragon());
-		myCards.add(new BlizzardDragon());
-		myCards.add(new BabyDragon());
-		myCards.add(new LordD());
-		myCards.add(new FluteSummoning());
-		myCards.add(new CurseDragon());
-		myCards.add(new CyberDragon());
-		myCards.add(new DragonMaster());
-		myCards.add(new FiendSkull());
-		myCards.add(new FiveHeaded());
-		myCards.add(new Gandora());
-		myCards.add(new HaneHane());
-		myCards.add(new LesserDragon());
-		myCards.add(new GaiaDragonChamp());
-		myCards.add(new DragonCaptureJar());
-		myCards.add(new LegendaryExodia());
-		myCards.add(new ThunderDragon());
-		myCards.add(new SuperancientDinobeast());
-		myCards.add(new ArmoredZombie());
-		myCards.add(new MoltenZombie());
-		myCards.add(new RedEyesZombie());
-		myCards.add(new TokenVacuum());
+		// END LIMITED Set
 		
-		// Add Replay-dependent cards
-		if (Loader.isModLoaded("ReplayTheSpireMod"))
+		//CONSPIRE Set - 3 cards
+		myCards.add(new GateGuardian());
+		myCards.add(new LegendaryFisherman());
+		myCards.add(new SangaWater());
+		// END CONSPIRE Set
+		
+		// REPLAY Set - 10 cards
+		myCards.add(new BarrelDragon());
+		myCards.add(new BlastJuggler());
+		myCards.add(new DarkMirrorForce());
+		myCards.add(new FlameSwordsman()); 
+		myCards.add(new NutrientZ());
+		myCards.add(new OjamaBlack());
+		myCards.add(new OjamaKing());
+		myCards.add(new OjamaKnight());
+		myCards.add(new Parasite());
+		myCards.add(new ToonDarkMagicianGirl());
+		// END REPLAY Set
+		
+
+		// If they are allowing the extra mod cards, check if the mods are loaded and remove the cards if not
+		if (crossoverBtnBool)
 		{
-			BaseMod.addCard(new BarrelDragon());
-			BaseMod.addCard(new FlameSwordsman()); 
-			BaseMod.addCard(new ToonDarkMagicianGirl());
-			BaseMod.addCard(new BlastJuggler());
-			BaseMod.addCard(new NutrientZ());
-			BaseMod.addCard(new OjamaKing());
-			BaseMod.addCard(new OjamaBlack());
-			BaseMod.addCard(new OjamaKnight());
-			BaseMod.addCard(new DarkMirrorForce());
-			BaseMod.addCard(new Parasite());
-			myCards.add(new BarrelDragon());
-			myCards.add(new FlameSwordsman());
-			myCards.add(new ToonDarkMagicianGirl());    	
-			myCards.add(new BlastJuggler());
-			myCards.add(new NutrientZ());
-			myCards.add(new DarkMirrorForce());
-			myCards.add(new Parasite());
+			// Remove Replay-dependent cards
+			if (!Loader.isModLoaded("ReplayTheSpireMod"))
+			{
+				for (int i = 0; i < myCards.size(); i++)
+				{
+					if (myCards.get(i).hasTag(DefaultMod.REPLAYSPIRE))
+					{
+						myCards.remove(i);
+						i = 0;
+					}
+				}
+			}
+	
+			// Remove Conspire-dependent cards
+			if (!Loader.isModLoaded("conspire"))
+			{
+				for (int i = 0; i < myCards.size(); i++)
+				{
+					if (myCards.get(i).hasTag(DefaultMod.CONSPIRE))
+					{
+						myCards.remove(i);
+						i = 0;
+					}
+				}
+			}
+		}
+		
+		// If they are not allowing the extra mod cards just remove them
+		else if (!crossoverBtnBool)
+		{
+			for (int i = 0; i < myCards.size(); i++)
+			{
+				if (myCards.get(i).hasTag(DefaultMod.CONSPIRE) || myCards.get(i).hasTag(DefaultMod.REPLAYSPIRE))
+				{
+					myCards.remove(i);
+					i = 0;
+				}
+			}
 		}
 
-		// Add Conspire-dependent cards
-		if (Loader.isModLoaded("conspire"))
+		if (exodiaBtnBool)
 		{
-			BaseMod.addCard(new GateGuardian());
-			BaseMod.addCard(new LegendaryFisherman());
-			BaseMod.addCard(new SangaWater());
-			myCards.add(new SangaWater());
-			myCards.add(new LegendaryFisherman());
-			myCards.add(new GateGuardian());
-			myCards.add(new OjamaBlack());
-			myCards.add(new OjamaKing());
-			myCards.add(new OjamaKnight());
+			for (int i = 0; i < myCards.size(); i++)
+			{
+				if (myCards.get(i).hasTag(DefaultMod.EXODIA))
+				{
+					myCards.remove(i);
+					i = 0;
+				}
+			}
 		}
 
-		if (!toonBtnBool)
+		if (!otherBtnBoolC)
 		{
-			BaseMod.addCard(new BlueEyesToon());
-			BaseMod.addCard(new ToonBarrelDragon());
-			BaseMod.addCard(new ToonBriefcase());
-			BaseMod.addCard(new ToonDarkMagician());
-			BaseMod.addCard(new ToonMermaid());
-			BaseMod.addCard(new ToonSummonedSkull());
-			BaseMod.addCard(new ToonWorld());
-			BaseMod.addCard(new ToonRollback());
-			BaseMod.addCard(new ToonMask());
-			BaseMod.addCard(new ToonMagic());	   
-			BaseMod.addCard(new ToonGeminiElf());
-			BaseMod.addCard(new RedEyesToon());
-			myCards.add(new BlueEyesToon());
-			myCards.add(new ToonMask());
-			myCards.add(new ToonMagic());
-			myCards.add(new ToonKingdom());
-			myCards.add(new ToonRollback());
-			myCards.add(new ToonBarrelDragon());
-			myCards.add(new ToonBriefcase());
-			myCards.add(new ToonDarkMagician());
-			myCards.add(new ToonGeminiElf());
-			myCards.add(new ToonMermaid());
-			myCards.add(new ToonSummonedSkull());
-			myCards.add(new ToonWorld());
-			myCards.add(new RedEyesToon());
+			
 		}
 		
-		// Debug Cards
-		//BaseMod.addCard(new BadToken());
-		//myCards.add(new BadToken());
+		if (!otherBtnBoolD)
+		{
+			
+		}
 		
-		
+		if (toonBtnBool)
+		{
+			for (int i = 0; i < myCards.size(); i++)
+			{
+				if (myCards.get(i).hasTag(DefaultMod.TOON))
+				{
+					myCards.remove(i);
+					i = 0;
+				}
+			}
+		}
+
+		switch (setIndex)
+		{
+			// Full - [ removes 35 cards ] 187 cards
+			case 1:				
+				for (int i = 0; i < myCards.size(); i++)
+				{
+					if (myCards.get(i).hasTag(DefaultMod.ALL))
+					{
+						myCards.remove(i);
+						i = 0;
+					}
+				}
+				break;
+			// Reduced - [ removes 20 cards ] 132 cards
+			case 2:				
+				for (int i = 0; i < myCards.size(); i++)
+				{
+					if (myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL))
+					{
+						myCards.remove(i);
+						i = 0;
+					}
+				}
+				break;
+			// Limited - [ removes 48 cards ] 104 cards
+			case 3:				
+				for (int i = 0; i < myCards.size(); i++)
+				{
+					if (myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL))
+					{
+						myCards.remove(i);
+						i = 0;
+					}
+				}				
+				break;
+			// Core - [ removes 77 cards ] 75 cards
+			case 4:
+				for (int i = 0; i < myCards.size(); i++)
+				{
+					if (myCards.get(i).hasTag(DefaultMod.LIMITED) || myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL))
+					{
+						myCards.remove(i);
+						i = 0;
+					}
+				}
+				break;
+			default:
+				break;
+		}
+
 		// Unlock all cards
 		logger.info("Making sure the cards are unlocked.");
-		for (DuelistCard c : myCards) {UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); }
+		int tempCardCount = 0;
+		for (DuelistCard c : myCards) { BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); tempCardCount++; }
 		summonMap.put("Puzzle Token", new Token());
 		summonMap.put("Ancient Token", new Token());
 		summonMap.put("Anubis Token", new Token());
-		
-		logger.info("theDuelist:DefaultMod:receiveEditCards ---> Map Test");
-		Set<Entry<String, DuelistCard>> set = summonMap.entrySet();
-		for (Entry<String, DuelistCard> e : set)
-		{
-			logger.info(e.toString());
+		cardCount = tempCardCount;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+			config.setInt(PROP_CARDS, cardCount);
+			config.save();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		
 		logger.info("Done adding cards!");
 
 	}
@@ -1093,8 +1203,8 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.addKeyword(new String[] {"magnet", "Magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
 		BaseMod.addKeyword(new String[] {"ojamania", "Ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
 		BaseMod.addKeyword(new String[] {"dragon", "Dragon"}, "Powerful monster cards. When you Tribute a Dragon for another Dragon, Gain 1 Strength.");
-		BaseMod.addKeyword(new String[] {"mystical", "Mystical"}, "Powerful monster cards. When you Tribute a Mystical monster for a Dragon, take 2 damage.");
-		
+		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster"}, "Powerful monster cards. When you Tribute a Mystical monster for a Dragon, lose 2 HP.");
+		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "");
 	}
 
 	// ================ /LOAD THE KEYWORDS/ ===================    

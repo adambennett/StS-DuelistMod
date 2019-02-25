@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.patches.*;
+import defaultmod.interfaces.*;
 
 // 
 

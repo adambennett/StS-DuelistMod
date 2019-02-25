@@ -24,6 +24,7 @@ import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.*;
 import defaultmod.cards.*;
+import defaultmod.interfaces.*;
 import defaultmod.powers.*;
 import defaultmod.relics.MillenniumKey;
 
@@ -162,11 +163,20 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToTop(new HealAction(p, p, amount));
 	}
 
-	protected void block() {
+	protected void block() 
+	{
 		block(block);
 	}
 
-	public static void block(int amount) {
+	public void block(int amount) 
+	{
+		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
+		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
+		AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player(), player(), amount));
+	}
+	
+	public static void staticBlock(int amount) 
+	{
 		AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player(), player(), amount));
 	}
 
@@ -196,11 +206,14 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(energy));
 	}
 
-	protected void attack(AbstractMonster m, AttackEffect effect) {
+	protected void attack(AbstractMonster m, AttackEffect effect) 
+	{
 		attack(m, effect, damage);
 	}
 
 	protected void attack(AbstractMonster m, AttackEffect effect, int damageAmount) {
+		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
+		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect));
 	}
 
@@ -232,6 +245,9 @@ public abstract class DuelistCard extends CustomCard
 	
 	public void damageThroughBlock(AbstractCreature m, AbstractPlayer p, int damage, AttackEffect effect)
 	{
+		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
+		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
+		
 		// Record target block and remove all of it
 		int targetArmor = m.currentBlock;
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
@@ -530,7 +546,7 @@ public abstract class DuelistCard extends CustomCard
 									DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 									if (temp != null) { tributeList.add(temp); }
 									//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
-									summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+									summonsInstance.summonList.remove(endIndex);
 								}
 							}
 						}
@@ -577,12 +593,12 @@ public abstract class DuelistCard extends CustomCard
 						for (int i = 0; i < tributes; i++)
 						{
 							if (summonsInstance.summonList.size() > 0)
-							{
+							{								
 								int endIndex = summonsInstance.summonList.size() - 1;
 								DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 								if (temp != null) { tributeList.add(temp); }
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
-								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.summonList.remove(endIndex);								
 							}
 						}
 					}
@@ -648,7 +664,7 @@ public abstract class DuelistCard extends CustomCard
 								DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 								if (temp != null) { tributeList.add(temp); }
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
-								summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.summonList.remove(endIndex);
 							}
 						}
 					}
@@ -700,7 +716,7 @@ public abstract class DuelistCard extends CustomCard
 							DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 							if (temp != null) { tributeList.add(temp); }
 							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
-							summonsInstance.summonList.remove(summonsInstance.summonList.get(endIndex));
+							summonsInstance.summonList.remove(endIndex);
 						}
 					}
 				}

@@ -55,7 +55,7 @@ public class SwordsConcealPower extends AbstractPower
     		blockGain += this.owner.getPower(DexterityPower.POWER_ID).amount;
     	}
     	blockGain+= this.amount;
-    	DuelistCard.block(blockGain);
+    	DuelistCard.staticBlock(blockGain);
     	updateDescription();
     }
     
