@@ -77,7 +77,7 @@ public class ArmoredZombie extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons)
+	public void onResummon(int summons)
 	{
 		heal(AbstractDungeon.player, 10);
 		block(15);

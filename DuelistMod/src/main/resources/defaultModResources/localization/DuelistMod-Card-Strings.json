@@ -1,8 +1,8 @@
 {
 	"theDuelist:AlphaMagnet": {
 		"NAME": "A. Magnet Warrior",
-		"DESCRIPTION": "Summon 1. NL Gain Alpha Magnet. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain Alpha Magnet. NL Deal !D! damage. NL Exhaust."
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Gain Alpha Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Gain Alpha Magnet for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "Ancient Rules",
@@ -16,8 +16,8 @@
 	},
 	"theDuelist:BadReaction": {
 		"NAME": "Bad Reaction",
-		"DESCRIPTION": "During your turn, deal !D! damage to ALL enemies for every HP healed.",
-		"UPGRADE_DESCRIPTION": "During your turn, deal !D! damage to ALL enemies for every HP healed."
+		"DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed.",
+		"UPGRADE_DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed."
 	},
 	"theDuelist:BarrelDragon": {
 		"NAME": "Barrel Dragon",
@@ -26,8 +26,8 @@
 	},
 	"theDuelist:BetaMagnet": {
 		"NAME": "B. Magnet Warrior",
-		"DESCRIPTION": "Summon 1. NL Gain Beta Magnet. NL Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain Beta Magnet. NL Gain !B! Block. Exhaust."
+		"DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Gain Beta Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Gain Beta Magnet for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:BlueEyes": {
 		"NAME": "B.E. White Dragon",
@@ -51,8 +51,8 @@
 	},
 	"theDuelist:CannonSoldier": {
 		"NAME": "Cannon Soldier",
-		"DESCRIPTION": "Summon 1. NL Once per turn, Tribute 1 and deal !D! damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Once per turn, Tribute 1 and deal !D! damage to a random enemy."
+		"DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !D! damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !D! damage to a random enemy."
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
@@ -76,8 +76,8 @@
 	},
 	"theDuelist:CatapultTurtle": {
 		"NAME": "Catapult Turtle",
-		"DESCRIPTION": "Tribute 2. NL Once per turn, Tribute ALL Summons and deal !D! damage for each to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Once per turn, Tribute ALL Summons and deal !D! damage for each to ALL enemies."
+		"DESCRIPTION": "Tribute 2. NL At the start of, Tribute ALL Summons and deal !D! damage for each to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL At the start of, Tribute ALL Summons and deal !D! damage for each to ALL enemies."
 	},
 	"theDuelist:CelticGuardian": {
 		"NAME": "Celtic Guardian",
@@ -106,8 +106,8 @@
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"NAME": "D.M. Girl",
-		"DESCRIPTION": "Spellcaster NL Summon 1. NL Overflow !M! - Apply a random buff.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Overflow !M! - Apply a random buff."
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block. NL Channel a Buffer.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block. NL Channel a Buffer."
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "Dian Keto",
@@ -116,28 +116,28 @@
 	},
 	"theDuelist:ExodiaHead": {
 		"NAME": "Exodia Head",
-		"DESCRIPTION": "If you have all 4 other pieces of Exodia, gain 1 Exodia. Exhaust.",
-		"UPGRADE_DESCRIPTION": "If you have all 4 other pieces of Exodia, gain 1 Exodia."
+		"DESCRIPTION": "Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia."
 	},
 	"theDuelist:ExodiaLA": {
 		"NAME": "Exodia L. Arm",
-		"DESCRIPTION": "Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust."
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust."
 	},
 	"theDuelist:ExodiaLL": {
 		"NAME": "Exodia L. Leg",
-		"DESCRIPTION": "Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust."
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust."
 	},
 	"theDuelist:ExodiaRA": {
 		"NAME": "Exodia R. Arm",
-		"DESCRIPTION": "Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust."
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust."
 	},
 	"theDuelist:ExodiaRL": {
 		"NAME": "Exodia R. Leg",
-		"DESCRIPTION": "Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust."
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust."
 	},
 	"theDuelist:FeatherPho": {
 		"NAME": "Phoenix Feather",
@@ -146,7 +146,7 @@
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "Fiend Megacyber",
-		"DESCRIPTION": "Tribute 2. NL Gain 1 Strength. NL Channel a random Orb. Exhaust.",
+		"DESCRIPTION": "Tribute 2. NL Gain 1 Strength. NL Channel a random Orb. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain 1 Strength. NL Channel a random Orb."
 	},
 	"theDuelist:Fissure": {
@@ -171,8 +171,8 @@
 	},
 	"theDuelist:GammaMagnet": {
 		"NAME": "G. Magnet Warrior",
-		"DESCRIPTION": "Summon 1. NL Gain Gamma Magnet. NL Draw 1 card.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain Gamma Magnet. NL Draw 2 cards. NL Exhaust."
+		"DESCRIPTION": "Summon 1. NL Draw 1 card. NL Gain Gamma Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Draw 2 cards. NL Gain Gamma Magnet for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:GateGuardian": {
 		"NAME": "Gate Guardian",
@@ -206,8 +206,8 @@
 	},
 	"theDuelist:ImperialOrder": {
 		"NAME": "Imperial Order",
-		"DESCRIPTION": "At the start of turn, set the cost of !M! random Trap or Spell card in your hand to 0.",
-		"UPGRADE_DESCRIPTION": "At the start of turn, set the cost of !M! random Trap or Spell cards in your hand to 0."
+		"DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap card in your hand to 0.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap cards in your hand to 0."
 	},
 	"theDuelist:InjectionFairy": {
 		"NAME": "Injection Fairy Lily",
@@ -231,8 +231,8 @@
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
-		"DESCRIPTION": "Increment !M!. NL Summon 1. NL Exhaust. NL If you Tribute this monster for anything other than a Dragon, gain 1 Intangible.",
-		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 2. NL Exhaust. NL If you Tribute this monster for anything other than a Dragon, gain 1 Intangible."
+		"DESCRIPTION": "Increment !M!. NL Summon 1 Kuriboh Token. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 1 Kuriboh Token. NL Exhaust."
 	},
 	"theDuelist:BigLabyrinthWall": {
 		"NAME": "Big Labyrinth Wall",
@@ -276,8 +276,8 @@
 	},
 	"theDuelist:MonsterReborn": {
 		"NAME": "Monster Reborn",
-		"DESCRIPTION": "Resummon !M! copies of random monsters in your discard pile on an enemy. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Resummon !M! upgraded copies of random monsters in your discard pile on an enemy. Exhaust."
+		"DESCRIPTION": "Resummon !M! random monster in your discard pile on an enemy. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Resummon !M! upgraded random monsters in your discard pile on an enemy. Exhaust."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
@@ -366,8 +366,8 @@
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
-		"DESCRIPTION": "The next time you lose HP, ALL enemies lose ALL Block.",
-		"UPGRADE_DESCRIPTION": "The next time you lose HP, ALL enemies lose ALL Block and take 5 damage."
+		"DESCRIPTION": "Whenever you lose HP, Increment !M!.",
+		"UPGRADE_DESCRIPTION": "Whenever you lose HP,  Increment !M!."
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "Rain of Mercy",
@@ -391,8 +391,8 @@
 	},
 	"theDuelist:Relinquished": {
 		"NAME": "Relinquished",
-		"DESCRIPTION": "Tribute 1. NL Channel 1 Dark.",
-		"UPGRADE_DESCRIPTION": "Channel 1 Dark."
+		"DESCRIPTION": "Spellcaster NL Tribute 1. NL Channel 1 Dark.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Channel 1 Dark."
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
@@ -411,8 +411,8 @@
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "Scapegoat",
-		"DESCRIPTION": "Gain !M! Intangible. NL Increment 4. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Gain !M! Intangible. NL Increment 4. NL Exhaust."
+		"DESCRIPTION": "Increment !M!. NL Summon 2 Kuriboh Tokens. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 2 Kuriboh Tokens. NL Exhaust."
 	},
 	"theDuelist:SevenColoredFish": {
 		"NAME": "7-Colored Fish",
@@ -426,8 +426,8 @@
 	},
 	"theDuelist:ShardGreed": {
 		"NAME": "Shard of Greed",
-		"DESCRIPTION": "Every 3 turns, draw 1 extra card.",
-		"UPGRADE_DESCRIPTION": "Every 3 turns, draw 1 extra card."
+		"DESCRIPTION": "At the start of your turn, draw 1 additional card. Every 3 turns, draw 1 extra card.",
+		"UPGRADE_DESCRIPTION": "At the start of your turn, draw 1 additional card. Every 3 turns, draw 1 extra card."
 	},
 	"theDuelist:SummonedSkull": {
 		"NAME": "Summoned Skull",
@@ -446,13 +446,13 @@
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
-		"DESCRIPTION": "Gain (1-2) more Orb slots.",
-		"UPGRADE_DESCRIPTION": "Gain (1-2) more Orb slots."
+		"DESCRIPTION": "For !M! turns, ignore all damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "For !M! turns, ignore all damage. Exhaust."
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "Time Wizard",
-		"DESCRIPTION": "Once per turn, either ALL enemies receive (1-5) Spell Counters or you receive a random debuff. Chosen randomly.",
-		"UPGRADE_DESCRIPTION": "Once per turn, either ALL enemies receive (1-5) Spell Counters or you receive a random debuff. Chosen randomly."
+		"DESCRIPTION": "Summon 1. NL At the start of turn, a random positive action is triggered.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, a random positive action is triggered. When you Tribute this monster, a random positive action is triggered."
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
@@ -461,8 +461,8 @@
 	},
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",
-		"DESCRIPTION": "The next time an enemy summons minions, deal !D! damage to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Placeholder text."
+		"DESCRIPTION": "Whenever you Summon, have a 30% chance to immediately Tribute and then Resummon the monster.",
+		"UPGRADE_DESCRIPTION": "Whenever you Summon, have a 40% chance to immediately Tribute and then Resummon the monster."
 	},
 	"theDuelist:ValkMagnet": {
 		"NAME": "Valkyrion",
@@ -476,8 +476,8 @@
 	},
 	"theDuelist:RedEyesToon": {
 		"NAME": "Red Eyes Toon",
-		"DESCRIPTION": "Toon NL Dragon NL Tribute 2. NL Deal !D! damage (through Block).",
-		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 2. NL Deal !D! damage (through Block)."
+		"DESCRIPTION": "Toon NL Dragon NL Tribute 1. NL Deal !D! damage (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 1. NL Deal !D! damage (through Block)."
 	},
 	"theDuelist:StormingMirrorForce": {
 		"NAME": "Storming Mirror Force",
@@ -506,8 +506,8 @@
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
-		"DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (15-35) to each enemy.",
-		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (20-40) to each enemy."
+		"DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (15-35) to each enemy (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (20-40) to each enemy (through Block)."
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
@@ -521,8 +521,8 @@
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "Toon D.M. Girl",
-		"DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Channel a Crystal.",
-		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Channel a Crystal."
+		"DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Gain !B! Block. NL Channel a Crystal.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Gain !B! Block. NL Channel a Crystal."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "Toon Gemini Elf",
@@ -656,8 +656,8 @@
 	},
 	"theDuelist:CaveDragon": {
 		"NAME": "Cave Dragon",
-		"DESCRIPTION": "Dragon NL Summon 1. NL Gain !B! Block. NL If you Tribute this monster for another Dragon, gain 1 Strength.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1 NL Gain !B! Block. NL If you Tribute this monster for another Dragon, gain 1 Strength."
+		"DESCRIPTION": "Dragon NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1 NL Gain !B! Block."
 	},
 	"theDuelist:BlizzardDragon": {
 		"NAME": "Blizzard Dragon",
@@ -666,8 +666,8 @@
 	},
 	"theDuelist:BabyDragon": {
 		"NAME": "Baby Dragon",
-		"DESCRIPTION": "Dragon NL Summon 2. NL Gain !B! Block. NL If you Tribute this monster for another Dragon, gain 1 Strength.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon 2. NL Gain !B! Block. NL If you Tribute this monster for another Dragon, gain 1 Strength."
+		"DESCRIPTION": "Dragon NL Summon 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 2. NL Gain !B! Block."
 	},
 	"theDuelist:DarkFactory": {
 		"NAME": "Dark Factory",
@@ -726,13 +726,13 @@
 	},
 	"theDuelist:ThunderDragon": {
 		"NAME": "Thunder Dragon",
-		"DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage."
+		"DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel a Lightning.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel a Lightning."
 	},
 	"theDuelist:BlastJuggler": {
 		"NAME": "Blast Juggler",
-		"DESCRIPTION": "Summon 1. NL If you Tribute this monster, apply 3 random debuffs to random enemies.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL If you Tribute this monster, apply 3 random debuffs to random enemies."
+		"DESCRIPTION": "Summon 1. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies."
 	},
 	"theDuelist:LegendaryExodia": {
 		"NAME": "L. Exodia Incarnate",
@@ -761,18 +761,98 @@
 	},
 	"theDuelist:Mountain": {
 		"NAME": "Mountain",
-		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block.",
-		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block."
+		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
+		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
 	},
 	"theDuelist:Yami": {
 		"NAME": "Yami",
-		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block.",
-		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block."
+		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
+		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
+	},
+	"theDuelist:MachineKing": {
+		"NAME": "Machine King",
+		"DESCRIPTION": "Tribute 1. NL Channel a Glitch.",
+		"UPGRADE_DESCRIPTION": "Channel a Glitch."
+	},
+	"theDuelist:BookSecret": {
+		"NAME": "Book Secret Arts",
+		"DESCRIPTION": "Add 2 randomized Spellcasters to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add 3 randomized, upgraded Spellcasters to your hand. Exhaust."
+	},
+	"theDuelist:HeavyStorm": {
+		"NAME": "Heavy Storm",
+		"DESCRIPTION": "Remove ALL powers from you and ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Remove ALL powers from you and ALL enemies."
+	},
+	"theDuelist:StrayLambs": {
+		"NAME": "Stray Lambs",
+		"DESCRIPTION": "Increment 2. Summon !M! Kuriboh Token.",
+		"UPGRADE_DESCRIPTION": "Increment 2. Summon !M! Kuriboh Tokens."
+	},
+	"theDuelist:KingYami": {
+		"NAME": "King Yamimakai",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:Lajinn": {
+		"NAME": "Lajinn Mystical Genie",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:BlacklandFireDragon": {
+		"NAME": "Blackland Fire Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel a Fire.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel a Fire."
+	},
+	"theDuelist:WhiteNightDragon": {
+		"NAME": "White Night Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel an Air."
+	},
+	"theDuelist:WhiteHornDragon": {
+		"NAME": "White-Horned Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel an Air."
+	},
+	"theDuelist:FogKing": {
+		"NAME": "Fog King",
+		"DESCRIPTION": "Spellcaster NL Tribute 3. NL Deal damage equal to the combined damage of all Tributes.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute 3. NL Deal damage equal to the combined damage of all Tributes + 9 extra damage."
+	},
+	"theDuelist:RevivalJam": {
+		"NAME": "Revival Jam",
+		"DESCRIPTION": "Summon 1. NL When you Tribute this monster, Summon !M! Jam Tokens.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL When you Tribute this monster, Summon !M! Jam Tokens."
+	},
+	"theDuelist:StimPack": {
+		"NAME": "Stim Pack",
+		"DESCRIPTION": "Summon !M! Exploding Tokens.",
+		"UPGRADE_DESCRIPTION": "Summon !M! Exploding Tokens. Add 2 copies of this card to your draw pile."
+	},
+	"theDuelist:BottomlessTrapHole": {
+		"NAME": "Bottomless Trap Hole",
+		"DESCRIPTION": "Discard every monster in your draw pile. Deal !D! damage for each monster discarded. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Discard every monster in your draw pile. Deal !D! damage for each monster discarded. NL Exhaust."
+	},
+	"theDuelist:SwordDeepSeated": {
+		"NAME": "Sword of Deep-Seated",
+		"DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copies of this card to your draw pile, plus !M! more copies for each Sword of Deep-Seated you have played this combat.",
+		"UPGRADE_DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copies of this card to your draw pile, plus !M! more copies for each Sword of Deep-Seated you have played this combat. NL Exhaust."
+	},
+	"theDuelist:ExplosiveToken": {
+		"NAME": "Exploding Token",
+		"DESCRIPTION": "Lose 5 HP when Tributed.",
+		"UPGRADE_DESCRIPTION": "Lose 5 HP when Tributed."
 	},
 	"theDuelist:BadToken": {
 		"NAME": "DEBUG: POWER REMOVER",
-		"DESCRIPTION": "Channel an Earth.",
-		"UPGRADE_DESCRIPTION": "Channel an Earth."
+		"DESCRIPTION": "Debug Effect",
+		"UPGRADE_DESCRIPTION": "Debug Effect"
+	},
+	"theDuelist:ShadowToken": {
+		"NAME": "Shadow Token",
+		"DESCRIPTION": "Unplayable.",
+		"UPGRADE_DESCRIPTION": "Unplayable."
 	},
 	"theDuelist:Token": {
 		"NAME": "Token",
@@ -781,7 +861,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
-		"DESCRIPTION": "Tribute 4. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL +  (3* Summons)) *X.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL + (3* Summons) + (max Summons)) *X."
+		"DESCRIPTION": "Tribute 4. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL +  (3* Summons)) X times.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL + (3* Summons) + (max Summons)) X times."
 	}
 }

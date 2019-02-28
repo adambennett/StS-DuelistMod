@@ -1,13 +1,16 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 
+import basemod.ReflectionHacks;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 
@@ -29,9 +32,8 @@ public class Kuriboh extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 2;
-	private static final int INTANGIBLE = 1;
-	private static final int SUMMONS = 1;
 	private static final int INC_SUMMONS = 1;
+	 private ArrayList<AbstractCard> tooltips;
 	// private static final int U_INC_SUMMONS = 1;
 	// /STAT DECLARATION/
 
@@ -42,9 +44,11 @@ public class Kuriboh extends DuelistCard
 		this.tags.add(DefaultMod.METAL_RAIDERS);
 		this.tags.add(DefaultMod.GOOD_TRIB);
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = 1;
 		this.isSummon = true;
 		this.exhaust = true;
+		tooltips = new ArrayList<>();
+		tooltips.add(new KuribohToken());
 	}
 
 	// Actions the card should do.
@@ -52,7 +56,7 @@ public class Kuriboh extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		incMaxSummons(p, this.magicNumber);
-		summon(p, SUMMONS, this);
+		summon(p, this.summons, new KuribohToken());
 	}
 
 	// Which card to return when making a copy of this card.
@@ -66,7 +70,7 @@ public class Kuriboh extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.summons = 2;
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -75,13 +79,11 @@ public class Kuriboh extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (!tributingCard.hasTag(DefaultMod.DRAGON)) {applyPower(new IntangiblePlayerPower(AbstractDungeon.player, INTANGIBLE), AbstractDungeon.player);}
+		
 	}
 
-
-
 	@Override
-	public void onSummon(int summons) 
+	public void onResummon(int summons) 
 	{
 		
 	}
@@ -91,17 +93,46 @@ public class Kuriboh extends DuelistCard
 	{
 		AbstractPlayer p = AbstractDungeon.player;
 		incMaxSummons(p, this.magicNumber);
-		summon(p, summons, this);
-		if (this.upgraded) { applyPower(new IntangiblePlayerPower(p, INTANGIBLE), p); }
+		summon(p, this.summons, new KuribohToken());
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		AbstractPlayer p = AbstractDungeon.player;
 		incMaxSummons(p, this.magicNumber);
-		summon(p, summons, this);
-		if (this.upgraded) { applyPower(new IntangiblePlayerPower(p, INTANGIBLE), p); }
+		summon(p, this.summons, new KuribohToken());
 		
+	}
+	
+	@Override
+	public void renderCardTip(SpriteBatch sb) 
+	{
+		super.renderCardTip(sb);
+		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
+
+		int count = 0;
+		if (!Settings.hideCards && renderTip) {
+			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
+				return;
+			}
+			for (AbstractCard c : tooltips) {
+				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
+				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
+				if (current_x > Settings.WIDTH * 0.75f) {
+					c.current_x = current_x + dx;
+				} else {
+					c.current_x = current_x - dx;
+				}
+				if (count == 0) {
+					c.current_y = current_y + dy;
+				} else {
+					c.current_y = current_y - dy;
+				}
+				c.drawScale = drawScale * 0.8f;
+				c.render(sb);
+				count++;
+			}
+		}
 	}
 
 	@Override

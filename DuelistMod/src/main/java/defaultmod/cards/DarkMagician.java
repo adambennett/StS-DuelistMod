@@ -42,6 +42,7 @@ public class DarkMagician extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.SPELLCASTER);
+        this.tags.add(DefaultMod.BAD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -112,7 +113,7 @@ public class DarkMagician extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

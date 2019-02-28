@@ -7,12 +7,13 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.SpecificCardDiscardToDeckAction;
 import defaultmod.cards.AxeDespair;
+import defaultmod.patches.DuelistCard;
 
 /* 	
  * Lose 10 strength at the end of turn and
@@ -36,7 +37,7 @@ public class DespairPower extends AbstractPower
 	private static int STR_LOSS = 9;
 	private static int DAMAGE = 30;
 
-	public DespairPower(final AbstractCreature owner, final AbstractCreature source, final CustomCard card, int strLoss) 
+	public DespairPower(final AbstractCreature owner, final AbstractCreature source, final CustomCard card, int strLoss, int newAmount) 
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -45,7 +46,7 @@ public class DespairPower extends AbstractPower
 		this.isTurnBased = false;
 		this.img = new Texture(IMG);
 		this.source = source;
-		this.amount = 1;
+		this.amount = newAmount;
 		ATTACHED_AXE = card;
 		STR_LOSS = strLoss;
 		this.updateDescription();
@@ -54,42 +55,57 @@ public class DespairPower extends AbstractPower
 	@Override
     public void onDrawOrDiscard() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     }
 	
 	@Override
     public void atStartOfTurn() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     }
     
 	// At the end of the turn, remove gained Strength.
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-		if (this.amount > 0) { this.amount = 0; }
-		int tribs = AxeDespair.powerTribute(AbstractDungeon.player, TRIBUTES, false);
-		if (tribs < TRIBUTES)
+		boolean triggeredDamage = false;
+		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
+		else if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
 		{
-			AxeDespair.damageSelf(DAMAGE);
+			GravityAxePower power = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
+			power.onSpecificTrigger();
+			DuelistCard.removePower(this, this.owner);
 		}
-
-		// Lose 10 or 12 Strength
-		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, "Strength", STR_LOSS));
-		
-		// Take the Axe of Despair we just played out of the discard and put on top of the deck
-		AbstractDungeon.actionManager.addToTop(new SpecificCardDiscardToDeckAction(this.owner, ATTACHED_AXE));
-		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, DespairPower.POWER_ID, 1));
+		else
+		{
+			for (int i = 0; i < this.amount; i++)
+			{
+				if (this.amount > 0)
+				{
+					int tribs = AxeDespair.powerTribute(AbstractDungeon.player, TRIBUTES, false);
+					if (tribs < TRIBUTES) { triggeredDamage = true; }
+			
+					// Lose Strength
+					DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, -1 * STR_LOSS));
+					
+					// Take the Axe of Despair we just played out of the discard and put on top of the deck
+					AbstractDungeon.actionManager.addToTop(new SpecificCardDiscardToDeckAction(this.owner, ATTACHED_AXE));
+					AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, this, 1));
+				}
+			}
+			
+			if (triggeredDamage) { AxeDespair.damageSelf(DAMAGE); }
+		}
 	}
 
 	@Override
 	public void updateDescription() {
-		this.description = DESCRIPTIONS[0] + STR_LOSS + DESCRIPTIONS[1];
+		this.description = DESCRIPTIONS[0] + STR_LOSS * this.amount + DESCRIPTIONS[1] + 2 * this.amount + DESCRIPTIONS[2];
 	}
 }

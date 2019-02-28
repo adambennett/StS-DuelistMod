@@ -1,17 +1,15 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.DespairPower;
+import defaultmod.powers.*;
 
 public class AxeDespair extends DuelistCard 
 {
@@ -53,8 +51,8 @@ public class AxeDespair extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber)));
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new DespairPower(p, p, this, this.magicNumber)));
+    	applyPowerToSelf(new StrengthPower(p, this.magicNumber));
+    	if (!p.hasPower(GravityAxePower.POWER_ID)) { applyPowerToSelf(new DespairPower(p, p, this, this.magicNumber, 1)); }
     }
 
 
@@ -85,7 +83,7 @@ public class AxeDespair extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

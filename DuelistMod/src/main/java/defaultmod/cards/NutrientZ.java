@@ -76,6 +76,17 @@ public class NutrientZ extends DuelistCard
             this.initializeDescription();
         }
     }
+    
+    // If player doesn't have low enough HP, can't play
+ 	@Override
+ 	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+ 	{
+ 		boolean canUse = super.canUse(p, m); 
+ 		if (!canUse) { return false; }
+ 		else if (p.currentHealth >= 40) { this.cantUseMessage = "Your HP is too high"; return false; }
+ 		else if (p.currentHealth < 40) { return true; }
+ 		return false;
+ 	}
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
@@ -85,7 +96,7 @@ public class NutrientZ extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

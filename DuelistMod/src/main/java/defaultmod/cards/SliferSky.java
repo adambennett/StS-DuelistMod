@@ -99,12 +99,16 @@ public class SliferSky extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+		if (tributingCard.hasTag(DefaultMod.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
 	}
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

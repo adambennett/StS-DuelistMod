@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.*;
 
 public class CaveDragon extends DuelistCard 
 {
@@ -71,13 +72,17 @@ public class CaveDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+		if (tributingCard.hasTag(DefaultMod.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
 	}
 
 	
 
 	@Override
-	public void onSummon(int summons) 
+	public void onResummon(int summons) 
 	{
 		
 	}

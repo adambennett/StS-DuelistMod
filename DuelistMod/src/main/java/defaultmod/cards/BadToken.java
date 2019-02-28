@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
-import defaultmod.orbs.Earth;
+import defaultmod.orbs.Shadow;
 import defaultmod.patches.*;
 
 public class BadToken extends DuelistCard 
@@ -39,9 +39,17 @@ public class BadToken extends DuelistCard
     	// Remove all player powers
     	//ArrayList<AbstractPower> test = p.powers; for (AbstractPower a : test) { removePower(a, p);  }
     	
+    	/*
+    	for (int i = 0; i < 6; i++)
+    	{
+    		// Channel test orb
+    		RandomOrbHelperDebug.channelRandomOrb();
+    	}
+    	*/
+    	
     	// Channel test orb
-    	AbstractOrb testOrb = new Earth();
-    	channel(testOrb);
+		AbstractOrb testOrb = new Shadow();
+		channel(testOrb);
     }
    
     
@@ -50,7 +58,7 @@ public class BadToken extends DuelistCard
     
     @Override public AbstractCard makeCopy() { return new BadToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) {}
-	@Override public void onSummon(int summons) { }
+	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() {}

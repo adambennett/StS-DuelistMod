@@ -1,12 +1,7 @@
 package defaultmod.powers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -14,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.cards.DarkMirrorForce;
+import defaultmod.patches.DuelistCard;
 
 
 public class RadiantMirrorPower extends AbstractPower 
@@ -27,9 +22,9 @@ public class RadiantMirrorPower extends AbstractPower
     public static final String IMG = DefaultMod.makePath(DefaultMod.RADIANT_POWER);
     
     public boolean upgrade = false;
-    public int damage = 5;
+    public int increment = 2;
 
-    public RadiantMirrorPower(AbstractCreature owner, boolean upgrade) 
+    public RadiantMirrorPower(AbstractCreature owner, boolean upgrade, int increments) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -38,50 +33,45 @@ public class RadiantMirrorPower extends AbstractPower
         this.isTurnBased = false;
         this.upgrade = upgrade;
         this.type = PowerType.BUFF;
+        increment = increments;
+        this.amount = increments;
         this.updateDescription();
     }
     
     @Override
     public void onDrawOrDiscard() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     }
     
     @Override
     public void atStartOfTurn() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
 	}
 
     @Override
     public int onLoseHp(int damageAmount)
     {
-    	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
-    	for (AbstractMonster m : monsters)
-    	{
-    		if (m.currentBlock > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
-    		if (upgrade) { AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, DamageType.THORNS), AbstractGameAction.AttackEffect.SMASH)); }
-    	}
-    	DarkMirrorForce.removePower(this, AbstractDungeon.player);
+    	DuelistCard.incMaxSummons(AbstractDungeon.player, increment);
     	return damageAmount;
     }
     
     @Override
 	public void updateDescription() 
     {
-    	if (!upgrade) { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1]; }
-    	else { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2]; }
+    	this.description = DESCRIPTIONS[0] + increment + DESCRIPTIONS[1]; 
     }
 }

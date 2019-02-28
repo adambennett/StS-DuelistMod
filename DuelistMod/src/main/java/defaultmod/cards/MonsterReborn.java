@@ -15,7 +15,7 @@ import defaultmod.patches.*;
 public class MonsterReborn extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("MonsterReborn");
+    public static final String ID = DefaultMod.makeID("MonsterReborn");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.MONSTER_REBORN    );
     public static final String NAME = cardStrings.NAME;
@@ -24,12 +24,12 @@ public class MonsterReborn extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int MONSTERS = 3;
+    private static final int MONSTERS = 2;
     private static final int U_MONSTERS = 1;
     // /STAT DECLARATION/
 
@@ -49,7 +49,7 @@ public class MonsterReborn extends DuelistCard
     {
     	ArrayList<AbstractCard> discards = player().discardPile.group;
     	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.upgraded) { toChooseFrom.add(c); } }
+    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(c); } }
     	if (toChooseFrom.size() > 0)
     	{
     		for (int i = 0; i < this.magicNumber; i++)
@@ -69,7 +69,7 @@ public class MonsterReborn extends DuelistCard
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-	    				cardCopy.onSummon(1);
+	    				cardCopy.onResummon(1);
 	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 	    		}
@@ -84,7 +84,7 @@ public class MonsterReborn extends DuelistCard
 	    				cardCopy.purgeOnUse = true;
 	    				if (chosen.upgraded) { cardCopy.upgrade(); }
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-	    				cardCopy.onSummon(1);
+	    				cardCopy.onResummon(1);
 	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 	    		}
@@ -118,7 +118,7 @@ public class MonsterReborn extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

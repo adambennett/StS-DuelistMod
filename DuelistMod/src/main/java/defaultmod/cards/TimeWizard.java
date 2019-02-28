@@ -7,12 +7,14 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.RandomActionHelper;
 import defaultmod.patches.*;
+import defaultmod.powers.TimeWizardPower;
 
 public class TimeWizard extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("TimeWizard");
+    public static final String ID = DefaultMod.makeID("TimeWizard");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.TIME_WIZARD);
     public static final String NAME = cardStrings.NAME;
@@ -21,11 +23,11 @@ public class TimeWizard extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public TimeWizard() {
@@ -34,13 +36,16 @@ public class TimeWizard extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.FULL);
 		this.originalName = this.name;
+		this.summons = 1;
+		this.isSummon = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       
+       summon(p, this.summons, this);
+       applyPowerToSelf(new TimeWizardPower(p, p, 1));
     }
 
     // Which card to return when making a copy of this card.
@@ -54,34 +59,41 @@ public class TimeWizard extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
+            this.tags.add(DefaultMod.GOOD_TRIB);
             this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (upgraded) 
+		{
+			RandomActionHelper.triggerRandomAction(1, true);
+		}
 	}
 
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
+	public void onResummon(int summons) 
+	{
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
-		
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		summon(player(), this.summons, this);
+		applyPowerToSelf(new TimeWizardPower(player(), player(), 1));
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
-		
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
+		summon(player(), this.summons, this);
+		applyPowerToSelf(new TimeWizardPower(player(), player(), 1));
 	}
 
 	@Override

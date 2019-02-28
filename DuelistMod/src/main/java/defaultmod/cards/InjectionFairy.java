@@ -39,6 +39,7 @@ public class InjectionFairy extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGACY_DARKNESS);
 		this.tags.add(DefaultMod.SPELLCASTER);
+		this.tags.add(DefaultMod.BAD_TRIB);
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;
@@ -80,7 +81,7 @@ public class InjectionFairy extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 
 	}

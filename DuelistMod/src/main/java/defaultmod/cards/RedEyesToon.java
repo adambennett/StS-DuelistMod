@@ -31,9 +31,9 @@ public class RedEyesToon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int DAMAGE = 18;
-    private static final int TRIBUTES = 2;
+    private static final int TRIBUTES = 1;
     private static final int U_DMG = 6;
     // /STAT DECLARATION/
 
@@ -109,12 +109,16 @@ public class RedEyesToon extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+		if (tributingCard.hasTag(DefaultMod.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
 		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }	
 	}
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

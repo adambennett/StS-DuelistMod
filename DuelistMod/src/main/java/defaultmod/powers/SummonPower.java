@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.cards.Token;
 import defaultmod.patches.DuelistCard;
 import defaultmod.relics.*;
 
@@ -101,6 +102,7 @@ public class SummonPower extends AbstractPower
 		for (String s : summonList)
 		{
 			DuelistCard ref = DefaultMod.summonMap.get(s);
+			if (ref == null) { ref = new Token(); }
 			String coloredString = "";
 			if (ref.hasTag(DefaultMod.GOOD_TRIB)) 
 			{

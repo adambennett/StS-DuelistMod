@@ -78,7 +78,7 @@ public class CastleDarkIllusions extends DuelistCard
 	}
 
 	@Override
-	public void onSummon(int summons) 
+	public void onResummon(int summons) 
 	{
 	
 	}

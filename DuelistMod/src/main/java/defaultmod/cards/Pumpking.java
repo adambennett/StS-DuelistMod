@@ -74,7 +74,7 @@ public class Pumpking extends DuelistCard
 				        cardCopy.applyPowers();
 				        cardCopy.purgeOnUse = true;
 				        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-				        cardCopy.onSummon(1);
+				        cardCopy.onResummon(1);
 			    	}
 	    		}
 	    	}
@@ -91,7 +91,7 @@ public class Pumpking extends DuelistCard
 				        cardCopy.applyPowers();
 				        cardCopy.purgeOnUse = true;
 				        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-				        cardCopy.onSummon(1);
+				        cardCopy.onResummon(1);
 			    	}
 	    		}
 	    	}
@@ -152,7 +152,7 @@ public class Pumpking extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

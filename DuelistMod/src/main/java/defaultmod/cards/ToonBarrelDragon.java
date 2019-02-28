@@ -1,7 +1,6 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -60,8 +59,8 @@ public class ToonBarrelDragon extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		int[] damageArray = new int[5];
-		for (int i = 0; i < 5; i++)
+		int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
+		for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++)
 		{
 			int randomNum = AbstractDungeon.cardRandomRng.random(MIN_DMG, MAX_DMG );
 			int randomNumU = AbstractDungeon.cardRandomRng.random(MIN_DMG_U, MAX_DMG_U);
@@ -71,7 +70,7 @@ public class ToonBarrelDragon extends DuelistCard
 		
 		if (player().hasPower(MountainPower.POWER_ID))
 		{
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++)
 			{
 				damageArray[i] = (int)Math.floor(damageArray[i] * 1.5);
 			}
@@ -79,7 +78,13 @@ public class ToonBarrelDragon extends DuelistCard
 		
 		this.multiDamage = damageArray;
 		tribute(p, TRIBUTES, false, this);
-		AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+		for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++)
+		{
+			AbstractMonster mon = AbstractDungeon.getMonsters().monsters.get(i);
+			damageThroughBlock(mon, p, damageArray[i], AbstractGameAction.AttackEffect.FIRE);
+		}
+		//damageThroughBlockAllEnemies(p, this.multiDamage, AbstractGameAction.AttackEffect.FIRE);
+		//AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -134,13 +139,17 @@ public class ToonBarrelDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+		if (tributingCard.hasTag(DefaultMod.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
 		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
 	}
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

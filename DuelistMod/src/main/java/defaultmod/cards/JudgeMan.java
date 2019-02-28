@@ -112,7 +112,7 @@ public class JudgeMan extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) 
+	public void onResummon(int summons) 
 	{
 		summon(AbstractDungeon.player, summons, this);
 		AbstractMonster m = AbstractDungeon.getRandomMonster();

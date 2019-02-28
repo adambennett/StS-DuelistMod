@@ -37,6 +37,7 @@ public class MysticalElf extends DuelistCard
 		this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
 		this.tags.add(DefaultMod.BAD_TRIB);
 		this.tags.add(DefaultMod.SPELLCASTER);
+		this.tags.add(DefaultMod.BAD_TRIB);
 		this.summons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -77,7 +78,7 @@ public class MysticalElf extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 
 	}

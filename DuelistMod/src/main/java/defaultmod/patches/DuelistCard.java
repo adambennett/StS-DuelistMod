@@ -82,7 +82,7 @@ public abstract class DuelistCard extends CustomCard
 	
 	public abstract String getID();
 	public abstract void onTribute(DuelistCard tributingCard);
-	public abstract void onSummon(int summons);
+	public abstract void onResummon(int summons);
 	public abstract void summonThis(int summons, DuelistCard c, int var);
 	public abstract void summonThis(int summons, DuelistCard c, int var, AbstractMonster m);
 
@@ -137,20 +137,40 @@ public abstract class DuelistCard extends CustomCard
 		return player().hasPower(power);
 	}
 
-	protected static void applyPower(AbstractPower power, AbstractCreature target) {
+	public static void applyPower(AbstractPower power, AbstractCreature target) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, power.amount));
+		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
+		{
+			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
+			gravPower.onSpecificTrigger();
+		}
 	}
 
 	protected void applyPower(AbstractPower power, AbstractCreature target, int amount) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, amount));
+		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
+		{
+			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
+			gravPower.onSpecificTrigger();
+		}
 	}
 
 	public static void removePower(AbstractPower power, AbstractCreature target) {
 		AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
+		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
+		{
+			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
+			gravPower.onSpecificTrigger();
+		}
 	}
 
 	public static void reducePower(AbstractPower power, AbstractCreature target, int reduction) {
 		AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, reduction));
+		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
+		{
+			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
+			gravPower.onSpecificTrigger();
+		}
 	}
 
 	public static void heal(AbstractPlayer p, int amount)
@@ -182,9 +202,10 @@ public abstract class DuelistCard extends CustomCard
 
 	public static void applyPowerToSelf(AbstractPower power) {
 		applyPower(power, player());
+		
 	}
 
-	public void draw(int cards) {
+	public static void draw(int cards) {
 		AbstractDungeon.actionManager.addToTop(new DrawCardAction(player(), cards));
 	}
 
@@ -192,7 +213,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToBottom(new DrawCardAction(player(), cards));
 	}
 
-	public void discard(int amount, boolean isRandom)
+	public static void discard(int amount, boolean isRandom)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DiscardAction(player(), player(), amount, isRandom));
 	}
@@ -271,6 +292,23 @@ public abstract class DuelistCard extends CustomCard
 		}
 	}
 	
+	public void damageThroughBlockAllEnemies(AbstractPlayer p, int[] damageArray, AttackEffect effect)
+	{
+		ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
+		int damageArrayIndex = 0;
+		int damageThisCycle = damageArray[damageArrayIndex];
+		for (AbstractMonster m : monsters)
+		{
+			if (!m.isDead) 
+			{ 
+				damageThroughBlock(m, p, damageThisCycle, effect); 
+			}
+			damageArrayIndex++;
+			if (!((damageArrayIndex + 1) > damageArray.length)) { damageThisCycle = damageArray[damageArrayIndex]; }
+			else { damageArrayIndex = 0; }
+		}
+	}
+	
 	public static void damageAllEnemiesThorns(int damage)
 	{
 		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
@@ -320,10 +358,7 @@ public abstract class DuelistCard extends CustomCard
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID)) 
 			{ 
-				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-				else { RandomOrbHelper.channelRandomOrb(); }
+				channelRandom();
 			} 
 		}
 		
@@ -346,9 +381,6 @@ public abstract class DuelistCard extends CustomCard
 				{ 
 					summonsInstance.summonList.add(c.originalName);
 				} 
-				
-				//c.onSummon(potSummons);
-				//System.out.println("theDuelist:DuelistCard:summon() ---> Called " + c.originalName + "'s onSummon()");
 			}
 	
 			// Check for Pot of Generosity
@@ -360,10 +392,7 @@ public abstract class DuelistCard extends CustomCard
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID)) 
 			{ 
-				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-				else { RandomOrbHelper.channelRandomOrb(); }
+				channelRandom();
 			} 
 		
 			
@@ -371,11 +400,135 @@ public abstract class DuelistCard extends CustomCard
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
+			
+			// Check for Trap Hole
+			if (p.hasPower(TrapHolePower.POWER_ID) && !DefaultMod.checkTrap)
+			{
+				DefaultMod.checkTrap = true;
+				for (int i = 0; i < potSummons; i++)
+				{
+					TrapHolePower power = (TrapHolePower) p.getPower(TrapHolePower.POWER_ID);
+					int randomNum = AbstractDungeon.cardRandomRng.random(1, 10);
+					if (randomNum <= power.chance || power.chance > 10)
+					{
+						System.out.println("theDuelist:DuelistCard:summon ---> triggered trap hole with roll of: " + randomNum);
+						tribute(p, 1, false, c);
+						c.onResummon(1);
+						c.summonThis(1, c, 0);
+					}
+					else
+					{
+						System.out.println("theDuelist:DuelistCard:summon ---> did not trigger trap hole with roll of: " + randomNum);
+					}
+				}
+			}
+			DefaultMod.checkTrap = false;
+			
+			// Check for Yami
+			if (p.hasPower(YamiPower.POWER_ID) && c.hasTag(DefaultMod.SPELLCASTER))
+			{
+				spellSummon(p, 1, c);
+			}
+			
+			// Update UI
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
 		}
 	}
+	
+	public static void spellSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
+	{
+		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
+		if (!p.hasPower(SummonPower.POWER_ID))
+		{
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, c.originalName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
+			int startSummons = SUMMONS;
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
+	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			{ 
+				channelRandom();
+			} 
+		}
+		
+		else
+		{
+			// Setup Pot of Generosity
+			int potSummons = 0;
+			int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			int maxSummons = summonsInstance.MAX_SUMMONS;
+			if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
+			else { potSummons = SUMMONS; }
+	
+			// Add SUMMONS
+			summonsInstance.amount += potSummons;
+			
+			if (potSummons > 0) 
+			{ 
+				for (int i = 0; i < potSummons; i++) 
+				{ 
+					summonsInstance.summonList.add(c.originalName);
+				} 
+			}
+	
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
+	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			{ 
+				channelRandom();
+			}
+			
+			// Update UI
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
+
+			// Check for Trap Hole
+			if (p.hasPower(TrapHolePower.POWER_ID) && !DefaultMod.checkTrap)
+			{
+				DefaultMod.checkTrap = true;
+				for (int i = 0; i < potSummons; i++)
+				{
+					TrapHolePower power = (TrapHolePower) p.getPower(TrapHolePower.POWER_ID);
+					int randomNum = AbstractDungeon.cardRandomRng.random(1, 10);
+					if (randomNum <= power.chance || power.chance > 10)
+					{
+						System.out.println("theDuelist:DuelistCard:spellSummon ---> triggered trap hole with roll of: " + randomNum);
+						tribute(p, 1, false, c);
+						c.onResummon(1);
+						c.summonThis(1, c, 0);
+					}
+					else
+					{
+						System.out.println("theDuelist:DuelistCard:spellSummon ---> did not trigger trap hole with roll of: " + randomNum);
+					}
+				}
+			}
+			DefaultMod.checkTrap = false;
+			
+			// Update UI
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
+		}
+	}
+	
 
 	public static void powerSummon(AbstractPlayer p, int SUMMONS, String cardName)
 	{
+		DuelistCard c = DefaultMod.summonMap.get(cardName);
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 		if (!p.hasPower(SummonPower.POWER_ID))
 		{
@@ -391,10 +544,7 @@ public abstract class DuelistCard extends CustomCard
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID)) 
 			{ 
-				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-				else { RandomOrbHelper.channelRandomOrb(); }
+				channelRandom();
 			} 
 		}
 		else
@@ -421,12 +571,43 @@ public abstract class DuelistCard extends CustomCard
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID)) 
 			{
-				if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-				else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-				else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-				else { RandomOrbHelper.channelRandomOrb(); }
+				channelRandom();
 			} 
 	
+			// Update UI
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
+			
+			// Check for Trap Hole
+			if (p.hasPower(TrapHolePower.POWER_ID) && !DefaultMod.checkTrap)
+			{
+				DefaultMod.checkTrap = true;
+				for (int i = 0; i < potSummons; i++)
+				{
+					TrapHolePower power = (TrapHolePower) p.getPower(TrapHolePower.POWER_ID);
+					int randomNum = AbstractDungeon.cardRandomRng.random(1, 10);
+					if (randomNum <= power.chance || power.chance > 10)
+					{
+						System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum);
+						tribute(p, 1, false, c);
+						c.onResummon(1);
+						c.summonThis(1, c, 0);
+					}
+					else
+					{
+						System.out.println("theDuelist:DuelistCard:powerSummon ---> did not trigger trap hole with roll of: " + randomNum);
+					}
+				}
+			}
+			DefaultMod.checkTrap = false;
+			
+			// Check for Yami
+			if (p.hasPower(YamiPower.POWER_ID) && c.hasTag(DefaultMod.SPELLCASTER))
+			{
+				spellSummon(p, 1, c);
+			}
+			
 			// Update UI
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
@@ -787,7 +968,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
-		AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
+		//AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
 		AbstractPower magicCylinder = new MagicCylinderPower(p, turnNum, false);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
@@ -795,7 +976,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				orbEvoker, tombPilfer, toonTributeB, magicCylinder, retainCards, 
+				orbEvoker, tombPilfer, magicCylinder, retainCards, 
 				generosity, focus, reductionist, creative }; 
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
@@ -879,7 +1060,13 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orb));
 	}
 
-	
+	public static void channelRandom()
+	{
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+		else { RandomOrbHelper.channelRandomOrb(); }
+	}
 
 	public static void evokeAll()
 	{
@@ -1050,7 +1237,7 @@ public abstract class DuelistCard extends CustomCard
 		return false;
 	}
 
-	public DuelistCard newCopyOfMonster(String name)
+	public static DuelistCard newCopyOfMonster(String name)
 	{
 		for (DuelistCard card : DefaultMod.myCards)
 		{

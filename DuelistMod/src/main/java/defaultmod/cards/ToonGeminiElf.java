@@ -40,6 +40,7 @@ public class ToonGeminiElf extends DuelistCard
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.FULL);
+        this.tags.add(DefaultMod.BAD_TRIB);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
         this.isSummon = true;
@@ -93,7 +94,7 @@ public class ToonGeminiElf extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

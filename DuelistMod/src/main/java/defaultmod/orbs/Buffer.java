@@ -6,9 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -33,7 +33,7 @@ public class Buffer extends AbstractOrb
 	
 	public Buffer()
 	{
-		this.img = ImageMaster.ORB_LIGHTNING;
+		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Earth.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
@@ -71,13 +71,10 @@ public class Buffer extends AbstractOrb
 			playerPowers.get(randomNum).amount += 1;
 			System.out.println("theDuelist:Buffer --- > Buffed " + playerPowers.get(randomNum).name + " on passive trigger");
 		}
-		/*
-		for (AbstractPower a : playerPowers)
-		{
-			if ((!a.name.equals("Summons")) && !(a.type == PowerType.DEBUFF)) { a.amount += this.passiveAmount; }
-			//else { DuelistCard.summonLite(AbstractDungeon.player, this.passiveAmount); }
-		}
-		*/
+		
+		this.passiveAmount++;
+		applyFocus();
+		updateDescription();
 	}
 
 	@Override
@@ -102,16 +99,6 @@ public class Buffer extends AbstractOrb
 	public void updateAnimation()
 	{
 		super.updateAnimation();
-		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
-
-		this.vfxTimer -= Gdx.graphics.getDeltaTime();
-		if (this.vfxTimer < 0.0F) {
-			AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
-			if (MathUtils.randomBoolean()) {
-				AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
-			}
-			this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
-		}
 	}
 
 	@Override
@@ -124,6 +111,15 @@ public class Buffer extends AbstractOrb
 	public AbstractOrb makeCopy()
 	{
 		return new Buffer();
+	}
+	
+	@Override
+	protected void renderText(SpriteBatch sb)
+	{
+		// Render evoke amount text
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		// Render passive amount text
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

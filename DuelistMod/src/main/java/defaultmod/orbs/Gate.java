@@ -140,7 +140,7 @@ public class Gate extends AbstractOrb
 		sb.setBlendFunction(770, 771);
 		sb.setColor(this.c);
 		sb.draw(this.img, this.cX - 48.0F, this.cY - 48.0F + this.bobEffect.y, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, this.angle / 12.0F, 0, 0, 96, 96, false, false);
-		renderText(sb);
+		//renderText(sb);
 		this.hb.render(sb);
 	}
 

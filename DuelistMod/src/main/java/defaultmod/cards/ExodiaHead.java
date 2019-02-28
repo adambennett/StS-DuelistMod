@@ -33,9 +33,11 @@ public class ExodiaHead extends DuelistCard
     public ExodiaHead() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.EXODIA);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
+        this.tags.add(DefaultMod.BAD_TRIB);
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 1;
         this.exodiaName = "Head";
@@ -75,12 +77,12 @@ public class ExodiaHead extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 		
 	}
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

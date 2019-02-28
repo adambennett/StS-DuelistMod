@@ -56,19 +56,19 @@
   "theDuelist:FireOrb": {
     "NAME": "Fire",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase your #yStrength by #b", " for each stack of #yDexterity you have. NL #yEvoke: Add #b", " random monster to your hand. It cost #b0 this turn.", " random monsters to your hand. They cost #b0 this turn.."
+      "#yPassive: At the start of turn, if your Dexterity is higher than your Strength, increase your #yStrength by #b", " for each stack of #yDexterity you have. NL #yEvoke: Add #b", " random monster to your hand. It cost #b0 this turn.", " random monsters to your hand. They cost #b0 this turn.."
     ]
   },
   "theDuelist:Glitch": {
     "NAME": "Glitch",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, do #b", " random effects. NL #yEvoke: Do #b", " random effect.", " random effects."
+      "#yPassive: At the start of turn, do #b", " random effects. NL #yEvoke: Do #b", " random effect. NL #yLast #yEffect #yTriggered: NL ", " random effects. NL #yLast #yEffect #yTriggered: NL "
     ]
   },
   "theDuelist:Shadow": {
     "NAME": "Shadow",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, #yResummon #b", " random monsters that you have currently #ySummoned. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies."
+      "#yPassive: At the start of turn, #ySummon #b", " [#FF5252]Shadow [#FF5252]Tokens. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies."
     ]
   },
   "theDuelist:Splash": {

@@ -3,12 +3,12 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.ModifyMagicNumberAction;
+import defaultmod.orbs.Buffer;
 import defaultmod.patches.*;
 
 public class DarkMagicianGirl extends DuelistCard 
@@ -28,23 +28,20 @@ public class DarkMagicianGirl extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 1;
-	private static final int OVERFLOW_AMT = 3;
-	private static final int U_OVERFLOW = 2;
-	private static int MIN_TURNS_ROLL = 1;
-	private static int MAX_TURNS_ROLL = 4;
 	// /STAT DECLARATION/
 
 	public DarkMagicianGirl() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.MAGICIANS_FORCE);
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.LIMITED);
+		this.tags.add(DefaultMod.BAD_TRIB);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;
+		this.block = this.baseBlock = 8;
 	}
 
 	// Actions the card should do.
@@ -52,13 +49,15 @@ public class DarkMagicianGirl extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		//AbstractOrb buffer = new Buffer();
-		//channel(buffer);
+		block(this.block);
+		AbstractOrb buffer = new Buffer();
+		channel(buffer);
 	}
 
 	@Override
 	public void triggerOnEndOfPlayerTurn() 
 	{
+		/*
 		// If overflows remaining
 		if (this.magicNumber > 0) 
 		{
@@ -73,6 +72,7 @@ public class DarkMagicianGirl extends DuelistCard
 
 			applyRandomBuffPlayer(p, randomTurnNum, true);
 		}
+		*/
 	}
 
 	// Which card to return when making a copy of this card.
@@ -86,7 +86,8 @@ public class DarkMagicianGirl extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(U_OVERFLOW);
+			//this.upgradeMagicNumber(U_OVERFLOW);
+			this.upgradeBaseCost(0);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -104,7 +105,7 @@ public class DarkMagicianGirl extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons)
+	public void onResummon(int summons)
 	{
 		
 		
@@ -114,8 +115,9 @@ public class DarkMagicianGirl extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
 		summon(player(), this.summons, this);
-		//AbstractOrb buffer = new Buffer();
-		//channel(buffer);
+		block(this.block);
+		AbstractOrb buffer = new Buffer();
+		channel(buffer);
 		
 	}
 
@@ -123,8 +125,9 @@ public class DarkMagicianGirl extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
 		summon(player(), this.summons, this);
-		//AbstractOrb buffer = new Buffer();
-		//channel(buffer);
+		block(this.block);
+		AbstractOrb buffer = new Buffer();
+		channel(buffer);
 	}
 
 	@Override

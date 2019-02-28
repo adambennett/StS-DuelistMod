@@ -38,7 +38,9 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	private static final String MODNAME = "Duelist Mod";
 	private static final String AUTHOR = "Nyoxide";
 	private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
+	private static String modID;
 	public static Properties duelistDefaults = new Properties();
+	private static ArrayList<String> cardSets = new ArrayList<String>();
 	public static final String PROP_TOON_BTN = "toonBtnBool";
 	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
 	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
@@ -51,20 +53,17 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	private static boolean crossoverBtnBool = true;
 	private static boolean otherBtnBoolC = false;
 	private static boolean otherBtnBoolD = false;
-	
-	public static int lastMaxSummons = 5;
 	private static int setIndex = 0;
 	private static final int SETS = 5;
 	private static int cardCount = 75;
-	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
-	private static ArrayList<String> cardSets = new ArrayList<String>();
 	
-
-
-	// Arraylist full of my cards, basically a copy of CardLibrary for this set only
-	// Potentially speed up all the random generation
-	// But more importantly, make sure random effects can pull from cards that are not actually in the compendium
+	
+	// Global Fields
+	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
+	public static int lastMaxSummons = 5;
+	public static boolean checkTrap = false;
+	public static int swordsPlayed = 0;
 
 	// Tags (should move to using the patches file tags instead)
 	@SpireEnum public static AbstractCard.CardTags MONSTER;  // 86 cards
@@ -113,11 +112,8 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final Color PLACEHOLDER_POTION_LIQUID = CardHelper.getColor(209.0f, 53.0f, 18.0f); // Orange-ish Red
 	public static final Color PLACEHOLDER_POTION_HYBRID = CardHelper.getColor(255.0f, 230.0f, 230.0f); // Near White
 	public static final Color PLACEHOLDER_POTION_SPOTS = CardHelper.getColor(100.0f, 25.0f, 10.0f); // Super Dark Red/Brown
-
-	// Image folder name - This is where your image folder is.
-	// This is good practice in case you ever need to move/rename it without screwing up every single path.
-	// In this case, it's resources/defaultModResources/images (and then, say, /cards/Strike.png).
-
+	
+	// Assets folder
 	private static final String DEFAULT_MOD_ASSETS_FOLDER = "defaultModResources/images";
 
 	// Card backgrounds
@@ -126,32 +122,18 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	private static final String SKILL_DEFAULT_GRAY = "512/bg_skill_default_gray.png";
 	private static final String ENERGY_ORB_DEFAULT_GRAY = "512/card_default_gray_orb.png";
 	private static final String CARD_ENERGY_ORB = "512/card_small_orb.png";
-
 	private static final String ATTACK_DEFAULT_GRAY_PORTRAIT = "1024/bg_attack_default_gray.png";
 	private static final String POWER_DEFAULT_GRAY_PORTRAIT = "1024/bg_power_default_gray.png";
 	private static final String SKILL_DEFAULT_GRAY_PORTRAIT = "1024/bg_skill_default_gray.png";
 	private static final String ENERGY_ORB_DEFAULT_GRAY_PORTRAIT = "1024/card_default_gray_orb.png";
 
 	// Card images
-	/*
-    public static final String DEFAULT_COMMON_ATTACK = "cards/Attack.png";
-    public static final String DEFAULT_COMMON_SKILL = "cards/Skill.png";
-    public static final String DEFAULT_COMMON_POWER = "cards/Power.png";
-    public static final String DEFAULT_UNCOMMON_ATTACK = "cards/Attack.png";
-    public static final String DEFAULT_UNCOMMON_SKILL = "cards/Skill.png";
-    public static final String DEFAULT_UNCOMMON_POWER = "cards/Power.png";
-    public static final String DEFAULT_RARE_ATTACK = "cards/Attack.png";
-    public static final String DEFAULT_RARE_SKILL = "cards/Skill.png";
-    public static final String DEFAULT_RARE_POWER = "cards/Power.png";
-	 */
-
 	public static final String ALPHA_MAGNET = "cards/Alpha_Magnet.png";
 	public static final String ANCIENT_RULES = "cards/Ancient_Rules.png";
 	public static final String AXE_DESPAIR = "cards/Axe_Despair.png";
 	public static final String BAD_REACTION = "cards/Bad_Reaction.png";
 	public static final String BARREL_DRAGON = "cards/Barrel_Dragon.png";
 	public static final String BETA_MAGNET = "cards/Beta_Magnet.png";
-	//public static final String BLUE_EYES = "cards/Blue_Eyes.png";
 	public static final String BLUE_EYES = "cards/Blue_Eyes_Alt.png";
 	public static final String BLUE_EYES_TOON = "cards/Blue_Eyes_Toon.png";
 	public static final String BLUE_EYES_ULTIMATE = "cards/Blue_Eyes_Ultimate.png";
@@ -233,7 +215,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String SHARD_GREED = "cards/Shard_Greed.png";
 	public static final String SLIFER_SKY = "cards/Slifer_Sky.png";
 	public static final String STORMING_MIRROR_FORCE = "cards/Storming_Mirror_Force.png";
-	//public static final String SUMMONED_SKULL = "cards/Summoned_Skull.png";
 	public static final String SUMMONED_SKULL = "cards/Summoned_Skull_Alt.png";
 	public static final String SUPERHEAVY_BENKEI = "cards/Superheavy_Benkei.png";
 	public static final String SUPERHEAVY_SCALES = "cards/Superheavy_Scales.png";
@@ -254,8 +235,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String TRAP_HOLE = "cards/Trap_Hole.png";
 	public static final String VALK_MAGNET = "cards/Valk_Magnet.png";
 	public static final String WINGED_DRAGON_RA = "cards/Winged_Dragon_Ra.png";
-
-	// Second Set
 	public static final String TREMENDOUS_FIRE = "cards/Tremendous_Fire.png";
 	public static final String TOON_MASK = "cards/Toon_Mask.png";
 	public static final String TOON_MAGIC = "cards/Toon_Magic.png";
@@ -280,8 +259,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String CAVE_DRAGON = "cards/Cave_Dragon.png";
 	public static final String BLIZZARD_DRAGON = "cards/Blizzard_Dragon.png";
 	public static final String BABY_DRAGON = "cards/Baby_Dragon.png";
-
-	// Third Set
 	public static final String CURSE_DRAGON = "cards/Curse_of_Dragon.png";
 	public static final String CYBER_DRAGON = "cards/Cyber_Dragon.png";
 	public static final String DRAGON_MASTER = "cards/Dragon_Master_Knight.png";
@@ -307,8 +284,22 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String TOKEN_VACUUM = "cards/Token_Vacuum.png";
 	public static final String MOUNTAIN = "cards/Mountain.png";
 	public static final String YAMI = "cards/Yami.png";
-
+	public static final String MACHINE_KING = "cards/Machine_King.png";
 	public static final String BOOK_SECRET = "cards/Book_Secret_Arts.png";
+	public static final String STRAY_LAMBS = "cards/Stray_Lambs.png";
+	public static final String HEAVY_STORM = "cards/Heavy_Storm.png";
+	public static final String FOG_KING = "cards/Fog_King.png";
+	public static final String KING_YAMIMAKAI = "cards/King_Yamimakai.png";
+	public static final String LAJINN = "cards/LaJinn.png";
+	public static final String BLACKLAND_FIRE_DRAGON = "cards/Blackland_Fire_Dragon.png";
+	public static final String WHITE_HORNED = "cards/White_Horned_Dragon.png";
+	public static final String WHITE_NIGHT = "cards/White_Night_Dragon.png";
+	public static final String REVIVAL_JAM = "cards/Revival_Jam.png";
+	public static final String STIM_PACK = "cards/Stim_Pack.png";
+	public static final String BOTTOMLESS_TRAP_HOLE = "cards/Bottomless_Trap_Hole.png";
+	
+
+	// Expansion Set
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
 	public static final String GOBLIN_SECRET = "cards/Goblin_Secret_Remedy.png";
 	public static final String MACHINE_FACTORY = "cards/Machine_Conversion_Factory.png";
@@ -318,13 +309,11 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String PETIT_MOTH = "cards/Petit_Moth.png";
 	public static final String COCOON_EVOLUTION = "cards/Cocoon_Evolution.png";
 	public static final String GREAT_MOTH = "cards/Great_Moth.png";
-	public static final String HEAVY_STORM = "cards/Heavy_Storm.png";
 	public static final String LAVA_BATTLEGUARD = "cards/Lava_Battleguard.png";
 	public static final String SWAMP_BATTLEGUARD = "cards/Swamp_Battleguard.png";
 	public static final String SWORD_DEEP_SEATED = "cards/Sword_Deep_Seated.png";    
 	public static final String TWIN_HEADED_FIRE = "cards/Twin_Headed_Fire_Dragon.png";
 	public static final String TWIN_HEADED_THUNDER = "cards/Twin_Headed_Thunder_Dragon.png";
-	public static final String REVIVAL_JAM = "cards/Revival_Jam.png";
 	public static final String RYU_RAN = "cards/Ryu_Ran.png";
 	public static final String HAYABUSA_KNIGHT = "cards/Hayabusa_Knight.png";
 	public static final String MANGA_RYU_RAN = "cards/Manga_Ryu_Ran.png";
@@ -340,25 +329,18 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String HARPIE_LADY_PHO = "cards/Harpie_Lady_Phoneix.png";
 	public static final String HARPIE_LADY_SISTERS = "cards/Harpie_Lady_Sisters.png";
 	public static final String ELEGANT_EGOTIST = "cards/Elegant_Egotist.png";
-	public static final String BLACKLAND_FIRE_DRAGON = "cards/Blackland_Fire_Dragon.png";
 	public static final String B_SKULL_DRAGON = "cards/B_Skull_Dragon.png";
 	public static final String DARKFIRE_DRAGON = "cards/Darkfire_Dragon.png";
 	public static final String LEVIA_DRAGON = "cards/Levia_Dragon_Daedalus.png";
 	public static final String LUSTER_DRAGON = "cards/Luster_Dragon.png";
 	public static final String LUSTER_DRAGON2 = "cards/Luster_Dragon2.png";
 	public static final String METAL_DRAGON = "cards/Metal_Dragon.png";
-
 	public static final String OCEAN_LORD = "cards/Ocean_Lord.png";
 	public static final String TRIHORNED_DRAGON = "cards/TriHorned_Dragon.png";
 	public static final String TWIN_BARREL_DRAGON = "cards/Twin_Barrel_Dragon.png";
 	public static final String TWIN_HEADED = "cards/Twin_Headed_Thunder_Dragon.png";
 	public static final String TYRANT_DRAGON = "cards/Tyrant_Dragon.png";
-	public static final String WHITE_HORNED = "cards/White_Horned_Dragon.png";
-	public static final String WHITE_NIGHT = "cards/White_Night_Dragon.png";
 	public static final String YAMATA_DRAGON = "cards/Yamata_Dragon.png";
-
-	// Expansion Set
-
 	public static final String ATTACK_RECEIVE = "cards/Attack_Receive.png";
 	public static final String BASIC_INSECT = "cards/Basic_Insect.png";
 	public static final String BEAST_FANGS = "cards/Beast_Fangs.png";
@@ -385,9 +367,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String HITOTSU_GIANT = "cards/Hitotsu_Me_Giant.png";
 	public static final String JINZO = "cards/Jinzo.png";
 	public static final String KAISER_SEA_HORSE = "cards/Kaiser_Sea_Horse.png";
-	public static final String KING_YAMIMAKAI = "cards/King_Yamimakai.png";
-	public static final String LAJINN = "cards/LaJinn.png";
-
 	public static final String LEGENDARY_SWORD = "cards/Legendary_Sword.png";
 	public static final String LEGEND_EXODIA = "cards/Legend_Exodia.png";
 	public static final String MAMMOTH_GRAVEYARD = "cards/Mammoth_Graveyard.png";
@@ -425,9 +404,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String SKULL_SERVANT = "cards/Skull_Servant.png";
 	public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
 	public static final String STEAM_TRAIN_KING = "cards/Steam_Train_King.png";
-	public static final String STIM_PACK = "cards/Stim_Pack.png";
-	public static final String STRAY_LAMBS = "cards/Stray_Lambs.png";
-
 	public static final String SUPERCONDUCTOR_TYRANNO = "cards/Super_Conductor_Tyranno.png";
 	public static final String SUPER_SOLAR_NUTRIENT = "cards/Super_Solar_Nutrient.png";
 	public static final String SWORD_HUNTER = "cards/Sword_Hunter.png";
@@ -443,8 +419,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String WINGWEAVER = "cards/Wingweaver.png";
 	public static final String WIRETAP = "cards/Wiretap.png";
 	public static final String ZOMBYRA = "cards/Zombyra.png";
-
-
 
 	// Power images
 	public static final String SUMMON_POWER = "powers/SummonPowerTest.png";
@@ -491,36 +465,28 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String REDUCER_POWER = "powers/ReducerPower.png";
 	public static final String MOUNTAIN_POWER = "powers/MountainPower.png";
 	public static final String YAMI_POWER = "powers/YamiPower.png";
+	public static final String TRAP_HOLE_POWER = "powers/TrapHolePower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
 	public static final String M_PUZZLE_RELIC_OUTLINE = "relics/outline/MillenniumPuzzle_Outline.png";
-
 	public static final String M_EYE_RELIC = "relics/MillenniumEyeRelic.png";
 	public static final String M_EYE_RELIC_OUTLINE = "relics/outline/MillenniumEye_Outline.png";
-
 	public static final String M_RING_RELIC = "relics/MillenniumRingRelic.png";
 	public static final String M_RING_RELIC_OUTLINE = "relics/MillenniumRingRelic.png";
-
 	public static final String M_ROD_RELIC = "relics/MillenniumRodRelic.png";
 	public static final String M_ROD_RELIC_OUTLINE = "relics/MillenniumRodRelic.png";
-
 	public static final String M_COIN_RELIC = "relics/MillenniumCoinRelic.png";
 	public static final String M_COIN_RELIC_OUTLINE = "relics/outline/MillenniumCoin_Outline.png";
-
 	public static final String EXXOD_STONE_RELIC = "relics/StoneExxodRelic.png";
 	public static final String EXXOD_STONE_RELIC_OUTLINE = "relics/outline/StoneExxod_Outline.png";
-
 	public static final String M_KEY_RELIC = "relics/MillenniumKeyRelic.png";
 	public static final String M_KEY_RELIC_OUTLINE = "relics/outline/MillenniumKey_Outline.png";
-
 	public static final String GIFT_ANUBIS_RELIC = "relics/GiftAnubisRelic.png";
 	public static final String GIFT_ANUBIS_RELIC_OUTLINE = "relics/outline/GiftAnubis_Outline.png";
 
 	// Character assets
-	//private static final String THE_DEFAULT_BUTTON = "charSelect/DefaultCharacterButton.png";
 	private static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButton.png";
-	//private static final String THE_DEFAULT_PORTRAIT = "charSelect/DefaultCharacterPortraitBG.png";
 	private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD.png";
 	public static final String THE_DEFAULT_SHOULDER_1 = "char/defaultCharacter/shoulder.png";
 	public static final String THE_DEFAULT_SHOULDER_2 = "char/defaultCharacter/shoulder2.png";
@@ -533,17 +499,38 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	//public static final String THE_DEFAULT_SKELETON_ATLAS = "char/defaultCharacter/skeleton.atlas";
 	//public static final String THE_DEFAULT_SKELETON_JSON = "char/defaultCharacter/skeleton.json";
 
+	// =============== MAKE IMAGE PATHS =================
+
+    public static String makeCardPath(String resourcePath) {
+        return getModID() + makePath("cards/" + resourcePath);
+    }
+
+    public static String makeRelicPath(String resourcePath) {
+        return getModID() + "Resources/images/relics/" + resourcePath;
+    }
+
+    public static String makeRelicOutlinePath(String resourcePath) {
+        return getModID() + "Resources/images/relics/outline/" + resourcePath;
+    }
+
+    public static String makeOrbPath(String resourcePath) {
+        return getModID() + "Resources/orbs/" + resourcePath;
+    }
+
+    public static String makePowerPath(String resourcePath) {
+        return getModID() + "Resources/images/powers/" + resourcePath;
+    }
+
+    public static String makeEventPath(String resourcePath) {
+        return getModID() + "Resources/images/events/" + resourcePath;
+    }
+
+    // =============== /MAKE IMAGE PATHS/ =================
 
 
 	// =============== /INPUT TEXTURE LOCATION/ =================
 
 	// =============== IMAGE PATHS =================
-
-	// This is the command that will link up your core assets folder (line 89) ("defaultModResources/images")
-	// together with the card image (everything above) ("cards/Attack.png") and it puts a "/" between them.
-	// When adding a card image, you can, in fact, just do "defaultModResources/images/cards/Attack.png" in the actual card file.
-	// This however, is good practice in case you want to change your "/images" folder at any point in time.
-
 	/**
 	 * @param resource the resource, must *NOT* have a leading "/"
 	 * @return the full path
@@ -562,7 +549,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.subscribe(this);
 
 		logger.info("Done subscribing");
-
 		logger.info("Creating the color " + AbstractCardEnum.DEFAULT_GRAY.toString());
 
 		BaseMod.addColor(AbstractCardEnum.DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
@@ -572,13 +558,16 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 				makePath(SKILL_DEFAULT_GRAY_PORTRAIT), makePath(POWER_DEFAULT_GRAY_PORTRAIT),
 				makePath(ENERGY_ORB_DEFAULT_GRAY_PORTRAIT), makePath(CARD_ENERGY_ORB));
 
+		logger.info("Done creating the color");
+		
+		logger.info("Setting up or loading the settings config file");
 		duelistDefaults.setProperty(PROP_TOON_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_CROSSOVER_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_OTHERC_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_OTHERD_BTN, "FALSE");
-		duelistDefaults.setProperty(PROP_SET, "1");
-		duelistDefaults.setProperty(PROP_CARDS, "151");
+		duelistDefaults.setProperty(PROP_SET, "0");
+		duelistDefaults.setProperty(PROP_CARDS, "200");
 		
 		cardSets.add("All (187 cards)");
 		cardSets.add("Full (138 cards)");
@@ -600,7 +589,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
             
         } catch (Exception e) { e.printStackTrace(); }
 
-		logger.info("Done creating the color");
+		logger.info("Done setting up or loading the settings config file");
 	}
 
 	public static void initialize() {
@@ -611,6 +600,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 
 	// ============== /SUBSCRIBE, CREATE THE COLOR, INITIALIZE/ =================
 
+	
 
 	// =============== LOAD THE CHARACTER =================
 
@@ -618,9 +608,19 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public void receiveEditCharacters() {
 		logger.info("Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
 
-		BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),
-				makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
+		// Yugi Moto
+		BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
+		
+		// Seto Kaiba
+		//BaseMod.addCharacter(new TheDuelist("the Rich Duelist", TheDuelistEnum.THE_RICH_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_RICH_DUELIST);
 
+		//if (!toonBtnBool)
+		//{
+			// Maximillion Pegasus
+			//BaseMod.addCharacter(new TheDuelist("the Villian", TheDuelistEnum.THE_VILLIAN),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_VILLIAN);
+		//}
+		
+		
 		receiveEditPotions();
 		logger.info("Done editing characters");
 	}
@@ -640,7 +640,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
 		// Check Box A
-		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton("Remove ALL Toons (REQUIRES RESTART)",350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton("Remove all Toon cards (REQUIRES RESTART)",350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			toonBtnBool = button.enabled;
 			try 
@@ -655,7 +655,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		// END Check Box A
 		
 		// Check Box B
-		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton("Remove Exodia cards (REQUIRES RESTART)",350.0f, 650.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton("Remove all Exodia cards (REQUIRES RESTART)",350.0f, 650.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			exodiaBtnBool = button.enabled;
 			try 
@@ -772,8 +772,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.addPotion(SealedPack.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPack.POTION_ID, TheDuelistEnum.THE_DUELIST);
 		BaseMod.addPotion(SealedPackB.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPackB.POTION_ID, TheDuelistEnum.THE_DUELIST);
 
-
-
 		logger.info("Done editing potions");
 	}
 
@@ -787,7 +785,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		logger.info("Adding relics");
 
 		// This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
-		//BaseMod.addRelicToCustomPool(new PlaceholderRelic(), AbstractCardEnum.DEFAULT_GRAY);
 		BaseMod.addRelicToCustomPool(new MillenniumPuzzle(), AbstractCardEnum.DEFAULT_GRAY);
 		if (!toonBtnBool) { BaseMod.addRelicToCustomPool(new MillenniumEye(), AbstractCardEnum.DEFAULT_GRAY); }
 		BaseMod.addRelicToCustomPool(new MillenniumRing(), AbstractCardEnum.DEFAULT_GRAY);
@@ -805,8 +802,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 
 	// ================ /ADD RELICS/ ===================
 
-
-
 	// ================ ADD CARDS ===================
 
 	@Override
@@ -815,11 +810,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		// Add the Custom Dynamic Variables
 		//BaseMod.addDynamicVariable(new WingedDragonVariable());
 
-		
-		
 		logger.info("Adding cards");
-		// Add the cards
-		
 		// CORE Set - 74 cards
 			// Starting Deck - 6 cards
 		myCards.add(new CastleWalls());
@@ -901,14 +892,27 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		//myCards.add(new BadToken()); 		//debug card
 		// END CORE SET
 		
-		// ALL Set - 48 cards ( need 47 more cards here)
+		// ALL Set - 48 cards ( need 34 more cards here)
 		myCards.add(new BigCastleWalls());
+		myCards.add(new MachineKing());
+		myCards.add(new BookSecret());
+		myCards.add(new HeavyStorm());
+		myCards.add(new FogKing());
+		myCards.add(new Lajinn());
+		myCards.add(new KingYami());
+		myCards.add(new BlacklandFireDragon());
+		myCards.add(new WhiteNightDragon());
+		myCards.add(new WhiteHornDragon());
+		myCards.add(new RevivalJam());
+		myCards.add(new StimPack());
+		myCards.add(new BottomlessTrapHole());
+		myCards.add(new SwordDeepSeated());
 		// END ALL Set
 		
-		// FULL Set - 22 cards ( need to complete the 3 unfinished cards here )
-		//myCards.add(new SwordsRevealing());
-		//myCards.add(new TimeWizard()); 
-		//myCards.add(new TrapHole());
+		// FULL Set - 22 cards
+		myCards.add(new SwordsRevealing());
+		myCards.add(new TimeWizard()); 
+		myCards.add(new TrapHole());
 		myCards.add(new BlueEyesToon());
 		myCards.add(new DragonMaster());
 		myCards.add(new Gandora());
@@ -1134,6 +1138,18 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		summonMap.put("Puzzle Token", new Token());
 		summonMap.put("Ancient Token", new Token());
 		summonMap.put("Anubis Token", new Token());
+		summonMap.put("Glitch Token", new Token());
+		summonMap.put("Summoner Token", new Token());
+		summonMap.put("Gate Token", new Token());
+		summonMap.put("Jam Token", new Token());
+		summonMap.put("Castle Token", new Token());
+		summonMap.put("Storm Token", new Token());
+		summonMap.put("Random Token", new Token());
+		summonMap.put("Pot Token", new Token());
+		summonMap.put("Kuriboh Token", new KuribohToken());
+		summonMap.put("Exploding Token", new ExplosiveToken());
+		summonMap.put("Explosive Token", new ExplosiveToken());
+		summonMap.put("Shadow Token", new ShadowToken());
 		cardCount = tempCardCount;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1204,7 +1220,13 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		BaseMod.addKeyword(new String[] {"ojamania", "Ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
 		BaseMod.addKeyword(new String[] {"dragon", "Dragon"}, "Powerful monster cards. When you Tribute a Dragon for another Dragon, Gain 1 Strength.");
 		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster"}, "Powerful monster cards. When you Tribute a Mystical monster for a Dragon, lose 2 HP.");
-		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "");
+		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand.");
+		BaseMod.addKeyword(new String[] {"air", "Air"}, "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1.");
+		BaseMod.addKeyword(new String[] {"fire", "Fire"}, "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn.");
+		BaseMod.addKeyword(new String[] {"glitch", "Glitch"}, "#yOrb: At the start of turn, does a random action. Actions are things like: gain HP/gold/strength/etc, increase orb effects, add random cards to hand, and many more. #yEvoke also triggers random actions.");
+		BaseMod.addKeyword(new String[] {"shadow", "Shadow"}, "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. When #yTributed, [#FF5252]Shadow [#FF5252]Tokens increase the effectiveness of your #yShadow #yOrbs. #yEvoke #yResummons monsters from your discard pile on random enemies.");
+		BaseMod.addKeyword(new String[] {"splash", "Splash"}, "");
+		
 	}
 
 	// ================ /LOAD THE KEYWORDS/ ===================    
@@ -1214,8 +1236,20 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static String makeID(String idText) {
 		return "theDuelist:" + idText;
 	}
-
-
+	
+	public static String getModID() {
+        return modID;
+    }
+	
+	 public static void setModID(String ID) {
+	        if (ID.equals("theDefault")) {
+	            throw new RuntimeException("Go to your constructor in your class with SpireInitializer and change your mod ID from \"theDefault\"");
+	        } else if (ID.equals("theDefaultDev")) {
+	            modID = "theDuelist";
+	        } else {
+	            modID = ID;
+	        }
+	    }
 
 	public static String getExistingOrPlaceholder(String prefix, String id, String postfix) {
 		String idWithoutModName = id.replaceAll(MOD_ID_PREFIX, "");

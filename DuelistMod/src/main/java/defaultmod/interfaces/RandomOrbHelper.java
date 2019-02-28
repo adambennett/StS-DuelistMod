@@ -23,15 +23,13 @@ public class RandomOrbHelper
 		orbs.add(new MonsterOrb());
 		orbs.add(new DragonOrb());
 		orbs.add(new ReducerOrb()); 
-		/*
 		orbs.add(new Air());
-		orbs.add(new Black());
+		//orbs.add(new Black());
 		orbs.add(new Earth());
-		orbs.add(new Fire());
+		orbs.add(new FireOrb());
 		orbs.add(new Glitch());
 		orbs.add(new Shadow());
-		orbs.add(new Splash());
-		*/
+		//orbs.add(new Splash());
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
 	}

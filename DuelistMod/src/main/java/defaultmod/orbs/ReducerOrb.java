@@ -1,23 +1,18 @@
 package defaultmod.orbs;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.ImperialOrderAction;
 import defaultmod.actions.unique.DragonOrbEvokeAction;
-import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
 public class ReducerOrb extends AbstractOrb
@@ -32,10 +27,10 @@ public class ReducerOrb extends AbstractOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
-	
+
 	public ReducerOrb()
 	{
-		this.img = ImageMaster.ORB_LIGHTNING;
+		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Reducer.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 1;
@@ -80,16 +75,16 @@ public class ReducerOrb extends AbstractOrb
 		sb.setBlendFunction(770, 1);
 		sb.setColor(new Color(1.0F, 1.0F, 1.0F, this.c.a / 2.0F));
 		sb.draw(this.img, this.cX - 48.0F, this.cY - 48.0F + this.bobEffect.y, 48.0F, 48.0F, 96.0F, 96.0F, this.scale + 
-		MathUtils.sin(this.angle / 12.566371F) * 0.05F + 0.19634955F, this.scale * 1.2F, this.angle, 0, 0, 96, 96, false, false);
+				MathUtils.sin(this.angle / 12.566371F) * 0.05F + 0.19634955F, this.scale * 1.2F, this.angle, 0, 0, 96, 96, false, false);
 		sb.draw(this.img, this.cX - 48.0F, this.cY - 48.0F + this.bobEffect.y, 48.0F, 48.0F, 96.0F, 96.0F, this.scale * 1.2F, this.scale + 
-		MathUtils.sin(this.angle / 12.566371F) * 0.05F + 0.19634955F, -this.angle, 0, 0, 96, 96, false, false);
+				MathUtils.sin(this.angle / 12.566371F) * 0.05F + 0.19634955F, -this.angle, 0, 0, 96, 96, false, false);
 		sb.setBlendFunction(770, 771);
 		sb.setColor(this.c);
 		sb.draw(this.img, this.cX - 48.0F, this.cY - 48.0F + this.bobEffect.y, 48.0F, 48.0F, 96.0F, 96.0F, this.scale, this.scale, this.angle / 12.0F, 0, 0, 96, 96, false, false);
 		renderText(sb);
 		this.hb.render(sb);
 	}
-	
+
 	@Override
 	public void updateAnimation()
 	{
@@ -109,7 +104,7 @@ public class ReducerOrb extends AbstractOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+
 	}
 
 	@Override
@@ -117,7 +112,16 @@ public class ReducerOrb extends AbstractOrb
 	{
 		return new ReducerOrb();
 	}
-	
+
+	@Override
+	protected void renderText(SpriteBatch sb)
+	{	
+		// Render evoke amount text
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		// Render passive amount text
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+	}
+
 	@Override
 	public void applyFocus() 
 	{

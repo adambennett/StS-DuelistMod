@@ -41,7 +41,7 @@ public class Token extends DuelistCard
 			
 		}
 	}
-	@Override public void onSummon(int summons) { }
+	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void upgrade() {}

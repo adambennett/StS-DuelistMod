@@ -31,8 +31,8 @@ public class FiveHeaded extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 4;
-    private static final int DAMAGE = 60;
-    private static final int UPGRADE_PLUS_DMG = 10;
+    private static final int DAMAGE = 55;
+    private static final int UPGRADE_PLUS_DMG = 5;
     private static final int TRIBUTES = 4;
     // /STAT DECLARATION/
 
@@ -105,12 +105,15 @@ public class FiveHeaded extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-		
+		if (tributingCard.hasTag(DefaultMod.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
 	}
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

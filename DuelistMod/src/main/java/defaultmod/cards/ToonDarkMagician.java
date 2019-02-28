@@ -47,6 +47,7 @@ public class ToonDarkMagician extends DuelistCard
 		this.tags.add(DefaultMod.TOON);
 		this.tags.add(DefaultMod.SPELLCASTER);
 		 this.tags.add(DefaultMod.FULL);
+		 this.tags.add(DefaultMod.BAD_TRIB);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -120,7 +121,7 @@ public class ToonDarkMagician extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

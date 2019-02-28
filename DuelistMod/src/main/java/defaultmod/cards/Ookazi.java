@@ -76,7 +76,7 @@ public class Ookazi extends DuelistCard
 	}
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

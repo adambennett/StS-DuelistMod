@@ -6,15 +6,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.cards.Token;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
@@ -46,13 +48,41 @@ public class Shadow extends AbstractOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		
+		ArrayList<AbstractCard> discards = AbstractDungeon.player.discardPile.group;
+    	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
+    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER)) { toChooseFrom.add(c); } }
+    	if (toChooseFrom.size() > 0)
+    	{
+    		for (int i = 0; i < this.evokeAmount; i++)
+    		{
+    			AbstractMonster m = AbstractDungeon.getRandomMonster();
+	    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
+	    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
+	    		String cardName = chosen.originalName;
+	    		System.out.println("theDuelist:Shadow --- > Found: " + cardName);
+    			DuelistCard cardCopy = DuelistCard.newCopyOfMonster(cardName);
+    			if (cardCopy != null)
+    			{
+    				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+    				cardCopy.freeToPlayOnce = true;
+    				cardCopy.applyPowers();
+    				cardCopy.purgeOnUse = true;
+    				if (chosen.upgraded) { cardCopy.upgrade(); }
+    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+    				cardCopy.onResummon(1);
+    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
+    			}
+    		
+    		}
+    	}
 	}
 
 	@Override
@@ -63,7 +93,15 @@ public class Shadow extends AbstractOrb
 
 	private void triggerPassiveEffect()
 	{
-		
+		DuelistCard.summon(AbstractDungeon.player, this.passiveAmount, new Token("Shadow Token"));
+	}
+	
+	public void tribShadowToken()
+	{
+		this.baseEvokeAmount = this.evokeAmount += 1;
+		this.basePassiveAmount = this.passiveAmount += 1;
+		applyFocus();
+		updateDescription();
 	}
 
 	@Override
@@ -88,6 +126,16 @@ public class Shadow extends AbstractOrb
 	public void updateAnimation()
 	{
 		super.updateAnimation();
+		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
+
+		this.vfxTimer -= Gdx.graphics.getDeltaTime();
+		if (this.vfxTimer < 0.0F) {
+			AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
+			if (MathUtils.randomBoolean()) {
+				AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
+			}
+			this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
+		}
 	}
 
 	@Override

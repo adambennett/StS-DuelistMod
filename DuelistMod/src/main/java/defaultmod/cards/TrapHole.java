@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.TrapHolePower;
 
 public class TrapHole extends DuelistCard 
 {
@@ -23,9 +24,9 @@ public class TrapHole extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public TrapHole() {
@@ -34,13 +35,24 @@ public class TrapHole extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.FULL);
 		this.originalName = this.name;
+		this.magicNumber = this.baseMagicNumber = 3;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       
+       if (!p.hasPower(TrapHolePower.POWER_ID)) { applyPowerToSelf(new TrapHolePower(p, p, this.magicNumber)); }
+       else 
+       {
+    	   TrapHolePower power = (TrapHolePower) p.getPower(TrapHolePower.POWER_ID);
+    	   power.chance++; power.amount++;
+    	   if (power.chance > 10 || power.amount > 10)
+    	   {
+    		   power.chance = power.amount = 10;
+    	   }
+    	   power.updateDescription();
+       }
     }
 
     // Which card to return when making a copy of this card.
@@ -54,33 +66,34 @@ public class TrapHole extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		
 	}
 
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
+	public void onResummon(int summons) 
+	{
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
 		
 	}
 

@@ -6,9 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -35,8 +35,8 @@ public class Earth extends AbstractOrb
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Earth2.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -46,13 +46,20 @@ public class Earth extends AbstractOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		
+		for (int i = 0; i < this.evokeAmount; i++)
+		{
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
+			DuelistCard.addCardToHand(randomMonster);
+			System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand.");
+		}
+		System.out.println("theDuelist:Earth --- > triggered evoke!");
 	}
 
 	@Override
@@ -63,7 +70,12 @@ public class Earth extends AbstractOrb
 
 	private void triggerPassiveEffect()
 	{
-		
+		for (int i = 0; i < this.passiveAmount; i++)
+		{
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
+			DuelistCard.addCardToHand(randomMonster);
+			System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand.");
+		}
 	}
 
 	@Override
@@ -100,6 +112,15 @@ public class Earth extends AbstractOrb
 	public AbstractOrb makeCopy()
 	{
 		return new Earth();
+	}
+	
+	@Override
+	protected void renderText(SpriteBatch sb)
+	{
+		// Render evoke amount text
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		// Render passive amount text
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

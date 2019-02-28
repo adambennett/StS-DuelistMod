@@ -33,7 +33,9 @@ public class Relinquished extends DuelistCard
 	public Relinquished() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.MONSTER);
+		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.MAGIC_RULER);
+		this.tags.add(DefaultMod.BAD_TRIB);
 		this.tributes = 1;
 		this.originalName = this.name;
 
@@ -96,13 +98,13 @@ public class Relinquished extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 		
 	}
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

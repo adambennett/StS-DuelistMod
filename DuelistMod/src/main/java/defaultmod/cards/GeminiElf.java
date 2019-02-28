@@ -38,6 +38,7 @@ public class GeminiElf extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
         this.tags.add(DefaultMod.SPELLCASTER);
+        this.tags.add(DefaultMod.BAD_TRIB);
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
@@ -76,7 +77,7 @@ public class GeminiElf extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons)
+	public void onResummon(int summons)
 	{
 		heal(AbstractDungeon.player, 15);
 	}

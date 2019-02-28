@@ -34,13 +34,27 @@ public class GravityAxePower extends AbstractPower
         this.type = PowerType.BUFF;
         if (owner.hasPower(StrengthPower.POWER_ID))
         {
-        	int startStr = owner.getPower(StrengthPower.POWER_ID).amount;
-        	startStr += strGain;
+        	DuelistCard.applyPowerToSelf(new StrengthPower(this.owner, strGain));
+        	int startStr = owner.getPower(StrengthPower.POWER_ID).amount + strGain;
         	this.FINAL_STRENGTH = startStr;
         }
         else { this.FINAL_STRENGTH = strGain; }
         this.updateDescription();
     }
+    
+    @Override
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) 
+    {
+    	if (power.ID == StrengthPower.POWER_ID && target.isPlayer) { power.amount = 0; }
+    	updateDescription();
+    }
+    
+    @Override
+	public void updateDescription() 
+    {
+    	this.description = DESCRIPTIONS[0];
+    }
+    
     
     @Override
     public void onDrawOrDiscard() 
@@ -52,6 +66,7 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -71,6 +86,7 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -90,6 +106,27 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
+    		}
+    	}
+    	else
+    	{
+    		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
+    	}
+    	updateDescription();
+    }
+    
+    @Override
+    public void onSpecificTrigger()
+    {
+    	if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID))
+    	{
+    		int playerStrength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
+    		if (playerStrength != FINAL_STRENGTH)
+    		{
+    			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
+    			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -109,6 +146,7 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -128,6 +166,7 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -147,6 +186,7 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -166,6 +206,7 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -185,6 +226,7 @@ public class GravityAxePower extends AbstractPower
     		{
     			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
     			instance.amount = FINAL_STRENGTH;
+    			instance.updateDescription();
     		}
     	}
     	else
@@ -194,20 +236,5 @@ public class GravityAxePower extends AbstractPower
     	updateDescription();
     	return damageAmount;
     }
-    
-    @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) 
-    {
-    	if (power.ID == StrengthPower.POWER_ID && target.isPlayer)
-    	{
-    		power.amount = 0;
-    	}
-    	updateDescription();
-    }
-    
-    @Override
-	public void updateDescription() 
-    {
-    	this.description = DESCRIPTIONS[0];
-    }
+
 }

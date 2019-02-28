@@ -6,21 +6,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Fire extends AbstractOrb
+public class FireOrb extends AbstractOrb
 {
-	public static final String ID = DefaultMod.makeID("Fire");
+	public static final String ID = DefaultMod.makeID("FireOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 1.0F; 
@@ -31,7 +31,7 @@ public class Fire extends AbstractOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	
-	public Fire()
+	public FireOrb()
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/FireOrb.png"));
 		this.name = orbString.NAME;
@@ -46,13 +46,21 @@ public class Fire extends AbstractOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		
+		for (int i = 0; i < this.evokeAmount; i++)
+		{
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
+			randomMonster.costForTurn = 0;
+			DuelistCard.addCardToHand(randomMonster);
+			System.out.println("theDuelist:Fire --- > Added: " + randomMonster.name + " to player hand.");
+		}
+		System.out.println("theDuelist:Fire --- > triggered evoke!");
 	}
 
 	@Override
@@ -63,7 +71,13 @@ public class Fire extends AbstractOrb
 
 	private void triggerPassiveEffect()
 	{
-		
+		if (AbstractDungeon.player.hasPower(DexterityPower.POWER_ID))
+		{
+			int dex = AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
+			int str = 0;
+			if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID)) { str = AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount; }
+			if (dex > str) { DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, dex * this.passiveAmount)); }
+		}
 	}
 
 	@Override
@@ -99,7 +113,16 @@ public class Fire extends AbstractOrb
 	@Override
 	public AbstractOrb makeCopy()
 	{
-		return new Fire();
+		return new FireOrb();
+	}
+	
+	@Override
+	protected void renderText(SpriteBatch sb)
+	{
+		// Render evoke amount text
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		// Render passive amount text
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

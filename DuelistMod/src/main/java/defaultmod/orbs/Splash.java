@@ -35,8 +35,8 @@ public class Splash extends AbstractOrb
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 4;
+		this.basePassiveAmount = this.passiveAmount = 3;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;

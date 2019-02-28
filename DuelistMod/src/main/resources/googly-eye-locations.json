@@ -1,0 +1,1245 @@
+{
+  "cards": {
+    "theDuelist:AlphaMagnet": [
+      {
+        "x": 201.99998,
+        "y": 274.80002,
+        "size": 25.0
+      },
+      {
+        "x": 162.39998,
+        "y": 262.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:ArmoredZombie": [
+      {
+        "x": 197.19998,
+        "y": 296.4,
+        "size": 25.0
+      },
+      {
+        "x": 254.79999,
+        "y": 295.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BabyDragon": [
+      {
+        "x": 257.19998,
+        "y": 259.2,
+        "size": 25.0
+      },
+      {
+        "x": 319.59998,
+        "y": 249.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BadReaction": [],
+    "theDuelist:BarrelDragon": [
+      {
+        "x": 83.199974,
+        "y": 309.6,
+        "size": 25.0
+      },
+      {
+        "x": 466.0,
+        "y": 296.4,
+        "size": 25.0
+      },
+      {
+        "x": 19.599976,
+        "y": 158.40001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BetaMagnet": [
+      {
+        "x": 279.99997,
+        "y": 229.20001,
+        "size": 25.0
+      },
+      {
+        "x": 240.39998,
+        "y": 225.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BigFire": [],
+    "theDuelist:BlacklandFireDragon": [
+      {
+        "x": 93.99998,
+        "y": 223.20001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BlastJuggler": [
+      {
+        "x": 215.19998,
+        "y": 304.80002,
+        "size": 25.0
+      },
+      {
+        "x": 276.4,
+        "y": 306.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BlizzardDragon": [
+      {
+        "x": 306.4,
+        "y": 262.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BlueEyes": [
+      {
+        "x": 189.99998,
+        "y": 280.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BlueEyesUltimate": [
+      {
+        "x": 413.19998,
+        "y": 177.6,
+        "size": 25.0
+      },
+      {
+        "x": 56.799976,
+        "y": 322.80002,
+        "size": 25.0
+      },
+      {
+        "x": 221.19998,
+        "y": 262.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BottomlessTrapHole": [
+      {
+        "x": 39.999977,
+        "y": 249.6,
+        "size": 25.0
+      },
+      {
+        "x": 85.599976,
+        "y": 264.0,
+        "size": 25.0
+      },
+      {
+        "x": 133.59998,
+        "y": 284.4,
+        "size": 25.0
+      },
+      {
+        "x": 170.79997,
+        "y": 296.4,
+        "size": 25.0
+      },
+      {
+        "x": 345.99997,
+        "y": 296.4,
+        "size": 25.0
+      },
+      {
+        "x": 375.99997,
+        "y": 284.4,
+        "size": 25.0
+      },
+      {
+        "x": 412.0,
+        "y": 278.4,
+        "size": 25.0
+      },
+      {
+        "x": 467.19998,
+        "y": 249.6,
+        "size": 25.0
+      },
+      {
+        "x": 439.59998,
+        "y": 255.6,
+        "size": 25.0
+      },
+      {
+        "x": 279.99997,
+        "y": 170.40001,
+        "size": 25.0
+      },
+      {
+        "x": 315.99997,
+        "y": 130.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:BusterBlader": [
+      {
+        "x": 284.8,
+        "y": 294.0,
+        "size": 25.0
+      },
+      {
+        "x": 325.59998,
+        "y": 289.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:CannonSoldier": [
+      {
+        "x": 243.99998,
+        "y": 273.6,
+        "size": 25.0
+      },
+      {
+        "x": 302.8,
+        "y": 284.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:CastleDarkIllusions": [],
+    "theDuelist:CatapultTurtle": [
+      {
+        "x": 415.59998,
+        "y": 106.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:CaveDragon": [
+      {
+        "x": 296.8,
+        "y": 175.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:CelticGuardian": [
+      {
+        "x": 182.79997,
+        "y": 297.6,
+        "size": 25.0
+      },
+      {
+        "x": 227.19998,
+        "y": 301.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:ChangeHeart": [
+      {
+        "x": 271.59998,
+        "y": 234.0,
+        "size": 25.0
+      },
+      {
+        "x": 228.39998,
+        "y": 231.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:CurseDragon": [
+      {
+        "x": 149.19998,
+        "y": 132.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:DarkHole": [],
+    "theDuelist:DarkMagician": [
+      {
+        "x": 150.39998,
+        "y": 278.4,
+        "size": 25.0
+      },
+      {
+        "x": 193.59998,
+        "y": 267.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:DarkMagicianGirl": [
+      {
+        "x": 221.19998,
+        "y": 196.8,
+        "size": 25.0
+      },
+      {
+        "x": 164.79997,
+        "y": 158.40001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:DarklordMarie": [
+      {
+        "x": 200.79999,
+        "y": 268.80002,
+        "size": 25.0
+      },
+      {
+        "x": 240.39998,
+        "y": 277.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:DianKeto": [
+      {
+        "x": 246.39998,
+        "y": 314.4,
+        "size": 25.0
+      },
+      {
+        "x": 290.8,
+        "y": 304.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:DragonMaster": [
+      {
+        "x": 109.599976,
+        "y": 158.40001,
+        "size": 25.0
+      },
+      {
+        "x": 33.999977,
+        "y": 96.0,
+        "size": 25.0
+      },
+      {
+        "x": 436.0,
+        "y": 94.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:ExodiaHead": [
+      {
+        "x": 224.79999,
+        "y": 207.6,
+        "size": 25.0
+      },
+      {
+        "x": 282.4,
+        "y": 210.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:FiendMegacyber": [
+      {
+        "x": 317.19998,
+        "y": 274.80002,
+        "size": 25.0
+      },
+      {
+        "x": 273.99997,
+        "y": 272.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:FiendSkull": [
+      {
+        "x": 155.19998,
+        "y": 336.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:FlameSwordsman": [
+      {
+        "x": 255.99998,
+        "y": 264.0,
+        "size": 25.0
+      },
+      {
+        "x": 299.19998,
+        "y": 276.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:FluteSummoning": [
+      {
+        "x": 194.79999,
+        "y": 278.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:FogKing": [],
+    "theDuelist:FortressWarrior": [
+      {
+        "x": 191.19998,
+        "y": 184.8,
+        "size": 25.0
+      },
+      {
+        "x": 157.59998,
+        "y": 196.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GaiaDragonChamp": [
+      {
+        "x": 314.8,
+        "y": 169.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GaiaFierce": [
+      {
+        "x": 164.79997,
+        "y": 150.0,
+        "size": 25.0
+      },
+      {
+        "x": 123.99998,
+        "y": 160.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GammaMagnet": [
+      {
+        "x": 212.79999,
+        "y": 333.6,
+        "size": 25.0
+      },
+      {
+        "x": 253.59998,
+        "y": 330.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Gandora": [
+      {
+        "x": 132.39998,
+        "y": 253.20001,
+        "size": 25.0
+      },
+      {
+        "x": 95.199974,
+        "y": 250.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GateGuardian": [
+      {
+        "x": 215.19998,
+        "y": 292.80002,
+        "size": 25.0
+      },
+      {
+        "x": 231.99998,
+        "y": 157.2,
+        "size": 25.0
+      },
+      {
+        "x": 247.59998,
+        "y": 63.600002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GeminiElf": [
+      {
+        "x": 295.59998,
+        "y": 295.2,
+        "size": 25.0
+      },
+      {
+        "x": 362.8,
+        "y": 292.80002,
+        "size": 25.0
+      },
+      {
+        "x": 104.79998,
+        "y": 222.0,
+        "size": 25.0
+      },
+      {
+        "x": 167.19998,
+        "y": 224.40001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GiantSoldier": [
+      {
+        "x": 230.79999,
+        "y": 310.80002,
+        "size": 25.0
+      },
+      {
+        "x": 278.8,
+        "y": 308.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GiantTrunade": [
+      {
+        "x": 212.79999,
+        "y": 259.2,
+        "size": 25.0
+      },
+      {
+        "x": 293.19998,
+        "y": 259.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:GracefulCharity": [
+      {
+        "x": 227.19998,
+        "y": 273.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:HaneHane": [
+      {
+        "x": 185.19998,
+        "y": 196.8,
+        "size": 25.0
+      },
+      {
+        "x": 269.19998,
+        "y": 229.20001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:HeavyStorm": [],
+    "theDuelist:Hinotoma": [],
+    "theDuelist:ImperialOrder": [
+      {
+        "x": 119.19998,
+        "y": 316.80002,
+        "size": 25.0
+      },
+      {
+        "x": 71.199974,
+        "y": 314.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:InjectionFairy": [
+      {
+        "x": 302.8,
+        "y": 248.40001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:InsectQueen": [
+      {
+        "x": 212.79999,
+        "y": 141.6,
+        "size": 25.0
+      },
+      {
+        "x": 147.99998,
+        "y": 130.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:IslandTurtle": [
+      {
+        "x": 137.19998,
+        "y": 147.6,
+        "size": 25.0
+      },
+      {
+        "x": 66.39998,
+        "y": 160.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:JamBreeding": [
+      {
+        "x": 203.19998,
+        "y": 327.6,
+        "size": 25.0
+      },
+      {
+        "x": 253.59998,
+        "y": 328.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:JudgeMan": [
+      {
+        "x": 199.59998,
+        "y": 190.8,
+        "size": 25.0
+      },
+      {
+        "x": 303.99997,
+        "y": 192.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Kuriboh": [
+      {
+        "x": 194.79999,
+        "y": 216.0,
+        "size": 25.0
+      },
+      {
+        "x": 305.19998,
+        "y": 212.40001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Lajinn": [],
+    "theDuelist:LegendaryExodia": [
+      {
+        "x": 230.79999,
+        "y": 270.0,
+        "size": 25.0
+      },
+      {
+        "x": 267.99997,
+        "y": 270.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:LegendaryFisherman": [
+      {
+        "x": 294.4,
+        "y": 295.2,
+        "size": 25.0
+      },
+      {
+        "x": 249.99998,
+        "y": 292.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:LesserDragon": [
+      {
+        "x": 186.39998,
+        "y": 330.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:LordD": [
+      {
+        "x": 234.39998,
+        "y": 199.20001,
+        "size": 25.0
+      },
+      {
+        "x": 284.8,
+        "y": 198.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:MachineKing": [
+      {
+        "x": 222.39998,
+        "y": 338.4,
+        "size": 25.0
+      },
+      {
+        "x": 264.4,
+        "y": 337.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:MagicCylinder": [],
+    "theDuelist:MillenniumShield": [
+      {
+        "x": 149.19998,
+        "y": 216.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:MonsterReborn": [
+      {
+        "x": 249.99998,
+        "y": 232.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:MysticalElf": [
+      {
+        "x": 219.99998,
+        "y": 229.20001,
+        "size": 25.0
+      },
+      {
+        "x": 293.19998,
+        "y": 228.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:ObeliskTormentor": [
+      {
+        "x": 212.79999,
+        "y": 325.2,
+        "size": 25.0
+      },
+      {
+        "x": 261.99997,
+        "y": 326.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:OjamaBlack": [
+      {
+        "x": 216.39998,
+        "y": 333.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:OjamaGreen": [
+      {
+        "x": 161.19998,
+        "y": 277.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:OjamaKnight": [
+      {
+        "x": 269.19998,
+        "y": 342.0,
+        "size": 25.0
+      },
+      {
+        "x": 149.19998,
+        "y": 331.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:OjamaYellow": [
+      {
+        "x": 273.99997,
+        "y": 254.40001,
+        "size": 25.0
+      },
+      {
+        "x": 141.99998,
+        "y": 273.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Ojamagic": [],
+    "theDuelist:Ojamuscle": [
+      {
+        "x": 104.79998,
+        "y": 304.80002,
+        "size": 25.0
+      },
+      {
+        "x": 158.79997,
+        "y": 138.0,
+        "size": 25.0
+      },
+      {
+        "x": 96.39998,
+        "y": 153.6,
+        "size": 25.0
+      },
+      {
+        "x": 369.99997,
+        "y": 217.20001,
+        "size": 25.0
+      },
+      {
+        "x": 444.4,
+        "y": 222.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Parasite": [
+      {
+        "x": 128.79997,
+        "y": 116.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:PotAvarice": [
+      {
+        "x": 288.4,
+        "y": 289.2,
+        "size": 25.0
+      },
+      {
+        "x": 192.39998,
+        "y": 280.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:PotDichotomy": [
+      {
+        "x": 361.59998,
+        "y": 199.20001,
+        "size": 25.0
+      },
+      {
+        "x": 431.19998,
+        "y": 194.40001,
+        "size": 25.0
+      },
+      {
+        "x": 102.39998,
+        "y": 271.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:PotDuality": [
+      {
+        "x": 287.19998,
+        "y": 194.40001,
+        "size": 25.0
+      },
+      {
+        "x": 388.0,
+        "y": 177.6,
+        "size": 25.0
+      },
+      {
+        "x": 77.199974,
+        "y": 199.20001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:PotGenerosity": [
+      {
+        "x": 287.19998,
+        "y": 187.2,
+        "size": 25.0
+      },
+      {
+        "x": 198.39998,
+        "y": 188.40001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:PotGreed": [
+      {
+        "x": 212.79999,
+        "y": 244.8,
+        "size": 25.0
+      },
+      {
+        "x": 339.99997,
+        "y": 244.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:PreventRat": [
+      {
+        "x": 90.39998,
+        "y": 74.4,
+        "size": 25.0
+      },
+      {
+        "x": 161.19998,
+        "y": 56.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Pumpking": [
+      {
+        "x": 248.79999,
+        "y": 277.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Pumprincess": [
+      {
+        "x": 259.59998,
+        "y": 211.20001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:RadiantMirrorForce": [],
+    "theDuelist:RedEyes": [
+      {
+        "x": 129.99998,
+        "y": 183.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:RedEyesZombie": [
+      {
+        "x": 217.59998,
+        "y": 170.40001,
+        "size": 25.0
+      },
+      {
+        "x": 265.59998,
+        "y": 170.40001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Relinquished": [
+      {
+        "x": 164.79997,
+        "y": 196.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:RevivalJam": [
+      {
+        "x": 135.99998,
+        "y": 265.2,
+        "size": 25.0
+      },
+      {
+        "x": 231.99998,
+        "y": 274.80002,
+        "size": 25.0
+      },
+      {
+        "x": 156.39998,
+        "y": 294.0,
+        "size": 25.0
+      },
+      {
+        "x": 188.79997,
+        "y": 306.0,
+        "size": 25.0
+      },
+      {
+        "x": 101.19998,
+        "y": 116.4,
+        "size": 25.0
+      },
+      {
+        "x": 415.59998,
+        "y": 123.600006,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SangaEarth": [
+      {
+        "x": 254.79999,
+        "y": 118.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SangaThunder": [
+      {
+        "x": 225.99998,
+        "y": 250.8,
+        "size": 25.0
+      },
+      {
+        "x": 275.19998,
+        "y": 250.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SangaWater": [
+      {
+        "x": 206.79999,
+        "y": 180.0,
+        "size": 25.0
+      },
+      {
+        "x": 299.19998,
+        "y": 180.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:Scapegoat": [
+      {
+        "x": 72.39998,
+        "y": 109.200005,
+        "size": 25.0
+      },
+      {
+        "x": 128.79997,
+        "y": 134.40001,
+        "size": 25.0
+      },
+      {
+        "x": 389.19998,
+        "y": 69.6,
+        "size": 25.0
+      },
+      {
+        "x": 431.19998,
+        "y": 73.200005,
+        "size": 25.0
+      },
+      {
+        "x": 444.4,
+        "y": 264.0,
+        "size": 25.0
+      },
+      {
+        "x": 463.59998,
+        "y": 231.6,
+        "size": 25.0
+      },
+      {
+        "x": 80.79998,
+        "y": 348.0,
+        "size": 25.0
+      },
+      {
+        "x": 44.799976,
+        "y": 348.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SevenColoredFish": [
+      {
+        "x": 297.99997,
+        "y": 166.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:ShardGreed": [],
+    "theDuelist:SliferSky": [
+      {
+        "x": 183.99998,
+        "y": 220.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SnowDragon": [
+      {
+        "x": 225.99998,
+        "y": 315.6,
+        "size": 25.0
+      },
+      {
+        "x": 146.79997,
+        "y": 309.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SnowdustDragon": [
+      {
+        "x": 337.59998,
+        "y": 330.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SpiritHarp": [
+      {
+        "x": 321.99997,
+        "y": 302.4,
+        "size": 25.0
+      },
+      {
+        "x": 367.59998,
+        "y": 316.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SummonedSkull": [
+      {
+        "x": 241.59998,
+        "y": 288.0,
+        "size": 25.0
+      },
+      {
+        "x": 290.8,
+        "y": 285.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperancientDinobeast": [
+      {
+        "x": 168.39998,
+        "y": 314.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyBenkei": [
+      {
+        "x": 224.79999,
+        "y": 332.4,
+        "size": 25.0
+      },
+      {
+        "x": 273.99997,
+        "y": 332.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyBlueBrawler": [],
+    "theDuelist:SuperheavyDaihachi": [
+      {
+        "x": 193.59998,
+        "y": 180.0,
+        "size": 25.0
+      },
+      {
+        "x": 229.59998,
+        "y": 180.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyFlutist": [
+      {
+        "x": 235.59998,
+        "y": 344.4,
+        "size": 25.0
+      },
+      {
+        "x": 289.59998,
+        "y": 342.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyGeneral": [
+      {
+        "x": 200.79999,
+        "y": 315.6,
+        "size": 25.0
+      },
+      {
+        "x": 247.59998,
+        "y": 319.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyMagnet": [
+      {
+        "x": 219.99998,
+        "y": 272.4,
+        "size": 25.0
+      },
+      {
+        "x": 271.59998,
+        "y": 273.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyOgre": [
+      {
+        "x": 145.59998,
+        "y": 303.6,
+        "size": 25.0
+      },
+      {
+        "x": 195.99998,
+        "y": 318.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyScales": [
+      {
+        "x": 273.99997,
+        "y": 314.4,
+        "size": 25.0
+      },
+      {
+        "x": 319.59998,
+        "y": 303.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavySwordsman": [
+      {
+        "x": 175.59998,
+        "y": 308.4,
+        "size": 25.0
+      },
+      {
+        "x": 213.99998,
+        "y": 319.2,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SuperheavyWaraji": [
+      {
+        "x": 266.8,
+        "y": 338.4,
+        "size": 25.0
+      },
+      {
+        "x": 314.8,
+        "y": 338.4,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SwordDeepSeated": [
+      {
+        "x": 129.99998,
+        "y": 246.0,
+        "size": 25.0
+      },
+      {
+        "x": 359.19998,
+        "y": 247.20001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SwordsConcealing": [
+      {
+        "x": 206.79999,
+        "y": 304.80002,
+        "size": 25.0
+      },
+      {
+        "x": 285.99997,
+        "y": 304.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:SwordsRevealing": [],
+    "theDuelist:ThunderDragon": [
+      {
+        "x": 111.99998,
+        "y": 292.80002,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:TimeWizard": [
+      {
+        "x": 221.19998,
+        "y": 199.20001,
+        "size": 25.0
+      },
+      {
+        "x": 301.59998,
+        "y": 196.8,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:TokenVacuum": [
+      {
+        "x": 329.19998,
+        "y": 285.6,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:TrapHole": [],
+    "theDuelist:ValkMagnet": [
+      {
+        "x": 201.99998,
+        "y": 261.6,
+        "size": 25.0
+      },
+      {
+        "x": 162.39998,
+        "y": 252.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:WhiteHornDragon": [
+      {
+        "x": 199.59998,
+        "y": 294.0,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:WhiteNightDragon": [
+      {
+        "x": 380.8,
+        "y": 217.20001,
+        "size": 25.0
+      }
+    ],
+    "theDuelist:WingedDragonRa": [
+      {
+        "x": 87.99998,
+        "y": 315.6,
+        "size": 25.0
+      }
+    ]
+  },
+  "relics": {},
+  "events": {},
+  "charSelect": {},
+  "creatures": {},
+  "creaturesStatic": {},
+  "orbs": {},
+  "potions": {}
+}

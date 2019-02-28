@@ -1,12 +1,16 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.ReflectionHacks;
 import defaultmod.DefaultMod;
 import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
@@ -32,6 +36,7 @@ public class BlastJuggler extends DuelistCard
 	private static int MIN_TURNS_ROLL = 3;
 	private static int MAX_TURNS_ROLL = 7;
 	private static int DEBUFFS = 3;
+	private ArrayList<AbstractCard> tooltips;
 	// /STAT DECLARATION/
 
 	public BlastJuggler() 
@@ -44,6 +49,8 @@ public class BlastJuggler extends DuelistCard
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;
+		tooltips = new ArrayList<>();
+		tooltips.add(new ExplosiveToken());
 	}
 
 
@@ -52,6 +59,7 @@ public class BlastJuggler extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, SUMMONS, this);
+		summon(p, 1, new ExplosiveToken("Exploding Token"));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -90,7 +98,7 @@ public class BlastJuggler extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons)
+	public void onResummon(int summons)
 	{
 
 	}
@@ -101,6 +109,7 @@ public class BlastJuggler extends DuelistCard
 	{
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
+		summon(p, 1, new ExplosiveToken("Exploding Token"));
 	}
 
 
@@ -108,6 +117,38 @@ public class BlastJuggler extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
+		summon(p, 1, new ExplosiveToken("Exploding Token"));
+	}
+	
+	@Override
+	public void renderCardTip(SpriteBatch sb) 
+	{
+		super.renderCardTip(sb);
+		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
+
+		int count = 0;
+		if (!Settings.hideCards && renderTip) {
+			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
+				return;
+			}
+			for (AbstractCard c : tooltips) {
+				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
+				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
+				if (current_x > Settings.WIDTH * 0.75f) {
+					c.current_x = current_x + dx;
+				} else {
+					c.current_x = current_x - dx;
+				}
+				if (count == 0) {
+					c.current_y = current_y + dy;
+				} else {
+					c.current_y = current_y - dy;
+				}
+				c.drawScale = drawScale * 0.8f;
+				c.render(sb);
+				count++;
+			}
+		}
 	}
 
 

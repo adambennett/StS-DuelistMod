@@ -5,7 +5,7 @@
 },
 "theDuelist:DespairPower": {
         "NAME": "Axe of Despair",
-        "DESCRIPTIONS": ["At the end of turn, lose #b", " #yStrength, #yTribute #b2 and place Axe of Despair on the top of your deck. If you do not have enough Tributes, lose #b30 HP."]
+        "DESCRIPTIONS": ["At the end of turn, lose #b", " #yStrength, #yTribute #b", " and place Axe of Despair on the top of your deck. If you do not have enough Tributes, lose #b30 HP."]
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
@@ -81,7 +81,7 @@
 },
 "theDuelist:ImperialPower": {
         "NAME": "Imperial Order",
-        "DESCRIPTIONS": ["At the start of turn, set the cost of #b", " random trap or spell card in your hand to #b0.", " random trap or spell cards in your hand to #b0 for this turn." ]
+        "DESCRIPTIONS": ["At the start of turn, set the cost of #b", " random #ySpell or #yTrap card in your hand to #b0 for this turn.", " random #ySpell or #yTrap cards in your hand to #b0 for this turn." ]
 },
 "theDuelist:SliferSkyPower": {
         "NAME": "Slifer the Sky Dragon",
@@ -105,7 +105,7 @@
 },
 "theDuelist:RadiantMirrorPower": {
         "NAME": "Radiant Mirror Force",
-        "DESCRIPTIONS": ["The next time you lose HP, all enemies lose all block", ".", " and take 5 damage." ]
+        "DESCRIPTIONS": ["Whenever you lose HP, Increment #b", "." ]
 },
 "theDuelist:SwordsBurnPower": {
         "NAME": "Swords of Burning Light",
@@ -117,7 +117,7 @@
 },
 "theDuelist:SwordsRevealPower": {
         "NAME": "Swords of Revealing Light",
-        "DESCRIPTIONS": ["" ]
+        "DESCRIPTIONS": ["Ignore all damage for #b", " more turns." ]
 },
 "theDuelist:SummonSicknessPower": {
         "NAME": "Summoning Sickness",
@@ -182,6 +182,18 @@
 "theDuelist:YamiPower": {
         "NAME": "Yami",
         "DESCRIPTIONS": ["Your #ySpellcasters deal #b50% more damage and gain #b50% more block." ]
+},
+"theDuelist:TimeWizardPower": {
+        "NAME": "Time Wizard",
+        "DESCRIPTIONS": ["At the start of turn, trigger #b", " random positive effect. NL #yLast #yEffect #yTriggered: ", " random positive effects. NL #yLast #yEffect #yTriggered: " ]
+},
+"theDuelist:TrapHolePower": {
+        "NAME": "Trap Hole",
+        "DESCRIPTIONS": ["Whenever you #ySummon, have a #b", "% chance to immediately #yTribute that monster and then #yResummon it." ]
+},
+"theDuelist:SwordDeepPower": {
+        "NAME": "Sword of Deep Seated",
+        "DESCRIPTIONS": ["At the end of turn, lose #b", " #yStrength." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

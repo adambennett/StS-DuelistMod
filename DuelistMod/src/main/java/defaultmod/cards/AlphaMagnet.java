@@ -15,7 +15,7 @@ import defaultmod.powers.AlphaMagPower;
 public class AlphaMagnet extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("AlphaMagnet");
+    public static final String ID = DefaultMod.makeID("AlphaMagnet");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.ALPHA_MAGNET);
     public static final String NAME = cardStrings.NAME;
@@ -79,7 +79,7 @@ public class AlphaMagnet extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

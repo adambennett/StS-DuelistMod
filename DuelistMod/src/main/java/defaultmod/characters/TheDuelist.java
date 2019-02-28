@@ -126,7 +126,21 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(Ookazi.ID);
 		retVal.add(Ookazi.ID);
 		retVal.add(SummonedSkull.ID);
-
+		
+		
+		/*
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		retVal.add(BadToken.ID);
+		*/
+		
 		return retVal;
 	}
 

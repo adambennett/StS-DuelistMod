@@ -59,14 +59,14 @@ public class GaiaDragonChamp extends DuelistCard
     	{
     		DuelistCard summon = returnRandomFromArray(tributeList);
     		summon.summonThis(summon.summons, summon, 0, m);
-    		summon.onSummon(1);
+    		summon.onResummon(1);
     	}
     	
     	else if (upgraded && tributeList.size() > 0)
     	{
     		DuelistCard summon = tributeList.get(0);
     		summon.summonThis(summon.summons, summon, 0, m);
-    		summon.onSummon(1);
+    		summon.onResummon(1);
     	}
     }
 
@@ -119,14 +119,17 @@ public class GaiaDragonChamp extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-		
+		if (tributingCard.hasTag(DefaultMod.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
 	}
 
 
 
 	@Override
-	public void onSummon(int summons) {
+	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -22,11 +22,11 @@ public class RadiantMirrorForce extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public RadiantMirrorForce() {
@@ -34,13 +34,14 @@ public class RadiantMirrorForce extends DuelistCard
         this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.FULL);
 		this.originalName = this.name;
+		this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	 applyPowerToSelf(new RadiantMirrorPower(p, this.upgraded));
+    	 applyPowerToSelf(new RadiantMirrorPower(p, this.upgraded, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -54,34 +55,34 @@ public class RadiantMirrorForce extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		
 	}
 
 
 	@Override
-	public void onSummon(int summons) {
-		// TODO Auto-generated method stub
+	public void onResummon(int summons) 
+	{
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
 		
 	}
 

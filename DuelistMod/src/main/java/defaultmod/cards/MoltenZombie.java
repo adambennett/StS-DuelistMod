@@ -80,7 +80,7 @@ public class MoltenZombie extends DuelistCard
 
 
 	@Override
-	public void onSummon(int summons)
+	public void onResummon(int summons)
 	{
 		damageAllEnemiesFire(20);
 	}

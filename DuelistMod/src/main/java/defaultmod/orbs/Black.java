@@ -52,7 +52,13 @@ public class Black extends AbstractOrb
 	@Override
 	public void onEvoke()
 	{
-		
+		for (int i = 0; i < this.evokeAmount; i++)
+		{
+			//DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
+			//DuelistCard.addCardToHand(randomMonster);
+			//System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
+		}
+		//System.out.println("theDuelist:MonsterOrb --- > triggered evoke!");
 	}
 
 	@Override
@@ -63,7 +69,12 @@ public class Black extends AbstractOrb
 
 	private void triggerPassiveEffect()
 	{
-		
+		for (int i = 0; i < this.passiveAmount; i++)
+		{
+			
+			//DuelistCard.addCardToHand(randomMonster);
+			//System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
+		}
 	}
 
 	@Override

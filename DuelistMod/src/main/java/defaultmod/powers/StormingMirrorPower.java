@@ -34,7 +34,7 @@ public class StormingMirrorPower extends AbstractPower
     @Override
     public int onAttacked(DamageInfo info, int damageAmount)
     {
-    	StormingMirrorForce.powerSummon(AbstractDungeon.player, 1, "Mirror Token");
+    	StormingMirrorForce.powerSummon(AbstractDungeon.player, 1, "Storm Token");
     	return damageAmount;
     }
     
