@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
@@ -156,7 +157,12 @@ public abstract class DuelistCard extends CustomCard
 	}
 
 	public static void removePower(AbstractPower power, AbstractCreature target) {
-		AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
+		
+		if (target.hasPower(power.ID))
+		{
+			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
+		}
+		
 		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
 		{
 			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
@@ -165,7 +171,11 @@ public abstract class DuelistCard extends CustomCard
 	}
 
 	public static void reducePower(AbstractPower power, AbstractCreature target, int reduction) {
-		AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, reduction));
+		
+		if (target.hasPower(power.ID))
+		{
+			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, reduction));
+		}
 		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
 		{
 			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
@@ -223,7 +233,7 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToTop(new DiscardAction(player(), player(), amount, isRandom));
 	}
 
-	protected void gainEnergy(int energy) {
+	public static void gainEnergy(int energy) {
 		AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(energy));
 	}
 
@@ -411,8 +421,9 @@ public abstract class DuelistCard extends CustomCard
 					int randomNum = AbstractDungeon.cardRandomRng.random(1, 10);
 					if (randomNum <= power.chance || power.chance > 10)
 					{
+						power.flash();
 						System.out.println("theDuelist:DuelistCard:summon ---> triggered trap hole with roll of: " + randomNum);
-						tribute(p, 1, false, c);
+						tribute(p, 1, false, new TrapHole());
 						c.onResummon(1);
 						c.summonThis(1, c, 0);
 					}
@@ -505,8 +516,9 @@ public abstract class DuelistCard extends CustomCard
 					int randomNum = AbstractDungeon.cardRandomRng.random(1, 10);
 					if (randomNum <= power.chance || power.chance > 10)
 					{
+						power.flash();
 						System.out.println("theDuelist:DuelistCard:spellSummon ---> triggered trap hole with roll of: " + randomNum);
-						tribute(p, 1, false, c);
+						tribute(p, 1, false, new TrapHole());
 						c.onResummon(1);
 						c.summonThis(1, c, 0);
 					}
@@ -589,10 +601,12 @@ public abstract class DuelistCard extends CustomCard
 					int randomNum = AbstractDungeon.cardRandomRng.random(1, 10);
 					if (randomNum <= power.chance || power.chance > 10)
 					{
+						power.flash();
 						System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum);
-						tribute(p, 1, false, c);
+						tribute(p, 1, false, new TrapHole());
 						c.onResummon(1);
 						c.summonThis(1, c, 0);
+						power.flash();
 					}
 					else
 					{
@@ -687,7 +701,7 @@ public abstract class DuelistCard extends CustomCard
 		{
 			// If no summons, just skip this so we don't crash
 			// This should never be called without summons due to canUse() checking for tributes before use() can be run
-			if (!p.hasPower(SummonPower.POWER_ID)) { return null; }
+			if (!p.hasPower(SummonPower.POWER_ID)) { return tributeList; }
 			else
 			{
 				//	Check for Mausoleum of the Emperor
@@ -742,7 +756,7 @@ public abstract class DuelistCard extends CustomCard
 					else
 					{
 						empInstance.flag = true;
-						return null;
+						return tributeList;
 					}
 				}
 				else
@@ -795,7 +809,7 @@ public abstract class DuelistCard extends CustomCard
 		}
 		else
 		{
-			return null;
+			return tributeList;
 		}
 
 	}
@@ -969,19 +983,24 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		//AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
-		AbstractPower magicCylinder = new MagicCylinderPower(p, turnNum, false);
+		//AbstractPower magicCylinder = new MagicCylinderPower(p, turnNum, false);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower focus = new FocusPower(p, turnNum);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
+		AbstractPower timeWizard = new TimeWizardPower(p, p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				orbEvoker, tombPilfer, magicCylinder, retainCards, 
+				orbEvoker, tombPilfer, retainCards, timeWizard,
 				generosity, focus, reductionist, creative }; 
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
 		AbstractPower randomBuff = buffs[randomBuffNum];
-
+		for (int i = 0; i < buffs.length; i++)
+		{
+			System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> buffs[" + i + "]: " + buffs[i].name);
+		}
+		System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> generated random buff: " + randomBuff.name + " :: index was: " + randomBuffNum);
 		ArrayList<AbstractPower> powers = p.powers;
 		boolean found = false;
 		for (AbstractPower a : powers)
@@ -1060,6 +1079,11 @@ public abstract class DuelistCard extends CustomCard
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orb));
 	}
 
+	public static void channelBottom(AbstractOrb orb)
+	{
+		AbstractDungeon.actionManager.addToBottom(new ChannelAction(orb));
+	}
+	
 	public static void channelRandom()
 	{
 		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
@@ -1076,6 +1100,14 @@ public abstract class DuelistCard extends CustomCard
 	public static void evoke(int amount)
 	{
 		AbstractDungeon.actionManager.addToTop(new EvokeOrbAction(amount));
+	}
+	
+	public static void removeOrbs(int amount)
+	{
+		for (int i = 0; i < amount; i++)
+		{
+			AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
+		}
 	}
 
 	public static void gainGold(int amount, AbstractCreature owner, boolean rain)
@@ -1283,4 +1315,21 @@ public abstract class DuelistCard extends CustomCard
 		} 
 
 	}
+	
+
+	
+	 public static boolean purgeCard(AbstractCard toPurge) {
+	        return purgeCard(toPurge.uuid);
+	    }
+
+	    private static boolean purgeCard(UUID targetUUID) {
+	        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+	            if (c.uuid.equals(targetUUID)) {
+	                AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, Settings.WIDTH / 2, Settings.HEIGHT / 2));
+	                AbstractDungeon.player.masterDeck.removeCard(c);
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
 }

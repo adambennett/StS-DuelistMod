@@ -22,10 +22,12 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
         boolean isSpell = DefaultMod.isSpell(reflectedCard);
         boolean isTrap = DefaultMod.isTrap(reflectedCard);
         boolean isMonster = DefaultMod.isMonster(reflectedCard);
+        boolean isToken = DefaultMod.isToken(reflectedCard);
         
         if (isMonster) 		{ label[0] = "Monster"; } 
         else if (isTrap) 	{ label[0] = "Trap";  	} 
         else if (isSpell) 	{ label[0] = "Spell";   }
+        else if (isToken)	{ label[0] = "Token"; 	}
     }
 
     public static class Locator extends SpireInsertLocator 

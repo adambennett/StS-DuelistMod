@@ -9,10 +9,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.charSelect.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -22,6 +24,7 @@ import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
 import defaultmod.patches.*;
 import defaultmod.potions.*;
+import defaultmod.powers.GravityAxePower;
 import defaultmod.relics.*;
 
 
@@ -29,7 +32,9 @@ import defaultmod.relics.*;
 @SpireInitializer @SuppressWarnings("unused")
 public class DefaultMod
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
-EditCharactersSubscriber, PostInitializeSubscriber {
+EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
+PostPowerApplySubscriber, OnPowersModifiedSubscriber
+{
 	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 	public static final String PLACEHOLDER = "Placeholder";
 	public static final String MOD_ID_PREFIX = "theDuelist:";
@@ -69,6 +74,8 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	@SpireEnum public static AbstractCard.CardTags MONSTER;  // 86 cards
 	@SpireEnum public static AbstractCard.CardTags SPELL; // 43 cards
 	@SpireEnum public static AbstractCard.CardTags TRAP; // 8 cards
+	@SpireEnum public static AbstractCard.CardTags TOKEN;
+	@SpireEnum public static AbstractCard.CardTags RANDOMONLY;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
 	@SpireEnum public static AbstractCard.CardTags EQUIPSPELL;
 	@SpireEnum public static AbstractCard.CardTags POT;
@@ -297,6 +304,13 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String REVIVAL_JAM = "cards/Revival_Jam.png";
 	public static final String STIM_PACK = "cards/Stim_Pack.png";
 	public static final String BOTTOMLESS_TRAP_HOLE = "cards/Bottomless_Trap_Hole.png";
+	public static final String KURIBOH_TOKEN = "cards/Kuriboh_Token.png";
+	public static final String EXPLOSIVE_TOKEN = "cards/Explosive_Token.png";
+	public static final String GREEDPOT_AVATAR = "cards/Greedpot_Avatar.png";
+	public static final String WISEMAN = "cards/Wiseman.png";
+	public static final String MONSTER_EGG = "cards/Monster_Egg.png";
+	public static final String STEAM_TRAIN_KING = "cards/Steam_Train_King.png";
+	public static final String SWORD_DEEP_SEATED = "cards/Sword_Deep_Seated.png"; 
 	
 
 	// Expansion Set
@@ -311,7 +325,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String GREAT_MOTH = "cards/Great_Moth.png";
 	public static final String LAVA_BATTLEGUARD = "cards/Lava_Battleguard.png";
 	public static final String SWAMP_BATTLEGUARD = "cards/Swamp_Battleguard.png";
-	public static final String SWORD_DEEP_SEATED = "cards/Sword_Deep_Seated.png";    
 	public static final String TWIN_HEADED_FIRE = "cards/Twin_Headed_Fire_Dragon.png";
 	public static final String TWIN_HEADED_THUNDER = "cards/Twin_Headed_Thunder_Dragon.png";
 	public static final String RYU_RAN = "cards/Ryu_Ran.png";
@@ -362,7 +375,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String GRAND_HORN_HEAVEN = "cards/Grand_Horn_Heaven.png";
 	public static final String GRASSCHOPPER = "cards/Grasschopper.png";
 	public static final String GRAVEROBBER = "cards/Graverobber.png";
-	public static final String GREEDPOT_AVATAR = "cards/Greedpot_Avatar.png";
 	public static final String GUARDIAN_THRONE = "cards/Guardian_Throne_Room.png";
 	public static final String HITOTSU_GIANT = "cards/Hitotsu_Me_Giant.png";
 	public static final String JINZO = "cards/Jinzo.png";
@@ -371,7 +383,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String LEGEND_EXODIA = "cards/Legend_Exodia.png";
 	public static final String MAMMOTH_GRAVEYARD = "cards/Mammoth_Graveyard.png";
 	public static final String MAN_EATER = "cards/Man_Eater_Bug.png";
-	public static final String MONSTER_EGG = "cards/Monster_Egg.png";
 	public static final String NATURIA_BEAST = "cards/Naturia_Beast.png";
 	public static final String NATURIA_CLIFF = "cards/Naturia_Cliff.png";
 	public static final String NATURIA_DRAGONFLY = "cards/Naturia_Dragonfly.png";
@@ -403,7 +414,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 	public static final String SILVER_FANG = "cards/Silver_Fang.png";
 	public static final String SKULL_SERVANT = "cards/Skull_Servant.png";
 	public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
-	public static final String STEAM_TRAIN_KING = "cards/Steam_Train_King.png";
 	public static final String SUPERCONDUCTOR_TYRANNO = "cards/Super_Conductor_Tyranno.png";
 	public static final String SUPER_SOLAR_NUTRIENT = "cards/Super_Solar_Nutrient.png";
 	public static final String SWORD_HUNTER = "cards/Sword_Hunter.png";
@@ -569,11 +579,11 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		duelistDefaults.setProperty(PROP_SET, "0");
 		duelistDefaults.setProperty(PROP_CARDS, "200");
 		
-		cardSets.add("All (187 cards)");
-		cardSets.add("Full (138 cards)");
-		cardSets.add("Reduced (119 cards)");
-		cardSets.add("Limited (91 cards)");
-		cardSets.add("Core (62 cards)");
+		cardSets.add("All (186 cards)");
+		cardSets.add("Full (137 cards)");
+		cardSets.add("Reduced (118 cards)");
+		cardSets.add("Limited (90 cards)");
+		cardSets.add("Core (61 cards)");
 		
 		try 
 		{
@@ -670,7 +680,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		// END Check Box B
 		
 		// Check Box C
-		ModLabeledToggleButton crossoverBtn = new ModLabeledToggleButton("Allow 13 extra crossover mod cards (REQUIRES RESTART)",350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, crossoverBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		ModLabeledToggleButton crossoverBtn = new ModLabeledToggleButton("Allow 14 extra crossover mod cards (REQUIRES RESTART)",350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, crossoverBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			crossoverBtnBool = button.enabled;
 			try 
@@ -819,7 +829,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		myCards.add(new ScrapFactory());
 		myCards.add(new SevenColoredFish());
 		myCards.add(new SummonedSkull());
-			// Other core cards - 69 cards
+			// Other core cards - 68 cards
 		myCards.add(new ArmoredZombie());
 		myCards.add(new AxeDespair());
 		myCards.add(new BabyDragon());
@@ -860,7 +870,6 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		myCards.add(new LabyrinthWall());		
 		myCards.add(new LesserDragon());
 		myCards.add(new LordD());
-		myCards.add(new MagicCylinder());
 		myCards.add(new MirrorForce());
 		myCards.add(new MonsterReborn());
 		myCards.add(new Mountain());
@@ -892,7 +901,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		//myCards.add(new BadToken()); 		//debug card
 		// END CORE SET
 		
-		// ALL Set - 48 cards ( need 34 more cards here)
+		// ALL Set - 48 cards ( need 33 more cards here)
 		myCards.add(new BigCastleWalls());
 		myCards.add(new MachineKing());
 		myCards.add(new BookSecret());
@@ -907,6 +916,9 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		myCards.add(new StimPack());
 		myCards.add(new BottomlessTrapHole());
 		myCards.add(new SwordDeepSeated());
+		myCards.add(new MonsterEgg());
+		myCards.add(new SteamTrainKing());
+		myCards.add(new MachineFactory());
 		// END ALL Set
 		
 		// FULL Set - 22 cards
@@ -990,11 +1002,12 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		myCards.add(new SangaWater());
 		// END CONSPIRE Set
 		
-		// REPLAY Set - 10 cards
+		// REPLAY Set - 11 cards
 		myCards.add(new BarrelDragon());
 		myCards.add(new BlastJuggler());
 		myCards.add(new DarkMirrorForce());
 		myCards.add(new FlameSwordsman()); 
+		myCards.add(new MagicCylinder());
 		myCards.add(new NutrientZ());
 		myCards.add(new OjamaBlack());
 		myCards.add(new OjamaKing());
@@ -1002,6 +1015,10 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		myCards.add(new Parasite());
 		myCards.add(new ToonDarkMagicianGirl());
 		// END REPLAY Set
+		
+		//RANDOM ONLY Set - 1 card
+		myCards.add(new Wiseman());
+		// END RANDOM ONLY Set
 		
 
 		// If they are allowing the extra mod cards, check if the mods are loaded and remove the cards if not
@@ -1134,7 +1151,20 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		// Unlock all cards
 		logger.info("Making sure the cards are unlocked.");
 		int tempCardCount = 0;
-		for (DuelistCard c : myCards) { BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); tempCardCount++; }
+		for (DuelistCard c : myCards) 
+		{ 
+			if (!c.hasTag(DefaultMod.RANDOMONLY))
+			{
+				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); tempCardCount++; 
+			}
+			else
+			{
+				summonMap.put(c.originalName, c);
+				tempCardCount++;
+				UnlockTracker.unlockCard(c.getID());
+			}
+		}
+		
 		summonMap.put("Puzzle Token", new Token());
 		summonMap.put("Ancient Token", new Token());
 		summonMap.put("Anubis Token", new Token());
@@ -1146,6 +1176,7 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		summonMap.put("Storm Token", new Token());
 		summonMap.put("Random Token", new Token());
 		summonMap.put("Pot Token", new Token());
+		summonMap.put("Buffer Token", new Token());
 		summonMap.put("Kuriboh Token", new KuribohToken());
 		summonMap.put("Exploding Token", new ExplosiveToken());
 		summonMap.put("Explosive Token", new ExplosiveToken());
@@ -1263,6 +1294,12 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 			return prefix + PLACEHOLDER + postfix;
 		}
 	}
+	
+	public static boolean isToken(AbstractCard c)
+	{
+		if (c.hasTag(DefaultMod.TOKEN)) { return true; }
+		else { return false; }
+	}
 
 	public static boolean isMonster(AbstractCard c)
 	{
@@ -1287,5 +1324,47 @@ EditCharactersSubscriber, PostInitializeSubscriber {
 		((ArrayList<CharacterOption>) ReflectionHacks.getPrivate(CardCrawlGame.mainMenuScreen.charSelectScreen, CharacterSelectScreen.class, "options")).clear();
 		CardCrawlGame.mainMenuScreen.charSelectScreen.initialize();
 	}
+
+	@Override
+	public void receiveOnBattleStart(AbstractRoom arg0) 
+	{
+		lastMaxSummons = 5;
+		logger.info("Reset max summons to 5");
+	}
+
+	@Override
+	public void receivePostBattle(AbstractRoom arg0) 
+	{
+		lastMaxSummons = 5;
+		logger.info("Reset max summons to 5");
+	}
+
+	@Override
+	public int receiveOnPlayerDamaged(int arg0, DamageInfo arg1) {
+		//System.out.println("theDuelist:DefaultMod:receiveOnPlayerDamaged() ---> this is the damageInfo: " + arg1.owner);
+		return arg0;
+	}
+
+	// Power, target, source
+	@Override
+	public void receivePostPowerApplySubscriber(AbstractPower arg0, AbstractCreature arg1, AbstractCreature arg2) 
+	{
+		/*
+		if (arg1.hasPower(GravityAxePower.POWER_ID))
+		{
+			GravityAxePower gravPower = (GravityAxePower) arg1.getPower(GravityAxePower.POWER_ID);
+			int gravStr = gravPower.FINAL_STRENGTH;
+			DuelistCard.removePower(arg1.getPower(StrengthPower.POWER_ID), arg1);
+			DuelistCard.applyPower(new StrengthPower(arg1, gravStr), arg1);
+		}
+		*/
+	}
+
+	@Override
+	public void receivePowersModified() 
+	{
+		
+	}
+
 
 }

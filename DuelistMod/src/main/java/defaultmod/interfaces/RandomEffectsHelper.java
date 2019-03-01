@@ -3,12 +3,15 @@ package defaultmod.interfaces;
 import java.util.ArrayList;
 
 import com.evacipated.cardcrawl.modthespire.Loader;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.mod.replay.powers.NecroticPoisonPower;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
+import defaultmod.DefaultMod;
+import defaultmod.patches.DuelistCard;
 import defaultmod.powers.*;
 
 public class RandomEffectsHelper 
@@ -90,7 +93,7 @@ public class RandomEffectsHelper
 		AbstractPower poison = new PoisonPower(p, p, turnNum);
 		AbstractPower weak = new WeakPower(p, turnNum, false);
 		AbstractPower entangled = new EntanglePower(p);
-		AbstractPower hexed = new HexPower(p, turnNum);
+		AbstractPower hexed = new HexPower(p, 1);
 		AbstractPower summonSick = new SummonSicknessPower(p, turnNum);
 		AbstractPower tributeSick = new TributeSicknessPower(p, turnNum);
 		AbstractPower evokeSick = new EvokeSicknessPower(p, turnNum);
@@ -127,6 +130,12 @@ public class RandomEffectsHelper
 
 		return randomDebuff;
 
+	}
+	
+	public static void addFromRandomSetToHand()
+	{
+		AbstractCard randomSetCard = DuelistCard.returnTrulyRandomFromSet(DefaultMod.RANDOMONLY);
+		DuelistCard.addCardToHand(randomSetCard);
 	}
 
 }

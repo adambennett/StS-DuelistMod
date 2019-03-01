@@ -5,10 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
-import defaultmod.orbs.Shadow;
+import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
 
 public class BadToken extends DuelistCard 
@@ -48,8 +47,10 @@ public class BadToken extends DuelistCard
     	*/
     	
     	// Channel test orb
-		AbstractOrb testOrb = new Shadow();
-		channel(testOrb);
+		//AbstractOrb testOrb = new Shadow();
+		//channel(testOrb);
+    	
+    	RandomEffectsHelper.addFromRandomSetToHand();
     }
    
     

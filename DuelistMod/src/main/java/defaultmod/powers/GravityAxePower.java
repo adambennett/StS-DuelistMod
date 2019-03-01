@@ -119,21 +119,26 @@ public class GravityAxePower extends AbstractPower
     @Override
     public void onSpecificTrigger()
     {
-    	if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID))
+    	/*
+    	if (FINAL_STRENGTH > 0)
     	{
-    		int playerStrength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
-    		if (playerStrength != FINAL_STRENGTH)
-    		{
-    			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
-    			instance.amount = FINAL_STRENGTH;
-    			instance.updateDescription();
-    		}
-    	}
-    	else
-    	{
-    		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
+	    	if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID))
+	    	{
+	    		int playerStrength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
+	    		if (playerStrength != FINAL_STRENGTH)
+	    		{
+	    			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
+	    			instance.amount = FINAL_STRENGTH;
+	    			instance.updateDescription();
+	    		}
+	    	}
+	    	else
+	    	{
+	    		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
+	    	}
     	}
     	updateDescription();
+    	*/
     }
     
     @Override

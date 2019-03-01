@@ -15,7 +15,7 @@ public class ExplosiveToken extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DefaultMod.makeID("ExplosiveToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.GREEDPOT_AVATAR);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.EXPLOSIVE_TOKEN);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -29,8 +29,8 @@ public class ExplosiveToken extends DuelistCard
     private static final int COST = -1;
     // /STAT DECLARATION/
 
-    public ExplosiveToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.BAD_TRIB); }
-    public ExplosiveToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.BAD_TRIB); }
+    public ExplosiveToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.BAD_TRIB); this.tags.add(DefaultMod.TOKEN); }
+    public ExplosiveToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.BAD_TRIB); this.tags.add(DefaultMod.TOKEN); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { }
     @Override public AbstractCard makeCopy() { return new ExplosiveToken(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }

@@ -33,8 +33,8 @@ public class ShadowToken extends DuelistCard
     private static final int COST = -1;
     // /STAT DECLARATION/
 
-    public ShadowToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.GOOD_TRIB); }
-    public ShadowToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.GOOD_TRIB); }
+    public ShadowToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.GOOD_TRIB); this.tags.add(DefaultMod.TOKEN); }
+    public ShadowToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.GOOD_TRIB); this.tags.add(DefaultMod.TOKEN); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { }
     @Override public AbstractCard makeCopy() { return new ShadowToken(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }

@@ -185,7 +185,7 @@
 },
 "theDuelist:TimeWizardPower": {
         "NAME": "Time Wizard",
-        "DESCRIPTIONS": ["At the start of turn, trigger #b", " random positive effect. NL #yLast #yEffect #yTriggered: ", " random positive effects. NL #yLast #yEffect #yTriggered: " ]
+        "DESCRIPTIONS": ["At the start of turn, trigger #b", " random positive effect. NL #yEffect #yThis #yTurn: ", " random positive effects. NL #yEffects #yThis #yTurn: " ]
 },
 "theDuelist:TrapHolePower": {
         "NAME": "Trap Hole",

@@ -15,7 +15,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.cards.Token;
 import defaultmod.patches.DuelistCard;
+import defaultmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Buffer extends AbstractOrb
@@ -65,11 +67,16 @@ public class Buffer extends AbstractOrb
 	private void triggerPassiveEffect()
 	{
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
+		for (int i = 0; i < playerPowers.size() - 1; i++) { if (playerPowers.get(i).name.equals("Player Statistics")) { playerPowers.remove(i); i = playerPowers.size(); }} 
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			int randomNum = AbstractDungeon.cardRandomRng.random(playerPowers.size() - 1);
-			playerPowers.get(randomNum).amount += 1;
-			System.out.println("theDuelist:Buffer --- > Buffed " + playerPowers.get(randomNum).name + " on passive trigger");
+			if (playerPowers.size() > 0)
+			{
+				int randomNum = AbstractDungeon.cardRandomRng.random(playerPowers.size() - 1);
+				if (playerPowers.get(randomNum).name.equals("Summons")) { DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
+				else { playerPowers.get(randomNum).amount += 1; playerPowers.get(randomNum).updateDescription(); System.out.println("theDuelist:Buffer --- > Buffed " + playerPowers.get(randomNum).name + " on passive trigger"); }
+				
+			}
 		}
 		
 		this.passiveAmount++;

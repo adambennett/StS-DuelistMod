@@ -3,49 +3,54 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.potions.PotionSlot;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
 
-public class DragonCaptureJar extends DuelistCard 
+public class Wiseman extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("ToonBriefcase");
+    public static final String ID = DefaultMod.makeID("Wiseman");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_BRIEFCASE);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.WISEMAN);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-    
+
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 3;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public DragonCaptureJar() {
+    public Wiseman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(DefaultMod.TRAP);
-		this.originalName = this.name;
+        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.RANDOMONLY);
+        this.originalName = this.name;
+        this.purgeOnUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       applyPowerToSelf(new DragonCapturePower(p, p));
+    	player().potionSlots += 1;
+        AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));	
+        purgeCard(this);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new DragonCaptureJar();
+        return new Wiseman();
     }
 
     // Upgraded stats.
@@ -53,17 +58,19 @@ public class DragonCaptureJar extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public void onResummon(int summons) {
@@ -72,14 +79,14 @@ public class DragonCaptureJar extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
 		
 	}
 

@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>duelistmod</groupId>
     <artifactId>DuelistMod</artifactId>
-    <version>1.168.0</version>
+    <version>1.171.0</version>
     <packaging>jar</packaging>
     <name>DuelistMod</name>
     <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
@@ -14,7 +14,7 @@
     
     <!-- Dependency Properties-->
     <properties>
-    	<BaseMod.version>5.11.0</BaseMod.version>
+    	<BaseMod.version>5.12.0</BaseMod.version>
         <SlayTheSpire.version>1-23-2019</SlayTheSpire.version>
         <ModTheSpire.version>3.8.3</ModTheSpire.version>
         <StSLib.version>1.14.0</StSLib.version>

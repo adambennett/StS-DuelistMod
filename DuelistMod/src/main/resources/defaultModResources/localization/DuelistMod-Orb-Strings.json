@@ -56,7 +56,7 @@
   "theDuelist:FireOrb": {
     "NAME": "Fire",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, if your Dexterity is higher than your Strength, increase your #yStrength by #b", " for each stack of #yDexterity you have. NL #yEvoke: Add #b", " random monster to your hand. It cost #b0 this turn.", " random monsters to your hand. They cost #b0 this turn.."
+      "#yPassive: At the start of turn, if your Dexterity is higher than your Strength, increase your #yStrength by #b", " for each stack of #yDexterity you have. NL #yEvoke: Add #b", " random monster to your hand. It cost #b0 this turn.", " random monsters to your hand. They cost #b0 this turn."
     ]
   },
   "theDuelist:Glitch": {

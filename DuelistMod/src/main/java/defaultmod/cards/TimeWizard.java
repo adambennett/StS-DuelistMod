@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
-import defaultmod.interfaces.RandomActionHelper;
 import defaultmod.patches.*;
 import defaultmod.powers.TimeWizardPower;
 
@@ -45,7 +44,12 @@ public class TimeWizard extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
        summon(p, this.summons, this);
-       applyPowerToSelf(new TimeWizardPower(p, p, 1));
+       if (!p.hasPower(TimeWizardPower.POWER_ID)) { applyPowerToSelf(new TimeWizardPower(p, p, 1)); }
+       else 
+       {
+    	   TimeWizardPower timePower = (TimeWizardPower) p.getPower(TimeWizardPower.POWER_ID);
+    	   timePower.amount++;
+       }
     }
 
     // Which card to return when making a copy of this card.
@@ -69,10 +73,7 @@ public class TimeWizard extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (upgraded) 
-		{
-			RandomActionHelper.triggerRandomAction(1, true);
-		}
+		
 	}
 
 

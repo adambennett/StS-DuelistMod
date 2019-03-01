@@ -1,7 +1,7 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -37,6 +37,13 @@ public class SwordsRevealPower extends AbstractPower
     
     @Override
     public int onLoseHp(int damageAmount)
+    {
+    	if (this.amount > 0) { return 0; }
+    	else { return damageAmount; }
+    }
+    
+    @Override
+    public int onAttacked(DamageInfo info, int damageAmount)
     {
     	if (this.amount > 0) { return 0; }
     	else { return damageAmount; }

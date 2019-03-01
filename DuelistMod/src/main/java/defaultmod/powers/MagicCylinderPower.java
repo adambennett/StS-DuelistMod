@@ -1,7 +1,6 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -48,14 +47,15 @@ public class MagicCylinderPower extends AbstractPower
     @Override
     public int onLoseHp(int damageAmount)
     {
-    	AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReflectionPower(AbstractDungeon.player, 5), 5));
+    	DuelistCard.applyPowerToSelf(new ReflectionPower(AbstractDungeon.player, 5));
+    	//AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReflectionPower(AbstractDungeon.player, 5), 5));
     	if (upgraded) 
     	{
     		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS, MAX_TURNS);
     		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, true);
     	}
     	
-    	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, this, this.amount));
+    	DuelistCard.removePower(this, this.owner);
     	return damageAmount;
     }
     

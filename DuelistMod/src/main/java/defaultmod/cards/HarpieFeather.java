@@ -30,13 +30,13 @@ public class HarpieFeather extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HarpieFeather() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.damage = this.baseDamage = 0;
-    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.magicNumber = this.baseMagicNumber = 2;
     	this.originalName = this.name;
     	this.tags.add(DefaultMod.SPELL);
     	this.tags.add(DefaultMod.REDUCED);
@@ -50,22 +50,13 @@ public class HarpieFeather extends DuelistCard
     	ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
 		for (AbstractPower a : playerPowers)
 		{
-			if ((a.type == PowerType.BUFF) && (!a.name.equals("Summons"))) 
+			if ((a.type == PowerType.BUFF) && !a.name.equals("Player Statistics")) 
 			{
-				if (a.amount >= this.magicNumber)
-				{
-					a.amount -= this.magicNumber; 
-					totalPowered += this.magicNumber; 
-				}
-				else if (a.amount > 0 && a.amount < this.magicNumber)
-				{
-					totalPowered += a.amount;
-					a.amount -= a.amount;
-				}
+				totalPowered += this.magicNumber; 
+				//System.out.println("theDuelist:HarpieFeather:use() ---> found buff: " + a.name);
 			}
 		}
-		
-		block(totalPowered * 2);
+		block(totalPowered);
     }
 
     // Which card to return when making a copy of this card.

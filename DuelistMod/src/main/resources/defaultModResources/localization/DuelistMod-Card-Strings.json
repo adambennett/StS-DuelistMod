@@ -196,8 +196,8 @@
 	},
 	"theDuelist:HarpieFeather": {
 		"NAME": "Harpie Feather Duster",
-		"DESCRIPTION": "Remove !M! stack from every buff you have. Gain Block equal to twice the number of stacks removed.",
-		"UPGRADE_DESCRIPTION": "Remove !M! stacks from every buff you have. Gain Block equal to twice the number of stacks removed."
+		"DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have.",
+		"UPGRADE_DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have."
 	},
 	"theDuelist:Hinotoma": {
 		"NAME": "Hinotoma",
@@ -452,7 +452,7 @@
 	"theDuelist:TimeWizard": {
 		"NAME": "Time Wizard",
 		"DESCRIPTION": "Summon 1. NL At the start of turn, a random positive action is triggered.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, a random positive action is triggered. When you Tribute this monster, a random positive action is triggered."
+		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, a random positive action is triggered."
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
@@ -501,8 +501,8 @@
 	},
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "Superheavy Waraji",
-		"DESCRIPTION": "Tribute 4. NL Gain !M! dexterity. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 4. NL Gain !M! dexterity. NL Gain !B! Block. NL Exhaust."
+		"DESCRIPTION": "Tribute 2. NL Gain !M! dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !M! dexterity. NL Gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
@@ -761,13 +761,13 @@
 	},
 	"theDuelist:Mountain": {
 		"NAME": "Mountain",
-		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
-		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
+		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
+		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
 	},
 	"theDuelist:Yami": {
 		"NAME": "Yami",
-		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
-		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
+		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
+		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
 	},
 	"theDuelist:MachineKing": {
 		"NAME": "Machine King",
@@ -837,7 +837,32 @@
 	"theDuelist:SwordDeepSeated": {
 		"NAME": "Sword of Deep-Seated",
 		"DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copies of this card to your draw pile, plus !M! more copies for each Sword of Deep-Seated you have played this combat.",
-		"UPGRADE_DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copies of this card to your draw pile, plus !M! more copies for each Sword of Deep-Seated you have played this combat. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copy of this card to your draw pile, plus !M! more copy for each Sword of Deep-Seated you have played this combat. NL Exhaust."
+	},
+	"theDuelist:MonsterEgg": {
+		"NAME": "Monster Egg",
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Create a random monster and play it on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Create a random upgraded monster and play it on the target enemy."
+	},
+	"theDuelist:SteamTrainKing": {
+		"NAME": "Steam Train King",
+		"DESCRIPTION": "Tribute 3. NL Exhaust every monster in your draw pile. NL Deal damage equal to the combined total damage of all monsters exhausted. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Exhaust every monster in your draw pile. NL Deal damage equal to the combined total damage of all monsters exhausted. NL Exhaust."
+	},
+	"theDuelist:MachineFactory": {
+		"NAME": "Machine Factory",
+		"DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Channel an additional Glitch. NL Exhaust."
+	},
+	"theDuelist:Wiseman": {
+		"NAME": "Wiseman's Chalice",
+		"DESCRIPTION": "Purge. NL Gain 1 Potion slot.",
+		"UPGRADE_DESCRIPTION": "Purge. NL Gain 1 Potion slot."
+	},
+	"theDuelist:KuribohToken": {
+		"NAME": "Kuriboh Token",
+		"DESCRIPTION": "Gain Intangible when Tributed.",
+		"UPGRADE_DESCRIPTION": "Gain Intangible when Tributed."
 	},
 	"theDuelist:ExplosiveToken": {
 		"NAME": "Exploding Token",

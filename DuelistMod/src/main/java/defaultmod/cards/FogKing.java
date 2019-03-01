@@ -25,7 +25,7 @@ public class FogKing extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -52,9 +52,10 @@ public class FogKing extends DuelistCard
     {
     	int damageIncrease = 0;
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	if (upgraded && tributeList.size() > 0) { for (DuelistCard c : tributeList) { damageIncrease += c.baseDamage + 3; }}
-    	else if (!upgraded && tributeList.size() > 0) { for (DuelistCard c : tributeList) { damageIncrease += c.baseDamage; }}
+    	if (upgraded && tributeList.size() > 0) { for (DuelistCard c : tributeList) { damageIncrease += c.baseDamage + 3; System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);}}
+    	else if (!upgraded && tributeList.size() > 0) { for (DuelistCard c : tributeList) { damageIncrease += c.baseDamage; System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);}}
     	this.baseDamage = this.damage += damageIncrease;
+    	System.out.println("theDuelist:FogKing:use() ---> damageIncrease: " + damageIncrease);
     	attack(m, AFX, this.damage);
     }
 

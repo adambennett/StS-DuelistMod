@@ -4,7 +4,7 @@
   <groupId>duelistmod</groupId>
   <artifactId>DuelistMod</artifactId>
   <name>DuelistMod</name>
-  <version>1.168.0</version>
+  <version>1.171.0</version>
   <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
   <build>
     <finalName>DuelistMod</finalName>
@@ -94,7 +94,7 @@
   </dependencies>
   <properties>
     <ModTheSpire.version>3.8.3</ModTheSpire.version>
-    <BaseMod.version>5.11.0</BaseMod.version>
+    <BaseMod.version>5.12.0</BaseMod.version>
     <StSLib.version>1.14.0</StSLib.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <Conspire.version>1.5.5</Conspire.version>

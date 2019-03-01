@@ -42,7 +42,7 @@ public class SwordDeepSeated extends DuelistCard
 
     public SwordDeepSeated() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.METAL_RAIDERS);

@@ -1,9 +1,10 @@
 package defaultmod.powers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -21,8 +22,7 @@ public class TimeWizardPower extends AbstractPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DefaultMod.makePath(DefaultMod.TIME_WIZARD_POWER);
-    
-    private String lastAction = "None.";
+    private static ArrayList<String> lastTurnActions = new ArrayList<String>();
 
     public TimeWizardPower(final AbstractCreature owner, final AbstractCreature source, int newAmount) 
     {
@@ -34,6 +34,8 @@ public class TimeWizardPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = newAmount;
+        lastTurnActions = new ArrayList<String>();
+        lastTurnActions.add("None");
         this.updateDescription();
     }
     
@@ -47,8 +49,12 @@ public class TimeWizardPower extends AbstractPower
     @Override
     public void atStartOfTurn() 
     {
+    	lastTurnActions = new ArrayList<String>();
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
-    	lastAction = RandomActionHelper.triggerRandomAction(this.amount, false);
+    	for (int i = 0; i < this.amount; i++)
+    	{
+    		lastTurnActions.add(RandomActionHelper.triggerRandomAction(1, false));
+    	}
     	updateDescription();
     }
     
@@ -69,7 +75,25 @@ public class TimeWizardPower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	if (this.amount < 2) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + lastAction; }
-    	else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2] + lastAction;}
+    	if (this.amount < 2 && this.amount > 0)
+		{
+			String actionString = "";
+			for (String s : lastTurnActions) { actionString += s + ", "; }
+			int endingIndex = actionString.lastIndexOf(",");
+	        String finalActionString = actionString.substring(0, endingIndex) + ".";
+	        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + finalActionString;
+		}
+		else if (this.amount >= 2)
+		{
+			String actionString = "";
+			for (String s : lastTurnActions) { actionString += s + ", "; }
+			int endingIndex = actionString.lastIndexOf(",");
+	        String finalActionString = actionString.substring(0, endingIndex) + ".";
+	        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2] + finalActionString;
+		} 
+		else
+		{
+			 this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + "None.";
+		}
     }
 }

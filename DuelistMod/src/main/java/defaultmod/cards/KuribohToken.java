@@ -14,9 +14,9 @@ import defaultmod.patches.*;
 public class KuribohToken extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DefaultMod.makeID("ExplosiveToken");
+    public static final String ID = DefaultMod.makeID("KuribohToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.GREEDPOT_AVATAR);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.KURIBOH_TOKEN);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -30,7 +30,7 @@ public class KuribohToken extends DuelistCard
     private static final int COST = -1;
     // /STAT DECLARATION/
 
-    public KuribohToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.BAD_TRIB); }
+    public KuribohToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.GOOD_TRIB); this.tags.add(DefaultMod.TOKEN); }
     public KuribohToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.BAD_TRIB); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { }
     @Override public AbstractCard makeCopy() { return new KuribohToken(); }

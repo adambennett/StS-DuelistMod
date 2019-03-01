@@ -29,8 +29,8 @@ public class Token extends DuelistCard
     private static final int COST = -1;
     // /STAT DECLARATION/
 
-    public Token() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
-    public Token(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
+    public Token() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.TOKEN); }
+    public Token(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.TOKEN); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) { }
     @Override public AbstractCard makeCopy() { return new Token(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }

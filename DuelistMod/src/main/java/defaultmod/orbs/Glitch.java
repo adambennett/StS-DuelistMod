@@ -73,6 +73,8 @@ public class Glitch extends AbstractOrb
 		passiveActions.add("#yOjamania");	passiveActions.add("Increase this orb's Passive amount by #b1");	
 		passiveActions.add("Increase this orb's Evoke amount by #b1");	passiveActions.add("Increase this orb's Evoke amount by #b1");
 		passiveActions.add("Increase this orb's Evoke amount by #b1");	passiveActions.add("Increase this orb's Evoke amount by #b2");
+		passiveActions.add("Gain 1 [E] "); passiveActions.add("Channel a Glitch"); passiveActions.add("Channel a Buffer");
+		passiveActions.add("Gain #b3 Artifacts");
 		passiveActionSize = passiveActions.size();
 		
 		// Setup evoke action list
@@ -84,6 +86,8 @@ public class Glitch extends AbstractOrb
 		evokeActions.add("Gain #b15 #yBlock");	evokeActions.add("#ySummon #b1");	evokeActions.add("#ySummon #b2");
 		evokeActions.add("#yIncrement #b1");	evokeActions.add("#yIncrement #b2");
 		evokeActions.add("#yOjamania");	evokeActions.add("Orb slots+1");
+		evokeActions.add("Gain 1 [E] "); evokeActions.add("Channel a Glitch"); evokeActions.add("Channel a Buffer");
+		evokeActions.add("Gain #b3 Artifacts");
 		evokeActionSize = evokeActions.size();
 	}
 
@@ -265,6 +269,30 @@ public class Glitch extends AbstractOrb
 				break;
 			case "Orb slots+1":
 				AbstractDungeon.player.increaseMaxOrbSlots(1, true);
+				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				break;
+			case "Gain 1 [E] ":
+				DuelistCard.gainEnergy(1);
+				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				break;
+			case "Channel a Glitch":
+				AbstractOrb glitch = new Glitch();
+				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				DuelistCard.channel(glitch);
+				break;
+			case "Channel a Buffer":
+				AbstractOrb buffer = new Buffer();
+				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				DuelistCard.channel(buffer);
+				break;
+			case "Gain #b3 Artifacts":
+				AbstractPower art = new ArtifactPower(AbstractDungeon.player, 3);
+				DuelistCard.applyPowerToSelf(art);
+				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				break;
+			default:
+				String randomAction = evokeActions.get(AbstractDungeon.cardRandomRng.random(evokeActions.size() - 1));
+				System.out.println("theDuelist:Glitch:runAction ---> triggered (default): " + string);
 				break;
 		}
 		
