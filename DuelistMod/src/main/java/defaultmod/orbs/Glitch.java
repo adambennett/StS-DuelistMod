@@ -235,6 +235,7 @@ public class Glitch extends AbstractOrb
 				{
 					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 					card.costForTurn = 0;
+					card.isCostModifiedForTurn = true;
 					if (this.evokeAmount > 3) { card.upgrade(); }
 					DuelistCard.addCardToHand(card);
 				}

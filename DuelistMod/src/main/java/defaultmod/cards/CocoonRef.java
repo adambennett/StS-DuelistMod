@@ -30,12 +30,10 @@ public class CocoonRef extends DuelistCard
 
     public CocoonRef() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 12;
+        this.baseBlock = this.block = 16;
         this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.COCOON);
-        this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.NOT_ADDED);
         this.originalName = this.name;
         this.misc = 0;
         

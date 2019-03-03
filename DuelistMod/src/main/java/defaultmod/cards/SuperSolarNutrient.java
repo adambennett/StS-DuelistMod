@@ -10,30 +10,31 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 
-public class FluteSummoning extends DuelistCard 
+public class SuperSolarNutrient extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("FluteSummoning");
+    public static final String ID = DefaultMod.makeID("SuperSolarNutrient");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.FLUTE_SUMMONING);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.SUPER_SOLAR_NUTRIENT);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
-    private static final int CARDS = 2;
+    private static final int COST = 0;
+    private static final int CARDS = 3;
     // /STAT DECLARATION/
 
-    public FluteSummoning() {
+    public SuperSolarNutrient() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.ALL);
 		this.originalName = this.name;
 		this.exhaust = true;
     }
@@ -46,10 +47,8 @@ public class FluteSummoning extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.DRAGON);
-			int randomNum = AbstractDungeon.cardRandomRng.random(1, 4);
-			//card.costForTurn = randomNum;
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.INSECT, DefaultMod.COCOON);
+			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
 			randomMonster.costForTurn = randomNum;
 			randomMonster.isCostModifiedForTurn = true;
 			if (this.upgraded) { randomMonster.upgrade(); }
@@ -60,7 +59,7 @@ public class FluteSummoning extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new FluteSummoning();
+        return new SuperSolarNutrient();
     }
 
     // Upgraded stats.

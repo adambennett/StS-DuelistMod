@@ -57,6 +57,7 @@ public class CardDestruction extends DuelistCard
 	    	{
 	    		DuelistCard randomMonster = (DuelistCard) returnTrulyRandomDuelistCard();
 				randomMonster.costForTurn = 0;
+				randomMonster.isCostModifiedForTurn = true;
 				addCardToHand(randomMonster);
 	    	}
     	}

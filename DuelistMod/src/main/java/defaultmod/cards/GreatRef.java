@@ -34,12 +34,10 @@ public class GreatRef extends DuelistCard
     public GreatRef() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 15;
-        this.baseBlock = this.block = 5;
         this.poisonAmt = this.baseMagicNumber = this.magicNumber = 25;
         this.tributes = 3;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.NOT_ADDED);
-        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
         this.purgeOnUse = true;
     }
@@ -49,7 +47,6 @@ public class GreatRef extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	block(this.block);
     	attack(m, AFX, this.damage);
     	applyPower(new PoisonPower(m, p, this.poisonAmt), m);
     	if (upgraded) { addCardToHand(new PetitMoth()); }

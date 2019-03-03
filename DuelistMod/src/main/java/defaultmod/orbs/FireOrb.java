@@ -57,6 +57,7 @@ public class FireOrb extends AbstractOrb
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
 			randomMonster.costForTurn = 0;
+			randomMonster.isCostModifiedForTurn = true;
 			DuelistCard.addCardToHand(randomMonster);
 			System.out.println("theDuelist:Fire --- > Added: " + randomMonster.name + " to player hand.");
 		}

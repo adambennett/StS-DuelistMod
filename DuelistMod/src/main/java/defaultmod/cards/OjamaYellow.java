@@ -57,6 +57,7 @@ public class OjamaYellow extends DuelistCard
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
 			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
 			randomMonster.costForTurn = randomNum;
+			randomMonster.isCostModifiedForTurn = true;
 			addCardToHand(randomMonster);
 		}
 	}
@@ -97,31 +98,13 @@ public class OjamaYellow extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		for (int i = 0; i < this.magicNumber; i++)
-		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
-			randomMonster.costForTurn = randomNum;
-			addCardToHand(randomMonster);
-		}
-
+	
 	}
 
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		for (int i = 0; i < this.magicNumber; i++)
-		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
-			randomMonster.costForTurn = randomNum;
-			addCardToHand(randomMonster);
-		}
-		
+
 	}
 
 

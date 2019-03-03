@@ -1,26 +1,22 @@
 package defaultmod.cards;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 
-import basemod.ReflectionHacks;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
+import defaultmod.powers.VioletCrystalPower;
 
-public class PetitMoth extends DuelistCard 
+public class BasicInsect extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DefaultMod.makeID("PetitMoth");
+    public static final String ID = DefaultMod.makeID("BasicInsect");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.PETIT_MOTH);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.BASIC_INSECT);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -32,24 +28,20 @@ public class PetitMoth extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
-    public PetitMoth() {
+    public BasicInsect() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 12;
+        this.baseBlock = this.block = 4;
         this.summons = 1;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.INSECT);
         this.originalName = this.name;
         this.isSummon = true;
-        this.exhaust = true;
-        tooltips = new ArrayList<>();
-		tooltips.add(new CocoonRef());
-		tooltips.add(new GreatRef());
     }
 
     // Actions the card should do.
@@ -58,12 +50,13 @@ public class PetitMoth extends DuelistCard
     {
     	summon(p, this.summons, this);
     	block(this.block);
+    	applyPower(new PoisonPower(m, p, this.magicNumber), m);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new PetitMoth();
+        return new BasicInsect();
     }
 
     // Upgraded stats.
@@ -71,41 +64,12 @@ public class PetitMoth extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
     
-    @Override
-	public void renderCardTip(SpriteBatch sb) {
-		super.renderCardTip(sb);
-		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
-
-		int count = 0;
-		if (!Settings.hideCards && renderTip) {
-			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
-				return;
-			}
-			for (AbstractCard c : tooltips) {
-				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
-				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
-				if (current_x > Settings.WIDTH * 0.75f) {
-					c.current_x = current_x + dx;
-				} else {
-					c.current_x = current_x - dx;
-				}
-				if (count == 0) {
-					c.current_y = current_y + dy;
-				} else {
-					c.current_y = current_y - dy;
-				}
-				c.drawScale = drawScale * 0.8f;
-				c.render(sb);
-				count++;
-			}
-		}
-	}
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
@@ -113,33 +77,6 @@ public class PetitMoth extends DuelistCard
 		// Check for insect
 		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 5); }
 		else if (tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 3); }
-		
-		// Check for cocoon
-		if (tributingCard.hasTag(DefaultMod.COCOON))
-		{
-			if (tributingCard.upgraded)
-			{
-				if (player().hasPower(CocoonPower.POWER_ID))
-				{
-					CocoonPower power = (CocoonPower) player().getPower(CocoonPower.POWER_ID);
-					power.amount++;
-					power.updateDescription();
-				}
-				else { applyPowerToSelf(new CocoonPower(player(), player(), 0, 2)); }
-			}
-			
-			else
-			{
-				if (player().hasPower(CocoonPower.POWER_ID))
-				{
-					CocoonPower power = (CocoonPower) player().getPower(CocoonPower.POWER_ID);
-					power.amount++;
-					power.updateDescription();
-				}
-				else { applyPowerToSelf(new CocoonPower(player(), player(), 0, 3)); }
-			}
-			
-		}
 	}
 
 

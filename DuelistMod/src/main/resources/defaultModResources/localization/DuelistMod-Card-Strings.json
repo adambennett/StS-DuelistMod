@@ -369,6 +369,11 @@
 		"DESCRIPTION": "Summon 1. NL Resummon a copy of a random monster from your discard pile.",
 		"UPGRADE_DESCRIPTION": "Summon 1. NL Resummon an upgraded copy of a random monster from your discard pile."
 	},
+	"theDuelist:Gigaplant": {
+		"NAME": "Gigaplant",
+		"DESCRIPTION": "Insect NL Tribute 3. NL Apply 10 Poison. NL Resummon an upgraded copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute 2. NL Apply 10 Poison. NL Resummon upgraded copies of !M! random monsters from your discard pile."
+	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
 		"DESCRIPTION": "Whenever you lose HP, Increment !M!.",
@@ -659,6 +664,11 @@
 		"DESCRIPTION": "Tribute 2. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block.",
 		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block."
 	},
+	"theDuelist:MetalDragon": {
+		"NAME": "Metal Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 4. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block."
+	},
 	"theDuelist:CaveDragon": {
 		"NAME": "Cave Dragon",
 		"DESCRIPTION": "Dragon NL Summon 1. NL Gain !B! Block.",
@@ -786,8 +796,13 @@
 	},
 	"theDuelist:BookSecret": {
 		"NAME": "Book Secret Arts",
-		"DESCRIPTION": "Add 2 randomized Spellcasters to your hand. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Add 3 randomized, upgraded Spellcasters to your hand. Exhaust."
+		"DESCRIPTION": "Add !M! randomized Spellcasters to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Spellcasters to your hand. Exhaust."
+	},
+	"theDuelist:SuperSolarNutrient": {
+		"NAME": "Super Solar Nutrient",
+		"DESCRIPTION": "Add !M! randomized Insects to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Insects to your hand. Exhaust."
 	},
 	"theDuelist:HeavyStorm": {
 		"NAME": "Heavy Storm",
@@ -913,6 +928,11 @@
 		"NAME": "Predaponics",
 		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff.",
 		"UPGRADE_DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff."
+	},
+	"theDuelist:BasicInsect": {
+		"NAME": "Basic Insect",
+		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Apply !M! Poison."
 	},
 	"theDuelist:Wiseman": {
 		"NAME": "Wiseman's Chalice",

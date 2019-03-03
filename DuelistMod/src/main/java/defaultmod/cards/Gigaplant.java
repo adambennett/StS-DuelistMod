@@ -6,91 +6,57 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.interfaces.RandomEffectsHelper;
+import defaultmod.actions.unique.PlayRandomFromDiscardAction;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
-public class OjamaKing extends DuelistCard 
+public class Gigaplant extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("OjamaKing");
+    public static final String ID = DefaultMod.makeID("Gigaplant");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.OJAMA_KING);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.GIGAPLANT);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-
+    
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static final int TRIBUTES = 2;
-    private static int MIN_BUFF_TURNS_ROLL = 1;
-    private static int MAX_BUFF_TURNS_ROLL = 3;
-    private static int MIN_DEBUFF_TURNS_ROLL = 1;
-    private static int MAX_DEBUFF_TURNS_ROLL = 6;
-    private static int RAND_CARDS = 2;
-    private static int RAND_BUFFS = 1;
-    private static int RAND_DEBUFFS = 2;
     // /STAT DECLARATION/
 
-    public OjamaKing() {
+    public Gigaplant() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.OJAMA);
-        this.tags.add(DefaultMod.REPLAYSPIRE);
-        this.misc = 0;
+        this.tags.add(DefaultMod.NO_PUMPKIN);
+        this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.INSECT);
+        this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tributes = 3;
 		this.originalName = this.name;
+		this.baseMagicNumber = this.magicNumber = 1;
     }
 
-    
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Tribute
-		tribute(p, TRIBUTES, false, this);
-
-		// Add 5 random cards to hand, set cost to 0
-		for (int i = 0; i < RAND_CARDS; i++)
-		{
-			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			card.costForTurn = 0;
-			card.isCostModifiedForTurn = true;
-			if (upgraded) { card.upgrade(); }
-			card.isEthereal = true;
-			card.rawDescription = "Ethereal. NL " + card.rawDescription;
-			addCardToHand(card);
-		}
-		
-		// Give self 3 random buffs
-		for (int i = 0; i < RAND_BUFFS; i++)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL);
-			applyRandomBuffPlayer(p, randomTurnNum, false);
-		}
-		
-		// Give 3 random debuffs to enemy
-		for (int i = 0; i < RAND_DEBUFFS; i++)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum), m);
-		}
-		
-		// Give 3 Spell Counters to enemy
-		//applyPower(new SpellCounterPower(p, p, COUNTERS), m);
-
+    	tribute(p, this.tributes, false, this);
+    	applyPower(new PoisonPower(m, p, 10), m);
+    	AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(this.magicNumber, true, m));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new OjamaKing();
+        return new Gigaplant();
     }
 
     // Upgraded stats.
@@ -98,9 +64,8 @@ public class OjamaKing extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
-            MAX_DEBUFF_TURNS_ROLL = 8;
-            MAX_BUFF_TURNS_ROLL = 5;
+            this.upgradeMagicNumber(1);
+            this.tributes = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -128,18 +93,19 @@ public class OjamaKing extends DuelistCard
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
 
-
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		// Check for insect
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 5); }
+		else if (tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 3); }
 	}
 
 
@@ -149,20 +115,18 @@ public class OjamaKing extends DuelistCard
 		
 	}
 
-
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var)
+	{
+	
 		
 	}
 
-
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
+	{
 		
 	}
-
 
 	@Override
 	public String getID() {

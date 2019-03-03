@@ -53,6 +53,7 @@ public class BookSecret extends DuelistCard
 			int randomNum = AbstractDungeon.cardRandomRng.random(1, 4);
 			//card.costForTurn = randomNum;
 			randomMonster.costForTurn = randomNum;
+			randomMonster.isCostModifiedForTurn = true;
 			if (this.upgraded) { randomMonster.upgrade(); }
 			addCardToHand(randomMonster);
 		}

@@ -168,6 +168,7 @@ public class RandomActionHelper
 				{
 					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 					card.costForTurn = 0;
+					card.isCostModifiedForTurn = true;
 					if (upgradeCards) { card.upgrade(); }
 					DuelistCard.addCardToHand(card);
 				}

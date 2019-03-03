@@ -17,10 +17,11 @@ public class Make0CostHandCardAction extends AbstractGameAction
 	private boolean isOtherCardInCenter = true;
 
 	public Make0CostHandCardAction(AbstractCard card, boolean isOtherCardInCenter) {
-		com.megacrit.cardcrawl.unlock.UnlockTracker.markCardAsSeen(card.cardID);
+		UnlockTracker.markCardAsSeen(card.cardID);
 		card.costForTurn = 0;
+		card.isCostModifiedForTurn = true;
 		this.amount = 1;
-		this.actionType = com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = 0.35F;
 		this.c = card;
 		this.isOtherCardInCenter = isOtherCardInCenter;
@@ -32,10 +33,11 @@ public class Make0CostHandCardAction extends AbstractGameAction
 	}
 
 	public Make0CostHandCardAction(AbstractCard card, int amount) {
-		com.megacrit.cardcrawl.unlock.UnlockTracker.markCardAsSeen(card.cardID);
+		UnlockTracker.markCardAsSeen(card.cardID);
 		card.costForTurn = 0;
+		card.isCostModifiedForTurn = true;
 		this.amount = amount;
-		this.actionType = com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = 0.35F;
 		this.c = card;
 	}
@@ -43,9 +45,10 @@ public class Make0CostHandCardAction extends AbstractGameAction
 	public Make0CostHandCardAction(AbstractCard card, boolean isOtherCardInCenter, String justUseThisFunctionToUpgrade) {
 		UnlockTracker.markCardAsSeen(card.cardID);
 		card.costForTurn = 0;
+		card.isCostModifiedForTurn = true;
 		card.upgrade();
 		this.amount = 1;
-		this.actionType = com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = 0.35F;
 		this.c = card;
 		this.isOtherCardInCenter = isOtherCardInCenter;
