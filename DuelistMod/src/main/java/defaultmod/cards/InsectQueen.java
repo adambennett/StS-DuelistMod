@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 public class InsectQueen extends DuelistCard
 {
@@ -38,6 +38,8 @@ public class InsectQueen extends DuelistCard
 		this.decSummons = 2;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TRIBUTE);
+		this.tags.add(DefaultMod.INSECT);
+		 this.tags.add(DefaultMod.GOOD_TRIB);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -92,9 +94,11 @@ public class InsectQueen extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 	
+	{
+		// Check for insect
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 5); }
+		else if (tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 3); }
 	}
 
 

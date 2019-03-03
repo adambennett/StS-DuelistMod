@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.ReflectionHacks;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.CocoonPower;
+import defaultmod.powers.*;
 
 public class PetitMoth extends DuelistCard 
 {
@@ -43,6 +43,7 @@ public class PetitMoth extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.INSECT);
         this.originalName = this.name;
         this.isSummon = true;
         this.exhaust = true;
@@ -109,6 +110,11 @@ public class PetitMoth extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
+		// Check for insect
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 5); }
+		else if (tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 3); }
+		
+		// Check for cocoon
 		if (tributingCard.hasTag(DefaultMod.COCOON))
 		{
 			if (tributingCard.upgraded)

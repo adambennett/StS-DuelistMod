@@ -177,11 +177,15 @@
 },
 "theDuelist:MountainPower": {
         "NAME": "Mountain",
-        "DESCRIPTIONS": ["Your #yDragons deal #b50% more damage and gain #b50% more block." ]
+        "DESCRIPTIONS": ["Your #yDragons deal #b50% more damage and gain #b50% more block. Whenever you gain #yStrength from Tributing a #yDragon, gain #b1 extra #yStrength." ]
+},
+"theDuelist:VioletCrystalPower": {
+        "NAME": "Violet Crystal",
+        "DESCRIPTIONS": ["Your #yInsects deal #b50% more damage and gain #b50% more block. Whenever you apply #yPoison from Tributing an #yInsect, apply #b2 extra #yPoison." ]
 },
 "theDuelist:YamiPower": {
         "NAME": "Yami",
-        "DESCRIPTIONS": ["Your #ySpellcasters deal #b50% more damage and gain #b50% more block." ]
+        "DESCRIPTIONS": ["Your #ySpellcasters deal #b50% more damage and gain #b50% more block. Whenever you #ySummon a #ySpellcaster, gain #b1 extra #ySummon." ]
 },
 "theDuelist:TimeWizardPower": {
         "NAME": "Time Wizard",

@@ -192,6 +192,7 @@ public abstract class DuelistCard extends CustomCard
 	{
 		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
+		if (this.hasTag(DefaultMod.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 	
@@ -235,6 +236,7 @@ public abstract class DuelistCard extends CustomCard
 	protected void attack(AbstractMonster m, AttackEffect effect, int damageAmount) {
 		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
 		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
+		if (this.hasTag(DefaultMod.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 1.5); }
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect));
 	}
 
@@ -268,7 +270,8 @@ public abstract class DuelistCard extends CustomCard
 	{
 		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
 		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
-		
+		if (this.hasTag(DefaultMod.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
+			
 		// Record target block and remove all of it
 		int targetArmor = m.currentBlock;
 		if (targetArmor > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); }
@@ -1135,6 +1138,11 @@ public abstract class DuelistCard extends CustomCard
 	}
 	
 	public static DuelistCard returnRandomFromArray(ArrayList<DuelistCard> tributeList)
+	{
+		return tributeList.get(AbstractDungeon.cardRandomRng.random(tributeList.size() - 1));
+	}
+	
+	public static AbstractCard returnRandomFromArrayAbstract(ArrayList<AbstractCard> tributeList)
 	{
 		return tributeList.get(AbstractDungeon.cardRandomRng.random(tributeList.size() - 1));
 	}

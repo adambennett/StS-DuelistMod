@@ -44,8 +44,10 @@ public class GreatMoth extends DuelistCard
         this.poisonAmt = this.baseMagicNumber = this.magicNumber = 25;
         this.tributes = 3;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.NOT_ADDED);
         this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.GOOD_TRIB);
         this.originalName = this.name;
         this.purgeOnUse = true;
         tooltips = new ArrayList<>();
@@ -141,8 +143,9 @@ public class GreatMoth extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
+		// Check for insect
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 5); }
+		else if (tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 3); }
 	}
 
 

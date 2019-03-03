@@ -101,6 +101,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags ALL;
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
 	@SpireEnum public static AbstractCard.CardTags COCOON;
+	@SpireEnum public static AbstractCard.CardTags INSECT;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES; // 24 cards
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_SERVANT; //7 cards
@@ -278,8 +279,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String GANDORA = "cards/Gandora.png";
 	public static final String INFINITY_DRAGON = "cards/Infinity_Dragon.png";
 	public static final String LORD_D = "cards/Lord_D.png";
-
-	// Fourth Set
 	public static final String HANE_HANE = "cards/Hane_Hane.png";
 	public static final String LESSER_DRAGON = "cards/Lesser_Dragon.png";
 	public static final String GAIA_DRAGON_CHAMP = "cards/Gaia_Dragon_Champion.png";
@@ -311,6 +310,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String EXPLOSIVE_TOKEN = "cards/Explosive_Token.png";
 	public static final String GREEDPOT_AVATAR = "cards/Greedpot_Avatar.png";
 	public static final String WISEMAN = "cards/Wiseman.png";
+	public static final String MACHINE_FACTORY = "cards/Machine_Conversion_Factory.png";
 	public static final String MONSTER_EGG = "cards/Monster_Egg.png";
 	public static final String STEAM_TRAIN_KING = "cards/Steam_Train_King.png";
 	public static final String SWORD_DEEP_SEATED = "cards/Sword_Deep_Seated.png"; 
@@ -320,118 +320,122 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String GREAT_MOTH = "cards/Great_Moth.png";
 	public static final String CHEERFUL_COFFIN = "cards/Cheerful_Coffin.png";
 	public static final String THE_CREATOR = "cards/The_Creator.png";
+	public static final String POLYMERIZATION = "cards/Polymerization.png";
+	public static final String VIOLET_CRYSTAL = "cards/Violet_Crystal.png";
+	public static final String PREDAPONICS = "cards/Predaponics.png";
+		
+		// Insects
+		public static final String PREDAPLANT_CHIMERAFFLESIA = "cards/Predaplant_Chimerafflesia.png";
+		public static final String PREDAPLANT_CHLAMYDOSUNDEW = "cards/Predaplant_Chlamydosundew.png";
+		public static final String PREDAPLANT_DROSOPHYLLUM = "cards/Predaplant_Drosophyllum.png";
+		public static final String PREDAPLANT_FLYTRAP = "cards/Predaplant_Flytrap.png";
+		public static final String PREDAPLANT_PTERAPENTHES = "cards/Predaplant_Pterapenthes.png";
+		public static final String PREDAPLANT_SARRACENIANT = "cards/Predaplant_Sarraceniant.png";
+		public static final String PREDAPLANT_SPINODIONAEA = "cards/Predaplant_Spinodionaea.png";
+		public static final String EMPRESS_MANTIS = "cards/Empress_Mantis.png";
+		public static final String GIGAPLANT = "cards/Gigaplant.png";
+		public static final String GRASSCHOPPER = "cards/Grasschopper.png";
+		public static final String MAN_EATER = "cards/Man_Eater_Bug.png";
+		public static final String PREDAPRUNING = "cards/Predapruning.png";
+		public static final String SUPER_SOLAR_NUTRIENT = "cards/Super_Solar_Nutrient.png";
+		public static final String BASIC_INSECT = "cards/Basic_Insect.png";
+		// Dragons
+		public static final String B_SKULL_DRAGON = "cards/B_Skull_Dragon.png";
+		public static final String DARKFIRE_DRAGON = "cards/Darkfire_Dragon.png";
+		public static final String LEVIA_DRAGON = "cards/Levia_Dragon_Daedalus.png";
+		public static final String METAL_DRAGON = "cards/Metal_Dragon.png";
+		public static final String OCEAN_LORD = "cards/Ocean_Lord.png";
+		public static final String TRIHORNED_DRAGON = "cards/TriHorned_Dragon.png";
+		
+		// Other
+		public static final String WIRETAP = "cards/Wiretap.png";		// copy random card in hand - basically do polymerization but add card to hand
+		public static final String JINZO = "cards/Jinzo.png";			// your traps cost 0 power
 	
 
-	// Expansion Set
-	public static final String FINAL_FLAME = "cards/Final_Flame.png";
-	public static final String GOBLIN_SECRET = "cards/Goblin_Secret_Remedy.png";
-	public static final String MACHINE_FACTORY = "cards/Machine_Conversion_Factory.png";
-	public static final String POLYMERIZATION = "cards/Polymerization.png";
-	public static final String SPARKS = "cards/Sparks.png";    
-	public static final String LAVA_BATTLEGUARD = "cards/Lava_Battleguard.png";
-	public static final String SWAMP_BATTLEGUARD = "cards/Swamp_Battleguard.png";
-	public static final String TWIN_HEADED_FIRE = "cards/Twin_Headed_Fire_Dragon.png";
-	public static final String TWIN_HEADED_THUNDER = "cards/Twin_Headed_Thunder_Dragon.png";
-	public static final String RYU_RAN = "cards/Ryu_Ran.png";
-	public static final String HAYABUSA_KNIGHT = "cards/Hayabusa_Knight.png";
-	public static final String MANGA_RYU_RAN = "cards/Manga_Ryu_Ran.png";
-	public static final String TOON_ANCIENT_GEAR = "cards/Toon_Ancient_Gear.png";
-	public static final String TOON_CYBER_DRAGON = "cards/Toon_Cyber_Dragon.png";
-	public static final String TOON_GOBLIN_ATTACK = "cards/Toon_Goblin_Attack_Force.png";
-	public static final String WHITE_MAGICAL_HAT = "cards/White_Magical_Hat.png";
-	public static final String ILLUSIONIST = "cards/Illusionist_Faceless_Mage.png";
-	public static final String DRAGON_PIPER = "cards/Dragon_Piper.png";
-	public static final String HARPIES_BROTHER = "cards/Harpies_Brother.png";
-	public static final String HARPIE_LADY = "cards/Harpie_Lady.png";
-	public static final String HARPIE_LADY_PHO = "cards/Harpie_Lady_Phoneix.png";
-	public static final String HARPIE_LADY_SISTERS = "cards/Harpie_Lady_Sisters.png";
-	public static final String ELEGANT_EGOTIST = "cards/Elegant_Egotist.png";
-	public static final String B_SKULL_DRAGON = "cards/B_Skull_Dragon.png";
-	public static final String DARKFIRE_DRAGON = "cards/Darkfire_Dragon.png";
-	public static final String LEVIA_DRAGON = "cards/Levia_Dragon_Daedalus.png";
-	public static final String LUSTER_DRAGON = "cards/Luster_Dragon.png";
-	public static final String LUSTER_DRAGON2 = "cards/Luster_Dragon2.png";
-	public static final String METAL_DRAGON = "cards/Metal_Dragon.png";
-	public static final String OCEAN_LORD = "cards/Ocean_Lord.png";
-	public static final String TRIHORNED_DRAGON = "cards/TriHorned_Dragon.png";
-	public static final String TWIN_BARREL_DRAGON = "cards/Twin_Barrel_Dragon.png";
-	public static final String TWIN_HEADED = "cards/Twin_Headed_Thunder_Dragon.png";
-	public static final String TYRANT_DRAGON = "cards/Tyrant_Dragon.png";
-	public static final String YAMATA_DRAGON = "cards/Yamata_Dragon.png";
-	public static final String ATTACK_RECEIVE = "cards/Attack_Receive.png";
-	public static final String BASIC_INSECT = "cards/Basic_Insect.png";
-	public static final String BEAST_FANGS = "cards/Beast_Fangs.png";
-	public static final String BEAVER_WARRIOR = "cards/Beaver_Warrior.png";
-	public static final String CHARUBIN = "cards/Charubin_Fire_Knight.png";
-	public static final String COMIC_HAND = "cards/Comic_Hand.png";
-	public static final String DARK_ENERGY = "cards/Dark_Energy.png";
-	public static final String DARK_GRAY = "cards/Dark_Gray.png";
-	public static final String EMPRESS_MANTIS = "cards/Empress_Mantis.png";
-	public static final String EXODIA_NECROSS = "cards/Exodia_Necross.png";
-	public static final String EXXOD_MASTER = "cards/Exxod_Master_Guard.png";
-	public static final String FERAL_IMP = "cards/Feral_Imp.png";
-	public static final String FIENDISH_CHAIN = "cards/Fiendish_Chain.png";
-	public static final String FIREGRASS = "cards/Firegrass.png";
-	public static final String FLAME_MANIPULATOR = "cards/Flame_Manipulator.png";
-	public static final String GARNECIA_ELEFANTIS = "cards/Garnecia_Elefantis.png";
-	public static final String GEARFRIED = "cards/Gearfried.png";
-	public static final String GIGAPLANT = "cards/Gigaplant.png";
-	public static final String GRAND_HORN_HEAVEN = "cards/Grand_Horn_Heaven.png";
-	public static final String GRASSCHOPPER = "cards/Grasschopper.png";
-	public static final String GRAVEROBBER = "cards/Graverobber.png";
-	public static final String GUARDIAN_THRONE = "cards/Guardian_Throne_Room.png";
-	public static final String HITOTSU_GIANT = "cards/Hitotsu_Me_Giant.png";
-	public static final String JINZO = "cards/Jinzo.png";
-	public static final String KAISER_SEA_HORSE = "cards/Kaiser_Sea_Horse.png";
-	public static final String LEGENDARY_SWORD = "cards/Legendary_Sword.png";
-	public static final String LEGEND_EXODIA = "cards/Legend_Exodia.png";
-	public static final String MAMMOTH_GRAVEYARD = "cards/Mammoth_Graveyard.png";
-	public static final String MAN_EATER = "cards/Man_Eater_Bug.png";
-	public static final String NATURIA_BEAST = "cards/Naturia_Beast.png";
-	public static final String NATURIA_CLIFF = "cards/Naturia_Cliff.png";
-	public static final String NATURIA_DRAGONFLY = "cards/Naturia_Dragonfly.png";
-	public static final String NATURIA_GUARDIAN = "cards/Naturia_Guardian.png";
-	public static final String NATURIA_HORNEEDLE = "cards/Naturia_Horneedle.png";
-	public static final String NATURIA_LANDOISE = "cards/Naturia_Landoise.png";
-	public static final String NATURIA_MANTIS = "cards/Naturia_Mantis.png";
-	public static final String NATURIA_PINEAPPLE = "cards/Naturia_Pineapple.png";
-	public static final String NATURIA_PUMPKIN = "cards/Naturia_Pumpkin.png";
-	public static final String NATURIA_ROSEWHIP = "cards/Naturia_Rosewhip.png";
-	public static final String NATURIA_SACRED_TREE = "cards/Naturia_Sacred_Tree.png";
-	public static final String NATURIA_STRAWBERRY = "cards/Naturia_Strawberry.png";
-	public static final String NEMURIKO = "cards/Nemuriko.png";
-	public static final String NUMINOUS_HEALER = "cards/Numinous_Healer.png";
-	public static final String OBLITERATE = "cards/Obliterate.png";
-	public static final String POWER_KAISHIN = "cards/Power_Kaishin.png";
-	public static final String PREDAPLANT_CHIMERAFFLESIA = "cards/Predaplant_Chimerafflesia.png";
-	public static final String PREDAPLANT_CHLAMYDOSUNDEW = "cards/Predaplant_Chlamydosundew.png";
-	public static final String PREDAPLANT_DROSOPHYLLUM = "cards/Predaplant_Drosophyllum.png";
-	public static final String PREDAPLANT_FLYTRAP = "cards/Predaplant_Flytrap.png";
-	public static final String PREDAPLANT_PTERAPENTHES = "cards/Predaplant_Pterapenthes.png";
-	public static final String PREDAPLANT_SARRACENIANT = "cards/Predaplant_Sarraceniant.png";
-	public static final String PREDAPLANT_SPINODIONAEA = "cards/Predaplant_Spinodionaea.png";
-	public static final String PREDAPONICS = "cards/Predaponics.png";
-	public static final String PREDAPRUNING = "cards/Predapruning.png";
-	public static final String RELINKURIBOH = "cards/Relinkuriboh.png";
-	public static final String SANGAN = "cards/Sangan.png";
-	public static final String SAUROPOD_BRACHION = "cards/Sauropod Brachion.png";
-	public static final String SILVER_FANG = "cards/Silver_Fang.png";
-	public static final String SKULL_SERVANT = "cards/Skull_Servant.png";
-	public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
-	public static final String SUPERCONDUCTOR_TYRANNO = "cards/Super_Conductor_Tyranno.png";
-	public static final String SUPER_SOLAR_NUTRIENT = "cards/Super_Solar_Nutrient.png";
-	public static final String SWORD_HUNTER = "cards/Sword_Hunter.png";
-	public static final String THIRTEEN_GRAVE = "cards/13th_Grave.png";
-	public static final String THOUSAND_DRAGON = "cards/Thousand_Dragon.png";
-	public static final String THOUSAND_EYES_IDOL = "cards/Thousand_Eyes_Idol.png";
-	public static final String THOUSAND_EYES_RESTRICT = "cards/Thousand_Eyes_Restrict.png";
-	public static final String TRIAL_NIGHTMARE = "cards/Trial_Nightmare.png";
-	public static final String VIOLET_CRYSTAL = "cards/Violet_Crystal.png";
-	public static final String VORSE_RAIDER = "cards/Vorse_Raider.png";
-	public static final String WARRIOR_GREPHER = "cards/Warrior_Dai_Grepher.png";
-	public static final String WINGWEAVER = "cards/Wingweaver.png";
-	public static final String WIRETAP = "cards/Wiretap.png";
-	public static final String ZOMBYRA = "cards/Zombyra.png";
+			// Expansion Set
+			public static final String FINAL_FLAME = "cards/Final_Flame.png";
+			public static final String GOBLIN_SECRET = "cards/Goblin_Secret_Remedy.png";		
+			public static final String SPARKS = "cards/Sparks.png";    
+			public static final String LAVA_BATTLEGUARD = "cards/Lava_Battleguard.png";
+			public static final String SWAMP_BATTLEGUARD = "cards/Swamp_Battleguard.png";
+			public static final String TWIN_HEADED_FIRE = "cards/Twin_Headed_Fire_Dragon.png";
+			public static final String TWIN_HEADED_THUNDER = "cards/Twin_Headed_Thunder_Dragon.png";
+			public static final String RYU_RAN = "cards/Ryu_Ran.png";
+			public static final String HAYABUSA_KNIGHT = "cards/Hayabusa_Knight.png";
+			public static final String MANGA_RYU_RAN = "cards/Manga_Ryu_Ran.png";
+			public static final String TOON_ANCIENT_GEAR = "cards/Toon_Ancient_Gear.png";
+			public static final String TOON_CYBER_DRAGON = "cards/Toon_Cyber_Dragon.png";
+			public static final String TOON_GOBLIN_ATTACK = "cards/Toon_Goblin_Attack_Force.png";
+			public static final String WHITE_MAGICAL_HAT = "cards/White_Magical_Hat.png";
+			public static final String ILLUSIONIST = "cards/Illusionist_Faceless_Mage.png";
+			public static final String DRAGON_PIPER = "cards/Dragon_Piper.png";
+			public static final String HARPIES_BROTHER = "cards/Harpies_Brother.png";
+			public static final String HARPIE_LADY = "cards/Harpie_Lady.png";
+			public static final String HARPIE_LADY_PHO = "cards/Harpie_Lady_Phoneix.png";
+			public static final String HARPIE_LADY_SISTERS = "cards/Harpie_Lady_Sisters.png";
+			public static final String ELEGANT_EGOTIST = "cards/Elegant_Egotist.png";	
+			public static final String TWIN_BARREL_DRAGON = "cards/Twin_Barrel_Dragon.png";
+			public static final String TWIN_HEADED = "cards/Twin_Headed_Thunder_Dragon.png";
+			public static final String TYRANT_DRAGON = "cards/Tyrant_Dragon.png";
+			public static final String YAMATA_DRAGON = "cards/Yamata_Dragon.png";
+			public static final String ATTACK_RECEIVE = "cards/Attack_Receive.png";	
+			public static final String BEAST_FANGS = "cards/Beast_Fangs.png";
+			public static final String BEAVER_WARRIOR = "cards/Beaver_Warrior.png";
+			public static final String CHARUBIN = "cards/Charubin_Fire_Knight.png";
+			public static final String COMIC_HAND = "cards/Comic_Hand.png";
+			public static final String DARK_ENERGY = "cards/Dark_Energy.png";
+			public static final String DARK_GRAY = "cards/Dark_Gray.png";	
+			public static final String EXODIA_NECROSS = "cards/Exodia_Necross.png";
+			public static final String EXXOD_MASTER = "cards/Exxod_Master_Guard.png";
+			public static final String FERAL_IMP = "cards/Feral_Imp.png";
+			public static final String FIENDISH_CHAIN = "cards/Fiendish_Chain.png";
+			public static final String FIREGRASS = "cards/Firegrass.png";
+			public static final String FLAME_MANIPULATOR = "cards/Flame_Manipulator.png";
+			public static final String GARNECIA_ELEFANTIS = "cards/Garnecia_Elefantis.png";
+			public static final String GEARFRIED = "cards/Gearfried.png";	
+			public static final String GRAND_HORN_HEAVEN = "cards/Grand_Horn_Heaven.png";	
+			public static final String GRAVEROBBER = "cards/Graverobber.png";
+			public static final String GUARDIAN_THRONE = "cards/Guardian_Throne_Room.png";
+			public static final String HITOTSU_GIANT = "cards/Hitotsu_Me_Giant.png";	
+			public static final String KAISER_SEA_HORSE = "cards/Kaiser_Sea_Horse.png";
+			public static final String LEGENDARY_SWORD = "cards/Legendary_Sword.png";
+			public static final String LEGEND_EXODIA = "cards/Legend_Exodia.png";
+			public static final String LUSTER_DRAGON = "cards/Luster_Dragon.png";
+			public static final String LUSTER_DRAGON2 = "cards/Luster_Dragon2.png";
+			public static final String MAMMOTH_GRAVEYARD = "cards/Mammoth_Graveyard.png";		
+			public static final String NATURIA_BEAST = "cards/Naturia_Beast.png";
+			public static final String NATURIA_CLIFF = "cards/Naturia_Cliff.png";
+			public static final String NATURIA_DRAGONFLY = "cards/Naturia_Dragonfly.png";
+			public static final String NATURIA_GUARDIAN = "cards/Naturia_Guardian.png";
+			public static final String NATURIA_HORNEEDLE = "cards/Naturia_Horneedle.png";
+			public static final String NATURIA_LANDOISE = "cards/Naturia_Landoise.png";
+			public static final String NATURIA_MANTIS = "cards/Naturia_Mantis.png";
+			public static final String NATURIA_PINEAPPLE = "cards/Naturia_Pineapple.png";
+			public static final String NATURIA_PUMPKIN = "cards/Naturia_Pumpkin.png";
+			public static final String NATURIA_ROSEWHIP = "cards/Naturia_Rosewhip.png";
+			public static final String NATURIA_SACRED_TREE = "cards/Naturia_Sacred_Tree.png";
+			public static final String NATURIA_STRAWBERRY = "cards/Naturia_Strawberry.png";
+			public static final String NEMURIKO = "cards/Nemuriko.png";
+			public static final String NUMINOUS_HEALER = "cards/Numinous_Healer.png";
+			public static final String OBLITERATE = "cards/Obliterate.png";
+			public static final String POWER_KAISHIN = "cards/Power_Kaishin.png";		
+			public static final String RELINKURIBOH = "cards/Relinkuriboh.png";
+			public static final String SANGAN = "cards/Sangan.png";
+			public static final String SAUROPOD_BRACHION = "cards/Sauropod Brachion.png";
+			public static final String SILVER_FANG = "cards/Silver_Fang.png";
+			public static final String SKULL_SERVANT = "cards/Skull_Servant.png";
+			public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
+			public static final String SUPERCONDUCTOR_TYRANNO = "cards/Super_Conductor_Tyranno.png";	
+			public static final String SWORD_HUNTER = "cards/Sword_Hunter.png";
+			public static final String THIRTEEN_GRAVE = "cards/13th_Grave.png";
+			public static final String THOUSAND_DRAGON = "cards/Thousand_Dragon.png";
+			public static final String THOUSAND_EYES_IDOL = "cards/Thousand_Eyes_Idol.png";
+			public static final String THOUSAND_EYES_RESTRICT = "cards/Thousand_Eyes_Restrict.png";
+			public static final String TRIAL_NIGHTMARE = "cards/Trial_Nightmare.png";	
+			public static final String VORSE_RAIDER = "cards/Vorse_Raider.png";
+			public static final String WARRIOR_GREPHER = "cards/Warrior_Dai_Grepher.png";
+			public static final String WINGWEAVER = "cards/Wingweaver.png";	
+			public static final String ZOMBYRA = "cards/Zombyra.png";
 
 	// Power images
 	public static final String SUMMON_POWER = "powers/SummonPowerTest.png";
@@ -480,6 +484,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String YAMI_POWER = "powers/YamiPower.png";
 	public static final String TRAP_HOLE_POWER = "powers/TrapHolePower.png";
 	public static final String COCOON_POWER = "powers/CocoonPower.png";
+	public static final String VIOLET_POWER = "powers/VioletPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -905,7 +910,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		//myCards.add(new BadToken()); 		//debug card
 		// END CORE SET
 		
-		// ALL Set - 46 cards ( need 25 more cards here)
+		// ALL Set - 46 cards ( need 22 more cards here)
 		myCards.add(new MachineKing());
 		myCards.add(new BookSecret());
 		myCards.add(new HeavyStorm());
@@ -927,6 +932,9 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new CocoonEvolution());
 		myCards.add(new CheerfulCoffin());
 		myCards.add(new TheCreator());
+		myCards.add(new Polymerization());
+		myCards.add(new VioletCrystal());
+		myCards.add(new Predaponics());
 		// END ALL Set
 		
 		// FULL Set - 22 cards
@@ -1163,12 +1171,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		{ 
 			if (!c.hasTag(DefaultMod.RANDOMONLY))
 			{
-				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); tempCardCount++; 
+				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); tempCardCount++;
 			}
 			else
 			{
-				summonMap.put(c.originalName, c);
-				tempCardCount++;
+				summonMap.put(c.originalName, c);				
 				UnlockTracker.unlockCard(c.getID());
 			}
 		}
@@ -1258,14 +1265,15 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.addKeyword(new String[] {"toon", "Toon"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the tribute, deal #b5 damage to all enemies.");
 		BaseMod.addKeyword(new String[] {"magnet", "Magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
 		BaseMod.addKeyword(new String[] {"ojamania", "Ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
-		BaseMod.addKeyword(new String[] {"dragon", "Dragon"}, "Powerful monster cards. When you Tribute a Dragon for another Dragon, Gain 1 Strength.");
-		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster"}, "Powerful monster cards. When you Tribute a Mystical monster for a Dragon, lose 2 HP.");
+		BaseMod.addKeyword(new String[] {"dragon", "Dragon"}, "When you #yTribute a #yDragon for another #yDragon, Gain #b1 #yStrength.");
+		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster"}, "When you #yTribute a #yMystical monster for a #yDragon, lose #b2 #yHP.");
+		BaseMod.addKeyword(new String[] {"insect", "Insect"}, "When you #yTribute an #yInsect monster for an #yInsect, apply #b3 #yPoison to ALL enemies.");
 		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand.");
 		BaseMod.addKeyword(new String[] {"air", "Air"}, "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1.");
 		BaseMod.addKeyword(new String[] {"fire", "Fire"}, "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn.");
 		BaseMod.addKeyword(new String[] {"glitch", "Glitch"}, "#yOrb: At the start of turn, triggers a random positive action. #yEvoke also triggers random actions.");
 		BaseMod.addKeyword(new String[] {"shadow", "Shadow"}, "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. When #yTributed, [#FF5252]Shadow [#FF5252]Tokens increase the effectiveness of your #yShadow #yOrbs. #yEvoke #yResummons monsters from your discard pile on random enemies.");
-		BaseMod.addKeyword(new String[] {"splash", "Splash"}, "");
+		//BaseMod.addKeyword(new String[] {"splash", "Splash"}, "");
 		
 	}
 

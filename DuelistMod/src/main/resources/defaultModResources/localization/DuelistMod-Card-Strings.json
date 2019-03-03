@@ -216,8 +216,8 @@
 	},
 	"theDuelist:InsectQueen": {
 		"NAME": "Insect Queen",
-		"DESCRIPTION": "Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 2.",
-		"UPGRADE_DESCRIPTION": "Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1."
+		"DESCRIPTION": "Insect NL Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 2.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1."
 	},
 	"theDuelist:JamBreeding": {
 		"NAME": "Jam Breed Machine",
@@ -331,8 +331,8 @@
 	},
 	"theDuelist:Parasite": {
 		"NAME": "Parasite Paracide",
-		"DESCRIPTION": "At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks.",
-		"UPGRADE_DESCRIPTION": "At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks."
+		"DESCRIPTION": "Insect NL Summon 1. NL At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks."
 	},
 	"theDuelist:PotAvarice": {
 		"NAME": "Pot of Avarice",
@@ -774,6 +774,11 @@
 		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
 		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
 	},
+	"theDuelist:VioletCrystal": {
+		"NAME": "Violet Crystal",
+		"DESCRIPTION": "Your Insects deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect, apply 2 extra Poison.",
+		"UPGRADE_DESCRIPTION": "Your Insects deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect, apply 2 extra Poison."
+	},
 	"theDuelist:MachineKing": {
 		"NAME": "Machine King",
 		"DESCRIPTION": "Tribute 1. NL Channel a Glitch.",
@@ -861,13 +866,13 @@
 	},
 	"theDuelist:PetitMoth": {
 		"NAME": "Petit Moth",
-		"DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Exhaust."
+		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:PetitRef": {
 		"NAME": "Petit Moth",
-		"DESCRIPTION": "Summon 1. NL Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block."
+		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block."
 	},
 	"theDuelist:CocoonEvolution": {
 		"NAME": "Cocoon of Evolution",
@@ -881,13 +886,13 @@
 	},
 	"theDuelist:GreatMoth": {
 		"NAME": "Great Moth",
-		"DESCRIPTION": "Purge. NL Tribute 3. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
-		"UPGRADE_DESCRIPTION": "Purge. NL Tribute 3. NL Gain !B! Block. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
+		"DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
 	},
 	"theDuelist:GreatRef": {
 		"NAME": "Great Moth",
-		"DESCRIPTION": "Purge. NL Tribute 3. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
-		"UPGRADE_DESCRIPTION": "Purge. NL Tribute 3. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
+		"DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
 	},
 	"theDuelist:CheerfulCoffin": {
 		"NAME": "Cheerful Coffin",
@@ -898,6 +903,16 @@
 		"NAME": "The Creator",
 		"DESCRIPTION": "Tribute 5. NL Exhaust every card in your draw pile and discard pile. NL Put a 1 cost, Ethereal copy of EVERY Duelist Card in your draw pile.",
 		"UPGRADE_DESCRIPTION": "Tribute 4. NL Exhaust every card in your draw pile and discard pile. NL Put a 1 cost, Ethereal copy of EVERY Duelist Card in your draw pile."
+	},
+	"theDuelist:Polymerization": {
+		"NAME": "Polymerization",
+		"DESCRIPTION": "Play !M! copies of random monsters from your hand on an enemy.",
+		"UPGRADE_DESCRIPTION": "Play !M! copies of random monsters from your hand on an enemy."
+	},
+	"theDuelist:Predaponics": {
+		"NAME": "Predaponics",
+		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff.",
+		"UPGRADE_DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff."
 	},
 	"theDuelist:Wiseman": {
 		"NAME": "Wiseman's Chalice",
