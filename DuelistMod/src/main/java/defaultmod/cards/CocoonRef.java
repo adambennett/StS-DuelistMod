@@ -3,55 +3,56 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.unique.PlayRandomFromDiscardAction;
 import defaultmod.patches.*;
 
-public class Pumprincess extends DuelistCard 
+public class CocoonRef extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DefaultMod.makeID("Pumprincess");
+    public static final String ID = DefaultMod.makeID("CocoonRef");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.PUMPRINCESS);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.COCOON_EVOLUTION);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-    
+
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public Pumprincess() {
+    public CocoonRef() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseBlock = this.block = 12;
+        this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.NO_PUMPKIN);
-        this.tags.add(DefaultMod.REDUCED);
-        this.summons = 1;
-		this.originalName = this.name;
-		this.isSummon = true;
+        this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.COCOON);
+        this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.originalName = this.name;
+        this.misc = 0;
+        
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m));
+    	tribute(p, this.tributes, false, this);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Pumprincess();
+        return new CocoonRef();
     }
 
     // Upgraded stats.
@@ -59,14 +60,18 @@ public class Pumprincess extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
+    
+   
+
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
@@ -79,20 +84,15 @@ public class Pumprincess extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
+	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m));
-		
+
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m));
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
+
 	}
 
 	@Override

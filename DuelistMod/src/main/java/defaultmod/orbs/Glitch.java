@@ -62,12 +62,11 @@ public class Glitch extends AbstractOrb
 		this.channelAnimTimer = 0.5F;
 		
 		// Setup passive action list
-		passiveActions.add("Draw #b2 cards");	passiveActions.add("Gain #b10 HP");	passiveActions.add("Lose #b5 HP");
+		passiveActions.add("Draw #b2 cards");	passiveActions.add("Gain #b10 HP");
 		passiveActions.add("#yExhaust #b1 random card in hand");	passiveActions.add("Gain a random amount of gold (50-100)");
 		passiveActions.add("Apply #b1 random #ybuff");	passiveActions.add("Apply #b1 random #ydebuff to random enemy");	passiveActions.add("#yChannel #b1 random orb");
 		passiveActions.add("#yEvoke #b1 Orb.");	passiveActions.add("Add #b1 random #ySpell to hand");
 		passiveActions.add("Add #b1 random #yTrap to hand");	passiveActions.add("Add #b1 random #ySpellcaster to hand");	passiveActions.add("Add #b1 random #yMonster to hand");
-		passiveActions.add("Lose #b1 strength");	passiveActions.add("Lose #b1 dexterity");
 		passiveActions.add("Gain #b15 #yBlock");	passiveActions.add("#ySummon #b1");	passiveActions.add("#ySummon #b2");
 		passiveActions.add("#yIncrement #b1");	passiveActions.add("#yIncrement #b2");
 		passiveActions.add("#yOjamania");	passiveActions.add("Increase this orb's Passive amount by #b1");	

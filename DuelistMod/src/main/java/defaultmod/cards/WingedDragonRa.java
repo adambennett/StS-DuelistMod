@@ -16,7 +16,7 @@ import defaultmod.powers.*;
 public class WingedDragonRa extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("WingedDragonRa");
+    public static final String ID = DefaultMod.makeID("WingedDragonRa");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.WINGED_DRAGON_RA);
     public static final String NAME = cardStrings.NAME;
@@ -42,7 +42,7 @@ public class WingedDragonRa extends DuelistCard
         this.misc = 0;
         this.tributes = 4;
 		this.originalName = this.name;
-		this.damage = this.baseDamage = 0;
+		this.damage = this.baseDamage = 30;
     }
 
     // Actions the card should do.
@@ -50,6 +50,7 @@ public class WingedDragonRa extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int manaUsed = getXEffect();
+    	/*
     	int summons = 0; int maxSummons = 0;
     	if (player().hasPower(SummonPower.POWER_ID)) { summons = getSummons(p) * 3;  maxSummons = getMaxSummons(p); }
     	int cardsPlayed = (p.cardsPlayedThisTurn - 1) * 4;
@@ -57,7 +58,8 @@ public class WingedDragonRa extends DuelistCard
     	int damageTotal = (cardsPlayed + summons) * manaUsed;
     	if (upgraded) { damageTotal += maxSummons; }
     	this.baseDamage = this.damage = damageTotal;
-    	attack(m, AFX, this.baseDamage);
+    	*/
+    	attack(m, AFX, this.damage * manaUsed);
     	tribute(p, this.tributes, false, this);
     	useXEnergy();
     }

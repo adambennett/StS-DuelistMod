@@ -44,6 +44,7 @@ public abstract class DuelistCard extends CustomCard
 	public boolean isCastle = false;
 	public int summons = 0;
 	public int tributes = 0;
+	public int poisonAmt;
 	public int upgradeDmg;
 	public int upgradeBlk;
 	public int upgradeSummons;
@@ -74,6 +75,14 @@ public abstract class DuelistCard extends CustomCard
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.originalName = NAME;
+		this.misc = 0;
+	}
+	
+	public DuelistCard(DuelistCard c, int cost)
+	{
+		super(c.cardID, c.name, c.textureImg, cost, c.rawDescription, c.type, c.color, c.rarity, c.target);
+		this.originalName = c.name;
+		this.misc = 0;
 	}
 
 	public DuelistCard getCard()
@@ -140,20 +149,12 @@ public abstract class DuelistCard extends CustomCard
 
 	public static void applyPower(AbstractPower power, AbstractCreature target) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, power.amount));
-		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
-		{
-			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
-			gravPower.onSpecificTrigger();
-		}
+		
 	}
 
 	protected void applyPower(AbstractPower power, AbstractCreature target, int amount) {
 		AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, player(), power, amount));
-		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
-		{
-			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
-			gravPower.onSpecificTrigger();
-		}
+		
 	}
 
 	public static void removePower(AbstractPower power, AbstractCreature target) {
@@ -162,12 +163,6 @@ public abstract class DuelistCard extends CustomCard
 		{
 			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
 		}
-		
-		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
-		{
-			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
-			gravPower.onSpecificTrigger();
-		}
 	}
 
 	public static void reducePower(AbstractPower power, AbstractCreature target, int reduction) {
@@ -175,12 +170,7 @@ public abstract class DuelistCard extends CustomCard
 		if (target.hasPower(power.ID))
 		{
 			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, reduction));
-		}
-		if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
-		{
-			GravityAxePower gravPower = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
-			gravPower.onSpecificTrigger();
-		}
+		}		
 	}
 
 	public static void heal(AbstractPlayer p, int amount)
@@ -202,12 +192,12 @@ public abstract class DuelistCard extends CustomCard
 	{
 		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
-		AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player(), player(), amount));
+		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 	
 	public static void staticBlock(int amount) 
 	{
-		AbstractDungeon.actionManager.addToBottom(new GainBlockAction(player(), player(), amount));
+		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 
 	public static void applyPowerToSelf(AbstractPower power) {
@@ -424,8 +414,18 @@ public abstract class DuelistCard extends CustomCard
 						power.flash();
 						System.out.println("theDuelist:DuelistCard:summon ---> triggered trap hole with roll of: " + randomNum);
 						tribute(p, 1, false, new TrapHole());
-						c.onResummon(1);
-						c.summonThis(1, c, 0);
+						DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
+						if (cardCopy != null)
+						{
+							if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+							if (c.upgraded) { cardCopy.upgrade(); }
+							cardCopy.freeToPlayOnce = true;
+							cardCopy.applyPowers();
+							cardCopy.purgeOnUse = true;
+							AbstractMonster m = AbstractDungeon.getRandomMonster();
+							AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+							cardCopy.onResummon(1);
+						}
 					}
 					else
 					{
@@ -519,8 +519,18 @@ public abstract class DuelistCard extends CustomCard
 						power.flash();
 						System.out.println("theDuelist:DuelistCard:spellSummon ---> triggered trap hole with roll of: " + randomNum);
 						tribute(p, 1, false, new TrapHole());
-						c.onResummon(1);
-						c.summonThis(1, c, 0);
+						DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
+						if (cardCopy != null)
+						{
+							if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+							if (c.upgraded) { cardCopy.upgrade(); }
+							cardCopy.freeToPlayOnce = true;
+							cardCopy.applyPowers();
+							cardCopy.purgeOnUse = true;
+							AbstractMonster m = AbstractDungeon.getRandomMonster();
+							AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+							cardCopy.onResummon(1);
+						}
 					}
 					else
 					{
@@ -604,9 +614,18 @@ public abstract class DuelistCard extends CustomCard
 						power.flash();
 						System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum);
 						tribute(p, 1, false, new TrapHole());
-						c.onResummon(1);
-						c.summonThis(1, c, 0);
-						power.flash();
+						DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
+						if (cardCopy != null)
+						{
+							if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+							if (c.upgraded) { cardCopy.upgrade(); }
+							cardCopy.freeToPlayOnce = true;
+							cardCopy.applyPowers();
+							cardCopy.purgeOnUse = true;
+							AbstractMonster m = AbstractDungeon.getRandomMonster();
+							AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+							cardCopy.onResummon(1);
+						}
 					}
 					else
 					{

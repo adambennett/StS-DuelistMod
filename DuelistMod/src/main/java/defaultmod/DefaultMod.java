@@ -33,7 +33,7 @@ import defaultmod.relics.*;
 public class DefaultMod
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
-PostPowerApplySubscriber, OnPowersModifiedSubscriber
+PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber
 {
 	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 	public static final String PLACEHOLDER = "Placeholder";
@@ -67,6 +67,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
 	public static int lastMaxSummons = 5;
+	public static boolean hasRing = false;
 	public static boolean checkTrap = false;
 	public static int swordsPlayed = 0;
 
@@ -98,6 +99,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags FULL;
 	@SpireEnum public static AbstractCard.CardTags ALL;
+	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
+	@SpireEnum public static AbstractCard.CardTags COCOON;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES; // 24 cards
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_SERVANT; //7 cards
@@ -311,6 +314,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	public static final String MONSTER_EGG = "cards/Monster_Egg.png";
 	public static final String STEAM_TRAIN_KING = "cards/Steam_Train_King.png";
 	public static final String SWORD_DEEP_SEATED = "cards/Sword_Deep_Seated.png"; 
+	public static final String TRIBUTE_DOOMED = "cards/Tribute_Doomed.png";
+	public static final String PETIT_MOTH = "cards/Petit_Moth.png";
+	public static final String COCOON_EVOLUTION = "cards/Cocoon_Evolution.png";
+	public static final String GREAT_MOTH = "cards/Great_Moth.png";
+	public static final String CHEERFUL_COFFIN = "cards/Cheerful_Coffin.png";
+	public static final String THE_CREATOR = "cards/The_Creator.png";
 	
 
 	// Expansion Set
@@ -319,10 +328,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	public static final String MACHINE_FACTORY = "cards/Machine_Conversion_Factory.png";
 	public static final String POLYMERIZATION = "cards/Polymerization.png";
 	public static final String SPARKS = "cards/Sparks.png";    
-	public static final String CHEERFUL_COFFIN = "cards/Cheerful_Coffin.png";
-	public static final String PETIT_MOTH = "cards/Petit_Moth.png";
-	public static final String COCOON_EVOLUTION = "cards/Cocoon_Evolution.png";
-	public static final String GREAT_MOTH = "cards/Great_Moth.png";
 	public static final String LAVA_BATTLEGUARD = "cards/Lava_Battleguard.png";
 	public static final String SWAMP_BATTLEGUARD = "cards/Swamp_Battleguard.png";
 	public static final String TWIN_HEADED_FIRE = "cards/Twin_Headed_Fire_Dragon.png";
@@ -335,7 +340,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	public static final String TOON_GOBLIN_ATTACK = "cards/Toon_Goblin_Attack_Force.png";
 	public static final String WHITE_MAGICAL_HAT = "cards/White_Magical_Hat.png";
 	public static final String ILLUSIONIST = "cards/Illusionist_Faceless_Mage.png";
-	public static final String TRIBUTE_DOOMED = "cards/Tribute_Doomed.png";
 	public static final String DRAGON_PIPER = "cards/Dragon_Piper.png";
 	public static final String HARPIES_BROTHER = "cards/Harpies_Brother.png";
 	public static final String HARPIE_LADY = "cards/Harpie_Lady.png";
@@ -417,7 +421,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	public static final String SUPERCONDUCTOR_TYRANNO = "cards/Super_Conductor_Tyranno.png";
 	public static final String SUPER_SOLAR_NUTRIENT = "cards/Super_Solar_Nutrient.png";
 	public static final String SWORD_HUNTER = "cards/Sword_Hunter.png";
-	public static final String THE_CREATOR = "cards/The_Creator.png";
 	public static final String THIRTEEN_GRAVE = "cards/13th_Grave.png";
 	public static final String THOUSAND_DRAGON = "cards/Thousand_Dragon.png";
 	public static final String THOUSAND_EYES_IDOL = "cards/Thousand_Eyes_Idol.png";
@@ -476,6 +479,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	public static final String MOUNTAIN_POWER = "powers/MountainPower.png";
 	public static final String YAMI_POWER = "powers/YamiPower.png";
 	public static final String TRAP_HOLE_POWER = "powers/TrapHolePower.png";
+	public static final String COCOON_POWER = "powers/CocoonPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -901,8 +905,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 		//myCards.add(new BadToken()); 		//debug card
 		// END CORE SET
 		
-		// ALL Set - 48 cards ( need 33 more cards here)
-		myCards.add(new BigCastleWalls());
+		// ALL Set - 46 cards ( need 25 more cards here)
 		myCards.add(new MachineKing());
 		myCards.add(new BookSecret());
 		myCards.add(new HeavyStorm());
@@ -919,6 +922,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 		myCards.add(new MonsterEgg());
 		myCards.add(new SteamTrainKing());
 		myCards.add(new MachineFactory());
+		myCards.add(new TributeDoomed());
+		myCards.add(new PetitMoth());
+		myCards.add(new CocoonEvolution());
+		myCards.add(new CheerfulCoffin());
+		myCards.add(new TheCreator());
 		// END ALL Set
 		
 		// FULL Set - 22 cards
@@ -1165,6 +1173,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 			}
 		}
 		
+		summonMap.put("Great Moth", new GreatMoth());
 		summonMap.put("Puzzle Token", new Token());
 		summonMap.put("Ancient Token", new Token());
 		summonMap.put("Anubis Token", new Token());
@@ -1254,7 +1263,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand.");
 		BaseMod.addKeyword(new String[] {"air", "Air"}, "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1.");
 		BaseMod.addKeyword(new String[] {"fire", "Fire"}, "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn.");
-		BaseMod.addKeyword(new String[] {"glitch", "Glitch"}, "#yOrb: At the start of turn, does a random action. Actions are things like: gain HP/gold/strength/etc, increase orb effects, add random cards to hand, and many more. #yEvoke also triggers random actions.");
+		BaseMod.addKeyword(new String[] {"glitch", "Glitch"}, "#yOrb: At the start of turn, triggers a random positive action. #yEvoke also triggers random actions.");
 		BaseMod.addKeyword(new String[] {"shadow", "Shadow"}, "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. When #yTributed, [#FF5252]Shadow [#FF5252]Tokens increase the effectiveness of your #yShadow #yOrbs. #yEvoke #yResummons monsters from your discard pile on random enemies.");
 		BaseMod.addKeyword(new String[] {"splash", "Splash"}, "");
 		
@@ -1330,6 +1339,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	{
 		lastMaxSummons = 5;
 		logger.info("Reset max summons to 5");
+		if (hasRing) { lastMaxSummons = 8; logger.info("Reset max summons to 8");}
 	}
 
 	@Override
@@ -1337,6 +1347,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	{
 		lastMaxSummons = 5;
 		logger.info("Reset max summons to 5");
+		if (hasRing) { lastMaxSummons = 8; logger.info("Reset max summons to 8");}
 	}
 
 	@Override
@@ -1364,6 +1375,19 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber
 	public void receivePowersModified() 
 	{
 		
+	}
+
+	@Override
+	public void receivePostDeath() 
+	{
+		hasRing = false;
+		lastMaxSummons = 5;
+	}
+
+	@Override
+	public void receiveCardUsed(AbstractCard arg0) 
+	{
+		arg0.applyPowers();
 	}
 
 

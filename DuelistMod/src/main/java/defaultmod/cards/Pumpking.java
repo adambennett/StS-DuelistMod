@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.unique.PlayRandomFromDiscardAction;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -50,52 +51,8 @@ public class Pumpking extends DuelistCard
     	int castleDarkMod = 0;
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	if (tributeList.size() > 0) { for (DuelistCard c : tributeList) { if (c.isCastle) { castleDarkMod += 3; }}}
-    	
-    	// Look through discard pile, find the right amount of cards to play, then play them
-    	ArrayList<AbstractCard> discards = player().discardPile.group;
-    	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.tags.contains(DefaultMod.NO_PUMPKIN)) { toChooseFrom.add(c); } }
-    	if (toChooseFrom.size() > 0)
-    	{
-	    	int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
-	    	AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
-	    	String cardName = chosen.originalName;
-	    	System.out.println("theDuelist:Pumpking --- > Found: " + cardName);
-	    	if (!upgraded)
-	    	{
-	    		for (int i = 0; i < 1 + castleDarkMod; i++)
-	    		{
-			    	DuelistCard cardCopy = newCopyOfMonster(cardName);
-			    	if (cardCopy != null)
-			    	{
-				    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-				    	cardCopy.upgrade();
-				        cardCopy.freeToPlayOnce = true;
-				        cardCopy.applyPowers();
-				        cardCopy.purgeOnUse = true;
-				        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-				        cardCopy.onResummon(1);
-			    	}
-	    		}
-	    	}
-	    	else
-	    	{
-	    		for (int i = 0; i < 2 + castleDarkMod; i++)
-	    		{
-		    		DuelistCard cardCopy = newCopyOfMonster(cardName);
-			    	if (cardCopy != null)
-			    	{
-				    	if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-				    	cardCopy.upgrade();
-				        cardCopy.freeToPlayOnce = true;
-				        cardCopy.applyPowers();
-				        cardCopy.purgeOnUse = true;
-				        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-				        cardCopy.onResummon(1);
-			    	}
-	    		}
-	    	}
-    	}
+    	if (!upgraded) { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1 + castleDarkMod, true, m)); }
+    	else { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(2 + castleDarkMod, true, m)); }
     }
 
     // Which card to return when making a copy of this card.

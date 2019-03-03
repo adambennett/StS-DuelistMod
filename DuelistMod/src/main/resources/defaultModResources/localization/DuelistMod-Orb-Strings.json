@@ -62,7 +62,7 @@
   "theDuelist:Glitch": {
     "NAME": "Glitch",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, do #b", " random effects. NL #yEvoke: Do #b", " random effect. NL #yLast #yEffect #yTriggered: NL ", " random effects. NL #yLast #yEffect #yTriggered: NL "
+      "#yPassive: At the start of turn, trigger #b", " random positive effects. NL #yEvoke: Trigger #b", " random positive effect. NL #yLast #yEffect #yTriggered: NL ", " random positive effects. NL #yLast #yEffect #yTriggered: NL "
     ]
   },
   "theDuelist:Shadow": {

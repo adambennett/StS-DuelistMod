@@ -32,6 +32,18 @@ public class MillenniumRing extends CustomRelic {
 		this.flash();
 		DuelistCard.incMaxSummons(AbstractDungeon.player, 3);
 	}
+	
+	@Override
+	public void onEquip()
+	{
+		DefaultMod.hasRing = true;
+	}
+	
+	@Override
+	public void onUnequip()
+	{
+		DefaultMod.hasRing = false;
+	}
 
 	// Description
 	@Override

@@ -49,8 +49,8 @@ public class Ookazi extends DuelistCard
     {
     	int randomDmg = AbstractDungeon.cardRandomRng.random(this.damageA, this.damageB);
     	int randomDmgU = AbstractDungeon.cardRandomRng.random(this.damageC, this.damageD);
-    	if (!upgraded) { this.baseDamage = this.damage = randomDmg; AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)); }
-    	else { this.baseDamage = this.damage = randomDmgU; AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)); }
+    	if (!upgraded) { this.baseDamage = this.damage = randomDmg; this.applyPowers(); AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)); }
+    	else { this.baseDamage = this.damage = randomDmgU; this.applyPowers(); AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)); }
     }
 
     // Which card to return when making a copy of this card.

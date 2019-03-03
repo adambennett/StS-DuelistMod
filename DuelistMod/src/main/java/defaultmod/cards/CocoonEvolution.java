@@ -2,78 +2,77 @@ package defaultmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.ReflectionHacks;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
-public class SteamTrainKing extends DuelistCard 
+public class CocoonEvolution extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DefaultMod.makeID("SteamTrainKing");
+    public static final String ID = DefaultMod.makeID("CocoonEvolution");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.STEAM_TRAIN_KING);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.COCOON_EVOLUTION);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final int COST = 1;
+    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
-    public SteamTrainKing() {
+    public CocoonEvolution() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 0;
+        this.baseBlock = this.block = 16;
+        this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.SUPERHEAVY);
         this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.COCOON);
+        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;
-        this.exhaust = true;
-        this.tributes = 3;
+        this.misc = 0;
+        tooltips = new ArrayList<>();
+        tooltips.add(new PetitRef());
+		tooltips.add(new GreatRef());
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<AbstractCard> drawPile = player().drawPile.group;
-    	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
-    	int damageTotal = 0;
-    	for (AbstractCard c : drawPile)
-    	{
-    		if (c.hasTag(DefaultMod.MONSTER))
-			{
-				//damageTotal += c.baseDamage;
-    			damageTotal += c.baseDamage;
-				toDiscard.add(c);
-			}
-    	}
-    	for (AbstractCard c : toDiscard)
-    	{
-    		AbstractDungeon.player.drawPile.moveToExhaustPile(c);
-    	}
-    	this.baseDamage = this.damage = damageTotal;
-    	this.multiDamage = new int[] { damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal };
-    	attackAllEnemies(AFX, this.multiDamage);
+    	tribute(p, this.tributes, false, this);
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new SteamTrainKing();
+        return new CocoonEvolution();
+    }
+
+    // Upgraded stats.
+    @Override
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeBlock(4);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
     }
     
     // If player doesn't have enough summons, can't play card
@@ -104,17 +103,37 @@ public class SteamTrainKing extends DuelistCard
     	this.cantUseMessage = "Not enough Summons";
     	return false;
     }
-
-    // Upgraded stats.
+    
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBaseCost(1);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
-    }
+   	public void renderCardTip(SpriteBatch sb) {
+   		super.renderCardTip(sb);
+   		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
+
+   		int count = 0;
+   		if (!Settings.hideCards && renderTip) {
+   			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
+   				return;
+   			}
+   			for (AbstractCard c : tooltips) {
+   				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
+   				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
+   				if (current_x > Settings.WIDTH * 0.75f) {
+   					c.current_x = current_x + dx;
+   				} else {
+   					c.current_x = current_x - dx;
+   				}
+   				if (count == 0) {
+   					c.current_y = current_y + dy;
+   				} else {
+   					c.current_y = current_y - dy;
+   				}
+   				c.drawScale = drawScale * 0.8f;
+   				c.render(sb);
+   				count++;
+   			}
+   		}
+   	}
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

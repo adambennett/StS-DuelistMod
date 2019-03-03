@@ -276,8 +276,13 @@
 	},
 	"theDuelist:MonsterReborn": {
 		"NAME": "Monster Reborn",
-		"DESCRIPTION": "Resummon !M! random monster in your discard pile on an enemy. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Resummon !M! upgraded random monsters in your discard pile on an enemy. Exhaust."
+		"DESCRIPTION": "Choose !M! monsters to Resummon from your discard pile. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Choose !M! monsters to upgrade and Resummon from your discard pile. NL Exhaust."
+	},
+	"theDuelist:TributeDoomed": {
+		"NAME": "Tribute to Doomed",
+		"DESCRIPTION": "Tribute 1. NL Choose !M! monster to Resummon from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Choose !M! monster to upgrade and Resummon from your discard pile."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
@@ -854,6 +859,46 @@
 		"DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Channel an additional Glitch. NL Exhaust."
 	},
+	"theDuelist:PetitMoth": {
+		"NAME": "Petit Moth",
+		"DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Exhaust."
+	},
+	"theDuelist:PetitRef": {
+		"NAME": "Petit Moth",
+		"DESCRIPTION": "Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:CocoonEvolution": {
+		"NAME": "Cocoon of Evolution",
+		"DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+	},
+	"theDuelist:CocoonRef": {
+		"NAME": "Cocoon of Evolution",
+		"DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+	},
+	"theDuelist:GreatMoth": {
+		"NAME": "Great Moth",
+		"DESCRIPTION": "Purge. NL Tribute 3. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Purge. NL Tribute 3. NL Gain !B! Block. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
+	},
+	"theDuelist:GreatRef": {
+		"NAME": "Great Moth",
+		"DESCRIPTION": "Purge. NL Tribute 3. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Purge. NL Tribute 3. NL Deal !D! damage. NL Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
+	},
+	"theDuelist:CheerfulCoffin": {
+		"NAME": "Cheerful Coffin",
+		"DESCRIPTION": "Discard !M! cards.",
+		"UPGRADE_DESCRIPTION": "Discard !M! cards."
+	},
+	"theDuelist:TheCreator": {
+		"NAME": "The Creator",
+		"DESCRIPTION": "Tribute 5. NL Exhaust every card in your draw pile and discard pile. NL Put a 1 cost, Ethereal copy of EVERY Duelist Card in your draw pile.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. NL Exhaust every card in your draw pile and discard pile. NL Put a 1 cost, Ethereal copy of EVERY Duelist Card in your draw pile."
+	},
 	"theDuelist:Wiseman": {
 		"NAME": "Wiseman's Chalice",
 		"DESCRIPTION": "Purge. NL Gain 1 Potion slot.",
@@ -886,7 +931,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
-		"DESCRIPTION": "Tribute 4. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL +  (3* Summons)) X times.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage equal to: NL ((4* number of cards played this turn) NL + (3* Summons) + (max Summons)) X times."
+		"DESCRIPTION": "Tribute 4. NL Deal !D! damage X times.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage X times."
 	}
 }

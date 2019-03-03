@@ -195,6 +195,10 @@
         "NAME": "Sword of Deep Seated",
         "DESCRIPTIONS": ["At the end of turn, lose #b", " #yStrength." ]
 },
+"theDuelist:CocoonPower": {
+        "NAME": "Cocoon of Evolution",
+        "DESCRIPTIONS": ["After #b", " turn, add a copy of #yGreat #yMoth to your hand.", " turns, add a copy of #yGreat #yMoth to your hand." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

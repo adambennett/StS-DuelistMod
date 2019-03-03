@@ -49,6 +49,7 @@ public class Fissure extends DuelistCard
        this.damage = this.baseDamage = this.damage * playerSummons;
        //this.initializeDescription();
        int[] damageArray = new int[] { this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, };
+       this.applyPowers();
        attackAllEnemies(AFX, damageArray);
     }
 

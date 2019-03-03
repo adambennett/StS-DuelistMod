@@ -3,7 +3,7 @@ package defaultmod.cards;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -58,15 +58,33 @@ public class GaiaDragonChamp extends DuelistCard
     	if (!upgraded && tributeList.size() > 0)
     	{
     		DuelistCard summon = returnRandomFromArray(tributeList);
-    		summon.summonThis(summon.summons, summon, 0, m);
-    		summon.onResummon(1);
+    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
+			if (cardCopy != null)
+			{
+				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+				if (summon.upgraded) { cardCopy.upgrade(); }
+				cardCopy.freeToPlayOnce = true;
+				cardCopy.applyPowers();
+				cardCopy.purgeOnUse = true;
+				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+				cardCopy.onResummon(1);
+			}
     	}
     	
     	else if (upgraded && tributeList.size() > 0)
     	{
     		DuelistCard summon = tributeList.get(0);
-    		summon.summonThis(summon.summons, summon, 0, m);
-    		summon.onResummon(1);
+    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
+			if (cardCopy != null)
+			{
+				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+				if (summon.upgraded) { cardCopy.upgrade(); }
+				cardCopy.freeToPlayOnce = true;
+				cardCopy.applyPowers();
+				cardCopy.purgeOnUse = true;
+				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+				cardCopy.onResummon(1);
+			}
     	}
     }
 

@@ -57,6 +57,7 @@ public class SwordsBurnPower extends AbstractPower
     	if (this.amount > 0) { this.amount = 0; }
     }
     
+    @Override
     public void onEvokeOrb(AbstractOrb orb) 
     {
     	if (!finished) 
