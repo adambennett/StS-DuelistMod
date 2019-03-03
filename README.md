@@ -8,6 +8,7 @@ REQUIREMENTS
 CROSSOVER CONTENT FOR
 - Replay the Spire
 - Conspire
+- Googly Eyes
 
 TODO
 - Balance/QA
