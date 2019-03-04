@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.ImperialOrderAction;
+import defaultmod.actions.unique.ImperialOrderAction;
 
 
 public class ImperialPower extends AbstractPower 

@@ -102,16 +102,22 @@ public class SummonPower extends AbstractPower
 			DuelistCard ref = DefaultMod.summonMap.get(s);
 			if (ref == null) { ref = new Token(); }
 			String coloredString = "";
-			if (ref.hasTag(DefaultMod.GOOD_TRIB)) 
+			if (ref.hasTag(DefaultMod.GOOD_TRIB) && !ref.hasTag(DefaultMod.TOKEN)) 
 			{
 				coloredString = "#b" + s;
 				coloredString = coloredString.replaceAll("\\s", " #b"); 
 				coloredSummonList.add(coloredString);
 			}
-			else if (ref.hasTag(DefaultMod.BAD_TRIB))
+			else if (ref.hasTag(DefaultMod.BAD_TRIB) && !ref.hasTag(DefaultMod.TOKEN))
 			{
 				coloredString = "[#FF5252]" + s;
 				coloredString = coloredString.replaceAll("\\s", " [#FF5252]");
+				coloredSummonList.add(coloredString);
+			}
+			else if (ref.hasTag(DefaultMod.TOKEN))
+			{
+				coloredString = "#y" + s;
+				coloredString = coloredString.replaceAll("\\s", " #y");
 				coloredSummonList.add(coloredString);
 			}
 			else

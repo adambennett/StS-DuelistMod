@@ -38,10 +38,12 @@ public class Gigaplant extends DuelistCard
         this.tags.add(DefaultMod.NO_PUMPKIN);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.INSECT);
+        this.tags.add(DefaultMod.PLANT);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tributes = 3;
 		this.originalName = this.name;
 		this.baseMagicNumber = this.magicNumber = 1;
+		this.misc = 0;
     }
 
     // Actions the card should do.

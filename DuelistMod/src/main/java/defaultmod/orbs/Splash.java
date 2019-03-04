@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.SplashPassiveAction;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
@@ -35,8 +36,8 @@ public class Splash extends AbstractOrb
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 4;
-		this.basePassiveAmount = this.passiveAmount = 3;
+		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -46,13 +47,18 @@ public class Splash extends AbstractOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + (this.evokeAmount * 10) + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		
+		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+		if (roll <= this.evokeAmount)
+		{
+			DuelistCard.draw(5);
+			System.out.println("theDuelist:Splash:onEvoke() ---> triggered evoke draw action with roll: " + roll);
+		}
 	}
 
 	@Override
@@ -63,7 +69,10 @@ public class Splash extends AbstractOrb
 
 	private void triggerPassiveEffect()
 	{
-		
+		for (int i = 0; i < this.passiveAmount; i++)
+		{
+			AbstractDungeon.actionManager.addToTop(new SplashPassiveAction());
+		}
 	}
 
 	@Override

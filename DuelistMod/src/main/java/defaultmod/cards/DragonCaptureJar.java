@@ -13,9 +13,9 @@ import defaultmod.powers.*;
 public class DragonCaptureJar extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("ToonBriefcase");
+    public static final String ID = defaultmod.DefaultMod.makeID("DragonCaptureJar");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_BRIEFCASE);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.DRAGON_CAPTURE);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;

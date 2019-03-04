@@ -77,6 +77,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags TRAP; // 8 cards
 	@SpireEnum public static AbstractCard.CardTags TOKEN;
 	@SpireEnum public static AbstractCard.CardTags RANDOMONLY;
+	@SpireEnum public static AbstractCard.CardTags RANDOMONLY_NOCREATOR;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
 	@SpireEnum public static AbstractCard.CardTags EQUIPSPELL;
 	@SpireEnum public static AbstractCard.CardTags POT;
@@ -102,6 +103,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
 	@SpireEnum public static AbstractCard.CardTags COCOON;
 	@SpireEnum public static AbstractCard.CardTags INSECT;
+	@SpireEnum public static AbstractCard.CardTags PLANT;
+	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES; // 24 cards
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_SERVANT; //7 cards
@@ -326,31 +329,26 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String METAL_DRAGON = "cards/Metal_Dragon.png";
 	public static final String SUPER_SOLAR_NUTRIENT = "cards/Super_Solar_Nutrient.png";
 	public static final String GIGAPLANT = "cards/Gigaplant.png";
-		
-		// Insects
-		public static final String PREDAPLANT_CHIMERAFFLESIA = "cards/Predaplant_Chimerafflesia.png";
-		public static final String PREDAPLANT_CHLAMYDOSUNDEW = "cards/Predaplant_Chlamydosundew.png";
-		public static final String PREDAPLANT_DROSOPHYLLUM = "cards/Predaplant_Drosophyllum.png";
-		public static final String PREDAPLANT_FLYTRAP = "cards/Predaplant_Flytrap.png";
-		public static final String PREDAPLANT_PTERAPENTHES = "cards/Predaplant_Pterapenthes.png";
-		public static final String PREDAPLANT_SARRACENIANT = "cards/Predaplant_Sarraceniant.png";
-		public static final String PREDAPLANT_SPINODIONAEA = "cards/Predaplant_Spinodionaea.png";
-		public static final String EMPRESS_MANTIS = "cards/Empress_Mantis.png";		
-		public static final String GRASSCHOPPER = "cards/Grasschopper.png";
-		public static final String MAN_EATER = "cards/Man_Eater_Bug.png";
-		public static final String PREDAPRUNING = "cards/Predapruning.png";		
-		public static final String BASIC_INSECT = "cards/Basic_Insect.png";
-		// Dragons
-		public static final String B_SKULL_DRAGON = "cards/B_Skull_Dragon.png";
-		public static final String DARKFIRE_DRAGON = "cards/Darkfire_Dragon.png";
-		public static final String LEVIA_DRAGON = "cards/Levia_Dragon_Daedalus.png";		
-		public static final String OCEAN_LORD = "cards/Ocean_Lord.png";
-		public static final String TRIHORNED_DRAGON = "cards/TriHorned_Dragon.png";
-		
-		// Other
-		public static final String WIRETAP = "cards/Wiretap.png";		// copy random card in hand - basically do polymerization but add card to hand
-		public static final String JINZO = "cards/Jinzo.png";			// your traps cost 0 power
-	
+	public static final String BASIC_INSECT = "cards/Basic_Insect.png";		
+	public static final String PREDAPLANT_CHIMERAFFLESIA = "cards/Predaplant_Chimerafflesia.png";
+	public static final String PREDAPLANT_CHLAMYDOSUNDEW = "cards/Predaplant_Chlamydosundew.png";
+	public static final String PREDAPLANT_DROSOPHYLLUM = "cards/Predaplant_Drosophyllum.png";
+	public static final String PREDAPLANT_FLYTRAP = "cards/Predaplant_Flytrap.png";
+	public static final String PREDAPLANT_PTERAPENTHES = "cards/Predaplant_Pterapenthes.png";
+	public static final String PREDAPLANT_SARRACENIANT = "cards/Predaplant_Sarraceniant.png";
+	public static final String PREDAPLANT_SPINODIONAEA = "cards/Predaplant_Spinodionaea.png";
+	public static final String EMPRESS_MANTIS = "cards/Empress_Mantis.png";		
+	public static final String GRASSCHOPPER = "cards/Grasschopper.png";
+	public static final String MAN_EATER = "cards/Man_Eater_Bug.png";
+	public static final String PREDAPRUNING = "cards/Predapruning.png";		
+	public static final String B_SKULL_DRAGON = "cards/B_Skull_Dragon.png";
+	public static final String DARKFIRE_DRAGON = "cards/Darkfire_Dragon.png";
+	public static final String LEVIA_DRAGON = "cards/Levia_Dragon_Daedalus.png";		
+	public static final String OCEAN_LORD = "cards/Ocean_Lord.png";
+	public static final String TRIHORNED_DRAGON = "cards/TriHorned_Dragon.png";
+	public static final String WIRETAP = "cards/Wiretap.png";
+	public static final String JINZO = "cards/Jinzo.png";		
+	public static final String SHADOW_TOKEN = "cards/Shadow_Token.png";	
 
 	// Expansion Set
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
@@ -485,6 +483,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String TRAP_HOLE_POWER = "powers/TrapHolePower.png";
 	public static final String COCOON_POWER = "powers/CocoonPower.png";
 	public static final String VIOLET_POWER = "powers/VioletPower.png";
+	public static final String JINZO_POWER = "powers/JinzoPower.png";
+	public static final String SARRACENIANT_POWER = "powers/SarraceniantPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -910,7 +910,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		//myCards.add(new BadToken()); 		//debug card
 		// END CORE SET
 		
-		// ALL Set - 46 cards ( need 18 more cards here)
+		// ALL Set - 46 cards
 		myCards.add(new MachineKing());
 		myCards.add(new BookSecret());
 		myCards.add(new HeavyStorm());
@@ -938,7 +938,26 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new MetalDragon());
 		myCards.add(new SuperSolarNutrient());
 		myCards.add(new Gigaplant());
-		myCards.add(new BasicInsect());
+		myCards.add(new BasicInsect());		
+		myCards.add(new BSkullDragon());
+		myCards.add(new DarkfireDragon());
+		myCards.add(new EmpressMantis());
+		myCards.add(new Grasschopper());
+		myCards.add(new Jinzo());
+		
+		myCards.add(new LeviaDragon());
+		myCards.add(new ManEaterBug());
+		myCards.add(new OceanDragonLord());
+		myCards.add(new PredaplantChimerafflesia());
+		myCards.add(new PredaplantChlamydosundew());
+		myCards.add(new PredaplantDrosophyllum());
+		myCards.add(new PredaplantFlytrap());
+		myCards.add(new PredaplantPterapenthes());
+		myCards.add(new PredaplantSarraceniant());
+		myCards.add(new PredaplantSpinodionaea());
+		myCards.add(new Predapruning());
+		myCards.add(new TrihornedDragon());
+		myCards.add(new Wiretap());
 		// END ALL Set
 		
 		// FULL Set - 22 cards
@@ -1271,13 +1290,15 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.addKeyword(new String[] {"ojamania", "Ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
 		BaseMod.addKeyword(new String[] {"dragon", "Dragon"}, "When you #yTribute a #yDragon for another #yDragon, Gain #b1 #yStrength.");
 		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster"}, "When you #yTribute a #yMystical monster for a #yDragon, lose #b2 #yHP.");
-		BaseMod.addKeyword(new String[] {"insect", "Insect"}, "When you #yTribute an #yInsect monster for an #yInsect, apply #b3 #yPoison to ALL enemies.");
+		BaseMod.addKeyword(new String[] {"insect", "Insect"}, "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
+		BaseMod.addKeyword(new String[] {"plant", "Plant"}, "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
+		BaseMod.addKeyword(new String[] {"predaplant", "Predaplant"}, "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
 		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand.");
 		BaseMod.addKeyword(new String[] {"air", "Air"}, "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1.");
 		BaseMod.addKeyword(new String[] {"fire", "Fire"}, "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn.");
 		BaseMod.addKeyword(new String[] {"glitch", "Glitch"}, "#yOrb: At the start of turn, triggers a random positive action. #yEvoke also triggers random actions.");
-		BaseMod.addKeyword(new String[] {"shadow", "Shadow"}, "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. When #yTributed, [#FF5252]Shadow [#FF5252]Tokens increase the effectiveness of your #yShadow #yOrbs. #yEvoke #yResummons monsters from your discard pile on random enemies.");
-		//BaseMod.addKeyword(new String[] {"splash", "Splash"}, "");
+		BaseMod.addKeyword(new String[] {"shadow", "Shadow"}, "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. #yEvoke: #yResummon monsters from your discard pile on random enemies.");
+		BaseMod.addKeyword(new String[] {"splash", "Splash"}, "#yOrb: At the start of turn, add random, 0-cost, Ethereal Duelist cards to your hand. #yEvoke: Has a chance to draw #b5 cards.");
 		
 	}
 

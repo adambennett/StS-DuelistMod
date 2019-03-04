@@ -35,7 +35,7 @@ public class TokenVacuum extends DuelistCard
 
     public TokenVacuum() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(DefaultMod.SPELL); 
+        this.tags.add(DefaultMod.TRAP); 
         this.tags.add(DefaultMod.FULL);
         this.misc = 0;
         this.originalName = this.name;

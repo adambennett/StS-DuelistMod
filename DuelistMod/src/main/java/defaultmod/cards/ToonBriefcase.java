@@ -8,12 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.ToonBriefcasePower;
+import defaultmod.powers.*;
 
 public class ToonBriefcase extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("ToonBriefcase");
+    public static final String ID = DefaultMod.makeID("ToonBriefcase");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_BRIEFCASE);
     public static final String NAME = cardStrings.NAME;
@@ -41,7 +41,7 @@ public class ToonBriefcase extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       applyPowerToSelf(new ToonBriefcasePower(p, p));
+       applyPowerToSelf(new DragonCapturePower(p, p));
     }
 
     // Which card to return when making a copy of this card.

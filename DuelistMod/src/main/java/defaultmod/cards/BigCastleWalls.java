@@ -33,7 +33,7 @@ public class BigCastleWalls extends DuelistCard
     public BigCastleWalls() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK;
-        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
     }

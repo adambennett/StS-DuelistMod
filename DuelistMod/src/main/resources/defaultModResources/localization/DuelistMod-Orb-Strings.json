@@ -74,7 +74,7 @@
   "theDuelist:Splash": {
     "NAME": "Splash",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, #b", " chance to draw #b3 extra cards. NL #yEvoke: #b", " chance to draw #b5 cards."
+      "#yPassive: At the start of turn, add #b", " #y0-cost, #yEthereal copies of random Duelist cards to your hand. #yEvoke: #b", "% chance to draw #b5 cards."
     ]
   },
   "theDuelist:Summoner": {

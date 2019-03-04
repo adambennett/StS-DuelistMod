@@ -47,7 +47,7 @@ public class SuperSolarNutrient extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.INSECT, DefaultMod.COCOON);
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.INSECT);
 			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
 			randomMonster.costForTurn = randomNum;
 			randomMonster.isCostModifiedForTurn = true;

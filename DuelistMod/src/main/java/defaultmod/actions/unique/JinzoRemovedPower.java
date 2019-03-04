@@ -1,4 +1,4 @@
-package defaultmod.actions.common;
+package defaultmod.actions.unique;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,14 +15,14 @@ import com.megacrit.cardcrawl.vfx.cardManip.*;
 import defaultmod.DefaultMod;
 
 @SuppressWarnings("unused")
-public class ImperialOrderAction extends AbstractGameAction
+public class JinzoRemovedPower extends AbstractGameAction
 {
 	private static final float DURATION_PER_CARD = 0.35F;
 	private AbstractCard c;
 	private static final float PADDING = 25.0F * Settings.scale;
 	private boolean isOtherCardInCenter = true;
 
-	public ImperialOrderAction(int amount) 
+	public JinzoRemovedPower(int amount) 
 	{
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.amount = amount;
@@ -53,21 +53,17 @@ public class ImperialOrderAction extends AbstractGameAction
     	ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
     	
     	// Add all spells and traps from hand to list
-    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if ((c.tags.contains(DefaultMod.TRAP)) || (c.tags.contains(DefaultMod.SPELL))) { modCards.add(c); } }
+    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if ((c.tags.contains(DefaultMod.TRAP))) { modCards.add(c); } }
     	
     	// Remove all 0 cost spells and traps from list
     	if (modCards.size() > 0) { for (int i = 0; i < modCards.size(); i++) { if (modCards.get(i).cost == 0) { modCards.remove(i); } } }
     	
     	// For the amount of times equal to power stacks, grab a random card from the remaining list and set cost to 0
     	// Do this until no cards remain in list, or iterations = power stacks
-    	for (int i = 0; i < amount; i++)
+    	for (AbstractCard trap : modCards)
     	{
-    		if (modCards.size() > 0)
-    		{
-	    		int randomNum = AbstractDungeon.cardRandomRng.random(modCards.size() - 1);
-	        	modCards.get(randomNum).setCostForTurn(-9);
-	        	modCards.remove(randomNum);
-    		}
+    		trap.updateCost(trap.cost);
+    		trap.isCostModifiedForTurn = false;
     	}
     	
     	// Set amount to 0 so update() knows to return

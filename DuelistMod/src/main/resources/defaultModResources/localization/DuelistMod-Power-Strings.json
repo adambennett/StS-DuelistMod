@@ -41,11 +41,11 @@
 },
 "theDuelist:ToonBriefcasePower": {
         "NAME": "Toon Briefcase",
-        "DESCRIPTIONS": ["#yToon monsters played this turn are added back to your hand at the end of your turn. Toons: "]
+        "DESCRIPTIONS": ["#yToon monsters played this turn are added back to your hand at the start of your next turn. Toons: "]
 },
 "theDuelist:DragonCapturePower": {
         "NAME": "Dragon Capture Jar",
-        "DESCRIPTIONS": ["#yDragon monsters played this turn are added back to your hand at the end of your turn. Dragons: "]
+        "DESCRIPTIONS": ["#yDragon monsters played this turn are added back to your hand at the start of your next turn. Dragons: "]
 },
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",
@@ -181,7 +181,7 @@
 },
 "theDuelist:VioletCrystalPower": {
         "NAME": "Violet Crystal",
-        "DESCRIPTIONS": ["Your #yInsects deal #b50% more damage and gain #b50% more block. Whenever you apply #yPoison from Tributing an #yInsect, apply #b2 extra #yPoison." ]
+        "DESCRIPTIONS": ["Your #yInsects and #yPlants deal #b50% more damage and gain #b50% more block. Whenever you apply #yPoison from Tributing an #yInsect or #yPlant, apply #b2 extra #yPoison." ]
 },
 "theDuelist:YamiPower": {
         "NAME": "Yami",
@@ -202,6 +202,14 @@
 "theDuelist:CocoonPower": {
         "NAME": "Cocoon of Evolution",
         "DESCRIPTIONS": ["After #b", " turn, add a copy of #yGreat #yMoth to your hand.", " turns, add a copy of #yGreat #yMoth to your hand." ]
+},
+"theDuelist:SarraceniantPower": {
+        "NAME": "Predaplant Sarraceniant",
+        "DESCRIPTIONS": ["Whenever you are attacked, apply #b", " #yPoison to ALL enemies." ]
+},
+"theDuelist:JinzoPower": {
+        "NAME": "Jinzo",
+        "DESCRIPTIONS": ["Your Trap cards cost #b0." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

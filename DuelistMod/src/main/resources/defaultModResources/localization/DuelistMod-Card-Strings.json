@@ -371,8 +371,8 @@
 	},
 	"theDuelist:Gigaplant": {
 		"NAME": "Gigaplant",
-		"DESCRIPTION": "Insect NL Tribute 3. NL Apply 10 Poison. NL Resummon an upgraded copy of a random monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute 2. NL Apply 10 Poison. NL Resummon upgraded copies of !M! random monsters from your discard pile."
+		"DESCRIPTION": "Plant NL Tribute 3. NL Apply 10 Poison. NL Resummon an upgraded copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Plant NL Tribute 2. NL Apply 10 Poison. NL Resummon upgraded copies of !M! random monsters from your discard pile."
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
@@ -496,8 +496,8 @@
 	},
 	"theDuelist:SuperheavyBenkei": {
 		"NAME": "Superheavy Benkei",
-		"DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! dexterity.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! dexterity."
+		"DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! dexterity. NL Exhaust."
 	},
 	"theDuelist:SuperheavyScales": {
 		"NAME": "Superheavy Scales",
@@ -786,8 +786,8 @@
 	},
 	"theDuelist:VioletCrystal": {
 		"NAME": "Violet Crystal",
-		"DESCRIPTION": "Your Insects deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect, apply 2 extra Poison.",
-		"UPGRADE_DESCRIPTION": "Your Insects deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect, apply 2 extra Poison."
+		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison.",
+		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison."
 	},
 	"theDuelist:MachineKing": {
 		"NAME": "Machine King",
@@ -801,8 +801,8 @@
 	},
 	"theDuelist:SuperSolarNutrient": {
 		"NAME": "Super Solar Nutrient",
-		"DESCRIPTION": "Add !M! randomized Insects to your hand. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Insects to your hand. Exhaust."
+		"DESCRIPTION": "Add !M! randomized Insects or Plants to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Insects or Plants to your hand. Exhaust."
 	},
 	"theDuelist:HeavyStorm": {
 		"NAME": "Heavy Storm",
@@ -934,10 +934,110 @@
 		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Apply !M! Poison.",
 		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Apply !M! Poison."
 	},
+	"theDuelist:PredaplantChimerafflesia": {
+		"NAME": "P. Chimerafflesia",
+		"DESCRIPTION": "Predaplant NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand."
+	},
+	"theDuelist:PredaplantChlamydosundew": {
+		"NAME": "P. Chlamydosundew",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch a Plant from your draw pile.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch 2 Plants from your draw pile."
+	},
+	"theDuelist:PredaplantDrosophyllum": {
+		"NAME": "P. Drosophyllum",
+		"DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, play a copy of a random Plant monster from your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, play a copy of a random Plant monster from your hand."
+	},
+	"theDuelist:PredaplantFlytrap": {
+		"NAME": "P. Flytrap",
+		"DESCRIPTION": "Predaplant NL Summon 2 Predaplant Tokens. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 2 Predaplant Tokens. NL Apply !M! Poison."
+	},
+	"theDuelist:PredaplantPterapenthes": {
+		"NAME": "P. Pterapenthes",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:PredaplantSarraceniant": {
+		"NAME": "P. Sarraceniant",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Whenever you are attacked, apply !M! Poison to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Whenever you are attacked, apply !M! Poison to ALL enemies."
+	},
+	"theDuelist:PredaplantSpinodionaea": {
+		"NAME": "P. Spinodionaea",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Deal !D! damage. NL If you Tribute this monster for an Insect or Plant, add a random Predaplant card to your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Deal !D! damage. NL If you Tribute this monster for an Insect or Plant, add a random Predaplant card to your hand."
+	},
+	"theDuelist:EmpressMantis": {
+		"NAME": "Empress Mantis",
+		"DESCRIPTION": "Insect NL Tribute 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute 1. NL Deal !D! damage."
+	},
+	"theDuelist:Grasschopper": {
+		"NAME": "Grasschopper",
+		"DESCRIPTION": "Insect NL Tribute 2. NL Deal !D! damage to all enemies for each Insect or Plant you Tribute to play this.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute 3. NL Deal !D! damage to all enemies for each Insect or Plant you Tribute to play this."
+	},
+	"theDuelist:ManEaterBug": {
+		"NAME": "Man-Eater Bug",
+		"DESCRIPTION": "Insect NL Summon 1. NL Deal !D! damage. NL If you Tribute this for an Insect or Plant, deal !M! damage to all enemies.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Deal !D! damage. NL If you Tribute this for an Insect or Plant, deal !M! damage to all enemies."
+	},
+	"theDuelist:Predapruning": {
+		"NAME": "Predapruning",
+		"DESCRIPTION": "Choose !M! Plant monster to Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand.",
+		"UPGRADE_DESCRIPTION": "Choose !M! Plant monsters to Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand."
+	},
+	"theDuelist:BSkullDragon": {
+		"NAME": "B. Skull Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand."
+	},
+	"theDuelist:DarkfireDragon": {
+		"NAME": "Darkfire Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Channel a Shadow.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Channel a Shadow."
+	},
+	"theDuelist:TrihornedDragon": {
+		"NAME": "Tri-Horned Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a random Orb for each Dragon you Tribute to play this.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a random Orb for each Dragon you Tribute to play this."
+	},
+	"theDuelist:Wiretap": {
+		"NAME": "Wiretap",
+		"DESCRIPTION": "Copy a random card in your hand.",
+		"UPGRADE_DESCRIPTION": "Copy two random cards in your hand."
+	},
+	"theDuelist:Jinzo": {
+		"NAME": "Jinzo",
+		"DESCRIPTION": "Tribute 1. NL Traps cost 0.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Traps cost 0."
+	},
+	"theDuelist:OceanDragonLord": {
+		"NAME": "Ocean Dragon Lord",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Splash.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Splash."
+	},
+	"theDuelist:LeviaDragon": {
+		"NAME": "Levia-Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Channel a Splash.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 1. NL Channel a Splash."
+	},
+	"theDuelist:DragonCaptureJar": {
+		"NAME": "Dragon Capture Jar",
+		"DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn.",
+		"UPGRADE_DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn."
+	},
 	"theDuelist:Wiseman": {
 		"NAME": "Wiseman's Chalice",
 		"DESCRIPTION": "Purge. NL Gain 1 Potion slot.",
 		"UPGRADE_DESCRIPTION": "Purge. NL Gain 1 Potion slot."
+	},
+	"theDuelist:PredaplantToken": {
+		"NAME": "Predaplant Token",
+		"DESCRIPTION": "Predaplant",
+		"UPGRADE_DESCRIPTION": "Predaplant"
 	},
 	"theDuelist:KuribohToken": {
 		"NAME": "Kuriboh Token",
@@ -956,13 +1056,13 @@
 	},
 	"theDuelist:ShadowToken": {
 		"NAME": "Shadow Token",
-		"DESCRIPTION": "Unplayable.",
-		"UPGRADE_DESCRIPTION": "Unplayable."
+		"DESCRIPTION": "When Tributed, increases the Passive and Evoke amounts of all Shadow Orbs by 1.",
+		"UPGRADE_DESCRIPTION": "When Tributed, increases the Passive and Evoke amounts of all Shadow Orbs by 1."
 	},
 	"theDuelist:Token": {
 		"NAME": "Token",
-		"DESCRIPTION": "Unplayable.",
-		"UPGRADE_DESCRIPTION": "Unplayable."
+		"DESCRIPTION": "",
+		"UPGRADE_DESCRIPTION": ""
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",

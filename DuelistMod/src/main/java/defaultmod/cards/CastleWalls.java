@@ -33,7 +33,7 @@ public class CastleWalls extends DuelistCard
     public CastleWalls() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK;
-        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.TRAP);
         this.originalName = this.name;
     }
 

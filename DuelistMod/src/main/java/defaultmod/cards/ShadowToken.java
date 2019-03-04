@@ -19,7 +19,7 @@ public class ShadowToken extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DefaultMod.makeID("ShadowToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.GREEDPOT_AVATAR);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.SHADOW_TOKEN);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;

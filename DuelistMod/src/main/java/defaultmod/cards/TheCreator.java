@@ -66,7 +66,7 @@ public class TheCreator extends DuelistCard
     	// Add a 0 cost for combat, ethereal copy of EVERY Duelist Card to draw pile
 		for (DuelistCard card : DefaultMod.myCards)
 		{
-			if (card instanceof DuelistCard) 
+			if (card instanceof DuelistCard && !card.hasTag(DefaultMod.RANDOMONLY_NOCREATOR)) 
 			{
 				AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, card, 1, true, false));
 			}
