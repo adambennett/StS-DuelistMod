@@ -12,9 +12,7 @@ CROSSOVER CONTENT FOR
 
 TODO
 - Balance/QA
-- Design and add some more relics
-- Design and add some more potions
-- Continue adding cards, mainly to random card generation pools (random toons, dragons, monsters, etc.)
+- Setup Steam release files
 
 Some in game screenshots taken of a recent build (2-11-19). Everything is absolutely always subject to change.
 
