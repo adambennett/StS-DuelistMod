@@ -1,21 +1,20 @@
 package defaultmod;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import org.apache.logging.log4j.*;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.screens.charSelect.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.*;
@@ -24,7 +23,6 @@ import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
 import defaultmod.patches.*;
 import defaultmod.potions.*;
-import defaultmod.powers.GravityAxePower;
 import defaultmod.relics.*;
 
 
@@ -33,44 +31,11 @@ import defaultmod.relics.*;
 public class DefaultMod
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
-PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber
+PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber 
 {
-	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
-	public static final String PLACEHOLDER = "Placeholder";
+	public static final Logger logger = LogManager.getLogger("theDuelist:DefaultMod ---> " + DefaultMod.class.getName());
 	public static final String MOD_ID_PREFIX = "theDuelist:";
-
-	//This is for the in-game mod settings panel.
-	private static final String MODNAME = "Duelist Mod";
-	private static final String AUTHOR = "Nyoxide";
-	private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
-	private static String modID;
-	public static Properties duelistDefaults = new Properties();
-	private static ArrayList<String> cardSets = new ArrayList<String>();
-	public static final String PROP_TOON_BTN = "toonBtnBool";
-	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
-	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
-	public static final String PROP_OTHERC_BTN = "otherBtnBoolC";
-	public static final String PROP_OTHERD_BTN = "otherBtnBoolD";
-	public static final String PROP_SET = "setIndex";
-	public static final String PROP_CARDS = "cardCount";
-	private static boolean toonBtnBool = false;
-	private static boolean exodiaBtnBool = false;
-	private static boolean crossoverBtnBool = true;
-	private static boolean otherBtnBoolC = false;
-	private static boolean otherBtnBoolD = false;
-	private static int setIndex = 0;
-	private static final int SETS = 5;
-	private static int cardCount = 75;
 	
-	
-	// Global Fields
-	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
-	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
-	public static int lastMaxSummons = 5;
-	public static boolean hasRing = false;
-	public static boolean checkTrap = false;
-	public static int swordsPlayed = 0;
-
 	// Tags (should move to using the patches file tags instead)
 	@SpireEnum public static AbstractCard.CardTags MONSTER;  // 86 cards
 	@SpireEnum public static AbstractCard.CardTags SPELL; // 43 cards
@@ -104,7 +69,15 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags COCOON;
 	@SpireEnum public static AbstractCard.CardTags INSECT;
 	@SpireEnum public static AbstractCard.CardTags PLANT;
-	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;
+	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;	
+	@SpireEnum public static AbstractCard.CardTags STANDARD_DECK;
+	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
+	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
+	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
+	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
+	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
+	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
+	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES; // 24 cards
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_SERVANT; //7 cards
@@ -115,6 +88,48 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags INVASION_CHAOS; // 3 cards
 	@SpireEnum public static AbstractCard.CardTags DARK_CRISIS; // 2 cards
 
+	//This is for the in-game mod settings panel.
+	private static final String MODNAME = "Duelist Mod";
+	private static final String AUTHOR = "Nyoxide";
+	private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
+	private static String modID;
+	public static Properties duelistDefaults = new Properties();
+	private static ArrayList<String> cardSets = new ArrayList<String>();
+	private static ArrayList<String> startingDecks = new ArrayList<String>();
+	private static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> dragonDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> natureDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> toonDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> spellcasterDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> creatorDeck = new ArrayList<DuelistCard>();
+	public static final String PROP_TOON_BTN = "toonBtnBool";
+	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
+	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
+	public static final String PROP_OTHERC_BTN = "otherBtnBoolC";
+	public static final String PROP_OTHERD_BTN = "otherBtnBoolD";
+	public static final String PROP_SET = "setIndex";
+	public static final String PROP_DECK = "deckIndex";
+	public static final String PROP_CARDS = "cardCount";
+	private static boolean toonBtnBool = true;
+	private static boolean exodiaBtnBool = false;
+	private static boolean crossoverBtnBool = true;
+	private static boolean otherBtnBoolC = false;
+	private static boolean otherBtnBoolD = false;
+	private static int setIndex = 0;
+	private static int deckIndex = 0;
+	private static final int SETS = 5;
+	private static final int DECKS = 8;
+	private static int cardCount = 75;
+	private static CardTags chosenDeckTag = STANDARD_DECK;
+	
+	// Global Fields
+	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
+	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
+	public static int lastMaxSummons = 5;
+	public static boolean hasRing = false;
+	public static boolean checkTrap = false;
+	public static int swordsPlayed = 0;
 
 	// =============== INPUT TEXTURE LOCATION =================
 
@@ -349,6 +364,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String WIRETAP = "cards/Wiretap.png";
 	public static final String JINZO = "cards/Jinzo.png";		
 	public static final String SHADOW_TOKEN = "cards/Shadow_Token.png";	
+	public static final String SHADOW_TOON = "cards/Shadow_Toon.png";	
 
 	// Expansion Set
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
@@ -563,12 +579,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	// =============== SUBSCRIBE, CREATE THE COLOR, INITIALIZE =================
 
 	public DefaultMod() {
-		logger.info("Subscribe to BaseMod hooks");
+		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Subscribe to BaseMod hooks");
 
 		BaseMod.subscribe(this);
 
-		logger.info("Done subscribing");
-		logger.info("Creating the color " + AbstractCardEnum.DEFAULT_GRAY.toString());
+		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done subscribing");
+		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Creating the color " + AbstractCardEnum.DEFAULT_GRAY.toString());
 
 		BaseMod.addColor(AbstractCardEnum.DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
 				DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, makePath(ATTACK_DEFAULT_GRAY),
@@ -577,15 +593,16 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				makePath(SKILL_DEFAULT_GRAY_PORTRAIT), makePath(POWER_DEFAULT_GRAY_PORTRAIT),
 				makePath(ENERGY_ORB_DEFAULT_GRAY_PORTRAIT), makePath(CARD_ENERGY_ORB));
 
-		logger.info("Done creating the color");
+		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done creating the color");
 		
-		logger.info("Setting up or loading the settings config file");
+		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Setting up or loading the settings config file");
 		duelistDefaults.setProperty(PROP_TOON_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_CROSSOVER_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_OTHERC_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_OTHERD_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_SET, "0");
+		duelistDefaults.setProperty(PROP_DECK, "0");
 		duelistDefaults.setProperty(PROP_CARDS, "200");
 		
 		cardSets.add("All (186 cards)");
@@ -594,6 +611,15 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		cardSets.add("Limited (90 cards)");
 		cardSets.add("Core (61 cards)");
 		
+		startingDecks.add("Standard Deck (10 cards)");
+		startingDecks.add("Dragon Deck (10 cards)");
+		startingDecks.add("Nature Deck (11 cards)");
+		startingDecks.add("Spellcaster Deck (13 cards)");
+		startingDecks.add("Creator Deck (3 cards)");
+		startingDecks.add("Random Deck (10 cards)");
+		startingDecks.add("Random Deck (15 cards)");
+		startingDecks.add("Toon Deck (10 cards)");
+
 		try 
 		{
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -605,16 +631,19 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
             otherBtnBoolD = config.getBool(PROP_OTHERD_BTN);
             setIndex = config.getInt(PROP_SET);
             cardCount = config.getInt(PROP_CARDS);
+            deckIndex = config.getInt(PROP_DECK);
+            chosenDeckTag = findDeckTag(deckIndex);
             
         } catch (Exception e) { e.printStackTrace(); }
 
-		logger.info("Done setting up or loading the settings config file");
+		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done setting up or loading the settings config file");
 	}
 
+
 	public static void initialize() {
-		logger.info("========================= Initializing Duelist Mod  =========================");
+		logger.info("theDuelist:DefaultMod:initialize() ---> Initializing Duelist Mod");
 		DefaultMod defaultmod = new DefaultMod();
-		logger.info("========================= /Duelist Mod Initialized/ =========================");
+		logger.info("theDuelist:DefaultMod:initialize() ---> Duelist Mod Initialized");
 	}
 
 	// ============== /SUBSCRIBE, CREATE THE COLOR, INITIALIZE/ =================
@@ -625,7 +654,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 	@Override
 	public void receiveEditCharacters() {
-		logger.info("Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
+		logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
 
 		// Yugi Moto
 		BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
@@ -641,7 +670,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		
 		
 		receiveEditPotions();
-		logger.info("Done editing characters");
+		logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Done editing characters");
 	}
 
 	// =============== /LOAD THE CHARACTER/ =================
@@ -653,7 +682,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receivePostInitialize() {
 
-		logger.info("Loading badge image and mod options");
+		logger.info("theDuelist:DefaultMod:receivePostInitialize() ---> Loading badge image and mod options");
 		Texture badgeTexture = new Texture(makePath(BADGE_IMAGE));
 		ModPanel settingsPanel = new ModPanel();
 		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
@@ -668,7 +697,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				config.setBool(PROP_TOON_BTN, toonBtnBool);
 				config.save();
 			} catch (Exception e) { e.printStackTrace(); }
-			resetCharSelect();
+			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(toonBtn);
 		// END Check Box A
@@ -683,7 +712,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				config.setBool(PROP_EXODIA_BTN, exodiaBtnBool);
 				config.save();
 			} catch (Exception e) { e.printStackTrace(); }
-			resetCharSelect();
+			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(exodiaBtn);
 		// END Check Box B
@@ -698,48 +727,52 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				config.setBool(PROP_CROSSOVER_BTN, crossoverBtnBool);
 				config.save();
 			} catch (Exception e) { e.printStackTrace(); }
-			resetCharSelect();
+			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(crossoverBtn);
 		// END Check Box C
 		
-		// Check Box D
-		ModLabeledToggleButton fourthBtn = new ModLabeledToggleButton("Placeholder",350.0f, 550.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, otherBtnBoolC, settingsPanel, (label) -> {}, (button) -> 
-		{
-			otherBtnBoolC = button.enabled;
-			try 
-			{
+		// Starting Deck Selector
+		ModLabel setSelectLabelTxtB = new ModLabel("Starting Deck:",350.0f, 550.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(setSelectLabelTxtB);
+		ModLabel setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),670.0f, 550.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(setSelectColorTxtB);
+
+		ModButton setSelectLeftBtnB = new ModButton(605.0f, 535.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+			deckIndex = deckIndex-1>=0?deckIndex-1:SETS-1;
+			setSelectColorTxtB.text = startingDecks.get(deckIndex);
+			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_OTHERC_BTN, otherBtnBoolC);
+				config.setInt(PROP_DECK, deckIndex);
 				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			resetCharSelect();
 		});
-		settingsPanel.addUIElement(fourthBtn);
-		// END Check Box D
-		
-		// Check Box D
-		ModLabeledToggleButton fifthBtn = new ModLabeledToggleButton("Placeholder",350.0f, 500.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, otherBtnBoolD, settingsPanel, (label) -> {}, (button) -> 
-		{
-			otherBtnBoolD = button.enabled;
-			try 
-			{
+		settingsPanel.addUIElement(setSelectLeftBtnB);
+		ModButton setSelectRightBtnB = new ModButton(1050.0f, 535.0f, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
+			deckIndex = (deckIndex+1)%DECKS;
+			setSelectColorTxtB.text = startingDecks.get(deckIndex);
+			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_OTHERD_BTN, otherBtnBoolD);
+				config.setInt(PROP_DECK, deckIndex);
 				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			resetCharSelect();
 		});
-		settingsPanel.addUIElement(fifthBtn);
-		// END Check Box D
+		settingsPanel.addUIElement(setSelectRightBtnB);
+		// Starting Deck Selector
 		
 		// Set Size Selector
-		ModLabel setSelectLabelTxt = new ModLabel("Card Set size:",350.0f, 415.0f,settingsPanel,(me)->{});
+		ModLabel setSelectLabelTxt = new ModLabel("Card Set size:",350.0f, 500.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectLabelTxt);
-		ModLabel setSelectColorTxt = new ModLabel(cardSets.get(setIndex),670.0f, 415.0f,settingsPanel,(me)->{});
+		ModLabel setSelectColorTxt = new ModLabel(cardSets.get(setIndex),670.0f, 500.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectColorTxt);
 
-		ModButton setSelectLeftBtn = new ModButton(605.0f, 400.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+		ModButton setSelectLeftBtn = new ModButton(605.0f, 485.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
 			setIndex = setIndex-1>=0?setIndex-1:SETS-1;
 			setSelectColorTxt.text = cardSets.get(setIndex);
 			try {
@@ -751,7 +784,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			}
 		});
 		settingsPanel.addUIElement(setSelectLeftBtn);
-		ModButton setSelectRightBtn = new ModButton(950.0f, 400.0f, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
+		ModButton setSelectRightBtn = new ModButton(950.0f, 485.0f, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
 			setIndex = (setIndex+1)%SETS;
 			setSelectColorTxt.text = cardSets.get(setIndex);
 			try {
@@ -763,16 +796,25 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			}
 		});
 		settingsPanel.addUIElement(setSelectRightBtn);
-		ModLabel extraLabelTxt = new ModLabel("Changing the card set requires a restart to take effect.",350.0f, 350.0f,settingsPanel,(me)->{});
-		settingsPanel.addUIElement(extraLabelTxt);
 		// END Set Size Selector
 		
 		// Card Count Label
-		ModLabel cardLabelTxt = new ModLabel("Active Duelist Cards: " + cardCount,350.0f, 300.0f,settingsPanel,(me)->{});
+		ModLabel cardLabelTxt = new ModLabel("Active Duelist Cards: " + cardCount,350.0f, 335.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(cardLabelTxt);
 		// END Card Count Label
+		
+		// Info Labels
+		ModLabel extraLabelTxt = new ModLabel("Changing the card set requires a restart to take effect.",350.0f, 285.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(extraLabelTxt);
+		ModLabel extraLabelTxtB = new ModLabel("Start a fresh run to change your starting deck.",350.0f, 235.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(extraLabelTxtB);
+		// END Info Labels
+		
+		
+		
+		
 
-		logger.info("Done loading badge Image and mod options");
+		logger.info("theDuelist:DefaultMod:receivePostInitialize() ---> Done loading badge Image and mod options");
 
 	}
 
@@ -783,7 +825,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 
 	public void receiveEditPotions() {
-		logger.info("Beginning to edit potions");
+		logger.info("theDuelist:DefaultMod:receiveEditPotions() ---> Beginning to edit potions");
 
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
 		BaseMod.addPotion(MillenniumElixir.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, MillenniumElixir.POTION_ID, TheDuelistEnum.THE_DUELIST);
@@ -791,7 +833,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.addPotion(SealedPack.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPack.POTION_ID, TheDuelistEnum.THE_DUELIST);
 		BaseMod.addPotion(SealedPackB.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, SealedPackB.POTION_ID, TheDuelistEnum.THE_DUELIST);
 
-		logger.info("Done editing potions");
+		logger.info("theDuelist:DefaultMod:receiveEditPotions() ---> Done editing potions");
 	}
 
 	// ================ /ADD POTIONS/ ===================
@@ -801,7 +843,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 	@Override
 	public void receiveEditRelics() {
-		logger.info("Adding relics");
+		logger.info("theDuelist:DefaultMod:receiveEditRelics() ---> Adding relics");
 
 		// This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
 		BaseMod.addRelicToCustomPool(new MillenniumPuzzle(), AbstractCardEnum.DEFAULT_GRAY);
@@ -816,7 +858,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		// This adds a relic to the Shared pool. Every character can find this relic.
 		//BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
 
-		logger.info("Done adding relics!");
+		logger.info("theDuelist:DefaultMod:receiveEditRelics() ---> Done adding relics!");
 	}
 
 	// ================ /ADD RELICS/ ===================
@@ -829,7 +871,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		// Add the Custom Dynamic Variables
 		//BaseMod.addDynamicVariable(new WingedDragonVariable());
 
-		logger.info("Adding cards");
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> adding all cards to myCards array");
 		// CORE Set - 74 cards
 			// Starting Deck - 6 cards
 		myCards.add(new CastleWalls());
@@ -1059,7 +1101,13 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new Wiseman());
 		// END RANDOM ONLY Set
 		
-
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done adding all cards to myCards array");
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> setting up starting deck");
+		initStartDeckArrays();
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> begin checking config options and removing cards");
 		// If they are allowing the extra mod cards, check if the mods are loaded and remove the cards if not
 		if (crossoverBtnBool)
 		{
@@ -1114,22 +1162,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				}
 			}
 		}
-
-		if (!otherBtnBoolC)
-		{
-			
-		}
-		
-		if (!otherBtnBoolD)
-		{
-			
-		}
 		
 		if (toonBtnBool)
 		{
 			for (int i = 0; i < myCards.size(); i++)
 			{
-				if (myCards.get(i).hasTag(DefaultMod.TOON))
+				if ((myCards.get(i).hasTag(DefaultMod.TOON)))
 				{
 					myCards.remove(i);
 					i = 0;
@@ -1143,7 +1181,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			case 1:				
 				for (int i = 0; i < myCards.size(); i++)
 				{
-					if (myCards.get(i).hasTag(DefaultMod.ALL))
+					if ((myCards.get(i).hasTag(DefaultMod.ALL)))
 					{
 						myCards.remove(i);
 						i = 0;
@@ -1154,7 +1192,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			case 2:				
 				for (int i = 0; i < myCards.size(); i++)
 				{
-					if (myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL))
+					if ((myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
 					{
 						myCards.remove(i);
 						i = 0;
@@ -1165,7 +1203,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			case 3:				
 				for (int i = 0; i < myCards.size(); i++)
 				{
-					if (myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL))
+					if ((myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
 					{
 						myCards.remove(i);
 						i = 0;
@@ -1176,7 +1214,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			case 4:
 				for (int i = 0; i < myCards.size(); i++)
 				{
-					if (myCards.get(i).hasTag(DefaultMod.LIMITED) || myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL))
+					if ((myCards.get(i).hasTag(DefaultMod.LIMITED) || myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
 					{
 						myCards.remove(i);
 						i = 0;
@@ -1186,13 +1224,13 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			default:
 				break;
 		}
-
-		// Unlock all cards
-		logger.info("Making sure the cards are unlocked.");
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> all needed cards have been removed from myCards array");
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> adding cards to game, filling summonMap, unlocking all cards, counting active cards...");
 		int tempCardCount = 0;
 		for (DuelistCard c : myCards) 
 		{ 
-			if (!c.hasTag(DefaultMod.RANDOMONLY))
+			if ((!c.hasTag(DefaultMod.RANDOMONLY) && (!c.hasTag(DefaultMod.RANDOMONLY_NOCREATOR))))
 			{
 				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); tempCardCount++;
 			}
@@ -1202,7 +1240,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				UnlockTracker.unlockCard(c.getID());
 			}
 		}
-		
+
 		summonMap.put("Great Moth", new GreatMoth());
 		summonMap.put("Puzzle Token", new Token());
 		summonMap.put("Ancient Token", new Token());
@@ -1221,14 +1259,19 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		summonMap.put("Explosive Token", new ExplosiveToken());
 		summonMap.put("Shadow Token", new ShadowToken());
 		cardCount = tempCardCount;
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done initializing cards");
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> saving config options for card set");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_CARDS, cardCount);
+			config.setInt(PROP_DECK, deckIndex);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		logger.info("Done adding cards!");
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done");
 
 	}
 
@@ -1240,7 +1283,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 	@Override
 	public void receiveEditStrings() {
-		logger.info("Beginning to edit strings");
+		logger.info("theDuelist:DefaultMod:receiveEditStrings() ---> Beginning to edit strings");
 
 		// CardStrings
 		BaseMod.loadCustomStringsFile(CardStrings.class,
@@ -1262,7 +1305,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.loadCustomStringsFile(OrbStrings.class,
 				"defaultModResources/localization/DuelistMod-Orb-Strings.json");
 
-		logger.info("Done edittting strings");
+		logger.info("theDuelist:DefaultMod:receiveEditStrings() ---> Done edittting strings");
 	}
 
 	// ================ /LOAD THE TEXT/ ===================
@@ -1314,29 +1357,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
         return modID;
     }
 	
-	 public static void setModID(String ID) {
-	        if (ID.equals("theDefault")) {
-	            throw new RuntimeException("Go to your constructor in your class with SpireInitializer and change your mod ID from \"theDefault\"");
-	        } else if (ID.equals("theDefaultDev")) {
-	            modID = "theDuelist";
-	        } else {
-	            modID = ID;
-	        }
-	    }
-
-	public static String getExistingOrPlaceholder(String prefix, String id, String postfix) {
-		String idWithoutModName = id.replaceAll(MOD_ID_PREFIX, "");
-		String maybeExisting = prefix + idWithoutModName + postfix;
-		if (Gdx.files.internal(maybeExisting).exists()) {
-			return maybeExisting;
-		} else {
-			DefaultMod.logger.debug(
-					id + " has no image configured. Defaulting to placeholder image (should be in "
-							+ prefix + ")");
-			return prefix + PLACEHOLDER + postfix;
-		}
-	}
-	
 	public static boolean isToken(AbstractCard c)
 	{
 		if (c.hasTag(DefaultMod.TOKEN)) { return true; }
@@ -1361,10 +1381,16 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		else { return false; }
 	}
 
-	@SuppressWarnings("unchecked")
-	public void resetCharSelect() {
-		((ArrayList<CharacterOption>) ReflectionHacks.getPrivate(CardCrawlGame.mainMenuScreen.charSelectScreen, CharacterSelectScreen.class, "options")).clear();
-		CardCrawlGame.mainMenuScreen.charSelectScreen.initialize();
+	public void resetCharSelect()
+	{		
+		setupStartDecks();
+		if (deckToStartWith.size() > 0)
+		{
+			CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
+			for (AbstractCard c : deckToStartWith) { newStartGroup.addToRandomSpot(c);}
+			CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).masterDeck.initializeDeck(newStartGroup);
+			CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).masterDeck.sortAlphabetically(true);
+		}
 	}
 
 	@Override
@@ -1384,8 +1410,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	}
 
 	@Override
-	public int receiveOnPlayerDamaged(int arg0, DamageInfo arg1) {
-		//System.out.println("theDuelist:DefaultMod:receiveOnPlayerDamaged() ---> this is the damageInfo: " + arg1.owner);
+	public int receiveOnPlayerDamaged(int arg0, DamageInfo arg1) 
+	{
 		return arg0;
 	}
 
@@ -1393,15 +1419,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receivePostPowerApplySubscriber(AbstractPower arg0, AbstractCreature arg1, AbstractCreature arg2) 
 	{
-		/*
-		if (arg1.hasPower(GravityAxePower.POWER_ID))
-		{
-			GravityAxePower gravPower = (GravityAxePower) arg1.getPower(GravityAxePower.POWER_ID);
-			int gravStr = gravPower.FINAL_STRENGTH;
-			DuelistCard.removePower(arg1.getPower(StrengthPower.POWER_ID), arg1);
-			DuelistCard.applyPower(new StrengthPower(arg1, gravStr), arg1);
-		}
-		*/
+	
 	}
 
 	@Override
@@ -1423,5 +1441,160 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		arg0.applyPowers();
 	}
 
+	@Override
+	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
+	{
+		setupStartDecks();
+		if (deckToStartWith.size() > 0)
+		{
+			CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
+			for (AbstractCard c : deckToStartWith) { newStartGroup.addToRandomSpot(c);}
+			arg1.initializeDeck(newStartGroup);
+			arg1.sortAlphabetically(true);
+		}
+	}
+
+	private CardTags findDeckTag(int deckIndex) 
+	{
+		switch (deckIndex)
+		{
+			case 0:
+				return STANDARD_DECK;
+			case 1:
+				return DRAGON_DECK;				
+			case 2:
+				return NATURE_DECK;
+			case 3:
+				return SPELLCASTER_DECK;				
+			case 4:
+				return CREATOR_DECK;
+			case 5:
+				return RANDOM_DECK_SMALL;
+			case 6:
+				return RANDOM_DECK_BIG;
+			case 7:
+				return TOON_DECK;
+			default:
+				return STANDARD_DECK;
+		}
+	}
+	
+	private void initStartDeckArrays()
+	{
+		standardDeck = new ArrayList<DuelistCard>();
+		dragonDeck = new ArrayList<DuelistCard>();
+		natureDeck = new ArrayList<DuelistCard>();
+		spellcasterDeck = new ArrayList<DuelistCard>();
+		toonDeck = new ArrayList<DuelistCard>();
+		creatorDeck = new ArrayList<DuelistCard>();
+		for (DuelistCard c : myCards)
+		{
+			if (c.hasTag(STANDARD_DECK))
+			{
+				for (int i = 0; i < c.startingDeckCopies; i++)
+				{
+					standardDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(DRAGON_DECK))
+			{
+				for (int i = 0; i < c.startingDeckCopies; i++)
+				{
+					dragonDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(NATURE_DECK))
+			{
+				for (int i = 0; i < c.startingDeckCopies; i++)
+				{
+					natureDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(SPELLCASTER_DECK))
+			{
+				for (int i = 0; i < c.startingDeckCopies; i++)
+				{
+					spellcasterDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(TOON_DECK))
+			{
+				for (int i = 0; i < c.startingDeckCopies; i++)
+				{
+					toonDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(CREATOR_DECK))
+			{
+				for (int i = 0; i < c.startingDeckCopies; i++)
+				{
+					creatorDeck.add(c);
+				}
+			}
+		}
+	}
+	
+	private void setupStartDecks()
+	{
+		chosenDeckTag = findDeckTag(deckIndex);
+		if (chosenDeckTag.equals(RANDOM_DECK_SMALL))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			for (int i = 0; i < 10; i++)
+			{
+				deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+			}
+		}
+		
+		else if (chosenDeckTag.equals(RANDOM_DECK_BIG))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			for (int i = 0; i < 15; i++)
+			{
+				deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+			}
+		}
+		
+		else if (chosenDeckTag.equals(STANDARD_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(standardDeck);
+		}
+		
+		else if (chosenDeckTag.equals(DRAGON_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(dragonDeck);
+		}
+		
+		else if (chosenDeckTag.equals(NATURE_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(natureDeck);
+		}
+		
+		else if (chosenDeckTag.equals(SPELLCASTER_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(spellcasterDeck);
+		}
+		
+		else if (chosenDeckTag.equals(TOON_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(toonDeck);
+		}
+		
+		else if (chosenDeckTag.equals(CREATOR_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(creatorDeck);
+		}
+	}
 
 }

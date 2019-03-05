@@ -39,7 +39,8 @@ public class SarraceniantPower extends AbstractPower
     @Override
     public int onAttacked(DamageInfo info, int damageAmount)
     {
-    	DuelistCard.applyPower(new PoisonPower(info.owner, AbstractDungeon.player, poisonAmt), info.owner);
+    	DuelistCard.poisonAllEnemies(AbstractDungeon.player, poisonAmt);
+    	//DuelistCard.applyPower(new PoisonPower(info.owner, AbstractDungeon.player, poisonAmt), info.owner);
     	return damageAmount;
     }
     

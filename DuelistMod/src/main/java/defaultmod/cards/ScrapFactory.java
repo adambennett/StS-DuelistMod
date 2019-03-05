@@ -38,6 +38,8 @@ public class ScrapFactory extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = ENERGY;
 		this.energyOnUse = ENERGY;
 		this.tags.add(DefaultMod.SPELL);
+		this.tags.add(DefaultMod.STANDARD_DECK);
+        this.startingDeckCopies = 1;
 		this.misc = 0;
 		this.tributes = 1;
 		this.originalName = this.name;

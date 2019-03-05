@@ -29,7 +29,7 @@ public class ToonSummonedSkull extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	  private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 2;
 	private static final int DAMAGE = 18;
 	private static final int TRIBUTES = 1;
@@ -43,7 +43,9 @@ public class ToonSummonedSkull extends DuelistCard
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);
-		 this.tags.add(DefaultMod.FULL);
+		this.tags.add(DefaultMod.FULL);
+		this.tags.add(DefaultMod.TOON_DECK);
+		this.startingDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -76,21 +78,21 @@ public class ToonSummonedSkull extends DuelistCard
 	}
 
 	// If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	
-    	// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-    	
-    	// Check for Toon World
-  		else if (!p.hasPower(ToonWorldPower.POWER_ID) && !p.hasPower(ToonKingdomPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; return false; }
-    	
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
+	@Override
+	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+	{
+		// Check super canUse()
+		boolean canUse = super.canUse(p, m); 
+		if (!canUse) { return false; }
+
+		// Pumpking & Princess
+		else if (this.misc == 52) { return true; }
+
+		// Check for Toon World
+		else if (!p.hasPower(ToonWorldPower.POWER_ID) && !p.hasPower(ToonKingdomPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; return false; }
+
+		// Mausoleum check
+		else if (p.hasPower(EmperorPower.POWER_ID))
 		{
 			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
 			if (!empInstance.flag)
@@ -98,15 +100,15 @@ public class ToonSummonedSkull extends DuelistCard
 				return true;
 			}
 		}
-    	
-    	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
-    	
-    	// Player doesn't have something required at this point
-    	if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; }
-    	else { this.cantUseMessage = "Not enough Summons"; }
-    	return false;
-    }
+
+		// Check for # of summons >= tributes
+		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+
+		// Player doesn't have something required at this point
+		if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; }
+		else { this.cantUseMessage = "Not enough Summons"; }
+		return false;
+	}
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
@@ -117,19 +119,19 @@ public class ToonSummonedSkull extends DuelistCard
 	@Override
 	public void onResummon(int summons) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

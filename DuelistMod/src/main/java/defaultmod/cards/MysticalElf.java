@@ -38,6 +38,8 @@ public class MysticalElf extends DuelistCard
 		this.tags.add(DefaultMod.BAD_TRIB);
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.BAD_TRIB);
+		this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.startingDeckCopies = 2;
 		this.summons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;

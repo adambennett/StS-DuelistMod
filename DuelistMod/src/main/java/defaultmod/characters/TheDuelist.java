@@ -115,7 +115,7 @@ public class TheDuelist extends CustomPlayer {
 
 		logger.info("Begin loading starter Deck Strings");
 
-		// working base deck
+		// Standard Deck (10 cards)
 		retVal.add(SevenColoredFish.ID);
 		retVal.add(SevenColoredFish.ID);
 		retVal.add(GiantSoldier.ID);
@@ -127,19 +127,6 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(Ookazi.ID);
 		retVal.add(SummonedSkull.ID);
 		
-		
-		/*
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		retVal.add(BadToken.ID);
-		*/
 		
 		return retVal;
 	}

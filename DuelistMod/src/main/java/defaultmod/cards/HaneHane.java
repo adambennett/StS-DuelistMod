@@ -39,6 +39,8 @@ public class HaneHane extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.TOON_DECK);
+        this.startingDeckCopies = 1;
         this.originalName = this.name;
     }
 

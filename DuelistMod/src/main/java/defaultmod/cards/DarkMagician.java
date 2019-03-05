@@ -43,6 +43,8 @@ public class DarkMagician extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.BAD_TRIB);
+        this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.startingDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
     }

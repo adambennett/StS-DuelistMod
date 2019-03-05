@@ -39,6 +39,8 @@ public class Lajinn extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.BAD_TRIB);
+        this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.startingDeckCopies = 1;
         this.originalName = this.name;
         this.summons = 1;
         this.isSummon = true;

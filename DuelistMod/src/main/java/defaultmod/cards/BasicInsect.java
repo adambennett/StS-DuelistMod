@@ -24,7 +24,7 @@ public class BasicInsect extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
@@ -40,6 +40,8 @@ public class BasicInsect extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.INSECT);
+        this.tags.add(DefaultMod.NATURE_DECK);
+        this.startingDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
     }

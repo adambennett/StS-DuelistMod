@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
@@ -67,7 +68,7 @@ public class Buffer extends AbstractOrb
 	private void triggerPassiveEffect()
 	{
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
-		for (int i = 0; i < playerPowers.size() - 1; i++) { if (playerPowers.get(i).name.equals("Player Statistics")) { playerPowers.remove(i); i = playerPowers.size(); }} 
+		for (int i = 0; i < playerPowers.size(); i++) { if ((playerPowers.get(i).name.equals("Player Statistics") || playerPowers.get(i).type.equals(PowerType.DEBUFF)) ) { playerPowers.remove(i); i = playerPowers.size(); }} 
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			if (playerPowers.size() > 0)

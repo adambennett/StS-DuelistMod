@@ -39,6 +39,8 @@ public class SummonedSkull extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.METAL_RAIDERS);
+		this.tags.add(DefaultMod.STANDARD_DECK);
+        this.startingDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
 	}

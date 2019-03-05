@@ -116,8 +116,8 @@ public class SummonPower extends AbstractPower
 			}
 			else if (ref.hasTag(DefaultMod.TOKEN))
 			{
-				coloredString = "#y" + s;
-				coloredString = coloredString.replaceAll("\\s", " #y");
+				coloredString = "[#180055]" + s;
+				coloredString = coloredString.replaceAll("\\s", " [#180055]");
 				coloredSummonList.add(coloredString);
 			}
 			else

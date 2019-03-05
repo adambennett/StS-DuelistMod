@@ -34,6 +34,8 @@ public class ToonWorld extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.FULL);
+        this.tags.add(DefaultMod.TOON_DECK);
+        this.startingDeckCopies = 1;
 		this.originalName = this.name;
     }
 

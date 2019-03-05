@@ -39,6 +39,8 @@ public class PredaplantSpinodionaea extends DuelistCard
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.PLANT);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.NATURE_DECK);
+        this.startingDeckCopies = 1;
         this.summons = 1;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 10;

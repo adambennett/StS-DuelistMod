@@ -39,6 +39,8 @@ public class ExodiaLL extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
         this.tags.add(DefaultMod.BAD_TRIB);
+        this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.startingDeckCopies = 1;
         this.baseBlock = this.block = 5;
         this.summons = this.baseMagicNumber = this.magicNumber = 1;
         this.damage = this.baseDamage = 1;

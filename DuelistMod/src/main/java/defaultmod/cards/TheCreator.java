@@ -38,8 +38,10 @@ public class TheCreator extends DuelistCard
         this.tributes = 5;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.CREATOR_DECK);
         this.originalName = this.name;
         this.purgeOnUse = true;
+        this.startingDeckCopies = 1;
     }
 
     // Actions the card should do.
@@ -84,7 +86,6 @@ public class TheCreator extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(4);
             this.tributes = 4;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

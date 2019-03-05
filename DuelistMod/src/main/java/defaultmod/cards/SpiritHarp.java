@@ -38,9 +38,13 @@ public class SpiritHarp extends DuelistCard
         this.tags.add(DefaultMod.BAD_TRIB);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.BAD_TRIB);
+        this.tags.add(DefaultMod.CREATOR_DECK);
+        this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.startingDeckCopies = 1;
         this.summons = 2;
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.startingDeckCopies = 2;
     }
 
     // Actions the card should do.

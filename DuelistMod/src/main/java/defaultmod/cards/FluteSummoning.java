@@ -34,6 +34,8 @@ public class FluteSummoning extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.DRAGON_DECK);
+        this.startingDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;
     }

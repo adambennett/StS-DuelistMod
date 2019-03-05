@@ -804,6 +804,11 @@
 		"DESCRIPTION": "Add !M! randomized Insects or Plants to your hand. Exhaust.",
 		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Insects or Plants to your hand. Exhaust."
 	},
+	"theDuelist:ShadowToon": {
+		"NAME": "Shadow Toon",
+		"DESCRIPTION": "Add !M! randomized Toon cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Toon cards to your hand."
+	},
 	"theDuelist:HeavyStorm": {
 		"NAME": "Heavy Storm",
 		"DESCRIPTION": "Remove ALL powers from you and ALL enemies.",

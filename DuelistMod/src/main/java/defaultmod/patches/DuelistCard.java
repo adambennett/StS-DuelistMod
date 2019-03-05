@@ -69,6 +69,7 @@ public abstract class DuelistCard extends CustomCard
 	public int damageB;
 	public int damageC;
 	public int damageD;
+	public int startingDeckCopies = 1;
 	// CARD FIELDS
 
 	public DuelistCard(String ID, String NAME, String IMG, int COST, String DESCRIPTION, CardType TYPE, CardColor COLOR, CardRarity RARITY, CardTarget TARGET)
@@ -318,11 +319,11 @@ public abstract class DuelistCard extends CustomCard
 		attackAll(AbstractGameAction.AttackEffect.POISON, damageArray, DamageType.THORNS);
 	}
 
-	protected void poisonAllEnemies(AbstractPlayer p, int amount)
+	public static void poisonAllEnemies(AbstractPlayer p, int amount)
 	{
 		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
 		{
-			flash();
+			//flash();
 			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
 			{
 				if ((!monster.isDead) && (!monster.isDying)) 
