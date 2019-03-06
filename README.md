@@ -49,7 +49,10 @@ There are 14 bonus cards that can be added to the game if you have this option c
 This option lets you choose which deck you would like to use for your runs. I have defined 6 starting decks for now, and there are also 2 additional options for using a randomly-generated deck. Select the deck you would like and start a fresh run to try it out!
 
 ## Set Size
-You can change this option to remove large groups of the cards from the game.
+You can change this option to remove large groups of the cards from the game. There are 5 different card sets to select from: Core, Limited, Reduced, Full and All. The Core set is the smallest, with only 61 cards, while the All set is the largest set with 186 cards. If you have both 'Remove cards' mod options turned off, the 'Allow crossover cards' option turned on, and the card set size set to 'All', then the game will have the maximum number of possible cards at 200. The number of cards currently turned on is always displayed in the options panel after the 'Active Duelist Cards:' label. This setting is largely untested, so there may be some bugs when using sets other than 'All'.
+
+# Known Issues
+- Downgrading cards does not work properly when cards that have Tribute-based upgrades become Downgraded. However in most cases, this is beneficial and it should never crash the game or cause any other major side effects.
 
 # Creator Information
 Thanks for playing the Duelist! Please let me know if you have any feedback or bug reports! 
@@ -58,7 +61,7 @@ Email: nyoxidestsmods@gmail.com
 
 Discord: Nyoxide#3464
 
-## Card List
+# Card List
 
 Castle Walls - *Core*  
 Giant Stone Soldier - *Core*  
