@@ -10,7 +10,7 @@ CROSSOVER CONTENT FOR
 - Conspire
 - Googly Eyes
 
-TODO
+[b]TODO[/b]
 - Balance/QA
 - Setup Steam release files
 
