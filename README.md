@@ -55,6 +55,7 @@ You can change this option to remove large groups of the cards from the game.
 Thanks for playing the Duelist! Please let me know if you have any feedback or bug reports! 
 
 Email: nyoxidestsmods@gmail.com
+
 Discord: Nyoxide#3464
 
 Some in game screenshots taken of the first steam release build (3-6-19). Everything is absolutely always subject to change.
