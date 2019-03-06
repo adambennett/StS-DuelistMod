@@ -1101,6 +1101,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new Wiseman());
 		// END RANDOM ONLY Set
 		
+		printCardSetsForSteam(myCards);
+		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done adding all cards to myCards array");
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> setting up starting deck");
@@ -1313,12 +1315,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	// ================ LOAD THE KEYWORDS ===================
 
 	@Override
-	public void receiveEditKeywords() {
-		final String[] placeholder = { "keyword", "keywords", "Keyword", "Keywords" };
-		BaseMod.addKeyword(placeholder, "Whenever you play a card, gain 1 dexterity this turn only.");
+	public void receiveEditKeywords() 
+	{
 		BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of #b5 #ySummons.");
 		BaseMod.addKeyword(new String[] {"resummon", "Resummon", "Resummons", "resummons"}, "Replays the card, ignoring Tribute costs. Some monsters trigger extra special effects when Resummoned.");
-		BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes", "sacrifice"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
+		BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
 		BaseMod.addKeyword(new String[] {"increment", "Increment" }, "Increase your maximum #ySummons by the number given.");
 		BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "A powerful monster found within your Grandpa's deck.");
 		BaseMod.addKeyword(new String[] {"gate", "Gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus.");
@@ -1328,14 +1329,14 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.addKeyword(new String[] {"monsterOrb", "Monsterorb", "MonsterOrb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
 		BaseMod.addKeyword(new String[] {"dragonorb", "Dragonorb", "DragonOrb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
 		BaseMod.addKeyword(new String[] {"overflow", "Overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
-		BaseMod.addKeyword(new String[] {"toon", "Toon"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the tribute, deal #b5 damage to all enemies.");
+		BaseMod.addKeyword(new String[] {"toon", "Toon", "Toons", "toons"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the tribute, deal #b5 damage to all enemies.");
 		BaseMod.addKeyword(new String[] {"magnet", "Magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
 		BaseMod.addKeyword(new String[] {"ojamania", "Ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
-		BaseMod.addKeyword(new String[] {"dragon", "Dragon"}, "When you #yTribute a #yDragon for another #yDragon, Gain #b1 #yStrength.");
-		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster"}, "When you #yTribute a #yMystical monster for a #yDragon, lose #b2 #yHP.");
-		BaseMod.addKeyword(new String[] {"insect", "Insect"}, "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
-		BaseMod.addKeyword(new String[] {"plant", "Plant"}, "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
-		BaseMod.addKeyword(new String[] {"predaplant", "Predaplant"}, "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
+		BaseMod.addKeyword(new String[] {"dragon", "Dragon", "Dragons", "dragons"}, "When you #yTribute a #yDragon for another #yDragon, Gain #b1 #yStrength.");
+		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster", "Spellcasters", "spellcasters"}, "When you #yTribute a #yMystical monster for a #yDragon, lose #b2 #yHP.");
+		BaseMod.addKeyword(new String[] {"insect", "Insect", "Insects", "insects"}, "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
+		BaseMod.addKeyword(new String[] {"plant", "Plant", "Plants", "plants"}, "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
+		BaseMod.addKeyword(new String[] {"predaplant", "Predaplant", "Predaplants", "predaplants"}, "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
 		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand.");
 		BaseMod.addKeyword(new String[] {"air", "Air"}, "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1.");
 		BaseMod.addKeyword(new String[] {"fire", "Fire"}, "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn.");
@@ -1596,6 +1597,109 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		{
 			deckToStartWith = new ArrayList<DuelistCard>();
 			deckToStartWith.addAll(creatorDeck);
+		}
+	}
+	
+	private void printCardSetsForSteam(ArrayList<DuelistCard> cardsToPrint)
+	{
+		ArrayList<DuelistCard> all = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> full = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> reduced = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> limited = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> mod = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> random = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> core = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> toon = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> exodia = new ArrayList<DuelistCard>();
+		for (DuelistCard c : cardsToPrint)
+		{
+			if (c.hasTag(DefaultMod.ALL))
+			{
+				all.add(c);
+			}
+			else if (c.hasTag(DefaultMod.FULL))
+			{
+				full.add(c);
+			}
+			else if (c.hasTag(DefaultMod.REDUCED))
+			{
+				reduced.add(c);
+			}
+			
+			else if (c.hasTag(DefaultMod.LIMITED))
+			{
+				limited.add(c);
+			}
+			
+			else if (c.hasTag(DefaultMod.CONSPIRE) || c.hasTag(DefaultMod.REPLAYSPIRE))
+			{
+				mod.add(c);
+			}
+			
+			else if (c.hasTag(DefaultMod.RANDOMONLY))
+			{
+				random.add(c);
+			}
+			
+			else
+			{
+				core.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.EXODIA))
+			{
+				exodia.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.TOON))
+			{
+				toon.add(c);
+			}
+		}
+		
+		for (DuelistCard c : core)
+		{
+			logger.info(c.originalName + " - " + "[i]Core[/i]");
+		}
+		
+		for (DuelistCard c : limited)
+		{
+			logger.info(c.originalName + " - " + "[i]Limited[/i]");
+		}
+		
+		for (DuelistCard c : reduced)
+		{
+			logger.info(c.originalName + " - " + "[i]Reduced[/i]");
+		}
+		
+		for (DuelistCard c : full)
+		{
+			logger.info(c.originalName + " - " + "[i]Full[/i]");
+		}
+		
+		for (DuelistCard c : all)
+		{
+			logger.info(c.originalName + " - " + "[i]All[/i]");
+		}
+		
+		for (DuelistCard c : mod)
+		{
+			logger.info(c.originalName + " - " + "[i]Crossover[/i]");
+		}
+		
+		for (DuelistCard c : random)
+		{
+			logger.info(c.originalName + " - " + "[i]Random generation only[/i]");
+		}
+		
+		for (DuelistCard c : toon)
+		{
+			logger.info(c.originalName + " - " + "[i]Toons[/i]");
+		}
+		
+		for (DuelistCard c : exodia)
+		{
+			logger.info(c.originalName + " - " + "[i]Exodia[/i]");
 		}
 	}
 

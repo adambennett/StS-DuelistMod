@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import conspire.orbs.Water;
 import defaultmod.DefaultMod;
-import defaultmod.orbs.Gate;
+import defaultmod.orbs.*;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -66,7 +66,7 @@ public class GateGuardian extends DuelistCard
 	    				channel(orb);
 	    				break;
 	    			case "Kazejin":
-	    				AbstractOrb orbB = new Plasma();
+	    				AbstractOrb orbB = new Earth();
 	    				channel(orbB);
 	    				break;
 	    			case "Suijin":

@@ -406,8 +406,8 @@
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
-		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 plasma. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 plasma. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Earth. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 Earth. NL Deal !D! damage."
 	},
 	"theDuelist:SangaThunder": {
 		"NAME": "Sanga of Thunder",

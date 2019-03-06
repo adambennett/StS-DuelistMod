@@ -1122,11 +1122,12 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower focus = new FocusPower(p, turnNum);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
-		AbstractPower timeWizard = new TimeWizardPower(p, p, turnNum);
+		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
+		AbstractPower mayhem = new MayhemPower(p, 1);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				orbEvoker, tombPilfer, retainCards, timeWizard,
-				generosity, focus, reductionist, creative }; 
+				generosity, focus, reductionist, creative, mayhem };
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
 		AbstractPower randomBuff = buffs[randomBuffNum];
@@ -1419,6 +1420,8 @@ public abstract class DuelistCard extends CustomCard
 		}
 		return new SevenColoredFish();
 	}
+	
+	
 
 	public static void printSetDetails(CardTags[] setsToFindFrom) 
 	{

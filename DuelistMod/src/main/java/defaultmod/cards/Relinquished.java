@@ -61,7 +61,7 @@ public class Relinquished extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.tributes = 0;
+			if (this.tributes > 0) { this.tributes--; }
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

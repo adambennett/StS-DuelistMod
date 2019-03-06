@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 
 import defaultmod.DefaultMod;
+import defaultmod.orbs.Earth;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -58,7 +59,7 @@ public class SangaEarth extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Plasma();
+    	AbstractOrb orb = new Earth();
     	channel(orb);
     }
 

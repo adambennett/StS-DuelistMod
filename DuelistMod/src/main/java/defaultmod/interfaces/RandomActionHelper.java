@@ -220,14 +220,28 @@ public class RandomActionHelper
 	private static void initList()
 	{
 		actions = new ArrayList<String>();
-		actions.add("Draw #b2 cards");	actions.add("Gain #b10 HP"); actions.add("Gain #b5 #yBlock");
-		actions.add("Gain a random amount of gold (50-100)"); actions.add("Gain #b10 #yBlock"); actions.add("Apply #b2 random #ydebuffs to random enemy");
-		actions.add("Apply #b1 random #ybuff");	actions.add("Apply #b1 random #ydebuff to random enemy");	actions.add("#yChannel #b1 random orb");
-		actions.add("#yEvoke #b1 Orb");	actions.add("Add #b1 random #ySpell to hand");
-		actions.add("Add #b1 random #yTrap to hand");	actions.add("Add #b1 random #ySpellcaster to hand");	actions.add("Add #b1 random #yMonster to hand");
-		actions.add("Gain #b15 #yBlock");	actions.add("#ySummon #b1");
-		actions.add("#yIncrement #b1");	actions.add("#yIncrement #b2");
-		actions.add("#yOjamania"); actions.add("Gain 1 [E] "); actions.add("Channel a Glitch"); actions.add("Channel a Buffer");
+		actions.add("Draw #b2 cards");	
+		actions.add("Gain #b10 HP"); 
+		actions.add("Gain #b5 #yBlock");
+		actions.add("Gain a random amount of gold (50-100)"); 
+		actions.add("Gain #b10 #yBlock"); 
+		actions.add("Apply #b2 random #ydebuffs to random enemy");
+		actions.add("Apply #b1 random #ybuff");	
+		actions.add("Apply #b1 random #ydebuff to random enemy");	
+		actions.add("#yChannel #b1 random orb");
+		actions.add("#yEvoke #b1 Orb");	
+		actions.add("Add #b1 random #ySpell to hand");
+		actions.add("Add #b1 random #yTrap to hand");	
+		actions.add("Add #b1 random #ySpellcaster to hand");	
+		actions.add("Add #b1 random #yMonster to hand");
+		actions.add("Gain #b15 #yBlock");	
+		actions.add("#ySummon #b1");
+		actions.add("#yIncrement #b1");	
+		actions.add("#yIncrement #b2");
+		actions.add("#yOjamania"); 
+		actions.add("Gain 1 [E] "); 
+		actions.add("Channel a Glitch"); 
+		actions.add("Channel a Buffer");
 		actions.add("Gain #b3 Artifacts");
 	}
 
