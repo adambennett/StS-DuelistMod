@@ -56,7 +56,7 @@ public class Buffer extends AbstractOrb
 	public void onEvoke()
 	{
 		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
-		System.out.println("theDuelist:Buffer --- > triggered evoke!");
+		//System.out.println("theDuelist:Buffer --- > triggered evoke!");
 	}
 
 	@Override
@@ -90,8 +90,16 @@ public class Buffer extends AbstractOrb
 			if (buffs.size() > 0)
 			{
 				int randomNum = AbstractDungeon.cardRandomRng.random(buffs.size() - 1);
-				if (buffs.get(randomNum).name.equals("Summons")) { DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
-				else { buffs.get(randomNum).amount += 1; buffs.get(randomNum).updateDescription(); System.out.println("theDuelist:Buffer --- > Buffed " + buffs.get(randomNum).name + " on passive trigger. New amount: " + buffs.get(randomNum).amount); }
+				if (buffs.get(randomNum).name.equals("Summons")) 
+				{
+					DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
+					//System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); 
+				}
+				else 
+				{ 
+					buffs.get(randomNum).amount += 1; buffs.get(randomNum).updateDescription(); 
+					//System.out.println("theDuelist:Buffer --- > Buffed " + buffs.get(randomNum).name + " on passive trigger. New amount: " + buffs.get(randomNum).amount);
+				}
 				
 			}
 		}

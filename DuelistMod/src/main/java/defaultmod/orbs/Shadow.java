@@ -67,7 +67,7 @@ public class Shadow extends AbstractOrb
 	    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
 	    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
 	    		String cardName = chosen.originalName;
-	    		System.out.println("theDuelist:Shadow --- > Found: " + cardName);
+	    		//System.out.println("theDuelist:Shadow --- > Found: " + cardName);
     			DuelistCard cardCopy = DuelistCard.newCopyOfMonster(cardName);
     			if (cardCopy != null)
     			{

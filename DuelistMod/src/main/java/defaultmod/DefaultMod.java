@@ -596,7 +596,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done creating the color");
 		
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Setting up or loading the settings config file");
-		duelistDefaults.setProperty(PROP_TOON_BTN, "FALSE");
+		duelistDefaults.setProperty(PROP_TOON_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_CROSSOVER_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_OTHERC_BTN, "FALSE");
@@ -1077,31 +1077,34 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new ValkMagnet());
 		// END LIMITED Set
 		
-		//CONSPIRE Set - 3 cards
-		myCards.add(new GateGuardian());
-		myCards.add(new LegendaryFisherman());
-		myCards.add(new SangaWater());
-		// END CONSPIRE Set
-		
-		// REPLAY Set - 11 cards
-		myCards.add(new BarrelDragon());
-		myCards.add(new BlastJuggler());
-		myCards.add(new DarkMirrorForce());
-		myCards.add(new FlameSwordsman()); 
-		myCards.add(new MagicCylinder());
-		myCards.add(new NutrientZ());
-		myCards.add(new OjamaBlack());
-		myCards.add(new OjamaKing());
-		myCards.add(new OjamaKnight());
-		myCards.add(new Parasite());
-		myCards.add(new ToonDarkMagicianGirl());
+		if (Loader.isModLoaded("ReplayTheSpireMod") && Loader.isModLoaded("conspire"))
+		{
+			//CONSPIRE Set - 3 cards
+			myCards.add(new GateGuardian());
+			myCards.add(new LegendaryFisherman());
+			myCards.add(new SangaWater());
+			// END CONSPIRE Set
+			
+			// REPLAY Set - 11 cards
+			myCards.add(new BarrelDragon());
+			myCards.add(new BlastJuggler());
+			myCards.add(new DarkMirrorForce());
+			myCards.add(new FlameSwordsman()); 
+			myCards.add(new MagicCylinder());
+			myCards.add(new NutrientZ());
+			myCards.add(new OjamaBlack());
+			myCards.add(new OjamaKing());
+			myCards.add(new OjamaKnight());
+			myCards.add(new Parasite());
+			myCards.add(new ToonDarkMagicianGirl());
+		}
 		// END REPLAY Set
 		
 		//RANDOM ONLY Set - 1 card
 		myCards.add(new Wiseman());
 		// END RANDOM ONLY Set
 		
-		printCardSetsForSteam(myCards);
+		//printCardSetsForSteam(myCards);
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done adding all cards to myCards array");
 		

@@ -69,7 +69,7 @@ public class ReduceRandomCardsAction extends AbstractGameAction
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(modCards.size() - 1);
 	        	modCards.get(randomNum).setCostForTurn(-1 * reduction);
-	        	System.out.println("theDuelist:ReducerOrbPassiveAction --- > card reduced: " + modCards.get(randomNum).name);
+	        	//System.out.println("theDuelist:ReducerOrbPassiveAction --- > card reduced: " + modCards.get(randomNum).name);
 	        	modCards.remove(randomNum);
     		}
     	}

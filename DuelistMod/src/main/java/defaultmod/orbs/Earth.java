@@ -57,9 +57,9 @@ public class Earth extends AbstractOrb
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
 			DuelistCard.addCardToHand(randomMonster);
-			System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand.");
+			//System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand.");
 		}
-		System.out.println("theDuelist:Earth --- > triggered evoke!");
+		//System.out.println("theDuelist:Earth --- > triggered evoke!");
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class Earth extends AbstractOrb
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
 			DuelistCard.addCardToHand(randomMonster);
-			System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand.");
+			//System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand.");
 		}
 	}
 

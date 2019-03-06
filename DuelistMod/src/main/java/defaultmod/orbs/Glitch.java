@@ -167,93 +167,93 @@ public class Glitch extends AbstractOrb
 		{
 			case "Draw #b2 cards":
 				DuelistCard.draw(2);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Gain #b10 HP":
 				DuelistCard.heal(AbstractDungeon.player, 10);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Lose #b5 HP":
 				DuelistCard.damageSelf(5);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#yExhaust #b1 random card in hand":
 				AbstractDungeon.actionManager.addToTop(new ExhaustAction(AbstractDungeon.player, AbstractDungeon.player, 1, true));
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Gain a random amount of gold (50-100)":
 				int randomGold = AbstractDungeon.cardRandomRng.random(50, 100);
 				DuelistCard.gainGold(randomGold, AbstractDungeon.player, true);
 				string = "Gain a random amount of gold #b" + randomGold;
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Apply #b1 random #ybuff":
 				int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 3);
 				DuelistCard.applyRandomBuff(AbstractDungeon.player, randomTurnNum);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Apply #b1 random #ydebuff to random enemy":
 				int randomTurnNumD = AbstractDungeon.cardRandomRng.random(1, 3);
 				AbstractMonster m = DuelistCard.getRandomMonster();
 				AbstractPower debuff = RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
 				DuelistCard.applyPower(debuff, (AbstractCreature)m);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#yChannel #b1 random orb":
 				DuelistCard.channelRandom();
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Add #b1 random #ySpell to hand":
 				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
 				DuelistCard.addCardToHand(randomSpell);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#yEvoke #b1 Orb.":
 				DuelistCard.evoke(1);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Add #b1 random #yTrap to hand":
 				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TRAP);
 				DuelistCard.addCardToHand(randomTrap);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Add #b1 random #ySpellcaster to hand":
 				DuelistCard randomSpellcaster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELLCASTER);
 				DuelistCard.addCardToHand(randomSpellcaster);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Add #b1 random #yMonster to hand":
 				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
 				DuelistCard.addCardToHand(randomMonster);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Lose #b1 strength":
 				AbstractDungeon.actionManager.addToTop(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1), 1));
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Lose #b1 dexterity":
 				AbstractDungeon.actionManager.addToTop(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, 1), 1));
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Gain #b15 #yBlock":
 				DuelistCard.staticBlock(15);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#ySummon #b1":
 				DuelistCard.summon(AbstractDungeon.player, 1, new Token("Glitch Token"));
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#ySummon #b2":
 				DuelistCard.summon(AbstractDungeon.player, 2, new Token("Glitch Token"));
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#yIncrement #b1":
 				DuelistCard.incMaxSummons(AbstractDungeon.player, 1);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#yIncrement #b2":
 				DuelistCard.incMaxSummons(AbstractDungeon.player, 2);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "#yOjamania":
 				AbstractMonster mO = DuelistCard.getRandomMonster();
@@ -280,46 +280,46 @@ public class Glitch extends AbstractOrb
 					int randomTurnNumO2 = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
 					DuelistCard.applyPower(RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
 				}
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Increase this orb's Passive amount by #b1":
 				increaseOrbAmounts("Passive", 1);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Increase this orb's Evoke amount by #b1":
 				increaseOrbAmounts("Evoke", 1);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Increase this orb's Evoke amount by #b2":
 				increaseOrbAmounts("Evoke", 2);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Orb slots+1":
 				AbstractDungeon.player.increaseMaxOrbSlots(1, true);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Gain 1 [E] ":
 				DuelistCard.gainEnergy(1);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			case "Channel a Glitch":
 				AbstractOrb glitch = new Glitch();
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				DuelistCard.channel(glitch);
 				break;
 			case "Channel a Buffer":
 				AbstractOrb buffer = new Buffer();
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				DuelistCard.channel(buffer);
 				break;
 			case "Gain #b3 Artifacts":
 				AbstractPower art = new ArtifactPower(AbstractDungeon.player, 3);
 				DuelistCard.applyPowerToSelf(art);
-				System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string);
 				break;
 			default:
 				String randomAction = evokeActions.get(AbstractDungeon.cardRandomRng.random(evokeActions.size() - 1));
-				System.out.println("theDuelist:Glitch:runAction ---> triggered (default): " + string);
+				//System.out.println("theDuelist:Glitch:runAction ---> triggered (default): " + string);
 				break;
 		}
 		

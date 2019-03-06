@@ -52,10 +52,24 @@ public class FogKing extends DuelistCard
     {
     	int damageIncrease = 0;
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	if (upgraded && tributeList.size() > 0) { for (DuelistCard c : tributeList) { damageIncrease += c.baseDamage + 3; System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);}}
-    	else if (!upgraded && tributeList.size() > 0) { for (DuelistCard c : tributeList) { damageIncrease += c.baseDamage; System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);}}
+    	if (upgraded && tributeList.size() > 0) 
+    	{ 
+    		for (DuelistCard c : tributeList) 
+	    	{ 
+	    		damageIncrease += c.baseDamage + 3; 
+	    		//System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);
+	    	}
+    	}
+    	else if (!upgraded && tributeList.size() > 0) 
+    	{
+    		for (DuelistCard c : tributeList)
+	    	{ 
+	    		damageIncrease += c.baseDamage; 
+	    		//System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);
+	    	}
+    	}
     	this.baseDamage = this.damage += damageIncrease;
-    	System.out.println("theDuelist:FogKing:use() ---> damageIncrease: " + damageIncrease);
+    	//System.out.println("theDuelist:FogKing:use() ---> damageIncrease: " + damageIncrease);
     	attack(m, AFX, this.damage);
     }
 

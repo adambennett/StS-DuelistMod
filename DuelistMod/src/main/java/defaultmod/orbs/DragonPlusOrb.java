@@ -56,7 +56,7 @@ public class DragonPlusOrb extends AbstractOrb
 	public void onEvoke()
 	{
 		AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount));
-		System.out.println("theDuelist:DragonOrb --- > triggered evoke!");
+		//System.out.println("theDuelist:DragonOrb --- > triggered evoke!");
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class DragonPlusOrb extends AbstractOrb
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
 			AbstractDungeon.actionManager.addToBottom(new MakeEtherealCopyInHandAction(randomMonster, false, true));
-			System.out.println("theDuelist:DragonOrb --- > Added: " + randomMonster.name + " to player hand.");
+			//System.out.println("theDuelist:DragonOrb --- > Added: " + randomMonster.name + " to player hand.");
 		}
 	}
 

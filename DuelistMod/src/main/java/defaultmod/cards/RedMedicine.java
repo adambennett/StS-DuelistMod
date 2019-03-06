@@ -60,9 +60,13 @@ public class RedMedicine extends DuelistCard
 		applyPowerToSelf(randomBuff);
 		*/
 		applyRandomBuffPlayer(p, randomTurnNum, false);
-		System.out.println("theDuelist:RedMedicine --- > Generated buff: " );
+		//System.out.println("theDuelist:RedMedicine --- > Generated buff: " );
 		//if (this.upgraded) { applyPowerToSelf(randomBuffB); }
-		if (this.upgraded) { applyRandomBuffPlayer(p, randomTurnNumB, false); System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " ); }
+		if (this.upgraded) 
+		{ 
+			applyRandomBuffPlayer(p, randomTurnNumB, false); 
+			//System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " ); 
+		}
     }
 
     // Which card to return when making a copy of this card.

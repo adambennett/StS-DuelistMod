@@ -58,6 +58,232 @@ Email: nyoxidestsmods@gmail.com
 
 Discord: Nyoxide#3464
 
+## Card List
+
+Castle Walls - *Core*  
+Giant Stone Soldier - *Core*  
+Ookazi - *Core*  
+Scrap Factory - *Core*  
+7-Colored Fish - *Core*  
+Summoned Skull - *Core*  
+Armored Zombie - *Core*  
+Axe of Despair - *Core*  
+Baby Dragon - *Core*  
+Tremendous Fire - *Core*  
+Blizzard Dragon - *Core*  
+B.E. White Dragon - *Core*  
+B. Eyes Ultimate - *Core*  
+Buster Blader - *Core*  
+Cannon Soldier - *Core*  
+Card Destruction - *Core*  
+Castle Dark Illusion - *Core*  
+Catapult Turtle - *Core*  
+Cave Dragon - *Core*  
+Celtic Guardian - *Core*  
+Change of Heart - *Core*  
+Dark Magician - *Core*  
+Darklord Marie - *Core*  
+Dian Keto - *Core*  
+Dragon Capture Jar - *Core*  
+Fiend Megacyber - *Core*  
+Fissure - *Core*  
+Flute of Summoning Dragon - *Core*  
+Fortress Warrior - *Core*  
+G. Dragon Champion - *Core*  
+G. Fierce Knight - *Core*  
+Gemini Elf - *Core*  
+Graceful Charity - *Core*  
+Gravity Axe - *Core*  
+Hane Hane - *Core*  
+Hinotoma - *Core*  
+Imperial Order - *Core*  
+Injection Fairy Lily - *Core*  
+Insect Queen - *Core*  
+Island Turtle - *Core*  
+Jam Breed Machine - *Core*  
+Judge Man - *Core*  
+Kuriboh - *Core*  
+Labyrinth Wall - *Core*  
+Lesser Dragon - *Core*  
+Lord of D. - *Core*  
+Mirror Force - *Core*  
+Monster Reborn - *Core*  
+Mountain - *Core*  
+Mystical Elf - *Core*  
+Obelisk - *Core*  
+Pot of Generosity - *Core*  
+Pot of Greed - *Core*  
+Prevent Rat - *Core*  
+Pumpking - *Core*  
+Raigeki - *Core*  
+Rain of Mercy - *Core*  
+R. Eyes Black Dragon - *Core*  
+Relinquished - *Core*  
+Kazejin - *Core*  
+Sanga of Thunder - *Core*  
+Scapegoat - *Core*  
+Slifer Sky Dragon - *Core*  
+Mini L. Wall - *Core*  
+Snow Dragon - *Core*  
+Snowdust Dragon - *Core*  
+Spirit of the Harp - *Core*  
+Superheavy Benkei - *Core*  
+Superheavy Scales - *Core*  
+Superheavy Swordsman - *Core*  
+Superheavy Waraji - *Core*  
+Thunder Dragon - *Core*  
+Winged Dragon Ra - *Core*  
+Yami - *Core*  
+A. Magnet Warrior - *Limited*  
+Ancient Rules - *Limited*  
+Bad Reaction - *Limited*  
+B. Magnet Warrior - *Limited*  
+Dark Hole - *Limited*  
+D.M. Girl - *Limited*  
+Exodia Head - *Limited*  
+Exodia L. Arm - *Limited*  
+Exodia L. Leg - *Limited*  
+Exodia R. Arm - *Limited*  
+Exodia R. Leg - *Limited*  
+Phoenix Feather - *Limited*  
+G. Magnet Warrior - *Limited*  
+Emperor Mausoleum - *Limited*  
+Millennium Shield - *Limited*  
+Valkyrion - *Limited*  
+Curse of Dragon - *Reduced*  
+Cyber Dragon - *Reduced*  
+Dark Factory - *Reduced*  
+Fiend Skull Dragon - *Reduced*  
+Five Headed Dragon - *Reduced*  
+Giant Trunade - *Reduced*  
+Harpie Feather Duster - *Reduced*  
+Molten Zombie - *Reduced*  
+Ojama Green - *Reduced*  
+Ojama Yellow - *Reduced*  
+Ojamagic - *Reduced*  
+Ojamuscle - *Reduced*  
+Pot of Avarice - *Reduced*  
+Pot of Dichotomy - *Reduced*  
+Pot of Duality - *Reduced*  
+Pumprincess - *Reduced*  
+R. Eyes Zombie Dragon - *Reduced*  
+Red Medicine - *Reduced*  
+Shard of Greed - *Reduced*  
+Storming Mirror Force - *Reduced*  
+Superheavy Brawler - *Reduced*  
+Superheavy Daihachi - *Reduced*  
+Superheavy Flutist - *Reduced*  
+Superheavy General - *Reduced*  
+Superheavy Magnet - *Reduced*  
+Superheavy Ogre - *Reduced*  
+Swords: Burning Light - *Reduced*  
+Swords: Concealing Light - *Reduced*  
+Swords: Revealing Light - *Full*  
+Time Wizard - *Full*  
+Trap Hole - *Full*  
+B.E. Toon Dragon - *Full*  
+Dragon Master Knight - *Full*  
+Gandora - *Full*  
+L. Exodia Incarnate - *Full*  
+Radiant Mirror Force - *Full*  
+Red Eyes Toon - *Full*  
+Superancient Dinobeast - *Full*  
+Token Vacuum - *Full*  
+Toon Barrel Dragon - *Full*  
+Toon Briefcase - *Full*  
+Toon Dark Magician - *Full*  
+Toon Gemini Elf - *Full*  
+Toon Magic - *Full*  
+Toon Mask - *Full*  
+Toon Mermaid - *Full*  
+Toon Rollback - *Full*  
+Toon S. Skull - *Full*  
+Toon World - *Full*  
+Toon Kingdom - *Full*  
+Toon D.M. Girl - *Full*  
+Machine King - *All*  
+Book Secret Arts - *All*  
+Heavy Storm - *All*  
+Fog King - *All*  
+Lajinn Mystical Genie - *All*  
+King Yamimakai - *All*  
+Blackland Fire Dragon - *All*  
+White Night Dragon - *All*  
+White-Horned Dragon - *All*  
+Revival Jam - *All*  
+Stim Pack - *All*  
+Bottomless Trap Hole - *All*  
+Sword of Deep-Seated - *All*  
+Monster Egg - *All*  
+Steam Train King - *All*  
+Machine Factory - *All*  
+Tribute to Doomed - *All*  
+Petit Moth - *All*  
+Cocoon of Evolution - *All*  
+Cheerful Coffin - *All*  
+The Creator - *All*  
+Polymerization - *All*  
+Violet Crystal - *All*  
+Predaponics - *All*  
+Metal Dragon - *All*  
+Super Solar Nutrient - *All*  
+Gigaplant - *All*  
+Basic Insect - *All*  
+B. Skull Dragon - *All*  
+Darkfire Dragon - *All*  
+Empress Mantis - *All*  
+Grasschopper - *All*  
+Jinzo - *All*  
+Levia-Dragon - *All*  
+Man-Eater Bug - *All*  
+Ocean Dragon Lord - *All*  
+P. Chimerafflesia - *All*  
+P. Chlamydosundew - *All*  
+P. Drosophyllum - *All*  
+P. Flytrap - *All*  
+P. Pterapenthes - *All*  
+P. Sarraceniant - *All*  
+P. Spinodionaea - *All*  
+Predapruning - *All*  
+Tri-Horned Dragon - *All*  
+Wiretap - *All*  
+Gate Guardian - *Crossover*  
+Legendary Fisherman - *Crossover*  
+Suijin - *Crossover*  
+Barrel Dragon - *Crossover*  
+Blast Juggler - *Crossover*  
+Dark Mirror Force - *Crossover*  
+Flame Swordsman - *Crossover*  
+Magic Cylinder - *Crossover*  
+Nutrient Z - *Crossover*  
+Ojama Black - *Crossover*  
+Ojama King - *Crossover*  
+Ojama Knight - *Crossover*  
+Parasite Paracide - *Crossover*  
+Wiseman's Chalice - *Random generation only*  
+  
+B.E. Toon Dragon - *Toons*  
+Red Eyes Toon - *Toons*  
+Toon Barrel Dragon - *Toons*  
+Toon Briefcase - *Toons*  
+Toon Dark Magician - *Toons*  
+Toon Gemini Elf - *Toons*  
+Toon Magic - *Toons*  
+Toon Mask - *Toons*  
+Toon Mermaid - *Toons*  
+Toon Rollback - *Toons*  
+Toon S. Skull - *Toons*  
+Toon World - *Toons*  
+Toon Kingdom - *Toons*  
+Toon D.M. Girl - *Toons*  
+L. Exodia Incarnate - *Exodia*  
+Exodia Head - *Exodia*  
+Exodia L. Arm - *Exodia*  
+Exodia L. Leg - *Exodia*  
+Exodia R. Arm - *Exodia*  
+Exodia R. Leg - *Exodia*  
+
+## Screenshots
 Some in game screenshots taken of the first steam release build (3-6-19). Everything is absolutely always subject to change.
 
 ![CardsA](Screenshots/CardsA.PNG)

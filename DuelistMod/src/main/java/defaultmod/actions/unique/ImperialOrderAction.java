@@ -57,17 +57,27 @@ public class ImperialOrderAction extends AbstractGameAction
     	
     	for (AbstractCard c : modCards)
     	{
-    		System.out.println("theDuelist:ImperialOrderAction:runAction():before remove ---> modCards card: " + c + " /// Cost: "+ c.costForTurn);
+    		//System.out.println("theDuelist:ImperialOrderAction:runAction():before remove ---> modCards card: " + c + " /// Cost: "+ c.costForTurn);
     	}
     	
-    	System.out.println("theDuelist:ImperialOrderAction:runAction():between ---> finished looping over modcards before removing any cards");
+    	//System.out.println("theDuelist:ImperialOrderAction:runAction():between ---> finished looping over modcards before removing any cards");
     	
     	// Remove all 0 cost spells and traps from list
-    	if (modCards.size() > 0) { for (int i = 0; i < modCards.size(); i++) { if (modCards.get(i).costForTurn == 0) { System.out.println("theDuelist:ImperialOrderAction:runAction() ---> removed: " + modCards.get(i).name); modCards.remove(i); i = 0;  } } }
+    	if (modCards.size() > 0) 
+    	{ 
+    		for (int i = 0; i < modCards.size(); i++) 
+	    	{ 
+	    		if (modCards.get(i).costForTurn == 0)
+	    		{ 
+	    		//System.out.println("theDuelist:ImperialOrderAction:runAction() ---> removed: " + modCards.get(i).name); 
+	    		modCards.remove(i); i = 0;  
+	    		} 
+	    	} 
+    	}
     	
     	for (AbstractCard c : modCards)
     	{
-    		System.out.println("theDuelist:ImperialOrderAction:runAction():after remove ---> modCards card: " + c + " /// Cost: "+ c.costForTurn);
+    		//System.out.println("theDuelist:ImperialOrderAction:runAction():after remove ---> modCards card: " + c + " /// Cost: "+ c.costForTurn);
     	}
     	
     	// For the amount of times equal to power stacks, grab a random card from the remaining list and set cost to 0

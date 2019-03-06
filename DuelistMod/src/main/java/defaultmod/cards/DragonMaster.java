@@ -59,8 +59,8 @@ public class DragonMaster extends DuelistCard
     	DuelistCard extraDragB = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
     	String cardNameA = extraDragA.originalName;
     	String cardNameB = extraDragB.originalName;
-	    	System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA);
-	    	System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameB);
+    	//System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA);
+    	//System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameB);
     	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }
     	if (!extraDragB.tags.contains(DefaultMod.TRIBUTE)) { extraDragB.misc = 52; }
         extraDragA.freeToPlayOnce = true;
