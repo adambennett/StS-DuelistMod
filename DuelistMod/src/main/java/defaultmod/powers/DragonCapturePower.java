@@ -66,7 +66,7 @@ public class DragonCapturePower extends AbstractPower
 	{
 		if (this.amount == 0) 
 		{ 
-			this.description = DESCRIPTIONS[0] + pieces.size(); 
+			this.description = DESCRIPTIONS[0] + "None."; 
 		}
 		
 		else

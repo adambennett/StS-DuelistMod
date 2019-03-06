@@ -47,20 +47,23 @@ public class Polymerization extends DuelistCard
     {
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
     	for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.MONSTER)) { handCards.add(a); }}    	
-		for (int i = 0; i < this.magicNumber; i++)
-		{
-    		DuelistCard summon = (DuelistCard) returnRandomFromArrayAbstract(handCards);
-    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
-			if (cardCopy != null)
+    	if (handCards.size() > 0)
+    	{
+			for (int i = 0; i < this.magicNumber; i++)
 			{
-				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-				if (summon.upgraded) { cardCopy.upgrade(); }
-				cardCopy.freeToPlayOnce = true;
-				cardCopy.applyPowers();
-				cardCopy.purgeOnUse = true;
-				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+	    		DuelistCard summon = (DuelistCard) returnRandomFromArrayAbstract(handCards);
+	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
+				if (cardCopy != null)
+				{
+					if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+					if (summon.upgraded) { cardCopy.upgrade(); }
+					cardCopy.freeToPlayOnce = true;
+					cardCopy.applyPowers();
+					cardCopy.purgeOnUse = true;
+					AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+				}
 			}
-		}
+    	}
     }
 
     // Which card to return when making a copy of this card.

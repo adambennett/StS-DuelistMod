@@ -68,7 +68,56 @@ public class Buffer extends AbstractOrb
 	private void triggerPassiveEffect()
 	{
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
-		for (int i = 0; i < playerPowers.size(); i++) { if ((playerPowers.get(i).name.equals("Player Statistics") || playerPowers.get(i).type.equals(PowerType.DEBUFF)) ) { playerPowers.remove(i); i = playerPowers.size(); }} 
+		ArrayList<AbstractPower> buffs = new ArrayList<AbstractPower>();
+		/*
+		for (int i = 0; i < playerPowers.size(); i++)
+		{
+			System.out.println("theDuelist:Buffer:triggerPassiveEffect() ---> before removing, players powers buff[" + i + "]: " + playerPowers.get(i).name + " -- type: " +  playerPowers.get(i).type);
+			
+		}
+		*/
+		
+		for (AbstractPower a : playerPowers)
+		{
+			if (!a.name.equals("Player Statistics") && !a.type.equals(PowerType.DEBUFF))
+			{
+				buffs.add(a);
+			}
+		}
+		
+		for (int i = 0; i < this.passiveAmount; i++)
+		{
+			if (buffs.size() > 0)
+			{
+				int randomNum = AbstractDungeon.cardRandomRng.random(buffs.size() - 1);
+				if (buffs.get(randomNum).name.equals("Summons")) { DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
+				else { buffs.get(randomNum).amount += 1; buffs.get(randomNum).updateDescription(); System.out.println("theDuelist:Buffer --- > Buffed " + buffs.get(randomNum).name + " on passive trigger. New amount: " + buffs.get(randomNum).amount); }
+				
+			}
+		}
+			
+		/*
+		for (int i = 0; i < playerPowers.size(); i++) 
+		{ 
+			if (!playerPowers.get(i).name.equals("Player Statistics")) 
+			{
+				playerPowers.remove(i); 
+				i = 0; 
+				//System.out.println("found player statistics");
+			}
+			
+			else if (!playerPowers.get(i).type.equals(PowerType.DEBUFF))
+			{
+				//System.out.println("found debuff: " + playerPowers.get(i).name);
+				playerPowers.remove(i); 
+				i = 0;
+			}
+		} 
+		
+		for (int i = 0; i < playerPowers.size(); i++)
+		{
+			System.out.println("theDuelist:Buffer:triggerPassiveEffect() ---> AFTER removing, players powers buff[" + i + "]: " + playerPowers.get(i).name);
+		}
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			if (playerPowers.size() > 0)
@@ -79,8 +128,8 @@ public class Buffer extends AbstractOrb
 				
 			}
 		}
-		
-		this.passiveAmount++;
+		*/
+		//this.passiveAmount++;
 		applyFocus();
 		updateDescription();
 	}

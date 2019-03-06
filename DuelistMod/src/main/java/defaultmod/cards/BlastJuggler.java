@@ -28,8 +28,8 @@ public class BlastJuggler extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
-	private static final CardType TYPE = CardType.SKILL;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
+	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 1;
 	private static final int SUMMONS = 1;
@@ -49,6 +49,7 @@ public class BlastJuggler extends DuelistCard
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;
+		this.baseDamage = this.damage = 5;
 		tooltips = new ArrayList<>();
 		tooltips.add(new ExplosiveToken());
 	}
@@ -60,6 +61,7 @@ public class BlastJuggler extends DuelistCard
 	{
 		summon(p, SUMMONS, this);
 		summon(p, 1, new ExplosiveToken("Exploding Token"));
+		attack(m, this.baseAFX, this.damage);
 	}
 
 	// Which card to return when making a copy of this card.

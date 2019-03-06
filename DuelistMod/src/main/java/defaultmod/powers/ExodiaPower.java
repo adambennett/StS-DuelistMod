@@ -26,7 +26,7 @@ public class ExodiaPower extends AbstractPower
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DefaultMod.makePath(DefaultMod.EXODIA_POWER);
-	private static int DAMAGE = 7;
+	private static int DAMAGE = 20;
 	public ArrayList<DuelistCard> pieces = new ArrayList<DuelistCard>();
 	
 	public ExodiaPower(final AbstractCreature owner, final AbstractCreature source, DuelistCard piece) 
@@ -70,8 +70,8 @@ public class ExodiaPower extends AbstractPower
 			int playerSummons = 1;
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
 			{ 
-				playerSummons = ExodiaHead.getSummons(AbstractDungeon.player); 
-				playerSummons += ExodiaHead.getMaxSummons(AbstractDungeon.player); 
+				playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
+				playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
 			}
 			int[] catapultDmg = new int[] {DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE};
 			for (int i = 0; i < catapultDmg.length; i++) { catapultDmg[i] = DAMAGE * playerSummons; }
@@ -107,6 +107,19 @@ public class ExodiaPower extends AbstractPower
 			if (!checkForPiece("Exodia L. Leg")) { 	return false;	}
 			if (!checkForPiece("Exodia R. Arm")) { 	return false; 	}
 			if (!checkForPiece("Exodia R. Leg")) {  return false;	}
+		}
+		return true;
+	}
+	
+	public boolean checkForAllPiecesButHead()
+	{
+		if (pieces.size() < 4) { return false; }
+		else
+		{
+			if (!checkForPiece("Exodia L. Arm")) { return false; 	}
+			if (!checkForPiece("Exodia L. Leg")) { return false;	}
+			if (!checkForPiece("Exodia R. Arm")) { return false; 	}
+			if (!checkForPiece("Exodia R. Leg")) { return false;	}
 		}
 		return true;
 	}

@@ -55,7 +55,7 @@ public class MonsterEgg extends DuelistCard
     	// If this card is upgraded, the two dragons get upgraded as well
     	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.MONSTER, DefaultMod.TOON);    	
     	String cardNameA = extraDragA.originalName;    	
-	    System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA);	   
+	    System.out.println("theDuelist:MonsterEgg --- > Generated: " + cardNameA);	   
     	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }    	
         extraDragA.freeToPlayOnce = true;       
         extraDragA.applyPowers();      

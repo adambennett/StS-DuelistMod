@@ -31,9 +31,9 @@ public class RainMercy extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static int MIN_HEAL = 0;
+    private static int MIN_HEAL = 5;
     private static int MAX_HEAL = 25;
-	private static final int MIN_HEAL_U = 5;
+	private static final int MIN_HEAL_U = 10;
     private static final int MAX_HEAL_U = 30;
     // /STAT DECLARATION/
 
@@ -76,7 +76,7 @@ public class RainMercy extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeBaseCost(1);
-            //MIN_HEAL = MIN_HEAL_U;
+            MIN_HEAL = MIN_HEAL_U;
             MAX_HEAL = MAX_HEAL_U;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

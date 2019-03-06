@@ -37,7 +37,7 @@ public class KuribohToken extends DuelistCard
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (!tributingCard.hasTag(DefaultMod.DRAGON)) {applyPower(new IntangiblePlayerPower(AbstractDungeon.player, 1), AbstractDungeon.player);}
+		if (!tributingCard.hasTag(DefaultMod.DRAGON)) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, 1));}
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

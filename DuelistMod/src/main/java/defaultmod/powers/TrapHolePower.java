@@ -42,6 +42,7 @@ public class TrapHolePower extends AbstractPower
     @Override
     public void onDrawOrDiscard() 
     {
+    	if (this.amount != chance) { chance = this.amount; }
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     	if (this.amount > 10) { this.amount = chance = 10; }
     	updateDescription();
@@ -50,6 +51,7 @@ public class TrapHolePower extends AbstractPower
     @Override
     public void atStartOfTurn() 
     {
+    	if (this.amount != chance) { chance = this.amount; }
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     	if (this.amount > 10) { this.amount = chance = 10; }
     	updateDescription();
@@ -58,6 +60,7 @@ public class TrapHolePower extends AbstractPower
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
+    	if (this.amount != chance) { chance = this.amount; }
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     	if (this.amount > 10) { this.amount = chance = 10; }
     	updateDescription();
@@ -66,6 +69,7 @@ public class TrapHolePower extends AbstractPower
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
+    	if (this.amount != chance) { chance = this.amount; }
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     	if (this.amount > 10) { this.amount = chance = 10; }
     	updateDescription();

@@ -24,7 +24,7 @@ public class CannonPower extends AbstractPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DefaultMod.makePath(DefaultMod.CANNON_SOLDIER_POWER);
-    private static int TURN_DMG = 10;
+    private static int TURN_DMG = 8;
     private static int TRIBUTES = 1;
 
     public CannonPower(AbstractCreature owner, int newAmount, int tributes) 

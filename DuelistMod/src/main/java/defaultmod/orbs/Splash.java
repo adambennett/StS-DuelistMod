@@ -6,9 +6,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.SplashPassiveAction;
+import defaultmod.actions.unique.TheCreatorAction;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
@@ -32,12 +34,14 @@ public class Splash extends AbstractOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	
+	private static final int evokeCardsToAdd = 5;
+	
 	public Splash()
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 3;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 6;
+		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -47,17 +51,22 @@ public class Splash extends AbstractOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + (this.evokeAmount * 10) + DESC[2];
+		if (this.passiveAmount < 2) { this.description = DESC[4] + DESC[1] + (this.evokeAmount * 10) + DESC[3]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[2] + (this.evokeAmount * 10) + DESC[3]; }
 	}
 
 	@Override
 	public void onEvoke()
 	{
+		AbstractPlayer p = AbstractDungeon.player;
 		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
 		if (roll <= this.evokeAmount)
 		{
-			DuelistCard.draw(5);
-			System.out.println("theDuelist:Splash:onEvoke() ---> triggered evoke draw action with roll: " + roll);
+			for (int i = 0; i < evokeCardsToAdd; i++)
+			{
+				AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, DefaultMod.myCards.get(AbstractDungeon.cardRandomRng.random(DefaultMod.myCards.size() - 1)), 1, true, false));
+			}
+			System.out.println("theDuelist:Splash:onEvoke() ---> triggered evoke draw pile add action with roll: " + roll);
 		}
 	}
 
@@ -109,6 +118,15 @@ public class Splash extends AbstractOrb
 	public AbstractOrb makeCopy()
 	{
 		return new Splash();
+	}
+	
+	@Override
+	protected void renderText(SpriteBatch sb)
+	{	
+		// Render evoke amount text
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		// Render passive amount text
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

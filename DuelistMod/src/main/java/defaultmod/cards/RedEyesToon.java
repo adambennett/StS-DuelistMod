@@ -31,7 +31,7 @@ public class RedEyesToon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int DAMAGE = 18;
     private static final int TRIBUTES = 1;
     private static final int U_DMG = 6;

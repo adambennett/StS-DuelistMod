@@ -30,13 +30,13 @@ public class CannonSoldier extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
     private static final int POWER_TRIBUTES = 1;
-    private static final int DAMAGE = 10;
+    private static final int DAMAGE = 8;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public CannonSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.originalName = this.name;

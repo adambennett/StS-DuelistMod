@@ -33,7 +33,8 @@ public class Wiseman extends DuelistCard
     public Wiseman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
-        this.tags.add(DefaultMod.RANDOMONLY);
+        //this.tags.add(DefaultMod.RANDOMONLY);
+        this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
         this.purgeOnUse = true;
     }
@@ -42,8 +43,12 @@ public class Wiseman extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	player().potionSlots += 1;
-        AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));	
+    	int potionSlotsCurrent = player().potionSlots;
+    	if (potionSlotsCurrent < 16)
+    	{
+    		player().potionSlots += 1;
+        	AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));	
+    	}
         purgeCard(this);
     }
 

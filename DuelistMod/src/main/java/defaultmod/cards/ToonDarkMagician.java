@@ -31,17 +31,14 @@ public class ToonDarkMagician extends DuelistCard
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
-	private static final int COST = 1;
-	private static final int DAMAGE = 20;
+	private static final int COST = 2;
+	private static final int DAMAGE = 24;
 	private static final int TRIBUTES = 2;
-	private static final int COUNTERS = 5;
-	private static final int U_COUNTERS = 2;
 	// /STAT DECLARATION/
 
 	public ToonDarkMagician() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.magicNumber = this.baseMagicNumber = COUNTERS;
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);
@@ -60,9 +57,8 @@ public class ToonDarkMagician extends DuelistCard
 	{
 		tribute(p, TRIBUTES, false, this);
 		damageThroughBlock(m, p, this.damage, AFX);
-		//applyPower(new SpellCounterPower(p, p, this.magicNumber), m);
-		AbstractOrb buffer = new Summoner();
-		channel(buffer);
+		AbstractOrb summoner = new Summoner();
+		channel(summoner);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -76,7 +72,7 @@ public class ToonDarkMagician extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(U_COUNTERS);
+			this.upgradeBaseCost(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -117,7 +113,7 @@ public class ToonDarkMagician extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		if (tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
 	}
 

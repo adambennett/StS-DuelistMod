@@ -16,7 +16,7 @@ public class ToonSummonedSkull extends DuelistCard
 {
 	// TEXT DECLARATION
 
-	public static final String ID = defaultmod.DefaultMod.makeID("ToonSummonedSkull");
+	public static final String ID = DefaultMod.makeID("ToonSummonedSkull");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_SUMMONED_SKULL);
 	public static final String NAME = cardStrings.NAME;
@@ -33,7 +33,7 @@ public class ToonSummonedSkull extends DuelistCard
 	private static final int COST = 2;
 	private static final int DAMAGE = 18;
 	private static final int TRIBUTES = 1;
-	private static final int U_DMG = 3;
+	private static final int U_DMG = 5;
 	private static int STR_GAIN = 2;
 	// /STAT DECLARATION/
 

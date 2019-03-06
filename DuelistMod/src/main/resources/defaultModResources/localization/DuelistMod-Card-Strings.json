@@ -51,8 +51,8 @@
 	},
 	"theDuelist:CannonSoldier": {
 		"NAME": "Cannon Soldier",
-		"DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !D! damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !D! damage to a random enemy."
+		"DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !M! damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !M! damage to a random enemy."
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
@@ -381,8 +381,8 @@
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "Rain of Mercy",
-		"DESCRIPTION": "You and ALL enemies heal a random amount (0-25) of HP.",
-		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (0-30) of HP."
+		"DESCRIPTION": "You and ALL enemies heal a random amount (5-25) of HP.",
+		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (10-30) of HP."
 	},
 	"theDuelist:RedEyes": {
 		"NAME": "R. Eyes Black Dragon",
@@ -456,8 +456,8 @@
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
-		"DESCRIPTION": "For !M! turns, ignore all damage. Exhaust.",
-		"UPGRADE_DESCRIPTION": "For !M! turns, ignore all damage. Exhaust."
+		"DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust."
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "Time Wizard",
@@ -516,8 +516,8 @@
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "Toon Barrel Dragon",
-		"DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (15-35) to each enemy (through Block).",
-		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (20-40) to each enemy (through Block)."
+		"DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (25-40) to each enemy (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (30-45) to each enemy (through Block)."
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
@@ -746,8 +746,8 @@
 	},
 	"theDuelist:BlastJuggler": {
 		"NAME": "Blast Juggler",
-		"DESCRIPTION": "Summon 1. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies."
+		"DESCRIPTION": "Summon 1. Deal !D! damage. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies."
 	},
 	"theDuelist:LegendaryExodia": {
 		"NAME": "L. Exodia Incarnate",

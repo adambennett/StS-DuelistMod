@@ -17,7 +17,7 @@ public class ToonBarrelDragon extends DuelistCard
 {
 	// TEXT DECLARATION
 
-	public static final String ID = defaultmod.DefaultMod.makeID("ToonBarrelDragon");
+	public static final String ID = DefaultMod.makeID("ToonBarrelDragon");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_BARREL_DRAGON);
 	public static final String NAME = cardStrings.NAME;
@@ -30,13 +30,13 @@ public class ToonBarrelDragon extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	private static final int COST = 1;
+	private static final int COST = 2;
 	private static final int DAMAGE = 0;
 	private static final int TRIBUTES = 3;
-	private static int MIN_DMG = 15;
-	private static int MAX_DMG = 35;
-	private static int MIN_DMG_U = 20;
-	private static int MAX_DMG_U = 40;
+	private static int MIN_DMG = 25;
+	private static int MAX_DMG = 40;
+	private static int MIN_DMG_U = 30;
+	private static int MAX_DMG_U = 45;
 	// /STAT DECLARATION/
 
 	public ToonBarrelDragon() {
@@ -44,13 +44,13 @@ public class ToonBarrelDragon extends DuelistCard
 		this.baseDamage = this.damage = DAMAGE;
 		this.isMultiDamage = true;
 		this.multiDamage = new int[]{0, 0, 0, 0, 0};
-		this.magicNumber = this.baseMagicNumber = 20;
+		this.magicNumber = this.baseMagicNumber = 25;
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);
 		this.tags.add(DefaultMod.DRAGON);
 		this.tags.add(DefaultMod.GOOD_TRIB);
-		 this.tags.add(DefaultMod.FULL);
+		this.tags.add(DefaultMod.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -83,8 +83,6 @@ public class ToonBarrelDragon extends DuelistCard
 			AbstractMonster mon = AbstractDungeon.getMonsters().monsters.get(i);
 			damageThroughBlock(mon, p, damageArray[i], AbstractGameAction.AttackEffect.FIRE);
 		}
-		//damageThroughBlockAllEnemies(p, this.multiDamage, AbstractGameAction.AttackEffect.FIRE);
-		//AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
 	}
 
 	// Which card to return when making a copy of this card.

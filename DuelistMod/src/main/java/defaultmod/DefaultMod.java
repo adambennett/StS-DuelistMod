@@ -1397,16 +1397,16 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
 		lastMaxSummons = 5;
-		logger.info("Reset max summons to 5");
-		if (hasRing) { lastMaxSummons = 8; logger.info("Reset max summons to 8");}
+		logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");
+		if (hasRing) { lastMaxSummons = 8; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 8");}
 	}
 
 	@Override
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
 		lastMaxSummons = 5;
-		logger.info("Reset max summons to 5");
-		if (hasRing) { lastMaxSummons = 8; logger.info("Reset max summons to 8");}
+		logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 5");
+		if (hasRing) { lastMaxSummons = 8; logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 8");}
 	}
 
 	@Override
@@ -1438,7 +1438,9 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) 
 	{
-		arg0.applyPowers();
+		logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> Card: " + arg0.name);
+		//logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> Reset checkTrap");
+		//checkTrap = false;
 	}
 
 	@Override
