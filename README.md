@@ -15,6 +15,19 @@ The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive 
 
 This is a work in progress, and there will likely be some bugs and minor issues. I will do my best to address any unforeseen problems that arise, and of course I will be doing my own continued playtesting and debugging. Expect periodic updates. My contact information is listed at the end of this description if you would like to reach me directly with issues/feedback/bug reports/suggestions/hate mail. Thanks for playing!
 
+# Duelist Keywords
+Summon - Counts monsters currently summoned. Maximum of 5 Summons.  
+Tribute - Removes X Summons. Unless you have enough Summons to Tribute, you cannot play a Tribute monster.  
+Resummon - Replays the card, ignoring Tribute costs. Some monsters trigger extra special effects when Resummoned.  
+Increment - Increase your maximum Summons by X.  
+Magnets - Associated with the 4 Magnet Warrior cards. This keyword just signifies effects that go with these cards.  
+Ojamania - Add 2 random cards to your hand, they cost 0 this turn. Apply 1 random buff. Apply 2 random debuffs to an enemy.  
+Dragon - Specific type of monster card. When Tributed for another Dragon, you gain 1 Strength.  
+Spellcaster - Specific type of monster card. When Tributed for a Dragon, you lose 2 HP.  
+Insect - Specific type of monster card. When Tributed for an Insect/Plant/Predaplant, apply 3 Poison to all enemies.  
+Plant - Specific type of monster card. When Tributed for an Insect/Plant/Predaplant, apply 3 Poison to all enemies.  
+Predaplant - More specific type of Plant. Predaplants are treated as Plants, but some cards trigger effects concerning ONLY Predaplants.  
+
 # Gameplay Mechanics
 ## Summoning & Tributing
 When you play lower cost/power monsters with the Summon keyword, you gain stacks of summons equal to the number found on the card, up to a certain maximum number. The default maximum is 5, but this number	can be increased via card effect. Having a lot of summons allows you to play more powerful monster cards with the Tribute keyword. To play a card with the Tribute keyword, you will need to have at least as many summons as the number found on the card. For example, in the starting deck you find the monster cards 7-Colored Fish, which has the text 'Summon 1', and Summoned Skull, which has the text 'Tribute 1'. In this example, if you have 0 summons, you would need to play 7-Colored Fish first to stack up 1 summon, and then you would be able to play Summoned Skull which would consume that 1 stack you just created with 7-Colored Fish, leaving you again with 0 summons. 
@@ -29,12 +42,22 @@ There is a similar keyword called 'Resummon' that allows you to replay monster c
 ## Increment
 The 'Increment' keyword signifies that your maximum number of summons will increase (for combat) by the number found on the card. For example, Kuriboh has the text 'Increment 1'. When you play Kuriboh, you will be able to summon 6 monsters at one time without tributing any first, instead of the usual of 5. Increments certainly stack, so if you play multiple copies of Kuriboh in the same battle, you can raise your max summons even further. There is no limit to how high your maximum summons can be.
 	
-## Monster, Spell, and Trap Cards
-All Duelist cards are of type Monster, Spell or Trap. This change is somewhat cosmetic only - and by that I mean that every card is also either an Attack, Skill or Power. The new card types used by this mod are for thematic flavor and gameplay reasons only. For example, some cards will specifically trigger effects regarding Monster cards. You should look at the type listed on the card in this situation. Conversely, some enemies may trigger effects when you play non-Attack cards. You should look at the picture shape of the card in this situation, as any card that is technically an Attack will still have the diagonally-cut squarish shape found on Attack cards in the base game. Duelist cards that are technically Skills will still have rectangular shaped card images, Powers will still be circular, you get the idea. The base game types (Attack, Skill, Power) and Duelist types (Monster, Trap, Spell) are not associated in any way. For example, there are Attack Monsters, Skill Monsters, Power Monsters, Attack Spells, Skill Spells, Power Traps, etc.
+## Monster, Spell, Trap, Tokens
+All Duelist cards are of type Monster, Spell, Trap or Token. This change is somewhat cosmetic only - and by that I mean that every card is also either an Attack, Skill or Power. The new card types used by this mod are for thematic flavor and gameplay reasons only. For example, some cards will specifically trigger effects regarding Monster cards. You should look at the type listed on the card in this situation. Conversely, some enemies may trigger effects when you play non-Attack cards. You should look at the picture shape of the card in this situation, as any card that is technically an Attack will still have the diagonally-cut squarish shape found on Attack cards in the base game. Duelist cards that are technically Skills will still have rectangular shaped card images, Powers will still be circular, you get the idea. The base game types (Attack, Skill, Power) and Duelist types (Monster, Trap, Spell) are not associated in any way. For example, there are Attack Monsters, Skill Monsters, Power Monsters, Attack Spells, Skill Spells, Power Traps, etc. Tokens are not cards that will ever be played, and exist only as a way to trigger certain effects, or generally, simply as a generic summon to tribute from your summons list.
 	
 ## Custom Orbs
 There are 12 custom orbs added with this mod. I don't believe it will be possible to channel these orbs outside of using the Duelist character though. These orbs are: Air, Buffer, DragonOrb, Earth, Fire, Gate, Glitch, MonsterOrb, Reducer, Shadow, Splash, and Summoner. Some may be channeled directly via card effect, others may only be channeled indirectly via random effects.
 
+## Random Actions (Time Wizard & Glitch orb)
+This card and this orb are the only ways to currently trigger a 'random action'. The list of actions for both is similar. The full list of actions as they appear in the array for each card is given below.
+
+## Tokens
+There are Generic Tokens, Kuriboh Tokens, Explosive Tokens, Shadow Tokens and Predaplant Tokens. Any other name for a Token that is given in game refers always to Generic Tokens. For example, Jam Breeding Machine summons Jam Tokens. These tokens have no special effects or purpose - they are just summon tokens to be tributed. But on the other hand, the other tokens DO have special effects.  
+Explosive Tokens: 	These will cause you to lose 5 HP if you Tribute them.  
+Kuriboh Tokens: 	These tokens give you Intangible if you Tribute them with any card that is NOT a Dragon.  
+Shadow Tokens:		When Tributed, these tokens increase the Passive and Evoke amounts of ALL your currently-channeled Shadow orbs by 1.  
+Predaplant Tokens:	These tokens simply provide extra ways to trigger Predaplant-specific Tribute effects. Otherwise, they are the same as every other Generic Token. These tokens are just Generic Tokens with the Predaplant keyword. 
+  
 # Mod Options
 ## Remove all Toon cards
 This option will remove the 14 Toon cards from the game. Toggle the box to your desired preference and then restart the game. Checking this option and then using the Toon deck may lead to undefined behavior.
@@ -293,6 +316,193 @@ Exodia L. Arm - *Exodia*
 Exodia L. Leg - *Exodia*  
 Exodia R. Arm - *Exodia*  
 Exodia R. Leg - *Exodia*  
+
+## Random Buff Pool (Small)
+Strength 		(random)    
+Dexterity 		always 1)    
+Artifacts 		(random)    
+Plated Armor 	(random)  
+Regen			(random)  
+Energized		(always 1)  
+Thorns			(random)  
+Focus			(random)  
+  
+Magic Cylinder and Ojama Knight are currently the only cards that pull random buffs from this pool.  
+  
+## Random Buff Pool (Full)
+Strength 			(random)     
+Dexterity 			always 1)      
+Artifacts 			(random)      
+Plated Armor 		(random)  
+Regen				(random)  
+Energized			(always 1)    
+Thorns				(random)    
+Focus				(random)    
+Intangible			(always 1)  
+Barricade			(no amount)  
+Blur				(random)  
+Burst				(random)  
+Creative AI			(always 1)  
+Dark Embrace		(random)  
+Double Tap			(random)  
+Equilibrium			(always 2)  
+Feel No Pain		(random)  
+Fire Breathing		(always 3)  
+Juggernaut			(random)  
+Metallicize			(random)  
+Pen Nib				(always 1)  
+Sadistic			(random)  
+Storm				(always 1)  
+Gaze of Anubis		(random)  
+Tomb Looter			(random)  
+Blessing of Ra		(random)  
+Tomb Pilferer 		(random * 10)  
+Retain Cards		(always 1)  
+Pot of Generosity	(always 2)  
+Reducer 			(random)  
+Time Wizard			(always 1)  
+Mayhem				(always 1)  
+Envenom				(random)  
+
+
+## Random Actions (List)
+
+### Time Wizard
+Draw 1 card  	
+Draw 1 card  	
+Draw 2 cards  	
+Gain 10 HP  
+Gain 5 HP  
+Gain 5 HP  
+Draw 1 card  	
+Draw 1 card  	
+Draw 2 cards  	
+Gain 10 HP  
+Gain 5 HP  
+Gain 5 HP  
+Gain a random amount of gold (50-100)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (5-200)  
+Gain a random amount of gold (0-1000)  
+Apply 1 random buff  	
+Apply 2 random debuffs to random enemy  	
+Apply 1 random debuff to random enemy  
+Add 1 random Spell to hand  
+Add 1 random Trap to hand  
+Add 1 random Trap to hand  	
+Add 1 random Dragon to hand  
+Add 1 random Monster to hand  
+Add 1 random Ethereal Duelist card to hand  
+Gain 15 Block  	
+Gain 10 Block  
+Gain 10 Block  
+Gain 5 Block  
+Gain 5 Block  
+Gain 5 Block  
+Summon 1  	
+Summon 1  	
+Summon 2  
+Increment 1  	
+Increment 2  
+Ojamania  	
+Gain 1 Energy    
+Gain 2 Energy   
+Channel a Glitch  
+Gain 1 Artifacts  
+Gain 2 Artifacts  
+Gain 3 Artifacts  
+
+### Glitch Orb (Passive)
+Draw 1 card  	
+Draw 1 card  
+Draw 2 cards  	
+Gain 10 HP  
+Gain 5 HP  
+Gain 5 HP  
+Gain a random amount of gold (50-100)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (5-200)  
+Apply 1 random buff  	
+Apply 1 random debuff to random enemy  	
+Apply 1 random debuff to random enemy  
+Add 1 random Spell to hand  
+Add 1 random Trap to hand  
+Add 1 random Trap to hand  	
+Add 1 random Spellcaster to hand  
+Add 1 random Monster to hand  
+Add 1 random Ethereal Duelist card to hand  
+Gain 15 Block  	
+Gain 10 Block  
+Gain 10 Block  
+Gain 5 Block  
+Gain 5 Block  
+Gain 5 Block  
+Summon 1  	
+Summon 1  	
+Summon 2  
+Increment 1  	
+Increment 2  
+Ojamania  	
+Increase this orb's Passive amount by 1  	
+Increase this orb's Evoke amount by 1  	
+Increase this orb's Evoke amount by 1  
+Increase this orb's Evoke amount by 1  	
+Increase this orb's Evoke amount by 2  
+Gain 1 Energy    
+Gain 2 Energy     
+Channel a Glitch  
+Gain 1 Artifacts  
+Gain 2 Artifacts  
+Gain 3 Artifacts  
+
+### Glitch Orb (Evoke)
+Orb slots +1  
+Draw 1 card  	
+Draw 1 card  	
+Draw 2 cards  	
+Gain 10 HP  
+Gain 5 HP  
+Gain 5 HP  
+Gain a random amount of gold (50-100)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (10-50)  
+Gain a random amount of gold (5-200)  
+Apply 1 random buff  	
+Apply 1 random debuff to random enemy  	
+Apply 1 random debuff to random enemy  
+Add 1 random Spell to hand  
+Add 1 random Trap to hand  
+Add 1 random Trap to hand  	
+Add 1 random Spellcaster to hand  
+Add 1 random Monster to hand  
+Add 1 random Ethereal Duelist card to hand  
+Gain 15 Block  	
+Gain 10 Block  
+Gain 10 Block  
+Gain 5 Block  
+Gain 5 Block  
+Gain 5 Block  
+Summon 1  	
+Summon 1  	
+Summon 2  
+Increment 1  	
+Increment 2  
+Ojamania  	
+Increase this orb's Passive amount by 1  	
+Increase this orb's Evoke amount by 1  	
+Increase this orb's Evoke amount by 1  
+Increase this orb's Evoke amount by 1  	
+Increase this orb's Evoke amount by 2  
+Gain 1 Energy    
+Gain 2 Energy    
+Channel a Glitch  
+Gain 1 Artifacts  
+Gain 2 Artifacts  
+Gain 3 Artifacts  
 
 ## Screenshots
 Some in game screenshots taken of the first steam release build (3-6-19). Everything is absolutely always subject to change.
