@@ -33,7 +33,7 @@ public class WhiteNightDragon extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 3;
-    private static final int DAMAGE = 30;
+    private static final int DAMAGE = 24;
     // /STAT DECLARATION/
 
     public WhiteNightDragon() {
@@ -44,7 +44,7 @@ public class WhiteNightDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = 4;
     }
 
     // Actions the card should do.
@@ -69,7 +69,7 @@ public class WhiteNightDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeBaseCost(1);
-            this.tributes = 2;
+            if (this.tributes > 0) { this.tributes--; }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

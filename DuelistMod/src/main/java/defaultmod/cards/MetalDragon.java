@@ -37,10 +37,10 @@ public class MetalDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 18;
         this.baseBlock = this.block = 18;
-        this.upgradeDmg = 6;
-        this.upgradeBlk = 6;
+        this.upgradeDmg = 2;
+        this.upgradeBlk = 2;
         this.tributes = 4;
-        this.summons = 1;
+        //this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.DRAGON);
@@ -55,7 +55,7 @@ public class MetalDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		tribute(p, this.tributes, false, this);
-		summon(p, this.summons, this);
+		//summon(p, this.summons, this);
 		attack(m, AFX, this.damage);
 		block(this.block);
     }

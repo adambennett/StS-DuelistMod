@@ -43,6 +43,8 @@ public class Ojamuscle extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.OJAMA);
         this.tags.add(DefaultMod.REDUCED);
+        this.tags.add(DefaultMod.OJAMA_DECK);
+		this.startingOjamaDeckCopies = 1;
 		tooltips = new ArrayList<>();
 		tooltips.add(new OjamaYellow());
 		this.originalName = this.name;

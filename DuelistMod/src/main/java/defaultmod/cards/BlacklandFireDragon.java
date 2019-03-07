@@ -32,7 +32,7 @@ public class BlacklandFireDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int DAMAGE = 14;
     // /STAT DECLARATION/
 

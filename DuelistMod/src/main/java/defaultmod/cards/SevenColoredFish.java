@@ -43,6 +43,8 @@ public class SevenColoredFish extends DuelistCard
         if (Loader.isModLoaded("conspire")) { this.tags.add(DefaultMod.GOOD_TRIB); }
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.STANDARD_DECK);
+        this.tags.add(DefaultMod.ORB_DECK);
+		this.startingOrbDeckCopies = 2;
         this.startingDeckCopies = 2;
         this.originalName = this.name;
         this.summons = SUMMONS;

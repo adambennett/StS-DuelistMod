@@ -70,6 +70,15 @@ public abstract class DuelistCard extends CustomCard
 	public int damageC;
 	public int damageD;
 	public int startingDeckCopies = 1;
+	public int startingDragDeckCopies = 1;
+	public int startingSpellcasterDeckCopies = 1;
+	public int startingNatureDeckCopies = 1;
+	public int startingCreatorDeckCopies = 1;
+	public int startingToonDeckCopies = 1;
+	public int startingOrbDeckCopies = 1;
+	public int startingResummonDeckCopies = 1;
+	public int startingGenDeckCopies = 1;
+	public int startingOjamaDeckCopies = 1;
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
 	// CARD FIELDS
 
@@ -390,7 +399,7 @@ public abstract class DuelistCard extends CustomCard
 				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 		
 				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID)) 
+				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
 				{ 
 					channelRandom();
 				} 
@@ -503,7 +512,7 @@ public abstract class DuelistCard extends CustomCard
 				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 		
 				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID)) 
+				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
 				{ 
 					channelRandom();
 				}
@@ -606,7 +615,7 @@ public abstract class DuelistCard extends CustomCard
 				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 		
 				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID)) 
+				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
 				{
 					channelRandom();
 				} 
@@ -718,7 +727,7 @@ public abstract class DuelistCard extends CustomCard
 			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 	
 			// Check for Slifer
-			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
 			{ 
 				channelRandom();
 			} 
@@ -1140,10 +1149,11 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
 		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
 		AbstractPower mayhem = new MayhemPower(p, 1);
+		AbstractPower envenom = new EnvenomPower(p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				orbEvoker, tombPilfer, retainCards, timeWizard,
-				generosity, focus, reductionist, creative, mayhem };
+				generosity, focus, reductionist, creative, mayhem, envenom };
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
 		AbstractPower randomBuff = buffs[randomBuffNum];

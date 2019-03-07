@@ -46,7 +46,7 @@ public class PredaplantFlytrap extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.summons = 2;
 		this.originalName = this.name;
-		this.baseMagicNumber = this.magicNumber = 3;
+		this.baseMagicNumber = this.magicNumber = 4;
 		this.isSummon = true;
 		tooltips = new ArrayList<>();
 		tooltips.add(new PredaplantToken());

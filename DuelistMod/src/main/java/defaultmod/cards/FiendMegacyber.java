@@ -38,6 +38,8 @@ public class FiendMegacyber extends DuelistCard
         this.magicNumber = this.baseMagicNumber = TRIBUTES;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
+        this.tags.add(DefaultMod.ORB_DECK);
+		this.startingOrbDeckCopies = 1;
         this.misc = 0;
         this.exhaust = true;
         this.originalName = this.name;

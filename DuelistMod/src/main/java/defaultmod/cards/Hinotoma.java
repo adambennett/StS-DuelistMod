@@ -41,6 +41,8 @@ public class Hinotoma extends DuelistCard
 		this.originalName = this.name;
 		this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
 		this.tags.add(DefaultMod.SPELL);
+		this.tags.add(DefaultMod.GENERATION_DECK);
+		this.startingGenDeckCopies = 1;
     }
 
     // Actions the card should do.

@@ -27,7 +27,7 @@ public class Relinquished extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public Relinquished() {
@@ -36,6 +36,8 @@ public class Relinquished extends DuelistCard
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.MAGIC_RULER);
 		this.tags.add(DefaultMod.BAD_TRIB);
+		this.tags.add(DefaultMod.ORB_DECK);
+		this.startingOrbDeckCopies = 1;
 		this.tributes = 1;
 		this.originalName = this.name;
 

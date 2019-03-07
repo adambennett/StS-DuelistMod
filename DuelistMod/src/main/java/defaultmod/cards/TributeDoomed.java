@@ -36,6 +36,8 @@ public class TributeDoomed extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.RESUMMON_DECK);
+        this.startingResummonDeckCopies = 2;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
     }

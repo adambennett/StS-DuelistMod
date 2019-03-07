@@ -38,14 +38,14 @@ public class OceanDragonLord extends DuelistCard
 
     public OceanDragonLord() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 24;
+    	this.baseDamage = this.damage = 18;
     	this.tags.add(DefaultMod.MONSTER);
     	this.tags.add(DefaultMod.DRAGON);
     	this.tags.add(DefaultMod.ALL);
     	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 3;
+		this.tributes = 5;
 		
     }
 
@@ -70,7 +70,9 @@ public class OceanDragonLord extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            //this.upgradeBaseCost(2);
+            if (this.tributes > 2) { this.tributes -= 2; }
+            else if (this.tributes > 0) { this.tributes --; }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

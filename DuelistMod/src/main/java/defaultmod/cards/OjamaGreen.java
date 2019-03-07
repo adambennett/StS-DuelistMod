@@ -38,6 +38,8 @@ public class OjamaGreen extends DuelistCard
 		this.tags.add(DefaultMod.OJAMA);
 		this.tags.add(DefaultMod.DARK_CRISIS);
 		this.tags.add(DefaultMod.REDUCED);
+		this.tags.add(DefaultMod.OJAMA_DECK);
+		this.startingOjamaDeckCopies = 2;
 		this.baseBlock = this.block = 5;
 		this.exhaust = true;
 		this.originalName = this.name;

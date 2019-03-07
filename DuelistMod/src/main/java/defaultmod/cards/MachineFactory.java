@@ -54,12 +54,25 @@ public class MachineFactory extends DuelistCard
     		AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
     		orbCount--;
     	}
-    	if (upgraded) { initCount++; }
-    	for (int i = 0; i < initCount; i++)
+    	if (!upgraded)
     	{
-    		AbstractOrb glitch = new Glitch();
-    		channelBottom(glitch);
+	    	for (int i = 0; i < initCount; i++)
+	    	{
+	    		AbstractOrb glitch = new Glitch();
+	    		channelBottom(glitch);
+	    	}
     	}
+    	
+    	else
+    	{
+    		evokeAll();
+    		for (int i = 0; i < initCount; i++)
+	    	{
+    			AbstractOrb glitch = new Glitch();
+	    		channelBottom(glitch);
+	    	}
+    	}
+    	
     }
 
     // Which card to return when making a copy of this card.
@@ -73,6 +86,7 @@ public class MachineFactory extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

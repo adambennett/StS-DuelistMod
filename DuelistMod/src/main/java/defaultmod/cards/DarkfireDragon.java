@@ -53,7 +53,7 @@ public class DarkfireDragon extends DuelistCard
     	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 2;
+		this.tributes = 3;
 		tooltips = new ArrayList<>();
 		tooltips.add(new ShadowToken());
     }

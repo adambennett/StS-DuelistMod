@@ -36,7 +36,7 @@ public class SnowdustDragon extends DuelistCard
 
     public SnowdustDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 22;
+        this.baseDamage = this.damage = 16;
         this.upgradeDmg = 3;
         this.tributes = 4;
         this.tags.add(DefaultMod.MONSTER);

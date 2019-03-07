@@ -37,7 +37,7 @@ public class Parasite extends DuelistCard
 		this.tags.add(DefaultMod.INSECT);
 		this.tags.add(DefaultMod.GOOD_TRIB);
 		this.tags.add(DefaultMod.NATURE_DECK);
-        this.startingDeckCopies = 1;
+		this.startingDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;

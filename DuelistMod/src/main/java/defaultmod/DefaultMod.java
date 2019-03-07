@@ -76,6 +76,10 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
+	@SpireEnum public static AbstractCard.CardTags ORB_DECK;
+	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
+	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
+	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
@@ -103,6 +107,10 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private static ArrayList<DuelistCard> toonDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> spellcasterDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> creatorDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> orbDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> resummonDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> generationDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> ojamaDeck = new ArrayList<DuelistCard>();
 	public static final String PROP_TOON_BTN = "toonBtnBool";
 	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
 	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
@@ -119,7 +127,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private static int setIndex = 0;
 	private static int deckIndex = 0;
 	private static final int SETS = 5;
-	private static final int DECKS = 8;
+	private static final int DECKS = 12;
 	private static int cardCount = 75;
 	private static CardTags chosenDeckTag = STANDARD_DECK;
 	
@@ -131,6 +139,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static boolean hasKey = false;
 	public static boolean checkTrap = false;
 	public static int swordsPlayed = 0;
+	public static int cardsToDraw = 5;
 
 	// =============== INPUT TEXTURE LOCATION =================
 
@@ -366,6 +375,9 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String JINZO = "cards/Jinzo.png";		
 	public static final String SHADOW_TOKEN = "cards/Shadow_Token.png";	
 	public static final String SHADOW_TOON = "cards/Shadow_Toon.png";	
+	public static final String PREDA_TOKEN = "cards/Predaplant_Token.png";
+	public static final String SHALLOW_GRAVE = "cards/Shallow_Grave.png";
+	public static final String RANDOM_SOLDIER = "cards/Random_Soldier.png";
 
 	// Expansion Set
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
@@ -620,6 +632,10 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		startingDecks.add("Random Deck (10 cards)");
 		startingDecks.add("Random Deck (15 cards)");
 		startingDecks.add("Toon Deck (10 cards)");
+		startingDecks.add("Orb Deck (11 cards)");
+		startingDecks.add("Resummon Deck (10 cards)");
+		startingDecks.add("Generation Deck (12 cards)");
+		startingDecks.add("Ojama Deck (12 cards)");
 
 		try 
 		{
@@ -1112,11 +1128,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		//printCardSetsForSteam(myCards);
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done adding all cards to myCards array");
-		
-		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> setting up starting deck");
-		initStartDeckArrays();
-		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
-		
+
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> begin checking config options and removing cards");
 		// If they are allowing the extra mod cards, check if the mods are loaded and remove the cards if not
 		if (crossoverBtnBool)
@@ -1236,6 +1248,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		}
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> all needed cards have been removed from myCards array");
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> setting up starting deck");
+		initStartDeckArrays();
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
+		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> adding cards to game, filling summonMap, unlocking all cards, counting active cards...");
 		int tempCardCount = 0;
 		for (DuelistCard c : myCards) 
@@ -1392,6 +1409,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 	public void resetCharSelect()
 	{		
+		//setCardsToDraw(deckIndex);
 		setupStartDecks();
 		if (deckToStartWith.size() > 0)
 		{
@@ -1399,6 +1417,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			for (AbstractCard c : deckToStartWith) { newStartGroup.addToRandomSpot(c);}
 			CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).masterDeck.initializeDeck(newStartGroup);
 			CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).masterDeck.sortAlphabetically(true);
+			//CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).getLoadout().cardDraw = cardsToDraw;
 		}
 	}
 
@@ -1458,11 +1477,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
 	{
-
-		//logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> arg0.name(): " + arg0.name());
 		if (arg0.name().equals("THE_DUELIST"))
 		{
-			//logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> Found the Duelist!");
 			setupStartDecks();
 			if (deckToStartWith.size() > 0)
 			{
@@ -1471,10 +1487,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				arg1.initializeDeck(newStartGroup);
 				arg1.sortAlphabetically(true);
 			}
-		}
-		else
-		{
-			//logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> Found a character besides the duelist!");
 		}
 	}
 
@@ -1498,8 +1510,49 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				return RANDOM_DECK_BIG;
 			case 7:
 				return TOON_DECK;
+			case 8:
+				return ORB_DECK;
+			case 9:
+				return RESUMMON_DECK;
+			case 10:
+				return GENERATION_DECK;
+			case 11:
+				return OJAMA_DECK;
 			default:
 				return STANDARD_DECK;
+		}
+	}
+	
+	private void setCardsToDraw(int deckIndex) 
+	{
+		switch (deckIndex)
+		{
+			case 0:
+				cardsToDraw = 5;
+			case 1:
+				cardsToDraw = 6;		
+			case 2:
+				cardsToDraw = 5;
+			case 3:
+				cardsToDraw = 5;			
+			case 4:
+				cardsToDraw = 5;
+			case 5:
+				cardsToDraw = 5;
+			case 6:
+				cardsToDraw = 5;
+			case 7:
+				cardsToDraw = 5;
+			case 8:
+				cardsToDraw = 5;
+			case 9:
+				cardsToDraw = 5;
+			case 10:
+				cardsToDraw = 6;
+			case 11:
+				cardsToDraw = 6;
+			default:
+				cardsToDraw = 5;
 		}
 	}
 	
@@ -1511,6 +1564,19 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		spellcasterDeck = new ArrayList<DuelistCard>();
 		toonDeck = new ArrayList<DuelistCard>();
 		creatorDeck = new ArrayList<DuelistCard>();
+		orbDeck = new ArrayList<DuelistCard>();
+		resummonDeck = new ArrayList<DuelistCard>();
+		generationDeck = new ArrayList<DuelistCard>();
+		ojamaDeck = new ArrayList<DuelistCard>();
+		
+		toonDeck.add(new ShadowToon());
+		resummonDeck.add(new ShallowGrave());
+		generationDeck.add(new MiniPolymerization());
+		generationDeck.add(new RandomSoldier());
+		generationDeck.add(new RandomSoldier());
+		ojamaDeck.add(new RandomSoldier());
+		ojamaDeck.add(new RandomSoldier());
+		
 		for (DuelistCard c : myCards)
 		{
 			if (c.hasTag(STANDARD_DECK))
@@ -1558,6 +1624,38 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				for (int i = 0; i < c.startingDeckCopies; i++)
 				{
 					creatorDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(ORB_DECK))
+			{
+				for (int i = 0; i < c.startingOrbDeckCopies; i++)
+				{
+					orbDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(RESUMMON_DECK))
+			{
+				for (int i = 0; i < c.startingResummonDeckCopies; i++)
+				{
+					resummonDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(GENERATION_DECK))
+			{
+				for (int i = 0; i < c.startingGenDeckCopies; i++)
+				{
+					generationDeck.add(c);
+				}
+			}
+			
+			if (c.hasTag(OJAMA_DECK))
+			{
+				for (int i = 0; i < c.startingOjamaDeckCopies; i++)
+				{
+					ojamaDeck.add(c);
 				}
 			}
 		}
@@ -1619,6 +1717,30 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			deckToStartWith = new ArrayList<DuelistCard>();
 			deckToStartWith.addAll(creatorDeck);
 		}
+		
+		else if (chosenDeckTag.equals(ORB_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(orbDeck);
+		}
+		
+		else if (chosenDeckTag.equals(RESUMMON_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(resummonDeck);
+		}
+		
+		else if (chosenDeckTag.equals(GENERATION_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(generationDeck);
+		}
+		
+		else if (chosenDeckTag.equals(OJAMA_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(ojamaDeck);
+		}
 	}
 	
 	private void printCardSetsForSteam(ArrayList<DuelistCard> cardsToPrint)
@@ -1632,6 +1754,15 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		ArrayList<DuelistCard> core = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> toon = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> exodia = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> dragon = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> spellcaster = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> nature = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> creator = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> toonDeck = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> orb = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> resummon = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> generation = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> ojama = new ArrayList<DuelistCard>();
 		for (DuelistCard c : cardsToPrint)
 		{
 			if (c.hasTag(DefaultMod.ALL))
@@ -1675,6 +1806,51 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			if (c.hasTag(DefaultMod.TOON))
 			{
 				toon.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.DRAGON_DECK))
+			{
+				dragon.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.SPELLCASTER_DECK))
+			{
+				spellcaster.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.NATURE_DECK))
+			{
+				nature.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.CREATOR_DECK))
+			{
+				creator.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.TOON_DECK))
+			{
+				toonDeck.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.ORB_DECK))
+			{
+				orb.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.RESUMMON_DECK))
+			{
+				resummon.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.GENERATION_DECK))
+			{
+				generation.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.OJAMA_DECK))
+			{
+				ojama.add(c);
 			}
 		}
 		
@@ -1721,6 +1897,51 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		for (DuelistCard c : exodia)
 		{
 			logger.info(c.originalName + " - " + "[i]Exodia[/i]");
+		}
+		
+		for (DuelistCard c : dragon)
+		{
+			logger.info(c.originalName + " - " + "[i]Dragon Deck[/i]");
+		}
+		
+		for (DuelistCard c : spellcaster)
+		{
+			logger.info(c.originalName + " - " + "[i]Spellcaster Deck[/i]");
+		}
+		
+		for (DuelistCard c : nature)
+		{
+			logger.info(c.originalName + " - " + "[i]Nature Deck[/i]");
+		}
+		
+		for (DuelistCard c : creator)
+		{
+			logger.info(c.originalName + " - " + "[i]Creator Deck[/i]");
+		}
+		
+		for (DuelistCard c : toonDeck)
+		{
+			logger.info(c.originalName + " - " + "[i]Toon Deck[/i]");
+		}
+		
+		for (DuelistCard c : orb)
+		{
+			logger.info(c.originalName + " - " + "[i]Orb Deck[/i]");
+		}
+		
+		for (DuelistCard c : resummon)
+		{
+			logger.info(c.originalName + " - " + "[i]Resummon Deck[/i]");
+		}
+		
+		for (DuelistCard c : generation)
+		{
+			logger.info(c.originalName + " - " + "[i]Generation Deck[/i]");
+		}
+		
+		for (DuelistCard c : ojama)
+		{
+			logger.info(c.originalName + " - " + "[i]Ojama Deck[/i]");
 		}
 	}
 

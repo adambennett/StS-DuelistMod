@@ -39,6 +39,8 @@ public class OjamaBlack extends DuelistCard
 		this.tags.add(DefaultMod.OJAMA);
 		this.tags.add(DefaultMod.INVASION_CHAOS);
 		this.tags.add(DefaultMod.REPLAYSPIRE);
+		this.tags.add(DefaultMod.OJAMA_DECK);
+		this.startingOjamaDeckCopies = 2;
 		this.baseBlock = this.block = 5;
 		this.originalName = this.name;
 		this.summons = SUMMONS;

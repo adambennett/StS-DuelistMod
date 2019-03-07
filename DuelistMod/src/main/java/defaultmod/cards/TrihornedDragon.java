@@ -34,7 +34,7 @@ public class TrihornedDragon extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 3;
-    private static final int DAMAGE = 20;
+    private static final int DAMAGE = 18;
     //private static final int UPGRADE_PLUS_DMG = 3;
     // /STAT DECLARATION/
 

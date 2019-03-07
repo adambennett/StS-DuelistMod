@@ -2,7 +2,7 @@
   "theDuelist:Gate": {
     "NAME": "Gate",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain #b1 #yEnergy. NL #yEvoke: #ySummon #b", ". NL Gate is unaffected by #yFocus."
+      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain [E] . NL #yEvoke: #ySummon #b", ". NL Gate is unaffected by #yFocus."
     ]
   },
   "theDuelist:Buffer": {

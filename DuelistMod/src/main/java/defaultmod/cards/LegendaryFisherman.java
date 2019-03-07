@@ -29,7 +29,7 @@ public class LegendaryFisherman extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static final int TRIBUTES = 1;
+    private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public LegendaryFisherman() {
@@ -37,6 +37,8 @@ public class LegendaryFisherman extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
         this.tags.add(DefaultMod.CONSPIRE);
+        this.tags.add(DefaultMod.ORB_DECK);
+        this.startingOrbDeckCopies = 1;
         this.misc = 0;
         this.exhaust = true;
 		this.originalName = this.name;

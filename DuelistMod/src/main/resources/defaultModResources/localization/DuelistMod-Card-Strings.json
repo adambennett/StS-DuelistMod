@@ -184,6 +184,11 @@
 		"DESCRIPTION": "Summon !M!. NL Gain !B! Block.",
 		"UPGRADE_DESCRIPTION": "Summon !M!. NL Gain !B! Block."
 	},
+	"theDuelist:RandomSoldier": {
+		"NAME": "R. Stone Soldier",
+		"DESCRIPTION": "Summon !M!. NL Gain a random amount (2-6) of Block.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. NL Gain a random amount (3-7) of Block."
+	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "Giant Trunade",
 		"DESCRIPTION": "Evoke ALL Orbs. Exhaust.",
@@ -221,8 +226,8 @@
 	},
 	"theDuelist:JamBreeding": {
 		"NAME": "Jam Breed Machine",
-		"DESCRIPTION": "At the start of turn, Summon !M! and deal 5 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "At the start of turn, Summon !M! and deal 5 damage to a random enemy."
+		"DESCRIPTION": "At the start of turn, Summon !M! and deal 3 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, Summon !M! and deal 3 damage to a random enemy."
 	},
 	"theDuelist:JudgeMan": {
 		"NAME": "Judge Man",
@@ -251,8 +256,8 @@
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "Legendary Fisherman",
-		"DESCRIPTION": "Tribute 1. NL Channel a Water. NL Exhaust. NL If you Tribute 7-Colored Fish for this card, draw 2 cards.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 cards."
+		"DESCRIPTION": "Tribute 2. NL Channel a Water. NL Exhaust. NL If you Tribute 7-Colored Fish for this card, draw 2 cards.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 cards."
 	},
 	"theDuelist:MagicCylinder": {
 		"NAME": "Magic Cylinder",
@@ -283,6 +288,11 @@
 		"NAME": "Tribute to Doomed",
 		"DESCRIPTION": "Tribute 1. NL Choose !M! monster to Resummon from your discard pile.",
 		"UPGRADE_DESCRIPTION": "Tribute 1. NL Choose !M! monster to upgrade and Resummon from your discard pile."
+	},
+	"theDuelist:ShallowGrave": {
+		"NAME": "Shallow Grave",
+		"DESCRIPTION": "Randomly Resummon !M! monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Randomly Resummon !M! monsters from your discard pile."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
@@ -666,8 +676,8 @@
 	},
 	"theDuelist:MetalDragon": {
 		"NAME": "Metal Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 4. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block."
+		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:CaveDragon": {
 		"NAME": "Cave Dragon",
@@ -836,8 +846,8 @@
 	},
 	"theDuelist:WhiteNightDragon": {
 		"NAME": "White Night Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel an Air."
+		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. Channel an Air.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air."
 	},
 	"theDuelist:WhiteHornDragon": {
 		"NAME": "White-Horned Dragon",
@@ -882,7 +892,7 @@
 	"theDuelist:MachineFactory": {
 		"NAME": "Machine Factory",
 		"DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Channel an additional Glitch. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Evoke all your Orbs. Channel a Glitch for each Orb evoked. NL Exhaust."
 	},
 	"theDuelist:PetitMoth": {
 		"NAME": "Petit Moth",
@@ -929,6 +939,11 @@
 		"DESCRIPTION": "Play !M! copies of random monsters from your hand on an enemy.",
 		"UPGRADE_DESCRIPTION": "Play !M! copies of random monsters from your hand on an enemy."
 	},
+	"theDuelist:MiniPolymerization": {
+		"NAME": "Mini-Polymerization",
+		"DESCRIPTION": "Play !M! copy of a random monster from your hand on an enemy.",
+		"UPGRADE_DESCRIPTION": "Play !M! copy of a random monster from your hand on an enemy."
+	},
 	"theDuelist:Predaponics": {
 		"NAME": "Predaponics",
 		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff.",
@@ -946,8 +961,8 @@
 	},
 	"theDuelist:PredaplantChlamydosundew": {
 		"NAME": "P. Chlamydosundew",
-		"DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch a Plant from your draw pile.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch 2 Plants from your draw pile."
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch a Plant or Insect from your draw pile.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch 2 Plants or Insects from your draw pile."
 	},
 	"theDuelist:PredaplantDrosophyllum": {
 		"NAME": "P. Drosophyllum",
@@ -1001,8 +1016,8 @@
 	},
 	"theDuelist:DarkfireDragon": {
 		"NAME": "Darkfire Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Channel a Shadow.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Channel a Shadow."
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Shadow.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Shadow."
 	},
 	"theDuelist:TrihornedDragon": {
 		"NAME": "Tri-Horned Dragon",
@@ -1021,7 +1036,7 @@
 	},
 	"theDuelist:OceanDragonLord": {
 		"NAME": "Ocean Dragon Lord",
-		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Splash.",
+		"DESCRIPTION": "Dragon NL Tribute 5. NL Deal !D! damage. NL Channel a Splash.",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Splash."
 	},
 	"theDuelist:LeviaDragon": {

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.FetchFromTag;
+import defaultmod.actions.common.*;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -51,7 +51,7 @@ public class PredaplantChlamydosundew extends DuelistCard
     {
     	summon(p, this.summons, this);
     	block(this.block);
-    	AbstractDungeon.actionManager.addToTop(new FetchFromTag(this.magicNumber, p.drawPile, DefaultMod.PLANT));
+    	AbstractDungeon.actionManager.addToTop(new FetchFromEitherTag(this.magicNumber, p.drawPile, DefaultMod.PLANT, DefaultMod.INSECT));
     }
 
     // Which card to return when making a copy of this card.

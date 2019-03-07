@@ -37,9 +37,11 @@ public class MachineKing extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.ALL);
+		this.tags.add(DefaultMod.ORB_DECK);
+		this.startingOrbDeckCopies = 1;
 		this.tributes = 1;
 		this.originalName = this.name;
-		this.damage = this.baseDamage = 8;
+		this.damage = this.baseDamage = 6;
 
 	}
 

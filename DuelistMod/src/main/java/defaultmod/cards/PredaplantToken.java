@@ -15,7 +15,7 @@ public class PredaplantToken extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DefaultMod.makeID("PredaplantToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.GREEDPOT_AVATAR);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.PREDA_TOKEN);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;

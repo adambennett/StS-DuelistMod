@@ -43,6 +43,8 @@ public class SnowDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.DRAGON_DECK);
+        this.tags.add(DefaultMod.ORB_DECK);
+		this.startingOrbDeckCopies = 2;
         this.startingDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;

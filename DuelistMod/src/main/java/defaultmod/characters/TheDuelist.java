@@ -127,6 +127,64 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(Ookazi.ID);
 		retVal.add(SummonedSkull.ID);
 		
+		/*
+		 * ORB DECK (11 cards)
+		 * 
+		 * Machine King x1
+		 * Snow Dragon x2
+		 * 7-Colored Fish x2
+		 * Legendary Fisherman x1
+		 * Relinquished x1 
+		 * Sanga Thunder x1
+		 * Prevent Rat x2
+		 * Fiend Megacyber x1
+		 * 
+		 */
+		
+		/*
+		 * RESUMMON DECK (10 cards)
+		 * 
+		 * Armored Zombie x2
+		 * Molten Zombie x2
+		 * Red Eyes Zombie x1
+		 * Tribute Doomed x2
+		 * Pumprincess x1
+		 * Shallow Grave x1
+		 * Judge Man x1
+		 * 
+		 */
+		
+		/*
+		 * GENERATION DECK (12 cards)
+		 * 
+		 * Ojama Yellow x1
+		 * Monster Egg x2
+		 * Random Soldier x2
+		 * Red Medicine x1
+		 * Hinotoma x1
+		 * Card Destruction x1
+		 * Book Secret x1
+		 * Wiretap x1
+		 * Mini-Polymerization x1
+		 * Time Wizard x1
+		 * 
+		 */
+		
+		/*
+		 * OJAMA DECK (12 cards)
+		 * 
+		 * Ojama Yellow x2
+		 * Ojama Green x2
+		 * Ojama Black x2
+		 * Ojama Knight x1
+		 * Ojama King x1
+		 * Ojamagic x1
+		 * Ojamuscle x1
+		 * Random Soldier x2
+		 * 
+		 * 
+		 * 
+		 */
 		
 		return retVal;
 	}

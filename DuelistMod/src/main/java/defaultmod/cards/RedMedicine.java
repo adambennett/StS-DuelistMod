@@ -40,6 +40,8 @@ public class RedMedicine extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.REDUCED);
+        this.tags.add(DefaultMod.GENERATION_DECK);
+		this.startingGenDeckCopies = 1;
 		this.originalName = this.name;
     }
 
