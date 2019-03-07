@@ -27,7 +27,7 @@ public class CardDestruction extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int CARDS = 1;
     // /STAT DECLARATION/
 
@@ -68,6 +68,7 @@ public class CardDestruction extends DuelistCard
 	    	{
 	    		DuelistCard randomMonster = (DuelistCard) returnTrulyRandomDuelistCard();
 				randomMonster.costForTurn = 0;
+				randomMonster.isCostModifiedForTurn = true;
 				randomMonster.upgrade();
 				addCardToHand(randomMonster);
 	    	}

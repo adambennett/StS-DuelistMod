@@ -42,7 +42,7 @@ public class MoltenZombie extends DuelistCard
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
-        this.damage = this.baseDamage = 4;
+        this.damage = this.baseDamage = 3;
     }
 
     // Actions the card should do.

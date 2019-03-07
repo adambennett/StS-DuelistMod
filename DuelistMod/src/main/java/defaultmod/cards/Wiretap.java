@@ -45,16 +45,19 @@ public class Wiretap extends DuelistCard
     {
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
     	for (AbstractCard a : p.hand.group) { handCards.add(a); }
-		for (int i = 0; i < this.magicNumber; i++)
-		{
-    		DuelistCard cardCopy = (DuelistCard) returnRandomFromArrayAbstract(handCards).makeStatEquivalentCopy();
-			if (cardCopy != null)
+    	if (handCards.size() > 0)
+    	{
+			for (int i = 0; i < this.magicNumber; i++)
 			{
-				if (cardCopy.upgraded) { cardCopy.upgrade(); }
-				cardCopy.applyPowers();
-				addCardToHand(cardCopy);
+	    		DuelistCard cardCopy = (DuelistCard) returnRandomFromArrayAbstract(handCards).makeStatEquivalentCopy();
+				if (cardCopy != null)
+				{
+					if (cardCopy.upgraded) { cardCopy.upgrade(); }
+					cardCopy.applyPowers();
+					addCardToHand(cardCopy);
+				}
 			}
-		}
+    	}
     }
 
     // Which card to return when making a copy of this card.

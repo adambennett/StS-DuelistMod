@@ -29,7 +29,7 @@ public class SuperheavyScales extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 1;
-	private static final int BLOCK = 10;
+	private static final int BLOCK = 7;
 	private static final int SUMMONS = 1;
 	// /STAT DECLARATION/
 

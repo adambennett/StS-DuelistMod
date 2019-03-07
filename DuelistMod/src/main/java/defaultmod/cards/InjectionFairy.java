@@ -35,7 +35,7 @@ public class InjectionFairy extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.summons = 1;
 		this.heal = this.baseMagicNumber = this.magicNumber = 6;
-		this.baseDamage = this.damage = 6;
+		this.baseDamage = this.damage = 4;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGACY_DARKNESS);
 		this.tags.add(DefaultMod.SPELLCASTER);

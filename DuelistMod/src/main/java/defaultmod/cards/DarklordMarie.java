@@ -36,7 +36,7 @@ public class DarklordMarie extends DuelistCard
     private static final int COST = 1;
     private static int HEAL = 3;
     private static final int U_HEAL = 1;
-    private static final int DAMAGE = 8;
+    private static final int DAMAGE = 6;
 
     public DarklordMarie() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);

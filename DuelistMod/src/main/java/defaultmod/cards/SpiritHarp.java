@@ -32,7 +32,7 @@ public class SpiritHarp extends DuelistCard
 
     public SpiritHarp() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 5;
+        this.baseBlock = this.block = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.BAD_TRIB);
@@ -67,7 +67,7 @@ public class SpiritHarp extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeBaseCost(0);
-            this.upgradeBlock(3);
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

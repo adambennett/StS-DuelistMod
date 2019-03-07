@@ -341,8 +341,8 @@
 	},
 	"theDuelist:PotDichotomy": {
 		"NAME": "Pot of Dichotomy",
-		"DESCRIPTION": "Summon X + 2.",
-		"UPGRADE_DESCRIPTION": "Summon X + 4."
+		"DESCRIPTION": "Summon X + 1.",
+		"UPGRADE_DESCRIPTION": "Summon X + 2."
 	},
 	"theDuelist:PotDuality": {
 		"NAME": "Pot of Duality",
@@ -381,8 +381,8 @@
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "Rain of Mercy",
-		"DESCRIPTION": "You and ALL enemies heal a random amount (5-25) of HP.",
-		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (10-30) of HP."
+		"DESCRIPTION": "You and ALL enemies heal a random amount (5-15) of HP.",
+		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (10-20) of HP."
 	},
 	"theDuelist:RedEyes": {
 		"NAME": "R. Eyes Black Dragon",
@@ -871,8 +871,8 @@
 	},
 	"theDuelist:MonsterEgg": {
 		"NAME": "Monster Egg",
-		"DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Create a random monster and play it on the target enemy.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Create a random upgraded monster and play it on the target enemy."
+		"DESCRIPTION": "Summon 1. NL Create a random monster and play it on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Create a random upgraded monster and play it on the target enemy."
 	},
 	"theDuelist:SteamTrainKing": {
 		"NAME": "Steam Train King",

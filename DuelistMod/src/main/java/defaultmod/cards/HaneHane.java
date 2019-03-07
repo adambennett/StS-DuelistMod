@@ -27,7 +27,7 @@ public class HaneHane extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int BLOCK = 5;
+    private static final int BLOCK = 3;
     private static final int SUMMONS = 1;
     private static boolean resummoned = false;
     // /STAT DECLARATION/

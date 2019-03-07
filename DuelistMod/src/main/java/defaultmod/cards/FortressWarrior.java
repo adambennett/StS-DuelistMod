@@ -34,8 +34,8 @@ public class FortressWarrior extends DuelistCard
 
     public FortressWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
-        this.baseBlock = this.block = 10;
+        this.baseDamage = this.damage = 11;
+        this.baseBlock = this.block = 11;
         this.upgradeDmg = 5;
         this.upgradeBlk = 5;
         this.tributes = 2;

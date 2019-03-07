@@ -32,7 +32,7 @@ public class MysticalElf extends DuelistCard
 
 	public MysticalElf() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseBlock = this.block = 9;
+		this.baseBlock = this.block = 7;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
 		this.tags.add(DefaultMod.BAD_TRIB);

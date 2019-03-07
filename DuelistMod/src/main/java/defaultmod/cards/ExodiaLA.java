@@ -41,7 +41,7 @@ public class ExodiaLA extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
         this.tags.add(DefaultMod.BAD_TRIB);
-        this.damage = this.baseDamage = 7;
+        this.damage = this.baseDamage = 6;
         this.summons = this.magicNumber = this.baseMagicNumber = 1;
         this.block = this.baseBlock = 1;
         this.exhaust = true;

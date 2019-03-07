@@ -37,7 +37,7 @@ public class PetitMoth extends DuelistCard
 
     public PetitMoth() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 12;
+        this.baseBlock = this.block = 6;
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);

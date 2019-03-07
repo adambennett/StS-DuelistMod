@@ -32,9 +32,9 @@ public class RainMercy extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
     private static int MIN_HEAL = 5;
-    private static int MAX_HEAL = 25;
+    private static int MAX_HEAL = 15;
 	private static final int MIN_HEAL_U = 10;
-    private static final int MAX_HEAL_U = 30;
+    private static final int MAX_HEAL_U = 20;
     // /STAT DECLARATION/
 
     public RainMercy() {

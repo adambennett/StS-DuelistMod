@@ -53,7 +53,7 @@
 },
 "theDuelist:CannonPower": {
         "NAME": "Cannon Soldier",
-        "DESCRIPTIONS": ["At the start of turn, #yTribute #b", " and deal #b", " damage to #b", " random enemy. (8 total damage)", " damage to random enemies. (", " total damage)" ]
+        "DESCRIPTIONS": ["At the start of turn, #yTribute #b", " and deal #b", " damage to #b", " random enemy. (5 total damage)", " damage to random enemies. (", " total damage)" ]
 },
 "theDuelist:CatapultPower": {
         "NAME": "Catapult Power",

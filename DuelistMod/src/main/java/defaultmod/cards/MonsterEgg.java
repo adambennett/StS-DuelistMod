@@ -1,6 +1,5 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,16 +24,16 @@ public class MonsterEgg extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+    //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
     public MonsterEgg() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = 1;
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = 0;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
@@ -49,12 +48,12 @@ public class MonsterEgg extends DuelistCard
     {
     	// Tribute and attack
     	summon(p, this.summons, this);
-    	attack(m, AFX, this.damage);
+    	//attack(m, AFX, this.damage);
     	
     	// Generate 2 random dragons and target them at the same target as the attack() above
     	// If this card is upgraded, the two dragons get upgraded as well
     	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.MONSTER, DefaultMod.TOON);    	
-    	String cardNameA = extraDragA.originalName;    	
+    	//String cardNameA = extraDragA.originalName;    	
     	// System.out.println("theDuelist:MonsterEgg --- > Generated: " + cardNameA);	   
     	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }    	
         extraDragA.freeToPlayOnce = true;       
@@ -98,42 +97,13 @@ public class MonsterEgg extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		// Tribute and attack
-    	summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	
-    	// Generate 2 random dragons and target them at the same target as the attack() above
-    	// If this card is upgraded, the two dragons get upgraded as well
-    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.MONSTER, DefaultMod.TOON);    	
-    	String cardNameA = extraDragA.originalName;    	
-    	// System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA);	   
-    	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }    	
-        extraDragA.freeToPlayOnce = true;       
-        extraDragA.applyPowers();      
-        extraDragA.purgeOnUse = true;
-        if (this.upgraded) { extraDragA.upgrade();  }
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));   
+		
 		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// Tribute and attack
-    	summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	
-    	// Generate 2 random dragons and target them at the same target as the attack() above
-    	// If this card is upgraded, the two dragons get upgraded as well
-    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.MONSTER, DefaultMod.TOON);    	
-    	String cardNameA = extraDragA.originalName;    	
-    	// System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA);	   
-    	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }    	
-        extraDragA.freeToPlayOnce = true;       
-        extraDragA.applyPowers();      
-        extraDragA.purgeOnUse = true;
-        if (this.upgraded) { extraDragA.upgrade();  }
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));   
+		 
 		
 	}
 

@@ -36,7 +36,7 @@ public class ThunderDragon extends DuelistCard
 
     public ThunderDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 8;
+        this.baseDamage = this.damage = 6;
         this.upgradeDmg = 3;
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);

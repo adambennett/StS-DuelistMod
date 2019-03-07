@@ -34,7 +34,7 @@ public class CaveDragon extends DuelistCard
 
     public CaveDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 7;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.LEGACY_DARKNESS);

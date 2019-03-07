@@ -25,6 +25,19 @@ public class MillenniumKey extends CustomRelic
     	flash();
     	DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
     }
+    
+    @Override
+	public void onEquip()
+	{
+		DefaultMod.hasKey = true;
+		DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
+	}
+	
+	@Override
+	public void onUnequip()
+	{
+		DefaultMod.hasKey = false;
+	}
 
     // Description
     @Override

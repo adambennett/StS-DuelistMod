@@ -29,7 +29,7 @@ public class CelticGuardian extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
-    private static final int DAMAGE = 5;
+    private static final int DAMAGE = 3;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/

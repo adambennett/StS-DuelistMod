@@ -128,6 +128,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
 	public static int lastMaxSummons = 5;
 	public static boolean hasRing = false;
+	public static boolean hasKey = false;
 	public static boolean checkTrap = false;
 	public static int swordsPlayed = 0;
 
@@ -1077,14 +1078,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new ValkMagnet());
 		// END LIMITED Set
 		
-		if (Loader.isModLoaded("ReplayTheSpireMod") && Loader.isModLoaded("conspire"))
+		if (Loader.isModLoaded("ReplayTheSpireMod"))
 		{
-			//CONSPIRE Set - 3 cards
-			myCards.add(new GateGuardian());
-			myCards.add(new LegendaryFisherman());
-			myCards.add(new SangaWater());
-			// END CONSPIRE Set
-			
 			// REPLAY Set - 11 cards
 			myCards.add(new BarrelDragon());
 			myCards.add(new BlastJuggler());
@@ -1097,8 +1092,18 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			myCards.add(new OjamaKnight());
 			myCards.add(new Parasite());
 			myCards.add(new ToonDarkMagicianGirl());
+			// END REPLAY Set
 		}
-		// END REPLAY Set
+		
+		if (Loader.isModLoaded("conspire"))
+		{
+			//CONSPIRE Set - 3 cards
+			myCards.add(new GateGuardian());
+			myCards.add(new LegendaryFisherman());
+			myCards.add(new SangaWater());
+			// END CONSPIRE Set
+		}
+			
 		
 		//RANDOM ONLY Set - 1 card
 		myCards.add(new Wiseman());
@@ -1403,6 +1408,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		lastMaxSummons = 5;
 		logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");
 		if (hasRing) { lastMaxSummons = 8; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 8");}
+		if (hasKey) { lastMaxSummons = 4; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 4");}
 	}
 
 	@Override
@@ -1411,6 +1417,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		lastMaxSummons = 5;
 		logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 5");
 		if (hasRing) { lastMaxSummons = 8; logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 8");}
+		if (hasKey) { lastMaxSummons = 4; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 4");}
 	}
 
 	@Override
@@ -1436,6 +1443,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public void receivePostDeath() 
 	{
 		hasRing = false;
+		hasKey = false;
 		lastMaxSummons = 5;
 	}
 
@@ -1450,13 +1458,23 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
 	{
-		setupStartDecks();
-		if (deckToStartWith.size() > 0)
+
+		//logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> arg0.name(): " + arg0.name());
+		if (arg0.name().equals("THE_DUELIST"))
 		{
-			CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
-			for (AbstractCard c : deckToStartWith) { newStartGroup.addToRandomSpot(c);}
-			arg1.initializeDeck(newStartGroup);
-			arg1.sortAlphabetically(true);
+			//logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> Found the Duelist!");
+			setupStartDecks();
+			if (deckToStartWith.size() > 0)
+			{
+				CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
+				for (AbstractCard c : deckToStartWith) { newStartGroup.addToRandomSpot(c);}
+				arg1.initializeDeck(newStartGroup);
+				arg1.sortAlphabetically(true);
+			}
+		}
+		else
+		{
+			//logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> Found a character besides the duelist!");
 		}
 	}
 

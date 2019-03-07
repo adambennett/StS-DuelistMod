@@ -37,6 +37,7 @@ public class MillenniumRing extends CustomRelic {
 	public void onEquip()
 	{
 		DefaultMod.hasRing = true;
+	
 	}
 	
 	@Override
