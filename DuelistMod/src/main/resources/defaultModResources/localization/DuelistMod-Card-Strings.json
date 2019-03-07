@@ -1049,6 +1049,11 @@
 		"DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn.",
 		"UPGRADE_DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn."
 	},
+	"theDuelist:GuardianAngel": {
+		"NAME": "Guardian Angel Joan",
+		"DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. NL Heal for however much total damage is done.",
+		"UPGRADE_DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. NL Heal for however much total damage is done."
+	},
 	"theDuelist:Wiseman": {
 		"NAME": "Wiseman's Chalice",
 		"DESCRIPTION": "Purge. NL Gain 1 Potion slot.",

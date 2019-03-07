@@ -80,6 +80,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
 	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
 	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;
+	@SpireEnum public static AbstractCard.CardTags HEAL_DECK;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
@@ -111,6 +112,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private static ArrayList<DuelistCard> resummonDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> generationDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> ojamaDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> healDeck = new ArrayList<DuelistCard>();
 	public static final String PROP_TOON_BTN = "toonBtnBool";
 	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
 	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
@@ -127,7 +129,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private static int setIndex = 0;
 	private static int deckIndex = 0;
 	private static final int SETS = 5;
-	private static final int DECKS = 12;
+	private static final int DECKS = 13;
 	private static int cardCount = 75;
 	private static CardTags chosenDeckTag = STANDARD_DECK;
 	
@@ -378,6 +380,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String PREDA_TOKEN = "cards/Predaplant_Token.png";
 	public static final String SHALLOW_GRAVE = "cards/Shallow_Grave.png";
 	public static final String RANDOM_SOLDIER = "cards/Random_Soldier.png";
+	public static final String GUARDIAN_ANGEL = "cards/Guardian_Angel.png";
 
 	// Expansion Set
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
@@ -636,6 +639,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		startingDecks.add("Resummon Deck (10 cards)");
 		startingDecks.add("Generation Deck (12 cards)");
 		startingDecks.add("Ojama Deck (12 cards)");
+		startingDecks.add("Heal Deck (10 cards)");
 
 		try 
 		{
@@ -1121,8 +1125,9 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		}
 			
 		
-		//RANDOM ONLY Set - 1 card
+		//RANDOM ONLY Set - 2 cards
 		myCards.add(new Wiseman());
+		myCards.add(new GuardianAngel());
 		// END RANDOM ONLY Set
 		
 		//printCardSetsForSteam(myCards);
@@ -1518,11 +1523,14 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				return GENERATION_DECK;
 			case 11:
 				return OJAMA_DECK;
+			case 12:
+				return HEAL_DECK;
 			default:
 				return STANDARD_DECK;
 		}
 	}
 	
+	// Deprecated
 	private void setCardsToDraw(int deckIndex) 
 	{
 		switch (deckIndex)
@@ -1530,7 +1538,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			case 0:
 				cardsToDraw = 5;
 			case 1:
-				cardsToDraw = 6;		
+				cardsToDraw = 5;		
 			case 2:
 				cardsToDraw = 5;
 			case 3:
@@ -1548,9 +1556,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			case 9:
 				cardsToDraw = 5;
 			case 10:
-				cardsToDraw = 6;
+				cardsToDraw = 5;
 			case 11:
-				cardsToDraw = 6;
+				cardsToDraw = 5;
+			case 12:
+				cardsToDraw = 5;
 			default:
 				cardsToDraw = 5;
 		}
@@ -1568,6 +1578,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		resummonDeck = new ArrayList<DuelistCard>();
 		generationDeck = new ArrayList<DuelistCard>();
 		ojamaDeck = new ArrayList<DuelistCard>();
+		healDeck = new ArrayList<DuelistCard>();
 		
 		toonDeck.add(new ShadowToon());
 		resummonDeck.add(new ShallowGrave());
@@ -1658,6 +1669,14 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 					ojamaDeck.add(c);
 				}
 			}
+			
+			if (c.hasTag(HEAL_DECK))
+			{
+				for (int i = 0; i < c.startingHealDeckCopies; i++)
+				{
+					healDeck.add(c);
+				}
+			}
 		}
 	}
 	
@@ -1741,6 +1760,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			deckToStartWith = new ArrayList<DuelistCard>();
 			deckToStartWith.addAll(ojamaDeck);
 		}
+		
+		else if (chosenDeckTag.equals(HEAL_DECK))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(healDeck);
+		}
 	}
 	
 	private void printCardSetsForSteam(ArrayList<DuelistCard> cardsToPrint)
@@ -1763,6 +1788,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		ArrayList<DuelistCard> resummon = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> generation = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> ojama = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> healDeck = new ArrayList<DuelistCard>();
 		for (DuelistCard c : cardsToPrint)
 		{
 			if (c.hasTag(DefaultMod.ALL))
@@ -1851,6 +1877,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			if (c.hasTag(DefaultMod.OJAMA_DECK))
 			{
 				ojama.add(c);
+			}
+			
+			if (c.hasTag(DefaultMod.HEAL_DECK))
+			{
+				healDeck.add(c);
 			}
 		}
 		
@@ -1942,6 +1973,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		for (DuelistCard c : ojama)
 		{
 			logger.info(c.originalName + " - " + "[i]Ojama Deck[/i]");
+		}
+		
+		for (DuelistCard c : healDeck)
+		{
+			logger.info(c.originalName + " - " + "[i]Heal Deck[/i]");
 		}
 	}
 

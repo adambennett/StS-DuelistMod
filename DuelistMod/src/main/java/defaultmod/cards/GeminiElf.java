@@ -40,6 +40,8 @@ public class GeminiElf extends DuelistCard
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.BAD_TRIB);
         this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.tags.add(DefaultMod.HEAL_DECK);
+        this.startingHealDeckCopies = 1;
         this.startingDeckCopies = 1;
         this.originalName = this.name;
         this.summons = this.magicNumber;

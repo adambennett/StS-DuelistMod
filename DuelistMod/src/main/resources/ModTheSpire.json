@@ -2,7 +2,7 @@
   "modid": "duelistmod",
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
-  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.200.10\n- Fixed bug where Slifer was channeling even when you Summoned with a max stack of Summons\n- More balancing adjustments\n- Predaplant Tokens now have proper art\n- Fixed Pumprincess and Pot of Duality artwork\n- Machine Conversion Factory now Evokes your orbs (when upgraded)\n- Glitch orbs & Time Wizard action adjustments\n- Added 4 new starting deck options\n- You can now remove cards from starting decks via the other mod options (ie changing the card set size will filter those removed cards out of the starting decks too)\n- Added a few new special cards that only appear in the new starting decks\n\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
+  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.200.11\n- Hopefully addressed Darklord Marie bug\n- Added 1 new starting deck\n- Added 1 new special card that appears in the new Healing Deck\n\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
   "version": "1.200.10",
   "sts_version": "1-23-2019",
   "mts_version": "3.8.3",

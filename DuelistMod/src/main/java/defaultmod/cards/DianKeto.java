@@ -37,6 +37,8 @@ public class DianKeto extends DuelistCard
        	this.magicNumber = this.baseMagicNumber = HEAL;
        	this.exhaust = true;
         this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.HEAL_DECK);
+        this.startingHealDeckCopies = 1;
         this.originalName = this.name;
     }
 

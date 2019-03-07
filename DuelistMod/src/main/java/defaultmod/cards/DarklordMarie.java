@@ -1,7 +1,6 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -34,8 +33,8 @@ public class DarklordMarie extends DuelistCard
     private static final int SUMMONS = 1;
     private static final int OVERFLOW_AMT = 4;
     private static final int COST = 1;
-    private static int HEAL = 3;
-    private static final int U_HEAL = 1;
+    private static final int HEAL = 3;
+    private static final int U_HEAL = 4;
     private static final int DAMAGE = 6;
 
     public DarklordMarie() {
@@ -46,6 +45,8 @@ public class DarklordMarie extends DuelistCard
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.BAD_TRIB);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
+        this.tags.add(DefaultMod.HEAL_DECK);
+        this.startingHealDeckCopies = 2;
         this.originalName = this.name;
         this.summons = SUMMONS;
     }
@@ -57,10 +58,11 @@ public class DarklordMarie extends DuelistCard
         if (this.magicNumber > 0) 
         {
         	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this, -1));
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
             // Heal
-            AbstractDungeon.actionManager.addToTop(new HealAction(AbstractDungeon.player, AbstractDungeon.player, HEAL));
+            if (!upgraded) { heal(player(), HEAL); }
+            else { heal(player(), U_HEAL); }
         }
     }
 
@@ -81,7 +83,6 @@ public class DarklordMarie extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            HEAL += U_HEAL;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -103,17 +104,13 @@ public class DarklordMarie extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
+	
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
+	{
+	
 		
 	}
 

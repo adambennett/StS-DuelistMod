@@ -79,6 +79,7 @@ public abstract class DuelistCard extends CustomCard
 	public int startingResummonDeckCopies = 1;
 	public int startingGenDeckCopies = 1;
 	public int startingOjamaDeckCopies = 1;
+	public int startingHealDeckCopies = 1;
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
 	// CARD FIELDS
 

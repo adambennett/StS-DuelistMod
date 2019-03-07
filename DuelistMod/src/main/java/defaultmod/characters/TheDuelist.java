@@ -186,6 +186,21 @@ public class TheDuelist extends CustomPlayer {
 		 * 
 		 */
 		
+		/*
+		 * HEAL DECK (10 cards)
+		 * 
+		 * Bad Reaction x1
+		 * Darklord Marie x2
+		 * Curse of Dragon x1
+		 * Injection Fairy x1
+		 * Gemini Elf x1
+		 * Giant Soldier x2
+		 * Guardian Angel x1
+		 * Dian Keto x1
+		 * 
+		 * 
+		 */
+		
 		return retVal;
 	}
 

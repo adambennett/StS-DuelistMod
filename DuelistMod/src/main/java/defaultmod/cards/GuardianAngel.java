@@ -1,65 +1,77 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
+
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 
-public class GiantSoldier extends DuelistCard 
+public class GuardianAngel extends DuelistCard 
 {
     // TEXT DECLARATION
-
-    public static final String ID = defaultmod.DefaultMod.makeID("GiantSoldier");
+    public static final String ID = DefaultMod.makeID("GuardianAngel");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.GIANT_SOLDIER);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.GUARDIAN_ANGEL);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-    
+
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
-    private static final int BLOCK = 4;
-    private static final int SUMMONS = 1;
+    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public GiantSoldier() {
+    public GuardianAngel() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = BLOCK;
-        this.magicNumber = this.baseMagicNumber = SUMMONS;
+        this.baseDamage = this.damage = 3;
+        this.magicNumber = this.baseMagicNumber = 3;
+        this.tributes = 2;
+        this.misc = 0;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
-        this.tags.add(DefaultMod.STANDARD_DECK);
-        this.tags.add(DefaultMod.TOON_DECK);
+        this.tags.add(DefaultMod.RANDOMONLY);
+        this.tags.add(DefaultMod.INVASION_CHAOS);
         this.tags.add(DefaultMod.HEAL_DECK);
-        this.startingHealDeckCopies = 2;
-        this.startingDeckCopies = 2;
+        this.startingHealDeckCopies = 1;
         this.originalName = this.name;
-        this.summons = SUMMONS;
-        this.isSummon = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
-    	block(this.block);
+    	int damageTotal = 0;
+    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
+    	if (tributeList.size() > 0)
+    	{
+    		for (DuelistCard c : tributeList)
+    		{
+    			if (c.hasTag(DefaultMod.SPELLCASTER))
+    			{
+    				damageTotal += this.magicNumber;
+    			}
+    		}
+    	}
+    	
+    	this.baseDamage = this.damage = 3 + damageTotal;
+    	attack(m, AFX, this.damage);
+    	heal(p, damageTotal + 3);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new GiantSoldier();
+        return new GuardianAngel();
     }
 
     // Upgraded stats.
@@ -68,39 +80,34 @@ public class GiantSoldier extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeMagicNumber(1);
-            this.upgradeBlock(3);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		
 	}
 
 
-
 	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
+	public void onResummon(int summons) 
+	{
+
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	block(this.block);
+		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	block(this.block);
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
 		
 	}
 
