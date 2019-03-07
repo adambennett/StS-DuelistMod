@@ -2,7 +2,7 @@
   "modid": "duelistmod",
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
-  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.200.9\n- Fixed several bugs and stability issues\n- Namely, other characters decks will not be affected by this mod anymore\n- Wiretap crashes have been fixed\n- Conspire & Replay the Spire are properly optional again\n- Millennium Ring has been fixed\n\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
+  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.200.9\n- Several balance changes (mostly nerfs)\n- Fixed several bugs and stability issues\n- Namely, other characters decks will not be affected by this mod anymore\n- Wiretap crashes have been fixed\n- Conspire & Replay the Spire are properly optional again\n- Millennium Ring has been fixed\n\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
   "version": "1.200.9",
   "sts_version": "1-23-2019",
   "mts_version": "3.8.3",
