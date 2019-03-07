@@ -32,6 +32,7 @@ import defaultmod.relics.MillenniumKey;
 public abstract class DuelistCard extends CustomCard 
 {
 	// CARD FIELDS
+	public ArrayList<Integer> startCopies = new ArrayList<Integer>();
 	public String upgradeType;
 	public String exodiaName;
 	public String originalName;
@@ -80,6 +81,7 @@ public abstract class DuelistCard extends CustomCard
 	public int startingGenDeckCopies = 1;
 	public int startingOjamaDeckCopies = 1;
 	public int startingHealDeckCopies = 1;
+	public int startingIncDeckCopies = 1;
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
 	// CARD FIELDS
 
@@ -88,11 +90,29 @@ public abstract class DuelistCard extends CustomCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.originalName = NAME;
 		this.misc = 0;
+		setupStartingCopies();
 	}
 
 	public DuelistCard getCard()
 	{
 		return this;
+	}
+	
+	public void setupStartingCopies()
+	{
+		this.startCopies = new ArrayList<Integer>();
+		this.startCopies.add(this.startingDeckCopies);		// 0 - Default Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 1 - Dragon Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 2 - Spellcaster Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 3 - Nature Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 4 - Creator Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 5 - Toon Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 6 - Orb Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 7 - Resumon Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 8 - Gen Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 9 - Ojama Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 10 - Heal Copies
+		this.startCopies.add(this.startingDragDeckCopies); 	// 11 - Increment Copies
 	}
 	
 	public abstract String getID();

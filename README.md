@@ -295,7 +295,9 @@ Ojama King - *Crossover*
 Ojama Knight - *Crossover*  
 Parasite Paracide - *Crossover*  
 Wiseman's Chalice - *Random generation only*  
+Guardian Angel Joan - *Random generation only*
   
+Remove all Toons cards
 B.E. Toon Dragon - *Toons*  
 Red Eyes Toon - *Toons*  
 Toon Barrel Dragon - *Toons*  
@@ -310,6 +312,8 @@ Toon S. Skull - *Toons*
 Toon World - *Toons*  
 Toon Kingdom - *Toons*  
 Toon D.M. Girl - *Toons*  
+
+Remove all Exodia cards
 L. Exodia Incarnate - *Exodia*  
 Exodia Head - *Exodia*  
 Exodia L. Arm - *Exodia*  
@@ -368,10 +372,10 @@ Envenom				(random)
 ## Random Actions (List)
 
 ### Time Wizard
-Draw 1 card  	
-Draw 1 card  	
-Draw 2 cards  	
-Gain 10 HP  
+Draw 1 card  
+Draw 1 card  
+Draw 2 cards
+Gain 10 HP
 Gain 5 HP  
 Gain 5 HP  
 Draw 1 card  	

@@ -201,6 +201,20 @@ public class TheDuelist extends CustomPlayer {
 		 * 
 		 */
 		
+		/*
+		 * INCREMENT DECK (11 cards)
+		 * 
+		 * Increment 1. NL Exhaust. x2
+		 * Fissure x2 
+		 * Summon 2(3). NL Reduce your Max Summons by 1. x1
+		 * Gain block equal to the amount of monsters you currently have summoned. x2
+		 * Celtic Guardian x2
+		 * Tribute 3. Deal 20 damage. Reduce the Tribute cost of this card by 1 for every 5 max summons you have. x1
+		 * Whenever you Increment, add a random 1 cost ethereal duelist card to draw pile x1
+		 * Pot of Avarice x1
+		 * 
+		 */
+		
 		return retVal;
 	}
 

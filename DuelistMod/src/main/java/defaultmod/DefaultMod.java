@@ -21,6 +21,7 @@ import basemod.*;
 import basemod.interfaces.*;
 import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
+import defaultmod.interfaces.StarterDeck;
 import defaultmod.patches.*;
 import defaultmod.potions.*;
 import defaultmod.relics.*;
@@ -81,6 +82,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
 	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;
 	@SpireEnum public static AbstractCard.CardTags HEAL_DECK;
+	@SpireEnum public static AbstractCard.CardTags INCREMENT_DECK;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER; // 3 cards
@@ -101,6 +103,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static Properties duelistDefaults = new Properties();
 	private static ArrayList<String> cardSets = new ArrayList<String>();
 	private static ArrayList<String> startingDecks = new ArrayList<String>();
+	ArrayList<StarterDeck> starterDeckList = new ArrayList<StarterDeck>();
 	private static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> dragonDeck = new ArrayList<DuelistCard>();
@@ -113,6 +116,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private static ArrayList<DuelistCard> generationDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> ojamaDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> healDeck = new ArrayList<DuelistCard>();
+	private static ArrayList<DuelistCard> incrementDeck = new ArrayList<DuelistCard>();
 	public static final String PROP_TOON_BTN = "toonBtnBool";
 	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
 	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
@@ -129,7 +133,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private static int setIndex = 0;
 	private static int deckIndex = 0;
 	private static final int SETS = 5;
-	private static final int DECKS = 13;
+	private static final int DECKS = 14;
 	private static int cardCount = 75;
 	private static CardTags chosenDeckTag = STANDARD_DECK;
 	
@@ -627,6 +631,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		cardSets.add("Limited (90 cards)");
 		cardSets.add("Core (61 cards)");
 		
+		/*
 		startingDecks.add("Standard Deck (10 cards)");
 		startingDecks.add("Dragon Deck (10 cards)");
 		startingDecks.add("Nature Deck (11 cards)");
@@ -640,6 +645,28 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		startingDecks.add("Generation Deck (12 cards)");
 		startingDecks.add("Ojama Deck (12 cards)");
 		startingDecks.add("Heal Deck (10 cards)");
+		startingDecks.add("Increment Deck (11 cards)");
+		*/
+		
+		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (10 cards)", 0); starterDeckList.add(regularDeck);
+		StarterDeck dragDeck = new StarterDeck(DRAGON_DECK, "Dragon Deck (10 cards)", 1); starterDeckList.add(dragDeck);
+		StarterDeck natDeck = new StarterDeck(NATURE_DECK, "Nature Deck (11 cards)", 2); starterDeckList.add(natDeck);
+		StarterDeck spellcDeck = new StarterDeck(SPELLCASTER_DECK, "Spellcaster Deck (13 cards)", 3); starterDeckList.add(spellcDeck);
+		StarterDeck creaDeck = new StarterDeck(CREATOR_DECK, "Creator Deck (3 cards)", 4); starterDeckList.add(creaDeck);
+		StarterDeck ran1Deck = new StarterDeck(RANDOM_DECK_SMALL, "Random Deck (10 cards)", 5); starterDeckList.add(ran1Deck);
+		StarterDeck ran2Deck = new StarterDeck(RANDOM_DECK_BIG, "Random Deck (15 cards)", 6); starterDeckList.add(ran2Deck);
+		StarterDeck toonDeck = new StarterDeck(TOON_DECK, "Toon Deck (10 cards)", 7); starterDeckList.add(toonDeck);
+		StarterDeck oDeck = new StarterDeck(ORB_DECK, "Orb Deck (11 cards)", 8); starterDeckList.add(oDeck);
+		StarterDeck resDeck = new StarterDeck(RESUMMON_DECK, "Resummon Deck (10 cards)", 9); starterDeckList.add(resDeck);
+		StarterDeck gDeck = new StarterDeck(GENERATION_DECK, "Generation Deck (12 cards)", 10); starterDeckList.add(gDeck);
+		StarterDeck ojDeck = new StarterDeck(OJAMA_DECK, "Ojama Deck (12 cards)", 11); starterDeckList.add(ojDeck);
+		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (10 cards)", 12); starterDeckList.add(hpDeck);
+		StarterDeck incDeck = new StarterDeck(INCREMENT_DECK, "Increment Deck (11 cards)", 13); starterDeckList.add(incDeck);
+		
+		for (StarterDeck d : starterDeckList)
+		{
+			startingDecks.add(d.getName());
+		}
 
 		try 
 		{
@@ -1348,7 +1375,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public void receiveEditKeywords() 
 	{
 		BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of #b5 #ySummons.");
-		BaseMod.addKeyword(new String[] {"resummon", "Resummon", "Resummons", "resummons"}, "Replays the card, ignoring Tribute costs. Some monsters trigger extra special effects when Resummoned.");
+		BaseMod.addKeyword(new String[] {"resummon", "Resummon", "Resummons", "resummons"}, "Replays the card, ignoring #yTribute costs. Some monsters trigger extra special effects when #yResummoned.");
 		BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
 		BaseMod.addKeyword(new String[] {"increment", "Increment" }, "Increase your maximum #ySummons by the number given.");
 		BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "A powerful monster found within your Grandpa's deck.");
@@ -1430,6 +1457,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
 		lastMaxSummons = 5;
+		swordsPlayed = 0;
 		logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");
 		if (hasRing) { lastMaxSummons = 8; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 8");}
 		if (hasKey) { lastMaxSummons = 4; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 4");}
@@ -1439,6 +1467,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
 		lastMaxSummons = 5;
+		swordsPlayed = 0;
 		logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 5");
 		if (hasRing) { lastMaxSummons = 8; logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 8");}
 		if (hasKey) { lastMaxSummons = 4; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 4");}
@@ -1469,14 +1498,13 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		hasRing = false;
 		hasKey = false;
 		lastMaxSummons = 5;
+		swordsPlayed = 0;
 	}
 
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) 
 	{
 		logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> Card: " + arg0.name);
-		//logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> Reset checkTrap");
-		//checkTrap = false;
 	}
 
 	@Override
@@ -1497,73 +1525,73 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 	private CardTags findDeckTag(int deckIndex) 
 	{
-		switch (deckIndex)
+		for (StarterDeck d : starterDeckList)
 		{
-			case 0:
-				return STANDARD_DECK;
-			case 1:
-				return DRAGON_DECK;				
-			case 2:
-				return NATURE_DECK;
-			case 3:
-				return SPELLCASTER_DECK;				
-			case 4:
-				return CREATOR_DECK;
-			case 5:
-				return RANDOM_DECK_SMALL;
-			case 6:
-				return RANDOM_DECK_BIG;
-			case 7:
-				return TOON_DECK;
-			case 8:
-				return ORB_DECK;
-			case 9:
-				return RESUMMON_DECK;
-			case 10:
-				return GENERATION_DECK;
-			case 11:
-				return OJAMA_DECK;
-			case 12:
-				return HEAL_DECK;
-			default:
-				return STANDARD_DECK;
+			if (d.getIndex() == deckIndex)
+			{
+				return d.getDeckTag();
+			}
+		}
+		
+		return null;
+	}
+	
+	
+
+	private void initStartDeckArraysB(int deckIndex)
+	{
+		StarterDeck refDeck = null;
+		for (StarterDeck d : starterDeckList)
+		{
+			if (d.getIndex() == deckIndex)
+			{
+				refDeck = d;
+			}
+		}
+		
+		if (refDeck != null)
+		{
+			for (DuelistCard c : myCards)
+			{
+				if (c.hasTag(refDeck.getDeckTag()))
+				{
+					int copyIndex = StarterDeck.getDeckCopiesMap().get(refDeck.getDeckTag());
+					for (int i = 0; i < c.startCopies.get(copyIndex); i++)
+					{
+						refDeck.getDeck().add(c);
+					}
+				}
+			}
 		}
 	}
 	
-	// Deprecated
-	private void setCardsToDraw(int deckIndex) 
+	private void setupStartDecksB()
 	{
-		switch (deckIndex)
+		chosenDeckTag = findDeckTag(deckIndex);
+		if (chosenDeckTag.equals(RANDOM_DECK_SMALL))
 		{
-			case 0:
-				cardsToDraw = 5;
-			case 1:
-				cardsToDraw = 5;		
-			case 2:
-				cardsToDraw = 5;
-			case 3:
-				cardsToDraw = 5;			
-			case 4:
-				cardsToDraw = 5;
-			case 5:
-				cardsToDraw = 5;
-			case 6:
-				cardsToDraw = 5;
-			case 7:
-				cardsToDraw = 5;
-			case 8:
-				cardsToDraw = 5;
-			case 9:
-				cardsToDraw = 5;
-			case 10:
-				cardsToDraw = 5;
-			case 11:
-				cardsToDraw = 5;
-			case 12:
-				cardsToDraw = 5;
-			default:
-				cardsToDraw = 5;
+			deckToStartWith = new ArrayList<DuelistCard>();
+			for (int i = 0; i < 10; i++)
+			{
+				deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+			}
 		}
+		
+		else if (chosenDeckTag.equals(RANDOM_DECK_BIG))
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			for (int i = 0; i < 15; i++)
+			{
+				deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+			}
+		}
+		
+		else 
+		{
+			deckToStartWith = new ArrayList<DuelistCard>();
+			deckToStartWith.addAll(standardDeck);
+		}
+		
 	}
 	
 	private void initStartDeckArrays()
