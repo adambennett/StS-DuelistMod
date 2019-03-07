@@ -54,6 +54,14 @@ You can change this option to remove large groups of the cards from the game. Th
 # Known Issues
 - Downgrading cards does not work properly when cards that have Tribute-based upgrades become Downgraded. However in most cases, this is beneficial and it should never crash the game or cause any other major side effects.
 
+# To Do (ordered by priority)
+- Add a few more starting decks
+- Add more random-generation-only cards
+- Add additional Relics and Potions
+- Translations (Chinese at least, maybe Russian)
+- Add event(s)
+- Add enemies
+
 # Creator Information
 Thanks for playing the Duelist! Please let me know if you have any feedback or bug reports! 
 
