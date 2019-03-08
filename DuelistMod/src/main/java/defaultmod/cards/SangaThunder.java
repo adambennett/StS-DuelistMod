@@ -51,6 +51,7 @@ public class SangaThunder extends DuelistCard
 		this.tributes = 3;
 		this.isSummon = true;
 		this.summons = 1;
+		this.setupStartingCopies();
 		
     }
 

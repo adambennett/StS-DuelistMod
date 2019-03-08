@@ -50,6 +50,7 @@ public class CocoonEvolution extends DuelistCard
         tooltips = new ArrayList<>();
         tooltips.add(new PetitRef());
 		tooltips.add(new GreatRef());
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

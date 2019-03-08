@@ -42,6 +42,7 @@ public class MonsterEgg extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

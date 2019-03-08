@@ -45,6 +45,7 @@ public class OjamaBlack extends DuelistCard
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;
+		this.setupStartingCopies();
 	}
 
 

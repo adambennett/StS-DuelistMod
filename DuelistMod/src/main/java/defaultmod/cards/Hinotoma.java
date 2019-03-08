@@ -43,6 +43,7 @@ public class Hinotoma extends DuelistCard
 		this.tags.add(DefaultMod.SPELL);
 		this.tags.add(DefaultMod.GENERATION_DECK);
 		this.startingGenDeckCopies = 1;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

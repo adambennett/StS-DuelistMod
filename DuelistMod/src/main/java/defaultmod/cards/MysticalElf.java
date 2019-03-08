@@ -43,6 +43,7 @@ public class MysticalElf extends DuelistCard
 		this.summons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

@@ -39,6 +39,7 @@ public class SuperSolarNutrient extends DuelistCard
         this.startingDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;
+		this.setupStartingCopies();
     }
 
     

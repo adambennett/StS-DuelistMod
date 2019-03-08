@@ -47,6 +47,7 @@ public class JudgeMan extends DuelistCard
 		this.summons = SUMMONS;
 		this.isSummon = true;
 		this.isTribute = true;
+		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

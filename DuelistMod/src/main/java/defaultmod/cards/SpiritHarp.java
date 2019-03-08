@@ -45,6 +45,7 @@ public class SpiritHarp extends DuelistCard
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.startingDeckCopies = 2;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

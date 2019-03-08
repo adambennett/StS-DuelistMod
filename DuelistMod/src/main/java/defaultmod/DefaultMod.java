@@ -133,9 +133,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private static int setIndex = 0;
 	private static int deckIndex = 0;
 	private static final int SETS = 5;
-	private static final int DECKS = 14;
+	private static int DECKS = 20;
 	private static int cardCount = 75;
 	private static CardTags chosenDeckTag = STANDARD_DECK;
+	private static int randomDeckSmallSize = 10;
+	private static int randomDeckBigSize = 15;
 	
 	// Global Fields
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
@@ -631,43 +633,25 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		cardSets.add("Limited (90 cards)");
 		cardSets.add("Core (61 cards)");
 		
-		/*
-		startingDecks.add("Standard Deck (10 cards)");
-		startingDecks.add("Dragon Deck (10 cards)");
-		startingDecks.add("Nature Deck (11 cards)");
-		startingDecks.add("Spellcaster Deck (13 cards)");
-		startingDecks.add("Creator Deck (3 cards)");
-		startingDecks.add("Random Deck (10 cards)");
-		startingDecks.add("Random Deck (15 cards)");
-		startingDecks.add("Toon Deck (10 cards)");
-		startingDecks.add("Orb Deck (11 cards)");
-		startingDecks.add("Resummon Deck (10 cards)");
-		startingDecks.add("Generation Deck (12 cards)");
-		startingDecks.add("Ojama Deck (12 cards)");
-		startingDecks.add("Heal Deck (10 cards)");
-		startingDecks.add("Increment Deck (11 cards)");
-		*/
+		int save = 0;
+		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (10 cards)", save, "Standard Deck"); starterDeckList.add(regularDeck); save++;
+		StarterDeck dragDeck = new StarterDeck(DRAGON_DECK, "Dragon Deck (10 cards)", save, "Dragon Deck"); starterDeckList.add(dragDeck); save++;
+		StarterDeck natDeck = new StarterDeck(NATURE_DECK, "Nature Deck (11 cards)", save, "Nature Deck"); starterDeckList.add(natDeck); save++;
+		StarterDeck spellcDeck = new StarterDeck(SPELLCASTER_DECK, "Spellcaster Deck (13 cards)", save, "Spellcaster Deck"); starterDeckList.add(spellcDeck); save++;
+		StarterDeck creaDeck = new StarterDeck(CREATOR_DECK, "Creator Deck (3 cards)", save, "Creator Deck"); starterDeckList.add(creaDeck); save++;
+		StarterDeck ran1Deck = new StarterDeck(RANDOM_DECK_SMALL, "Random Deck (10 cards)", save, "Random Deck (Small)"); starterDeckList.add(ran1Deck); save++;
+		StarterDeck ran2Deck = new StarterDeck(RANDOM_DECK_BIG, "Random Deck (15 cards)", save, "Random Deck (Big)"); starterDeckList.add(ran2Deck); save++;
+		StarterDeck toonDeck = new StarterDeck(TOON_DECK, "Toon Deck (10 cards)", save, "Toon Deck"); starterDeckList.add(toonDeck); save++;
+		StarterDeck oDeck = new StarterDeck(ORB_DECK, "Orb Deck (11 cards)", save, "Orb Deck"); starterDeckList.add(oDeck); save++;
+		StarterDeck resDeck = new StarterDeck(RESUMMON_DECK, "Resummon Deck (10 cards)", save, "Resummon Deck"); starterDeckList.add(resDeck); save++;
+		StarterDeck gDeck = new StarterDeck(GENERATION_DECK, "Generation Deck (12 cards)", save, "Generation Deck"); starterDeckList.add(gDeck); save++;
+		StarterDeck ojDeck = new StarterDeck(OJAMA_DECK, "Ojama Deck (12 cards)", save, "Ojama Deck"); starterDeckList.add(ojDeck); save++;
+		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (10 cards)", save, "Heal Deck"); starterDeckList.add(hpDeck); save++;
+		//StarterDeck incDeck = new StarterDeck(INCREMENT_DECK, "Increment Deck (11 cards)", save, "Increment Deck"); starterDeckList.add(incDeck); save++;
 		
-		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (10 cards)", 0); starterDeckList.add(regularDeck);
-		StarterDeck dragDeck = new StarterDeck(DRAGON_DECK, "Dragon Deck (10 cards)", 1); starterDeckList.add(dragDeck);
-		StarterDeck natDeck = new StarterDeck(NATURE_DECK, "Nature Deck (11 cards)", 2); starterDeckList.add(natDeck);
-		StarterDeck spellcDeck = new StarterDeck(SPELLCASTER_DECK, "Spellcaster Deck (13 cards)", 3); starterDeckList.add(spellcDeck);
-		StarterDeck creaDeck = new StarterDeck(CREATOR_DECK, "Creator Deck (3 cards)", 4); starterDeckList.add(creaDeck);
-		StarterDeck ran1Deck = new StarterDeck(RANDOM_DECK_SMALL, "Random Deck (10 cards)", 5); starterDeckList.add(ran1Deck);
-		StarterDeck ran2Deck = new StarterDeck(RANDOM_DECK_BIG, "Random Deck (15 cards)", 6); starterDeckList.add(ran2Deck);
-		StarterDeck toonDeck = new StarterDeck(TOON_DECK, "Toon Deck (10 cards)", 7); starterDeckList.add(toonDeck);
-		StarterDeck oDeck = new StarterDeck(ORB_DECK, "Orb Deck (11 cards)", 8); starterDeckList.add(oDeck);
-		StarterDeck resDeck = new StarterDeck(RESUMMON_DECK, "Resummon Deck (10 cards)", 9); starterDeckList.add(resDeck);
-		StarterDeck gDeck = new StarterDeck(GENERATION_DECK, "Generation Deck (12 cards)", 10); starterDeckList.add(gDeck);
-		StarterDeck ojDeck = new StarterDeck(OJAMA_DECK, "Ojama Deck (12 cards)", 11); starterDeckList.add(ojDeck);
-		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (10 cards)", 12); starterDeckList.add(hpDeck);
-		StarterDeck incDeck = new StarterDeck(INCREMENT_DECK, "Increment Deck (11 cards)", 13); starterDeckList.add(incDeck);
 		
-		for (StarterDeck d : starterDeckList)
-		{
-			startingDecks.add(d.getName());
-		}
-
+		for (StarterDeck d : starterDeckList) { startingDecks.add(d.getName()); }
+		DECKS = starterDeckList.size();
 		try 
 		{
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -787,7 +771,9 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		settingsPanel.addUIElement(setSelectColorTxtB);
 
 		ModButton setSelectLeftBtnB = new ModButton(605.0f, 535.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
-			deckIndex = deckIndex-1>=0?deckIndex-1:SETS-1;
+			if (deckIndex == 0) { deckIndex = DECKS - 1; }
+			else { deckIndex--; }
+			if (deckIndex < 0) { deckIndex = 0; }
 			setSelectColorTxtB.text = startingDecks.get(deckIndex);
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1152,9 +1138,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		}
 			
 		
-		//RANDOM ONLY Set - 2 cards
+		//RANDOM ONLY Set - 5 cards
 		myCards.add(new Wiseman());
 		myCards.add(new GuardianAngel());
+		myCards.add(new ShadowToon());
+		myCards.add(new ShallowGrave());
+		myCards.add(new MiniPolymerization());
 		// END RANDOM ONLY Set
 		
 		//printCardSetsForSteam(myCards);
@@ -1282,7 +1271,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> all needed cards have been removed from myCards array");
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> setting up starting deck");
-		initStartDeckArrays();
+		initStartDeckArraysB();
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> adding cards to game, filling summonMap, unlocking all cards, counting active cards...");
@@ -1313,6 +1302,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		summonMap.put("Random Token", new Token());
 		summonMap.put("Pot Token", new Token());
 		summonMap.put("Buffer Token", new Token());
+		summonMap.put("Predaplant Token", new PredaplantToken());
 		summonMap.put("Kuriboh Token", new KuribohToken());
 		summonMap.put("Exploding Token", new ExplosiveToken());
 		summonMap.put("Explosive Token", new ExplosiveToken());
@@ -1320,7 +1310,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		cardCount = tempCardCount;
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done initializing cards");
-		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> saving config options for card set");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1441,7 +1430,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 	public void resetCharSelect()
 	{		
-		//setCardsToDraw(deckIndex);
 		setupStartDecks();
 		if (deckToStartWith.size() > 0)
 		{
@@ -1449,7 +1437,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			for (AbstractCard c : deckToStartWith) { newStartGroup.addToRandomSpot(c);}
 			CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).masterDeck.initializeDeck(newStartGroup);
 			CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).masterDeck.sortAlphabetically(true);
-			//CardCrawlGame.characterManager.getCharacter(TheDuelistEnum.THE_DUELIST).getLoadout().cardDraw = cardsToDraw;
 		}
 	}
 
@@ -1512,7 +1499,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	{
 		if (arg0.name().equals("THE_DUELIST"))
 		{
-			setupStartDecks();
+			setupStartDecksB();
 			if (deckToStartWith.size() > 0)
 			{
 				CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
@@ -1538,27 +1525,22 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	
 	
 
-	private void initStartDeckArraysB(int deckIndex)
+	private void initStartDeckArraysB()
 	{
-		StarterDeck refDeck = null;
 		for (StarterDeck d : starterDeckList)
 		{
-			if (d.getIndex() == deckIndex)
+			if (d != null)
 			{
-				refDeck = d;
-			}
-		}
-		
-		if (refDeck != null)
-		{
-			for (DuelistCard c : myCards)
-			{
-				if (c.hasTag(refDeck.getDeckTag()))
+				for (DuelistCard c : myCards)
 				{
-					int copyIndex = StarterDeck.getDeckCopiesMap().get(refDeck.getDeckTag());
-					for (int i = 0; i < c.startCopies.get(copyIndex); i++)
+					if (c.hasTag(d.getDeckTag()))
 					{
-						refDeck.getDeck().add(c);
+						int copyIndex = StarterDeck.getDeckCopiesMap().get(d.getDeckTag());
+						for (int i = 0; i < c.startCopies.get(copyIndex); i++)
+						{
+							d.getDeck().add(c);
+							logger.info("theDuelist:DefaultMod:initStartDeckArraysB() ---> added " + c.originalName + " to " + d.getSimpleName());
+						}
 					}
 				}
 			}
@@ -1568,54 +1550,62 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	private void setupStartDecksB()
 	{
 		chosenDeckTag = findDeckTag(deckIndex);
-		if (chosenDeckTag.equals(RANDOM_DECK_SMALL))
+		StarterDeck refDeck = null;
+		for (StarterDeck d : starterDeckList)
 		{
-			deckToStartWith = new ArrayList<DuelistCard>();
-			for (int i = 0; i < 10; i++)
+			if (d.getDeckTag().equals(chosenDeckTag))
 			{
-				deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+				refDeck = d;
 			}
 		}
 		
-		else if (chosenDeckTag.equals(RANDOM_DECK_BIG))
+		if (refDeck != null)
 		{
-			deckToStartWith = new ArrayList<DuelistCard>();
-			for (int i = 0; i < 15; i++)
+			if (chosenDeckTag.equals(RANDOM_DECK_SMALL))
 			{
-				deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+				deckToStartWith = new ArrayList<DuelistCard>();
+				for (int i = 0; i < randomDeckSmallSize; i++)
+				{
+					deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+				}
+			}
+			
+			else if (chosenDeckTag.equals(RANDOM_DECK_BIG))
+			{
+				deckToStartWith = new ArrayList<DuelistCard>();
+				for (int i = 0; i < randomDeckBigSize; i++)
+				{
+					deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());
+				}
+			}
+			
+			else if (chosenDeckTag.equals(GENERATION_DECK) || chosenDeckTag.equals(OJAMA_DECK))
+			{
+				deckToStartWith = new ArrayList<DuelistCard>();
+				deckToStartWith.addAll(refDeck.getDeck());
+				deckToStartWith.add(new RandomSoldier());
+				deckToStartWith.add(new RandomSoldier());
+			}
+			
+			else 
+			{
+				deckToStartWith = new ArrayList<DuelistCard>();
+				deckToStartWith.addAll(refDeck.getDeck());
 			}
 		}
 		
-		else 
+		else
 		{
+			initStandardDeck();
 			deckToStartWith = new ArrayList<DuelistCard>();
 			deckToStartWith.addAll(standardDeck);
 		}
 		
 	}
 	
-	private void initStartDeckArrays()
+	private void initStandardDeck()
 	{
 		standardDeck = new ArrayList<DuelistCard>();
-		dragonDeck = new ArrayList<DuelistCard>();
-		natureDeck = new ArrayList<DuelistCard>();
-		spellcasterDeck = new ArrayList<DuelistCard>();
-		toonDeck = new ArrayList<DuelistCard>();
-		creatorDeck = new ArrayList<DuelistCard>();
-		orbDeck = new ArrayList<DuelistCard>();
-		resummonDeck = new ArrayList<DuelistCard>();
-		generationDeck = new ArrayList<DuelistCard>();
-		ojamaDeck = new ArrayList<DuelistCard>();
-		healDeck = new ArrayList<DuelistCard>();
-		
-		toonDeck.add(new ShadowToon());
-		resummonDeck.add(new ShallowGrave());
-		generationDeck.add(new MiniPolymerization());
-		generationDeck.add(new RandomSoldier());
-		generationDeck.add(new RandomSoldier());
-		ojamaDeck.add(new RandomSoldier());
-		ojamaDeck.add(new RandomSoldier());
-		
 		for (DuelistCard c : myCards)
 		{
 			if (c.hasTag(STANDARD_DECK))
@@ -1623,86 +1613,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				for (int i = 0; i < c.startingDeckCopies; i++)
 				{
 					standardDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(DRAGON_DECK))
-			{
-				for (int i = 0; i < c.startingDeckCopies; i++)
-				{
-					dragonDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(NATURE_DECK))
-			{
-				for (int i = 0; i < c.startingDeckCopies; i++)
-				{
-					natureDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(SPELLCASTER_DECK))
-			{
-				for (int i = 0; i < c.startingDeckCopies; i++)
-				{
-					spellcasterDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(TOON_DECK))
-			{
-				for (int i = 0; i < c.startingDeckCopies; i++)
-				{
-					toonDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(CREATOR_DECK))
-			{
-				for (int i = 0; i < c.startingDeckCopies; i++)
-				{
-					creatorDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(ORB_DECK))
-			{
-				for (int i = 0; i < c.startingOrbDeckCopies; i++)
-				{
-					orbDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(RESUMMON_DECK))
-			{
-				for (int i = 0; i < c.startingResummonDeckCopies; i++)
-				{
-					resummonDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(GENERATION_DECK))
-			{
-				for (int i = 0; i < c.startingGenDeckCopies; i++)
-				{
-					generationDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(OJAMA_DECK))
-			{
-				for (int i = 0; i < c.startingOjamaDeckCopies; i++)
-				{
-					ojamaDeck.add(c);
-				}
-			}
-			
-			if (c.hasTag(HEAL_DECK))
-			{
-				for (int i = 0; i < c.startingHealDeckCopies; i++)
-				{
-					healDeck.add(c);
 				}
 			}
 		}

@@ -46,6 +46,7 @@ public class OjamaYellow extends DuelistCard
 		this.exhaust = true;
 		this.summons = SUMMONS;
 		this.isSummon = true;
+		this.setupStartingCopies();
 	}
 
 

@@ -39,6 +39,7 @@ public class CardDestruction extends DuelistCard
         this.tags.add(DefaultMod.GENERATION_DECK);
 		this.startingGenDeckCopies = 1;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -39,6 +39,7 @@ public class Wiretap extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

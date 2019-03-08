@@ -1,6 +1,5 @@
 package defaultmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -29,7 +28,7 @@ public class MachineKing extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+	//private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
 	// /STAT DECLARATION/
 
@@ -42,6 +41,7 @@ public class MachineKing extends DuelistCard
 		this.tributes = 1;
 		this.originalName = this.name;
 		this.damage = this.baseDamage = 6;
+		this.setupStartingCopies();
 
 	}
 
@@ -51,7 +51,7 @@ public class MachineKing extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		AbstractOrb dark = new Glitch();
-		attack(m, AFX, this.damage);
+		//attack(m, AFX, this.damage);
 		channel(dark);
 	}
 

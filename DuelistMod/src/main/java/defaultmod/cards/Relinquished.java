@@ -40,6 +40,7 @@ public class Relinquished extends DuelistCard
 		this.startingOrbDeckCopies = 1;
 		this.tributes = 1;
 		this.originalName = this.name;
+		this.setupStartingCopies();
 
 	}
 

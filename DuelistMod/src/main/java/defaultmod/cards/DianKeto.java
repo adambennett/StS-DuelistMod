@@ -40,6 +40,7 @@ public class DianKeto extends DuelistCard
         this.tags.add(DefaultMod.HEAL_DECK);
         this.startingHealDeckCopies = 1;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

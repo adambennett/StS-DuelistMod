@@ -48,6 +48,7 @@ public class OjamaKing extends DuelistCard
 		this.startingOjamaDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
+		this.setupStartingCopies();
     }
 
     

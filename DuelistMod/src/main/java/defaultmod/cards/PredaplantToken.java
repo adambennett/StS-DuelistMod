@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.VioletCrystalPower;
 
 public class PredaplantToken extends DuelistCard 
 {
@@ -52,7 +53,9 @@ public class PredaplantToken extends DuelistCard
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		// Check for insect
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 5); }
+		else if (tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 3); }
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

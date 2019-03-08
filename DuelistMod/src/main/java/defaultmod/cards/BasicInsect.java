@@ -44,6 +44,7 @@ public class BasicInsect extends DuelistCard
         this.startingDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

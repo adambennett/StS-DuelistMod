@@ -13,11 +13,12 @@ public class StarterDeck
 	private CardTags deckTag;
 	private CardTags cardTag;
 	private String name;
+	private String simpleName;
 	private ArrayList<DuelistCard> deck = new ArrayList<DuelistCard>();
 	private static Map<CardTags, Integer> deckCopiesMap = new HashMap<CardTags, Integer>();
 	private int index;
 	
-	public StarterDeck(CardTags deck, CardTags card, String name, ArrayList<DuelistCard> deckList, int index)
+	public StarterDeck(CardTags deck, CardTags card, String name, ArrayList<DuelistCard> deckList, int index, String simpleName)
 	{
 		this.deckTag = deck;
 		this.cardTag = card;
@@ -25,25 +26,28 @@ public class StarterDeck
 		this.deck = new ArrayList<DuelistCard>();
 		this.deck.addAll(deckList);
 		this.index = index;
+		this.simpleName = simpleName;
 		setupMap();
 	}
 	
-	public StarterDeck(CardTags deck, String name, ArrayList<DuelistCard> deckList, int index)
+	public StarterDeck(CardTags deck, String name, ArrayList<DuelistCard> deckList, int index, String simpleName)
 	{
 		this.deckTag = deck;
 		this.name = name;
 		this.deck = new ArrayList<DuelistCard>();
 		this.deck.addAll(deckList);
 		this.index = index;
+		this.simpleName = simpleName;
 		setupMap();
 	}
 	
-	public StarterDeck(CardTags deck, String name, int index)
+	public StarterDeck(CardTags deck, String name, int index, String simpleName)
 	{
 		this.deckTag = deck;
 		this.name = name;
 		this.deck = new ArrayList<DuelistCard>();
 		this.index = index;
+		this.simpleName = simpleName;
 		setupMap();
 	}
 	
@@ -102,6 +106,14 @@ public class StarterDeck
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public String getSimpleName() {
+		return simpleName;
+	}
+
+	public void setSimpleName(String simpleName) {
+		this.simpleName = simpleName;
 	}
 
 	public void fillDeck(ArrayList<DuelistCard> deck)

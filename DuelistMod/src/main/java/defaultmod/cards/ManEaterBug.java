@@ -46,6 +46,7 @@ public class ManEaterBug extends DuelistCard
         this.originalName = this.name;
         this.isSummon = true;
         this.multiDamage = new int[] {this.magicNumber, this.magicNumber,this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber};
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

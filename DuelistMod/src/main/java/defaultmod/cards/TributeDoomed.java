@@ -40,6 +40,7 @@ public class TributeDoomed extends DuelistCard
         this.startingResummonDeckCopies = 2;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

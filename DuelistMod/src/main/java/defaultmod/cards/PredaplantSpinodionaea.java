@@ -45,6 +45,7 @@ public class PredaplantSpinodionaea extends DuelistCard
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 9;
 		this.isSummon = true;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -47,6 +47,7 @@ public class RedEyesZombie extends DuelistCard
         this.startingResummonDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

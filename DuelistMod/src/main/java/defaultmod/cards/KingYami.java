@@ -45,6 +45,7 @@ public class KingYami extends DuelistCard
         this.originalName = this.name;
         this.summons = 1;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

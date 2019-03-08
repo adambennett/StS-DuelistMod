@@ -43,6 +43,7 @@ public class BabyDragon extends DuelistCard
         this.startingDeckCopies = 1;
         this.summons = 2;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

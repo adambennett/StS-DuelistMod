@@ -42,6 +42,7 @@ public class LegendaryFisherman extends DuelistCard
         this.misc = 0;
         this.exhaust = true;
 		this.originalName = this.name;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

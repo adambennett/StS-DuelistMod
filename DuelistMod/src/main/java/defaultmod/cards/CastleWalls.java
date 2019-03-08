@@ -37,6 +37,7 @@ public class CastleWalls extends DuelistCard
         this.tags.add(DefaultMod.STANDARD_DECK);
         this.startingDeckCopies = 2;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

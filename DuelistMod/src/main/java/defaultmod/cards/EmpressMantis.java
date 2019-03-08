@@ -43,6 +43,7 @@ public class EmpressMantis extends DuelistCard
         this.originalName = this.name;
         this.tributes = 1;
         this.damage = this.baseDamage = 14;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

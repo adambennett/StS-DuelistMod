@@ -35,10 +35,12 @@ public class MiniPolymerization extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.GENERATION_DECK);
+        this.tags.add(DefaultMod.RANDOMONLY);
 		this.startingGenDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

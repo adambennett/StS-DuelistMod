@@ -46,6 +46,7 @@ public class GiantSoldier extends DuelistCard
         this.originalName = this.name;
         this.summons = SUMMONS;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -44,6 +44,7 @@ public class CaveDragon extends DuelistCard
         this.summons = 1;
         this.originalName = this.name;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

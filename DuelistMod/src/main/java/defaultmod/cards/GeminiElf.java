@@ -46,6 +46,7 @@ public class GeminiElf extends DuelistCard
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

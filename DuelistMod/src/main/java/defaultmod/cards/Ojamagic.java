@@ -48,6 +48,7 @@ public class Ojamagic extends DuelistCard
 		tooltips = new ArrayList<>();
 		tooltips.add(new RedMedicine());
 		this.originalName = this.name;
+		this.setupStartingCopies();
 	}
 
 	@Override

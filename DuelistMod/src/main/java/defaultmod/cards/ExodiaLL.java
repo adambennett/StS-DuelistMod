@@ -47,6 +47,7 @@ public class ExodiaLL extends DuelistCard
         this.exhaust = true;
         this.exodiaName = "Left Leg";
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

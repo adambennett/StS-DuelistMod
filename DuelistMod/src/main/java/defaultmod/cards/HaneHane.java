@@ -42,6 +42,7 @@ public class HaneHane extends DuelistCard
         this.tags.add(DefaultMod.TOON_DECK);
         this.startingDeckCopies = 1;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

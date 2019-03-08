@@ -52,6 +52,7 @@ public class PetitMoth extends DuelistCard
         tooltips = new ArrayList<>();
 		tooltips.add(new CocoonRef());
 		tooltips.add(new GreatRef());
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

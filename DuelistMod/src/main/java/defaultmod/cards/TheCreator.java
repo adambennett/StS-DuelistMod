@@ -42,6 +42,7 @@ public class TheCreator extends DuelistCard
         this.originalName = this.name;
         this.purgeOnUse = true;
         this.startingDeckCopies = 1;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

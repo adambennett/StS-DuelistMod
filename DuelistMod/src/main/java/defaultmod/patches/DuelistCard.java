@@ -101,18 +101,18 @@ public abstract class DuelistCard extends CustomCard
 	public void setupStartingCopies()
 	{
 		this.startCopies = new ArrayList<Integer>();
-		this.startCopies.add(this.startingDeckCopies);		// 0 - Default Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 1 - Dragon Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 2 - Spellcaster Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 3 - Nature Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 4 - Creator Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 5 - Toon Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 6 - Orb Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 7 - Resumon Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 8 - Gen Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 9 - Ojama Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 10 - Heal Copies
-		this.startCopies.add(this.startingDragDeckCopies); 	// 11 - Increment Copies
+		this.startCopies.add(this.startingDeckCopies);				// 0 - Default Copies
+		this.startCopies.add(this.startingDragDeckCopies); 			// 1 - Dragon Copies
+		this.startCopies.add(this.startingSpellcasterDeckCopies); 	// 2 - Spellcaster Copies
+		this.startCopies.add(this.startingNatureDeckCopies); 		// 3 - Nature Copies
+		this.startCopies.add(this.startingCreatorDeckCopies); 		// 4 - Creator Copies
+		this.startCopies.add(this.startingToonDeckCopies); 			// 5 - Toon Copies
+		this.startCopies.add(this.startingOrbDeckCopies); 			// 6 - Orb Copies
+		this.startCopies.add(this.startingResummonDeckCopies); 		// 7 - Resumon Copies
+		this.startCopies.add(this.startingGenDeckCopies); 			// 8 - Gen Copies
+		this.startCopies.add(this.startingOjamaDeckCopies); 		// 9 - Ojama Copies
+		this.startCopies.add(this.startingHealDeckCopies); 			// 10 - Heal Copies
+		this.startCopies.add(this.startingIncDeckCopies);		 	// 11 - Increment Copies
 	}
 	
 	public abstract String getID();
