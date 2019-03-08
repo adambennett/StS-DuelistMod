@@ -271,8 +271,8 @@
 	},
 	"theDuelist:MillenniumShield": {
 		"NAME": "Millennium Shield",
-		"DESCRIPTION": "Tribute !M!. NL Gain 4 Dexterity. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute !M!. NL Gain 4 Dexterity. Exhaust."
+		"DESCRIPTION": "Tribute 2. NL Gain 4 Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Gain 4 Dexterity. Exhaust."
 	},
 	"theDuelist:MirrorForce": {
 		"NAME": "Mirror Force",

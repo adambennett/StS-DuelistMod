@@ -53,7 +53,7 @@ public class MiniPolymerization extends DuelistCard
     	{
 			for (int i = 0; i < this.magicNumber; i++)
 			{
-	    		DuelistCard summon = (DuelistCard) returnRandomFromArrayAbstract(handCards);
+	    		AbstractCard summon = returnRandomFromArrayAbstract(handCards);
 	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
 				if (cardCopy != null)
 				{

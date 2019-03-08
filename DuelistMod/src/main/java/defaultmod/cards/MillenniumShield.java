@@ -28,12 +28,10 @@ public class MillenniumShield extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static final int U_TRIBUTES = -1;
     // /STAT DECLARATION/
 
     public MillenniumShield() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 2;
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LIMITED);
@@ -62,7 +60,7 @@ public class MillenniumShield extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(U_TRIBUTES);
+            if (this.tributes > 0) { this.tributes--; } 
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

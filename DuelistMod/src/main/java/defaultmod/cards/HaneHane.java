@@ -44,6 +44,20 @@ public class HaneHane extends DuelistCard
         this.originalName = this.name;
         this.setupStartingCopies();
     }
+    
+    public HaneHane(boolean resummon) {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseBlock = this.block = BLOCK;
+        this.magicNumber = this.baseMagicNumber = SUMMONS;
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.TOON_DECK);
+        this.startingDeckCopies = 1;
+        this.originalName = this.name;
+        this.setupStartingCopies();
+        resummoned = resummon;
+    }
 
     // Actions the card should do.
     @Override
@@ -76,7 +90,7 @@ public class HaneHane extends DuelistCard
 	{
 		if (!resummoned) 
 		{ 
-			summon(player(), 1, this);
+			summon(player(), 1, new HaneHane(true));
 	    	block(this.block);
 		}
 	}
@@ -90,14 +104,13 @@ public class HaneHane extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		summon(player(), summons, this); 
-		block(this.block);
+		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		summon(player(), summons, this);
-		block(this.block);
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
+	
 		
 	}
 

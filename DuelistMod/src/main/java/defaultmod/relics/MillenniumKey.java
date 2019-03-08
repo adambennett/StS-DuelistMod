@@ -30,12 +30,14 @@ public class MillenniumKey extends CustomRelic
 	public void onEquip()
 	{
 		DefaultMod.hasKey = true;
+		AbstractDungeon.player.energy.energyMaster++;
 		DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
 	}
 	
 	@Override
 	public void onUnequip()
 	{
+		AbstractDungeon.player.energy.energyMaster--;
 		DefaultMod.hasKey = false;
 	}
 

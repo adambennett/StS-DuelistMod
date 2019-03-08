@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.cards.ExodiaHead;
 import defaultmod.patches.DuelistCard;
 
 
@@ -91,7 +90,7 @@ public class ExodiaPower extends AbstractPower
 	public boolean addPiece(DuelistCard piece)
 	{
 		boolean found = false;
-		for (DuelistCard c : pieces) { if (c.name.equals(piece.name)) { found = true; } }
+		for (DuelistCard c : pieces) { if (c.exodiaName.equals(piece.exodiaName)) { found = true; } }
 		if (!found) { pieces.add(piece); }
 		updateDescription();
 		return found;
@@ -102,11 +101,11 @@ public class ExodiaPower extends AbstractPower
 		if (pieces.size() < 5) { return false; }
 		else
 		{
-			if (!checkForPiece("Exodia Head"))   { 	return false; 	}
-			if (!checkForPiece("Exodia L. Arm")) { 	return false; 	}
-			if (!checkForPiece("Exodia L. Leg")) { 	return false;	}
-			if (!checkForPiece("Exodia R. Arm")) { 	return false; 	}
-			if (!checkForPiece("Exodia R. Leg")) {  return false;	}
+			if (!checkForPiece("Head"))   { 	return false; 	}
+			if (!checkForPiece("Left Arm")) { 	return false; 	}
+			if (!checkForPiece("Left Leg")) { 	return false;	}
+			if (!checkForPiece("Right Arm")) { 	return false; 	}
+			if (!checkForPiece("Right Leg")) {  return false;	}
 		}
 		return true;
 	}
@@ -116,10 +115,10 @@ public class ExodiaPower extends AbstractPower
 		if (pieces.size() < 4) { return false; }
 		else
 		{
-			if (!checkForPiece("Exodia L. Arm")) { return false; 	}
-			if (!checkForPiece("Exodia L. Leg")) { return false;	}
-			if (!checkForPiece("Exodia R. Arm")) { return false; 	}
-			if (!checkForPiece("Exodia R. Leg")) { return false;	}
+			if (!checkForPiece("Left Arm")) { return false; 	}
+			if (!checkForPiece("Left Leg")) { return false;		}
+			if (!checkForPiece("Right Arm")) { return false; 	}
+			if (!checkForPiece("Right Leg")) { return false;	}
 		}
 		return true;
 	}
@@ -127,19 +126,19 @@ public class ExodiaPower extends AbstractPower
 	public boolean checkForPiece(String pieceName)
 	{
 		boolean found = false;
-		for (DuelistCard c : pieces) { if (c.name.equals(pieceName)) { found = true; } }
+		for (DuelistCard c : pieces) { if (c.exodiaName.equals(pieceName)) { found = true; } }
 		return found;
 	}
 	
 	public boolean checkForLegs()
 	{
-		if (checkForPiece("Exodia L. Leg") && checkForPiece("Exodia R. Leg")) { return true; }
+		if (checkForPiece("Left Leg") && checkForPiece("Right Leg")) { return true; }
 		return false;
 	}
 	
 	public boolean checkForArms()
 	{
-		if (checkForPiece("Exodia L. Arm") && checkForPiece("Exodia R. Arm")) { return true; }
+		if (checkForPiece("Left Arm") && checkForPiece("Right Arm")) { return true; }
 		return false;
 	}
 	
@@ -156,8 +155,8 @@ public class ExodiaPower extends AbstractPower
 			int playerSummons = 1;
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
 			{ 
-				playerSummons = ExodiaHead.getSummons(AbstractDungeon.player); 
-				playerSummons += ExodiaHead.getMaxSummons(AbstractDungeon.player); 
+				playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
+				playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
 			}
 			int damageDescr = DAMAGE * playerSummons;
 			this.description = DESCRIPTIONS[2] + damageDescr;
@@ -169,8 +168,8 @@ public class ExodiaPower extends AbstractPower
 		else if (checkForLegs() && !checkForArms())
 		{
 			String descr = "Both legs, ";
-			if (checkForPiece("Exodia L. Arm")) { descr += "Left Arm, "; }
-			if (checkForPiece("Exodia R. Arm")) { descr += "Right Arm, "; }
+			if (checkForPiece("Left Arm")) { descr += "Left Arm, "; }
+			if (checkForPiece("Right Arm")) { descr += "Right Arm, "; }
 			int endingIndex = descr.lastIndexOf(",");
 	        String finalPiece = descr.substring(0, endingIndex) + ".";
 			this.description = DESCRIPTIONS[0] + finalPiece;
@@ -178,8 +177,8 @@ public class ExodiaPower extends AbstractPower
 		else if (checkForArms() && !checkForLegs())
 		{
 			String descr = "Both arms, ";
-			if (checkForPiece("Exodia L. Leg")) { descr += "Left Leg, "; }
-			if (checkForPiece("Exodia R. Leg")) { descr += "Right Leg, "; }
+			if (checkForPiece("Left Leg")) { descr += "Left Leg, "; }
+			if (checkForPiece("Right Leg")) { descr += "Right Leg, "; }
 			int endingIndex = descr.lastIndexOf(",");
 	        String finalPiece = descr.substring(0, endingIndex) + ".";
 			this.description = DESCRIPTIONS[0] + finalPiece;

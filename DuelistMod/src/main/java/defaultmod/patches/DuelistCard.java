@@ -34,7 +34,7 @@ public abstract class DuelistCard extends CustomCard
 	// CARD FIELDS
 	public ArrayList<Integer> startCopies = new ArrayList<Integer>();
 	public String upgradeType;
-	public String exodiaName;
+	public String exodiaName = "None";
 	public String originalName;
 	public boolean isMonster = false;
 	public boolean isOverflow;

@@ -52,7 +52,7 @@ public class Wiretap extends DuelistCard
     	{
 			for (int i = 0; i < this.magicNumber; i++)
 			{
-	    		DuelistCard cardCopy = (DuelistCard) returnRandomFromArrayAbstract(handCards).makeStatEquivalentCopy();
+	    		AbstractCard cardCopy = returnRandomFromArrayAbstract(handCards).makeStatEquivalentCopy();
 				if (cardCopy != null)
 				{
 					if (cardCopy.upgraded) { cardCopy.upgrade(); }
