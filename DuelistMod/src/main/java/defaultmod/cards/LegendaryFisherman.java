@@ -29,7 +29,6 @@ public class LegendaryFisherman extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 2;
-    private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public LegendaryFisherman() {
@@ -43,13 +42,14 @@ public class LegendaryFisherman extends DuelistCard
         this.exhaust = true;
 		this.originalName = this.name;
 		this.setupStartingCopies();
+		this.tributes = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       tribute(p, TRIBUTES, false, this);
+       tribute(p, this.tributes, false, this);
        AbstractOrb water = new Water();
        channel(water); 
     }
@@ -91,10 +91,15 @@ public class LegendaryFisherman extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

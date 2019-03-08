@@ -34,7 +34,6 @@ public class BarrelDragon extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 10;
-    private static final int TRIBUTES = 3;
     private static int MIN_TURNS_ROLL = 1;
     private static int MAX_TURNS_ROLL = 10;
     private static final int RANDOM_ENEMIES = 3;
@@ -51,6 +50,7 @@ public class BarrelDragon extends DuelistCard
         this.tags.add(DefaultMod.REPLAYSPIRE);
         this.misc = 0;
         this.originalName = this.name;
+        this.tributes = 3;
     }
 
     
@@ -58,7 +58,7 @@ public class BarrelDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		tribute(p, TRIBUTES, false, this);
+		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
     
 		// Get number of enemies
@@ -126,10 +126,15 @@ public class BarrelDragon extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

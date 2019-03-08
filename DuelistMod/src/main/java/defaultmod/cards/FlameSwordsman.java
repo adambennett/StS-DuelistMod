@@ -32,7 +32,6 @@ public class FlameSwordsman extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
     private static final int DAMAGE = 10;
-    private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public FlameSwordsman() {
@@ -43,13 +42,14 @@ public class FlameSwordsman extends DuelistCard
         this.tags.add(DefaultMod.REPLAYSPIRE);
         this.misc = 0;
         this.originalName = this.name;
+        this.tributes = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
     	AbstractOrb fire = new HellFireOrb();
     	channel(fire);
@@ -92,10 +92,15 @@ public class FlameSwordsman extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
 
   		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
 
   		// Player doesn't have something required at this point
   		this.cantUseMessage = "Not enough Summons";

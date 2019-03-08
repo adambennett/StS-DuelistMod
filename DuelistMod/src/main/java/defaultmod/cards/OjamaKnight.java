@@ -29,7 +29,6 @@ public class OjamaKnight extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static int TRIBUTES = 1;
     private static int MIN_BUFF_TURNS_ROLL = 5;
     private static int MAX_BUFF_TURNS_ROLL = 8;
     private static int MIN_DEBUFF_TURNS_ROLL = 5;
@@ -46,6 +45,7 @@ public class OjamaKnight extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
+		this.tributes = 1;
     }
 
     
@@ -54,7 +54,7 @@ public class OjamaKnight extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Tribute
-		tribute(p, TRIBUTES, false, this);
+		tribute(p, this.tributes, false, this);
 
 		// Get number of buffs & debuffs
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
@@ -119,10 +119,15 @@ public class OjamaKnight extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

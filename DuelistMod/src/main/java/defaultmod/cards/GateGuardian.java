@@ -35,7 +35,6 @@ public class GateGuardian extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 3;
-    private static int TRIBUTES = 3;
     //private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
@@ -48,13 +47,14 @@ public class GateGuardian extends DuelistCard
         this.tags.add(DefaultMod.CONSPIRE);
         this.misc = 0;
         this.originalName = this.name;
+        this.tributes = 3;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> tributeList = tribute(p, TRIBUTES, false, this);
+    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	if (tributeList.size() > 0)
     	{
     		for (DuelistCard c : tributeList)
@@ -120,10 +120,15 @@ public class GateGuardian extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

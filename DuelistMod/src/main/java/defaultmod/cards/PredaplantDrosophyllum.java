@@ -71,6 +71,7 @@ public class PredaplantDrosophyllum extends DuelistCard
 						cardCopy.applyPowers();
 						cardCopy.purgeOnUse = true;
 						AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+						cardCopy.onResummon(1);
 					}
     				
     			}
@@ -113,6 +114,10 @@ public class PredaplantDrosophyllum extends DuelistCard
 			if (!empInstance.flag)
 			{
 				return true;
+			}
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
 			}
 		}
     	

@@ -33,7 +33,6 @@ public class BlueEyesUltimate extends DuelistCard
     private static final int COST = 3;
     private static final int DAMAGE = 45;
     private static final int UPGRADE_PLUS_DMG = 5;
-    private static final int TRIBUTES = 3;
     // /STAT DECLARATION/
 
     public BlueEyesUltimate() {
@@ -44,13 +43,14 @@ public class BlueEyesUltimate extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
+        this.tributes = 3;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
     }
 
@@ -92,10 +92,15 @@ public class BlueEyesUltimate extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

@@ -33,7 +33,6 @@ public class DarkMagician extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 2;
     private static final int DAMAGE = 15;
-    private static int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public DarkMagician() {
@@ -47,6 +46,7 @@ public class DarkMagician extends DuelistCard
         this.startingDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
+        this.tributes = 2;
         this.setupStartingCopies();
     }
 
@@ -54,7 +54,7 @@ public class DarkMagician extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
     	AbstractOrb summoner = new Summoner();
     	channel(summoner);
@@ -71,7 +71,7 @@ public class DarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            TRIBUTES = 1;
+            if (this.tributes > 0) { this.tributes--; }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -96,12 +96,17 @@ public class DarkMagician extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
   		else if (upgraded) { return true; }
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

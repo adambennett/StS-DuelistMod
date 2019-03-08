@@ -112,13 +112,17 @@ public class TokenVacuum extends DuelistCard
 			{
 				return true;
 			}
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
+			}
 		}
 
   		// Check for # of summons >= tributes
   		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
 
   		// Player doesn't have something required at this point
-  		this.cantUseMessage = "Not enough Summons";
+  		this.cantUseMessage = "You need at least 1 Summon";
   		return false;
   	}
 

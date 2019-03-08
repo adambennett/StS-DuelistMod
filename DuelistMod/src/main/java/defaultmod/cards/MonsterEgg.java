@@ -64,6 +64,7 @@ public class MonsterEgg extends DuelistCard
         extraDragA.purgeOnUse = true;
         if (this.upgraded) { extraDragA.upgrade();  }
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));    	
+        extraDragA.onResummon(1);
     }
 
     // Which card to return when making a copy of this card.

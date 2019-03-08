@@ -55,7 +55,7 @@ public class Polymerization extends DuelistCard
 	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
 				if (cardCopy != null)
 				{
-					if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+					//if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 					if (summon.upgraded) { cardCopy.upgrade(); }
 					cardCopy.freeToPlayOnce = true;
 					cardCopy.applyPowers();

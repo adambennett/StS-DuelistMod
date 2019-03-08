@@ -69,8 +69,7 @@ public class ToonWorldPower extends AbstractPower
 	    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
 	    	if (DuelistCard.isToon(c)) 
 	    	{ 
-	    		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); }
-	    		if (TOON_DMG > 0) { TOON_DMG--; } 
+	    		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); TOON_DMG--;  }
 	    	}
 	    	
 	    	this.amount = TOON_DMG;
@@ -89,7 +88,9 @@ public class ToonWorldPower extends AbstractPower
 	}
 
     @Override
-	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + TOON_DMG + DESCRIPTIONS[1];
+	public void updateDescription() 
+    {
+    	if (TOON_DMG < 1) { this.description = DESCRIPTIONS[2]; }
+    	else { this.description = DESCRIPTIONS[0] + TOON_DMG + DESCRIPTIONS[1]; }
     }
 }

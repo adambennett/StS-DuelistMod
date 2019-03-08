@@ -29,7 +29,6 @@ public class SmallLabyrinthWall extends DuelistCard
     private static final int COST = 1;
     private static final int BLOCK = 15;
     private static final int UPGRADE_PLUS_BLK = 5;
-    private static final int TRIBUTES = 1;
     private boolean secondUpgrade = false;
     // /STAT DECLARATION/
 
@@ -46,7 +45,7 @@ public class SmallLabyrinthWall extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	block(this.block);
     }
 
@@ -102,10 +101,14 @@ public class SmallLabyrinthWall extends DuelistCard
 			{
 				return true;
 			}
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

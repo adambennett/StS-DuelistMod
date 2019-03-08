@@ -57,8 +57,8 @@ public class DragonMaster extends DuelistCard
     	// If this card is upgraded, the two dragons get upgraded as well
     	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
     	DuelistCard extraDragB = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
-    	String cardNameA = extraDragA.originalName;
-    	String cardNameB = extraDragB.originalName;
+    	//String cardNameA = extraDragA.originalName;
+    	//String cardNameB = extraDragB.originalName;
     	//System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA);
     	//System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameB);
     	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }
@@ -72,7 +72,8 @@ public class DragonMaster extends DuelistCard
         if (this.upgraded) { extraDragA.upgrade(); extraDragB.upgrade(); }
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragB, m));
-
+        extraDragA.onResummon(1);
+        extraDragB.onResummon(1);
     	
     }
 
@@ -111,6 +112,11 @@ public class DragonMaster extends DuelistCard
 			if (!empInstance.flag)
 			{
 				return true;
+			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
 			}
 		}
     	

@@ -103,7 +103,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static Properties duelistDefaults = new Properties();
 	private static ArrayList<String> cardSets = new ArrayList<String>();
 	private static ArrayList<String> startingDecks = new ArrayList<String>();
-	ArrayList<StarterDeck> starterDeckList = new ArrayList<StarterDeck>();
+	private static ArrayList<StarterDeck> starterDeckList = new ArrayList<StarterDeck>();
 	private static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> dragonDeck = new ArrayList<DuelistCard>();
@@ -146,8 +146,10 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static boolean hasRing = false;
 	public static boolean hasKey = false;
 	public static boolean checkTrap = false;
+	public static boolean checkUO = false;
 	public static int swordsPlayed = 0;
 	public static int cardsToDraw = 5;
+	public static StarterDeck currentDeck;
 
 	// =============== INPUT TEXTURE LOCATION =================
 
@@ -387,6 +389,10 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String SHALLOW_GRAVE = "cards/Shallow_Grave.png";
 	public static final String RANDOM_SOLDIER = "cards/Random_Soldier.png";
 	public static final String GUARDIAN_ANGEL = "cards/Guardian_Angel.png";
+	public static final String JERRY_BEANS = "cards/Jerry_Beans_Man.png";
+	public static final String REINFORCEMENTS = "cards/Reinforcements.png";
+	public static final String ULTIMATE_OFFERING = "cards/Ultimate_Offering.png";
+	public static final String GENERIC_TOKEN = "cards/Token.png";	
 
 	// Expansion Set
 	public static final String FINAL_FLAME = "cards/Final_Flame.png";
@@ -523,6 +529,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String VIOLET_POWER = "powers/VioletPower.png";
 	public static final String JINZO_POWER = "powers/JinzoPower.png";
 	public static final String SARRACENIANT_POWER = "powers/SarraceniantPower.png";
+	public static final String ULTIMATE_OFFERING_POWER = "powers/UltimateOfferingPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -544,7 +551,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 	// Character assets
 	private static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButton.png";
-	private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD.png";
+	//private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD.png";
+	private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD_B.png";
 	public static final String THE_DEFAULT_SHOULDER_1 = "char/defaultCharacter/shoulder.png";
 	public static final String THE_DEFAULT_SHOULDER_2 = "char/defaultCharacter/shoulder2.png";
 	public static final String THE_DEFAULT_CORPSE = "char/defaultCharacter/corpse.png";
@@ -627,7 +635,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		duelistDefaults.setProperty(PROP_DECK, "0");
 		duelistDefaults.setProperty(PROP_CARDS, "200");
 		
-		cardSets.add("All (186 cards)");
+		cardSets.add("All (189 cards)");
 		cardSets.add("Full (137 cards)");
 		cardSets.add("Reduced (118 cards)");
 		cardSets.add("Limited (90 cards)");
@@ -652,6 +660,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		
 		for (StarterDeck d : starterDeckList) { startingDecks.add(d.getName()); }
 		DECKS = starterDeckList.size();
+		currentDeck = regularDeck;
 		try 
 		{
             SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1020,7 +1029,6 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new EmpressMantis());
 		myCards.add(new Grasschopper());
 		myCards.add(new Jinzo());
-		
 		myCards.add(new LeviaDragon());
 		myCards.add(new ManEaterBug());
 		myCards.add(new OceanDragonLord());
@@ -1034,6 +1042,9 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new Predapruning());
 		myCards.add(new TrihornedDragon());
 		myCards.add(new Wiretap());
+		myCards.add(new Reinforcements());
+		myCards.add(new UltimateOffering());
+		myCards.add(new JerryBeansMan());
 		// END ALL Set
 		
 		// FULL Set - 22 cards
@@ -1302,6 +1313,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		summonMap.put("Random Token", new Token());
 		summonMap.put("Pot Token", new Token());
 		summonMap.put("Buffer Token", new Token());
+		summonMap.put("Blood Token", new Token());
 		summonMap.put("Predaplant Token", new PredaplantToken());
 		summonMap.put("Kuriboh Token", new KuribohToken());
 		summonMap.put("Exploding Token", new ExplosiveToken());
@@ -1508,6 +1520,19 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				arg1.sortAlphabetically(true);
 			}
 		}
+	}
+	
+	public static StarterDeck getCurrentDeck()
+	{
+		for (StarterDeck d : starterDeckList)
+		{
+			if (d.getIndex() == deckIndex)
+			{
+				return d;
+			}
+		}
+		
+		return starterDeckList.get(0);
 	}
 
 	private CardTags findDeckTag(int deckIndex) 

@@ -33,7 +33,6 @@ public class FiveHeaded extends DuelistCard
     private static final int COST = 4;
     private static final int DAMAGE = 55;
     private static final int UPGRADE_PLUS_DMG = 5;
-    private static final int TRIBUTES = 4;
     // /STAT DECLARATION/
 
     public FiveHeaded() {
@@ -44,6 +43,7 @@ public class FiveHeaded extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.REDUCED);
         this.misc = 0;
+        this.tributes = 4;
         this.originalName = this.name;
     }
 
@@ -51,7 +51,7 @@ public class FiveHeaded extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
     }
 
@@ -68,7 +68,7 @@ public class FiveHeaded extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.tributes = 5;
+            this.tributes++;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -93,10 +93,15 @@ public class FiveHeaded extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

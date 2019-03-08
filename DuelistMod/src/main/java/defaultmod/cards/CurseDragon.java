@@ -35,7 +35,6 @@ public class CurseDragon extends DuelistCard
     private static final int COST = 1;
     private static final int DAMAGE = 14;
     private static final int UPGRADE_PLUS_DMG = 6;
-    private static final int TRIBUTES = 1;
     // /STAT DECLARATION/
 
     public CurseDragon() {
@@ -53,6 +52,7 @@ public class CurseDragon extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.setupStartingCopies();
+        this.tributes = 1;
     }
 
     // Actions the card should do.
@@ -60,7 +60,7 @@ public class CurseDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int dragons = 0;
-    	ArrayList<DuelistCard> tributeList = tribute(p, TRIBUTES, false, this);
+    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	if (tributeList.size() > 0)
     	{
     		for (DuelistCard c : tributeList)
@@ -108,10 +108,15 @@ public class CurseDragon extends DuelistCard
 			{
 				return true;
 			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
 
   		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
 
   		// Player doesn't have something required at this point
   		this.cantUseMessage = "Not enough Summons";

@@ -28,7 +28,6 @@ public class InsectQueen extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 2;
 	private static final int POISON_MULT = 3;
-	private static final int TRIBUTES = 1;
 	// /STAT DECLARATION/
 
 	public InsectQueen() 
@@ -78,20 +77,37 @@ public class InsectQueen extends DuelistCard
 	}
 
 	// If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
+  	@Override
+  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+  	{
+  		// Check super canUse()
+  		boolean canUse = super.canUse(p, m); 
+  		if (!canUse) { return false; }
+  		
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+  		
+  		// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
+			}
+		}
 
-    	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
-    	
-    	// Player doesn't have something required at this point
-    	this.cantUseMessage = "You need at least 1 Summon to Tribute";
-    	return false;
-    }
+  		// Check for # of summons >= tributes
+  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
+
+  		// Player doesn't have something required at this point
+  		this.cantUseMessage = "You need at least 1 Summon";
+  		return false;
+  	}
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 	

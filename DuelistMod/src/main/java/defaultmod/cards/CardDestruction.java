@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.unique.CardDestructionAction;
 import defaultmod.patches.*;
 
 public class CardDestruction extends DuelistCard 
@@ -27,7 +28,7 @@ public class CardDestruction extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int CARDS = 1;
     // /STAT DECLARATION/
 
@@ -53,15 +54,28 @@ public class CardDestruction extends DuelistCard
     	// Discard all cards
     	AbstractDungeon.actionManager.addToTop(new DiscardAction(p, p, handSize, true));
     	
+    	// Copy all into random 0-cost, exhaust Duelist Cards
+    	for (int i = 0; i < handSize; i++)
+    	{
+    		AbstractDungeon.actionManager.addToBottom(new CardDestructionAction(this.upgraded));
+    	}
+    	
+    	/*
     	if (!this.upgraded)
     	{
 	    	// For each discarded card, add a random card to hand
 	    	for (int i = 0; i < handSize; i++)
 	    	{
+	    	
 	    		DuelistCard randomMonster = (DuelistCard) returnTrulyRandomDuelistCard();
 				randomMonster.costForTurn = 0;
 				randomMonster.isCostModifiedForTurn = true;
+				randomMonster.exhaust = true;
+				randomMonster.rawDescription = randomMonster.rawDescription + " NL Exhaust.";
+				randomMonster.initializeDescription();
 				addCardToHand(randomMonster);
+				
+	    		AbstractDungeon.actionManager.addToTop(new CardDestructionAction(false));
 	    	}
     	}
     	else
@@ -69,14 +83,19 @@ public class CardDestruction extends DuelistCard
     		// For each discarded card, add 1 random upgraded card to hand
 	    	for (int i = 0; i < handSize; i++)
 	    	{
+	    		
 	    		DuelistCard randomMonster = (DuelistCard) returnTrulyRandomDuelistCard();
 				randomMonster.costForTurn = 0;
 				randomMonster.isCostModifiedForTurn = true;
 				randomMonster.upgrade();
+				randomMonster.exhaust = true;
+				randomMonster.rawDescription = randomMonster.rawDescription + " NL Exhaust.";
+				randomMonster.initializeDescription();
 				addCardToHand(randomMonster);
+			
 	    	}
     	}
-
+    	*/
     }
 
     // Which card to return when making a copy of this card.

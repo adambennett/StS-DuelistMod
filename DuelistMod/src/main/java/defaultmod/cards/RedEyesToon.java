@@ -33,7 +33,6 @@ public class RedEyesToon extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
     private static final int DAMAGE = 18;
-    private static final int TRIBUTES = 1;
     private static final int U_DMG = 6;
     // /STAT DECLARATION/
 
@@ -48,13 +47,14 @@ public class RedEyesToon extends DuelistCard
         this.tags.add(DefaultMod.FULL);
         this.misc = 0;
 		this.originalName = this.name;
+		this.tributes = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, TRIBUTES, false, this);
+    	tribute(p, this.tributes, false, this);
     	damageThroughBlock(m, p, this.damage, AFX);
     }
 
@@ -97,10 +97,14 @@ public class RedEyesToon extends DuelistCard
 			{
 				return true;
 			}
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

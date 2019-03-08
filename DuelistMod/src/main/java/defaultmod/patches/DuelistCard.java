@@ -372,8 +372,10 @@ public abstract class DuelistCard extends CustomCard
 	
 	public static void summon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
+		System.out.println("theDuelist:DuelistCard:summon() ---> called summon()");
 		if (!DefaultMod.checkTrap)
 		{
+			System.out.println("theDuelist:DuelistCard:summon() ---> no check trap, SUMMONS: " + SUMMONS);
 			// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 			if (!p.hasPower(SummonPower.POWER_ID))
 			{
@@ -424,8 +426,18 @@ public abstract class DuelistCard extends CustomCard
 				{ 
 					channelRandom();
 				} 
-			
 				
+				// Check for Ultimate Offering
+				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0)
+				{
+					System.out.println("theDuelist:DuelistCard:summon() ---> hit Ultimate Offering: " + SUMMONS);
+					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
+					damageSelf(3);
+					incMaxSummons(p, amountToSummon);
+					//powerSummon(p, amountToSummon, "Blood Token", true);
+					uoSummon(p, amountToSummon, new Token("Blood Token"));
+				}
+
 				// Update UI
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
@@ -472,21 +484,26 @@ public abstract class DuelistCard extends CustomCard
 				}
 				
 				// Update UI
+				System.out.println("theDuelist:DuelistCard:summon() ---> updating summons instance");
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
+				System.out.println("theDuelist:DuelistCard:summon() ---> summons instance amount: " + summonsInstance.amount);
 			}
 		}
 		else
-		{
-			trapHoleSummon(p, SUMMONS, c);
+		{			
+			System.out.println("theDuelist:DuelistCard:summon() ---> check trap, SUMMONS: " + SUMMONS);
+			trapHoleSummon(p, SUMMONS, c);			
 		}
 	}
 	
 	public static void spellSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
+		System.out.println("theDuelist:DuelistCard:spellSummon() ---> called spellSummon()");
 		if (!DefaultMod.checkTrap)
 		{
+			//System.out.println("theDuelist:DuelistCard:spellSummon() ---> no check trap, SUMMONS: " + SUMMONS);
 			// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 			if (!p.hasPower(SummonPower.POWER_ID))
 			{
@@ -538,45 +555,24 @@ public abstract class DuelistCard extends CustomCard
 					channelRandom();
 				}
 				
+				/*
+				// Check for Ultimate Offering
+				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0)
+				{
+					//System.out.println("theDuelist:DuelistCard:spellSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS);
+					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
+					damageSelf(3);
+					incMaxSummons(p, amountToSummon);
+					//powerSummon(p, amountToSummon, "Blood Token", true);
+					uoSummon(p, amountToSummon, new Token("Blood Token"));
+				}
+				*/
+				
 				// Update UI
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
 	
-				// Check for Trap Hole
-				if (p.hasPower(TrapHolePower.POWER_ID) && !DefaultMod.checkTrap)
-				{
-					for (int i = 0; i < potSummons; i++)
-					{
-						TrapHolePower power = (TrapHolePower) p.getPower(TrapHolePower.POWER_ID);
-						int randomNum = AbstractDungeon.cardRandomRng.random(1, 10);
-						if (randomNum <= power.chance || power.chance > 10)
-						{
-							DefaultMod.checkTrap = true;
-							power.flash();
-							//System.out.println("theDuelist:DuelistCard:spellSummon ---> triggered trap hole with roll of: " + randomNum);
-							powerTribute(p, 1, false);
-							DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
-							if (cardCopy != null)
-							{
-								if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-								if (c.upgraded) { cardCopy.upgrade(); }
-								cardCopy.freeToPlayOnce = true;
-								cardCopy.applyPowers();
-								cardCopy.purgeOnUse = true;
-								AbstractMonster m = AbstractDungeon.getRandomMonster();
-								AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-								cardCopy.onResummon(1);
-								//System.out.println("theDuelist:DuelistCard:spellSummon ---> trap hole resummoned properly");
-							}
-						}
-						else
-						{
-							//System.out.println("theDuelist:DuelistCard:spellSummon ---> did not trigger trap hole with roll of: " + randomNum);
-						}
-					}
-				}
-
 				// Update UI
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
@@ -585,17 +581,21 @@ public abstract class DuelistCard extends CustomCard
 		}
 		
 		else
-		{
-			trapHoleSummon(p, SUMMONS, c);
+		{			
+			//System.out.println("theDuelist:DuelistCard:spellSummon() ---> check trap, SUMMONS: " + SUMMONS);
+			trapHoleSummon(p, SUMMONS, c);		
 		}
 	}
 	
 
-	public static void powerSummon(AbstractPlayer p, int SUMMONS, String cardName)
+	public static void powerSummon(AbstractPlayer p, int SUMMONS, String cardName, boolean fromUO)
 	{
+		//System.out.println("theDuelist:DuelistCard:powerSummon() ---> called powerSummon()");
 		if (!DefaultMod.checkTrap)
 		{
+			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> no check trap, SUMMONS: " + SUMMONS);
 			DuelistCard c = DefaultMod.summonMap.get(cardName);
+			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> c: " + c.originalName);
 			// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 			if (!p.hasPower(SummonPower.POWER_ID))
 			{
@@ -640,6 +640,17 @@ public abstract class DuelistCard extends CustomCard
 				{
 					channelRandom();
 				} 
+				
+				// Check for Ultimate Offering
+				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0 && !fromUO)
+				{
+					//System.out.println("theDuelist:DuelistCard:powerSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS);
+					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
+					damageSelf(3);
+					incMaxSummons(p, amountToSummon);
+					//powerSummon(p, amountToSummon, "Blood Token", true);
+					uoSummon(p, amountToSummon, new Token("Blood Token"));
+				}
 		
 				// Update UI
 				summonsInstance.updateCount(summonsInstance.amount);
@@ -657,7 +668,7 @@ public abstract class DuelistCard extends CustomCard
 						{
 							DefaultMod.checkTrap = true;
 							power.flash();
-							//System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum);
+							////System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum);
 							powerTribute(p, 1, false);
 							DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
 							if (cardCopy != null)
@@ -670,7 +681,7 @@ public abstract class DuelistCard extends CustomCard
 								AbstractMonster m = AbstractDungeon.getRandomMonster();
 								AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 								cardCopy.onResummon(1);
-								//System.out.println("theDuelist:DuelistCard:powerSummon ---> trap hole resummoned properly");
+								////System.out.println("theDuelist:DuelistCard:powerSummon ---> trap hole resummoned properly");
 							}
 						}
 						else
@@ -687,21 +698,26 @@ public abstract class DuelistCard extends CustomCard
 				}
 				
 				// Update UI
+				//System.out.println("theDuelist:DuelistCard:powerSummon() ---> updating summons instance amount");
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
+				//System.out.println("theDuelist:DuelistCard:powerSummon() ---> summons instance amount: " + summonsInstance.amount);
 			}
 		}
 		
 		else
 		{
+			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, SUMMONS: " + SUMMONS);
 			DuelistCard c = DefaultMod.summonMap.get(cardName);
+			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, c: " + c.originalName);
 			trapHoleSummon(p, SUMMONS, c);
 		}
 	}
 	
 	public static void trapHoleSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{		
+		//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> called trapHoleSummon()");
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 		if (!p.hasPower(SummonPower.POWER_ID))
 		{
@@ -752,8 +768,90 @@ public abstract class DuelistCard extends CustomCard
 			{ 
 				channelRandom();
 			} 
+			
+			// Check for Ultimate Offering
+			if (p.hasPower(UltimateOfferingPower.POWER_ID) && !DefaultMod.checkUO)
+			{
+				DefaultMod.checkUO = true;
+				//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS);
+				int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
+				//damageSelf(3);
+				//incMaxSummons(p, amountToSummon);
+				if (potSummons == 0) { uoSummon(p, amountToSummon, new Token("Blood Token")); }
+			}
 		
 			
+			// Update UI
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
+
+			// Update UI
+			//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> updating summons instance");
+			summonsInstance.updateCount(summonsInstance.amount);
+			summonsInstance.updateStringColors();
+			summonsInstance.updateDescription();
+			//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> summons instance amount: " + summonsInstance.amount);
+			
+			DefaultMod.checkUO = false;
+			DefaultMod.checkTrap = false;
+		}
+	}
+	
+	public static void uoSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
+	{		
+		//System.out.println("theDuelist:DuelistCard:uoSummon() ---> called uoSummon()");
+		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
+		if (!p.hasPower(SummonPower.POWER_ID))
+		{
+			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, c.originalName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
+			int startSummons = SUMMONS;
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
+	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID)) 
+			{ 
+				channelRandom();
+			} 
+		}
+		
+		else
+		{
+			// Setup Pot of Generosity
+			int potSummons = 0;
+			int startSummons = p.getPower(SummonPower.POWER_ID).amount;
+			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+			int maxSummons = summonsInstance.MAX_SUMMONS;
+			if ((startSummons + SUMMONS) > maxSummons) { potSummons = maxSummons - startSummons; }
+			else { potSummons = SUMMONS; }
+	
+			// Add SUMMONS
+			summonsInstance.amount += potSummons;
+			
+			if (potSummons > 0) 
+			{ 
+				for (int i = 0; i < potSummons; i++) 
+				{ 
+					summonsInstance.summonList.add(c.originalName);
+				} 
+			}
+	
+			// Check for Pot of Generosity
+			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
+	
+			// Check for Summoning Sickness
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+	
+			// Check for Slifer
+			if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
+			{ 
+				channelRandom();
+			} 
+
 			// Update UI
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
@@ -766,11 +864,11 @@ public abstract class DuelistCard extends CustomCard
 			}
 			
 			// Update UI
+			//System.out.println("theDuelist:DuelistCard:uoSummon() ---> updating summons instance");
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
-			
-			DefaultMod.checkTrap = false;
+			//System.out.println("theDuelist:DuelistCard:uoSummon() ---> summons instance amount: " + summonsInstance.amount);
 		}
 	}
 
@@ -1465,7 +1563,7 @@ public abstract class DuelistCard extends CustomCard
 				return (DuelistCard) card.makeCopy();
 			}
 		}
-		return new SevenColoredFish();
+		return new Token();
 	}
 	
 	

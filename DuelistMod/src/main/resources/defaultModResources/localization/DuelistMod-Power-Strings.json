@@ -13,7 +13,7 @@
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon card." ]
+        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon card.", "#yToon monsters can be played." ]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
@@ -210,6 +210,10 @@
 "theDuelist:JinzoPower": {
         "NAME": "Jinzo",
         "DESCRIPTIONS": ["Your Trap cards cost #b0." ]
+},
+"theDuelist:UltimateOfferingPower": {
+        "NAME": "Ultimate Offering",
+        "DESCRIPTIONS": ["Whenever you #ySummon with a max stack of summons: lose #b3 HP, #yIncrement #b", " and then #ySummon #b", "." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

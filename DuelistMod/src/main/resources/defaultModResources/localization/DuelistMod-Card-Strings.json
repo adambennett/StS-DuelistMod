@@ -56,8 +56,8 @@
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
-		"DESCRIPTION": "Discard your entire hand. Add !M! random card to your hand for each card discarded. Each card costs 0 this turn. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Discard your entire hand. Add !M! random upgraded card to your hand for each card discarded. Each card costs 0 this turn. Exhaust."
+		"DESCRIPTION": "Discard your hand. Add !M! random card to your hand for each card discarded. Each card costs 0 and exhausts. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Discard your hand. Add !M! random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts. Exhaust."
 	},
 	"theDuelist:CastleDarkIllusions": {
 		"NAME": "Castle Dark Illusion",
@@ -711,8 +711,8 @@
 	},
 	"theDuelist:DragonMaster": {
 		"NAME": "Dragon Master Knight",
-		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Create 2 random Dragons and play them on the target enemy.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Create 2 random upgraded Dragons and play them on the target enemy."
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Create 2 random Dragons and Resummon them on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Create 2 random upgraded Dragons and Resummon them on the target enemy."
 	},
 	"theDuelist:FiendSkull": {
 		"NAME": "Fiend Skull Dragon",
@@ -881,8 +881,8 @@
 	},
 	"theDuelist:MonsterEgg": {
 		"NAME": "Monster Egg",
-		"DESCRIPTION": "Summon 1. NL Create a random monster and play it on the target enemy.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Create a random upgraded monster and play it on the target enemy."
+		"DESCRIPTION": "Summon 1. NL Create a random monster and Resummon it on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Create a random upgraded monster and Resummon it on the target enemy."
 	},
 	"theDuelist:SteamTrainKing": {
 		"NAME": "Steam Train King",
@@ -966,8 +966,8 @@
 	},
 	"theDuelist:PredaplantDrosophyllum": {
 		"NAME": "P. Drosophyllum",
-		"DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, play a copy of a random Plant monster from your hand.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, play a copy of a random Plant monster from your hand."
+		"DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, Resummon a copy of a random Plant monster from your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, Resummon a copy of a random Plant monster from your hand."
 	},
 	"theDuelist:PredaplantFlytrap": {
 		"NAME": "P. Flytrap",
@@ -1049,6 +1049,21 @@
 		"DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn.",
 		"UPGRADE_DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn."
 	},
+	"theDuelist:JerryBeansMan": {
+		"NAME": "Jerry Beans Man",
+		"DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:Reinforcements": {
+		"NAME": "Reinforcements",
+		"DESCRIPTION": "Gain !M! Strength. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength. Exhaust."
+	},
+	"theDuelist:UltimateOffering": {
+		"NAME": "Ultimate Offering",
+		"DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons, Increment !M! and then Summon !M!.",
+		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons, Increment !M! and then Summon !M!."
+	},
 	"theDuelist:GuardianAngel": {
 		"NAME": "Guardian Angel Joan",
 		"DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. NL Heal for however much total damage is done.",
@@ -1086,8 +1101,8 @@
 	},
 	"theDuelist:Token": {
 		"NAME": "Token",
-		"DESCRIPTION": "",
-		"UPGRADE_DESCRIPTION": ""
+		"DESCRIPTION": "Gain 1 Block.",
+		"UPGRADE_DESCRIPTION": "Gain 1 Block."
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",

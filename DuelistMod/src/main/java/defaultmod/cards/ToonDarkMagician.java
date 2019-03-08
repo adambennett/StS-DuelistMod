@@ -33,7 +33,6 @@ public class ToonDarkMagician extends DuelistCard
 	private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
 	private static final int COST = 2;
 	private static final int DAMAGE = 24;
-	private static final int TRIBUTES = 2;
 	// /STAT DECLARATION/
 
 	public ToonDarkMagician() {
@@ -50,13 +49,14 @@ public class ToonDarkMagician extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
+		this.tributes = 2;
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, TRIBUTES, false, this);
+		tribute(p, this.tributes, false, this);
 		damageThroughBlock(m, p, this.damage, AFX);
 		AbstractOrb summoner = new Summoner();
 		channel(summoner);
@@ -101,10 +101,14 @@ public class ToonDarkMagician extends DuelistCard
 			{
 				return true;
 			}
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= TRIBUTES) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = "Not enough Summons";

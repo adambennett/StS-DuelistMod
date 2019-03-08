@@ -55,7 +55,7 @@ public class Grasschopper extends DuelistCard
     	{
     		for (DuelistCard c : tributeList)
     		{
-    			if (c.hasTag(DefaultMod.INSECT))
+    			if (c.hasTag(DefaultMod.INSECT) || c.hasTag(DefaultMod.PLANT))
     			{
     				insects++;
     			}
@@ -105,6 +105,11 @@ public class Grasschopper extends DuelistCard
 			if (!empInstance.flag)
 			{
 				return true;
+			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
 			}
 		}
     	

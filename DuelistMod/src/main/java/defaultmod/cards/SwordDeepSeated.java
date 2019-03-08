@@ -60,6 +60,10 @@ public class SwordDeepSeated extends DuelistCard
     		//System.out.println("theDuelist:SwordDeepSeated:use() ---> reset DefaultMod.swordsPlayed to 0."); 
     		DefaultMod.swordsPlayed = 0; 
     	}
+    	if (GameActionManager.turn == 1)
+    	{
+    		System.out.println("turn 1");
+    	}
     	applyPowerToSelf(new StrengthPower(p, STR_GAIN));
     	if (!p.hasPower(GravityAxePower.POWER_ID)) { applyPowerToSelf(new SwordDeepPower(p, p, 1, STR_GAIN)); }
     	AbstractCard sword = new SwordDeepSeated();

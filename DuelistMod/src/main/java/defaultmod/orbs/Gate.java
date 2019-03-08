@@ -71,7 +71,7 @@ public class Gate extends AbstractOrb
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Gate Token");
+		DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Gate Token", false);
 	}
 
 	@Override
