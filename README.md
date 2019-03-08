@@ -93,24 +93,20 @@ Email: nyoxidestsmods@gmail.com
 Discord: Nyoxide#3464
 
 # Card List
-
-Castle Walls - *Core*  
-Giant Stone Soldier - *Core*  
-Ookazi - *Core*  
-Scrap Factory - *Core*  
+  
+#### Core  
 7-Colored Fish - *Core*  
-Summoned Skull - *Core*  
 Armored Zombie - *Core*  
 Axe of Despair - *Core*  
-Baby Dragon - *Core*  
-Tremendous Fire - *Core*  
-Blizzard Dragon - *Core*  
-B.E. White Dragon - *Core*  
 B. Eyes Ultimate - *Core*  
+B.E. White Dragon - *Core*  
+Baby Dragon - *Core*  
+Blizzard Dragon - *Core*  
 Buster Blader - *Core*  
 Cannon Soldier - *Core*  
 Card Destruction - *Core*  
 Castle Dark Illusion - *Core*  
+Castle Walls - *Core*  
 Catapult Turtle - *Core*  
 Cave Dragon - *Core*  
 Celtic Guardian - *Core*  
@@ -126,6 +122,7 @@ Fortress Warrior - *Core*
 G. Dragon Champion - *Core*  
 G. Fierce Knight - *Core*  
 Gemini Elf - *Core*  
+Giant Stone Soldier - *Core*  
 Graceful Charity - *Core*  
 Gravity Axe - *Core*  
 Hane Hane - *Core*  
@@ -136,54 +133,62 @@ Insect Queen - *Core*
 Island Turtle - *Core*  
 Jam Breed Machine - *Core*  
 Judge Man - *Core*  
+Kazejin - *Core*  
 Kuriboh - *Core*  
 Labyrinth Wall - *Core*  
 Lesser Dragon - *Core*  
 Lord of D. - *Core*  
+Mini L. Wall - *Core*  
 Mirror Force - *Core*  
 Monster Reborn - *Core*  
 Mountain - *Core*  
 Mystical Elf - *Core*  
 Obelisk - *Core*  
+Ookazi - *Core*  
 Pot of Generosity - *Core*  
 Pot of Greed - *Core*  
 Prevent Rat - *Core*  
 Pumpking - *Core*  
+R. Eyes Black Dragon - *Core*  
 Raigeki - *Core*  
 Rain of Mercy - *Core*  
-R. Eyes Black Dragon - *Core*  
 Relinquished - *Core*  
-Kazejin - *Core*  
 Sanga of Thunder - *Core*  
 Scapegoat - *Core*  
+Scrap Factory - *Core*  
 Slifer Sky Dragon - *Core*  
-Mini L. Wall - *Core*  
 Snow Dragon - *Core*  
 Snowdust Dragon - *Core*  
 Spirit of the Harp - *Core*  
+Summoned Skull - *Core*  
 Superheavy Benkei - *Core*  
 Superheavy Scales - *Core*  
 Superheavy Swordsman - *Core*  
 Superheavy Waraji - *Core*  
 Thunder Dragon - *Core*  
+Tremendous Fire - *Core*  
 Winged Dragon Ra - *Core*  
 Yami - *Core*  
+  
+#### Limited    
 A. Magnet Warrior - *Limited*  
 Ancient Rules - *Limited*  
-Bad Reaction - *Limited*  
 B. Magnet Warrior - *Limited*  
-Dark Hole - *Limited*  
+Bad Reaction - *Limited*  
 D.M. Girl - *Limited*  
+Dark Hole - *Limited*  
+Emperor Mausoleum - *Limited*  
 Exodia Head - *Limited*  
 Exodia L. Arm - *Limited*  
 Exodia L. Leg - *Limited*  
 Exodia R. Arm - *Limited*  
 Exodia R. Leg - *Limited*  
-Phoenix Feather - *Limited*  
 G. Magnet Warrior - *Limited*  
-Emperor Mausoleum - *Limited*  
 Millennium Shield - *Limited*  
+Phoenix Feather - *Limited*  
 Valkyrion - *Limited*  
+  
+#### Reduced  
 Curse of Dragon - *Reduced*  
 Cyber Dragon - *Reduced*  
 Dark Factory - *Reduced*  
@@ -212,9 +217,8 @@ Superheavy Magnet - *Reduced*
 Superheavy Ogre - *Reduced*  
 Swords: Burning Light - *Reduced*  
 Swords: Concealing Light - *Reduced*  
-Swords: Revealing Light - *Full*  
-Time Wizard - *Full*  
-Trap Hole - *Full*  
+  
+#### Full  
 B.E. Toon Dragon - *Full*  
 Dragon Master Knight - *Full*  
 Gandora - *Full*  
@@ -222,54 +226,47 @@ L. Exodia Incarnate - *Full*
 Radiant Mirror Force - *Full*  
 Red Eyes Toon - *Full*  
 Superancient Dinobeast - *Full*  
+Swords: Revealing Light - *Full*  
+Time Wizard - *Full*  
 Token Vacuum - *Full*  
 Toon Barrel Dragon - *Full*  
 Toon Briefcase - *Full*  
+Toon D.M. Girl - *Full*  
 Toon Dark Magician - *Full*  
 Toon Gemini Elf - *Full*  
+Toon Kingdom - *Full*  
 Toon Magic - *Full*  
 Toon Mask - *Full*  
 Toon Mermaid - *Full*  
 Toon Rollback - *Full*  
 Toon S. Skull - *Full*  
 Toon World - *Full*  
-Toon Kingdom - *Full*  
-Toon D.M. Girl - *Full*  
-Machine King - *All*  
-Book Secret Arts - *All*  
-Heavy Storm - *All*  
-Fog King - *All*  
-Lajinn Mystical Genie - *All*  
-King Yamimakai - *All*  
-Blackland Fire Dragon - *All*  
-White Night Dragon - *All*  
-White-Horned Dragon - *All*  
-Revival Jam - *All*  
-Stim Pack - *All*  
-Bottomless Trap Hole - *All*  
-Sword of Deep-Seated - *All*  
-Monster Egg - *All*  
-Steam Train King - *All*  
-Machine Factory - *All*  
-Tribute to Doomed - *All*  
-Petit Moth - *All*  
-Cocoon of Evolution - *All*  
-Cheerful Coffin - *All*  
-The Creator - *All*  
-Polymerization - *All*  
-Violet Crystal - *All*  
-Predaponics - *All*  
-Metal Dragon - *All*  
-Super Solar Nutrient - *All*  
-Gigaplant - *All*  
-Basic Insect - *All*  
+Trap Hole - *Full*  
+  
+#### All  
 B. Skull Dragon - *All*  
+Basic Insect - *All*  
+Blackland Fire Dragon - *All*  
+Book Secret Arts - *All*  
+Bottomless Trap Hole - *All*  
+Cheerful Coffin - *All*  
+Cocoon of Evolution - *All*  
 Darkfire Dragon - *All*  
 Empress Mantis - *All*  
+Fog King - *All*  
+Gigaplant - *All*  
 Grasschopper - *All*  
+Heavy Storm - *All*  
+Jerry Beans Man - *All*  
 Jinzo - *All*  
+King Yamimakai - *All*  
+Lajinn Mystical Genie - *All*  
 Levia-Dragon - *All*  
+Machine Factory - *All*  
+Machine King - *All*  
 Man-Eater Bug - *All*  
+Metal Dragon - *All*  
+Monster Egg - *All*  
 Ocean Dragon Lord - *All*  
 P. Chimerafflesia - *All*  
 P. Chlamydosundew - *All*  
@@ -278,26 +275,48 @@ P. Flytrap - *All*
 P. Pterapenthes - *All*  
 P. Sarraceniant - *All*  
 P. Spinodionaea - *All*  
+Petit Moth - *All*  
+Polymerization - *All*  
+Predaponics - *All*  
 Predapruning - *All*  
+Reinforcements - *All*
+Revival Jam - *All*  
+Steam Train King - *All*  
+Stim Pack - *All*  
+Super Solar Nutrient - *All*  
+Sword of Deep-Seated - *All*  
+The Creator - *All*  
 Tri-Horned Dragon - *All*  
+Tribute to Doomed - *All*  
+Ultimate Offering - *All*
+Violet Crystal - *All*  
+White Night Dragon - *All*  
+White-Horned Dragon - *All*  
 Wiretap - *All*  
-Gate Guardian - *Crossover*  
-Legendary Fisherman - *Crossover*  
-Suijin - *Crossover*  
-Barrel Dragon - *Crossover*  
-Blast Juggler - *Crossover*  
-Dark Mirror Force - *Crossover*  
-Flame Swordsman - *Crossover*  
-Magic Cylinder - *Crossover*  
-Nutrient Z - *Crossover*  
-Ojama Black - *Crossover*  
-Ojama King - *Crossover*  
-Ojama Knight - *Crossover*  
-Parasite Paracide - *Crossover*  
-Wiseman's Chalice - *Random generation only*  
-Guardian Angel Joan - *Random generation only*
   
-Remove all Toons cards
+#### Bonus Mod-Crossover
+Barrel Dragon - *Crossover* - *Replay the Spire*  
+Blast Juggler - *Crossover* - *Replay the Spire*  
+Dark Mirror Force - *Crossover* - *Replay the Spire*  
+Flame Swordsman - *Crossover* - *Replay the Spire*  
+Gate Guardian - *Crossover* - *Conspire*  
+Legendary Fisherman - *Crossover* - *Conspire*  
+Magic Cylinder - *Crossover* - *Replay the Spire*  
+Nutrient Z - *Crossover* - *Replay the Spire*  
+Ojama Black - *Crossover* - *Replay the Spire*  
+Ojama King - *Crossover* - *Replay the Spire*  
+Ojama Knight - *Crossover* - *Replay the Spire*  
+Parasite Paracide - *Crossover* - *Replay the Spire*  
+Suijin - *Crossover* - *Conspire*
+
+#### Random Generation Only
+Guardian Angel Joan - *Random generation only*  
+Mini-Polymerization - *Random generation only*  
+Shadow Toon - *Random generation only*  
+Shallow Grave - *Random generation only*  
+Wiseman's Chalice - *Random generation only*  
+  
+#### Toon cards removed by Mod Option  
 B.E. Toon Dragon - *Toons*  
 Red Eyes Toon - *Toons*  
 Toon Barrel Dragon - *Toons*  
@@ -312,8 +331,9 @@ Toon S. Skull - *Toons*
 Toon World - *Toons*  
 Toon Kingdom - *Toons*  
 Toon D.M. Girl - *Toons*  
+Shadow Toon - *Toons*  
 
-Remove all Exodia cards
+#### Exodia cards removed by Mod Option  
 L. Exodia Incarnate - *Exodia*  
 Exodia Head - *Exodia*  
 Exodia L. Arm - *Exodia*  

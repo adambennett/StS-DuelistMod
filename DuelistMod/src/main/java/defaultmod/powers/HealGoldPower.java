@@ -6,12 +6,14 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.BloodyIdol;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.DuelistCard;
 
-
+@SuppressWarnings("unused")
 public class HealGoldPower extends AbstractPower 
 {
     public AbstractCreature source;
@@ -23,7 +25,8 @@ public class HealGoldPower extends AbstractPower
     public static final String IMG = DefaultMod.makePath(DefaultMod.IMPERIAL_POWER);
     public int DAMAGE = 1;
     public int HP_GAIN_TRIGGER = 1;
-
+    
+	private static boolean triggered = false;
     public HealGoldPower(final AbstractCreature owner, int newAmount) 
     {
         this.name = NAME;
@@ -39,12 +42,14 @@ public class HealGoldPower extends AbstractPower
     @Override
     public void onDrawOrDiscard() 
     {
+    	triggered = false;
     	updateDescription();
     }
     
     @Override
     public void atStartOfTurn() 
     {
+    	triggered = false;
     	updateDescription();
     }
     
@@ -55,20 +60,37 @@ public class HealGoldPower extends AbstractPower
     }
     
     @Override
+    public void onAfterCardPlayed(AbstractCard usedCard) 
+    {
+    	triggered = false;
+    	updateDescription();
+    }
+    
+    @Override
+    public void onEvokeOrb(AbstractOrb orb) 
+    {
+    	triggered = false;
+    	updateDescription();
+    }
+    
+    @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
+    	triggered = false;
     	updateDescription();
 	}
 
     @Override
     public int onHeal(int healAmount)
     {
-    	DuelistCard.gainGold(healAmount * this.amount, AbstractDungeon.player, true);
+    	if (!triggered) { DuelistCard.gainGold(healAmount * this.amount, AbstractDungeon.player, true); }
+    	triggered = true;
     	return healAmount;
     }
 
     @Override
-	public void updateDescription() {
+	public void updateDescription() 
+    {
         this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     }
 }
