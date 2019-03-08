@@ -476,8 +476,8 @@
 	},
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
-		"DESCRIPTION": "Allows you to play Toon monster cards. Take a decreasing amount of damage for each Toon monster played.",
-		"UPGRADE_DESCRIPTION": "Allows you to play Toon monster cards. Take a decreasing amount of damage for each Toon monster played."
+		"DESCRIPTION": "Allows you to play Toon cards. Take a decreasing amount of damage for each Toon played.",
+		"UPGRADE_DESCRIPTION": "Allows you to play Toon cards. Take a decreasing amount of damage for each Toon played."
 	},
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",
@@ -531,8 +531,8 @@
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
-		"DESCRIPTION": "Toon monsters that are played are added back to your hand at the start of your next turn.",
-		"UPGRADE_DESCRIPTION": "Toon monsters that are played are added back to your hand at the start of your next turn."
+		"DESCRIPTION": "Toon cards that are played are added back to your hand at the start of your next turn.",
+		"UPGRADE_DESCRIPTION": "Toon cards that are played are added back to your hand at the start of your next turn."
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",

@@ -41,7 +41,7 @@ public class ToonBriefcase extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       applyPowerToSelf(new DragonCapturePower(p, p));
+       applyPowerToSelf(new ToonBriefcasePower(p, p));
     }
 
     // Which card to return when making a copy of this card.

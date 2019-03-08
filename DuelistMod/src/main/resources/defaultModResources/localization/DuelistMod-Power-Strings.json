@@ -13,7 +13,7 @@
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon card.", "#yToon monsters can be played." ]
+        "DESCRIPTIONS": ["#yToons can be played. NL Take #b", " damage each time you play a #yToon card.", "#yToons can be played." ]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
@@ -41,7 +41,7 @@
 },
 "theDuelist:ToonBriefcasePower": {
         "NAME": "Toon Briefcase",
-        "DESCRIPTIONS": ["#yToon monsters played this turn are added back to your hand at the start of your next turn. Toons: "]
+        "DESCRIPTIONS": ["#yToon cards played this turn are added back to your hand at the start of your next turn. Toons: "]
 },
 "theDuelist:DragonCapturePower": {
         "NAME": "Dragon Capture Jar",
@@ -165,7 +165,7 @@
 },
 "theDuelist:ToonKingdomPower": {
         "NAME": "Toon Kingdom",
-        "DESCRIPTIONS": ["#yToon monsters can be played. Take #b", " damage each time you play a #yToon card, and shuffle a random #yToon monster into your draw pile." ]
+        "DESCRIPTIONS": ["#yToons can be played. NL Take #b", " damage each time you play a #yToon card, and shuffle a random #yToon card into your draw pile.", "#yToons can be played. Each time you play a #yToon card, shuffle a random #yToon card into your draw pile." ]
 },
 "theDuelist:ReducerPower": {
         "NAME": "Reductionist",

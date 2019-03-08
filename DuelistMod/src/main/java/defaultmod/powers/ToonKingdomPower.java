@@ -55,7 +55,7 @@ public class ToonKingdomPower extends AbstractPower
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
     	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
-    	if (DuelistCard.isToon(c)) 
+    	if (DuelistCard.isToon(c) && !c.originalName.equals("Toon Kingdom") && !c.originalName.equals("Toon World")) 
     	{ 
     		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); }
     		if (TOON_DMG > 0) { TOON_DMG--; } 
@@ -70,11 +70,19 @@ public class ToonKingdomPower extends AbstractPower
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
+    	if (TOON_DMG > 0) 
+    	{
+    		TOON_DMG--;
+    		this.amount = TOON_DMG;
+    	}
     	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
+    	updateDescription();
 	}
 
     @Override
-	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + TOON_DMG + DESCRIPTIONS[1];
+	public void updateDescription() 
+    {
+        if (TOON_DMG < 1) { this.description = DESCRIPTIONS[2]; }
+    	else { this.description = DESCRIPTIONS[0] + TOON_DMG + DESCRIPTIONS[1]; }
     }
 }

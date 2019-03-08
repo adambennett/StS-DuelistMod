@@ -67,7 +67,7 @@ public class ToonWorldPower extends AbstractPower
     	else
     	{
 	    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
-	    	if (DuelistCard.isToon(c)) 
+	    	if (DuelistCard.isToon(c) && !c.originalName.equals("Toon World") && !c.originalName.equals("Toon Kingdom")) 
 	    	{ 
 	    		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); TOON_DMG--;  }
 	    	}
@@ -84,6 +84,15 @@ public class ToonWorldPower extends AbstractPower
     	if (AbstractDungeon.player.hasPower("ToonKingdomPower"))
     	{
     		DuelistCard.removePower(this, AbstractDungeon.player);
+    	}
+    	else
+    	{
+    		if (TOON_DMG > 0)
+    		{
+	    		TOON_DMG--;
+	    		this.amount = TOON_DMG;
+	    		updateDescription();
+    		}
     	}
 	}
 
