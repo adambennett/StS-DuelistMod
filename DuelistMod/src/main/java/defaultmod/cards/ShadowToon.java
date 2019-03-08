@@ -34,7 +34,7 @@ public class ShadowToon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.SPELL);
-        this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.RANDOMONLY);
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.RANDOMONLY);
         this.tags.add(DefaultMod.TOON_DECK);
