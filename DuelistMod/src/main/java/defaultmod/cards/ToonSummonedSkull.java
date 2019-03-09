@@ -33,7 +33,6 @@ public class ToonSummonedSkull extends DuelistCard
 	private static final int COST = 2;
 	private static final int DAMAGE = 18;
 	private static final int U_DMG = 5;
-	private static int STR_GAIN = 2;
 	// /STAT DECLARATION/
 
 	public ToonSummonedSkull() {
@@ -49,6 +48,7 @@ public class ToonSummonedSkull extends DuelistCard
 		this.originalName = this.name;
 		this.setupStartingCopies();
 		this.tributes = 1;
+		this.baseMagicNumber = this.magicNumber = 2;
 	}
 
 	// Actions the card should do.
@@ -57,7 +57,7 @@ public class ToonSummonedSkull extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		damageThroughBlock(m, p, this.damage, AFX);
-		applyPowerToSelf(new StrengthPower(p, STR_GAIN));
+		applyPowerToSelf(new StrengthPower(p, this.magicNumber));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -72,7 +72,7 @@ public class ToonSummonedSkull extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeDamage(U_DMG);
-			STR_GAIN++;
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

@@ -9,8 +9,10 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -1534,18 +1536,37 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
 	{
-		if (arg0.name().equals("THE_DUELIST"))
+		boolean badMods = false;
+		ArrayList<String> badModNames = new ArrayList<String>();
+		badModNames.add("Insanity");
+		badModNames.add("Draft");
+		badModNames.add("SealedDeck");
+		badModNames.add("Shiny");
+		badModNames.add("Chimera");
+		for (String s : AbstractPlayer.customMods)
 		{
-			setupStartDecksB();
-			if (deckToStartWith.size() > 0)
+			if (badModNames.contains(s))
 			{
-				CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
-				for (AbstractCard c : deckToStartWith) 
-				{ 
-					newStartGroup.addToRandomSpot(c);
+				logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> found a bad mod: " + s);
+				badMods = true;
+			}
+		}
+		
+		if (AbstractPlayer.customMods.size() < 1 || !badMods)
+		{
+			if (arg0.name().equals("THE_DUELIST"))
+			{
+				setupStartDecksB();
+				if (deckToStartWith.size() > 0)
+				{
+					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
+					for (AbstractCard c : deckToStartWith) 
+					{ 
+						newStartGroup.addToRandomSpot(c);
+					}
+					arg1.initializeDeck(newStartGroup);
+					arg1.sortAlphabetically(true);
 				}
-				arg1.initializeDeck(newStartGroup);
-				arg1.sortAlphabetically(true);
 			}
 		}
 	}
