@@ -51,7 +51,7 @@ public class ReducerOrb extends AbstractOrb
 	public void onEvoke()
 	{
 		AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount));
-		//System.out.println("theDuelist:ReducerOrb --- > triggered evoke!");
+		if (DefaultMod.debug) { System.out.println("theDuelist:ReducerOrb --- > triggered evoke!"); }
 	}
 
 	@Override

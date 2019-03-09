@@ -138,9 +138,9 @@ public class SummonPower extends AbstractPower
 			for (String s : coloredSummonList) 
 			{ 
 				summonsString += s + ", "; 
-				//System.out.println("theDuelist:SummonPower:updateDescription() ---> string in coloredSummonList: " + s + " :: Summons = " + this.amount);
+				if (DefaultMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> string in coloredSummonList: " + s + " :: Summons = " + this.amount); }
 			}
-			//System.out.println("theDuelist:SummonPower:updateDescription() ---> done looping over colored summons list!");
+			if (DefaultMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> done looping over colored summons list!"); }
 			int endingIndex = summonsString.lastIndexOf(",");
 	        String finalSummonsString = summonsString.substring(0, endingIndex) + ".";
 			this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + finalSummonsString;

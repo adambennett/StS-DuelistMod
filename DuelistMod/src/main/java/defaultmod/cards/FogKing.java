@@ -57,7 +57,7 @@ public class FogKing extends DuelistCard
     		for (DuelistCard c : tributeList) 
 	    	{ 
 	    		damageIncrease += c.baseDamage + 3; 
-	    		//System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);
+	    		if (DefaultMod.debug) { System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage); }
 	    	}
     	}
     	else if (!upgraded && tributeList.size() > 0) 
@@ -65,11 +65,11 @@ public class FogKing extends DuelistCard
     		for (DuelistCard c : tributeList)
 	    	{ 
 	    		damageIncrease += c.baseDamage; 
-	    		//System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage);
+	    		if (DefaultMod.debug) { System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage); }
 	    	}
     	}
     	this.baseDamage = this.damage += damageIncrease;
-    	//System.out.println("theDuelist:FogKing:use() ---> damageIncrease: " + damageIncrease);
+    	if (DefaultMod.debug) { System.out.println("theDuelist:FogKing:use() ---> damageIncrease: " + damageIncrease); }
     	attack(m, AFX, this.damage);
     }
 

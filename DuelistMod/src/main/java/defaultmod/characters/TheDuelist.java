@@ -139,6 +139,8 @@ public class TheDuelist extends CustomPlayer {
 		 * Prevent Rat x2
 		 * Fiend Megacyber x1
 		 * 
+		 * add new card that increases orb slots?
+		 * 
 		 */
 		
 		/*
@@ -212,6 +214,12 @@ public class TheDuelist extends CustomPlayer {
 		 * Tribute 3. Deal 20 damage. Reduce the Tribute cost of this card by 1 for every 5 max summons you have. x1
 		 * Whenever you Increment, add a random 1 cost ethereal duelist card to draw pile x1
 		 * Pot of Avarice x1
+		 * 
+		 */
+		
+		/*
+		 * EXODIA DECK (?? cards)
+		 * 
 		 * 
 		 */
 		

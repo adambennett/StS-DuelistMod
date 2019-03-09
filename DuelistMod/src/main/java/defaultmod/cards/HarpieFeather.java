@@ -53,7 +53,7 @@ public class HarpieFeather extends DuelistCard
 			if ((a.type == PowerType.BUFF) && !a.name.equals("Player Statistics")) 
 			{
 				totalPowered += this.magicNumber; 
-				//System.out.println("theDuelist:HarpieFeather:use() ---> found buff: " + a.name);
+				if (DefaultMod.debug) { System.out.println("theDuelist:HarpieFeather:use() ---> found buff: " + a.name); }
 			}
 		}
 		block(totalPowered);

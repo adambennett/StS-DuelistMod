@@ -52,7 +52,7 @@ public class RainMercy extends DuelistCard
     	// Heal player for random amount
     	int randomHealNum = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL); 
     	heal(p, randomHealNum);
-    	//System.out.println("theDuelist:RainMercy --- > Healed player for: " + randomHealNum);
+    	if (DefaultMod.debug) { System.out.println("theDuelist:RainMercy --- > Healed player for: " + randomHealNum); }
     	
     	// Heal enemies, each for a different random amount
     	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
@@ -60,7 +60,7 @@ public class RainMercy extends DuelistCard
     	{
     		int randomHealNumM = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL); 
     		healMonster(g, randomHealNumM);
-    		//System.out.println("theDuelist:RainMercy --- > Healed a monster for: " + randomHealNumM);
+    		if (DefaultMod.debug) { System.out.println("theDuelist:RainMercy --- > Healed a monster for: " + randomHealNumM); }
     	}
     }
 

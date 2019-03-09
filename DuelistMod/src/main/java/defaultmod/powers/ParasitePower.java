@@ -55,7 +55,7 @@ public class ParasitePower extends AbstractPower
     	updateDescription();
     	int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, turnChance);
     	int chance = AbstractDungeon.cardRandomRng.random(0, debuffChance + 1);
-    	//System.out.println("theDuelist:ParasitePower --- > Rolled: " + chance);
+    	if (DefaultMod.debug) { System.out.println("theDuelist:ParasitePower --- > Rolled: " + chance); }
     	if (chance < 2) 
     	{
     		this.flash();
@@ -113,8 +113,11 @@ public class ParasitePower extends AbstractPower
 	    	else if (percent >= 0.25) { debuffChance = 6; turnChance = 2; }
 	    	else if (percent >= 0.2) { debuffChance = 7; turnChance = 2; }
 	    	else { debuffChance = 8;  turnChance = 2; }
-	    	//System.out.println("theDuelist:ParasitePower --- > Debuff chance changed: " + debuffChance);
-	    	//System.out.println("theDuelist:ParasitePower --- > Percent was: " + percent);
+	    	if (DefaultMod.debug) 
+	    	{
+	    		System.out.println("theDuelist:ParasitePower --- > Debuff chance changed: " + debuffChance); 
+	    		System.out.println("theDuelist:ParasitePower --- > Percent was: " + percent);
+	    	}
     	}
     	else
     	{

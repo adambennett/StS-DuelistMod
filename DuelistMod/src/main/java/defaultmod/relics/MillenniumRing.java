@@ -1,6 +1,7 @@
 package defaultmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
@@ -37,6 +38,14 @@ public class MillenniumRing extends CustomRelic {
 	public void onEquip()
 	{
 		DefaultMod.hasRing = true;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setBool(DefaultMod.PROP_HAS_RING, DefaultMod.hasRing);
+			config.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	
 	}
 	
@@ -44,6 +53,13 @@ public class MillenniumRing extends CustomRelic {
 	public void onUnequip()
 	{
 		DefaultMod.hasRing = false;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setBool(DefaultMod.PROP_HAS_RING, DefaultMod.hasRing);
+			config.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// Description

@@ -69,7 +69,7 @@ public class PredaplantChimerafflesia extends DuelistCard
     			}
     			else
     			{
-    				System.out.println("tributed something non predplant: " + c.originalName);
+    				if (DefaultMod.debug) { System.out.println("tributed something non predplant: " + c.originalName); }
     			}
     		}
     	}

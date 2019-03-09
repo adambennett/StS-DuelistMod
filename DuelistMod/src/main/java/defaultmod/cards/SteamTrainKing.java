@@ -49,6 +49,7 @@ public class SteamTrainKing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	tribute(p, this.tributes, false, this);
     	ArrayList<AbstractCard> drawPile = player().drawPile.group;
     	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
     	int damageTotal = 0;

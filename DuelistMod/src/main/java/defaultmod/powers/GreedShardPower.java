@@ -65,7 +65,7 @@ public class GreedShardPower extends AbstractPower
     	{ 
     		turnCounter = 1; 
     		DuelistCard.draw(1);
-    		//System.out.println("theDuelist:GreedShardPower --- > Drew 2 cards!");
+    		if (DefaultMod.debug) { System.out.println("theDuelist:GreedShardPower --- > Drew 2 cards!"); }
     	}
     	DuelistCard.draw(1);
     	if (this.amount != turnCounter) { this.amount = turnCounter; }

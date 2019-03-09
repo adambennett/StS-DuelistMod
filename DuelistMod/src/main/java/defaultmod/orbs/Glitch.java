@@ -51,7 +51,7 @@ public class Glitch extends AbstractOrb
     private static int RAND_CARDS = 2;
     private static int RAND_BUFFS = 1;
     private static int RAND_DEBUFFS = 2;
-    private static boolean printing = false;
+    private static boolean printing = DefaultMod.debug;
 	
 	public Glitch()
 	{

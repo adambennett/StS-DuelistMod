@@ -22,7 +22,7 @@ public class ToonBriefcasePower extends AbstractPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_BRIEFCASE_POWER);
 	public ArrayList<AbstractCard> pieces = new ArrayList<AbstractCard>();
-	
+
 	public ToonBriefcasePower(final AbstractCreature owner, final AbstractCreature source) 
 	{
 		this.name = NAME;
@@ -34,49 +34,57 @@ public class ToonBriefcasePower extends AbstractPower
 		this.amount = 0;
 		this.updateDescription();
 	}
-	
+
 	@Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m) 
-    {
-		if(DuelistCard.isToon(c)) { pieces.add(c); this.amount++; }
+	public void onDrawOrDiscard() 
+	{
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
 		updateDescription();
-    }
-	
+	}
+
 	@Override
-    public void atStartOfTurnPostDraw() 
-    {
+	public void onPlayCard(AbstractCard c, AbstractMonster m) 
+	{
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
+		if(DuelistCard.isToon(c)) { pieces.add(c); }
+		updateDescription();
+	}
+
+	@Override
+	public void atStartOfTurnPostDraw() 
+	{
 		for (AbstractCard c : pieces)
 		{
 			DuelistCard.addCardToHand(c);
 		}
-		
 		pieces = new ArrayList<AbstractCard>();
-		this.amount = 0;
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
 		updateDescription();
-    }
+	}
 
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
 		updateDescription();
 	}
 
 	@Override
 	public void updateDescription() 
 	{
-		if (this.amount == 0) 
+		if (pieces.size() == 0) 
 		{ 
-			this.description = DESCRIPTIONS[0] + pieces.size(); 
+			this.description = DESCRIPTIONS[0] + "None.";
 		}
-		
+
 		else
 		{
 			String pieceString = "";
 			for (AbstractCard c : pieces) { pieceString += c.name + ", "; }
 			int endingIndex = pieceString.lastIndexOf(",");
-	        String finalPiece = pieceString.substring(0, endingIndex) + ".";
+			String finalPiece = pieceString.substring(0, endingIndex) + ".";
 			this.description = DESCRIPTIONS[0] + finalPiece;
 		}
-		
+
 	}
 }

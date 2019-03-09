@@ -39,7 +39,7 @@ public class DragonCaptureJar extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       applyPowerToSelf(new DragonCapturePower(p, p));
+    	if (!p.hasPower(DragonCapturePower.POWER_ID)) { applyPowerToSelf(new DragonCapturePower(p, p)); }
     }
 
     // Which card to return when making a copy of this card.

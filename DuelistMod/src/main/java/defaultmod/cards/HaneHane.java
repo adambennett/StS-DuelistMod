@@ -90,7 +90,7 @@ public class HaneHane extends DuelistCard
 	{
 		if (!resummoned) 
 		{ 
-			summon(player(), 1, new HaneHane(true));
+			summon(player(), 1, new Token("Hane Token"));
 	    	block(this.block);
 		}
 	}

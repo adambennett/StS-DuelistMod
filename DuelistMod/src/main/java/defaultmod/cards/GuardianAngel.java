@@ -64,6 +64,8 @@ public class GuardianAngel extends DuelistCard
     		}
     	}
     	
+    	
+    	
     	this.baseDamage = this.damage = 3 + damageTotal;
     	attack(m, AFX, this.damage);
     	heal(p, damageTotal + 3);

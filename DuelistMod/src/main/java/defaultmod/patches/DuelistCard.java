@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 import com.evacipated.cardcrawl.modthespire.Loader;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -372,10 +373,10 @@ public abstract class DuelistCard extends CustomCard
 	
 	public static void summon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
-		System.out.println("theDuelist:DuelistCard:summon() ---> called summon()");
+		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> called summon()"); }
 		if (!DefaultMod.checkTrap)
 		{
-			System.out.println("theDuelist:DuelistCard:summon() ---> no check trap, SUMMONS: " + SUMMONS);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> no check trap, SUMMONS: " + SUMMONS); }
 			// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 			if (!p.hasPower(SummonPower.POWER_ID))
 			{
@@ -430,7 +431,7 @@ public abstract class DuelistCard extends CustomCard
 				// Check for Ultimate Offering
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0)
 				{
-					System.out.println("theDuelist:DuelistCard:summon() ---> hit Ultimate Offering: " + SUMMONS);
+					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> hit Ultimate Offering: " + SUMMONS); }
 					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
 					damageSelf(3);
 					incMaxSummons(p, amountToSummon);
@@ -454,7 +455,7 @@ public abstract class DuelistCard extends CustomCard
 						{
 							DefaultMod.checkTrap = true;
 							power.flash();
-							//System.out.println("theDuelist:DuelistCard:summon ---> triggered trap hole with roll of: " + randomNum);
+							if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon ---> triggered trap hole with roll of: " + randomNum); }
 							powerTribute(p, 1, false);
 							DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
 							if (cardCopy != null)
@@ -467,12 +468,12 @@ public abstract class DuelistCard extends CustomCard
 								AbstractMonster m = AbstractDungeon.getRandomMonster();
 								AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 								cardCopy.onResummon(1);
-								//System.out.println("theDuelist:DuelistCard:summon ---> trap hole resummoned properly");
+								if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon ---> trap hole resummoned properly"); }
 							}
 						}
 						else
 						{
-							//System.out.println("theDuelist:DuelistCard:summon ---> did not trigger trap hole with roll of: " + randomNum);
+							if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon ---> did not trigger trap hole with roll of: " + randomNum); }
 						}
 					}
 				}
@@ -484,26 +485,26 @@ public abstract class DuelistCard extends CustomCard
 				}
 				
 				// Update UI
-				System.out.println("theDuelist:DuelistCard:summon() ---> updating summons instance");
+				if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> updating summons instance"); }
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
-				System.out.println("theDuelist:DuelistCard:summon() ---> summons instance amount: " + summonsInstance.amount);
+				if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> summons instance amount: " + summonsInstance.amount); }
 			}
 		}
 		else
 		{			
-			System.out.println("theDuelist:DuelistCard:summon() ---> check trap, SUMMONS: " + SUMMONS);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> check trap, SUMMONS: " + SUMMONS); }
 			trapHoleSummon(p, SUMMONS, c);			
 		}
 	}
 	
 	public static void spellSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
-		System.out.println("theDuelist:DuelistCard:spellSummon() ---> called spellSummon()");
+		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:spellSummon() ---> called spellSummon()"); }
 		if (!DefaultMod.checkTrap)
 		{
-			//System.out.println("theDuelist:DuelistCard:spellSummon() ---> no check trap, SUMMONS: " + SUMMONS);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:spellSummon() ---> no check trap, SUMMONS: " + SUMMONS); }
 			// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 			if (!p.hasPower(SummonPower.POWER_ID))
 			{
@@ -554,20 +555,7 @@ public abstract class DuelistCard extends CustomCard
 				{ 
 					channelRandom();
 				}
-				
-				/*
-				// Check for Ultimate Offering
-				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0)
-				{
-					//System.out.println("theDuelist:DuelistCard:spellSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS);
-					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
-					damageSelf(3);
-					incMaxSummons(p, amountToSummon);
-					//powerSummon(p, amountToSummon, "Blood Token", true);
-					uoSummon(p, amountToSummon, new Token("Blood Token"));
-				}
-				*/
-				
+
 				// Update UI
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
@@ -582,7 +570,7 @@ public abstract class DuelistCard extends CustomCard
 		
 		else
 		{			
-			//System.out.println("theDuelist:DuelistCard:spellSummon() ---> check trap, SUMMONS: " + SUMMONS);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:spellSummon() ---> check trap, SUMMONS: " + SUMMONS); }
 			trapHoleSummon(p, SUMMONS, c);		
 		}
 	}
@@ -590,12 +578,12 @@ public abstract class DuelistCard extends CustomCard
 
 	public static void powerSummon(AbstractPlayer p, int SUMMONS, String cardName, boolean fromUO)
 	{
-		//System.out.println("theDuelist:DuelistCard:powerSummon() ---> called powerSummon()");
+		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> called powerSummon()"); }
 		if (!DefaultMod.checkTrap)
 		{
-			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> no check trap, SUMMONS: " + SUMMONS);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> no check trap, SUMMONS: " + SUMMONS); }
 			DuelistCard c = DefaultMod.summonMap.get(cardName);
-			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> c: " + c.originalName);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> c: " + c.originalName); }
 			// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 			if (!p.hasPower(SummonPower.POWER_ID))
 			{
@@ -644,11 +632,10 @@ public abstract class DuelistCard extends CustomCard
 				// Check for Ultimate Offering
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0 && !fromUO)
 				{
-					//System.out.println("theDuelist:DuelistCard:powerSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS);
+					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS); }
 					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
 					damageSelf(3);
 					incMaxSummons(p, amountToSummon);
-					//powerSummon(p, amountToSummon, "Blood Token", true);
 					uoSummon(p, amountToSummon, new Token("Blood Token"));
 				}
 		
@@ -668,7 +655,7 @@ public abstract class DuelistCard extends CustomCard
 						{
 							DefaultMod.checkTrap = true;
 							power.flash();
-							////System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum);
+							if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum); }
 							powerTribute(p, 1, false);
 							DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
 							if (cardCopy != null)
@@ -681,12 +668,12 @@ public abstract class DuelistCard extends CustomCard
 								AbstractMonster m = AbstractDungeon.getRandomMonster();
 								AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 								cardCopy.onResummon(1);
-								////System.out.println("theDuelist:DuelistCard:powerSummon ---> trap hole resummoned properly");
+								if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon ---> trap hole resummoned properly"); }
 							}
 						}
 						else
 						{
-							//System.out.println("theDuelist:DuelistCard:powerSummon ---> did not trigger trap hole with roll of: " + randomNum);
+							if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon ---> did not trigger trap hole with roll of: " + randomNum); }
 						}
 					}
 				}
@@ -698,26 +685,26 @@ public abstract class DuelistCard extends CustomCard
 				}
 				
 				// Update UI
-				//System.out.println("theDuelist:DuelistCard:powerSummon() ---> updating summons instance amount");
+				if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> updating summons instance amount"); }
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
-				//System.out.println("theDuelist:DuelistCard:powerSummon() ---> summons instance amount: " + summonsInstance.amount);
+				if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> summons instance amount: " + summonsInstance.amount); }
 			}
 		}
 		
 		else
 		{
-			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, SUMMONS: " + SUMMONS);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, SUMMONS: " + SUMMONS); }
 			DuelistCard c = DefaultMod.summonMap.get(cardName);
-			//System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, c: " + c.originalName);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, c: " + c.originalName); }
 			trapHoleSummon(p, SUMMONS, c);
 		}
 	}
 	
 	public static void trapHoleSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{		
-		//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> called trapHoleSummon()");
+		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> called trapHoleSummon()"); }
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 		if (!p.hasPower(SummonPower.POWER_ID))
 		{
@@ -773,7 +760,7 @@ public abstract class DuelistCard extends CustomCard
 			if (p.hasPower(UltimateOfferingPower.POWER_ID) && !DefaultMod.checkUO)
 			{
 				DefaultMod.checkUO = true;
-				//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS);
+				if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS); }
 				int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
 				//damageSelf(3);
 				//incMaxSummons(p, amountToSummon);
@@ -787,11 +774,11 @@ public abstract class DuelistCard extends CustomCard
 			summonsInstance.updateDescription();
 
 			// Update UI
-			//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> updating summons instance");
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> updating summons instance"); }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
-			//System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> summons instance amount: " + summonsInstance.amount);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:trapHoleSummon() ---> summons instance amount: " + summonsInstance.amount); }
 			
 			DefaultMod.checkUO = false;
 			DefaultMod.checkTrap = false;
@@ -800,7 +787,7 @@ public abstract class DuelistCard extends CustomCard
 	
 	public static void uoSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{		
-		//System.out.println("theDuelist:DuelistCard:uoSummon() ---> called uoSummon()");
+		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> called uoSummon()"); }
 		// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 		if (!p.hasPower(SummonPower.POWER_ID))
 		{
@@ -864,11 +851,11 @@ public abstract class DuelistCard extends CustomCard
 			}
 			
 			// Update UI
-			//System.out.println("theDuelist:DuelistCard:uoSummon() ---> updating summons instance");
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> updating summons instance"); }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
-			//System.out.println("theDuelist:DuelistCard:uoSummon() ---> summons instance amount: " + summonsInstance.amount);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> summons instance amount: " + summonsInstance.amount); }
 		}
 	}
 
@@ -909,6 +896,14 @@ public abstract class DuelistCard extends CustomCard
 			summonsInstance.updateDescription();
 		}
 
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, DefaultMod.lastMaxSummons);
+			config.save();
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void incMaxSummons(AbstractPlayer p, int amount)
@@ -921,6 +916,15 @@ public abstract class DuelistCard extends CustomCard
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
+		}
+		
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, DefaultMod.lastMaxSummons);
+			config.save();
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:incMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -935,28 +939,19 @@ public abstract class DuelistCard extends CustomCard
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
 		}
+		
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, DefaultMod.lastMaxSummons);
+			config.save();
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:decMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static ArrayList<DuelistCard> tribute(AbstractPlayer p, int tributes, boolean tributeAll, DuelistCard card)
 	{
-		/*
-		// Check if card is being played from hand
-		// If not, give it misc=52 so we don't tribute
-		boolean cardIsInHand = false;
-		for (AbstractCard c : p.hand.group)
-		{
-			if (c.equals(card))
-			{
-				cardIsInHand = true;
-			}
-		}
-		if (card.originalName.equals(new TrapHole().originalName))
-		{
-			System.out.println("theDuelist:DuelistCard:tribute() ---> Tributing card is Trap Hole");
-		}
-		if (cardIsInHand) { card.misc = 0; System.out.println("theDuelist:DuelistCard:tribute() ---> tributing card is in hand"); }
-		else { card.misc = 52; System.out.println("theDuelist:DuelistCard:tribute() ---> card that is tributing is NOT FOUND IN HAND");  }
-		*/
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
 		if (card.misc != 52)
 		{
@@ -1014,7 +1009,7 @@ public abstract class DuelistCard extends CustomCard
 						for (DuelistCard c : tributeList) 
 						{
 							c.onTribute(card); 
-							//System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s onTribute()");
+							if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
 						}
 						return tributeList;
 					}
@@ -1070,7 +1065,7 @@ public abstract class DuelistCard extends CustomCard
 					for (DuelistCard c : tributeList) 
 					{
 						c.onTribute(card); 
-						//System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s onTribute()");
+						if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
 					}
 					return tributeList;
 				}
@@ -1141,7 +1136,7 @@ public abstract class DuelistCard extends CustomCard
 					for (DuelistCard c : tributeList)
 					{ 
 						c.onTribute(new Token());
-						//System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); 
+						if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
 					}
 					return tributes;
 				}
@@ -1197,7 +1192,7 @@ public abstract class DuelistCard extends CustomCard
 				for (DuelistCard c : tributeList) 
 				{
 					c.onTribute(new Token()); 
-					//System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); 
+					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
 				}
 				return tributes;
 			}
@@ -1278,9 +1273,9 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower randomBuff = buffs[randomBuffNum];
 		for (int i = 0; i < buffs.length; i++)
 		{
-			//System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> buffs[" + i + "]: " + buffs[i].name);
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> buffs[" + i + "]: " + buffs[i].name); }
 		}
-		//System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> generated random buff: " + randomBuff.name + " :: index was: " + randomBuffNum);
+		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> generated random buff: " + randomBuff.name + " :: index was: " + randomBuffNum); }
 		ArrayList<AbstractPower> powers = p.powers;
 		boolean found = false;
 		for (AbstractPower a : powers)
@@ -1415,7 +1410,14 @@ public abstract class DuelistCard extends CustomCard
 				dragonGroup.add(card.makeCopy());
 			}
 		}
-		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		if (dragonGroup.size() > 0)
+		{
+			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
 	}
 
 	public static AbstractCard returnTrulyRandomDuelistCard() 
@@ -1428,7 +1430,14 @@ public abstract class DuelistCard extends CustomCard
 				dragonGroup.add(card.makeCopy());
 			}
 		}
-		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		if (dragonGroup.size() > 0)
+		{
+			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
 	}
 
 	public static AbstractCard returnTrulyRandomFromSets(CardTags setToFindFrom, CardTags anotherSetToFindFrom) 
@@ -1441,7 +1450,14 @@ public abstract class DuelistCard extends CustomCard
 				dragonGroup.add(card.makeCopy());
 			}
 		}
-		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		if (dragonGroup.size() > 0)
+		{
+			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
 	}
 
 	public static AbstractCard returnTrulyRandomFromEitherSet(CardTags setToFindFrom, CardTags anotherSetToFindFrom) 
@@ -1454,7 +1470,14 @@ public abstract class DuelistCard extends CustomCard
 				dragonGroup.add(card.makeCopy());
 			}
 		}
-		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		if (dragonGroup.size() > 0)
+		{
+			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
 	}
 
 	public static AbstractCard returnTrulyRandomFromOnlyFirstSet(CardTags setToFindFrom, CardTags excludeSet) 
@@ -1467,7 +1490,14 @@ public abstract class DuelistCard extends CustomCard
 				dragonGroup.add(card.makeCopy());
 			}
 		}
-		return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		if (dragonGroup.size() > 0)
+		{
+			return dragonGroup.get(AbstractDungeon.cardRandomRng.random(dragonGroup.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
 	}
 
 	public static AbstractCard returnTrulyRandomFromMultiSet(CardTags[] setsToFindFrom) 
@@ -1489,7 +1519,14 @@ public abstract class DuelistCard extends CustomCard
 		}
 
 		// Return a random card from the final list of cards that have tags from each matched set, and no tags from any of the exclude sets
-		return matchingGroup.get(AbstractDungeon.cardRandomRng.random(matchingGroup.size() - 1));
+		if (matchingGroup.size() > 0)
+		{
+			return matchingGroup.get(AbstractDungeon.cardRandomRng.random(matchingGroup.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
 	}
 
 
@@ -1521,7 +1558,14 @@ public abstract class DuelistCard extends CustomCard
 		}
 
 		// Return a random card from the final list of cards that have tags from each matched set, and no tags from any of the exclude sets
-		return matchingGroup.get(AbstractDungeon.cardRandomRng.random(matchingGroup.size() - 1));
+		if (matchingGroup.size() > 0)
+		{
+			return matchingGroup.get(AbstractDungeon.cardRandomRng.random(matchingGroup.size() - 1));
+		}
+		else
+		{
+			return new Token();
+		}
 	}
 
 	public static boolean isToon(AbstractCard testCard)

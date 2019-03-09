@@ -66,7 +66,7 @@ public class Splash extends AbstractOrb
 			{
 				AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, DefaultMod.myCards.get(AbstractDungeon.cardRandomRng.random(DefaultMod.myCards.size() - 1)), 1, true, false));
 			}
-			//System.out.println("theDuelist:Splash:onEvoke() ---> triggered evoke draw pile add action with roll: " + roll);
+			if (DefaultMod.debug) { System.out.println("theDuelist:Splash:onEvoke() ---> triggered evoke draw pile add action with roll: " + roll); }
 		}
 	}
 

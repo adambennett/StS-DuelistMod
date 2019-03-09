@@ -56,7 +56,7 @@ public class Buffer extends AbstractOrb
 	public void onEvoke()
 	{
 		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
-		//System.out.println("theDuelist:Buffer --- > triggered evoke!");
+		if (DefaultMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
 	}
 
 	@Override
@@ -69,19 +69,21 @@ public class Buffer extends AbstractOrb
 	{
 		ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
 		ArrayList<AbstractPower> buffs = new ArrayList<AbstractPower>();
-		/*
-		for (int i = 0; i < playerPowers.size(); i++)
-		{
-			System.out.println("theDuelist:Buffer:triggerPassiveEffect() ---> before removing, players powers buff[" + i + "]: " + playerPowers.get(i).name + " -- type: " +  playerPowers.get(i).type);
-			
+		if (DefaultMod.debug) 
+		{ 
+			for (int i = 0; i < playerPowers.size(); i++)
+			{
+				System.out.println("theDuelist:Buffer:triggerPassiveEffect() ---> before removing, players powers buff[" + i + "]: " + playerPowers.get(i).name + " -- type: " +  playerPowers.get(i).type);
+				
+			}
 		}
-		*/
 		
 		for (AbstractPower a : playerPowers)
 		{
 			if (!a.name.equals("Player Statistics") && !a.type.equals(PowerType.DEBUFF))
 			{
 				buffs.add(a);
+				if (DefaultMod.debug) { System.out.println("theDuelist:Buffer --- > added buff to array of buffs: " + a.name); }
 			}
 		}
 		
@@ -93,51 +95,16 @@ public class Buffer extends AbstractOrb
 				if (buffs.get(randomNum).name.equals("Summons")) 
 				{
 					DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
-					//System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); 
+					if (DefaultMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
 				}
 				else 
 				{ 
 					buffs.get(randomNum).amount += 1; buffs.get(randomNum).updateDescription(); 
-					//System.out.println("theDuelist:Buffer --- > Buffed " + buffs.get(randomNum).name + " on passive trigger. New amount: " + buffs.get(randomNum).amount);
+					if (DefaultMod.debug) { System.out.println("theDuelist:Buffer --- > Buffed " + buffs.get(randomNum).name + " on passive trigger. New amount: " + buffs.get(randomNum).amount); }
 				}
 				
 			}
 		}
-			
-		/*
-		for (int i = 0; i < playerPowers.size(); i++) 
-		{ 
-			if (!playerPowers.get(i).name.equals("Player Statistics")) 
-			{
-				playerPowers.remove(i); 
-				i = 0; 
-				//System.out.println("found player statistics");
-			}
-			
-			else if (!playerPowers.get(i).type.equals(PowerType.DEBUFF))
-			{
-				//System.out.println("found debuff: " + playerPowers.get(i).name);
-				playerPowers.remove(i); 
-				i = 0;
-			}
-		} 
-		
-		for (int i = 0; i < playerPowers.size(); i++)
-		{
-			System.out.println("theDuelist:Buffer:triggerPassiveEffect() ---> AFTER removing, players powers buff[" + i + "]: " + playerPowers.get(i).name);
-		}
-		for (int i = 0; i < this.passiveAmount; i++)
-		{
-			if (playerPowers.size() > 0)
-			{
-				int randomNum = AbstractDungeon.cardRandomRng.random(playerPowers.size() - 1);
-				if (playerPowers.get(randomNum).name.equals("Summons")) { DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
-				else { playerPowers.get(randomNum).amount += 1; playerPowers.get(randomNum).updateDescription(); System.out.println("theDuelist:Buffer --- > Buffed " + playerPowers.get(randomNum).name + " on passive trigger"); }
-				
-			}
-		}
-		*/
-		//this.passiveAmount++;
 		applyFocus();
 		updateDescription();
 	}

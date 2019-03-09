@@ -41,7 +41,7 @@ public class SuperheavyBlueBrawler extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.tags.add(DefaultMod.REDUCED);
-        this.magicNumber = this.baseMagicNumber = this.dex;
+        this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;
     }
 
@@ -51,7 +51,7 @@ public class SuperheavyBlueBrawler extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	applyPowerToSelf(new DexterityPower(p, this.dex));
+    	applyPowerToSelf(new DexterityPower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

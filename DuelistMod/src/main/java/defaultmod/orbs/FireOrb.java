@@ -59,9 +59,9 @@ public class FireOrb extends AbstractOrb
 			randomMonster.costForTurn = 0;
 			randomMonster.isCostModifiedForTurn = true;
 			DuelistCard.addCardToHand(randomMonster);
-			//System.out.println("theDuelist:Fire --- > Added: " + randomMonster.name + " to player hand.");
+			if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > Added: " + randomMonster.name + " to player hand."); }
 		}
-		//System.out.println("theDuelist:Fire --- > triggered evoke!");
+		if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > triggered evoke!"); }
 	}
 
 	@Override

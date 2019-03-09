@@ -50,8 +50,11 @@ public class RandomSoldier extends DuelistCard
     {
     	summon(p, this.magicNumber, this);
     	int randomBlock = AbstractDungeon.cardRandomRng.random(L_BLK, H_BLK);
-    	System.out.println("randomBlock: " + randomBlock);
-    	System.out.println("this.block: " + this.block);
+    	if (DefaultMod.debug) 
+    	{ 
+	    	System.out.println("randomBlock: " + randomBlock);
+	    	System.out.println("this.block: " + this.block);
+    	}
     	this.block = this.baseBlock = randomBlock;
     	block(this.block);
     }

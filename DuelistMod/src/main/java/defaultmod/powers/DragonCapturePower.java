@@ -16,7 +16,7 @@ import defaultmod.patches.DuelistCard;
 public class DragonCapturePower extends AbstractPower 
 {
 	public AbstractCreature source;
-	public static final String POWER_ID = defaultmod.DefaultMod.makeID("DragonCapturePower");
+	public static final String POWER_ID = DefaultMod.makeID("DragonCapturePower");
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -36,9 +36,17 @@ public class DragonCapturePower extends AbstractPower
 	}
 	
 	@Override
+	public void onDrawOrDiscard() 
+	{
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
+		updateDescription();
+	}
+	
+	@Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-		if(DuelistCard.isDragon(c)) { pieces.add(c); this.amount++; }
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
+		if(DuelistCard.isDragon(c)) { pieces.add(c); }
 		updateDescription();
     }
 	
@@ -52,19 +60,22 @@ public class DragonCapturePower extends AbstractPower
 		
 		pieces = new ArrayList<AbstractCard>();
 		this.amount = 0;
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
 		updateDescription();
     }
 
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
 		updateDescription();
 	}
 
 	@Override
 	public void updateDescription() 
 	{
-		if (this.amount == 0) 
+		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
+		if (pieces.size() == 0) 
 		{ 
 			this.description = DESCRIPTIONS[0] + "None."; 
 		}

@@ -75,7 +75,11 @@ This option lets you choose which deck you would like to use for your runs. I ha
 You can change this option to remove large groups of the cards from the game. There are 5 different card sets to select from: Core, Limited, Reduced, Full and All. The Core set is the smallest, with only 61 cards, while the All set is the largest set with 186 cards. If you have both 'Remove cards' mod options turned off, the 'Allow crossover cards' option turned on, and the card set size set to 'All', then the game will have the maximum number of possible cards at 200. The number of cards currently turned on is always displayed in the options panel after the 'Active Duelist Cards:' label. This setting is largely untested, so there may be some bugs when using sets other than 'All'.
 
 # Known Issues
-- Downgrading cards does not work properly when cards that have Tribute-based upgrades become Downgraded. However in most cases, this is beneficial and it should never crash the game or cause any other major side effects.
+- Downgrading cards does not work properly when cards that have Tribute-based upgrades become Downgraded. However in most cases, this is beneficial and it should never crash the game or cause any other major side effects.  
+- Insanity Modifier does not work properly  
+- Future Diary relic (Aspiration) sometimes causes issues  
+- Buffer orb has problems with powers that don't stack, needs major overhaul  
+- Wiretap can create copies of itself  
 
 # To Do (ordered by priority)
 - Add a few more starting decks

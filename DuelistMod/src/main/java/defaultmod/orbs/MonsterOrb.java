@@ -58,9 +58,9 @@ public class MonsterOrb extends AbstractOrb
 			//int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			//randomMonster.costForTurn = randomNum;
 			DuelistCard.addCardToHand(randomMonster);
-			//System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
+			if (DefaultMod.debug) { System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}
-		//System.out.println("theDuelist:MonsterOrb --- > triggered evoke!");
+		if (DefaultMod.debug) { System.out.println("theDuelist:MonsterOrb --- > triggered evoke!"); }
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class MonsterOrb extends AbstractOrb
 			//int randomNum = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 			//randomMonster.costForTurn = randomNum;
 			DuelistCard.addCardToHand(randomMonster);
-			//System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
+			if (DefaultMod.debug) { System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 	}
 

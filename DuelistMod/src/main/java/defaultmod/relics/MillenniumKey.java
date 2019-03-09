@@ -1,6 +1,7 @@
 package defaultmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
@@ -24,6 +25,14 @@ public class MillenniumKey extends CustomRelic
     {
     	flash();
     	DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
+    	try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, 4);
+			config.save();
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     
     @Override
@@ -32,6 +41,15 @@ public class MillenniumKey extends CustomRelic
 		DefaultMod.hasKey = true;
 		AbstractDungeon.player.energy.energyMaster++;
 		DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, 4);
+			config.setBool(DefaultMod.PROP_HAS_KEY, DefaultMod.hasKey);
+			config.save();
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -39,6 +57,15 @@ public class MillenniumKey extends CustomRelic
 	{
 		AbstractDungeon.player.energy.energyMaster--;
 		DefaultMod.hasKey = false;
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, DefaultMod.lastMaxSummons);
+			config.setBool(DefaultMod.PROP_HAS_KEY, DefaultMod.hasKey);
+			config.save();
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
     // Description

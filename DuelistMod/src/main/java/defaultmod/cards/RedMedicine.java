@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -62,13 +63,13 @@ public class RedMedicine extends DuelistCard
 		// Apply random buff(s)
 		applyPowerToSelf(randomBuff);
 		*/
-		applyRandomBuffPlayer(p, randomTurnNum, false);
-		//System.out.println("theDuelist:RedMedicine --- > Generated buff: " );
+		AbstractPower a = applyRandomBuffPlayer(p, randomTurnNum, false);
+		if (DefaultMod.debug) { System.out.println("theDuelist:RedMedicine --- > Generated buff: " + a.name ); }
 		//if (this.upgraded) { applyPowerToSelf(randomBuffB); }
 		if (this.upgraded) 
 		{ 
 			applyRandomBuffPlayer(p, randomTurnNumB, false); 
-			//System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " ); 
+			if (DefaultMod.debug) { System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " + a.name ); }
 		}
     }
 

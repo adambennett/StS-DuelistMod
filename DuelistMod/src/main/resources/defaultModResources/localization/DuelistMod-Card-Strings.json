@@ -706,8 +706,8 @@
 	},
 	"theDuelist:CyberDragon": {
 		"NAME": "Cyber Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage (through Block). NL If you Tribute a Dragon, gain 20 Gold.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage (through Block). NL If you Tribute a Dragon, gain 20 Gold."
+		"DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage (through Block). NL If you Tribute a Dragon, gain 20 Gold. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage (through Block). NL If you Tribute a Dragon, gain 20 Gold. Exhaust."
 	},
 	"theDuelist:DragonMaster": {
 		"NAME": "Dragon Master Knight",
@@ -1081,8 +1081,8 @@
 	},
 	"theDuelist:KuribohToken": {
 		"NAME": "Kuriboh Token",
-		"DESCRIPTION": "Gain Intangible when Tributed.",
-		"UPGRADE_DESCRIPTION": "Gain Intangible when Tributed."
+		"DESCRIPTION": "Gain Intangible when Tributed for any non-Dragon monster.",
+		"UPGRADE_DESCRIPTION": "Gain Intangible when Tributed for any non-Dragon monster."
 	},
 	"theDuelist:ExplosiveToken": {
 		"NAME": "Exploding Token",
