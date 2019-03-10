@@ -477,7 +477,7 @@
 	"theDuelist:ToonWorld": {
 		"NAME": "Toon World",
 		"DESCRIPTION": "Allows you to play Toon cards. Take a decreasing amount of damage for each Toon played.",
-		"UPGRADE_DESCRIPTION": "Allows you to play Toon cards. Take a decreasing amount of damage for each Toon played."
+		"UPGRADE_DESCRIPTION": "Innate NL Allows you to play Toon cards. Take a decreasing amount of damage for each Toon played."
 	},
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",

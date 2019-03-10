@@ -22,7 +22,6 @@ public class RandomEffectsHelper
 		AbstractPower slow = new SlowPower(targetMonster, turnNum);
 		AbstractPower vulnerable = new VulnerablePower(targetMonster, turnNum, true);
 		AbstractPower poison = new PoisonPower(targetMonster, p, turnNum);
-		
 		AbstractPower weak = new WeakPower(targetMonster, turnNum, false);
 		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
@@ -57,7 +56,6 @@ public class RandomEffectsHelper
 		//AbstractPower slow = new SlowPower(targetMonster, turnNum );
 		AbstractPower vulnerable = new VulnerablePower(targetMonster, turnNum, true);
 		AbstractPower poison = new PoisonPower(targetMonster, p, turnNum);
-		
 		AbstractPower weak = new WeakPower(targetMonster, turnNum, true);
 		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
@@ -69,6 +67,7 @@ public class RandomEffectsHelper
 			debuffs.add(nPoison);
 			debuffs.add(weak);
 			debuffs.add(constricted);
+			
     	}
 		else
 		{
@@ -97,6 +96,10 @@ public class RandomEffectsHelper
 		AbstractPower summonSick = new SummonSicknessPower(p, turnNum);
 		AbstractPower tributeSick = new TributeSicknessPower(p, turnNum);
 		AbstractPower evokeSick = new EvokeSicknessPower(p, turnNum);
+		AbstractPower attackBurn = new AttackBurnPower(p, turnNum);
+		AbstractPower beatOfDeath = new BeatOfDeathPower(p, turnNum);
+		//AbstractPower choked = new ChokePower(p, turnNum);
+		AbstractPower confusion = new ConfusionPower(p);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		if (Loader.isModLoaded("ReplayTheSpireMod"))
     	{
@@ -111,6 +114,9 @@ public class RandomEffectsHelper
 			debuffs.add(summonSick);
 			debuffs.add(tributeSick);
 			debuffs.add(evokeSick);
+			debuffs.add(attackBurn);
+			debuffs.add(beatOfDeath);
+			debuffs.add(confusion);
     	}
 		else
 		{
@@ -123,6 +129,9 @@ public class RandomEffectsHelper
 			debuffs.add(summonSick);
 			debuffs.add(tributeSick);
 			debuffs.add(evokeSick);
+			debuffs.add(attackBurn);
+			debuffs.add(beatOfDeath);
+			debuffs.add(confusion);
 		}
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);

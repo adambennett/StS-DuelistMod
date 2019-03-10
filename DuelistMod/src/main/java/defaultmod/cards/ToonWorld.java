@@ -60,7 +60,7 @@ public class ToonWorld extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

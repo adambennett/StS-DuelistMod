@@ -1255,8 +1255,6 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum * 10);
-		//AbstractPower toonTributeB = new TributeToonPowerB(p, turnNum);
-		//AbstractPower magicCylinder = new MagicCylinderPower(p, turnNum, false);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower focus = new FocusPower(p, turnNum);
@@ -1264,10 +1262,18 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
 		AbstractPower mayhem = new MayhemPower(p, 1);
 		AbstractPower envenom = new EnvenomPower(p, turnNum);
+		AbstractPower amplify = new AmplifyPower(p, 1);
+		AbstractPower angry = new AngryPower(p, 1);
+		AbstractPower anger = new AngerPower(p, 1);
+		AbstractPower buffer = new BufferPower(p, 1);
+		AbstractPower conserve = new ConservePower(p, 1);
+		AbstractPower corruption = new CorruptionPower(p);
+		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				orbEvoker, tombPilfer, retainCards, timeWizard,
-				generosity, focus, reductionist, creative, mayhem, envenom };
+				generosity, focus, reductionist, creative, mayhem, envenom,
+				amplify, anger, angry, buffer, conserve, corruption, curiosity };
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
 		AbstractPower randomBuff = buffs[randomBuffNum];
