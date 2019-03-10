@@ -34,7 +34,7 @@ public class SuperheavyBenkei extends DuelistCard
 
     public SuperheavyBenkei() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
+        this.baseDamage = this.damage = 16;
         this.tributes = 3;
         this.dex = 2;
         this.tags.add(DefaultMod.MONSTER);

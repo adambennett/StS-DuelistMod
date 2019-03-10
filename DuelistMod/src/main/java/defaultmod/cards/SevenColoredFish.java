@@ -38,7 +38,6 @@ public class SevenColoredFish extends DuelistCard
     public SevenColoredFish() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
-        this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         if (Loader.isModLoaded("conspire")) { this.tags.add(DefaultMod.GOOD_TRIB); }
         this.tags.add(DefaultMod.METAL_RAIDERS);
@@ -56,7 +55,7 @@ public class SevenColoredFish extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
+    	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     	
     	// for testing

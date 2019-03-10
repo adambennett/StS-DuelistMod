@@ -25,7 +25,7 @@ public class ExodiaPower extends AbstractPower
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DefaultMod.makePath(DefaultMod.EXODIA_POWER);
-	private static int DAMAGE = 20;
+	private static int DAMAGE = 50;
 	public ArrayList<DuelistCard> pieces = new ArrayList<DuelistCard>();
 	
 	public ExodiaPower(final AbstractCreature owner, final AbstractCreature source, DuelistCard piece) 

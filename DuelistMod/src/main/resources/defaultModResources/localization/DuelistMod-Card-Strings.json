@@ -141,8 +141,8 @@
 	},
 	"theDuelist:FeatherPho": {
 		"NAME": "Phoenix Feather",
-		"DESCRIPTION": "Discard 1 card from your hand. Place !M! card from your discard pile into your hand.",
-		"UPGRADE_DESCRIPTION": "Discard 1 card from your hand. Place !M! cards from your discard pile into your hand."
+		"DESCRIPTION": "Discard !M! card from your hand. Place !M! card from your discard pile into your hand.",
+		"UPGRADE_DESCRIPTION": "Discard !M! cards from your hand. Place !M! cards from your discard pile into your hand."
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "Fiend Megacyber",
@@ -206,7 +206,7 @@
 	},
 	"theDuelist:Hinotoma": {
 		"NAME": "Hinotoma",
-		"DESCRIPTION": "Deal !D! of damage a random amount (2-3) of times.",
+		"DESCRIPTION": "Deal !D! damage a random amount (2-3) of times.",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage a random amount (2-4) of times."
 	},
 	"theDuelist:ImperialOrder": {
@@ -256,7 +256,7 @@
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "Legendary Fisherman",
-		"DESCRIPTION": "Tribute 2. NL Channel a Water. NL Exhaust. NL If you Tribute 7-Colored Fish for this card, draw 2 cards.",
+		"DESCRIPTION": "Tribute 2. NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 cards. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 cards."
 	},
 	"theDuelist:MagicCylinder": {
@@ -436,8 +436,8 @@
 	},
 	"theDuelist:SevenColoredFish": {
 		"NAME": "7-Colored Fish",
-		"DESCRIPTION": "Summon !M!. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. NL Deal !D! damage."
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage."
 	},
 	"theDuelist:SliferSky": {
 		"NAME": "Slifer Sky Dragon",
@@ -516,8 +516,8 @@
 	},
 	"theDuelist:SuperheavySwordsman": {
 		"NAME": "Superheavy Swordsman",
-		"DESCRIPTION": "Summon 1. NL Gain 1 dexterity. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Gain 1 dexterity. NL Exhaust."
+		"DESCRIPTION": "Summon 1. NL Gain 1 dexterity.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Gain 1 dexterity."
 	},
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "Superheavy Waraji",
@@ -531,8 +531,8 @@
 	},
 	"theDuelist:ToonBriefcase": {
 		"NAME": "Toon Briefcase",
-		"DESCRIPTION": "Toon cards that are played are added back to your hand at the start of your next turn.",
-		"UPGRADE_DESCRIPTION": "Toon cards that are played are added back to your hand at the start of your next turn."
+		"DESCRIPTION": "Whenever you play a Toon card, add it back to your hand at the start of next turn.",
+		"UPGRADE_DESCRIPTION": "Whenever you play a Toon card, add it back to your hand at the start of next turn."
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "Toon Dark Magician",
@@ -606,8 +606,8 @@
 	},
 	"theDuelist:SuperheavyGeneral": {
 		"NAME": "Superheavy General",
-		"DESCRIPTION": "Tribute 5. Deal !D! damage. Gain !M! Dexterity. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 5. Deal !D! damage. Gain !M! Dexterity. Exhaust."
+		"DESCRIPTION": "Tribute 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL  Exhaust."
 	},
 	"theDuelist:SuperheavyFlutist": {
 		"NAME": "Superheavy Flutist",
@@ -616,8 +616,8 @@
 	},
 	"theDuelist:SuperheavyDaihachi": {
 		"NAME": "Superheavy Daihachi",
-		"DESCRIPTION": "Tribute 5. Gain !M! Dexterity. Gain !B! Block. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 5. Gain !M! Dexterity. Gain !B! Block. Exhaust."
+		"DESCRIPTION": "Tribute 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:SuperheavyBlueBrawler": {
 		"NAME": "Superheavy Brawler",
@@ -936,13 +936,13 @@
 	},
 	"theDuelist:Polymerization": {
 		"NAME": "Polymerization",
-		"DESCRIPTION": "Play !M! copies of random monsters from your hand on an enemy.",
-		"UPGRADE_DESCRIPTION": "Play !M! copies of random monsters from your hand on an enemy."
+		"DESCRIPTION": "Resummon !M! copies of random monsters from your hand on an enemy.",
+		"UPGRADE_DESCRIPTION": "Resummon !M! copies of random monsters from your hand on an enemy."
 	},
 	"theDuelist:MiniPolymerization": {
 		"NAME": "Mini-Polymerization",
-		"DESCRIPTION": "Play !M! copy of a random monster from your hand on an enemy.",
-		"UPGRADE_DESCRIPTION": "Play !M! copy of a random monster from your hand on an enemy."
+		"DESCRIPTION": "Resummon a copy of a random monster from your hand on an enemy.",
+		"UPGRADE_DESCRIPTION": "Resummon a copy of a random monster from your hand on an enemy."
 	},
 	"theDuelist:Predaponics": {
 		"NAME": "Predaponics",
@@ -1061,8 +1061,8 @@
 	},
 	"theDuelist:UltimateOffering": {
 		"NAME": "Ultimate Offering",
-		"DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons, Increment !M! and then Summon !M!.",
-		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons, Increment !M! and then Summon !M!."
+		"DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons: lose 3 HP, Increment !M! and then Summon !M!.",
+		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons: lose 3 HP, Increment !M! and then Summon !M!."
 	},
 	"theDuelist:GuardianAngel": {
 		"NAME": "Guardian Angel Joan",

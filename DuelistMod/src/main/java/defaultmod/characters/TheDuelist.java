@@ -126,6 +126,7 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(Ookazi.ID);
 		retVal.add(Ookazi.ID);
 		retVal.add(SummonedSkull.ID);
+	
 		
 		/*
 		 * ORB DECK (11 cards)

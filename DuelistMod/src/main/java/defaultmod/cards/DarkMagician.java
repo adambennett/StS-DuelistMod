@@ -71,7 +71,7 @@ public class DarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (this.tributes > 0) { this.tributes--; }
+            this.tributes = 1;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

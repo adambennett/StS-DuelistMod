@@ -100,6 +100,7 @@ public class RandomEffectsHelper
 		AbstractPower beatOfDeath = new BeatOfDeathPower(p, turnNum);
 		//AbstractPower choked = new ChokePower(p, turnNum);
 		AbstractPower confusion = new ConfusionPower(p);
+		AbstractPower corruption = new CorruptionPower(p);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		if (Loader.isModLoaded("ReplayTheSpireMod"))
     	{
@@ -117,6 +118,7 @@ public class RandomEffectsHelper
 			debuffs.add(attackBurn);
 			debuffs.add(beatOfDeath);
 			debuffs.add(confusion);
+			debuffs.add(corruption);
     	}
 		else
 		{
@@ -132,6 +134,7 @@ public class RandomEffectsHelper
 			debuffs.add(attackBurn);
 			debuffs.add(beatOfDeath);
 			debuffs.add(confusion);
+			debuffs.add(corruption);
 		}
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);

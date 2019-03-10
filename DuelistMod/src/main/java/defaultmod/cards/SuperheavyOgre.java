@@ -36,7 +36,7 @@ public class SuperheavyOgre extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 6;
         this.summons = 2;
-        this.dex = 2;
+        this.dex = 1;
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SUPERHEAVY);

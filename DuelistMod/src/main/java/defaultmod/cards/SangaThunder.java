@@ -78,7 +78,7 @@ public class SangaThunder extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeDamage(UPGRADE_PLUS_DMG);
-            if (this.tributes > 0) { this.tributes -= 1; }
+            this.tributes = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

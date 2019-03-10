@@ -83,6 +83,7 @@ public abstract class DuelistCard extends CustomCard
 	public int startingOjamaDeckCopies = 1;
 	public int startingHealDeckCopies = 1;
 	public int startingIncDeckCopies = 1;
+	public static final String UPGRADE_DESCRIPTION = "";
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
 	// CARD FIELDS
 
@@ -247,7 +248,7 @@ public abstract class DuelistCard extends CustomCard
 
 	public void discardTop(int amount, boolean isRandom)
 	{
-		AbstractDungeon.actionManager.addToTop(new DiscardAction(player(), player(), amount, isRandom));
+		AbstractDungeon.actionManager.addToTop(new DiscardAction(player(), player(), amount, isRandom, false));
 	}
 
 	public static void gainEnergy(int energy) {
@@ -1267,13 +1268,13 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower anger = new AngerPower(p, 1);
 		AbstractPower buffer = new BufferPower(p, 1);
 		AbstractPower conserve = new ConservePower(p, 1);
-		AbstractPower corruption = new CorruptionPower(p);
+		//AbstractPower corruption = new CorruptionPower(p);
 		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
 				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 				orbEvoker, tombPilfer, retainCards, timeWizard,
 				generosity, focus, reductionist, creative, mayhem, envenom,
-				amplify, anger, angry, buffer, conserve, corruption, curiosity };
+				amplify, anger, angry, buffer, conserve, curiosity };
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
 		AbstractPower randomBuff = buffs[randomBuffNum];

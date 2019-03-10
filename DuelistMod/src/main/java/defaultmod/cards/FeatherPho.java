@@ -27,7 +27,7 @@ public class FeatherPho extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static int pickup = 1;
     // /STAT DECLARATION/
 
@@ -43,7 +43,7 @@ public class FeatherPho extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       discardTop(1, false);
+       discardTop(this.magicNumber, false);
        AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, this.magicNumber));
     }
 

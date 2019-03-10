@@ -69,6 +69,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags FULL;
 	@SpireEnum public static AbstractCard.CardTags ALL;
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
+	@SpireEnum public static AbstractCard.CardTags PETIT;
 	@SpireEnum public static AbstractCard.CardTags COCOON;
 	@SpireEnum public static AbstractCard.CardTags INSECT;
 	@SpireEnum public static AbstractCard.CardTags PLANT;
@@ -1160,6 +1161,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 			myCards.add(new Token());
 			myCards.add(new BadToken());
 			printCardSetsForSteam(myCards);
+			printTextForTranslation();
 		}
 		// END DEBUG CARD STUFF
 		
@@ -1715,6 +1717,58 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		}
 	}
 	
+	private void printTextForTranslation()
+	{
+		System.out.println("theDuelist:DefaultMod:printTextForTranslation() ---> START");
+		for (DuelistCard c : myCards)
+		{
+			System.out.println(c.originalName + " - " + c.rawDescription + " - " + DuelistCard.UPGRADE_DESCRIPTION);
+		}
+		
+		System.out.println("POWERS");
+		String[] powerList = new String[] {"SummonPower", "DespairPower","JamPower", "ToonWorldPower",
+				"ObeliskPower", "AlphaMagPower", "BetaMagPower", "GammaMagPower", "GreedShardPower",
+				"MirrorPower", "ToonBriefcasePower", "DragonCapturePower", "PotGenerosityPower", "CannonPower",
+				"CatapultPower", "BadReactionPower", "CastlePower", "EmperorPower", "MagicCylinderPower",
+				"MirrorForcePower", "ImperialPower", "SliferSkyPower", "ExodiaPower", "DarkMirrorPower",
+				"ParasitePower", "StormingMirrorPower", "RadiantMirrorPower", "SwordsBurnPower", "SwordsConcealPower",
+				"SwordsRevealPower", "SummonSicknessPower", "TributeSicknessPower", "EvokeSicknessPower", "OrbHealPower",
+				"OrbEvokerPower", "EnergyTreasurePower", "HealGoldPower", "TributeToonPower", "TributeToonPowerB", "GravityAxePower",
+				"ToonRollbackPower", "ToonKingdomPower", "ReducerPower", "CrystallizerPower", "MountainPower", "VioletCrystalPower",
+				"YamiPower", "TimeWizardPower", "TrapHolePower", "SwordDeepPower", "CocoonPower", "SarraceniantPower", "JinzoPower",
+				"UltimateOfferingPower"};
+		for (String s : powerList)
+		{
+			PowerStrings powerString = CardCrawlGame.languagePack.getPowerStrings(DefaultMod.makeID(s));
+			String[] powerDesc = powerString.DESCRIPTIONS;
+			for (int i = 0; i < powerDesc.length; i++)
+			{
+				if (i == 0) { System.out.print(s + " - " + powerDesc[i]);}
+				else { System.out.print(powerDesc[i]); }
+			}
+			System.out.println();
+		}
+		
+		System.out.println("RELICS");
+		String[] relicList = new String[] {"theDuelist:MillenniumPuzzle", "theDuelist:MillenniumEye", "theDuelist:MillenniumRing", "theDuelist:MillenniumKey",
+				"theDuelist:MillenniumRod", "theDuelist:MillenniumCoin", "theDuelist:StoneExxod", "theDuelist:GiftAnubis"};
+		for (String s : relicList)
+		{
+			RelicStrings relicString = CardCrawlGame.languagePack.getRelicStrings(DefaultMod.makeID(s));
+			String[] relicDesc = relicString.DESCRIPTIONS;
+			String flavor = relicString.FLAVOR;
+			for (int i = 0; i < relicDesc.length; i++)
+			{
+				if (i == 0) { System.out.print(s + " - " + relicDesc[i]);}
+				else { System.out.print(relicDesc[i]); }
+			}
+			System.out.println(" -- " + flavor);
+		}
+		
+		
+		
+		System.out.println("theDuelist:DefaultMod:printTextForTranslation() ---> END");
+	}
 	
 	private void printCardSetsForSteam(ArrayList<DuelistCard> cardsToPrint)
 	{
