@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
@@ -53,12 +53,14 @@ public class Air extends AbstractOrb
 	@Override
 	public void onEvoke()
 	{
+		applyFocus();
 		AbstractDungeon.player.increaseMaxOrbSlots(this.evokeAmount, true);
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
+		applyFocus();
 		this.triggerPassiveEffect();
 	}
 
@@ -88,6 +90,7 @@ public class Air extends AbstractOrb
 	@Override
 	public void updateAnimation()
 	{
+		applyFocus();
 		super.updateAnimation();
 		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
 
@@ -123,6 +126,10 @@ public class Air extends AbstractOrb
 	@Override
 	public void applyFocus() 
 	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			this.baseEvokeAmount += AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		}
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}

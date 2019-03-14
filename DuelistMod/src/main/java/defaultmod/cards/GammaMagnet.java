@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.GammaMagPower;
+import defaultmod.powers.*;
 
 public class GammaMagnet extends DuelistCard 
 {
@@ -52,7 +52,7 @@ public class GammaMagnet extends DuelistCard
     	summon(p, SUMMONS, this);
     	
     	// Gain Gamma Magnet
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p)));
+    	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }
     	
     	// Draw cards
     	draw(this.draw);

@@ -45,6 +45,7 @@ public class ToonMagic extends DuelistCard
     		if (c.tags.contains(DefaultMod.TOON))
     		{
     			c.setCostForTurn(-9);
+    			c.isCostModifiedForTurn = true;
     		}
     	}
     }

@@ -20,11 +20,13 @@ public class AbstractCardRenderTypePatch
         boolean isTrap = DefaultMod.isTrap(__instance);
         boolean isMonster = DefaultMod.isMonster(__instance);
         boolean isToken = DefaultMod.isToken(__instance);
+        boolean isArchetype = DefaultMod.isArchetype(__instance);
         
-        if (isMonster) 		{ text[0] = "Monster"; 	} 
-        else if (isTrap) 	{ text[0] = "Trap";  	} 
-        else if (isSpell) 	{ text[0] = "Spell";    }
-        else if (isToken)	{ text[0] = "Token"; 	}
+        if (isMonster) 			{ text[0] = "Monster"; 	} 
+        else if (isTrap) 		{ text[0] = "Trap";  	} 
+        else if (isSpell) 		{ text[0] = "Spell";    }
+        else if (isToken)		{ text[0] = "Token"; 	}
+        else if (isArchetype)	{ text[0] = "Set";}
     }
 
     public static class Locator extends SpireInsertLocator 

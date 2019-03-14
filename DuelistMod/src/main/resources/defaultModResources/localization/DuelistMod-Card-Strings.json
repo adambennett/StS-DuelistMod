@@ -205,7 +205,7 @@
 		"UPGRADE_DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have."
 	},
 	"theDuelist:Hinotoma": {
-		"NAME": "Hinotoma",
+		"NAME": "Hinotama",
 		"DESCRIPTION": "Deal !D! damage a random amount (2-3) of times.",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage a random amount (2-4) of times."
 	},
@@ -1073,6 +1073,11 @@
 		"NAME": "Wiseman's Chalice",
 		"DESCRIPTION": "Purge. NL Gain 1 Potion slot.",
 		"UPGRADE_DESCRIPTION": "Purge. NL Gain 1 Potion slot."
+	},
+	"theDuelist:CoolModdedCharArchetypeSelectioCard": {
+		"NAME": "Test Archetype",
+		"DESCRIPTION": "This is a test of Grem's Archetype API.",
+		"EXTENDED_DESCRIPTION": ["Tooltip Name", "This is the tooltip description."]
 	},
 	"theDuelist:PredaplantToken": {
 		"NAME": "Predaplant Token",

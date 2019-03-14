@@ -50,7 +50,7 @@ public class NutrientZ extends DuelistCard
     {
        if (p.currentHealth <= HP_CHK)
        {
-    	   heal(p, HEAL);
+    	   heal(p, this.magicNumber);
     	   for (int i = 0; i < debuffs; i++)
     	   {
     		   AbstractPower randomDebuff = RandomEffectsHelper.getRandomPlayerDebuff(p, 3);

@@ -2,11 +2,11 @@
   "modid": "duelistmod",
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
-  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.203.10\n- Increased Exodia power damage\n- Increased number of cards Phoenix Feather discards when upgraded, increased the cost to 1\n- Moved Corruption from random buff pool to random debuff pool\n- Balancing changes for: Superheavy Brawler, Superheavy Benkei, Superheavy Swordsman, Superheavy Ogre\n- Changed 7-Colored Fish's summon variable to not be the magic number, which keeps it from being affected by negative effects\n- Reinforcements cost increase to 1\n- Polymerization and Mini-Polymerization now both use the Resummon keyword (no tribute costs)\n- Fixed Molten Zombie damage upgrade\n- Updated/changed various card text inconsistencies\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
-  "version": "1.203.10",
+  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv2.203.0\n- Added Chinese (Simplified) support (添加了简体中文支持)\n- Added Archetype API support\n- Bug fixes\n- Various balancing changes\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
+  "version": "2.203.0",
   "sts_version": "1-23-2019",
   "mts_version": "3.8.3",
-  "credits": "Shoutout to Konami",
+  "credits": "Thanks to Gremious for his amazing work with both the Default Mod base, as well as the Archetype API. \nBig shoutout to Playmaker for various art contributions:\nnotably his character button, selection screen art, and the new Yugi character model!",
   "dependencies": ["basemod", "stslib"],
   "update_json": "https://api.github.com/repos/adambennett/StS-DuelistMod/releases/latest"
 }

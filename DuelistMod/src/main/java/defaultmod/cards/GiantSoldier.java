@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import archetypeAPI.patches.ArchetypeCardTags;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 

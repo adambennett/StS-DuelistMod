@@ -1,0 +1,18 @@
+{
+  "theDuelist:Test": {
+    "NAME": "Test",
+    "CARD_IDS": [
+      "theDuelist:AlphaMagnet",
+	  "theDuelist:AncientRules",
+	  "theDuelist:AxeDespair",
+	  "theDuelist:BadReaction",
+	  "theDuelist:BarrelDragon",
+	  "theDuelist:BusterBlader",
+	  "theDuelist:CatapultTurtle",
+	  "theDuelist:GracefulCharity",
+	  "theDuelist:InsectQueen",
+	  "theDuelist:ObeliskTormentor",
+	  "theDuelist:OjamaGreen"
+    ]
+  }
+}

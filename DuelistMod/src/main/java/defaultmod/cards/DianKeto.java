@@ -28,7 +28,7 @@ public class DianKeto extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int HEAL = 7;
+    private static final int HEAL = 4;
     private static final int U_HEAL = 2;
     // /STAT DECLARATION/
 

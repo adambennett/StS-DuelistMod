@@ -1,0 +1,22 @@
+{
+  "theDuelist:Spellcaster": {
+    "NAME": "Spellcaster",
+    "CARD_IDS": [
+		"theDuelist:DarklordMarie",
+		"theDuelist:DarkMagician",
+		"theDuelist:DarkMagicianGirl",
+		"theDuelist:InjectionFairy",
+		"theDuelist:Relinquished",
+		"theDuelist:ToonGeminiElf",
+		"theDuelist:GeminiElf",
+		"theDuelist:SpiritHarp",
+		"theDuelist:MysticalElf",
+		"theDuelist:Yami",
+		"theDuelist:BookSecret",
+		"theDuelist:KingYami",
+		"theDuelist:Lajinn",
+		"theDuelist:FogKing",
+		"theDuelist:GuardianAngel"
+    ]
+  }
+}

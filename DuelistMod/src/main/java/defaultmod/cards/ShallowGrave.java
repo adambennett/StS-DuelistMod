@@ -46,7 +46,7 @@ public class ShallowGrave extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, 1, false, this);
+    	//tribute(p, 1, false, this);
     	m = AbstractDungeon.getRandomMonster();
     	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, false, m));
     }

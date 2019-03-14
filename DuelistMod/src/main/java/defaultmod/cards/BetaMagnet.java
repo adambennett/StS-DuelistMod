@@ -50,7 +50,7 @@ public class BetaMagnet extends DuelistCard
     	summon(p, SUMMONS, this);
     	
     	// Gain Beta Magnet
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p)));
+    	if (!p.hasPower(BetaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p))); }
     	
     	// Gain block
     	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));

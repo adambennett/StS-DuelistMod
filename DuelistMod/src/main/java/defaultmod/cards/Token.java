@@ -32,10 +32,18 @@ public class Token extends DuelistCard
     public Token(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.TOKEN); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	summon(p, 1, new Token("Resummoned Token"));
     	block(1);
     }
     @Override public AbstractCard makeCopy() { return new Token(); }
-    @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
+   
+    /*@Override public boolean canUse(AbstractPlayer p, AbstractMonster m) 
+    {
+    	//return false;
+    	return true;
+    }*/
+    
+    
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
 		

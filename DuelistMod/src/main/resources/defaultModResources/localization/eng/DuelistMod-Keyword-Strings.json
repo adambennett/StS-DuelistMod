@@ -1,0 +1,176 @@
+[
+    {
+	  "PROPER_NAME": "Summon",
+      "NAMES": [
+        "summon",
+        "summons"
+      ],
+      "DESCRIPTION": "Counts monsters currently summoned. Maximum of #b5 Summons."
+    },
+    {
+	  "PROPER_NAME": "Resummon",
+      "NAMES": [
+        "resummon"
+      ],     
+      "DESCRIPTION": "Certain cards (like Monster Reborn) allow you to Resummon monsters. When you Resummon a monster, it replays the card, ignoring #yTribute costs. Some monsters have extra effects that trigger when they are Resummoned."
+    },
+    {
+	  "PROPER_NAME": "Tribute",
+      "NAMES": [
+        "tribute"
+      ],      
+      "DESCRIPTION": "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute card."
+    },
+    {
+	  "PROPER_NAME": "Increment",
+      "NAMES": [
+        "increment"
+      ],      
+      "DESCRIPTION": "Increase your maximum #ySummons by the number given."
+    },
+    {
+	 "PROPER_NAME": "Buffer",
+      "NAMES": [
+        "buffer"
+      ],     
+      "DESCRIPTION": "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ybuffs."
+    },
+    {
+	  "PROPER_NAME": "Summoner",
+      "NAMES": [
+        "summoner"
+      ],      
+      "DESCRIPTION": "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons."
+    },
+    {
+	  "PROPER_NAME": "Reducer",
+      "NAMES": [
+        "reducer"
+      ],      
+      "DESCRIPTION": "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0."
+    },
+    {
+	  "PROPER_NAME": "Dragon Orb",
+      "NAMES": [
+        "dragonorb"
+      ],      
+      "DESCRIPTION": "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0."
+    },
+    {
+	  "PROPER_NAME": "Overflow",
+      "NAMES": [
+        "overflow"
+      ],      
+      "DESCRIPTION": "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses."
+    },
+     {
+	  "PROPER_NAME": "Toon",
+      "NAMES": [
+        "toon",
+		"toons"
+      ],      
+      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. If you Tribute a Toon monster using another Toon, deal #b5 damage to all enemies."
+    },
+     {
+	  "PROPER_NAME": "Magnet",
+      "NAMES": [
+        "magnet",
+		"magnets"
+      ],      
+      "DESCRIPTION": "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect."
+    },
+    {
+	 "PROPER_NAME": "Ojamania",
+      "NAMES": [
+        "ojamania"
+      ],      
+      "DESCRIPTION": "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
+    },
+     {
+	  "PROPER_NAME": "Dragon",
+      "NAMES": [
+        "dragon"
+      ],      
+      "DESCRIPTION": "When you #yTribute a #yDragon for another #yDragon, Gain #b1 #yStrength."
+    },
+    {
+	  "PROPER_NAME": "Spellcaster",
+      "NAMES": [
+        "spellcaster"
+      ],      
+      "DESCRIPTION": "When you #yTribute a #ySpellcaster monster for a #yDragon, lose #b2 #yHP."
+    },
+     {
+	  "PROPER_NAME": "Insect",
+      "NAMES": [
+        "insect",
+		"insects"
+      ],     
+      "DESCRIPTION": "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+    },
+     {
+	  "PROPER_NAME": "Plant",
+      "NAMES": [
+        "plant",
+		"plants"
+      ],      
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+    },
+     {
+	  "PROPER_NAME": "Predaplant",
+      "NAMES": [
+        "predaplant",
+		"predaplants"
+      ],      
+      "DESCRIPTION": "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+    },
+  {
+   "PROPER_NAME": "Earth",
+    "NAMES": [
+      "earth"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand."
+  },
+  {
+   "PROPER_NAME": "Air",
+    "NAMES": [
+      "air"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1."
+  },
+  {
+    "PROPER_NAME": "Fire",
+    "NAMES": [
+      "fire"
+    ],   
+    "DESCRIPTION": "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn."
+  },
+  {
+   "PROPER_NAME": "Glitch",
+    "NAMES": [
+      "glitch"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, triggers a random positive action. #yEvoke also triggers random actions."
+  },
+  {
+   "PROPER_NAME": "Shadow",
+    "NAMES": [
+      "shadow"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. #yEvoke: #yResummon monsters from your discard pile on random enemies."
+  },
+  {
+    "PROPER_NAME": "Splash",
+    "NAMES": [
+      "splash"
+    ],   
+    "DESCRIPTION": "#yOrb: At the start of turn, add random, 0-cost, Ethereal Duelist cards to your hand. #yEvoke: Has a chance to draw #b5 cards."
+  },
+  {
+    "PROPER_NAME": "Gate",
+    "NAMES": [
+      "gate"
+    ],   
+    "DESCRIPTION": "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus."
+  }
+]

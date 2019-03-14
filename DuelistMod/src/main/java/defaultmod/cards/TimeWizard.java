@@ -26,7 +26,7 @@ public class TimeWizard extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public TimeWizard() {
@@ -66,7 +66,7 @@ public class TimeWizard extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.tags.add(DefaultMod.GOOD_TRIB);
             this.initializeDescription();

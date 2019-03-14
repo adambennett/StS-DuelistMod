@@ -1,0 +1,40 @@
+{
+  "theDuelist:Dragons": {
+    "NAME": "Dragons",
+    "CARD_IDS": [
+      "theDuelist:BarrelDragon",
+	  "theDuelist:BlueEyes",
+	  "theDuelist:BlueEyesUltimate",
+	  "theDuelist:BusterBlader",
+	  "theDuelist:GaiaDragonChamp",
+	  "theDuelist:RedEyes",
+	  "theDuelist:RedEyesZombie",
+	  "theDuelist:SnowDragon",
+	  "theDuelist:SnowdustDragon",
+	  "theDuelist:MetalDragon",
+	  "theDuelist:CaveDragon",
+	  "theDuelist:BlizzardDragon",
+	  "theDuelist:BabyDragon",
+	  "theDuelist:CurseDragon",
+	  "theDuelist:CyberDragon",
+	  "theDuelist:DragonMaster",
+	  "theDuelist:FiendSkull",
+	  "theDuelist:FiveHeaded",
+	  "theDuelist:FluteSummoning",
+	  "theDuelist:Gandora",
+	  "theDuelist:LordD",
+	  "theDuelist:LesserDragon",
+	  "theDuelist:ThunderDragon",
+	  "theDuelist:Mountain",
+	  "theDuelist:BlacklandFireDragon",
+	  "theDuelist:WhiteNightDragon",
+	  "theDuelist:WhiteHornDragon",
+	  "theDuelist:BSkullDragon",
+	  "theDuelist:DarkfireDragon",
+	  "theDuelist:TrihornedDragon",
+	  "theDuelist:OceanDragonLord",
+	  "theDuelist:LeviaDragon",
+	  "theDuelist:DragonCaptureJar"	  
+    ]
+  }
+}

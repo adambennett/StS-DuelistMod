@@ -1,0 +1,14 @@
+{
+  "theDuelist:Ojama": {
+    "NAME": "Ojama",
+    "CARD_IDS": [
+		"theDuelist:OjamaBlack",
+		"theDuelist:Ojamagic",
+		"theDuelist:OjamaGreen",
+		"theDuelist:OjamaKing",
+		"theDuelist:OjamaKnight",
+		"theDuelist:OjamaYellow",
+		"theDuelist:Ojamuscle"
+    ]
+  }
+}

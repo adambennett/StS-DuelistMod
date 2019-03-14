@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.*;
+import defaultmod.actions.common.RandomEtherealDuelistCardToHandAction;
 import defaultmod.cards.Token;
 import defaultmod.patches.DuelistCard;
 
@@ -29,6 +29,7 @@ public class RandomActionHelper
     
     // Action List
     public static ArrayList<String> actions = new ArrayList<String>();
+    public static int randomIndex = 0;
     
     public static String triggerRandomAction(int timesTriggered, boolean upgradeOjamaniaCards)
 	{
@@ -38,12 +39,13 @@ public class RandomActionHelper
 		for (int i = 0; i < timesTriggered; i++)
 		{
 			randomActionNum = AbstractDungeon.cardRandomRng.random(actions.size() - 1);
+			if (DefaultMod.debug) { System.out.println("theDuelist:RandomActionHelper:triggerRandomAction() ---> randomActionNum: " + randomActionNum); }
 			lastAction = runAction(actions.get(randomActionNum), upgradeOjamaniaCards);
 		}
 		
 		return lastAction;
 	}
-	
+
 	public static String runAction(String string, boolean upgradeCards) 
 	{
 		initList();
@@ -79,10 +81,10 @@ public class RandomActionHelper
 				string = "Gain a random amount of gold (50-100): #b" + randomGold ;
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
-			case "Gain a random amount of gold (10-50)":
-				int randomGoldB = AbstractDungeon.cardRandomRng.random(10, 50);
+			case "Gain a random amount of gold (1-50)":
+				int randomGoldB = AbstractDungeon.cardRandomRng.random(1, 50);
 				DuelistCard.gainGold(randomGoldB, AbstractDungeon.player, true);
-				string = "Gain a random amount of gold (10-50): #b" + randomGoldB;
+				string = "Gain a random amount of gold (1-50): #b" + randomGoldB;
 				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
 				break;
 			case "Gain a random amount of gold (5-200)":
@@ -259,27 +261,29 @@ public class RandomActionHelper
 	private static void initList()
 	{
 		actions = new ArrayList<String>();
+		/*actions.add("Draw #b1 card");	
+		actions.add("Draw #b1 card");	
+		actions.add("Draw #b2 cards");	
+		actions.add("Gain #b10 HP");
+		actions.add("Gain #b5 HP");
+		actions.add("Gain #b5 HP");
 		actions.add("Draw #b1 card");	
 		actions.add("Draw #b1 card");	
 		actions.add("Draw #b2 cards");	
 		actions.add("Gain #b10 HP");
 		actions.add("Gain #b5 HP");
 		actions.add("Gain #b5 HP");
-		actions.add("Draw #b1 card");	
-		actions.add("Draw #b1 card");	
-		actions.add("Draw #b2 cards");	
-		actions.add("Gain #b10 HP");
-		actions.add("Gain #b5 HP");
-		actions.add("Gain #b5 HP");
-		actions.add("Gain a random amount of gold (50-100)");
-		actions.add("Gain a random amount of gold (10-50)");
-		actions.add("Gain a random amount of gold (10-50)");
-		actions.add("Gain a random amount of gold (10-50)");
-		actions.add("Gain a random amount of gold (10-50)");
-		actions.add("Gain a random amount of gold (5-200)");
-		actions.add("Gain a random amount of gold (0-1000)");
+		actions.add("Gain a random amount of gold (1-50)");*/
+		
+		//actions.add("Gain a random amount of gold (50-100)");
+		//actions.add("Gain a random amount of gold (10-50)");
+		//actions.add("Gain a random amount of gold (10-50)");
+		//actions.add("Gain a random amount of gold (10-50)");
+		//actions.add("Gain a random amount of gold (5-200)");
+		//actions.add("Gain a random amount of gold (0-1000)");
+		
 		actions.add("Apply #b1 random #ybuff");	
-		actions.add("Apply #b2 random #ydebuffs to random enemy");	
+		/*actions.add("Apply #b2 random #ydebuffs to random enemy");	
 		actions.add("Apply #b1 random #ydebuff to random enemy");
 		actions.add("Add #b1 random #ySpell to hand");
 		actions.add("Add #b1 random #yTrap to hand");
@@ -304,7 +308,7 @@ public class RandomActionHelper
 		actions.add("Channel a Glitch");
 		actions.add("Gain #b1 Artifacts");
 		actions.add("Gain #b2 Artifacts");
-		actions.add("Gain #b3 Artifacts");
+		actions.add("Gain #b3 Artifacts");*/
 	}
 
 }

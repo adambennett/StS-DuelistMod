@@ -7,13 +7,14 @@ import org.apache.logging.log4j.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
+import archetypeAPI.characters.customCharacterArchetype;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
@@ -22,7 +23,7 @@ import defaultmod.patches.AbstractCardEnum;
 import defaultmod.relics.MillenniumPuzzle;
 
 
-public class TheDuelist extends CustomPlayer {
+public class TheDuelist extends CustomPlayer implements customCharacterArchetype {
 	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
 	// =============== BASE STATS =================
@@ -32,6 +33,8 @@ public class TheDuelist extends CustomPlayer {
 	public static final int STARTING_GOLD = 99;
 	public static final int CARD_DRAW = 5;
 	public static final int ORB_SLOTS = 3;
+	public static int numberOfArchetypes = 17;
+	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	// =============== /BASE STATS/ =================
 
 
@@ -60,7 +63,8 @@ public class TheDuelist extends CustomPlayer {
 		super(name, setClass, orbTextures,
 				"defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
 				new SpriterAnimation(
-						"defaultModResources/images/char/duelistCharacter/theDuelistAnimation.scml"));
+						"defaultModResources/images/char/duelistCharacterUpdate/YugiB.scml"));
+						//"defaultModResources/images/char/duelistCharacter/theDuelistAnimation.scml"));
 						//"defaultModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
 
@@ -337,6 +341,17 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public String getVampireText() {
 		return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~";
+	}
+
+	@Override
+	public CardGroup getArchetypeSelectionCardsPool() 
+	{
+		return theDuelistArchetypeSelectionCards;
+	}
+
+	@Override
+	public int numberOfDefaultArchetypes() {
+		return numberOfArchetypes;
 	}
 
 }

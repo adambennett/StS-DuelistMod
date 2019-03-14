@@ -40,7 +40,25 @@ public class EnergyTreasurePower extends AbstractPower
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-    	if (this.amount > 0) { this.amount -= Math.floor(this.amount/3); if (this.amount < 1) { DuelistCard.removePower(this, AbstractDungeon.player); } }
+    	if (this.amount > 0) 
+    	{ 
+    		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+    		if (roll < 3)
+    		{
+	    		this.amount -= Math.floor(this.amount/3); 
+	    		if (this.amount < 1) 
+	    		{ 
+	    			DuelistCard.removePower(this, AbstractDungeon.player); 
+	    		} 
+    		}
+    		else if (roll == 4)
+    		{
+    			this.amount += 10;
+    			this.flash();
+    		}
+    		
+    		if (DefaultMod.debug) { System.out.println("theDuelist:EnergyTreasurePower:atEndOfTurn() ---> roll: " + roll); }
+    	}
     	updateDescription();
     } 
     

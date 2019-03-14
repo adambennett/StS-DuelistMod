@@ -1,0 +1,11 @@
+{
+  "theDuelist:God": {
+    "NAME": "God",
+    "CARD_IDS": [
+		"theDuelist:SliferSky",
+		"theDuelist:ObeliskTormentor",
+		"theDuelist:WingedDragonRa",
+		"theDuelist:TheCreator"
+    ]
+  }
+}

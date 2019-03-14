@@ -1,0 +1,38 @@
+{
+	"theDuelist:ToonLabel": 
+	{
+		"TEXT": [ "Remove all Toon cards (REQUIRES RESTART)" ]
+	},
+	"theDuelist:ExodiaLabel": 
+	{
+		"TEXT": [ "Remove all Exodia cards (REQUIRES RESTART)" ]
+	},
+	"theDuelist:ModLabel": 
+	{
+		"TEXT": [ "Allow 14 extra crossover mod cards (REQUIRES RESTART)" ]
+	},
+	"theDuelist:StartingDeckLabel": 
+	{
+		"TEXT": [ "Starting Deck:" ]
+	},
+	"theDuelist:CardSetLabel": 
+	{
+		"TEXT": [ "Card Set size:" ]
+	},
+	"theDuelist:NoteLabel": 
+	{
+		"TEXT": [ "Note: Card removal options WILL NOT work while Archetype API is loaded" ]
+	},
+	"theDuelist:CardCountLabel": 
+	{
+		"TEXT": [ "Active Duelist Cards: " ]
+	},
+	"theDuelist:RestartNotice": 
+	{
+		"TEXT": [ "Changing the card set requires a restart to take effect." ]
+	},
+	"theDuelist:FreshRunNotice": 
+	{
+		"TEXT": [ "Start a fresh run to change your starting deck." ]
+	},
+}

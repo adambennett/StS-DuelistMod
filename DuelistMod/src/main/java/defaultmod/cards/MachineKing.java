@@ -29,7 +29,7 @@ public class MachineKing extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	//private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-	private static final int COST = 1;
+	private static final int COST = 2;
 	// /STAT DECLARATION/
 
 	public MachineKing() {
@@ -38,7 +38,7 @@ public class MachineKing extends DuelistCard
 		this.tags.add(DefaultMod.ALL);
 		this.tags.add(DefaultMod.ORB_DECK);
 		this.startingOrbDeckCopies = 1;
-		this.tributes = 1;
+		this.tributes = 2;
 		this.originalName = this.name;
 		this.damage = this.baseDamage = 6;
 		this.setupStartingCopies();
@@ -66,7 +66,7 @@ public class MachineKing extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.tributes = 0;
+			this.tributes = 1;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

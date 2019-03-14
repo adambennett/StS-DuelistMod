@@ -71,10 +71,10 @@ public class Glitch extends AbstractOrb
 		passiveActions.add("Gain #b10 HP");
 		passiveActions.add("Gain #b5 HP");
 		passiveActions.add("Gain #b5 HP");
-		passiveActions.add("Gain a random amount of gold (50-100)");
-		passiveActions.add("Gain a random amount of gold (10-50)");
-		passiveActions.add("Gain a random amount of gold (10-50)");
-		passiveActions.add("Gain a random amount of gold (5-200)");
+		//passiveActions.add("Gain a random amount of gold (50-100)");
+		passiveActions.add("Gain a random amount of gold (1-50)");
+		//passiveActions.add("Gain a random amount of gold (10-50)");
+		//passiveActions.add("Gain a random amount of gold (5-200)");
 		passiveActions.add("Apply #b1 random #ybuff");	
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");	
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");
@@ -117,9 +117,9 @@ public class Glitch extends AbstractOrb
 		evokeActions.add("Gain #b10 HP");
 		evokeActions.add("Gain #b5 HP");
 		evokeActions.add("Gain #b5 HP");
-		evokeActions.add("Gain a random amount of gold (50-100)");
-		evokeActions.add("Gain a random amount of gold (10-50)");
-		evokeActions.add("Gain a random amount of gold (10-50)");
+		//evokeActions.add("Gain a random amount of gold (50-100)");
+		evokeActions.add("Gain a random amount of gold (1-50)");
+		//evokeActions.add("Gain a random amount of gold (10-50)");
 		evokeActions.add("Gain a random amount of gold (5-200)");
 		evokeActions.add("Apply #b1 random #ybuff");	
 		evokeActions.add("Apply #b1 random #ydebuff to random enemy");	
@@ -234,10 +234,10 @@ public class Glitch extends AbstractOrb
 				string = "Gain a random amount of gold (50-100): #b" + randomGold ;
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
-			case "Gain a random amount of gold (10-50)":
-				int randomGoldB = AbstractDungeon.cardRandomRng.random(10, 50);
+			case "Gain a random amount of gold (1-50)":
+				int randomGoldB = AbstractDungeon.cardRandomRng.random(1, 50);
 				DuelistCard.gainGold(randomGoldB, AbstractDungeon.player, true);
-				string = "Gain a random amount of gold (10-50): #b" + randomGoldB;
+				string = "Gain a random amount of gold (1-50): #b" + randomGoldB;
 				if (printing) { if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); } }
 				break;
 			case "Gain a random amount of gold (5-200)":

@@ -1,0 +1,18 @@
+{
+"theDuelist:MillenniumElixir": {
+        "NAME": "Millennium Elixir",
+        "DESCRIPTIONS": ["Gain 2 random #ybuffs."]
+},
+"theDuelist:SealedPack": {
+        "NAME": "Small Booster",
+        "DESCRIPTIONS": ["Open a #yLegend #yof #yBlue #yEyes booster pack. Add #b3 random cards from this set to your hand."]
+},
+"theDuelist:SealedPackB": {
+        "NAME": "Small Pack",
+        "DESCRIPTIONS": ["Open a booster pack containing cards from #yPharaoh's #yServant and #yMetal #yRaiders. Add #b3 random cards from either of these sets to your hand."]
+},
+"theDuelist:JoeyJuice": {
+        "NAME": "Joey Juice",
+        "DESCRIPTIONS": ["Apply 2 random #ydebuffs."]
+}
+}

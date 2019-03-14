@@ -1,0 +1,167 @@
+[
+    {
+	  "PROPER_NAME": "仪式",
+      "NAMES": [
+        "summon"
+      ],
+      "DESCRIPTION": "计算当前仪式的怪物。最多有5种仪式。"
+    },
+    {
+	  "PROPER_NAME": "仪式再次",
+      "NAMES": [
+        "resummon"
+      ],     
+      "DESCRIPTION": "某些卡片允许您再次进行仪式。再次进行仪式时，将重放该卡，并忽略Tribute成本。例：死者蘇生"
+    },
+    {
+	  "PROPER_NAME": "贡",
+      "NAMES": [
+        "tribute"
+      ],      
+      "DESCRIPTION": "删除给定数量的仪式。除非你有足够的仪式贡,你不能玩致敬卡."
+    },
+    {
+	  "PROPER_NAME": "增量",
+      "NAMES": [
+        "increment"
+      ],      
+      "DESCRIPTION": "增加你的最大仪式数量。"
+    },
+    {
+	 "PROPER_NAME": "缓冲",
+      "NAMES": [
+        "buffer"
+      ],     
+      "DESCRIPTION": "宝珠：在回合开始时增加你的动力堆。唤起会给一个随机的buff。"
+    },
+    {
+	  "PROPER_NAME": "召唤师",
+      "NAMES": [
+        "summoner"
+      ],      
+      "DESCRIPTION": "宝珠：回合结束时的仪式。唤醒增加你的最大召唤。"
+    },
+    {
+	  "PROPER_NAME": "龙宝珠",
+      "NAMES": [
+        "dragonorb"
+      ],      
+      "DESCRIPTION": "宝珠：在你的回合开始时，随机添加Dragon牌。唤起效果会将手中随机龙的成本设置为0。"
+    },
+    {
+	  "PROPER_NAME": "溢出",
+      "NAMES": [
+        "overflow"
+      ],      
+      "DESCRIPTION": "当转弯结束时手中有一张带溢出的牌时，请激活一个效果。这种效果的用途有限。"
+    },
+     {
+	  "PROPER_NAME": "香椿",
+      "NAMES": [
+        "toon"
+      ],      
+      "DESCRIPTION": "香椿只有在卡通世界处于活动状态时才能播放。如果你使用另一个卡通向一个卡通怪物致敬，对所有敌人造成5点伤害。"
+    },
+     {
+	  "PROPER_NAME": "磁铁",
+      "NAMES": [
+        "magnet",
+		"magnets"
+      ],      
+      "DESCRIPTION": "与磁铁战士怪物相关的代币。磁铁没有固有的影响。"
+    },
+    {
+	 "PROPER_NAME": "Oj狂躁",
+      "NAMES": [
+        "ojamania"
+      ],      
+      "DESCRIPTION": "手中添加2张随机牌，本回合费用为0。应用1个随机buff。对敌人施加2个随机减益效果。"
+    },
+     {
+	  "PROPER_NAME": "龙",
+      "NAMES": [
+        "dragon"
+      ],      
+      "DESCRIPTION": "当你为另一条龙致敬龙时，获得1点力量。"
+    },
+    {
+	  "PROPER_NAME": "施法者",
+      "NAMES": [
+        "spellcaster"
+      ],      
+      "DESCRIPTION": "When you #yTribute a #ySpellcaster monster for a #yDragon, lose #b2 #yHP."
+    },
+     {
+	  "PROPER_NAME": "Insect",
+      "NAMES": [
+        "insect",
+		"insects"
+      ],     
+      "DESCRIPTION": "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+    },
+     {
+	  "PROPER_NAME": "Plant",
+      "NAMES": [
+        "plant",
+		"plants"
+      ],      
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+    },
+     {
+	  "PROPER_NAME": "Predaplant",
+      "NAMES": [
+        "predaplant",
+		"predaplants"
+      ],      
+      "DESCRIPTION": "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+    },
+  {
+   "PROPER_NAME": "Earth",
+    "NAMES": [
+      "earth"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand."
+  },
+  {
+   "PROPER_NAME": "Air",
+    "NAMES": [
+      "air"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1."
+  },
+  {
+    "PROPER_NAME": "Fire",
+    "NAMES": [
+      "fire"
+    ],   
+    "DESCRIPTION": "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn."
+  },
+  {
+   "PROPER_NAME": "Glitch",
+    "NAMES": [
+      "glitch"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, triggers a random positive action. #yEvoke also triggers random actions."
+  },
+  {
+   "PROPER_NAME": "Shadow",
+    "NAMES": [
+      "shadow"
+    ],    
+    "DESCRIPTION": "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. #yEvoke: #yResummon monsters from your discard pile on random enemies."
+  },
+  {
+    "PROPER_NAME": "Splash",
+    "NAMES": [
+      "splash"
+    ],   
+    "DESCRIPTION": "#yOrb: At the start of turn, add random, 0-cost, Ethereal Duelist cards to your hand. #yEvoke: Has a chance to draw #b5 cards."
+  },
+  {
+    "PROPER_NAME": "Gate",
+    "NAMES": [
+      "gate"
+    ],   
+    "DESCRIPTION": "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus."
+  }
+]

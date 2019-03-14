@@ -48,7 +48,7 @@ public class AlphaMagnet extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	applyPowerToSelf(new AlphaMagPower(p, p));
+    	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
     	attack(m, AFX, this.damage);
     }
 

@@ -1,0 +1,1197 @@
+{
+	"theDuelist:AlphaMagnet": {
+		"NAME": "A. 磁铁战士",
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Gain Alpha Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Gain Alpha Magnet for the rest of combat. NL Exhaust."
+	},
+	"theDuelist:AncientRules": {
+		"NAME": "遠古規則",
+		"DESCRIPTION": "Summon !M!.",
+		"UPGRADE_DESCRIPTION": "Summon !M!."
+	},
+	"theDuelist:AxeDespair": {
+		"NAME": "惡魔之斧",
+		"DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or lose 30 HP). NL Place this card on top of your draw pile.",
+		"UPGRADE_DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or lose 30 HP). NL Place this card on top of your draw pile."
+	},
+	"theDuelist:BadReaction": {
+		"NAME": "藥物的副作用",
+		"DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed.",
+		"UPGRADE_DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed."
+	},
+	"theDuelist:BarrelDragon": {
+		"NAME": "手槍之龍",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Apply 3 randomized debuffs to !M! random enemies.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Apply 2 randomized debuffs to !M! random enemies."
+	},
+	"theDuelist:BetaMagnet": {
+		"NAME": "B. 磁铁战士",
+		"DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Gain Beta Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Gain Beta Magnet for the rest of combat. NL Exhaust."
+	},
+	"theDuelist:BlueEyes": {
+		"NAME": "青眼白龍",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage."
+	},
+	"theDuelist:BlueEyesToon": {
+		"NAME": "青眼卡通龍",
+		"DESCRIPTION": "Toon  NL Dragon NL  Tribute 2. NL Deal !D! damage (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon  NL Dragon NL  Tribute 2. NL Deal !D! damage (through Block)."
+	},
+	"theDuelist:BlueEyesUltimate": {
+		"NAME": "青眼究極龍",
+		"DESCRIPTION": "Dragon NL Tribute 3.  NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage."
+	},
+	"theDuelist:BusterBlader": {
+		"NAME": "破龍劍士",
+		"DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Add !M! damage for each Dragon tributed.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Add !M! damage for each Dragon tributed."
+	},
+	"theDuelist:CannonSoldier": {
+		"NAME": "加農炮兵",
+		"DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !M! damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, Tribute 1 and deal !M! damage to a random enemy."
+	},
+	"theDuelist:CardDestruction": {
+		"NAME": "手牌抹殺",
+		"DESCRIPTION": "Discard your hand. Add !M! random card to your hand for each card discarded. Each card costs 0 and exhausts. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Discard your hand. Add !M! random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts. Exhaust."
+	},
+	"theDuelist:CastleDarkIllusions": {
+		"NAME": "黑暗之城堡",
+		"DESCRIPTION": "Summon 1. NL Whenever you shuffle your deck, Summon 5. If this monster is Tributed for Pumpking, add 3 cards to Pumpking's effect.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Whenever you shuffle your deck, Increment 5. If this monster is Tributed for Pumpking, add 3 cards to Pumpking's effect."
+	},
+	"theDuelist:BigCastleWalls": {
+		"NAME": "Big Castle Wall",
+		"DESCRIPTION": "Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block."
+	},
+	"theDuelist:CastleWalls": {
+		"NAME": "城壁",
+		"DESCRIPTION": "Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block."
+	},
+	"theDuelist:CatapultTurtle": {
+		"NAME": "彈射龜",
+		"DESCRIPTION": "Tribute 2. NL At the start of, Tribute ALL Summons and deal !D! damage for each to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL At the start of, Tribute ALL Summons and deal !D! damage for each to ALL enemies."
+	},
+	"theDuelist:CelticGuardian": {
+		"NAME": "精靈劍士",
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:ChangeHeart": {
+		"NAME": "心變",
+		"DESCRIPTION": "Set your maximum Summons to a random value (3-10).",
+		"UPGRADE_DESCRIPTION": "Set your maximum Summons to a random value (5-15)."
+	},
+	"theDuelist:DarkHole": {
+		"NAME": "黑洞",
+		"DESCRIPTION": "Steal ALL Block from an enemy.",
+		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy."
+	},
+	"theDuelist:DarklordMarie": {
+		"NAME": "墮天使 瑪麗",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage. Overflow !M! - gain 3 HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage. Overflow !M! - gain 4 HP."
+	},
+	"theDuelist:DarkMagician": {
+		"NAME": "黒魔道士",
+		"DESCRIPTION": "Spellcaster NL Tribute 2. NL Deal !D! damage. Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute 1. NL Deal !D! damage. Channel a Summoner."
+	},
+	"theDuelist:DarkMagicianGirl": {
+		"NAME": "黑魔導女孩",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block. NL Channel a Buffer.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block. NL Channel a Buffer."
+	},
+	"theDuelist:DianKeto": {
+		"NAME": "治療之神 蒂安·凱特",
+		"DESCRIPTION": "Heal !M! HP. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Heal !M! HP. Exhaust."
+	},
+	"theDuelist:ExodiaHead": {
+		"NAME": "被封印的黑暗大法師",
+		"DESCRIPTION": "Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia."
+	},
+	"theDuelist:ExodiaLA": {
+		"NAME": "被封印者的左腕",
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust."
+	},
+	"theDuelist:ExodiaLL": {
+		"NAME": "被封印者的左足",
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust."
+	},
+	"theDuelist:ExodiaRA": {
+		"NAME": "被封印者的右腕",
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL Exhaust."
+	},
+	"theDuelist:ExodiaRL": {
+		"NAME": "被封印者的右足",
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL Exhaust."
+	},
+	"theDuelist:FeatherPho": {
+		"NAME": "鳳凰神的羽毛",
+		"DESCRIPTION": "Discard !M! card from your hand. Place !M! card from your discard pile into your hand.",
+		"UPGRADE_DESCRIPTION": "Discard !M! cards from your hand. Place !M! cards from your discard pile into your hand."
+	},
+	"theDuelist:FiendMegacyber": {
+		"NAME": "網絡千兆魔",
+		"DESCRIPTION": "Tribute 2. NL Gain 1 Strength. NL Channel a random Orb. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain 1 Strength. NL Channel a random Orb."
+	},
+	"theDuelist:Fissure": {
+		"NAME": "地裂",
+		"DESCRIPTION": "Deal !D! damage to ALL enemies for each of your Summons.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each of your Summons."
+	},
+	"theDuelist:FlameSwordsman": {
+		"NAME": "炎之劍士",
+		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. Channel a Hellfire.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Deal !D! damage. Channel a Hellfire."
+	},
+	"theDuelist:GaiaFierce": {
+		"NAME": "暗黑騎士 蓋亞",
+		"DESCRIPTION": "Tribute 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Deal !D! damage."
+	},
+	"theDuelist:GaiaDragonChamp": {
+		"NAME": "龍騎士 蓋亞",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon 1 of the monsters you used to Tribute (chosen randomly).",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon 1 of the monsters you used to Tribute (chooses most recent Summon)."
+	},
+	"theDuelist:GammaMagnet": {
+		"NAME": "G. 磁铁战士",
+		"DESCRIPTION": "Summon 1. NL Draw 1 card. NL Gain Gamma Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Draw 2 cards. NL Gain Gamma Magnet for the rest of combat. NL Exhaust."
+	},
+	"theDuelist:GateGuardian": {
+		"NAME": "門守護者",
+		"DESCRIPTION": "Tribute 3. NL If you Tribute a Guardian to play this, Channel the matching Orb. NL Evoke ALL orbs. NL Channel a Gate.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL If you Tribute a Guardian to play this, Channel the matching Orb. NL Evoke 2 orbs. NL Channel a Gate."
+	},
+	"theDuelist:GiantSoldier": {
+		"NAME": "岩石巨兵",
+		"DESCRIPTION": "Summon !M!. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. NL Gain !B! Block."
+	},
+	"theDuelist:RandomSoldier": {
+		"NAME": "随机巨人",
+		"DESCRIPTION": "Summon !M!. NL Gain a random amount (2-6) of Block.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. NL Gain a random amount (3-7) of Block."
+	},
+	"theDuelist:GiantTrunade": {
+		"NAME": "颶風",
+		"DESCRIPTION": "Evoke ALL Orbs. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Evoke ALL Orbs."
+	},
+	"theDuelist:GracefulCharity": {
+		"NAME": "天使之施舍",
+		"DESCRIPTION": "Draw 3 cards. NL Discard 2 cards.",
+		"UPGRADE_DESCRIPTION": "Draw 3 cards. NL Discard a card."
+	},
+	"theDuelist:HarpieFeather": {
+		"NAME": "神鷹羽毛掃",
+		"DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have.",
+		"UPGRADE_DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have."
+	},
+	"theDuelist:Hinotama": {
+		"NAME": "火球",
+		"DESCRIPTION": "Deal !D! damage a random amount (2-3) of times.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage a random amount (2-4) of times."
+	},
+	"theDuelist:ImperialOrder": {
+		"NAME": "王宮的敕命",
+		"DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap card in your hand to 0.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap cards in your hand to 0."
+	},
+	"theDuelist:InjectionFairy": {
+		"NAME": "打針天使莉莉",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !M! HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !M! HP. NL Deal !D! damage."
+	},
+	"theDuelist:InsectQueen": {
+		"NAME": "昆蟲女王",
+		"DESCRIPTION": "Insect NL Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 2.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1."
+	},
+	"theDuelist:JamBreeding": {
+		"NAME": "史萊姆增殖爐",
+		"DESCRIPTION": "At the start of turn, Summon !M! and deal 3 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, Summon !M! and deal 3 damage to a random enemy."
+	},
+	"theDuelist:JudgeMan": {
+		"NAME": "裁判官",
+		"DESCRIPTION": "Tribute 1. NL Summon 1. NL Deal !D! damage. NL Resummon: Summon 1 and deal 15 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Summon 1. NL Deal !D! damage. NL Resummon: Summon 1 and deal 15 damage to a random enemy."
+	},
+	"theDuelist:Kuriboh": {
+		"NAME": "栗子球",
+		"DESCRIPTION": "Increment !M!. NL Summon 1 Kuriboh Token. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 1 Kuriboh Token. NL Exhaust."
+	},
+	"theDuelist:BigLabyrinthWall": {
+		"NAME": "大迷宫墙",
+		"DESCRIPTION": "Tribute 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Gain !B! Block."
+	},
+	"theDuelist:LabyrinthWall": {
+		"NAME": "迷宮壁",
+		"DESCRIPTION": "Tribute 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !B! Block."
+	},
+	"theDuelist:SmallLabyrinthWall": {
+		"NAME": "小迷宫墙",
+		"DESCRIPTION": "Tribute 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !B! Block."
+	},
+	"theDuelist:LegendaryFisherman": {
+		"NAME": "傳說的漁夫",
+		"DESCRIPTION": "Tribute 2. NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 cards. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 cards."
+	},
+	"theDuelist:MagicCylinder": {
+		"NAME": "魔法筒",
+		"DESCRIPTION": "Gain 5 Reflection.",
+		"UPGRADE_DESCRIPTION": "Gain 5 Reflection and a random buff."
+	},
+	"theDuelist:Mausoleum": {
+		"NAME": "死皇帝之陵墓",
+		"DESCRIPTION": "The first card you play with Tribute each turn does not Tribute. Take 1 damage each turn.",
+		"UPGRADE_DESCRIPTION": "The first card you play with Tribute each turn does not Tribute. Take 1 damage each turn."
+	},
+	"theDuelist:MillenniumShield": {
+		"NAME": "千年盾",
+		"DESCRIPTION": "Tribute 2. NL Gain 4 Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Gain 4 Dexterity. Exhaust."
+	},
+	"theDuelist:MirrorForce": {
+		"NAME": "神聖防護罩",
+		"DESCRIPTION": "The next time you are attacked, deal that much damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "The next time you are attacked, deal twice that much damage to ALL enemies."
+	},
+	"theDuelist:MonsterReborn": {
+		"NAME": "死者蘇生",
+		"DESCRIPTION": "Choose !M! monsters to Resummon from your discard pile. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Choose !M! monsters to upgrade and Resummon from your discard pile. NL Exhaust."
+	},
+	"theDuelist:TributeDoomed": {
+		"NAME": "給死者的奠儀",
+		"DESCRIPTION": "Tribute 1. NL Choose !M! monster to Resummon from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Choose !M! monster to upgrade and Resummon from your discard pile."
+	},
+	"theDuelist:ShallowGrave": {
+		"NAME": "過淺的墓穴",
+		"DESCRIPTION": "Randomly Resummon !M! monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Randomly Resummon !M! monsters from your discard pile."
+	},
+	"theDuelist:NutrientZ": {
+		"NAME": "生命增强者Z",
+		"DESCRIPTION": "If you have less than 40 HP, gain !M! HP and 3 random debuffs. Exhaust.",
+		"UPGRADE_DESCRIPTION": "If you have less than 45 HP, gain !M! HP and 3 random debuffs. Exhaust."
+	},
+	"theDuelist:ObeliskTormentor": {
+		"NAME": "歐貝利斯克巨神兵",
+		"DESCRIPTION": "Tribute 4. NL Each time you Tribute, deal !D! damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. NL Each time you Tribute, deal !D! damage to ALL enemies."
+	},
+	"theDuelist:OjamaBlack": {
+		"NAME": "Ojama 黑色",
+		"DESCRIPTION": "Summon 1. NL Apply (1-2) random debuffs to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Apply (2-4) random debuffs to a random enemy."
+	},
+	"theDuelist:Ojamagic": {
+		"NAME": "Oja魔法",
+		"DESCRIPTION": "Shuffle a random amount (1-4) of Red Medicine cards into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Shuffle a random amount (1-4) of upgraded Red Medicine cards into your draw pile."
+	},
+	"theDuelist:OjamaGreen": {
+		"NAME": "Ojama 绿色",
+		"DESCRIPTION": "Summon 1. NL Apply (1-2) random buffs. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Apply (2-4) random buffs. Exhaust."
+	},
+	"theDuelist:OjamaKing": {
+		"NAME": "Ojama 王",
+		"DESCRIPTION": "Tribute 2. NL Ojamania. NL",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Ojamania. NL"
+	},
+	"theDuelist:OjamaKnight": {
+		"NAME": "Ojama 骑士",
+		"DESCRIPTION": "Tribute 1. NL Apply (1-2) random buffs. Apply (1-2) random debuffs to an enemy.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Apply (2-4) random buffs. Apply (2-4) random debuffs to an enemy."
+	},
+	"theDuelist:OjamaYellow": {
+		"NAME": "Ojama 黄色",
+		"DESCRIPTION": "Summon 1. NL Add !M! randomized monster cards to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Add !M! randomized monster cards to your hand. Exhaust."
+	},
+	"theDuelist:Ookazi": {
+		"NAME": "晝夜的大火事",
+		"DESCRIPTION": "Deal a random amount (5-9) of damage.",
+		"UPGRADE_DESCRIPTION": "Deal a random amount (7-12) of damage."
+	},
+	"theDuelist:Parasite": {
+		"NAME": "寄生蟲 帕拉賽德",
+		"DESCRIPTION": "Insect NL Summon 1. NL At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL At the end of turn, have a chance to debuff random enemies. Chances are raised with more Summon stacks."
+	},
+	"theDuelist:PotAvarice": {
+		"NAME": "貪欲之壺",
+		"DESCRIPTION": "Tribute ALL Summons. NL Increment (the amount tributed). NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute ALL Summons. NL Increment (the amount tributed + 3). NL Exhaust."
+	},
+	"theDuelist:PotDichotomy": {
+		"NAME": "锅的二分法",
+		"DESCRIPTION": "Summon X + 1.",
+		"UPGRADE_DESCRIPTION": "Summon X + 2."
+	},
+	"theDuelist:PotDuality": {
+		"NAME": "強欲而謙虛之壺",
+		"DESCRIPTION": "Draw !M! cards. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Gain !B! Block."
+	},
+	"theDuelist:PotGenerosity": {
+		"NAME": "慷慨的锅",
+		"DESCRIPTION": "For !M! turns, each time you Summon, gain [R].",
+		"UPGRADE_DESCRIPTION": "For !M! turns, each time you Summon, gain [R]."
+	},
+	"theDuelist:PotGreed": {
+		"NAME": "強欲之壺",
+		"DESCRIPTION": "Draw 2 cards. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Draw 2 cards. NL Exhaust."
+	},
+	"theDuelist:Pumpking": {
+		"NAME": "南瓜王",
+		"DESCRIPTION": "Tribute 1. NL Resummon an upgraded copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Resummon 2 upgraded copies of a random monster from your discard pile."
+	},
+	"theDuelist:Pumprincess": {
+		"NAME": "南瓜公主",
+		"DESCRIPTION": "Summon 1. NL Resummon a copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Resummon an upgraded copy of a random monster from your discard pile."
+	},
+	"theDuelist:Gigaplant": {
+		"NAME": "巨型植物",
+		"DESCRIPTION": "Plant NL Tribute 3. NL Apply 10 Poison. NL Resummon an upgraded copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Plant NL Tribute 2. NL Apply 10 Poison. NL Resummon upgraded copies of !M! random monsters from your discard pile."
+	},
+	"theDuelist:RadiantMirrorForce": {
+		"NAME": "辐射镜力",
+		"DESCRIPTION": "Whenever you lose HP, Increment !M!.",
+		"UPGRADE_DESCRIPTION": "Whenever you lose HP,  Increment !M!."
+	},
+	"theDuelist:RainMercy": {
+		"NAME": "恩惠之雨",
+		"DESCRIPTION": "You and ALL enemies heal a random amount (5-15) of HP.",
+		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (10-20) of HP."
+	},
+	"theDuelist:RedEyes": {
+		"NAME": "真紅眼黑龍",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage."
+	},
+	"theDuelist:RedEyesZombie": {
+		"NAME": "真红眼的不死龙",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength. Deal 10 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength. Deal 10 damage to a random enemy."
+	},
+	"theDuelist:RedMedicine": {
+		"NAME": "紅色藥劑",
+		"DESCRIPTION": "Gain a random buff.",
+		"UPGRADE_DESCRIPTION": "Gain 2 random buffs."
+	},
+	"theDuelist:Relinquished": {
+		"NAME": "納祭之魔",
+		"DESCRIPTION": "Spellcaster NL Tribute 1. NL Channel 1 Dark.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Channel 1 Dark."
+	},
+	"theDuelist:SangaEarth": {
+		"NAME": "風魔神-修迦",
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Earth. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 Earth. NL Deal !D! damage."
+	},
+	"theDuelist:SangaThunder": {
+		"NAME": "雷魔神-桑迦",
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage."
+	},
+	"theDuelist:SangaWater": {
+		"NAME": "水魔神-斯迦",
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage."
+	},
+	"theDuelist:Scapegoat": {
+		"NAME": "替罪羊",
+		"DESCRIPTION": "Increment !M!. NL Summon 2 Kuriboh Tokens. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon 2 Kuriboh Tokens. NL Exhaust."
+	},
+	"theDuelist:SevenColoredFish": {
+		"NAME": "彩虹魚",
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:SliferSky": {
+		"NAME": "奧西里斯天空龍",
+		"DESCRIPTION": "Dragon NL Tribute 5. NL Whenever you Summon, Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 5. NL Whenever you Summon, Channel a random Orb."
+	},
+	"theDuelist:ShardGreed": {
+		"NAME": "贪婪的碎片",
+		"DESCRIPTION": "At the start of your turn, draw 1 additional card. Every 3 turns, draw 1 extra card.",
+		"UPGRADE_DESCRIPTION": "At the start of your turn, draw 1 additional card. Every 3 turns, draw 1 extra card."
+	},
+	"theDuelist:SummonedSkull": {
+		"NAME": "惡魔召喚",
+		"DESCRIPTION": "Tribute !M!. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute !M!. NL Deal !D! damage."
+	},
+	"theDuelist:SwordsBurning": {
+		"NAME": "燃烧的剑",
+		"DESCRIPTION": "Each time you evoke an Orb, Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Each time you evoke an Orb, Channel a random Orb."
+	},
+	"theDuelist:SwordsConcealing": {
+		"NAME": "隐藏剑",
+		"DESCRIPTION": "Each time you play a card, gain !M! Block. Affected by Dexterity.",
+		"UPGRADE_DESCRIPTION": "Each time you play a card, gain !M! Block. Affected by Dexterity."
+	},
+	"theDuelist:SwordsRevealing": {
+		"NAME": "露出剑",
+		"DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust."
+	},
+	"theDuelist:TimeWizard": {
+		"NAME": "時間魔術師",
+		"DESCRIPTION": "Summon 1. NL At the start of turn, a random positive action is triggered.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL At the start of turn, a random positive action is triggered."
+	},
+	"theDuelist:ToonWorld": {
+		"NAME": "卡通世界",
+		"DESCRIPTION": "Allows you to play Toon cards. Take a decreasing amount of damage for each Toon played.",
+		"UPGRADE_DESCRIPTION": "Innate NL Allows you to play Toon cards. Take a decreasing amount of damage for each Toon played."
+	},
+	"theDuelist:TrapHole": {
+		"NAME": "陷坑",
+		"DESCRIPTION": "Whenever you Summon, have a 30% chance to immediately Tribute and then Resummon the monster.",
+		"UPGRADE_DESCRIPTION": "Whenever you Summon, have a 40% chance to immediately Tribute and then Resummon the monster."
+	},
+	"theDuelist:ValkMagnet": {
+		"NAME": "瓦尔基里恩是战士",
+		"DESCRIPTION": "If you have all three Magnets: Summon 3 and deal !D! damage. Remove ALL magnets.",
+		"UPGRADE_DESCRIPTION": "If you have all three Magnets: Summon 3 and deal !D! damage."
+	},
+	"theDuelist:DarkMirrorForce": {
+		"NAME": "暗镜力",
+		"DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "The next time you lose HP, gain a random debuff equal to the damage and take 0 damage. Exhaust."
+	},
+	"theDuelist:RedEyesToon": {
+		"NAME": "红眼睛卡通龙",
+		"DESCRIPTION": "Toon NL Dragon NL Tribute 1. NL Deal !D! damage (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 1. NL Deal !D! damage (through Block)."
+	},
+	"theDuelist:StormingMirrorForce": {
+		"NAME": "风暴镜子力",
+		"DESCRIPTION": "Each time an enemy attacks, Summon 1.",
+		"UPGRADE_DESCRIPTION": "Each time an enemy attacks, Summon 1."
+	},
+	"theDuelist:SuperheavyBenkei": {
+		"NAME": "超重的武士大本基",
+		"DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! dexterity. NL Exhaust."
+	},
+	"theDuelist:SuperheavyScales": {
+		"NAME": "超重武士秤",
+		"DESCRIPTION": "Summon 1. Gain !B! Block. If you Tribute this monster for another Superheavy monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain !B! Block. If you Tribute this monster for another Superheavy monster, gain 1 Dexterity."
+	},
+	"theDuelist:SuperheavySwordsman": {
+		"NAME": "超重的武士剑客",
+		"DESCRIPTION": "Summon 1. NL Gain 1 dexterity.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Gain 1 dexterity."
+	},
+	"theDuelist:SuperheavyWaraji": {
+		"NAME": "超重的武士 Waraji",
+		"DESCRIPTION": "Tribute 2. NL Gain !M! dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !M! dexterity. NL Gain !B! Block. NL Exhaust."
+	},
+	"theDuelist:ToonBarrelDragon": {
+		"NAME": "卡通桶龙",
+		"DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (25-40) to each enemy (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribute 3. NL Deal a random amount of damage (30-45) to each enemy (through Block)."
+	},
+	"theDuelist:ToonBriefcase": {
+		"NAME": "卡通公文包",
+		"DESCRIPTION": "Whenever you play a Toon card, add it back to your hand at the start of next turn.",
+		"UPGRADE_DESCRIPTION": "Whenever you play a Toon card, add it back to your hand at the start of next turn."
+	},
+	"theDuelist:ToonDarkMagician": {
+		"NAME": "卡通黑魔术师",
+		"DESCRIPTION": "Toon NL Spellcaster NL  Tribute 2. NL Deal !D! damage (through Block). Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL NL Tribute 2. NL Deal !D! damage (through Block). Channel a Summoner."
+	},
+	"theDuelist:ToonDarkMagicianGirl": {
+		"NAME": "卡通黑魔法师的女孩",
+		"DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Gain !B! Block. NL Channel a Crystal.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL Summon 2. NL Gain !B! Block. NL Channel a Crystal."
+	},
+	"theDuelist:ToonGeminiElf": {
+		"NAME": "卡通双子座精灵",
+		"DESCRIPTION": "Toon NL Spellcaster NL Summon !M!.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL Summon !M!."
+	},
+	"theDuelist:ToonMermaid": {
+		"NAME": "卡通美人鱼",
+		"DESCRIPTION": "Toon NL Summon 1. NL Deal !D! damage (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Summon 1. NL Deal !D! damage (through Block)."
+	},
+	"theDuelist:ToonSummonedSkull": {
+		"NAME": "卡通召唤头骨",
+		"DESCRIPTION": "Toon NL Tribute 1. NL Deal !D! damage (through Block). NL Gain 2 Strength.",
+		"UPGRADE_DESCRIPTION": "Toon NL Tribute 1. NL Deal !D! damage (through Block). NL Gain 3 Strength."
+	},
+	"theDuelist:ScrapFactory": {
+		"NAME": "废料厂",
+		"DESCRIPTION": "Tribute 1. NL Gain [R] [R].",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Gain [R] [R] [R]."
+	},
+	"theDuelist:GeminiElf": {
+		"NAME": "双子座精灵",
+		"DESCRIPTION": "Spellcaster NL Summon !M!. NL Resummon: Gain 15 HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !M!. NL Resummon: Gain 15 HP."
+	},
+	"theDuelist:BigFire": {
+		"NAME": "火焰地獄",
+		"DESCRIPTION": "You and ALL enemies take a random amount (0-25) of damage.",
+		"UPGRADE_DESCRIPTION": "You and ALL enemies take a random amount (0-30) of damage."
+	},
+	"theDuelist:ToonMask": {
+		"NAME": "香椿面膜",
+		"DESCRIPTION": "Toon NL Deal a random amount of damage (10-40) to each enemy.",
+		"UPGRADE_DESCRIPTION": "Toon NL Deal a random amount of damage (15-50) to each enemy."
+	},
+	"theDuelist:ToonMagic": {
+		"NAME": "香椿魔法",
+		"DESCRIPTION": "Set the cost of ALL Toon cards in your hand to 0 for this turn.",
+		"UPGRADE_DESCRIPTION": "Set the cost of ALL Toon cards in your hand to 0 for this turn."
+	},
+	"theDuelist:ToonKingdom": {
+		"NAME": "卡通王国",
+		"DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon card into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Gain the effect of Toon World. Each time you play a Toon card, shuffle a random Toon card into your draw pile."
+	},
+	"theDuelist:ToonRollback": {
+		"NAME": "卡通回滚",
+		"DESCRIPTION": "ALL Toons played are copied into your hand this turn.",
+		"UPGRADE_DESCRIPTION": "ALL Toons played are copied into your hand this turn."
+	},
+	"theDuelist:SuperheavyOgre": {
+		"NAME": "超级食人魔",
+		"DESCRIPTION": "Summon 2. NL Gain !M! Dexterity. NL If you Tribute this monster for another Superheavy monster, gain 1 Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon 2. NL Deal !D! damage. NL Gain !M! Dexterity. NL If you Tribute this monster for another Superheavy monster, gain 1 Dexterity. NL Exhaust."
+	},
+	"theDuelist:SuperheavyMagnet": {
+		"NAME": "超重磁铁",
+		"DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL Gain 2 random Magnets. NL If you Tribute a Magnet Warrior monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL Gain 2 random Magnets. NL If you Tribute a Magnet Warrior monster, gain 1 Dexterity."
+	},
+	"theDuelist:SuperheavyGeneral": {
+		"NAME": "超级将军",
+		"DESCRIPTION": "Tribute 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL  Exhaust."
+	},
+	"theDuelist:SuperheavyFlutist": {
+		"NAME": "超重的长笛演奏家",
+		"DESCRIPTION": "Summon 1. Gain !B! Block. If you Tribute this monster for another Superheavy monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Gain !B! Block. If you Tribute this monster for another Superheavy monster, gain 1 Dexterity."
+	},
+	"theDuelist:SuperheavyDaihachi": {
+		"NAME": "超重daihachi",
+		"DESCRIPTION": "Tribute 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust."
+	},
+	"theDuelist:SuperheavyBlueBrawler": {
+		"NAME": "超重蓝色争吵者",
+		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust."
+	},
+	"theDuelist:SpiritHarp": {
+		"NAME": "豎琴精靈",
+		"DESCRIPTION": "Spellcaster NL Summon 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 2. NL Gain !B! Block."
+	},
+	"theDuelist:SnowDragon": {
+		"NAME": "雪龍",
+		"DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage. NL Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage. NL Channel a Frost."
+	},
+	"theDuelist:SnowdustDragon": {
+		"NAME": "雪塵龍",
+		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. NL Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. NL Channel a Frost."
+	},
+	"theDuelist:Raigeki": {
+		"NAME": "雷擊",
+		"DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block).",
+		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block)."
+	},
+	"theDuelist:PreventRat": {
+		"NAME": "防止鼠",
+		"DESCRIPTION": "Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:Ojamuscle": {
+		"NAME": "Oja-肌肉",
+		"DESCRIPTION": "Shuffle a random amount (1-3) of Ojama Yellow cards into your draw pile.",
+		"UPGRADE_DESCRIPTION": "Shuffle a random amount (1-3) of upgraded Ojama Yellow cards into your draw pile."
+	},
+	"theDuelist:MysticalElf": {
+		"NAME": "聖精灵",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:IslandTurtle": {
+		"NAME": "島龜",
+		"DESCRIPTION": "Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:GravityAxe": {
+		"NAME": "重力斧",
+		"DESCRIPTION": "Gain !M! Strength. NL You cannot gain or lose Strength for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength. NL You cannot gain or lose Strength for the rest of combat."
+	},
+	"theDuelist:FortressWarrior": {
+		"NAME": "堡垒战士",
+		"DESCRIPTION": "Tribute 2. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Deal !D! damage. NL Gain !B! Block."
+	},
+	"theDuelist:MetalDragon": {
+		"NAME": "金屬龍",
+		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. NL Gain !B! Block."
+	},
+	"theDuelist:CaveDragon": {
+		"NAME": "洞穴的潛龍",
+		"DESCRIPTION": "Dragon NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1 NL Gain !B! Block."
+	},
+	"theDuelist:BlizzardDragon": {
+		"NAME": "暴雪龙",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. NL Channel a Frost."
+	},
+	"theDuelist:BabyDragon": {
+		"NAME": "幼龍",
+		"DESCRIPTION": "Dragon NL Summon 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 2. NL Gain !B! Block."
+	},
+	"theDuelist:DarkFactory": {
+		"NAME": "大规模生产的黑暗工厂",
+		"DESCRIPTION": "Tribute 2. NL Gain [R] [R] [R].",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain [R] [R] [R] [R]."
+	},
+	"theDuelist:CurseDragon": {
+		"NAME": "詛咒之龍",
+		"DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage NL If you Tribute a Dragon, gain 5 HP.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Dragon, gain 5 HP."
+	},
+	"theDuelist:CyberDragon": {
+		"NAME": "電子龍",
+		"DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage (through Block). NL If you Tribute a Dragon, gain 20 Gold. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage (through Block). NL If you Tribute a Dragon, gain 20 Gold. Exhaust."
+	},
+	"theDuelist:DragonMaster": {
+		"NAME": "究極龍騎士",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Create 2 random Dragons and Resummon them on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Create 2 random upgraded Dragons and Resummon them on the target enemy."
+	},
+	"theDuelist:FiendSkull": {
+		"NAME": "死亡魔龍",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage."
+	},
+	"theDuelist:FiveHeaded": {
+		"NAME": "五帝龙",
+		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 5. NL Deal !D! damage."
+	},
+	"theDuelist:FluteSummoning": {
+		"NAME": "喚龍笛",
+		"DESCRIPTION": "Add 2 randomized Dragons to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add 3 randomized, upgraded Dragons to your hand. Exhaust."
+	},
+	"theDuelist:Gandora": {
+		"NAME": "破壞龍 鋼多拉",
+		"DESCRIPTION": "Dragon NL Tribute 5. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your hand. Exhaust."
+	},
+	"theDuelist:LordD": {
+		"NAME": "龍之支配者",
+		"DESCRIPTION": "Tribute 2. NL Channel a DragonOrb.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Channel an upgraded DragonOrb."
+	},
+	"theDuelist:HaneHane": {
+		"NAME": "哈尼哈尼",
+		"DESCRIPTION": "Summon !M!. NL Gain !B! Block. NL If this monster is tributed, Summon 1 and gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon !M!. NL Gain !B! Block. NL If this monster is tributed, Summon 1 and gain !B! Block."
+	},
+	"theDuelist:LesserDragon": {
+		"NAME": "下級龍",
+		"DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:ThunderDragon": {
+		"NAME": "雷龍",
+		"DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel a Lightning.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1. NL Deal !D! damage. NL If you Tribute this for a Dragon, Channel a Lightning."
+	},
+	"theDuelist:BlastJuggler": {
+		"NAME": "炸燀先生",
+		"DESCRIPTION": "Summon 1. Deal !D! damage. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies.",
+		"UPGRADE_DESCRIPTION": "Summon 1. Deal !D! damage. NL Summon 1 Exploding Token. NL If you Tribute this monster, apply 3 random debuffs to random enemies."
+	},
+	"theDuelist:LegendaryExodia": {
+		"NAME": "传说中的Exodia化身",
+		"DESCRIPTION": "Tribute 3. NL If you Tribute any piece of Exodia to play this, deal !D! damage. Add 10 damage for each piece of Exodia you Tribute.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL If you Tribute any piece of Exodia to play this, deal !D! damage. Add 10 damage for each piece of Exodia you Tribute."
+	},
+	"theDuelist:SuperancientDinobeast": {
+		"NAME": "超级恐龙",
+		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, add a random card to your hand.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, add 2 random cards to your hand."
+	},
+	"theDuelist:ArmoredZombie": {
+		"NAME": "鎧武者殭屍",
+		"DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Resummon: Heal 10 HP. Gain 15 Block.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Gain !B! Block. NL Resummon: Heal 10 HP. Gain 15 Block."
+	},
+	"theDuelist:MoltenZombie": {
+		"NAME": "灼熱殭屍",
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Resummon: Deal 20 damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Resummon: Deal 20 damage to ALL enemies."
+	},
+	"theDuelist:TokenVacuum": {
+		"NAME": "令牌真空",
+		"DESCRIPTION": "Tribute ALL of your tokens. Summon a random monster and deal !D! damage to a random enemy for each token Tributed.",
+		"UPGRADE_DESCRIPTION": "Tribute ALL of your tokens. Summon a random monster and deal !D! damage to a random enemy for each token Tributed."
+	},
+	"theDuelist:Mountain": {
+		"NAME": "山",
+		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
+		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
+	},
+	"theDuelist:Yami": {
+		"NAME": "雅美",
+		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
+		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
+	},
+	"theDuelist:VioletCrystal": {
+		"NAME": "紫水晶",
+		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison.",
+		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison."
+	},
+	"theDuelist:MachineKing": {
+		"NAME": "機械王",
+		"DESCRIPTION": "Tribute 2. NL Channel a Glitch.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Channel a Glitch."
+	},
+	"theDuelist:BookSecret": {
+		"NAME": "秘術之書",
+		"DESCRIPTION": "Add !M! randomized Spellcasters to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Spellcasters to your hand. Exhaust."
+	},
+	"theDuelist:SuperSolarNutrient": {
+		"NAME": "超级太阳能养分",
+		"DESCRIPTION": "Add !M! randomized Insects or Plants to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Insects or Plants to your hand. Exhaust."
+	},
+	"theDuelist:ShadowToon": {
+		"NAME": "影子香椿",
+		"DESCRIPTION": "Add !M! randomized Toon cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Toon cards to your hand."
+	},
+	"theDuelist:HeavyStorm": {
+		"NAME": "大嵐",
+		"DESCRIPTION": "Remove ALL powers from you and ALL enemies. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Remove ALL powers from you and ALL enemies. Exhaust."
+	},
+	"theDuelist:StrayLambs": {
+		"NAME": "流浪羔羊",
+		"DESCRIPTION": "Increment 2. Summon !M! Kuriboh Token.",
+		"UPGRADE_DESCRIPTION": "Increment 2. Summon !M! Kuriboh Tokens."
+	},
+	"theDuelist:KingYami": {
+		"NAME": "暗魔界的霸王",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:Lajinn": {
+		"NAME": "燈之魔精",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:BlacklandFireDragon": {
+		"NAME": "黑暗龍王",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel a Fire.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel a Fire."
+	},
+	"theDuelist:WhiteNightDragon": {
+		"NAME": "藍冰之白夜龍",
+		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. Channel an Air.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air."
+	},
+	"theDuelist:WhiteHornDragon": {
+		"NAME": "白角龙",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel an Air."
+	},
+	"theDuelist:FogKing": {
+		"NAME": "雾王",
+		"DESCRIPTION": "Spellcaster NL Tribute 3. NL Deal damage equal to the combined damage of all Tributes.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute 3. NL Deal damage equal to the combined damage of all Tributes + 9 extra damage."
+	},
+	"theDuelist:RevivalJam": {
+		"NAME": "再生史萊姆",
+		"DESCRIPTION": "Summon 1. NL When you Tribute this monster, Summon !M! Jam Tokens.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL When you Tribute this monster, Summon !M! Jam Tokens."
+	},
+	"theDuelist:StimPack": {
+		"NAME": "興奮劑",
+		"DESCRIPTION": "Summon !M! Exploding Tokens.",
+		"UPGRADE_DESCRIPTION": "Summon !M! Exploding Tokens. Add 2 copies of this card to your draw pile."
+	},
+	"theDuelist:BottomlessTrapHole": {
+		"NAME": "奈落深穴",
+		"DESCRIPTION": "Discard every monster in your draw pile. Deal !D! damage for each monster discarded. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Discard every monster in your draw pile. Deal !D! damage for each monster discarded. NL Exhaust."
+	},
+	"theDuelist:SwordDeepSeated": {
+		"NAME": "執念之劍",
+		"DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copies of this card to your draw pile, plus !M! more copies for each Sword of Deep-Seated you have played this combat.",
+		"UPGRADE_DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copy of this card to your draw pile, plus !M! more copy for each Sword of Deep-Seated you have played this combat. NL Exhaust."
+	},
+	"theDuelist:MonsterEgg": {
+		"NAME": "怪物蛋",
+		"DESCRIPTION": "Summon 1. NL Create a random monster and Resummon it on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Create a random upgraded monster and Resummon it on the target enemy."
+	},
+	"theDuelist:SteamTrainKing": {
+		"NAME": "超重武士蒸汽火车之王",
+		"DESCRIPTION": "Tribute 3. NL Exhaust every monster in your draw pile. NL Deal damage equal to the combined total damage of all monsters exhausted. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Exhaust every monster in your draw pile. NL Deal damage equal to the combined total damage of all monsters exhausted. NL Exhaust."
+	},
+	"theDuelist:MachineFactory": {
+		"NAME": "機械改造工場",
+		"DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Evoke all your Orbs. Channel a Glitch for each Orb evoked. NL Exhaust."
+	},
+	"theDuelist:PetitMoth": {
+		"NAME": "幼蟲寶寶",
+		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Exhaust."
+	},
+	"theDuelist:PetitRef": {
+		"NAME": "幼蟲寶寶",
+		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:CocoonEvolution": {
+		"NAME": "進化之繭",
+		"DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+	},
+	"theDuelist:CocoonRef": {
+		"NAME": "進化之繭",
+		"DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Gain !B! Block. NL If you Tribute Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+	},
+	"theDuelist:GreatMoth": {
+		"NAME": "巨蛾",
+		"DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
+	},
+	"theDuelist:GreatRef": {
+		"NAME": "巨蛾",
+		"DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Insect NL Purge. Tribute 3. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
+	},
+	"theDuelist:CheerfulCoffin": {
+		"NAME": "開朗的殯葬師",
+		"DESCRIPTION": "Discard !M! cards.",
+		"UPGRADE_DESCRIPTION": "Discard !M! cards."
+	},
+	"theDuelist:TheCreator": {
+		"NAME": "創世神",
+		"DESCRIPTION": "Tribute 5. NL Exhaust every card in your draw pile and discard pile. NL Put a 1 cost, Ethereal copy of EVERY Duelist Card in your draw pile.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. NL Exhaust every card in your draw pile and discard pile. NL Put a 1 cost, Ethereal copy of EVERY Duelist Card in your draw pile."
+	},
+	"theDuelist:Polymerization": {
+		"NAME": "融合",
+		"DESCRIPTION": "Resummon !M! copies of random monsters from your hand on an enemy.",
+		"UPGRADE_DESCRIPTION": "Resummon !M! copies of random monsters from your hand on an enemy."
+	},
+	"theDuelist:MiniPolymerization": {
+		"NAME": "小融合",
+		"DESCRIPTION": "Resummon a copy of a random monster from your hand on an enemy.",
+		"UPGRADE_DESCRIPTION": "Resummon a copy of a random monster from your hand on an enemy."
+	},
+	"theDuelist:Predaponics": {
+		"NAME": "Predaponics",
+		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff.",
+		"UPGRADE_DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff."
+	},
+	"theDuelist:BasicInsect": {
+		"NAME": "昆蟲人",
+		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Apply !M! Poison."
+	},
+	"theDuelist:PredaplantChimerafflesia": {
+		"NAME": "P. Chimerafflesia",
+		"DESCRIPTION": "Predaplant NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand."
+	},
+	"theDuelist:PredaplantChlamydosundew": {
+		"NAME": "P. Chlamydosundew",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch a Plant or Insect from your draw pile.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block. NL Fetch 2 Plants or Insects from your draw pile."
+	},
+	"theDuelist:PredaplantDrosophyllum": {
+		"NAME": "P. 露叶毛毡苔科",
+		"DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, Resummon a copy of a random Plant monster from your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Tribute 1. NL Deal !D! damage. NL If you Tribute a Predaplant, Resummon a copy of a random Plant monster from your hand."
+	},
+	"theDuelist:PredaplantFlytrap": {
+		"NAME": "P. 捕蝇草",
+		"DESCRIPTION": "Predaplant NL Summon 2 Predaplant Tokens. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 2 Predaplant Tokens. NL Apply !M! Poison."
+	},
+	"theDuelist:PredaplantPterapenthes": {
+		"NAME": "P. Pterapenthes",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:PredaplantSarraceniant": {
+		"NAME": "P. Sarraceniant",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Whenever you are attacked, apply !M! Poison to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Whenever you are attacked, apply !M! Poison to ALL enemies."
+	},
+	"theDuelist:PredaplantSpinodionaea": {
+		"NAME": "P. Spinodionaea",
+		"DESCRIPTION": "Predaplant NL Summon 1. NL Deal !D! damage. NL If you Tribute this monster for an Insect or Plant, add a random Predaplant card to your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1. NL Deal !D! damage. NL If you Tribute this monster for an Insect or Plant, add a random Predaplant card to your hand."
+	},
+	"theDuelist:EmpressMantis": {
+		"NAME": "女帝螳螂",
+		"DESCRIPTION": "Insect NL Tribute 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute 1. NL Deal !D! damage."
+	},
+	"theDuelist:Grasschopper": {
+		"NAME": "割草机",
+		"DESCRIPTION": "Insect NL Tribute 2. NL Deal !D! damage to all enemies for each Insect or Plant you Tribute to play this.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute 3. NL Deal !D! damage to all enemies for each Insect or Plant you Tribute to play this."
+	},
+	"theDuelist:ManEaterBug": {
+		"NAME": "男人吃臭虫",
+		"DESCRIPTION": "Insect NL Summon 1. NL Deal !D! damage. NL If you Tribute this for an Insect or Plant, deal !M! damage to all enemies.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Deal !D! damage. NL If you Tribute this for an Insect or Plant, deal !M! damage to all enemies."
+	},
+	"theDuelist:Predapruning": {
+		"NAME": "Predapruning",
+		"DESCRIPTION": "Choose !M! Plant monster to Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand.",
+		"UPGRADE_DESCRIPTION": "Choose !M! Plant monsters to Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand."
+	},
+	"theDuelist:BSkullDragon": {
+		"NAME": "暗黑魔龍",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL If you Tribute a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand."
+	},
+	"theDuelist:DarkfireDragon": {
+		"NAME": "黑暗火焰龍",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Shadow.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Shadow."
+	},
+	"theDuelist:TrihornedDragon": {
+		"NAME": "三角魔龍",
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a random Orb for each Dragon you Tribute to play this.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a random Orb for each Dragon you Tribute to play this."
+	},
+	"theDuelist:Wiretap": {
+		"NAME": "窃听",
+		"DESCRIPTION": "Copy a random card in your hand.",
+		"UPGRADE_DESCRIPTION": "Copy two random cards in your hand."
+	},
+	"theDuelist:Jinzo": {
+		"NAME": "机神",
+		"DESCRIPTION": "Tribute 1. NL Traps cost 0.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Traps cost 0."
+	},
+	"theDuelist:OceanDragonLord": {
+		"NAME": "海洋领主",
+		"DESCRIPTION": "Dragon NL Tribute 5. NL Deal !D! damage. NL Channel a Splash.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Splash."
+	},
+	"theDuelist:LeviaDragon": {
+		"NAME": "Levia-龙",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Channel a Splash.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 1. NL Channel a Splash."
+	},
+	"theDuelist:DragonCaptureJar": {
+		"NAME": "龙捕获罐",
+		"DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn.",
+		"UPGRADE_DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn."
+	},
+	"theDuelist:JerryBeansMan": {
+		"NAME": "杰里豆人",
+		"DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:Reinforcements": {
+		"NAME": "增援",
+		"DESCRIPTION": "Gain !M! Strength. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength. Exhaust."
+	},
+	"theDuelist:UltimateOffering": {
+		"NAME": "终极服务",
+		"DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons: lose 3 HP, Increment !M! and then Summon !M!.",
+		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons: lose 3 HP, Increment !M! and then Summon !M!."
+	},
+	"theDuelist:GuardianAngel": {
+		"NAME": "守护天使琼",
+		"DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. NL Heal for however much total damage is done.",
+		"UPGRADE_DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. NL Heal for however much total damage is done."
+	},
+	"theDuelist:Wiseman": {
+		"NAME": "怀斯曼的圣杯",
+		"DESCRIPTION": "Purge. NL Gain 1 Potion slot.",
+		"UPGRADE_DESCRIPTION": "Purge. NL Gain 1 Potion slot."
+	},
+	"theDuelist:BasicArchetype": {
+		"NAME": "决斗卡",
+		"DESCRIPTION": "Add every Duelist card to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Duelist", "Every single card available in the mod, including random-generation only cards."]
+	},
+	"theDuelist:DragonsArchetype": {
+		"NAME": "龙",
+		"DESCRIPTION": "Add Dragon cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Dragons", "All Dragon monsters, Mountain, Flute of Summoning Dragon, Lord of D., Buster Blader, and Dragon Capture Jar. No Toons, no God cards."]
+	},
+	"theDuelist:MagnetArchetype": {
+		"NAME": "磁铁",
+		"DESCRIPTION": "Add Magnet Warrior cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Magnet Warriors", "Alpha Magnet Warrior, Beta Magnet Warrior, Gamma Magnet Warrior, and Valkyrion."]
+	},
+	"theDuelist:NatureArchetype": {
+		"NAME": "性质",
+		"DESCRIPTION": "Add Insect, Plant and Predaplant cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Nature", "All Insect, Plant and Predaplant monsters; Cocoon of Evolution, Super Solar Nutrient, Predaponics, Predapruning, and Violet Crystal."]
+	},
+	"theDuelist:SpellcasterArchetype": {
+		"NAME": "施法者",
+		"DESCRIPTION": "Add Spellcaster cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Spellcasters", "All Spellcaster monsters, Yami, and Book of Secret Arts. No Exodia cards."]
+	},
+	"theDuelist:SpellsArchetype": {
+		"NAME": "法术",
+		"DESCRIPTION": "Add Spell cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Spells", "All Spells, except for Toon spells and specific keyword spells (like Yami, Mountain, Violet Crystal)."]
+	},
+	"theDuelist:SuperheavyArchetype": {
+		"NAME": "超重武士",
+		"DESCRIPTION": "Add Superheavy cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Superheavy", "All Superheavy monsters, plus Steam Train King."]
+	},
+	"theDuelist:ToonsArchetype": {
+		"NAME": "动画片",
+		"DESCRIPTION": "Add Toon cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Toons", "ALL Toon cards."]
+	},
+	"theDuelist:ExodiaArchetype": {
+		"NAME": "Exodia",
+		"DESCRIPTION": "Add Exodia cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Exodia", "5 pieces of Exoida, plus Legendary Exodia Incarnate."]
+	},
+	"theDuelist:GodArchetype": {
+		"NAME": "神",
+		"DESCRIPTION": "Add all God cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["God Cards", "Slifer the Sky Dragon, Obelisk the Tormentor, Winged Dragon of Ra, and the Creator."]
+	},
+	"theDuelist:GuardianArchetype": {
+		"NAME": "监护人",
+		"DESCRIPTION": "Add Guardian cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Guardians", "Sanga of Thunder, Suijin, Kazejin, and Gate Guardian."]
+	},
+	"theDuelist:InsectArchetype": {
+		"NAME": "昆虫",
+		"DESCRIPTION": "Add Insect cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Insects", "All Insect monsters, plus Violet Crystal, Super Solar Nutrient, and Cocoon of Evolution."]
+	},
+	"theDuelist:OjamaArchetype": {
+		"NAME": "Ojama",
+		"DESCRIPTION": "Add Ojama cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Ojama", "All 5 Ojama monsters, plus Ojamagic and Ojamuscle."]
+	},
+	"theDuelist:PlantsArchetype": {
+		"NAME": "厂",
+		"DESCRIPTION": "Add Plant cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Plants", "All Plant monsters, plus Violet Crystal, Super Solar Nutrient, Predapruning, and Predaponics."]
+	},
+	"theDuelist:PotsArchetype": {
+		"NAME": "锅",
+		"DESCRIPTION": "Add Pot cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Pots", "Pot of Avarice, Pot of Duality, Pot of Dichotomy, Pot of Generosity, Pot of Greed."]
+	},
+	"theDuelist:ResummonArchetype": {
+		"NAME": "Resummon",
+		"DESCRIPTION": "Add Resummon cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Resummon", "All monsters with Resummon effects, and all Resummon support cards like Monster Reborn, Tribute to the Doomed, etc."]
+	},
+	"theDuelist:TrapsArchetype": {
+		"NAME": "陷阱",
+		"DESCRIPTION": "Add Trap cards to your card pool.",
+		"EXTENDED_DESCRIPTION": ["Traps", "All Trap cards, except Toon Mask."]
+	},
+	"theDuelist:PredaplantToken": {
+		"NAME": "Predaplant 代币",
+		"DESCRIPTION": "Predaplant",
+		"UPGRADE_DESCRIPTION": "Predaplant"
+	},
+	"theDuelist:KuribohToken": {
+		"NAME": "栗子球代币",
+		"DESCRIPTION": "Gain Intangible when Tributed for any non-Dragon monster.",
+		"UPGRADE_DESCRIPTION": "Gain Intangible when Tributed for any non-Dragon monster."
+	},
+	"theDuelist:ExplosiveToken": {
+		"NAME": "爆炸代币",
+		"DESCRIPTION": "Lose 5 HP when Tributed.",
+		"UPGRADE_DESCRIPTION": "Lose 5 HP when Tributed."
+	},
+	"theDuelist:BadToken": {
+		"NAME": "DEBUG: POWER REMOVER",
+		"DESCRIPTION": "Debug Effect",
+		"UPGRADE_DESCRIPTION": "Debug Effect"
+	},
+	"theDuelist:ShadowToken": {
+		"NAME": "阴影代币",
+		"DESCRIPTION": "When Tributed, increases the Passive and Evoke amounts of all Shadow Orbs by 1.",
+		"UPGRADE_DESCRIPTION": "When Tributed, increases the Passive and Evoke amounts of all Shadow Orbs by 1."
+	},
+	"theDuelist:Token": {
+		"NAME": "代币",
+		"DESCRIPTION": "Gain 1 Block.",
+		"UPGRADE_DESCRIPTION": "Gain 1 Block."
+	},
+	"theDuelist:WingedDragonRa": {
+		"NAME": "太陽神的翼神龍",
+		"DESCRIPTION": "Tribute 4. NL Deal !D! damage X times.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage X times."
+	}
+}

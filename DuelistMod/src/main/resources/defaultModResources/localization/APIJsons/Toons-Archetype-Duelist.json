@@ -1,0 +1,22 @@
+{
+  "theDuelist:Toons": {
+    "NAME": "Toons",
+    "CARD_IDS": [
+		"theDuelist:BlueEyesToon",
+		"theDuelist:ToonWorld",
+		"theDuelist:RedEyesToon",
+		"theDuelist:ToonBarrelDragon",
+		"theDuelist:ToonBriefcase",
+		"theDuelist:ToonDarkMagician",
+		"theDuelist:ToonDarkMagicianGirl",
+		"theDuelist:ToonGeminiElf",
+		"theDuelist:ToonMermaid",
+		"theDuelist:ToonSummonedSkull",
+		"theDuelist:ToonMask",
+		"theDuelist:ToonMagic",
+		"theDuelist:ToonKingdom",
+		"theDuelist:ToonRollback",
+		"theDuelist:ShadowToon"
+    ]
+  }
+}

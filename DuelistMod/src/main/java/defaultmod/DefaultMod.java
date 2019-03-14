@@ -1,12 +1,16 @@
 package defaultmod;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.Map.Entry;
 
 import org.apache.logging.log4j.*;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,17 +19,23 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.PrismaticShard;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-
+import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import basemod.*;
 import basemod.interfaces.*;
+import static basemod.BaseMod.loadCustomStrings;
+
+import defaultmod.archetypeAPI.*;
+import defaultmod.archetypeCards.*;
 import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
-import defaultmod.interfaces.StarterDeck;
+import defaultmod.interfaces.*;
 import defaultmod.patches.*;
 import defaultmod.potions.*;
+import defaultmod.powers.*;
 import defaultmod.relics.*;
 
 
@@ -74,6 +84,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@SpireEnum public static AbstractCard.CardTags INSECT;
 	@SpireEnum public static AbstractCard.CardTags PLANT;
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;	
+	@SpireEnum public static AbstractCard.CardTags ARCHETYPE;
 	@SpireEnum public static AbstractCard.CardTags STANDARD_DECK;
 	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
@@ -135,17 +146,25 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	
 	// Global Fields
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
+	public static HashMap<String, AbstractPower> buffMap = new HashMap<String, AbstractPower>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
+	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
+	public static ArrayList<String> randomBuffStrings = new ArrayList<String>();
 	public static int lastMaxSummons = 5;
+	public static int toonDamage = 7;
 	public static boolean hasRing = false;
 	public static boolean hasKey = false;
 	public static boolean checkTrap = false;
 	public static boolean checkUO = false;
+	public static boolean ultimateOfferingTrig = false;
+	public static boolean isApi = Loader.isModLoaded("archetypeapi");
+	public static boolean isReplay = Loader.isModLoaded("conspire");
+	public static boolean isConspire = Loader.isModLoaded("ReplayTheSpireMod");
 	public static int swordsPlayed = 0;
 	public static int cardsToDraw = 5;
 	public static StarterDeck currentDeck;
 	
-	public static final boolean debug = false;
+	public static final boolean debug = true;
 
 	// =============== INPUT TEXTURE LOCATION =================
 
@@ -544,11 +563,33 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static final String M_KEY_RELIC_OUTLINE = "relics/outline/MillenniumKey_Outline.png";
 	public static final String GIFT_ANUBIS_RELIC = "relics/GiftAnubisRelic.png";
 	public static final String GIFT_ANUBIS_RELIC_OUTLINE = "relics/outline/GiftAnubis_Outline.png";
+	
+	// Archetype Card Images
+	public static final String BASIC_ARCH = "archetypes/Basic.png";
+	public static final String DRAGON_ARCH = "archetypes/Dragon.png";
+	public static final String EXODIA_ARCH = "archetypes/Exodia.png";
+	public static final String GOD_ARCH = "archetypes/God.png";
+	public static final String GUARDIAN_ARCH = "archetypes/Guardian.png";
+	public static final String INSECT_ARCH = "archetypes/Insect.png";
+	public static final String MAGNET_ARCH = "archetypes/Magnet.png";
+	public static final String NATURE_ARCH = "archetypes/Nature.png";
+	public static final String OJAMA_ARCH = "archetypes/Ojama.png";
+	public static final String PLANTS_ARCH = "archetypes/Plant.png";
+	public static final String POTS_ARCH = "archetypes/Pot.png";
+	public static final String RESUMMON_ARCH = "archetypes/Resummon.png";
+	public static final String SPELLCASTER_ARCH = "archetypes/Spellcaster.png";
+	public static final String SPELLS_ARCH = "archetypes/Spell.png";
+	public static final String SUPERHEAVY_ARCH = "archetypes/Superheavy.png";
+	public static final String TOON_ARCH = "archetypes/Toon.png";
+	public static final String TRAP_ARCH = "archetypes/Trap.png";
 
 	// Character assets
-	private static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButton.png";
+	//private static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButton.png";
+	private static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButtonB.png";
 	//private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD.png";
-	private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD_B.png";
+	//private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD_B.png";
+	private static final String THE_DEFAULT_PORTRAIT = "charSelect/DuelistCharacterPortraitBG_HD_C.png";
+	private static final String THE_DEFAULT_PORTRAIT_CHINESE = "charSelect/DuelistCharacterPortraitBG_HD_Chinese.png";
 	public static final String THE_DEFAULT_SHOULDER_1 = "char/defaultCharacter/shoulder.png";
 	public static final String THE_DEFAULT_SHOULDER_2 = "char/defaultCharacter/shoulder2.png";
 	public static final String THE_DEFAULT_CORPSE = "char/defaultCharacter/corpse.png";
@@ -694,21 +735,41 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receiveEditCharacters() {
 		logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
+		String loc = localize();
+		if (loc.equals("zhs"))
+		{
+			// Yugi Moto
+			BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT_CHINESE), TheDuelistEnum.THE_DUELIST);
+			
+			// Seto Kaiba
+			//BaseMod.addCharacter(new TheDuelist("the Rich Duelist", TheDuelistEnum.THE_RICH_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_RICH_DUELIST);
 
-		// Yugi Moto
-		BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
-		
-		// Seto Kaiba
-		//BaseMod.addCharacter(new TheDuelist("the Rich Duelist", TheDuelistEnum.THE_RICH_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_RICH_DUELIST);
+			//if (!toonBtnBool)
+			//{
+				// Maximillion Pegasus
+				//BaseMod.addCharacter(new TheDuelist("the Villian", TheDuelistEnum.THE_VILLIAN),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_VILLIAN);
+			//}
+			
+			
+			receiveEditPotions();
+		}
+		else
+		{
+			// Yugi Moto
+			BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
+			
+			// Seto Kaiba
+			//BaseMod.addCharacter(new TheDuelist("the Rich Duelist", TheDuelistEnum.THE_RICH_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_RICH_DUELIST);
 
-		//if (!toonBtnBool)
-		//{
-			// Maximillion Pegasus
-			//BaseMod.addCharacter(new TheDuelist("the Villian", TheDuelistEnum.THE_VILLIAN),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_VILLIAN);
-		//}
-		
-		
-		receiveEditPotions();
+			//if (!toonBtnBool)
+			//{
+				// Maximillion Pegasus
+				//BaseMod.addCharacter(new TheDuelist("the Villian", TheDuelistEnum.THE_VILLIAN),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_VILLIAN);
+			//}
+			
+			
+			receiveEditPotions();
+		}
 		logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Done editing characters");
 	}
 
@@ -719,15 +780,79 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 
 
 	@Override
-	public void receivePostInitialize() {
-
+	public void receivePostInitialize() 
+	{	
+		if (isApi)
+		{
+			logger.info("theDuelist:DefaultMod:receivePostInitialize() ---> adding archetypes for API mod");
+			String loc = localize();
+			
+			BasicArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Basic-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new BasicArchetype().makeCopy());
+			
+			DragonArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Dragon-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new DragonsArchetype().makeCopy());
+			
+			ExodiaArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Exodia-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new ExodiaArchetype().makeCopy());
+			
+			GodArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/God-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new GodArchetype().makeCopy());
+			
+			GuardianArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Guardian-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new GuardianArchetype().makeCopy());
+			
+			InsectsArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Insects-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new InsectArchetype().makeCopy());
+			
+			MagnetArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Magnets-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new MagnetArchetype().makeCopy());
+			
+			NatureArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Nature-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new NatureArchetype().makeCopy());
+			
+			OjamaArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsonsOjama-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new OjamaArchetype().makeCopy());
+			
+			PlantsArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Plants-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new PlantsArchetype().makeCopy());
+			
+			PotsArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Pots-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new PotsArchetype().makeCopy());
+			
+			ResummonArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Resummon-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new ResummonArchetype().makeCopy());
+			
+			SpellcasterArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Spellcaster-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new SpellcasterArchetype().makeCopy());
+			
+			SpellsArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Spells-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new SpellsArchetype().makeCopy());
+			
+			SuperheavyArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Superheavy-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new SuperheavyArchetype().makeCopy());
+			
+			ToonsArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Toons-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new ToonsArchetype().makeCopy());
+			
+			TrapsArchetypeConstructor.archetypeCardNames.add("defaultModResources/localization/APIJsons/Traps-Archetype-Duelist.json");
+			TheDuelist.theDuelistArchetypeSelectionCards.addToTop(new TrapsArchetype().makeCopy());
+		}
+		// END Archetype API Check
+		
+		// MOD OPTIONS PANEL
 		logger.info("theDuelist:DefaultMod:receivePostInitialize() ---> Loading badge image and mod options");
+		String loc = localize();
+
 		Texture badgeTexture = new Texture(makePath(BADGE_IMAGE));
 		ModPanel settingsPanel = new ModPanel();
 		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
-
+		UIStrings UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
+		
 		// Check Box A
-		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton("Remove all Toon cards (REQUIRES RESTART)",350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		
+		String toonString = UI_String.TEXT[0];
+		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton(toonString,350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			toonBtnBool = button.enabled;
 			try 
@@ -742,7 +867,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		// END Check Box A
 		
 		// Check Box B
-		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton("Remove all Exodia cards (REQUIRES RESTART)",350.0f, 650.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		String exodiaString = UI_String.TEXT[1];
+		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton(exodiaString, 350.0f, 650.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			exodiaBtnBool = button.enabled;
 			try 
@@ -757,7 +883,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		// END Check Box B
 		
 		// Check Box C
-		ModLabeledToggleButton crossoverBtn = new ModLabeledToggleButton("Allow 14 extra crossover mod cards (REQUIRES RESTART)",350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, crossoverBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		String crossString = UI_String.TEXT[2];
+		ModLabeledToggleButton crossoverBtn = new ModLabeledToggleButton(crossString, 350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, crossoverBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			crossoverBtnBool = button.enabled;
 			try 
@@ -772,7 +899,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		// END Check Box C
 		
 		// Starting Deck Selector
-		ModLabel setSelectLabelTxtB = new ModLabel("Starting Deck:",350.0f, 550.0f,settingsPanel,(me)->{});
+		String deckString = UI_String.TEXT[3];
+		ModLabel setSelectLabelTxtB = new ModLabel(deckString, 350.0f, 550.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectLabelTxtB);
 		ModLabel setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),670.0f, 550.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectColorTxtB);
@@ -807,7 +935,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		// Starting Deck Selector
 		
 		// Set Size Selector
-		ModLabel setSelectLabelTxt = new ModLabel("Card Set size:",350.0f, 500.0f,settingsPanel,(me)->{});
+		String setString = UI_String.TEXT[4];
+		ModLabel setSelectLabelTxt = new ModLabel(setString,350.0f, 500.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectLabelTxt);
 		ModLabel setSelectColorTxt = new ModLabel(cardSets.get(setIndex),670.0f, 500.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectColorTxt);
@@ -840,22 +969,28 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		settingsPanel.addUIElement(setSelectRightBtn);
 		// END Set Size Selector
 		
+		// Archetype API Message
+		String apiString = UI_String.TEXT[5];
+		ModLabel apiLabelTxt = new ModLabel(apiString, 350.0f, 400.0f,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(apiLabelTxt);
+		// END Archetype API Message
+		
 		// Card Count Label
-		ModLabel cardLabelTxt = new ModLabel("Active Duelist Cards: " + cardCount,350.0f, 335.0f,settingsPanel,(me)->{});
+		String cardsString = UI_String.TEXT[6];
+		ModLabel cardLabelTxt = new ModLabel("Active Duelist Cards: " + cardCount, 350.0f, 335.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(cardLabelTxt);
 		// END Card Count Label
 		
 		// Info Labels
-		ModLabel extraLabelTxt = new ModLabel("Changing the card set requires a restart to take effect.",350.0f, 285.0f,settingsPanel,(me)->{});
+		String restartString = UI_String.TEXT[7];
+		ModLabel extraLabelTxt = new ModLabel(restartString, 350.0f, 285.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(extraLabelTxt);
-		ModLabel extraLabelTxtB = new ModLabel("Start a fresh run to change your starting deck.",350.0f, 235.0f,settingsPanel,(me)->{});
+		
+		String freshString = UI_String.TEXT[8];
+		ModLabel extraLabelTxtB = new ModLabel(freshString, 350.0f, 235.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(extraLabelTxtB);
 		// END Info Labels
-		
-		
-		
-		
-
+	
 		logger.info("theDuelist:DefaultMod:receivePostInitialize() ---> Done loading badge Image and mod options");
 
 	}
@@ -894,9 +1029,9 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.addRelicToCustomPool(new MillenniumKey(), AbstractCardEnum.DEFAULT_GRAY);
 		BaseMod.addRelicToCustomPool(new MillenniumRod(), AbstractCardEnum.DEFAULT_GRAY);
 		BaseMod.addRelicToCustomPool(new MillenniumCoin(), AbstractCardEnum.DEFAULT_GRAY);
-		BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DEFAULT_GRAY);
+		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DEFAULT_GRAY); }
 		BaseMod.addRelicToCustomPool(new GiftAnubis(), AbstractCardEnum.DEFAULT_GRAY);
-
+		BaseMod.removeRelic(new PrismaticShard());
 		// This adds a relic to the Shared pool. Every character can find this relic.
 		//BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
 
@@ -952,7 +1087,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		myCards.add(new GracefulCharity());
 		myCards.add(new GravityAxe());
 		myCards.add(new HaneHane());
-		myCards.add(new Hinotoma());
+		myCards.add(new Hinotama());
 		myCards.add(new ImperialOrder());
 		myCards.add(new InjectionFairy());
 		myCards.add(new InsectQueen());
@@ -1170,15 +1305,47 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		initStartDeckArrays();
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> begin checking config options and removing cards");
-		// If they are allowing the extra mod cards, check if the mods are loaded and remove the cards if not
-		if (crossoverBtnBool)
+		
+		// If Grem's Archetype API is loaded, don't mess anything up just skip this section
+		// and jump to adding all the cards to the library, unlocking them, and letting Grem work his magic
+		if (!isApi)
 		{
-			// Remove Replay-dependent cards
-			if (!Loader.isModLoaded("ReplayTheSpireMod"))
+			// If they are allowing the extra mod cards, check if the mods are loaded and remove the cards if not
+			if (crossoverBtnBool)
+			{
+				// Remove Replay-dependent cards
+				if (!Loader.isModLoaded("ReplayTheSpireMod"))
+				{
+					for (int i = 0; i < myCards.size(); i++)
+					{
+						if (myCards.get(i).hasTag(DefaultMod.REPLAYSPIRE))
+						{
+							myCards.remove(i);
+							i = 0;
+						}
+					}
+				}
+		
+				// Remove Conspire-dependent cards
+				if (!Loader.isModLoaded("conspire"))
+				{
+					for (int i = 0; i < myCards.size(); i++)
+					{
+						if (myCards.get(i).hasTag(DefaultMod.CONSPIRE))
+						{
+							myCards.remove(i);
+							i = 0;
+						}
+					}
+				}
+			}
+			
+			// If they are not allowing the extra mod cards just remove them
+			else if (!crossoverBtnBool)
 			{
 				for (int i = 0; i < myCards.size(); i++)
 				{
-					if (myCards.get(i).hasTag(DefaultMod.REPLAYSPIRE))
+					if (myCards.get(i).hasTag(DefaultMod.CONSPIRE) || myCards.get(i).hasTag(DefaultMod.REPLAYSPIRE))
 					{
 						myCards.remove(i);
 						i = 0;
@@ -1186,115 +1353,89 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				}
 			}
 	
-			// Remove Conspire-dependent cards
-			if (!Loader.isModLoaded("conspire"))
+			// If debugging, don't remove toons, exodia or any set/random-only cards
+			if (!debug)
 			{
-				for (int i = 0; i < myCards.size(); i++)
+				if (exodiaBtnBool)
 				{
-					if (myCards.get(i).hasTag(DefaultMod.CONSPIRE))
+					for (int i = 0; i < myCards.size(); i++)
 					{
-						myCards.remove(i);
-						i = 0;
+						if (myCards.get(i).hasTag(DefaultMod.EXODIA))
+						{
+							myCards.remove(i);
+							i = 0;
+						}
 					}
 				}
-			}
-		}
+				
+				if (toonBtnBool)
+				{
+					for (int i = 0; i < myCards.size(); i++)
+					{
+						if ((myCards.get(i).hasTag(DefaultMod.TOON)))
+						{
+							myCards.remove(i);
+							i = 0;
+						}
+					}
+				}
 		
-		// If they are not allowing the extra mod cards just remove them
-		else if (!crossoverBtnBool)
-		{
-			for (int i = 0; i < myCards.size(); i++)
-			{
-				if (myCards.get(i).hasTag(DefaultMod.CONSPIRE) || myCards.get(i).hasTag(DefaultMod.REPLAYSPIRE))
+				switch (setIndex)
 				{
-					myCards.remove(i);
-					i = 0;
+					// Full - [ removes 35 cards ] 187 cards
+					case 1:				
+						for (int i = 0; i < myCards.size(); i++)
+						{
+							if ((myCards.get(i).hasTag(DefaultMod.ALL)))
+							{
+								myCards.remove(i);
+								i = 0;
+							}
+						}
+						break;
+					// Reduced - [ removes 20 cards ] 132 cards
+					case 2:				
+						for (int i = 0; i < myCards.size(); i++)
+						{
+							if ((myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
+							{
+								myCards.remove(i);
+								i = 0;
+							}
+						}
+						break;
+					// Limited - [ removes 48 cards ] 104 cards
+					case 3:				
+						for (int i = 0; i < myCards.size(); i++)
+						{
+							if ((myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
+							{
+								myCards.remove(i);
+								i = 0;
+							}
+						}				
+						break;
+					// Core - [ removes 77 cards ] 75 cards
+					case 4:
+						for (int i = 0; i < myCards.size(); i++)
+						{
+							if ((myCards.get(i).hasTag(DefaultMod.LIMITED) || myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
+							{
+								myCards.remove(i);
+								i = 0;
+							}
+						}
+						break;
+					default:
+						break;
 				}
+				// END Switch removal
 			}
+			// END Debug Check
 		}
-
-		if (exodiaBtnBool)
-		{
-			for (int i = 0; i < myCards.size(); i++)
-			{
-				if (myCards.get(i).hasTag(DefaultMod.EXODIA))
-				{
-					myCards.remove(i);
-					i = 0;
-				}
-			}
-		}
-		
-		if (toonBtnBool)
-		{
-			for (int i = 0; i < myCards.size(); i++)
-			{
-				if ((myCards.get(i).hasTag(DefaultMod.TOON)))
-				{
-					myCards.remove(i);
-					i = 0;
-				}
-			}
-		}
-
-		switch (setIndex)
-		{
-			// Full - [ removes 35 cards ] 187 cards
-			case 1:				
-				for (int i = 0; i < myCards.size(); i++)
-				{
-					if ((myCards.get(i).hasTag(DefaultMod.ALL)))
-					{
-						myCards.remove(i);
-						i = 0;
-					}
-				}
-				break;
-			// Reduced - [ removes 20 cards ] 132 cards
-			case 2:				
-				for (int i = 0; i < myCards.size(); i++)
-				{
-					if ((myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
-					{
-						myCards.remove(i);
-						i = 0;
-					}
-				}
-				break;
-			// Limited - [ removes 48 cards ] 104 cards
-			case 3:				
-				for (int i = 0; i < myCards.size(); i++)
-				{
-					if ((myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
-					{
-						myCards.remove(i);
-						i = 0;
-					}
-				}				
-				break;
-			// Core - [ removes 77 cards ] 75 cards
-			case 4:
-				for (int i = 0; i < myCards.size(); i++)
-				{
-					if ((myCards.get(i).hasTag(DefaultMod.LIMITED) || myCards.get(i).hasTag(DefaultMod.REDUCED) || myCards.get(i).hasTag(DefaultMod.FULL) || myCards.get(i).hasTag(DefaultMod.ALL)))
-					{
-						myCards.remove(i);
-						i = 0;
-					}
-				}
-				break;
-			default:
-				break;
-		}
+		// END API Check
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> all needed cards have been removed from myCards array");
-		
-		/*
-		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> setting up starting deck");
-		initStartDeckArrays();
-		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
-		*/
-		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> adding cards to game, filling summonMap, unlocking all cards, counting active cards...");
 		int tempCardCount = 0;
 		for (DuelistCard c : myCards) 
@@ -1325,6 +1466,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		summonMap.put("Buffer Token", new Token());
 		summonMap.put("Blood Token", new Token());
 		summonMap.put("Hane Token", new Token());
+		summonMap.put("Resummoned Token", new Token());
 		summonMap.put("Predaplant Token", new PredaplantToken());
 		summonMap.put("Kuriboh Token", new KuribohToken());
 		summonMap.put("Exploding Token", new ExplosiveToken());
@@ -1333,6 +1475,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		cardCount = tempCardCount;
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done initializing cards");
+		//logger.info("theDuelist:DefaultMod:receiveEditCards() ---> init random buff pool");
+		//resetBuffPool();
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> saving config options for card set");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1357,27 +1501,27 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public void receiveEditStrings() {
 		logger.info("theDuelist:DefaultMod:receiveEditStrings() ---> Beginning to edit strings");
 
-		// CardStrings
-		BaseMod.loadCustomStringsFile(CardStrings.class,
-				"defaultModResources/localization/DuelistMod-Card-Strings.json");
+		String loc = localize();
+		
+		// Card Strings
+		BaseMod.loadCustomStringsFile(CardStrings.class,"defaultModResources/localization/" + loc + "/DuelistMod-Card-Strings.json");
 
-		// PowerStrings
-		BaseMod.loadCustomStringsFile(PowerStrings.class,
-				"defaultModResources/localization/DuelistMod-Power-Strings.json");
+		// UI Strings
+		BaseMod.loadCustomStrings(UIStrings.class, "defaultModResources/localization/" + loc + "/DuelistMod-UI-Strings.json");
+		
+		// Power Strings
+		BaseMod.loadCustomStringsFile(PowerStrings.class,"defaultModResources/localization/" + loc + "/DuelistMod-Power-Strings.json");
 
-		// RelicStrings
-		BaseMod.loadCustomStringsFile(RelicStrings.class,
-				"defaultModResources/localization/DuelistMod-Relic-Strings.json");
+		// Relic Strings
+		BaseMod.loadCustomStringsFile(RelicStrings.class,"defaultModResources/localization/" + loc + "/DuelistMod-Relic-Strings.json");
 
-		// PotionStrings
-		BaseMod.loadCustomStringsFile(PotionStrings.class,
-				"defaultModResources/localization/DuelistMod-Potion-Strings.json");
+		// Potion Strings
+		BaseMod.loadCustomStringsFile(PotionStrings.class,"defaultModResources/localization/" + loc + "/DuelistMod-Potion-Strings.json");
 
-		// OrbStrings
-		BaseMod.loadCustomStringsFile(OrbStrings.class,
-				"defaultModResources/localization/DuelistMod-Orb-Strings.json");
+		// Orb Strings
+		BaseMod.loadCustomStringsFile(OrbStrings.class,"defaultModResources/localization/" + loc + "/DuelistMod-Orb-Strings.json");
 
-		logger.info("theDuelist:DefaultMod:receiveEditStrings() ---> Done edittting strings");
+		logger.info("theDuelist:DefaultMod:receiveEditStrings() ---> Done editing strings");
 	}
 
 	// ================ /LOAD THE TEXT/ ===================
@@ -1387,33 +1531,20 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receiveEditKeywords() 
 	{
-		BaseMod.addKeyword(new String[] {"summon", "Summon", "Summons", "summons"}, "Counts monsters currently summoned. Maximum of #b5 #ySummons.");
-		BaseMod.addKeyword(new String[] {"resummon", "Resummon", "Resummons", "resummons"}, "Replays the card, ignoring #yTribute costs. Some monsters trigger extra special effects when #yResummoned.");
-		BaseMod.addKeyword(new String[] {"tribute", "Tribute", "Tributes", "tributes"}, "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute monster.");
-		BaseMod.addKeyword(new String[] {"increment", "Increment" }, "Increase your maximum #ySummons by the number given.");
-		BaseMod.addKeyword(new String[] {"exodia", "Exodia"}, "A powerful monster found within your Grandpa's deck.");
-		BaseMod.addKeyword(new String[] {"gate", "Gate"}, "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus.");
-		BaseMod.addKeyword(new String[] {"buffer", "Buffer"}, "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ydebuffs.");
-		BaseMod.addKeyword(new String[] {"summoner", "Summoner"}, "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons.");
-		BaseMod.addKeyword(new String[] {"reducer", "Reducer"}, "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0.");
-		BaseMod.addKeyword(new String[] {"monsterOrb", "Monsterorb", "MonsterOrb"}, "#yOrb: At the start of turn, adds random monster cards to your hand. #yEvoke also adds monsters to your hand.");
-		BaseMod.addKeyword(new String[] {"dragonorb", "Dragonorb", "DragonOrb"}, "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0.");
-		BaseMod.addKeyword(new String[] {"overflow", "Overflow"}, "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses.");
-		BaseMod.addKeyword(new String[] {"toon", "Toon", "Toons", "toons"}, "Can only be played if #yToon #yWorld is active. If you Tribute Summon a Toon monster using another Toon as the tribute, deal #b5 damage to all enemies.");
-		BaseMod.addKeyword(new String[] {"magnet", "Magnet", "Magnets", "magnets"}, "Tokens associated with the #yMagnet #yWarrior monsters. #yMagnets have no inherent effect.");
-		BaseMod.addKeyword(new String[] {"ojamania", "Ojamania" }, "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy.");
-		BaseMod.addKeyword(new String[] {"dragon", "Dragon", "Dragons", "dragons"}, "When you #yTribute a #yDragon for another #yDragon, Gain #b1 #yStrength.");
-		BaseMod.addKeyword(new String[] {"spellcaster", "Spellcaster", "Spellcasters", "spellcasters"}, "When you #yTribute a #yMystical monster for a #yDragon, lose #b2 #yHP.");
-		BaseMod.addKeyword(new String[] {"insect", "Insect", "Insects", "insects"}, "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
-		BaseMod.addKeyword(new String[] {"plant", "Plant", "Plants", "plants"}, "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
-		BaseMod.addKeyword(new String[] {"predaplant", "Predaplant", "Predaplants", "predaplants"}, "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies.");
-		BaseMod.addKeyword(new String[] {"earth", "Earth"}, "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand.");
-		BaseMod.addKeyword(new String[] {"air", "Air"}, "#yOrb: At the start of turn, #yChannel a random #yOrb. #yEvoke increases your #yOrb slots by #b1.");
-		BaseMod.addKeyword(new String[] {"fire", "Fire"}, "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn.");
-		BaseMod.addKeyword(new String[] {"glitch", "Glitch"}, "#yOrb: At the start of turn, triggers a random positive action. #yEvoke also triggers random actions.");
-		BaseMod.addKeyword(new String[] {"shadow", "Shadow"}, "#yOrb: At the start of turn, #ySummons a [#FF5252]Shadow [#FF5252]Token. #yEvoke: #yResummon monsters from your discard pile on random enemies.");
-		BaseMod.addKeyword(new String[] {"splash", "Splash"}, "#yOrb: At the start of turn, add random, 0-cost, Ethereal Duelist cards to your hand. #yEvoke: Has a chance to draw #b5 cards.");
-		
+		String loc = localize();
+		Gson gson = new Gson();
+        String json = Gdx.files.internal("defaultModResources/localization/" + loc + "/DuelistMod-Keyword-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
+
+        if (keywords != null) {
+            for (Keyword keyword : keywords) {
+            	if (keyword != null)
+            	{
+	            	logger.info("Adding keyword: " + keyword.PROPER_NAME + " | " + keyword.NAMES[0]);
+	                BaseMod.addKeyword(keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            	}
+            }
+        }
 	}
 
 	// ================ /LOAD THE KEYWORDS/ ===================    
@@ -1451,6 +1582,178 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		if (c.hasTag(DefaultMod.TRAP)) { return true; }
 		else { return false; }
 	}
+	
+	public static boolean isArchetype(AbstractCard c)
+	{
+		if (c.hasTag(DefaultMod.ARCHETYPE)) { return true; }
+		else { return false; }
+	}
+	
+	private static AbstractPower createRandomBuff()
+	{
+		initBuffMap(AbstractDungeon.player);
+		Set<Entry<String, AbstractPower>> set = buffMap.entrySet();
+		ArrayList<AbstractPower> localBuffs = new ArrayList<AbstractPower>();
+		for (Entry<String, AbstractPower> e : set)
+		{
+			localBuffs.add(e.getValue());
+		}
+		int roll = AbstractDungeon.cardRandomRng.random(localBuffs.size() - 1);
+		return localBuffs.get(roll);
+	}
+	
+	private static void resetBuffPool()
+	{
+		int noBuffs = AbstractDungeon.cardRandomRng.random(3, 6);
+		randomBuffs = new ArrayList<AbstractPower>();
+		randomBuffStrings = new ArrayList<String>();
+		for (int i = 0; i < noBuffs; i++)
+		{
+			AbstractPower randomBuff = createRandomBuff();
+			while (randomBuffStrings.contains(randomBuff.name))
+			{
+				randomBuff = createRandomBuff();
+			}
+			randomBuffs.add(randomBuff);
+			randomBuffStrings.add(randomBuff.name);
+		}
+	}
+	
+	public static void resetRandomBuffs()
+	{
+		initBuffMap(AbstractDungeon.player);
+		for (int i = 0; i < randomBuffs.size(); i++)
+		{
+			randomBuffs.set(i, buffMap.get(randomBuffs.get(i).name));
+		}
+	}
+	
+	public static void resetRandomBuffs(int turnNum)
+	{
+		initBuffMap(AbstractDungeon.player, turnNum);
+		for (int i = 0; i < randomBuffs.size(); i++)
+		{
+			randomBuffs.set(i, buffMap.get(randomBuffs.get(i).name));
+		}
+	}
+	
+	
+	private static void initBuffMap(AbstractPlayer p)
+	{
+		buffMap = new HashMap<String, AbstractPower>();
+		int turnNum = AbstractDungeon.cardRandomRng.random(1, 4);
+		logger.info("random buff map turn num roll: " + turnNum);
+		AbstractPower str = new StrengthPower(p, turnNum);
+		AbstractPower dex = new DexterityPower(p, 1);
+		AbstractPower art = new ArtifactPower(p, turnNum);
+		AbstractPower plate = new PlatedArmorPower(p, turnNum);
+		AbstractPower intan = new IntangiblePlayerPower(p, 1);
+		AbstractPower regen = new RegenPower(p, turnNum);
+		AbstractPower energy = new EnergizedPower(p, 1);
+		AbstractPower thorns = new ThornsPower(p, turnNum);
+		AbstractPower barricade = new BarricadePower(p);
+		AbstractPower blur = new BlurPower(p, turnNum);
+		AbstractPower burst = new BurstPower(p, turnNum);
+		AbstractPower creative = new CreativeAIPower(p, 1); //probably too good
+		AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
+		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
+		AbstractPower equal = new EquilibriumPower(p, 2);
+		AbstractPower noPain = new FeelNoPainPower(p, turnNum);
+		AbstractPower fire = new FireBreathingPower(p, 3);
+		AbstractPower jugger = new JuggernautPower(p, turnNum);
+		AbstractPower metal = new MetallicizePower(p, turnNum);
+		AbstractPower penNib = new PenNibPower(p, 1);
+		AbstractPower sadistic = new SadisticPower(p, turnNum);
+		AbstractPower storm = new StormPower(p, 1);
+		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
+		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
+		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
+		AbstractPower tombPilfer = new HealGoldPower(p, turnNum * 10);
+		AbstractPower retainCards = new RetainCardPower(p, 1);
+		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
+		AbstractPower focus = new FocusPower(p, turnNum);
+		AbstractPower reductionist = new ReducerPower(p, turnNum);
+		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
+		AbstractPower mayhem = new MayhemPower(p, 1);
+		AbstractPower envenom = new EnvenomPower(p, turnNum);
+		AbstractPower amplify = new AmplifyPower(p, 1);
+		AbstractPower angry = new AngryPower(p, 1);
+		AbstractPower anger = new AngerPower(p, 1);
+		AbstractPower buffer = new BufferPower(p, 1);
+		AbstractPower conserve = new ConservePower(p, 1);
+		//AbstractPower corruption = new CorruptionPower(p);
+		AbstractPower curiosity = new CuriosityPower(p, 1);
+		/*AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
+				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
+				orbEvoker, tombPilfer, retainCards, timeWizard,
+				generosity, focus, reductionist, creative, mayhem, envenom,
+				amplify, anger, angry, buffer, conserve, curiosity };*/
+		AbstractPower[] buffs = new AbstractPower[] {tombLoot,
+				orbEvoker, tombPilfer, timeWizard,
+				generosity, focus };
+		for (AbstractPower a : buffs)
+		{
+			buffMap.put(a.name, a);
+		}
+	}
+	
+	private static void initBuffMap(AbstractPlayer p, int turnNum)
+	{
+		buffMap = new HashMap<String, AbstractPower>();
+		logger.info("random buff map turn num roll: " + turnNum);
+		AbstractPower str = new StrengthPower(p, turnNum);
+		AbstractPower dex = new DexterityPower(p, 1);
+		AbstractPower art = new ArtifactPower(p, turnNum);
+		AbstractPower plate = new PlatedArmorPower(p, turnNum);
+		AbstractPower intan = new IntangiblePlayerPower(p, 1);
+		AbstractPower regen = new RegenPower(p, turnNum);
+		AbstractPower energy = new EnergizedPower(p, 1);
+		AbstractPower thorns = new ThornsPower(p, turnNum);
+		AbstractPower barricade = new BarricadePower(p);
+		AbstractPower blur = new BlurPower(p, turnNum);
+		AbstractPower burst = new BurstPower(p, turnNum);
+		AbstractPower creative = new CreativeAIPower(p, 1); //probably too good
+		AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
+		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
+		AbstractPower equal = new EquilibriumPower(p, 2);
+		AbstractPower noPain = new FeelNoPainPower(p, turnNum);
+		AbstractPower fire = new FireBreathingPower(p, 3);
+		AbstractPower jugger = new JuggernautPower(p, turnNum);
+		AbstractPower metal = new MetallicizePower(p, turnNum);
+		AbstractPower penNib = new PenNibPower(p, 1);
+		AbstractPower sadistic = new SadisticPower(p, turnNum);
+		AbstractPower storm = new StormPower(p, 1);
+		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
+		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
+		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
+		AbstractPower tombPilfer = new HealGoldPower(p, turnNum * 10);
+		AbstractPower retainCards = new RetainCardPower(p, 1);
+		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
+		AbstractPower focus = new FocusPower(p, turnNum);
+		AbstractPower reductionist = new ReducerPower(p, turnNum);
+		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
+		AbstractPower mayhem = new MayhemPower(p, 1);
+		AbstractPower envenom = new EnvenomPower(p, turnNum);
+		AbstractPower amplify = new AmplifyPower(p, 1);
+		AbstractPower angry = new AngryPower(p, 1);
+		AbstractPower anger = new AngerPower(p, 1);
+		AbstractPower buffer = new BufferPower(p, 1);
+		AbstractPower conserve = new ConservePower(p, 1);
+		//AbstractPower corruption = new CorruptionPower(p);
+		AbstractPower curiosity = new CuriosityPower(p, 1);
+		/*AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
+				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
+				orbEvoker, tombPilfer, retainCards, timeWizard,
+				generosity, focus, reductionist, creative, mayhem, envenom,
+				amplify, anger, angry, buffer, conserve, curiosity };*/
+		AbstractPower[] buffs = new AbstractPower[] {orbHeal, tombLoot,
+				orbEvoker, tombPilfer, retainCards, timeWizard
+				 };
+		for (AbstractPower a : buffs)
+		{
+			buffMap.put(a.name, a);
+		}
+	}
 
 	public void resetCharSelect()
 	{		
@@ -1467,6 +1770,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		resetBuffPool();
 		lastMaxSummons = 5;
 		swordsPlayed = 0;
 		logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");
@@ -1717,15 +2021,56 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		}
 	}
 	
+	//  Copied from Jedi (who copied from Gatherer)
+    private static String GetLocString(String locCode, String name)
+    {
+        return Gdx.files.internal("resources/defaultModResources/localization/" + locCode + "/" + name + ".json").readString(String.valueOf(StandardCharsets.UTF_8));
+    }
+	
+	private static String localize() 
+	{
+        switch (Settings.language) 
+        {
+            case RUS:
+                return "rus";
+            case ENG:
+                return "eng";
+            case ZHS:
+            	return "zhs";
+            case ZHT:
+            	return "zht";
+            case KOR:
+            	return "kor";
+            default:
+                return "eng";
+        }
+    }
+	
 	private void printTextForTranslation()
 	{
-		System.out.println("theDuelist:DefaultMod:printTextForTranslation() ---> START");
+		logger.info("theDuelist:DefaultMod:printTextForTranslation() ---> START");
+		logger.info("theDuelist:DefaultMod:printTextForTranslation() ---> Card Names");
 		for (DuelistCard c : myCards)
 		{
-			System.out.println(c.originalName + " - " + c.rawDescription + " - " + DuelistCard.UPGRADE_DESCRIPTION);
+			System.out.println(c.originalName);
+			//logger.info(c.originalName);
 		}
 		
-		System.out.println("POWERS");
+		logger.info("theDuelist:DefaultMod:printTextForTranslation() ---> Card IDs");
+		for (DuelistCard c : myCards)
+		{
+			System.out.println(";()" + c.getID() + ",;()");
+			//logger.info(c.originalName);
+		}
+		
+		logger.info("theDuelist:DefaultMod:printTextForTranslation() ---> Card Descriptions");
+		for (DuelistCard c : myCards)
+		{
+			System.out.println(c.rawDescription + " - " + DuelistCard.UPGRADE_DESCRIPTION);
+			//logger.info(c.rawDescription);
+		}
+		
+		logger.info("theDuelist:DefaultMod:printTextForTranslation() ---> Powers");
 		String[] powerList = new String[] {"SummonPower", "DespairPower","JamPower", "ToonWorldPower",
 				"ObeliskPower", "AlphaMagPower", "BetaMagPower", "GammaMagPower", "GreedShardPower",
 				"MirrorPower", "ToonBriefcasePower", "DragonCapturePower", "PotGenerosityPower", "CannonPower",
@@ -1746,12 +2091,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				if (i == 0) { System.out.print(s + " - " + powerDesc[i]);}
 				else { System.out.print(powerDesc[i]); }
 			}
-			System.out.println();
+			logger.info("");
 		}
 		
-		System.out.println("RELICS");
-		String[] relicList = new String[] {"theDuelist:MillenniumPuzzle", "theDuelist:MillenniumEye", "theDuelist:MillenniumRing", "theDuelist:MillenniumKey",
-				"theDuelist:MillenniumRod", "theDuelist:MillenniumCoin", "theDuelist:StoneExxod", "theDuelist:GiftAnubis"};
+		logger.info("theDuelist:DefaultMod:printTextForTranslation() ---> Relics");
+		String[] relicList = new String[] {"MillenniumPuzzle", "MillenniumEye", "MillenniumRing", "MillenniumKey",
+				"MillenniumRod", "MillenniumCoin", "StoneExxod", "GiftAnubis"};
 		for (String s : relicList)
 		{
 			RelicStrings relicString = CardCrawlGame.languagePack.getRelicStrings(DefaultMod.makeID(s));
@@ -1762,12 +2107,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 				if (i == 0) { System.out.print(s + " - " + relicDesc[i]);}
 				else { System.out.print(relicDesc[i]); }
 			}
-			System.out.println(" -- " + flavor);
+			logger.info(" -- " + flavor);
 		}
 		
 		
 		
-		System.out.println("theDuelist:DefaultMod:printTextForTranslation() ---> END");
+		logger.info("theDuelist:DefaultMod:printTextForTranslation() ---> END");
 	}
 	
 	private void printCardSetsForSteam(ArrayList<DuelistCard> cardsToPrint)

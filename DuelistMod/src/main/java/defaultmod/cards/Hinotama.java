@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 
-public class Hinotoma extends DuelistCard
+public class Hinotama extends DuelistCard
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("Hinotoma");
+    public static final String ID = DefaultMod.makeID("Hinotama");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.HINOTOMA);
     public static final String NAME = cardStrings.NAME;
@@ -35,7 +35,7 @@ public class Hinotoma extends DuelistCard
     private static int MAX_TIMES_U = 4;
     // /STAT DECLARATION/
 
-    public Hinotoma() {
+    public Hinotama() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 4;
 		this.originalName = this.name;
@@ -65,7 +65,7 @@ public class Hinotoma extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Hinotoma();
+        return new Hinotama();
     }
 
     // Upgraded stats.

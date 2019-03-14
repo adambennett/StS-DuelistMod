@@ -1,0 +1,20 @@
+{
+  "theDuelist:Plants": {
+    "NAME": "Plants",
+    "CARD_IDS": [
+		"theDuelist:VioletCrystal",
+		"theDuelist:SuperSolarNutrient",
+		"theDuelist:PredaplantChimerafflesia",
+		"theDuelist:PredaplantChlamydosundew",
+		"theDuelist:PredaplantDrosophyllum",
+		"theDuelist:PredaplantFlytrap",
+		"theDuelist:PredaplantPterapenthes",
+		"theDuelist:PredaplantSarraceniant",
+		"theDuelist:PredaplantSpinodionaea",
+		"theDuelist:Predapruning",
+		"theDuelist:JerryBeansMan",
+		"theDuelist:Gigaplant",
+		"theDuelist:Predaponics"
+    ]
+  }
+}

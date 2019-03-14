@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import basemod.abstracts.CustomCard;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.*;
-import defaultmod.cards.*;
+import defaultmod.cards.Token;
 import defaultmod.interfaces.*;
 import defaultmod.powers.*;
 import defaultmod.relics.MillenniumKey;
@@ -436,7 +436,6 @@ public abstract class DuelistCard extends CustomCard
 					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
 					damageSelf(3);
 					incMaxSummons(p, amountToSummon);
-					//powerSummon(p, amountToSummon, "Blood Token", true);
 					uoSummon(p, amountToSummon, new Token("Blood Token"));
 				}
 
@@ -841,17 +840,6 @@ public abstract class DuelistCard extends CustomCard
 			} 
 
 			// Update UI
-			summonsInstance.updateCount(summonsInstance.amount);
-			summonsInstance.updateStringColors();
-			summonsInstance.updateDescription();
-
-			// Check for Yami
-			if (p.hasPower(YamiPower.POWER_ID) && c.hasTag(DefaultMod.SPELLCASTER))
-			{
-				spellSummon(p, 1, c);
-			}
-			
-			// Update UI
 			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> updating summons instance"); }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
@@ -968,6 +956,16 @@ public abstract class DuelistCard extends CustomCard
 					if (empInstance.flag)
 					{
 						SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+						
+						// Check for Tomb Looter
+						if (p.hasPower(EnergyTreasurePower.POWER_ID) && card.type.equals(CardType.ATTACK))
+						{
+							if (getSummons(p) == getMaxSummons(p))
+							{
+								gainGold(p.getPower(EnergyTreasurePower.POWER_ID).amount, p, true);
+							}
+						}
+						
 						if (tributeAll) { tributes = summonsInstance.amount; }
 						if (summonsInstance.amount - tributes < 0) { tributes = summonsInstance.amount; summonsInstance.amount = 0; }
 						else { summonsInstance.amount -= tributes; }
@@ -1024,6 +1022,16 @@ public abstract class DuelistCard extends CustomCard
 				{
 
 					SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+					
+					// Check for Tomb Looter
+					if (p.hasPower(EnergyTreasurePower.POWER_ID) && card.type.equals(CardType.ATTACK))
+					{
+						if (getSummons(p) == getMaxSummons(p))
+						{
+							gainGold(p.getPower(EnergyTreasurePower.POWER_ID).amount, p, true);
+						}
+					}
+					
 					if (tributeAll) { tributes = summonsInstance.amount; }
 					if (summonsInstance.amount - tributes < 0) { tributes = summonsInstance.amount; summonsInstance.amount = 0; }
 					else { summonsInstance.amount -= tributes; }
@@ -1227,8 +1235,10 @@ public abstract class DuelistCard extends CustomCard
 		initializeTitle();
 	}
 
+	// turnNum arg does not work here, random buffs are generated globally now but I don't feel like fixing all the calls to this function
 	public static AbstractPower applyRandomBuff(AbstractCreature p, int turnNum)
 	{
+		/*
 		// Setup powers array for random buff selection
 		AbstractPower str = new StrengthPower(p, turnNum);
 		AbstractPower dex = new DexterityPower(p, 1);
@@ -1275,28 +1285,33 @@ public abstract class DuelistCard extends CustomCard
 				orbEvoker, tombPilfer, retainCards, timeWizard,
 				generosity, focus, reductionist, creative, mayhem, envenom,
 				amplify, anger, angry, buffer, conserve, curiosity };
+		*/
 		// Get randomized buff
-		int randomBuffNum = AbstractDungeon.cardRandomRng.random(buffs.length - 1);
-		AbstractPower randomBuff = buffs[randomBuffNum];
-		for (int i = 0; i < buffs.length; i++)
+		int randomBuffNum = AbstractDungeon.cardRandomRng.random(DefaultMod.randomBuffs.size() - 1);
+		AbstractPower randomBuff = DefaultMod.randomBuffs.get(randomBuffNum);
+		for (int i = 0; i < DefaultMod.randomBuffs.size(); i++)
 		{
-			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> buffs[" + i + "]: " + buffs[i].name); }
+			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> buffs[" + i + "]: " + DefaultMod.randomBuffs.get(i).name + " :: amount: " + DefaultMod.randomBuffs.get(i).amount); }
 		}
-		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> generated random buff: " + randomBuff.name + " :: index was: " + randomBuffNum); }
+		if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:applyRandomBuff() ---> generated random buff: " + randomBuff.name + " :: index was: " + randomBuffNum + " :: turnNum or amount was: " + randomBuff.amount); }
 		ArrayList<AbstractPower> powers = p.powers;
-		boolean found = false;
+		//boolean found = false;
+		applyPower(randomBuff, p);
 		for (AbstractPower a : powers)
 		{
+			if (!a.name.equals("Time Wizard")) { a.updateDescription(); }
+			//if (!a.name.equals("Time Wizard")) { a.updateDescription(); }
+			/*
 			if (a.name.equals(randomBuff.name))
 			{
 				found = true;
-				a.amount += turnNum;
+				a.amount += randomBuff.amount;
 				a.updateDescription();
 			}
+			*/
 		}
-
-		if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
-
+		//if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
+		DefaultMod.resetRandomBuffs();
 		return randomBuff;
 	}
 
@@ -1318,18 +1333,22 @@ public abstract class DuelistCard extends CustomCard
 		AbstractPower randomBuff = buffs[randomBuffNum];
 
 		ArrayList<AbstractPower> powers = p.powers;
-		boolean found = false;
+		//boolean found = false;
+		applyPower(randomBuff, p);
 		for (AbstractPower a : powers)
 		{
+			if (!a.name.equals("Time Wizard")) { a.updateDescription(); }
+			/*
 			if (a.name.equals(randomBuff.name))
 			{
 				found = true;
-				a.amount += turnNum;
+				a.amount += randomBuff.amount;
 				a.updateDescription();
 			}
+			*/
 		}
 
-		if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
+		//if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
 
 		return randomBuff;
 	}

@@ -1,0 +1,26 @@
+{
+  "theDuelist:Resummon": {
+    "NAME": "Resummon",
+    "CARD_IDS": [
+       "theDuelist:GaiaDragonChamp",
+	   "theDuelist:JudgeMan",
+	   "theDuelist:MonsterReborn",
+	   "theDuelist:TributeDoomed",
+	   "theDuelist:ShallowGrave",
+	   "theDuelist:Pumpking",
+	   "theDuelist:Pumprincess",
+	   "theDuelist:Gigaplant",
+	   "theDuelist:RedEyesZombie",
+	   "theDuelist:TrapHole",
+	   "theDuelist:GeminiElf",
+	   "theDuelist:DragonMaster",
+	   "theDuelist:ArmoredZombie",
+	   "theDuelist:MoltenZombie",
+	   "theDuelist:MonsterEgg",
+	   "theDuelist:Polymerization",
+	   "theDuelist:MiniPolymerization",
+	   "theDuelist:PredaplantDrosophyllum",
+	   "theDuelist:Predapruning"	   
+    ]
+  }
+}

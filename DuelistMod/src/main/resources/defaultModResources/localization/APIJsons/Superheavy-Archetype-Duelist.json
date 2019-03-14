@@ -1,0 +1,18 @@
+{
+  "theDuelist:Superheavy": {
+    "NAME": "Superheavy",
+    "CARD_IDS": [
+		"theDuelist:SuperheavyBenkei",
+		"theDuelist:SuperheavyScales",
+		"theDuelist:SuperheavySwordsman",
+		"theDuelist:SuperheavyWaraji",
+		"theDuelist:SuperheavyOgre",
+		"theDuelist:SuperheavyMagnet",
+		"theDuelist:SuperheavyGeneral",
+		"theDuelist:SuperheavyFlutist",
+		"theDuelist:SuperheavyDaihachi",
+		"theDuelist:SuperheavyBlueBrawler",
+		"theDuelist:SteamTrainKing"
+    ]
+  }
+}
