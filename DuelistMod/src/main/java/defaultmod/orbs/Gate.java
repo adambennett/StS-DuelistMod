@@ -1,38 +1,24 @@
 package defaultmod.orbs;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.LightningOrbPassiveAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
-import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
-import defaultmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
-public class Gate extends AbstractOrb
+public class Gate extends DuelistOrb
 {
 	public static final String ID = defaultmod.DefaultMod.makeID("Gate");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -59,6 +45,8 @@ public class Gate extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
 	}
 
 	@Override
@@ -160,7 +148,12 @@ public class Gate extends AbstractOrb
 		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
+	@Override
+	public void checkFocus()
+	{
 
+	}
+	
 	@Override
 	public AbstractOrb makeCopy()
 	{

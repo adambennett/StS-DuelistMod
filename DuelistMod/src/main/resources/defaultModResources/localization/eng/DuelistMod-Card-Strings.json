@@ -466,8 +466,8 @@
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
-		"DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust.",
-		"UPGRADE_DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust."
+		"DESCRIPTION": "Tribute all your Summons (min. 5) NL For !M! turns, ignore all HP damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute all your Summons (min. 5) NL For !M! turns, ignore all HP damage. Exhaust."
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "Time Wizard",
@@ -1191,7 +1191,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
-		"DESCRIPTION": "Tribute 4. NL Deal !D! damage X times.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage X times."
+		"DESCRIPTION": "Tribute 5. NL Deal !D! damage X times.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. NL Deal !D! damage X times."
 	}
 }

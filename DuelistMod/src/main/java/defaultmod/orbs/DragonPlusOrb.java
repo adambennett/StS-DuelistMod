@@ -1,13 +1,9 @@
 package defaultmod.orbs;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -16,12 +12,13 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.*;
+import defaultmod.actions.common.MakeEtherealCopyInHandAction;
 import defaultmod.actions.unique.DragonOrbEvokeAction;
+import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class DragonPlusOrb extends AbstractOrb
+public class DragonPlusOrb extends DuelistOrb
 {
 	public static final String ID = DefaultMod.makeID("DragonPlusOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -43,6 +40,9 @@ public class DragonPlusOrb extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 	}
 
 	@Override

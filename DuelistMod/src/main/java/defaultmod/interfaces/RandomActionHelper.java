@@ -261,19 +261,19 @@ public class RandomActionHelper
 	private static void initList()
 	{
 		actions = new ArrayList<String>();
-		/*actions.add("Draw #b1 card");	
-		actions.add("Draw #b1 card");	
-		actions.add("Draw #b2 cards");	
-		actions.add("Gain #b10 HP");
-		actions.add("Gain #b5 HP");
-		actions.add("Gain #b5 HP");
 		actions.add("Draw #b1 card");	
 		actions.add("Draw #b1 card");	
 		actions.add("Draw #b2 cards");	
 		actions.add("Gain #b10 HP");
 		actions.add("Gain #b5 HP");
 		actions.add("Gain #b5 HP");
-		actions.add("Gain a random amount of gold (1-50)");*/
+		actions.add("Draw #b1 card");	
+		actions.add("Draw #b1 card");	
+		actions.add("Draw #b2 cards");	
+		actions.add("Gain #b10 HP");
+		actions.add("Gain #b5 HP");
+		actions.add("Gain #b5 HP");
+		actions.add("Gain a random amount of gold (1-50)");
 		
 		//actions.add("Gain a random amount of gold (50-100)");
 		//actions.add("Gain a random amount of gold (10-50)");
@@ -282,8 +282,8 @@ public class RandomActionHelper
 		//actions.add("Gain a random amount of gold (5-200)");
 		//actions.add("Gain a random amount of gold (0-1000)");
 		
-		actions.add("Apply #b1 random #ybuff");	
-		/*actions.add("Apply #b2 random #ydebuffs to random enemy");	
+		//actions.add("Apply #b1 random #ybuff");	
+		actions.add("Apply #b2 random #ydebuffs to random enemy");	
 		actions.add("Apply #b1 random #ydebuff to random enemy");
 		actions.add("Add #b1 random #ySpell to hand");
 		actions.add("Add #b1 random #yTrap to hand");
@@ -308,7 +308,7 @@ public class RandomActionHelper
 		actions.add("Channel a Glitch");
 		actions.add("Gain #b1 Artifacts");
 		actions.add("Gain #b2 Artifacts");
-		actions.add("Gain #b3 Artifacts");*/
+		actions.add("Gain #b3 Artifacts");
 	}
 
 }

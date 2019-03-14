@@ -60,7 +60,7 @@ public class MillenniumCoin extends CustomRelic
 	// Description
 	@Override
 	public String getUpdatedDescription() {
-		return DESCRIPTIONS[0] + this.counter + DESCRIPTIONS[1];
+		return DESCRIPTIONS[0] + 10 + DESCRIPTIONS[1];
 	}
 
 	// Which relic to return on making a copy of this relic.

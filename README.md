@@ -76,18 +76,27 @@ You can change this option to remove large groups of the cards from the game. Th
 
 # Known Issues
 - Downgrading cards does not work properly when cards that have Tribute-based upgrades become Downgraded. However in most cases, this is beneficial and it should never crash the game or cause any other major side effects.  
-- Insanity Modifier does not work properly  
 - Future Diary relic (Aspiration) sometimes causes issues  
 - Buffer orb has problems with powers that don't stack, needs major overhaul  
-- Wiretap can create copies of itself  
+- Pumprincess/Pumpking/Gigaplant cannot resummon each other, and Shallow Grave cannot resummon these cards either   
+- Prismatic Shard should be removed from relic pools while the Duelist is loaded   
+- Mirror Force is buggy and sometimes does way too much damage   
+- Ultimate Offering can sometimes get into an infinite loop and murder you   
+- Many cards with tribute-based upgrades are slightly buggy and can have undefined behavior   
+- Monkei's Paw relic (Halation) causes various issues, beware   
+- Time Maze and Toon Rollback/Toon Magic interaction is buggy   
+- Heavy Storm doesn't always remove powers properly from everyone, and exhausts although the card text does not say so   
+- Bottled Mercury relic sometimes gets set on the wrong card after save & quit (Infinite Spire)   
+- Tomb Looter does not trigger properly when attacking with a max stack of summons with a Tribute card  
 
 # To Do (ordered by priority)
-- Add a few more starting decks
-- Add more random-generation-only cards
-- Add additional Relics and Potions
-- Translations (Chinese at least, maybe Russian)
-- Add event(s)
-- Add enemies
+- Balance updates  
+- Add a few more starting decks  
+- Add more random-generation-only cards   
+- Add additional Relics and Potions  
+- Translations (Chinese, Korean, maybe Russian)  
+- Add event(s)  
+- Add enemies  
 
 # Creator Information
 Thanks for playing the Duelist! Please let me know if you have any feedback or bug reports! 

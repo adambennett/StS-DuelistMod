@@ -32,7 +32,7 @@ public class BadReaction extends DuelistCard
     private static final int DAMAGE = 1;
     private static final int HEAL = 1;
     private static final int U_HEAL = 1;
-    private static final int U_DMG = 2;
+    private static final int U_DMG = 1;
     // /STAT DECLARATION/
 
     public BadReaction() {

@@ -1,24 +1,19 @@
 package defaultmod.orbs;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Earth extends AbstractOrb
+public class Earth extends DuelistOrb
 {
 	public static final String ID = DefaultMod.makeID("Earth");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -40,6 +35,9 @@ public class Earth extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 	}
 
 	@Override

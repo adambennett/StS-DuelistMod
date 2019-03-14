@@ -36,7 +36,8 @@ public class MillenniumPuzzle extends CustomRelic {
     {
         this.flash();
         runSpecialEffect();
-        DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+        if (!DefaultMod.debug) { DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false); }
+        else { DuelistCard.powerSummon(AbstractDungeon.player, 20, "Puzzle Token", false); }
     }
 
     // Description

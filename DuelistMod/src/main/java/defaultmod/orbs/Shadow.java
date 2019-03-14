@@ -17,10 +17,11 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
 import defaultmod.cards.Token;
+import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Shadow extends AbstractOrb
+public class Shadow extends DuelistOrb
 {
 	public static final String ID = DefaultMod.makeID("Shadow");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -42,6 +43,9 @@ public class Shadow extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 	}
 
 	@Override

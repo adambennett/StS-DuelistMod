@@ -19,8 +19,9 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.relics.PrismaticShard;
+import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
@@ -44,7 +45,8 @@ import defaultmod.relics.*;
 public class DefaultMod
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
-PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber 
+PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
+RelicGetSubscriber
 {
 	public static final Logger logger = LogManager.getLogger("theDuelist:DefaultMod ---> " + DefaultMod.class.getName());
 	public static final String MOD_ID_PREFIX = "theDuelist:";
@@ -163,6 +165,14 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	public static int swordsPlayed = 0;
 	public static int cardsToDraw = 5;
 	public static StarterDeck currentDeck;
+	
+	// Global Character Stats
+	public static int energyPerTurn = 3;
+	public static int startHP = 80;
+	public static int maxHP = 80;
+	public static int startGold = 99;
+	public static int cardDraw = 5;
+	public static int orbSlots = 3;
 	
 	public static final boolean debug = true;
 
@@ -711,10 +721,21 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
             deckIndex = config.getInt(PROP_DECK);
             chosenDeckTag = findDeckTag(deckIndex);
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
+            if (debug) { lastMaxSummons = 50; }
             hasRing = config.getBool(PROP_HAS_RING);
             hasKey = config.getBool(PROP_HAS_KEY);
             
         } catch (Exception e) { e.printStackTrace(); }
+		
+		if (debug)
+		{
+			energyPerTurn = 100;
+			startHP = 1800;
+			maxHP = 1800;
+			startGold = 999;
+			cardDraw = 1;
+			orbSlots = 3;
+		}
 
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done setting up or loading the settings config file");
 	}
@@ -1031,7 +1052,8 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.addRelicToCustomPool(new MillenniumCoin(), AbstractCardEnum.DEFAULT_GRAY);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DEFAULT_GRAY); }
 		BaseMod.addRelicToCustomPool(new GiftAnubis(), AbstractCardEnum.DEFAULT_GRAY);
-		BaseMod.removeRelic(new PrismaticShard());
+		AbstractDungeon.shopRelicPool.remove("Prismatic Shard");
+		
 		// This adds a relic to the Shared pool. Every character can find this relic.
 		//BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
 
@@ -1507,7 +1529,7 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		BaseMod.loadCustomStringsFile(CardStrings.class,"defaultModResources/localization/" + loc + "/DuelistMod-Card-Strings.json");
 
 		// UI Strings
-		BaseMod.loadCustomStrings(UIStrings.class, "defaultModResources/localization/" + loc + "/DuelistMod-UI-Strings.json");
+		BaseMod.loadCustomStringsFile(UIStrings.class, "defaultModResources/localization/" + loc + "/DuelistMod-UI-Strings.json");
 		
 		// Power Strings
 		BaseMod.loadCustomStringsFile(PowerStrings.class,"defaultModResources/localization/" + loc + "/DuelistMod-Power-Strings.json");
@@ -1783,6 +1805,11 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		if (debug)
+		{
+			lastMaxSummons = 50;
+		}
 	}
 
 	@Override
@@ -1818,7 +1845,14 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 	@Override
 	public void receivePowersModified() 
 	{
-		
+		for (AbstractOrb o : AbstractDungeon.player.orbs)
+		{
+			if (o instanceof DuelistOrb)
+			{
+				DuelistOrb oOrb = (DuelistOrb) o;
+				oOrb.checkFocus();
+			}
+		}
 	}
 
 	@Override
@@ -2326,6 +2360,12 @@ PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCar
 		{
 			logger.info(c.originalName + " - " + "[i]Heal Deck[/i]");
 		}
+	}
+
+	@Override
+	public void receiveRelicGet(AbstractRelic arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

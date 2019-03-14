@@ -45,7 +45,7 @@
 		"NAME": "Millennium Coin",
 		"FLAVOR": "A beautiful coin.",
 		"DESCRIPTIONS": [
-			"Each time you #yEvoke, have a chance to gain #b", " Gold. NL Each time you defeat an Elite or Boss, add #b10 Gold to this effect, NL and have a #b30% chance to increase the evoke chance modifier increase by #b10%."
+			"Each time you #yEvoke, have a chance to gain #b", " Gold. NL Each time you defeat an Elite or Boss, add #b10 Gold to this effect, and have a #b30% chance to increase the evoke chance modifier increase by #b10%."
 		]
 	},
 	"theDuelist:StoneExxod": {

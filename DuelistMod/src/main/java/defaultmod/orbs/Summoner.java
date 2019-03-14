@@ -12,10 +12,11 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Summoner extends AbstractOrb
+public class Summoner extends DuelistOrb
 {
 	public static final String ID = defaultmod.DefaultMod.makeID("Summoner");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -36,6 +37,9 @@ public class Summoner extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 	}
 
 	@Override

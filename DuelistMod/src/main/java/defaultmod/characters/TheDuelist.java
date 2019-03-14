@@ -27,13 +27,13 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
 	// =============== BASE STATS =================
-	public static final int ENERGY_PER_TURN = 3;
-	public static final int STARTING_HP = 80;
-	public static final int MAX_HP = 80;
-	public static final int STARTING_GOLD = 99;
-	public static final int CARD_DRAW = 5;
-	public static final int ORB_SLOTS = 3;
-	public static int numberOfArchetypes = 17;
+	public static final int ENERGY_PER_TURN = DefaultMod.energyPerTurn;
+	public static final int STARTING_HP = DefaultMod.startHP;
+	public static final int MAX_HP = DefaultMod.maxHP;
+	public static final int STARTING_GOLD = DefaultMod.startGold;
+	public static final int CARD_DRAW = DefaultMod.cardDraw;
+	public static final int ORB_SLOTS = DefaultMod.orbSlots;
+	public static final int numberOfArchetypes = 17;
 	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	// =============== /BASE STATS/ =================
 
@@ -66,7 +66,6 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 						"defaultModResources/images/char/duelistCharacterUpdate/YugiB.scml"));
 						//"defaultModResources/images/char/duelistCharacter/theDuelistAnimation.scml"));
 						//"defaultModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
-
 
 		// =============== TEXTURES, ENERGY, LOADOUT =================  
 

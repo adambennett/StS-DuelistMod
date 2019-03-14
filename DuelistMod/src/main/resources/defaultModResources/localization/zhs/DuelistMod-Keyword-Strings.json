@@ -89,21 +89,19 @@
       "NAMES": [
         "spellcaster"
       ],      
-      "DESCRIPTION": "When you #yTribute a #ySpellcaster monster for a #yDragon, lose #b2 #yHP."
+      "DESCRIPTION": "当你为一个龙致敬一个施法者怪物时，会失去2个HP。"
     },
      {
-	  "PROPER_NAME": "Insect",
+	  "PROPER_NAME": "昆虫",
       "NAMES": [
-        "insect",
-		"insects"
+        "insect"
       ],     
-      "DESCRIPTION": "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+      "DESCRIPTION": "当你为一只昆虫或植物的昆虫怪物致敬时，对所有敌人施加3点毒药。"
     },
      {
-	  "PROPER_NAME": "Plant",
+	  "PROPER_NAME": "厂",
       "NAMES": [
-        "plant",
-		"plants"
+        "plant"
       ],      
       "DESCRIPTION": "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
     },
@@ -113,10 +111,10 @@
         "predaplant",
 		"predaplants"
       ],      
-      "DESCRIPTION": "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+      "DESCRIPTION": "#yPredaplant 怪物被视为植物。当你致敬一个 #yPredaplant 昆虫或植物的怪物，对所有敌人施加3点毒药。"
     },
   {
-   "PROPER_NAME": "Earth",
+   "PROPER_NAME": "地球",
     "NAMES": [
       "earth"
     ],    

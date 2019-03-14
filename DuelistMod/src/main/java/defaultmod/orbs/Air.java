@@ -15,10 +15,11 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Air extends AbstractOrb
+public class Air extends DuelistOrb
 {
 	public static final String ID = DefaultMod.makeID("Air");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -40,6 +41,9 @@ public class Air extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 	}
 
 	@Override
@@ -55,6 +59,12 @@ public class Air extends AbstractOrb
 	{
 		applyFocus();
 		AbstractDungeon.player.increaseMaxOrbSlots(this.evokeAmount, true);
+	}
+	
+	@Override
+	public void onEndOfTurn()
+	{
+		checkFocus();
 	}
 
 	@Override
@@ -124,12 +134,27 @@ public class Air extends AbstractOrb
 	}
 	
 	@Override
-	public void applyFocus() 
+	public void checkFocus()
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
-			this.baseEvokeAmount += AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			this.baseEvokeAmount = 1 + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
 		}
+		else 
+		{
+			this.baseEvokeAmount = 1;
+		}
+		if (DefaultMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + "originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
+	}
+	
+	@Override
+	public void applyFocus() 
+	{
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
 	}

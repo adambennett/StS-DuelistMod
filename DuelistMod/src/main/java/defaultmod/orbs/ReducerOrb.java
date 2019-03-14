@@ -13,9 +13,10 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.unique.DragonOrbEvokeAction;
+import defaultmod.interfaces.DuelistOrb;
 
 @SuppressWarnings("unused")
-public class ReducerOrb extends AbstractOrb
+public class ReducerOrb extends DuelistOrb
 {
 	public static final String ID = DefaultMod.makeID("ReducerOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -37,6 +38,9 @@ public class ReducerOrb extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 	}
 
 	@Override

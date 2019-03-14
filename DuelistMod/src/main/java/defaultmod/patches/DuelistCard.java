@@ -1238,54 +1238,8 @@ public abstract class DuelistCard extends CustomCard
 	// turnNum arg does not work here, random buffs are generated globally now but I don't feel like fixing all the calls to this function
 	public static AbstractPower applyRandomBuff(AbstractCreature p, int turnNum)
 	{
-		/*
-		// Setup powers array for random buff selection
-		AbstractPower str = new StrengthPower(p, turnNum);
-		AbstractPower dex = new DexterityPower(p, 1);
-		AbstractPower art = new ArtifactPower(p, turnNum);
-		AbstractPower plate = new PlatedArmorPower(p, turnNum);
-		AbstractPower intan = new IntangiblePlayerPower(p, 1);
-		AbstractPower regen = new RegenPower(p, turnNum);
-		AbstractPower energy = new EnergizedPower(p, 1);
-		AbstractPower thorns = new ThornsPower(p, turnNum);
-		AbstractPower barricade = new BarricadePower(p);
-		AbstractPower blur = new BlurPower(p, turnNum);
-		AbstractPower burst = new BurstPower(p, turnNum);
-		AbstractPower creative = new CreativeAIPower(p, 1); //probably too good
-		AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
-		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
-		AbstractPower equal = new EquilibriumPower(p, 2);
-		AbstractPower noPain = new FeelNoPainPower(p, turnNum);
-		AbstractPower fire = new FireBreathingPower(p, 3);
-		AbstractPower jugger = new JuggernautPower(p, turnNum);
-		AbstractPower metal = new MetallicizePower(p, turnNum);
-		AbstractPower penNib = new PenNibPower(p, 1);
-		AbstractPower sadistic = new SadisticPower(p, turnNum);
-		AbstractPower storm = new StormPower(p, 1);
-		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
-		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
-		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
-		AbstractPower tombPilfer = new HealGoldPower(p, turnNum * 10);
-		AbstractPower retainCards = new RetainCardPower(p, 1);
-		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
-		AbstractPower focus = new FocusPower(p, turnNum);
-		AbstractPower reductionist = new ReducerPower(p, turnNum);
-		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
-		AbstractPower mayhem = new MayhemPower(p, 1);
-		AbstractPower envenom = new EnvenomPower(p, turnNum);
-		AbstractPower amplify = new AmplifyPower(p, 1);
-		AbstractPower angry = new AngryPower(p, 1);
-		AbstractPower anger = new AngerPower(p, 1);
-		AbstractPower buffer = new BufferPower(p, 1);
-		AbstractPower conserve = new ConservePower(p, 1);
-		//AbstractPower corruption = new CorruptionPower(p);
-		AbstractPower curiosity = new CuriosityPower(p, 1);
-		AbstractPower[] buffs = new AbstractPower[] {str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
-				burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
-				orbEvoker, tombPilfer, retainCards, timeWizard,
-				generosity, focus, reductionist, creative, mayhem, envenom,
-				amplify, anger, angry, buffer, conserve, curiosity };
-		*/
+		DefaultMod.resetRandomBuffs();
+		
 		// Get randomized buff
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(DefaultMod.randomBuffs.size() - 1);
 		AbstractPower randomBuff = DefaultMod.randomBuffs.get(randomBuffNum);
@@ -1299,19 +1253,9 @@ public abstract class DuelistCard extends CustomCard
 		applyPower(randomBuff, p);
 		for (AbstractPower a : powers)
 		{
-			if (!a.name.equals("Time Wizard")) { a.updateDescription(); }
 			//if (!a.name.equals("Time Wizard")) { a.updateDescription(); }
-			/*
-			if (a.name.equals(randomBuff.name))
-			{
-				found = true;
-				a.amount += randomBuff.amount;
-				a.updateDescription();
-			}
-			*/
-		}
-		//if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
-		DefaultMod.resetRandomBuffs();
+			a.updateDescription();
+		}		
 		return randomBuff;
 	}
 
@@ -1337,19 +1281,9 @@ public abstract class DuelistCard extends CustomCard
 		applyPower(randomBuff, p);
 		for (AbstractPower a : powers)
 		{
-			if (!a.name.equals("Time Wizard")) { a.updateDescription(); }
-			/*
-			if (a.name.equals(randomBuff.name))
-			{
-				found = true;
-				a.amount += randomBuff.amount;
-				a.updateDescription();
-			}
-			*/
+			//if (!a.name.equals("Time Wizard")) { a.updateDescription(); }
+			a.updateDescription();
 		}
-
-		//if (!found) { randomBuff.updateDescription(); applyPower(randomBuff, p); }
-
 		return randomBuff;
 	}
 

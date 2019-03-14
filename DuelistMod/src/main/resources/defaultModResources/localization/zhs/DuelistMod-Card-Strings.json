@@ -466,8 +466,8 @@
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "露出剑",
-		"DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust.",
-		"UPGRADE_DESCRIPTION": "For !M! turns, ignore all HP damage. Exhaust."
+		"DESCRIPTION": "Tribute all your Summons (min. 5) NL For !M! turns, ignore all HP damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute all your Summons (min. 5) NL For !M! turns, ignore all HP damage. Exhaust."
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "時間魔術師",
@@ -1191,7 +1191,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "太陽神的翼神龍",
-		"DESCRIPTION": "Tribute 4. NL Deal !D! damage X times.",
-		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage X times."
+		"DESCRIPTION": "Tribute 5. NL Deal !D! damage X times.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. NL Deal !D! damage X times."
 	}
 }

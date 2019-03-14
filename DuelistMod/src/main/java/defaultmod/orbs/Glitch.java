@@ -20,11 +20,11 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.RandomEtherealDuelistCardToHandAction;
 import defaultmod.cards.Token;
-import defaultmod.interfaces.RandomEffectsHelper;
+import defaultmod.interfaces.*;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Glitch extends AbstractOrb
+public class Glitch extends DuelistOrb
 {
 	public static final String ID = DefaultMod.makeID("Glitch");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -62,6 +62,9 @@ public class Glitch extends AbstractOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 		
 		
 		// Setup passive action list
@@ -75,7 +78,7 @@ public class Glitch extends AbstractOrb
 		passiveActions.add("Gain a random amount of gold (1-50)");
 		//passiveActions.add("Gain a random amount of gold (10-50)");
 		//passiveActions.add("Gain a random amount of gold (5-200)");
-		passiveActions.add("Apply #b1 random #ybuff");	
+		//passiveActions.add("Apply #b1 random #ybuff");	
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");	
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");
 		passiveActions.add("Add #b1 random #ySpell to hand");
@@ -121,7 +124,7 @@ public class Glitch extends AbstractOrb
 		evokeActions.add("Gain a random amount of gold (1-50)");
 		//evokeActions.add("Gain a random amount of gold (10-50)");
 		evokeActions.add("Gain a random amount of gold (5-200)");
-		evokeActions.add("Apply #b1 random #ybuff");	
+		//evokeActions.add("Apply #b1 random #ybuff");	
 		evokeActions.add("Apply #b1 random #ydebuff to random enemy");	
 		evokeActions.add("Apply #b1 random #ydebuff to random enemy");
 		evokeActions.add("Add #b1 random #ySpell to hand");

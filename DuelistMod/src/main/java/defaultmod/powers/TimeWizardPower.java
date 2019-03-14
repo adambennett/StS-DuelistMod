@@ -53,7 +53,12 @@ public class TimeWizardPower extends AbstractPower
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     	for (int i = 0; i < this.amount; i++)
     	{
-    		lastTurnActions.add(RandomActionHelper.triggerRandomAction(1, false));
+    		String lastAction = RandomActionHelper.triggerRandomAction(1, false);
+    		if (DefaultMod.debug)
+    		{
+    			System.out.println("theDuelist:TimeWizardPower:atStartOfTurn() ---> last action was: " + lastAction);
+    		}
+    		lastTurnActions.add(lastAction);
     	}
     	updateDescription();
     }
@@ -75,7 +80,7 @@ public class TimeWizardPower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	if (this.amount < 2 && this.amount > 0)
+    	if (lastTurnActions.size() < 2 && lastTurnActions.size() > 0)
 		{
 			String actionString = "";
 			for (String s : lastTurnActions) { actionString += s + ", "; }
@@ -83,7 +88,7 @@ public class TimeWizardPower extends AbstractPower
 	        String finalActionString = actionString.substring(0, endingIndex) + ".";
 	        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + finalActionString;
 		}
-		else if (this.amount >= 2)
+		else if (lastTurnActions.size() >= 2)
 		{
 			String actionString = "";
 			for (String s : lastTurnActions) { actionString += s + ", "; }
