@@ -112,4 +112,11 @@ public class FluteSummoning extends DuelistCard
 	public String getID() {
 		return ID;
 	}
+
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
 }

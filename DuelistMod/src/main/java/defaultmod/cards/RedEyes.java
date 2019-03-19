@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -30,9 +30,8 @@ public class RedEyes extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int DAMAGE = 17;
-    private static final int UPGRADE_PLUS_DMG = 4;
     // /STAT DECLARATION/
 
     public RedEyes() {
@@ -45,6 +44,7 @@ public class RedEyes extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = 2;
+		this.baseMagicNumber = this.magicNumber = 3;
     }
 
     // Actions the card should do.
@@ -53,6 +53,7 @@ public class RedEyes extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
+    	applyPower(new WeakPower(m, this.magicNumber, true), m);
     }
 
     // Which card to return when making a copy of this card.
@@ -66,7 +67,7 @@ public class RedEyes extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -137,5 +138,11 @@ public class RedEyes extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

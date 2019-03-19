@@ -1,15 +1,15 @@
 {
 "theDuelist:MillenniumElixir": {
-        "NAME": "Millennium Elixir",
-        "DESCRIPTIONS": ["Gain 2 random #ybuffs."]
+        "NAME": "千年长生不老药",
+        "DESCRIPTIONS": ["获得2个随机增益效果。"]
 },
 "theDuelist:SealedPack": {
-        "NAME": "Small Booster",
-        "DESCRIPTIONS": ["Open a #yLegend #yof #yBlue #yEyes booster pack. Add #b3 random cards from this set to your hand."]
+        "NAME": "小助推器",
+        "DESCRIPTIONS": ["打开蓝眼睛传说助推器包。从该套装中随机添加3张随机牌。"]
 },
 "theDuelist:SealedPackB": {
-        "NAME": "Small Pack",
-        "DESCRIPTIONS": ["Open a booster pack containing cards from #yPharaoh's #yServant and #yMetal #yRaiders. Add #b3 random cards from either of these sets to your hand."]
+        "NAME": "小卡包",
+        "DESCRIPTIONS": ["打开一个包含法老仆人和金属攻略卡片的助推器包。从这些套装中添加3张随机牌到您的手中。"]
 },
 "theDuelist:JoeyJuice": {
         "NAME": "Joey Juice",

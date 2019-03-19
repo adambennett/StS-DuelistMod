@@ -7,59 +7,59 @@
 		]
 	},
 	"theDuelist:MillenniumPuzzle": {
-		"NAME": "Millennium Puzzle",
-		"FLAVOR": "It was originally known as the Millennium Pendant, but after being shattered and requiring assembly it came to be known as the Millennium Puzzle.",
+		"NAME": "千年之谜",
+		"FLAVOR": "它最初被称为千年坠饰，但在被粉碎并需要组装后，它被称为千年难题。",
 		"DESCRIPTIONS": [
-			"At the start of each combat, #ySummon #b2, and trigger a start-of-combat effect depending on your chosen starting deck."
+			"在每次战斗开始时，根据您选择的起始甲板触发效果。"
 		]
 	},
 	"theDuelist:MillenniumEye": {
-		"NAME": "Millennium Eye",
-		"FLAVOR": "It was created 3,000 years prior with other Millennium Items by Aknadin. After its creation, Aknadin himself put on the Eye, sacrificing his left eye in the process.",
+		"NAME": "千禧之眼",
+		"FLAVOR": "它是由Aknadin在3000年前与其他千禧项目共同创建的。在它创作之后，Aknadin自己戴上了眼睛，在此过程中牺牲了他的左眼。",
 		"DESCRIPTIONS": [
-			"At the start of each combat, gain #yToon #yWorld."
+			"在每次战斗开始时，获得卡通世界。"
 		]
 	},
 	"theDuelist:MillenniumRing": {
-		"NAME": "Millennium Ring",
-		"FLAVOR": "3,000 years before present day events, the Millennium Ring and the other Millennium Items were forged in Kul Elna by sacrificing 99 souls of the Kul Elna villagers.",
+		"NAME": "千年之环",
+		"FLAVOR": "在今天活动前3000年，千禧环和其他千年项目在库尔埃尔纳铸造，牺牲了99名Kul Elna村民。",
 		"DESCRIPTIONS": [
-			"At the start of each combat, #yIncrement #b3."
+			"在每次战斗开始时，增量3。"
 		]
 	},
 	"theDuelist:MillenniumKey": {
-		"NAME": "Millennium Key",
-		"FLAVOR": "After it was made, the Millennium Key was given to Solomon Muto's Egyptian incarnate, Shimon, but later it was passed on to Shada.",
+		"NAME": "千年钥匙",
+		"FLAVOR": "制作完成后，千禧钥匙被送给了所罗门穆托的埃及化身，西蒙，但后来被传递给了沙达。",
 		"DESCRIPTIONS": [
-			"Gain 1 [E] at the start of each turn. Your max #ySummons cannot be higher than #b4."
+			"获得1 [E] 在每个回合的开始。你的最大召唤不能高于4。"
 		]
 	},
 	"theDuelist:MillenniumRod": {
-		"NAME": "Millennium Rod",
-		"FLAVOR": "Priest Seto had originally owned the Millennium Rod. Along with the other Items, it was used to resurrect Zorc Necrophades.",
+		"NAME": "千年棒",
+		"FLAVOR": "牧师濑户最初拥有千年杖。与其他物品一起，它被用来复活Zorc Necrophades。",
 		"DESCRIPTIONS": [
-			"Add the start of each turn, add a random #ySpell to your hand."
+			"添加每回合的开始，向你的手中添加一个随机的法术。"
 		]
 	},
 	"theDuelist:MillenniumCoin": {
-		"NAME": "Millennium Coin",
-		"FLAVOR": "A beautiful coin.",
+		"NAME": "千年硬币",
+		"FLAVOR": "一枚美丽的硬币。",
 		"DESCRIPTIONS": [
-			"Each time you #yEvoke, gain #b", " Gold. NL Gain 5 extra Gold each time you trigger this effect."
+			"每次你唤起，都有机会要得到： ", " 黄金。每当你击败一个精英或老板时，为此效果添加10金币，并有30％几率将召唤几率增加10％。"
 		]
 	},
 	"theDuelist:StoneExxod": {
-		"NAME": "Stone of Exxod",
-		"FLAVOR": "A fragment of the Forbidden One?",
+		"NAME": "埃克斯行的石头",
+		"FLAVOR": "禁忌之一的片段？",
 		"DESCRIPTIONS": [
-			"Each time you shuffle your deck, add a random #yExodia card to your hand."
+			"每次洗牌时，都要在手上添加一张Exodia卡。"
 		]
 	},
 	"theDuelist:GiftAnubis": {
-		"NAME": "Gift of Anubis",
-		"FLAVOR": "A Gift from Anubis himself.",
+		"NAME": "阿努比斯的礼物",
+		"FLAVOR": "来自阿努比斯的礼物。",
 		"DESCRIPTIONS": [
-			" NL Summon #b1 and consume #b1 #yCharge. NL Starts with #b2 #yCharges. NL Upon defeating Bosses and Elites, gain #b3 #yCharges."
+			" NL 召唤1并消耗1次充电。从2次充电开始。击败老板和精英后，获得3次冲锋。"
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {

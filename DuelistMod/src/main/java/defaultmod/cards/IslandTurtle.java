@@ -35,6 +35,7 @@ public class IslandTurtle extends DuelistCard
 		this.baseBlock = this.block = 10;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.PHARAOH_SERVANT);
+		this.tags.add(DefaultMod.AQUA);
 		this.summons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -67,9 +68,13 @@ public class IslandTurtle extends DuelistCard
 	}
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.hasTag(DefaultMod.AQUA))
+		{
+			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
+			addCardToHand(randomAqua);
+		}
 	}
 
 
@@ -98,5 +103,11 @@ public class IslandTurtle extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -46,7 +46,6 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.FULL);
 		this.tags.add(DefaultMod.REPLAYSPIRE);
-		this.tags.add(DefaultMod.BAD_TRIB);
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;
@@ -123,7 +122,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 
@@ -154,6 +153,12 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -4,7 +4,7 @@
   <groupId>duelistmod</groupId>
   <artifactId>DuelistMod</artifactId>
   <name>DuelistMod</name>
-  <version>2.203.0</version>
+  <version>1.232.0</version>
   <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
   <build>
     <finalName>DuelistMod</finalName>
@@ -98,16 +98,24 @@
       <scope>system</scope>
       <systemPath>${basedir}/../lib/ArchetypeAPI.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>com.evacipated.cardcrawl.mod</groupId>
+      <artifactId>hubris</artifactId>
+      <version>${Hubris.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/Hubris.jar</systemPath>
+    </dependency>
   </dependencies>
   <properties>
-    <archetypeapi.version>1.2.0</archetypeapi.version>
+    <archetypeapi.version>1.3.2</archetypeapi.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <StSLib.version>1.15.0</StSLib.version>
-    <ModTheSpire.version>3.8.3</ModTheSpire.version>
+    <Hubris.version>0.22.0</Hubris.version>
+    <ModTheSpire.version>3.9.2</ModTheSpire.version>
     <BaseMod.version>5.12.1</BaseMod.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
     <ReplayTheSpireMod.version>1.3.27</ReplayTheSpireMod.version>
     <Conspire.version>1.6.0</Conspire.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
     <SlayTheSpire.version>1-23-2019</SlayTheSpire.version>
   </properties>
 </project>

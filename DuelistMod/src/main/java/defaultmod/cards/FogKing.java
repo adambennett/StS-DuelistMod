@@ -40,7 +40,6 @@ public class FogKing extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.BAD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = 3;
@@ -127,7 +126,7 @@ public class FogKing extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 
@@ -153,6 +152,12 @@ public class FogKing extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

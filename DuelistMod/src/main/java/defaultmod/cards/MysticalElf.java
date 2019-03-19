@@ -35,11 +35,9 @@ public class MysticalElf extends DuelistCard
 		this.baseBlock = this.block = 7;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
-		this.tags.add(DefaultMod.BAD_TRIB);
 		this.tags.add(DefaultMod.SPELLCASTER);
-		this.tags.add(DefaultMod.BAD_TRIB);
 		this.tags.add(DefaultMod.SPELLCASTER_DECK);
-        this.startingDeckCopies = 2;
+        this.startingDeckCopies = 1;
 		this.summons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -75,7 +73,7 @@ public class MysticalElf extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 
@@ -104,5 +102,11 @@ public class MysticalElf extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

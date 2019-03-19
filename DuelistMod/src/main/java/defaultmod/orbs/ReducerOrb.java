@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.unique.DragonOrbEvokeAction;
+import defaultmod.actions.unique.ReducerOrbEvokeAction;
 import defaultmod.interfaces.DuelistOrb;
 
 @SuppressWarnings("unused")
@@ -54,7 +54,7 @@ public class ReducerOrb extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount));
+		AbstractDungeon.actionManager.addToBottom(new ReducerOrbEvokeAction(this.evokeAmount));
 		if (DefaultMod.debug) { System.out.println("theDuelist:ReducerOrb --- > triggered evoke!"); }
 	}
 
@@ -66,8 +66,8 @@ public class ReducerOrb extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
-		this.baseEvokeAmount++;
-		this.evokeAmount++;
+		this.baseEvokeAmount += this.passiveAmount;
+		this.evokeAmount += this.passiveAmount;
 		updateDescription();
 	}
 

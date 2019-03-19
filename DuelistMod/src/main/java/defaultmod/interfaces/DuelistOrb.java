@@ -65,7 +65,7 @@ public class DuelistOrb extends AbstractOrb {
 		}
 		if (DefaultMod.debug)
 		{
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + "originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
 		}
 		applyFocus();
 		updateDescription();

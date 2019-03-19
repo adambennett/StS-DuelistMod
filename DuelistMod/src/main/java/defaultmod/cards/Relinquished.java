@@ -35,12 +35,8 @@ public class Relinquished extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.MAGIC_RULER);
-		this.tags.add(DefaultMod.BAD_TRIB);
-		this.tags.add(DefaultMod.ORB_DECK);
-		this.startingOrbDeckCopies = 1;
 		this.tributes = 1;
 		this.originalName = this.name;
-		this.setupStartingCopies();
 
 	}
 
@@ -104,9 +100,9 @@ public class Relinquished extends DuelistCard
 	}
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 
@@ -131,5 +127,11 @@ public class Relinquished extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

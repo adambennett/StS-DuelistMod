@@ -30,7 +30,7 @@ public class JudgeMan extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
-	private static final int DAMAGE = 8;
+	private static final int DAMAGE = 10;
 	private static final int UPGRADE_PLUS_DMG = 3;
 	private static final int SUMMONS = 1;
 	// /STAT DECLARATION/
@@ -122,7 +122,7 @@ public class JudgeMan extends DuelistCard
 	@Override
 	public void onResummon(int summons) 
 	{
-		summon(AbstractDungeon.player, summons, this);
+		summon(AbstractDungeon.player, summons, new Token("Judge Token"));
 		AbstractMonster m = AbstractDungeon.getRandomMonster();
 		attack(m, AFX, 15);
 	}
@@ -130,25 +130,24 @@ public class JudgeMan extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		//tribute(p, TRIBUTES, false, this);
-		summon(p, summons, this);
-		attack(m, AFX, this.damage);
+		
 
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		//tribute(p, TRIBUTES, false, this);
-		summon(p, summons, this);
-		attack(m, AFX, this.damage);
+		
 		
 	}
 
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

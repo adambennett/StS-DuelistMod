@@ -42,7 +42,7 @@ public class ManEaterBug extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.NATURE_DECK);
-        this.startingDeckCopies = 2;
+        this.startingDeckCopies = 1;
         this.originalName = this.name;
         this.isSummon = true;
         this.multiDamage = new int[] {this.magicNumber, this.magicNumber,this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber, this.magicNumber};
@@ -105,5 +105,11 @@ public class ManEaterBug extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

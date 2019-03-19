@@ -3,7 +3,6 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -27,10 +26,10 @@ public class ChangeHeart extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final int COST = 1;
-    private static final int MIN_ROLL = 3;
-    private static final int MAX_ROLL = 10;
-    private static final int MIN_ROLL_UPGRADE = 5;
-    private static final int MAX_ROLL_UPGRADE = 15;
+    //private static final int MIN_ROLL = 3;
+    //private static final int MAX_ROLL = 10;
+    //private static final int MIN_ROLL_UPGRADE = 5;
+    //private static final int MAX_ROLL_UPGRADE = 15;
     // /STAT DECLARATION/
 
     public ChangeHeart() {
@@ -44,12 +43,12 @@ public class ChangeHeart extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	// Generate random numbers to set max summons to
-    	int randomNum = AbstractDungeon.cardRandomRng.random(MIN_ROLL, MAX_ROLL);
-    	int randomNumUpgraded = AbstractDungeon.cardRandomRng.random(MIN_ROLL_UPGRADE, MAX_ROLL_UPGRADE);
+    	//int randomNum = AbstractDungeon.cardRandomRng.random(MIN_ROLL, MAX_ROLL);
+    	//int randomNumUpgraded = AbstractDungeon.cardRandomRng.random(MIN_ROLL_UPGRADE, MAX_ROLL_UPGRADE);
     	
     	// Set max summons
-    	if (this.upgraded) { setMaxSummons(p, randomNumUpgraded); }
-    	else { setMaxSummons(p, randomNum); }
+    	if (this.upgraded) { setMaxSummons(p, 10); }
+    	else { setMaxSummons(p, 8); }
     }
 
     // Which card to return when making a copy of this card.
@@ -97,5 +96,11 @@ public class ChangeHeart extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

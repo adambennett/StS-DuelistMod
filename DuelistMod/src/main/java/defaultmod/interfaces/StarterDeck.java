@@ -65,6 +65,9 @@ public class StarterDeck
 		deckCopiesMap.put(DefaultMod.OJAMA_DECK, 9);
 		deckCopiesMap.put(DefaultMod.HEAL_DECK, 10);
 		deckCopiesMap.put(DefaultMod.INCREMENT_DECK, 11);
+		deckCopiesMap.put(DefaultMod.EXODIA_DECK, 12);
+		deckCopiesMap.put(DefaultMod.MAGNET_DECK, 13);
+		deckCopiesMap.put(DefaultMod.AQUA_DECK, 14);
 	}
 
 	public CardTags getDeckTag() {

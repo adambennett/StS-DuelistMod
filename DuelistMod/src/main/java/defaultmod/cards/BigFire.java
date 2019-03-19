@@ -51,11 +51,6 @@ public class BigFire extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Damage player for random amount
-    	int randomDmgNum = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
-    	damageSelfFire(randomDmgNum);
-    	if (DefaultMod.debug) { System.out.println("theDuelist:BigFire --- > Damaged player for: " + randomDmgNum); }
-    	
     	// Damage enemies, each for a different random amount
     	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
     	for (AbstractMonster g : monsters)
@@ -112,5 +107,11 @@ public class BigFire extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

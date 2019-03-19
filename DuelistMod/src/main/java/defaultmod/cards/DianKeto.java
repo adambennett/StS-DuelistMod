@@ -37,10 +37,7 @@ public class DianKeto extends DuelistCard
        	this.magicNumber = this.baseMagicNumber = HEAL;
        	this.exhaust = true;
         this.tags.add(DefaultMod.SPELL);
-        this.tags.add(DefaultMod.HEAL_DECK);
-        this.startingHealDeckCopies = 1;
         this.originalName = this.name;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -97,5 +94,11 @@ public class DianKeto extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

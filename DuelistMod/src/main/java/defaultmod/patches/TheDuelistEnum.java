@@ -7,4 +7,7 @@ public class TheDuelistEnum {
 
     @SpireEnum
     public static AbstractPlayer.PlayerClass THE_DUELIST;
+    
+    @SpireEnum
+    public static AbstractPlayer.PlayerClass THE_DUELIST_NO_API;
 }

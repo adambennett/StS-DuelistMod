@@ -40,6 +40,7 @@ public class OceanDragonLord extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseDamage = this.damage = 18;
     	this.tags.add(DefaultMod.MONSTER);
+    	this.tags.add(DefaultMod.AQUA);
     	this.tags.add(DefaultMod.DRAGON);
     	this.tags.add(DefaultMod.ALL);
     	this.tags.add(DefaultMod.GOOD_TRIB);
@@ -120,6 +121,12 @@ public class OceanDragonLord extends DuelistCard
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
 		}
+		
+		if (tributingCard.hasTag(DefaultMod.AQUA))
+		{
+			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
+			addCardToHand(randomAqua);
+		}
 	}
 
 	@Override
@@ -143,6 +150,12 @@ public class OceanDragonLord extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

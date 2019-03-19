@@ -71,7 +71,6 @@
 		"theDuelist:GracefulCharity",
 		"theDuelist:Grasschopper",
 		"theDuelist:GravityAxe",
-		"theDuelist:GuardianAngel",
 		"theDuelist:HaneHane",
 		"theDuelist:HarpieFeather",
 		"theDuelist:HeavyStorm",
@@ -100,7 +99,6 @@
 		"theDuelist:Mausoleum",
 		"theDuelist:MetalDragon",
 		"theDuelist:MillenniumShield",
-		"theDuelist:MiniPolymerization",
 		"theDuelist:MirrorForce",
 		"theDuelist:MoltenZombie",
 		"theDuelist:MonsterEgg",
@@ -154,8 +152,6 @@
 		"theDuelist:Scapegoat",
 		"theDuelist:ScrapFactory",
 		"theDuelist:SevenColoredFish",
-		"theDuelist:ShadowToon",
-		"theDuelist:ShallowGrave",
 		"theDuelist:ShardGreed",
 		"theDuelist:SliferSky",
 		"theDuelist:SmallLabyrinthWall",
@@ -208,7 +204,6 @@
 		"theDuelist:WhiteNightDragon",
 		"theDuelist:WingedDragonRa",
 		"theDuelist:Wiretap",
-		"theDuelist:Wiseman",
 		"theDuelist:Yami"
     ]
   }

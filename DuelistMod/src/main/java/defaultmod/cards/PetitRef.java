@@ -32,7 +32,7 @@ public class PetitRef extends DuelistCard
 
     public PetitRef() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 12;
+        this.baseBlock = this.block = 6;
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.NOT_ADDED);
@@ -98,5 +98,11 @@ public class PetitRef extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

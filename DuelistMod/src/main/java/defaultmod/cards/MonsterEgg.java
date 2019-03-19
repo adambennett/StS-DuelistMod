@@ -65,6 +65,7 @@ public class MonsterEgg extends DuelistCard
         if (this.upgraded) { extraDragA.upgrade();  }
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));    	
         extraDragA.onResummon(1);
+        extraDragA.checkResummon();
     }
 
     // Which card to return when making a copy of this card.
@@ -114,5 +115,11 @@ public class MonsterEgg extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

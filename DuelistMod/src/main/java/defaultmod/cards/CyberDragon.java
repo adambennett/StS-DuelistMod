@@ -9,9 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.orbs.Glitch;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
@@ -46,7 +48,6 @@ public class CyberDragon extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = 1;
-        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -63,7 +64,7 @@ public class CyberDragon extends DuelistCard
     		}
     	}
     	damageThroughBlock(m, p, this.damage, AFX);
-    	if (dragons > 0) { gainGold(dragons * 20, p, true); }
+    	if (dragons > 0) { AbstractOrb glitch = new Glitch(); channel(glitch); }
     }
 
     // Which card to return when making a copy of this card.
@@ -150,5 +151,11 @@ public class CyberDragon extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

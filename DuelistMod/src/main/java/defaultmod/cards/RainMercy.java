@@ -39,7 +39,7 @@ public class RainMercy extends DuelistCard
 
     public RainMercy() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-       	//this.exhaust = true;
+       	this.exhaust = true;
        	this.tags.add(DefaultMod.SPELL);
        	this.tags.add(DefaultMod.PHARAOH_SERVANT);
 		this.originalName = this.name;
@@ -110,5 +110,11 @@ public class RainMercy extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

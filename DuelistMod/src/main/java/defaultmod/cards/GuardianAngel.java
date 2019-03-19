@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.*;
 
 public class GuardianAngel extends DuelistCard 
 {
@@ -39,7 +40,7 @@ public class GuardianAngel extends DuelistCard
         this.tributes = 2;
         this.misc = 0;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.RANDOMONLY);
+        this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.INVASION_CHAOS);
         this.tags.add(DefaultMod.HEAL_DECK);
         this.startingHealDeckCopies = 1;
@@ -88,6 +89,40 @@ public class GuardianAngel extends DuelistCard
             this.initializeDescription();
         }
     }
+    
+ // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
+    	// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
+		}
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
+    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
@@ -117,5 +152,11 @@ public class GuardianAngel extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -33,6 +33,7 @@ public class RevivalJam extends DuelistCard
         this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.AQUA);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
         this.originalName = this.name;
         this.isSummon = true;
@@ -67,6 +68,11 @@ public class RevivalJam extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		summon(player(), this.magicNumber, new Token("Jam Token"));
+		if (tributingCard.hasTag(DefaultMod.AQUA))
+		{
+			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
+			addCardToHand(randomAqua);
+		}
 	}
 
 	@Override
@@ -90,5 +96,11 @@ public class RevivalJam extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

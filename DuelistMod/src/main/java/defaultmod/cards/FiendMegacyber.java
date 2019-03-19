@@ -1,22 +1,22 @@
 package defaultmod.cards;
 
-import com.evacipated.cardcrawl.modthespire.Loader;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.interfaces.*;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
-public class FiendMegacyber extends DuelistCard 
+public class FiendMegacyber extends DuelistCard
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("FiendMegacyber");
+    public static final String ID = DefaultMod.makeID("FiendMegacyber");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.FIEND_MEGACYBER);
     public static final String NAME = cardStrings.NAME;
@@ -25,7 +25,7 @@ public class FiendMegacyber extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
@@ -38,6 +38,7 @@ public class FiendMegacyber extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
         this.tags.add(DefaultMod.ORB_DECK);
+        this.tags.add(DefaultMod.FIEND);
 		this.startingOrbDeckCopies = 1;
         this.misc = 0;
         this.exhaust = true;
@@ -52,10 +53,8 @@ public class FiendMegacyber extends DuelistCard
     {
     	tribute(p, this.magicNumber, false, this);
     	applyPowerToSelf(new StrengthPower(player(), 1));
-    	if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-		else { RandomOrbHelper.channelRandomOrb(); }
+    	if (!this.upgraded) { channelRandom(); }
+    	else { openRandomOrbChoice(5); }
     }
 
     // Which card to return when making a copy of this card.
@@ -69,8 +68,6 @@ public class FiendMegacyber extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
-            //this.upgradeMagicNumber(U_TRIBUTES);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -111,11 +108,13 @@ public class FiendMegacyber extends DuelistCard
  	}
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.hasTag(DefaultMod.FIEND))
+		{
+			AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, 1));
+		}
 	}
-
 
 	@Override
 	public void onResummon(int summons) {
@@ -138,5 +137,11 @@ public class FiendMegacyber extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) 
+	{
+		
 	}
 }

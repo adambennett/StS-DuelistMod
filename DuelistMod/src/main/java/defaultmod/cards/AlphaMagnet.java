@@ -17,7 +17,7 @@ public class AlphaMagnet extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DefaultMod.makeID("AlphaMagnet");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.ALPHA_MAGNET);
+    public static final String IMG = DefaultMod.makeCardPath("Alpha_Magnet.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -106,5 +106,11 @@ public class AlphaMagnet extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

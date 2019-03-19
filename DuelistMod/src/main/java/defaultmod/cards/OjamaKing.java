@@ -48,7 +48,7 @@ public class OjamaKing extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
-		this.tributes = 2;
+		this.tributes = 3;
     }
 
     
@@ -102,8 +102,6 @@ public class OjamaKing extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(1);
-            MAX_DEBUFF_TURNS_ROLL = 8;
-            MAX_BUFF_TURNS_ROLL = 5;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -175,5 +173,12 @@ public class OjamaKing extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

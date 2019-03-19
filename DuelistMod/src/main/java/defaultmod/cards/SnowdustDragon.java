@@ -36,9 +36,9 @@ public class SnowdustDragon extends DuelistCard
 
     public SnowdustDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 16;
+        this.baseDamage = this.damage = 18;
         this.upgradeDmg = 3;
-        this.tributes = 4;
+        this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
@@ -68,6 +68,7 @@ public class SnowdustDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
+            this.tributes = 1;
             //this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
@@ -138,6 +139,12 @@ public class SnowdustDragon extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

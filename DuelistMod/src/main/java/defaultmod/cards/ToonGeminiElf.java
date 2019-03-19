@@ -39,7 +39,6 @@ public class ToonGeminiElf extends DuelistCard
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.FULL);
-        this.tags.add(DefaultMod.BAD_TRIB);
         this.tags.add(DefaultMod.TOON_DECK);
         this.startingDeckCopies = 1;
 		this.originalName = this.name;
@@ -91,7 +90,7 @@ public class ToonGeminiElf extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 
@@ -116,5 +115,11 @@ public class ToonGeminiElf extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

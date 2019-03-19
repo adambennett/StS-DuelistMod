@@ -23,18 +23,18 @@ public class ShallowGrave extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public ShallowGrave() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.METAL_RAIDERS);
-        this.tags.add(DefaultMod.RANDOMONLY);
+        this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.RESUMMON_DECK);
         this.startingResummonDeckCopies = 1;
 		this.originalName = this.name;
@@ -62,7 +62,8 @@ public class ShallowGrave extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            //this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -96,5 +97,11 @@ public class ShallowGrave extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -30,7 +30,7 @@ public class FiendSkull extends DuelistCard
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	private static final int DAMAGE = 15;
 	// /STAT DECLARATION/
 
@@ -38,7 +38,6 @@ public class FiendSkull extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
 		this.tributes = 3;
-		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.DRAGON);
 		this.tags.add(DefaultMod.LEGACY_DARKNESS);
@@ -54,6 +53,7 @@ public class FiendSkull extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
+		applyPower(new VulnerablePower(m, 5, true), m);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -67,7 +67,6 @@ public class FiendSkull extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			//this.tributes = this.magicNumber = this.baseMagicNumber = 0;
 			this.upgradeDamage(5);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
@@ -140,5 +139,11 @@ public class FiendSkull extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

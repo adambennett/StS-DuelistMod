@@ -37,7 +37,6 @@ public class ExodiaHead extends DuelistCard
         this.tags.add(DefaultMod.EXODIA);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
-        this.tags.add(DefaultMod.BAD_TRIB);
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 1;
         this.exodiaName = "Head";
@@ -77,7 +76,7 @@ public class ExodiaHead extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 		
 	}
 
@@ -102,5 +101,11 @@ public class ExodiaHead extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

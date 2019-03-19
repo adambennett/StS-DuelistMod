@@ -2,10 +2,10 @@
   "modid": "duelistmod",
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
-  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv2.203.0\n- Added Chinese (Simplified) support (添加了简体中文支持)\n- Added Archetype API support\n- Bug fixes\n- Various balancing changes\n- Completely changed how random buffs work - now each battle you have a small set of random buffs that your cards will pull from. The set changes each battle, and the number of turns for each applied random buff is still chosen semi-randomly\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
-  "version": "2.203.0",
+  "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\nPATCH NOTES\nv1.232.0\n- Added 24 new cards!\n- Added (some) Chinese (Simplified) support (添加（一些）中文（简体）支持)\n- Many unlisted changes\n- Added new artwork for character, character select button, and select screen BG\n- Various balancing changes\n- Completely changed how random buffs work - now each battle you have a small set of random buffs that your cards will pull from. The set changes each battle, and the number of turns for each applied random buff is still chosen semi-randomly\n- Many bug fixes\n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
+  "version": "1.232.0",
   "sts_version": "1-23-2019",
-  "mts_version": "3.8.3",
+  "mts_version": "3.9.2",
   "credits": "Thanks to Gremious for his amazing work with both the Default Mod base, as well as the Archetype API. \nBig shoutout to Playmaker for various art contributions:\nnotably his character button, selection screen art, and the new Yugi character model!",
   "dependencies": ["basemod", "stslib"],
   "update_json": "https://api.github.com/repos/adambennett/StS-DuelistMod/releases/latest"

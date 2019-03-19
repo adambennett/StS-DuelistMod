@@ -72,7 +72,9 @@ public class DragonMaster extends DuelistCard
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragB, m));
         extraDragA.onResummon(1);
+        extraDragA.checkResummon();
         extraDragB.onResummon(1);
+        extraDragB.checkResummon();
     	
     }
 
@@ -159,5 +161,11 @@ public class DragonMaster extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

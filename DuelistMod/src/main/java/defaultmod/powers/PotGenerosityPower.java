@@ -19,8 +19,6 @@ public class PotGenerosityPower extends AbstractPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DefaultMod.makePath(DefaultMod.POT_GENEROSITY_POWER);
-    
-    private static int MANA = 1;
 
     public PotGenerosityPower(final AbstractCreature owner, final AbstractCreature source, int newAmount) 
     {
@@ -44,6 +42,6 @@ public class PotGenerosityPower extends AbstractPower
 
     @Override
 	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + MANA + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + this.amount;
     }
 }

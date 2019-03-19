@@ -97,7 +97,7 @@ public class RandomEffectsHelper
 		AbstractPower tributeSick = new TributeSicknessPower(p, turnNum);
 		AbstractPower evokeSick = new EvokeSicknessPower(p, turnNum);
 		AbstractPower attackBurn = new AttackBurnPower(p, turnNum);
-		AbstractPower beatOfDeath = new BeatOfDeathPower(p, turnNum);
+		//AbstractPower beatOfDeath = new BeatOfDeathPower(p, turnNum);
 		//AbstractPower choked = new ChokePower(p, turnNum);
 		AbstractPower confusion = new ConfusionPower(p);
 		AbstractPower corruption = new CorruptionPower(p);
@@ -116,7 +116,7 @@ public class RandomEffectsHelper
 			debuffs.add(tributeSick);
 			debuffs.add(evokeSick);
 			debuffs.add(attackBurn);
-			debuffs.add(beatOfDeath);
+			//debuffs.add(beatOfDeath);
 			debuffs.add(confusion);
 			debuffs.add(corruption);
     	}
@@ -132,7 +132,7 @@ public class RandomEffectsHelper
 			debuffs.add(tributeSick);
 			debuffs.add(evokeSick);
 			debuffs.add(attackBurn);
-			debuffs.add(beatOfDeath);
+			//debuffs.add(beatOfDeath);
 			debuffs.add(confusion);
 			debuffs.add(corruption);
 		}

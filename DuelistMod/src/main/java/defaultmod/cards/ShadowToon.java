@@ -35,7 +35,7 @@ public class ShadowToon extends DuelistCard
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.TOON);
-        this.tags.add(DefaultMod.RANDOMONLY);
+        this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.TOON_DECK);
         this.startingDeckCopies = 1;
 		this.originalName = this.name;
@@ -110,5 +110,12 @@ public class ShadowToon extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

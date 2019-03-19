@@ -37,6 +37,7 @@ public class ArmoredZombie extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.RESUMMON_DECK);
+        this.tags.add(DefaultMod.ZOMBIE);
         this.startingResummonDeckCopies = 2;
         this.originalName = this.name;
         this.summons = this.magicNumber;
@@ -83,7 +84,7 @@ public class ArmoredZombie extends DuelistCard
 	public void onResummon(int summons)
 	{
 		heal(AbstractDungeon.player, 10);
-		block(15);
+		//block(15);
 	}
 
 	@Override
@@ -104,5 +105,11 @@ public class ArmoredZombie extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

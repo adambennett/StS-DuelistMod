@@ -1,5 +1,6 @@
 package defaultmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -37,14 +38,10 @@ public class Lajinn extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.SPELLCASTER);
-        this.tags.add(DefaultMod.BAD_TRIB);
-        this.tags.add(DefaultMod.SPELLCASTER_DECK);
-        this.startingDeckCopies = 1;
+        this.tags.add(DefaultMod.FIEND);
         this.originalName = this.name;
         this.summons = 1;
         this.isSummon = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -75,7 +72,10 @@ public class Lajinn extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		if (tributingCard.hasTag(DefaultMod.FIEND))
+		{
+			AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, 1));
+		}
 	}
 
 	@Override
@@ -105,5 +105,11 @@ public class Lajinn extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

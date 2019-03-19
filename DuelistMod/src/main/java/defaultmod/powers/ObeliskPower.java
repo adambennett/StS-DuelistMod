@@ -21,7 +21,7 @@ public class ObeliskPower extends AbstractPower
     public static final String IMG = DefaultMod.makePath(DefaultMod.OBELISK_POWER);
     public int DAMAGE = 6;
 
-    public ObeliskPower(final AbstractCreature owner, final AbstractCreature source) 
+    public ObeliskPower(final AbstractCreature owner, final AbstractCreature source, int newAmount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -30,36 +30,42 @@ public class ObeliskPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.amount = newAmount;
         this.updateDescription();
-
     }
     
     @Override
     public void onDrawOrDiscard() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount != DAMAGE) { DAMAGE = this.amount; }
+    	updateDescription();
     }
     
     @Override
     public void atStartOfTurn() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount != DAMAGE) { DAMAGE = this.amount; }
+    	updateDescription();
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount != DAMAGE) { DAMAGE = this.amount; }
+    	updateDescription();
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount != DAMAGE) { DAMAGE = this.amount; }
+    	updateDescription();
 	}
 
     @Override
-	public void updateDescription() {
+	public void updateDescription() 
+    {
+    	if (this.amount != DAMAGE) { DAMAGE = this.amount; }
         this.description = DESCRIPTIONS[0] + DAMAGE + DESCRIPTIONS[1];
     }
 }

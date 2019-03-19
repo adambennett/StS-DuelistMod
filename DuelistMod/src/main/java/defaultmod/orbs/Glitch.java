@@ -42,6 +42,7 @@ public class Glitch extends DuelistOrb
 	private int passiveActionSize = 0;
 	private int evokeActionSize = 0;
 	public String lastAction = "None";
+	public ArrayList<String> lastTurnActions = new ArrayList<String>();
 	
 	// OJAMANIA FIELDS
 	private static int MIN_BUFF_TURNS_ROLL = 1;
@@ -64,52 +65,43 @@ public class Glitch extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
+		lastTurnActions.add("None");
 		checkFocus();
 		
 		
 		// Setup passive action list
 		passiveActions.add("Draw #b1 card");	
 		passiveActions.add("Draw #b1 card");
-		passiveActions.add("Draw #b2 cards");	
 		passiveActions.add("Gain #b10 HP");
 		passiveActions.add("Gain #b5 HP");
 		passiveActions.add("Gain #b5 HP");
-		//passiveActions.add("Gain a random amount of gold (50-100)");
-		passiveActions.add("Gain a random amount of gold (1-50)");
-		//passiveActions.add("Gain a random amount of gold (10-50)");
-		//passiveActions.add("Gain a random amount of gold (5-200)");
-		//passiveActions.add("Apply #b1 random #ybuff");	
+		passiveActions.add("Lose #b5 HP");
+		passiveActions.add("Lose #b5 HP");
+		passiveActions.add("Lose #b5 HP");
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");	
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");
-		passiveActions.add("Add #b1 random #ySpell to hand");
 		passiveActions.add("Add #b1 random #yTrap to hand");
-		passiveActions.add("Add #b1 random #yTrap to hand");	
-		passiveActions.add("Add #b1 random #ySpellcaster to hand");
+		passiveActions.add("Add #b1 random #yTrap to hand");
 		passiveActions.add("Add #b1 random #yMonster to hand");
 		passiveActions.add("Add #b1 random #yEthereal Duelist card to hand");
 		passiveActions.add("Gain #b15 #yBlock");	
 		passiveActions.add("Gain #b10 #yBlock");
-		passiveActions.add("Gain #b10 #yBlock");
 		passiveActions.add("Gain #b5 #yBlock");
 		passiveActions.add("Gain #b5 #yBlock");
-		passiveActions.add("Gain #b5 #yBlock");
+		//passiveActions.add("#yExhaust #b1 random card in hand");
+		//passiveActions.add("#yExhaust #b1 random card in hand");
 		passiveActions.add("#ySummon #b1");	
 		passiveActions.add("#ySummon #b1");	
 		passiveActions.add("#ySummon #b2");
 		passiveActions.add("#yIncrement #b1");	
 		passiveActions.add("#yIncrement #b2");
-		passiveActions.add("#yOjamania");	
-		passiveActions.add("Increase this orb's Passive amount by #b1");	
-		passiveActions.add("Increase this orb's Evoke amount by #b1");	
-		passiveActions.add("Increase this orb's Evoke amount by #b1");
-		passiveActions.add("Increase this orb's Evoke amount by #b1");	
-		passiveActions.add("Increase this orb's Evoke amount by #b2");
+		//passiveActions.add("Increase this orb's Passive amount by #b1");
+		//passiveActions.add("Increase this orb's Passive amount by #b1");
+		//passiveActions.add("Increase this orb's Evoke amount by #b1");	
+		//passiveActions.add("Increase this orb's Evoke amount by #b2");
 		passiveActions.add("Gain [E] "); 
-		passiveActions.add("Gain [E] [E] ");
-		passiveActions.add("Channel a Glitch");
 		passiveActions.add("Gain #b1 Artifacts");
 		passiveActions.add("Gain #b2 Artifacts");
-		passiveActions.add("Gain #b3 Artifacts");
 		passiveActionSize = passiveActions.size();
 		
 		// Setup evoke action list
@@ -117,44 +109,17 @@ public class Glitch extends DuelistOrb
 		evokeActions.add("Draw #b1 card");	
 		evokeActions.add("Draw #b1 card");	
 		evokeActions.add("Draw #b2 cards");	
-		evokeActions.add("Gain #b10 HP");
-		evokeActions.add("Gain #b5 HP");
-		evokeActions.add("Gain #b5 HP");
-		//evokeActions.add("Gain a random amount of gold (50-100)");
-		evokeActions.add("Gain a random amount of gold (1-50)");
-		//evokeActions.add("Gain a random amount of gold (10-50)");
 		evokeActions.add("Gain a random amount of gold (5-200)");
-		//evokeActions.add("Apply #b1 random #ybuff");	
-		evokeActions.add("Apply #b1 random #ydebuff to random enemy");	
 		evokeActions.add("Apply #b1 random #ydebuff to random enemy");
-		evokeActions.add("Add #b1 random #ySpell to hand");
 		evokeActions.add("Add #b1 random #yTrap to hand");
-		evokeActions.add("Add #b1 random #yTrap to hand");	
 		evokeActions.add("Add #b1 random #ySpellcaster to hand");
-		evokeActions.add("Add #b1 random #yMonster to hand");
 		evokeActions.add("Add #b1 random #yEthereal Duelist card to hand");
 		evokeActions.add("Gain #b15 #yBlock");	
-		evokeActions.add("Gain #b10 #yBlock");
-		evokeActions.add("Gain #b10 #yBlock");
-		evokeActions.add("Gain #b5 #yBlock");
-		evokeActions.add("Gain #b5 #yBlock");
-		evokeActions.add("Gain #b5 #yBlock");
-		evokeActions.add("#ySummon #b1");	
-		evokeActions.add("#ySummon #b1");	
 		evokeActions.add("#ySummon #b2");
-		evokeActions.add("#yIncrement #b1");	
 		evokeActions.add("#yIncrement #b2");
 		evokeActions.add("#yOjamania");	
-		evokeActions.add("Increase this orb's Passive amount by #b1");	
-		evokeActions.add("Increase this orb's Evoke amount by #b1");	
-		evokeActions.add("Increase this orb's Evoke amount by #b1");
-		evokeActions.add("Increase this orb's Evoke amount by #b1");	
-		evokeActions.add("Increase this orb's Evoke amount by #b2");
-		evokeActions.add("Gain [E] "); 
 		evokeActions.add("Gain [E] [E] ");
 		evokeActions.add("Channel a Glitch");
-		evokeActions.add("Gain #b1 Artifacts");
-		evokeActions.add("Gain #b2 Artifacts");
 		evokeActions.add("Gain #b3 Artifacts");
 		evokeActionSize = evokeActions.size();
 	}
@@ -163,8 +128,29 @@ public class Glitch extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + lastAction; }
-		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + lastAction; }
+		if (lastTurnActions.size() < 2 && lastTurnActions.size() > 0)
+		{
+			String actionString = "";
+			for (String s : lastTurnActions) { actionString += s + ", "; }
+			int endingIndex = actionString.lastIndexOf(",");
+	        String finalActionString = actionString.substring(0, endingIndex) + ".";
+	        if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + finalActionString; }
+			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + finalActionString; }
+		}
+		else if (lastTurnActions.size() >= 2)
+		{
+			String actionString = "";
+			for (String s : lastTurnActions) { actionString += s + ", "; }
+			int endingIndex = actionString.lastIndexOf(",");
+	        String finalActionString = actionString.substring(0, endingIndex) + ".";
+	        if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + finalActionString; }
+			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + finalActionString; }
+		} 
+		else
+		{
+			if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + "None."; }
+			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + "None."; }
+		}
 	}
 
 	@Override
@@ -189,6 +175,7 @@ public class Glitch extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
+		lastTurnActions = new ArrayList<String>();
 		int randomActionNum = 0;
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
@@ -196,6 +183,7 @@ public class Glitch extends DuelistOrb
 			//randomActionNum = 3; // Exhaust
 			//randomActionNum = 4; // Gold
 			lastAction = runAction(passiveActions.get(randomActionNum));
+			lastTurnActions.add(lastAction);
 		}
 		
 		applyFocus();
@@ -228,7 +216,7 @@ public class Glitch extends DuelistOrb
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#yExhaust #b1 random card in hand":
-				AbstractDungeon.actionManager.addToTop(new ExhaustAction(AbstractDungeon.player, AbstractDungeon.player, 1, true));
+				AbstractDungeon.actionManager.addToBottom(new ExhaustAction(AbstractDungeon.player, AbstractDungeon.player, 1, true));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Gain a random amount of gold (50-100)":
@@ -471,6 +459,8 @@ public class Glitch extends DuelistOrb
 		{
 			this.baseEvokeAmount = this.evokeAmount += amount;
 		}
+		
+		updateDescription();
 	}
 	
 	@Override

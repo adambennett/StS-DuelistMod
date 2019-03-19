@@ -38,6 +38,7 @@ public class LeviaDragon extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(DefaultMod.MONSTER);
     	this.tags.add(DefaultMod.DRAGON);
+    	this.tags.add(DefaultMod.AQUA);
     	this.tags.add(DefaultMod.ALL);
     	this.tags.add(DefaultMod.INVASION_CHAOS);
     	this.tags.add(DefaultMod.GOOD_TRIB);
@@ -115,6 +116,12 @@ public class LeviaDragon extends DuelistCard
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
 		}
+		
+		if (tributingCard.hasTag(DefaultMod.AQUA))
+		{
+			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
+			addCardToHand(randomAqua);
+		}
 	}
 
 	@Override
@@ -138,6 +145,12 @@ public class LeviaDragon extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

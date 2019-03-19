@@ -5,9 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
+import defaultmod.orbs.ReducerOrb;
 import defaultmod.patches.*;
 
 public class BadToken extends DuelistCard 
@@ -46,11 +47,11 @@ public class BadToken extends DuelistCard
     	}
     	*/
     	
-    	applyPowerToSelf(new FocusPower(p, 1));
+    	//applyPowerToSelf(new FocusPower(p, 1));
     	
     	// Channel test orb
-		//AbstractOrb testOrb = new Shadow();
-		//channel(testOrb);
+		AbstractOrb testOrb = new ReducerOrb();
+		channel(testOrb);
     	
     	//RandomEffectsHelper.addFromRandomSetToHand();
     }
@@ -68,5 +69,10 @@ public class BadToken extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

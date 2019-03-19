@@ -34,15 +34,15 @@ public class GreatMoth extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 3;
+    private static final int COST = 2;
     private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public GreatMoth() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 15;
-        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 25;
-        this.tributes = 3;
+        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 50;
+        this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.NOT_ADDED);
@@ -175,5 +175,11 @@ public class GreatMoth extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

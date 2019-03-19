@@ -1,9 +1,11 @@
 package defaultmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -40,6 +42,7 @@ public class SummonedSkull extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.METAL_RAIDERS);
 		this.tags.add(DefaultMod.STANDARD_DECK);
+		this.tags.add(DefaultMod.FIEND);
         this.startingDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
@@ -112,7 +115,10 @@ public class SummonedSkull extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard)
 	{
-		
+		if (tributingCard.hasTag(DefaultMod.FIEND))
+		{
+			AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, 1));
+		}
 	}
 
 	@Override
@@ -136,5 +142,11 @@ public class SummonedSkull extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

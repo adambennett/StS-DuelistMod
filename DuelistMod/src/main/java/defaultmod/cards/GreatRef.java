@@ -34,8 +34,8 @@ public class GreatRef extends DuelistCard
     public GreatRef() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 15;
-        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 25;
-        this.tributes = 3;
+        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 50;
+        this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.NOT_ADDED);
         this.originalName = this.name;
@@ -99,5 +99,11 @@ public class GreatRef extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

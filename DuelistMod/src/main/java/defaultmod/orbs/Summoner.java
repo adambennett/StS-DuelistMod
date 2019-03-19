@@ -46,7 +46,7 @@ public class Summoner extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount;
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override

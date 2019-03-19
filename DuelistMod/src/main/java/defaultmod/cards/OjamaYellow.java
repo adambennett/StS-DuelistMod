@@ -26,7 +26,7 @@ public class OjamaYellow extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	private static final int SUMMONS = 1;
 	private static final int CARDS = 2;
 	// /STAT DECLARATION/
@@ -55,7 +55,6 @@ public class OjamaYellow extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, SUMMONS, this);
-
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
@@ -78,8 +77,7 @@ public class OjamaYellow extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(2);
-			//this.upgradeBaseCost(0);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -116,5 +114,12 @@ public class OjamaYellow extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

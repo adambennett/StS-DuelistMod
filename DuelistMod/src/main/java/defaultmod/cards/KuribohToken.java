@@ -31,8 +31,8 @@ public class KuribohToken extends DuelistCard
     // /STAT DECLARATION/
 
     public KuribohToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.GOOD_TRIB); this.tags.add(DefaultMod.TOKEN); }
-    public KuribohToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.BAD_TRIB); }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { }
+    public KuribohToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(DefaultMod.GOOD_TRIB); }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
     @Override public AbstractCard makeCopy() { return new KuribohToken(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
@@ -46,5 +46,10 @@ public class KuribohToken extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

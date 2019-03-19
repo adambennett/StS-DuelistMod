@@ -1,50 +1,50 @@
 {
   "theDuelist:Gate": {
-    "NAME": "Gate",
+    "NAME": "门",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain [E] . NL #yEvoke: #ySummon #b", ". NL Gate is unaffected by #yFocus."
+      "被动：在回合开始时，交易 #b", " 对所有敌人造成伤害，获得 #b", " 阻止和获得 [E] 。 唤起：召唤 #b", " 随机守护者。门不受焦点的影响。"
     ]
   },
   "theDuelist:Buffer": {
-    "NAME": "Buffer",
+    "NAME": "缓冲",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase #b", " random #ybuff stacks by #b1. NL #yEvoke: Gain a random #ybuff that lasts for #b", " turns."
+      "被动：在回合开始时，增加 #b", " 随机效果叠加1。唤起：获得随机效果持久的效果 #b", " 转。"
     ]
   },
   "theDuelist:MonsterOrb": {
-    "NAME": "MonsterOrb",
+    "NAME": "怪物宝珠",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " random monster to your hand. NL #yEvoke: Add #b", " random monsters to your hand."
+      "#被动：在回合开始时，添加 #b", " 随机怪物到你的手上。唤醒：添加 #b", " 随机怪物到你的手上。", " 随机怪物到你的手上。唤起：添加 #b"
     ]
   },
   "theDuelist:DragonOrb": {
-    "NAME": "DragonOrb",
+    "NAME": "龙宝珠",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " random #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to #b0."
+      "被动：在回合开始时，添加 #b", " 随机龙到你的手。唤醒：改变成本 #b", " 随机龙手中的龙为0。"
     ]
   },
    "theDuelist:DragonPlusOrb": {
-    "NAME": "DragonOrb+",
+    "NAME": "龙宝珠+",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " random upgraded #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to #b0."
+      "被动：在回合开始时，添加 #b", " 随机升级龙到你的手。唤醒：改变成本 #b", " 随机龙手中的龙为0。"
     ]
   },
   "theDuelist:ReducerOrb": {
-    "NAME": "Reducer",
+    "NAME": "减速器",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase the number of cards reduced when evoked by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
+      "被动：在回合开始时，增加被唤起时减少的牌数 #b", "。 唤醒：改变成本 #b", " 你手中的随机牌为0。", " 你手中的随机牌为0。"
     ]
   },
   "theDuelist:Earth": {
-    "NAME": "Earth",
+    "NAME": "地球",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " random #ySpells to your hand. NL #yEvoke: Add #b", " random #ySpell to your hand.", " random #ySpells to your hand."
+      "被动：在回合开始时，添加 #b", " 随机咒语到你手上。唤醒：添加 #b", " 随便拼写你的手。", " 随机咒语到你手上。", " 随便拼写你的手。唤醒：添加 #b"
     ]
   },
   "theDuelist:Air": {
-    "NAME": "Air",
+    "NAME": "空气",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, #yChannel a random #yOrb.", " NL #yEvoke: Gain #b", " #yOrb slot.", " #yOrb slots."
+      "被动：在回合开始时，有机会引导一个随机的球体。如果你当前召唤的唯一怪物是龙，你有更高的机会。", " 唤醒：获得 #b", " 宝珠槽。", " 宝珠槽。"
     ]
   },
   "theDuelist:Black": {
@@ -54,33 +54,33 @@
     ]
   },
   "theDuelist:FireOrb": {
-    "NAME": "Fire",
+    "NAME": "火",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, if your Dexterity is higher than your Strength, increase your #yStrength by #b", " for each stack of #yDexterity you have. NL #yEvoke: Add #b", " random monster to your hand. It cost #b0 this turn.", " random monsters to your hand. They cost #b0 this turn."
+      "被动：在回合开始时，如果你的敏捷度高于你的力量，则增加你的力量 #b", " 对于你拥有的每一片敏捷。唤醒：添加 #b", " 随机怪物到你的手上。本回合费用为0。", " 随机怪物到你的手上。本回合费用为0。"
     ]
   },
   "theDuelist:Glitch": {
-    "NAME": "Glitch",
+    "NAME": "毛刺",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, trigger #b", " random positive effects. NL #yEvoke: Trigger #b", " random positive effect. NL #yLast #yEffect #yTriggered: NL ", " random positive effects. NL #yLast #yEffect #yTriggered: NL "
+      "被动：在回合开始时，触发 #b", " 随机效应。唤醒：触发 #b", " 随机效应。最后效果触发： ", " 随机效应。最后效果触发： "
     ]
   },
   "theDuelist:Shadow": {
-    "NAME": "Shadow",
+    "NAME": "阴影",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, #ySummon #b", " [#FF5252]Shadow [#FF5252]Tokens. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies."
+      "被动：在回合开始时，有20％的几率召唤 #b", " 影子代币。唤起： 仪式再次 #b", " 随机怪物从你丢弃的堆上随机敌人。", " 随机怪物从你丢弃的堆上随机敌人。"
     ]
   },
   "theDuelist:Splash": {
-    "NAME": "Splash",
+    "NAME": "溅",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #b0-cost, #yEthereal copy of a random Duelist card to your hand. #yEvoke: #b", " #b0-cost, #yEthereal copies of random Duelist cards to your hand. #yEvoke: #b", "% chance to add #b5 random #b1-cost, #yEthereal Duelist cards to your draw pile.", "#yPassive: At the start of turn, add a",
+	  "被动：在回合开始时，为你当前召唤的每个水族怪物添加一张0成本的，随意的决斗卡片的空灵副本。唤起：如果你有最多的水族怪物，请画画 #b", " 卡。"
     ]
   },
   "theDuelist:Summoner": {
-    "NAME": "Summoner",
+    "NAME": "召唤师",
     "DESCRIPTION": [
-      "#yPassive: At the end of turn, #ySummon #b", ". NL #yEvoke: #yIncrement #b"
+      "被动：在回合结束时，召唤 #b", "。 唤醒：增量 #b", "。"
     ]
   }
 }

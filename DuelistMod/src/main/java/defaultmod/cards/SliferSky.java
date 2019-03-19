@@ -39,6 +39,7 @@ public class SliferSky extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tributes = 5;
         this.misc = 0;
+        this.baseMagicNumber = this.magicNumber = 2;
 		this.originalName = this.name;
     }
 
@@ -47,7 +48,15 @@ public class SliferSky extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	applyPowerToSelf(new SliferSkyPower(p));
+    	if (!p.hasPower(SliferSkyPower.POWER_ID)) { applyPowerToSelf(new SliferSkyPower(p, this.magicNumber)); }
+    	else
+    	{
+    		SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
+    		instance.turnTriggers += this.magicNumber;
+    		instance.triggerAllowed = true;
+    		instance.amount += this.magicNumber;
+    		instance.updateDescription();
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -61,7 +70,7 @@ public class SliferSky extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -132,5 +141,11 @@ public class SliferSky extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

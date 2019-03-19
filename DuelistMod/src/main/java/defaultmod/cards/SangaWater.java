@@ -45,6 +45,7 @@ public class SangaWater extends DuelistCard
     	this.tags.add(DefaultMod.METAL_RAIDERS);
     	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.tags.add(DefaultMod.CONSPIRE);
+    	this.tags.add(DefaultMod.AQUA);
     	this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -117,7 +118,11 @@ public class SangaWater extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		if (tributingCard.hasTag(DefaultMod.AQUA))
+		{
+			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
+			addCardToHand(randomAqua);
+		}
 	}
 
 	@Override
@@ -149,6 +154,12 @@ public class SangaWater extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

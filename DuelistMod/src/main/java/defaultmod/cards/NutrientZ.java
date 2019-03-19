@@ -30,7 +30,7 @@ public class NutrientZ extends DuelistCard
     private static final int COST = 1;
     private static int HEAL = 25;
     private static int U_HEAL = 10;
-    private static int HP_CHK = 40;
+    private static int HP_CHK = 30;
     private static int debuffs = 3;
     // /STAT DECLARATION/
 
@@ -116,5 +116,11 @@ public class NutrientZ extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

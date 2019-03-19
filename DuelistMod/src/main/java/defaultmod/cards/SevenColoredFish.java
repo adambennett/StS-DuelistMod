@@ -43,6 +43,7 @@ public class SevenColoredFish extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.STANDARD_DECK);
         this.tags.add(DefaultMod.ORB_DECK);
+        this.tags.add(DefaultMod.AQUA);
 		this.startingOrbDeckCopies = 2;
         this.startingDeckCopies = 2;
         this.originalName = this.name;
@@ -84,6 +85,11 @@ public class SevenColoredFish extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		if (tributingCard.originalName.equals("Legendary Fisherman")) { draw(2); }
+		if (tributingCard.hasTag(DefaultMod.AQUA))
+		{
+			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
+			addCardToHand(randomAqua);
+		}
 	}
 
 	@Override
@@ -113,5 +119,11 @@ public class SevenColoredFish extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

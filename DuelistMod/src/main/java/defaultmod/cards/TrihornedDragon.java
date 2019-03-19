@@ -63,8 +63,9 @@ public class TrihornedDragon extends DuelistCard
     		for (DuelistCard c : tributeList)
     		{
     			if (c.hasTag(DefaultMod.DRAGON))
-    			{
-    				channelRandom();
+    			{    				
+    				if (!this.upgraded) { channelRandom(); }
+    				else { openRandomOrbChoice(3); }
     			}
     		}
     	}
@@ -81,7 +82,7 @@ public class TrihornedDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
+            //this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -152,6 +153,12 @@ public class TrihornedDragon extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

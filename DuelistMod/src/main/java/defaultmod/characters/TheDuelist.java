@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
-import archetypeAPI.characters.customCharacterArchetype;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import defaultmod.DefaultMod;
@@ -23,7 +22,7 @@ import defaultmod.patches.AbstractCardEnum;
 import defaultmod.relics.MillenniumPuzzle;
 
 
-public class TheDuelist extends CustomPlayer implements customCharacterArchetype {
+public class TheDuelist extends CustomPlayer {
 	public static final Logger logger = LogManager.getLogger(DefaultMod.class.getName());
 
 	// =============== BASE STATS =================
@@ -132,7 +131,7 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 	
 		
 		/*
-		 * ORB DECK (11 cards)
+		 * ORB DECK v2 (12 cards)
 		 * 
 		 * Machine King x1
 		 * Snow Dragon x2
@@ -142,23 +141,25 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 		 * Sanga Thunder x1
 		 * Prevent Rat x2
 		 * Fiend Megacyber x1
+		 * Icy Crevasse x1
 		 * 
-		 * add new card that increases orb slots?
 		 * 
 		 */
 		
 		/*
-		 * RESUMMON DECK (10 cards)
+		 * RESUMMON DECK v2 (10 cards)
 		 * 
 		 * Armored Zombie x2
-		 * Molten Zombie x2
-		 * Red Eyes Zombie x1
-		 * Tribute Doomed x2
 		 * Pumprincess x1
 		 * Shallow Grave x1
 		 * Judge Man x1
+		 * Double Coston x2
+		 * King Yami x2
+		 * Terra Terrible x1
+		 * 
 		 * 
 		 */
+		
 		
 		/*
 		 * GENERATION DECK (12 cards)
@@ -193,7 +194,7 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 		 */
 		
 		/*
-		 * HEAL DECK (10 cards)
+		 * HEAL DECK (9 cards)
 		 * 
 		 * Bad Reaction x1
 		 * Darklord Marie x2
@@ -202,7 +203,7 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 		 * Gemini Elf x1
 		 * Giant Soldier x2
 		 * Guardian Angel x1
-		 * Dian Keto x1
+		 * 
 		 * 
 		 * 
 		 */
@@ -342,6 +343,7 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 		return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~";
 	}
 
+	/*
 	@Override
 	public CardGroup getArchetypeSelectionCardsPool() 
 	{
@@ -352,5 +354,6 @@ public class TheDuelist extends CustomPlayer implements customCharacterArchetype
 	public int numberOfDefaultArchetypes() {
 		return numberOfArchetypes;
 	}
+	*/
 
 }

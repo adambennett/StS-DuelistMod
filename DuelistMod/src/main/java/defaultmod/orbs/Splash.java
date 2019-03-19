@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.SplashPassiveAction;
 import defaultmod.actions.unique.TheCreatorAction;
 import defaultmod.interfaces.DuelistOrb;
+import defaultmod.patches.DuelistCard;
+import defaultmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Splash extends DuelistOrb
@@ -49,22 +52,21 @@ public class Splash extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.passiveAmount < 2) { this.description = DESC[4] + DESC[1] + (this.evokeAmount * 10) + DESC[3]; }
-		else { this.description = DESC[0] + this.passiveAmount + DESC[2] + (this.evokeAmount * 10) + DESC[3]; }
+		this.description = DESC[0] + this.evokeAmount + DESC[1];
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-		if (roll <= this.evokeAmount)
+		boolean onlyAquas = false;
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
-			for (int i = 0; i < evokeCardsToAdd; i++)
-			{
-				AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, DefaultMod.myCards.get(AbstractDungeon.cardRandomRng.random(DefaultMod.myCards.size() - 1)), 1, true, false));
-			}
-			if (DefaultMod.debug) { System.out.println("theDuelist:Splash:onEvoke() ---> triggered evoke draw pile add action with roll: " + roll); }
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			onlyAquas = instance.typeSummonsMatchMax(DefaultMod.AQUA);
+		}
+		if (onlyAquas)
+		{
+			DuelistCard.draw(this.evokeAmount);
 		}
 	}
 
@@ -76,7 +78,13 @@ public class Splash extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
-		for (int i = 0; i < this.passiveAmount; i++)
+		int aquas = 0;
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			aquas += instance.getNumberOfTypeSummoned(DefaultMod.AQUA);
+		}
+		for (int i = 0; i < aquas; i++)
 		{
 			AbstractDungeon.actionManager.addToTop(new SplashPassiveAction());
 		}
@@ -119,12 +127,31 @@ public class Splash extends DuelistOrb
 	}
 	
 	@Override
+	public void checkFocus()
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			this.baseEvokeAmount = 6 + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		}
+		else 
+		{
+			this.baseEvokeAmount = 6;
+		}
+		if (DefaultMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
+	}
+	
+	@Override
 	protected void renderText(SpriteBatch sb)
 	{	
 		// Render evoke amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

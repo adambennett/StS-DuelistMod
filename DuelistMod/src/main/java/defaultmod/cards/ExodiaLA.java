@@ -40,7 +40,6 @@ public class ExodiaLA extends DuelistCard
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
-        this.tags.add(DefaultMod.BAD_TRIB);
         this.damage = this.baseDamage = 6;
         this.summons = this.magicNumber = this.baseMagicNumber = 1;
         this.block = this.baseBlock = 1;
@@ -98,7 +97,7 @@ public class ExodiaLA extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 		
 	}
 
@@ -165,5 +164,11 @@ public class ExodiaLA extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

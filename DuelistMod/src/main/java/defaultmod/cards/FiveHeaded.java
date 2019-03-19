@@ -32,7 +32,7 @@ public class FiveHeaded extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 4;
     private static final int DAMAGE = 55;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 45;
     // /STAT DECLARATION/
 
     public FiveHeaded() {
@@ -68,7 +68,7 @@ public class FiveHeaded extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.tributes = 5;
+            this.tributes = 6;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -138,5 +138,11 @@ public class FiveHeaded extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
-import defaultmod.orbs.Buffer;
+import defaultmod.orbs.*;
 import defaultmod.patches.*;
 
 public class DarkMagicianGirl extends DuelistCard 
@@ -36,7 +36,6 @@ public class DarkMagicianGirl extends DuelistCard
 		this.tags.add(DefaultMod.MAGICIANS_FORCE);
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.LIMITED);
-		this.tags.add(DefaultMod.BAD_TRIB);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = 1;
@@ -50,7 +49,7 @@ public class DarkMagicianGirl extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		block(this.block);
-		AbstractOrb buffer = new Buffer();
+		AbstractOrb buffer = new ReducerOrb();
 		channel(buffer);
 	}
 
@@ -98,7 +97,7 @@ public class DarkMagicianGirl extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 		
 	}
 
@@ -133,6 +132,12 @@ public class DarkMagicianGirl extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

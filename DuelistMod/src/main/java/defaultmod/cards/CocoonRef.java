@@ -30,7 +30,7 @@ public class CocoonRef extends DuelistCard
 
     public CocoonRef() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 16;
+        this.baseBlock = this.block = 4;
         this.tributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.NOT_ADDED);
@@ -96,5 +96,11 @@ public class CocoonRef extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

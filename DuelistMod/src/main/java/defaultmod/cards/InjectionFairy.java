@@ -39,7 +39,6 @@ public class InjectionFairy extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGACY_DARKNESS);
 		this.tags.add(DefaultMod.SPELLCASTER);
-		this.tags.add(DefaultMod.BAD_TRIB);
 		this.tags.add(DefaultMod.HEAL_DECK);
         this.startingHealDeckCopies = 1;
 		this.originalName = this.name;
@@ -78,7 +77,7 @@ public class InjectionFairy extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard)
 	{
-		if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
 	}
 
 
@@ -112,5 +111,11 @@ public class InjectionFairy extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

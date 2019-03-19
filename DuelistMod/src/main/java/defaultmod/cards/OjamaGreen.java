@@ -28,7 +28,7 @@ public class OjamaGreen extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
 	private static final int COST = 1;
 	private static final int SUMMONS = 1;
-	private static int MIN_TURNS_ROLL = 3;
+	private static int MIN_TURNS_ROLL = 1;
 	private static int MAX_TURNS_ROLL = 5;
 	// /STAT DECLARATION/
 
@@ -58,7 +58,7 @@ public class OjamaGreen extends DuelistCard
 
 		// Get number of buffs
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
-		int randomBuffNumU = AbstractDungeon.cardRandomRng.random(2, 4); 
+		int randomBuffNumU = AbstractDungeon.cardRandomRng.random(1, 3); 
 
 		// Set number of buffs to right number (based on upgrade status)
 		int primary = 4;
@@ -88,8 +88,6 @@ public class OjamaGreen extends DuelistCard
 			this.upgradeName();
 			this.upgradeMagicNumber(1);
 			this.upgradeBlock(3);
-			MIN_TURNS_ROLL = 4;
-			MAX_TURNS_ROLL = 6;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -148,5 +146,12 @@ public class OjamaGreen extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

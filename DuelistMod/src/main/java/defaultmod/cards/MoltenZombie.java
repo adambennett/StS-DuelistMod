@@ -39,13 +39,11 @@ public class MoltenZombie extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.REDUCED);
-        this.tags.add(DefaultMod.RESUMMON_DECK);
-        this.startingResummonDeckCopies = 2;
+        this.tags.add(DefaultMod.ZOMBIE);
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
         this.damage = this.baseDamage = 3;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -106,5 +104,11 @@ public class MoltenZombie extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

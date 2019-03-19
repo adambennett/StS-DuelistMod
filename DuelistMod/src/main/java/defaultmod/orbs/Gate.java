@@ -1,5 +1,7 @@
 package defaultmod.orbs;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -14,6 +16,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
+import defaultmod.cards.*;
 import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
@@ -30,7 +33,7 @@ public class Gate extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
-	
+	private static ArrayList<DuelistCard> guardians = new ArrayList<DuelistCard>();
 	private int DAMAGE = 4;
 	private int BLOCK = 5;
 	private int SUMMONS = 2;
@@ -47,6 +50,10 @@ public class Gate extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
+		DuelistCard thunder = new SangaThunder();
+		DuelistCard water = new SangaWater();
+		DuelistCard earth = new SangaEarth();
+		guardians.add(thunder); guardians.add(water); guardians.add(earth);
 	}
 
 	@Override
@@ -59,7 +66,11 @@ public class Gate extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Gate Token", false);
+		DuelistCard firstRandom = guardians.get(AbstractDungeon.cardRandomRng.random(guardians.size() - 1));
+		DuelistCard secondRandom = guardians.get(AbstractDungeon.cardRandomRng.random(guardians.size() - 1));
+		DuelistCard.summon(AbstractDungeon.player, 1, firstRandom);
+		DuelistCard.summon(AbstractDungeon.player, 1, secondRandom);
+		//DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Gate Token", false);
 	}
 
 	@Override

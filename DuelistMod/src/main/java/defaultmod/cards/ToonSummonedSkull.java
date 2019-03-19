@@ -145,4 +145,10 @@ public class ToonSummonedSkull extends DuelistCard
 		return ID;
 	}
 
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -62,6 +62,7 @@ public class Polymerization extends DuelistCard
 					cardCopy.purgeOnUse = true;
 					AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 					cardCopy.onResummon(1);
+					cardCopy.checkResummon();
 				}
 			}
     	}
@@ -114,6 +115,12 @@ public class Polymerization extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

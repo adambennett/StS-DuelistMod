@@ -82,6 +82,7 @@ public class Shadow extends DuelistOrb
     				if (chosen.upgraded) { cardCopy.upgrade(); }
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
+    				cardCopy.checkResummon();
     				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
     			}
     		
@@ -92,7 +93,11 @@ public class Shadow extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+		if (roll <= 2)
+		{
+			this.triggerPassiveEffect();
+		}
 	}
 
 	private void triggerPassiveEffect()

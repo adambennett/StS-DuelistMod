@@ -42,11 +42,9 @@ public class RedEyesZombie extends DuelistCard
     	this.tags.add(DefaultMod.DRAGON);
     	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.tags.add(DefaultMod.REDUCED);
-    	this.tags.add(DefaultMod.RESUMMON_DECK);
-        this.startingResummonDeckCopies = 1;
+    	this.tags.add(DefaultMod.ZOMBIE);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.setupStartingCopies();
 		this.tributes = 2;
     }
 
@@ -144,5 +142,11 @@ public class RedEyesZombie extends DuelistCard
 	public String getID() 
 	{
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

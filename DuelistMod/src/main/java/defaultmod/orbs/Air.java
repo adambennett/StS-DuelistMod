@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import defaultmod.DefaultMod;
 import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
+import defaultmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Air extends DuelistOrb
@@ -71,7 +72,20 @@ public class Air extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		applyFocus();
-		this.triggerPassiveEffect();
+		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (instance.isOnlyTypeSummoned(DefaultMod.DRAGON))
+			{
+				rollCheck += 2;
+			}
+		}
+		if (roll < rollCheck)
+		{
+			this.triggerPassiveEffect();
+		}
 	}
 
 	private void triggerPassiveEffect()
@@ -146,7 +160,7 @@ public class Air extends DuelistOrb
 		}
 		if (DefaultMod.debug)
 		{
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + "originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();
 		updateDescription();

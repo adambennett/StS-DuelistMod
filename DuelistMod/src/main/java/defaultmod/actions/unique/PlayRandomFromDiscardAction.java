@@ -81,6 +81,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
+    				cardCopy.checkResummon();
     				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
     			}
 				//this.p.discardPile.removeCard(card);
@@ -105,6 +106,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 	    				cardCopy.onResummon(1);
+	    				cardCopy.checkResummon();
 	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 					//this.p.discardPile.removeCard(card);
@@ -129,6 +131,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 	    				cardCopy.onResummon(1);
+	    				cardCopy.checkResummon();
 	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 					//this.p.discardPile.removeCard(card);

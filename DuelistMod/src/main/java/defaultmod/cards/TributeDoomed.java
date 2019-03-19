@@ -36,11 +36,8 @@ public class TributeDoomed extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.RESUMMON_DECK);
-        this.startingResummonDeckCopies = 2;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
-		this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -129,5 +126,11 @@ public class TributeDoomed extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

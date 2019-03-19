@@ -36,12 +36,8 @@ public class MachineKing extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.ALL);
-		this.tags.add(DefaultMod.ORB_DECK);
-		this.startingOrbDeckCopies = 1;
 		this.tributes = 2;
 		this.originalName = this.name;
-		this.damage = this.baseDamage = 6;
-		this.setupStartingCopies();
 
 	}
 
@@ -134,5 +130,11 @@ public class MachineKing extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

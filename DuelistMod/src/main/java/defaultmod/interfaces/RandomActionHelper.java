@@ -243,7 +243,7 @@ public class RandomActionHelper
 				DuelistCard.applyPowerToSelf(artB);
 				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
 				break;
-			case "Gain #b1 Artifacts":
+			case "Gain #b1 Artifact":
 				AbstractPower artC = new ArtifactPower(AbstractDungeon.player, 1);
 				DuelistCard.applyPowerToSelf(artC);
 				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
@@ -261,54 +261,47 @@ public class RandomActionHelper
 	private static void initList()
 	{
 		actions = new ArrayList<String>();
+		if (!DefaultMod.challengeMode) 
+		{ 
+			actions.add("Gain a random amount of gold (1-50)"); 
+			actions.add("Draw #b2 cards");	
+			actions.add("Gain #b5 HP");
+			actions.add("Gain #b10 HP");
+			actions.add("#ySummon #b2");
+			actions.add("#yOjamania");	
+			actions.add("Gain [E] "); 
+			actions.add("Channel a Glitch");
+			actions.add("#yIncrement #b2");
+		}
+		else
+		{
+			//actions.add("#yExhaust #b1 random card in hand");
+			//actions.add("#yExhaust #b1 random card in hand");	
+			actions.add("Add #b1 random #yEthereal Duelist card to hand");
+			actions.add("Gain #b5 HP");
+			actions.add("#ySummon #b1");
+			actions.add("#yIncrement #b1");
+		}
 		actions.add("Draw #b1 card");	
 		actions.add("Draw #b1 card");	
-		actions.add("Draw #b2 cards");	
-		actions.add("Gain #b10 HP");
 		actions.add("Gain #b5 HP");
-		actions.add("Gain #b5 HP");
-		actions.add("Draw #b1 card");	
-		actions.add("Draw #b1 card");	
-		actions.add("Draw #b2 cards");	
-		actions.add("Gain #b10 HP");
-		actions.add("Gain #b5 HP");
-		actions.add("Gain #b5 HP");
-		actions.add("Gain a random amount of gold (1-50)");
-		
-		//actions.add("Gain a random amount of gold (50-100)");
-		//actions.add("Gain a random amount of gold (10-50)");
-		//actions.add("Gain a random amount of gold (10-50)");
-		//actions.add("Gain a random amount of gold (10-50)");
-		//actions.add("Gain a random amount of gold (5-200)");
-		//actions.add("Gain a random amount of gold (0-1000)");
-		
-		//actions.add("Apply #b1 random #ybuff");	
+		actions.add("Lose #b5 HP");
+		actions.add("Lose #b5 HP");
+		//actions.add("#yExhaust #b1 random card in hand");
+		//actions.add("#yExhaust #b1 random card in hand");	
 		actions.add("Apply #b2 random #ydebuffs to random enemy");	
 		actions.add("Apply #b1 random #ydebuff to random enemy");
-		actions.add("Add #b1 random #ySpell to hand");
 		actions.add("Add #b1 random #yTrap to hand");
 		actions.add("Add #b1 random #yTrap to hand");	
-		actions.add("Add #b1 random #yDragon to hand");
 		actions.add("Add #b1 random #yMonster to hand");
 		actions.add("Add #b1 random #yEthereal Duelist card to hand");
-		actions.add("Gain #b15 #yBlock");	
 		actions.add("Gain #b10 #yBlock");
-		actions.add("Gain #b10 #yBlock");
-		actions.add("Gain #b5 #yBlock");
 		actions.add("Gain #b5 #yBlock");
 		actions.add("Gain #b5 #yBlock");
 		actions.add("#ySummon #b1");	
 		actions.add("#ySummon #b1");	
-		actions.add("#ySummon #b2");
 		actions.add("#yIncrement #b1");	
-		actions.add("#yIncrement #b2");
-		actions.add("#yOjamania");	
-		actions.add("Gain [E] "); 
-		actions.add("Gain [E] [E] "); 
-		actions.add("Channel a Glitch");
-		actions.add("Gain #b1 Artifacts");
-		actions.add("Gain #b2 Artifacts");
-		actions.add("Gain #b3 Artifacts");
+		actions.add("Gain #b1 Artifact");
 	}
 
 }

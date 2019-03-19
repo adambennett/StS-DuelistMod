@@ -48,7 +48,7 @@ public class PredaplantToken extends DuelistCard
     	this.tags.add(DefaultMod.INSECT);
     }
     
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
     @Override public AbstractCard makeCopy() { return new PredaplantToken(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
@@ -64,5 +64,11 @@ public class PredaplantToken extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

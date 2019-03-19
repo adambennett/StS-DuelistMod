@@ -35,7 +35,7 @@ public class MiniPolymerization extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.GENERATION_DECK);
-        this.tags.add(DefaultMod.RANDOMONLY);
+        this.tags.add(DefaultMod.ALL);
 		this.startingGenDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
@@ -64,6 +64,7 @@ public class MiniPolymerization extends DuelistCard
 					cardCopy.purgeOnUse = true;
 					AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 					cardCopy.onResummon(1);
+					cardCopy.checkResummon();
 				}
 			}
     	}
@@ -116,6 +117,12 @@ public class MiniPolymerization extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

@@ -36,12 +36,9 @@ public class Parasite extends DuelistCard
 		this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.tags.add(DefaultMod.INSECT);
 		this.tags.add(DefaultMod.GOOD_TRIB);
-		this.tags.add(DefaultMod.NATURE_DECK);
-		this.startingDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;
-		this.setupStartingCopies();
 
 	}
 
@@ -100,5 +97,11 @@ public class Parasite extends DuelistCard
 	@Override
 	public String getID() {
 		return ID;
+	}
+
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }
