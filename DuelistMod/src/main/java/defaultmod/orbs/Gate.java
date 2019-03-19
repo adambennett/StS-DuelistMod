@@ -51,9 +51,10 @@ public class Gate extends DuelistOrb
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		DuelistCard thunder = new SangaThunder();
-		DuelistCard water = new SangaWater();
 		DuelistCard earth = new SangaEarth();
-		guardians.add(thunder); guardians.add(water); guardians.add(earth);
+		guardians.add(thunder); 
+		guardians.add(earth);
+		if (DefaultMod.isConspire) { DuelistCard water = new SangaWater(); guardians.add(water); }
 	}
 
 	@Override

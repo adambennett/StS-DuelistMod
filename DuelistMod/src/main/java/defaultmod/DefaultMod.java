@@ -1178,27 +1178,36 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 		tinFluteCards = new ArrayList<AbstractCard>();
 		logger.info("reset tinFluteCards");
 		
+		if (isReplay)
+		{
+			orbCards.add(new CrystalOrbCard());
+			orbCards.add(new GlassOrbCard());
+			orbCards.add(new HellfireOrbCard());
+			orbCards.add(new LightOrbCard());
+		}
+		
+		if (isConspire)
+		{
+			orbCards.add(new WaterOrbCard());
+		}
+		
 		orbCards.add(new AirOrbCard());
 		orbCards.add(new BufferOrbCard());
-		orbCards.add(new CrystalOrbCard());
 		orbCards.add(new DarkOrbCard());
 		orbCards.add(new DragonOrbCard());
 		orbCards.add(new EarthOrbCard());
 		orbCards.add(new FireOrbCard());
 		orbCards.add(new FrostOrbCard());
 		orbCards.add(new GateOrbCard());
-		orbCards.add(new GlassOrbCard());
 		orbCards.add(new GlitchOrbCard());
-		orbCards.add(new HellfireOrbCard());
 		orbCards.add(new LightningOrbCard());
-		orbCards.add(new LightOrbCard());
 		orbCards.add(new MonsterOrbCard());
 		orbCards.add(new PlasmaOrbCard());
 		orbCards.add(new ReducerOrbCard());
 		orbCards.add(new ShadowOrbCard());
 		orbCards.add(new SplashOrbCard());
 		orbCards.add(new SummonerOrbCard());
-		orbCards.add(new WaterOrbCard());
+		
 		
 		for (DuelistCard o : orbCards)
 		{
