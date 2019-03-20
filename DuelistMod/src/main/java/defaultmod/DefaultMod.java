@@ -176,8 +176,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 	//public static AbstractRelic tinFluteRef = null;
 	public static boolean ultimateOfferingTrig = false;
 	//public static boolean isApi = Loader.isModLoaded("archetypeapi");
-	public static boolean isReplay = Loader.isModLoaded("conspire");
-	public static boolean isConspire = Loader.isModLoaded("ReplayTheSpireMod");
+	public static boolean isConspire = Loader.isModLoaded("conspire");
+	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
 	public static int swordsPlayed = 0;
 	public static int cardsToDraw = 5;
@@ -1184,8 +1184,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 		// Add the Custom Dynamic Variables
 		//BaseMod.addDynamicVariable(new WingedDragonVariable());
 		
-		tinFluteCards = new ArrayList<AbstractCard>();
-		logger.info("reset tinFluteCards");
+		//tinFluteCards = new ArrayList<AbstractCard>();
+		//logger.info("reset tinFluteCards");
 		
 		if (isReplay)
 		{
