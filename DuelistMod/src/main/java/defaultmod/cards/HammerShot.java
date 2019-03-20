@@ -38,7 +38,10 @@ public class HammerShot extends DuelistCard
         this.isMultiDamage = true;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.INCREMENT_DECK);
+        this.startingIncDeckCopies = 1;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

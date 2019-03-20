@@ -39,6 +39,7 @@ public class InvitationDarkSleep extends DuelistCard
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;
+		this.exhaust = true;
 	}
 
 	// Actions the card should do.

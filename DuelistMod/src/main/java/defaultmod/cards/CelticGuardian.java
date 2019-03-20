@@ -38,9 +38,12 @@ public class CelticGuardian extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.INCREMENT_DECK);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.originalName = this.name;
         this.summons = SUMMONS;
+        this.startingIncDeckCopies = 2;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

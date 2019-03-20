@@ -1233,6 +1233,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
 		}
+		
+		if (p.hasPower(SphereKuribohPower.POWER_ID))
+		{
+			DuelistCard randomCard = (DuelistCard) returnTrulyRandomDuelistCard();
+			addCardToHand(randomCard);
+		}
 
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);

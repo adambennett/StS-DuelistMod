@@ -191,6 +191,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 	public static int startGold = 99;
 	public static int cardDraw = 5;
 	public static int orbSlots = 3;
+	//public static String playerName = "The Duelist";
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static final boolean debug = false;	// print statements only really
@@ -505,6 +506,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 	public static final String OBLITERATE = "cards/Obliterate.png";
 	public static final String LEGEND_EXODIA = "cards/Legend_Exodia.png";
 	public static final String KAISER_SEA_HORSE = "cards/Kaiser_Sea_Horse.png";
+	public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
 
 	
 	// Expansion Set
@@ -566,7 +568,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 	public static final String SAUROPOD_BRACHION = "cards/Sauropod Brachion.png";
 	public static final String SILVER_FANG = "cards/Silver_Fang.png";
 	public static final String SKULL_SERVANT = "cards/Skull_Servant.png";
-	public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
+	
 	public static final String SUPERCONDUCTOR_TYRANNO = "cards/Super_Conductor_Tyranno.png";	
 	public static final String SWORD_HUNTER = "cards/Sword_Hunter.png";
 	public static final String THIRTEEN_GRAVE = "cards/13th_Grave.png";
@@ -634,6 +636,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 	public static final String NATURE_POWER = "powers/NaturePower.png";
 	public static final String CARD_SAFE_POWER = "powers/CardSafePower.png";
 	public static final String HEART_UNDERDOG_POWER = "powers/HeartUnderdogPower.png";
+	public static final String SPHERE_KURIBOH_POWER = "powers/SphereKuribohPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -784,11 +787,11 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 		duelistDefaults.setProperty(PROP_RESUMMON_DMG, "1");
 		duelistDefaults.setProperty(PROP_CHALLENGE, "FALSE");
 		
-		cardSets.add("All (219 cards)"); 
-		cardSets.add("Full (137 cards)");
-		cardSets.add("Reduced (118 cards)");
-		cardSets.add("Limited (90 cards)");
-		cardSets.add("Core (61 cards)");
+		cardSets.add("All (220 cards)"); 
+		cardSets.add("Full (140 cards)");
+		cardSets.add("Reduced (121 cards)");
+		cardSets.add("Limited (93 cards)");
+		cardSets.add("Core (64 cards)");
 		
 		int save = 0;
 		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (10 cards)", save, "Standard Deck"); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
@@ -804,7 +807,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 		StarterDeck gDeck = new StarterDeck(GENERATION_DECK, "Generation Deck (12 cards)", save, "Generation Deck"); starterDeckList.add(gDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ojDeck = new StarterDeck(OJAMA_DECK, "Ojama Deck (12 cards)", save, "Ojama Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (9 cards)", save, "Heal Deck"); starterDeckList.add(hpDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		//StarterDeck incDeck = new StarterDeck(INCREMENT_DECK, "Increment Deck (11 cards)", save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck incDeck = new StarterDeck(INCREMENT_DECK, "Increment Deck (11 cards)", save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		//StarterDeck exodiaDeck = new StarterDeck(EXODIA_DECK, "Exodia Deck (?? cards)", save, "Exodia Deck"); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		//StarterDeck magnetDeck = new StarterDeck(MAGNET_DECK, "Superheavy Deck (?? cards)", save, "Superheavy Deck"); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		//StarterDeck aquaDeck = new StarterDeck(AQUA_DECK, "Aqua Deck (?? cards)", save, "Aqua Deck"); starterDeckList.add(aquaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
@@ -873,7 +876,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 	// =============== LOAD THE CHARACTER =================
 
 	@Override
-	public void receiveEditCharacters() {
+	public void receiveEditCharacters() 
+	{
+		//UIStrings UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
+		//String characterName = UI_String.TEXT[10];
+		//playerName = characterName;
+		
 		/*if (!isApi)
 		{
 			logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
@@ -894,9 +902,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 		}*/
 		//else
 		//{
-			logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
-			String loc = localize();
-			if (loc.equals("zhs"))
+			//logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
+			//String loc = localize();
+			/*if (loc.equals("zhs"))
 			{
 				// Yugi Moto
 				BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT_CHINESE), TheDuelistEnum.THE_DUELIST);
@@ -915,6 +923,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 			}
 			else
 			{
+			*/
 				// Yugi Moto
 				BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
 				
@@ -929,7 +938,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 				
 				
 				receiveEditPotions();
-			}
+			//}
 			logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Done editing characters");
 		//}
 	}
@@ -1292,6 +1301,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
 		myCards.add(new WingedDragonRa());
 		myCards.add(new Yami());
 		myCards.add(new NeoMagic());
+		myCards.add(new GoldenApples());
+		myCards.add(new SphereKuriboh());
 		myCards.add(new Wiseman());
 		// END CORE SET
 		
@@ -2308,7 +2319,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber
         return Gdx.files.internal("resources/defaultModResources/localization/" + locCode + "/" + name + ".json").readString(String.valueOf(StandardCharsets.UTF_8));
     }
 	
-	private static String localize() 
+	public static String localize() 
 	{
         switch (Settings.language) 
         {

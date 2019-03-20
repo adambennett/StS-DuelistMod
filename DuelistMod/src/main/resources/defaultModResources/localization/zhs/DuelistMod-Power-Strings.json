@@ -223,7 +223,7 @@
         "NAME": "安全返回卡",
         "DESCRIPTIONS": ["每当你仪式再次，画画 #b" , " 卡。", " 卡。" ]
 },
-"theDuelist:HeartUnderdog": {
+"theDuelist:HeartUnderdogPower": {
         "NAME": "失败者的心脏",
         "DESCRIPTIONS": ["每当你画一个怪物时，画1张牌。" ]
 },
@@ -242,6 +242,10 @@
 "theDuelist:GatesDarkPower": {
         "NAME": "黑暗世界之门",
         "DESCRIPTIONS": ["你的恶魔和僵尸造成的伤害提高100％，并获得100％的阻挡。" ]
+},
+"theDuelist:SphereKuribohPower": {
+        "NAME": "Sphere Kuriboh",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, add a random card to your hand." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

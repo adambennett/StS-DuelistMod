@@ -147,7 +147,7 @@ public class TheDuelist extends CustomPlayer {
 		 */
 		
 		/*
-		 * RESUMMON DECK v2 (10 cards)
+		 * RESUMMON DECK (10 cards)
 		 * 
 		 * Armored Zombie x2
 		 * Pumprincess x1
@@ -209,22 +209,87 @@ public class TheDuelist extends CustomPlayer {
 		 */
 		
 		/*
-		 * INCREMENT DECK (11 cards)
+		 * INCREMENT DECK (12 cards)
 		 * 
-		 * Increment 1. NL Exhaust. x2
 		 * Fissure x2 
-		 * Summon 2(3). NL Reduce your Max Summons by 1. x1
-		 * Gain block equal to the amount of monsters you currently have summoned. x2
+		 * Spirit Harp x2
+		 * Hammer Shot x1
 		 * Celtic Guardian x2
-		 * Tribute 3. Deal 20 damage. Reduce the Tribute cost of this card by 1 for every 5 max summons you have. x1
-		 * Whenever you Increment, add a random 1 cost ethereal duelist card to draw pile x1
-		 * Pot of Avarice x1
+		 * Golden Apples x2
+		 * Sphere Kuriboh x1
+		 * ??? x2             : Increment 1. NL Exhaustive 3.
 		 * 
 		 */
 		
 		/*
-		 * EXODIA DECK (?? cards)
+		 * EXODIA DECK (60 cards)
 		 * 
+		 * Graceful Charity x1
+		 * Exodia RL x1
+		 * Exodia LL x1
+		 * Exodia RA x1
+		 * Exodia LA x1
+		 * Exodia Head x1
+		 * Dark Magician x2
+		 * Celtic Guardian x2
+		 * Time Wizard x2
+		 * R. Eyes Black Dragon x1
+		 * Blackland Fire Dragon x1
+		 * Baby Dragon x2
+		 * Dark Magician Girl x2
+		 * Change of Heart x2
+		 * Swords of Revealing Light x1
+		 * Pot Greed x1
+		 * Pot Forbidden x1
+		 * Card Destruction x1
+		 * Castle Walls x4
+		 * Giant Soldier x4
+		 * Summoned Skull x2
+		 * Insect Knight x1
+		 * Terraforming x1
+		 * Seven Colored x4
+		 * Scrap Factory x1
+		 * Cheerful Coffin x2
+		 * The Creator x1
+		 * Fissure x2
+		 * Smashing Ground x1
+		 * Hammer Shot x2
+		 * Spirit Harp x2
+		 * Mirror Force x1
+		 * Trap Hole x1
+		 * Ultimate Offering x1
+		 * Magic Cylinder x1
+		 * Giant Trunade x2
+		 * Hane Hane x1
+		 * Polymerization x1
+		 * Trihorned Dragon x1
+		 * 
+		 */
+		
+		
+		/*
+		 * SUPERHEAVY DECK (11 cards)
+		 * 
+		 * Superheavy Scales x3 
+		 * Superheavy Brawler x1
+		 * Superheavy Swordsman x1
+		 * Superheavy Magnet x2
+		 * A. Magnet x1
+		 * B. Magnet x1
+		 * ?? x2 : Superheavy that just deals damage normally and summons 1
+		 * 
+		 */
+		
+		/*
+		 * AQUA DECK (10 cards)
+		 * 
+		 * Island Turtle x2
+		 * Seven Colored Fish x3
+		 * Legendary Fisherman x1
+		 * Revival Jam x1
+		 * Oh Fish x1
+		 * Umi x1
+		 * ?? x1 : Aqua that tributes 2 and deals damage + block, more if you have all aquas
 		 * 
 		 */
 		
@@ -283,7 +348,8 @@ public class TheDuelist extends CustomPlayer {
 
 	// Should return class name as it appears in run history screen.
 	@Override
-	public String getLocalizedCharacterName() {
+	public String getLocalizedCharacterName() 
+	{
 		return "The Duelist";
 	}
 

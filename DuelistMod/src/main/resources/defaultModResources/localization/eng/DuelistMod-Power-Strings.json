@@ -243,6 +243,10 @@
         "NAME": "Gate of Dark World",
         "DESCRIPTIONS": ["Your #yFiends and #yZombies deal 100% more damage and gain 100% more #yBlock." ]
 },
+"theDuelist:SphereKuribohPower": {
+        "NAME": "Sphere Kuriboh",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, add a random card to your hand." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

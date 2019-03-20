@@ -38,7 +38,10 @@ public class Fissure extends DuelistCard
         this.isMultiDamage = true;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.tags.add(DefaultMod.INCREMENT_DECK);
         this.originalName = this.name;
+        this.startingIncDeckCopies = 2;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

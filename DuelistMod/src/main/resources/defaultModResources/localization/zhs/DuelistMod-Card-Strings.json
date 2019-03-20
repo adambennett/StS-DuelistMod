@@ -1209,6 +1209,16 @@
 		"DESCRIPTION": "If you have any Frost channeled, gain 1 Focus. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Gain 1 Focus for each Frost you have channeled. NL Exhaust."
 	},
+	"theDuelist:GoldenApples": {
+		"NAME": "Golden Apples",
+		"DESCRIPTION": "Gain 1 Block for each monster you have summoned.",
+		"UPGRADE_DESCRIPTION": "Gain 1 Block for each monster you have summoned."
+	},
+	"theDuelist:SphereKuriboh": {
+		"NAME": "Sphere Kuriboh",
+		"DESCRIPTION": "Whenever you Increment, add a random card to your hand.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Increment, add a random card to your hand."
+	},
 	"theDuelist:NeoMagic": {
 		"NAME": "新魔术剑士",
 		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal  damage.",
