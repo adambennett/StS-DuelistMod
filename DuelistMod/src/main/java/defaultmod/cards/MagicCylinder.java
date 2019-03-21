@@ -27,7 +27,7 @@ public class MagicCylinder extends DuelistCard
 	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
 	private static final int COST = 1;
 	//private static boolean uSwitch = false;
 	public int MIN_TURNS = 1;
@@ -39,7 +39,10 @@ public class MagicCylinder extends DuelistCard
 		this.tags.add(DefaultMod.TRAP);
 		this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
+		this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
 		this.originalName = this.name;
+		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

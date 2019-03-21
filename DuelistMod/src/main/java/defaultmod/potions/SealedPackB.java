@@ -52,8 +52,16 @@ public class SealedPackB extends AbstractPotion {
 
 	// This is your potency.
 	@Override
-	public int getPotency(final int potency) {
-		return 3;
+	public int getPotency(final int potency) 
+	{
+		if (DefaultMod.challengeMode)
+		{
+			return 2;
+		}
+		else
+		{
+			return 3;
+		}
 	}
 
 	public void upgradePotion()

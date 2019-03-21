@@ -31,7 +31,7 @@ public class OhFish extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 0;
     private static final int MIN_CARDS = 1;
     private static final int MAX_CARDS = 4;
@@ -40,7 +40,7 @@ public class OhFish extends DuelistCard
 
     public OhFish() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.OJAMA);
         this.tags.add(DefaultMod.REDUCED);
         this.tags.add(DefaultMod.OJAMA_DECK);

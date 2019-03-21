@@ -26,7 +26,7 @@ public class ExodiaHead extends DuelistCard
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
@@ -37,10 +37,16 @@ public class ExodiaHead extends DuelistCard
         this.tags.add(DefaultMod.EXODIA);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
+        if (DefaultMod.challengeMode)
+        {
+        	this.tags.add(DefaultMod.EXODIA_DECK);
+        	this.startingExodiaDeckCopies = 1;
+        }
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 1;
         this.exodiaName = "Head";
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

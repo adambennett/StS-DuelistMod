@@ -27,7 +27,7 @@ public class ExodiaLL extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
@@ -38,12 +38,15 @@ public class ExodiaLL extends DuelistCard
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.baseBlock = this.block = 5;
         this.summons = this.baseMagicNumber = this.magicNumber = 1;
         this.damage = this.baseDamage = 1;
         this.exhaust = true;
         this.exodiaName = "Left Leg";
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

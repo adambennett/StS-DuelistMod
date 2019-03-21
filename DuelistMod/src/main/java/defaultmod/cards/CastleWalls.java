@@ -24,7 +24,7 @@ public class CastleWalls extends DuelistCard
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
     private static final int BLOCK = 10;
     private static final int UPGRADE_PLUS_BLK = 3;
@@ -35,6 +35,8 @@ public class CastleWalls extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.STANDARD_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 4;
         this.startingDeckCopies = 2;
         this.originalName = this.name;
         this.setupStartingCopies();

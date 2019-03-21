@@ -25,7 +25,7 @@ public class TimeWizard extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
@@ -35,6 +35,8 @@ public class TimeWizard extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.FULL);
         this.tags.add(DefaultMod.GENERATION_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
 		this.startingGenDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = 1;

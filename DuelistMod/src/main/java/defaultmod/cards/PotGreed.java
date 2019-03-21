@@ -21,7 +21,7 @@ public class PotGreed extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
     private static final int DRAW = 2;
     // /STAT DECLARATION/
@@ -33,7 +33,10 @@ public class PotGreed extends DuelistCard
     	this.tags.add(DefaultMod.SPELL);
     	this.tags.add(DefaultMod.POT);
     	this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+    	this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
 		this.originalName = this.name;
+		this.setupStartingCopies();
     }
 
     @Override

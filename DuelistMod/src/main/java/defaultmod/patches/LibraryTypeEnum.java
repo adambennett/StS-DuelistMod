@@ -6,6 +6,12 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 public class LibraryTypeEnum {
 
     @SpireEnum
-    public static CardLibrary.LibraryType DEFAULT_GRAY;
+    public static CardLibrary.LibraryType DUELIST_MONSTERS;
+    
+    @SpireEnum
+    public static CardLibrary.LibraryType DUELIST_SPELLS;
+    
+    @SpireEnum
+    public static CardLibrary.LibraryType DUELIST_TRAPS;
 
 }

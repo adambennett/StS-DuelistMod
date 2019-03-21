@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
+import defaultmod.DefaultMod;
 import defaultmod.patches.DuelistCard;
 
 public class MillenniumElixir extends AbstractPotion {
@@ -42,6 +43,7 @@ public class MillenniumElixir extends AbstractPotion {
     	for (int i = 0; i < this.potency; i++)
     	{
 	        int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 6);
+	        if (DefaultMod.challengeMode) { randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 3); }
 			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, false);
     	}
     }

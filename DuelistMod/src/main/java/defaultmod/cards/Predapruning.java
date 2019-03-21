@@ -26,7 +26,7 @@ public class Predapruning extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
     // /STAT DECLARATION/
 

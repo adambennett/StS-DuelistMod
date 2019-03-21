@@ -6,6 +6,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public class AbstractCardEnum {
 
     @SpireEnum
-    public static AbstractCard.CardColor DEFAULT_GRAY;
-
+    public static AbstractCard.CardColor DUELIST_MONSTERS;
+    
+    @SpireEnum
+    public static AbstractCard.CardColor DUELIST_SPELLS;
+    
+    @SpireEnum
+    public static AbstractCard.CardColor DUELIST_TRAPS;
 }

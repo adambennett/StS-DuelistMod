@@ -32,6 +32,11 @@ public class Earth extends DuelistOrb
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 3;
 		this.basePassiveAmount = this.passiveAmount = 1;
+		if (DefaultMod.challengeMode)
+		{
+			this.baseEvokeAmount = this.evokeAmount = 1;
+			this.basePassiveAmount = this.passiveAmount = 1;
+		}
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;

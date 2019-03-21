@@ -26,8 +26,8 @@
 	},
 	"theDuelist:BetaMagnet": {
 		"NAME": "B. 磁铁战士",
-		"DESCRIPTION": "仪式 1. NL Gain  Block. NL Gain Beta Magnet for the rest of combat.",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain  Block. NL Gain Beta Magnet for the rest of combat. NL 排气。"
+		"DESCRIPTION": "仪式 1. NL Gain  格挡。 NL Gain Beta Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain  格挡。 NL Gain Beta Magnet for the rest of combat. NL 排气。"
 	},
 	"theDuelist:BlueEyes": {
 		"NAME": "青眼白龍",
@@ -66,13 +66,13 @@
 	},
 	"theDuelist:BigCastleWalls": {
 		"NAME": "Big Castle Wall",
-		"DESCRIPTION": "Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Gain  Block."
+		"DESCRIPTION": "Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Gain  格挡。"
 	},
 	"theDuelist:CastleWalls": {
 		"NAME": "城壁",
-		"DESCRIPTION": "Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Gain  Block."
+		"DESCRIPTION": "Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Gain  格挡。"
 	},
 	"theDuelist:CatapultTurtle": {
 		"NAME": "彈射龜",
@@ -92,7 +92,7 @@
 	"theDuelist:DarkHole": {
 		"NAME": "黑洞",
 		"DESCRIPTION": "Steal ALL Block from an enemy.",
-		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy."
+		"UPGRADE_DESCRIPTION": "Steal ALL Block from ALL enemies."
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "墮天使 瑪麗",
@@ -106,8 +106,8 @@
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"NAME": "黑魔導女孩",
-		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  Block. NL Channel a Buffer.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  Block. NL Channel a Buffer."
+		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。 NL Channel a Buffer.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。 NL Channel a Buffer."
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "治療之神 蒂安·凱特",
@@ -126,8 +126,8 @@
 	},
 	"theDuelist:ExodiaLL": {
 		"NAME": "被封印者的左足",
-		"DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  Block. NL Gain 1 Exodia. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  Block. NL Gain 1 Exodia. NL 排气。"
+		"DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。"
 	},
 	"theDuelist:ExodiaRA": {
 		"NAME": "被封印者的右腕",
@@ -136,8 +136,8 @@
 	},
 	"theDuelist:ExodiaRL": {
 		"NAME": "被封印者的右足",
-		"DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  Block. NL Gain 1 Exodia. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  Block. NL Gain 1 Exodia. NL 排气。"
+		"DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。"
 	},
 	"theDuelist:FeatherPho": {
 		"NAME": "鳳凰神的羽毛",
@@ -181,13 +181,13 @@
 	},
 	"theDuelist:GiantSoldier": {
 		"NAME": "岩石巨兵",
-		"DESCRIPTION": "仪式 . NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "仪式 . NL Gain  Block."
+		"DESCRIPTION": "仪式.获得!B!格挡。",
+		"UPGRADE_DESCRIPTION": "仪式.获得!B!格挡。"
 	},
 	"theDuelist:RandomSoldier": {
 		"NAME": "随机巨人",
-		"DESCRIPTION": "仪式 . NL Gain a random amount (2-6) of Block.",
-		"UPGRADE_DESCRIPTION": "仪式 . NL Gain a random amount (3-7) of Block."
+		"DESCRIPTION": "仪式 . NL Gain a random amount (2-6) of 格挡。",
+		"UPGRADE_DESCRIPTION": "仪式 . NL Gain a random amount (3-7) of 格挡。"
 	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "颶風",
@@ -241,18 +241,18 @@
 	},
 	"theDuelist:BigLabyrinthWall": {
 		"NAME": "大迷宫墙",
-		"DESCRIPTION": "贡 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "贡 1. NL Gain  Block."
+		"DESCRIPTION": "贡 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "贡 1. NL Gain  格挡。"
 	},
 	"theDuelist:LabyrinthWall": {
 		"NAME": "迷宮壁",
-		"DESCRIPTION": "贡 2. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  Block."
+		"DESCRIPTION": "贡 2. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。"
 	},
 	"theDuelist:SmallLabyrinthWall": {
 		"NAME": "小迷宫墙",
-		"DESCRIPTION": "贡 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  Block."
+		"DESCRIPTION": "贡 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。"
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "傳說的漁夫",
@@ -356,8 +356,8 @@
 	},
 	"theDuelist:PotDuality": {
 		"NAME": "強欲而謙虛之壺",
-		"DESCRIPTION": "Draw  cards. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Draw  cards. NL Gain  Block."
+		"DESCRIPTION": "Draw  cards. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Draw  cards. NL Gain  格挡。"
 	},
 	"theDuelist:PotGenerosity": {
 		"NAME": "慷慨的锅",
@@ -461,8 +461,8 @@
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "隐藏剑",
-		"DESCRIPTION": "Each time you play a card, gain  Block. Affected by Dexterity.",
-		"UPGRADE_DESCRIPTION": "Each time you play a card, gain  Block. Affected by Dexterity."
+		"DESCRIPTION": "Each time you play a card, gain  格挡。 Affected by Dexterity.",
+		"UPGRADE_DESCRIPTION": "Each time you play a card, gain  格挡。 Affected by Dexterity."
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "露出剑",
@@ -511,8 +511,8 @@
 	},
 	"theDuelist:SuperheavyScales": {
 		"NAME": "超重武士秤",
-		"DESCRIPTION": "仪式 1. Gain  Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
-		"UPGRADE_DESCRIPTION": "仪式 1. Gain  Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
+		"DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
 	},
 	"theDuelist:SuperheavySwordsman": {
 		"NAME": "超重的武士剑客",
@@ -522,7 +522,7 @@
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "超重的武士 Waraji",
 		"DESCRIPTION": "贡 2. NL Gain  dexterity. NL 排气。",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  dexterity. NL Gain  Block. NL 排气。"
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  dexterity. NL Gain  格挡。 NL 排气。"
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "卡通桶龙",
@@ -541,8 +541,8 @@
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "卡通黑魔法师的女孩",
-		"DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain  Block. NL Channel a Crystal.",
-		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain  Block. NL Channel a Crystal."
+		"DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain  格挡。 NL Channel a Crystal.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain  格挡。 NL Channel a Crystal."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "卡通双子座精灵",
@@ -561,8 +561,8 @@
 	},
 	"theDuelist:ScrapFactory": {
 		"NAME": "废料厂",
-		"DESCRIPTION": "贡 1. NL Gain [R] [R].",
-		"UPGRADE_DESCRIPTION": "贡 1. NL Gain [R] [R] [R]."
+		"DESCRIPTION": "贡 1. NL Gain [R] [R] 。",
+		"UPGRADE_DESCRIPTION": "贡 1. NL Gain [R] [R] [R] 。"
 	},
 	"theDuelist:GeminiElf": {
 		"NAME": "双子座精灵",
@@ -601,8 +601,8 @@
 	},
 	"theDuelist:SuperheavyMagnet": {
 		"NAME": "超重磁铁",
-		"DESCRIPTION": "贡 2. NL Gain  Block. NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  Block. NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity."
+		"DESCRIPTION": "贡 2. NL Gain  格挡。 NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。 NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity."
 	},
 	"theDuelist:SuperheavyGeneral": {
 		"NAME": "超级将军",
@@ -611,13 +611,13 @@
 	},
 	"theDuelist:SuperheavyFlutist": {
 		"NAME": "超重的长笛演奏家",
-		"DESCRIPTION": "仪式 1. Gain  Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
-		"UPGRADE_DESCRIPTION": "仪式 1. Gain  Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
+		"DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
 	},
 	"theDuelist:SuperheavyDaihachi": {
 		"NAME": "超重daihachi",
-		"DESCRIPTION": "贡 5. NL Gain  Dexterity. NL Gain  Block. NL 排气。",
-		"UPGRADE_DESCRIPTION": "贡 5. NL Gain  Dexterity. NL Gain  Block. NL 排气。"
+		"DESCRIPTION": "贡 5. NL Gain  Dexterity. NL Gain  格挡。 NL 排气。",
+		"UPGRADE_DESCRIPTION": "贡 5. NL Gain  Dexterity. NL Gain  格挡。 NL 排气。"
 	},
 	"theDuelist:SuperheavyBlueBrawler": {
 		"NAME": "超重蓝色争吵者",
@@ -626,8 +626,8 @@
 	},
 	"theDuelist:SpiritHarp": {
 		"NAME": "豎琴精靈",
-		"DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain  Block."
+		"DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain  格挡。"
 	},
 	"theDuelist:SnowDragon": {
 		"NAME": "雪龍",
@@ -646,8 +646,8 @@
 	},
 	"theDuelist:PreventRat": {
 		"NAME": "防止鼠",
-		"DESCRIPTION": "仪式 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain  Block."
+		"DESCRIPTION": "仪式 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain  格挡。"
 	},
 	"theDuelist:Ojamuscle": {
 		"NAME": "Oja-肌肉",
@@ -656,13 +656,13 @@
 	},
 	"theDuelist:MysticalElf": {
 		"NAME": "聖精灵",
-		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  Block."
+		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。"
 	},
 	"theDuelist:IslandTurtle": {
 		"NAME": "島龜",
-		"DESCRIPTION": "Aqua NL 仪式 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL Gain  Block."
+		"DESCRIPTION": "Aqua NL 仪式 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL Gain  格挡。"
 	},
 	"theDuelist:GravityAxe": {
 		"NAME": "重力斧",
@@ -671,18 +671,18 @@
 	},
 	"theDuelist:FortressWarrior": {
 		"NAME": "堡垒战士",
-		"DESCRIPTION": "贡 2. NL 仪式 1. NL Deal  damage. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Deal  damage. NL Gain  Block."
+		"DESCRIPTION": "贡 2. NL 仪式 1. NL Deal  damage. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Deal  damage. NL Gain  格挡。"
 	},
 	"theDuelist:MetalDragon": {
 		"NAME": "金屬龍",
-		"DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Gain  Block."
+		"DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Gain  格挡。"
 	},
 	"theDuelist:CaveDragon": {
 		"NAME": "洞穴的潛龍",
-		"DESCRIPTION": "Dragon NL 仪式 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1 NL Gain  Block."
+		"DESCRIPTION": "Dragon NL 仪式 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1 NL Gain  格挡。"
 	},
 	"theDuelist:BlizzardDragon": {
 		"NAME": "暴雪龙",
@@ -691,8 +691,8 @@
 	},
 	"theDuelist:BabyDragon": {
 		"NAME": "幼龍",
-		"DESCRIPTION": "Dragon NL 仪式 2. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 2. NL Gain  Block."
+		"DESCRIPTION": "Dragon NL 仪式 2. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 2. NL Gain  格挡。"
 	},
 	"theDuelist:DarkFactory": {
 		"NAME": "大规模生产的黑暗工厂",
@@ -741,8 +741,8 @@
 	},
 	"theDuelist:HaneHane": {
 		"NAME": "哈尼哈尼",
-		"DESCRIPTION": "仪式 . NL Gain  Block. NL If this monster is tributed, 仪式 1 and gain  Block.",
-		"UPGRADE_DESCRIPTION": "仪式 . NL Gain  Block. NL If this monster is tributed, 仪式 1 and gain  Block."
+		"DESCRIPTION": "仪式 . NL Gain  格挡。 NL If this monster is tributed, 仪式 1 and gain  格挡。",
+		"UPGRADE_DESCRIPTION": "仪式 . NL Gain  格挡。 NL If this monster is tributed, 仪式 1 and gain  格挡。"
 	},
 	"theDuelist:LesserDragon": {
 		"NAME": "下級龍",
@@ -771,8 +771,8 @@
 	},
 	"theDuelist:ArmoredZombie": {
 		"NAME": "鎧武者殭屍",
-		"DESCRIPTION": "Zombie NL 仪式 1. NL Gain  Block. NL 仪式再次: Heal 10 HP.",
-		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Gain  Block. NL 仪式再次: Heal 10 HP."
+		"DESCRIPTION": "Zombie NL 仪式 1. NL Gain  格挡。 NL 仪式再次: Heal 10 HP.",
+		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Gain  格挡。 NL 仪式再次: Heal 10 HP."
 	},
 	"theDuelist:MoltenZombie": {
 		"NAME": "灼熱殭屍",
@@ -786,18 +786,18 @@
 	},
 	"theDuelist:Mountain": {
 		"NAME": "山",
-		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
-		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
+		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more 格挡。 Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
+		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more 格挡。 Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
 	},
 	"theDuelist:Yami": {
 		"NAME": "雅美",
-		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you 仪式 a Spellcaster, gain 1 extra 仪式.",
-		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you 仪式 a Spellcaster, gain 1 extra 仪式."
+		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more 格挡。 Whenever you 仪式 a Spellcaster, gain 1 extra 仪式.",
+		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more 格挡。 Whenever you 仪式 a Spellcaster, gain 1 extra 仪式."
 	},
 	"theDuelist:VioletCrystal": {
 		"NAME": "紫水晶",
-		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison.",
-		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison."
+		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more 格挡。 Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison.",
+		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more 格挡。 Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison."
 	},
 	"theDuelist:MachineKing": {
 		"NAME": "機械王",
@@ -896,23 +896,23 @@
 	},
 	"theDuelist:PetitMoth": {
 		"NAME": "幼蟲寶寶",
-		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  Block. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  Block. NL 排气。"
+		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL 排气。",
+		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL 排气。"
 	},
 	"theDuelist:PetitRef": {
 		"NAME": "幼蟲寶寶",
-		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  Block."
+		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。"
 	},
 	"theDuelist:CocoonEvolution": {
 		"NAME": "進化之繭",
-		"DESCRIPTION": "贡 2. NL Gain  Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+		"DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
 	},
 	"theDuelist:CocoonRef": {
 		"NAME": "進化之繭",
-		"DESCRIPTION": "贡 2. NL Gain  Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+		"DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
 	},
 	"theDuelist:GreatMoth": {
 		"NAME": "巨蛾",
@@ -951,8 +951,8 @@
 	},
 	"theDuelist:BasicInsect": {
 		"NAME": "昆蟲人",
-		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  Block. NL Apply  Poison.",
-		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  Block. NL Apply  Poison."
+		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL Apply  Poison.",
+		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL Apply  Poison."
 	},
 	"theDuelist:PredaplantChimerafflesia": {
 		"NAME": "P. Chimerafflesia",
@@ -961,8 +961,8 @@
 	},
 	"theDuelist:PredaplantChlamydosundew": {
 		"NAME": "P. Chlamydosundew",
-		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  Block. NL Fetch a Plant or Insect from your draw pile.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  Block. NL Fetch 2 Plants or Insects from your draw pile."
+		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。 NL Fetch a Plant or Insect from your draw pile.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。 NL Fetch 2 Plants or Insects from your draw pile."
 	},
 	"theDuelist:PredaplantDrosophyllum": {
 		"NAME": "P. 露叶毛毡苔科",
@@ -976,8 +976,8 @@
 	},
 	"theDuelist:PredaplantPterapenthes": {
 		"NAME": "P. Pterapenthes",
-		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  Block."
+		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。"
 	},
 	"theDuelist:PredaplantSarraceniant": {
 		"NAME": "P. Sarraceniant",
@@ -1091,8 +1091,8 @@
 	},
 	"theDuelist:Illusionist": {
 		"NAME": "魔术师不露脸的法师",
-		"DESCRIPTION": "Spellcaster NL 贡 1. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 贡 1. NL Gain  Block."
+		"DESCRIPTION": "Spellcaster NL 贡 1. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 贡 1. NL Gain  格挡。"
 	},
 	"theDuelist:AcidTrapHole": {
 		"NAME": "酸陷阱孔",
@@ -1136,13 +1136,13 @@
 	},
 	"theDuelist:DoubleCoston": {
 		"NAME": "双重Coston",
-		"DESCRIPTION": "Zombie NL 仪式 2. NL Gain  Block.",
-		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 2. NL Gain  Block."
+		"DESCRIPTION": "Zombie NL 仪式 2. NL Gain  格挡。",
+		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 2. NL Gain  格挡。"
 	},
 	"theDuelist:GatesDarkWorld": {
 		"NAME": "黑暗世界的大门",
-		"DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block.",
-		"UPGRADE_DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block."
+		"DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more 格挡。",
+		"UPGRADE_DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more 格挡。"
 	},
 	"theDuelist:HammerShot": {
 		"NAME": "锤击",
@@ -1210,12 +1210,12 @@
 		"UPGRADE_DESCRIPTION": "Gain 1 Focus for each Frost you have channeled. NL Exhaust."
 	},
 	"theDuelist:GoldenApples": {
-		"NAME": "Golden Apples",
+		"NAME": "金苹果",
 		"DESCRIPTION": "Gain 1 Block for each monster you have summoned.",
 		"UPGRADE_DESCRIPTION": "Gain 1 Block for each monster you have summoned."
 	},
 	"theDuelist:SphereKuriboh": {
-		"NAME": "Sphere Kuriboh",
+		"NAME": "球形栗子球h",
 		"DESCRIPTION": "Whenever you Increment, add a random card to your hand.",
 		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Increment, add a random card to your hand."
 	},
@@ -1309,6 +1309,11 @@
 		"DESCRIPTION": "Add Trap cards to your card pool.",
 		"EXTENDED_DESCRIPTION": ["Traps", "All Trap cards, except Toon Mask."]
 	},
+	"theDuelist:SpellcasterToken": {
+		"NAME": "魔法师代币",
+		"DESCRIPTION": "魔法师",
+		"UPGRADE_DESCRIPTION": "魔法师"
+	},
 	"theDuelist:PredaplantToken": {
 		"NAME": "Predaplant 代币",
 		"DESCRIPTION": "Predaplant",
@@ -1346,13 +1351,13 @@
 	},
 	"theDuelist:Token": {
 		"NAME": "代币",
-		"DESCRIPTION": "Gain 1 Block.",
-		"UPGRADE_DESCRIPTION": "Gain 1 Block."
+		"DESCRIPTION": "Gain 1 格挡。",
+		"UPGRADE_DESCRIPTION": "Gain 1 格挡。"
 	},
 	"theDuelist:WaterOrbCard": {
-		"NAME": "水",
-		"DESCRIPTION": "Channel a 水 Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a 水 Orb."
+		"NAME": "Water",
+		"DESCRIPTION": "Channel a Water Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a Water Orb."
 	},
 	"theDuelist:LightningOrbCard": {
 		"NAME": "闪电",
@@ -1360,34 +1365,34 @@
 		"UPGRADE_DESCRIPTION": "Channel a 闪电 Orb."
 	},
 	"theDuelist:PlasmaOrbCard": {
-		"NAME": "等离子体",
-		"DESCRIPTION": "Channel a 等离子体 Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a 等离子体 Orb."
+		"NAME": "等离子",
+		"DESCRIPTION": "Channel a 等离子 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 等离子 Orb."
 	},
 	"theDuelist:DarkOrbCard": {
-		"NAME": "暗",
-		"DESCRIPTION": "Channel a 暗 Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a 暗 Orb."
+		"NAME": "黑暗",
+		"DESCRIPTION": "Channel a 黑暗 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 黑暗 Orb."
 	},
 	"theDuelist:HellfireOrbCard": {
-		"NAME": "地狱火",
-		"DESCRIPTION": "Channel a 地狱火 Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a 地狱火 Orb."
+		"NAME": "Hellfire",
+		"DESCRIPTION": "Channel a Hellfire Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a Hellfire Orb."
 	},
 	"theDuelist:FrostOrbCard": {
-		"NAME": "霜",
-		"DESCRIPTION": "Channel a 霜 Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a 霜 Orb."
+		"NAME": "冰霜",
+		"DESCRIPTION": "Channel a 冰霜 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 冰霜 Orb."
 	},
 	"theDuelist:CrystalOrbCard": {
-		"NAME": "水晶",
-		"DESCRIPTION": "Channel a 水晶 Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a 水晶 Orb."
+		"NAME": "Crystal",
+		"DESCRIPTION": "Channel a Crystal Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a Crystal Orb."
 	},
 	"theDuelist:GlassOrbCard": {
-		"NAME": "玻璃",
-		"DESCRIPTION": "Channel a 玻璃 Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a 玻璃 Orb."
+		"NAME": "Glass",
+		"DESCRIPTION": "Channel a Glass Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a Glass Orb."
 	},
 	"theDuelist:GateOrbCard": {
 		"NAME": "门",
@@ -1395,29 +1400,29 @@
 		"UPGRADE_DESCRIPTION": "Channel a 门."
 	},
 	"theDuelist:BufferOrbCard": {
-		"NAME": "Buffer",
-		"DESCRIPTION": "Channel a Buffer Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a Buffer Orb."
+		"NAME": "缓冲",
+		"DESCRIPTION": "Channel a 缓冲 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 缓冲 Orb."
 	},
 	"theDuelist:SummonerOrbCard": {
-		"NAME": "Summoner",
-		"DESCRIPTION": "Channel a Summoner Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a Summoner Orb."
+		"NAME": "召唤师",
+		"DESCRIPTION": "Channel a 召唤师 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 召唤师 Orb."
 	},
 	"theDuelist:MonsterOrbCard": {
-		"NAME": "MonsterOrb",
-		"DESCRIPTION": "Channel a MonsterOrb.",
-		"UPGRADE_DESCRIPTION": "Channel a MonsterOrb."
+		"NAME": "怪物宝珠",
+		"DESCRIPTION": "Channel a 怪物宝珠.",
+		"UPGRADE_DESCRIPTION": "Channel a 怪物宝珠."
 	},
 	"theDuelist:DragonOrbCard": {
-		"NAME": "DragonOrb",
-		"DESCRIPTION": "Channel a DragonOrb.",
-		"UPGRADE_DESCRIPTION": "Channel a DragonOrb."
+		"NAME": "龙宝珠",
+		"DESCRIPTION": "Channel a 龙宝珠.",
+		"UPGRADE_DESCRIPTION": "Channel a 龙宝珠."
 	},
 	"theDuelist:ReducerOrbCard": {
-		"NAME": "Reducer",
-		"DESCRIPTION": "Channel a Reducer Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a Reducer Orb."
+		"NAME": "减速器",
+		"DESCRIPTION": "Channel a 减速器 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 减速器 Orb."
 	},
 	"theDuelist:LightOrbCard": {
 		"NAME": "Light",
@@ -1425,34 +1430,34 @@
 		"UPGRADE_DESCRIPTION": "Channel a Light Orb."
 	},
 	"theDuelist:AirOrbCard": {
-		"NAME": "Air",
-		"DESCRIPTION": "Channel an Air Orb.",
-		"UPGRADE_DESCRIPTION": "Channel an Air Orb."
+		"NAME": "空气",
+		"DESCRIPTION": "Channel an 空气 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel an 空气 Orb."
 	},
 	"theDuelist:EarthOrbCard": {
-		"NAME": "Earth",
-		"DESCRIPTION": "Channel an Earth Orb.",
-		"UPGRADE_DESCRIPTION": "Channel an Earth Orb."
+		"NAME": "地球",
+		"DESCRIPTION": "Channel an 地球 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel an 地球 Orb."
 	},
 	"theDuelist:FireOrbCard": {
-		"NAME": "Fire",
-		"DESCRIPTION": "Channel a Fire Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a Fire Orb."
+		"NAME": "火",
+		"DESCRIPTION": "Channel a 火 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 火 Orb."
 	},
 	"theDuelist:GlitchOrbCard": {
-		"NAME": "Glitch",
-		"DESCRIPTION": "Channel a Glitch Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a Glitch Orb."
+		"NAME": "毛刺",
+		"DESCRIPTION": "Channel a 毛刺 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 毛刺 Orb."
 	},
 	"theDuelist:ShadowOrbCard": {
-		"NAME": "Shadow",
-		"DESCRIPTION": "Channel a Shadow Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a Shadow Orb."
+		"NAME": "阴影",
+		"DESCRIPTION": "Channel a 阴影 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 阴影 Orb."
 	},
 	"theDuelist:SplashOrbCard": {
-		"NAME": "Splash",
-		"DESCRIPTION": "Channel a Splash Orb.",
-		"UPGRADE_DESCRIPTION": "Channel a Splash Orb."
+		"NAME": "溅",
+		"DESCRIPTION": "Channel a 溅 Orb.",
+		"UPGRADE_DESCRIPTION": "Channel a 溅 Orb."
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "太陽神的翼神龍",

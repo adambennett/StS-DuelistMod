@@ -29,7 +29,7 @@ public class PotForbidden extends DuelistCard
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static ArrayList<DuelistCard> drawPowers = new ArrayList<DuelistCard>();
@@ -41,10 +41,13 @@ public class PotForbidden extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.FIEND);
         this.tags.add(DefaultMod.POT);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.misc = 0;
         this.tributes = 5;
 		this.originalName = this.name;
 		this.exhaust = true;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

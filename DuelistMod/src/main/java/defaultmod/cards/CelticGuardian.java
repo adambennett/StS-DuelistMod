@@ -26,7 +26,7 @@ public class CelticGuardian extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
     private static final int DAMAGE = 3;
@@ -40,6 +40,8 @@ public class CelticGuardian extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.INCREMENT_DECK);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 2;
         this.originalName = this.name;
         this.summons = SUMMONS;
         this.startingIncDeckCopies = 2;

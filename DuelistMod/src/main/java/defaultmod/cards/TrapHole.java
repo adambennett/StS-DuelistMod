@@ -25,7 +25,7 @@ public class TrapHole extends DuelistCard
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 3;
     // /STAT DECLARATION/
 
@@ -34,8 +34,11 @@ public class TrapHole extends DuelistCard
         this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.FULL);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 3;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

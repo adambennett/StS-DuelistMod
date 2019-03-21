@@ -40,6 +40,10 @@ public class ExodiaPower extends AbstractPower
 		addPiece(piece);
 		this.amount++; 
 		this.updateDescription();
+		if (DefaultMod.challengeMode)
+		{
+			DAMAGE = 25;
+		}
 	}
 	
 	@Override

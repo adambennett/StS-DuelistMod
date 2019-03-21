@@ -25,7 +25,7 @@ public class ExplosiveToken extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = -1;
     // /STAT DECLARATION/
 
@@ -36,7 +36,8 @@ public class ExplosiveToken extends DuelistCard
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		damageSelf(3);
+		if (DefaultMod.challengeMode) { damageSelf(3); }
+		else { damageSelf(3); }
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

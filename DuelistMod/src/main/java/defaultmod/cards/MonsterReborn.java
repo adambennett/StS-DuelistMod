@@ -26,7 +26,7 @@ public class MonsterReborn extends DuelistCard
 	private static final CardRarity RARITY = CardRarity.RARE;
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 2;
 	private static final int MONSTERS = 2;
 	private static final int U_MONSTERS = 1;

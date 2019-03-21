@@ -40,15 +40,15 @@ public class SummonPower extends AbstractPower
 		this.type = PowerType.BUFF;
 		
 		// Change Max Summons if player has either of the two relics that effect it
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 3; }
-		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 10; }
-		
-		// Add the new summon(s) to the list
-		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); }}
+		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 4; }
+		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 8; }
 		
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
 		if (DefaultMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DefaultMod.lastMaxSummons; }
 		
+		// Add the new summon(s) to the list
+		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); }}
+
 		// Update the description properly
 		updateCount(this.amount);
 		updateStringColors();
@@ -66,10 +66,10 @@ public class SummonPower extends AbstractPower
 		this.description = desc;
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 3; }
-		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 10; }
-		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon);  }}
+		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 4; }
+		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 8; }
 		if (DefaultMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DefaultMod.lastMaxSummons; }
+		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon);  }}
 		updateCount(this.amount);
 		updateStringColors();
 		updateDescription();
@@ -137,6 +137,7 @@ public class SummonPower extends AbstractPower
 			for (String s : summonList)
 			{
 				DuelistCard ref = DefaultMod.summonMap.get(s);
+				if (DefaultMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> ref string: " + s); }
 				if (!ref.hasTag(type))
 				{
 					foundOnlyType = false;
@@ -150,7 +151,7 @@ public class SummonPower extends AbstractPower
 			}
 			else 
 			{ 
-				if (DefaultMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> found only " + type.name() + "s."); }
+				if (DefaultMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> found something other than " + type.name() + "s."); }
 				return false; 
 			}
 		}
@@ -194,19 +195,23 @@ public class SummonPower extends AbstractPower
 	
 	public void updateStringColors()
 	{
+		ArrayList<CardTags> goodTags = new ArrayList<CardTags>();
+		goodTags.add(DefaultMod.AQUA);
+		goodTags.add(DefaultMod.FIEND);
+		goodTags.add(DefaultMod.DRAGON);
 		coloredSummonList = new ArrayList<String>();
 		for (String s : summonList)
 		{
 			DuelistCard ref = DefaultMod.summonMap.get(s);
 			if (ref == null) { ref = new Token(); }
 			String coloredString = "";
-			if (ref.hasTag(DefaultMod.GOOD_TRIB) && !ref.hasTag(DefaultMod.TOKEN)) 
+			if ((ref.hasTag(DefaultMod.GOOD_TRIB) && !(ref instanceof Token)) || (DefaultMod.hasTags(ref, goodTags) && !(ref instanceof Token))) 
 			{
 				coloredString = "#b" + s;
 				coloredString = coloredString.replaceAll("\\s", " #b"); 
 				coloredSummonList.add(coloredString);
 			}
-			else if (ref.hasTag(DefaultMod.BAD_TRIB) && !ref.hasTag(DefaultMod.TOKEN))
+			else if (ref.hasTag(DefaultMod.BAD_TRIB) && !(ref instanceof Token))
 			{
 				coloredString = "[#FF5252]" + s;
 				coloredString = coloredString.replaceAll("\\s", " [#FF5252]");

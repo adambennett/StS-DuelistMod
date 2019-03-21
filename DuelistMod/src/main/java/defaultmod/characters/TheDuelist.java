@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -34,8 +35,17 @@ public class TheDuelist extends CustomPlayer {
 	public static final int ORB_SLOTS = DefaultMod.orbSlots;
 	public static final int numberOfArchetypes = 17;
 	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+	private static final CharacterStrings charStrings;
+	public static final String NAME;
+	public static final String[] DESCRIPTIONS;
 	// =============== /BASE STATS/ =================
-
+	
+	static 
+	{
+        charStrings = CardCrawlGame.languagePack.getCharacterString("Duelist");
+        NAME = charStrings.NAMES[0];
+        DESCRIPTIONS = charStrings.TEXT;
+    }
 
 	// =============== TEXTURES OF BIG ENERGY ORB ===============
 	public static final String[] orbTextures = 
@@ -43,8 +53,10 @@ public class TheDuelist extends CustomPlayer {
 				"defaultModResources/images/char/defaultCharacter/orb/layer1.png",
 				"defaultModResources/images/char/defaultCharacter/orb/layer2.png",
 				"defaultModResources/images/char/defaultCharacter/orb/layer3.png",
-				"defaultModResources/images/char/defaultCharacter/orb/layer4.png",
-				"defaultModResources/images/char/defaultCharacter/orb/layer5.png",
+				//"defaultModResources/images/char/defaultCharacter/orb/layer4.png",
+				//"defaultModResources/images/char/defaultCharacter/orb/layer5.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer4B.png",
+				"defaultModResources/images/char/defaultCharacter/orb/layer5B.png",
 				"defaultModResources/images/char/defaultCharacter/orb/layer6.png",
 				"defaultModResources/images/char/defaultCharacter/orb/layer1d.png",
 				"defaultModResources/images/char/defaultCharacter/orb/layer2d.png",
@@ -60,7 +72,8 @@ public class TheDuelist extends CustomPlayer {
 	public TheDuelist(String name, PlayerClass setClass) 
 	{
 		super(name, setClass, orbTextures,
-				"defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
+				//"defaultModResources/images/char/defaultCharacter/orb/vfx.png", null,
+				"defaultModResources/images/char/defaultCharacter/orb/vfxB.png", null,
 				new SpriterAnimation(
 						"defaultModResources/images/char/duelistCharacterUpdate/YugiB.scml"));
 						//"defaultModResources/images/char/duelistCharacter/theDuelistAnimation.scml"));
@@ -104,8 +117,8 @@ public class TheDuelist extends CustomPlayer {
 	// Starting description and loadout
 	@Override
 	public CharSelectInfo getLoadout() {
-		return new CharSelectInfo("The Duelist",
-				"The Duelist summons and tributes monster cards to slay the spire. NL " + "Play your favorite deckbuilding game with a Yu-Gi-Oh! twist.",
+		return new CharSelectInfo(NAME,
+				DESCRIPTIONS[0],
 				STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
 				getStartingDeck(), false);
 	}
@@ -129,6 +142,8 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(Ookazi.ID);
 		retVal.add(SummonedSkull.ID);
 	
+		
+		//  Toon Deck -> REPLACE RANDOM SOLDIER WITH NEW CARD x1 : Toon block card
 		
 		/*
 		 * ORB DECK v2 (12 cards)
@@ -166,7 +181,7 @@ public class TheDuelist extends CustomPlayer {
 		 * 
 		 * Ojama Yellow x1
 		 * Monster Egg x2
-		 * Random Soldier x2
+		 * Random Soldier x2   						 REPLACE WITH NEW CARD x2 : Gain some block for cheap, with a random generation effect
 		 * Red Medicine x1
 		 * Hinotoma x1
 		 * Card Destruction x1
@@ -187,7 +202,7 @@ public class TheDuelist extends CustomPlayer {
 		 * Ojama King x1
 		 * Ojamagic x1
 		 * Ojamuscle x1
-		 * Random Soldier x2
+		 * Random Soldier x2						 REPLACE WITH NEW CARD x2 : Gain some block for cheap, with a random Ojama-type effect
 		 * 
 		 * 
 		 * 
@@ -209,7 +224,7 @@ public class TheDuelist extends CustomPlayer {
 		 */
 		
 		/*
-		 * INCREMENT DECK (12 cards)
+		 * INCREMENT DECK (14 cards)
 		 * 
 		 * Fissure x2 
 		 * Spirit Harp x2
@@ -217,7 +232,9 @@ public class TheDuelist extends CustomPlayer {
 		 * Celtic Guardian x2
 		 * Golden Apples x2
 		 * Sphere Kuriboh x1
-		 * ??? x2             : Increment 1. NL Exhaustive 3.
+		 * ?? x2 : Increment 1. Block 8. [1 mana]
+		 * ?? x2 : Summon 1. Increment 1. Deal 4 damage. [1 mana]
+		 * ?? x1 : Increment (1-3). Exhaust. [0 mana]
 		 * 
 		 */
 		
@@ -268,15 +285,14 @@ public class TheDuelist extends CustomPlayer {
 		
 		
 		/*
-		 * SUPERHEAVY DECK (11 cards)
+		 * SUPERHEAVY DECK (12 cards)
 		 * 
-		 * Superheavy Scales x3 
+		 * Superheavy Scales x4 
 		 * Superheavy Brawler x1
-		 * Superheavy Swordsman x1
-		 * Superheavy Magnet x2
+		 * Superheavy Magnet x1
 		 * A. Magnet x1
 		 * B. Magnet x1
-		 * ?? x2 : Superheavy that just deals damage normally and summons 1
+		 * ?? x4 : Superheavy that just deals damage normally and summons 1
 		 * 
 		 */
 		
@@ -290,6 +306,22 @@ public class TheDuelist extends CustomPlayer {
 		 * Oh Fish x1
 		 * Umi x1
 		 * ?? x1 : Aqua that tributes 2 and deals damage + block, more if you have all aquas
+		 * 
+		 */
+		
+		/*
+		 * MACHINE DECK (12 cards)
+		 * 
+		 * Cannon Soldier x1
+		 * Machine King x1
+		 * Time Wizard x1
+		 * Cyber Dragon x1
+		 * Jam Breeding x1
+		 * Machine Factory x1
+		 * Metal Dragon x1
+		 * Scrap Factory x2
+		 * ?? x3 : Summon 1. NL Gain !B! Block. (6 block, 1 mana, machine)
+		 * 
 		 * 
 		 */
 		
@@ -323,14 +355,22 @@ public class TheDuelist extends CustomPlayer {
 	// Should return how much HP your maximum HP reduces by when starting a run at
 	// Ascension 14 or higher. (ironclad loses 5, defect and silent lose 4 hp respectively)
 	@Override
-	public int getAscensionMaxHPLoss() {
-		return 0;
+	public int getAscensionMaxHPLoss() 
+	{
+		if (DefaultMod.challengeMode)
+		{
+			return 40;
+		}
+		else
+		{
+			return 5;
+		}
 	}
 
 	// Should return the card color enum to be associated with your character.
 	@Override
 	public AbstractCard.CardColor getCardColor() {
-		return AbstractCardEnum.DEFAULT_GRAY;
+		return AbstractCardEnum.DUELIST_MONSTERS;
 	}
 
 	// Should return a color object to be used to color the trail of moving cards
@@ -350,7 +390,7 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public String getLocalizedCharacterName() 
 	{
-		return "The Duelist";
+		return NAME;
 	}
 
 	//Which card should be obtainable from the Match and Keep event?
@@ -362,7 +402,7 @@ public class TheDuelist extends CustomPlayer {
 	// The class name as it appears next to your player name in-game
 	@Override
 	public String getTitle(AbstractPlayer.PlayerClass playerClass) {
-		return "the Duelist";
+		return DESCRIPTIONS[1];
 	}
 
 	// Should return a new instance of your character, sending this.name as its name parameter.
@@ -374,14 +414,14 @@ public class TheDuelist extends CustomPlayer {
 	// Should return a Color object to be used to color the miniature card images in run history.
 	@Override
 	public Color getCardRenderColor() {
-		return DefaultMod.DEFAULT_GRAY;
+		return DefaultMod.DEFAULT_PURPLE;
 	}
 
 	// Should return a Color object to be used as screen tint effect when your
 	// character attacks the heart.
 	@Override
 	public Color getSlashAttackColor() {
-		return DefaultMod.DEFAULT_GRAY;
+		return DefaultMod.DEFAULT_PURPLE;
 	}
 
 	// Should return an AttackEffect array of any size greater than 0. These effects
@@ -398,7 +438,7 @@ public class TheDuelist extends CustomPlayer {
 	// core to its maximum..."
 	@Override
 	public String getSpireHeartText() {
-		return "You touch the heart. NL Is this the heart of the cards?";
+		return DESCRIPTIONS[2];
 	}
 
 	// The vampire events refer to the base game characters as "brother", "sister",
@@ -406,7 +446,7 @@ public class TheDuelist extends CustomPlayer {
 	// the full text that will be displayed as the first screen of the vampires event.
 	@Override
 	public String getVampireText() {
-		return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~";
+		return DESCRIPTIONS[3];
 	}
 
 	/*

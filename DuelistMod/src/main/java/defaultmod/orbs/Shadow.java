@@ -40,12 +40,17 @@ public class Shadow extends DuelistOrb
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
-		this.updateDescription();
+		if (DefaultMod.challengeMode)
+		{
+			this.baseEvokeAmount = this.evokeAmount = 1;
+			this.basePassiveAmount = this.passiveAmount = 1;
+		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		checkFocus();
+		this.updateDescription();
 	}
 
 	@Override

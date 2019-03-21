@@ -27,7 +27,7 @@ public class CardDestruction extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
     private static final int CARDS = 1;
     // /STAT DECLARATION/
@@ -38,6 +38,8 @@ public class CardDestruction extends DuelistCard
         this.exhaust = true;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.GENERATION_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
 		this.startingGenDeckCopies = 1;
         this.originalName = this.name;
         this.setupStartingCopies();

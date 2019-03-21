@@ -26,7 +26,7 @@ public class SpiritHarp extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
@@ -39,6 +39,8 @@ public class SpiritHarp extends DuelistCard
         this.tags.add(DefaultMod.CREATOR_DECK);
         this.tags.add(DefaultMod.SPELLCASTER_DECK);
         this.tags.add(DefaultMod.INCREMENT_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 2;
         this.startingDeckCopies = 1;
         this.startingIncDeckCopies = 2;
         this.summons = 2;

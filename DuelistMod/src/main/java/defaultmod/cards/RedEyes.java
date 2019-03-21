@@ -28,7 +28,7 @@ public class RedEyes extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 2;
     private static final int DAMAGE = 17;
@@ -41,10 +41,13 @@ public class RedEyes extends DuelistCard
     	this.tags.add(DefaultMod.DRAGON);
     	this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
     	this.tags.add(DefaultMod.GOOD_TRIB);
+    	this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = 2;
 		this.baseMagicNumber = this.magicNumber = 3;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

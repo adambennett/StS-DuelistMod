@@ -28,14 +28,14 @@ public class AltarTribute extends DuelistCard
 	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
 	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public AltarTribute() 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.tags.add(DefaultMod.SPELL);
+		this.tags.add(DefaultMod.TRAP);
 		this.misc = 0;
 		this.tributes = 2;
 		this.originalName = this.name;

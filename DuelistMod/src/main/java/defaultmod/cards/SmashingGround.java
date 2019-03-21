@@ -25,7 +25,7 @@ public class SmashingGround extends DuelistCard
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
     private static final int DAMAGE = 8;
@@ -38,7 +38,10 @@ public class SmashingGround extends DuelistCard
         this.isMultiDamage = true;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

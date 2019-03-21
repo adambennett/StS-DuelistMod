@@ -28,7 +28,7 @@ public class IcyCrevasse extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static ArrayList<DuelistCard> natureMonsters = new ArrayList<DuelistCard>();
@@ -36,7 +36,7 @@ public class IcyCrevasse extends DuelistCard
 
     public IcyCrevasse() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.ORB_DECK);
         this.startingOrbDeckCopies = 1;

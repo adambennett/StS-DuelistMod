@@ -29,7 +29,7 @@ public class DarkMagician extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 2;
     private static final int DAMAGE = 15;
@@ -42,6 +42,8 @@ public class DarkMagician extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 2;
         this.startingDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;

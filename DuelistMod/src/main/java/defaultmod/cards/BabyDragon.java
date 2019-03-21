@@ -28,7 +28,7 @@ public class BabyDragon extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
@@ -40,6 +40,8 @@ public class BabyDragon extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.DRAGON_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 2;
         this.startingDeckCopies = 1;
         this.summons = 2;
         this.originalName = this.name;

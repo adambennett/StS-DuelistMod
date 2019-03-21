@@ -27,7 +27,7 @@ public class OjamaKnight extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
     private static int MIN_BUFF_TURNS_ROLL = 1;
     private static int MAX_BUFF_TURNS_ROLL = 6;

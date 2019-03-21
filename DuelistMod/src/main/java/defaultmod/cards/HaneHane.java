@@ -25,7 +25,7 @@ public class HaneHane extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     private static final int BLOCK = 3;
     private static final int SUMMONS = 1;
@@ -40,6 +40,8 @@ public class HaneHane extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.TOON_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.startingDeckCopies = 1;
         this.originalName = this.name;
         this.setupStartingCopies();

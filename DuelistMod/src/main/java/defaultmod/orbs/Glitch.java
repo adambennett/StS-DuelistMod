@@ -60,14 +60,18 @@ public class Glitch extends DuelistOrb
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
-		this.updateDescription();
+		if (DefaultMod.challengeMode)
+		{
+			this.baseEvokeAmount = this.evokeAmount = 1;
+			this.basePassiveAmount = this.passiveAmount = 1;
+		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		lastTurnActions.add("None");
 		checkFocus();
-		
+		this.updateDescription();
 		
 		// Setup passive action list
 		passiveActions.add("Draw #b1 card");	

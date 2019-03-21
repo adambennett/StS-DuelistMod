@@ -29,7 +29,7 @@ public class LegendExodia extends DuelistCard
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.BLUNT_HEAVY;
     private static final int COST = 0;
     // /STAT DECLARATION/
@@ -39,10 +39,13 @@ public class LegendExodia extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.EXODIA);
         this.tags.add(DefaultMod.FULL);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.damage = this.baseDamage = 20;
         this.exhaust = true;
         this.originalName = this.name;
         this.tributes = 3;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

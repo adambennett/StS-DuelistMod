@@ -30,7 +30,7 @@ public class BlastJuggler extends DuelistCard
 	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
-	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
 	private static final int SUMMONS = 1;
 	private static int MIN_TURNS_ROLL = 3;

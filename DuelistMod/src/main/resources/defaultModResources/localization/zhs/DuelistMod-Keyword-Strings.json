@@ -1,27 +1,27 @@
 [
     {
-	  "PROPER_NAME": "仪式",
+	  "PROPER_NAME": "召唤",
       "NAMES": [
         "summon",
-		"仪式"
+		"召唤"
       ],
-      "DESCRIPTION": "计算当前仪式的怪物。最多有5种仪式。"
+      "DESCRIPTION": "当前召唤的怪物数量。通常上限是5个。"
     },
     {
-	  "PROPER_NAME": "仪式再次",
+	  "PROPER_NAME": "特殊召唤",
       "NAMES": [
         "resummon",
-		"仪式再次"
+		"特殊召唤"
       ],     
-      "DESCRIPTION": "某些卡片允许您再次进行仪式。再次进行仪式时，将重放该卡，并忽略Tribute成本。例：死者蘇生"
+      "DESCRIPTION": "某些卡片允许您特殊召唤。特殊召唤时将忽略祭品成本。例：死者苏生"
     },
     {
-	  "PROPER_NAME": "贡",
+	  "PROPER_NAME": "祭品",
       "NAMES": [
         "tribute",
-		"贡"
+		"祭品"
       ],      
-      "DESCRIPTION": "删除给定数量的仪式。除非你有足够的仪式贡,你不能玩致敬卡."
+      "DESCRIPTION": "失去相应数量的召唤。只有拥有足够数量的祭品怪物才能进行升级召唤。"
     },
     {
 	  "PROPER_NAME": "增量",
@@ -29,7 +29,7 @@
         "increment",
 		"增量"
       ],      
-      "DESCRIPTION": "增加你的最大仪式数量。"
+      "DESCRIPTION": "增加你的最大召唤数量。"
     },
     {
 	 "PROPER_NAME": "缓冲",
@@ -61,15 +61,15 @@
         "overflow",
 		"溢出"
       ],      
-      "DESCRIPTION": "当转弯结束时手中有一张带溢出的牌时，请激活一个效果。这种效果的用途有限。"
+      "DESCRIPTION": "当回合结束时手中有一张带溢出的牌时，请激活一个效果。这种效果的用途有限。"
     },
      {
-	  "PROPER_NAME": "香椿",
+	  "PROPER_NAME": "卡通",
       "NAMES": [
         "toon",
-		"香椿"
+		"卡通"
       ],      
-      "DESCRIPTION": "香椿只有在卡通世界处于活动状态时才能播放。如果你使用另一个卡通向一个卡通怪物致敬，对所有敌人造成5点伤害。"
+      "DESCRIPTION": "卡通只有在卡通世界处于活动状态时才能打出。如果你把一张卡怪物作为另一个卡通怪物祭品，对所有敌人造成5点伤害。"
     },
      {
 	  "PROPER_NAME": "磁铁",
@@ -93,15 +93,15 @@
         "dragon",
 		"龙"
       ],      
-      "DESCRIPTION": "当你为另一条龙致敬龙时，获得1点力量。"
+      "DESCRIPTION": "当你用龙作为祭品召唤龙时，获得1点力量。"
     },
     {
-	  "PROPER_NAME": "施法者",
+	  "PROPER_NAME": "魔法师",
       "NAMES": [
         "spellcaster",
-		"施法者"
+		"魔法师"
       ],      
-      "DESCRIPTION": "当你攻击时，如果你当前召唤的唯一怪物是施法者，则获得5个阻挡。你需要召唤至少1个施法者以触发此效果。"
+      "DESCRIPTION": "当你攻击时，如果你当前召唤的唯一怪物是魔法师，则获得5格挡。你需要召唤至少1个魔法师以触发此效果。"
     },
      {
 	  "PROPER_NAME": "昆虫",
@@ -109,37 +109,37 @@
         "insect",
 		"昆虫"
       ],     
-      "DESCRIPTION": "当你为一只昆虫或植物的昆虫怪物致敬时，对所有敌人施加3点毒药。"
+      "DESCRIPTION": "当你用昆虫或植物作为祭品召唤昆虫怪物时，对所有敌人施加3点中毒。"
     },
      {
-	  "PROPER_NAME": "厂",
+	  "PROPER_NAME": "植物",
       "NAMES": [
         "plant",
-		"厂"
+		"植物"
       ],      
-      "DESCRIPTION": "当你为昆虫或植物致敬植物怪物时，对所有敌人施加3点毒药。"
+      "DESCRIPTION": "当你用昆虫或植物作为祭品召唤植物怪物时，对所有敌人施加3点中毒。"
     },
      {
-	  "PROPER_NAME": "Predaplant",
+	  "PROPER_NAME": "捕食植物",
       "NAMES": [
         "predaplant",
-		"predaplants"
+		"捕食植物"
       ],      
-      "DESCRIPTION": "#yPredaplant 怪物被视为植物。当你致敬一个 #yPredaplant 昆虫或植物的怪物，对所有敌人施加3点毒药。"
+      "DESCRIPTION": "#y捕食植物 怪物被视为植物。当你用昆虫或植物作为祭品召唤#y捕食植物 时，对所有敌人施加3点中毒。"
     },
   {
-   "PROPER_NAME": "地球",
+   "PROPER_NAME": "地",
     "NAMES": [
       "earth",
-	  "地球"
+	  "地"
     ],    
     "DESCRIPTION": "宝珠： 在回合开始时，将随机拼写卡添加到您的手中。唤起也会给你的手增加一张咒语卡。"
   },
   {
-   "PROPER_NAME": "空气",
+   "PROPER_NAME": "气",
     "NAMES": [
       "air",
-	  "空气"
+	  "气"
     ],    
     "DESCRIPTION": "宝珠： 在回合开始时，有机会引导随机宝珠。如果你当前召唤的唯一怪物是龙，你有更高的机会。当你唤起这个宝珠时，获得1宝珠槽。"
   },
@@ -160,10 +160,10 @@
     "DESCRIPTION": "宝珠： 在回合开始时，触发随机动作。当你唤起这个宝珠时，也会触发随机动作。"
   },
   {
-   "PROPER_NAME": "阴影",
+   "PROPER_NAME": "影",
     "NAMES": [
       "shadow",
-	  "阴影"
+	  "影"
     ],    
     "DESCRIPTION": "宝珠： 在回合开始时，有20％的几率仪式阴影令牌。唤醒：仪式再次从随机敌人丢弃堆中的怪物。"
   },
@@ -181,7 +181,7 @@
       "zombie",
 	  "僵尸"
     ],   
-    "DESCRIPTION": "当你仪式再次一个僵尸，获得10块。"
+    "DESCRIPTION": "当你特殊召唤一个僵尸，获得10块。"
   },
   {
     "PROPER_NAME": "恶魔",
@@ -189,7 +189,7 @@
       "fiend",
 	  "恶魔"
     ],   
-    "DESCRIPTION": "当你为另一个恶魔致敬一个恶魔时，从你的丢弃堆中取出一张牌。"
+    "DESCRIPTION": "当你用恶魔作为祭品召唤恶魔时，从你的弃牌堆中取出一张牌。"
   },
   {
     "PROPER_NAME": "鱼",
@@ -197,7 +197,7 @@
       "aqua",
 	  "鱼"
     ],   
-    "DESCRIPTION": "当你向一条鱼致敬另一条鱼时，在你的手上添加一个随机鱼怪。"
+    "DESCRIPTION": "当你用鱼作为祭品召唤鱼时，在你的手上添加一个随机鱼怪。"
   },
   {
     "PROPER_NAME": "门",

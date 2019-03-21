@@ -39,6 +39,10 @@ public class CocoonPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = 0;
+        if (DefaultMod.challengeMode)
+        {
+        	triggerTurn = 4;
+        }
         this.updateDescription();
     }
     
@@ -55,6 +59,10 @@ public class CocoonPower extends AbstractPower
         this.amount = startingTurn;
         turnCounter = startingTurn;
         triggerTurn = turnToTrigger;
+        if (DefaultMod.challengeMode)
+        {
+        	triggerTurn++;
+        }
         this.updateDescription();
     }
     

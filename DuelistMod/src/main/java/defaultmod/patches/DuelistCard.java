@@ -88,6 +88,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int startingExodiaDeckCopies = 1;
 	public int startingMagnetDeckCopies = 1;
 	public int startingAquaDeckCopies = 1;
+	public int startingMachineDeckCopies = 1;
 	public static final String UPGRADE_DESCRIPTION = "";
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
 	private static ArrayList<AbstractOrb> allowedOrbs = new ArrayList<AbstractOrb>();
@@ -145,6 +146,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.startCopies.add(this.startingExodiaDeckCopies);		// 12 - Exodia Copies
 		this.startCopies.add(this.startingMagnetDeckCopies);		// 13 - Magnet Copies
 		this.startCopies.add(this.startingAquaDeckCopies);			// 14 - Aqua Copies
+		this.startCopies.add(this.startingMachineDeckCopies);		// 15 - Machine Copies
 	}
 	
 	static
@@ -185,6 +187,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void openRandomOrbChoiceNoGlass(int orbsToSelectFrom)
 	{
 		resetOrbChoiceListNoGlass(orbsToSelectFrom);
+		if (DefaultMod.debug)
+		{
+			for (AbstractOrb orb : allowedOrbs)
+			{
+				System.out.println("theDuelist:DuelistCard:openRandomOrbChoiceNoGlass(int) ---> found " + orb.name + " in allowed orbs");
+			}
+		}
 		orbModal.open();
 	}
 	
@@ -233,7 +242,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         }
 		
 		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL);
-		for (AbstractOrb orb : allowedOrbs) { if (DefaultMod.orbCardMap.get(orb.name) != null) { builder.addOption(DefaultMod.orbCardMap.get(orb.name)); }}
+		for (AbstractOrb orb : allowedOrbs) 
+		{ 
+			if (DefaultMod.orbCardMap.get(orb.name) != null) 
+			{ builder.addOption(DefaultMod.orbCardMap.get(orb.name)); }
+			
+			if (DefaultMod.debug)
+			{
+				System.out.println("theDuelist:DuelistCard:resetOrbChoiceList(int) ---> added " + orb.name + " to builder options");
+			}
+		}
 		orbModal = builder.create();
 	}
 	

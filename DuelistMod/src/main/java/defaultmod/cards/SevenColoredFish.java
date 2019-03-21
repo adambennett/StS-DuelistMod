@@ -27,7 +27,7 @@ public class SevenColoredFish extends DuelistCard
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 5;
@@ -44,6 +44,8 @@ public class SevenColoredFish extends DuelistCard
         this.tags.add(DefaultMod.STANDARD_DECK);
         this.tags.add(DefaultMod.ORB_DECK);
         this.tags.add(DefaultMod.AQUA);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 4;
 		this.startingOrbDeckCopies = 2;
         this.startingDeckCopies = 2;
         this.originalName = this.name;

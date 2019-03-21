@@ -27,13 +27,13 @@ public class Predaplanet extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
     public Predaplanet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 3;

@@ -26,8 +26,8 @@ public class DarkHole extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
-    private static final int COST = 1;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public DarkHole() 
@@ -44,12 +44,30 @@ public class DarkHole extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Get target block and remove all of it
-    	int block = m.currentBlock;
-    	if (block > 0) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); this.baseBlock = block; block(this.baseBlock); }
-
-    	// Set max summons to 4 or 5
-    	//if (this.upgraded) { setMaxSummons(p, 5); }
-    	//else { setMaxSummons(p, 4); }
+    	if (!upgraded)
+    	{
+	    	int block = m.currentBlock;
+	    	if (block > 0) 
+	    	{ 
+	    		AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); 
+	    		this.baseBlock = block; 
+	    		block(this.block); 
+	    	}
+	    }
+    	else
+    	{
+    		int blockTotal = 0;
+    		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
+    		{    			
+    			if (mon.currentBlock > 0) 
+    			{
+    				blockTotal += mon.currentBlock;
+    				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
+    			}
+    		}
+    		this.baseBlock = blockTotal; 
+    		block(this.block);
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -63,7 +81,7 @@ public class DarkHole extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.target = CardTarget.ALL_ENEMY;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

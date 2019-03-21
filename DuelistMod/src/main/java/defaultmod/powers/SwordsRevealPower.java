@@ -72,7 +72,10 @@ public class SwordsRevealPower extends AbstractPower
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
-    	else { this.amount--; }
+    	else 
+    	{
+    		this.amount--;
+    	}
     	updateDescription();
 	}
     

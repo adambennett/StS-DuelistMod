@@ -36,6 +36,11 @@ public class ToonKingdomPower extends AbstractPower
         this.source = source;
         TOON_DMG = toonDmg;
         this.amount = TOON_DMG;
+        if (DefaultMod.challengeMode)
+        {
+        	this.amount += 2;
+        	TOON_DMG += 2;
+        }
         this.updateDescription();
     }
     

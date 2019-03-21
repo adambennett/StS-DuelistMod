@@ -92,7 +92,7 @@
 	"theDuelist:DarkHole": {
 		"NAME": "Dark Hole",
 		"DESCRIPTION": "Steal ALL Block from an enemy.",
-		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy."
+		"UPGRADE_DESCRIPTION": "Steal ALL Block from ALL enemies."
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "Darklord Marie",
@@ -1308,6 +1308,11 @@
 		"NAME": "Traps",
 		"DESCRIPTION": "Add Trap cards to your card pool.",
 		"EXTENDED_DESCRIPTION": ["Traps", "All Trap cards, except Toon Mask."]
+	},
+	"theDuelist:SpellcasterToken": {
+		"NAME": "Spellcaster Token",
+		"DESCRIPTION": "Spellcaster",
+		"UPGRADE_DESCRIPTION": "Spellcaster"
 	},
 	"theDuelist:PredaplantToken": {
 		"NAME": "Predaplant Token",

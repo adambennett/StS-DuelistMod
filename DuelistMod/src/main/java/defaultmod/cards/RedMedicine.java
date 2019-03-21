@@ -28,7 +28,7 @@ public class RedMedicine extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
     private static int MIN_TURNS_ROLL = 1;
     private static int MAX_TURNS_ROLL = 6;

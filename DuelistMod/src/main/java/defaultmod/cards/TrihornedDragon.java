@@ -31,7 +31,7 @@ public class TrihornedDragon extends DuelistCard
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 3;
     private static final int DAMAGE = 18;
@@ -46,9 +46,12 @@ public class TrihornedDragon extends DuelistCard
     	this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
     	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.tags.add(DefaultMod.ALL);
+    	this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = 3;
+		this.setupStartingCopies();
 		
     }
 

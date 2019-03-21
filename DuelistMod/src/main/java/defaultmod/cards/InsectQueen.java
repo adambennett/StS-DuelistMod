@@ -25,7 +25,7 @@ public class InsectQueen extends DuelistCard
 	private static final CardRarity RARITY = CardRarity.RARE;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 2;
 	private static final int POISON_MULT = 3;
 	// /STAT DECLARATION/

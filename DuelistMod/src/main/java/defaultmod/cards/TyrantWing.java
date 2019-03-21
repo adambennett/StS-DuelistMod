@@ -25,13 +25,13 @@ public class TyrantWing extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
     public TyrantWing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(DefaultMod.SPELL);
+        this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.FULL);
         this.tags.add(DefaultMod.TOON_DECK);

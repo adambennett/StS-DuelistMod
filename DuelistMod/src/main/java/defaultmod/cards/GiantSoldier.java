@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import archetypeAPI.patches.ArchetypeCardTags;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 
@@ -27,7 +26,7 @@ public class GiantSoldier extends DuelistCard
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     private static final int BLOCK = 4;
     private static final int SUMMONS = 1;
@@ -42,6 +41,8 @@ public class GiantSoldier extends DuelistCard
         this.tags.add(DefaultMod.STANDARD_DECK);
         this.tags.add(DefaultMod.TOON_DECK);
         this.tags.add(DefaultMod.HEAL_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 4;
         this.startingHealDeckCopies = 2;
         this.startingDeckCopies = 2;
         this.originalName = this.name;

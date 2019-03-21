@@ -34,12 +34,17 @@ public class Summoner extends DuelistOrb
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 2;
-		this.updateDescription();
+		if (DefaultMod.challengeMode)
+		{
+			this.baseEvokeAmount = this.evokeAmount = 1;
+			this.basePassiveAmount = this.passiveAmount = 1;
+		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		checkFocus();
+		this.updateDescription();
 	}
 
 	@Override
@@ -63,7 +68,8 @@ public class Summoner extends DuelistOrb
 	
 	private void triggerPassiveEffect()
 	{
-		DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token", false);
+		if (!DefaultMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Spellcaster Token", false); }
+		else { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token", false); }
 	}
 	
 

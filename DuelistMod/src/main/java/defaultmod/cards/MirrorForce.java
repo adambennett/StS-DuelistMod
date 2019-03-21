@@ -25,7 +25,7 @@ public class MirrorForce extends DuelistCard
 	private static final CardRarity RARITY = CardRarity.RARE;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
 	private static final int COST = 2;
 	private static boolean uSwitch = false;
 	// /STAT DECLARATION/
@@ -34,7 +34,10 @@ public class MirrorForce extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.TRAP);
 		this.tags.add(DefaultMod.METAL_RAIDERS);
+		this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
 		this.originalName = this.name;
+		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

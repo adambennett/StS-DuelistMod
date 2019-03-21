@@ -25,7 +25,7 @@ public class HammerShot extends DuelistCard
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
     private static final int DAMAGE = 3;
@@ -39,6 +39,8 @@ public class HammerShot extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.INCREMENT_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 2;
         this.startingIncDeckCopies = 1;
         this.originalName = this.name;
         this.setupStartingCopies();

@@ -26,7 +26,7 @@ public class InsectKnight extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 6;
@@ -41,6 +41,8 @@ public class InsectKnight extends DuelistCard
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.NATURE_DECK);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.startingDeckCopies = 2;
         this.originalName = this.name;
         this.summons = SUMMONS;

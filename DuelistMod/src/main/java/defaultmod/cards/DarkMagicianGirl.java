@@ -26,7 +26,7 @@ public class DarkMagicianGirl extends DuelistCard
 	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
-	public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 2;
 	// /STAT DECLARATION/
 
@@ -36,11 +36,14 @@ public class DarkMagicianGirl extends DuelistCard
 		this.tags.add(DefaultMod.MAGICIANS_FORCE);
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.LIMITED);
+		this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 2;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;
 		this.block = this.baseBlock = 8;
+		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

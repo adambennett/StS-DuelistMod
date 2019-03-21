@@ -28,7 +28,7 @@ public class ExodiaRA extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DEFAULT_GRAY;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.BLUNT_HEAVY;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -40,12 +40,15 @@ public class ExodiaRA extends DuelistCard
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.damage = this.baseDamage = 6;
         this.summons = this.magicNumber = this.baseMagicNumber = 1;
         this.block = this.baseBlock = 1;
         this.exhaust = true;
         this.exodiaName = "Right Arm";
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

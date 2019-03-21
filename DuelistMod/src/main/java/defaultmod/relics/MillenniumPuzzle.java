@@ -1,7 +1,6 @@
 package defaultmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -39,30 +38,59 @@ public class MillenniumPuzzle extends CustomRelic {
 	{
 		this.flash();
 		
-		if (CardCrawlGame.chosenCharacter.getClass().getName().equals("THE_DUELIST"))
+		if (DefaultMod.debug)
 		{
-			System.out.println("theDuelist:MillenniumPuzzle:atBattleStart() ---> correctly identified the duelist character");
-		}
-		else
-		{
-			System.out.println("theDuelist:MillenniumPuzzle:atBattleStart() ---> THIS SHOULD PRINT IF IT IS NOT THE DUELIST CHARACTER");
+			if (CardCrawlGame.characterManager.getClass().getName().equals("THE_DUELIST"))
+			{
+				System.out.println("theDuelist:MillenniumPuzzle:atBattleStart() ---> correctly identified the duelist character");
+			}
+			else
+			{
+				System.out.println("theDuelist:MillenniumPuzzle:atBattleStart() ---> THIS SHOULD PRINT IF IT IS NOT THE DUELIST CHARACTER");
+			}
 		}
 		
 		//if (CardCrawlGame.chosenCharacter.getClass().getName().equals("THE_DUELIST"))
 		//{
-			// Normal Runs
-			if (AbstractPlayer.customMods.size() < 1 && !DefaultMod.challengeMode) { runSpecialEffect(); }
-			
-			// Custom Runs & No Challenge Mode
-			else if (!DefaultMod.challengeMode)
+		
+			if (DefaultMod.fullDebug)
 			{
-				DuelistCard.powerSummon(AbstractDungeon.player, 2, "Puzzle Token", false);
+				
+				// Normal Runs
+				if (AbstractPlayer.customMods.size() < 1 && !DefaultMod.challengeMode) 
+				{ 
+					//DuelistCard.powerSummon(AbstractDungeon.player, 35, "Puzzle Token", false);
+					runSpecialEffect(35); 
+				}
+				
+				// Custom Runs & No Challenge Mode
+				else if (!DefaultMod.challengeMode)
+				{
+					DuelistCard.powerSummon(AbstractDungeon.player, 35, "Puzzle Token", false);
+				}
+				
+				// Challenge Mode (anywhere)
+				else
+				{
+					DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token"));
+				}
 			}
-			
-			// Challenge Mode (anywhere)
 			else
 			{
-				DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token"));
+				// Normal Runs
+				if (AbstractPlayer.customMods.size() < 1 && !DefaultMod.challengeMode) { runSpecialEffect(0); }
+				
+				// Custom Runs & No Challenge Mode
+				else if (!DefaultMod.challengeMode)
+				{
+					DuelistCard.powerSummon(AbstractDungeon.player, 2, "Puzzle Token", false);
+				}
+				
+				// Challenge Mode (anywhere)
+				else
+				{
+					DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token"));
+				}
 			}
 		//}
 		//else
@@ -102,14 +130,14 @@ public class MillenniumPuzzle extends CustomRelic {
 		return new MillenniumPuzzle();
 	}
 
-	private static void runSpecialEffect()
+	private static void runSpecialEffect(int extra)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
 		switch (DefaultMod.getCurrentDeck().getIndex())
 		{
 			// Standard Deck
 			case 0:
-				DuelistCard.powerSummon(AbstractDungeon.player, 3, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 3 + extra, "Puzzle Token", false);
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 1));
 				DuelistCard.staticBlock(10);
 				break;
@@ -117,7 +145,7 @@ public class MillenniumPuzzle extends CustomRelic {
 			// Dragon Deck
 			case 1:
 				int floor = AbstractDungeon.actNum;				
-				DuelistCard.powerSummon(AbstractDungeon.player, 1, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
 				DuelistCard.applyPowerToSelf(new StrengthPower(p, floor));
 				break;
 	
@@ -127,25 +155,25 @@ public class MillenniumPuzzle extends CustomRelic {
 		    	switch (rollN)
 		    	{
 			    	case 1:
-			    		DuelistCard.powerSummon(AbstractDungeon.player, 1, "Plant Token", false);
+			    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Plant Token", false);
 			    		break;
 			    	case 2:
-			    		DuelistCard.powerSummon(AbstractDungeon.player, 1, "Insect Token", false);
+			    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
 			    		break;
 			    	case 3:
-			    		DuelistCard.powerSummon(AbstractDungeon.player, 1, "Predaplant Token", false);
+			    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Predaplant Token", false);
 			    		break;
 			    	case 4:
-			    		DuelistCard.powerSummon(AbstractDungeon.player, 2, "Plant Token", false);
+			    		DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Plant Token", false);
 			    		break;
 			    	case 5:
-			    		DuelistCard.powerSummon(AbstractDungeon.player, 2, "Insect Token", false);
+			    		DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Insect Token", false);
 			    		break;
 			    	case 6:
-			    		DuelistCard.powerSummon(AbstractDungeon.player, 2, "Predaplant Token", false);			    		
+			    		DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Predaplant Token", false);			    		
 			    		break;
 			    	default:
-			    		DuelistCard.powerSummon(AbstractDungeon.player, 1, "Insect Token", false);
+			    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
 			    		break;
 		    	
 				}
@@ -160,7 +188,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELLCASTER);
 					AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
 				}
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				break;
 	
 			// Creator Deck
@@ -256,14 +284,14 @@ public class MillenniumPuzzle extends CustomRelic {
 					
 					// whenever you play an Ethereal card, gain 5 Gold and 2 HP
 				}
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				break;
 	
 			// Random (Small) Deck
 			case 5:
 				// whenever you play a new card this run, gain 15 block
 				int summonRollA = AbstractDungeon.cardRandomRng.random(2, 5);
-				DuelistCard.powerSummon(AbstractDungeon.player, summonRollA, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, summonRollA + extra, "Puzzle Token", false);
 				break;
 	
 			// Random (Big) Deck
@@ -271,7 +299,7 @@ public class MillenniumPuzzle extends CustomRelic {
 				// whenever you play a new card this run, gain 10 Gold
 				// Write separate randomBuff function that only lets it choose powers that can handle many turnNum
 				int summonRollB = AbstractDungeon.cardRandomRng.random(2, 5);
-				DuelistCard.powerSummon(AbstractDungeon.player, summonRollB, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
 				break;
 	
 			// Toon Deck
@@ -285,42 +313,26 @@ public class MillenniumPuzzle extends CustomRelic {
 						AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
 					}
 				}
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				// do like orb deck but with a random toon card
 				break;
 	
 			// Orb Deck
 			case 8:
 				new Token().openRandomOrbChoiceNoGlass(3);
-				DuelistCard.powerSummon(AbstractDungeon.player, 1, "Orb Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Orb Token", false);
 				break;
 	
 			// Resummon Deck
-			case 9:
-				if (DefaultMod.challengeMode)
+			case 9:				
+				// whenever you resummon, gain 5 Block
+				int rollR = AbstractDungeon.cardRandomRng.random(1, 2);
+				if (rollR == 1)
 				{
-					// whenever you resummon, gain 5 Block
-					DuelistCard.damageSelf(DefaultMod.resummonDeckDamage);
-					DefaultMod.resummonDeckDamage++;
-					try {
-						SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
-						config.setInt(DefaultMod.PROP_RESUMMON_DMG, DefaultMod.resummonDeckDamage);
-						config.save();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				else
-				{
-					// whenever you resummon, gain 5 Block
-					int rollR = AbstractDungeon.cardRandomRng.random(1, 2);
-					if (rollR == 1)
-					{
-						DuelistCard.powerSummon(AbstractDungeon.player, 1, "Resummon Token", false);
-					}
-				}
+					DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Resummon Token", false);
+				}				
 				break;
-	
+				
 			// Generation Deck
 			case 10:
 				// whenever you play a new card this run, add a random common duelist card to your hand
@@ -330,7 +342,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
 					AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
 				}
-				DuelistCard.powerSummon(AbstractDungeon.player, 5, "Bonanza Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 5 + extra, "Bonanza Token", false);
 				break;
 	
 			// Ojama Deck
@@ -341,7 +353,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.OJAMA);
 					AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
 				}
-				DuelistCard.powerSummon(AbstractDungeon.player, 3, "Bonanza Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 3 + extra, "Bonanza Token", false);
 				// gain a random buff
 				// apply a random debuff to all enemies
 				break;
@@ -349,28 +361,33 @@ public class MillenniumPuzzle extends CustomRelic {
 			// Heal Deck
 			case 12:
 				DuelistCard.applyPowerToSelf(new OrbHealerPower(p, 3));
-				if (!DefaultMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, 1, "Puzzle Token", false); }
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
 				break;
 	
 			// Increment Deck
 			case 13:
 				DuelistCard.incMaxSummons(p, 2);
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				break;
 	
-			// Exodia Deck *
+			// Exodia Deck
 			case 14:
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Exxod Token", false);
 				break;
 				
 			// Superheavy Deck *
 			case 15:
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				break;
 				
 			// Aqua Deck *
 			case 16:
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
+				break;
+				
+			// Machine Deck *
+			case 17:
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				break;
 	
 			// Generic
