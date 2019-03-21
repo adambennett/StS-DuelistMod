@@ -37,6 +37,7 @@ public class DarkHole extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
         this.originalName = this.name;
+        this.baseBlock = this.block = 0;
     }
 
     // Actions the card should do.
@@ -50,7 +51,8 @@ public class DarkHole extends DuelistCard
 	    	if (block > 0) 
 	    	{ 
 	    		AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); 
-	    		this.baseBlock = block; 
+	    		this.baseBlock = this.block = block; 
+	    		applyPowers();
 	    		block(this.block); 
 	    	}
 	    }
@@ -65,7 +67,8 @@ public class DarkHole extends DuelistCard
     				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
     			}
     		}
-    		this.baseBlock = blockTotal; 
+    		this.baseBlock = this.block = blockTotal; 
+    		applyPowers();
     		block(this.block);
     	}
     }
