@@ -1,8 +1,9 @@
 package defaultmod.relics;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -11,7 +12,7 @@ import basemod.abstracts.CustomRelic;
 import defaultmod.DefaultMod;
 import defaultmod.actions.unique.TheCreatorAction;
 import defaultmod.cards.*;
-import defaultmod.patches.DuelistCard;
+import defaultmod.patches.*;
 import defaultmod.powers.*;
 
 public class MillenniumPuzzle extends CustomRelic {
@@ -40,7 +41,7 @@ public class MillenniumPuzzle extends CustomRelic {
 		
 		if (DefaultMod.debug)
 		{
-			if (CardCrawlGame.characterManager.getClass().getName().equals("THE_DUELIST"))
+			if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 			{
 				System.out.println("theDuelist:MillenniumPuzzle:atBattleStart() ---> correctly identified the duelist character");
 			}
@@ -50,7 +51,7 @@ public class MillenniumPuzzle extends CustomRelic {
 			}
 		}
 		
-		//if (CardCrawlGame.chosenCharacter.getClass().getName().equals("THE_DUELIST"))
+		//if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		//{
 		
 			if (DefaultMod.fullDebug)
@@ -182,13 +183,8 @@ public class MillenniumPuzzle extends CustomRelic {
 	
 			// Spellcaster Deck
 			case 3:
-				int floorB = AbstractDungeon.actNum;
-				for (int i = 0; i < 1 + floorB; i++)
-				{
-					DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELLCASTER);
-					AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
-				}
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
+				int rollS = AbstractDungeon.cardRandomRng.random(0, 2);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra + rollS, "Spellcaster Token", false);
 				break;
 	
 			// Creator Deck
@@ -296,31 +292,42 @@ public class MillenniumPuzzle extends CustomRelic {
 	
 			// Random (Big) Deck
 			case 6:
-				// whenever you play a new card this run, gain 10 Gold
-				// Write separate randomBuff function that only lets it choose powers that can handle many turnNum
-				int summonRollB = AbstractDungeon.cardRandomRng.random(2, 5);
+				int summonRollB = AbstractDungeon.cardRandomRng.random(1, 3);
 				DuelistCard.powerSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
+				ArrayList<DuelistCard> cardsToChooseFromB = new ArrayList<DuelistCard>();
+				for (int i = 0; i < 4; i++)
+				{
+					DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
+					while (cardsToChooseFromB.contains(randomToon))
+					{
+						randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
+					}
+					cardsToChooseFromB.add(randomToon);
+				}
+				new Token().openRandomCardChoice(3, cardsToChooseFromB);
+				
 				break;
 	
 			// Toon Deck
-			case 7:
-				if (!DefaultMod.toonBtnBool)
+			case 7:				
+				ArrayList<DuelistCard> cardsToChooseFrom = new ArrayList<DuelistCard>();
+				for (int i = 0; i < 4; i++)
 				{
-					int floorC = AbstractDungeon.actNum;
-					for (int i = 0; i < 1 + floorC; i++)
+					DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
+					while (cardsToChooseFrom.contains(randomToon))
 					{
-						DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
-						AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
+						randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
 					}
+					cardsToChooseFrom.add(randomToon);
 				}
+				new Token().openRandomCardChoice(3, cardsToChooseFrom);
 				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				// do like orb deck but with a random toon card
 				break;
 	
 			// Orb Deck
 			case 8:
-				new Token().openRandomOrbChoiceNoGlass(3);
 				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Orb Token", false);
+				new Token().openRandomOrbChoiceNoGlass(3);				
 				break;
 	
 			// Resummon Deck
@@ -331,6 +338,10 @@ public class MillenniumPuzzle extends CustomRelic {
 				{
 					DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Resummon Token", false);
 				}				
+				else
+				{
+					DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Resummon Token", false);
+				}
 				break;
 				
 			// Generation Deck
@@ -392,7 +403,7 @@ public class MillenniumPuzzle extends CustomRelic {
 	
 			// Generic
 			default:
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				break;
 		}
 	}

@@ -641,8 +641,8 @@
 	},
 	"theDuelist:Raigeki": {
 		"NAME": "雷擊",
-		"DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block).",
-		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block)."
+		"DESCRIPTION": "Deal !D! damage to ALL enemies (through Block). Has a small chance to Stun each enemy.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies (through Block). Has a high chance to Stun each enemy."
 	},
 	"theDuelist:PreventRat": {
 		"NAME": "防止鼠",
@@ -776,8 +776,8 @@
 	},
 	"theDuelist:MoltenZombie": {
 		"NAME": "灼熱殭屍",
-		"DESCRIPTION": "Zombie NL 仪式 1. NL Deal  damage. NL 仪式再次: Deal 20 damage to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Deal  damage. NL 仪式再次: Deal 20 damage to ALL enemies."
+		"DESCRIPTION": "Zombie NL 仪式 1. NL Deal  damage. NL 仪式再次: Deal 15 damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Deal  damage. NL 仪式再次: Deal 15damage to ALL enemies."
 	},
 	"theDuelist:TokenVacuum": {
 		"NAME": "令牌真空",

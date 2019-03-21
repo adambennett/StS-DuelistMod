@@ -1,9 +1,9 @@
 package defaultmod.cards;
 
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -29,7 +29,7 @@ public class Raigeki extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final AttackEffect AFX = AttackEffect.NONE;
@@ -43,19 +43,27 @@ public class Raigeki extends DuelistCard
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.isMultiDamage = true;
 		this.originalName = this.name;
+		this.baseDamage = this.damage = 15;
+		this.magicNumber = this.baseMagicNumber = 4;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Get target block and remove all of it
-    	int monsterBlock = m.currentBlock;
+    	int monsterBlock = this.damage;
     	this.multiDamage = new int[] { monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock, monsterBlock};
     	AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, new Color(0.1F, 0.0F, 0.2F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
         AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
-    	if (monsterBlock > 0) { damageThroughBlockAllEnemies(p, monsterBlock, AFX); }
-    	if (monsterBlock > 0) {  if (!m.isDead) { AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); } }
+    	damageThroughBlockAllEnemies(p, monsterBlock, AFX);
+    	for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
+    	{
+    		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+    		if (roll <= this.magicNumber)
+    		{
+    			AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(monster, p));
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -69,7 +77,8 @@ public class Raigeki extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(3);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

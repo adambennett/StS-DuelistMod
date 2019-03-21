@@ -51,7 +51,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final Logger logger = LogManager.getLogger("theDuelist:DefaultMod ---> " + DefaultMod.class.getName());
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
-	// Tags (should move to using the patches file tags instead)
+	// Tags
 	@SpireEnum public static AbstractCard.CardTags MONSTER; 
 	@SpireEnum public static AbstractCard.CardTags SPELL;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
@@ -126,7 +126,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
 	private static String modID = "duelistmod";
 	private static ArrayList<String> cardSets = new ArrayList<String>();
-	private static ArrayList<String> startingDecks = new ArrayList<String>();
+	public static ArrayList<String> startingDecks = new ArrayList<String>();
 	private static ArrayList<StarterDeck> starterDeckList = new ArrayList<StarterDeck>();
 	private static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
@@ -134,7 +134,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
 	private static Map<CardTags, StarterDeck> deckTagMap = new HashMap<CardTags, StarterDeck>();
 	private static int setIndex = 0;
-	private static int deckIndex = 0;
+	public static int deckIndex = 0;
 	private static final int SETS = 5;
 	private static int DECKS = 20;
 	private static int cardCount = 75;
@@ -175,7 +175,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static boolean checkTrap = false;
 	public static boolean checkUO = false;
 	public static boolean ultimateOfferingTrig = false;
-	//public static boolean isApi = Loader.isModLoaded("archetypeapi");
+	public static boolean isApi = Loader.isModLoaded("archetypeapi");
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -183,6 +183,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static int cardsToDraw = 5;
 	public static int resummonDeckDamage = 1;
 	public static StarterDeck currentDeck;
+	public static ModLabel setSelectColorTxtB;
 	
 	// Global Character Stats
 	public static int energyPerTurn = 3;
@@ -848,7 +849,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		duelistDefaults.setProperty(PROP_RESUMMON_DMG, "1");
 		duelistDefaults.setProperty(PROP_CHALLENGE, "FALSE");
 		
-		cardSets.add("All (223 cards)"); 
+		cardSets.add("All (221 cards)"); 
 		cardSets.add("Full (140 cards)");
 		cardSets.add("Reduced (121 cards)");
 		cardSets.add("Limited (93 cards)");
@@ -908,18 +909,6 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			cardDraw = 1;
 			orbSlots = 3;
 		}
-		
-		/*
-		if (challengeMode)
-		{
-			energyPerTurn = 3;
-			startHP = 40;
-			maxHP = 50;
-			startGold = 0;
-			cardDraw = 4;
-			orbSlots = 3;
-		}
-		*/
 
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done setting up or loading the settings config file");
 	}
@@ -940,69 +929,20 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receiveEditCharacters() 
 	{
-		//UIStrings UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
-		//String characterName = UI_String.TEXT[10];
-		//playerName = characterName;
-		
-		/*if (!isApi)
-		{
-			logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
-			String loc = localize();
-			if (loc.equals("zhs"))
-			{
-				// Yugi Moto
-				BaseMod.addCharacter(new TheDuelist_NoApi("the Duelist", TheDuelistEnum.THE_DUELIST_NO_API),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT_CHINESE), TheDuelistEnum.THE_DUELIST_NO_API);
-				receiveEditPotions();
-			}
-			else
-			{
-				// Yugi Moto
-				BaseMod.addCharacter(new TheDuelist_NoApi("the Duelist", TheDuelistEnum.THE_DUELIST_NO_API),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST_NO_API);
-				receiveEditPotions();
-			}
-			logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Done editing characters");
-		}*/
-		//else
-		//{
-			//logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Beginning to edit characters. " + "Add " + TheDuelistEnum.THE_DUELIST.toString());
-			//String loc = localize();
-			/*if (loc.equals("zhs"))
-			{
-				// Yugi Moto
-				BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT_CHINESE), TheDuelistEnum.THE_DUELIST);
-				
-				// Seto Kaiba
-				//BaseMod.addCharacter(new TheDuelist("the Rich Duelist", TheDuelistEnum.THE_RICH_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_RICH_DUELIST);
-	
-				//if (!toonBtnBool)
-				//{
-					// Maximillion Pegasus
-					//BaseMod.addCharacter(new TheDuelist("the Villian", TheDuelistEnum.THE_VILLIAN),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_VILLIAN);
-				//}
-				
-				
-				receiveEditPotions();
-			}
-			else
-			{
-			*/
-				// Yugi Moto
-				BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
-				
-				// Seto Kaiba
-				//BaseMod.addCharacter(new TheDuelist("the Rich Duelist", TheDuelistEnum.THE_RICH_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_RICH_DUELIST);
-	
-				//if (!toonBtnBool)
-				//{
-					// Maximillion Pegasus
-					//BaseMod.addCharacter(new TheDuelist("the Villian", TheDuelistEnum.THE_VILLIAN),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_VILLIAN);
-				//}
-				
-				
-				receiveEditPotions();
-			//}
-			logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Done editing characters");
-		//}
+		// Yugi Moto
+		BaseMod.addCharacter(new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
+
+		// Seto Kaiba
+		//BaseMod.addCharacter(new TheDuelist("the Rich Duelist", TheDuelistEnum.THE_RICH_DUELIST),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_RICH_DUELIST);
+
+
+		// Maximillion Pegasus
+		//BaseMod.addCharacter(new TheDuelist("the Villian", TheDuelistEnum.THE_VILLIAN),makePath(THE_DEFAULT_BUTTON), makePath(THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_VILLIAN);
+
+		receiveEditPotions();
+
+		logger.info("theDuelist:DefaultMod:receiveEditCharacters() ---> Done editing characters");
+
 	}
 
 	// =============== /LOAD THE CHARACTER/ =================
@@ -1099,7 +1039,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		String deckString = UI_String.TEXT[3];
 		ModLabel setSelectLabelTxtB = new ModLabel(deckString, 350.0f, 500.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectLabelTxtB);
-		ModLabel setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),670.0f, 500.0f,settingsPanel,(me)->{});
+		setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),670.0f, 500.0f,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectColorTxtB);
 		ModButton setSelectLeftBtnB = new ModButton(605.0f, 485.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
 			if (deckIndex == 0) { deckIndex = DECKS - 1; }
@@ -1380,7 +1320,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	
 	
 
-	public void resetCharSelect()
+	public static void resetCharSelect()
 	{		
 		setupStartDecksB();
 		if (deckToStartWith.size() > 0)
@@ -1611,7 +1551,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		return starterDeckList.get(0);
 	}
 
-	private CardTags findDeckTag(int deckIndex) 
+	private static CardTags findDeckTag(int deckIndex) 
 	{
 		for (StarterDeck d : starterDeckList) { if (d.getIndex() == deckIndex) { return d.getDeckTag(); }}
 		return null;
@@ -1648,7 +1588,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		return hasAnyTag;
 	}
 	
-	private void setupStartDecksB()
+	private static void setupStartDecksB()
 	{
 		chosenDeckTag = findDeckTag(deckIndex);
 		StarterDeck refDeck = null;
@@ -1698,7 +1638,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		
 	}
 	
-	private void initStandardDeck()
+	private static void initStandardDeck()
 	{
 		standardDeck = new ArrayList<DuelistCard>();
 		for (DuelistCard c : myCards) { if (c.hasTag(STANDARD_DECK)) { for (int i = 0; i < c.startingDeckCopies; i++) { standardDeck.add(c); }}}

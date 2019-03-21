@@ -641,8 +641,8 @@
 	},
 	"theDuelist:Raigeki": {
 		"NAME": "Raigeki",
-		"DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block).",
-		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block)."
+		"DESCRIPTION": "Deal !D! damage to ALL enemies (through Block). Has a small chance to Stun each enemy.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies (through Block). Has a high chance to Stun each enemy."
 	},
 	"theDuelist:PreventRat": {
 		"NAME": "Prevent Rat",
