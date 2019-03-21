@@ -32,7 +32,6 @@ public class SuperancientDinobeast extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 2;
     private static final int DAMAGE = 20;
-    private static final int UPGRADE_PLUS_DMG = 2;
     // /STAT DECLARATION/
 
     public SuperancientDinobeast() {
@@ -66,8 +65,7 @@ public class SuperancientDinobeast extends DuelistCard
 	    {
 	    	for (int i = 0; i < drags; i++) 
 	    	{ 
-	    		addCardToHand(returnTrulyRandomDuelistCard()); 
-	    		if (upgraded) { addCardToHand(returnTrulyRandomDuelistCard()); }
+	    		block(10);
 	    	}
     	}
     }
@@ -84,8 +82,7 @@ public class SuperancientDinobeast extends DuelistCard
     {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
-            //this.upgradeBaseCost(3);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

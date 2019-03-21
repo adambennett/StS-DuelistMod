@@ -68,7 +68,7 @@ public class FiveHeaded extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.tributes = 6;
+            this.tributes = 5;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -27,7 +27,7 @@ public class SangaThunder extends DuelistCard
 
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;

@@ -766,8 +766,8 @@
 	},
 	"theDuelist:SuperancientDinobeast": {
 		"NAME": "超级恐龙",
-		"DESCRIPTION": "贡 2. NL Deal  damage. NL For each Dragon tributed to play this card, add a random card to your hand.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Deal  damage. NL For each Dragon tributed to play this card, add 2 random cards to your hand."
+		"DESCRIPTION": "贡 2. NL Deal  damage. NL For each Dragon tributed to play this card, Gain 10 Block.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Deal  damage. NL For each Dragon tributed to play this card, Gain 10 Block."
 	},
 	"theDuelist:ArmoredZombie": {
 		"NAME": "鎧武者殭屍",

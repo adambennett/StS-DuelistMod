@@ -73,6 +73,7 @@ public class CastlePower extends AbstractPower implements IShufflePower
         if (UPGRADE) 
         { 
         	CastleDarkIllusions.incMaxSummons(p, INC_SUMMONS);
+        	CastleDarkIllusions.powerSummon(p, SUMMONS, "Castle Token", false);
         }
         else 
         {

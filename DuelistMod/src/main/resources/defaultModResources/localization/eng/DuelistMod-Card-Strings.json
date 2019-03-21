@@ -62,7 +62,7 @@
 	"theDuelist:CastleDarkIllusions": {
 		"NAME": "Castle Dark Illusion",
 		"DESCRIPTION": "Summon 1. NL Whenever you shuffle your deck, Summon 5. If this monster is Tributed for Pumpking, add 3 cards to Pumpking's effect.",
-		"UPGRADE_DESCRIPTION": "Summon 1. NL Whenever you shuffle your deck, Increment 5. If this monster is Tributed for Pumpking, add 3 cards to Pumpking's effect."
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Whenever you shuffle your deck, Increment 5 then Summon 5. If this monster is Tributed for Pumpking, add 3 cards to Pumpking's effect."
 	},
 	"theDuelist:BigCastleWalls": {
 		"NAME": "Big Castle Wall",
@@ -416,18 +416,18 @@
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "Kazejin",
-		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 Earth. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 Earth. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel an Earth. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel an Earth. NL Deal !D! damage."
 	},
 	"theDuelist:SangaThunder": {
 		"NAME": "Sanga of Thunder",
-		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel 1 lightning. NL Deal !D! damage."
+		"DESCRIPTION": "Tribute 3. NL Summon 1. NL Channel a Lightning. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Summon 1. NL Channel a Lightning. NL Deal !D! damage."
 	},
 	"theDuelist:SangaWater": {
 		"NAME": "Suijin",
-		"DESCRIPTION": "Aqua NL Tribute 3. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute 2. NL Summon 1. NL Channel 1 Water. NL Deal !D! damage."
+		"DESCRIPTION": "Aqua NL Tribute 3. NL Summon 1. NL Channel a Water. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute 2. NL Summon 1. NL Channel a Water. NL Deal !D! damage."
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "Scapegoat",
@@ -441,8 +441,8 @@
 	},
 	"theDuelist:SliferSky": {
 		"NAME": "Slifer Sky Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 5. NL Whenever you Summon, Channel a random Orb (max 2/turn).",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 5. NL Whenever you Summon, Channel a random Orb (max 4/turn)."
+		"DESCRIPTION": "Dragon NL Tribute 5. NL Whenever you Summon, Channel a random Orb NL (max 2/turn).",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 5. NL Whenever you Summon, Channel a random Orb NL (max 4/turn)."
 	},
 	"theDuelist:ShardGreed": {
 		"NAME": "Shard of Greed",
@@ -722,7 +722,7 @@
 	"theDuelist:FiveHeaded": {
 		"NAME": "Five Headed Dragon",
 		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 6. NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 5. NL Deal !D! damage."
 	},
 	"theDuelist:FluteSummoning": {
 		"NAME": "Flute of Summoning Dragon",
@@ -766,8 +766,8 @@
 	},
 	"theDuelist:SuperancientDinobeast": {
 		"NAME": "Superancient Dinobeast",
-		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, add a random card to your hand.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, add 2 random cards to your hand."
+		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, Gain 10 Block.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, Gain 10 Block."
 	},
 	"theDuelist:ArmoredZombie": {
 		"NAME": "Armored Zombie",
@@ -776,7 +776,7 @@
 	},
 	"theDuelist:MoltenZombie": {
 		"NAME": "Molten Zombie",
-		"DESCRIPTION": "Zombie NL Summon 1. NL Deal !D! damage. NL Resummon: Deal 20 damage to ALL enemies.",
+		"DESCRIPTION": "Zombie NL Summon 1. NL Deal !D! damage. NL Resummon: Deal 15 damage to ALL enemies.",
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon 1. NL Deal !D! damage. NL Resummon: Deal 20 damage to ALL enemies."
 	},
 	"theDuelist:TokenVacuum": {

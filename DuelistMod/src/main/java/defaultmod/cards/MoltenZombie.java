@@ -43,7 +43,7 @@ public class MoltenZombie extends DuelistCard
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
-        this.damage = this.baseDamage = 3;
+        this.damage = this.baseDamage = 8;
     }
 
     // Actions the card should do.
@@ -67,7 +67,7 @@ public class MoltenZombie extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeDamage(2);
+           // this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -83,7 +83,8 @@ public class MoltenZombie extends DuelistCard
 	@Override
 	public void onResummon(int summons)
 	{
-		damageAllEnemiesFire(20);
+		if (!upgraded) { damageAllEnemiesFire(15); }
+		else { damageAllEnemiesFire(20); }
 	}
 
 	@Override

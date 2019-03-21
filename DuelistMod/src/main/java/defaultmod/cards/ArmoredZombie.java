@@ -42,7 +42,7 @@ public class ArmoredZombie extends DuelistCard
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
-        this.block = this.baseBlock = 3;
+        this.block = this.baseBlock = 5;
         this.setupStartingCopies();
     }
 
