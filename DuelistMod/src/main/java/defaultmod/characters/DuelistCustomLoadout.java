@@ -29,7 +29,7 @@ public class DuelistCustomLoadout
 		
 		if (Locked)
 		{
-			lockedDescription = "Unlocks at Total Score " + unlockLevel +  " (Total Score: " + currentLevel +  ")";
+			lockedDescription = "Unlocks at " + unlockLevel +  " Total Score (" + currentLevel +  ")";
 		}
 		
 		try {

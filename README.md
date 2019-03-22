@@ -1,6 +1,8 @@
 # StS-DuelistMod
 A Slay the Spire adaptation of Yu-Gi-Oh!
 
+Discord Server: https://discord.gg/Tcwws6U
+
 ## REQUIREMENTS
 - Basemod
 - StSLib
