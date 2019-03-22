@@ -31,8 +31,8 @@ public class BusterBlader extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
-    private static final int DAMAGE = 12;
+    private static final int COST = 1;
+    private static final int DAMAGE = 16;
     //private static final int UPGRADE_PLUS_DMG = 2;
     // /STAT DECLARATION/
 
@@ -82,7 +82,7 @@ public class BusterBlader extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -168,6 +168,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static boolean crossoverBtnBool = true;
 	public static boolean challengeMode = false;
 	public static boolean unlockAllDecks = false;
+	public static boolean toonWorldTemp = false;
 	public static int lastMaxSummons = 5;
 	//public static int toonDamage = 7;
 	public static int spellsThisCombat = 0;
@@ -181,6 +182,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
+	public static boolean playedOneCardThisCombat = false;
 	public static int swordsPlayed = 0;
 	public static int cardsToDraw = 5;
 	public static int resummonDeckDamage = 1;
@@ -196,7 +198,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static int orbSlots = 3;
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
-	public static final boolean debug = false;		// print statements only really
+	public static final boolean debug = true;		// print statements only really
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -1397,6 +1399,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
+		playedOneCardThisCombat = false;
 		lastMaxSummons = 5;
 		spellsThisCombat = 0;
 		summonsThisCombat = 0;
@@ -1465,6 +1468,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) 
 	{
+		playedOneCardThisCombat = true;
 		logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> Card: " + arg0.name);
 		if (arg0.hasTag(DefaultMod.SPELL))
 		{

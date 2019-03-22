@@ -1,6 +1,7 @@
 package defaultmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,7 +24,7 @@ public class ToonWorldPower extends AbstractPower
     public static final String IMG = DefaultMod.makePath(DefaultMod.TOON_WORLD_POWER);
     public static int TOON_DMG = 5;
     
-    public ToonWorldPower(final AbstractCreature owner, final AbstractCreature source, int toonDmg) 
+    public ToonWorldPower(final AbstractCreature owner, final AbstractCreature source, int toonDmg, boolean playedCard) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -38,6 +39,10 @@ public class ToonWorldPower extends AbstractPower
         {
         	this.amount += 5;
         	TOON_DMG += 5;
+        }
+        if (playedCard)
+        {
+        	DefaultMod.toonWorldTemp = false;
         }
         this.updateDescription();
     }
@@ -79,6 +84,16 @@ public class ToonWorldPower extends AbstractPower
 	    	
 	    	this.amount = TOON_DMG;
 	    	updateDescription();
+    	}
+    }
+
+    @Override
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) 
+    {
+    	if (DefaultMod.toonWorldTemp)
+    	{
+    		DuelistCard.removePower(this, this.owner);
+    		DefaultMod.toonWorldTemp = false;
     	}
     }
     

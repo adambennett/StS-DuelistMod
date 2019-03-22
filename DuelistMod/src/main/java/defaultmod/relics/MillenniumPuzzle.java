@@ -309,19 +309,24 @@ public class MillenniumPuzzle extends CustomRelic {
 				break;
 	
 			// Toon Deck
-			case 7:				
-				ArrayList<DuelistCard> cardsToChooseFrom = new ArrayList<DuelistCard>();
-				for (int i = 0; i < 4; i++)
-				{
-					DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
-					while (cardsToChooseFrom.contains(randomToon))
-					{
-						randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
-					}
-					cardsToChooseFrom.add(randomToon);
-				}
-				new Token().openRandomCardChoice(3, cardsToChooseFrom);
+			case 7:		
 				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
+				if (!DefaultMod.toonBtnBool)
+				{
+					DefaultMod.toonWorldTemp = true;
+					DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, 0, false));
+					ArrayList<DuelistCard> cardsToChooseFrom = new ArrayList<DuelistCard>();
+					for (int i = 0; i < 4; i++)
+					{
+						DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
+						while (cardsToChooseFrom.contains(randomToon))
+						{
+							randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
+						}
+						cardsToChooseFrom.add(randomToon);
+					}
+					new Token().openRandomCardChoiceDuelist(3, cardsToChooseFrom);
+				}
 				break;
 	
 			// Orb Deck
