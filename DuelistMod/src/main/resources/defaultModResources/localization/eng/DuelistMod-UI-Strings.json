@@ -9,8 +9,9 @@
 			"Note: Card removal options WILL NOT work while Archetype API is loaded",
 			"Active Duelist Cards: ",
 			"Changing the card set requires a restart to take effect.",
-			"Start a fresh run to change your starting deck.",
-			"Challenge Mode"
+			"Starting deck only affects Custom Runs.",
+			"Challenge Mode",
+			"Unlock all Decks"
 		]
 	}
 }

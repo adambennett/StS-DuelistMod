@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 
 import defaultmod.ui.CharacterSelectScreenPatch;
 
+//Copied from The Animator, then modified
 public class CharacterSelectScreenPatches
 {
     @SpirePatch(clz = CharacterSelectScreen.class, method = "initialize")

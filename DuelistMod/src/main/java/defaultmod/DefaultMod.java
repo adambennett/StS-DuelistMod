@@ -162,10 +162,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String PROP_HAS_RING = "hasRing";
 	public static final String PROP_RESUMMON_DMG = "resummonDeckDamage";
 	public static final String PROP_CHALLENGE = "challengeMode";
+	public static final String PROP_UNLOCK = "unlockAllDecks";
 	public static boolean toonBtnBool = true;
 	public static boolean exodiaBtnBool = false;
 	public static boolean crossoverBtnBool = true;
 	public static boolean challengeMode = false;
+	public static boolean unlockAllDecks = false;
 	public static int lastMaxSummons = 5;
 	//public static int toonDamage = 7;
 	public static int spellsThisCombat = 0;
@@ -194,7 +196,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static int orbSlots = 3;
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
-	public static final boolean debug = false;		// print statements only really
+	public static final boolean debug = true;		// print statements only really
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -848,12 +850,13 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		duelistDefaults.setProperty(PROP_HAS_RING, "FALSE");
 		duelistDefaults.setProperty(PROP_RESUMMON_DMG, "1");
 		duelistDefaults.setProperty(PROP_CHALLENGE, "FALSE");
+		duelistDefaults.setProperty(PROP_UNLOCK, "FALSE");
 		
 		cardSets.add("All (221 cards)"); 
-		cardSets.add("Full (140 cards)");
+		cardSets.add("Full (144 cards)");
 		cardSets.add("Reduced (121 cards)");
 		cardSets.add("Limited (93 cards)");
-		cardSets.add("Core (64 cards)");
+		cardSets.add("Core (77 cards)");
 		
 		int save = 0;
 		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (10 cards)", save, "Standard Deck"); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
@@ -888,6 +891,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
             exodiaBtnBool = config.getBool(PROP_EXODIA_BTN);
             crossoverBtnBool = config.getBool(PROP_CROSSOVER_BTN);
             challengeMode = config.getBool(PROP_CHALLENGE);
+            unlockAllDecks = config.getBool(PROP_UNLOCK);
             setIndex = config.getInt(PROP_SET);
             cardCount = config.getInt(PROP_CARDS);
             deckIndex = config.getInt(PROP_DECK);
@@ -970,10 +974,23 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 		UIStrings UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
 		
-		// Check Box A
+		float yPos = 750.0f;
+		float xLabPos = 360.0f;
+		float xLArrow = 615.0f;
+		float xRArrow = 1110.0f;
+		float xSelection = 680.0f;
 		
+		
+		// Card Count Label
+		String cardsString = UI_String.TEXT[6];
+		ModLabel cardLabelTxt = new ModLabel(cardsString + cardCount, xLabPos - 10, yPos,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(cardLabelTxt);
+		yPos-=50;
+		// END Card Count Label
+		
+		// Check Box A
 		String toonString = UI_String.TEXT[0];
-		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton(toonString,350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton(toonString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			toonBtnBool = button.enabled;
 			try 
@@ -985,11 +1002,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(toonBtn);
+		yPos-=50;
 		// END Check Box A
 		
 		// Check Box B
 		String exodiaString = UI_String.TEXT[1];
-		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton(exodiaString, 350.0f, 650.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton(exodiaString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			exodiaBtnBool = button.enabled;
 			try 
@@ -1001,11 +1019,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(exodiaBtn);
+		yPos-=50;
 		// END Check Box B
 		
 		// Check Box C
 		String crossString = UI_String.TEXT[2];
-		ModLabeledToggleButton crossoverBtn = new ModLabeledToggleButton(crossString, 350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, crossoverBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		ModLabeledToggleButton crossoverBtn = new ModLabeledToggleButton(crossString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, crossoverBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			crossoverBtnBool = button.enabled;
 			try 
@@ -1017,11 +1036,29 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(crossoverBtn);
+		yPos-=50;
 		// END Check Box C
 		
 		// Check Box D
+		String unlockString = UI_String.TEXT[10];
+		ModLabeledToggleButton unlockBtn = new ModLabeledToggleButton(unlockString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, unlockAllDecks, settingsPanel, (label) -> {}, (button) -> 
+		{
+			unlockAllDecks = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_UNLOCK, unlockAllDecks);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//resetCharSelect();
+		});
+		settingsPanel.addUIElement(unlockBtn);
+		yPos-=50;
+		// END Check Box D
+		
+		// Check Box E
 		String challengeString = UI_String.TEXT[9];
-		ModLabeledToggleButton challengeBtn = new ModLabeledToggleButton(challengeString, 350.0f, 550.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, challengeMode, settingsPanel, (label) -> {}, (button) -> 
+		ModLabeledToggleButton challengeBtn = new ModLabeledToggleButton(challengeString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, challengeMode, settingsPanel, (label) -> {}, (button) -> 
 		{
 			challengeMode = button.enabled;
 			try 
@@ -1033,15 +1070,53 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(challengeBtn);
-		// END Check Box D
+		yPos-=50;
+		// END Check Box E
+		
+		// Set Size Selector
+		String setString = UI_String.TEXT[4];
+		ModLabel setSelectLabelTxt = new ModLabel(setString,xLabPos, yPos,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(setSelectLabelTxt);
+		ModLabel setSelectColorTxt = new ModLabel(cardSets.get(setIndex),xSelection, yPos,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(setSelectColorTxt);
+		yPos-=15;
+		ModButton setSelectLeftBtn = new ModButton(xLArrow, yPos, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+			if (setIndex == 0) { setIndex = SETS - 1; }
+			else { setIndex--; }
+			if (setIndex < 0) { setIndex = 0; }
+			setSelectColorTxt.text = cardSets.get(setIndex);
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt(PROP_SET, setIndex);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		settingsPanel.addUIElement(setSelectLeftBtn);
+		ModButton setSelectRightBtn = new ModButton(xRArrow, yPos, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
+			setIndex = (setIndex+1)%SETS;
+			setSelectColorTxt.text = cardSets.get(setIndex);
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt(PROP_SET, setIndex);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		settingsPanel.addUIElement(setSelectRightBtn);
+		yPos-=40;
+		// END Set Size Selector
 		
 		// Starting Deck Selector
 		String deckString = UI_String.TEXT[3];
-		ModLabel setSelectLabelTxtB = new ModLabel(deckString, 350.0f, 500.0f,settingsPanel,(me)->{});
+		ModLabel setSelectLabelTxtB = new ModLabel(deckString, xLabPos, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectLabelTxtB);
-		setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),670.0f, 500.0f,settingsPanel,(me)->{});
+		setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),xSelection, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectColorTxtB);
-		ModButton setSelectLeftBtnB = new ModButton(605.0f, 485.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+		yPos-=15;
+		ModButton setSelectLeftBtnB = new ModButton(xLArrow, yPos, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
 			if (deckIndex == 0) { deckIndex = DECKS - 1; }
 			else { deckIndex--; }
 			if (deckIndex < 0) { deckIndex = 0; }
@@ -1056,7 +1131,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			resetCharSelect();
 		});
 		settingsPanel.addUIElement(setSelectLeftBtnB);
-		ModButton setSelectRightBtnB = new ModButton(1100.0f, 485.0f, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
+		ModButton setSelectRightBtnB = new ModButton(xRArrow, yPos, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
 			deckIndex = (deckIndex+1)%DECKS;
 			setSelectColorTxtB.text = startingDecks.get(deckIndex);
 			try {
@@ -1069,65 +1144,27 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			resetCharSelect();
 		});
 		settingsPanel.addUIElement(setSelectRightBtnB);
+		yPos-=50;
 		// Starting Deck Selector
-		
-		// Set Size Selector
-		String setString = UI_String.TEXT[4];
-		ModLabel setSelectLabelTxt = new ModLabel(setString,350.0f, 435.0f,settingsPanel,(me)->{});
-		settingsPanel.addUIElement(setSelectLabelTxt);
-		ModLabel setSelectColorTxt = new ModLabel(cardSets.get(setIndex),670.0f, 435.0f,settingsPanel,(me)->{});
-		settingsPanel.addUIElement(setSelectColorTxt);
 
-		ModButton setSelectLeftBtn = new ModButton(605.0f, 420.0f, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
-			if (setIndex == 0) { setIndex = SETS - 1; }
-			else { setIndex--; }
-			if (setIndex < 0) { setIndex = 0; }
-			setSelectColorTxt.text = cardSets.get(setIndex);
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_SET, setIndex);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		settingsPanel.addUIElement(setSelectLeftBtn);
-		ModButton setSelectRightBtn = new ModButton(1100.0f, 420.0f, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
-			setIndex = (setIndex+1)%SETS;
-			setSelectColorTxt.text = cardSets.get(setIndex);
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_SET, setIndex);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		settingsPanel.addUIElement(setSelectRightBtn);
-		// END Set Size Selector
+		// Info Labels
+		String restartString = UI_String.TEXT[7];
+		ModLabel extraLabelTxt = new ModLabel(restartString, xLabPos, yPos,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(extraLabelTxt);
+		yPos-=40;
+		String freshString = UI_String.TEXT[8];
+		ModLabel extraLabelTxtB = new ModLabel(freshString, xLabPos, yPos,settingsPanel,(me)->{});
+		settingsPanel.addUIElement(extraLabelTxtB);
+		yPos-=40;
+		// END Info Labels
 		
 		// Archetype API Message
 		String apiString = UI_String.TEXT[5];
-		ModLabel apiLabelTxt = new ModLabel(apiString, 350.0f, 385.0f,settingsPanel,(me)->{});
+		ModLabel apiLabelTxt = new ModLabel(apiString, xLabPos, yPos,settingsPanel,(me)->{});
 		//settingsPanel.addUIElement(apiLabelTxt);
+		yPos-=50;
 		// END Archetype API Message
-		
-		// Card Count Label
-		String cardsString = UI_String.TEXT[6];
-		ModLabel cardLabelTxt = new ModLabel(cardsString + cardCount, 350.0f, 335.0f,settingsPanel,(me)->{});
-		settingsPanel.addUIElement(cardLabelTxt);
-		// END Card Count Label
-		
-		// Info Labels
-		String restartString = UI_String.TEXT[7];
-		ModLabel extraLabelTxt = new ModLabel(restartString, 350.0f, 285.0f,settingsPanel,(me)->{});
-		settingsPanel.addUIElement(extraLabelTxt);
-		
-		String freshString = UI_String.TEXT[8];
-		ModLabel extraLabelTxtB = new ModLabel(freshString, 350.0f, 235.0f,settingsPanel,(me)->{});
-		settingsPanel.addUIElement(extraLabelTxtB);
-		// END Info Labels
-	
+
 		logger.info("theDuelist:DefaultMod:receivePostInitialize() ---> Done loading badge Image and mod options");
 
 	}

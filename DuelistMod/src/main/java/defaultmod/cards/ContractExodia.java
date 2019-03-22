@@ -42,11 +42,10 @@ public class ContractExodia extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	for (int i = 0; i < 3; i++)
+    	for (int i = 0; i < 2; i++)
     	{
     		DuelistCard exodia = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.EXODIA);
-    		exodia.modifyCostForTurn(-exodia.cost);
-    		exodia.isCostModifiedForTurn = true;
+    		while (exodia.originalName.equals(this.originalName)) { exodia = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.EXODIA); }
     		addCardToHand(exodia);
     	}
     }

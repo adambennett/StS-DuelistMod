@@ -16,6 +16,7 @@ import defaultmod.patches.TheDuelistEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//Copied from The Animator, then modified
 public class CharacterSelectScreenPatch
 {
     protected static final Logger logger = LogManager.getLogger(CharacterSelectScreenPatch.class.getName());
@@ -113,12 +114,19 @@ public class CharacterSelectScreenPatch
         DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
         String description = info.GetDescription();
         selectScreen.confirmButton.isDisabled = info.Locked;
-        if (description != null)
+        if (description != null && !info.Locked)
         {
             float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.8f);
             FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
+        }
+        else if (description != null && info.Locked)
+        {
+        	 float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
+             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.8f);
+             FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
+             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
         }
 
        // FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, UIStrings.TEXT[0], startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
@@ -176,7 +184,9 @@ public class CharacterSelectScreenPatch
 
     private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
     {
+    	DuelistCharacterSelect.refreshCharacterDecks();
         int currentLevel = UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST);
-        DuelistCharacterSelect.GetSelectedLoadout().Refresh(currentLevel, selectScreen, option);
+        int currentTotalScore = UnlockTracker.getCurrentScoreTotal(TheDuelistEnum.THE_DUELIST);
+        DuelistCharacterSelect.GetSelectedLoadout().Refresh(currentTotalScore, selectScreen, option);
     }
 }

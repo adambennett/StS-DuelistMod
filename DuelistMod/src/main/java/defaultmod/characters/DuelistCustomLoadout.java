@@ -10,6 +10,7 @@ import defaultmod.DefaultMod;
 import defaultmod.cards.*;
 import defaultmod.relics.MillenniumPuzzle;
 
+//Copied from The Animator, then modified
 public class DuelistCustomLoadout
 {
 	public int ID;
@@ -28,7 +29,7 @@ public class DuelistCustomLoadout
 		
 		if (Locked)
 		{
-			lockedDescription = "Unlocks at Level " + unlockLevel +  " (You are Level " + currentLevel +  ")";
+			lockedDescription = "Unlocks at Total Score " + unlockLevel +  " (Total Score: " + currentLevel +  ")";
 		}
 		
 		try {

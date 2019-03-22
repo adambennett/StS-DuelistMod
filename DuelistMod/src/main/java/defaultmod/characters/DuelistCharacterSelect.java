@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
+import defaultmod.DefaultMod;
 import defaultmod.characters.Loadouts.*;
 
+
+//Copied from The Animator, then modified
 public class DuelistCharacterSelect
 {
     private static int index;
-    private static final ArrayList<DuelistCustomLoadout> customLoadouts;
+    private static ArrayList<DuelistCustomLoadout> customLoadouts;
 
     protected static final String[] uiText = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText").TEXT;
 
@@ -47,6 +50,55 @@ public class DuelistCharacterSelect
     {
     	return index;
     }
+    
+    public static void refreshCharacterDecks()
+    {
+    	customLoadouts = new ArrayList<>();
+    	if (DefaultMod.unlockAllDecks)
+        {
+        	int save = 0;
+            AddLoadout(new StandardDeck(), save, "10 cards");  
+            AddLoadout(new DragonDeck(), save, "10 cards"); 
+            AddLoadout(new NatureDeck(), save, "11 cards"); 
+            AddLoadout(new SpellcasterDeck(), save, "10 cards");  
+            AddLoadout(new CreatorDeck(), save, "4 cards"); 
+            AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
+            AddLoadout(new RandomDeckBig(), save, "15 randnom Duelist cards");  
+            AddLoadout(new ToonDeck(), save, "11 cards"); 
+            AddLoadout(new OrbDeck(), save, "10 cards");  
+            AddLoadout(new ResummonDeck(), save, "10 cards");  
+            AddLoadout(new GenerationDeck(), save, "12 cards"); 
+            AddLoadout(new OjamaDeck(), save, "12 cards");  
+            AddLoadout(new HealDeck(), save, "9 cards");  
+            AddLoadout(new IncrementDeck(), save, "14 cards");  
+            AddLoadout(new ExodiaDeck(), save, "60 cards"); 
+            //AddLoadout(new MagnetDeck(), save, "0 cards");
+            //AddLoadout(new AquaDeck(), save, "0 cards");
+            //AddLoadout(new MachineDeck(), save, "0 cards"); 
+        }
+        else
+        {
+        	int save = 0;
+            AddLoadout(new StandardDeck(), save, "10 cards"); save += 500;
+            AddLoadout(new DragonDeck(), save, "10 cards"); save += 1500;
+            AddLoadout(new NatureDeck(), save, "11 cards"); save += 1500;
+            AddLoadout(new SpellcasterDeck(), save, "10 cards"); save += 2000;
+            AddLoadout(new CreatorDeck(), save, "4 cards"); save += 500;
+            AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
+            AddLoadout(new RandomDeckBig(), save, "15 randnom Duelist cards"); save += 1000;
+            AddLoadout(new ToonDeck(), save, "11 cards"); save += 2000;
+            AddLoadout(new OrbDeck(), save, "10 cards"); save += 3000;
+            AddLoadout(new ResummonDeck(), save, "10 cards"); 
+            AddLoadout(new GenerationDeck(), save, "12 cards"); save += 3000;
+            AddLoadout(new OjamaDeck(), save, "12 cards"); save += 3000;
+            AddLoadout(new HealDeck(), save, "9 cards"); save += 3000;
+            AddLoadout(new IncrementDeck(), save, "14 cards"); save += 4000;
+            AddLoadout(new ExodiaDeck(), save, "60 cards"); save += 4000;
+            //AddLoadout(new MagnetDeck(), save, "0 cards"); save += 5000;
+            //AddLoadout(new AquaDeck(), save, "0 cards"); save += 5000;
+            //AddLoadout(new MachineDeck(), save, "0 cards"); save += 5000;
+        }
+    }
 
     static
     {
@@ -58,24 +110,50 @@ public class DuelistCharacterSelect
         String unbalanced = uiText[7];
         String veryUnbalanced = uiText[8];
         String special = uiText[9];*/
-        int save = 0;
-        AddLoadout(new StandardDeck(), save, "10 cards"); save++; save++;
-        AddLoadout(new DragonDeck(), save, "10 cards"); save++; save++;
-        AddLoadout(new NatureDeck(), save, "11 cards"); save++;
-        AddLoadout(new SpellcasterDeck(), save, "10 cards");  save++;
-        AddLoadout(new CreatorDeck(), save, "4 cards"); save++;
-        AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
-        AddLoadout(new RandomDeckBig(), save, "15 randnom Duelist cards"); save++; save++;
-        AddLoadout(new ToonDeck(), save, "11 cards"); save++;
-        AddLoadout(new OrbDeck(), save, "10 cards"); save++; save++;
-        AddLoadout(new ResummonDeck(), save, "10 cards"); save++; save++;
-        AddLoadout(new GenerationDeck(), save, "12 cards"); 
-        AddLoadout(new OjamaDeck(), save, "12 cards"); save++; save++;
-        AddLoadout(new HealDeck(), save, "9 cards"); save++; save++;
-        AddLoadout(new IncrementDeck(), save, "14 cards"); save++; save++;
-        AddLoadout(new ExodiaDeck(), save, "60 cards"); save++;
-        //AddLoadout(new MagnetDeck(), save, "0 cards"); save++; save+;
-        //AddLoadout(new AquaDeck(), save, "0 cards"); save++; save+;
-        //AddLoadout(new MachineDeck(), save, "0 cards"); save++;
+        if (DefaultMod.unlockAllDecks)
+        {
+        	int save = 0;
+            AddLoadout(new StandardDeck(), save, "10 cards");  
+            AddLoadout(new DragonDeck(), save, "10 cards");  
+            AddLoadout(new NatureDeck(), save, "11 cards"); 
+            AddLoadout(new SpellcasterDeck(), save, "10 cards");  
+            AddLoadout(new CreatorDeck(), save, "4 cards"); 
+            AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
+            AddLoadout(new RandomDeckBig(), save, "15 randnom Duelist cards");  
+            AddLoadout(new ToonDeck(), save, "11 cards"); 
+            AddLoadout(new OrbDeck(), save, "10 cards");  
+            AddLoadout(new ResummonDeck(), save, "10 cards");  
+            AddLoadout(new GenerationDeck(), save, "12 cards"); 
+            AddLoadout(new OjamaDeck(), save, "12 cards");  
+            AddLoadout(new HealDeck(), save, "9 cards");  
+            AddLoadout(new IncrementDeck(), save, "14 cards");  
+            AddLoadout(new ExodiaDeck(), save, "60 cards"); 
+            //AddLoadout(new MagnetDeck(), save, "0 cards");
+            //AddLoadout(new AquaDeck(), save, "0 cards");
+            //AddLoadout(new MachineDeck(), save, "0 cards"); 
+        }
+        else
+        {
+        	int save = 0;
+            AddLoadout(new StandardDeck(), save, "10 cards"); save += 500;
+            AddLoadout(new DragonDeck(), save, "10 cards"); save += 1500;
+            AddLoadout(new NatureDeck(), save, "11 cards"); save += 1500;
+            AddLoadout(new SpellcasterDeck(), save, "10 cards"); save += 2000;
+            AddLoadout(new CreatorDeck(), save, "4 cards"); save += 500;
+            AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
+            AddLoadout(new RandomDeckBig(), save, "15 randnom Duelist cards"); save += 1000;
+            AddLoadout(new ToonDeck(), save, "11 cards"); save += 2000;
+            AddLoadout(new OrbDeck(), save, "10 cards"); save += 3000;
+            AddLoadout(new ResummonDeck(), save, "10 cards"); 
+            AddLoadout(new GenerationDeck(), save, "12 cards"); save += 3000;
+            AddLoadout(new OjamaDeck(), save, "12 cards"); save += 3000;
+            AddLoadout(new HealDeck(), save, "9 cards"); save += 3000;
+            AddLoadout(new IncrementDeck(), save, "14 cards"); save += 4000;
+            AddLoadout(new ExodiaDeck(), save, "60 cards"); save += 4000;
+            //AddLoadout(new MagnetDeck(), save, "0 cards"); save += 5000;
+            //AddLoadout(new AquaDeck(), save, "0 cards"); save += 5000;
+            //AddLoadout(new MachineDeck(), save, "0 cards"); save += 5000;
+        }
+        
     }
 }

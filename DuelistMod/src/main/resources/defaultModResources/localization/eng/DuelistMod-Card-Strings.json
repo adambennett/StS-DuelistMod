@@ -1126,8 +1126,8 @@
 	},
 	"theDuelist:ContractExodia": {
 		"NAME": "Contract with Exodia",
-		"DESCRIPTION": "Add 3 random Exodia cards to your hand.",
-		"UPGRADE_DESCRIPTION": "Add 3 random Exodia cards to your hand."
+		"DESCRIPTION": "Add 2 random Exodia cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Add 2 random Exodia cards to your hand."
 	},
 	"theDuelist:DarkCreator": {
 		"NAME": "Dark Creator",

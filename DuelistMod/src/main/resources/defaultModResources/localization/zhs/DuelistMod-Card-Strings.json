@@ -1126,8 +1126,8 @@
 	},
 	"theDuelist:ContractExodia": {
 		"NAME": "与Exodia签订合同",
-		"DESCRIPTION": "Add 3 random Exodia cards to your hand.",
-		"UPGRADE_DESCRIPTION": "Add 3 random Exodia cards to your hand."
+		"DESCRIPTION": "Add 2 random Exodia cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Add 2 random Exodia cards to your hand."
 	},
 	"theDuelist:DarkCreator": {
 		"NAME": "黑暗的造物主",
