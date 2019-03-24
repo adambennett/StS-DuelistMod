@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
@@ -24,10 +26,10 @@ public class DarkHole extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DarkHole() 
@@ -47,14 +49,18 @@ public class DarkHole extends DuelistCard
     	// Get target block and remove all of it
     	if (!upgraded)
     	{
-	    	int block = m.currentBlock;
-	    	if (block > 0) 
-	    	{ 
-	    		AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(m, m)); 
-	    		this.baseBlock = this.block = block; 
-	    		applyPowers();
-	    		block(this.block); 
-	    	}
+    		int blockTotal = 0;
+    		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
+    		{    			
+    			if (mon.currentBlock > 0) 
+    			{
+    				blockTotal += mon.currentBlock;
+    				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
+    			}
+    		}
+    		this.baseBlock = this.block = blockTotal; 
+    		applyPowers();
+    		block(this.block);
 	    }
     	else
     	{
@@ -65,6 +71,14 @@ public class DarkHole extends DuelistCard
     			{
     				blockTotal += mon.currentBlock;
     				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
+    			}
+    			
+    			for (AbstractPower a : mon.powers)
+    			{
+    				if (a.type.equals(PowerType.BUFF))
+    				{
+    					DuelistCard.removePower(a, mon);
+    				}
     			}
     		}
     		this.baseBlock = this.block = blockTotal; 
@@ -84,7 +98,6 @@ public class DarkHole extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.target = CardTarget.ALL_ENEMY;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

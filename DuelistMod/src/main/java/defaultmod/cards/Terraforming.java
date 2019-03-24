@@ -3,10 +3,12 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.*;
 
 public class Terraforming extends DuelistCard 
@@ -48,14 +50,8 @@ public class Terraforming extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.FIELDSPELL);
-			//int randomNum = AbstractDungeon.cardRandomRng.random(1, 4);
-			//card.costForTurn = randomNum;
-			//randomMonster.costForTurn = randomNum;
-			//randomMonster.isCostModifiedForTurn = true;
-			if (this.upgraded) { randomMonster.upgrade(); }
-			addCardToHand(randomMonster);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, 1, 5));
 		}
     }
 

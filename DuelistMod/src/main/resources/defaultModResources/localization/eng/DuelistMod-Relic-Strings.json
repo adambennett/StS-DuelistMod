@@ -38,7 +38,7 @@
 		"NAME": "Millennium Rod",
 		"FLAVOR": "Priest Seto had originally owned the Millennium Rod. Along with the other Items, it was used to resurrect Zorc Necrophades.",
 		"DESCRIPTIONS": [
-			"Add the start of each turn, add a random #ySpell to your hand."
+			"Add the start of each turn, add a #yrandomized #ySpell to your hand."
 		]
 	},
 	"theDuelist:MillenniumCoin": {

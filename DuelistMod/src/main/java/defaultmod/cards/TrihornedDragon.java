@@ -68,7 +68,7 @@ public class TrihornedDragon extends DuelistCard
     			if (c.hasTag(DefaultMod.DRAGON))
     			{    				
     				if (!this.upgraded) { channelRandom(); }
-    				else { openRandomOrbChoice(3); }
+    				else { openRandomOrbChoice(3, "Channel an Orb"); }
     			}
     		}
     	}

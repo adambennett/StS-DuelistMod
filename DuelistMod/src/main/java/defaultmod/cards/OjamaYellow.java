@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.*;
 
 public class OjamaYellow extends DuelistCard 
@@ -59,10 +60,7 @@ public class OjamaYellow extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
-			randomMonster.costForTurn = randomNum;
-			randomMonster.isCostModifiedForTurn = true;
-			addCardToHand(randomMonster);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, 1, 4));
 		}
 	}
 

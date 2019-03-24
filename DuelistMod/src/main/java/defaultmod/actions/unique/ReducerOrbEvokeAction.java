@@ -65,7 +65,8 @@ public class ReducerOrbEvokeAction extends AbstractGameAction
     		if (modCards.size() > 0)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(modCards.size() - 1);
-	        	modCards.get(randomNum).setCostForTurn(-9);
+	        	modCards.get(randomNum).modifyCostForCombat(-9);
+	        	modCards.get(randomNum).isCostModified = true;
 	        	modCards.remove(randomNum);
     		}
     	}

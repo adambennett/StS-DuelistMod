@@ -1,10 +1,12 @@
 package defaultmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.DuelistCard;
 
 public class MillenniumRod extends CustomRelic {
@@ -36,7 +38,7 @@ public class MillenniumRod extends CustomRelic {
 	{
 		flash();
 		DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-		DuelistCard.addCardToHand(randomCard);
+		AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, 1, 4));
 	}
 
 	// Description

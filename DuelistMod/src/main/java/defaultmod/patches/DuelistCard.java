@@ -184,9 +184,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 
-	public void openRandomOrbChoice(int orbsToSelectFrom)
+	public void openRandomOrbChoice(int orbsToSelectFrom, String title)
 	{
-		resetOrbChoiceList(orbsToSelectFrom);
+		resetOrbChoiceList(orbsToSelectFrom, title);
 		orbModal.open();
 	}
 	
@@ -203,9 +203,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		orbModal.open();
 	}
 	
-	public void openRandomOrbChoice()
+	public void openRandomOrbChoice(String title)
 	{
-		resetOrbChoiceList(5);
+		resetOrbChoiceList(5, title);
 		orbModal.open();
 	}
 	
@@ -222,10 +222,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		cardModal.open();
 	}
 	
-	public void openRandomCardChoiceDuelist(int cards)
+	public void openRandomCardChoiceDuelist(int cards, boolean resummon)
 	{
 		resetCardChoiceListDuelist(cards);
-		duelistCardModal.open();
+		duelistCardModal.open(resummon);
 	}
 	
 	public void openRandomCardChoice()
@@ -234,10 +234,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		cardModal.open();
 	}
 	
-	public void openRandomCardChoiceDuelist()
+	public void openRandomCardChoiceDuelist(boolean resummon)
 	{
 		resetCardChoiceListDuelist(3);
-		duelistCardModal.open();
+		duelistCardModal.open(resummon);
 	}
 	
 	public void openRandomCardChoice(int cards, ArrayList<DuelistCard> cardsToChooseFrom)
@@ -246,13 +246,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		cardModal.open();
 	}
 	
-	public void openRandomCardChoiceDuelist(int cards, ArrayList<DuelistCard> cardsToChooseFrom)
+	public void openRandomCardChoiceDuelist(int cards, ArrayList<DuelistCard> cardsToChooseFrom, boolean resummon)
 	{
 		resetCardChoiceListDuelist(cards, cardsToChooseFrom);
-		duelistCardModal.open();
+		duelistCardModal.open(resummon);
 	}
 	
-	public void resetOrbChoiceList(int numberOfOrbs)
+	public void resetOrbChoiceList(int numberOfOrbs, String title)
 	{
 		allowedOrbs = new ArrayList<AbstractOrb>();
 		for (int i = 0; i < numberOfOrbs; i++)
@@ -265,7 +265,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         	allowedOrbs.add(newOrb);
         }
 		
-		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL);
+		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL).setTitle(title);
 		for (AbstractOrb orb : allowedOrbs) 
 		{ 
 			if (DefaultMod.orbCardMap.get(orb.name) != null) 
@@ -292,7 +292,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         	allowedOrbs.add(newOrb);
         }
 		
-		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL);
+		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL).setTitle("Channel an Orb");
 		for (AbstractOrb orb : allowedOrbs) { if (DefaultMod.orbCardMap.get(orb.name) != null) { builder.addOption(DefaultMod.orbCardMap.get(orb.name)); }}
 		orbModal = builder.create();
 	}
@@ -310,7 +310,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         	allowedCardChoices.add(newCard);
         }
 		
-		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL);
+		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL).setTitle("Choose a card to play");
 		for (DuelistCard c : allowedCardChoices) { builder.addOption(c); }
 		cardModal = builder.create();
 	}
@@ -346,7 +346,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         	allowedCardChoices.add(newCard);
         }
 		
-		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL);
+		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL).setTitle("Choose a card to play");
 		for (DuelistCard c : allowedCardChoices) { builder.addOption(c); }
 		cardModal = builder.create();
 	}
@@ -403,7 +403,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		openRandomCardChoice(numberOfCards, options);
 	}
 	
-	public void playRandomFromSetDuelist(int numberOfCards, CardTags set)
+	public void playRandomFromSetDuelist(int numberOfCards, CardTags set, boolean resummon)
 	{
 		ArrayList<DuelistCard> options = new ArrayList<DuelistCard>();
 		for (int i = 0; i < numberOfCards; i++)
@@ -417,10 +417,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 			options.add(ref);
 		}
-		openRandomCardChoiceDuelist(numberOfCards, options);
+		openRandomCardChoiceDuelist(numberOfCards, options, resummon);
 	}
 	
-	public void playRandomCardsDuelist(int numberOfCards)
+	public void playRandomCardsDuelist(int numberOfCards, boolean resummon)
 	{
 		ArrayList<DuelistCard> options = new ArrayList<DuelistCard>();
 		for (int i = 0; i < numberOfCards; i++)
@@ -434,7 +434,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 			options.add(ref);
 		}
-		openRandomCardChoiceDuelist(numberOfCards, options);
+		openRandomCardChoiceDuelist(numberOfCards, options, resummon);
 	}
 	
 	
@@ -596,6 +596,23 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		if (this.hasTag(DefaultMod.ZOMBIE) || this.hasTag(DefaultMod.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 2); }}
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect));
+	}
+	
+	protected void attackFast(AbstractMonster m, AttackEffect effect, int damageAmount) {
+		if (this.hasTag(DefaultMod.DRAGON) && player().hasPower(MountainPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
+		if (this.hasTag(DefaultMod.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
+		if (this.hasTag(DefaultMod.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 1.5); }
+		if (player().hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) player().getPower(SummonPower.POWER_ID);
+			boolean isOnlySpellcasters = instance.isOnlyTypeSummoned(DefaultMod.SPELLCASTER);
+			if (isOnlySpellcasters)
+			{
+				block(5);
+			}
+		}
+		if (this.hasTag(DefaultMod.ZOMBIE) || this.hasTag(DefaultMod.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 2); }}
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect, true));
 	}
 
 	protected void attackAllEnemies(AttackEffect effect, int[] damageAmounts) 
@@ -1349,7 +1366,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(SphereKuribohPower.POWER_ID))
 		{
 			DuelistCard randomCard = (DuelistCard) returnTrulyRandomDuelistCard();
-			addCardToHand(randomCard);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, 1, 4));
 		}
 
 		try {
@@ -1429,8 +1446,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 						// Check for Toon Tribute power
-						if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-						if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+						if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+						if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 						// Look through summonsList and remove #tributes strings
 						if (tributes > 0) 
@@ -1497,9 +1514,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					// Check for Pharaoh's Curse
 					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
-					// Check for Toon Tribute powers
-					if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-					if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+					// Check for Toon Tribute power
+					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 					// Look through summonsList and remove #tributes strings
 					if (tributes > 0) 
@@ -1572,8 +1589,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 					// Check for Toon Tribute power
-					if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-					if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 					// Look through summonsList and remove #tributes strings					
 					if (tributes > 0) 
@@ -1631,8 +1648,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 				// Check for Toon Tribute power
-				if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-				if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 				// Look through summonsList and remove #tributes strings
 				if (tributes > 0) 
@@ -1681,9 +1698,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		// Check for Pharaoh's Curse
 		if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
-		// Check for Toon Tribute powers
-		if (p.hasPower(TributeToonPower.POWER_ID)) { addCardToHand(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-		if (p.hasPower(TributeToonPowerB.POWER_ID)) { addCardToHand(returnTrulyRandomFromSet(DefaultMod.TOON)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+		// Check for Toon Tribute power
+		if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 	}
 
 	protected void upgradeName(String newName) 
@@ -2029,14 +2046,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public static DuelistCard newCopyOfMonster(String name)
 	{
-		for (DuelistCard card : DefaultMod.myCards)
+		DuelistCard find = DefaultMod.summonMap.get(name);
+		if (find != null)
 		{
-			if (name.equals(card.originalName))
-			{
-				return (DuelistCard) card.makeCopy();
-			}
+			return find;
 		}
-		return new Token();
+		else
+		{
+			/*
+			for (DuelistCard card : DefaultMod.myCards)
+			{
+				if (name.equals(card.originalName))
+				{
+					return (DuelistCard) card.makeCopy();
+				}
+			}
+			*/
+			return new Token();
+		}
 	}
 
 

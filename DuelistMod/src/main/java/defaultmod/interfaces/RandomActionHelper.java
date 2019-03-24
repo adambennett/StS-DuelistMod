@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.RandomEtherealDuelistCardToHandAction;
+import defaultmod.actions.common.*;
 import defaultmod.cards.Token;
 import defaultmod.patches.DuelistCard;
 
@@ -130,7 +130,7 @@ public class RandomActionHelper
 				break;
 			case "Add #b1 random #ySpell to hand":
 				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-				DuelistCard.addCardToHand(randomSpell);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpell, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#yEvoke #b1 Orb":
@@ -145,17 +145,17 @@ public class RandomActionHelper
 				break;
 			case "Add #b1 random #yTrap to hand":
 				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TRAP);
-				DuelistCard.addCardToHand(randomTrap);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomTrap, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yDragon to hand":
 				DuelistCard randomSpellcaster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.DRAGON);
-				DuelistCard.addCardToHand(randomSpellcaster);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpellcaster, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yMonster to hand":
 				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
-				DuelistCard.addCardToHand(randomMonster);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yEthereal Duelist card to hand":
@@ -204,10 +204,7 @@ public class RandomActionHelper
 				for (int i = 0; i < RAND_CARDS; i++)
 				{
 					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-					card.costForTurn = 0;
-					card.isCostModifiedForTurn = true;
-					if (upgradeCards) { card.upgrade(); }
-					DuelistCard.addCardToHand(card);
+					AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, false, true, true, false, 1, 4));
 				}
 				
 				// Give self 3 random buffs

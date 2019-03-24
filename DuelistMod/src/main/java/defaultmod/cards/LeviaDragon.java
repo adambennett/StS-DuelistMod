@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.orbs.Splash;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
@@ -31,7 +32,7 @@ public class LeviaDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public LeviaDragon() {
@@ -120,7 +121,7 @@ public class LeviaDragon extends DuelistCard
 		if (tributingCard.hasTag(DefaultMod.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			addCardToHand(randomAqua);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
 		}
 	}
 

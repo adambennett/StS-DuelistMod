@@ -4,11 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
@@ -68,7 +70,7 @@ public class Earth extends DuelistOrb
 		for (int i = 0; i < this.evokeAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-			DuelistCard.addCardToHand(randomMonster);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, true, true, true, false, 1, 4));
 			if (DefaultMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 		if (DefaultMod.debug) { System.out.println("theDuelist:Earth --- > triggered evoke!"); }
@@ -85,7 +87,7 @@ public class Earth extends DuelistOrb
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-			DuelistCard.addCardToHand(randomMonster);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, 1, 4));
 			if (DefaultMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 	}

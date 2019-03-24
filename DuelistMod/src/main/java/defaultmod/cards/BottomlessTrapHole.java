@@ -51,22 +51,28 @@ public class BottomlessTrapHole extends DuelistCard
     	if (upgraded) { this.baseDamage = this.damage = 4; }
     	ArrayList<AbstractCard> drawPile = player().drawPile.group;
     	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
-    	int damageTotal = 0;
+    	//int damageTotal = 0;
+    	int monsters = 0;
     	for (AbstractCard c : drawPile)
     	{
     		if (c.hasTag(DefaultMod.MONSTER))
 			{
 				//damageTotal += c.baseDamage;
-    			damageTotal += this.damage;
+    			//damageTotal += this.damage;
 				toDiscard.add(c);
+				monsters++;
 			}
     	}
     	for (AbstractCard c : toDiscard)
     	{
     		AbstractDungeon.player.drawPile.moveToDiscardPile(c);
     	}
-    	this.baseDamage = this.damage = damageTotal;
-    	attack(m, AFX, this.damage);
+    	//this.baseDamage = this.damage = damageTotal;
+    	applyPowers();
+    	for (int i = 0; i < monsters; i++)
+    	{
+    		attackFast(m, AFX, this.damage);
+    	}
     }
 
     // Which card to return when making a copy of this card.

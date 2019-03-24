@@ -1112,7 +1112,7 @@
 	"theDuelist:CardSafeReturn": {
 		"NAME": "Card of Safe Return",
 		"DESCRIPTION": "Whenever you Resummon, draw 1 card.",
-		"UPGRADE_DESCRIPTION": "Whenever you Resummon, draw 1 card."
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Resummon, draw 1 card."
 	},
 	"theDuelist:Cloning": {
 		"NAME": "Cloning",
@@ -1156,8 +1156,8 @@
 	},
 	"theDuelist:HeartUnderspell": {
 		"NAME": "Spells of the Underdog",
-		"DESCRIPTION": "Whenever you draw a Spell, copy it.",
-		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a Spell, copy it."
+		"DESCRIPTION": "Whenever you draw a Spell, create a randomized copy of it.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a Spell, create a randomized copy of it."
 	},
 	"theDuelist:HeartUndertrap": {
 		"NAME": "Trap the Underdog",

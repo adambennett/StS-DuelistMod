@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.interfaces.RandomEffectsHelper;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
@@ -63,12 +64,7 @@ public class OjamaKing extends DuelistCard
 		for (int i = 0; i < RAND_CARDS; i++)
 		{
 			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			card.costForTurn = 0;
-			card.isCostModifiedForTurn = true;
-			if (upgraded) { card.upgrade(); }
-			card.isEthereal = true;
-			card.rawDescription = "Ethereal. NL " + card.rawDescription;
-			addCardToHand(card);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, this.upgraded, true, true, false, 1, 4));
 		}
 		
 		// Give self 3 random buffs

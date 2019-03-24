@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.*;
 
 public class SuperSolarNutrient extends DuelistCard 
@@ -51,11 +52,7 @@ public class SuperSolarNutrient extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.INSECT);
-			int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
-			randomMonster.costForTurn = randomNum;
-			randomMonster.isCostModifiedForTurn = true;
-			if (this.upgraded) { randomMonster.upgrade(); }
-			addCardToHand(randomMonster);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, 1, 4));
 		}
     }
 

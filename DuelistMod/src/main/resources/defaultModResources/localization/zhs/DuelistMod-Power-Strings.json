@@ -1,7 +1,7 @@
 {
 "theDuelist:SummonPower": {
         "NAME": "传票",
-        "DESCRIPTIONS": ["#b", " 被召唤的怪物数量。你最多有 #b", " 传票。被召唤的怪物："]
+        "DESCRIPTIONS": ["#b", " 被召唤的怪物数量。你最多有 ", " 传票。被召唤的怪物："]
 },
 "theDuelist:DespairPower": {
         "NAME": "惡魔之斧",
@@ -109,7 +109,7 @@
 },
 "theDuelist:SwordsBurnPower": {
         "NAME": "燃烧的剑",
-        "DESCRIPTIONS": ["每当你唤起一个宝珠，就会引导一个随机的宝珠。" ]
+        "DESCRIPTIONS": ["Each time you #yEvoke, #yChannel #b", " random #yOrb.", " random #yOrbs." ]
 },
 "theDuelist:SwordsConcealPower": {
         "NAME": "隐藏剑",
@@ -245,7 +245,7 @@
 },
 "theDuelist:SphereKuribohPower": {
         "NAME": "Sphere Kuriboh",
-        "DESCRIPTIONS": ["Whenever you #yIncrement, add a random card to your hand." ]
+        "DESCRIPTIONS": ["无论何时你 增量, 添加一个 随机改变 卡到你的手。" ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

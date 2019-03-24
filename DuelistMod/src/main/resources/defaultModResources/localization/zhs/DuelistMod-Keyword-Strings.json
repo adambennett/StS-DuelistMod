@@ -200,6 +200,21 @@
     "DESCRIPTION": "当你用鱼作为祭品召唤鱼时，在你的手上添加一个随机鱼怪。"
   },
   {
+    "PROPER_NAME": "随机改变",
+    "NAMES": [
+      "randomized",
+	  "随机改变"
+    ],   
+    "DESCRIPTION": "随机改变卡可能会改变其成本，可能会消耗，并可能成为升级或虚无。"
+  },
+  {
+	  "PROPER_NAME": "怪物宝珠",
+      "NAMES": [
+        "monsterorb"
+      ],
+      "DESCRIPTION": "宝珠: 在开始时，将随机改变怪物卡添加到您的手中。激发还将随机改变怪物添加到你的手中。"
+  },
+  {
     "PROPER_NAME": "门",
     "NAMES": [
       "gate",

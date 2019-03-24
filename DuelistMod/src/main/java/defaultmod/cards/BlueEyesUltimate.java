@@ -30,9 +30,9 @@ public class BlueEyesUltimate extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 3;
+    private static final int COST = 2;
     private static final int DAMAGE = 45;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 15;
     // /STAT DECLARATION/
 
     public BlueEyesUltimate() {
@@ -43,7 +43,7 @@ public class BlueEyesUltimate extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = 4;
     }
 
     // Actions the card should do.

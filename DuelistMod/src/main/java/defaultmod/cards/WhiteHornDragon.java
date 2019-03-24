@@ -33,7 +33,7 @@ public class WhiteHornDragon extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 2;
-    private static final int DAMAGE = 12;
+    private static final int DAMAGE = 18;
     // /STAT DECLARATION/
 
     public WhiteHornDragon() {

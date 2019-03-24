@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.DuelistCard;
 
 
@@ -39,7 +40,7 @@ public class ToonRollbackPower extends AbstractPower
 	@Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-		if(DuelistCard.isToon(c)) { DuelistCard.addCardToHand(c.makeCopy()); }
+		if(DuelistCard.isToon(c)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(c.makeCopy(), false, true, true, false, 1, 4)); }
 		//if(DuelistCard.isToon(c)) { DuelistCard.addCardToHand(c); }
 		updateDescription();
     }

@@ -3,7 +3,7 @@
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
   "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
-  "version": "1.235.1",
+  "version": "1.236.0",
   "sts_version": "1-23-2019",
   "mts_version": "3.9.2",
   "credits": "Thanks to Gremious for his amazing work with both the Default Mod base, as well as the Archetype API. \nBig shoutout to Playmaker for various art contributions:\nnotably his character button, selection screen art, and the new Yugi character model!",

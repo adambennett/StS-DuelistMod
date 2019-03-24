@@ -25,7 +25,7 @@ public class SwordsBurnPower extends AbstractPower
     public static final String IMG = DefaultMod.makePath(DefaultMod.SWORDS_BURN_POWER);
     public boolean finished = false;
     
-    public SwordsBurnPower(final AbstractCreature owner, final AbstractCreature source) 
+    public SwordsBurnPower(final AbstractCreature owner, final AbstractCreature source, int newAmount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -34,27 +34,26 @@ public class SwordsBurnPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.amount = newAmount;
         this.updateDescription();
     }
  
     @Override
     public void onDrawOrDiscard() 
     {
-    	if (this.amount > 0) { this.amount = 0; }
+    	
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
     	finished = false;
-    	if (this.amount > 0) { this.amount = 0; }
     }
     
     @Override
     public void atStartOfTurn() 
     {
     	finished = false;
-    	if (this.amount > 0) { this.amount = 0; }
     }
     
     @Override
@@ -62,10 +61,13 @@ public class SwordsBurnPower extends AbstractPower
     {
     	if (!finished) 
     	{ 
-    		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-    		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-    		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-    		else { RandomOrbHelper.channelRandomOrb(); }
+    		for (int i = 0; i < this.amount; i++)
+    		{
+	    		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
+	    		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
+	    		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
+	    		else { RandomOrbHelper.channelRandomOrb(); }
+    		}
     	}
     	finished = true;
     }
@@ -74,13 +76,13 @@ public class SwordsBurnPower extends AbstractPower
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
     	finished = false;
-    	if (this.amount > 0) { this.amount = 0; }
 	}
     
 
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0]; 
+    	if (this.amount < 2) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
+    	else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
     }
 }

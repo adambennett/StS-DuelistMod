@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.RandomEtherealDuelistCardToHandAction;
+import defaultmod.actions.common.*;
 import defaultmod.cards.Token;
 import defaultmod.interfaces.*;
 import defaultmod.patches.DuelistCard;
@@ -92,17 +92,11 @@ public class Glitch extends DuelistOrb
 		passiveActions.add("Gain #b10 #yBlock");
 		passiveActions.add("Gain #b5 #yBlock");
 		passiveActions.add("Gain #b5 #yBlock");
-		//passiveActions.add("#yExhaust #b1 random card in hand");
-		//passiveActions.add("#yExhaust #b1 random card in hand");
 		passiveActions.add("#ySummon #b1");	
 		passiveActions.add("#ySummon #b1");	
 		passiveActions.add("#ySummon #b2");
 		passiveActions.add("#yIncrement #b1");	
 		passiveActions.add("#yIncrement #b2");
-		//passiveActions.add("Increase this orb's Passive amount by #b1");
-		//passiveActions.add("Increase this orb's Passive amount by #b1");
-		//passiveActions.add("Increase this orb's Evoke amount by #b1");	
-		//passiveActions.add("Increase this orb's Evoke amount by #b2");
 		passiveActions.add("Gain [E] "); 
 		passiveActions.add("Gain #b1 Artifacts");
 		passiveActions.add("Gain #b2 Artifacts");
@@ -122,7 +116,7 @@ public class Glitch extends DuelistOrb
 		evokeActions.add("#ySummon #b2");
 		evokeActions.add("#yIncrement #b2");
 		evokeActions.add("#yOjamania");	
-		evokeActions.add("Gain [E] [E] ");
+		if (!DefaultMod.challengeMode) { evokeActions.add("Gain [E] [E] "); }
 		evokeActions.add("Channel a Glitch");
 		evokeActions.add("Gain #b3 Artifacts");
 		evokeActionSize = evokeActions.size();
@@ -259,7 +253,7 @@ public class Glitch extends DuelistOrb
 				break;
 			case "Add #b1 random #ySpell to hand":
 				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-				DuelistCard.addCardToHand(randomSpell);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpell, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#yEvoke #b1 Orb.":
@@ -268,17 +262,17 @@ public class Glitch extends DuelistOrb
 				break;
 			case "Add #b1 random #yTrap to hand":
 				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TRAP);
-				DuelistCard.addCardToHand(randomTrap);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomTrap, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #ySpellcaster to hand":
 				DuelistCard randomSpellcaster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELLCASTER);
-				DuelistCard.addCardToHand(randomSpellcaster);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpellcaster, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yMonster to hand":
 				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
-				DuelistCard.addCardToHand(randomMonster);
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, 1, 4));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Lose #b1 strength":
@@ -323,10 +317,7 @@ public class Glitch extends DuelistOrb
 				for (int i = 0; i < RAND_CARDS; i++)
 				{
 					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-					card.costForTurn = 0;
-					card.isCostModifiedForTurn = true;
-					if (this.evokeAmount > 3) { card.upgrade(); }
-					DuelistCard.addCardToHand(card);
+					AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, false, true, true, false, 1, 4));
 				}
 				
 				// Give self 3 random buffs

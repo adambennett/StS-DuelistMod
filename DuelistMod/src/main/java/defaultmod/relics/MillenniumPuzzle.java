@@ -138,9 +138,9 @@ public class MillenniumPuzzle extends CustomRelic {
 		{
 			// Standard Deck
 			case 0:
-				DuelistCard.powerSummon(AbstractDungeon.player, 3 + extra, "Puzzle Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Puzzle Token", false);
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 1));
-				DuelistCard.staticBlock(10);
+				DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 10));
 				break;
 	
 			// Dragon Deck
@@ -194,7 +194,7 @@ public class MillenniumPuzzle extends CustomRelic {
 				{
 					DuelistCard jinzo = new Jinzo();
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(15);
+
 					
 					// whenever you play a trap card, gain 1 HP
 				}
@@ -204,7 +204,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					jinzo.costForTurn = 0;
 					jinzo.isCostModifiedForTurn = true;
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(10);
+
 					
 					// whenever you summon, gain 1 HP
 				}
@@ -215,7 +215,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					jinzo.costForTurn = 0;
 					jinzo.isCostModifiedForTurn = true;
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(5);
+
 					
 					// whenever you play an Ethereal card, gain 1 HP
 				}
@@ -225,7 +225,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					jinzo.costForTurn = AbstractDungeon.cardRandomRng.random(0, 3);
 					if (jinzo.costForTurn != 3) { jinzo.isCostModifiedForTurn = true; }
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(15);
+
 					
 					// whenever you play an Ethereal card, gain 1 HP
 				}
@@ -235,7 +235,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					jinzo.costForTurn = AbstractDungeon.cardRandomRng.random(0, 3);
 					if (jinzo.costForTurn != 3) { jinzo.isCostModifiedForTurn = true; }
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(10);
+
 					
 					// whenever you play an Ethereal card, gain 2 HP
 				}
@@ -245,7 +245,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					jinzo.costForTurn = 0;
 					jinzo.isCostModifiedForTurn = true;
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(5);
+
 					
 					// whenever you play an Ethereal card, gain 5 Gold
 				}
@@ -254,8 +254,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					DuelistCard jinzo = new TrapHole();
 					jinzo.upgrade();
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(20);
-					
+
 					// whenever you play an Ethereal card, gain 1 Block (affected by dexterity)
 				}
 				else if (roll == 8)
@@ -264,7 +263,6 @@ public class MillenniumPuzzle extends CustomRelic {
 					jinzo.costForTurn = 0;
 					jinzo.isCostModifiedForTurn = true;
 					DuelistCard.addCardToHand(jinzo);
-					DuelistCard.staticBlock(15);
 					
 					// whenever you increment, gain 4 HP
 				}
@@ -276,7 +274,6 @@ public class MillenniumPuzzle extends CustomRelic {
 					jinzo.costForTurn = 0; trap.costForTurn = 0; ultimate.costForTurn = 0;
 					jinzo.isCostModifiedForTurn = true; trap.isCostModifiedForTurn = true; ultimate.isCostModifiedForTurn = true;
 					DuelistCard.addCardToHand(jinzo); DuelistCard.addCardToHand(trap); DuelistCard.addCardToHand(ultimate);
-					DuelistCard.staticBlock(25);
 					
 					// whenever you play an Ethereal card, gain 5 Gold and 2 HP
 				}
@@ -292,7 +289,7 @@ public class MillenniumPuzzle extends CustomRelic {
 	
 			// Random (Big) Deck
 			case 6:
-				int summonRollB = AbstractDungeon.cardRandomRng.random(1, 3);
+				int summonRollB = AbstractDungeon.cardRandomRng.random(2, 4);
 				DuelistCard.powerSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
 				ArrayList<DuelistCard> cardsToChooseFromB = new ArrayList<DuelistCard>();
 				for (int i = 0; i < 4; i++)
@@ -304,7 +301,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					}
 					cardsToChooseFromB.add(randomToon);
 				}
-				new Token().openRandomCardChoice(3, cardsToChooseFromB);
+				new Token().openRandomCardChoiceDuelist(3, cardsToChooseFromB, true);
 				
 				break;
 	
@@ -319,13 +316,13 @@ public class MillenniumPuzzle extends CustomRelic {
 					for (int i = 0; i < 4; i++)
 					{
 						DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
-						while (cardsToChooseFrom.contains(randomToon))
+						while (cardsToChooseFrom.contains(randomToon) || randomToon.originalName.equals("Toon Mask"))
 						{
 							randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
 						}
 						cardsToChooseFrom.add(randomToon);
 					}
-					new Token().openRandomCardChoiceDuelist(3, cardsToChooseFrom);
+					new Token().openRandomCardChoiceDuelist(3, cardsToChooseFrom, false);
 				}
 				break;
 	
@@ -364,33 +361,30 @@ public class MillenniumPuzzle extends CustomRelic {
 			// Ojama Deck
 			case 11:
 				int floorD = AbstractDungeon.actNum;
-				for (int i = 0; i < 1 + floorD; i++)
-				{
-					DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.OJAMA);
-					AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
-				}
-				DuelistCard.powerSummon(AbstractDungeon.player, 3 + extra, "Bonanza Token", false);
-				// gain a random buff
-				// apply a random debuff to all enemies
+				int rngTurnNum = AbstractDungeon.cardRandomRng.random(1, floorD + 1);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Bonanza Token", false);
+				DuelistCard.applyRandomBuffPlayer(p, rngTurnNum, false); 
 				break;
 	
 			// Heal Deck
 			case 12:
-				DuelistCard.applyPowerToSelf(new OrbHealerPower(p, 3));
+				int floorF = AbstractDungeon.actNum;
+				int rng = AbstractDungeon.cardRandomRng.random(3, floorF + 4);
+				DuelistCard.applyPowerToSelf(new OrbHealerPower(p, rng));
 				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
 				break;
 	
 			// Increment Deck
 			case 13:
-				DuelistCard.incMaxSummons(p, 2);
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
+				int floorG = AbstractDungeon.actNum;
+				DuelistCard.incMaxSummons(p, 1 + floorG);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra + floorG, "Puzzle Token", false);
 				break;
 	
 			// Exodia Deck
 			case 14:
 				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Exxod Token", false);
 				break;
-				
 			// Superheavy Deck *
 			case 15:
 				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);

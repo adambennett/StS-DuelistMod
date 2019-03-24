@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
 
@@ -61,9 +62,7 @@ public class FireOrb extends DuelistOrb
 		for (int i = 0; i < this.evokeAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			randomMonster.costForTurn = 0;
-			randomMonster.isCostModifiedForTurn = true;
-			DuelistCard.addCardToHand(randomMonster);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, 1, 4));
 			if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 		if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > triggered evoke!"); }

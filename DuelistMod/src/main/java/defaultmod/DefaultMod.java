@@ -30,6 +30,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.*;
 import basemod.interfaces.*;
+import defaultmod.actions.common.*;
 import defaultmod.cards.*;
 import defaultmod.characters.*;
 import defaultmod.interfaces.*;
@@ -163,11 +164,13 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String PROP_RESUMMON_DMG = "resummonDeckDamage";
 	public static final String PROP_CHALLENGE = "challengeMode";
 	public static final String PROP_UNLOCK = "unlockAllDecks";
+	public static final String PROP_FLIP = "flipCardTags";
 	public static boolean toonBtnBool = true;
 	public static boolean exodiaBtnBool = false;
 	public static boolean crossoverBtnBool = true;
 	public static boolean challengeMode = false;
 	public static boolean unlockAllDecks = false;
+	public static boolean flipCardTags = false;
 	public static boolean toonWorldTemp = false;
 	public static int lastMaxSummons = 5;
 	//public static int toonDamage = 7;
@@ -198,7 +201,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static int orbSlots = 3;
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
-	public static final boolean debug = true;		// print statements only really
+	public static final boolean debug = false;		// print statements only really
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -853,6 +856,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		duelistDefaults.setProperty(PROP_RESUMMON_DMG, "1");
 		duelistDefaults.setProperty(PROP_CHALLENGE, "FALSE");
 		duelistDefaults.setProperty(PROP_UNLOCK, "FALSE");
+		duelistDefaults.setProperty(PROP_FLIP, "FALSE");
 		
 		cardSets.add("All (221 cards)"); 
 		cardSets.add("Full (144 cards)");
@@ -894,6 +898,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
             crossoverBtnBool = config.getBool(PROP_CROSSOVER_BTN);
             challengeMode = config.getBool(PROP_CHALLENGE);
             unlockAllDecks = config.getBool(PROP_UNLOCK);
+            flipCardTags = config.getBool(PROP_FLIP);
             setIndex = config.getInt(PROP_SET);
             cardCount = config.getInt(PROP_CARDS);
             deckIndex = config.getInt(PROP_DECK);
@@ -1042,6 +1047,23 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		// END Check Box C
 		
 		// Check Box D
+		String flipString = UI_String.TEXT[11];
+		ModLabeledToggleButton flipBtn = new ModLabeledToggleButton(flipString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, flipCardTags, settingsPanel, (label) -> {}, (button) -> 
+		{
+			flipCardTags = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_FLIP, flipCardTags);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//resetCharSelect();
+		});
+		settingsPanel.addUIElement(flipBtn);
+		yPos-=50;
+		// END Check Box D
+		
+		// Check Box E
 		String unlockString = UI_String.TEXT[10];
 		ModLabeledToggleButton unlockBtn = new ModLabeledToggleButton(unlockString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, unlockAllDecks, settingsPanel, (label) -> {}, (button) -> 
 		{
@@ -1056,9 +1078,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		});
 		settingsPanel.addUIElement(unlockBtn);
 		yPos-=50;
-		// END Check Box D
+		// END Check Box E
 		
-		// Check Box E
+		// Check Box F
 		String challengeString = UI_String.TEXT[9];
 		ModLabeledToggleButton challengeBtn = new ModLabeledToggleButton(challengeString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, challengeMode, settingsPanel, (label) -> {}, (button) -> 
 		{
@@ -1073,7 +1095,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		});
 		settingsPanel.addUIElement(challengeBtn);
 		yPos-=50;
-		// END Check Box E
+		// END Check Box F
 		
 		// Set Size Selector
 		String setString = UI_String.TEXT[4];
@@ -1153,11 +1175,11 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		String restartString = UI_String.TEXT[7];
 		ModLabel extraLabelTxt = new ModLabel(restartString, xLabPos, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(extraLabelTxt);
-		yPos-=40;
+		yPos-=35;
 		String freshString = UI_String.TEXT[8];
 		ModLabel extraLabelTxtB = new ModLabel(freshString, xLabPos, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(extraLabelTxtB);
-		yPos-=40;
+		yPos-=35;
 		// END Info Labels
 		
 		// Archetype API Message
@@ -1541,7 +1563,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			int handSize = AbstractDungeon.player.hand.size();
 			if (arg0.hasTag(DefaultMod.SPELL) && handSize < 10)
 			{
-				DuelistCard.addCardToHand(arg0.makeCopy());
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(arg0.makeCopy(), arg0.upgraded, true, true, false, 1, 3));
 			}
 		}
 		
@@ -1740,7 +1762,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		AbstractPower blur = new BlurPower(p, turnNum);
 		AbstractPower burst = new BurstPower(p, turnNum);
 		AbstractPower creative = new CreativeAIPower(p, 1); //probably too good
-		AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
+		//AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
 		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
 		AbstractPower equal = new EquilibriumPower(p, 2);
 		AbstractPower noPain = new FeelNoPainPower(p, turnNum);
@@ -1783,7 +1805,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			buffs = new AbstractPower[] 
 			{
 					str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
-					burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
+					burst, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity 
@@ -1811,7 +1833,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		AbstractPower blur = new BlurPower(p, turnNum);
 		AbstractPower burst = new BurstPower(p, turnNum);
 		AbstractPower creative = new CreativeAIPower(p, 1); //probably too good
-		AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
+		//AbstractPower darkEmb = new DarkEmbracePower(p, turnNum);
 		AbstractPower doubleTap = new DoubleTapPower(p, turnNum);
 		AbstractPower equal = new EquilibriumPower(p, 2);
 		AbstractPower noPain = new FeelNoPainPower(p, turnNum);
@@ -1854,7 +1876,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			buffs = new AbstractPower[] 
 			{
 					str, dex, art, plate, intan, regen, energy, thorns, barricade, blur, 
-					burst, darkEmb, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
+					burst, doubleTap, equal, noPain, fire, jugger, metal, penNib, sadistic, storm, orbHeal, tombLoot,
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity 
@@ -2590,7 +2612,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new Terraforming());
 		myCards.add(new TerraTerrible());
 		myCards.add(new IcyCrevasse());
-
+		myCards.add(new StrayLambs());
 		myCards.add(new GuardianAngel());
 		myCards.add(new ShadowToon());
 		myCards.add(new ShallowGrave());

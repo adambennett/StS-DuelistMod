@@ -3,10 +3,12 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.*;
 
 public class RevivalJam extends DuelistCard 
@@ -71,7 +73,7 @@ public class RevivalJam extends DuelistCard
 		if (tributingCard.hasTag(DefaultMod.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			addCardToHand(randomAqua);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
 		}
 	}
 

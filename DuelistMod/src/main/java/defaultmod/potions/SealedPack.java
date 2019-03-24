@@ -1,11 +1,13 @@
 package defaultmod.potions;
 
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.DuelistCard;
 
 public class SealedPack extends AbstractPotion {
@@ -41,7 +43,15 @@ public class SealedPack extends AbstractPotion {
 		for (int i = 0; i < this.potency; i++)
 		{
 			DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.LEGEND_BLUE_EYES);
-			DuelistCard.addCardToHand(randomCard);
+			int roll = AbstractDungeon.cardRandomRng.random(1, 5);
+			if (roll == 1)
+			{
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, true, true, true, false, 1, 4));
+			}
+			else
+			{
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, 1, 4));
+			}
 		}
 	}
 

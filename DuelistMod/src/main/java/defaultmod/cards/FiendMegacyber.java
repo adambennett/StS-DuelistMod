@@ -54,7 +54,7 @@ public class FiendMegacyber extends DuelistCard
     	tribute(p, this.magicNumber, false, this);
     	applyPowerToSelf(new StrengthPower(player(), 1));
     	if (!this.upgraded) { channelRandom(); }
-    	else { openRandomOrbChoice(5); }
+    	else { openRandomOrbChoice(5, "Channel an Orb"); }
     }
 
     // Which card to return when making a copy of this card.

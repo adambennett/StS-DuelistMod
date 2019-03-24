@@ -13,7 +13,7 @@ Discord Server: https://discord.gg/Tcwws6U
 - Googly Eyes
 
 # Introduction
-The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 200+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 8 new relics and 3 new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist).
+The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 230+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 8 new relics and 3 new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist).
 
 This is a work in progress, and there will likely be some bugs and minor issues. I will do my best to address any unforeseen problems that arise, and of course I will be doing my own continued playtesting and debugging. Expect periodic updates. My contact information is listed at the end of this description if you would like to reach me directly with issues/feedback/bug reports/suggestions/hate mail. Thanks for playing!
 
@@ -22,6 +22,7 @@ Summon - Counts monsters currently summoned. Maximum of 5 Summons.
 Tribute - Removes X Summons. Unless you have enough Summons to Tribute, you cannot play a Tribute monster.  
 Resummon - Replays the card, ignoring Tribute costs. Some monsters trigger extra special effects when Resummoned.  
 Increment - Increase your maximum Summons by X.  
+Randomized - Randomized cards may have their costs changed, may Exhaust, and may become Upgraded or Ethereal.
 Magnets - Associated with the 4 Magnet Warrior cards. This keyword just signifies effects that go with these cards.  
 Ojamania - Add 2 random cards to your hand, they cost 0 this turn. Apply 1 random buff. Apply 2 random debuffs to an enemy.  
 Dragon - Specific type of monster card. When Tributed for another Dragon, you gain 1 Strength.  
@@ -29,6 +30,9 @@ Spellcaster - Specific type of monster card. When Tributed for a Dragon, you los
 Insect - Specific type of monster card. When Tributed for an Insect/Plant/Predaplant, apply 3 Poison to all enemies.  
 Plant - Specific type of monster card. When Tributed for an Insect/Plant/Predaplant, apply 3 Poison to all enemies.  
 Predaplant - More specific type of Plant. Predaplants are treated as Plants, but some cards trigger effects concerning ONLY Predaplants.  
+Zombie - Whenever you Resummon a Zombie, you gain 5 Block.  
+Fiend - Whenever you Tribute a Fiend for another Fiend, you place one card from your discard pile back into your hand.  
+Aqua - Whenever you Tribute an Aqua for another Aqua, a randomized Aqua is added to your hand.  
 
 # Gameplay Mechanics
 ## Summoning & Tributing
@@ -54,12 +58,15 @@ There are 12 custom orbs added with this mod. I don't believe it will be possibl
 This card and this orb are the only ways to currently trigger a 'random action'. The list of actions for both is similar. The full list of actions as they appear in the array for each card is given below.
 
 ## Tokens
-There are Generic Tokens, Kuriboh Tokens, Explosive Tokens, Shadow Tokens and Predaplant Tokens. Any other name for a Token that is given in game refers always to Generic Tokens. For example, Jam Breeding Machine summons Jam Tokens. These tokens have no special effects or purpose - they are just summon tokens to be tributed. But on the other hand, the other tokens DO have special effects.  
-Explosive Tokens: 	These will cause you to lose 5 HP if you Tribute them.  
+There are Generic Tokens, Kuriboh Tokens, Explosive Tokens, Shadow Tokens, Plant Tokens, Insect Tokens, Spellcaster Tokens, and Predaplant Tokens. Any other name for a Token that is given in game refers always to Generic Tokens. For example, Jam Breeding Machine summons Jam Tokens. These tokens have no special effects or purpose - they are just summon tokens to be tributed. But on the other hand, the other tokens DO have special effects.  
+Explosive Tokens: 	These will cause you to lose 3 HP if you Tribute them.  
 Kuriboh Tokens: 	These tokens give you Intangible if you Tribute them with any card that is NOT a Dragon.  
 Shadow Tokens:		When Tributed, these tokens increase the Passive and Evoke amounts of ALL your currently-channeled Shadow orbs by 1.  
 Predaplant Tokens:	These tokens simply provide extra ways to trigger Predaplant-specific Tribute effects. Otherwise, they are the same as every other Generic Token. These tokens are just Generic Tokens with the Predaplant keyword. 
-  
+Spellcaster Tokens: These tokens simply provide extra ways to trigger Spellcaster effects.  
+Insect Tokens: 		These tokens simply provide extra ways to trigger Insect effects.  
+Plant Tokens: 		These tokens simply provide extra ways to trigger Plant effects.  
+
 # Mod Options
 ## Remove all Toon cards
 This option will remove the 14 Toon cards from the game. Toggle the box to your desired preference and then restart the game. Checking this option and then using the Toon deck may lead to undefined behavior.
@@ -71,7 +78,16 @@ This option will remove the 6 Exodia cards from the game. Functions the same as 
 There are 14 bonus cards that can be added to the game if you have this option checked and you load the game with both Replay the Spire and Conspire.
 
 ## Starting Deck
-This option lets you choose which deck you would like to use for your runs. I have defined 6 starting decks for now, and there are also 2 additional options for using a randomly-generated deck. Select the deck you would like and start a fresh run to try it out!
+This option lets you choose which deck you would like to use for your custom runs.  
+
+## Unlock All Decks  
+This options enables all starter decks to be selectable for normal runs, even if you do not have enough Total Score.  
+
+## Turn off Monster/Spell/Trap tags  
+This option will flip all card tags to instead say Attack/Skill/Power instead of Monster/Skill/Trap. You may flip this option without even restarting the game, and the cards should change tags appropriately.
+
+# Challenge Mode  
+This option enables Challenge Mode! This setting makes the game much harder. No card stats are changed, but many effects of orbs, cards, and random effects are much worse. For example, the list of possible orbs you are able to channel randomly in Challenge Mode does not contain powerful orbs such as Summoner or Plasma.
 
 ## Set Size
 You can change this option to remove large groups of the cards from the game. There are 5 different card sets to select from: Core, Limited, Reduced, Full and All. The Core set is the smallest, with only 61 cards, while the All set is the largest set with 186 cards. If you have both 'Remove cards' mod options turned off, the 'Allow crossover cards' option turned on, and the card set size set to 'All', then the game will have the maximum number of possible cards at 200. The number of cards currently turned on is always displayed in the options panel after the 'Active Duelist Cards:' label. This setting is largely untested, so there may be some bugs when using sets other than 'All'.
@@ -81,7 +97,6 @@ You can change this option to remove large groups of the cards from the game. Th
 - Future Diary relic (Aspiration) sometimes causes issues  
 - Buffer orb has problems with powers that don't stack, needs major overhaul  
 - Pumprincess/Pumpking/Gigaplant cannot resummon each other, and Shallow Grave cannot resummon these cards either   
-- Prismatic Shard should be removed from relic pools while the Duelist is loaded   
 - Mirror Force is buggy and sometimes does way too much damage   
 - Ultimate Offering can sometimes get into an infinite loop and murder you   
 - Many cards with tribute-based upgrades are slightly buggy and can have undefined behavior   
@@ -89,14 +104,14 @@ You can change this option to remove large groups of the cards from the game. Th
 - Time Maze and Toon Rollback/Toon Magic interaction is buggy   
 - Heavy Storm doesn't always remove powers properly from everyone, and exhausts although the card text does not say so   
 - Bottled Mercury relic sometimes gets set on the wrong card after save & quit (Infinite Spire)   
-- Tomb Looter does not trigger properly when attacking with a max stack of summons with a Tribute card  
 
 # To Do (ordered by priority)
+- Bug fixes/stability updates
 - Balance updates  
-- Add a few more starting decks  
-- Add more random-generation-only cards   
-- Add additional Relics and Potions  
-- Translations (Chinese, Korean, maybe Russian)  
+- Finish ZHS translations
+- Add more: starter decks, cards, powers, relics, potions, mod options
+- Add some new custom run modifiers
+- Additional ranslations (French, Korean, maybe Russian)  
 - Add event(s)  
 - Add enemies  
 
@@ -138,6 +153,7 @@ G. Dragon Champion - *Core*
 G. Fierce Knight - *Core*  
 Gemini Elf - *Core*  
 Giant Stone Soldier - *Core*  
+Golden Apples - *Core*  
 Graceful Charity - *Core*  
 Gravity Axe - *Core*  
 Hane Hane - *Core*  
@@ -158,6 +174,7 @@ Mirror Force - *Core*
 Monster Reborn - *Core*  
 Mountain - *Core*  
 Mystical Elf - *Core*  
+Neo Magic - *Core*  
 Obelisk - *Core*  
 Ookazi - *Core*  
 Pot of Generosity - *Core*  
@@ -174,6 +191,7 @@ Scrap Factory - *Core*
 Slifer Sky Dragon - *Core*  
 Snow Dragon - *Core*  
 Snowdust Dragon - *Core*  
+Sphere Kuriboh - *Core*  
 Spirit of the Harp - *Core*  
 Summoned Skull - *Core*  
 Superheavy Benkei - *Core*  
@@ -183,7 +201,9 @@ Superheavy Waraji - *Core*
 Thunder Dragon - *Core*  
 Tremendous Fire - *Core*  
 Winged Dragon Ra - *Core*  
+Wiseman's Chalice - *Core*  
 Yami - *Core*  
+
   
 #### Limited    
 A. Magnet Warrior - *Limited*  
@@ -259,21 +279,41 @@ Toon World - *Full*
 Trap Hole - *Full*  
   
 #### All  
+Acid Trap Hole - *All*  
+Altar Tribute - *All*  
 B. Skull Dragon - *All*  
 Basic Insect - *All*  
 Blackland Fire Dragon - *All*  
+Blizzard Princess - *All*  
 Book Secret Arts - *All*  
 Bottomless Trap Hole - *All*  
+Card of Safe Return - *All*  
 Cheerful Coffin - *All*  
+Cloning - *All*  
 Cocoon of Evolution - *All*  
+Comic Hand - *All*  
+Contract Exodia - *All*  
+Dark Creator - *All*  
 Darkfire Dragon - *All*  
+Double Coston - *All*  
 Empress Mantis - *All*  
+Exploder Dragon - *All*  
 Fog King - *All*  
+Gates Dark World - *All*  
 Gigaplant - *All*  
 Grasschopper - *All*  
+Guardian Angel Joan - *All*  
+Hammer Shot - *All*  
+Heart Underdog - *All*  
 Heavy Storm - *All*  
+Icy Crevasse - *All*  
+Illusionist - *All*  
+Insect Knight - *All*  
+Invigoration - *All*  
+Invitation Dark Sleep - *All*  
 Jerry Beans Man - *All*  
 Jinzo - *All*  
+Jirai Gumo - *All*  
 King Yamimakai - *All*  
 Lajinn Mystical Genie - *All*  
 Levia-Dragon - *All*  
@@ -281,7 +321,9 @@ Machine Factory - *All*
 Machine King - *All*  
 Man-Eater Bug - *All*  
 Metal Dragon - *All*  
+Mini-Polymerization - *All*  
 Monster Egg - *All*  
+Mythical Beast - *All*  
 Ocean Dragon Lord - *All*  
 P. Chimerafflesia - *All*  
 P. Chlamydosundew - *All*  
@@ -292,14 +334,20 @@ P. Sarraceniant - *All*
 P. Spinodionaea - *All*  
 Petit Moth - *All*  
 Polymerization - *All*  
+Pot Forbidden - *All*  
 Predaponics - *All*  
 Predapruning - *All*  
 Reinforcements - *All*
 Revival Jam - *All*  
+Shadow Toon - *All*  
+Shallow Grave - *All*  
+Smashing Ground - *All*  
 Steam Train King - *All*  
 Stim Pack - *All*  
 Super Solar Nutrient - *All*  
 Sword of Deep-Seated - *All*  
+Terra Terrible - *All*  
+Terraforming - *All*  
 The Creator - *All*  
 Tri-Horned Dragon - *All*  
 Tribute to Doomed - *All*  
@@ -325,11 +373,7 @@ Parasite Paracide - *Crossover* - *Replay the Spire*
 Suijin - *Crossover* - *Conspire*
 
 #### Random Generation Only
-Guardian Angel Joan - *Random generation only*  
-Mini-Polymerization - *Random generation only*  
-Shadow Toon - *Random generation only*  
-Shallow Grave - *Random generation only*  
-Wiseman's Chalice - *Random generation only*  
+None currently  
   
 #### Toon cards removed by Mod Option  
 B.E. Toon Dragon - *Toons*  
@@ -355,6 +399,7 @@ Exodia L. Arm - *Exodia*
 Exodia L. Leg - *Exodia*  
 Exodia R. Arm - *Exodia*  
 Exodia R. Leg - *Exodia*  
+Contract with Exodia - *Exodia*  
 
 ## Random Buff Pool (Small)
 Strength 		(random)    
@@ -382,7 +427,6 @@ Barricade			(no amount)
 Blur				(random)  
 Burst				(random)  
 Creative AI			(always 1)  
-Dark Embrace		(random)  
 Double Tap			(random)  
 Equilibrium			(always 2)  
 Feel No Pain		(random)  
@@ -409,75 +453,57 @@ Envenom				(random)
 ### Time Wizard
 Draw 1 card  
 Draw 1 card  
-Draw 2 cards
-Gain 10 HP
 Gain 5 HP  
-Gain 5 HP  
-Draw 1 card  	
-Draw 1 card  	
-Draw 2 cards  	
-Gain 10 HP  
-Gain 5 HP  
-Gain 5 HP  
-Gain a random amount of gold (50-100)  
-Gain a random amount of gold (10-50)  
-Gain a random amount of gold (10-50)  
-Gain a random amount of gold (10-50)  
-Gain a random amount of gold (10-50)  
-Gain a random amount of gold (5-200)  
-Gain a random amount of gold (0-1000)  
-Apply 1 random buff  	
+Lose 5 HP  
+Lose 5 HP  
 Apply 2 random debuffs to random enemy  	
 Apply 1 random debuff to random enemy  
-Add 1 random Spell to hand  
 Add 1 random Trap to hand  
 Add 1 random Trap to hand  	
-Add 1 random Dragon to hand  
 Add 1 random Monster to hand  
 Add 1 random Ethereal Duelist card to hand  
-Gain 15 Block  	
 Gain 10 Block  
-Gain 10 Block  
-Gain 5 Block  
 Gain 5 Block  
 Gain 5 Block  
 Summon 1  	
 Summon 1  	
-Summon 2  
 Increment 1  	
-Increment 2  
+Gain 1 Artifact  
+
+##### Challenge Mode (OFF)
+Gain a random amount of gold (1-50)   
+Draw 2 cards  	
+Gain 5 HP  
+Gain 10 HP  
+Summon 2  
 Ojamania  	
-Gain 1 Energy    
-Gain 2 Energy   
+Gain 1 Energy   
 Channel a Glitch  
-Gain 1 Artifacts  
-Gain 2 Artifacts  
-Gain 3 Artifacts  
+Increment 2  
+
+##### Challenge Mode (ON)  
+Add 1 random Ethereal Duelist card to hand  
+Gain 5 HP  
+Summon 1  
+Increment 1  
 
 ### Glitch Orb (Passive)
 Draw 1 card  	
 Draw 1 card  
-Draw 2 cards  	
 Gain 10 HP  
 Gain 5 HP  
 Gain 5 HP  
-Gain a random amount of gold (50-100)  
-Gain a random amount of gold (10-50)  
-Gain a random amount of gold (10-50)  
-Gain a random amount of gold (5-200)  
-Apply 1 random buff  	
+Lose 5 HP  
+Lose 5 HP  
+Lose 5 HP  
 Apply 1 random debuff to random enemy  	
 Apply 1 random debuff to random enemy  
-Add 1 random Spell to hand  
 Add 1 random Trap to hand  
-Add 1 random Trap to hand  	
-Add 1 random Spellcaster to hand  
+Add 1 random Trap to hand  
 Add 1 random Monster to hand  
 Add 1 random Ethereal Duelist card to hand  
 Gain 15 Block  	
 Gain 10 Block  
-Gain 10 Block  
-Gain 5 Block  
 Gain 5 Block  
 Gain 5 Block  
 Summon 1  	
@@ -485,62 +511,26 @@ Summon 1
 Summon 2  
 Increment 1  	
 Increment 2  
-Ojamania  	
-Increase this orb's Passive amount by 1  	
-Increase this orb's Evoke amount by 1  	
-Increase this orb's Evoke amount by 1  
-Increase this orb's Evoke amount by 1  	
-Increase this orb's Evoke amount by 2  
-Gain 1 Energy    
-Gain 2 Energy     
-Channel a Glitch  
+Gain 1 Energy   
 Gain 1 Artifacts  
 Gain 2 Artifacts  
-Gain 3 Artifacts  
 
 ### Glitch Orb (Evoke)
-Orb slots +1  
+Orb slots+1  
 Draw 1 card  	
 Draw 1 card  	
 Draw 2 cards  	
-Gain 10 HP  
-Gain 5 HP  
-Gain 5 HP  
-Gain a random amount of gold (50-100)  
-Gain a random amount of gold (10-50)  
-Gain a random amount of gold (10-50)  
 Gain a random amount of gold (5-200)  
-Apply 1 random buff  	
-Apply 1 random debuff to random enemy  	
 Apply 1 random debuff to random enemy  
-Add 1 random Spell to hand  
 Add 1 random Trap to hand  
-Add 1 random Trap to hand  	
 Add 1 random Spellcaster to hand  
-Add 1 random Monster to hand  
 Add 1 random Ethereal Duelist card to hand  
 Gain 15 Block  	
-Gain 10 Block  
-Gain 10 Block  
-Gain 5 Block  
-Gain 5 Block  
-Gain 5 Block  
-Summon 1  	
-Summon 1  	
 Summon 2  
-Increment 1  	
 Increment 2  
 Ojamania  	
-Increase this orb's Passive amount by 1  	
-Increase this orb's Evoke amount by 1  	
-Increase this orb's Evoke amount by 1  
-Increase this orb's Evoke amount by 1  	
-Increase this orb's Evoke amount by 2  
-Gain 1 Energy    
-Gain 2 Energy    
+Gain 2 Energy (Not in Challenge Mode)
 Channel a Glitch  
-Gain 1 Artifacts  
-Gain 2 Artifacts  
 Gain 3 Artifacts  
 
 ## Screenshots

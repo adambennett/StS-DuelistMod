@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.orbs.Splash;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
@@ -33,12 +34,12 @@ public class OceanDragonLord extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public OceanDragonLord() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 18;
+    	this.baseDamage = this.damage = 20;
     	this.tags.add(DefaultMod.MONSTER);
     	this.tags.add(DefaultMod.AQUA);
     	this.tags.add(DefaultMod.DRAGON);
@@ -46,7 +47,7 @@ public class OceanDragonLord extends DuelistCard
     	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 5;
+		this.tributes = 4;
 		
     }
 
@@ -125,7 +126,7 @@ public class OceanDragonLord extends DuelistCard
 		if (tributingCard.hasTag(DefaultMod.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			addCardToHand(randomAqua);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
 		}
 	}
 

@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.MakeEtherealCopyInHandAction;
+import defaultmod.actions.common.*;
 import defaultmod.actions.unique.DragonOrbEvokeAction;
 import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
@@ -70,7 +70,7 @@ public class DragonPlusOrb extends DuelistOrb
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
-			AbstractDungeon.actionManager.addToBottom(new MakeEtherealCopyInHandAction(randomMonster, false, true));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, true, true, true, false, 1, 4));
 			if (DefaultMod.debug) { System.out.println("theDuelist:DragonOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 	}

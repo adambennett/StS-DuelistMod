@@ -41,7 +41,7 @@ public class SwordsBurning extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       applyPowerToSelf(new SwordsBurnPower(p, p));
+       applyPowerToSelf(new SwordsBurnPower(p, p, 1));
     }
 
     // Which card to return when making a copy of this card.

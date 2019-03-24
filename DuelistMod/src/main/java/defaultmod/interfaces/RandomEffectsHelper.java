@@ -47,6 +47,7 @@ public class RandomEffectsHelper
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
 		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);
+		if (DefaultMod.debug) { System.out.println("theDuelist:RandomEffectsHelper:getRandomDebuff() ---> grabbed debuff: " + randomDebuff.name); }
 		return randomDebuff;
 	}
 	

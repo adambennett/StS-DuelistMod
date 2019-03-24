@@ -14,19 +14,19 @@
   "theDuelist:MonsterOrb": {
     "NAME": "怪物宝珠",
     "DESCRIPTION": [
-      "#被动：在回合开始时，添加 #b", " 随机怪物到你的手上。唤醒：添加 #b", " 随机怪物到你的手上。", " 随机怪物到你的手上。唤起：添加 #b"
+	  "#yPassive: At the start of turn, add #b", " #yrandomized monster to your hand. NL #yEvoke: Add #b", " #yrandomized monsters to your hand.", " #yrandomized monsters to your hand. NL #yEvoke: Add #b"
     ]
   },
   "theDuelist:DragonOrb": {
     "NAME": "龙宝珠",
     "DESCRIPTION": [
-      "被动：在回合开始时，添加 #b", " 随机龙到你的手。唤醒：改变成本 #b", " 随机龙手中的龙为0。"
+      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
     ]
   },
    "theDuelist:DragonPlusOrb": {
     "NAME": "龙宝珠+",
     "DESCRIPTION": [
-      "被动：在回合开始时，添加 #b", " 随机升级龙到你的手。唤醒：改变成本 #b", " 随机龙手中的龙为0。"
+      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
     ]
   },
   "theDuelist:ReducerOrb": {
@@ -38,7 +38,7 @@
   "theDuelist:Earth": {
     "NAME": "地球",
     "DESCRIPTION": [
-      "被动：在回合开始时，添加 #b", " 随机咒语到你手上。唤醒：添加 #b", " 随便拼写你的手。", " 随机咒语到你手上。", " 随便拼写你的手。唤醒：添加 #b"
+      "#yPassive: At the start of turn, add #b", " #yrandomized #ySpells to your hand. NL #yEvoke: Add #b", " #yrandomized #ySpell to your hand.", " #yrandomized #ySpells to your hand.", " #yrandomized #ySpell to your hand. NL #yEvoke: Add #b"
     ]
   },
   "theDuelist:Air": {
@@ -80,7 +80,7 @@
   "theDuelist:Summoner": {
     "NAME": "召唤师",
     "DESCRIPTION": [
-      "被动：在回合结束时，召唤 #b", "。 唤醒：增量 #b", "。"
+      "被动：在回合结束时，召唤 #b", " 施法者代币。 唤醒：增量 #b", "。"
     ]
   }
 }

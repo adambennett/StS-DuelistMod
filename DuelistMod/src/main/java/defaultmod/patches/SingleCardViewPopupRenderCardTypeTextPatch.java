@@ -18,20 +18,23 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
     @SpireInsertPatch(localvars = {"label"},locator = Locator.class)
     public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, @ByRef String[] label) 
     {
-        AbstractCard reflectedCard = (AbstractCard) ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
-        boolean isSpell = DefaultMod.isSpell(reflectedCard);
-        boolean isTrap = DefaultMod.isTrap(reflectedCard);
-        boolean isMonster = DefaultMod.isMonster(reflectedCard);
-        boolean isToken = DefaultMod.isToken(reflectedCard);
-        boolean isArchetype = DefaultMod.isArchetype(reflectedCard);
-        boolean isOrbCard = DefaultMod.isOrbCard(reflectedCard);
-        
-        if (isMonster) 			{ label[0] = "Monster"; 	} 
-        else if (isTrap) 		{ label[0] = "Trap";  		} 
-        else if (isSpell) 		{ label[0] = "Spell";   	}
-        else if (isToken)		{ label[0] = "Token"; 		}
-        else if (isArchetype)	{ label[0] = "Set"; 		}
-        else if (isOrbCard)		{ label[0] = "Orb";			}
+    	if (!DefaultMod.flipCardTags)
+    	{
+	        AbstractCard reflectedCard = (AbstractCard) ReflectionHacks.getPrivate(__instance, SingleCardViewPopup.class, "card");
+	        boolean isSpell = DefaultMod.isSpell(reflectedCard);
+	        boolean isTrap = DefaultMod.isTrap(reflectedCard);
+	        boolean isMonster = DefaultMod.isMonster(reflectedCard);
+	        boolean isToken = DefaultMod.isToken(reflectedCard);
+	        boolean isArchetype = DefaultMod.isArchetype(reflectedCard);
+	        boolean isOrbCard = DefaultMod.isOrbCard(reflectedCard);
+	        
+	        if (isMonster) 			{ label[0] = "Monster"; 	} 
+	        else if (isTrap) 		{ label[0] = "Trap";  		} 
+	        else if (isSpell) 		{ label[0] = "Spell";   	}
+	        else if (isToken)		{ label[0] = "Token"; 		}
+	        else if (isArchetype)	{ label[0] = "Set"; 		}
+	        else if (isOrbCard)		{ label[0] = "Orb";			}
+    	}
     }
 
     public static class Locator extends SpireInsertLocator 

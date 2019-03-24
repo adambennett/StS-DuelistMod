@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
@@ -42,7 +43,6 @@ public class IcyCrevasse extends DuelistCard
         this.startingOrbDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
-		this.exhaust = true;
 		this.setupStartingCopies();
     }
 
@@ -64,7 +64,15 @@ public class IcyCrevasse extends DuelistCard
     	{
 	    	if (foundFrost)
 	    	{
-	    		applyPowerToSelf(new FocusPower(p, 1));
+	    		int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+	    		if (roll == 1)
+	    		{
+	    			applyPowerToSelf(new FocusPower(p, 2));
+	    		}
+	    		else
+	    		{
+	    			applyPowerToSelf(new FocusPower(p, 1));
+	    		}
 	    	}
     	}
     	else

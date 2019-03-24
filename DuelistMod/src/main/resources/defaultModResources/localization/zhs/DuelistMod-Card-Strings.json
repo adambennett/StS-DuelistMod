@@ -1,63 +1,63 @@
 {
 	"theDuelist:AlphaMagnet": {
 		"NAME": "A. 磁铁战士",
-		"DESCRIPTION": "召唤1.交易  损伤。为剩下的战斗获得阿尔法磁铁。",
-		"UPGRADE_DESCRIPTION": "召唤1.交易  损伤。为剩下的战斗获得阿尔法磁铁。 排气。"
+		"DESCRIPTION": "召唤1.交易 !D! 损伤。为剩下的战斗获得阿尔法磁铁。",
+		"UPGRADE_DESCRIPTION": "召唤1.交易 !D! 损伤。为剩下的战斗获得阿尔法磁铁。 排气。"
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "遠古規則",
-		"DESCRIPTION": "仪式 .",
-		"UPGRADE_DESCRIPTION": "仪式 ."
+		"DESCRIPTION": "仪式 !M!.",
+		"UPGRADE_DESCRIPTION": "仪式 !M!."
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "惡魔之斧",
-		"DESCRIPTION": "This turn, NL Gain  Strength. NL End of turn: 贡 2 NL (or lose 30 HP). NL Place this card on top of your draw pile.",
-		"UPGRADE_DESCRIPTION": "This turn, NL Gain  Strength. NL End of turn: 贡 2 NL (or lose 30 HP). NL Place this card on top of your draw pile."
+		"DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: 贡 2 NL (or lose 30 HP). NL Place this card on top of your draw pile.",
+		"UPGRADE_DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: 贡 2 NL (or lose 30 HP). NL Place this card on top of your draw pile."
 	},
 	"theDuelist:BadReaction": {
 		"NAME": "藥物的副作用",
-		"DESCRIPTION": "Whenever you heal, deal  damage to ALL enemies for every HP healed.",
-		"UPGRADE_DESCRIPTION": "Whenever you heal, deal  damage to ALL enemies for every HP healed."
+		"DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed.",
+		"UPGRADE_DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed."
 	},
 	"theDuelist:BarrelDragon": {
 		"NAME": "手槍之龍",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Apply 3 randomized debuffs to  random enemies.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Apply 2 randomized debuffs to  random enemies."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Apply 3 randomized debuffs to !M! random enemies.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Apply 2 randomized debuffs to !M! random enemies."
 	},
 	"theDuelist:BetaMagnet": {
 		"NAME": "B. 磁铁战士",
-		"DESCRIPTION": "仪式 1. NL Gain  格挡。 NL Gain Beta Magnet for the rest of combat.",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain  格挡。 NL Gain Beta Magnet for the rest of combat. NL 排气。"
+		"DESCRIPTION": "仪式 1. NL Gain !B! Block. NL Gain Beta Magnet for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain !B! Block. NL Gain Beta Magnet for the rest of combat. NL 排气。"
 	},
 	"theDuelist:BlueEyes": {
 		"NAME": "青眼白龍",
-		"DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage."
+		"DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage."
 	},
 	"theDuelist:BlueEyesToon": {
 		"NAME": "青眼卡通龍",
-		"DESCRIPTION": "Toon  NL Dragon NL  贡 2. NL Deal  damage (through Block).",
-		"UPGRADE_DESCRIPTION": "Toon  NL Dragon NL  贡 2. NL Deal  damage (through Block)."
+		"DESCRIPTION": "Toon  NL Dragon NL  贡 2. NL Deal !D! damage (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon  NL Dragon NL  贡 2. NL Deal !D! damage (through Block)."
 	},
 	"theDuelist:BlueEyesUltimate": {
 		"NAME": "青眼究極龍",
-		"DESCRIPTION": "Dragon NL 贡 3.  NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage."
+		"DESCRIPTION": "Dragon NL 贡 4.  NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage."
 	},
 	"theDuelist:BusterBlader": {
 		"NAME": "破龍劍士",
-		"DESCRIPTION": "贡 3. NL Deal  damage. NL Add  damage for each Dragon tributed.",
-		"UPGRADE_DESCRIPTION": "贡 3. NL Deal  damage. NL Add  damage for each Dragon tributed."
+		"DESCRIPTION": "贡 3. NL Deal !D! damage. NL Add !M! damage for each Dragon tributed.",
+		"UPGRADE_DESCRIPTION": "贡 3. NL Deal !D! damage. NL Add !M! damage for each Dragon tributed."
 	},
 	"theDuelist:CannonSoldier": {
 		"NAME": "加農炮兵",
-		"DESCRIPTION": "仪式 1. NL At the start of turn, 贡 1 and deal  damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL At the start of turn, 贡 1 and deal  damage to a random enemy."
+		"DESCRIPTION": "仪式 1. NL At the start of turn, 贡 1 and deal !M! damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "仪式 1. NL At the start of turn, 贡 1 and deal !M! damage to a random enemy."
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "手牌抹殺",
-		"DESCRIPTION": "Discard your hand. Add  random card to your hand for each card discarded. Each card costs 0 and exhausts. 排气。",
-		"UPGRADE_DESCRIPTION": "Discard your hand. Add  random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts. 排气。"
+		"DESCRIPTION": "Discard your hand. Add !M! random card to your hand for each card discarded. Each card costs 0 and exhausts. 排气。",
+		"UPGRADE_DESCRIPTION": "Discard your hand. Add !M! random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts. 排气。"
 	},
 	"theDuelist:CastleDarkIllusions": {
 		"NAME": "黑暗之城堡",
@@ -66,23 +66,23 @@
 	},
 	"theDuelist:BigCastleWalls": {
 		"NAME": "Big Castle Wall",
-		"DESCRIPTION": "Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Gain  格挡。"
+		"DESCRIPTION": "Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block."
 	},
 	"theDuelist:CastleWalls": {
 		"NAME": "城壁",
-		"DESCRIPTION": "Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Gain  格挡。"
+		"DESCRIPTION": "Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block."
 	},
 	"theDuelist:CatapultTurtle": {
 		"NAME": "彈射龜",
-		"DESCRIPTION": "贡 2. NL At the start of, 贡 ALL 仪式s and deal  damage for each to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL At the start of, 贡 ALL Summons and deal  damage for each to ALL enemies."
+		"DESCRIPTION": "贡 2. NL At the start of, 贡 ALL 仪式s and deal !D! damage for each to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL At the start of, 贡 ALL Summons and deal !D! damage for each to ALL enemies."
 	},
 	"theDuelist:CelticGuardian": {
 		"NAME": "精靈劍士",
-		"DESCRIPTION": "仪式 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL Deal  damage."
+		"DESCRIPTION": "仪式 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "仪式 1. NL Deal !D! damage."
 	},
 	"theDuelist:ChangeHeart": {
 		"NAME": "心變",
@@ -91,28 +91,28 @@
 	},
 	"theDuelist:DarkHole": {
 		"NAME": "黑洞",
-		"DESCRIPTION": "Steal ALL Block from an enemy.",
-		"UPGRADE_DESCRIPTION": "Steal ALL Block from ALL enemies."
+		"DESCRIPTION": "Steal all Block from ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Steal all Block from ALL enemies. Remove all Buffs from ALL enemies."
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "墮天使 瑪麗",
-		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Deal  damage. Overflow  - gain 3 HP.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Deal  damage. Overflow  - gain 4 HP."
+		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Deal !D! damage. Overflow !M! - gain 3 HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Deal !D! damage. Overflow !M! - gain 4 HP."
 	},
 	"theDuelist:DarkMagician": {
 		"NAME": "黒魔道士",
-		"DESCRIPTION": "Spellcaster NL 贡 2. NL Deal  damage. Channel a Summoner.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 贡 1. NL Deal  damage. Channel a Summoner."
+		"DESCRIPTION": "Spellcaster NL 贡 2. NL Deal !D! damage. Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 贡 1. NL Deal !D! damage. Channel a Summoner."
 	},
 	"theDuelist:DarkMagicianGirl": {
 		"NAME": "黑魔導女孩",
-		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。 NL Channel a Buffer.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。 NL Channel a Buffer."
+		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain !B! Block. NL Channel a Buffer.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain !B! Block. NL Channel a Buffer."
 	},
 	"theDuelist:DianKeto": {
 		"NAME": "治療之神 蒂安·凱特",
-		"DESCRIPTION": "Heal  HP. 排气。",
-		"UPGRADE_DESCRIPTION": "Heal  HP. 排气。"
+		"DESCRIPTION": "Heal !M! HP. 排气。",
+		"UPGRADE_DESCRIPTION": "Heal !M! HP. 排气。"
 	},
 	"theDuelist:ExodiaHead": {
 		"NAME": "被封印的黑暗大法師",
@@ -121,28 +121,28 @@
 	},
 	"theDuelist:ExodiaLA": {
 		"NAME": "被封印者的左腕",
-		"DESCRIPTION": "Spellcaster NL 仪式 . NL Deal  damage. NL Gain 1 Exodia. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Deal  damage. NL Gain 1 Exodia. NL 排气。"
+		"DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL 排气。"
 	},
 	"theDuelist:ExodiaLL": {
 		"NAME": "被封印者的左足",
-		"DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。"
+		"DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL 排气。"
 	},
 	"theDuelist:ExodiaRA": {
 		"NAME": "被封印者的右腕",
-		"DESCRIPTION": "Spellcaster NL 仪式 . NL Deal  damage. NL Gain 1 Exodia. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Deal  damage. NL Gain 1 Exodia. NL 排气。"
+		"DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Deal !D! damage. NL Gain 1 Exodia. NL 排气。"
 	},
 	"theDuelist:ExodiaRL": {
 		"NAME": "被封印者的右足",
-		"DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL Gain  格挡。 NL Gain 1 Exodia. NL 排气。"
+		"DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 !M!. NL Gain !B! Block. NL Gain 1 Exodia. NL 排气。"
 	},
 	"theDuelist:FeatherPho": {
 		"NAME": "鳳凰神的羽毛",
-		"DESCRIPTION": "Discard  card from your hand. Place  card from your discard pile into your hand.",
-		"UPGRADE_DESCRIPTION": "Discard  cards from your hand. Place  cards from your discard pile into your hand."
+		"DESCRIPTION": "Discard !M! card from your hand. Place !M! card from your discard pile into your hand.",
+		"UPGRADE_DESCRIPTION": "Discard !M! cards from your hand. Place !M! cards from your discard pile into your hand."
 	},
 	"theDuelist:FiendMegacyber": {
 		"NAME": "網絡千兆魔",
@@ -151,23 +151,23 @@
 	},
 	"theDuelist:Fissure": {
 		"NAME": "地裂",
-		"DESCRIPTION": "Deal  damage to ALL enemies for each of your Summons.",
-		"UPGRADE_DESCRIPTION": "Deal  damage to ALL enemies for each of your Summons."
+		"DESCRIPTION": "Deal !D! damage to ALL enemies for each of your Summons.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for each of your Summons."
 	},
 	"theDuelist:FlameSwordsman": {
 		"NAME": "炎之劍士",
-		"DESCRIPTION": "贡 2. NL Deal  damage. Channel a Hellfire.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Deal  damage. Channel a Hellfire."
+		"DESCRIPTION": "贡 2. NL Deal !D! damage. Channel a Hellfire.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Deal !D! damage. Channel a Hellfire."
 	},
 	"theDuelist:GaiaFierce": {
 		"NAME": "暗黑騎士 蓋亞",
-		"DESCRIPTION": "贡 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "贡 1. NL Deal  damage."
+		"DESCRIPTION": "贡 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "贡 1. NL Deal !D! damage."
 	},
 	"theDuelist:GaiaDragonChamp": {
 		"NAME": "龍騎士 蓋亞",
-		"DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage. NL 仪式再次 1 of the monsters you used to 贡 (chosen randomly).",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage. NL 仪式再次 1 of the monsters you used to 贡 (chooses most recent 仪式)."
+		"DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage. NL 仪式再次 1 of the monsters you used to 贡 (chosen randomly).",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage. NL 仪式再次 1 of the monsters you used to 贡 (chooses most recent 仪式)."
 	},
 	"theDuelist:GammaMagnet": {
 		"NAME": "G. 磁铁战士",
@@ -181,13 +181,13 @@
 	},
 	"theDuelist:GiantSoldier": {
 		"NAME": "岩石巨兵",
-		"DESCRIPTION": "仪式.获得!B!格挡。",
-		"UPGRADE_DESCRIPTION": "仪式.获得!B!格挡。"
+		"DESCRIPTION": "仪式 !M!. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "仪式 !M!. NL Gain !B! Block."
 	},
 	"theDuelist:RandomSoldier": {
 		"NAME": "随机巨人",
-		"DESCRIPTION": "仪式 . NL Gain a random amount (2-6) of 格挡。",
-		"UPGRADE_DESCRIPTION": "仪式 . NL Gain a random amount (3-7) of 格挡。"
+		"DESCRIPTION": "仪式 !M!. NL Gain a random amount (2-6) of Block.",
+		"UPGRADE_DESCRIPTION": "仪式 !M!. NL Gain a random amount (3-7) of Block."
 	},
 	"theDuelist:GiantTrunade": {
 		"NAME": "颶風",
@@ -201,58 +201,58 @@
 	},
 	"theDuelist:HarpieFeather": {
 		"NAME": "神鷹羽毛掃",
-		"DESCRIPTION": "Gain Block equal to  times the number of buffs you have.",
-		"UPGRADE_DESCRIPTION": "Gain Block equal to  times the number of buffs you have."
+		"DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have.",
+		"UPGRADE_DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have."
 	},
 	"theDuelist:Hinotama": {
 		"NAME": "火球",
-		"DESCRIPTION": "Deal  damage a random amount (2-3) of times.",
-		"UPGRADE_DESCRIPTION": "Deal  damage a random amount (2-4) of times."
+		"DESCRIPTION": "Deal !D! damage a random amount (2-3) of times.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage a random amount (2-4) of times."
 	},
 	"theDuelist:ImperialOrder": {
 		"NAME": "王宮的敕命",
-		"DESCRIPTION": "At the start of turn, set the cost of  random Spell or Trap card in your hand to 0.",
-		"UPGRADE_DESCRIPTION": "At the start of turn, set the cost of  random Spell or Trap cards in your hand to 0."
+		"DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap card in your hand to 0.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap cards in your hand to 0."
 	},
 	"theDuelist:InjectionFairy": {
 		"NAME": "打針天使莉莉",
-		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  HP.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  HP. NL Deal  damage."
+		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain !M! HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain !M! HP. NL Deal !D! damage."
 	},
 	"theDuelist:InsectQueen": {
 		"NAME": "昆蟲女王",
-		"DESCRIPTION": "Insect NL 贡 ALL Summons. Apply  times that much poison to ALL enemies. Reduce your max Summons by 2.",
-		"UPGRADE_DESCRIPTION": "Insect NL 贡 ALL Summons. Apply  times that much poison to ALL enemies. Reduce your max Summons by 1."
+		"DESCRIPTION": "Insect NL 贡 ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 2.",
+		"UPGRADE_DESCRIPTION": "Insect NL 贡 ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1."
 	},
 	"theDuelist:JamBreeding": {
 		"NAME": "史萊姆增殖爐",
-		"DESCRIPTION": "At the start of turn, 仪式  and deal 3 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "At the start of turn, 仪式  and deal 3 damage to a random enemy."
+		"DESCRIPTION": "At the start of turn, 仪式 !M! and deal 3 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "At the start of turn, 仪式 !M! and deal 3 damage to a random enemy."
 	},
 	"theDuelist:JudgeMan": {
 		"NAME": "裁判官",
-		"DESCRIPTION": "贡 1. NL 仪式 1. NL Deal  damage. NL 仪式再次: 仪式 1 and deal 15 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "贡 1. NL 仪式 1. NL Deal  damage. NL 仪式再次: 仪式 1 and deal 15 damage to a random enemy."
+		"DESCRIPTION": "贡 1. NL 仪式 1. NL Deal !D! damage. NL 仪式再次: 仪式 1 and deal 15 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "贡 1. NL 仪式 1. NL Deal !D! damage. NL 仪式再次: 仪式 1 and deal 15 damage to a random enemy."
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "栗子球",
-		"DESCRIPTION": "Increment . NL 仪式 1 Kuriboh Token. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Increment . NL 仪式 1 Kuriboh Token. NL 排气。"
+		"DESCRIPTION": "Increment !M!. NL 仪式 1 Kuriboh Token. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL 仪式 1 Kuriboh Token. NL 排气。"
 	},
 	"theDuelist:BigLabyrinthWall": {
 		"NAME": "大迷宫墙",
-		"DESCRIPTION": "贡 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "贡 1. NL Gain  格挡。"
+		"DESCRIPTION": "贡 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "贡 1. NL Gain !B! Block."
 	},
 	"theDuelist:LabyrinthWall": {
 		"NAME": "迷宮壁",
-		"DESCRIPTION": "贡 2. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。"
+		"DESCRIPTION": "贡 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain !B! Block."
 	},
 	"theDuelist:SmallLabyrinthWall": {
 		"NAME": "小迷宫墙",
-		"DESCRIPTION": "贡 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。"
+		"DESCRIPTION": "贡 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain !B! Block."
 	},
 	"theDuelist:LegendaryFisherman": {
 		"NAME": "傳說的漁夫",
@@ -281,28 +281,28 @@
 	},
 	"theDuelist:MonsterReborn": {
 		"NAME": "死者蘇生",
-		"DESCRIPTION": "Choose  monsters to 仪式再次 from your discard pile. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Choose  monsters to upgrade and 仪式再次 from your discard pile. NL 排气。"
+		"DESCRIPTION": "Choose !M! monsters to 仪式再次 from your discard pile. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Choose !M! monsters to upgrade and 仪式再次 from your discard pile. NL 排气。"
 	},
 	"theDuelist:TributeDoomed": {
 		"NAME": "給死者的奠儀",
-		"DESCRIPTION": "贡 1. NL Choose  monster to 仪式再次 from your discard pile.",
-		"UPGRADE_DESCRIPTION": "贡 1. NL Choose  monster to upgrade and 仪式再次 from your discard pile."
+		"DESCRIPTION": "贡 1. NL Choose !M! monster to 仪式再次 from your discard pile.",
+		"UPGRADE_DESCRIPTION": "贡 1. NL Choose !M! monster to upgrade and 仪式再次 from your discard pile."
 	},
 	"theDuelist:ShallowGrave": {
 		"NAME": "過淺的墓穴",
-		"DESCRIPTION": "Randomly 仪式再次  monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Randomly 仪式再次  monsters from your discard pile."
+		"DESCRIPTION": "Randomly 仪式再次 !M! monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Randomly 仪式再次 !M! monsters from your discard pile."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "生命增强者Z",
-		"DESCRIPTION": "If you have less than 40 HP, gain  HP and 3 random debuffs. 排气。",
-		"UPGRADE_DESCRIPTION": "If you have less than 45 HP, gain  HP and 3 random debuffs. 排气。"
+		"DESCRIPTION": "If you have less than 40 HP, gain !M! HP and 3 random debuffs. 排气。",
+		"UPGRADE_DESCRIPTION": "If you have less than 45 HP, gain !M! HP and 3 random debuffs. 排气。"
 	},
 	"theDuelist:ObeliskTormentor": {
 		"NAME": "歐貝利斯克巨神兵",
-		"DESCRIPTION": "贡 4. NL Each time you 贡, deal  damage to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "贡 4. NL Each time you 贡, deal  damage to ALL enemies."
+		"DESCRIPTION": "贡 4. NL Each time you 贡, deal !D! damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "贡 4. NL Each time you 贡, deal !D! damage to ALL enemies."
 	},
 	"theDuelist:OjamaBlack": {
 		"NAME": "Ojama 黑色",
@@ -331,8 +331,8 @@
 	},
 	"theDuelist:OjamaYellow": {
 		"NAME": "Ojama 黄色",
-		"DESCRIPTION": "仪式 1. NL Add  randomized monster cards to your hand. 排气。",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL Add  randomized monster cards to your hand. 排气。"
+		"DESCRIPTION": "仪式 1. NL Add !M! randomized monster cards to your hand. 排气。",
+		"UPGRADE_DESCRIPTION": "仪式 1. NL Add !M! randomized monster cards to your hand. 排气。"
 	},
 	"theDuelist:Ookazi": {
 		"NAME": "晝夜的大火事",
@@ -356,13 +356,13 @@
 	},
 	"theDuelist:PotDuality": {
 		"NAME": "強欲而謙虛之壺",
-		"DESCRIPTION": "Draw  cards. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Draw  cards. NL Gain  格挡。"
+		"DESCRIPTION": "Draw !M! cards. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Gain !B! Block."
 	},
 	"theDuelist:PotGenerosity": {
 		"NAME": "慷慨的锅",
-		"DESCRIPTION": "For  turns, each time you 仪式, gain [R].",
-		"UPGRADE_DESCRIPTION": "For  turns, each time you 仪式, gain [R]."
+		"DESCRIPTION": "For !M! turns, each time you 仪式, gain [R].",
+		"UPGRADE_DESCRIPTION": "For !M! turns, each time you 仪式, gain [R]."
 	},
 	"theDuelist:PotGreed": {
 		"NAME": "強欲之壺",
@@ -382,12 +382,12 @@
 	"theDuelist:Gigaplant": {
 		"NAME": "巨型植物",
 		"DESCRIPTION": "Plant NL 贡 3. NL Apply 10 Poison. NL 仪式再次 an upgraded copy of a random monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Plant NL 贡 2. NL Apply 10 Poison. NL 仪式再次 upgraded copies of  random monsters from your discard pile."
+		"UPGRADE_DESCRIPTION": "Plant NL 贡 2. NL Apply 10 Poison. NL 仪式再次 upgraded copies of !M! random monsters from your discard pile."
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "辐射镜力",
-		"DESCRIPTION": "Whenever you lose HP, Increment .",
-		"UPGRADE_DESCRIPTION": "Whenever you lose HP,  Increment ."
+		"DESCRIPTION": "Whenever you lose HP, Increment !M!.",
+		"UPGRADE_DESCRIPTION": "Whenever you lose HP,  Increment !M!."
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "恩惠之雨",
@@ -396,13 +396,13 @@
 	},
 	"theDuelist:RedEyes": {
 		"NAME": "真紅眼黑龍",
-		"DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage."
+		"DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage."
 	},
 	"theDuelist:RedEyesZombie": {
 		"NAME": "真红眼的不死龙",
-		"DESCRIPTION": "Zombie Dragon NL 贡 2. NL Deal  damage. NL 仪式再次: Gain 3 Strength. Deal 10 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL 贡 2. NL Deal  damage. NL 仪式再次: Gain 3 Strength. Deal 10 damage to a random enemy."
+		"DESCRIPTION": "Zombie Dragon NL 贡 2. NL Deal !D! damage. NL 仪式再次: Gain 3 Strength. Deal 10 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL 贡 2. NL Deal !D! damage. NL 仪式再次: Gain 3 Strength. Deal 10 damage to a random enemy."
 	},
 	"theDuelist:RedMedicine": {
 		"NAME": "紅色藥劑",
@@ -416,28 +416,28 @@
 	},
 	"theDuelist:SangaEarth": {
 		"NAME": "風魔神-修迦",
-		"DESCRIPTION": "贡 3. NL 仪式 1. NL Channel 1 Earth. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Channel 1 Earth. NL Deal  damage."
+		"DESCRIPTION": "贡 3. NL 仪式 1. NL Channel 1 Earth. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Channel 1 Earth. NL Deal !D! damage."
 	},
 	"theDuelist:SangaThunder": {
 		"NAME": "雷魔神-桑迦",
-		"DESCRIPTION": "贡 3. NL 仪式 1. NL Channel 1 lightning. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Channel 1 lightning. NL Deal  damage."
+		"DESCRIPTION": "贡 3. NL 仪式 1. NL Channel 1 lightning. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Channel 1 lightning. NL Deal !D! damage."
 	},
 	"theDuelist:SangaWater": {
 		"NAME": "水魔神-斯迦",
-		"DESCRIPTION": "Aqua NL 贡 3. NL 仪式 1. NL Channel 1 Water. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Aqua NL 贡 2. NL 仪式 1. NL Channel 1 Water. NL Deal  damage."
+		"DESCRIPTION": "Aqua NL 贡 3. NL 仪式 1. NL Channel 1 Water. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Aqua NL 贡 2. NL 仪式 1. NL Channel 1 Water. NL Deal !D! damage."
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "替罪羊",
-		"DESCRIPTION": "Increment . NL 仪式 2 Kuriboh Tokens. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Increment . NL 仪式 2 Kuriboh Tokens. NL 排气。"
+		"DESCRIPTION": "Increment !M!. NL 仪式 2 Kuriboh Tokens. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL 仪式 2 Kuriboh Tokens. NL 排气。"
 	},
 	"theDuelist:SevenColoredFish": {
 		"NAME": "彩虹魚",
-		"DESCRIPTION": "Aqua NL 仪式 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL Deal  damage."
+		"DESCRIPTION": "Aqua NL 仪式 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL Deal !D! damage."
 	},
 	"theDuelist:SliferSky": {
 		"NAME": "奧西里斯天空龍",
@@ -451,8 +451,8 @@
 	},
 	"theDuelist:SummonedSkull": {
 		"NAME": "惡魔召喚",
-		"DESCRIPTION": "Fiend NL 贡 . NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Fiend NL 贡 . NL Deal  damage."
+		"DESCRIPTION": "Fiend NL 贡 !M!. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Fiend NL 贡 !M!. NL Deal !D! damage."
 	},
 	"theDuelist:SwordsBurning": {
 		"NAME": "燃烧的剑",
@@ -461,13 +461,13 @@
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "隐藏剑",
-		"DESCRIPTION": "Each time you play a card, gain  格挡。 Affected by Dexterity.",
-		"UPGRADE_DESCRIPTION": "Each time you play a card, gain  格挡。 Affected by Dexterity."
+		"DESCRIPTION": "Each time you play a card, gain !M! Block. Affected by Dexterity.",
+		"UPGRADE_DESCRIPTION": "Each time you play a card, gain !M! Block. Affected by Dexterity."
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "露出剑",
-		"DESCRIPTION": "贡 all your Summons (min. 5) NL For  turns, ignore all HP damage. 排气。",
-		"UPGRADE_DESCRIPTION": "贡 all your Summons (min. 5) NL For  turns, ignore all HP damage. 排气。"
+		"DESCRIPTION": "贡 all your Summons (min. 5) NL For !M! turns, ignore all HP damage. 排气。",
+		"UPGRADE_DESCRIPTION": "贡 all your Summons (min. 5) NL For !M! turns, ignore all HP damage. 排气。"
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "時間魔術師",
@@ -482,12 +482,12 @@
 	"theDuelist:TrapHole": {
 		"NAME": "陷坑",
 		"DESCRIPTION": "Whenever you 仪式, have a 30% chance to immediately 贡 and then 仪式再次 the monster.",
-		"UPGRADE_DESCRIPTION": "Whenever you 仪式, have a 40% chance to immediately 贡 and then 仪式再次 the monster."
+		"UPGRADE_DESCRIPTION": "Whenever you 仪式, have a 50% chance to immediately 贡 and then 仪式再次 the monster."
 	},
 	"theDuelist:ValkMagnet": {
 		"NAME": "瓦尔基里恩是战士",
-		"DESCRIPTION": "If you have all three Magnets: 仪式 3 and deal  damage. Remove ALL magnets.",
-		"UPGRADE_DESCRIPTION": "If you have all three Magnets: 仪式 3 and deal  damage."
+		"DESCRIPTION": "If you have all three Magnets: 仪式 3 and deal !D! damage. Remove ALL magnets.",
+		"UPGRADE_DESCRIPTION": "If you have all three Magnets: 仪式 3 and deal !D! damage."
 	},
 	"theDuelist:DarkMirrorForce": {
 		"NAME": "暗镜力",
@@ -496,8 +496,8 @@
 	},
 	"theDuelist:RedEyesToon": {
 		"NAME": "红眼睛卡通龙",
-		"DESCRIPTION": "Toon NL Dragon NL 贡 1. NL Deal  damage (through Block).",
-		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL 贡 1. NL Deal  damage (through Block)."
+		"DESCRIPTION": "Toon NL Dragon NL 贡 1. NL Deal !D! damage (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL 贡 1. NL Deal !D! damage (through Block)."
 	},
 	"theDuelist:StormingMirrorForce": {
 		"NAME": "风暴镜子力",
@@ -506,23 +506,23 @@
 	},
 	"theDuelist:SuperheavyBenkei": {
 		"NAME": "超重的武士大本基",
-		"DESCRIPTION": "贡 3. NL Deal  damage. NL Gain  dexterity. NL 排气。",
-		"UPGRADE_DESCRIPTION": "贡 3. NL Deal  damage. NL Gain  dexterity. NL 排气。"
+		"DESCRIPTION": "贡 3. NL Deal !D! damage. NL Gain !M! dexterity. NL 排气。",
+		"UPGRADE_DESCRIPTION": "贡 3. NL Deal !D! damage. NL Gain !M! dexterity. NL 排气。"
 	},
 	"theDuelist:SuperheavyScales": {
 		"NAME": "超重武士秤",
-		"DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
-		"UPGRADE_DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
+		"DESCRIPTION": "仪式 1. Gain !B! Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "仪式 1. Gain !B! Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
 	},
 	"theDuelist:SuperheavySwordsman": {
 		"NAME": "超重的武士剑客",
 		"DESCRIPTION": "仪式 1. NL Gain 1 dexterity.",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL Deal  damage. NL Gain 1 dexterity."
+		"UPGRADE_DESCRIPTION": "仪式 1. NL Deal !D! damage. NL Gain 1 dexterity."
 	},
 	"theDuelist:SuperheavyWaraji": {
 		"NAME": "超重的武士 Waraji",
-		"DESCRIPTION": "贡 2. NL Gain  dexterity. NL 排气。",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  dexterity. NL Gain  格挡。 NL 排气。"
+		"DESCRIPTION": "贡 2. NL Gain !M! dexterity. NL 排气。",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain !M! dexterity. NL Gain !B! Block. NL 排气。"
 	},
 	"theDuelist:ToonBarrelDragon": {
 		"NAME": "卡通桶龙",
@@ -536,38 +536,38 @@
 	},
 	"theDuelist:ToonDarkMagician": {
 		"NAME": "卡通黑魔术师",
-		"DESCRIPTION": "Toon NL Spellcaster NL  贡 2. NL Deal  damage (through Block). Channel a Summoner.",
-		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL NL 贡 2. NL Deal  damage (through Block). Channel a Summoner."
+		"DESCRIPTION": "Toon NL Spellcaster NL  贡 2. NL Deal !D! damage (through Block). Channel a Summoner.",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL NL 贡 2. NL Deal !D! damage (through Block). Channel a Summoner."
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
 		"NAME": "卡通黑魔法师的女孩",
-		"DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain  格挡。 NL Channel a Crystal.",
-		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain  格挡。 NL Channel a Crystal."
+		"DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain !B! Block. NL Channel a Crystal.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL 仪式 2. NL Gain !B! Block. NL Channel a Crystal."
 	},
 	"theDuelist:ToonGeminiElf": {
 		"NAME": "卡通双子座精灵",
-		"DESCRIPTION": "Toon NL Spellcaster NL 仪式 .",
-		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL 仪式 ."
+		"DESCRIPTION": "Toon NL Spellcaster NL 仪式 !M!.",
+		"UPGRADE_DESCRIPTION": "Toon NL Spellcaster NL 仪式 !M!."
 	},
 	"theDuelist:ToonMermaid": {
 		"NAME": "卡通美人鱼",
-		"DESCRIPTION": "Toon NL 仪式 1. NL Deal  damage (through Block).",
-		"UPGRADE_DESCRIPTION": "Toon NL 仪式 1. NL Deal  damage (through Block)."
+		"DESCRIPTION": "Toon NL 仪式 1. NL Deal !D! damage (through Block).",
+		"UPGRADE_DESCRIPTION": "Toon NL 仪式 1. NL Deal !D! damage (through Block)."
 	},
 	"theDuelist:ToonSummonedSkull": {
 		"NAME": "卡通召唤头骨",
-		"DESCRIPTION": "Toon NL 贡 1. NL Deal  damage (through Block). NL Gain 2 Strength.",
-		"UPGRADE_DESCRIPTION": "Toon NL 贡 1. NL Deal  damage (through Block). NL Gain 3 Strength."
+		"DESCRIPTION": "Toon NL 贡 1. NL Deal !D! damage (through Block). NL Gain 2 Strength.",
+		"UPGRADE_DESCRIPTION": "Toon NL 贡 1. NL Deal !D! damage (through Block). NL Gain 3 Strength."
 	},
 	"theDuelist:ScrapFactory": {
 		"NAME": "废料厂",
-		"DESCRIPTION": "贡 1. NL Gain [R] [R] 。",
-		"UPGRADE_DESCRIPTION": "贡 1. NL Gain [R] [R] [R] 。"
+		"DESCRIPTION": "贡 1. NL Gain [R] [R].",
+		"UPGRADE_DESCRIPTION": "贡 1. NL Gain [R] [R] [R]."
 	},
 	"theDuelist:GeminiElf": {
 		"NAME": "双子座精灵",
-		"DESCRIPTION": "Spellcaster NL 仪式 . NL 仪式再次: Gain 15 HP.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 . NL 仪式再次: Gain 15 HP."
+		"DESCRIPTION": "Spellcaster NL 仪式 !M!. NL 仪式再次: Gain 15 HP.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 !M!. NL 仪式再次: Gain 15 HP."
 	},
 	"theDuelist:BigFire": {
 		"NAME": "火焰地獄",
@@ -596,58 +596,58 @@
 	},
 	"theDuelist:SuperheavyOgre": {
 		"NAME": "超级食人魔",
-		"DESCRIPTION": "仪式 2. NL Gain  Dexterity. NL If you 贡 this monster for another Superheavy monster, gain 1 Dexterity. NL 排气。",
-		"UPGRADE_DESCRIPTION": "仪式 2. NL Deal  damage. NL Gain  Dexterity. NL If you 贡 this monster for another Superheavy monster, gain 1 Dexterity. NL 排气。"
+		"DESCRIPTION": "仪式 2. NL Gain !M! Dexterity. NL If you 贡 this monster for another Superheavy monster, gain 1 Dexterity. NL 排气。",
+		"UPGRADE_DESCRIPTION": "仪式 2. NL Deal !D! damage. NL Gain !M! Dexterity. NL If you 贡 this monster for another Superheavy monster, gain 1 Dexterity. NL 排气。"
 	},
 	"theDuelist:SuperheavyMagnet": {
 		"NAME": "超重磁铁",
-		"DESCRIPTION": "贡 2. NL Gain  格挡。 NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。 NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity."
+		"DESCRIPTION": "贡 2. NL Gain !B! Block. NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain !B! Block. NL Gain 2 random Magnets. NL If you 贡 a Magnet Warrior monster, gain 1 Dexterity."
 	},
 	"theDuelist:SuperheavyGeneral": {
 		"NAME": "超级将军",
-		"DESCRIPTION": "贡 5. NL Deal  damage. NL Gain  Dexterity. NL 排气。",
-		"UPGRADE_DESCRIPTION": "贡 5. NL Deal  damage. NL Gain  Dexterity. NL  排气。"
+		"DESCRIPTION": "贡 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL 排气。",
+		"UPGRADE_DESCRIPTION": "贡 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL  排气。"
 	},
 	"theDuelist:SuperheavyFlutist": {
 		"NAME": "超重的长笛演奏家",
-		"DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
-		"UPGRADE_DESCRIPTION": "仪式 1. Gain  格挡。 If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
+		"DESCRIPTION": "仪式 1. Gain !B! Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity.",
+		"UPGRADE_DESCRIPTION": "仪式 1. Gain !B! Block. If you 贡 this monster for another Superheavy monster, gain 1 Dexterity."
 	},
 	"theDuelist:SuperheavyDaihachi": {
 		"NAME": "超重daihachi",
-		"DESCRIPTION": "贡 5. NL Gain  Dexterity. NL Gain  格挡。 NL 排气。",
-		"UPGRADE_DESCRIPTION": "贡 5. NL Gain  Dexterity. NL Gain  格挡。 NL 排气。"
+		"DESCRIPTION": "贡 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL 排气。",
+		"UPGRADE_DESCRIPTION": "贡 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL 排气。"
 	},
 	"theDuelist:SuperheavyBlueBrawler": {
 		"NAME": "超重蓝色争吵者",
-		"DESCRIPTION": "贡 2. NL Deal  damage. NL Gain  Dexterity. NL 排气。",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Deal  damage. NL Gain  Dexterity. NL 排气。"
+		"DESCRIPTION": "贡 2. NL Deal !D! damage. NL Gain !M! Dexterity. NL 排气。",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Deal !D! damage. NL Gain !M! Dexterity. NL 排气。"
 	},
 	"theDuelist:SpiritHarp": {
 		"NAME": "豎琴精靈",
-		"DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain  格挡。"
+		"DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 2. NL Gain !B! Block."
 	},
 	"theDuelist:SnowDragon": {
 		"NAME": "雪龍",
-		"DESCRIPTION": "Dragon NL 仪式 1. NL Deal  damage. NL Channel a Frost.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1. NL Deal  damage. NL Channel a Frost."
+		"DESCRIPTION": "Dragon NL 仪式 1. NL Deal !D! damage. NL Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1. NL Deal !D! damage. NL Channel a Frost."
 	},
 	"theDuelist:SnowdustDragon": {
 		"NAME": "雪塵龍",
-		"DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Channel a Frost.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Channel a Frost."
+		"DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage. NL Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage. NL Channel a Frost."
 	},
 	"theDuelist:Raigeki": {
 		"NAME": "雷擊",
-		"DESCRIPTION": "Deal !D! damage to ALL enemies (through Block). Has a small chance to Stun each enemy.",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies (through Block). Has a high chance to Stun each enemy."
+		"DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block).",
+		"UPGRADE_DESCRIPTION": "Steal ALL Block from an enemy. Deal that much damage to ALL enemies (through Block)."
 	},
 	"theDuelist:PreventRat": {
 		"NAME": "防止鼠",
-		"DESCRIPTION": "仪式 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain  格挡。"
+		"DESCRIPTION": "仪式 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "仪式 1. NL Gain !B! Block."
 	},
 	"theDuelist:Ojamuscle": {
 		"NAME": "Oja-肌肉",
@@ -656,43 +656,43 @@
 	},
 	"theDuelist:MysticalElf": {
 		"NAME": "聖精灵",
-		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain  格挡。"
+		"DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 仪式 1. NL Gain !B! Block."
 	},
 	"theDuelist:IslandTurtle": {
 		"NAME": "島龜",
-		"DESCRIPTION": "Aqua NL 仪式 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL Gain  格挡。"
+		"DESCRIPTION": "Aqua NL 仪式 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL Gain !B! Block."
 	},
 	"theDuelist:GravityAxe": {
 		"NAME": "重力斧",
-		"DESCRIPTION": "Gain  Strength. NL You cannot gain or lose Strength for the rest of combat.",
-		"UPGRADE_DESCRIPTION": "Gain  Strength. NL You cannot gain or lose Strength for the rest of combat."
+		"DESCRIPTION": "Gain !M! Strength. NL You cannot gain or lose Strength for the rest of combat.",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength. NL You cannot gain or lose Strength for the rest of combat."
 	},
 	"theDuelist:FortressWarrior": {
 		"NAME": "堡垒战士",
-		"DESCRIPTION": "贡 2. NL 仪式 1. NL Deal  damage. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Deal  damage. NL Gain  格挡。"
+		"DESCRIPTION": "贡 2. NL 仪式 1. NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL 仪式 1. NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:MetalDragon": {
 		"NAME": "金屬龍",
-		"DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. NL Gain  格挡。"
+		"DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:CaveDragon": {
 		"NAME": "洞穴的潛龍",
-		"DESCRIPTION": "Dragon NL 仪式 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1 NL Gain  格挡。"
+		"DESCRIPTION": "Dragon NL 仪式 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1 NL Gain !B! Block."
 	},
 	"theDuelist:BlizzardDragon": {
 		"NAME": "暴雪龙",
-		"DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage. NL Channel a Frost.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage. NL Channel a Frost."
+		"DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage. NL Channel a Frost.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage. NL Channel a Frost."
 	},
 	"theDuelist:BabyDragon": {
 		"NAME": "幼龍",
-		"DESCRIPTION": "Dragon NL 仪式 2. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 2. NL Gain  格挡。"
+		"DESCRIPTION": "Dragon NL 仪式 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 2. NL Gain !B! Block."
 	},
 	"theDuelist:DarkFactory": {
 		"NAME": "大规模生产的黑暗工厂",
@@ -701,28 +701,28 @@
 	},
 	"theDuelist:CurseDragon": {
 		"NAME": "詛咒之龍",
-		"DESCRIPTION": "Dragon NL 贡 1. NL Deal  damage NL If you 贡 a Dragon, gain 5 HP.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 1. NL Deal  damage. NL If you 贡 a Dragon, gain 5 HP."
+		"DESCRIPTION": "Dragon NL 贡 1. NL Deal !D! damage NL If you 贡 a Dragon, gain 5 HP.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 1. NL Deal !D! damage. NL If you 贡 a Dragon, gain 5 HP."
 	},
 	"theDuelist:CyberDragon": {
 		"NAME": "電子龍",
-		"DESCRIPTION": "Dragon NL 贡 1. NL Deal  damage (through Block). NL If you 贡 a Dragon, gain 20 Gold. 排气。",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 1. NL Deal  damage (through Block). NL If you 贡 a Dragon, gain 20 Gold. 排气。"
+		"DESCRIPTION": "Dragon NL 贡 1. NL Deal !D! damage (through Block). NL If you 贡 a Dragon, gain 20 Gold. 排气。",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 1. NL Deal !D! damage (through Block). NL If you 贡 a Dragon, gain 20 Gold. 排气。"
 	},
 	"theDuelist:DragonMaster": {
 		"NAME": "究極龍騎士",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Create 2 random Dragons and 仪式再次 them on the target enemy.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Create 2 random upgraded Dragons and 仪式再次 them on the target enemy."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Create 2 random Dragons and 仪式再次 them on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Create 2 random upgraded Dragons and 仪式再次 them on the target enemy."
 	},
 	"theDuelist:FiendSkull": {
 		"NAME": "死亡魔龍",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage."
 	},
 	"theDuelist:FiveHeaded": {
 		"NAME": "五帝龙",
-		"DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 5. NL Deal  damage."
+		"DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 5. NL Deal !D! damage."
 	},
 	"theDuelist:FluteSummoning": {
 		"NAME": "喚龍笛",
@@ -731,8 +731,8 @@
 	},
 	"theDuelist:Gandora": {
 		"NAME": "破壞龍 鋼多拉",
-		"DESCRIPTION": "Dragon NL 贡 5. Exhaust your hand. Deal  damage, plus  damage for every card exhausted. Add 5 random, upgraded dragons to your hand. 排气。",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. Exhaust your hand. Deal  damage, plus  damage for every card exhausted. Add 5 random, upgraded dragons to your hand. 排气。"
+		"DESCRIPTION": "Dragon NL 贡 5. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your hand. 排气。",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your hand. 排气。"
 	},
 	"theDuelist:LordD": {
 		"NAME": "龍之支配者",
@@ -741,63 +741,63 @@
 	},
 	"theDuelist:HaneHane": {
 		"NAME": "哈尼哈尼",
-		"DESCRIPTION": "仪式 . NL Gain  格挡。 NL If this monster is tributed, 仪式 1 and gain  格挡。",
-		"UPGRADE_DESCRIPTION": "仪式 . NL Gain  格挡。 NL If this monster is tributed, 仪式 1 and gain  格挡。"
+		"DESCRIPTION": "仪式 !M!. NL Gain !B! Block. NL If this monster is tributed, 仪式 1 and gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "仪式 !M!. NL Gain !B! Block. NL If this monster is tributed, 仪式 1 and gain !B! Block."
 	},
 	"theDuelist:LesserDragon": {
 		"NAME": "下級龍",
-		"DESCRIPTION": "Dragon NL 仪式 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1. NL Deal  damage."
+		"DESCRIPTION": "Dragon NL 仪式 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1. NL Deal !D! damage."
 	},
 	"theDuelist:ThunderDragon": {
 		"NAME": "雷龍",
-		"DESCRIPTION": "Dragon NL 仪式 1. NL Deal  damage. NL If you 贡 this for a Dragon, Channel a Lightning.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1. NL Deal  damage. NL If you 贡 this for a Dragon, Channel a Lightning."
+		"DESCRIPTION": "Dragon NL 仪式 1. NL Deal !D! damage. NL If you 贡 this for a Dragon, Channel a Lightning.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 1. NL Deal !D! damage. NL If you 贡 this for a Dragon, Channel a Lightning."
 	},
 	"theDuelist:BlastJuggler": {
 		"NAME": "炸燀先生",
-		"DESCRIPTION": "仪式 1. Deal  damage. NL 仪式 1 Exploding Token. NL If you 贡 this monster, apply 3 random debuffs to random enemies.",
-		"UPGRADE_DESCRIPTION": "仪式 1. Deal  damage. NL 仪式 1 Exploding Token. NL If you 贡 this monster, apply 3 random debuffs to random enemies."
+		"DESCRIPTION": "仪式 1. Deal !D! damage. NL 仪式 1 Exploding Token. NL If you 贡 this monster, apply 3 random debuffs to random enemies.",
+		"UPGRADE_DESCRIPTION": "仪式 1. Deal !D! damage. NL 仪式 1 Exploding Token. NL If you 贡 this monster, apply 3 random debuffs to random enemies."
 	},
 	"theDuelist:LegendaryExodia": {
 		"NAME": "传说中的Exodia化身",
-		"DESCRIPTION": "贡 3. NL If you 贡 any piece of Exodia to play this, deal  damage. Add 10 damage for each piece of Exodia you 贡.",
-		"UPGRADE_DESCRIPTION": "贡 3. NL If you 贡 any piece of Exodia to play this, deal  damage. Add 10 damage for each piece of Exodia you 贡."
+		"DESCRIPTION": "贡 3. NL If you 贡 any piece of Exodia to play this, deal !D! damage. Add 10 damage for each piece of Exodia you 贡.",
+		"UPGRADE_DESCRIPTION": "贡 3. NL If you 贡 any piece of Exodia to play this, deal !D! damage. Add 10 damage for each piece of Exodia you 贡."
 	},
 	"theDuelist:SuperancientDinobeast": {
 		"NAME": "超级恐龙",
-		"DESCRIPTION": "贡 2. NL Deal  damage. NL For each Dragon tributed to play this card, Gain 10 Block.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Deal  damage. NL For each Dragon tributed to play this card, Gain 10 Block."
+		"DESCRIPTION": "贡 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, add a random card to your hand.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, add 2 random cards to your hand."
 	},
 	"theDuelist:ArmoredZombie": {
 		"NAME": "鎧武者殭屍",
-		"DESCRIPTION": "Zombie NL 仪式 1. NL Gain  格挡。 NL 仪式再次: Heal 10 HP.",
-		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Gain  格挡。 NL 仪式再次: Heal 10 HP."
+		"DESCRIPTION": "Zombie NL 仪式 1. NL Gain !B! Block. NL 仪式再次: Heal 10 HP.",
+		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Gain !B! Block. NL 仪式再次: Heal 10 HP."
 	},
 	"theDuelist:MoltenZombie": {
 		"NAME": "灼熱殭屍",
-		"DESCRIPTION": "Zombie NL 仪式 1. NL Deal  damage. NL 仪式再次: Deal 15 damage to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Deal  damage. NL 仪式再次: Deal 15damage to ALL enemies."
+		"DESCRIPTION": "Zombie NL 仪式 1. NL Deal !D! damage. NL 仪式再次: Deal 20 damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 1. NL Deal !D! damage. NL 仪式再次: Deal 20 damage to ALL enemies."
 	},
 	"theDuelist:TokenVacuum": {
 		"NAME": "令牌真空",
-		"DESCRIPTION": "贡 ALL of your tokens. 仪式 a random monster and deal  damage to a random enemy for each token Tributed.",
-		"UPGRADE_DESCRIPTION": "贡 ALL of your tokens. 仪式 a random monster and deal  damage to a random enemy for each token Tributed."
+		"DESCRIPTION": "贡 ALL of your tokens. 仪式 a random monster and deal !D! damage to a random enemy for each token Tributed.",
+		"UPGRADE_DESCRIPTION": "贡 ALL of your tokens. 仪式 a random monster and deal !D! damage to a random enemy for each token Tributed."
 	},
 	"theDuelist:Mountain": {
 		"NAME": "山",
-		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more 格挡。 Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
-		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more 格挡。 Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
+		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
+		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
 	},
 	"theDuelist:Yami": {
 		"NAME": "雅美",
-		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more 格挡。 Whenever you 仪式 a Spellcaster, gain 1 extra 仪式.",
-		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more 格挡。 Whenever you 仪式 a Spellcaster, gain 1 extra 仪式."
+		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you 仪式 a Spellcaster, gain 1 extra 仪式.",
+		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you 仪式 a Spellcaster, gain 1 extra 仪式."
 	},
 	"theDuelist:VioletCrystal": {
 		"NAME": "紫水晶",
-		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more 格挡。 Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison.",
-		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more 格挡。 Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison."
+		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison.",
+		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison."
 	},
 	"theDuelist:MachineKing": {
 		"NAME": "機械王",
@@ -806,18 +806,18 @@
 	},
 	"theDuelist:BookSecret": {
 		"NAME": "秘術之書",
-		"DESCRIPTION": "Add  randomized Spellcasters to your hand. 排气。",
-		"UPGRADE_DESCRIPTION": "Add  randomized, upgraded Spellcasters to your hand. 排气。"
+		"DESCRIPTION": "Add !M! randomized Spellcasters to your hand. 排气。",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Spellcasters to your hand. 排气。"
 	},
 	"theDuelist:SuperSolarNutrient": {
 		"NAME": "超级太阳能养分",
-		"DESCRIPTION": "Add  randomized Insects or Plants to your hand. 排气。",
-		"UPGRADE_DESCRIPTION": "Add  randomized, upgraded Insects or Plants to your hand. 排气。"
+		"DESCRIPTION": "Add !M! randomized Insects or Plants to your hand. 排气。",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Insects or Plants to your hand. 排气。"
 	},
 	"theDuelist:ShadowToon": {
 		"NAME": "影子香椿",
-		"DESCRIPTION": "Add  randomized Toon cards to your hand.",
-		"UPGRADE_DESCRIPTION": "Add  randomized, upgraded Toon cards to your hand."
+		"DESCRIPTION": "Add !M! randomized Toon cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Toon cards to your hand."
 	},
 	"theDuelist:HeavyStorm": {
 		"NAME": "大嵐",
@@ -826,33 +826,33 @@
 	},
 	"theDuelist:StrayLambs": {
 		"NAME": "流浪羔羊",
-		"DESCRIPTION": "Increment 2. 仪式  Kuriboh Token.",
-		"UPGRADE_DESCRIPTION": "Increment 2. 仪式  Kuriboh Tokens."
+		"DESCRIPTION": "Increment 2. 仪式 !M! Kuriboh Token.",
+		"UPGRADE_DESCRIPTION": "Increment 2. 仪式 !M! Kuriboh Tokens."
 	},
 	"theDuelist:KingYami": {
 		"NAME": "暗魔界的霸王",
-		"DESCRIPTION": "Fiend NL 仪式 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Fiend NL 仪式 1. NL Deal  damage."
+		"DESCRIPTION": "Fiend NL 仪式 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Fiend NL 仪式 1. NL Deal !D! damage."
 	},
 	"theDuelist:Lajinn": {
 		"NAME": "燈之魔精",
-		"DESCRIPTION": "Fiend NL 仪式 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Fiend NL 仪式 1. NL Deal  damage."
+		"DESCRIPTION": "Fiend NL 仪式 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Fiend NL 仪式 1. NL Deal !D! damage."
 	},
 	"theDuelist:BlacklandFireDragon": {
 		"NAME": "黑暗龍王",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. Channel a Fire.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage. Channel a Fire."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. Channel a Fire.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage. Channel a Fire."
 	},
 	"theDuelist:WhiteNightDragon": {
 		"NAME": "藍冰之白夜龍",
-		"DESCRIPTION": "Dragon NL 贡 4. NL Deal  damage. Channel an Air.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. Channel an Air."
+		"DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage. Channel an Air.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. Channel an Air."
 	},
 	"theDuelist:WhiteHornDragon": {
 		"NAME": "白角龙",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. Channel an Air.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal  damage. Channel an Air."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. Channel an Air.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 2. NL Deal !D! damage. Channel an Air."
 	},
 	"theDuelist:FogKing": {
 		"NAME": "雾王",
@@ -861,23 +861,23 @@
 	},
 	"theDuelist:RevivalJam": {
 		"NAME": "再生史萊姆",
-		"DESCRIPTION": "Aqua NL 仪式 1. NL When you 贡 this monster, 仪式  Jam Tokens.",
-		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL When you 贡 this monster, 仪式  Jam Tokens."
+		"DESCRIPTION": "Aqua NL 仪式 1. NL When you 贡 this monster, 仪式 !M! Jam Tokens.",
+		"UPGRADE_DESCRIPTION": "Aqua NL 仪式 1. NL When you 贡 this monster, 仪式 !M! Jam Tokens."
 	},
 	"theDuelist:StimPack": {
 		"NAME": "興奮劑",
-		"DESCRIPTION": "仪式  Exploding Tokens.",
-		"UPGRADE_DESCRIPTION": "仪式  Exploding Tokens. Add 2 copies of this card to your draw pile."
+		"DESCRIPTION": "仪式 !M! Exploding Tokens.",
+		"UPGRADE_DESCRIPTION": "仪式 !M! Exploding Tokens. Add 2 copies of this card to your draw pile."
 	},
 	"theDuelist:BottomlessTrapHole": {
 		"NAME": "奈落深穴",
-		"DESCRIPTION": "Discard every monster in your draw pile. Deal  damage for each monster discarded. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Innate. NL Discard every monster in your draw pile. Deal  damage for each monster discarded. NL 排气。"
+		"DESCRIPTION": "Discard every monster in your draw pile. Deal !D! damage for each monster discarded. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Innate. NL Discard every monster in your draw pile. Deal !D! damage for each monster discarded. NL 排气。"
 	},
 	"theDuelist:SwordDeepSeated": {
 		"NAME": "執念之劍",
-		"DESCRIPTION": "Gain 5 Strength this turn. NL Add  copies of this card to your draw pile, plus  more copies for each Sword of Deep-Seated you have played this combat.",
-		"UPGRADE_DESCRIPTION": "Gain 5 Strength this turn. NL Add  copy of this card to your draw pile, plus  more copy for each Sword of Deep-Seated you have played this combat. NL 排气。"
+		"DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copies of this card to your draw pile, plus !M! more copies for each Sword of Deep-Seated you have played this combat.",
+		"UPGRADE_DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copy of this card to your draw pile, plus !M! more copy for each Sword of Deep-Seated you have played this combat. NL 排气。"
 	},
 	"theDuelist:MonsterEgg": {
 		"NAME": "怪物蛋",
@@ -896,38 +896,38 @@
 	},
 	"theDuelist:PetitMoth": {
 		"NAME": "幼蟲寶寶",
-		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL 排气。",
-		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL 排气。"
+		"DESCRIPTION": "Insect NL 仪式 1. NL Gain !B! Block. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain !B! Block. NL 排气。"
 	},
 	"theDuelist:PetitRef": {
 		"NAME": "幼蟲寶寶",
-		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。"
+		"DESCRIPTION": "Insect NL 仪式 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain !B! Block."
 	},
 	"theDuelist:CocoonEvolution": {
 		"NAME": "進化之繭",
-		"DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+		"DESCRIPTION": "贡 2. NL Gain !B! Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain !B! Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
 	},
 	"theDuelist:CocoonRef": {
 		"NAME": "進化之繭",
-		"DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
-		"UPGRADE_DESCRIPTION": "贡 2. NL Gain  格挡。 NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
+		"DESCRIPTION": "贡 2. NL Gain !B! Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 3 more turns.",
+		"UPGRADE_DESCRIPTION": "贡 2. NL Gain !B! Block. NL If you 贡 Petit Moth, add a copy of Great Moth to your hand after 2 more turns."
 	},
 	"theDuelist:GreatMoth": {
-		"NAME": "巨蛾",
-		"DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal  damage. Apply  Poison. NL Add a copy of Petit Moth to your hand.",
-		"UPGRADE_DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal  damage. Apply  Poison. NL Add a copy of Petit Moth to your hand."
+		"NAME": "Great Moth",
+		"DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
 	},
 	"theDuelist:GreatRef": {
 		"NAME": "巨蛾",
-		"DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal  damage. Apply  Poison. NL Add a copy of Petit Moth to your hand.",
-		"UPGRADE_DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal  damage. Apply  Poison. NL Add a copy of Petit Moth to your hand."
+		"DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand.",
+		"UPGRADE_DESCRIPTION": "Insect NL Purge. 贡 2. NL Deal !D! damage. Apply !M! Poison. NL Add a copy of Petit Moth to your hand."
 	},
 	"theDuelist:CheerfulCoffin": {
 		"NAME": "開朗的殯葬師",
-		"DESCRIPTION": "Discard  cards.",
-		"UPGRADE_DESCRIPTION": "Discard  cards."
+		"DESCRIPTION": "Discard !M! cards.",
+		"UPGRADE_DESCRIPTION": "Discard !M! cards."
 	},
 	"theDuelist:TheCreator": {
 		"NAME": "創世神",
@@ -936,8 +936,8 @@
 	},
 	"theDuelist:Polymerization": {
 		"NAME": "融合",
-		"DESCRIPTION": "仪式再次  copies of random monsters from your hand on an enemy.",
-		"UPGRADE_DESCRIPTION": "仪式再次  copies of random monsters from your hand on an enemy."
+		"DESCRIPTION": "仪式再次 !M! copies of random monsters from your hand on an enemy.",
+		"UPGRADE_DESCRIPTION": "仪式再次 !M! copies of random monsters from your hand on an enemy."
 	},
 	"theDuelist:MiniPolymerization": {
 		"NAME": "小融合",
@@ -946,83 +946,83 @@
 	},
 	"theDuelist:Predaponics": {
 		"NAME": "Predaponics",
-		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply  Poison. NL Apply 1 random debuff.",
-		"UPGRADE_DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply  Poison. NL Apply 1 random debuff."
+		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff.",
+		"UPGRADE_DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff."
 	},
 	"theDuelist:BasicInsect": {
 		"NAME": "昆蟲人",
-		"DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL Apply  Poison.",
-		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain  格挡。 NL Apply  Poison."
+		"DESCRIPTION": "Insect NL 仪式 1. NL Gain !B! Block. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Gain !B! Block. NL Apply !M! Poison."
 	},
 	"theDuelist:PredaplantChimerafflesia": {
 		"NAME": "P. Chimerafflesia",
-		"DESCRIPTION": "Predaplant NL 贡 3. NL Deal  damage. NL If you 贡 a Predaplant, add a 0-cost copy of Polymerization to your hand.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 贡 3. NL Deal  damage. NL If you 贡 a Predaplant, add a 0-cost copy of Polymerization to your hand."
+		"DESCRIPTION": "Predaplant NL 贡 3. NL Deal !D! damage. NL If you 贡 a Predaplant, add a 0-cost copy of Polymerization to your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 贡 3. NL Deal !D! damage. NL If you 贡 a Predaplant, add a 0-cost copy of Polymerization to your hand."
 	},
 	"theDuelist:PredaplantChlamydosundew": {
 		"NAME": "P. Chlamydosundew",
-		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。 NL Fetch a Plant or Insect from your draw pile.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。 NL Fetch 2 Plants or Insects from your draw pile."
+		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain !B! Block. NL Fetch a Plant or Insect from your draw pile.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain !B! Block. NL Fetch 2 Plants or Insects from your draw pile."
 	},
 	"theDuelist:PredaplantDrosophyllum": {
 		"NAME": "P. 露叶毛毡苔科",
-		"DESCRIPTION": "Predaplant NL 贡 1. NL Deal  damage. NL If you 贡 a Predaplant, 仪式再次 a copy of a random Plant monster from your hand.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 贡 1. NL Deal  damage. NL If you 贡 a Predaplant, 仪式再次 a copy of a random Plant monster from your hand."
+		"DESCRIPTION": "Predaplant NL 贡 1. NL Deal !D! damage. NL If you 贡 a Predaplant, 仪式再次 a copy of a random Plant monster from your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 贡 1. NL Deal !D! damage. NL If you 贡 a Predaplant, 仪式再次 a copy of a random Plant monster from your hand."
 	},
 	"theDuelist:PredaplantFlytrap": {
 		"NAME": "P. 捕蝇草",
-		"DESCRIPTION": "Predaplant NL 仪式 2 Predaplant Tokens. NL Apply  Poison.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 2 Predaplant Tokens. NL Apply  Poison."
+		"DESCRIPTION": "Predaplant NL 仪式 2 Predaplant Tokens. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 2 Predaplant Tokens. NL Apply !M! Poison."
 	},
 	"theDuelist:PredaplantPterapenthes": {
 		"NAME": "P. Pterapenthes",
-		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain  格挡。"
+		"DESCRIPTION": "Predaplant NL 仪式 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Gain !B! Block."
 	},
 	"theDuelist:PredaplantSarraceniant": {
 		"NAME": "P. Sarraceniant",
-		"DESCRIPTION": "Predaplant NL 仪式 1. NL Whenever you are attacked, apply  Poison to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Whenever you are attacked, apply  Poison to ALL enemies."
+		"DESCRIPTION": "Predaplant NL 仪式 1. NL Whenever you are attacked, apply !M! Poison to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Whenever you are attacked, apply !M! Poison to ALL enemies."
 	},
 	"theDuelist:PredaplantSpinodionaea": {
 		"NAME": "P. Spinodionaea",
-		"DESCRIPTION": "Predaplant NL 仪式 1. NL Deal  damage. NL If you 贡 this monster for an Insect or Plant, add a random Predaplant card to your hand.",
-		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Deal  damage. NL If you 贡 this monster for an Insect or Plant, add a random Predaplant card to your hand."
+		"DESCRIPTION": "Predaplant NL 仪式 1. NL Deal !D! damage. NL If you 贡 this monster for an Insect or Plant, add a random Predaplant card to your hand.",
+		"UPGRADE_DESCRIPTION": "Predaplant NL 仪式 1. NL Deal !D! damage. NL If you 贡 this monster for an Insect or Plant, add a random Predaplant card to your hand."
 	},
 	"theDuelist:EmpressMantis": {
 		"NAME": "女帝螳螂",
-		"DESCRIPTION": "Insect NL 贡 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Insect NL 贡 1. NL Deal  damage."
+		"DESCRIPTION": "Insect NL 贡 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Insect NL 贡 1. NL Deal !D! damage."
 	},
 	"theDuelist:Grasschopper": {
 		"NAME": "割草机",
-		"DESCRIPTION": "Insect NL 贡 2. NL Deal  damage to all enemies for each Insect or Plant you 贡 to play this.",
-		"UPGRADE_DESCRIPTION": "Insect NL 贡 3. NL Deal  damage to all enemies for each Insect or Plant you 贡 to play this."
+		"DESCRIPTION": "Insect NL 贡 2. NL Deal !D! damage to all enemies for each Insect or Plant you 贡 to play this.",
+		"UPGRADE_DESCRIPTION": "Insect NL 贡 3. NL Deal !D! damage to all enemies for each Insect or Plant you 贡 to play this."
 	},
 	"theDuelist:ManEaterBug": {
 		"NAME": "男人吃臭虫",
-		"DESCRIPTION": "Insect NL 仪式 1. NL Deal  damage. NL If you 贡 this for an Insect or Plant, deal  damage to all enemies.",
-		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Deal  damage. NL If you 贡 this for an Insect or Plant, deal  damage to all enemies."
+		"DESCRIPTION": "Insect NL 仪式 1. NL Deal !D! damage. NL If you 贡 this for an Insect or Plant, deal !M! damage to all enemies.",
+		"UPGRADE_DESCRIPTION": "Insect NL 仪式 1. NL Deal !D! damage. NL If you 贡 this for an Insect or Plant, deal !M! damage to all enemies."
 	},
 	"theDuelist:Predapruning": {
 		"NAME": "Predapruning",
-		"DESCRIPTION": "Choose  Plant monster to 仪式再次 from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand.",
-		"UPGRADE_DESCRIPTION": "Choose  Plant monsters to 仪式再次 from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand."
+		"DESCRIPTION": "Choose !M! Plant monster to 仪式再次 from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand.",
+		"UPGRADE_DESCRIPTION": "Choose !M! Plant monsters to 仪式再次 from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand."
 	},
 	"theDuelist:BSkullDragon": {
 		"NAME": "暗黑魔龍",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL If you 贡 a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL If you 贡 a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL If you 贡 a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL If you 贡 a Dragon to play this, add a 0-cost copy of Summoned Skull to your hand."
 	},
 	"theDuelist:DarkfireDragon": {
 		"NAME": "黑暗火焰龍",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Channel a Shadow.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Channel a Shadow."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Channel a Shadow.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Channel a Shadow."
 	},
 	"theDuelist:TrihornedDragon": {
 		"NAME": "三角魔龍",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Channel a random Orb for each Dragon you 贡 to play this.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal  damage. NL Choose an Orb to Channel for each Dragon you 贡 to play this."
+		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Channel a random Orb for each Dragon you 贡 to play this.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Choose an Orb to Channel for each Dragon you 贡 to play this."
 	},
 	"theDuelist:Wiretap": {
 		"NAME": "窃听",
@@ -1036,8 +1036,8 @@
 	},
 	"theDuelist:OceanDragonLord": {
 		"NAME": "海洋领主",
-		"DESCRIPTION": "Aqua Dragon NL 贡 5. NL Deal  damage. NL Channel a Splash.",
-		"UPGRADE_DESCRIPTION": "Aqua Dragon NL 贡 3. NL Deal  damage. NL Channel a Splash."
+		"DESCRIPTION": "Aqua Dragon NL 贡 5. NL Deal !D! damage. NL Channel a Splash.",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL 贡 3. NL Deal !D! damage. NL Channel a Splash."
 	},
 	"theDuelist:LeviaDragon": {
 		"NAME": "Levia-龙",
@@ -1051,23 +1051,23 @@
 	},
 	"theDuelist:JerryBeansMan": {
 		"NAME": "杰里豆人",
-		"DESCRIPTION": "Plant NL 仪式 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Plant NL 仪式 1. NL Deal  damage."
+		"DESCRIPTION": "Plant NL 仪式 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Plant NL 仪式 1. NL Deal !D! damage."
 	},
 	"theDuelist:Reinforcements": {
 		"NAME": "增援",
-		"DESCRIPTION": "Gain  Strength. 排气。",
-		"UPGRADE_DESCRIPTION": "Gain  Strength. 排气。"
+		"DESCRIPTION": "Gain !M! Strength. 排气。",
+		"UPGRADE_DESCRIPTION": "Gain !M! Strength. 排气。"
 	},
 	"theDuelist:UltimateOffering": {
 		"NAME": "终极服务",
-		"DESCRIPTION": "Whenever you attempt to 仪式 with a max stack of summons: lose 3 HP, Increment  and then 仪式 .",
-		"UPGRADE_DESCRIPTION": "Whenever you attempt to 仪式 with a max stack of summons: lose 3 HP, Increment  and then 仪式 ."
+		"DESCRIPTION": "Whenever you attempt to 仪式 with a max stack of summons: lose 3 HP, Increment !M! and then 仪式 !M!.",
+		"UPGRADE_DESCRIPTION": "Whenever you attempt to 仪式 with a max stack of summons: lose 3 HP, Increment !M! and then 仪式 !M!."
 	},
 	"theDuelist:GuardianAngel": {
 		"NAME": "守护天使琼",
-		"DESCRIPTION": "贡 2 NL Deal  damage. NL Deal  extra damage for each Spellcaster you 贡. NL Heal for however much total damage is done.",
-		"UPGRADE_DESCRIPTION": "贡 2 NL Deal  damage. NL Deal  extra damage for each Spellcaster you 贡. NL Heal for however much total damage is done."
+		"DESCRIPTION": "贡 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you 贡. NL Heal for however much total damage is done.",
+		"UPGRADE_DESCRIPTION": "贡 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you 贡. NL Heal for however much total damage is done."
 	},
 	"theDuelist:Wiseman": {
 		"NAME": "怀斯曼的圣杯",
@@ -1086,18 +1086,18 @@
 	},
 	"theDuelist:ExploderDragon": {
 		"NAME": "爆炸龙",
-		"DESCRIPTION": "Dragon NL 仪式 2 Explosive Tokens. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 2 Explosive Tokens. NL Deal  damage."
+		"DESCRIPTION": "Dragon NL 仪式 2 Explosive Tokens. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 仪式 2 Explosive Tokens. NL Deal !D! damage."
 	},
 	"theDuelist:Illusionist": {
 		"NAME": "魔术师不露脸的法师",
-		"DESCRIPTION": "Spellcaster NL 贡 1. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL 贡 1. NL Gain  格挡。"
+		"DESCRIPTION": "Spellcaster NL 贡 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL 贡 1. NL Gain !B! Block."
 	},
 	"theDuelist:AcidTrapHole": {
 		"NAME": "酸陷阱孔",
-		"DESCRIPTION": "Discard  random monsters from your draw pile, and deal damage equal to those monsters combined total damage to an enemy.",
-		"UPGRADE_DESCRIPTION": "Innate. NL Discard  random monsters from your draw pile, and deal damage equal to those monsters combined total damage to an enemy."
+		"DESCRIPTION": "Discard !M! random monsters from your draw pile, and deal damage equal to those monsters combined total damage to an enemy.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Discard !M! random monsters from your draw pile, and deal damage equal to those monsters combined total damage to an enemy."
 	},
 	"theDuelist:AltarTribute": {
 		"NAME": "贡品祭坛",
@@ -1106,8 +1106,8 @@
 	},
 	"theDuelist:BlizzardPrincess": {
 		"NAME": "暴雪公主",
-		"DESCRIPTION": "贡 1. NL Deal  damage. NL Channel 2 Frost.",
-		"UPGRADE_DESCRIPTION": "贡 1. NL Deal  damage. NL Channel 2 Frost."
+		"DESCRIPTION": "贡 1. NL Deal !D! damage. NL Channel 2 Frost.",
+		"UPGRADE_DESCRIPTION": "贡 1. NL Deal !D! damage. NL Channel 2 Frost."
 	},
 	"theDuelist:CardSafeReturn": {
 		"NAME": "安全返回卡",
@@ -1121,13 +1121,13 @@
 	},
 	"theDuelist:ComicHand": {
 		"NAME": "漫画之手",
-		"DESCRIPTION": "贡 ALL of your Toons. 仪式 a random monster and deal  damage to a random enemy for each Toon Tributed.",
-		"UPGRADE_DESCRIPTION": "贡 ALL of your Toons. 仪式 a random monster and deal  damage to a random enemy for each Toon Tributed."
+		"DESCRIPTION": "贡 ALL of your Toons. 仪式 a random monster and deal !D! damage to a random enemy for each Toon Tributed.",
+		"UPGRADE_DESCRIPTION": "贡 ALL of your Toons. 仪式 a random monster and deal !D! damage to a random enemy for each Toon Tributed."
 	},
 	"theDuelist:ContractExodia": {
 		"NAME": "与Exodia签订合同",
-		"DESCRIPTION": "Add 2 random Exodia cards to your hand.",
-		"UPGRADE_DESCRIPTION": "Add 2 random Exodia cards to your hand."
+		"DESCRIPTION": "Add 3 random Exodia cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Add 3 random Exodia cards to your hand."
 	},
 	"theDuelist:DarkCreator": {
 		"NAME": "黑暗的造物主",
@@ -1136,18 +1136,18 @@
 	},
 	"theDuelist:DoubleCoston": {
 		"NAME": "双重Coston",
-		"DESCRIPTION": "Zombie NL 仪式 2. NL Gain  格挡。",
-		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 2. NL Gain  格挡。"
+		"DESCRIPTION": "Zombie NL 仪式 2. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Zombie NL 仪式 2. NL Gain !B! Block."
 	},
 	"theDuelist:GatesDarkWorld": {
 		"NAME": "黑暗世界的大门",
-		"DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more 格挡。",
-		"UPGRADE_DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more 格挡。"
+		"DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block.",
+		"UPGRADE_DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block."
 	},
 	"theDuelist:HammerShot": {
 		"NAME": "锤击",
-		"DESCRIPTION": "Deal  damage multiplied by your max Summons to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Deal  damage multiplied by your max Summons to ALL enemies."
+		"DESCRIPTION": "Deal !D! damage multiplied by your max Summons to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage multiplied by your max Summons to ALL enemies."
 	},
 	"theDuelist:HeartUnderdog": {
 		"NAME": "失败者的心脏",
@@ -1171,18 +1171,18 @@
 	},
 	"theDuelist:InsectKnight": {
 		"NAME": "昆虫骑士",
-		"DESCRIPTION": "Insect NL Summon 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Deal  damage."
+		"DESCRIPTION": "Insect NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Deal !D! damage."
 	},
 	"theDuelist:JiraiGumo": {
 		"NAME": "Jirai Gumo",
-		"DESCRIPTION": "Insect NL Summon 1. NL 50% chance to deal  damage.",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL 50% chance to deal  damage."
+		"DESCRIPTION": "Insect NL Summon 1. NL 50% chance to deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL 50% chance to deal !D! damage."
 	},
 	"theDuelist:MythicalBeast": {
 		"NAME": "神话野兽Cerberus",
-		"DESCRIPTION": "Spellcaster NL Tribute 2. NL Deal  damage, plus  extra damage for every Spell played this combat.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute 2. NL Deal  damage, plus  extra damage for every Spell played this combat."
+		"DESCRIPTION": "Spellcaster NL Tribute 2. NL Deal !D! damage, plus !M! extra damage for every Spell played this combat.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute 2. NL Deal !D! damage, plus !M! extra damage for every Spell played this combat."
 	},
 	"theDuelist:PotForbidden": {
 		"NAME": "禁止的锅",
@@ -1191,8 +1191,8 @@
 	},
 	"theDuelist:SmashingGround": {
 		"NAME": "粉碎地面",
-		"DESCRIPTION": "Deal  damage for every monster you have summoned this combat.",
-		"UPGRADE_DESCRIPTION": "Deal  damage for every monster you have summoned this combat."
+		"DESCRIPTION": "Deal !D! damage for every monster you have summoned this combat.",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage for every monster you have summoned this combat."
 	},
 	"theDuelist:Terraforming": {
 		"NAME": "地球化",
@@ -1201,13 +1201,18 @@
 	},
 	"theDuelist:TerraTerrible": {
 		"NAME": "土地太可怕了",
-		"DESCRIPTION": "Fiend NL Summon 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1. NL Deal  damage."
+		"DESCRIPTION": "Fiend NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1. NL Deal !D! damage."
 	},
 	"theDuelist:IcyCrevasse": {
 		"NAME": "冰冷的裂缝",
-		"DESCRIPTION": "If you have any Frost channeled, gain 1 Focus. NL Exhaust.",
+		"DESCRIPTION": "If you have any Frost channeled, gain a random amount of (1-2) of Focus. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Gain 1 Focus for each Frost you have channeled. NL Exhaust."
+	},
+	"theDuelist:NeoMagic": {
+		"NAME": "新魔术剑士",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal !D! damage."
 	},
 	"theDuelist:GoldenApples": {
 		"NAME": "金苹果",
@@ -1218,11 +1223,6 @@
 		"NAME": "球形栗子球h",
 		"DESCRIPTION": "Whenever you Increment, add a random card to your hand.",
 		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Increment, add a random card to your hand."
-	},
-	"theDuelist:NeoMagic": {
-		"NAME": "新魔术剑士",
-		"DESCRIPTION": "Spellcaster NL Summon 1. NL Deal  damage.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Deal  damage."
 	},
 	"theDuelist:BasicArchetype": {
 		"NAME": "决斗卡",
@@ -1310,32 +1310,32 @@
 		"EXTENDED_DESCRIPTION": ["Traps", "All Trap cards, except Toon Mask."]
 	},
 	"theDuelist:SpellcasterToken": {
-		"NAME": "魔法师代币",
+		"NAME": "Spellcaster Token",
 		"DESCRIPTION": "魔法师",
 		"UPGRADE_DESCRIPTION": "魔法师"
 	},
 	"theDuelist:PredaplantToken": {
-		"NAME": "Predaplant 代币",
+		"NAME": "Predaplant Token",
 		"DESCRIPTION": "Predaplant",
 		"UPGRADE_DESCRIPTION": "Predaplant"
 	},
 	"theDuelist:PlantToken": {
-		"NAME": "Plant 代币",
-		"DESCRIPTION": "Plant",
-		"UPGRADE_DESCRIPTION": "Plant"
+		"NAME": "Plant Token",
+		"DESCRIPTION": "植物",
+		"UPGRADE_DESCRIPTION": "植物"
 	},
 	"theDuelist:InsectToken": {
-		"NAME": "Insect 代币",
-		"DESCRIPTION": "Insect",
-		"UPGRADE_DESCRIPTION": "Insect"
+		"NAME": "Insect Token",
+		"DESCRIPTION": "昆虫",
+		"UPGRADE_DESCRIPTION": "昆虫"
 	},
 	"theDuelist:KuribohToken": {
-		"NAME": "栗子球代币",
-		"DESCRIPTION": "Gain Intangible when Tributed for any non-Dragon monster.",
-		"UPGRADE_DESCRIPTION": "Gain Intangible when Tributed for any non-Dragon monster."
+		"NAME": "Kuriboh Token",
+		"DESCRIPTION": "获得无实体什么时候祭品对于任何非龙怪物。",
+		"UPGRADE_DESCRIPTION": "获得无实体什么时候祭品对于任何非龙怪物。"
 	},
 	"theDuelist:ExplosiveToken": {
-		"NAME": "爆炸代币",
+		"NAME": "Exploding Token",
 		"DESCRIPTION": "Lose 3 HP when Tributed.",
 		"UPGRADE_DESCRIPTION": "Lose 3 HP when Tributed."
 	},
@@ -1345,14 +1345,14 @@
 		"UPGRADE_DESCRIPTION": "Debug Effect"
 	},
 	"theDuelist:ShadowToken": {
-		"NAME": "阴影代币",
+		"NAME": "Shadow Token",
 		"DESCRIPTION": "When Tributed, increases the Passive and Evoke amounts of all Shadow Orbs by 1.",
 		"UPGRADE_DESCRIPTION": "When Tributed, increases the Passive and Evoke amounts of all Shadow Orbs by 1."
 	},
 	"theDuelist:Token": {
-		"NAME": "代币",
-		"DESCRIPTION": "Gain 1 格挡。",
-		"UPGRADE_DESCRIPTION": "Gain 1 格挡。"
+		"NAME": "Token",
+		"DESCRIPTION": "Gain 1 Block.",
+		"UPGRADE_DESCRIPTION": "Gain 1 Block."
 	},
 	"theDuelist:WaterOrbCard": {
 		"NAME": "Water",
@@ -1461,7 +1461,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "太陽神的翼神龍",
-		"DESCRIPTION": "贡 5. NL Deal  damage X times.",
-		"UPGRADE_DESCRIPTION": "贡 4. NL Deal  damage X times."
+		"DESCRIPTION": "贡 5. NL Deal !D! damage X times.",
+		"UPGRADE_DESCRIPTION": "贡 4. NL Deal !D! damage X times."
 	}
 }

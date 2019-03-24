@@ -52,13 +52,13 @@ public class Invigoration extends DuelistCard
 	    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromEitherSet(DefaultMod.PLANT, DefaultMod.INSECT);    	
 	    	String cardNameA = extraDragA.originalName;    	
 	    	if (DefaultMod.debug) { System.out.println("theDuelist:Invigoration --- > Generated: " + cardNameA); }
-	    	//if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }    	
+	    	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }    	
 	        extraDragA.freeToPlayOnce = true;       
 	        extraDragA.applyPowers();      
 	        extraDragA.purgeOnUse = true;
 	        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));    	
-	        //extraDragA.onResummon(1);
-	        //extraDragA.checkResummon();
+	        extraDragA.onResummon(1);
+	        extraDragA.checkResummon();
     	}
     	else
     	{
@@ -73,7 +73,7 @@ public class Invigoration extends DuelistCard
     			natureMonsters.add(nature);
     		}
     		
-    		openRandomCardChoice(3, natureMonsters);
+    		openRandomCardChoiceDuelist(3, natureMonsters, true);
     	}
     }
 

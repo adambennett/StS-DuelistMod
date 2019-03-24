@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.BaseMod;
 import basemod.abstracts.DynamicVariable;
 import basemod.helpers.TooltipInfo;
+import defaultmod.DefaultMod;
+import defaultmod.patches.DuelistCard;
 
 public class DuelistModalChoice
 {
@@ -34,16 +36,23 @@ public class DuelistModalChoice
 		return cards.get(index);
 	}
 
-	public void open()
+	public void open(boolean resummon)
 	{
 		List<AbstractCard> cards_copy = new ArrayList<>(cards.size());
 		for (AbstractCard c : cards) {
 			AbstractCard copy = c.makeStatEquivalentCopy();
 			copy.freeToPlayOnce = true;
+			if (!copy.tags.contains(DefaultMod.TRIBUTE)) { copy.misc = 52; }   
 			if (copy.type != AbstractCard.CardType.POWER) {
 				copy.purgeOnUse = true;
 			} else {
 				copy.purgeOnUse = false;
+			}
+			if (copy instanceof DuelistCard)
+			{
+				
+				((DuelistCard) copy).onResummon(1);
+				((DuelistCard) copy).checkResummon();
 			}
 			cards_copy.add(copy);
 		}

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.*;
 
 public class FluteSummoning extends DuelistCard 
@@ -49,14 +50,8 @@ public class FluteSummoning extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			//AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.DRAGON);
-			int randomNum = AbstractDungeon.cardRandomRng.random(1, 4);
-			//card.costForTurn = randomNum;
-			randomMonster.costForTurn = randomNum;
-			randomMonster.isCostModifiedForTurn = true;
-			if (this.upgraded) { randomMonster.upgrade(); }
-			addCardToHand(randomMonster);
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, 1, 4));
 		}
     }
 

@@ -3,10 +3,12 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.*;
 import defaultmod.patches.*;
 
 public class ContractExodia extends DuelistCard 
@@ -46,7 +48,7 @@ public class ContractExodia extends DuelistCard
     	{
     		DuelistCard exodia = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.EXODIA);
     		while (exodia.originalName.equals(this.originalName)) { exodia = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.EXODIA); }
-    		addCardToHand(exodia);
+    		AbstractDungeon.actionManager.addToTop(new RandomizedAction(exodia, this.upgraded, true, true, true, 1, 4));
     	}
     }
 

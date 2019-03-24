@@ -41,8 +41,8 @@
 	},
 	"theDuelist:BlueEyesUltimate": {
 		"NAME": "B. Eyes Ultimate",
-		"DESCRIPTION": "Dragon NL Tribute 3.  NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage."
+		"DESCRIPTION": "Dragon NL Tribute 4.  NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage."
 	},
 	"theDuelist:BusterBlader": {
 		"NAME": "Buster Blader",
@@ -91,8 +91,8 @@
 	},
 	"theDuelist:DarkHole": {
 		"NAME": "Dark Hole",
-		"DESCRIPTION": "Steal ALL Block from an enemy.",
-		"UPGRADE_DESCRIPTION": "Steal ALL Block from ALL enemies."
+		"DESCRIPTION": "Steal all Block from ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Steal all Block from ALL enemies. Remove all Buffs from ALL enemies."
 	},
 	"theDuelist:DarklordMarie": {
 		"NAME": "Darklord Marie",
@@ -456,8 +456,8 @@
 	},
 	"theDuelist:SwordsBurning": {
 		"NAME": "Swords: Burning Light",
-		"DESCRIPTION": "Each time you evoke an Orb, Channel a random Orb.",
-		"UPGRADE_DESCRIPTION": "Each time you evoke an Orb, Channel a random Orb."
+		"DESCRIPTION": "Each time you Evoke, Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Each time you Evoke, Channel a random Orb."
 	},
 	"theDuelist:SwordsConcealing": {
 		"NAME": "Swords: Concealing Light",
@@ -482,7 +482,7 @@
 	"theDuelist:TrapHole": {
 		"NAME": "Trap Hole",
 		"DESCRIPTION": "Whenever you Summon, have a 30% chance to immediately Tribute and then Resummon the monster.",
-		"UPGRADE_DESCRIPTION": "Whenever you Summon, have a 40% chance to immediately Tribute and then Resummon the monster."
+		"UPGRADE_DESCRIPTION": "Whenever you Summon, have a 50% chance to immediately Tribute and then Resummon the monster."
 	},
 	"theDuelist:ValkMagnet": {
 		"NAME": "Valkyrion",
@@ -591,8 +591,8 @@
 	},
 	"theDuelist:ToonRollback": {
 		"NAME": "Toon Rollback",
-		"DESCRIPTION": "ALL Toons played are copied into your hand this turn.",
-		"UPGRADE_DESCRIPTION": "ALL Toons played are copied into your hand this turn."
+		"DESCRIPTION": "ALL Toons played are randomized and copied into your hand this turn.",
+		"UPGRADE_DESCRIPTION": "ALL Toons played are randomized and copied into your hand this turn."
 	},
 	"theDuelist:SuperheavyOgre": {
 		"NAME": "Superheavy Ogre",
@@ -766,8 +766,8 @@
 	},
 	"theDuelist:SuperancientDinobeast": {
 		"NAME": "Superancient Dinobeast",
-		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, Gain 10 Block.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, Gain 10 Block."
+		"DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, gain 10 Block.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Deal !D! damage. NL For each Dragon tributed to play this card, gain 10 Block."
 	},
 	"theDuelist:ArmoredZombie": {
 		"NAME": "Armored Zombie",
@@ -1066,8 +1066,8 @@
 	},
 	"theDuelist:GuardianAngel": {
 		"NAME": "Guardian Angel Joan",
-		"DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. NL Heal for however much total damage is done.",
-		"UPGRADE_DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. NL Heal for however much total damage is done."
+		"DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. Heal for however much total damage is done.",
+		"UPGRADE_DESCRIPTION": "Tribute 2 NL Deal !D! damage. NL Deal !M! extra damage for each Spellcaster you Tribute. Heal for however much total damage is done."
 	},
 	"theDuelist:Wiseman": {
 		"NAME": "Wiseman's Chalice",
@@ -1076,8 +1076,8 @@
 	},
 	"theDuelist:Invigoration": {
 		"NAME": "Invigoration",
-		"DESCRIPTION": "Play a random Insect or Plant on an enemy.",
-		"UPGRADE_DESCRIPTION": "Choose an Insect or Plant to play on an enemy."
+		"DESCRIPTION": "Resummon a random Insect or Plant on an enemy.",
+		"UPGRADE_DESCRIPTION": "Choose an Insect or Plant to Resummon on an enemy."
 	},
 	"theDuelist:InvitationDarkSleep": {
 		"NAME": "Invitation to Dark Sleep",
@@ -1126,8 +1126,8 @@
 	},
 	"theDuelist:ContractExodia": {
 		"NAME": "Contract with Exodia",
-		"DESCRIPTION": "Add 2 random Exodia cards to your hand.",
-		"UPGRADE_DESCRIPTION": "Add 2 random Exodia cards to your hand."
+		"DESCRIPTION": "Add 2 randomized Exodia cards to your hand.",
+		"UPGRADE_DESCRIPTION": "Add 2 randomized Exodia cards to your hand."
 	},
 	"theDuelist:DarkCreator": {
 		"NAME": "Dark Creator",
@@ -1196,8 +1196,8 @@
 	},
 	"theDuelist:Terraforming": {
 		"NAME": "Terraforming",
-		"DESCRIPTION": "Add a random Field Spell to your hand. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Innate. NL Add a random Field Spell to your hand. NL Exhaust."
+		"DESCRIPTION": "Add a randomized Field Spell to your hand. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Add a randomized Field Spell to your hand. NL Exhaust."
 	},
 	"theDuelist:TerraTerrible": {
 		"NAME": "Terra the Terrible",
@@ -1206,8 +1206,8 @@
 	},
 	"theDuelist:IcyCrevasse": {
 		"NAME": "Icy Crevasse",
-		"DESCRIPTION": "If you have any Frost channeled, gain 1 Focus. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Gain 1 Focus for each Frost you have channeled. NL Exhaust."
+		"DESCRIPTION": "If you have any Frost channeled, gain a random amount (1-2) of Focus.",
+		"UPGRADE_DESCRIPTION": "Gain 1 Focus for each Frost you have channeled."
 	},
 	"theDuelist:NeoMagic": {
 		"NAME": "Neo Magic Swordsman",
@@ -1216,13 +1216,13 @@
 	},
 	"theDuelist:GoldenApples": {
 		"NAME": "Golden Apples",
-		"DESCRIPTION": "Gain 1 Block for each monster you have summoned.",
-		"UPGRADE_DESCRIPTION": "Gain 1 Block for each monster you have summoned."
+		"DESCRIPTION": "Gain 1 Block for each monster you have summoned this combat.",
+		"UPGRADE_DESCRIPTION": "Gain 1 Block for each monster you have summoned this combat."
 	},
 	"theDuelist:SphereKuriboh": {
 		"NAME": "Sphere Kuriboh",
-		"DESCRIPTION": "Whenever you Increment, add a random card to your hand.",
-		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Increment, add a random card to your hand."
+		"DESCRIPTION": "Whenever you Increment, add a randomized card to your hand.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Increment, add a randomized card to your hand."
 	},
 	"theDuelist:BasicArchetype": {
 		"NAME": "Duelist Cards",
