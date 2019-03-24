@@ -313,7 +313,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					DefaultMod.toonWorldTemp = true;
 					DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, 0, false));
 					ArrayList<DuelistCard> cardsToChooseFrom = new ArrayList<DuelistCard>();
-					for (int i = 0; i < 4; i++)
+					/*for (int i = 0; i < 4; i++)
 					{
 						DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
 						while (cardsToChooseFrom.contains(randomToon) || randomToon.originalName.equals("Toon Mask"))
@@ -321,7 +321,11 @@ public class MillenniumPuzzle extends CustomRelic {
 							randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
 						}
 						cardsToChooseFrom.add(randomToon);
-					}
+					}*/
+					cardsToChooseFrom.add(new ToonWorld());
+					cardsToChooseFrom.add(new ToonWorld());
+					cardsToChooseFrom.add(new ToonWorld());
+					cardsToChooseFrom.add(new ToonWorld());
 					new Token().openRandomCardChoiceDuelist(3, cardsToChooseFrom, false);
 				}
 				break;

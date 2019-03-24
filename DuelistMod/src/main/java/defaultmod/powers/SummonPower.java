@@ -1,6 +1,7 @@
 package defaultmod.powers;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
@@ -138,9 +139,31 @@ public class SummonPower extends AbstractPower
 			{
 				DuelistCard ref = DefaultMod.summonMap.get(s);
 				if (DefaultMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> ref string: " + s); }
-				if (!ref.hasTag(type))
+				if (ref != null)
 				{
-					foundOnlyType = false;
+					if (!ref.hasTag(type))
+					{
+						foundOnlyType = false;
+					}
+				}
+				else
+				{
+					if (DefaultMod.debug) 
+					{ 
+						System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> caught null pointer. printing entire summon map... brace yourself");
+						System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> the game is going to crash when I'm done printing");
+						Set<Entry<String, DuelistCard>> mapSet = DefaultMod.summonMap.entrySet();
+						for (Entry<String, DuelistCard> e : mapSet)
+						{
+							System.out.println("summonMap entry: KEY[" + e.getKey() +  "] : VALUE[" + e.getValue() + "] : " + e.toString());
+						}
+					}
+					
+					// this will crash the game on purpose
+					if (!ref.hasTag(type))
+					{
+						foundOnlyType = false;
+					}
 				}
 			}
 			

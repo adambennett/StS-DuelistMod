@@ -1,7 +1,5 @@
 package defaultmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -32,7 +30,6 @@ public class IcyCrevasse extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static ArrayList<DuelistCard> natureMonsters = new ArrayList<DuelistCard>();
     // /STAT DECLARATION/
 
     public IcyCrevasse() {
@@ -135,6 +132,6 @@ public class IcyCrevasse extends DuelistCard
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) 
 	{
-		if (DefaultMod.debug) { System.out.println("theDuelist:Invigoration:optionSelected() ---> can I see the card we selected? the card is: " + natureMonsters.get(arg2).originalName); }
+		
 	}
 }

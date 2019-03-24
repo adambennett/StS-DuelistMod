@@ -47,6 +47,10 @@ public class ToonWorld extends DuelistCard
     {
     	if (!upgraded && !p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 3, true)); }
     	else if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 2, true)); }
+    	else if (p.hasPower(ToonWorldPower.POWER_ID) && DefaultMod.toonWorldTemp)
+    	{
+    		DefaultMod.toonWorldTemp = false;
+    	}
     }
 
     // Which card to return when making a copy of this card.
