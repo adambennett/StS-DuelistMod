@@ -13,6 +13,13 @@
 			"At the start of each combat, trigger an effect depending on your chosen starting deck."
 		]
 	},
+	"theDuelist:MillenniumPuzzleShared": {
+		"NAME": "Millennium Puzzle",
+		"FLAVOR": "It was originally known as the Millennium Pendant, but after being shattered and requiring assembly it came to be known as the Millennium Puzzle.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, trigger an effect depending on your chosen starting deck."
+		]
+	},
 	"theDuelist:MillenniumEye": {
 		"NAME": "Millennium Eye",
 		"FLAVOR": "It was created 3,000 years prior with other Millennium Items by Aknadin. After its creation, Aknadin himself put on the Eye, sacrificing his left eye in the process.",
@@ -38,7 +45,7 @@
 		"NAME": "Millennium Rod",
 		"FLAVOR": "Priest Seto had originally owned the Millennium Rod. Along with the other Items, it was used to resurrect Zorc Necrophades.",
 		"DESCRIPTIONS": [
-			"Add the start of each turn, add a random #ySpell to your hand."
+			"Add the start of each turn, add a #yrandomized #ySpell to your hand."
 		]
 	},
 	"theDuelist:MillenniumCoin": {

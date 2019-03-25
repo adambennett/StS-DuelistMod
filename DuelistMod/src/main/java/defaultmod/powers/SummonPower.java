@@ -151,7 +151,7 @@ public class SummonPower extends AbstractPower
 					if (DefaultMod.debug) 
 					{ 
 						System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> caught null pointer. printing entire summon map... brace yourself");
-						System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> the game is going to crash when I'm done printing");
+						//System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> the game is going to crash when I'm done printing");
 						Set<Entry<String, DuelistCard>> mapSet = DefaultMod.summonMap.entrySet();
 						for (Entry<String, DuelistCard> e : mapSet)
 						{
@@ -160,10 +160,10 @@ public class SummonPower extends AbstractPower
 					}
 					
 					// this will crash the game on purpose
-					if (!ref.hasTag(type))
+					/*if (!ref.hasTag(type))
 					{
 						foundOnlyType = false;
-					}
+					}*/
 				}
 			}
 			

@@ -62,7 +62,7 @@ public class FireOrb extends DuelistOrb
 		for (int i = 0; i < this.evokeAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, true, 0, 0));
 			if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 		if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > triggered evoke!"); }

@@ -57,10 +57,12 @@ public class DarkCreator extends DuelistCard
     	ArrayList<AbstractCard> discardPile = p.discardPile.group;
     	drawPileSize += discardPile.size();
     	for (AbstractCard c : discardPile) { AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.discardPile, true)); }
-		for (int i = 0; i < drawPileSize * 5; i++)
+    	int loopCount = drawPileSize * 5;
+    	if (loopCount > 50) { loopCount = 50; }
+    	for (int i = 0; i < loopCount; i++)
 		{
 			DuelistCard card = (DuelistCard) returnTrulyRandomDuelistCard();
-			while (card.hasTag(DefaultMod.RANDOMONLY_NOCREATOR) || randomCreatedCards.contains(card)) { card = (DuelistCard) returnTrulyRandomDuelistCard(); }
+			while (card.hasTag(DefaultMod.NO_CREATOR) || randomCreatedCards.contains(card)) { card = (DuelistCard) returnTrulyRandomDuelistCard(); }
 			randomCreatedCards.add(card);
 		}
 		for (DuelistCard c : randomCreatedCards) { AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, c, 1, true, false)); }

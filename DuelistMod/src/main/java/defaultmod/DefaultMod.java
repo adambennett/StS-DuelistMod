@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.*;
+import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import defaultmod.actions.common.*;
 import defaultmod.cards.*;
@@ -120,6 +121,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
 	@SpireEnum public static AbstractCard.CardTags INVASION_CHAOS;
 	@SpireEnum public static AbstractCard.CardTags DARK_CRISIS;
+	@SpireEnum public static AbstractCard.CardTags NO_CREATOR;
 
 	// Member fields
 	private static final String MODNAME = "Duelist Mod";
@@ -165,6 +167,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String PROP_CHALLENGE = "challengeMode";
 	public static final String PROP_UNLOCK = "unlockAllDecks";
 	public static final String PROP_FLIP = "flipCardTags";
+	public static final String PROP_RESET = "resetProg";
 	public static boolean toonBtnBool = true;
 	public static boolean exodiaBtnBool = false;
 	public static boolean crossoverBtnBool = true;
@@ -172,6 +175,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static boolean unlockAllDecks = false;
 	public static boolean flipCardTags = false;
 	public static boolean toonWorldTemp = false;
+	public static boolean resetProg = false;
 	public static int lastMaxSummons = 5;
 	//public static int toonDamage = 7;
 	public static int spellsThisCombat = 0;
@@ -857,6 +861,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		duelistDefaults.setProperty(PROP_CHALLENGE, "FALSE");
 		duelistDefaults.setProperty(PROP_UNLOCK, "FALSE");
 		duelistDefaults.setProperty(PROP_FLIP, "FALSE");
+		duelistDefaults.setProperty(PROP_RESET, "FALSE");
 		
 		cardSets.add("All (221 cards)"); 
 		cardSets.add("Full (144 cards)");
@@ -899,6 +904,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
             challengeMode = config.getBool(PROP_CHALLENGE);
             unlockAllDecks = config.getBool(PROP_UNLOCK);
             flipCardTags = config.getBool(PROP_FLIP);
+            resetProg = config.getBool(PROP_RESET);
             setIndex = config.getInt(PROP_SET);
             cardCount = config.getInt(PROP_CARDS);
             deckIndex = config.getInt(PROP_DECK);
@@ -919,6 +925,16 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			startGold = 999;
 			cardDraw = 1;
 			orbSlots = 3;
+		}
+		
+		if (resetProg)
+		{
+			if (debug)
+			{
+				System.out.println("Resetting player progress for the Duelist!");
+			}
+			
+			UnlockTracker.resetUnlockProgress(TheDuelistEnum.THE_DUELIST);
 		}
 
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done setting up or loading the settings config file");
@@ -1097,6 +1113,26 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		yPos-=50;
 		// END Check Box F
 		
+		// Check Box F
+		String resetString = UI_String.TEXT[12];
+		ModLabeledToggleButton resetBtn = new ModLabeledToggleButton(resetString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, resetProg, settingsPanel, (label) -> {}, (button) -> 
+		{
+			resetProg = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_RESET, resetProg);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//if (resetProg)
+			//{
+			//	UnlockTracker.resetUnlockProgress(TheDuelistEnum.THE_DUELIST);
+			//}
+		});
+		settingsPanel.addUIElement(resetBtn);
+		yPos-=50;
+		// END Check Box F
+		
 		// Set Size Selector
 		String setString = UI_String.TEXT[4];
 		ModLabel setSelectLabelTxt = new ModLabel(setString,xLabPos, yPos,settingsPanel,(me)->{});
@@ -1231,7 +1267,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		AbstractDungeon.shopRelicPool.remove("Prismatic Shard");
 		
 		// This adds a relic to the Shared pool. Every character can find this relic.
-		//BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
+		BaseMod.addRelic(new MillenniumPuzzleShared(), RelicType.SHARED);
 
 		logger.info("theDuelist:DefaultMod:receiveEditRelics() ---> Done adding relics!");
 	}
@@ -1260,6 +1296,10 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> setting up starting deck");
 		initStartDeckArrays();
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
+		
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> filling summonMap");
+		fillSummonMap(myCards);
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done filling summonMap");
 		
 		// ================ COMPENDIUM MANIPULATION ===================
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> begin checking config options and removing cards");
@@ -1674,15 +1714,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			{
 				deckToStartWith = new ArrayList<DuelistCard>();
 				deckToStartWith.addAll(refDeck.getDeck());
-				deckToStartWith.add(new RandomSoldier());
-				deckToStartWith.add(new RandomSoldier());
 			}
 			
 			else if (chosenDeckTag.equals(TOON_DECK))
 			{
 				deckToStartWith = new ArrayList<DuelistCard>();
 				deckToStartWith.addAll(refDeck.getDeck());
-				deckToStartWith.add(new RandomSoldier());
 			}
 			
 			else 
@@ -2398,14 +2435,17 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			if ((!c.hasTag(DefaultMod.RANDOMONLY) && (!c.hasTag(DefaultMod.RANDOMONLY_NOCREATOR))))
 			{
 				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); summonMap.put(c.originalName, c); tempCardCount++;
+				//summonMap.put(c.originalName, c);	
 			}
 			else
 			{
-				summonMap.put(c.originalName, c);				
+				//summonMap.put(c.originalName, c);				
 				if (!c.rarity.equals(CardRarity.SPECIAL)) { UnlockTracker.unlockCard(c.getID()); }
 			}
 		}
 
+		/*
+		summonMap.put("Token", new Token());
 		summonMap.put("Great Moth", new GreatMoth());
 		summonMap.put("Puzzle Token", new Token());
 		summonMap.put("Ancient Token", new Token());
@@ -2437,6 +2477,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		summonMap.put("Shadow Token", new ShadowToken());
 		summonMap.put("Insect Token", new InsectToken());
 		summonMap.put("Plant Token", new PlantToken());
+		*/
 		cardCount = tempCardCount;
 		
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done initializing cards");
@@ -2792,6 +2833,48 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 				logger.info("theDuelist:DefaultMod:fillColoredCards() ---> added " + c.originalName + " to coloredCards");
 			}
 		}
+	}
+	
+	public void fillSummonMap(ArrayList<DuelistCard> cards)
+	{
+		for (DuelistCard c : cards) 
+		{ 
+			summonMap.put(c.originalName, c);	
+		}
+		
+		summonMap.put("R. Stone Soldier", new RandomSoldier());
+		summonMap.put("Token", new Token());
+		summonMap.put("Great Moth", new GreatMoth());
+		summonMap.put("Puzzle Token", new Token());
+		summonMap.put("Ancient Token", new Token());
+		summonMap.put("Anubis Token", new Token());
+		summonMap.put("Glitch Token", new Token());
+		summonMap.put("Summoner Token", new Token());
+		summonMap.put("Gate Token", new Token());
+		summonMap.put("Jam Token", new Token());
+		summonMap.put("Castle Token", new Token());
+		summonMap.put("Storm Token", new Token());
+		summonMap.put("Random Token", new Token());
+		summonMap.put("Pot Token", new Token());
+		summonMap.put("Buffer Token", new Token());
+		summonMap.put("Blood Token", new Token());
+		summonMap.put("Hane Token", new Token());
+		summonMap.put("Bonanza Token", new Token());
+		summonMap.put("Orb Token", new Token());
+		summonMap.put("Resummon Token", new Token());
+		summonMap.put("Resummoned Token", new Token());
+		summonMap.put("Stim Token", new Token());
+		summonMap.put("Underdog Token", new Token());
+		summonMap.put("Judge Token", new Token());
+		summonMap.put("Exxod Token", new Token());
+		summonMap.put("Spellcaster Token", new SpellcasterToken());
+		summonMap.put("Predaplant Token", new PredaplantToken());
+		summonMap.put("Kuriboh Token", new KuribohToken());
+		summonMap.put("Exploding Token", new ExplosiveToken());
+		summonMap.put("Explosive Token", new ExplosiveToken());
+		summonMap.put("Shadow Token", new ShadowToken());
+		summonMap.put("Insect Token", new InsectToken());
+		summonMap.put("Plant Token", new PlantToken());
 	}
 	// END METHODS
 

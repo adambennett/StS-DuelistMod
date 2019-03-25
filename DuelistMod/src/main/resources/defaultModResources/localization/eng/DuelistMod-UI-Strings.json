@@ -12,7 +12,8 @@
 			"Starting deck only affects Custom Runs.",
 			"Challenge Mode",
 			"Unlock all Decks",
-			"Turn off Monster/Spell/Trap tags"
+			"Turn off Monster/Spell/Trap tags",
+			"Reset Duelist Progress (RESETS PROGESS ON RESTART)"
 		]
 	}
 }

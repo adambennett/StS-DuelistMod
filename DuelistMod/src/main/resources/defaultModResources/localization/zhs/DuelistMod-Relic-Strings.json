@@ -13,6 +13,13 @@
 			"在每次战斗开始时，根据您选择的起始甲板触发效果。"
 		]
 	},
+	"theDuelist:MillenniumPuzzleShared": {
+		"NAME": "千年积木",
+		"FLAVOR": "它最初被称为千年坠饰，但在被粉碎并需要组装后，它被称为千年难题。",
+		"DESCRIPTIONS": [
+			"在每次战斗开始时，根据您选择的起始甲板触发效果。"
+		]
+	},
 	"theDuelist:MillenniumEye": {
 		"NAME": "千禧之眼",
 		"FLAVOR": "它是由Aknadin在3000年前与其他千禧项目共同创建的。在它创作之后，Aknadin自己戴上了眼睛，在此过程中牺牲了他的左眼。",

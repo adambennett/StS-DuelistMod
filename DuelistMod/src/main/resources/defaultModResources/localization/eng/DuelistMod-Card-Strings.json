@@ -1112,7 +1112,7 @@
 	"theDuelist:CardSafeReturn": {
 		"NAME": "Card of Safe Return",
 		"DESCRIPTION": "Whenever you Resummon, draw 1 card.",
-		"UPGRADE_DESCRIPTION": "Whenever you Resummon, draw 1 card."
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Resummon, draw 1 card."
 	},
 	"theDuelist:Cloning": {
 		"NAME": "Cloning",
@@ -1131,8 +1131,8 @@
 	},
 	"theDuelist:DarkCreator": {
 		"NAME": "Dark Creator",
-		"DESCRIPTION": "Tribute 3. NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of 5 unique, random Duelist Cards into your draw pile for each card exhausted.",
-		"UPGRADE_DESCRIPTION": "Tribute 2. NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of 5 unique, random Duelist Cards into your draw pile for each card exhausted."
+		"DESCRIPTION": "Tribute 3. NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of 5 unique, random Duelist Cards into your draw pile for each card exhausted (max 50).",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of 5 unique, random Duelist Cards into your draw pile for each card exhausted (max 50)."
 	},
 	"theDuelist:DoubleCoston": {
 		"NAME": "Double Coston",

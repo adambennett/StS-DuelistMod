@@ -40,9 +40,10 @@ public class TheCreator extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.CREATOR_DECK);
         this.tags.add(DefaultMod.EXODIA_DECK);
+        this.tags.add(DefaultMod.NO_CREATOR);
         this.startingExodiaDeckCopies = 1;
         this.originalName = this.name;
-        this.purgeOnUse = true;
+        //this.purgeOnUse = true;
         this.startingDeckCopies = 1;
         this.setupStartingCopies();
     }
@@ -71,7 +72,7 @@ public class TheCreator extends DuelistCard
     	// Add a 1 cost for combat, ethereal copy of EVERY Duelist Card to draw pile
 		for (DuelistCard card : DefaultMod.myCards)
 		{
-			if (card instanceof DuelistCard && !card.hasTag(DefaultMod.RANDOMONLY_NOCREATOR)) 
+			if (card instanceof DuelistCard && !card.hasTag(DefaultMod.NO_CREATOR)) 
 			{
 				AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, card, 1, true, false));
 			}

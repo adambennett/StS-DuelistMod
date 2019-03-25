@@ -17,7 +17,7 @@ import defaultmod.cards.*;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
-public class MillenniumPuzzle extends CustomRelic {
+public class MillenniumPuzzleShared extends CustomRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -26,23 +26,13 @@ public class MillenniumPuzzle extends CustomRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = DefaultMod.makeID("MillenniumPuzzle");
+	public static final String ID = DefaultMod.makeID("MillenniumPuzzleShared");
 	public static final String IMG = DefaultMod.makePath(DefaultMod.M_PUZZLE_RELC);
 	public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_PUZZLE_RELIC_OUTLINE);
 	private static int SUMMONS = 2;
 
-	public MillenniumPuzzle() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
-	}
-	
-	@Override
-	public void onEquip()
-	{
-		boolean removedSharedPuzzle = AbstractDungeon.shopRelicPool.remove(MillenniumPuzzleShared.ID);
-		if (DefaultMod.debug)
-		{
-			System.out.println("theDuelist:MillenniumPuzzle:onEquip() ---> removed MillenniumPuzzleShared from shop relics pool? : " + removedSharedPuzzle);
-		}
+	public MillenniumPuzzleShared() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 	}
 
 	// Summon 1 on turn start
@@ -166,7 +156,7 @@ public class MillenniumPuzzle extends CustomRelic {
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new MillenniumPuzzle();
+		return new MillenniumPuzzleShared();
 	}
 
 	private static void runSpecialEffect(int extra)
@@ -351,7 +341,7 @@ public class MillenniumPuzzle extends CustomRelic {
 					DefaultMod.toonWorldTemp = true;
 					DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, 0, false));
 					ArrayList<DuelistCard> cardsToChooseFrom = new ArrayList<DuelistCard>();
-					for (int i = 0; i < 4; i++)
+					/*for (int i = 0; i < 4; i++)
 					{
 						DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
 						while (cardsToChooseFrom.contains(randomToon) || randomToon.originalName.equals("Toon Mask"))
@@ -359,7 +349,11 @@ public class MillenniumPuzzle extends CustomRelic {
 							randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
 						}
 						cardsToChooseFrom.add(randomToon);
-					}
+					}*/
+					cardsToChooseFrom.add(new ToonWorld());
+					cardsToChooseFrom.add(new ToonWorld());
+					cardsToChooseFrom.add(new ToonWorld());
+					cardsToChooseFrom.add(new ToonWorld());
 					new Token().openRandomCardChoiceDuelist(3, cardsToChooseFrom, false);
 				}
 				break;

@@ -72,8 +72,7 @@ public class RandomSoldier extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            L_BLK++;
-            H_BLK++;
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

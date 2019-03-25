@@ -7,6 +7,13 @@
       ],
       "DESCRIPTION": "Counts monsters currently summoned. Maximum of #b5 Summons."
     },
+	{
+	  "PROPER_NAME": "MonsterOrb",
+      "NAMES": [
+        "monsterorb"
+      ],
+      "DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized monster cards to your hand. #yEvoke also adds #yrandomized monsters to your hand."
+    },
     {
 	  "PROPER_NAME": "Resummon",
       "NAMES": [
@@ -40,7 +47,7 @@
       "NAMES": [
         "summoner"
       ],      
-      "DESCRIPTION": "#yOrb: #ySummon at the end of turn. #yEvoke increases your max #ySummons."
+      "DESCRIPTION": "#yOrb: #ySummon #ySpellcater Tokens at the end of turn. #yEvoke increases your max #ySummons."
     },
     {
 	  "PROPER_NAME": "Reducer",
@@ -54,7 +61,7 @@
       "NAMES": [
         "dragonorb"
       ],      
-      "DESCRIPTION": "#yOrb: At the start of turn, adds random #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0."
+      "DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0."
     },
     {
 	  "PROPER_NAME": "Overflow",
@@ -84,7 +91,7 @@
       "NAMES": [
         "ojamania"
       ],      
-      "DESCRIPTION": "Add #b2 random cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
+      "DESCRIPTION": "Add #b2 #yrandomized cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
     },
      {
 	  "PROPER_NAME": "Dragon",
@@ -129,7 +136,7 @@
     "NAMES": [
       "earth"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, adds random #ySpell cards to your hand. #yEvoke also adds #ySpells to your hand."
+    "DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized #ySpell cards to your hand. #yEvoke also adds #yrandomized #ySpells to your hand."
   },
   {
    "PROPER_NAME": "Air",
@@ -143,7 +150,7 @@
     "NAMES": [
       "fire"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds random monsters to your hand and sets their cost to #b0 for that turn."
+    "DESCRIPTION": "#yOrb: At the start of turn, if your #yDexterity is higher than your #yStrength, increases your #yStrength by #b1 for each stack of #yDexterity you have. #yEvoke adds #yrandomized monsters to your hand and sets their cost to #b0 for that turn."
   },
   {
    "PROPER_NAME": "Glitch",
@@ -164,7 +171,7 @@
     "NAMES": [
       "splash"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, add random, 0-cost, Ethereal Duelist cards to your hand for each #yAqua monster you currently have summoned. When #yEvoked, if you have a max stack of #yAqua monsters, draw #b6 cards."
+    "DESCRIPTION": "#yOrb: At the start of turn, add #yrandomized copies of random Duelist cards to your hand for each #yAqua monster you currently have summoned. When #yEvoked, if you have a max stack of #yAqua monsters, draw #b6 cards."
   },
   {
     "PROPER_NAME": "Zombie",
@@ -187,7 +194,14 @@
     "NAMES": [
       "aqua"
     ],   
-    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, add a random #yAqua monster to your hand."
+    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, add a #yrandomized #yAqua monster to your hand."
+  },
+  {
+    "PROPER_NAME": "Randomized",
+    "NAMES": [
+      "randomized"
+    ],   
+    "DESCRIPTION": "#yRandomized cards may have their costs changed, may #yExhaust, and may become #yUpgraded or #yEthereal."
   },
   {
     "PROPER_NAME": "Gate",

@@ -109,7 +109,7 @@
 },
 "theDuelist:SwordsBurnPower": {
         "NAME": "Swords of Burning Light",
-        "DESCRIPTIONS": ["Each time you #yEvoke an #yOrb, #yChannel a random #yOrb." ]
+        "DESCRIPTIONS": ["Each time you #yEvoke, #yChannel #b", " random #yOrb.", " random #yOrbs." ]
 },
 "theDuelist:SwordsConcealPower": {
         "NAME": "Swords of Concealing Light",
@@ -149,11 +149,11 @@
 },
 "theDuelist:TributeToonPower": {
         "NAME": "Pegasus Wings",
-        "DESCRIPTIONS": ["Each time you #yTribute, add a random #yToon monster to your hand." ]
+        "DESCRIPTIONS": ["Each time you #yTribute, add a #yrandomized #yToon monster to your hand." ]
 },
 "theDuelist:TributeToonPowerB": {
         "NAME": "Pegasus Wings+",
-        "DESCRIPTIONS": ["Each time you #yTribute, add a random #yToon card to your hand." ]
+        "DESCRIPTIONS": ["Each time you #yTribute, add a #yrandomized #yToon card to your hand." ]
 },
 "theDuelist:GravityAxePower": {
         "NAME": "Gravity Axe",
@@ -161,7 +161,7 @@
 },
 "theDuelist:ToonRollbackPower": {
         "NAME": "Toon Rollback",
-        "DESCRIPTIONS": ["Copy #yToon monsters when you play them this turn." ]
+        "DESCRIPTIONS": ["#yRandomized copies of #yToon monsters played this turn are added to your hand." ]
 },
 "theDuelist:ToonKingdomPower": {
         "NAME": "Toon Kingdom",
@@ -229,7 +229,7 @@
 },
 "theDuelist:HeartUnderspell": {
         "NAME": "Spells of the Underdog",
-        "DESCRIPTIONS": ["Whenever you draw a Spell, copy it." ]
+        "DESCRIPTIONS": ["Whenever you draw a Spell, create a #yrandomized copy of it." ]
 },
 "theDuelist:HeartUndertrap": {
         "NAME": "Trap the Underdog",
@@ -242,6 +242,10 @@
 "theDuelist:GatesDarkPower": {
         "NAME": "Gate of Dark World",
         "DESCRIPTIONS": ["Your #yFiends and #yZombies deal 100% more damage and gain 100% more #yBlock." ]
+},
+"theDuelist:SphereKuribohPower": {
+        "NAME": "Sphere Kuriboh",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, add a #yrandomized card to your hand." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

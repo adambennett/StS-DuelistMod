@@ -12,7 +12,9 @@
 			"开始一个新的运行来改变你的起始牌。",
 			"挑战模式",
 			"解锁所有甲板",
-			"关闭Monster/Spell/Trap标签"
+			"关闭Monster/Spell/Trap标签",
+			"重置所有决斗者进度（重置重置进度）",
+			"Reset Duelist Progress (RESETS PROGESS ON RESTART)"
 		]
 	}
 }

@@ -183,6 +183,25 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			draw(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount);
 		}
 	}
+	
+	@Override
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) 
+	{
+		if (DefaultMod.debug) 
+		{
+			AbstractCard temp = duelistCardModal.getCard(arg2);
+			AbstractCard tempB = cardModal.getCard(arg2);
+			AbstractCard tempC = orbModal.getCard(arg2);
+			if (temp != null && tempB != null && tempC != null)
+			{
+				System.out.println("theDuelist:DuelistCard:optionSelected() ---> can I see the card we picked? the card should be one of these three:: [Duelist Modal]: " + temp.originalName + ", [CardModal]: " + tempB.originalName + ", [OrbModal]: " + tempC.originalName);
+			}
+			else
+			{
+				System.out.println("theDuelist:DuelistCard:optionSelected() ---> one of the modal cards was null, so we printed this unhelpful statement. sorry.");
+			}
+		}
+	}
 
 	public void openRandomOrbChoice(int orbsToSelectFrom, String title)
 	{
@@ -202,7 +221,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		orbModal.open();
 	}
-	
+
 	public void openRandomOrbChoice(String title)
 	{
 		resetOrbChoiceList(5, title);
@@ -243,6 +262,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void openRandomCardChoice(int cards, ArrayList<DuelistCard> cardsToChooseFrom)
 	{
 		resetCardChoiceList(cards, cardsToChooseFrom);
+		cardModal.open();
+	}
+	
+	public void openRandomCardChoiceAbstract(int cards, ArrayList<AbstractCard> cardsToChooseFrom)
+	{
+		resetCardChoiceListAbstract(cards, cardsToChooseFrom);
 		cardModal.open();
 	}
 	
@@ -296,7 +321,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractOrb orb : allowedOrbs) { if (DefaultMod.orbCardMap.get(orb.name) != null) { builder.addOption(DefaultMod.orbCardMap.get(orb.name)); }}
 		orbModal = builder.create();
 	}
-	
+
 	public void resetCardChoiceList(int numberOfCards)
 	{
 		allowedCardChoices = new ArrayList<DuelistCard>();
@@ -348,6 +373,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL).setTitle("Choose a card to play");
 		for (DuelistCard c : allowedCardChoices) { builder.addOption(c); }
+		cardModal = builder.create();
+	}
+	
+	public void resetCardChoiceListAbstract(int numberOfCards, ArrayList<AbstractCard> cardsToChooseFrom)
+	{
+		ArrayList<AbstractCard> allowedCardChoicesAbstract = new ArrayList<AbstractCard>();
+		for (int i = 0; i < numberOfCards; i++)
+        {
+        	AbstractCard newCard = cardsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(cardsToChooseFrom.size() - 1));
+        	while (allowedCardChoicesAbstract.contains(newCard))
+        	{
+        		newCard = cardsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(cardsToChooseFrom.size() - 1));
+        	}
+        	allowedCardChoicesAbstract.add(newCard);
+        }
+		
+		ModalChoiceBuilder builder = new ModalChoiceBuilder().setCallback(this).setColor(this.color).setType(CardType.SKILL).setTitle("Choose a card to play");
+		for (AbstractCard c : allowedCardChoicesAbstract) { builder.addOption(c); }
 		cardModal = builder.create();
 	}
 	
