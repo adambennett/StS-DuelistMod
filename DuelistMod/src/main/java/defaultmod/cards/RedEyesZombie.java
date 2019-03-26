@@ -1,7 +1,8 @@
 package defaultmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -124,6 +125,21 @@ public class RedEyesZombie extends DuelistCard
 		applyPowerToSelf((AbstractPower) new StrengthPower(AbstractDungeon.player, 3));
 		AbstractMonster m = AbstractDungeon.getRandomMonster();
 		attack(m, AFX, 10);
+		boolean foundInDiscard = false;
+		if (AbstractDungeon.player.discardPile.group.contains(this)) { foundInDiscard = true; }
+		if (foundInDiscard)
+		{
+			//AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(this.makeCopy(), AbstractDungeon.player.discardPile));
+			if (DefaultMod.debug) { System.out.println("theDuelist:RedEyesZombie:onResummon() ---> found in discard pile, moving to exhaust pile"); }
+		}
+		else
+		{
+			if (DefaultMod.debug)
+			{
+				System.out.println("theDuelist:RedEyesZombie:onResummon() ---> NOT FOUND in discard pile");
+				//AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(this.makeCopy(), AbstractDungeon.player.discardPile));
+			}
+		}
 	}
 
 	@Override

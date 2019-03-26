@@ -401,8 +401,8 @@
 	},
 	"theDuelist:RedEyesZombie": {
 		"NAME": "R. Eyes Zombie Dragon",
-		"DESCRIPTION": "Zombie Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength. Deal 10 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength. Deal 10 damage to a random enemy."
+		"DESCRIPTION": "Zombie Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength and deal 10 damage to a random enemy.",
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength and deal 10 damage to a random enemy."
 	},
 	"theDuelist:RedMedicine": {
 		"NAME": "Red Medicine",
@@ -771,8 +771,8 @@
 	},
 	"theDuelist:ArmoredZombie": {
 		"NAME": "Armored Zombie",
-		"DESCRIPTION": "Zombie NL Summon 1. NL Gain !B! Block. NL Resummon: Heal 10 HP.",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon 1. NL Gain !B! Block. NL Resummon: Heal 10 HP."
+		"DESCRIPTION": "Zombie NL Summon 1. NL Gain !B! Block. NL Resummon: Gain 10 Block.",
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon 1. NL Gain !B! Block. NL Resummon: Gain 10 Block."
 	},
 	"theDuelist:MoltenZombie": {
 		"NAME": "Molten Zombie",
@@ -1036,8 +1036,8 @@
 	},
 	"theDuelist:OceanDragonLord": {
 		"NAME": "Ocean Dragon Lord",
-		"DESCRIPTION": "Aqua Dragon NL Tribute 5. NL Deal !D! damage. NL Channel a Splash.",
-		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Splash."
+		"DESCRIPTION": "Aqua Dragon NL Tribute 3. NL Deal !D! damage. NL Channel a Splash.",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute 1. NL Deal !D! damage. NL Channel a Splash."
 	},
 	"theDuelist:LeviaDragon": {
 		"NAME": "Levia-Dragon",
@@ -1223,6 +1223,21 @@
 		"NAME": "Sphere Kuriboh",
 		"DESCRIPTION": "Whenever you Increment, add a randomized card to your hand.",
 		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Increment, add a randomized card to your hand."
+	},
+	"theDuelist:WorldCarrot": {
+		"NAME": "W. Carrotweight Champ",
+		"DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:CallGrave": {
+		"NAME": "Call of Grave",
+		"DESCRIPTION": "Whenever you Resummon, choose a random Zombie to Resummon.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Resummon, choose a random Zombie to Resummon."
+	},
+	"theDuelist:SoulAbsorbingBone": {
+		"NAME": "Soul Bone Tower",
+		"DESCRIPTION": "Zombie NL Tribute 3. NL Resummon !M! random monster from your discard pile. If you Tribute any Zombies, Resummon them.",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute 3. NL Resummon !M! random monsters from your discard pile. If you Tribute any Zombies, Resummon them."
 	},
 	"theDuelist:BasicArchetype": {
 		"NAME": "Duelist Cards",

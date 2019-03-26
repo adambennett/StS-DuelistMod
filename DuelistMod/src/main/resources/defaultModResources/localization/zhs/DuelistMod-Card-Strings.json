@@ -1224,6 +1224,21 @@
 		"DESCRIPTION": "Whenever you Increment, add a random card to your hand.",
 		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Increment, add a random card to your hand."
 	},
+	"theDuelist:WorldCarrot": {
+		"NAME": "W. Carrotweight Champ",
+		"DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:CallGrave": {
+		"NAME": "Call of Grave",
+		"DESCRIPTION": "Whenever you Resummon, choose another Zombie to Resummon.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Resummon, choose another Zombie to Resummon."
+	},
+	"theDuelist:SoulAbsorbingBone": {
+		"NAME": "Soul Bone Tower",
+		"DESCRIPTION": "Zombie NL Tribute 3. NL Resummon !M! random monster in your discard pile. NL If you Tribute any Zombies, Resummon them.",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute 3. NL Resummon !M! random monsters in your discard pile. NL If you Tribute any Zombies, Resummon them."
+	},
 	"theDuelist:BasicArchetype": {
 		"NAME": "决斗卡",
 		"DESCRIPTION": "Add every Duelist card to your card pool.",

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.helpers.ModalChoice;
+import defaultmod.DefaultMod;
 
 public class DuelistModalChoiceCard extends AbstractCard
 {

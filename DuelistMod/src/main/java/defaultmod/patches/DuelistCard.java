@@ -182,6 +182,34 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			draw(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount);
 		}
+		
+		if (AbstractDungeon.player.hasPower(CallGravePower.POWER_ID))
+		{
+			ArrayList<DuelistCard> zombies = new ArrayList<DuelistCard>();
+			for (int i = 0; i < 4; i++)
+			{
+				DuelistCard newZomb = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.ZOMBIE);
+				while (zombies.contains(newZomb) || newZomb.originalName.equals("Soul Bone Tower"))
+				{
+					newZomb = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.ZOMBIE);
+				}
+				zombies.add(newZomb);
+			}
+			openRandomCardChoiceDuelist(3, zombies, true);
+		}
+	}
+	
+	public static void fullResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target)
+	{
+		cardCopy = (DuelistCard) cardCopy.makeCopy();
+		if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+		if (upgradeResummon) { cardCopy.upgrade(); }
+		cardCopy.freeToPlayOnce = true;
+		cardCopy.applyPowers();
+		cardCopy.purgeOnUse = true;
+		AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, target));
+		cardCopy.onResummon(1);
+		cardCopy.checkResummon();
 	}
 	
 	@Override

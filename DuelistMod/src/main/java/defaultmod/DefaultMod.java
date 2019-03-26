@@ -3,7 +3,6 @@ package defaultmod;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.logging.log4j.*;
 
@@ -31,9 +30,9 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.*;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
-import defaultmod.actions.common.*;
+import defaultmod.actions.common.RandomizedAction;
 import defaultmod.cards.*;
-import defaultmod.characters.*;
+import defaultmod.characters.TheDuelist;
 import defaultmod.interfaces.*;
 import defaultmod.orbCards.*;
 import defaultmod.patches.*;
@@ -513,6 +512,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String TERRAFORMING = "cards/Terraforming.png";
 	public static final String COMIC_HAND = "cards/Comic_Hand.png";
 	public static final String ICY_CREVASSE = "cards/Icy_Crevasse.png";		
+	public static final String WORLD_CARROT = "cards/WorldCarrot.png";
+	public static final String CALL_GRAVE = "cards/CallGrave.png";
+	public static final String SOUL_BONE = "cards/SoulAbsorbingBone.png";
 		
 	public static final String CRASHBUG_ROAD = "cards/Crashbug_Road.png";
 	public static final String CRASHBUG_X = "cards/Crashbug_X.png";
@@ -686,6 +688,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String CARD_SAFE_POWER = "powers/CardSafePower.png";
 	public static final String HEART_UNDERDOG_POWER = "powers/HeartUnderdogPower.png";
 	public static final String SPHERE_KURIBOH_POWER = "powers/SphereKuribohPower.png";
+	public static final String CALL_GRAVE_POWER = "powers/CallGravePower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -929,12 +932,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		
 		if (resetProg)
 		{
-			if (debug)
-			{
-				System.out.println("Resetting player progress for the Duelist!");
-			}
+			//if (debug)
+			//{
+			//	System.out.println("Resetting player progress for the Duelist!");
+			//}
 			
-			UnlockTracker.resetUnlockProgress(TheDuelistEnum.THE_DUELIST);
+			//UnlockTracker.resetUnlockProgress(TheDuelistEnum.THE_DUELIST);
 		}
 
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done setting up or loading the settings config file");
@@ -1129,7 +1132,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			//	UnlockTracker.resetUnlockProgress(TheDuelistEnum.THE_DUELIST);
 			//}
 		});
-		settingsPanel.addUIElement(resetBtn);
+		//settingsPanel.addUIElement(resetBtn);
 		yPos-=50;
 		// END Check Box F
 		
@@ -1297,19 +1300,29 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		initStartDeckArrays();
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
 		
+		// ================ SUMMON MAP ===================
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> filling summonMap");
 		fillSummonMap(myCards);
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done filling summonMap");
+
+		// ================ METRICS HELPER ===================
+		if (DefaultMod.debug)
+		{
+			logger.info("theDuelist:DefaultMod:receiveEditCards() ---> START SQL METRICS PRINT");
+			outputSQLListsForMetrics();
+			logger.info("theDuelist:DefaultMod:receiveEditCards() ---> END SQL METRICS PRINT");
+		}
 		
 		// ================ COMPENDIUM MANIPULATION ===================
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> begin checking config options and removing cards");
 		removeCardsFromSet();
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> all needed cards have been removed from myCards array");
-		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done");
 		
 		// ================ COLORED CARDS ===================
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> filling colored cards with necessary spells and traps to add to card reward/shop pool");
 		fillColoredCards();
-
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done filling colored cards");
+		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> done");
 	}
 
 	// ================ /ADD CARDS/ ===================
@@ -2292,6 +2305,87 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		}
 	}
 	
+	public void outputSQLListsForMetrics() {
+        ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+        cards.addAll(myCards);
+
+        System.out.println("Cards in cardlist: " + myCards.size());
+
+        String cardstring = "INSERT INTO `meta_card_data` (`id`, `name`, `character_class`, `neutral`, `invalid`, `rarity`, `type`, `cost`, `description`, `ignore_before`, `updated_on`, `score`, `a0_total`, `a114_total`, `a15_total`, `pick_updated_on`, `a0_pick`, `a114_pick`, `a15_pick`, `a0_not_pick`, `a114_not_pick`, `a15_not_pick`, `up_updated_on`, `a0_up`, `a114_up`, `a15_up`, `a0_purchased`, `a114_purchased`, `a15_purchased`, `a0_purged`, `a114_purged`, `a15_purged`, `wr_updated_on`, `a0_wr`, `a114_wr`, `a15_wr`, `a0_floor`, `a114_floor`, `a15_floor`, `a0_floordetails`, `a114_floordetails`, `a15_floordetails`) VALUES ";
+        cardstring = cardstring + "(0,'',1,0,0,'','','','',NULL,'0000-00-00 00:00:00',0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'','',''),";
+
+        System.out.println(cardstring);
+        
+        int i = 0;
+        for (AbstractCard c : cards) {
+            i++;
+            cardstring = String.format("(%d,'%s',1,0,0,'%s','%s','%d','%s',NULL,'0000-00-00 00:00:00',0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'','',''),", i, c.cardID, titleCase(c.rarity.name()), titleCase(c.type.name()), c.cost, c.rawDescription.replace("'","\'"));
+            System.out.println(cardstring);
+        }
+
+        //cardstring = cardstring.substring(0, cardstring.length() - 1) + ";/*!40000 ALTER TABLE `meta_card_data` ENABLE KEYS */;";
+        System.out.println(";/*!40000 ALTER TABLE `meta_card_data` ENABLE KEYS */;");
+
+        //System.out.println(cardstring);
+
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
+
+
+        ArrayList<AbstractRelic> relics = new ArrayList<>();
+        HashMap<String,AbstractRelic> sharedRelics = (HashMap<String,AbstractRelic>)ReflectionHacks.getPrivateStatic(RelicLibrary.class, "sharedRelics");
+        for (AbstractRelic relic : sharedRelics.values()) {
+            relics.add(relic);
+        }
+        for (HashMap.Entry<AbstractCard.CardColor,HashMap<String,AbstractRelic>> entry : BaseMod.getAllCustomRelics().entrySet()) {
+            for (AbstractRelic relic : entry.getValue().values()) {
+                relics.add(relic);
+                if (relic != null) { System.out.println("theDuelist:outputSQLListsForMetrics() ---> added " + relic.name + " to relics"); }
+                else 
+                {
+                	System.out.println("theDuelist:outputSQLListsForMetrics() ---> relic not added because it was null!");
+                }
+            }
+        }
+
+        String relicstring = "INSERT INTO `meta_relic_data` (`id`, `name`, `invalid`, `character_class`, `description`, `rarity`, `event_id`, `ignore_before`) VALUES ";
+
+
+        i = 0;
+        for (AbstractRelic relic: relics) {
+            i++;
+            relicstring = relicstring + String.format("(%d,'%s',0,1,'%s','%s',0,'0000-00-00'),", i, relic.name, relic.description, relic.tier.name().toLowerCase());
+        }
+        System.out.println(relicstring);
+
+
+    }
+	
+	 public static String titleCase(String text) {
+	        if (text == null || text.isEmpty()) {
+	            return text;
+	        }
+	     
+	        StringBuilder converted = new StringBuilder();
+	     
+	        boolean convertNext = true;
+	        for (char ch : text.toCharArray()) {
+	            if (Character.isSpaceChar(ch)) {
+	                convertNext = true;
+	            } else if (convertNext) {
+	                ch = Character.toTitleCase(ch);
+	                convertNext = false;
+	            } else {
+	                ch = Character.toLowerCase(ch);
+	            }
+	            converted.append(ch);
+	        }
+	     
+	        return converted.toString();
+	    }
+
+	
 	// COMPENDIUM MANIPULATION FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static ArrayList<AbstractCard> getAllColoredCards()
 	{
@@ -2658,6 +2752,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new ShadowToon());
 		myCards.add(new ShallowGrave());
 		myCards.add(new MiniPolymerization());
+		myCards.add(new WorldCarrot());
+		myCards.add(new SoulAbsorbingBone());
+		//myCards.add(new CallGrave());
 		// END ALL Set
 
 		// FULL Set - 22 cards

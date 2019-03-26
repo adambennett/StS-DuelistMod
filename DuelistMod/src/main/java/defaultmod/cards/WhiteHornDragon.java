@@ -32,7 +32,7 @@ public class WhiteHornDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int DAMAGE = 18;
     // /STAT DECLARATION/
 
@@ -68,7 +68,7 @@ public class WhiteHornDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(1);
+            this.upgradeBaseCost(0);
             this.tributes = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

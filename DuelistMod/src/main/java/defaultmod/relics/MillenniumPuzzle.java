@@ -42,6 +42,10 @@ public class MillenniumPuzzle extends CustomRelic {
 		if (DefaultMod.debug)
 		{
 			System.out.println("theDuelist:MillenniumPuzzle:onEquip() ---> removed MillenniumPuzzleShared from shop relics pool? : " + removedSharedPuzzle);
+			if (AbstractDungeon.shopRelicPool.contains(MillenniumPuzzleShared.ID))
+			{
+				System.out.println("theDuelist:MillenniumPuzzle:onEquip() ---> found the shared puzzle in the pool anyway though");
+			}
 		}
 	}
 

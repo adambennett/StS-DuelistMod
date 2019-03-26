@@ -23,7 +23,7 @@ public class MythicalBeast extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,7 +38,7 @@ public class MythicalBeast extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
         this.tributes = 2;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
     }
     
     @Override

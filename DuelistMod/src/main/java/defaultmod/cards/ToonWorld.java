@@ -50,6 +50,9 @@ public class ToonWorld extends DuelistCard
     	else if (p.hasPower(ToonWorldPower.POWER_ID) && DefaultMod.toonWorldTemp)
     	{
     		DefaultMod.toonWorldTemp = false;
+    		ToonWorldPower toon = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
+    		if (!upgraded) {  toon.TOON_DMG = 3;}
+    		else { toon.TOON_DMG = 2; }
     	}
     }
 

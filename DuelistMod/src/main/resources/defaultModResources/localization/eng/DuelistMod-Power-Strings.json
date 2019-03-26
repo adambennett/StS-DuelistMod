@@ -247,6 +247,10 @@
         "NAME": "Sphere Kuriboh",
         "DESCRIPTIONS": ["Whenever you #yIncrement, add a #yrandomized card to your hand." ]
 },
+"theDuelist:CallGravePower": {
+        "NAME": "Call of Grave",
+        "DESCRIPTIONS": ["Whenever you #yResummon, choose #b", " random #yZombie to #yResummon.", " random #yZombies to #yResummon." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

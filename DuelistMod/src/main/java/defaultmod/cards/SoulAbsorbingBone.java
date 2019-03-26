@@ -1,5 +1,7 @@
 package defaultmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,74 +9,74 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import defaultmod.DefaultMod;
-import defaultmod.actions.common.*;
-import defaultmod.orbs.Splash;
+import defaultmod.actions.unique.PlayRandomFromDiscardAction;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
 
-public class OceanDragonLord extends DuelistCard 
+public class SoulAbsorbingBone extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DefaultMod.makeID("OceanDragonLord");
+    public static final String ID = defaultmod.DefaultMod.makeID("SoulAbsorbingBone");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.OCEAN_LORD);
+    public static final String IMG = DefaultMod.makePath(DefaultMod.SOUL_BONE);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
-    
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    //private static final AttackEffect AFX = AttackEffect.FIRE;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public OceanDragonLord() {
-    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 20;
-    	this.tags.add(DefaultMod.MONSTER);
-    	this.tags.add(DefaultMod.AQUA);
-    	this.tags.add(DefaultMod.DRAGON);
-    	this.tags.add(DefaultMod.ALL);
-    	this.tags.add(DefaultMod.GOOD_TRIB);
-    	this.misc = 0;
-		this.originalName = this.name;
-		this.tributes = 3;
-		
+    public SoulAbsorbingBone() {
+        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(DefaultMod.MONSTER);
+        this.tags.add(DefaultMod.ALL);
+        this.tags.add(DefaultMod.ZOMBIE);
+        this.misc = 0;
+        this.originalName = this.name;
+        this.tributes = 3;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Splash();
-    	channel(orb);
+    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
+    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, this.upgraded, getRandomMonster()));
+    	if (tributeList.size() > 0) 
+    	{ 
+    		for (DuelistCard c : tributeList) 
+    		{ 
+    			if (c.hasTag(DefaultMod.ZOMBIE)) 
+    			{ 
+    				fullResummon(c, this.upgraded, getRandomMonster());
+    			} 
+    		} 
+    	}
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new OceanDragonLord();
+        return new SoulAbsorbingBone();
     }
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
+    public void upgrade() 
+    {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(2);
-            if (this.tributes > 2) { this.tributes -= 2; }
-            else if (this.tributes > 0) { this.tributes --; }
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -88,10 +90,10 @@ public class OceanDragonLord extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
     	
-  		// Pumpking & Princess
+    	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
     	
-  		// Mausoleum check
+    	// Mausoleum check
     	else if (p.hasPower(EmperorPower.POWER_ID))
 		{
 			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
@@ -99,7 +101,6 @@ public class OceanDragonLord extends DuelistCard
 			{
 				return true;
 			}
-			
 			else
 			{
 				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
@@ -115,20 +116,12 @@ public class OceanDragonLord extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		if (tributingCard.hasTag(DefaultMod.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
-		}
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
 		
-		if (tributingCard.hasTag(DefaultMod.AQUA))
-		{
-			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
-		}
 	}
+
+	
 
 	@Override
 	public void onResummon(int summons) {
@@ -137,14 +130,14 @@ public class OceanDragonLord extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -158,5 +151,5 @@ public class OceanDragonLord extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
-   
+    
 }
