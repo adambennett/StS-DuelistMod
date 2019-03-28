@@ -61,6 +61,10 @@
 },
 "theDuelist:BadReactionPower": {
         "NAME": "Bad Reaction to Simochi",
+        "DESCRIPTIONS": ["Whenever you attempt to heal, deal #b", " damage to ALL enemies for every #b", " HP you would gain, and heal for 0 instead." ]
+},
+"theDuelist:SpecialBadReactionPower": {
+        "NAME": "Bad Reaction to Simochi+",
         "DESCRIPTIONS": ["During your turn, deal #b", " damage to ALL enemies for every #b", " HP you gain." ]
 },
 "theDuelist:CastlePower": {
@@ -250,6 +254,10 @@
 "theDuelist:CallGravePower": {
         "NAME": "Call of Grave",
         "DESCRIPTIONS": ["Whenever you #yResummon, choose #b", " random #yZombie to #yResummon.", " random #yZombies to #yResummon." ]
+},
+"theDuelist:ExodiaRenewalPower": {
+        "NAME": "EXODIARENEWALPLACEHOLDER",
+        "DESCRIPTIONS": ["Whenever you trigger #yExodia, do not reset your collected pieces." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

@@ -204,6 +204,13 @@
     "DESCRIPTION": "#yRandomized cards may have their costs changed, may #yExhaust, and may become #yUpgraded or #yEthereal."
   },
   {
+    "PROPER_NAME": "Exempt",
+    "NAMES": [
+      "exempt"
+    ],   
+    "DESCRIPTION": "Cannot be #yResummoned."
+  },
+  {
     "PROPER_NAME": "Gate",
     "NAMES": [
       "gate"

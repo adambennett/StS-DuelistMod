@@ -25,7 +25,7 @@ public class ExodiaPower extends AbstractPower
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DefaultMod.makePath(DefaultMod.EXODIA_POWER);
-	private static int DAMAGE = 50;
+	private static int DAMAGE = 300;
 	public ArrayList<DuelistCard> pieces = new ArrayList<DuelistCard>();
 	
 	public ExodiaPower(final AbstractCreature owner, final AbstractCreature source, DuelistCard piece) 
@@ -42,7 +42,7 @@ public class ExodiaPower extends AbstractPower
 		this.updateDescription();
 		if (DefaultMod.challengeMode)
 		{
-			DAMAGE = 25;
+			DAMAGE = 150;
 		}
 	}
 	
@@ -70,17 +70,26 @@ public class ExodiaPower extends AbstractPower
 		updateDescription();
 		if (checkForAllPieces())
 		{
-			int playerSummons = 1;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
-			{ 
-				playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
-				playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
+			//int playerSummons = 1;
+			//if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
+			//{ 
+				//playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
+				//playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
+			//}
+			if (AbstractDungeon.player.hasPower(ObliteratePower.POWER_ID)) 
+			{
+				if (!DefaultMod.challengeMode) { DAMAGE += 200; }
+				else { DAMAGE += 100; }
+				DuelistCard.removePower(AbstractDungeon.player.getPower(ObliteratePower.POWER_ID), AbstractDungeon.player);
 			}
 			int[] catapultDmg = new int[] {DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE};
-			for (int i = 0; i < catapultDmg.length; i++) { catapultDmg[i] = DAMAGE * playerSummons; }
+			for (int i = 0; i < catapultDmg.length; i++) { catapultDmg[i] = DAMAGE; }
         	AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(this.owner, catapultDmg, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH));
-        	amount = 0;
-        	pieces = new ArrayList<DuelistCard>();
+        	if (!AbstractDungeon.player.hasPower(ExodiaRenewalPower.POWER_ID))
+        	{
+	        	amount = 0;
+	        	pieces = new ArrayList<DuelistCard>();
+        	}
         	updateDescription();
 		}
 	}

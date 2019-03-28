@@ -52,7 +52,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : this.p.discardPile.group) 
 			{
-				if (c.hasTag(DefaultMod.MONSTER) && !c.hasTag(DefaultMod.NO_PUMPKIN))
+				if (c.hasTag(DefaultMod.MONSTER) && !c.hasTag(DefaultMod.EXEMPT))
 				//if (c.hasTag(DefaultMod.MONSTER))
 				{
 					tmp.addToRandomSpot(c);
@@ -72,7 +72,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 				AbstractCard card = tmp.getTopCard();
 				// Play card
 				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
-    			if (cardCopy != null)
+    			if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
     			{
     				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
     				if (this.upgrade) { cardCopy.upgrade(); }
@@ -97,7 +97,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 					AbstractCard card = tmp.getNCardFromTop(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
 					// Play card
 					DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
-	    			if (cardCopy != null)
+	    			if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
 	    			{
 	    				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 	    				if (this.upgrade) { cardCopy.upgrade(); }
@@ -122,7 +122,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 					AbstractCard card = tmp.getNCardFromTop(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
 					// Play card
 					DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
-	    			if (cardCopy != null)
+	    			if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
 	    			{
 	    				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 	    				if (this.upgrade) { cardCopy.upgrade(); }

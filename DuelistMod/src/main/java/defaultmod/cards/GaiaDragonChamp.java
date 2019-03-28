@@ -59,7 +59,7 @@ public class GaiaDragonChamp extends DuelistCard
     	{
     		DuelistCard summon = returnRandomFromArray(tributeList);
     		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
-			if (cardCopy != null)
+			if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
 			{
 				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 				if (summon.upgraded) { cardCopy.upgrade(); }
@@ -76,7 +76,7 @@ public class GaiaDragonChamp extends DuelistCard
     	{
     		DuelistCard summon = tributeList.get(0);
     		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
-			if (cardCopy != null)
+			if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
 			{
 				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 				if (summon.upgraded) { cardCopy.upgrade(); }

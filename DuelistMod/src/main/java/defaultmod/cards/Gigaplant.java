@@ -35,7 +35,7 @@ public class Gigaplant extends DuelistCard
     public Gigaplant() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.NO_PUMPKIN);
+        this.tags.add(DefaultMod.EXEMPT);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.PLANT);

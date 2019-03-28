@@ -27,14 +27,13 @@ public class CastleWalls extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
     private static final int BLOCK = 10;
-    private static final int UPGRADE_PLUS_BLK = 3;
+    private static final int UPGRADE_PLUS_BLK = 4;
     // /STAT DECLARATION/
 
     public CastleWalls() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.TRAP);
-        this.tags.add(DefaultMod.STANDARD_DECK);
         this.tags.add(DefaultMod.EXODIA_DECK);
         this.startingExodiaDeckCopies = 4;
         this.startingDeckCopies = 2;

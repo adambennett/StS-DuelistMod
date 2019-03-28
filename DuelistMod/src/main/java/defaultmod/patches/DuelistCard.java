@@ -201,15 +201,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void fullResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target)
 	{
-		cardCopy = (DuelistCard) cardCopy.makeCopy();
-		if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-		if (upgradeResummon) { cardCopy.upgrade(); }
-		cardCopy.freeToPlayOnce = true;
-		cardCopy.applyPowers();
-		cardCopy.purgeOnUse = true;
-		AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, target));
-		cardCopy.onResummon(1);
-		cardCopy.checkResummon();
+		if (!cardCopy.hasTag(DefaultMod.EXEMPT))
+		{
+			cardCopy = (DuelistCard) cardCopy.makeCopy();
+			if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
+			if (upgradeResummon) { cardCopy.upgrade(); }
+			cardCopy.freeToPlayOnce = true;
+			cardCopy.applyPowers();
+			cardCopy.purgeOnUse = true;
+			AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, target));
+			cardCopy.onResummon(1);
+			cardCopy.checkResummon();
+		}
 	}
 	
 	@Override
@@ -930,7 +933,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon ---> triggered trap hole with roll of: " + randomNum); }
 							powerTribute(p, 1, false);
 							DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
-							if (cardCopy != null)
+							if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
 							{
 								if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 								if (c.upgraded) { cardCopy.upgrade(); }
@@ -1157,7 +1160,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon ---> triggered trap hole with roll of: " + randomNum); }
 							powerTribute(p, 1, false);
 							DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
-							if (cardCopy != null)
+							if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
 							{
 								if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 								if (c.upgraded) { cardCopy.upgrade(); }

@@ -67,7 +67,7 @@ public class Shadow extends DuelistOrb
 		
 		ArrayList<AbstractCard> discards = AbstractDungeon.player.discardPile.group;
     	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER)) { toChooseFrom.add(c); } }
+    	for (AbstractCard c : discards) { if (c.tags.contains(DefaultMod.MONSTER) && !c.hasTag(DefaultMod.EXEMPT)) { toChooseFrom.add(c); } }
     	if (toChooseFrom.size() > 0)
     	{
     		for (int i = 0; i < this.evokeAmount; i++)

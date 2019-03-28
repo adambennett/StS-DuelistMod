@@ -48,7 +48,7 @@ public class MiniPolymerization extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.MONSTER)) { handCards.add(a); }}    	
+    	for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.MONSTER) && !a.hasTag(DefaultMod.EXEMPT)) { handCards.add(a); }}    	
     	if (handCards.size() > 0)
     	{
 			for (int i = 0; i < this.magicNumber; i++)

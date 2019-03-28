@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.saveAndContinue.*;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -76,7 +77,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;
 	@SpireEnum public static AbstractCard.CardTags FIEND;
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
-	@SpireEnum public static AbstractCard.CardTags NO_PUMPKIN;
+	@SpireEnum public static AbstractCard.CardTags EXEMPT;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags CONSPIRE;
@@ -143,6 +144,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	private static CardTags chosenDeckTag = STANDARD_DECK;
 	private static int randomDeckSmallSize = 10;
 	private static int randomDeckBigSize = 15;
+	private static boolean runInProgress = false;
+	private static boolean ranFunc = false;
 	
 	// Global Fields
 	public static Properties duelistDefaults = new Properties();
@@ -489,7 +492,6 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String INVIGORATION = "cards/Invigoration.png";	
 	public static final String INVITATION = "cards/Invitation_Dark_Sleep.png";	
 	public static final String ILLUSIONIST = "cards/Illusionist_Faceless.png";
-	
 	public static final String ACID_TRAP = "cards/Acid_Trap_Hole.png";
 	public static final String ALTAR_TRIBUTE = "cards/Altar_Tribute.png";
 	public static final String BLIZZARD_PRINCESS = "cards/Blizzard_Princess.png";
@@ -515,6 +517,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String WORLD_CARROT = "cards/WorldCarrot.png";
 	public static final String CALL_GRAVE = "cards/CallGrave.png";
 	public static final String SOUL_BONE = "cards/SoulAbsorbingBone.png";
+	public static final String ICE_QUEEN = "cards/Ice_Queen.png";
+	public static final String TERRA_TERRIBLE = "cards/Terra_Terrible.png";	
+	public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
 		
 	public static final String CRASHBUG_ROAD = "cards/Crashbug_Road.png";
 	public static final String CRASHBUG_X = "cards/Crashbug_X.png";
@@ -522,10 +527,6 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String CRASHBUG_Z = "cards/Crashbug_Z.png";
 	public static final String GOLDEN_APPLES = "cards/Golden_Apples.png";
 	public static final String HYPERANCIENT_SHARK = "cards/Hyperancient_Shark.png";
-	public static final String ICE_QUEEN = "cards/Ice_Queen.png";
-	public static final String TERRA_TERRIBLE = "cards/Terra_Terrible.png";	
-	public static final String SPHERE_KURIBOH = "cards/Sphere_Kuriboh.png";
-	
 	public static final String LEGENDARY_OCEAN = "cards/Legendary_Ocean.png";
 	public static final String MAGICAL_STONE = "cards/Magical_Stone.png";
 	public static final String MOTHER_SPIDER = "cards/Mother_Spider.png";
@@ -1474,6 +1475,13 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
+		if (UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST) > 0) 
+		{ 
+			UnlockTracker.unlockProgress.putInteger(TheDuelistEnum.THE_DUELIST.toString() + "UnlockLevel", 0);
+			SaveFile saveFile = new SaveFile(SaveFile.SaveType.POST_COMBAT);
+			SaveAndContinue.save(saveFile);
+			logger.info("theDuelist:DefaultMod:receivePostBattle() ---> unlock level was greater than 0, reset to 0");
+		}
 		playedOneCardThisCombat = false;
 		lastMaxSummons = 5;
 		spellsThisCombat = 0;
@@ -1521,6 +1529,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receivePostDeath() 
 	{
+		runInProgress = false;
+		ranFunc = false;
 		spellsThisCombat = 0;
 		summonsThisCombat = 0;
 		AbstractPlayer.customMods = new ArrayList<String>();
@@ -1555,6 +1565,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
 	{
+		logger.info("theDuelist:DefaultMod:receivePostCreateStartingDeck() ---> Ran function. Has postDungeonInit ran?: " + ranFunc);
 		boolean badMods = false;
 		ArrayList<String> badModNames = new ArrayList<String>();
 		badModNames.add("Insanity");
@@ -1604,7 +1615,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		if (AbstractDungeon.player.hasPower(HeartUnderdogPower.POWER_ID))
 		{
 			int handSize = AbstractDungeon.player.hand.size();
-			if (arg0.hasTag(DefaultMod.MONSTER) && handSize < 10)
+			if (arg0.hasTag(DefaultMod.MONSTER) && handSize < BaseMod.MAX_HAND_SIZE)
 			{
 				DuelistCard.draw(1);
 			}
@@ -1650,7 +1661,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receivePostDungeonInitialize() 
 	{
-		
+		runInProgress = true;
+		ranFunc = true;
 	}
 
 	@Override
@@ -1722,19 +1734,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 				deckToStartWith = new ArrayList<DuelistCard>();
 				for (int i = 0; i < randomDeckBigSize; i++) { deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard()); }
 			}
-			
-			else if (chosenDeckTag.equals(GENERATION_DECK) || chosenDeckTag.equals(OJAMA_DECK))
-			{
-				deckToStartWith = new ArrayList<DuelistCard>();
-				deckToStartWith.addAll(refDeck.getDeck());
-			}
-			
-			else if (chosenDeckTag.equals(TOON_DECK))
-			{
-				deckToStartWith = new ArrayList<DuelistCard>();
-				deckToStartWith.addAll(refDeck.getDeck());
-			}
-			
+
 			else 
 			{
 				deckToStartWith = new ArrayList<DuelistCard>();
@@ -2602,6 +2602,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new ArmoredZombie());
 		myCards.add(new AxeDespair());
 		myCards.add(new BabyDragon());
+		myCards.add(new BadReaction());
 		myCards.add(new BigFire());
 		myCards.add(new BlizzardDragon());
 		myCards.add(new BlueEyes());
@@ -2754,6 +2755,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new MiniPolymerization());
 		myCards.add(new WorldCarrot());
 		myCards.add(new SoulAbsorbingBone());
+		myCards.add(new MsJudge());
+		myCards.add(new FiendishChain());
 		//myCards.add(new CallGrave());
 		// END ALL Set
 
@@ -2816,7 +2819,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		// LIMITED Set - 16 cards
 		myCards.add(new AlphaMagnet());
 		myCards.add(new AncientRules());
-		myCards.add(new BadReaction());
+		myCards.add(new BadReactionRare());
 		myCards.add(new BetaMagnet());
 		myCards.add(new DarkHole());
 		myCards.add(new DarkMagicianGirl());

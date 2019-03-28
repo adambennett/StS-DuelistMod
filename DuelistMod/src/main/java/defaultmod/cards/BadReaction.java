@@ -17,14 +17,14 @@ public class BadReaction extends DuelistCard
     // TEXT DECLARATION 
     public static final String ID = defaultmod.DefaultMod.makeID("BadReaction");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DefaultMod.makePath(DefaultMod.BAD_REACTION);
+    public static final String IMG = DefaultMod.makeCardPath("Bad_Reaction_Basic.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION 	
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
@@ -40,7 +40,6 @@ public class BadReaction extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(DefaultMod.TRAP);
-        this.tags.add(DefaultMod.LIMITED);
         this.tags.add(DefaultMod.HEAL_DECK);
         this.startingHealDeckCopies = 1;
         this.originalName = this.name;

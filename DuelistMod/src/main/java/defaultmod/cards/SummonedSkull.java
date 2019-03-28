@@ -25,7 +25,7 @@ public class SummonedSkull extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.BASIC;
+	private static final CardRarity RARITY = CardRarity.COMMON;
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -41,11 +41,9 @@ public class SummonedSkull extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.METAL_RAIDERS);
-		this.tags.add(DefaultMod.STANDARD_DECK);
 		this.tags.add(DefaultMod.FIEND);
 		this.tags.add(DefaultMod.EXODIA_DECK);
         this.startingExodiaDeckCopies = 2;
-        this.startingDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();

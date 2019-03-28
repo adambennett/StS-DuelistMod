@@ -52,7 +52,7 @@ public class PredaplantDrosophyllum extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.PLANT) && !a.equals(this)) { handCards.add(a); }}  
+    	for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.PLANT) && !a.equals(this) && !a.hasTag(DefaultMod.EXEMPT)) { handCards.add(a); }}  
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
     	if (tributeList.size() > 0 && handCards.size() > 0)

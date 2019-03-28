@@ -47,9 +47,15 @@ public class Invigoration extends DuelistCard
     {
     	if (!this.upgraded)
     	{
-	    	// Generate 2 random dragons and target them at the same target as the attack() above
-	    	// If this card is upgraded, the two dragons get upgraded as well
-	    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromEitherSet(DefaultMod.PLANT, DefaultMod.INSECT);    	
+	    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromEitherSet(DefaultMod.PLANT, DefaultMod.INSECT);   
+	    	while (extraDragA.hasTag(DefaultMod.EXEMPT))
+	    	{
+	    		String cardNameA = extraDragA.originalName;    	
+		    	if (DefaultMod.debug) { System.out.println("theDuelist:Invigoration --- > Generated: " + cardNameA); }
+	    		extraDragA = (DuelistCard) returnTrulyRandomFromEitherSet(DefaultMod.PLANT, DefaultMod.INSECT);
+	    		cardNameA = extraDragA.originalName;    	
+		    	if (DefaultMod.debug) { System.out.println("theDuelist:Invigoration --- > Re-rolled: " + cardNameA); }
+	    	}
 	    	String cardNameA = extraDragA.originalName;    	
 	    	if (DefaultMod.debug) { System.out.println("theDuelist:Invigoration --- > Generated: " + cardNameA); }
 	    	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }    	
@@ -66,7 +72,7 @@ public class Invigoration extends DuelistCard
     		for (int i = 0; i < 5; i++)
     		{
     			DuelistCard nature = (DuelistCard) returnTrulyRandomFromEitherSet(DefaultMod.PLANT, DefaultMod.INSECT);
-    			while (natureMonsters.contains(nature))
+    			while (natureMonsters.contains(nature) || nature.hasTag(DefaultMod.EXEMPT))
     			{
     				nature = (DuelistCard) returnTrulyRandomFromEitherSet(DefaultMod.PLANT, DefaultMod.INSECT);
     			}

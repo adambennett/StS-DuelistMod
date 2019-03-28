@@ -6,6 +6,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
+import basemod.BaseMod;
+import defaultmod.DefaultMod;
+
 public class RandomizedAction extends AbstractGameAction {
 
 	private AbstractCard cardRef;
@@ -69,7 +72,18 @@ public class RandomizedAction extends AbstractGameAction {
     			//c.initializeDescription();
     		}       
             c.initializeDescription();
-            AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c));
+            
+            if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)
+            {
+            	AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c));
+            }
+            else
+            {
+            	if (DefaultMod.debug)
+            	{
+            		System.out.println("theDuelist:RandomizedAction:update() ---> got a hand size bigger than allowed, so skipped adding card to hand");
+            	}
+            }
             this.tickDuration();
         }
         this.isDone = true;

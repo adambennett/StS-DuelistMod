@@ -34,7 +34,7 @@ public class InsectQueen extends DuelistCard
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.magicNumber = this.baseMagicNumber = POISON_MULT;
-		this.decSummons = 2;
+		this.decSummons = 1;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TRIBUTE);
 		this.tags.add(DefaultMod.INSECT);
@@ -54,7 +54,7 @@ public class InsectQueen extends DuelistCard
 		poisonAllEnemies(p, playerSummons * POISON_MULT);
 		
 		// If unupgraded, reduce max summons by 1.
-		decMaxSummons(p, this.decSummons);
+		if (!upgraded) { decMaxSummons(p, this.decSummons); }
 		
 	}
 
@@ -70,7 +70,6 @@ public class InsectQueen extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();			
 			this.upgradeMagicNumber(1);
-			this.decSummons = 1;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

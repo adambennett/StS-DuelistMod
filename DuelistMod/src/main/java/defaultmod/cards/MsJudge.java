@@ -1,7 +1,6 @@
 package defaultmod.cards;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,50 +10,45 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
 
 public class MsJudge extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = defaultmod.DefaultMod.makeID("SummonedSkull");
+	public static final String ID = DefaultMod.makeID("MsJudge");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DefaultMod.makePath(DefaultMod.SUMMONED_SKULL);
+	public static final String IMG = DefaultMod.makePath(DefaultMod.MS_JUDGE);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.BASIC;
-	private static final CardTarget TARGET = CardTarget.ENEMY;
-	private static final CardType TYPE = CardType.ATTACK;
+	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+	//private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
-	private static final int DAMAGE = 11;
 	// /STAT DECLARATION/
 
 	public MsJudge() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = 1;
-		this.magicNumber = this.baseMagicNumber = this.tributes;
+		this.summons = 1;
+		this.isSummon = true;
 		this.tags.add(DefaultMod.MONSTER);
-		this.tags.add(DefaultMod.METAL_RAIDERS);
-		this.tags.add(DefaultMod.STANDARD_DECK);
 		this.tags.add(DefaultMod.FIEND);
-        this.startingDeckCopies = 1;
+		this.tags.add(DefaultMod.ALL);
 		this.misc = 0;
 		this.originalName = this.name;
-		this.setupStartingCopies();
+		//this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
-		attack(m, AFX, this.damage);
+		summon(p, this.summons, this);
+		channelRandom();
 	}
 
 	// Which card to return when making a copy of this card.
@@ -68,50 +62,12 @@ public class MsJudge extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			//this.tributes = this.magicNumber = this.baseMagicNumber = 0;
-			this.upgradeDamage(4);
+			this.upgradeBaseCost(0);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
 	}
 
-	// If player doesn't have enough summons, can't play card
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
-    	// Check super canUse()
-    	boolean canUse = super.canUse(p, m); 
-    	if (!canUse) { return false; }
-    	
-    	// If upgraded, don't need tributes
-    	//else if (this.tributes < 1) { return true; }
-    	
-    	// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-    	
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
-			}
-		}
-    	
-    	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
-
-    	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
-    	return false;
-    }
-
-	
 	@Override
 	public void onTribute(DuelistCard tributingCard)
 	{

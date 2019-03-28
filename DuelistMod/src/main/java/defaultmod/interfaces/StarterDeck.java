@@ -54,11 +54,11 @@ public class StarterDeck
 	private static void setupMap()
 	{
 		deckCopiesMap.put(DefaultMod.STANDARD_DECK, 0);
-		deckCopiesMap.put(DefaultMod.DRAGON_DECK, 0);
-		deckCopiesMap.put(DefaultMod.NATURE_DECK, 0);
-		deckCopiesMap.put(DefaultMod.CREATOR_DECK, 0);
-		deckCopiesMap.put(DefaultMod.TOON_DECK, 0);
-		deckCopiesMap.put(DefaultMod.SPELLCASTER_DECK, 0);
+		deckCopiesMap.put(DefaultMod.DRAGON_DECK, 1);
+		deckCopiesMap.put(DefaultMod.NATURE_DECK, 2);
+		deckCopiesMap.put(DefaultMod.CREATOR_DECK, 3);
+		deckCopiesMap.put(DefaultMod.TOON_DECK, 4);
+		deckCopiesMap.put(DefaultMod.SPELLCASTER_DECK, 5);
 		deckCopiesMap.put(DefaultMod.ORB_DECK, 6);
 		deckCopiesMap.put(DefaultMod.RESUMMON_DECK, 7);
 		deckCopiesMap.put(DefaultMod.GENERATION_DECK, 8);

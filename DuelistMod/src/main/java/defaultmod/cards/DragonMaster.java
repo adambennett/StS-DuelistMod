@@ -56,25 +56,29 @@ public class DragonMaster extends DuelistCard
     	// Generate 2 random dragons and target them at the same target as the attack() above
     	// If this card is upgraded, the two dragons get upgraded as well
     	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
+    	while (extraDragA.hasTag(DefaultMod.EXEMPT)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON); }
     	DuelistCard extraDragB = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
+    	while (extraDragB.hasTag(DefaultMod.EXEMPT)) { extraDragB = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON); }
     	String cardNameA = extraDragA.originalName;
     	String cardNameB = extraDragB.originalName;
     	if (DefaultMod.debug) { System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA); System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameB); }
     	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }
-    	if (!extraDragB.tags.contains(DefaultMod.TRIBUTE)) { extraDragB.misc = 52; }
-        extraDragA.freeToPlayOnce = true;
-        extraDragB.freeToPlayOnce = true;
-        extraDragA.applyPowers();
-        extraDragB.applyPowers();
-        extraDragA.purgeOnUse = true;
+    	extraDragA.freeToPlayOnce = true;
+    	extraDragA.applyPowers();
+    	extraDragA.purgeOnUse = true;
+    	if (this.upgraded) { extraDragA.upgrade(); }
+    	AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));
+    	extraDragA.onResummon(1);
+    	extraDragA.checkResummon();
+    	if (!extraDragB.tags.contains(DefaultMod.TRIBUTE)) { extraDragB.misc = 52; }       
+        extraDragB.freeToPlayOnce = true;       
+        extraDragB.applyPowers();     
         extraDragB.purgeOnUse = true;
-        if (this.upgraded) { extraDragA.upgrade(); extraDragB.upgrade(); }
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragB, m));
-        extraDragA.onResummon(1);
-        extraDragA.checkResummon();
+        if (this.upgraded) { extraDragB.upgrade(); }  
+        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragB, m));     
         extraDragB.onResummon(1);
         extraDragB.checkResummon();
+    	
     	
     }
 

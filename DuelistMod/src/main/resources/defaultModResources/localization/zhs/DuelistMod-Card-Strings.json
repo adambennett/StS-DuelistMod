@@ -221,8 +221,8 @@
 	},
 	"theDuelist:InsectQueen": {
 		"NAME": "昆蟲女王",
-		"DESCRIPTION": "Insect NL 贡 ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 2.",
-		"UPGRADE_DESCRIPTION": "Insect NL 贡 ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1."
+		"DESCRIPTION": "Insect NL 贡 ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1.",
+		"UPGRADE_DESCRIPTION": "Insect NL 贡 ALL Summons. Apply !M! times that much poison to ALL enemies."
 	},
 	"theDuelist:JamBreeding": {
 		"NAME": "史萊姆增殖爐",
@@ -556,8 +556,8 @@
 	},
 	"theDuelist:ToonSummonedSkull": {
 		"NAME": "卡通召唤头骨",
-		"DESCRIPTION": "Toon NL 贡 1. NL Deal !D! damage (through Block). NL Gain 2 Strength.",
-		"UPGRADE_DESCRIPTION": "Toon NL 贡 1. NL Deal !D! damage (through Block). NL Gain 3 Strength."
+		"DESCRIPTION": "Fiend Toon NL 贡 1. NL Deal !D! damage (through Block). NL Gain 2 Strength.",
+		"UPGRADE_DESCRIPTION": "Fiend Toon NL 贡 1. NL Deal !D! damage (through Block). NL Gain 3 Strength."
 	},
 	"theDuelist:ScrapFactory": {
 		"NAME": "废料厂",

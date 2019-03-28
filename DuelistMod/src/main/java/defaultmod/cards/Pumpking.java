@@ -37,7 +37,7 @@ public class Pumpking extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = 1;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.NO_PUMPKIN);
+        this.tags.add(DefaultMod.EXEMPT);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.misc = 0;
 		this.originalName = this.name;

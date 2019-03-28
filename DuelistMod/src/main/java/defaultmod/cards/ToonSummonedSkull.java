@@ -1,9 +1,11 @@
 package defaultmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -31,7 +33,7 @@ public class ToonSummonedSkull extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 2;
-	private static final int DAMAGE = 18;
+	private static final int DAMAGE = 20;
 	private static final int U_DMG = 5;
 	// /STAT DECLARATION/
 
@@ -41,6 +43,7 @@ public class ToonSummonedSkull extends DuelistCard
 		this.toon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);
+		this.tags.add(DefaultMod.FIEND);
 		this.tags.add(DefaultMod.FULL);
 		this.tags.add(DefaultMod.TOON_DECK);
 		this.startingDeckCopies = 1;
@@ -120,6 +123,10 @@ public class ToonSummonedSkull extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		if (tributingCard.hasTag(DefaultMod.TOON)) { damageAllEnemiesThorns(5); }
+		if (tributingCard.hasTag(DefaultMod.FIEND))
+		{
+			AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, 1));
+		}
 	}
 
 	@Override

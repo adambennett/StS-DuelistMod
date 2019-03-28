@@ -18,11 +18,11 @@ import defaultmod.DefaultMod;
  * 
  */
 
-public class BadReactionPower extends AbstractPower 
+public class SpecialBadReactionPower extends AbstractPower 
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = defaultmod.DefaultMod.makeID("BadReactionPower");
+    public static final String POWER_ID = defaultmod.DefaultMod.makeID("SpecialBadReactionPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -30,7 +30,7 @@ public class BadReactionPower extends AbstractPower
     public int DAMAGE = 1;
     public int HP_GAIN_TRIGGER = 1;
 
-    public BadReactionPower(final AbstractCreature owner, final AbstractCreature source, boolean upgrade, int uDmg, int uHeal) 
+    public SpecialBadReactionPower(final AbstractCreature owner, final AbstractCreature source, boolean upgrade, int uDmg, int uHeal) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -74,14 +74,14 @@ public class BadReactionPower extends AbstractPower
     @Override
     public int onHeal(int healAmount)
     {
-    	if (AbstractDungeon.player.hasPower(BadReactionPower.POWER_ID))
+    	if (AbstractDungeon.player.hasPower(SpecialBadReactionPower.POWER_ID))
 		{
 			int[] damageArray = new int[] {DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE};
 			for (int i = 0; i < damageArray.length; i++) { damageArray[i] = DAMAGE * healAmount; }
 			AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damageArray, DamageType.THORNS, AttackEffect.POISON)); 
 		}
-    	//return healAmount;
-    	return 0;
+    	return healAmount;
+    	//return 0;
     }
 
     @Override

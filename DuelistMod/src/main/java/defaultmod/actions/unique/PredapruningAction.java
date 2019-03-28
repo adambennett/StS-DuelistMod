@@ -71,7 +71,7 @@ public class PredapruningAction extends AbstractGameAction
 				AbstractCard card = tmp.getTopCard();
 				// Play card
 				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
-    			if (cardCopy != null)
+    			if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
     			{
     				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
     				if (this.upgrade) { cardCopy.upgrade(); }
@@ -95,7 +95,7 @@ public class PredapruningAction extends AbstractGameAction
 					AbstractCard card = tmp.getNCardFromTop(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
 					// Play card
 					DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
-	    			if (cardCopy != null)
+	    			if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
 	    			{
 	    				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 	    				if (this.upgrade) { cardCopy.upgrade(); }
@@ -133,7 +133,7 @@ public class PredapruningAction extends AbstractGameAction
 				c.unhover();
 				// Play card
 				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
-				if (cardCopy != null)
+				if (cardCopy != null && !cardCopy.hasTag(DefaultMod.EXEMPT))
     			{
     				if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
     				if (this.upgrade) { cardCopy.upgrade(); }
