@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -39,14 +38,11 @@ public class JudgeMan extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
 		this.tags.add(DefaultMod.MONSTER);
-		this.tags.add(DefaultMod.RESUMMON_DECK);
-        this.startingResummonDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = SUMMONS;
 		this.isSummon = true;
 		this.isTribute = true;
-		this.setupStartingCopies();
 		this.tributes = 1;
 	}
 
@@ -122,9 +118,7 @@ public class JudgeMan extends DuelistCard
 	@Override
 	public void onResummon(int summons) 
 	{
-		summon(AbstractDungeon.player, summons, new Token("Judge Token"));
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		attack(m, AFX, 15);
+		
 	}
 
 	@Override

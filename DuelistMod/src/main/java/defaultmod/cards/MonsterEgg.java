@@ -38,7 +38,7 @@ public class MonsterEgg extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GENERATION_DECK);
-		this.startingGenDeckCopies = 2;
+		this.startingGenDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;

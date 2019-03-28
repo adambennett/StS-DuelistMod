@@ -139,10 +139,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.startCopies = new ArrayList<Integer>();
 		this.startCopies.add(this.startingDeckCopies);				// 0 - Default Copies
 		this.startCopies.add(this.startingDragDeckCopies); 			// 1 - Dragon Copies
-		this.startCopies.add(this.startingSpellcasterDeckCopies); 	// 2 - Spellcaster Copies
-		this.startCopies.add(this.startingNatureDeckCopies); 		// 3 - Nature Copies
-		this.startCopies.add(this.startingCreatorDeckCopies); 		// 4 - Creator Copies
-		this.startCopies.add(this.startingToonDeckCopies); 			// 5 - Toon Copies
+		this.startCopies.add(this.startingNatureDeckCopies); 		// 2 - Nature Copies
+		this.startCopies.add(this.startingCreatorDeckCopies); 		// 3 - Creator Copies
+		this.startCopies.add(this.startingToonDeckCopies); 			// 4 - Toon Copies
+		this.startCopies.add(this.startingSpellcasterDeckCopies); 	// 5 - Spellcaster Copies		
 		this.startCopies.add(this.startingOrbDeckCopies); 			// 6 - Orb Copies
 		this.startCopies.add(this.startingResummonDeckCopies); 		// 7 - Resumon Copies
 		this.startCopies.add(this.startingGenDeckCopies); 			// 8 - Gen Copies
@@ -861,6 +861,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				} 
 				
+				// Check for Goblin's Secret Remedy
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
+				
 				DefaultMod.summonsThisCombat += startSummons;
 			}
 
@@ -902,6 +905,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						instance.updateDescription();
 					}
 				} 
+				
+				// Check for Goblin's Secret Remedy
+				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
 
 				// Check for Ultimate Offering
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0)
@@ -1004,6 +1010,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				} 
 				
+				// Check for Goblin's Secret Remedy
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
+				
 				DefaultMod.summonsThisCombat += startSummons;
 			}
 
@@ -1045,6 +1054,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						instance.updateDescription();
 					}
 				}
+				
+				// Check for Goblin's Secret Remedy
+				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
 
 				// Update UI
 				summonsInstance.updateCount(summonsInstance.amount);
@@ -1095,6 +1107,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				} 
 				
+				// Check for Goblin's Secret Remedy
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
+				
 				DefaultMod.summonsThisCombat += startSummons;
 			}
 			else
@@ -1129,6 +1144,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						instance.updateDescription();
 					}
 				} 
+				
+				// Check for Goblin's Secret Remedy
+				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
 
 				// Check for Ultimate Offering
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0 && !fromUO)
@@ -1231,6 +1249,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 			} 
 			
+			// Check for Goblin's Secret Remedy
+			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
+			
 			DefaultMod.summonsThisCombat += startSummons;
 		}
 
@@ -1272,6 +1293,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					instance.updateDescription();
 				}
 			} 
+			
+			// Check for Goblin's Secret Remedy
+			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
 
 			// Check for Ultimate Offering
 			if (p.hasPower(UltimateOfferingPower.POWER_ID) && !DefaultMod.checkUO)
@@ -1328,6 +1352,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					instance.updateDescription();
 				}
 			} 
+			
+			// Check for Goblin's Secret Remedy
+			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
 		}
 
 		else
@@ -1368,6 +1395,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					instance.updateDescription();
 				}
 			} 
+			
+			// Check for Goblin's Secret Remedy
+			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { heal(p, p.getPower(GoblinRemedyPower.POWER_ID).amount); }
 
 			// Update UI
 			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> updating summons instance"); }
@@ -1877,6 +1907,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else { RandomOrbHelper.channelRandomOrb(); }
 	}
 	
+	public static void channelRandomNoGlassOrGate()
+	{
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrbNoGlassOrGate(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrbNoGlassOrGate(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrbNoGlassOrGate(); }
+		else { RandomOrbHelper.channelRandomOrbNoGlassOrGate(); }
+	}
+	
 	public static ArrayList<AbstractOrb> returnRandomOrbList()
 	{
 		ArrayList<AbstractOrb> returnOrbs = new ArrayList<AbstractOrb>();
@@ -1895,6 +1933,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void evoke(int amount)
 	{
 		AbstractDungeon.actionManager.addToTop(new EvokeOrbAction(amount));
+	}
+	
+	public static void evokeMult(int amount)
+	{
+		for (int i = 0; i < amount; i++)
+		{
+			AbstractDungeon.player.evokeWithoutLosingOrb();
+		}
+		AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
+	}
+	
+	public static void evokeMult(int amount, AbstractOrb orb)
+	{
+		for (int i = 0; i < amount; i++)
+		{
+			//AbstractDungeon.player.evokeWithoutLosingOrb();
+			orb.onEvoke();
+		}
 	}
 
 	public static void removeOrbs(int amount)

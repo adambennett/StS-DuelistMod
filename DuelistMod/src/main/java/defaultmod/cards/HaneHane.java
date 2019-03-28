@@ -39,10 +39,8 @@ public class HaneHane extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.tags.add(DefaultMod.TOON_DECK);
         this.tags.add(DefaultMod.EXODIA_DECK);
         this.startingExodiaDeckCopies = 1;
-        this.startingDeckCopies = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
     }
@@ -54,11 +52,11 @@ public class HaneHane extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.tags.add(DefaultMod.TOON_DECK);
-        this.startingDeckCopies = 1;
+        this.tags.add(DefaultMod.EXODIA_DECK);
+        this.startingExodiaDeckCopies = 1;
         this.originalName = this.name;
-        this.setupStartingCopies();
         resummoned = resummon;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

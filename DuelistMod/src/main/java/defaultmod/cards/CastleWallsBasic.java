@@ -6,13 +6,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.helpers.BaseModCardTags;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 
 public class CastleWallsBasic extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("CastleWallsBasic");
+    public static final String ID = DefaultMod.makeID("CastleWallsBasic");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.CASTLE_WALLS);
     public static final String NAME = cardStrings.NAME;
@@ -27,14 +28,33 @@ public class CastleWallsBasic extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
     private static final int BLOCK = 5;
-    private static final int UPGRADE_PLUS_BLK = 3;
     // /STAT DECLARATION/
 
     public CastleWallsBasic() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.TRAP);
-        
+        this.tags.add(BaseModCardTags.BASIC_DEFEND);
+        this.tags.add(DefaultMod.STANDARD_DECK);
+        this.tags.add(DefaultMod.DRAGON_DECK);
+        this.tags.add(DefaultMod.SPELLCASTER_DECK);
+        this.tags.add(DefaultMod.NATURE_DECK);
+        this.tags.add(DefaultMod.TOON_DECK);
+        this.tags.add(DefaultMod.ORB_DECK);
+        this.tags.add(DefaultMod.RESUMMON_DECK);
+        this.tags.add(DefaultMod.HEAL_DECK);
+        this.tags.add(DefaultMod.CREATOR_DECK);
+        this.tags.add(DefaultMod.GENERATION_DECK);
+		this.startingGenDeckCopies = 3;
+        this.startingDeckCopies = 3;
+        this.startingDragDeckCopies = 3;
+        this.startingSpellcasterDeckCopies = 2;
+        this.startingNatureDeckCopies = 4;
+        this.startingToonDeckCopies = 2;
+        this.startingCreatorDeckCopies = 3;
+        this.startingOrbDeckCopies = 4;
+        this.startingResummonDeckCopies = 2;
+        this.startingHealDeckCopies = 3;
         this.originalName = this.name;
         this.setupStartingCopies();
     }
@@ -57,7 +77,7 @@ public class CastleWallsBasic extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(UPGRADE_PLUS_BLK);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

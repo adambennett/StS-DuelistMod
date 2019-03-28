@@ -48,6 +48,7 @@ public class BadReactionRare extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	if (p.hasPower(BadReactionPower.POWER_ID)) { removePower(p.getPower(BadReactionPower.POWER_ID), p); }
     	if (this.upgraded)
     	{
     		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SpecialBadReactionPower(p, p, true, U_DMG, U_HEAL)));

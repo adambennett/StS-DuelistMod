@@ -42,11 +42,8 @@ public class ToonGoblinAttack extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.FULL);
-        this.tags.add(DefaultMod.TOON_DECK);
-        this.startingDeckCopies = 2;
 		this.originalName = this.name;
         this.isSummon = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

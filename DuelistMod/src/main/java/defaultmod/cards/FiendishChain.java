@@ -2,6 +2,7 @@ package defaultmod.cards;
 
 import java.util.ArrayList;
 
+import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
+import defaultmod.powers.*;
 
 public class FiendishChain extends DuelistCard 
 {
@@ -24,7 +26,7 @@ public class FiendishChain extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
@@ -35,10 +37,11 @@ public class FiendishChain extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.originalName = this.name;
 		this.tags.add(DefaultMod.TRAP);
-		this.tags.add(DefaultMod.ALL);
+		this.tags.add(DefaultMod.ORB_DECK);
+		this.startingOrbDeckCopies = 1;
 		this.tributes = 1;
 		this.baseMagicNumber = this.magicNumber = 2;
-		//this.setupStartingCopies();
+		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
@@ -68,21 +71,22 @@ public class FiendishChain extends DuelistCard
 			{
 				for (int i = 0; i < AbstractDungeon.player.orbs.size(); i++)
 				{
-					evoke(2);
+					evokeMult(2, AbstractDungeon.player.orbs.get(i));
 				}
+				AbstractDungeon.actionManager.addToTop(new RemoveAllOrbsAction());
 			}
 			
 			// No fiend tribute
 			else
 			{
-				evoke(this.magicNumber);
+				evokeMult(this.magicNumber);
 			}
 		}
 		
 		// Un-upgraded
 		else
 		{
-			evoke(this.magicNumber);
+			evokeMult(this.magicNumber);
 		}
 	}
 
@@ -102,6 +106,40 @@ public class FiendishChain extends DuelistCard
 			this.initializeDescription();
 		}
 	}
+	
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
+    	// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
+		}
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = "Not enough Summons";
+    	return false;
+    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {

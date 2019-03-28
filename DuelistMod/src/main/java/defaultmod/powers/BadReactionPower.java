@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.patches.DuelistCard;
 
 /* 	
  * 
@@ -51,24 +52,40 @@ public class BadReactionPower extends AbstractPower
     public void onDrawOrDiscard() 
     {
     	if (this.amount > 0) { this.amount = 0; }
+    	if (AbstractDungeon.player.hasPower(SpecialBadReactionPower.POWER_ID))
+    	{
+    		DuelistCard.removePower(this, this.owner);
+    	}
     }
     
     @Override
     public void atStartOfTurn() 
     {
     	if (this.amount > 0) { this.amount = 0; }
+    	if (AbstractDungeon.player.hasPower(SpecialBadReactionPower.POWER_ID))
+    	{
+    		DuelistCard.removePower(this, this.owner);
+    	}
     }
     
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
     	if (this.amount > 0) { this.amount = 0; }
+    	if (AbstractDungeon.player.hasPower(SpecialBadReactionPower.POWER_ID))
+    	{
+    		DuelistCard.removePower(this, this.owner);
+    	}
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
     	if (this.amount > 0) { this.amount = 0; }
+    	if (AbstractDungeon.player.hasPower(SpecialBadReactionPower.POWER_ID))
+    	{
+    		DuelistCard.removePower(this, this.owner);
+    	}
 	}
 
     @Override
@@ -85,7 +102,8 @@ public class BadReactionPower extends AbstractPower
     }
 
     @Override
-	public void updateDescription() {
+	public void updateDescription()
+    {
         this.description = DESCRIPTIONS[0] + DAMAGE + DESCRIPTIONS[1] + HP_GAIN_TRIGGER + DESCRIPTIONS[2];
     }
 }

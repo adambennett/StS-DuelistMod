@@ -32,12 +32,8 @@ public class WorldTree extends DuelistCard
     public WorldTree() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.SPELL);
-        this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.FIELDSPELL);
-        this.tags.add(DefaultMod.SPELLCASTER_DECK);
-        this.startingDeckCopies = 1;
         this.originalName = this.name;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

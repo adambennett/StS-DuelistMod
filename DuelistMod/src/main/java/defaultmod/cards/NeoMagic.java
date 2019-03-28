@@ -37,7 +37,7 @@ public class NeoMagic extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.SPELLCASTER_DECK);
-        this.startingDeckCopies = 2;
+        this.startingSpellcasterDeckCopies = 1;
         this.originalName = this.name;
         this.summons = 1;
         this.isSummon = true;

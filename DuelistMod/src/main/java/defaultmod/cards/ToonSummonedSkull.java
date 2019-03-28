@@ -44,9 +44,8 @@ public class ToonSummonedSkull extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.TOON);
 		this.tags.add(DefaultMod.FIEND);
-		this.tags.add(DefaultMod.FULL);
 		this.tags.add(DefaultMod.TOON_DECK);
-		this.startingDeckCopies = 1;
+		this.startingToonDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();

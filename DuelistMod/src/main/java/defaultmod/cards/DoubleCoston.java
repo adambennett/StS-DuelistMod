@@ -35,12 +35,8 @@ public class DoubleCoston extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ZOMBIE);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.GOOD_TRIB);
-        this.tags.add(DefaultMod.RESUMMON_DECK);
-        this.startingResummonDeckCopies = 2;
         this.summons = 2;
         this.originalName = this.name;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

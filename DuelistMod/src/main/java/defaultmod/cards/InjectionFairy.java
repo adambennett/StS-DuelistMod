@@ -39,12 +39,9 @@ public class InjectionFairy extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.LEGACY_DARKNESS);
 		this.tags.add(DefaultMod.SPELLCASTER);
-		this.tags.add(DefaultMod.HEAL_DECK);
-        this.startingHealDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = 1;
 		this.isSummon = true;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

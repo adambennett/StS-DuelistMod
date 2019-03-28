@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
 
 public class TyrantWing extends DuelistCard 
 {
@@ -33,11 +32,8 @@ public class TyrantWing extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.TOON);
-        this.tags.add(DefaultMod.FULL);
-        this.tags.add(DefaultMod.TOON_DECK);
-        this.startingDeckCopies = 1;
+        this.tags.add(DefaultMod.ALL);
 		this.originalName = this.name;
-		this.setupStartingCopies();
     }
 
 

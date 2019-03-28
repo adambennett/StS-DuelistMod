@@ -39,11 +39,8 @@ public class KaiserSeaHorse extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.tags.add(DefaultMod.DRAGON_DECK);
-        this.startingDeckCopies = 1;
         this.summons = 2;
         this.originalName = this.name;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -37,10 +37,7 @@ public class ShadowToon extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.TOON_DECK);
-        this.startingDeckCopies = 1;
 		this.originalName = this.name;
-		this.setupStartingCopies();
     }
 
     

@@ -42,11 +42,8 @@ public class BusterBlader extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 5;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
-        this.tags.add(DefaultMod.DRAGON_DECK);
-        this.startingDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
-        this.setupStartingCopies();
         this.tributes = 3; 
     }
 
@@ -66,7 +63,9 @@ public class BusterBlader extends DuelistCard
 	    		}
 	    	}
     	}
-    	this.damage = this.baseDamage = (this.magicNumber * dragons) + DAMAGE;
+    	int newDamage = (this.magicNumber * dragons) + DAMAGE;
+    	this.damage = newDamage;
+    	applyPowers();
     	attack(m, AFX, this.damage);
     }
 

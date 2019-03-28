@@ -255,6 +255,10 @@
         "NAME": "Call of Grave",
         "DESCRIPTIONS": ["Whenever you #yResummon, choose #b", " random #yZombie to #yResummon.", " random #yZombies to #yResummon." ]
 },
+"theDuelist:GoblinRemedyPower": {
+        "NAME": "Goblin's Secret Remedy",
+        "DESCRIPTIONS": ["Whenever you #ySummon, heal #b", " HP.", " HP." ]
+},
 "theDuelist:ExodiaRenewalPower": {
         "NAME": "EXODIARENEWALPLACEHOLDER",
         "DESCRIPTIONS": ["Whenever you trigger #yExodia, do not reset your collected pieces." ]

@@ -37,10 +37,6 @@ public class RandomSoldier extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.GENERATION_DECK);
-        this.tags.add(DefaultMod.TOON_DECK);
-        this.startingDeckCopies = 1;
-        this.startingGenDeckCopies = 2;
         this.originalName = this.name;
         this.summons = SUMMONS;
         this.isSummon = true;

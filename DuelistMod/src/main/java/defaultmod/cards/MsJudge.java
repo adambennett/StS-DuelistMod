@@ -37,10 +37,8 @@ public class MsJudge extends DuelistCard
 		this.isSummon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.FIEND);
-		this.tags.add(DefaultMod.ALL);
 		this.misc = 0;
 		this.originalName = this.name;
-		//this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

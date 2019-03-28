@@ -44,14 +44,11 @@ public class SangaThunder extends DuelistCard
     	this.tags.add(DefaultMod.GUARDIAN);
     	this.tags.add(DefaultMod.METAL_RAIDERS);
     	if (Loader.isModLoaded("conspire")) { this.tags.add(DefaultMod.GOOD_TRIB); }
-    	this.tags.add(DefaultMod.ORB_DECK);
-		this.startingOrbDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = 3;
 		this.isSummon = true;
 		this.summons = 1;
-		this.setupStartingCopies();
 		
     }
 

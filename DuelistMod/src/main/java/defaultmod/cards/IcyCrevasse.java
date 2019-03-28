@@ -36,11 +36,8 @@ public class IcyCrevasse extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.ORB_DECK);
-        this.startingOrbDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
-		this.setupStartingCopies();
     }
 
     // Actions the card should do.

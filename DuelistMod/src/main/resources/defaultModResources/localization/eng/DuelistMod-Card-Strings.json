@@ -81,8 +81,8 @@
 	},
 	"theDuelist:CastleWallsBasic": {
 		"NAME": "Castle Walls",
-		"DESCRIPTION": "Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Gain !B! Block."
+		"DESCRIPTION": "Defend NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Defend NL Gain !B! Block."
 	},
 	"theDuelist:CatapultTurtle": {
 		"NAME": "Catapult Turtle",
@@ -241,8 +241,8 @@
 	},
 	"theDuelist:JudgeMan": {
 		"NAME": "Judge Man",
-		"DESCRIPTION": "Tribute 1. NL Summon 1. NL Deal !D! damage. NL Resummon: Summon 1 and deal 15 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Summon 1. NL Deal !D! damage. NL Resummon: Summon 1 and deal 15 damage to a random enemy."
+		"DESCRIPTION": "Tribute 1. NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Summon 1. NL Deal !D! damage."
 	},
 	"theDuelist:Kuriboh": {
 		"NAME": "Kuriboh",
@@ -302,7 +302,7 @@
 	"theDuelist:ShallowGrave": {
 		"NAME": "Shallow Grave",
 		"DESCRIPTION": "Randomly Resummon !M! monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Randomly Resummon !M! monster from your discard pile."
+		"UPGRADE_DESCRIPTION": "Randomly Resummon !M! monsters from your discard pile."
 	},
 	"theDuelist:NutrientZ": {
 		"NAME": "Nutrient Z",
@@ -411,8 +411,8 @@
 	},
 	"theDuelist:RedEyesZombie": {
 		"NAME": "R. Eyes Zombie Dragon",
-		"DESCRIPTION": "Zombie Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength and deal 10 damage to a random enemy.",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribute 2. NL Deal !D! damage. NL Resummon: Gain 3 Strength and deal 10 damage to a random enemy."
+		"DESCRIPTION": "Zombie Dragon NL Tribute 3. NL Deal !D! damage. NL Resummon: Gain 3 Strength.",
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribute 3. NL Deal !D! damage. NL Resummon: Gain 3 Strength."
 	},
 	"theDuelist:RedMedicine": {
 		"NAME": "Red Medicine",
@@ -726,13 +726,13 @@
 	},
 	"theDuelist:FiendSkull": {
 		"NAME": "Fiend Skull Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Apply 5 Vulnerable.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Apply 5 Vulnerable."
+		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Apply 3 Vulnerable.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. NL Apply 3 Vulnerable."
 	},
 	"theDuelist:FiveHeaded": {
 		"NAME": "Five Headed Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 5. NL Deal !D! damage."
+		"DESCRIPTION": "Exempt NL Dragon NL Tribute 4. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Exempt NL Dragon NL Tribute 5. NL Deal !D! damage."
 	},
 	"theDuelist:FluteSummoning": {
 		"NAME": "Flute of Summoning Dragon",
@@ -906,8 +906,8 @@
 	},
 	"theDuelist:PetitMoth": {
 		"NAME": "Petit Moth",
-		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block. NL Exhaust."
+		"DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon 1. NL Gain !B! Block."
 	},
 	"theDuelist:PetitRef": {
 		"NAME": "Petit Moth",
@@ -1266,15 +1266,15 @@
 	},
 	"theDuelist:MsJudge": {
 		"NAME": "Ms. Judge",
-		"DESCRIPTION": "Spellcaster NL Summon 1. NL Channel a random Orb.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Channel a random Orb."
+		"DESCRIPTION": "Fiend NL Summon 1. NL Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1. NL Channel a random Orb."
 	},
 	"theDuelist:FiendishChain": {
 		"NAME": "Fiendish Chain",
 		"DESCRIPTION": "Tribute 1. NL Evoke your next Orb !M! times.",
 		"UPGRADE_DESCRIPTION": "Tribute 1. NL Evoke your next Orb !M! times. If you Tribute a Fiend, Evoke ALL of your orbs twice instead."
 	},
-	"theDuelist:FireGrass": {
+	"theDuelist:Firegrass": {
 		"NAME": "Firegrass",
 		"DESCRIPTION": "Plant NL Summon 1. NL Gain !B! Block.",
 		"UPGRADE_DESCRIPTION": "Plant NL Summon 1. NL Gain !B! Block."
@@ -1301,13 +1301,13 @@
 	},
 	"theDuelist:Sparks": {
 		"NAME": "Sparks",
-		"DESCRIPTION": "Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage."
+		"DESCRIPTION": "Strike NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Strike NL Deal !D! damage."
 	},
 	"theDuelist:PowerKaishin": {
 		"NAME": "Power of Kaishin",
-		"DESCRIPTION": "Channel a random Orb. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Channel a random Orb. Exhaust."
+		"DESCRIPTION": "Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Channel a random Orb."
 	},
 	"theDuelist:AncientElf": {
 		"NAME": "Ancient Elf",
@@ -1330,9 +1330,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute 1. NL Resummon a random monster from your discard pile. If you Tribute a Zombie, Resummon it."
 	},
 	"theDuelist:GoblinSecret": {
-		"NAME": "Goblin's Secret Recipe",
+		"NAME": "Goblin's Secret Remedy",
 		"DESCRIPTION": "Tribute 1. NL Whenever you Summon, heal !M! HP.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Whenever you Summon, heal !M! HP."
+		"UPGRADE_DESCRIPTION": "Innate NL Tribute 1. NL Whenever you Summon, heal !M! HP."
 	},
 	"theDuelist:OjamaDeltaHurricane": {
 		"NAME": "Ojama Delta Hurricane",

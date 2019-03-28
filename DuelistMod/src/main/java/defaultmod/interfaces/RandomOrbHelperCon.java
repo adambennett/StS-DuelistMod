@@ -50,6 +50,43 @@ public class RandomOrbHelperCon
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
 	}
 	
+	public static void channelRandomOrbNoGlassOrGate()
+	{
+		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
+		if (DefaultMod.challengeMode)
+		{
+			orbs.add(new Lightning());
+			orbs.add(new Dark());
+			orbs.add(new Frost());
+			orbs.add(new MonsterOrb());
+			orbs.add(new DragonOrb());
+			orbs.add(new ReducerOrb()); 
+			orbs.add(new Earth());
+			orbs.add(new Splash());
+		}
+		else
+		{
+			orbs.add(new Water());
+			orbs.add(new Lightning());
+			orbs.add(new Plasma());
+			orbs.add(new Dark());
+			orbs.add(new Frost());
+			orbs.add(new Buffer());
+			orbs.add(new Summoner());
+			orbs.add(new MonsterOrb());
+			orbs.add(new DragonOrb());
+			orbs.add(new ReducerOrb()); 
+			orbs.add(new Air());
+			orbs.add(new Earth());
+			orbs.add(new FireOrb());
+			orbs.add(new Glitch());
+			orbs.add(new Shadow());
+			orbs.add(new Splash());
+		}
+		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
+		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
+	}
+	
 	public static ArrayList<AbstractOrb> returnOrbList()
 	{
 		ArrayList<AbstractOrb> returnOrbs = new ArrayList<AbstractOrb>();

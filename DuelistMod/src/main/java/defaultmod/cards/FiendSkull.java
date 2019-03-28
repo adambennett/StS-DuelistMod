@@ -53,7 +53,7 @@ public class FiendSkull extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
-		applyPower(new VulnerablePower(m, 5, true), m);
+		applyPower(new VulnerablePower(m, 3, true), m);
 	}
 
 	// Which card to return when making a copy of this card.

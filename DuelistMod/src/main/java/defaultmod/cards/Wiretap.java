@@ -34,12 +34,9 @@ public class Wiretap extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.ALL);
-        this.tags.add(DefaultMod.GENERATION_DECK);
-		this.startingGenDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -39,12 +39,9 @@ public class ToonGeminiElf extends DuelistCard
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.FULL);
-        this.tags.add(DefaultMod.TOON_DECK);
-        this.startingDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = SUMMONS;
         this.isSummon = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

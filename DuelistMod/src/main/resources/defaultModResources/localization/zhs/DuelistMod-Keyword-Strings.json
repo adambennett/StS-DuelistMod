@@ -208,6 +208,14 @@
     "DESCRIPTION": "随机改变卡可能会改变其成本，可能会消耗，并可能成为升级或虚无。"
   },
   {
+    "PROPER_NAME": "豁免",
+    "NAMES": [
+      "exempt",
+	  "豁免"
+    ],   
+    "DESCRIPTION": "不可能是特殊召唤"
+  },
+  {
 	  "PROPER_NAME": "怪物宝珠",
       "NAMES": [
         "monsterorb"

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
-import defaultmod.powers.BadReactionPower;
+import defaultmod.powers.*;
 
 public class BadReaction extends DuelistCard 
 {
@@ -28,7 +28,7 @@ public class BadReaction extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int DAMAGE = 1;
     private static final int HEAL = 1;
     private static final int U_HEAL = 1;
@@ -50,13 +50,16 @@ public class BadReaction extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded)
+    	if (!p.hasPower(SpecialBadReactionPower.POWER_ID))
     	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BadReactionPower(p, p, true, U_DMG, U_HEAL)));
-    	}
-    	else
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BadReactionPower(p, p, false, 0, 0)));
+	    	if (this.upgraded)
+	    	{
+	    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BadReactionPower(p, p, true, U_DMG, U_HEAL)));
+	    	}
+	    	else
+	    	{
+	    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BadReactionPower(p, p, false, 0, 0)));
+	    	}
     	}
     }
 

@@ -16,6 +16,11 @@
 	},
 	"theDuelist:BadReaction": {
 		"NAME": "藥物的副作用",
+		"DESCRIPTION": "Whenever you attempt to heal, gain 0 HP and instead deal !D! damage to ALL enemies for each HP you would have gained.",
+		"UPGRADE_DESCRIPTION": "Whenever you attempt to heal, gain 0 HP and instead deal !D! damage to ALL enemies for each HP you would have gained."
+	},
+	"theDuelist:BadReactionRare": {
+		"NAME": "Bad Reaction",
 		"DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed.",
 		"UPGRADE_DESCRIPTION": "Whenever you heal, deal !D! damage to ALL enemies for every HP healed."
 	},
@@ -70,6 +75,11 @@
 		"UPGRADE_DESCRIPTION": "Gain !B! Block."
 	},
 	"theDuelist:CastleWalls": {
+		"NAME": "城壁",
+		"DESCRIPTION": "Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block."
+	},
+	"theDuelist:CastleWallsBasic": {
 		"NAME": "城壁",
 		"DESCRIPTION": "Gain !B! Block.",
 		"UPGRADE_DESCRIPTION": "Gain !B! Block."
@@ -1238,6 +1248,96 @@
 		"NAME": "Soul Bone Tower",
 		"DESCRIPTION": "Zombie NL Tribute 3. NL Resummon !M! random monster in your discard pile. NL If you Tribute any Zombies, Resummon them.",
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute 3. NL Resummon !M! random monsters in your discard pile. NL If you Tribute any Zombies, Resummon them."
+	},
+	"theDuelist:FinalFlame": {
+		"NAME": "Final Flame",
+		"DESCRIPTION": "Tribute 1. NL Deal !D! damage. NL Apply !M! Weak.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Deal !D! damage. NL Apply !M! Weak."
+	},
+	"theDuelist:YamataDragon": {
+		"NAME": "Yamata Dragon",
+		"DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 1. NL Deal !D! damage."
+	},
+	"theDuelist:TwinBarrelDragon": {
+		"NAME": "Twin Barrel Dragon",
+		"DESCRIPTION": "Dragon NL Summon 1. NL Gain !B! Block. NL Apply !M! Vulnerable.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1. NL Gain !B! Block. NL Apply !M! Vulnerable."
+	},
+	"theDuelist:MsJudge": {
+		"NAME": "Ms. Judge",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Channel a random Orb."
+	},
+	"theDuelist:FiendishChain": {
+		"NAME": "Fiendish Chain",
+		"DESCRIPTION": "Tribute 1. NL Evoke your next Orb !M! times.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Evoke your next Orb !M! times. If you Tribute a Fiend, Evoke ALL of your orbs twice instead."
+	},
+	"theDuelist:Firegrass": {
+		"NAME": "Firegrass",
+		"DESCRIPTION": "Plant NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:MotherSpider": {
+		"NAME": "Mother Spider",
+		"DESCRIPTION": "Insect NL Tribute 1. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute 1. NL Apply !M! Poison."
+	},
+	"theDuelist:HundredFootHorror": {
+		"NAME": "Hundred-Footed Horror",
+		"DESCRIPTION": "Insect NL Tribute 1. NL Apply !M! Poison.",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute 1. NL Apply !M! Poison."
+	},
+	"theDuelist:MangaRyuRan": {
+		"NAME": "Manga Ryu-Ran",
+		"DESCRIPTION": "Toon Dragon NL Tribute 1. NL Deal !D! damage (through block).",
+		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribute 1. NL Deal !D! damage (through block)."
+	},
+	"theDuelist:ToonAncientGear": {
+		"NAME": "Toon Ancient Gear",
+		"DESCRIPTION": "Toon NL Summon 1. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Toon NL Summon 1. NL Gain !B! Block."
+	},
+	"theDuelist:Sparks": {
+		"NAME": "Sparks",
+		"DESCRIPTION": "Strike NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Strike NL Deal !D! damage."
+	},
+	"theDuelist:PowerKaishin": {
+		"NAME": "Power of Kaishin",
+		"DESCRIPTION": "Channel a random Orb.",
+		"UPGRADE_DESCRIPTION": "Innate. NL Channel a random Orb."
+	},
+	"theDuelist:AncientElf": {
+		"NAME": "Ancient Elf",
+		"DESCRIPTION": "Spellcaster NL Summon 1. NL Evoke your next Orb. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon 1. NL Evoke your next Orb. NL Gain !B! Block."
+	},
+	"theDuelist:SlateWarrior": {
+		"NAME": "Slate Warrior",
+		"DESCRIPTION": "Fiend NL Tribute 1. NL Gain !M! Focus. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute 1. NL Gain !M! Focus. NL Deal !D! damage."
+	},
+	"theDuelist:ClownZombie": {
+		"NAME": "Clown Zombie",
+		"DESCRIPTION": "Zombie NL Summon 1. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon 1. NL Deal !D! damage."
+	},
+	"theDuelist:RyuKokki": {
+		"NAME": "Ryu Kokki",
+		"DESCRIPTION": "Zombie NL Tribute 1. NL Resummon a random monster from your discard pile. If you Tribute a Zombie, Resummon it.",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute 1. NL Resummon a random monster from your discard pile. If you Tribute a Zombie, Resummon it."
+	},
+	"theDuelist:GoblinSecret": {
+		"NAME": "Goblin's Secret Remedy",
+		"DESCRIPTION": "Tribute 1. NL Whenever you Summon, heal !M! HP.",
+		"UPGRADE_DESCRIPTION": "Tribute 1. NL Whenever you Summon, heal !M! HP."
+	},
+	"theDuelist:OjamaDeltaHurricane": {
+		"NAME": "Ojama Delta Hurricane",
+		"DESCRIPTION": "Evoke a random amount of your Orbs. If you have any Ojamas summoned, each Orb will be Evoked twice.",
+		"UPGRADE_DESCRIPTION": "Evoke a random amount of your Orbs. If you have any Ojamas summoned, each Orb will be Evoked twice. If you have a max stack of Ojamas, each Orb will be Evoked thrice."
 	},
 	"theDuelist:BasicArchetype": {
 		"NAME": "决斗卡",

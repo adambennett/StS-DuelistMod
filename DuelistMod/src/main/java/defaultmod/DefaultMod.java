@@ -690,6 +690,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String HEART_UNDERDOG_POWER = "powers/HeartUnderdogPower.png";
 	public static final String SPHERE_KURIBOH_POWER = "powers/SphereKuribohPower.png";
 	public static final String CALL_GRAVE_POWER = "powers/CallGravePower.png";
+	public static final String GOBLIN_REMEDY_POWER = "powers/GoblinRemedyPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -877,16 +878,16 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (10 cards)", save, "Standard Deck"); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck dragDeck = new StarterDeck(DRAGON_DECK, "Dragon Deck (10 cards)", save, "Dragon Deck"); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck natDeck = new StarterDeck(NATURE_DECK, "Nature Deck (11 cards)", save, "Nature Deck"); starterDeckList.add(natDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck spellcDeck = new StarterDeck(SPELLCASTER_DECK, "Spellcaster Deck (10 cards)", save, "Spellcaster Deck"); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck creaDeck = new StarterDeck(CREATOR_DECK, "Creator Deck (4 cards)", save, "Creator Deck"); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck spellcDeck = new StarterDeck(SPELLCASTER_DECK, "Spellcaster Deck (9 cards)", save, "Spellcaster Deck"); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck creaDeck = new StarterDeck(CREATOR_DECK, "Creator Deck (10 cards)", save, "Creator Deck"); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ran1Deck = new StarterDeck(RANDOM_DECK_SMALL, "Random Deck (10 cards)", save, "Random Deck (Small)"); starterDeckList.add(ran1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ran2Deck = new StarterDeck(RANDOM_DECK_BIG, "Random Deck (15 cards)", save, "Random Deck (Big)"); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck toonDeck = new StarterDeck(TOON_DECK, "Toon Deck (11 cards)", save, "Toon Deck"); starterDeckList.add(toonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck oDeck = new StarterDeck(ORB_DECK, "Orb Deck (10 cards)", save, "Orb Deck"); starterDeckList.add(oDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck toonDeck = new StarterDeck(TOON_DECK, "Toon Deck (10 cards)", save, "Toon Deck"); starterDeckList.add(toonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck oDeck = new StarterDeck(ORB_DECK, "Orb Deck (12 cards)", save, "Orb Deck"); starterDeckList.add(oDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck resDeck = new StarterDeck(RESUMMON_DECK, "Resummon Deck (10 cards)", save, "Resummon Deck"); starterDeckList.add(resDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck gDeck = new StarterDeck(GENERATION_DECK, "Generation Deck (12 cards)", save, "Generation Deck"); starterDeckList.add(gDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck gDeck = new StarterDeck(GENERATION_DECK, "Generation Deck (16 cards)", save, "Generation Deck"); starterDeckList.add(gDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ojDeck = new StarterDeck(OJAMA_DECK, "Ojama Deck (12 cards)", save, "Ojama Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (9 cards)", save, "Heal Deck"); starterDeckList.add(hpDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (10 cards)", save, "Heal Deck"); starterDeckList.add(hpDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck incDeck = new StarterDeck(INCREMENT_DECK, "Increment Deck (14 cards)", save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck exodiaDeck = new StarterDeck(EXODIA_DECK, "Exodia Deck (60 cards)", save, "Exodia Deck"); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		//StarterDeck magnetDeck = new StarterDeck(MAGNET_DECK, "Superheavy Deck (12 cards)", save, "Superheavy Deck"); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
@@ -1696,7 +1697,14 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 				{
 					StarterDeck ref = deckTagMap.get(t);
 					int copyIndex = StarterDeck.getDeckCopiesMap().get(ref.getDeckTag());
-					for (int i = 0; i < c.startCopies.get(copyIndex); i++) { ref.getDeck().add(c); }
+					for (int i = 0; i < c.startCopies.get(copyIndex); i++) 
+					{ 
+						if (debug)
+						{
+							logger.info("theDuelist:DefaultMod:initStartDeckArrays() ---> added " + c.originalName + " to " + ref.getSimpleName()); 
+						}
+						ref.getDeck().add(c); 
+					}
 				}
 			}
 		}
@@ -1737,6 +1745,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 
 			else 
 			{
+				if (debug) { logger.info("theDuelist:DefaultMod:setupStartDecksB() ---> " + refDeck.getSimpleName() + " size: " + refDeck.getDeck().size());  }
 				deckToStartWith = new ArrayList<DuelistCard>();
 				deckToStartWith.addAll(refDeck.getDeck());
 			}
@@ -2672,6 +2681,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new GoldenApples());
 		myCards.add(new SphereKuriboh());
 		myCards.add(new Wiseman());
+		myCards.add(new Sparks());
+		myCards.add(new CastleWallsBasic());
 		// END CORE SET
 
 		// ALL Set -  cards
@@ -2757,6 +2768,20 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new SoulAbsorbingBone());
 		myCards.add(new MsJudge());
 		myCards.add(new FiendishChain());
+		myCards.add(new Firegrass());
+		myCards.add(new PowerKaishin());
+		myCards.add(new AncientElf());
+		myCards.add(new FinalFlame());
+		myCards.add(new YamataDragon());
+		myCards.add(new TwinBarrelDragon());		
+		myCards.add(new HundredFootedHorror());
+		myCards.add(new SlateWarrior());
+		myCards.add(new MotherSpider());
+		myCards.add(new MangaRyuRan());
+		myCards.add(new ToonAncientGear());
+		myCards.add(new ClownZombie());
+		myCards.add(new RyuKokki());
+		myCards.add(new GoblinRemedy());
 		//myCards.add(new CallGrave());
 		// END ALL Set
 
