@@ -39,6 +39,8 @@ public class SpiritHarp extends DuelistCard
         this.tags.add(DefaultMod.CREATOR_DECK);
         this.tags.add(DefaultMod.INCREMENT_DECK);
         this.tags.add(DefaultMod.EXODIA_DECK);
+        this.tags.add(DefaultMod.OP_SPELLCASTER_DECK);
+        this.startingOPSPDeckCopies = 2;
         this.startingExodiaDeckCopies = 2;
         this.startingCreatorDeckCopies = 2;
         this.startingIncDeckCopies = 2;

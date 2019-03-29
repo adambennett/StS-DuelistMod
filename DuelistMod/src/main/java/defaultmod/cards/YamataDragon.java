@@ -44,7 +44,7 @@ public class YamataDragon extends DuelistCard
         this.startingDragDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 2;
+		this.tributes = 1;
 		this.setupStartingCopies();
     }
 

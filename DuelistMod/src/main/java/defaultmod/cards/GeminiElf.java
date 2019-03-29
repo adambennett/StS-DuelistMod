@@ -38,9 +38,12 @@ public class GeminiElf extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
         this.tags.add(DefaultMod.SPELLCASTER);
+        this.tags.add(DefaultMod.OP_SPELLCASTER_DECK);
+        this.startingOPSPDeckCopies = 1;
         this.originalName = this.name;
         this.summons = this.magicNumber;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

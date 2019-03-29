@@ -34,20 +34,6 @@ public class MillenniumPuzzle extends CustomRelic {
 	public MillenniumPuzzle() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
 	}
-	
-	@Override
-	public void onEquip()
-	{
-		boolean removedSharedPuzzle = AbstractDungeon.shopRelicPool.remove(MillenniumPuzzleShared.ID);
-		if (DefaultMod.debug)
-		{
-			System.out.println("theDuelist:MillenniumPuzzle:onEquip() ---> removed MillenniumPuzzleShared from shop relics pool? : " + removedSharedPuzzle);
-			if (AbstractDungeon.shopRelicPool.contains(MillenniumPuzzleShared.ID))
-			{
-				System.out.println("theDuelist:MillenniumPuzzle:onEquip() ---> found the shared puzzle in the pool anyway though");
-			}
-		}
-	}
 
 	// Summon 1 on turn start
 	@Override

@@ -96,8 +96,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@SpireEnum public static AbstractCard.CardTags ARCHETYPE;
 	@SpireEnum public static AbstractCard.CardTags STANDARD_DECK;
 	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
+	@SpireEnum public static AbstractCard.CardTags OP_DRAGON_DECK;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
+	@SpireEnum public static AbstractCard.CardTags OP_SPELLCASTER_DECK;
 	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
+	@SpireEnum public static AbstractCard.CardTags OP_NATURE_DECK;
+	@SpireEnum public static AbstractCard.CardTags ORIGINAL_DECK;
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags ORB_DECK;
@@ -868,7 +872,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		duelistDefaults.setProperty(PROP_FLIP, "FALSE");
 		duelistDefaults.setProperty(PROP_RESET, "FALSE");
 		
-		cardSets.add("All (221 cards)"); 
+		cardSets.add("All (243 cards)"); 
 		cardSets.add("Full (144 cards)");
 		cardSets.add("Reduced (121 cards)");
 		cardSets.add("Limited (93 cards)");
@@ -893,7 +897,10 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		//StarterDeck magnetDeck = new StarterDeck(MAGNET_DECK, "Superheavy Deck (12 cards)", save, "Superheavy Deck"); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		//StarterDeck aquaDeck = new StarterDeck(AQUA_DECK, "Aqua Deck (10 cards)", save, "Aqua Deck"); starterDeckList.add(aquaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		//StarterDeck machineDeck = new StarterDeck(MACHINE_DECK, "Machine Deck (12 cards)", save, "Machine Deck"); starterDeckList.add(machineDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		
+		StarterDeck originalDeck = new StarterDeck(ORIGINAL_DECK, "Original Deck (10 cards)", save, "Original Deck"); starterDeckList.add(originalDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck opDragDeck = new StarterDeck(OP_DRAGON_DECK, "Old Dragon Deck (10 cards)", save, "Old Dragon Deck"); starterDeckList.add(opDragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck opNatDeck = new StarterDeck(OP_NATURE_DECK, "Old Nature Deck (11 cards)", save, "Old Nature Deck"); starterDeckList.add(opNatDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck opSpellcDeck = new StarterDeck(OP_SPELLCASTER_DECK, "Old Spellcaster Deck (10 cards)", save, "Old Spellcaster Deck"); starterDeckList.add(opSpellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		
 		
 		for (StarterDeck d : starterDeckList) { startingDecks.add(d.getName()); }
@@ -1490,7 +1497,11 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
 		logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 5");
-		if (hasRing) { lastMaxSummons = 8; if (challengeMode) { lastMaxSummons = 7; }}
+		if (hasRing)
+		{ 
+			lastMaxSummons = 8; 
+			if (challengeMode) { lastMaxSummons = 7; }
+		}
 		if (hasKey) { lastMaxSummons = 4; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 4");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);

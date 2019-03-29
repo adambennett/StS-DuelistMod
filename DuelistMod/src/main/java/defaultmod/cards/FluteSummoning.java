@@ -36,6 +36,8 @@ public class FluteSummoning extends DuelistCard
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.GENERATION_DECK);
+        this.tags.add(DefaultMod.OP_DRAGON_DECK);
+        this.startingOPDragDeckCopies = 1;
 		this.startingGenDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;

@@ -44,12 +44,15 @@ public class PetitMoth extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.INSECT);
+        this.tags.add(DefaultMod.OP_NATURE_DECK);
+        this.startingOPNDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
         //this.exhaust = true;
         tooltips = new ArrayList<>();
 		tooltips.add(new CocoonRef());
 		tooltips.add(new GreatRef());
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

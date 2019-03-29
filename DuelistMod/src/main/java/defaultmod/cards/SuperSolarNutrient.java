@@ -36,6 +36,8 @@ public class SuperSolarNutrient extends DuelistCard
         this.baseMagicNumber = this.magicNumber = CARDS;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.GENERATION_DECK);
+        this.tags.add(DefaultMod.OP_NATURE_DECK);
+        this.startingOPNDeckCopies = 1;
         this.startingGenDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;

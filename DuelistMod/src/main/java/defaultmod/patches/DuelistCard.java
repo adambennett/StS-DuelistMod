@@ -89,6 +89,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int startingMagnetDeckCopies = 1;
 	public int startingAquaDeckCopies = 1;
 	public int startingMachineDeckCopies = 1;
+	public int startingOriginalDeckCopies = 1;
+	public int startingOPDragDeckCopies = 1;
+	public int startingOPSPDeckCopies = 1;
+	public int startingOPNDeckCopies = 1;
 	public static final String UPGRADE_DESCRIPTION = "";
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
 	private static ArrayList<AbstractOrb> allowedOrbs = new ArrayList<AbstractOrb>();
@@ -153,6 +157,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.startCopies.add(this.startingMagnetDeckCopies);		// 13 - Magnet Copies
 		this.startCopies.add(this.startingAquaDeckCopies);			// 14 - Aqua Copies
 		this.startCopies.add(this.startingMachineDeckCopies);		// 15 - Machine Copies
+		this.startCopies.add(this.startingOriginalDeckCopies);		// 16 - Original Deck
+		this.startCopies.add(this.startingOPDragDeckCopies);		// 17 - Original Dragon Deck
+		this.startCopies.add(this.startingOPNDeckCopies);			// 18 - Original Nature Deck
+		this.startCopies.add(this.startingOPSPDeckCopies);			// 19 - Original Spellcaster Deck	
+		
 	}
 	
 	static
@@ -914,8 +923,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> hit Ultimate Offering: " + SUMMONS); }
 					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
-					damageSelf(3);
+					//damageSelf(3);
+					AbstractDungeon.player.currentHealth -= 3;
+					AttackEffect localAFX = AttackEffect.POISON;
+					AbstractDungeon.player.damageFlash = true;
+					AbstractDungeon.player.damageFlashFrames = 4;
+					AbstractDungeon.effectList.add(new com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, localAFX));
 					incMaxSummons(p, amountToSummon);
+					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> inside UO check, amountToSummon: " + amountToSummon); }
 					uoSummon(p, amountToSummon, new Token("Blood Token"));
 				}
 
@@ -1153,8 +1168,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> hit Ultimate Offering, SUMMONS: " + SUMMONS); }
 					int amountToSummon = p.getPower(UltimateOfferingPower.POWER_ID).amount;
-					damageSelf(3);
+					//damageSelf(3);
+					AbstractDungeon.player.currentHealth -= 3;
+					AttackEffect localAFX = AttackEffect.POISON;
+					AbstractDungeon.player.damageFlash = true;
+					AbstractDungeon.player.damageFlashFrames = 4;
+					AbstractDungeon.effectList.add(new com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, localAFX));
 					incMaxSummons(p, amountToSummon);
+					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> inside UO check, amountToSummon: " + amountToSummon); }
 					uoSummon(p, amountToSummon, new Token("Blood Token"));
 				}
 

@@ -34,6 +34,14 @@ public class MillenniumPuzzleShared extends CustomRelic {
 	public MillenniumPuzzleShared() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		// Only spawn for non-Duelist characters
+		if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) { return false; }
+		else { return true; }
+	}
 
 	// Summon 1 on turn start
 	@Override

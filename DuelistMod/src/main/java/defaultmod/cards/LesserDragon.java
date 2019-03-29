@@ -42,9 +42,12 @@ public class LesserDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.OP_DRAGON_DECK);
+        this.startingOPDragDeckCopies = 2;
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

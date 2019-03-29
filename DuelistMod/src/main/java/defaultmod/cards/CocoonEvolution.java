@@ -43,11 +43,14 @@ public class CocoonEvolution extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.COCOON);
         this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.OP_NATURE_DECK);
+        this.startingOPNDeckCopies = 1;
         this.originalName = this.name;
         this.misc = 0;
         tooltips = new ArrayList<>();
         tooltips.add(new PetitRef());
 		tooltips.add(new GreatRef());
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

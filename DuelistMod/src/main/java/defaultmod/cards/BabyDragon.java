@@ -40,6 +40,8 @@ public class BabyDragon extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.EXODIA_DECK);
+        this.tags.add(DefaultMod.OP_DRAGON_DECK);
+        this.startingOPDragDeckCopies = 1;
         this.startingExodiaDeckCopies = 2;
         this.summons = 2;
         this.originalName = this.name;

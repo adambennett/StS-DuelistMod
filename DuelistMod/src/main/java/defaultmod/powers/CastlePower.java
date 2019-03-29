@@ -74,10 +74,18 @@ public class CastlePower extends AbstractPower implements IShufflePower
         { 
         	CastleDarkIllusions.incMaxSummons(p, INC_SUMMONS);
         	CastleDarkIllusions.powerSummon(p, SUMMONS, "Castle Token", false);
+        	if (DefaultMod.debug)
+        	{
+        		System.out.println("theDuelist:CastleDarkPower:onShuffle() ---> ran upgrade block");
+        	}
         }
         else 
         {
         	CastleDarkIllusions.powerSummon(p, SUMMONS, "Castle Token", false);
+        	if (DefaultMod.debug)
+        	{
+        		System.out.println("theDuelist:CastleDarkPower:onShuffle() ---> ran non-upgrade block");
+        	}
         }
     }
 

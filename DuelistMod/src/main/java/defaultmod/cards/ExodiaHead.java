@@ -14,7 +14,7 @@ public class ExodiaHead extends DuelistCard
 {
 
     // TEXT DECLARATION
-    public static final String ID = defaultmod.DefaultMod.makeID("ExodiaHead");
+    public static final String ID = DefaultMod.makeID("ExodiaHead");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DefaultMod.makePath(DefaultMod.EXODIA_HEAD);
     public static final String NAME = cardStrings.NAME;
@@ -37,7 +37,7 @@ public class ExodiaHead extends DuelistCard
         this.tags.add(DefaultMod.EXODIA);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.LIMITED);
-        if (DefaultMod.challengeMode)
+        if (!DefaultMod.challengeMode)
         {
         	this.tags.add(DefaultMod.EXODIA_DECK);
         	this.startingExodiaDeckCopies = 1;

@@ -35,9 +35,12 @@ public class Illusionist extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SPELLCASTER);
+        this.tags.add(DefaultMod.OP_SPELLCASTER_DECK);
+        this.startingOPSPDeckCopies = 1;
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
         this.tributes = 1;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

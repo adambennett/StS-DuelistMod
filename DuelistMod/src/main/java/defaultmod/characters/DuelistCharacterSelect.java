@@ -75,6 +75,10 @@ public class DuelistCharacterSelect
             //AddLoadout(new MagnetDeck(), save, "0 cards");
             //AddLoadout(new AquaDeck(), save, "0 cards");
             //AddLoadout(new MachineDeck(), save, "0 cards"); 
+            AddLoadout(new OriginalDeck(), save, "10 cards"); 
+            AddLoadout(new DragonDeckOP(), save, "10 cards"); 
+            AddLoadout(new NatureDeckOP(), save, "11 cards"); 
+            AddLoadout(new SpellcasterDeckOP(), save, "10 cards");             
         }
         else
         {
@@ -93,10 +97,15 @@ public class DuelistCharacterSelect
             AddLoadout(new OjamaDeck(), save, "12 cards"); save += 3000;
             AddLoadout(new HealDeck(), save, "10 cards"); save += 3000;
             AddLoadout(new IncrementDeck(), save, "14 cards"); save += 4000;
-            AddLoadout(new ExodiaDeck(), save, "60 cards"); save += 4000;
+            AddLoadout(new ExodiaDeck(), save, "60 cards"); save = 0; //save += 4000;
             //AddLoadout(new MagnetDeck(), save, "0 cards"); save += 5000;
             //AddLoadout(new AquaDeck(), save, "0 cards"); save += 5000;
-            //AddLoadout(new MachineDeck(), save, "0 cards"); save += 5000;
+            //AddLoadout(new MachineDeck(), save, "0 cards"); save = 0;
+            AddLoadout(new OriginalDeck(), save, "10 cards"); save += 500;
+            AddLoadout(new DragonDeckOP(), save, "10 cards"); save += 1500;
+            AddLoadout(new NatureDeckOP(), save, "11 cards"); save += 1500;
+            AddLoadout(new SpellcasterDeckOP(), save, "10 cards"); save += 2000;
+            
         }
     }
 

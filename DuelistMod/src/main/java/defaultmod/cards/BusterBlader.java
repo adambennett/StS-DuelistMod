@@ -42,9 +42,12 @@ public class BusterBlader extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 5;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
+        this.tags.add(DefaultMod.OP_DRAGON_DECK);
+        this.startingOPDragDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = 3; 
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

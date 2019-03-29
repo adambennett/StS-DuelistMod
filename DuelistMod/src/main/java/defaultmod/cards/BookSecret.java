@@ -37,6 +37,8 @@ public class BookSecret extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.GENERATION_DECK);
+        this.tags.add(DefaultMod.OP_SPELLCASTER_DECK);
+        this.startingOPSPDeckCopies = 1;
 		this.startingGenDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;
