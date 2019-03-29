@@ -63,7 +63,7 @@ public class DuelistCharacterSelect
             AddLoadout(new SpellcasterDeck(), save, "9 cards");  
             AddLoadout(new CreatorDeck(), save, "10 cards"); 
             AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
-            AddLoadout(new RandomDeckBig(), save, "15 randnom Duelist cards");  
+            AddLoadout(new RandomDeckBig(), save, "15 random Duelist cards");  
             AddLoadout(new ToonDeck(), save, "10 cards"); 
             AddLoadout(new OrbDeck(), save, "12 cards");  
             AddLoadout(new ResummonDeck(), save, "10 cards");  
@@ -89,7 +89,7 @@ public class DuelistCharacterSelect
             AddLoadout(new SpellcasterDeck(), save, "9 cards"); save += 2000;
             AddLoadout(new CreatorDeck(), save, "10 cards"); save += 500;
             AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
-            AddLoadout(new RandomDeckBig(), save, "15 randnom Duelist cards"); save += 1000;
+            AddLoadout(new RandomDeckBig(), save, "15 random Duelist cards"); save += 1000;
             AddLoadout(new ToonDeck(), save, "10 cards"); save += 2000;
             AddLoadout(new OrbDeck(), save, "12 cards"); save += 3000;
             AddLoadout(new ResummonDeck(), save, "10 cards"); 
