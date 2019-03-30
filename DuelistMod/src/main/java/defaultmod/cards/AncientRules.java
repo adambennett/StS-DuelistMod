@@ -32,8 +32,7 @@ public class AncientRules extends DuelistCard
     public AncientRules() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.magicNumber = this.baseMagicNumber = 3;
-        this.summons = this.magicNumber;
+        this.summons = 2;
         this.upgradeSummons = 1;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.LIMITED);
@@ -44,7 +43,7 @@ public class AncientRules extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, new Token("Ancient Token"));
+    	summon(p, this.summons, new Token("Ancient Token"));
     	for (AbstractCard c : p.hand.group)
     	{
     		if (c.hasTag(DefaultMod.MONSTER))
