@@ -199,7 +199,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.damageTypeForTurn = this.damageType;
 		this.costForTurn = this.cost;
 		this.isCostModifiedForTurn = false;
-		this.tributes = this.baseTributes;
+		this.baseTributes = this.tributes;
 		if (this.gotPipered)
 		{
 			this.rawDescription = this.originalDescription;
