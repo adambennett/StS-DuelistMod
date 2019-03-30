@@ -6,8 +6,8 @@
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "Ancient Rules",
-		"DESCRIPTION": "Summon !M!. All Tribute monsters in your hand cost 1 Tribute for this combat.",
-		"UPGRADE_DESCRIPTION": "Summon !M!. All Tribute monsters in your hand cost 1 Tribute for this combat."
+		"DESCRIPTION": "Summon 2. All Tribute monsters in your hand cost 1 Tribute for this combat.",
+		"UPGRADE_DESCRIPTION": "Summon 2. All Tribute monsters in your hand cost 1 Tribute for this combat."
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "Axe of Despair",

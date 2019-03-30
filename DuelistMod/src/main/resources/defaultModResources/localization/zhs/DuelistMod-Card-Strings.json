@@ -6,8 +6,8 @@
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "遠古規則",
-		"DESCRIPTION": "仪式 !M!. All Tribute monsters in your hand cost 1 Tribute for this combat.",
-		"UPGRADE_DESCRIPTION": "仪式 !M!. All Tribute monsters in your hand cost 1 Tribute for this combat."
+		"DESCRIPTION": "仪式 2. All Tribute monsters in your hand cost 1 Tribute for this combat.",
+		"UPGRADE_DESCRIPTION": "仪式 2. All Tribute monsters in your hand cost 1 Tribute for this combat."
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "惡魔之斧",
