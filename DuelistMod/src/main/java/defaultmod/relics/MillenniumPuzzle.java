@@ -53,7 +53,7 @@ public class MillenniumPuzzle extends CustomRelic {
 				else if (!DefaultMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, 2, "Puzzle Token", false); }
 				
 				// Challenge Mode (anywhere)
-				else { DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token")); }
+				else { DuelistCard.summon(AbstractDungeon.player, 1, new ExplosiveToken("Exploding Token")); }
 			}
 		}
 		else

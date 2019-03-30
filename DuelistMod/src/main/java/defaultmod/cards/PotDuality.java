@@ -33,7 +33,7 @@ public class PotDuality extends DuelistCard
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.POT);
         this.tags.add(DefaultMod.REDUCED);
-        this.baseBlock = this.block = 15;
+        this.baseBlock = this.block = 12;
         this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;
 
@@ -44,7 +44,7 @@ public class PotDuality extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
        draw(this.magicNumber);
-       block(this.baseBlock);
+       block(this.block);
     }
 
     // Which card to return when making a copy of this card.
@@ -58,8 +58,8 @@ public class PotDuality extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBlock(5);
-            this.upgradeMagicNumber(1);
+            this.upgradeBlock(4);
+            //this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

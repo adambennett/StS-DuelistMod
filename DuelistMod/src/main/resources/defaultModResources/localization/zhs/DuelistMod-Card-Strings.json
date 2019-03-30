@@ -6,8 +6,8 @@
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "遠古規則",
-		"DESCRIPTION": "仪式 !M!.",
-		"UPGRADE_DESCRIPTION": "仪式 !M!."
+		"DESCRIPTION": "仪式 !M!. All Tribute monsters in your hand cost 1 Tribute for this combat.",
+		"UPGRADE_DESCRIPTION": "仪式 !M!. All Tribute monsters in your hand cost 1 Tribute for this combat."
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "惡魔之斧",
@@ -401,8 +401,8 @@
 	},
 	"theDuelist:RainMercy": {
 		"NAME": "恩惠之雨",
-		"DESCRIPTION": "You and ALL enemies heal a random amount (5-15) of HP.",
-		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (10-20) of HP."
+		"DESCRIPTION": "You and ALL enemies heal a random amount (5-20) of HP.",
+		"UPGRADE_DESCRIPTION": "You and ALL enemies heal a random amount (10-25) of HP."
 	},
 	"theDuelist:RedEyes": {
 		"NAME": "真紅眼黑龍",
@@ -441,8 +441,8 @@
 	},
 	"theDuelist:Scapegoat": {
 		"NAME": "替罪羊",
-		"DESCRIPTION": "Increment !M!. NL 仪式 2 Kuriboh Tokens. NL 排气。",
-		"UPGRADE_DESCRIPTION": "Increment !M!. NL 仪式 2 Kuriboh Tokens. NL 排气。"
+		"DESCRIPTION": "Increment !M!. NL 仪式 1 Kuriboh Tokens. NL 排气。",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL 仪式 1 Kuriboh Tokens. NL 排气。"
 	},
 	"theDuelist:SevenColoredFish": {
 		"NAME": "彩虹魚",
@@ -721,8 +721,8 @@
 	},
 	"theDuelist:DragonMaster": {
 		"NAME": "究極龍騎士",
-		"DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Create 2 random Dragons and 仪式再次 them on the target enemy.",
-		"UPGRADE_DESCRIPTION": "Dragon NL 贡 3. NL Deal !D! damage. NL Create 2 random upgraded Dragons and 仪式再次 them on the target enemy."
+		"DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage. NL Create 2 random Dragons and 仪式再次 them on the target enemy.",
+		"UPGRADE_DESCRIPTION": "Dragon NL 贡 4. NL Deal !D! damage. NL Create 2 random upgraded Dragons and 仪式再次 them on the target enemy."
 	},
 	"theDuelist:FiendSkull": {
 		"NAME": "死亡魔龍",
@@ -1471,8 +1471,8 @@
 	},
 	"theDuelist:ExplosiveToken": {
 		"NAME": "Exploding Token",
-		"DESCRIPTION": "Lose 3 HP when Tributed.",
-		"UPGRADE_DESCRIPTION": "Lose 3 HP when Tributed."
+		"DESCRIPTION": "Lose 1 HP when Tributed.",
+		"UPGRADE_DESCRIPTION": "Lose 1 HP when Tributed."
 	},
 	"theDuelist:BadToken": {
 		"NAME": "DEBUG: POWER REMOVER",
@@ -1596,7 +1596,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "太陽神的翼神龍",
-		"DESCRIPTION": "贡 5. NL Deal !D! damage X times.",
-		"UPGRADE_DESCRIPTION": "贡 4. NL Deal !D! damage X times."
+		"DESCRIPTION": "贡 4. NL Deal !D! damage X times.",
+		"UPGRADE_DESCRIPTION": "贡 3. NL Deal !D! damage X times."
 	}
 }

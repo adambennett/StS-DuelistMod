@@ -26,12 +26,12 @@ public class AncientRules extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public AncientRules() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        //this.exhaust = true;
+        this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 3;
         this.summons = this.magicNumber;
         this.upgradeSummons = 1;
@@ -45,6 +45,28 @@ public class AncientRules extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.magicNumber, new Token("Ancient Token"));
+    	for (AbstractCard c : p.hand.group)
+    	{
+    		if (c.hasTag(DefaultMod.MONSTER))
+    		{
+    			DuelistCard dC = (DuelistCard)c;
+    			if (dC.tributes > 0)
+    			{
+    				dC.originalDescription = dC.rawDescription;
+    				dC.tributes = 1;
+    				dC.gotPipered = true;
+    				int indexOfTribText = c.rawDescription.indexOf("Tribute");
+    				if (indexOfTribText > 0)
+    				{
+    					String newDesc = c.rawDescription.substring(0, indexOfTribText) + "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
+    					
+    					c.rawDescription = newDesc;
+    					if (DefaultMod.debug) { System.out.println("Ancient Rules made a string: " + newDesc); }
+    					c.initializeDescription();
+    				}
+    			}
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -59,8 +81,8 @@ public class AncientRules extends DuelistCard
         if (!this.upgraded) {
         	this.upgradeName();
         	//this.upgradeMagicNumber(this.upgradeSummons);
-        	this.upgradeBaseCost(0);
-        	//this.exhaust = false;
+        	this.isInnate = true;
+        	this.exhaust = false;
         	this.rawDescription = UPGRADE_DESCRIPTION;
         	this.initializeDescription();
         }
@@ -83,15 +105,12 @@ public class AncientRules extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, new Token("Ancient Token"));
+		
 		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, new Token("Ancient Token"));
 		
 	}
 
