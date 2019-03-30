@@ -253,7 +253,7 @@
 },
 "theDuelist:CallGravePower": {
         "NAME": "Call of Grave",
-        "DESCRIPTIONS": ["Whenever you #yResummon, choose #b", " random #yZombie to #yResummon.", " random #yZombies to #yResummon." ]
+        "DESCRIPTIONS": ["At the start of turn, #yResummon #b", " random monster that you have summoned this combat.", " random monsters that you have summoned this combat." ]
 },
 "theDuelist:GoblinRemedyPower": {
         "NAME": "Goblin's Secret Remedy",
@@ -262,6 +262,14 @@
 "theDuelist:ExodiaRenewalPower": {
         "NAME": "EXODIARENEWALPLACEHOLDER",
         "DESCRIPTIONS": ["Whenever you trigger #yExodia, do not reset your collected pieces." ]
+},
+"theDuelist:ObliteratePower": {
+        "NAME": "EXODIARENEWALPLACEHOLDER",
+        "DESCRIPTIONS": ["Double the damage of the Exodia effect the next #b", " time you trigger it.", " times you trigger it" ]
+},
+"theDuelist:AerodynamicsPower": {
+        "NAME": "Aerodynamics",
+        "DESCRIPTIONS": ["Your #yAir Orbs will always #yChannel randomly at the start of turn." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

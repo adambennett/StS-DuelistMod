@@ -43,7 +43,7 @@ public class GoldenApples extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	block(DefaultMod.summonsThisCombat);
+    	block(DefaultMod.summonCombatCount);
     }
 
 

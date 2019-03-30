@@ -38,6 +38,7 @@ public class ChangeHeart extends DuelistCard
         this.tags.add(DefaultMod.EXODIA_DECK);
         this.startingExodiaDeckCopies = 2;
         this.originalName = this.name;
+        this.exhaust = true;
         this.setupStartingCopies();
     }
 

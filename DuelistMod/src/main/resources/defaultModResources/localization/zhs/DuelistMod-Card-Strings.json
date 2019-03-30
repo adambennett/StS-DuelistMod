@@ -1241,8 +1241,8 @@
 	},
 	"theDuelist:CallGrave": {
 		"NAME": "Call of Grave",
-		"DESCRIPTION": "Whenever you Resummon, choose another Zombie to Resummon.",
-		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Resummon, choose another Zombie to Resummon."
+		"DESCRIPTION": "At the start of each turn, Resummon a random monster you have summoned this combat.",
+		"UPGRADE_DESCRIPTION": "Innate NL At the start of each turn, Resummon a random monster you have summoned this combat."
 	},
 	"theDuelist:SoulAbsorbingBone": {
 		"NAME": "Soul Bone Tower",
@@ -1338,6 +1338,26 @@
 		"NAME": "Ojama Delta Hurricane",
 		"DESCRIPTION": "Evoke a random amount of your Orbs. If you have any Ojamas summoned, each Orb will be Evoked twice.",
 		"UPGRADE_DESCRIPTION": "Evoke a random amount of your Orbs. If you have any Ojamas summoned, each Orb will be Evoked twice. If you have a max stack of Ojamas, each Orb will be Evoked thrice."
+	},
+	"theDuelist:AllyJustice": {
+		"NAME": "Justice Clausolas",
+		"DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust."
+	},
+	"theDuelist:Sangan": {
+		"NAME": "Sangan",
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Add a copy of a random Spell you have played this combat to your hand.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. NL Add a copy of a random Spell you have played this combat to your hand."
+	},
+	"theDuelist:DragonPiper": {
+		"NAME": "Dragon Piper",
+		"DESCRIPTION": "Summon 1. NL All Dragons in your hand cost 1 Tribute for the rest of combat. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate NL Summon 1. NL All Dragons in your hand cost 1 Tribute for the rest of combat."
+	},
+	"theDuelist:Graverobber": {
+		"NAME": "Graverobber",
+		"DESCRIPTION": "Play a copy of a random Spell or Trap you have played this run on an enemy. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Choose a copy of a random Spell or Trap you have played this run to play. Exhaust."
 	},
 	"theDuelist:BasicArchetype": {
 		"NAME": "决斗卡",

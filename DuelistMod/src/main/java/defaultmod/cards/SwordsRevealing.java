@@ -103,7 +103,7 @@ public class SwordsRevealing extends DuelistCard
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 5) { return true; } } }
     	
     	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
+    	this.cantUseMessage = this.tribString;
     	return false;
     }
 

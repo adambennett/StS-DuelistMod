@@ -114,7 +114,7 @@ public class ToonSummonedSkull extends DuelistCard
 
 		// Player doesn't have something required at this point
 		if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; }
-		else { this.cantUseMessage = "Not enough Summons"; }
+		else { this.cantUseMessage = this.tribString; }
 		return false;
 	}
 

@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
+import basemod.BaseMod;
+
 @SuppressWarnings("unused")
 public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions.AbstractGameAction
 {
@@ -69,9 +71,9 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		int handAmount = this.amount;
 
 
-		if (this.amount + AbstractDungeon.player.hand.size() > 10) {
+		if (this.amount + AbstractDungeon.player.hand.size() > BaseMod.MAX_HAND_SIZE) {
 			AbstractDungeon.player.createHandIsFullDialog();
-			discardAmount = this.amount + AbstractDungeon.player.hand.size() - 10;
+			discardAmount = this.amount + AbstractDungeon.player.hand.size() - BaseMod.MAX_HAND_SIZE;
 			handAmount -= discardAmount;
 		}
 

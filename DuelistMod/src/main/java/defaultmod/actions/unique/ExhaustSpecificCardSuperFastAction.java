@@ -17,8 +17,8 @@ public class ExhaustSpecificCardSuperFastAction extends AbstractGameAction
 		setValues(AbstractDungeon.player, AbstractDungeon.player, this.amount);
 		this.actionType = AbstractGameAction.ActionType.EXHAUST;
 		this.group = group;
-		this.startingDuration = 0.01F;
-		this.duration = 0.01F;
+		this.startingDuration = 0.001F;
+		this.duration = 0.001F;
 	}
 
 	public ExhaustSpecificCardSuperFastAction(AbstractCard targetCard, CardGroup group) 

@@ -61,8 +61,8 @@
 	},
 	"theDuelist:CardDestruction": {
 		"NAME": "Card Destruction",
-		"DESCRIPTION": "Discard your hand. Add !M! random card to your hand for each card discarded. Each card costs 0 and exhausts. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Discard your hand. Add !M! random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts. Exhaust."
+		"DESCRIPTION": "Exhaust your hand. Add !M! random card to your hand for each card discarded. Each card costs 0 and exhausts. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Exhaust your hand. Add !M! random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts. Exhaust."
 	},
 	"theDuelist:CastleDarkIllusions": {
 		"NAME": "Castle Dark Illusion",
@@ -96,8 +96,8 @@
 	},
 	"theDuelist:ChangeHeart": {
 		"NAME": "Change of Heart",
-		"DESCRIPTION": "Set your maximum Summons to 8.",
-		"UPGRADE_DESCRIPTION": "Set your maximum Summons to 10."
+		"DESCRIPTION": "Set your maximum Summons to 8. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Set your maximum Summons to 10. Exhaust."
 	},
 	"theDuelist:DarkHole": {
 		"NAME": "Dark Hole",
@@ -336,8 +336,8 @@
 	},
 	"theDuelist:OjamaKnight": {
 		"NAME": "Ojama Knight",
-		"DESCRIPTION": "Tribute 1. NL Apply (1-2) random buffs. Apply (1-2) random debuffs to an enemy.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Apply (1-3) random buffs. Apply (1-3) random debuffs to an enemy."
+		"DESCRIPTION": "Tribute 2. NL Apply (1-2) random buffs. Apply (1-2) random debuffs to an enemy.",
+		"UPGRADE_DESCRIPTION": "Tribute 2. NL Apply (1-3) random buffs. Apply (1-3) random debuffs to an enemy."
 	},
 	"theDuelist:OjamaYellow": {
 		"NAME": "Ojama Yellow",
@@ -381,8 +381,8 @@
 	},
 	"theDuelist:Pumpking": {
 		"NAME": "Pumpking",
-		"DESCRIPTION": "Exempt NL Tribute 1. NL Resummon an upgraded copy of a random monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Exempt NL Tribute 1. NL Resummon 2 upgraded copies of a random monster from your discard pile."
+		"DESCRIPTION": "Exempt. Tribute 1. NL Resummon an upgraded copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Exempt. Tribute 1. NL Resummon 2 upgraded copies of a random monster from your discard pile."
 	},
 	"theDuelist:Pumprincess": {
 		"NAME": "Pumprincess",
@@ -391,8 +391,8 @@
 	},
 	"theDuelist:Gigaplant": {
 		"NAME": "Gigaplant",
-		"DESCRIPTION": "Exempt NL Plant NL Tribute 3. NL Apply 10 Poison. Resummon an upgraded copy of a random monster from your discard pile.",
-		"UPGRADE_DESCRIPTION": "Exempt NL Plant NL Tribute 2. NL Apply 10 Poison. Resummon upgraded copies of !M! random monsters from your discard pile."
+		"DESCRIPTION": "Exempt Plant NL Tribute 3. NL Apply 10 Poison. Resummon an upgraded copy of a random monster from your discard pile.",
+		"UPGRADE_DESCRIPTION": "Exempt Plant NL Tribute 2. NL Apply 10 Poison. Resummon upgraded copies of !M! random monsters from your discard pile."
 	},
 	"theDuelist:RadiantMirrorForce": {
 		"NAME": "Radiant Mirror Force",
@@ -616,8 +616,8 @@
 	},
 	"theDuelist:SuperheavyGeneral": {
 		"NAME": "Superheavy General",
-		"DESCRIPTION": "Tribute 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 5. NL Deal !D! damage. NL Gain !M! Dexterity. NL  Exhaust."
+		"DESCRIPTION": "Tribute 4. NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. NL Deal !D! damage. NL Gain !M! Dexterity. NL  Exhaust."
 	},
 	"theDuelist:SuperheavyFlutist": {
 		"NAME": "Superheavy Flutist",
@@ -626,8 +626,8 @@
 	},
 	"theDuelist:SuperheavyDaihachi": {
 		"NAME": "Superheavy Daihachi",
-		"DESCRIPTION": "Tribute 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust.",
-		"UPGRADE_DESCRIPTION": "Tribute 5. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust."
+		"DESCRIPTION": "Tribute 4. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 4. NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:SuperheavyBlueBrawler": {
 		"NAME": "Superheavy Brawler",
@@ -731,8 +731,8 @@
 	},
 	"theDuelist:FiveHeaded": {
 		"NAME": "Five Headed Dragon",
-		"DESCRIPTION": "Exempt NL Dragon NL Tribute 4. NL Deal !D! damage.",
-		"UPGRADE_DESCRIPTION": "Exempt NL Dragon NL Tribute 5. NL Deal !D! damage."
+		"DESCRIPTION": "Exempt Dragon NL Tribute 4. NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Exempt Dragon NL Tribute 5. NL Deal !D! damage."
 	},
 	"theDuelist:FluteSummoning": {
 		"NAME": "Flute of Summoning Dragon",
@@ -741,8 +741,8 @@
 	},
 	"theDuelist:Gandora": {
 		"NAME": "Gandora",
-		"DESCRIPTION": "Dragon NL Tribute 5. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your hand. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 5 random, upgraded dragons to your hand. Exhaust."
+		"DESCRIPTION": "Dragon NL Tribute 3. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 3 random, upgraded dragons to your hand. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 4 random, upgraded dragons to your hand. Exhaust."
 	},
 	"theDuelist:LordD": {
 		"NAME": "Lord of D.",
@@ -857,11 +857,11 @@
 	"theDuelist:WhiteNightDragon": {
 		"NAME": "White Night Dragon",
 		"DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. Channel an Air.",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 4. NL Deal !D! damage. Channel an Air."
 	},
 	"theDuelist:WhiteHornDragon": {
 		"NAME": "White-Horned Dragon",
-		"DESCRIPTION": "Dragon NL Tribute 3. NL Deal !D! damage. Channel an Air.",
+		"DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel an Air.",
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute 2. NL Deal !D! damage. Channel an Air."
 	},
 	"theDuelist:FogKing": {
@@ -947,12 +947,12 @@
 	"theDuelist:Polymerization": {
 		"NAME": "Polymerization",
 		"DESCRIPTION": "Resummon !M! copies of random monsters from your hand on an enemy.",
-		"UPGRADE_DESCRIPTION": "Resummon !M! copies of random monsters from your hand on an enemy."
+		"UPGRADE_DESCRIPTION": "Resummon !M! copies of random monsters from your hand on an enemy. NL Ignores Exempt keyword."
 	},
 	"theDuelist:MiniPolymerization": {
 		"NAME": "Mini-Polymerization",
 		"DESCRIPTION": "Resummon a copy of a random monster from your hand on an enemy.",
-		"UPGRADE_DESCRIPTION": "Resummon a copy of a random monster from your hand on an enemy."
+		"UPGRADE_DESCRIPTION": "Resummon a copy of a random monster from your hand on an enemy. NL Ignores Exempt keyword."
 	},
 	"theDuelist:Predaponics": {
 		"NAME": "Predaponics",
@@ -1042,7 +1042,7 @@
 	"theDuelist:Jinzo": {
 		"NAME": "Jinzo",
 		"DESCRIPTION": "Tribute 1. NL Traps cost 0.",
-		"UPGRADE_DESCRIPTION": "Tribute 1. NL Traps cost 0."
+		"UPGRADE_DESCRIPTION": "Innate NL Tribute 1. NL Traps cost 0."
 	},
 	"theDuelist:OceanDragonLord": {
 		"NAME": "Ocean Dragon Lord",
@@ -1241,8 +1241,8 @@
 	},
 	"theDuelist:CallGrave": {
 		"NAME": "Call of Grave",
-		"DESCRIPTION": "Whenever you Resummon, choose a random Zombie to Resummon.",
-		"UPGRADE_DESCRIPTION": "Innate. NL Whenever you Resummon, choose a random Zombie to Resummon."
+		"DESCRIPTION": "At the start of each turn, Resummon a random monster you have summoned this combat.",
+		"UPGRADE_DESCRIPTION": "Innate NL At the start of each turn, Resummon a random monster you have summoned this combat."
 	},
 	"theDuelist:SoulAbsorbingBone": {
 		"NAME": "Soul Bone Tower",
@@ -1338,6 +1338,26 @@
 		"NAME": "Ojama Delta Hurricane",
 		"DESCRIPTION": "Evoke a random amount of your Orbs. If you have any Ojamas summoned, each Orb will be Evoked twice.",
 		"UPGRADE_DESCRIPTION": "Evoke a random amount of your Orbs. If you have any Ojamas summoned, each Orb will be Evoked twice. If you have a max stack of Ojamas, each Orb will be Evoked thrice."
+	},
+	"theDuelist:AllyJustice": {
+		"NAME": "Justice Clausolas",
+		"DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute 3. NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust."
+	},
+	"theDuelist:Sangan": {
+		"NAME": "Sangan",
+		"DESCRIPTION": "Summon 1. NL Deal !D! damage. Add a copy of a random Spell you have played this combat to your hand.",
+		"UPGRADE_DESCRIPTION": "Summon 1. NL Deal !D! damage. Add a 0-cost copy of a random Spell you have played this combat to your hand."
+	},
+	"theDuelist:DragonPiper": {
+		"NAME": "Dragon Piper",
+		"DESCRIPTION": "Summon 1. NL All Dragons in your hand cost 1 Tribute for the rest of combat. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate NL Summon 1. NL All Dragons in your hand cost 1 Tribute for the rest of combat."
+	},
+	"theDuelist:Graverobber": {
+		"NAME": "Graverobber",
+		"DESCRIPTION": "Play a copy of a random Spell or Trap you have played this run on an enemy. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Choose a copy of a random Spell or Trap you have played this run to play. Exhaust."
 	},
 	"theDuelist:BasicArchetype": {
 		"NAME": "Duelist Cards",
@@ -1576,7 +1596,7 @@
 	},
 	"theDuelist:WingedDragonRa": {
 		"NAME": "Winged Dragon Ra",
-		"DESCRIPTION": "Tribute 5. NL Deal !D! damage X times.",
-		"UPGRADE_DESCRIPTION": "Tribute 4. NL Deal !D! damage X times."
+		"DESCRIPTION": "Exempt Dragon. NL Tribute 4. NL Deal !D! damage for each monster you have summoned this combat X times.",
+		"UPGRADE_DESCRIPTION": "Exempt Dragon. NL Tribute 3. NL Deal !D! damage for each monster you have summoned this combat X times."
 	}
 }

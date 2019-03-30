@@ -16,7 +16,7 @@ public class TheCreatorAction extends AbstractGameAction {
 	{
 		setValues(target, source, amount);
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = 0.01F;
+		this.duration = 0.001F;
 		this.cardToMake = card;
 		this.randomSpot = randomSpot;
 		this.cardOffset = cardOffset;
@@ -24,7 +24,7 @@ public class TheCreatorAction extends AbstractGameAction {
 
 	@Override
 	public void update() {
-		if (this.duration == 0.01F) 
+		if (this.duration == 0.001F) 
 		{
 			for (int i = 0; i < this.amount; i++) 
 			{
@@ -45,6 +45,7 @@ public class TheCreatorAction extends AbstractGameAction {
 					c.updateCost(1);
 					c.isCostModified = true;
 				}
+				
 				AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F, this.randomSpot, this.cardOffset));
 			}
 		}

@@ -216,6 +216,19 @@ public class SummonPower extends AbstractPower
 		}
 	}
 	
+	public boolean isMonsterSummoned(DuelistCard monster)
+	{
+		String cardName = monster.originalName;
+		if (summonList.size() > 0)
+		{
+			if (summonList.contains(cardName))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void updateStringColors()
 	{
 		ArrayList<CardTags> goodTags = new ArrayList<CardTags>();

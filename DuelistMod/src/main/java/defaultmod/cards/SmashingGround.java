@@ -28,8 +28,7 @@ public class SmashingGround extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 8;
-    private static final int U_DMG = 2;
+    private static final int DAMAGE = 6;
     // /STAT DECLARATION/
 
     public SmashingGround() {
@@ -48,7 +47,7 @@ public class SmashingGround extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       int playerSummons = DefaultMod.summonsThisCombat;
+       int playerSummons = DefaultMod.summonCombatCount;
        int newDamage = this.damage * playerSummons;
        int[] damageArray = new int[] { newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage };
        this.applyPowers();
@@ -66,7 +65,7 @@ public class SmashingGround extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(U_DMG);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

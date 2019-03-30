@@ -1,14 +1,17 @@
 package defaultmod.powers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import defaultmod.DefaultMod;
+import defaultmod.patches.DuelistCard;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
@@ -44,7 +47,44 @@ public class CallGravePower extends AbstractPower
     @Override
     public void atStartOfTurn() 
     {
-    	
+    	if (DefaultMod.monstersThisCombat.size() > 0)
+    	{
+    		//this.flash();
+    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> monstersInCombat size was > 0");
+    		ArrayList<DuelistCard> allowedResummons = new ArrayList<DuelistCard>();
+    		ArrayList<DuelistCard> actualResummons = new ArrayList<DuelistCard>();
+    		int loopMax = this.amount + 3;
+    		int loopCount = 0;
+    		for (DuelistCard c : DefaultMod.monstersThisCombat)
+    		{
+    			if (c.hasTag(DefaultMod.MONSTER) && !c.hasTag(DefaultMod.EXEMPT))
+    			{
+    				allowedResummons.add((DuelistCard) c.makeCopy());
+    				System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + c.originalName + " to allowedResummons");
+    			}
+    		}
+	    	for (int i = 0; i < this.amount; i++)
+	    	{
+	    		DuelistCard randomMon = allowedResummons.get(AbstractDungeon.cardRandomRng.random(allowedResummons.size() - 1));
+	    		while (actualResummons.contains(randomMon) && loopCount < loopMax)
+	    		{
+	    			randomMon = allowedResummons.get(AbstractDungeon.cardRandomRng.random(allowedResummons.size() - 1));
+	    			loopCount++;
+	    		}
+	    		actualResummons.add(randomMon);
+	    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + randomMon.originalName + " to actualResummons");
+	    	}
+	    	
+	    	for (DuelistCard c : actualResummons)
+	    	{
+	    		DuelistCard.fullResummon(c, false, AbstractDungeon.getRandomMonster());
+	    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> called resummon on: " + c.originalName);
+	    	}
+    	}
+    	else
+    	{
+    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> monstersInCombat size was NOT > 0!!!");
+    	}
     }
     
     @Override

@@ -33,7 +33,7 @@ public class TrihornedDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 3;
+    private static final int COST = 2;
     private static final int DAMAGE = 18;
     //private static final int UPGRADE_PLUS_DMG = 3;
     // /STAT DECLARATION/
@@ -121,7 +121,7 @@ public class TrihornedDragon extends DuelistCard
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
+    	this.cantUseMessage = this.tribString;
     	return false;
     }
 

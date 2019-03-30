@@ -33,7 +33,7 @@ public class WhiteHornDragon extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int DAMAGE = 18;
+    private static final int DAMAGE = 15;
     // /STAT DECLARATION/
 
     public WhiteHornDragon() {
@@ -44,7 +44,7 @@ public class WhiteHornDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = 2;
     }
 
     // Actions the card should do.
@@ -69,7 +69,6 @@ public class WhiteHornDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(0);
-            this.tributes = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -105,7 +104,7 @@ public class WhiteHornDragon extends DuelistCard
   		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
 
   		// Player doesn't have something required at this point
-  		this.cantUseMessage = "Not enough Summons";
+  		this.cantUseMessage = this.tribString;
   		return false;
   	}
 

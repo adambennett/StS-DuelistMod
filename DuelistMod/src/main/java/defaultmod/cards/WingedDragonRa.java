@@ -39,10 +39,11 @@ public class WingedDragonRa extends DuelistCard
         this.tags.add(DefaultMod.GOD);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
+        this.tags.add(DefaultMod.EXEMPT);
         this.misc = 0;
-        this.tributes = 5;
+        this.tributes = 4;
 		this.originalName = this.name;
-		this.damage = this.baseDamage = 30;
+		this.damage = this.baseDamage = 1;
     }
 
     // Actions the card should do.
@@ -59,7 +60,8 @@ public class WingedDragonRa extends DuelistCard
     	if (upgraded) { damageTotal += maxSummons; }
     	this.baseDamage = this.damage = damageTotal;
     	*/
-    	attack(m, AFX, this.damage * manaUsed);
+    	applyPowers();
+    	attack(m, AFX, (DefaultMod.summonCombatCount * this.damage )* manaUsed);
     	tribute(p, this.tributes, false, this);
     	useXEnergy();
     }
@@ -75,7 +77,8 @@ public class WingedDragonRa extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.tributes = 4;
+            this.tributes = 3;
+            this.upgradeDamage(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -111,7 +114,7 @@ public class WingedDragonRa extends DuelistCard
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
+    	this.cantUseMessage = this.tribString;
     	return false;
     }
 

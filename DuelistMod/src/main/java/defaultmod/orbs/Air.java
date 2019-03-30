@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import defaultmod.DefaultMod;
 import defaultmod.interfaces.DuelistOrb;
 import defaultmod.patches.DuelistCard;
-import defaultmod.powers.SummonPower;
+import defaultmod.powers.*;
 
 @SuppressWarnings("unused")
 public class Air extends DuelistOrb
@@ -71,20 +71,27 @@ public class Air extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		applyFocus();
-		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-		{
-			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isOnlyTypeSummoned(DefaultMod.DRAGON))
-			{
-				rollCheck += 2;
-			}
-		}
-		if (roll < rollCheck)
+		if (AbstractDungeon.player.hasPower(AerodynamicsPower.POWER_ID))
 		{
 			this.triggerPassiveEffect();
+		}
+		else
+		{
+			applyFocus();
+			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+			int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{
+				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (instance.isOnlyTypeSummoned(DefaultMod.DRAGON))
+				{
+					rollCheck += 4;
+				}
+			}
+			if (roll < rollCheck)
+			{
+				this.triggerPassiveEffect();
+			}
 		}
 	}
 

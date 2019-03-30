@@ -32,7 +32,7 @@ public class SuperheavyDaihachi extends DuelistCard
 
     public SuperheavyDaihachi() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = 5;
+        this.tributes = 4;
         this.dex = 4;
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);
@@ -98,7 +98,7 @@ public class SuperheavyDaihachi extends DuelistCard
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
+    	this.cantUseMessage = this.tribString;
     	return false;
     }
 

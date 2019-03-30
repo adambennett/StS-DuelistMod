@@ -71,6 +71,10 @@ public class RandomActionHelper
 				DuelistCard.damageSelf(5);
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
+			case "Lose #b1 HP":
+				DuelistCard.damageSelf(1);
+				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				break;
 			case "#yExhaust #b1 random card in hand":
 				AbstractDungeon.actionManager.addToTop(new ExhaustAction(AbstractDungeon.player, AbstractDungeon.player, 1, true));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
@@ -269,6 +273,7 @@ public class RandomActionHelper
 			actions.add("Gain [E] "); 
 			actions.add("Channel a Glitch");
 			actions.add("#yIncrement #b2");
+			actions.add("Lose #b1 HP");
 		}
 		else
 		{
@@ -278,12 +283,12 @@ public class RandomActionHelper
 			actions.add("Gain #b5 HP");
 			actions.add("#ySummon #b1");
 			actions.add("#yIncrement #b1");
+			actions.add("Lose #b5 HP");
+			actions.add("Lose #b5 HP");
 		}
 		actions.add("Draw #b1 card");	
 		actions.add("Draw #b1 card");	
 		actions.add("Gain #b5 HP");
-		actions.add("Lose #b5 HP");
-		actions.add("Lose #b5 HP");
 		//actions.add("#yExhaust #b1 random card in hand");
 		//actions.add("#yExhaust #b1 random card in hand");	
 		actions.add("Apply #b2 random #ydebuffs to random enemy");	

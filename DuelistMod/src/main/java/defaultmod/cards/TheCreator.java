@@ -125,7 +125,7 @@ public class TheCreator extends DuelistCard
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
+    	this.cantUseMessage = this.tribString;
     	return false;
     }
 

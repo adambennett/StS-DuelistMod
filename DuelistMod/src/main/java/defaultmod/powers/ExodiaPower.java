@@ -79,7 +79,7 @@ public class ExodiaPower extends AbstractPower
 			if (AbstractDungeon.player.hasPower(ObliteratePower.POWER_ID)) 
 			{
 				if (!DefaultMod.challengeMode) { DAMAGE += 200; }
-				else { DAMAGE += 100; }
+				else { DAMAGE = DAMAGE * 2; }
 				DuelistCard.removePower(AbstractDungeon.player.getPower(ObliteratePower.POWER_ID), AbstractDungeon.player);
 			}
 			int[] catapultDmg = new int[] {DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE};
@@ -90,6 +90,12 @@ public class ExodiaPower extends AbstractPower
 	        	amount = 0;
 	        	pieces = new ArrayList<DuelistCard>();
         	}
+        	else
+        	{
+        		DuelistCard.removePower(AbstractDungeon.player.getPower(ExodiaRenewalPower.POWER_ID), AbstractDungeon.player);        		
+        	}
+        	if (DefaultMod.challengeMode) { DAMAGE = 150; } 
+        	else { DAMAGE = 300; }
         	updateDescription();
 		}
 	}
@@ -165,13 +171,13 @@ public class ExodiaPower extends AbstractPower
 		}
 		else if (checkForAllPieces())
 		{
-			int playerSummons = 1;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
-			{ 
-				playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
-				playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
-			}
-			int damageDescr = DAMAGE * playerSummons;
+			//int playerSummons = 1;
+			//if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
+			//{ 
+			//	playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
+			//	playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
+			//}
+			int damageDescr = DAMAGE;
 			this.description = DESCRIPTIONS[2] + damageDescr;
 		}
 		else if (checkForLegs() && checkForArms())

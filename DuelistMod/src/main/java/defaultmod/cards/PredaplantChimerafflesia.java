@@ -2,13 +2,16 @@ package defaultmod.cards;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.ReflectionHacks;
 import defaultmod.DefaultMod;
 import defaultmod.patches.*;
 import defaultmod.powers.*;
@@ -31,6 +34,7 @@ public class PredaplantChimerafflesia extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.POISON;
     private static final int COST = 0;
+    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public PredaplantChimerafflesia() {
@@ -45,6 +49,8 @@ public class PredaplantChimerafflesia extends DuelistCard
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 15;
 		this.misc = 0;
+	    tooltips = new ArrayList<>();
+		tooltips.add(new Polymerization());
     }
 
     // Actions the card should do.
@@ -121,7 +127,7 @@ public class PredaplantChimerafflesia extends DuelistCard
     	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
     	
     	// Player doesn't have something required at this point
-    	this.cantUseMessage = "Not enough Summons";
+    	this.cantUseMessage = this.tribString;
     	return false;
     }
 
@@ -132,6 +138,37 @@ public class PredaplantChimerafflesia extends DuelistCard
 		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 5); }
 		else if (tributingCard.hasTag(DefaultMod.INSECT)) { poisonAllEnemies(player(), 3); }
 	}
+	
+	@Override
+	public void renderCardTip(SpriteBatch sb) {
+		super.renderCardTip(sb);
+		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
+
+		int count = 0;
+		if (!Settings.hideCards && renderTip) {
+			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
+				return;
+			}
+			for (AbstractCard c : tooltips) {
+				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
+				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
+				if (current_x > Settings.WIDTH * 0.75f) {
+					c.current_x = current_x + dx;
+				} else {
+					c.current_x = current_x - dx;
+				}
+				if (count == 0) {
+					c.current_y = current_y + dy;
+				} else {
+					c.current_y = current_y - dy;
+				}
+				c.drawScale = drawScale * 0.8f;
+				c.render(sb);
+				count++;
+			}
+		}
+	}
+
 
 
 	@Override

@@ -129,28 +129,39 @@ public class ParasitePower extends AbstractPower
 	public void updateDescription() 
     {
     	int chanceMod = 0;
+    	if (DefaultMod.debug) { System.out.println("theDuelist:ParasitePower:updateDescription() ---> debuffChance == " + debuffChance); }
     	switch (debuffChance)
     	{
 	    	case 1:
 	    		chanceMod = 10;
+	    		break;
 	    	case 2:
 	    		chanceMod = 9;
+	    		break;
 	    	case 3:
 	    		chanceMod = 8;
+	    		break;
 	    	case 4:
 	    		chanceMod = 7;
+	    		break;
 	    	case 5:
 	    		chanceMod = 6;
+	    		break;
 	    	case 6:
 	    		chanceMod = 5;
+	    		break;
 	    	case 7:
 	    		chanceMod = 4;
+	    		break;
 	    	case 8:
 	    		chanceMod = 3;
+	    		break;
 	    	case 9:
 	    		chanceMod = 2;
+	    		break;
     		default:
     			chanceMod = 1;
+	    		break;
     	}
         this.description = DESCRIPTIONS[0] + chanceMod;
     }

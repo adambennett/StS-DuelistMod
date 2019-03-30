@@ -22,11 +22,11 @@ public class CallGrave extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION 	
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public CallGrave() {
@@ -64,7 +64,7 @@ public class CallGrave extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.isInnate = true;
-            this.upgradeBaseCost(1);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

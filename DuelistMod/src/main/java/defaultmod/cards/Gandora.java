@@ -26,12 +26,12 @@ public class Gandora extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public Gandora() {
@@ -42,9 +42,9 @@ public class Gandora extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.FULL);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 50;
-        this.tributes = 5;
-        this.baseMagicNumber = this.magicNumber = 30;
+        this.baseDamage = this.damage = 20;
+        this.tributes = 3;
+        this.baseMagicNumber = this.magicNumber = 5;
     }
 
     // Actions the card should do.
@@ -67,8 +67,10 @@ public class Gandora extends DuelistCard
     	// Deal 50 damage + 30 for every card exhausted
     	attack(m, AFX, this.damage + (this.magicNumber * handSize));
 
+    	int loopCount = 3;
+    	if (upgraded) { loopCount = 4; }
     	// Add 5 random 0 cost, upgraded dragons to draw pile
-    	for (int i = 0; i < 5; i++)
+    	for (int i = 0; i < loopCount; i++)
     	{
 	    	AbstractCard randomDragon = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.DRAGON);
 	    	randomDragon.upgrade();
@@ -88,7 +90,7 @@ public class Gandora extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.tributes = 4;
+            this.tributes = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -124,7 +126,7 @@ public class Gandora extends DuelistCard
    		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
 
    		// Player doesn't have something required at this point
-   		this.cantUseMessage = "Not enough Summons";
+   		this.cantUseMessage = this.tribString;
    		return false;
    	}
 

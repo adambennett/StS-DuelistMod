@@ -12,6 +12,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -20,6 +21,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -48,7 +50,8 @@ public class DefaultMod
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
 PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
-RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber
+RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
+PreMonsterTurnSubscriber
 {
 	public static final Logger logger = LogManager.getLogger("theDuelist:DefaultMod ---> " + DefaultMod.class.getName());
 	public static final String MOD_ID_PREFIX = "theDuelist:";
@@ -133,15 +136,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
 	private static String modID = "duelistmod";
 	private static ArrayList<String> cardSets = new ArrayList<String>();
-	public static ArrayList<String> startingDecks = new ArrayList<String>();
 	private static ArrayList<StarterDeck> starterDeckList = new ArrayList<StarterDeck>();
 	private static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	private static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
-	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
 	private static Map<CardTags, StarterDeck> deckTagMap = new HashMap<CardTags, StarterDeck>();
 	private static int setIndex = 0;
-	public static int deckIndex = 0;
 	private static final int SETS = 5;
 	private static int DECKS = 20;
 	private static int cardCount = 75;
@@ -152,14 +152,8 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	private static boolean ranFunc = false;
 	
 	// Global Fields
-	public static Properties duelistDefaults = new Properties();
-	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
-	public static HashMap<String, AbstractPower> buffMap = new HashMap<String, AbstractPower>();
-	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
-	public static ArrayList<AbstractCard> tinFluteCards = new ArrayList<AbstractCard>();
-	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
-	public static ArrayList<String> randomBuffStrings = new ArrayList<String>();
-	public static Map<String, DuelistCard> orbCardMap = new HashMap<String, DuelistCard>();
+	
+	// Config Settings
 	public static final String PROP_TOON_BTN = "toonBtnBool";
 	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
 	public static final String PROP_CROSSOVER_BTN = "crossoverBtnBool";
@@ -174,31 +168,61 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String PROP_UNLOCK = "unlockAllDecks";
 	public static final String PROP_FLIP = "flipCardTags";
 	public static final String PROP_RESET = "resetProg";
+	public static Properties duelistDefaults = new Properties();
 	public static boolean toonBtnBool = true;
 	public static boolean exodiaBtnBool = false;
 	public static boolean crossoverBtnBool = true;
 	public static boolean challengeMode = false;
 	public static boolean unlockAllDecks = false;
 	public static boolean flipCardTags = false;
+	
+	// Maps and Lists
+	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
+	public static HashMap<String, AbstractPower> buffMap = new HashMap<String, AbstractPower>();
+	public static Map<String, DuelistCard> orbCardMap = new HashMap<String, DuelistCard>();
+	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> monstersThisCombat = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> monstersThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> spellsThisCombat = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> spellsThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> trapsThisCombat = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> trapsThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<AbstractCard> tinFluteCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
+	public static ArrayList<String> startingDecks = new ArrayList<String>();
+	public static ArrayList<String> randomBuffStrings = new ArrayList<String>();
+	
+	// Global Flags
 	public static boolean toonWorldTemp = false;
 	public static boolean resetProg = false;
-	public static int lastMaxSummons = 5;
-	//public static int toonDamage = 7;
-	public static int spellsThisCombat = 0;
-	public static int summonsThisCombat = 0;
 	public static boolean hasRing = false;
 	public static boolean hasKey = false;
 	public static boolean checkTrap = false;
 	public static boolean checkUO = false;
 	public static boolean ultimateOfferingTrig = false;
+	public static boolean playedOneCardThisCombat = false;
 	public static boolean isApi = Loader.isModLoaded("archetypeapi");
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
-	public static boolean playedOneCardThisCombat = false;
+
+	// Numbers
+	public static int lastMaxSummons = 5;
+	//public static int toonDamage = 7;
+	public static int spellCombatCount = 0;
+	public static int summonCombatCount = 0;
+	public static int summonTurnCount = 0;
+	public static int trapCombatCount = 0;
+	public static int spellRunCount = 0;	
+	public static int summonRunCount = 0;
+	public static int trapRunCount = 0;
 	public static int swordsPlayed = 0;
 	public static int cardsToDraw = 5;
 	public static int resummonDeckDamage = 1;
+	public static int deckIndex = 0;
+	
+	// Other
 	public static StarterDeck currentDeck;
 	public static ModLabel setSelectColorTxtB;
 	
@@ -212,6 +236,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static final boolean debug = false;		// print statements only really
+	public static final boolean addTokens = false;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -695,6 +720,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	public static final String SPHERE_KURIBOH_POWER = "powers/SphereKuribohPower.png";
 	public static final String CALL_GRAVE_POWER = "powers/CallGravePower.png";
 	public static final String GOBLIN_REMEDY_POWER = "powers/GoblinRemedyPower.png";
+	public static final String AERO_POWER = "powers/AerodynamicsPower.png";
 
 	// Relic images  
 	public static final String M_PUZZLE_RELC = "relics/MillenniumPuzzleRelic_Y.png";
@@ -872,7 +898,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		duelistDefaults.setProperty(PROP_FLIP, "FALSE");
 		duelistDefaults.setProperty(PROP_RESET, "FALSE");
 		
-		cardSets.add("All (243 cards)"); 
+		cardSets.add("All (248 cards)"); 
 		cardSets.add("Full (144 cards)");
 		cardSets.add("Reduced (121 cards)");
 		cardSets.add("Limited (93 cards)");
@@ -1462,8 +1488,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	{
 		resetBuffPool();
 		lastMaxSummons = 5;
-		spellsThisCombat = 0;
-		summonsThisCombat = 0;
+		spellCombatCount = 0;
+		trapCombatCount = 0;
+		summonCombatCount = 0;
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
 		logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");
@@ -1483,6 +1510,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
+		monstersThisCombat = new ArrayList<DuelistCard>();
+		spellsThisCombat = new ArrayList<DuelistCard>();
+		trapsThisCombat = new ArrayList<DuelistCard>();
 		if (UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST) > 0) 
 		{ 
 			UnlockTracker.unlockProgress.putInteger(TheDuelistEnum.THE_DUELIST.toString() + "UnlockLevel", 0);
@@ -1492,8 +1522,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		}
 		playedOneCardThisCombat = false;
 		lastMaxSummons = 5;
-		spellsThisCombat = 0;
-		summonsThisCombat = 0;
+		spellCombatCount = 0;
+		trapCombatCount = 0;
+		summonCombatCount = 0;
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
 		logger.info("theDuelist:DefaultMod:receivePostBattle() ---> Reset max summons to 5");
@@ -1541,10 +1572,20 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	@Override
 	public void receivePostDeath() 
 	{
+		monstersThisRun = new ArrayList<DuelistCard>();
+		monstersThisCombat = new ArrayList<DuelistCard>();
+		spellsThisRun = new ArrayList<DuelistCard>();
+		spellsThisCombat = new ArrayList<DuelistCard>();
+		trapsThisRun = new ArrayList<DuelistCard>();
+		trapsThisCombat = new ArrayList<DuelistCard>();
 		runInProgress = false;
 		ranFunc = false;
-		spellsThisCombat = 0;
-		summonsThisCombat = 0;
+		spellCombatCount = 0;
+		trapCombatCount = 0;
+		summonCombatCount = 0;
+		spellRunCount = 0;
+		trapRunCount = 0;
+		summonRunCount = 0;
 		AbstractPlayer.customMods = new ArrayList<String>();
 		hasRing = false;
 		hasKey = false;
@@ -1569,8 +1610,36 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> Card: " + arg0.name);
 		if (arg0.hasTag(DefaultMod.SPELL))
 		{
-			spellsThisCombat++;
-			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> incremented spellsThisCombat, new value: " + spellsThisCombat);
+			spellCombatCount++;
+			spellRunCount++;
+			
+			spellsThisCombat.add((DuelistCard) arg0.makeCopy());
+			spellsThisRun.add((DuelistCard) arg0.makeCopy());
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> incremented spellsThisCombat, new value: " + spellCombatCount);
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> incremented spellRunCombat, new value: " + spellRunCount);
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> added " + arg0.originalName + " to spellsThisCombat, spellsThisRun");
+		}
+		
+		if (arg0.hasTag(DefaultMod.MONSTER))
+		{
+			//summonCombatCount++;
+			//summonRunCount++;
+			monstersThisCombat.add((DuelistCard) arg0.makeCopy());
+			monstersThisRun.add((DuelistCard) arg0.makeCopy());
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> incremented summonsThisCombat, new value: " + summonCombatCount);
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> incremented summonRunCount, new value: " + summonRunCount);
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> added " + arg0.originalName + " to monstersThisCombat, monstersThisRun");
+		}
+		
+		if (arg0.hasTag(DefaultMod.TRAP))
+		{
+			trapCombatCount++;
+			trapRunCount++;
+			trapsThisCombat.add((DuelistCard) arg0.makeCopy());
+			trapsThisRun.add((DuelistCard) arg0.makeCopy());
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> incremented trapsThisCombat, new value: " + trapCombatCount);
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> incremented spellRunCombat, new value: " + trapRunCount);
+			logger.info("theDuelist:DefaultMod:receiveCardUsed() ---> added " + arg0.originalName + " to trapsThisCombat, trapsThisRun");
 		}
 	}
 
@@ -1626,7 +1695,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		// Underdog - Draw monster = draw 1 card
 		if (AbstractDungeon.player.hasPower(HeartUnderdogPower.POWER_ID))
 		{
-			int handSize = AbstractDungeon.player.hand.size();
+			int handSize = AbstractDungeon.player.hand.group.size();
 			if (arg0.hasTag(DefaultMod.MONSTER) && handSize < BaseMod.MAX_HAND_SIZE)
 			{
 				DuelistCard.draw(1);
@@ -1675,6 +1744,12 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	{
 		runInProgress = true;
 		ranFunc = true;
+		monstersThisCombat = new ArrayList<DuelistCard>();
+		monstersThisRun = new ArrayList<DuelistCard>();
+		spellsThisRun = new ArrayList<DuelistCard>();
+		spellsThisCombat = new ArrayList<DuelistCard>();
+		trapsThisRun = new ArrayList<DuelistCard>();
+		trapsThisCombat = new ArrayList<DuelistCard>();
 	}
 
 	@Override
@@ -1683,6 +1758,49 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		
 	}
 	
+	@Override
+	public int receiveOnPlayerLoseBlock(int arg0) 
+	{
+		return arg0;
+	}
+	
+	@Override
+	public boolean receivePreMonsterTurn(AbstractMonster arg0) 
+	{
+		if (summonTurnCount > 2)
+		{
+			int msgRoll = AbstractDungeon.cardRandomRng.random(1, 100);
+			if (debug)
+			{				
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 2.5F, 2.0F));
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Screw the rules, I have money!", 1.0F, 2.0F));
+			}
+			else
+			{
+				if (msgRoll <= 2)
+				{
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 2.5F, 2.0F));
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Screw the rules, I have money!", 1.0F, 2.0F));
+				}
+			}
+		}
+		summonTurnCount = 0;
+		AbstractPlayer p = AbstractDungeon.player;
+		if (p.hasPower(MirrorForcePower.POWER_ID) && p.currentBlock > 0)
+		{
+			MirrorForcePower instance = (MirrorForcePower) AbstractDungeon.player.getPower(MirrorForcePower.POWER_ID);
+			instance.PLAYER_BLOCK = p.currentBlock;
+			if (debug)
+			{
+				logger.info("theDuelist:DefaultMod:receiveOnPlayerLoseBlock() ---> set mirror force power block to: " + p.currentBlock + ".");
+			}
+		}
+		if (debug)
+		{
+			logger.info("theDuelist:DefaultMod:receiveOnPlayerLoseBlock() ---> player lost " + arg0 + " block.");
+		}
+		return true;
+	}
 	
 	// STARTER DECK METHODS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static StarterDeck getCurrentDeck()
@@ -1859,6 +1977,9 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		AbstractPower buffer = new BufferPower(p, 1);
 		AbstractPower conserve = new ConservePower(p, 1);
 		AbstractPower curiosity = new CuriosityPower(p, 1);
+		
+		/* LOOK UP BUFFS DOC IN NOTEPAD */
+		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (challengeMode)
 		{
@@ -2694,6 +2815,7 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new Wiseman());
 		myCards.add(new Sparks());
 		myCards.add(new CastleWallsBasic());
+		myCards.add(new Sangan());
 		// END CORE SET
 
 		// ALL Set -  cards
@@ -2793,7 +2915,10 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		myCards.add(new ClownZombie());
 		myCards.add(new RyuKokki());
 		myCards.add(new GoblinRemedy());
-		//myCards.add(new CallGrave());
+		myCards.add(new CallGrave());
+		myCards.add(new AllyJustice());
+		myCards.add(new Graverobber());
+		myCards.add(new DragonPiper());
 		// END ALL Set
 
 		// FULL Set - 22 cards
@@ -2903,7 +3028,13 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 		// END RANDOM ONLY Set
 
 		// DEBUG CARD STUFF
-		if (fullDebug)
+		if (debug)
+		{
+			printCardSetsForGithubReadme(myCards);
+			printTextForTranslation();
+		}
+		
+		if (addTokens)
 		{
 			myCards.add(new Token());
 			myCards.add(new BadToken());
@@ -2911,10 +3042,14 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 			//myCards.add(new HeartUnderspell());
 			//myCards.add(new HeartUndertrap());
 			//myCards.add(new HeartUndertribute());
-			printCardSetsForGithubReadme(myCards);
-			printTextForTranslation();
 		}
 		// END DEBUG CARD STUFF
+		
+		for (DuelistCard c : myCards)
+		{			
+			c.setupTrib(c.tributes, c.summons, c.rawDescription);
+			if (debug) { logger.info("theDuelist:DefaultMod:setupMyCards() ---> set " + c.originalName + " base tributes to " + c.tributes + " :: Check it -- c.baseTributes = " + c.baseTributes); }
+		}
 		
 		/*
 		if (challengeMode)
@@ -3014,5 +3149,4 @@ RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeon
 	}
 	// END METHODS
 
-	
 }// END DefaultMod

@@ -24,7 +24,7 @@ public class Polymerization extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
@@ -48,15 +48,17 @@ public class Polymerization extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	boolean hitCreator = false;
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.MONSTER) && !a.hasTag(DefaultMod.EXEMPT)) { handCards.add(a); }}    	
+    	if (!upgraded) { for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.MONSTER) && !a.hasTag(DefaultMod.EXEMPT)) { handCards.add(a); }}}    	
+    	else { for (AbstractCard a : p.hand.group) { if (a.hasTag(DefaultMod.MONSTER)) { handCards.add(a); }}}    
     	if (handCards.size() > 0)
     	{
 			for (int i = 0; i < this.magicNumber; i++)
 			{
 	    		AbstractCard summon = returnRandomFromArrayAbstract(handCards);
 	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
-				if (cardCopy != null)
+	    		if (cardCopy != null && !hitCreator)
 				{
 					if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
 					if (summon.upgraded) { cardCopy.upgrade(); }
@@ -67,6 +69,7 @@ public class Polymerization extends DuelistCard
 					cardCopy.onResummon(1);
 					cardCopy.checkResummon();
 				}
+	    		if (summon.originalName.equals("The Creator")) { hitCreator = true; if (DefaultMod.debug) { System.out.println("theDuelist:Polymerization:use() ---> hitCreator triggered and set to true"); } }
 			}
     	}
     }
@@ -83,7 +86,7 @@ public class Polymerization extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+           // this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

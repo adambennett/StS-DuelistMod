@@ -45,7 +45,7 @@ public class MythicalBeast extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	tribute(p, this.tributes, false, this);
-    	int damageExtra = DefaultMod.spellsThisCombat * this.magicNumber;
+    	int damageExtra = DefaultMod.spellCombatCount * this.magicNumber;
     	attack(m, AFX, this.damage + damageExtra); 
     }
 
