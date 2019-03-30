@@ -3,7 +3,6 @@ package defaultmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -44,6 +43,37 @@ public class AncientRules extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, new Token("Ancient Token"));
+    	for (AbstractCard c : p.drawPile.group)
+    	{
+    		if (c.hasTag(DefaultMod.MONSTER))
+    		{
+    			DuelistCard dC = (DuelistCard)c;
+    			if (dC.tributes > 0)
+    			{
+    				dC.originalDescription = dC.rawDescription;
+    				dC.tributes = 1;
+    				dC.gotPipered = true;
+    				int indexOfTribText = c.rawDescription.indexOf("Tribute");
+    				if (indexOfTribText > 0)
+    				{
+    					String newDesc = c.rawDescription.substring(0, indexOfTribText) + "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
+    					
+    					c.rawDescription = newDesc;
+    					if (DefaultMod.debug) { System.out.println("Ancient Rules made a string: " + newDesc); }
+    					c.initializeDescription();
+    				}
+    				else
+    				{
+    					String newDesc = "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
+    					
+    					c.rawDescription = newDesc;
+    					if (DefaultMod.debug) { System.out.println("Ancient Rules made a string: " + newDesc); }
+    					c.initializeDescription();
+    				}
+    			}
+    		}
+    	}
+    	
     	for (AbstractCard c : p.hand.group)
     	{
     		if (c.hasTag(DefaultMod.MONSTER))

@@ -6,8 +6,8 @@
 	},
 	"theDuelist:AncientRules": {
 		"NAME": "Ancient Rules",
-		"DESCRIPTION": "Summon 2. All Tribute monsters in your hand cost 1 Tribute for this combat.",
-		"UPGRADE_DESCRIPTION": "Summon 2. All Tribute monsters in your hand cost 1 Tribute for this combat."
+		"DESCRIPTION": "Summon 2. All Tribute monsters in your draw pile and hand cost 1 Tribute for this combat. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate NL Summon 2. All Tribute monsters in your draw pile and hand cost 1 Tribute for this combat."
 	},
 	"theDuelist:AxeDespair": {
 		"NAME": "Axe of Despair",

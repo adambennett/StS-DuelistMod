@@ -63,6 +63,14 @@ public class DragonPiper extends DuelistCard
     					if (DefaultMod.debug) { System.out.println("Dragon Piper made a string: " + newDesc); }
     					c.initializeDescription();
     				}
+    				else
+    				{
+    					String newDesc = "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
+    					
+    					c.rawDescription = newDesc;
+    					if (DefaultMod.debug) { System.out.println("Dragon Piper made a string: " + newDesc); }
+    					c.initializeDescription();
+    				}
     			}
     		}
     	}
