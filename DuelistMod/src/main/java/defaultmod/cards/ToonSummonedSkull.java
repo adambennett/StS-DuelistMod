@@ -49,7 +49,7 @@ public class ToonSummonedSkull extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
 		this.baseMagicNumber = this.magicNumber = 2;
 	}
 

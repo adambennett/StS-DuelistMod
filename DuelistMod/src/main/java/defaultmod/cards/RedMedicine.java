@@ -31,7 +31,7 @@ public class RedMedicine extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
     private static int MIN_TURNS_ROLL = 1;
-    private static int MAX_TURNS_ROLL = 6;
+    private static int MAX_TURNS_ROLL = 5;
     private static final int BUFFS = 1;
     // /STAT DECLARATION/
 
@@ -44,6 +44,7 @@ public class RedMedicine extends DuelistCard
         this.tags.add(DefaultMod.GENERATION_DECK);
 		this.startingGenDeckCopies = 1;
 		this.originalName = this.name;
+		this.exhaust = true;
 		this.setupStartingCopies();
     }
 
@@ -68,8 +69,12 @@ public class RedMedicine extends DuelistCard
 		//if (this.upgraded) { applyPowerToSelf(randomBuffB); }
 		if (this.upgraded) 
 		{ 
-			applyRandomBuffPlayer(p, randomTurnNumB, false); 
-			if (DefaultMod.debug) { System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " + a.name ); }
+			int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+			if (roll == 1)
+			{
+				applyRandomBuffPlayer(p, randomTurnNumB, false); 
+				if (DefaultMod.debug) { System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " + a.name ); }
+			}
 		}
     }
 
@@ -85,9 +90,7 @@ public class RedMedicine extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
-            MIN_TURNS_ROLL = 3;
-            MAX_TURNS_ROLL = 7;
+            this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

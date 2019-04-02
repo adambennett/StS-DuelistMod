@@ -35,9 +35,14 @@ public class PreventRat extends DuelistCard
         this.baseBlock = this.block = 6;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
-        this.summons = 1;
+        this.tags.add(DefaultMod.ORB_DECK);
+        this.tags.add(DefaultMod.ORIGINAL_ORB_DECK);
+    	this.startingOPODeckCopies = 2;
+        this.startingOrbDeckCopies = 1;
+        this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

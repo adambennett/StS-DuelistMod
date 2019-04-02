@@ -25,18 +25,16 @@ public class DragonPiper extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-   // private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DragonPiper() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
         this.isSummon = true;
-        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -51,26 +49,8 @@ public class DragonPiper extends DuelistCard
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.tributes > 0)
     			{
-    				dC.originalDescription = dC.rawDescription;
-    				dC.tributes = 1;
-    				dC.gotPipered = true;
-    				int indexOfTribText = c.rawDescription.indexOf("Tribute");
-    				if (indexOfTribText > 0)
-    				{
-    					String newDesc = c.rawDescription.substring(0, indexOfTribText) + "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
-    					
-    					c.rawDescription = newDesc;
-    					if (DefaultMod.debug) { System.out.println("Dragon Piper made a string: " + newDesc); }
-    					c.initializeDescription();
-    				}
-    				else
-    				{
-    					String newDesc = "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
-    					
-    					c.rawDescription = newDesc;
-    					if (DefaultMod.debug) { System.out.println("Dragon Piper made a string: " + newDesc); }
-    					c.initializeDescription();
-    				}
+    				if (!upgraded) { dC.changeTributesInBattle(-dC.tributes + 1, true); }
+    				else { dC.changeTributesInBattle(-dC.tributes, true); }
     			}
     		}
     	}
@@ -88,8 +68,6 @@ public class DragonPiper extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.isInnate = true;
-            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

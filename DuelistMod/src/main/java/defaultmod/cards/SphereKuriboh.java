@@ -36,6 +36,7 @@ public class SphereKuriboh extends DuelistCard
         this.tags.add(DefaultMod.INCREMENT_DECK);
         this.startingDeckCopies = 1;
 		this.originalName = this.name;
+		this.summons = this.baseSummons = 1;
 		this.setupStartingCopies();
     }
 
@@ -44,7 +45,7 @@ public class SphereKuriboh extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
+    	summon(p, this.summons, this);
     	applyPowerToSelf(new SphereKuribohPower(p, p));
     }
 

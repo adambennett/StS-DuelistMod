@@ -27,7 +27,7 @@ public class PredaplantChlamydosundew extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public PredaplantChlamydosundew() {
@@ -38,11 +38,11 @@ public class PredaplantChlamydosundew extends DuelistCard
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.PLANT);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.magicNumber = this.baseMagicNumber = 1;
-		this.baseBlock = this.block = 5;
+		//this.baseBlock = this.block = 5;
     }
 
     // Actions the card should do.
@@ -50,7 +50,7 @@ public class PredaplantChlamydosundew extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	block(this.block);
+    	//block(this.block);
     	AbstractDungeon.actionManager.addToTop(new FetchFromEitherTag(this.magicNumber, p.drawPile, DefaultMod.PLANT, DefaultMod.INSECT));
     }
 

@@ -35,14 +35,16 @@ public class DragonMaster extends DuelistCard
 
     public DragonMaster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = 4;
+        this.tributes = this.baseTributes = 4;
         this.baseDamage = this.damage = 20;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.FULL);
+        this.tags.add(DefaultMod.EXEMPT);
         this.misc = 0;
 		this.originalName = this.name;
+		this.baseMagicNumber = this.magicNumber = 1;
     }
 
     // Actions the card should do.
@@ -52,34 +54,21 @@ public class DragonMaster extends DuelistCard
     	// Tribute and attack
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	
-    	// Generate 2 random dragons and target them at the same target as the attack() above
-    	// If this card is upgraded, the two dragons get upgraded as well
-    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
-    	while (extraDragA.hasTag(DefaultMod.EXEMPT) || extraDragA.originalName.equals("Gandora")) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON); }
-    	DuelistCard extraDragB = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
-    	while (extraDragB.hasTag(DefaultMod.EXEMPT) || extraDragB.originalName.equals("Gandora")) { extraDragB = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON); }
-    	String cardNameA = extraDragA.originalName;
-    	String cardNameB = extraDragB.originalName;
-    	if (DefaultMod.debug) { System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA); System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameB); }
-    	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }
-    	extraDragA.freeToPlayOnce = true;
-    	extraDragA.applyPowers();
-    	extraDragA.purgeOnUse = true;
-    	if (this.upgraded) { extraDragA.upgrade(); }
-    	AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));
-    	extraDragA.onResummon(1);
-    	extraDragA.checkResummon();
-    	if (!extraDragB.tags.contains(DefaultMod.TRIBUTE)) { extraDragB.misc = 52; }       
-        extraDragB.freeToPlayOnce = true;       
-        extraDragB.applyPowers();     
-        extraDragB.purgeOnUse = true;
-        if (this.upgraded) { extraDragB.upgrade(); }  
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragB, m));     
-        extraDragB.onResummon(1);
-        extraDragB.checkResummon();
-    	
-    	
+    	for (int i = 0; i < this.magicNumber; i++)
+    	{
+    		DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON);
+        	while (extraDragA.hasTag(DefaultMod.EXEMPT) || extraDragA.originalName.equals("Gandora")) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(DefaultMod.DRAGON, DefaultMod.TOON); }
+        	String cardNameA = extraDragA.originalName;
+        	if (DefaultMod.debug) { System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA); }
+        	if (!extraDragA.tags.contains(DefaultMod.TRIBUTE)) { extraDragA.misc = 52; }
+        	extraDragA.freeToPlayOnce = true;
+        	extraDragA.applyPowers();
+        	extraDragA.purgeOnUse = true;
+        	if (this.upgraded) { extraDragA.upgrade(); }
+        	AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));
+        	extraDragA.onResummon(1);
+        	extraDragA.checkResummon();
+    	}
     }
 
     // Which card to return when making a copy of this card.

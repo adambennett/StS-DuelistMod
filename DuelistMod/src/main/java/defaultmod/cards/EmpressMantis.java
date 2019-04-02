@@ -41,7 +41,7 @@ public class EmpressMantis extends DuelistCard
         this.tags.add(DefaultMod.OP_NATURE_DECK);
         this.startingOPNDeckCopies = 1;
         this.originalName = this.name;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.damage = this.baseDamage = 14;
         this.setupStartingCopies();
     }

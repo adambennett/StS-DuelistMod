@@ -10,6 +10,7 @@ public class IncrementDeck extends DuelistCustomLoadout
     {
         this.ID = 13;
         this.Name = "Increment Deck";
+        this.cardCount = "14 Cards";
     }
 
     @Override

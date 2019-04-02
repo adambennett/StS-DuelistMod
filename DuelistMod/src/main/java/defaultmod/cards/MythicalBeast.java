@@ -37,7 +37,7 @@ public class MythicalBeast extends DuelistCard
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
         this.magicNumber = this.baseMagicNumber = 2;
     }
     

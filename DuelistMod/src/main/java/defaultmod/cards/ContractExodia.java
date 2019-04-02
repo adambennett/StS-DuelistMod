@@ -48,7 +48,7 @@ public class ContractExodia extends DuelistCard
     	{
     		DuelistCard exodia = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.EXODIA);
     		while (exodia.originalName.equals(this.originalName)) { exodia = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.EXODIA); }
-    		AbstractDungeon.actionManager.addToTop(new RandomizedAction(exodia, this.upgraded, true, true, true, 1, 4));
+    		AbstractDungeon.actionManager.addToTop(new RandomizedAction(exodia, this.upgraded, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0));
     	}
     }
 

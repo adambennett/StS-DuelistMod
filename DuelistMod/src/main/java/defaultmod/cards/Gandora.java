@@ -43,7 +43,7 @@ public class Gandora extends DuelistCard
         this.tags.add(DefaultMod.FULL);
         this.originalName = this.name;
         this.baseDamage = this.damage = 20;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 5;
     }
 
@@ -90,7 +90,7 @@ public class Gandora extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.tributes = 2;
+            //this.tributes = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

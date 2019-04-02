@@ -41,7 +41,10 @@ public class BadReactionRare extends DuelistCard
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(DefaultMod.TRAP);
         this.tags.add(DefaultMod.LIMITED);
-        this.originalName = this.name;   
+        this.tags.add(DefaultMod.ORIGINAL_HEAL_DECK);
+        this.startingOPHDeckCopies = 1;
+        this.originalName = this.name; 
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

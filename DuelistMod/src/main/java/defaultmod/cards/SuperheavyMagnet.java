@@ -42,7 +42,7 @@ public class SuperheavyMagnet extends DuelistCard
         this.tags.add(DefaultMod.SUPERHEAVY);
         this.tags.add(DefaultMod.REDUCED);
 		this.originalName = this.name;
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.

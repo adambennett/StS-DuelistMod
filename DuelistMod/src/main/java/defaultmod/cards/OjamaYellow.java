@@ -42,7 +42,7 @@ public class OjamaYellow extends DuelistCard
 		this.startingOjamaDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
 		this.setupStartingCopies();
 	}
@@ -52,12 +52,13 @@ public class OjamaYellow extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, SUMMONS, this);
+		summon(p, this.summons, this);
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, 1, 4));
+			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, true, true, true, true, 1, 4, 0, 2, 0, 2)); }
+			else { AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, true, true, false, false, 1, 4, 0, 1, 0, 1)); }
 		}
 	}
 
@@ -72,7 +73,7 @@ public class OjamaYellow extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(1);
+			//this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

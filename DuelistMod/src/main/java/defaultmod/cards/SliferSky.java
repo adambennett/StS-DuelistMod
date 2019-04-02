@@ -37,7 +37,7 @@ public class SliferSky extends DuelistCard
         this.tags.add(DefaultMod.GOD);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.tributes = 5;
+        this.tributes = this.baseTributes = 5;
         this.misc = 0;
         this.baseMagicNumber = this.magicNumber = 2;
 		this.originalName = this.name;

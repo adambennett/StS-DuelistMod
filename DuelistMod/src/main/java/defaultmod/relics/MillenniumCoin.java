@@ -19,7 +19,7 @@ public class MillenniumCoin extends CustomRelic
 	private static int rollCheck = 3;
 
 	public MillenniumCoin() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 		this.counter = 10;
 	}
 	

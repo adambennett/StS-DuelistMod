@@ -43,7 +43,7 @@ public class BlueEyesUltimate extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 4;
+        this.tributes = this.baseTributes = 4;
     }
 
     // Actions the card should do.

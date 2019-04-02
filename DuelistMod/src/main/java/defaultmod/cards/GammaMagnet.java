@@ -41,7 +41,7 @@ public class GammaMagnet extends DuelistCard
         this.tags.add(DefaultMod.LIMITED);
         this.draw = 1;
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
     }
 
@@ -49,7 +49,7 @@ public class GammaMagnet extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS, this);
+    	summon(p, this.summons, this);
     	
     	// Gain Gamma Magnet
     	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }

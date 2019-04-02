@@ -37,7 +37,7 @@ public class IslandTurtle extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.PHARAOH_SERVANT);
 		this.tags.add(DefaultMod.AQUA);
-		this.summons = 1;
+		this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
 	}
@@ -74,7 +74,7 @@ public class IslandTurtle extends DuelistCard
 		if (tributingCard.hasTag(DefaultMod.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

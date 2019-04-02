@@ -70,7 +70,7 @@ public class Earth extends DuelistOrb
 		for (int i = 0; i < this.evokeAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, true, true, true, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, true, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 			if (DefaultMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 		if (DefaultMod.debug) { System.out.println("theDuelist:Earth --- > triggered evoke!"); }
@@ -87,7 +87,7 @@ public class Earth extends DuelistOrb
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 			if (DefaultMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 	}

@@ -42,7 +42,7 @@ public class LegendaryExodia extends DuelistCard
         this.damage = this.baseDamage = 20;
         this.exhaust = true;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.

@@ -42,7 +42,7 @@ public class PredaplantDrosophyllum extends DuelistCard
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.PLANT);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 16;
     }
@@ -112,7 +112,7 @@ public class PredaplantDrosophyllum extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeDamage(3);
-            this.tributes = 3;
+            this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

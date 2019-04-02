@@ -17,17 +17,17 @@ public class MillenniumKey extends CustomRelic
     public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_KEY_RELIC_OUTLINE);
 
     public MillenniumKey() {
-        super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+        super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
     }
 
     @Override
     public void atBattleStart() 
     {
     	flash();
-    	DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
+    	DuelistCard.setMaxSummons(AbstractDungeon.player, 5);
     	try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
-			config.setInt(DefaultMod.PROP_MAX_SUMMONS, 4);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, 5);
 			config.save();
 			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }
 		} catch (Exception e) {
@@ -40,10 +40,10 @@ public class MillenniumKey extends CustomRelic
 	{
 		DefaultMod.hasKey = true;
 		AbstractDungeon.player.energy.energyMaster++;
-		DuelistCard.setMaxSummons(AbstractDungeon.player, 4);
+		DuelistCard.setMaxSummons(AbstractDungeon.player, 5);
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DefaultMod.duelistDefaults);
-			config.setInt(DefaultMod.PROP_MAX_SUMMONS, 4);
+			config.setInt(DefaultMod.PROP_MAX_SUMMONS, 5);
 			config.setBool(DefaultMod.PROP_HAS_KEY, DefaultMod.hasKey);
 			config.save();
 			if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DefaultMod.lastMaxSummons); }

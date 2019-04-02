@@ -35,7 +35,7 @@ public class Grasschopper extends DuelistCard
 
     public Grasschopper() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
         this.baseDamage = this.damage = 10;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
@@ -81,7 +81,7 @@ public class Grasschopper extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.tributes = 3;
+            this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

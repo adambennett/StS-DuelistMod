@@ -35,7 +35,7 @@ public class Relinquished extends DuelistCard
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.MAGIC_RULER);
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
 		this.originalName = this.name;
 
 	}

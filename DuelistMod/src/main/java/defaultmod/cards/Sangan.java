@@ -34,7 +34,7 @@ public class Sangan extends DuelistCard
     public Sangan() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 4;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.originalName = this.name;
         this.isSummon = true;

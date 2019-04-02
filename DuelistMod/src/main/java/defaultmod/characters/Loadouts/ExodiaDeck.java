@@ -10,6 +10,7 @@ public class ExodiaDeck extends DuelistCustomLoadout
     {
         this.ID = 14;
         this.Name = "Exodia Deck";
+        this.cardCount = "60 Cards";
     }
 
     @Override

@@ -35,17 +35,18 @@ public class GiantSoldier extends DuelistCard
     public GiantSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK;
-        this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);
         this.tags.add(DefaultMod.EXODIA_DECK);
         this.tags.add(DefaultMod.STANDARD_DECK);
-        this.tags.add(DefaultMod.ORIGINAL_DECK);       
+        this.tags.add(DefaultMod.ORIGINAL_DECK);   
+        this.tags.add(DefaultMod.ORIGINAL_HEAL_DECK);
+        this.startingOPHDeckCopies = 2;
         this.startingOriginalDeckCopies = 2;
         this.startingExodiaDeckCopies = 4;
-        this.startingDeckCopies = 1;
+        this.startingDeckCopies = 2;
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
         this.setupStartingCopies();
     }
@@ -54,7 +55,7 @@ public class GiantSoldier extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
+    	summon(p, this.summons, this);
     	block(this.block);
     }
 

@@ -43,7 +43,7 @@ public class JiraiGumo extends DuelistCard
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
     }
 

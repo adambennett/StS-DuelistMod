@@ -34,14 +34,15 @@ public class GeminiElf extends DuelistCard
     public GeminiElf() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.OP_SPELLCASTER_DECK);
+        this.tags.add(DefaultMod.ORIGINAL_HEAL_DECK);
+        this.startingOPHDeckCopies = 1;
         this.startingOPSPDeckCopies = 1;
         this.originalName = this.name;
-        this.summons = this.magicNumber;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
         this.setupStartingCopies();
     }
@@ -50,7 +51,7 @@ public class GeminiElf extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
+    	summon(p, this.summons, this);
     }
  
     // Which card to return when making a copy of this card.
@@ -64,8 +65,7 @@ public class GeminiElf extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.summons += 1;
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

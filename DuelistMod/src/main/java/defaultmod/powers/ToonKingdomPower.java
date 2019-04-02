@@ -62,7 +62,7 @@ public class ToonKingdomPower extends AbstractPower
     	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
     	if (DuelistCard.isToon(c) && !c.originalName.equals("Toon Kingdom") && !c.originalName.equals("Toon World")) 
     	{ 
-    		if (TOON_DMG > 0) { DuelistCard.damageSelf(TOON_DMG); }
+    		if (TOON_DMG > 0) { DuelistCard.damageSelfNotHP(TOON_DMG); }
     		if (TOON_DMG > 0) { TOON_DMG--; } 
     		AbstractCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TOON);
     		AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(randomToon, 1, true, false));

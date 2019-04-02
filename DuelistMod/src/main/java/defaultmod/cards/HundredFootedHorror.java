@@ -39,7 +39,7 @@ public class HundredFootedHorror extends DuelistCard
         this.startingNatureDeckCopies = 1;
         this.baseMagicNumber = this.magicNumber = 10;
         this.originalName = this.name;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.setupStartingCopies();
     }
 

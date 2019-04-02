@@ -38,7 +38,7 @@ public class MillenniumRod extends CustomRelic {
 	{
 		flash();
 		DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-		AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, 1, 4));
+		AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 	}
 
 	// Description

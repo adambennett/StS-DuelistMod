@@ -23,7 +23,7 @@ public class MillenniumEye extends CustomRelic {
     public static final String OUTLINE = DefaultMod.makePath(DefaultMod.M_EYE_RELIC_OUTLINE);
 
     public MillenniumEye() {
-        super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+        super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
     }
 
     // Summon 1 on turn start

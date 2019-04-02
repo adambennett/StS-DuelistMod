@@ -39,7 +39,7 @@ public class FiendishChain extends DuelistCard
 		this.tags.add(DefaultMod.TRAP);
 		this.tags.add(DefaultMod.ORB_DECK);
 		this.startingOrbDeckCopies = 1;
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
 		this.baseMagicNumber = this.magicNumber = 2;
 		this.setupStartingCopies();
 	}

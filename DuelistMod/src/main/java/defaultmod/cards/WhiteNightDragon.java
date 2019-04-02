@@ -44,7 +44,7 @@ public class WhiteNightDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 4;
+        this.tributes = this.baseTributes = 4;
     }
 
     // Actions the card should do.
@@ -68,7 +68,7 @@ public class WhiteNightDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(7);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

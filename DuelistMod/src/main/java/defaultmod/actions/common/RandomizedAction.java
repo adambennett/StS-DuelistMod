@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import defaultmod.DefaultMod;
+import defaultmod.patches.DuelistCard;
 
 public class RandomizedAction extends AbstractGameAction {
 
@@ -16,15 +17,36 @@ public class RandomizedAction extends AbstractGameAction {
 	private boolean etherealCheck = false;
 	private boolean costChangeCheck = false;
 	private boolean upgradeCheck = false;
+	private boolean summonCheck = false;
+	private boolean tributeCheck = false;
+	private boolean summonChangeCombatCheck = false;
+	private boolean tributeChangeCombatCheck = false;
 	private int lowCostRoll = 1;
 	private int highCostRoll = 4;
+	private int lowSummonRoll = 1;
+	private int highSummonRoll = 2;
+	private int lowTributeRoll = 1;
+	private int highTributeRoll = 3;
 	
-    public RandomizedAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust, boolean costChange, int lowCost, int highCost) {
+    public RandomizedAction(AbstractCard c, 
+    		boolean upgrade, boolean ethereal, boolean exhaust,
+    		boolean costChange, boolean tributeChange, boolean summonChange, 
+    		boolean tribChangeCombat, boolean summonChangeCombat,
+    		int lowCost, int highCost,
+    		int lowTrib, int highTrib,
+    		int lowSummon, int highSummon) 
+    {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_FAST;
         this.cardRef = c;
         this.lowCostRoll = lowCost;
         this.highCostRoll = highCost;
+        this.lowSummonRoll = lowSummon;
+        this.highSummonRoll = highSummon;
+        this.lowTributeRoll = lowTrib;
+        this.highTributeRoll = highTrib;
+        this.tributeChangeCombatCheck = tribChangeCombat;
+        this.summonChangeCombatCheck = summonChangeCombat;
         if (upgrade)
         {
         	this.upgradeCheck = true;
@@ -40,6 +62,14 @@ public class RandomizedAction extends AbstractGameAction {
 		if (costChange)
 		{
 			this.costChangeCheck = true;
+		}
+		if (tributeChange)
+		{
+			this.tributeCheck = true;
+		}
+		if (summonChange)
+		{
+			this.summonCheck = true;
 		}
     }
 
@@ -71,6 +101,35 @@ public class RandomizedAction extends AbstractGameAction {
     			c.isCostModifiedForTurn = true;
     			//c.initializeDescription();
     		}       
+    		
+    		if (summonCheck && c instanceof DuelistCard)
+    		{
+    			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
+    			DuelistCard dC = (DuelistCard)c;
+    			if (summonChangeCombatCheck)
+    			{
+    				dC.modifySummons(randomNum);
+    			}
+    			else
+    			{
+    				dC.modifySummonsForTurn(randomNum);
+    			}
+    		}
+    		
+    		if (tributeCheck && c instanceof DuelistCard)
+    		{
+    			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
+    			DuelistCard dC = (DuelistCard)c;
+    			if (tributeChangeCombatCheck)
+    			{
+    				dC.modifyTributes(-randomNum);
+    			}
+    			else
+    			{
+    				dC.modifyTributesForTurn(-randomNum);
+    			}
+    		}
+    		
             c.initializeDescription();
             
             if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)

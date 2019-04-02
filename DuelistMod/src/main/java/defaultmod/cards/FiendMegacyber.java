@@ -38,10 +38,12 @@ public class FiendMegacyber extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
         this.tags.add(DefaultMod.FIEND);
+        this.tags.add(DefaultMod.ORIGINAL_ORB_DECK);
+    	this.startingOPODeckCopies = 1;
         this.misc = 0;
-        this.exhaust = true;
         this.originalName = this.name;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

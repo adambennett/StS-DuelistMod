@@ -29,19 +29,17 @@ public class MoltenZombie extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public MoltenZombie() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.REDUCED);
         this.tags.add(DefaultMod.ZOMBIE);
         this.originalName = this.name;
-        this.summons = this.magicNumber;
+        this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.damage = this.baseDamage = 8;
     }
@@ -50,7 +48,7 @@ public class MoltenZombie extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
+    	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     }
  
@@ -67,7 +65,7 @@ public class MoltenZombie extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-           // this.upgradeDamage(2);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

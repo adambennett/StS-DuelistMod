@@ -37,12 +37,15 @@ public class GuardianAngel extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 3;
         this.magicNumber = this.baseMagicNumber = 3;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
         this.misc = 0;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.INVASION_CHAOS);
+        this.tags.add(DefaultMod.ORIGINAL_HEAL_DECK);
+        this.startingOPHDeckCopies = 1;
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

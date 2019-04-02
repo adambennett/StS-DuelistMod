@@ -38,7 +38,7 @@ public class CocoonEvolution extends DuelistCard
     public CocoonEvolution() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 4;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.COCOON);

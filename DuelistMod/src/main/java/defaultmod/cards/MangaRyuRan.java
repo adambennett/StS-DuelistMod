@@ -35,7 +35,7 @@ public class MangaRyuRan extends DuelistCard
     public MangaRyuRan() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 20;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.toon = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.TOON);

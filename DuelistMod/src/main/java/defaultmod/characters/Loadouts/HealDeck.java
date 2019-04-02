@@ -10,6 +10,7 @@ public class HealDeck extends DuelistCustomLoadout
     {
         this.ID = 12;
         this.Name = "Heal Deck";
+        this.cardCount = "12 Cards";
     }
 
     @Override

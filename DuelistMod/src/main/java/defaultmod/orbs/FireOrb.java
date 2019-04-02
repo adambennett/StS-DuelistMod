@@ -3,6 +3,7 @@ package defaultmod.orbs;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -33,13 +34,8 @@ public class FireOrb extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/FireOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 1;
-		if (DefaultMod.challengeMode)
-		{
-			this.baseEvokeAmount = this.evokeAmount = 1;
-			this.basePassiveAmount = this.passiveAmount = 1;
-		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -52,18 +48,37 @@ public class FireOrb extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
-		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		for (int i = 0; i < this.evokeAmount; i++)
+		for (AbstractCard c : AbstractDungeon.player.hand.group)
 		{
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, true, 0, 0));
-			if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > Added: " + randomMonster.name + " to player hand."); }
+			if (c.hasTag(DefaultMod.DRAGON))
+			{
+				DuelistCard dragC = (DuelistCard)c;
+				dragC.changeTributesInBattle(-this.evokeAmount, true);
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+		{
+			if (c.hasTag(DefaultMod.DRAGON))
+			{
+				DuelistCard dragC = (DuelistCard)c;
+				dragC.changeTributesInBattle(-this.evokeAmount, true);
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+		{
+			if (c.hasTag(DefaultMod.DRAGON))
+			{
+				DuelistCard dragC = (DuelistCard)c;
+				dragC.changeTributesInBattle(-this.evokeAmount, true);
+			}
 		}
 		if (DefaultMod.debug) { System.out.println("theDuelist:Fire --- > triggered evoke!"); }
 	}
@@ -71,18 +86,16 @@ public class FireOrb extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		
 	}
 
-	private void triggerPassiveEffect()
-	{
-		if (AbstractDungeon.player.hasPower(DexterityPower.POWER_ID))
+	public void triggerPassiveEffect(DuelistCard c)
+	{		
+		if (c.hasTag(DefaultMod.DRAGON))
 		{
-			int dex = AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
-			int str = 0;
-			if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID)) { str = AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount; }
-			if (dex > str) { DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, dex * this.passiveAmount)); }
-		}
+			DuelistCard dragC = (DuelistCard)c;
+			dragC.changeTributesInBattle(-this.passiveAmount, false);
+		}		
 	}
 
 	@Override
@@ -127,7 +140,7 @@ public class FireOrb extends DuelistOrb
 		// Render evoke amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

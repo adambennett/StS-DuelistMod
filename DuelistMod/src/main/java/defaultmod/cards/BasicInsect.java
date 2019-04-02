@@ -33,7 +33,7 @@ public class BasicInsect extends DuelistCard
     public BasicInsect() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 2;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);

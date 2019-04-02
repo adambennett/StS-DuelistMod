@@ -43,7 +43,7 @@ public class TwinBarrelDragon extends DuelistCard
         this.tags.add(DefaultMod.EXODIA_DECK);
         this.startingExodiaDeckCopies = 2;
         this.startingDragDeckCopies = 1;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.originalName = this.name;
         this.setupStartingCopies();

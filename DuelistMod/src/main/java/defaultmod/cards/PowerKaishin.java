@@ -34,6 +34,7 @@ public class PowerKaishin extends DuelistCard
         this.tags.add(DefaultMod.ORB_DECK);
         this.startingOrbDeckCopies = 2;
         this.originalName = this.name;
+        this.exhaust = true;
         this.setupStartingCopies();
     }
 

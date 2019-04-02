@@ -45,7 +45,7 @@ public class ExploderDragon extends DuelistCard
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.summons = 2;
+        this.summons = this.baseSummons = 2;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.FIRE;
         tooltips = new ArrayList<>();

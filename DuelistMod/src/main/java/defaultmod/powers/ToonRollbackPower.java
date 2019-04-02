@@ -40,7 +40,7 @@ public class ToonRollbackPower extends AbstractPower
 	@Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-		if(DuelistCard.isToon(c)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(c.makeCopy(), false, true, true, false, 1, 4)); }
+		if(DuelistCard.isToon(c)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(c.makeCopy(), false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0)); }
 		//if(DuelistCard.isToon(c)) { DuelistCard.addCardToHand(c); }
 		updateDescription();
     }

@@ -42,7 +42,7 @@ public class SteamTrainKing extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
         this.exhaust = true;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.

@@ -45,9 +45,11 @@ public class DarklordMarie extends DuelistCard
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.LABYRINTH_NIGHTMARE);
         this.tags.add(DefaultMod.HEAL_DECK);
-        this.startingHealDeckCopies = 1;
+        this.tags.add(DefaultMod.ORIGINAL_HEAL_DECK);
+        this.startingOPHDeckCopies = 2;
+        this.startingHealDeckCopies = 2;
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.setupStartingCopies();
     }
 
@@ -70,7 +72,7 @@ public class DarklordMarie extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	summon(p, SUMMONS, this);
+    	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     }
 

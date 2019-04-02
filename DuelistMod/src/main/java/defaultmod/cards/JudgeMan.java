@@ -30,20 +30,21 @@ public class JudgeMan extends DuelistCard
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
 	private static final int DAMAGE = 10;
-	private static final int UPGRADE_PLUS_DMG = 3;
-	private static final int SUMMONS = 1;
 	// /STAT DECLARATION/
 
 	public JudgeMan() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
 		this.tags.add(DefaultMod.MONSTER);
+		this.tags.add(DefaultMod.ORIGINAL_RESUMMON_DECK);
+        this.startingOPRDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.isTribute = true;
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
+		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
@@ -51,7 +52,7 @@ public class JudgeMan extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		summon(p, SUMMONS, this);
+		summon(p, this.summons, this);
 		attack(m, AFX, this.damage);
 	}
 
@@ -67,7 +68,7 @@ public class JudgeMan extends DuelistCard
 	{
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(UPGRADE_PLUS_DMG);
+			this.upgradeSummons(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

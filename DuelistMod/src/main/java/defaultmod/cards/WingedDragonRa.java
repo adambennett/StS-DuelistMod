@@ -41,7 +41,7 @@ public class WingedDragonRa extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.EXEMPT);
         this.misc = 0;
-        this.tributes = 4;
+        this.tributes = this.baseTributes = 4;
 		this.originalName = this.name;
 		this.damage = this.baseDamage = 1;
     }
@@ -77,7 +77,7 @@ public class WingedDragonRa extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.tributes = 3;
+            this.upgradeTributes(-1);
             this.upgradeDamage(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

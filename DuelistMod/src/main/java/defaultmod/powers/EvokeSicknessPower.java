@@ -78,7 +78,7 @@ public class EvokeSicknessPower extends AbstractPower
     @Override
     public void onEvokeOrb(AbstractOrb orb) 
     {
-    	DuelistCard.damageSelf(this.amount);
+    	DuelistCard.damageSelfNotHP(this.amount);
     }
 
     @Override

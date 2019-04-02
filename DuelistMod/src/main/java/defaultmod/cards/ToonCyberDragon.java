@@ -36,7 +36,7 @@ public class ToonCyberDragon extends DuelistCard
     public ToonCyberDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 14;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.upgradeDmg = 4;
         this.toon = true;
         this.tags.add(DefaultMod.MONSTER);

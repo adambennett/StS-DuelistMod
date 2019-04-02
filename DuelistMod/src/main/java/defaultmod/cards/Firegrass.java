@@ -32,7 +32,7 @@ public class Firegrass extends DuelistCard
     public Firegrass() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 4;
-        this.summons = 1;
+        this.summons = this.baseSummons = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.NATURE_DECK);
         this.tags.add(DefaultMod.GOOD_TRIB);

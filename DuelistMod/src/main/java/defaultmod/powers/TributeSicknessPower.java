@@ -40,21 +40,17 @@ public class TributeSicknessPower extends AbstractPower
 	{
     	if (this.amount >= 2) 
     	{ 
-    		this.amount -= 2; 
+    		this.amount = (int) Math.floor(this.amount / 2);
     		if (this.amount < 1)
     		{
     			AbstractPower instance = AbstractDungeon.player.getPower(TributeSicknessPower.POWER_ID);
     			DuelistCard.removePower(instance, AbstractDungeon.player);
     		}
     	}
-    	else if (this.amount > 0) 
-    	{ 
-    		this.amount--; 
-    		if (this.amount < 1)
-    		{
-    			AbstractPower instance = AbstractDungeon.player.getPower(TributeSicknessPower.POWER_ID);
-    			DuelistCard.removePower(instance, AbstractDungeon.player);
-    		}
+    	else if (this.amount == 1)
+    	{
+    		AbstractPower instance = AbstractDungeon.player.getPower(TributeSicknessPower.POWER_ID);
+			DuelistCard.removePower(instance, AbstractDungeon.player);
     	}
     	else 
     	{ 

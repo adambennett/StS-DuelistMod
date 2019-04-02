@@ -43,7 +43,7 @@ public class OjamaBlack extends DuelistCard
 		this.startingOjamaDeckCopies = 2;
 		this.baseBlock = this.block = 5;
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
 		this.setupStartingCopies();
 	}
@@ -54,7 +54,7 @@ public class OjamaBlack extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		// Summon
-		summon(p, SUMMONS, this);
+		summon(p, this.summons, this);
 
 		// Get random monster target
 		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();

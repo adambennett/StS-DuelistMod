@@ -3,6 +3,7 @@ package defaultmod.orbs;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -38,13 +39,8 @@ public class Splash extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 6;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 1;
-		if (DefaultMod.challengeMode)
-		{
-			this.baseEvokeAmount = this.evokeAmount = 3;
-			this.basePassiveAmount = this.passiveAmount = 1;
-		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -57,41 +53,61 @@ public class Splash extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.evokeAmount + DESC[1];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		boolean onlyAquas = false;
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		for (AbstractCard c : AbstractDungeon.player.hand.group)
 		{
-			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			onlyAquas = instance.typeSummonsMatchMax(DefaultMod.AQUA);
+			if (c.hasTag(DefaultMod.AQUA))
+			{
+				DuelistCard dragC = (DuelistCard)c;
+				dragC.changeSummonsInBattle(this.evokeAmount, true);
+			}
 		}
-		if (onlyAquas)
+		
+		for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 		{
-			DuelistCard.draw(this.evokeAmount);
+			if (c.hasTag(DefaultMod.AQUA))
+			{
+				DuelistCard dragC = (DuelistCard)c;
+				dragC.changeSummonsInBattle(this.evokeAmount, true);
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+		{
+			if (c.hasTag(DefaultMod.AQUA))
+			{
+				DuelistCard dragC = (DuelistCard)c;
+				dragC.changeSummonsInBattle(this.evokeAmount, true);
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+		{
+			if (c.hasTag(DefaultMod.AQUA))
+			{
+				DuelistCard dragC = (DuelistCard)c;
+				dragC.changeSummonsInBattle(this.evokeAmount, true);
+			}
 		}
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect(DuelistCard c)
 	{
-		int aquas = 0;
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		if (c.hasTag(DefaultMod.AQUA))
 		{
-			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			aquas += instance.getNumberOfTypeSummoned(DefaultMod.AQUA);
-		}
-		for (int i = 0; i < aquas; i++)
-		{
-			AbstractDungeon.actionManager.addToTop(new SplashPassiveAction());
+			DuelistCard dragC = (DuelistCard)c;
+			dragC.changeTributesInBattle(-this.passiveAmount, false);
 		}
 	}
 
@@ -136,11 +152,11 @@ public class Splash extends DuelistOrb
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
-			this.baseEvokeAmount = 6 + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			this.baseEvokeAmount = 1 + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
 		}
 		else 
 		{
-			this.baseEvokeAmount = 6;
+			this.baseEvokeAmount = 1;
 		}
 		if (DefaultMod.debug)
 		{
@@ -156,7 +172,7 @@ public class Splash extends DuelistOrb
 		// Render evoke amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

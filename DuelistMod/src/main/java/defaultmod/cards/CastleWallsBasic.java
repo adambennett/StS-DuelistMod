@@ -46,7 +46,7 @@ public class CastleWallsBasic extends DuelistCard
         this.tags.add(DefaultMod.CREATOR_DECK);
         this.tags.add(DefaultMod.GENERATION_DECK);
 		this.startingGenDeckCopies = 3;
-        this.startingDeckCopies = 3;
+        this.startingDeckCopies = 2;
         this.startingDragDeckCopies = 3;
         this.startingSpellcasterDeckCopies = 2;
         this.startingNatureDeckCopies = 4;

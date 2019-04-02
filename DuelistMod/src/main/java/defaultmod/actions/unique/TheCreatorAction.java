@@ -32,7 +32,7 @@ public class TheCreatorAction extends AbstractGameAction {
 				if (!c.isEthereal) 
 				{
 		            c.isEthereal = true;
-		            c.rawDescription = "Ethereal. " + c.rawDescription;
+		            c.rawDescription = "Ethereal. NL " + c.rawDescription;
 		            c.initializeDescription();
 				}
 				if (c.cost > 0)

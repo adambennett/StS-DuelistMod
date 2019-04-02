@@ -35,7 +35,7 @@ public class CrashbugY extends DuelistCard
     public CrashbugY() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 6;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.LIMITED);
         this.tags.add(DefaultMod.MAGNETWARRIOR);

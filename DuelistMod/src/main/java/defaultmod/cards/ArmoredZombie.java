@@ -27,20 +27,20 @@ public class ArmoredZombie extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public ArmoredZombie() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = SUMMONS;
+        this.summons = this.baseSummons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.RESUMMON_DECK);
         this.tags.add(DefaultMod.ZOMBIE);
+        this.tags.add(DefaultMod.ORIGINAL_RESUMMON_DECK);
+        this.startingOPRDeckCopies = 2;
         this.startingResummonDeckCopies = 2;
         this.originalName = this.name;
-        this.summons = this.magicNumber;
         this.isSummon = true;
         this.block = this.baseBlock = 5;
         this.setupStartingCopies();
@@ -50,7 +50,7 @@ public class ArmoredZombie extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
+    	summon(p, this.summons, this);
     	block(this.block);
     }
  
@@ -67,7 +67,7 @@ public class ArmoredZombie extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeBlock(2);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

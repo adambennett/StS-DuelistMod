@@ -36,7 +36,7 @@ public class AllyJustice extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 14;
         this.magicNumber = this.baseMagicNumber = 2;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
@@ -64,7 +64,8 @@ public class AllyJustice extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            this.upgradeDamage(2);
+            this.upgradeDamage(3);
+            this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -49,7 +49,7 @@ public class OjamaKing extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
-		this.tributes = 3;
+		this.tributes = this.baseTributes = 3;
     }
 
     
@@ -64,7 +64,7 @@ public class OjamaKing extends DuelistCard
 		for (int i = 0; i < RAND_CARDS; i++)
 		{
 			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, this.upgraded, true, true, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, false, true, true, false, true, true, true, true, 1, 4, 0, 1, 1, 2));
 		}
 		
 		// Give self 3 random buffs

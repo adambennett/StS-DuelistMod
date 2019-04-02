@@ -25,6 +25,18 @@ public class RandomOrbHelperCon
 			orbs.add(new ReducerOrb()); 
 			orbs.add(new Earth());
 			orbs.add(new Splash());
+			orbs.add(new Black());
+			orbs.add(new Blaze());
+			orbs.add(new Consumer());
+			orbs.add(new Gadget());
+			orbs.add(new Lava());
+			orbs.add(new Metal());
+			orbs.add(new MillenniumOrb());
+			orbs.add(new Mist());
+			orbs.add(new Mud());
+			orbs.add(new Sand());
+			orbs.add(new Smoke());
+			//orbs.add(new Storm());
 		}
 		else
 		{
@@ -45,6 +57,18 @@ public class RandomOrbHelperCon
 			orbs.add(new Glitch());
 			orbs.add(new Shadow());
 			orbs.add(new Splash());
+			orbs.add(new Black());
+			orbs.add(new Blaze());
+			orbs.add(new Consumer());
+			orbs.add(new Gadget());
+			orbs.add(new Lava());
+			orbs.add(new Metal());
+			orbs.add(new MillenniumOrb());
+			orbs.add(new Mist());
+			orbs.add(new Mud());
+			orbs.add(new Sand());
+			orbs.add(new Smoke());
+			//orbs.add(new Storm());
 		}
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
@@ -63,6 +87,18 @@ public class RandomOrbHelperCon
 			orbs.add(new ReducerOrb()); 
 			orbs.add(new Earth());
 			orbs.add(new Splash());
+			orbs.add(new Black());
+			orbs.add(new Blaze());
+			orbs.add(new Consumer());
+			orbs.add(new Gadget());
+			orbs.add(new Lava());
+			orbs.add(new Metal());
+			orbs.add(new MillenniumOrb());
+			orbs.add(new Mist());
+			orbs.add(new Mud());
+			orbs.add(new Sand());
+			orbs.add(new Smoke());
+			//orbs.add(new Storm());
 		}
 		else
 		{
@@ -82,6 +118,18 @@ public class RandomOrbHelperCon
 			orbs.add(new Glitch());
 			orbs.add(new Shadow());
 			orbs.add(new Splash());
+			orbs.add(new Black());
+			orbs.add(new Blaze());
+			orbs.add(new Consumer());
+			orbs.add(new Gadget());
+			orbs.add(new Lava());
+			orbs.add(new Metal());
+			orbs.add(new MillenniumOrb());
+			orbs.add(new Mist());
+			orbs.add(new Mud());
+			orbs.add(new Sand());
+			orbs.add(new Smoke());
+			//orbs.add(new Storm());
 		}
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
@@ -100,6 +148,18 @@ public class RandomOrbHelperCon
 			returnOrbs.add(new ReducerOrb()); 
 			returnOrbs.add(new Earth());
 			returnOrbs.add(new Splash());
+			returnOrbs.add(new Black());
+			returnOrbs.add(new Blaze());
+			returnOrbs.add(new Consumer());
+			returnOrbs.add(new Gadget());
+			returnOrbs.add(new Lava());
+			returnOrbs.add(new Metal());
+			returnOrbs.add(new MillenniumOrb());
+			returnOrbs.add(new Mist());
+			returnOrbs.add(new Mud());
+			returnOrbs.add(new Sand());
+			returnOrbs.add(new Smoke());
+			//returnOrbs.add(new Storm());
 		}
 		else
 		{
@@ -120,6 +180,18 @@ public class RandomOrbHelperCon
 			returnOrbs.add(new Glitch());
 			returnOrbs.add(new Shadow());
 			returnOrbs.add(new Splash());
+			returnOrbs.add(new Black());
+			returnOrbs.add(new Blaze());
+			returnOrbs.add(new Consumer());
+			returnOrbs.add(new Gadget());
+			returnOrbs.add(new Lava());
+			returnOrbs.add(new Metal());
+			returnOrbs.add(new MillenniumOrb());
+			returnOrbs.add(new Mist());
+			returnOrbs.add(new Mud());
+			returnOrbs.add(new Sand());
+			returnOrbs.add(new Smoke());
+			//returnOrbs.add(new Storm());
 		}
 		return returnOrbs;
 	}

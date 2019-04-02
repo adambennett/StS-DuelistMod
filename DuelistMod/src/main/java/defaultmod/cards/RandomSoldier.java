@@ -38,7 +38,7 @@ public class RandomSoldier extends DuelistCard
         this.magicNumber = this.baseMagicNumber = SUMMONS;
         this.tags.add(DefaultMod.MONSTER);
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
     }
 

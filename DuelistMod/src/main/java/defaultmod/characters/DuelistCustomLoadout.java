@@ -15,6 +15,7 @@ public class DuelistCustomLoadout
 {
 	public int ID;
 	public String Name;
+	public String cardCount;
 	public int StartingGold;
 	public boolean Locked;
 	private static int index;

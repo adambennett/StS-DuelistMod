@@ -45,7 +45,7 @@ public class PredaplantChimerafflesia extends DuelistCard
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.PLANT);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 15;
 		this.misc = 0;

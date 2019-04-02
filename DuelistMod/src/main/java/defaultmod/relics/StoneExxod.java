@@ -15,7 +15,7 @@ public class StoneExxod extends CustomRelic
 	public static final String OUTLINE = DefaultMod.makePath(DefaultMod.EXXOD_STONE_RELIC_OUTLINE);
 
 	public StoneExxod() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
 
 	@Override

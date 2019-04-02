@@ -39,7 +39,7 @@ public class CatapultTurtle extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
     }
 
 

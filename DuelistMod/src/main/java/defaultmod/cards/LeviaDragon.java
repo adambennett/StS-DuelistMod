@@ -45,7 +45,7 @@ public class LeviaDragon extends DuelistCard
     	this.tags.add(DefaultMod.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 2;
 		
     }
 
@@ -69,7 +69,7 @@ public class LeviaDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.tributes = 1;
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -121,7 +121,7 @@ public class LeviaDragon extends DuelistCard
 		if (tributingCard.hasTag(DefaultMod.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

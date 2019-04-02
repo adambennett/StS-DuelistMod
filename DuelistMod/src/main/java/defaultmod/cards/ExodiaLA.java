@@ -43,7 +43,7 @@ public class ExodiaLA extends DuelistCard
         this.tags.add(DefaultMod.EXODIA_DECK);
         this.startingExodiaDeckCopies = 1;
         this.damage = this.baseDamage = 6;
-        this.summons = this.magicNumber = this.baseMagicNumber = 1;
+        this.summons = this.baseSummons = 1;
         this.block = this.baseBlock = 1;
         this.exhaust = true;
         this.exodiaName = "Left Arm";

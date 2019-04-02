@@ -35,7 +35,7 @@ public class SuperheavyGeneral extends DuelistCard
     public SuperheavyGeneral() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 20;
-        this.tributes = 4;
+        this.tributes = this.baseTributes = 4;
         this.dex = 4;
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);

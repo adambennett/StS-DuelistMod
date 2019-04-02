@@ -2,7 +2,6 @@ package defaultmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -42,7 +41,7 @@ public class SoulAbsorbingBone extends DuelistCard
         this.tags.add(DefaultMod.ZOMBIE);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
         this.magicNumber = this.baseMagicNumber = 1;
     }
 
@@ -58,7 +57,7 @@ public class SoulAbsorbingBone extends DuelistCard
     		{ 
     			if (c.hasTag(DefaultMod.ZOMBIE)) 
     			{ 
-    				fullResummon(c, this.upgraded, getRandomMonster());
+    				fullResummon(c, this.upgraded, getRandomMonster(), false);
     			} 
     		} 
     	}

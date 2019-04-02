@@ -40,7 +40,7 @@ public class MotherSpider extends DuelistCard
         this.startingNatureDeckCopies = 1;
         this.baseMagicNumber = this.magicNumber = 5;
         this.originalName = this.name;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.setupStartingCopies();
     }
 

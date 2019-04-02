@@ -40,7 +40,7 @@ public class DarkFactory extends DuelistCard
 		this.tags.add(DefaultMod.SPELL);
 		this.tags.add(DefaultMod.REDUCED);
 		this.misc = 0;
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
 	}
 

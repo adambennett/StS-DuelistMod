@@ -26,7 +26,7 @@ public class GoblinRemedy extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public GoblinRemedy() {
@@ -36,7 +36,7 @@ public class GoblinRemedy extends DuelistCard
         this.startingHealDeckCopies = 1;
         this.magicNumber = this.baseMagicNumber = 1;
 		this.originalName = this.name;
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
 		this.setupStartingCopies();
     }
 

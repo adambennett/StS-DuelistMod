@@ -32,7 +32,7 @@
   "theDuelist:ReducerOrb": {
     "NAME": "Reducer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase the number of cards reduced when evoked by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
+      "#yPassive: At the start of turn, increase the evoke amount by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
     ]
   },
   "theDuelist:Earth": {
@@ -50,13 +50,13 @@
   "theDuelist:Black": {
     "NAME": "Black",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " black cards to your hand. NL #yEvoke: Add #b", " black card to your hand.", " black cards to your hand."
+      "#yPassive: At the start of turn, apply a random debuff with #b", " stack to a random enemy. NL #yEvoke: Add a #yrandomized #yFiend to your hand.", " stacks to a random enemy. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
     ]
   },
   "theDuelist:FireOrb": {
     "NAME": "Fire",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, if your #yDexterity is higher than your #yStrength, increase your #yStrength by #b", " for each stack of #yDexterity you have. NL #yEvoke: Add #b", " #yrandomized monster to your hand. It cost #b0 this turn.", " #yrandomized monsters to your hand. They cost #b0 this turn."
+      "#yPassive: Whenever you draw a #yDragon, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Reduce the #yTribute cost of #yDragons in your hand, discard, and exhaust by #b", " for this combat."
     ]
   },
   "theDuelist:Glitch": {
@@ -74,7 +74,67 @@
   "theDuelist:Splash": {
     "NAME": "Splash",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yrandomized copy of a random Duelist card to your hand for each #yAqua monster you currently have summoned. NL #yEvoke: If you have a max stack of #yAqua monsters, draw #b", " cards."
+	  "#yPassive: Whenever you draw an #yAqua, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Increase the summons of #yAqua monsters (everywhere) by #b", " for this combat."
+    ]
+  },
+  "theDuelist:Blaze": {
+    "NAME": "Blaze",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, heal #b", " HP for each monster summoned this combat. NL #yEvoke: Heal #b", " HP for each monster summoned this combat."
+    ]
+  },
+  "theDuelist:Consumer": {
+    "NAME": "Consumer",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, #yTribute #b", " and gain temporary HP equal to the total energy cost of all tributes. NL #yEvoke: #yTribute all summons, gain a random #yBuff equal to the amount tributed."
+    ]
+  },
+  "theDuelist:Gadget": {
+    "NAME": "Gadget",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, add a #yRandomized #yTrap to your hand. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
+    ]
+  },
+  "theDuelist:Lava": {
+    "NAME": "Lava",
+    "DESCRIPTION": [
+	  "#yPassive: Whenever you draw a #yZombie, reduce the #yTribute cost by #b" , " for this combat. NL #yEvoke: Deal a random amount of damage to a random enemy. Deals more damage with a higher evoke amount."
+    ]
+  },
+  "theDuelist:MillenniumOrb": {
+    "NAME": "Millennium Orb",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Channel a random orb."
+    ]
+  },
+  "theDuelist:Metal": {
+    "NAME": "Metal",
+    "DESCRIPTION": [
+	  "#yPassive: At the end of turn, gain #yBlock equal to the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", "."
+    ]
+  },
+  "theDuelist:Mud": {
+    "NAME": "Mud",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, add a #yRandomized #yPlant or #yInsect to your hand. NL #yEvoke: Increase the summons of all #yInsect and #yPlant monsters (everywhere) by #b", " for this combat."
+    ]
+  },
+  "theDuelist:Mist": {
+    "NAME": "Mist",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, add a #yRandomized #yAqua monster to your hand. At the end of turn, increase the summons of all #yAqua monsters in your hand, discard pile, and exhaust pile by #b", ". NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
+    ]
+  },
+  "theDuelist:Sand": {
+    "NAME": "Sand",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, apply #b", " #ySlow to a random enemy. NL #yEvoke: Apply #b", " #ySlow to ALL enemies."
+    ]
+  },
+  "theDuelist:Smoke": {
+    "NAME": "Smoke",
+    "DESCRIPTION": [
+	  "#yPassive: Whenver you draw a monster, increase the #yTribute cost by #b", " and increase the damage by #b", " for this turn. NL #yEvoke: #yIncrement #b", "."
     ]
   },
   "theDuelist:Summoner": {

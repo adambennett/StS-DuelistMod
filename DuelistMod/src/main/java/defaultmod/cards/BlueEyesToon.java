@@ -32,7 +32,6 @@ public class BlueEyesToon extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 30;
-    private static final int TRIBUTES = 2;
     // /STAT DECLARATION/
 
     public BlueEyesToon() {
@@ -46,7 +45,7 @@ public class BlueEyesToon extends DuelistCard
         this.tags.add(DefaultMod.FULL);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 2; 
+        this.tributes = this.baseTributes = 2; 
     }
 
     // Actions the card should do.

@@ -32,7 +32,7 @@ public class SuperheavyDaihachi extends DuelistCard
 
     public SuperheavyDaihachi() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = 4;
+        this.tributes = this.baseTributes = 4;
         this.dex = 4;
         this.exhaust = true;
         this.tags.add(DefaultMod.MONSTER);

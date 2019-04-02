@@ -37,7 +37,7 @@ public class BlueEyes extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 25;
         this.upgradeDmg = 5;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.LEGEND_BLUE_EYES);

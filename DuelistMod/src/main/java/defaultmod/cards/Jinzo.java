@@ -35,7 +35,7 @@ public class Jinzo extends DuelistCard
         this.tags.add(DefaultMod.PHARAOH_SERVANT);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.misc = 0;
     }
 

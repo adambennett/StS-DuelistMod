@@ -27,20 +27,18 @@ public class ToonGeminiElf extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int SUMMONS = 10;
     // /STAT DECLARATION/
 
     public ToonGeminiElf() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = SUMMONS;
+        this.summons = this.baseSummons = 10;
         this.toon = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.TOON);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.FULL);
 		this.originalName = this.name;
-		this.summons = SUMMONS;
         this.isSummon = true;
     }
 
@@ -48,7 +46,7 @@ public class ToonGeminiElf extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.magicNumber, this);
+    	summon(p, this.summons, this);
     }
 
     // Which card to return when making a copy of this card.

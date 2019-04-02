@@ -13,7 +13,7 @@
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["#yToons can be played. NL Take #b", " damage each time you play a #yToon card.", "#yToons can be played." ]
+        "DESCRIPTIONS": ["#yToons can be played. NL Lose #b", " HP each time you play a #yToon card.", "#yToons can be played." ]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
@@ -69,11 +69,11 @@
 },
 "theDuelist:CastlePower": {
         "NAME": "Castle of Dark Illusions",
-        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", "#yIncrement #b", "." ]
+        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", " #yIncrement #b", "." ]
 },
 "theDuelist:EmperorPower": {
         "NAME": "Mausoleum of the Emperor",
-        "DESCRIPTIONS": ["The first #yTribute card you play each turn does not #yTribute. Take #b", " damage each turn." ]
+        "DESCRIPTIONS": ["The first #yTribute card you play each turn does not #yTribute. Lose #b", " HP each turn." ]
 },
 "theDuelist:MagicCylinderPower": {
         "NAME": "Magic Cylinder",

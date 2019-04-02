@@ -38,8 +38,8 @@ public class FortressWarrior extends DuelistCard
         this.baseBlock = this.block = 11;
         this.upgradeDmg = 5;
         this.upgradeBlk = 5;
-        this.tributes = 2;
-        this.summons = 1;
+        this.tributes = this.baseTributes = 2;
+        this.summons = this.baseSummons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.misc = 0;
         this.originalName = this.name;

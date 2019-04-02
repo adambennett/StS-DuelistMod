@@ -50,7 +50,7 @@ public class BarrelDragon extends DuelistCard
         this.tags.add(DefaultMod.REPLAYSPIRE);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
     }
 
     

@@ -40,7 +40,7 @@ public class MysticalElf extends DuelistCard
 		this.tags.add(DefaultMod.OP_SPELLCASTER_DECK);
         this.startingOPSPDeckCopies = 1;
         this.startingSpellcasterDeckCopies = 2;
-		this.summons = 1;
+		this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();

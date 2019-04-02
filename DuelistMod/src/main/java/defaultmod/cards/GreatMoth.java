@@ -42,7 +42,7 @@ public class GreatMoth extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 15;
         this.poisonAmt = this.baseMagicNumber = this.magicNumber = 50;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.NOT_ADDED);

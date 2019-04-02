@@ -81,9 +81,9 @@ public class Graverobber extends DuelistCard
 					while (chooseCards.contains(drawCard) && loopCheck < loopMax) { drawCard = returnRandomFromArray(drawPowers); loopCheck++; }
 					chooseCards.add(drawCard);
 				}
+				
+				if (chooseCards.size() > 0) { openRandomCardChoice(3, chooseCards); }
 			}
-			
-			if (chooseCards.size() > 0) { openRandomCardChoice(3, chooseCards); }
 		}
     }
 

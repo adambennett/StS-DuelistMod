@@ -45,7 +45,7 @@ public class VampireGenesis extends DuelistCard
     	this.tags.add(DefaultMod.ZOMBIE);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 2;
     }
 
     // Actions the card should do.

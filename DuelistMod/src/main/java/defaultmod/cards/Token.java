@@ -54,7 +54,15 @@ public class Token extends DuelistCard
 	}
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
-	@Override public void upgrade() {}
+	@Override public void upgrade() 
+	{
+		if (!this.upgraded) {
+            this.upgradeName();
+            this.upgradeBlock(2);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
+	}
 	@Override
 	public String getID() {
 		return ID;

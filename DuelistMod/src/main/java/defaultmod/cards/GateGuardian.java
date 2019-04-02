@@ -34,7 +34,7 @@ public class GateGuardian extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     //private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
@@ -47,7 +47,7 @@ public class GateGuardian extends DuelistCard
         this.tags.add(DefaultMod.CONSPIRE);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.
@@ -95,7 +95,7 @@ public class GateGuardian extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

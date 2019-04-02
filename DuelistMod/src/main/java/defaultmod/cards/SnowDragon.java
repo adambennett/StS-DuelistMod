@@ -38,15 +38,18 @@ public class SnowDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 3;
         this.upgradeDmg = 2;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.OP_DRAGON_DECK);
+        this.tags.add(DefaultMod.ORIGINAL_ORB_DECK);
+    	this.startingOPODeckCopies = 2;
         this.startingOPDragDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

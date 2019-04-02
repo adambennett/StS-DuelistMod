@@ -52,7 +52,7 @@ public class ToonBarrelDragon extends DuelistCard
 		this.tags.add(DefaultMod.FULL);
 		this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 3;
+		this.tributes = this.baseTributes = 3;
 	}
 
 	// Actions the card should do.

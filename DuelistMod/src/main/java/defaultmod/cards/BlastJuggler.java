@@ -32,7 +32,6 @@ public class BlastJuggler extends DuelistCard
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
-	private static final int SUMMONS = 1;
 	private static int MIN_TURNS_ROLL = 3;
 	private static int MAX_TURNS_ROLL = 7;
 	private static int DEBUFFS = 3;
@@ -47,7 +46,7 @@ public class BlastJuggler extends DuelistCard
 		this.tags.add(DefaultMod.GOOD_TRIB);
 		this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.baseDamage = this.damage = 5;
 		tooltips = new ArrayList<>();
@@ -59,7 +58,7 @@ public class BlastJuggler extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, SUMMONS, this);
+		summon(p, this.summons, this);
 		summon(p, 1, new ExplosiveToken("Exploding Token"));
 		attack(m, this.baseAFX, this.damage);
 	}

@@ -25,14 +25,13 @@ public class AncientRules extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public AncientRules() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.summons = 2;
-        this.upgradeSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.LIMITED);
         this.originalName = this.name;
@@ -42,7 +41,6 @@ public class AncientRules extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new Token("Ancient Token"));
     	for (AbstractCard c : p.drawPile.group)
     	{
     		if (c.hasTag(DefaultMod.MONSTER))
@@ -50,26 +48,7 @@ public class AncientRules extends DuelistCard
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.tributes > 0)
     			{
-    				dC.originalDescription = dC.rawDescription;
-    				dC.tributes = 1;
-    				dC.gotPipered = true;
-    				int indexOfTribText = c.rawDescription.indexOf("Tribute");
-    				if (indexOfTribText > 0)
-    				{
-    					String newDesc = c.rawDescription.substring(0, indexOfTribText) + "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
-    					
-    					c.rawDescription = newDesc;
-    					if (DefaultMod.debug) { System.out.println("Ancient Rules made a string: " + newDesc); }
-    					c.initializeDescription();
-    				}
-    				else
-    				{
-    					String newDesc = "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
-    					
-    					c.rawDescription = newDesc;
-    					if (DefaultMod.debug) { System.out.println("Ancient Rules made a string: " + newDesc); }
-    					c.initializeDescription();
-    				}
+    				dC.changeTributesInBattle(-this.magicNumber, true);
     			}
     		}
     	}
@@ -81,26 +60,7 @@ public class AncientRules extends DuelistCard
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.tributes > 0)
     			{
-    				dC.originalDescription = dC.rawDescription;
-    				dC.tributes = 1;
-    				dC.gotPipered = true;
-    				int indexOfTribText = c.rawDescription.indexOf("Tribute");
-    				if (indexOfTribText > 0)
-    				{
-    					String newDesc = c.rawDescription.substring(0, indexOfTribText) + "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
-    					
-    					c.rawDescription = newDesc;
-    					if (DefaultMod.debug) { System.out.println("Ancient Rules made a string: " + newDesc); }
-    					c.initializeDescription();
-    				}
-    				else
-    				{
-    					String newDesc = "Tribute 1. NL " + c.rawDescription.substring(indexOfTribText + 14);
-    					
-    					c.rawDescription = newDesc;
-    					if (DefaultMod.debug) { System.out.println("Ancient Rules made a string: " + newDesc); }
-    					c.initializeDescription();
-    				}
+    				dC.changeTributesInBattle(-this.magicNumber, true);
     			}
     		}
     	}
@@ -117,9 +77,7 @@ public class AncientRules extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
         	this.upgradeName();
-        	//this.upgradeMagicNumber(this.upgradeSummons);
-        	this.isInnate = true;
-        	this.exhaust = false;
+        	this.upgradeMagicNumber(1);
         	this.rawDescription = UPGRADE_DESCRIPTION;
         	this.initializeDescription();
         }

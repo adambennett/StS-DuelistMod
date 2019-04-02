@@ -57,19 +57,19 @@ public class DuelistCharacterSelect
     	if (DefaultMod.unlockAllDecks)
         {
         	int save = 0;
-            AddLoadout(new StandardDeck(), save, "10 cards");  
-            AddLoadout(new DragonDeck(), save, "10 cards"); 
+            AddLoadout(new StandardDeck(), save, "11 cards");  
+            AddLoadout(new DragonDeck(), save, "11 cards"); 
             AddLoadout(new NatureDeck(), save, "11 cards"); 
             AddLoadout(new SpellcasterDeck(), save, "9 cards");  
             AddLoadout(new CreatorDeck(), save, "10 cards"); 
             AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
             AddLoadout(new RandomDeckBig(), save, "15 random Duelist cards");  
             AddLoadout(new ToonDeck(), save, "10 cards"); 
-            AddLoadout(new OrbDeck(), save, "12 cards");  
+            AddLoadout(new OrbDeck(), save, "13 cards");  
             AddLoadout(new ResummonDeck(), save, "10 cards");  
             AddLoadout(new GenerationDeck(), save, "16 cards"); 
             AddLoadout(new OjamaDeck(), save, "12 cards");  
-            AddLoadout(new HealDeck(), save, "10 cards");  
+            AddLoadout(new HealDeck(), save, "12 cards");  
             AddLoadout(new IncrementDeck(), save, "14 cards");  
             AddLoadout(new ExodiaDeck(), save, "60 cards"); 
             //AddLoadout(new MagnetDeck(), save, "0 cards");
@@ -78,24 +78,28 @@ public class DuelistCharacterSelect
             AddLoadout(new OriginalDeck(), save, "10 cards"); 
             AddLoadout(new DragonDeckOP(), save, "10 cards"); 
             AddLoadout(new NatureDeckOP(), save, "11 cards"); 
-            AddLoadout(new SpellcasterDeckOP(), save, "10 cards");             
+            AddLoadout(new SpellcasterDeckOP(), save, "10 cards");   
+            AddLoadout(new OrbDeckOP(), save, "10 cards"); 
+            AddLoadout(new ResummonDeckOP(), save, "10 cards"); 
+            AddLoadout(new HealDeckOP(), save, "9 cards"); 
+            
         }
         else
         {
         	int save = 0;
-            AddLoadout(new StandardDeck(), save, "10 cards"); save += 500;
-            AddLoadout(new DragonDeck(), save, "10 cards"); save += 1500;
+            AddLoadout(new StandardDeck(), save, "11 cards"); save += 500;
+            AddLoadout(new DragonDeck(), save, "11 cards"); save += 1500;
             AddLoadout(new NatureDeck(), save, "11 cards"); save += 1500;
             AddLoadout(new SpellcasterDeck(), save, "9 cards"); save += 2000;
             AddLoadout(new CreatorDeck(), save, "10 cards"); save += 500;
             AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
             AddLoadout(new RandomDeckBig(), save, "15 random Duelist cards"); save += 1000;
             AddLoadout(new ToonDeck(), save, "10 cards"); save += 2000;
-            AddLoadout(new OrbDeck(), save, "12 cards"); save += 3000;
+            AddLoadout(new OrbDeck(), save, "13 cards"); save += 3000;
             AddLoadout(new ResummonDeck(), save, "10 cards"); 
             AddLoadout(new GenerationDeck(), save, "16 cards"); save += 3000;
             AddLoadout(new OjamaDeck(), save, "12 cards"); save += 3000;
-            AddLoadout(new HealDeck(), save, "10 cards"); save += 3000;
+            AddLoadout(new HealDeck(), save, "12 cards"); save += 3000;
             AddLoadout(new IncrementDeck(), save, "14 cards"); save += 4000;
             AddLoadout(new ExodiaDeck(), save, "60 cards"); save = 0; //save += 4000;
             //AddLoadout(new MagnetDeck(), save, "0 cards"); save += 5000;
@@ -104,8 +108,10 @@ public class DuelistCharacterSelect
             AddLoadout(new OriginalDeck(), save, "10 cards"); save += 500;
             AddLoadout(new DragonDeckOP(), save, "10 cards"); save += 1500;
             AddLoadout(new NatureDeckOP(), save, "11 cards"); save += 1500;
-            AddLoadout(new SpellcasterDeckOP(), save, "10 cards"); save += 2000;
-            
+            AddLoadout(new SpellcasterDeckOP(), save, "10 cards"); save += 5500;
+            AddLoadout(new OrbDeckOP(), save, "10 cards"); save += 3000;
+            AddLoadout(new ResummonDeckOP(), save, "10 cards"); save += 6000;
+            AddLoadout(new HealDeckOP(), save, "9 cards");    
         }
     }
 

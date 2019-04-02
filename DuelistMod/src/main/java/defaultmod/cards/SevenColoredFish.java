@@ -44,11 +44,13 @@ public class SevenColoredFish extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.AQUA);
         this.tags.add(DefaultMod.EXODIA_DECK);
-        this.tags.add(DefaultMod.ORIGINAL_DECK);       
+        this.tags.add(DefaultMod.ORIGINAL_DECK);   
+        this.tags.add(DefaultMod.ORIGINAL_ORB_DECK);
+    	this.startingOPODeckCopies = 2;
         this.startingOriginalDeckCopies = 2;
         this.startingExodiaDeckCopies = 4;
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
         this.setupStartingCopies();
     }
@@ -89,7 +91,7 @@ public class SevenColoredFish extends DuelistCard
 		if (tributingCard.hasTag(DefaultMod.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

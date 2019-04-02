@@ -36,7 +36,7 @@ public class MachineKing extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.ALL);
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
 
 	}
@@ -62,7 +62,7 @@ public class MachineKing extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.tributes = 1;
+			this.upgradeTributes(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

@@ -37,7 +37,7 @@ public class VanityFiend extends DuelistCard
 	public VanityFiend() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
 		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.METAL_RAIDERS);

@@ -42,7 +42,7 @@ public class WorldCarrot extends DuelistCard
         this.tags.add(DefaultMod.PLANT);
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
         this.setupStartingCopies();
     }

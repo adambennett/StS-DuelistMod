@@ -73,6 +73,9 @@ public class StarterDeck
 		deckCopiesMap.put(DefaultMod.OP_DRAGON_DECK, 17);
 		deckCopiesMap.put(DefaultMod.OP_NATURE_DECK, 18);
 		deckCopiesMap.put(DefaultMod.OP_SPELLCASTER_DECK, 19);
+		deckCopiesMap.put(DefaultMod.ORIGINAL_ORB_DECK, 20);
+		deckCopiesMap.put(DefaultMod.ORIGINAL_RESUMMON_DECK, 21);
+		deckCopiesMap.put(DefaultMod.ORIGINAL_HEAL_DECK, 22);
 	}
 
 	public CardTags getDeckTag() {

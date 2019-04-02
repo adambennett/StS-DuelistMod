@@ -100,7 +100,7 @@ public class DespairPower extends AbstractPower
 				}
 			}
 			
-			if (triggeredDamage) { AxeDespair.damageSelf(DAMAGE); }
+			if (triggeredDamage) { AxeDespair.damageSelfNotHP(DAMAGE); }
 		}
 	}
 

@@ -23,7 +23,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import basemod.BaseMod;
-import basemod.abstracts.CustomCard;
+import basemod.abstracts.*;
 import basemod.helpers.*;
 import defaultmod.DefaultMod;
 import defaultmod.actions.common.*;
@@ -37,6 +37,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 {
 	// CARD FIELDS
 	public ArrayList<Integer> startCopies = new ArrayList<Integer>();
+	public ArrayList<Integer> saveTest = new ArrayList<Integer>();
+	public ArrayList<AbstractCard> saveTestCard = new ArrayList<AbstractCard>();
 	public String upgradeType;
 	public String exodiaName = "None";
 	public String originalName;
@@ -48,11 +50,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean isSummon = false;
 	public boolean isTribute = false;
 	public boolean isCastle = false;
-	public boolean gotPipered = false;
+	public boolean isTributesModified = false;
+	public boolean isTributesModifiedForTurn = false;
+	public boolean isSummonsModified = false;
+	public boolean isSummonsModifiedForTurn = false;
+	public boolean upgradedTributes = false;
+	public boolean upgradedSummons = false;
+	public boolean inDuelistBottle = false;
 	public int summons = 0;
 	public int tributes = 0;
 	public int baseSummons = 0;
 	public int baseTributes = 0;
+	public int tributesForTurn = 0;
+	public int summonsForTurn = 0;
 	public int poisonAmt;
 	public int upgradeDmg;
 	public int upgradeBlk;
@@ -98,6 +108,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int startingOPDragDeckCopies = 1;
 	public int startingOPSPDeckCopies = 1;
 	public int startingOPNDeckCopies = 1;
+	public int startingOPRDeckCopies = 1;
+	public int startingOPHDeckCopies = 1;
+	public int startingOPODeckCopies = 1;
 	public String tribString = "Not enough #rSummons.";
 	public static final String UPGRADE_DESCRIPTION = "";
 	public AttackEffect baseAFX = AttackEffect.SLASH_HORIZONTAL;
@@ -137,6 +150,26 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return this;
 	}
 	
+	@Override
+	public AbstractCard makeStatEquivalentCopy()
+	{
+		AbstractCard card = super.makeStatEquivalentCopy();
+		if (card instanceof DuelistCard)
+		{
+			DuelistCard dCard = (DuelistCard)card;
+			dCard.tributes = this.tributes;
+			dCard.summons = this.summons;
+			dCard.isTributesModified = this.isTributesModified;
+			dCard.isSummonsModified = this.isSummonsModified;
+			dCard.isTributesModifiedForTurn = this.isTributesModifiedForTurn;
+			dCard.isSummonsModifiedForTurn = this.isSummonsModifiedForTurn;
+			dCard.inDuelistBottle = this.inDuelistBottle;
+			dCard.baseTributes = this.baseTributes;
+			dCard.baseSummons = this.baseSummons;
+		}
+		return card;
+	}
+	
 	public void downgradeCardForChallenge(int roll)
 	{
 		if (roll <= 3) { this.cost = this.cost + 1; }
@@ -167,6 +200,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.startCopies.add(this.startingOPDragDeckCopies);		// 17 - Original Dragon Deck
 		this.startCopies.add(this.startingOPNDeckCopies);			// 18 - Original Nature Deck
 		this.startCopies.add(this.startingOPSPDeckCopies);			// 19 - Original Spellcaster Deck	
+		this.startCopies.add(this.startingOPODeckCopies);			// 20 - Original Orb Deck	
+		this.startCopies.add(this.startingOPRDeckCopies);			// 21 - Original Resummon Deck	
+		this.startCopies.add(this.startingOPHDeckCopies);			// 22 - Original Heal Deck	
 		
 	}
 	
@@ -179,43 +215,241 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         for (AbstractOrb o : allOrbs) { orbMap.put(o.name, o); }
         AbstractDungeon.player = realPlayer;
     }
-	
-	public void setupTrib(int tribs, int summons, String string)
-	{
-		this.baseTributes = tribs;
-		this.baseSummons = summons;
-		this.originalDescription = string;
-	}
-	
+
 	@Override
 	public void resetAttributes()
 	{
-		this.block = this.baseBlock;
-		this.isBlockModified = false;
-		this.damage = this.baseDamage;
-		this.isDamageModified = false;
-		this.magicNumber = this.baseMagicNumber;
-		this.isMagicNumberModified = false;
-		this.damageTypeForTurn = this.damageType;
-		this.costForTurn = this.cost;
-		this.isCostModifiedForTurn = false;
-		this.baseTributes = this.tributes;
-		if (this.gotPipered)
+		super.resetAttributes();
+	}
+
+	public void postBattleReset()
+	{
+		if (this.isTributesModifiedForTurn || this.isTributesModified)
 		{
-			this.rawDescription = this.originalDescription;
-			this.gotPipered = false;
-			if (DefaultMod.debug)
+			this.isTributesModifiedForTurn = false;
+			this.isTributesModified = false;
+			this.tributes = this.baseTributes;
+		}
+		
+		if (this.isSummonsModifiedForTurn || this.isSummonsModified)
+		{
+		
+			this.isSummonsModifiedForTurn = false;
+			this.isSummonsModified = false;
+			this.summons = this.baseSummons;
+		}
+	}
+	
+	public void postTurnReset()
+	{
+		if (this.isTributesModifiedForTurn)
+		{
+			this.isTributesModifiedForTurn = false;
+			this.isTributesModified = false;
+			this.tributes = this.baseTributes;
+		}
+		
+		if (this.isSummonsModifiedForTurn)
+		{		
+			this.isSummonsModifiedForTurn = false;
+			this.isSummonsModified = false;
+			this.summons = this.baseSummons;
+		}
+	}
+	
+	public void changeTributesInBattle(int addAmount, boolean combat)
+	{
+		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, addAmount, combat));
+	}
+	
+	public void changeSummonsInBattle(int addAmount, boolean combat)
+	{
+		AbstractDungeon.actionManager.addToTop(new ModifySummonAction(this, addAmount, combat));
+	}
+	
+	public void upgradeTributes(int add)
+	{
+		this.tributes = this.baseTributes += add;
+		this.upgradedTributes = true;
+	}
+	
+	public void modifyTributesPerm(int add)
+	{
+		if (this.tributes + add <= 0)
+		{
+			this.baseTributes = this.tributes = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			int modIndex = 22;
+			int indexOfNL = indexOfTribText + 22;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
 			{
-				System.out.println("theDuelist:DuelistCard:resetAttributes() ---> " + this.originalName + " was pipered, reset description and gotPipered flag");
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseTributes + add : " + this.baseTributes + add); }
 			}
 		}
-		else
+		else { this.baseTributes = this.tributes += add; }
+		this.isTributesModified = true;
+		this.initializeDescription();
+	}
+	
+	public void modifyTributesForTurn(int add)
+	{
+		if (this.tributes + add <= 0)
 		{
-			if (DefaultMod.debug)
+			this.tributesForTurn = 0;
+			this.tributes = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			int modIndex = 22;
+			int indexOfNL = indexOfTribText + 22;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
 			{
-				System.out.println("theDuelist:DuelistCard:resetAttributes() ---> " + this.originalName + " no piper, reset all attributes, tributes of this card is now: " + this.tributes);
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.originalDescription = this.rawDescription;
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseTributes + add : " + this.baseTributes + add); }
 			}
 		}
+		else { this.tributes += add; }
+		this.isTributesModifiedForTurn = true;
+		this.isTributesModified = true;
+		this.initializeDescription();
+	}
+	
+	public void modifyTributes(int add)
+	{
+		if (this.tributes + add <= 0)
+		{
+			this.tributes = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			int modIndex = 22;
+			int indexOfNL = indexOfTribText + 22;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
+			{
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseTributes + add : " + this.baseTributes + add); }
+			}
+		}
+		else { this.tributes += add; }
+		this.isTributesModified = true; 
+		this.initializeDescription();
+	}
+	
+	public void setTributes(int set)
+	{
+		if (set <= 0)
+		{
+			this.tributes = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Tribute");
+			int modIndex = 22;
+			int indexOfNL = indexOfTribText + 22;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
+			{
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.tributes : " + this.tributes); }
+			}
+		}
+		else { this.tributes = set; }
+		this.isTributesModified = true; 
+		this.initializeDescription();
+	}
+	
+	public void upgradeSummons(int add)
+	{
+		this.summons = this.baseSummons += add;
+		this.upgradedSummons = true;
+	}
+	
+	public void modifySummonsPerm(int add)
+	{
+		if (this.summons + add <= 0)
+		{
+			this.baseSummons = this.summons = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			int modIndex = 21;
+			int indexOfNL = indexOfTribText + 21;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
+			{
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseSummons + add : " + this.baseSummons + add); }
+			}
+		}
+		else { this.baseSummons = this.summons += add; }
+		this.isSummonsModified = true;
+		this.initializeDescription();
+	}
+	
+	public void modifySummonsForTurn(int add)
+	{
+		if (this.summons + add <= 0)
+		{
+			this.summons = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			int modIndex = 21;
+			int indexOfNL = indexOfTribText + 21;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
+			{
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.originalDescription = this.rawDescription;
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseSummons + add : " + this.baseSummons + add); }
+			}
+		}
+		else { this.summons += add; }
+		this.isSummonsModifiedForTurn = true;		
+		this.isSummonsModified = true;
+		this.initializeDescription();
+	}
+	
+	public void modifySummons(int add)
+	{
+		if (this.summons + add <= 0)
+		{
+			this.summons = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			int modIndex = 21;
+			int indexOfNL = indexOfTribText + 21;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
+			{
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseSummons + add : " + this.baseSummons + add); }
+			}
+		}
+		else { this.summons += add; }		
+		this.isSummonsModified = true;
+		this.initializeDescription();
+	}
+	
+	public void setSummons(int set)
+	{
+		if (set <= 0)
+		{
+			this.summons = 0;
+			int indexOfTribText = this.rawDescription.indexOf("Summon");
+			int modIndex = 21;
+			int indexOfNL = indexOfTribText + 21;
+			if (this.rawDescription.substring(indexOfNL, indexOfNL + 4).equals(" NL ")) { modIndex += 4; }
+			if (indexOfTribText > -1)
+			{
+				String newDesc = this.rawDescription.substring(0, indexOfTribText) + this.rawDescription.substring(indexOfTribText + modIndex);
+				this.rawDescription = newDesc;
+				if (DefaultMod.debug) { System.out.println(this.originalName + " made a string: " + newDesc + " this.baseSummons + add : " + this.summons); }
+			}
+		}
+		else { this.summons = set; }		
+		this.isSummonsModified = true;
+		this.initializeDescription();
 	}
 
 	public abstract String getID();
@@ -237,7 +471,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
-	public static void fullResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target)
+	public static void fullResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target, boolean superFast)
 	{
 		if (!cardCopy.hasTag(DefaultMod.EXEMPT))
 		{
@@ -247,11 +481,21 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			cardCopy.freeToPlayOnce = true;
 			cardCopy.applyPowers();
 			cardCopy.purgeOnUse = true;
-			AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, target));
+			//AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, target));
+			if (superFast)
+			{
+				AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(cardCopy, target));
+			}
+			else
+			{
+				//AbstractDungeon.actionManager.addToTop(new QueueCardAction(cardCopy, target));
+				AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(cardCopy, target, 1.0F));
+			}
 			cardCopy.onResummon(1);
 			cardCopy.checkResummon();
 		}
 	}
+
 	
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) 
@@ -587,10 +831,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, DAMAGE, AbstractGameAction.AttackEffect.POISON));
 	}
-
-	public static void damageSelfFire(int DAMAGE)
+	
+	public static void damageSelfNotHP(int DAMAGE)
 	{
-		AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(player(), new DamageInfo(player(), DAMAGE, DamageInfo.DamageType.NORMAL)));
 	}
 
 	protected static AbstractPlayer player() {
@@ -708,6 +952,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		if (this.hasTag(DefaultMod.ZOMBIE) || this.hasTag(DefaultMod.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 2); }}
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect));
+	}
+	
+	public static void staticAttack(AbstractMonster m, AttackEffect effect, int damageAmount) {
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
 	}
 	
 	protected void attackFast(AbstractMonster m, AttackEffect effect, int damageAmount) {
@@ -885,7 +1133,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
 
 				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID)) 
@@ -932,7 +1180,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
 				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
@@ -1044,7 +1292,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
 
 				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID)) 
@@ -1091,7 +1339,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
 				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
@@ -1145,7 +1393,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
 
 				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID)) 
@@ -1185,7 +1433,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
 				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
@@ -1297,7 +1545,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
 
 			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID)) 
@@ -1344,7 +1592,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
 			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
@@ -1405,7 +1653,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
 
 			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID)) 
@@ -1448,7 +1696,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
 
 			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelf(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
 
 			// Check for Slifer
 			if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
@@ -1536,7 +1784,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(SphereKuribohPower.POWER_ID))
 		{
 			DuelistCard randomCard = (DuelistCard) returnTrulyRandomDuelistCard();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 		}
 
 		try {
@@ -1613,11 +1861,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						}
 
 						// Check for Pharaoh's Curse
-						if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+						if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 						// Check for Toon Tribute power
-						if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-						if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+						if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+						if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 						// Look through summonsList and remove #tributes strings
 						if (tributes > 0) 
@@ -1682,11 +1930,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 
 					// Check for Pharaoh's Curse
-					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 					// Check for Toon Tribute power
-					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 					// Look through summonsList and remove #tributes strings
 					if (tributes > 0) 
@@ -1756,11 +2004,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 
 					// Check for Pharaoh's Curse
-					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 					// Check for Toon Tribute power
-					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 					// Look through summonsList and remove #tributes strings					
 					if (tributes > 0) 
@@ -1815,11 +2063,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 
 				// Check for Pharaoh's Curse
-				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 				// Check for Toon Tribute power
-				if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-				if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
 				// Look through summonsList and remove #tributes strings
 				if (tributes > 0) 
@@ -1850,6 +2098,132 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 		}
 	}
+	
+	public static ArrayList<DuelistCard> listReturnPowerTribute(AbstractPlayer p, int tributes, boolean tributeAll)
+	{
+		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
+		// If no summons, just skip this so we don't crash
+		// This should never be called without summons due to canUse() checking for tributes before use() can be run
+		if (!p.hasPower(SummonPower.POWER_ID)) { return tributeList; }
+		else
+		{
+			//	Check for Mausoleum of the Emperor
+			if (p.hasPower(EmperorPower.POWER_ID))
+			{
+				EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+				if (empInstance.flag)
+				{
+					SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+					if (tributeAll) { tributes = summonsInstance.amount; }
+					if (summonsInstance.amount - tributes < 0) { tributes = summonsInstance.amount; summonsInstance.amount = 0; }
+					else { summonsInstance.amount -= tributes; }
+
+					// Check for Obelisk after tributing
+					if (p.hasPower(ObeliskPower.POWER_ID))
+					{
+						ObeliskPower instance = (ObeliskPower) p.getPower(ObeliskPower.POWER_ID);
+						int damageObelisk = instance.DAMAGE;
+						int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
+						
+						for (int i : temp) { i = i * tributes; }
+						AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
+					}
+
+					// Check for Pharaoh's Curse
+					if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+
+					// Check for Toon Tribute power
+					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+
+					// Look through summonsList and remove #tributes strings					
+					if (tributes > 0) 
+					{
+						for (int i = 0; i < tributes; i++)
+						{
+							if (summonsInstance.summonList.size() > 0)
+							{
+								int endIndex = summonsInstance.summonList.size() - 1;
+								DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+								if (temp != null) { tributeList.add(temp); }
+								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.summonList.remove(endIndex);
+							}
+						}
+					}
+
+
+					summonsInstance.updateCount(summonsInstance.amount);
+					summonsInstance.updateStringColors();
+					summonsInstance.updateDescription();
+					for (DuelistCard c : tributeList)
+					{ 
+						c.onTribute(new Token());
+						if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
+					}
+					return tributeList;
+				}
+				else
+				{
+					empInstance.flag = true;
+					return tributeList;
+				}
+			}
+			else
+			{
+
+				SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
+				if (tributeAll) { tributes = summonsInstance.amount; }
+				if (summonsInstance.amount - tributes < 0) { tributes = summonsInstance.amount; summonsInstance.amount = 0; }
+				else { summonsInstance.amount -= tributes; }
+
+				// Check for Obelisk after tributing
+				if (p.hasPower(ObeliskPower.POWER_ID))
+				{
+					ObeliskPower instance = (ObeliskPower) p.getPower(ObeliskPower.POWER_ID);
+					int damageObelisk = instance.DAMAGE;
+					int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
+					
+					for (int i : temp) { i = i * tributes; }
+					AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH)); 
+				}
+
+				// Check for Pharaoh's Curse
+				if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+
+				// Check for Toon Tribute power
+				if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+				if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+
+				// Look through summonsList and remove #tributes strings
+				if (tributes > 0) 
+				{
+					for (int i = 0; i < tributes; i++)
+					{
+						if (summonsInstance.summonList.size() > 0)
+						{
+							int endIndex = summonsInstance.summonList.size() - 1;
+							DuelistCard temp = DefaultMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+							if (temp != null) { tributeList.add(temp); }
+							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+							summonsInstance.summonList.remove(endIndex);
+						}
+					}
+				}
+
+
+				summonsInstance.updateCount(summonsInstance.amount);
+				summonsInstance.updateStringColors();
+				summonsInstance.updateDescription();
+				for (DuelistCard c : tributeList) 
+				{
+					c.onTribute(new Token()); 
+					if (DefaultMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
+				}
+				return tributeList;
+			}
+		}
+	}
 
 
 	public static void tributeChecker(AbstractPlayer p, int tributes)
@@ -1866,11 +2240,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 
 		// Check for Pharaoh's Curse
-		if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelf(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
+		if (p.hasPower(TributeSicknessPower.POWER_ID)) { damageSelfNotHP(tributes * p.getPower(TributeSicknessPower.POWER_ID).amount); }
 
 		// Check for Toon Tribute power
-		if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
-		if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, 1, 4)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSets(DefaultMod.MONSTER, DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
+		if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(returnTrulyRandomFromSet(DefaultMod.TOON), true, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
+
 	}
 
 	protected void upgradeName(String newName) 

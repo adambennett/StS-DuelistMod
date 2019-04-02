@@ -35,7 +35,7 @@ public class DarkCreator extends DuelistCard
 
     public DarkCreator() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.CREATOR_DECK);
@@ -79,7 +79,7 @@ public class DarkCreator extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.tributes = 2;
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

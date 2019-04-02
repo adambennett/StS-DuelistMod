@@ -36,7 +36,7 @@ public class AncientElf extends DuelistCard
 		this.tags.add(DefaultMod.SPELLCASTER);
 		this.tags.add(DefaultMod.ORB_DECK);
         this.startingOrbDeckCopies = 1;
-		this.summons = 1;
+		this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();

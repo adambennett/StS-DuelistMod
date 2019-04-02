@@ -29,7 +29,7 @@ public class MonsterReborn extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 2;
 	private static final int MONSTERS = 2;
-	private static final int U_MONSTERS = 1;
+	//private static final int U_MONSTERS = 1;
 	// /STAT DECLARATION/
 
 	public MonsterReborn() {
@@ -60,7 +60,7 @@ public class MonsterReborn extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(U_MONSTERS);
+			//this.upgradeMagicNumber(U_MONSTERS);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

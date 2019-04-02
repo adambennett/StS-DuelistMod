@@ -36,7 +36,7 @@ public class BlizzardPrincess extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 6;
         this.upgradeDmg = 3;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.SPELLCASTER);
         this.tags.add(DefaultMod.ALL);

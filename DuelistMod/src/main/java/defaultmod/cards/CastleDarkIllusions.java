@@ -38,7 +38,7 @@ public class CastleDarkIllusions extends DuelistCard
         this.tags.add(DefaultMod.METAL_RAIDERS);
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.originalName = this.name;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.isCastle = true;
     }
 

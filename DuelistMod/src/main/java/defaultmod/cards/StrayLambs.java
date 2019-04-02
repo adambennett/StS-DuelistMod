@@ -38,7 +38,8 @@ public class StrayLambs extends DuelistCard
     public StrayLambs() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.INVASION_CHAOS);
         this.tags.add(DefaultMod.ALL);
@@ -52,7 +53,7 @@ public class StrayLambs extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	incMaxSummons(p, 2);
-    	summon(p, this.magicNumber, new KuribohToken());
+    	summon(p, this.summons, new KuribohToken());
     }
 
     // Which card to return when making a copy of this card.
@@ -66,7 +67,7 @@ public class StrayLambs extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

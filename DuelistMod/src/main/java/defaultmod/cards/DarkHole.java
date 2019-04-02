@@ -72,7 +72,7 @@ public class DarkHole extends DuelistCard
     				blockTotal += mon.currentBlock;
     				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
     			}
-    			
+
     			for (AbstractPower a : mon.powers)
     			{
     				if (a.type.equals(PowerType.BUFF))

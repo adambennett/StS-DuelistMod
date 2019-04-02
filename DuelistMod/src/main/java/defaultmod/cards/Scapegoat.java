@@ -42,6 +42,7 @@ public class Scapegoat extends DuelistCard
         this.magicNumber = this.baseMagicNumber = INC_SUMMONS;
         this.tags.add(DefaultMod.SPELL);
 		this.originalName = this.name;
+		this.summons = this.baseSummons = 1;
 		tooltips = new ArrayList<>();
 		tooltips.add(new KuribohToken());
     }
@@ -51,7 +52,7 @@ public class Scapegoat extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	incMaxSummons(p, this.magicNumber);
-    	summon(p, 1, new KuribohToken());
+    	summon(p, this.summons, new KuribohToken());
     }
 
     // Which card to return when making a copy of this card.

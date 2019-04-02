@@ -44,7 +44,7 @@ public class SpiritHarp extends DuelistCard
         this.startingExodiaDeckCopies = 2;
         this.startingCreatorDeckCopies = 2;
         this.startingIncDeckCopies = 2;
-        this.summons = 2;
+        this.summons = this.baseSummons = 2;
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();

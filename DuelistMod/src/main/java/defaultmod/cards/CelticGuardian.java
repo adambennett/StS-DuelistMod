@@ -43,7 +43,7 @@ public class CelticGuardian extends DuelistCard
         this.tags.add(DefaultMod.EXODIA_DECK);
         this.startingExodiaDeckCopies = 2;
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.startingIncDeckCopies = 2;
         this.setupStartingCopies();
     }
@@ -52,7 +52,7 @@ public class CelticGuardian extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS, this);
+    	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     }
 

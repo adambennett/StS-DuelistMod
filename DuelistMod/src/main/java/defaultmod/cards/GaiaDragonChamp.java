@@ -46,7 +46,7 @@ public class GaiaDragonChamp extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 2;
+        this.tributes = this.baseTributes = 2;
     }
 
     // Actions the card should do.

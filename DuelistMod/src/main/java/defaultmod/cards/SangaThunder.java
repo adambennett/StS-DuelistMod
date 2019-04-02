@@ -44,12 +44,14 @@ public class SangaThunder extends DuelistCard
     	this.tags.add(DefaultMod.GUARDIAN);
     	this.tags.add(DefaultMod.METAL_RAIDERS);
     	if (Loader.isModLoaded("conspire")) { this.tags.add(DefaultMod.GOOD_TRIB); }
+    	this.tags.add(DefaultMod.ORIGINAL_ORB_DECK);
+    	this.startingOPODeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 3;
+		this.tributes = this.baseTributes = 3;
 		this.isSummon = true;
-		this.summons = 1;
-		
+		this.summons = this.baseSummons = 1;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -75,7 +77,7 @@ public class SangaThunder extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.tributes = 2;
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

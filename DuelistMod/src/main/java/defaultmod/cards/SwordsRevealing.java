@@ -61,7 +61,7 @@ public class SwordsRevealing extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBaseCost(1);
+			this.isInnate = true;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -95,12 +95,12 @@ public class SwordsRevealing extends DuelistCard
 			
 			else
 			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 5) { return true; } }
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 3) { return true; } }
 			}
 		}
     	
     	// Check for # of summons >= tributes
-    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 5) { return true; } } }
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 3) { return true; } } }
     	
     	// Player doesn't have something required at this point
     	this.cantUseMessage = this.tribString;

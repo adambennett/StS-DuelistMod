@@ -46,12 +46,14 @@ public class CurseDragon extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.HEAL_DECK);
         this.tags.add(DefaultMod.OP_DRAGON_DECK);
+        this.tags.add(DefaultMod.ORIGINAL_HEAL_DECK);
+        this.startingOPHDeckCopies = 1;
         this.startingOPDragDeckCopies = 1;
         this.startingHealDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.setupStartingCopies();
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
     }
 
     // Actions the card should do.

@@ -50,8 +50,8 @@ public class SangaWater extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
-		this.summons = 1;
-		this.tributes = 3;
+		this.summons = this.baseSummons = 1;
+		this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.
@@ -76,8 +76,7 @@ public class SangaWater extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeDamage(UPGRADE_PLUS_DMG);
-            if (this.tributes > 0) { this.tributes -= 1; }
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -122,7 +121,7 @@ public class SangaWater extends DuelistCard
 		if (tributingCard.hasTag(DefaultMod.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(DefaultMod.AQUA, DefaultMod.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, 1, 4));
+			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

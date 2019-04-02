@@ -47,7 +47,7 @@ public class CyberDragon extends DuelistCard
         this.tags.add(DefaultMod.REDUCED);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
     }
 
     // Actions the card should do.

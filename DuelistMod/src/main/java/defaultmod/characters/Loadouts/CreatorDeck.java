@@ -10,6 +10,7 @@ public class CreatorDeck extends DuelistCustomLoadout
     {
         this.ID = 4;
         this.Name = "Creator Deck";
+        this.cardCount = "10 Cards";
     }
 
     @Override

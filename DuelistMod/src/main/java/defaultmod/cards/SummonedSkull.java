@@ -37,8 +37,7 @@ public class SummonedSkull extends DuelistCard
 	public SummonedSkull() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = 1;
-		this.magicNumber = this.baseMagicNumber = this.tributes;
+		this.tributes = this.baseTributes = 1;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.METAL_RAIDERS);
 		this.tags.add(DefaultMod.FIEND);
@@ -70,7 +69,6 @@ public class SummonedSkull extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			//this.tributes = this.magicNumber = this.baseMagicNumber = 0;
 			this.upgradeDamage(4);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();

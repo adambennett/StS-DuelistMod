@@ -41,7 +41,7 @@ public class FinalFlame extends DuelistCard
         this.startingDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
 		this.baseMagicNumber = this.magicNumber = 1;
 		this.setupStartingCopies();
     }

@@ -39,7 +39,7 @@ public class MetalDragon extends DuelistCard
         this.baseBlock = this.block = 18;
         this.upgradeDmg = 2;
         this.upgradeBlk = 2;
-        this.tributes = 4;
+        this.tributes = this.baseTributes = 4;
         //this.summons = 1;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);

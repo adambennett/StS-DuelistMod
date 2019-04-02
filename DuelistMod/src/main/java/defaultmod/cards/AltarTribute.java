@@ -37,7 +37,7 @@ public class AltarTribute extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(DefaultMod.TRAP);
 		this.misc = 0;
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
 		this.setupStartingCopies();
 	}

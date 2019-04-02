@@ -47,7 +47,7 @@ public class BlacklandFireDragon extends DuelistCard
         this.startingExodiaDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
         this.setupStartingCopies();
     }
 
@@ -73,7 +73,7 @@ public class BlacklandFireDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeBaseCost(1);
-            this.tributes = 2;
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

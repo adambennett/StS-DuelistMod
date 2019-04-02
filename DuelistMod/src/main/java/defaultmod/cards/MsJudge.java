@@ -33,7 +33,7 @@ public class MsJudge extends DuelistCard
 
 	public MsJudge() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.summons = 1;
+		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.tags.add(DefaultMod.MONSTER);
 		this.tags.add(DefaultMod.FIEND);

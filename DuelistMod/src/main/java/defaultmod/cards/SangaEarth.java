@@ -48,8 +48,8 @@ public class SangaEarth extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
-		this.summons = 1;
-		this.tributes = 3;
+		this.summons = this.baseSummons = 1;
+		this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.
@@ -74,7 +74,7 @@ public class SangaEarth extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (this.tributes > 0) { this.tributes -= 1; }
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

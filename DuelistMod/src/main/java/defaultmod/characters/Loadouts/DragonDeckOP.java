@@ -10,6 +10,7 @@ public class DragonDeckOP extends DuelistCustomLoadout
     {
         this.ID = 18;
         this.Name = "Old Dragon Deck";
+        this.cardCount = "10 Cards";
     }
 
     @Override

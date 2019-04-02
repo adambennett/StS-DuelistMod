@@ -40,7 +40,7 @@ public class Lajinn extends DuelistCard
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.FIEND);
         this.originalName = this.name;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.isSummon = true;
     }
 

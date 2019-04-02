@@ -35,9 +35,12 @@ public class Pumprincess extends DuelistCard
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.EXEMPT);
         this.tags.add(DefaultMod.REDUCED);
-        this.summons = 1;
+        this.tags.add(DefaultMod.ORIGINAL_RESUMMON_DECK);
+        this.startingOPRDeckCopies = 1;
+        this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

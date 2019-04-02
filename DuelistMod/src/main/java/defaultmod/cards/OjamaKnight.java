@@ -45,7 +45,7 @@ public class OjamaKnight extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 2;
     }
 
     

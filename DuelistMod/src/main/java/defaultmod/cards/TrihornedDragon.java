@@ -50,7 +50,7 @@ public class TrihornedDragon extends DuelistCard
         this.startingExodiaDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 3;
+		this.tributes = this.baseTributes = 3;
 		this.setupStartingCopies();
 		
     }

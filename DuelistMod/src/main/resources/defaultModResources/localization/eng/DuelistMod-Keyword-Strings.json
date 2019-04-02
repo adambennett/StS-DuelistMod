@@ -201,7 +201,7 @@
     "NAMES": [
       "randomized"
     ],   
-    "DESCRIPTION": "#yRandomized cards may have their costs changed, may #yExhaust, and may become #yUpgraded or #yEthereal."
+    "DESCRIPTION": "#yRandomized cards may have their costs changed, #yTribute costs reduced, #ySummons increased, may #yExhaust, and may become #yUpgraded or #yEthereal."
   },
   {
     "PROPER_NAME": "Exempt",

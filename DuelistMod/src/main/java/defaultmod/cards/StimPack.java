@@ -36,8 +36,8 @@ public class StimPack extends DuelistCard
 
     public StimPack() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = 5;
-        this.magicNumber = this.baseMagicNumber = 5;
+        this.summons = this.baseSummons = 5;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(DefaultMod.SPELL);
         this.tags.add(DefaultMod.ALL);
         this.tags.add(DefaultMod.METAL_RAIDERS);
@@ -52,11 +52,11 @@ public class StimPack extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!upgraded) { summon(p, 5, new ExplosiveToken("Exploding Token")); }
+    	if (!upgraded) { summon(p, this.summons, new ExplosiveToken("Exploding Token")); }
     	else 
     	{ 
-    		summon(p, 3, new ExplosiveToken("Exploding Token"));
-    		summon(p, 2, new Token("Stim Token"));
+    		summon(p, this.summons, new ExplosiveToken("Exploding Token"));
+    		summon(p, this.magicNumber, new Token("Stim Token"));
     	}
     	
     }
@@ -72,6 +72,7 @@ public class StimPack extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeSummons(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

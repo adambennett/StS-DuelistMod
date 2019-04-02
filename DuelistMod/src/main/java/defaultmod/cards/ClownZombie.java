@@ -36,7 +36,7 @@ public class ClownZombie extends DuelistCard
         this.tags.add(DefaultMod.ZOMBIE);
         this.tags.add(DefaultMod.RESUMMON_DECK);
         this.startingResummonDeckCopies = 2;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
     }

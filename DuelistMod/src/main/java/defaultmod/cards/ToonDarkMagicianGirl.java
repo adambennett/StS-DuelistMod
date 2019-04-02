@@ -47,7 +47,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		this.tags.add(DefaultMod.FULL);
 		this.tags.add(DefaultMod.REPLAYSPIRE);
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
 		this.block = this.baseBlock = 15;
 	}
@@ -56,7 +56,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, SUMMONS, this);
+		summon(p, this.summons, this);
 		block(this.block);
 		AbstractOrb crystal = new CrystalOrb();
 		channel(crystal);

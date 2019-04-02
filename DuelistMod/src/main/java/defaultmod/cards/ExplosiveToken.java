@@ -36,8 +36,16 @@ public class ExplosiveToken extends DuelistCard
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (DefaultMod.challengeMode) { damageSelf(1); }
-		else { damageSelf(1); }
+		if (DefaultMod.challengeMode) 
+		{ 
+			int damageRoll = AbstractDungeon.cardRandomRng.random(1, 6);
+			damageSelf(damageRoll); 
+		}
+		else 
+		{ 
+			int damageRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+			damageSelf(damageRoll); 
+		}
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

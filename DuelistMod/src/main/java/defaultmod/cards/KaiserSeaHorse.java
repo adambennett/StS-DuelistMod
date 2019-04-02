@@ -34,13 +34,13 @@ public class KaiserSeaHorse extends DuelistCard
 
     public KaiserSeaHorse() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 3;
+        this.baseBlock = this.block = 4;
         this.tags.add(DefaultMod.MONSTER);
-        this.tags.add(DefaultMod.DRAGON);
-        this.tags.add(DefaultMod.METAL_RAIDERS);
+        this.tags.add(DefaultMod.AQUA);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.summons = 2;
+        this.summons = this.baseSummons = 2;
         this.originalName = this.name;
+        this.isSummon = true;
     }
 
     // Actions the card should do.

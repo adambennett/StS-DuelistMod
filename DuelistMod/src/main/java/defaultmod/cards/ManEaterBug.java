@@ -34,7 +34,7 @@ public class ManEaterBug extends DuelistCard
     public ManEaterBug() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 3;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 7;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.ALL);

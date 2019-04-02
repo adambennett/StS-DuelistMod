@@ -30,7 +30,6 @@ public class BetaMagnet extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     private static final int BLOCK = 6;
-    private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public BetaMagnet() {
@@ -40,14 +39,14 @@ public class BetaMagnet extends DuelistCard
         this.tags.add(DefaultMod.MAGNETWARRIOR);
         this.tags.add(DefaultMod.LIMITED);
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS, this);
+    	summon(p, this.summons, this);
     	
     	// Gain Beta Magnet
     	if (!p.hasPower(BetaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p))); }

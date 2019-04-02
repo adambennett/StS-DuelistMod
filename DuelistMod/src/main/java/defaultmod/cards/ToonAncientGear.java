@@ -33,7 +33,7 @@ public class ToonAncientGear extends DuelistCard
     public ToonAncientGear() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 12;
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
         this.toon = true;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.TOON);

@@ -45,7 +45,7 @@ public class RedEyes extends DuelistCard
         this.startingExodiaDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 2;
+		this.tributes = this.baseTributes = 2;
 		this.baseMagicNumber = this.magicNumber = 3;
 		this.setupStartingCopies();
     }

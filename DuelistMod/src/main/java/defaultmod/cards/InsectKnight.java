@@ -44,7 +44,7 @@ public class InsectKnight extends DuelistCard
         this.startingOPNDeckCopies = 2;
         this.startingExodiaDeckCopies = 1;
         this.originalName = this.name;
-        this.summons = SUMMONS;
+        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
         this.setupStartingCopies();
     }

@@ -1,24 +1,23 @@
 package defaultmod.orbs;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import defaultmod.DefaultMod;
+import defaultmod.actions.common.RandomizedAction;
+import defaultmod.interfaces.*;
 import defaultmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
-public class Black extends AbstractOrb
+public class Black extends DuelistOrb
 {
 	public static final String ID = DefaultMod.makeID("Black");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
@@ -35,30 +34,35 @@ public class Black extends AbstractOrb
 	{
 		this.img = ImageMaster.loadImage(DefaultMod.makePath("orbs/Black.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus();
 	}
 
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		if (this.passiveAmount > 1)
+		{
+			this.description = DESC[0] + this.passiveAmount + DESC[2];
+		}
+		else
+		{
+			this.description = DESC[0] + this.passiveAmount + DESC[1];
+		}
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		for (int i = 0; i < this.evokeAmount; i++)
-		{
-			//DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
-			//DuelistCard.addCardToHand(randomMonster);
-			//System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
-		}
-		//System.out.println("theDuelist:MonsterOrb --- > triggered evoke!");
+		DuelistCard randomFiend = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.FIEND);
+		AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomFiend, false, true, false, false, true, true, false, true, 0, 0, 0, this.evokeAmount, 0, this.evokeAmount));
 	}
 
 	@Override
@@ -69,12 +73,9 @@ public class Black extends AbstractOrb
 
 	private void triggerPassiveEffect()
 	{
-		for (int i = 0; i < this.passiveAmount; i++)
-		{
-			
-			//DuelistCard.addCardToHand(randomMonster);
-			//System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
-		}
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		AbstractPower randomDebuff = RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, m, this.passiveAmount);
+		DuelistCard.applyPower(randomDebuff, m);
 	}
 
 	@Override
@@ -105,6 +106,15 @@ public class Black extends AbstractOrb
 	public void playChannelSFX()
 	{
 		
+	}
+	
+	@Override
+	protected void renderText(SpriteBatch sb)
+	{
+		// Render evoke amount text
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		// Render passive amount text
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
 	}
 
 	@Override

@@ -10,6 +10,7 @@ public class AquaDeck extends DuelistCustomLoadout
     {
         this.ID = 16;
         this.Name = "Aqua Deck";
+        this.cardCount = "?? Cards";
     }
 
     @Override

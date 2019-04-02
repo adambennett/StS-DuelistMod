@@ -43,7 +43,7 @@ public class ValkMagnet extends DuelistCard
         this.tags.add(DefaultMod.MAGNETWARRIOR);
         this.tags.add(DefaultMod.LIMITED);
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
     }
 
@@ -51,7 +51,7 @@ public class ValkMagnet extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS, this);
+    	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
     	
     	// Remove magnets

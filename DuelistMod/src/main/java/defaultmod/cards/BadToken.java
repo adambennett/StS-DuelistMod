@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import defaultmod.DefaultMod;
+import defaultmod.interfaces.RandomOrbHelperDebug;
 import defaultmod.patches.*;
-import defaultmod.powers.*;
 
 public class BadToken extends DuelistCard 
 {
@@ -46,8 +46,10 @@ public class BadToken extends DuelistCard
     	}
     	*/
     	
-    	applyPowerToSelf(new ObliteratePower(p, p));
-    	applyPowerToSelf(new ExodiaRenewalPower(p, p));
+    	RandomOrbHelperDebug.channelRandomOrb();
+    	
+    	//applyPowerToSelf(new ObliteratePower(p, p));
+    	//applyPowerToSelf(new ExodiaRenewalPower(p, p));
     	
     	// Channel test orb
 		//AbstractOrb testOrb = new Air();

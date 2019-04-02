@@ -37,7 +37,7 @@ public class PredaplantSarraceniant extends DuelistCard
         this.tags.add(DefaultMod.INSECT);
         this.tags.add(DefaultMod.PLANT);
         this.tags.add(DefaultMod.GOOD_TRIB);
-        this.summons = 1;
+        this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.magicNumber = this.baseMagicNumber = 2;

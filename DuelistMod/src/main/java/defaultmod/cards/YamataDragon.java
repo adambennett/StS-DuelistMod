@@ -44,7 +44,7 @@ public class YamataDragon extends DuelistCard
         this.startingDragDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = 1;
+		this.tributes = this.baseTributes = 1;
 		this.setupStartingCopies();
     }
 
@@ -67,7 +67,7 @@ public class YamataDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

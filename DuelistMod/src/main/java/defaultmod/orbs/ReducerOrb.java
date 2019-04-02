@@ -47,6 +47,7 @@ public class ReducerOrb extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
+		if (this.evokeAmount > 10) { this.baseEvokeAmount = this.evokeAmount = 10; }
 		if (this.evokeAmount >= 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
 		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
 	}
@@ -68,6 +69,10 @@ public class ReducerOrb extends DuelistOrb
 	{
 		this.baseEvokeAmount += this.passiveAmount;
 		this.evokeAmount += this.passiveAmount;
+		if (this.baseEvokeAmount > 10 || this.evokeAmount > 10)
+		{
+			this.baseEvokeAmount = this.evokeAmount = 10;
+		}
 		updateDescription();
 	}
 

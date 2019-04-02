@@ -39,7 +39,7 @@ public class Illusionist extends DuelistCard
         this.startingOPSPDeckCopies = 1;
         this.tags.add(DefaultMod.ALL);
         this.originalName = this.name;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.setupStartingCopies();
     }
 

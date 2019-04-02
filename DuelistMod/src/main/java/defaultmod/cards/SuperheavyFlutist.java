@@ -41,7 +41,7 @@ public class SuperheavyFlutist extends DuelistCard
         this.tags.add(DefaultMod.GOOD_TRIB);
         this.tags.add(DefaultMod.REDUCED);
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
     }
 
@@ -49,7 +49,7 @@ public class SuperheavyFlutist extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, SUMMONS, this);
+    	summon(p,  this.summons, this);
     	block(this.block);
     }
 

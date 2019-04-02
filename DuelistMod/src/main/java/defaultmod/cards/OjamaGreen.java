@@ -43,7 +43,7 @@ public class OjamaGreen extends DuelistCard
 		this.baseBlock = this.block = 5;
 		this.exhaust = true;
 		this.originalName = this.name;
-		this.summons = SUMMONS;
+		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
 		this.setupStartingCopies();
 	}
@@ -54,7 +54,7 @@ public class OjamaGreen extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		// Summon
-		summon(p, SUMMONS, this);
+		summon(p, this.summons, this);
 
 		// Get number of buffs
 		int randomBuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 

@@ -38,7 +38,7 @@
 		"NAME": "Millennium Key",
 		"FLAVOR": "After it was made, the Millennium Key was given to Solomon Muto's Egyptian incarnate, Shimon, but later it was passed on to Shada.",
 		"DESCRIPTIONS": [
-			"Gain 1 [E] at the start of each turn. Your max #ySummons cannot be higher than #b4."
+			"Gain 1 [E] at the start of each turn. Your max #ySummons cannot be higher than #b5."
 		]
 	},
 	"theDuelist:MillenniumRod": {
@@ -67,6 +67,13 @@
 		"FLAVOR": "A Gift from Anubis himself.",
 		"DESCRIPTIONS": [
 			" NL Summon #b1 and consume #b1 #yCharge. NL Starts with #b2 #yCharges. NL Upon defeating Bosses and Elites, gain #b3 #yCharges."
+		]
+	},
+	"theDuelist:ResummonBranch": {
+		"NAME": "Millennium Branch",
+		"FLAVOR": "The branch of a tree from the Ancient Egyptian era.",
+		"DESCRIPTIONS": [
+			"At the start of turn, #yResummon a random monster you have summoned this run for every card you #yExhausted on the previous turn."
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {

@@ -98,8 +98,8 @@ public class Glitch extends DuelistOrb
 		passiveActions.add("#yIncrement #b1");	
 		passiveActions.add("#yIncrement #b2");
 		passiveActions.add("Gain [E] "); 
-		passiveActions.add("Gain #b1 Artifacts");
-		passiveActions.add("Gain #b2 Artifacts");
+		//passiveActions.add("Gain #b1 Artifacts");
+		//passiveActions.add("Gain #b2 Artifacts");
 		passiveActionSize = passiveActions.size();
 		
 		// Setup evoke action list
@@ -118,7 +118,7 @@ public class Glitch extends DuelistOrb
 		evokeActions.add("#yOjamania");	
 		if (!DefaultMod.challengeMode) { evokeActions.add("Gain [E] [E] "); }
 		evokeActions.add("Channel a Glitch");
-		evokeActions.add("Gain #b3 Artifacts");
+		//evokeActions.add("Gain #b3 Artifacts");
 		evokeActionSize = evokeActions.size();
 	}
 
@@ -253,7 +253,7 @@ public class Glitch extends DuelistOrb
 				break;
 			case "Add #b1 random #ySpell to hand":
 				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELL);
-				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpell, false, true, true, false, 1, 4));
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpell, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#yEvoke #b1 Orb.":
@@ -262,17 +262,17 @@ public class Glitch extends DuelistOrb
 				break;
 			case "Add #b1 random #yTrap to hand":
 				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.TRAP);
-				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomTrap, false, true, true, false, 1, 4));
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomTrap, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #ySpellcaster to hand":
 				DuelistCard randomSpellcaster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.SPELLCASTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpellcaster, false, true, true, false, 1, 4));
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomSpellcaster, false, true, true, false, true, false, true, false, 1, 4, 0, 1, 0, 0));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yMonster to hand":
 				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(DefaultMod.MONSTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, 1, 4));
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, false, true, false, true, 1, 4, 0, 0, 1, 2));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Lose #b1 strength":
@@ -317,7 +317,7 @@ public class Glitch extends DuelistOrb
 				for (int i = 0; i < RAND_CARDS; i++)
 				{
 					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-					AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, false, true, true, false, 1, 4));
+					AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, false, true, true, false, true, true, true, true, 1, 4, 0, 1, 1, 2));
 				}
 				
 				// Give self 3 random buffs

@@ -39,7 +39,7 @@ public class BSkullDragon extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 30;
         this.upgradeDmg = 4;
-        this.tributes = 3;
+        this.tributes = this.baseTributes = 3;
         this.tags.add(DefaultMod.MONSTER);
         this.tags.add(DefaultMod.DRAGON);
         this.tags.add(DefaultMod.METAL_RAIDERS);

@@ -43,7 +43,7 @@ public class RyuKokki extends DuelistCard
         this.tags.add(DefaultMod.ZOMBIE);
         this.startingResummonDeckCopies = 1;
         this.originalName = this.name;
-        this.tributes = 1;
+        this.tributes = this.baseTributes = 1;
         this.setupStartingCopies();
     }
 
@@ -59,7 +59,7 @@ public class RyuKokki extends DuelistCard
     		{
     			if (c.hasTag(DefaultMod.ZOMBIE))
     			{
-    				fullResummon(c, upgraded, m);
+    				fullResummon(c, upgraded, m, false);
     			}
     		}
     	}

@@ -24,7 +24,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.*;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
@@ -38,10 +38,12 @@ import defaultmod.cards.*;
 import defaultmod.characters.TheDuelist;
 import defaultmod.interfaces.*;
 import defaultmod.orbCards.*;
+import defaultmod.orbs.*;
 import defaultmod.patches.*;
 import defaultmod.potions.*;
 import defaultmod.powers.*;
 import defaultmod.relics.*;
+import defaultmod.variables.*;
 
 
 
@@ -108,10 +110,13 @@ PreMonsterTurnSubscriber
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags ORB_DECK;
+	@SpireEnum public static AbstractCard.CardTags ORIGINAL_ORB_DECK;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
+	@SpireEnum public static AbstractCard.CardTags ORIGINAL_RESUMMON_DECK;
 	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
 	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;
 	@SpireEnum public static AbstractCard.CardTags HEAL_DECK;
+	@SpireEnum public static AbstractCard.CardTags ORIGINAL_HEAL_DECK;
 	@SpireEnum public static AbstractCard.CardTags INCREMENT_DECK;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_DECK;
 	@SpireEnum public static AbstractCard.CardTags MAGNET_DECK;
@@ -169,7 +174,7 @@ PreMonsterTurnSubscriber
 	public static final String PROP_FLIP = "flipCardTags";
 	public static final String PROP_RESET = "resetProg";
 	public static Properties duelistDefaults = new Properties();
-	public static boolean toonBtnBool = true;
+	public static boolean toonBtnBool = false;
 	public static boolean exodiaBtnBool = false;
 	public static boolean crossoverBtnBool = true;
 	public static boolean challengeMode = false;
@@ -179,6 +184,7 @@ PreMonsterTurnSubscriber
 	// Maps and Lists
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
 	public static HashMap<String, AbstractPower> buffMap = new HashMap<String, AbstractPower>();
+	public static HashMap<AbstractOrb, AbstractOrb> invertOrbMap = new HashMap<AbstractOrb, AbstractOrb>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<String, DuelistCard>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> monstersThisCombat = new ArrayList<DuelistCard>();
@@ -235,8 +241,8 @@ PreMonsterTurnSubscriber
 	public static int orbSlots = 3;
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
-	public static final boolean debug = false;		// print statements only really
-	public static final boolean addTokens = false;	// adds debug tokens to library
+	public static final boolean debug = true;		// print statements only really
+	public static final boolean addTokens = true;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -739,6 +745,11 @@ PreMonsterTurnSubscriber
 	public static final String M_KEY_RELIC_OUTLINE = "relics/outline/MillenniumKey_Outline.png";
 	public static final String GIFT_ANUBIS_RELIC = "relics/GiftAnubisRelic.png";
 	public static final String GIFT_ANUBIS_RELIC_OUTLINE = "relics/outline/GiftAnubis_Outline.png";
+	public static final String RESUMMON_BRANCH_RELIC = "relics/ResummonBranch.png";
+	public static final String RESUMMON_BRANCH_RELIC_OUTLINE = "relics/outline/ResummonBranchOutline.png";
+	
+	public static final String TEMP_RELIC = "relics/PlaceholderRelicIcon.png";
+	public static final String TEMP_RELIC_OUTLINE = "relics/PlaceholderRelicIcon.png";
 	
 	// Archetype Card Images
 	public static final String BASIC_ARCH = "archetypes/Basic.png";
@@ -781,6 +792,18 @@ PreMonsterTurnSubscriber
 	public static final String GLITCH_ORB_CARD = "orbCards/GlitchCard.png";
 	public static final String SHADOW_ORB_CARD = "orbCards/ShadowCard.png";
 	public static final String SPLASH_ORB_CARD = "orbCards/SplashCard.png";
+	public static final String BLACK_ORB_CARD = "orbCards/BlackCard.png";
+	public static final String BLAZE_ORB_CARD = "orbCards/BlazeCard.png";
+	public static final String CONSUMER_ORB_CARD = "orbCards/ConsumerCard.png";
+	public static final String GADGET_ORB_CARD = "orbCards/GadgetCard.png";
+	public static final String LAVA_ORB_CARD = "orbCards/LavaCard.png";
+	public static final String METAL_ORB_CARD = "orbCards/MetalCard.png";
+	public static final String MILLENNIUM_ORB_CARD = "orbCards/MillenniumCard.png";
+	public static final String MIST_ORB_CARD = "orbCards/MistCard.png";
+	public static final String MUD_ORB_CARD = "orbCards/MudCard.png";
+	public static final String SAND_ORB_CARD = "orbCards/SandCard.png";
+	public static final String SMOKE_ORB_CARD = "orbCards/SmokeCard.png";
+	public static final String STORM_ORB_CARD = "orbCards/StormCard.png";
 
 	// Character assets
 	public static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButtonB.png";
@@ -883,7 +906,7 @@ PreMonsterTurnSubscriber
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Done creating the color");
 		
 		logger.info("theDuelist:DefaultMod:DefaultMod() ---> Setting up or loading the settings config file");
-		duelistDefaults.setProperty(PROP_TOON_BTN, "TRUE");
+		duelistDefaults.setProperty(PROP_TOON_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_CROSSOVER_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_SET, "0");
@@ -905,19 +928,19 @@ PreMonsterTurnSubscriber
 		cardSets.add("Core (77 cards)");
 		
 		int save = 0;
-		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (10 cards)", save, "Standard Deck"); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck dragDeck = new StarterDeck(DRAGON_DECK, "Dragon Deck (10 cards)", save, "Dragon Deck"); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck regularDeck = new StarterDeck(STANDARD_DECK, "Standard Deck (11 cards)", save, "Standard Deck"); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck dragDeck = new StarterDeck(DRAGON_DECK, "Dragon Deck (11 cards)", save, "Dragon Deck"); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck natDeck = new StarterDeck(NATURE_DECK, "Nature Deck (11 cards)", save, "Nature Deck"); starterDeckList.add(natDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck spellcDeck = new StarterDeck(SPELLCASTER_DECK, "Spellcaster Deck (9 cards)", save, "Spellcaster Deck"); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck creaDeck = new StarterDeck(CREATOR_DECK, "Creator Deck (10 cards)", save, "Creator Deck"); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ran1Deck = new StarterDeck(RANDOM_DECK_SMALL, "Random Deck (10 cards)", save, "Random Deck (Small)"); starterDeckList.add(ran1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ran2Deck = new StarterDeck(RANDOM_DECK_BIG, "Random Deck (15 cards)", save, "Random Deck (Big)"); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck toonDeck = new StarterDeck(TOON_DECK, "Toon Deck (10 cards)", save, "Toon Deck"); starterDeckList.add(toonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck oDeck = new StarterDeck(ORB_DECK, "Orb Deck (12 cards)", save, "Orb Deck"); starterDeckList.add(oDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck oDeck = new StarterDeck(ORB_DECK, "Orb Deck (13 cards)", save, "Orb Deck"); starterDeckList.add(oDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck resDeck = new StarterDeck(RESUMMON_DECK, "Resummon Deck (10 cards)", save, "Resummon Deck"); starterDeckList.add(resDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck gDeck = new StarterDeck(GENERATION_DECK, "Generation Deck (16 cards)", save, "Generation Deck"); starterDeckList.add(gDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ojDeck = new StarterDeck(OJAMA_DECK, "Ojama Deck (12 cards)", save, "Ojama Deck"); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (10 cards)", save, "Heal Deck"); starterDeckList.add(hpDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck hpDeck = new StarterDeck(HEAL_DECK, "Heal Deck (12 cards)", save, "Heal Deck"); starterDeckList.add(hpDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck incDeck = new StarterDeck(INCREMENT_DECK, "Increment Deck (14 cards)", save, "Increment Deck"); starterDeckList.add(incDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck exodiaDeck = new StarterDeck(EXODIA_DECK, "Exodia Deck (60 cards)", save, "Exodia Deck"); starterDeckList.add(exodiaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		//StarterDeck magnetDeck = new StarterDeck(MAGNET_DECK, "Superheavy Deck (12 cards)", save, "Superheavy Deck"); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
@@ -927,7 +950,9 @@ PreMonsterTurnSubscriber
 		StarterDeck opDragDeck = new StarterDeck(OP_DRAGON_DECK, "Old Dragon Deck (10 cards)", save, "Old Dragon Deck"); starterDeckList.add(opDragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck opNatDeck = new StarterDeck(OP_NATURE_DECK, "Old Nature Deck (11 cards)", save, "Old Nature Deck"); starterDeckList.add(opNatDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck opSpellcDeck = new StarterDeck(OP_SPELLCASTER_DECK, "Old Spellcaster Deck (10 cards)", save, "Old Spellcaster Deck"); starterDeckList.add(opSpellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		
+		StarterDeck opOrbDeck = new StarterDeck(ORIGINAL_ORB_DECK, "Old Orb Deck (10 cards)", save, "Old Orb Deck"); starterDeckList.add(opOrbDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck opResummonDeck = new StarterDeck(ORIGINAL_RESUMMON_DECK, "Old Resummon Deck (10 cards)", save, "Old Resummon Deck"); starterDeckList.add(opResummonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck opHealDeck = new StarterDeck(ORIGINAL_HEAL_DECK, "Old Heal Deck (10 cards)", save, "Old Heal Deck"); starterDeckList.add(opHealDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		
 		for (StarterDeck d : starterDeckList) { startingDecks.add(d.getName()); }
 		DECKS = starterDeckList.size();
@@ -1300,6 +1325,8 @@ PreMonsterTurnSubscriber
 		BaseMod.addRelicToCustomPool(new MillenniumKey(), AbstractCardEnum.DUELIST_MONSTERS);
 		BaseMod.addRelicToCustomPool(new MillenniumRod(), AbstractCardEnum.DUELIST_MONSTERS);
 		BaseMod.addRelicToCustomPool(new MillenniumCoin(), AbstractCardEnum.DUELIST_MONSTERS);
+		BaseMod.addRelicToCustomPool(new ResummonBranch(), AbstractCardEnum.DUELIST_MONSTERS);
+		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST_MONSTERS);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST_MONSTERS); }
 		BaseMod.addRelicToCustomPool(new GiftAnubis(), AbstractCardEnum.DUELIST_MONSTERS);
 		AbstractDungeon.shopRelicPool.remove("Prismatic Shard");
@@ -1318,7 +1345,8 @@ PreMonsterTurnSubscriber
 	public void receiveEditCards() {
 		//logger.info("Adding variables");
 		// Add the Custom Dynamic Variables
-		//BaseMod.addDynamicVariable(new WingedDragonVariable());
+		BaseMod.addDynamicVariable(new TributeMagicNumber());
+		BaseMod.addDynamicVariable(new SummonMagicNumber());
 
 		// ================ ORB CARDS ===================
 		logger.info("theDuelist:DefaultMod:receiveEditCards() ---> adding orb cards to array for orb modal");
@@ -1486,6 +1514,13 @@ PreMonsterTurnSubscriber
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				//((DuelistCard) c).startTurnReset();
+			}
+		}
 		resetBuffPool();
 		lastMaxSummons = 5;
 		spellCombatCount = 0;
@@ -1495,7 +1530,7 @@ PreMonsterTurnSubscriber
 		swordsPlayed = 0;
 		logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");
 		if (hasRing) { lastMaxSummons = 8; if (challengeMode) { lastMaxSummons = 7; }}
-		if (hasKey) { lastMaxSummons = 4; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 4");}
+		if (hasKey) { lastMaxSummons = 5; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -1510,6 +1545,13 @@ PreMonsterTurnSubscriber
 	@Override
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
+		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				((DuelistCard) c).postBattleReset();
+			}
+		}
 		monstersThisCombat = new ArrayList<DuelistCard>();
 		spellsThisCombat = new ArrayList<DuelistCard>();
 		trapsThisCombat = new ArrayList<DuelistCard>();
@@ -1533,7 +1575,7 @@ PreMonsterTurnSubscriber
 			lastMaxSummons = 8; 
 			if (challengeMode) { lastMaxSummons = 7; }
 		}
-		if (hasKey) { lastMaxSummons = 4; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 4");}
+		if (hasKey) { lastMaxSummons = 5; logger.info("theDuelist:DefaultMod:receiveOnBattleStart() ---> Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -1692,6 +1734,54 @@ PreMonsterTurnSubscriber
 	@Override
 	public void receivePostDraw(AbstractCard arg0) 
 	{
+		boolean hasSmokeOrb = false;
+		boolean hasSplashOrb = false;
+		boolean hasLavaOrb = false;
+		boolean hasFireOrb = false;
+		Smoke smoke = new Smoke();
+		Lava lava = new Lava();
+		Splash splash = new Splash();
+		FireOrb fire = new FireOrb();
+		
+		for (AbstractOrb orb : AbstractDungeon.player.orbs)
+		{
+			if (orb.name.equals("Smoke"))
+			{
+				hasSmokeOrb = true;
+				smoke = (Smoke) orb;
+				if (debug) { logger.info("theDuelist:DefaultMod:receivePostDraw() ---> found a Smoke orb, set flag");  }
+			}
+			
+			if (orb.name.equals("Lava"))
+			{
+				hasLavaOrb = true;
+				lava = (Lava) orb;
+				if (debug) { logger.info("theDuelist:DefaultMod:receivePostDraw() ---> found a Lava orb, set flag");  }
+			}
+			
+			if (orb.name.equals("Fire"))
+			{
+				hasFireOrb = true;
+				fire = (FireOrb) orb;
+				if (debug) { logger.info("theDuelist:DefaultMod:receivePostDraw() ---> found a Fire orb, set flag");  }
+			}
+			
+			if (orb.name.equals("Splash"))
+			{
+				hasSplashOrb = true;
+				splash = (Splash) orb;
+				if (debug) { logger.info("theDuelist:DefaultMod:receivePostDraw() ---> found a Splash orb, set flag");  }
+			}
+		}
+	
+		if (arg0.hasTag(DefaultMod.MONSTER))
+		{
+			if (hasSmokeOrb) { smoke.triggerPassiveEffect((DuelistCard)arg0); }
+			if (hasSplashOrb) { splash.triggerPassiveEffect((DuelistCard)arg0); }
+			if (hasLavaOrb) { lava.triggerPassiveEffect((DuelistCard)arg0); }
+			if (hasFireOrb) { fire.triggerPassiveEffect((DuelistCard)arg0); }
+		}
+		
 		// Underdog - Draw monster = draw 1 card
 		if (AbstractDungeon.player.hasPower(HeartUnderdogPower.POWER_ID))
 		{
@@ -1708,7 +1798,7 @@ PreMonsterTurnSubscriber
 			int handSize = AbstractDungeon.player.hand.size();
 			if (arg0.hasTag(DefaultMod.SPELL) && handSize < 10)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedAction(arg0.makeCopy(), arg0.upgraded, true, true, false, 1, 3));
+				AbstractDungeon.actionManager.addToTop(new RandomizedAction(arg0.makeCopy(), arg0.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 			}
 		}
 		
@@ -1767,6 +1857,49 @@ PreMonsterTurnSubscriber
 	@Override
 	public boolean receivePreMonsterTurn(AbstractMonster arg0) 
 	{
+		// Variable Manipulation
+		summonTurnCount = 0;
+		AbstractPlayer p = AbstractDungeon.player;
+		
+		// Fix tributes & summons that were modified for turn only
+		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dC = (DuelistCard)c;
+				dC.postTurnReset();
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.hand.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dC = (DuelistCard)c;
+				dC.postTurnReset();
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dC = (DuelistCard)c;
+				dC.postTurnReset();
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dC = (DuelistCard)c;
+				dC.postTurnReset();
+			}
+		}
+		
+		
+		// Check to maybe print secret message
 		if (summonTurnCount > 2)
 		{
 			int msgRoll = AbstractDungeon.cardRandomRng.random(1, 100);
@@ -1784,8 +1917,9 @@ PreMonsterTurnSubscriber
 				}
 			}
 		}
-		summonTurnCount = 0;
-		AbstractPlayer p = AbstractDungeon.player;
+		
+		
+		// Mirror Force Helper
 		if (p.hasPower(MirrorForcePower.POWER_ID) && p.currentBlock > 0)
 		{
 			MirrorForcePower instance = (MirrorForcePower) AbstractDungeon.player.getPower(MirrorForcePower.POWER_ID);
@@ -1799,6 +1933,7 @@ PreMonsterTurnSubscriber
 		{
 			logger.info("theDuelist:DefaultMod:receiveOnPlayerLoseBlock() ---> player lost " + arg0 + " block.");
 		}
+		
 		return true;
 	}
 	
@@ -1963,7 +2098,7 @@ PreMonsterTurnSubscriber
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
 		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
-		AbstractPower tombPilfer = new HealGoldPower(p, turnNum * 10);
+		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower focus = new FocusPower(p, turnNum);
@@ -2037,7 +2172,7 @@ PreMonsterTurnSubscriber
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
 		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
-		AbstractPower tombPilfer = new HealGoldPower(p, turnNum * 10);
+		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
 		AbstractPower focus = new FocusPower(p, turnNum);
@@ -3046,9 +3181,18 @@ PreMonsterTurnSubscriber
 		// END DEBUG CARD STUFF
 		
 		for (DuelistCard c : myCards)
-		{			
-			c.setupTrib(c.tributes, c.summons, c.rawDescription);
-			if (debug) { logger.info("theDuelist:DefaultMod:setupMyCards() ---> set " + c.originalName + " base tributes to " + c.tributes + " :: Check it -- c.baseTributes = " + c.baseTributes); }
+		{
+			if (c.tributes != c.baseTributes || c.summons != c.baseSummons)
+			{
+				if (c.hasTag(DefaultMod.MONSTER))
+				{
+					logger.info("something didn't match for " + c.originalName + " Base/Current Tributes: " + c.baseTributes + "/" + c.tributes + " :: Base/Current Summons: " + c.baseSummons + "/" + c.summons);
+				}
+				else
+				{
+					logger.info("something didn't match for " + c.originalName + " but this card is a spell or trap");					
+				}
+			}
 		}
 		
 		/*
@@ -3089,6 +3233,19 @@ PreMonsterTurnSubscriber
 		orbCards.add(new ShadowOrbCard());
 		orbCards.add(new SplashOrbCard());
 		orbCards.add(new SummonerOrbCard());
+		orbCards.add(new BlackOrbCard());
+		orbCards.add(new BlazeOrbCard());
+		orbCards.add(new ConsumerOrbCard());
+		orbCards.add(new GadgetOrbCard());
+		orbCards.add(new LavaOrbCard());
+		orbCards.add(new MetalOrbCard());
+		orbCards.add(new MillenniumOrbCard());
+		orbCards.add(new MistOrbCard());
+		orbCards.add(new MudOrbCard());
+		orbCards.add(new SandOrbCard());
+		orbCards.add(new SmokeOrbCard());
+		orbCards.add(new StormOrbCard());
+		
 		if (isConspire) { orbCards.add(new WaterOrbCard()); }
 		for (DuelistCard o : orbCards) { orbCardMap.put(o.name, o); }
 	}
