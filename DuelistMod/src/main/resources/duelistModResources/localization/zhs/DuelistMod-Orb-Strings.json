@@ -1,0 +1,152 @@
+{
+  "theDuelist:Gate": {
+    "NAME": "门",
+    "DESCRIPTION": [
+      "被动：在回合开始时，交易 #b", " 对所有敌人造成伤害，获得 #b", " 阻止和获得 [E] 。 唤起：召唤 #b", " 随机守护者。门不受焦点的影响。"
+    ]
+  },
+  "theDuelist:Buffer": {
+    "NAME": "缓冲",
+    "DESCRIPTION": [
+      "被动：在回合开始时，增加 #b", " 随机效果叠加1。唤起：获得随机效果持久的效果 #b", " 转。"
+    ]
+  },
+  "theDuelist:MonsterOrb": {
+    "NAME": "怪物宝珠",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, add #b", " #yrandomized monster to your hand. NL #yEvoke: Add #b", " #yrandomized monsters to your hand.", " #yrandomized monsters to your hand. NL #yEvoke: Add #b"
+    ]
+  },
+  "theDuelist:DragonOrb": {
+    "NAME": "龙宝珠",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
+    ]
+  },
+   "theDuelist:DragonPlusOrb": {
+    "NAME": "龙宝珠+",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
+    ]
+  },
+  "theDuelist:ReducerOrb": {
+    "NAME": "减速器",
+    "DESCRIPTION": [
+      "被动：在回合开始时，增加被唤起时减少的牌数 #b", "。 唤醒：改变成本 #b", " 你手中的随机牌为0。", " 你手中的随机牌为0。"
+    ]
+  },
+  "theDuelist:Earth": {
+    "NAME": "地球",
+    "DESCRIPTION": [
+      "#yPassive: At the start of turn, add #b", " #yrandomized #ySpells to your hand. NL #yEvoke: Add #b", " #yrandomized #ySpell to your hand.", " #yrandomized #ySpells to your hand.", " #yrandomized #ySpell to your hand. NL #yEvoke: Add #b"
+    ]
+  },
+  "theDuelist:Air": {
+    "NAME": "空气",
+    "DESCRIPTION": [
+      "被动：在回合开始时，有机会引导一个随机的球体。如果你当前召唤的唯一怪物是龙，你有更高的机会。", " 唤醒：获得 #b", " 宝珠槽。", " 宝珠槽。"
+    ]
+  },
+  "theDuelist:Black": {
+    "NAME": "Black",
+    "DESCRIPTION": [
+       "#yPassive: At the start of turn, apply a random debuff with #b", " stack to a random enemy. NL #yEvoke: Add a #yrandomized #yFiend to your hand.", " stacks to a random enemy. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
+    ]
+  },
+  "theDuelist:FireOrb": {
+    "NAME": "火",
+    "DESCRIPTION": [
+      "#yPassive: Whenever you draw a #yDragon, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Reduce the #yTribute cost of #yDragons in your hand, discard, and exhaust by #b", " for this combat."
+    ]
+  },
+  "theDuelist:Glitch": {
+    "NAME": "毛刺",
+    "DESCRIPTION": [
+      "被动：在回合开始时，触发 #b", " 随机效应。唤醒：触发 #b", " 随机效应。最后效果触发： ", " 随机效应。最后效果触发： "
+    ]
+  },
+  "theDuelist:Shadow": {
+    "NAME": "阴影",
+    "DESCRIPTION": [
+      "被动：在回合开始时，有20％的几率召唤 #b", " 影子代币。唤起： 仪式再次 #b", " 随机怪物从你丢弃的堆上随机敌人。", " 随机怪物从你丢弃的堆上随机敌人。"
+    ]
+  },
+  "theDuelist:Splash": {
+    "NAME": "溅",
+    "DESCRIPTION": [
+	  "#yPassive: Whenever you draw an #yAqua, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Increase the summons of #yAqua monsters (everywhere) by #b", " for this combat."
+    ]
+  },
+  "theDuelist:Blaze": {
+    "NAME": "Blaze",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, heal #b", " HP for each monster summoned this combat. NL #yEvoke: Heal #b", " HP for each monster summoned this combat."
+    ]
+  },
+  "theDuelist:Consumer": {
+    "NAME": "Consumer",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, #yTribute #b", " and gain temporary HP equal to the total energy cost of all tributes. NL #yEvoke: #yTribute all summons, gain a random #yBuff equal to the amount tributed."
+    ]
+  },
+  "theDuelist:Gadget": {
+    "NAME": "Gadget",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, add a #yRandomized #yTrap to your hand. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
+    ]
+  },
+  "theDuelist:Lava": {
+    "NAME": "Lava",
+    "DESCRIPTION": [
+	  "#yPassive: Whenever you draw a #yZombie, reduce the #yTribute cost by #b" , " for this combat. NL #yEvoke: Deal a random amount of damage to a random enemy. Deals more damage with a higher evoke amount."
+    ]
+  },
+  "theDuelist:MillenniumOrb": {
+    "NAME": "Millennium Orb",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Channel a random Orb."
+    ]
+  },
+  "theDuelist:Metal": {
+    "NAME": "Metal",
+    "DESCRIPTION": [
+	  "#yPassive: At the end of turn, gain #yBlock equal to the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", "."
+    ]
+  },
+  "theDuelist:Mud": {
+    "NAME": "Mud",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, add a #yRandomized #yPlant or #yInsect to your hand. NL #yEvoke: Increase the summons of all #yInsect and #yPlant monsters (everywhere) by #b", " for this combat."
+    ]
+  },
+  "theDuelist:Mist": {
+    "NAME": "Mist",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, add a #yRandomized #yAqua monster to your hand. NL #yPassive: At the end of turn, increase the summons of all #yAqua monsters in your hand, discard pile, and exhaust pile by #b", ". NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
+    ]
+  },
+  "theDuelist:Sand": {
+    "NAME": "Sand",
+    "DESCRIPTION": [
+	  "#yPassive: At the start of turn, apply #b", " #ySlow to a random enemy. NL #yEvoke: Apply #b", " #ySlow to ALL enemies."
+    ]
+  },
+  "theDuelist:Smoke": {
+    "NAME": "Smoke",
+    "DESCRIPTION": [
+	  "#yPassive: Whenver you draw a monster, increase the #yTribute cost by #b", " and increase the damage by #b", " for this turn. NL #yEvoke: #yIncrement #b", "."
+    ]
+  },
+  "theDuelist:Storm": {
+    "NAME": "Storm",
+    "DESCRIPTION": [
+	  "#yPassive: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", ". NL #yEvoke: Adds #yRandomized Power cards to your hand."
+    ]
+  },
+  "theDuelist:Summoner": {
+    "NAME": "召唤师",
+    "DESCRIPTION": [
+      "被动：在回合结束时，召唤 #b", " 施法者代币。 唤醒：增量 #b", "。"
+    ]
+  }
+}

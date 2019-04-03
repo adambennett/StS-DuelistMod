@@ -1,0 +1,142 @@
+{
+	"theDuelist:PlaceholderRelic": {
+		"NAME": "Placeholder Relic",
+		"FLAVOR": "The snake is a friend.",
+		"DESCRIPTIONS": [
+			"Gain +1 [R] ."
+		]
+	},
+	"theDuelist:MillenniumPuzzle": {
+		"NAME": "千年积木",
+		"FLAVOR": "它最初被称为千年坠饰，但在被粉碎并需要组装后，它被称为千年难题。",
+		"DESCRIPTIONS": [
+			"在每次战斗开始时，根据您选择的起始甲板触发效果。"
+		]
+	},
+	"theDuelist:MillenniumPuzzleShared": {
+		"NAME": "千年积木",
+		"FLAVOR": "它最初被称为千年坠饰，但在被粉碎并需要组装后，它被称为千年难题。",
+		"DESCRIPTIONS": [
+			"在每次战斗开始时，根据您选择的起始甲板触发效果。"
+		]
+	},
+	"theDuelist:MillenniumEye": {
+		"NAME": "千禧之眼",
+		"FLAVOR": "它是由Aknadin在3000年前与其他千禧项目共同创建的。在它创作之后，Aknadin自己戴上了眼睛，在此过程中牺牲了他的左眼。",
+		"DESCRIPTIONS": [
+			"在每次战斗开始时，获得卡通世界。"
+		]
+	},
+	"theDuelist:MillenniumRing": {
+		"NAME": "千年之环",
+		"FLAVOR": "在今天活动前3000年，千禧环和其他千年项目在库尔埃尔纳铸造，牺牲了99名Kul Elna村民。",
+		"DESCRIPTIONS": [
+			"在每次战斗开始时，增量3。"
+		]
+	},
+	"theDuelist:MillenniumKey": {
+		"NAME": "千年钥匙",
+		"FLAVOR": "制作完成后，千禧钥匙被送给了所罗门穆托的埃及化身，西蒙，但后来被传递给了沙达。",
+		"DESCRIPTIONS": [
+			"获得1 [E] 在每个回合的开始。你的最大召唤不能高于4。"
+		]
+	},
+	"theDuelist:MillenniumRod": {
+		"NAME": "千年棒",
+		"FLAVOR": "牧师濑户最初拥有千年杖。与其他物品一起，它被用来复活Zorc Necrophades。",
+		"DESCRIPTIONS": [
+			"添加每回合的开始，向你的手中添加一个随机的法术。"
+		]
+	},
+	"theDuelist:MillenniumCoin": {
+		"NAME": "千年硬币",
+		"FLAVOR": "一枚美丽的硬币。",
+		"DESCRIPTIONS": [
+			"每次你唤起，都有机会要得到： ", " 黄金。每当你击败一个精英或老板时，为此效果添加10金币，并有30％几率将召唤几率增加10％。"
+		]
+	},
+	"theDuelist:StoneExxod": {
+		"NAME": "埃克斯行的石头",
+		"FLAVOR": "禁忌之一的片段？",
+		"DESCRIPTIONS": [
+			"每次洗牌时，都要在手上添加一张Exodia卡。"
+		]
+	},
+	"theDuelist:GiftAnubis": {
+		"NAME": "阿努比斯的礼物",
+		"FLAVOR": "来自阿努比斯的礼物。",
+		"DESCRIPTIONS": [
+			" NL 召唤1并消耗1次充电。从2次充电开始。击败老板和精英后，获得3次冲锋。"
+		]
+	},
+	"theDuelist:ResummonBranch": {
+		"NAME": "Millennium Branch",
+		"FLAVOR": "The branch of a tree from the Ancient Egyptian era.",
+		"DESCRIPTIONS": [
+			"At the start of turn, #yResummon a random monster you have summoned this run for every card you #yExhausted on the previous turn."
+		]
+	},
+	"theDuelist:AeroRelic": {
+		"NAME": "Orb of Slifer",
+		"FLAVOR": "A strange orb with mysterious power.",
+		"DESCRIPTIONS": [
+			"Your #yAir orbs always #yChannel a random orb."
+		]
+	},
+	"theDuelist:CardRewardRelicA": {
+		"NAME": "Reward Token",
+		"FLAVOR": "A very helpful token.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, receive #b5 extra card rewards and consume #b1 #yCharge. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
+		]
+	},
+	"theDuelist:CardRewardRelicB": {
+		"NAME": "Reward Token+",
+		"FLAVOR": "A VERY helpful token.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, receive #b2 extra card rewards and consume #b1 #yCharge. Starts with #b10 #yCharges. Upon defeating Bosses and Elites, gain #b2 #yCharges."
+		]
+	},
+	"theDuelist:CardRewardRelicC": {
+		"NAME": "Reward Orb",
+		"FLAVOR": "A very helpful orb.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, receive #b1 extra card reward and consume #b1 #yCharge. Starts with #b6 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
+		]
+	},
+	"theDuelist:CardRewardRelicD": {
+		"NAME": "Reward Orb+",
+		"FLAVOR": "A strange orb.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, have a #b25% chance to receive #b10 extra card rewards."
+		]
+	},
+	"theDuelist:CardRewardRelicE": {
+		"NAME": "Reward Stone",
+		"FLAVOR": "A strange stone.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, have a #b33% chance to receive #b3 extra card rewards."
+		]
+	},
+	"theDuelist:InversionRelic": {
+		"NAME": "Inversion Stone",
+		"FLAVOR": "A strange looking stone.",
+		"DESCRIPTIONS": [
+			"Whenever you #yInvert, #yEvoke the original Orb twice."
+		]
+	},
+	"theDuelist:InversionEvokeRelic": {
+		"NAME": "Inversion Orb",
+		"FLAVOR": "A strange looking orb.",
+		"DESCRIPTIONS": [
+			"Whenever you #yInvert, repeat the same #yInvert action."
+		]
+	},
+	"theDuelist:PlaceholderRelic2": {
+		"NAME": "Placeholder Relic 2",
+		"FLAVOR": "You feel stronger.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain +1 Strength."
+		]
+	}
+}

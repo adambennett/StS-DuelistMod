@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="yugio.png" width="900" height="1200" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="yugioR.png" width="900" height="1200" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="yugioR">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-6500" y="5800" scale_x="14.207741" scale_y="11.61983"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
