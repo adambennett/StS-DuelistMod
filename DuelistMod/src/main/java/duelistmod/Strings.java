@@ -521,6 +521,7 @@ public class Strings
 	public static final String BETA_MAG_POWER = "powers/BetaMagPower.png";
 	public static final String CALL_GRAVE_POWER = "powers/CallGravePower.png";
 	public static final String CANNON_SOLDIER_POWER = "powers/CannonPower.png";
+	public static final String TOON_CANNON_SOLDIER_POWER = "powers/ToonCannonPower.png";
 	public static final String CARD_SAFE_POWER = "powers/CardSafePower.png";
 	public static final String CASTLE_POWER = "powers/CastlePower.png";
 	public static final String CATAPULT_TURTLE_POWER = "powers/CatapultPower.png";
@@ -542,6 +543,7 @@ public class Strings
 	public static final String MAGIC_CYLINDER_POWER = "powers/MagicCylinderPower.png";
 	public static final String MIRROR_FORCE_POWER = "powers/MirrorPower.png";
 	public static final String MOUNTAIN_POWER = "powers/MountainPower.png";
+	public static final String NATURIA_POWER = "powers/NaturiaPower.png";
 	public static final String NATURE_POWER = "powers/NaturePower.png";
 	public static final String OBELISK_POWER = "powers/ObeliskPower.png";
 	public static final String ORB_HEAL_POWER = "powers/OrbHealPower.png";
@@ -572,5 +574,8 @@ public class Strings
 	public static final String ULTIMATE_OFFERING_POWER = "powers/UltimateOfferingPower.png";
 	public static final String VIOLET_POWER = "powers/VioletPower.png";
 	public static final String YAMI_POWER = "powers/YamiPower.png";
+	public static final String SACRED_TREE_POWER = "powers/SacredTreePower.png";
+	public static final String SUPERHEAVY_DEX_GAIN_POWER = "powers/SuperheavyDexGainPower.png";
+	public static final String UMI_POWER = "powers/UmiPower.png";
 	// =============== /POWER IMAGES/ =======================================================================================================================================================
 }

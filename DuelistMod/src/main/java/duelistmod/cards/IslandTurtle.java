@@ -37,6 +37,9 @@ public class IslandTurtle extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tags.add(Tags.AQUA);
+		this.tags.add(Tags.AQUA_DECK);
+		this.aquaDeckCopies = 2;
+		this.setupStartingCopies();
 		this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -74,7 +77,7 @@ public class IslandTurtle extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 
@@ -98,7 +101,7 @@ public class IslandTurtle extends DuelistCard
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, this.summons, this);
 		block(this.block);
-		
+
 	}
 
 	@Override
@@ -109,6 +112,6 @@ public class IslandTurtle extends DuelistCard
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

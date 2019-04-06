@@ -49,7 +49,7 @@ public class CurseDragon extends DuelistCard
         this.tags.add(Tags.ORIGINAL_HEAL_DECK);
         this.startingOPHDeckCopies = 1;
         this.startingOPDragDeckCopies = 1;
-        this.startingHealDeckCopies = 1;
+        this.healDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.setupStartingCopies();

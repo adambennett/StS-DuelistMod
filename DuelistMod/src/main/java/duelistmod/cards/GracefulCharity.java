@@ -32,7 +32,7 @@ public class GracefulCharity extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
 

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.patches.*;
@@ -41,6 +42,8 @@ public class ToonCyberDragon extends DuelistCard
         this.toon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);
+        this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
         this.isSummon = true;
@@ -92,6 +95,11 @@ public class ToonCyberDragon extends DuelistCard
 		if (tributingCard.hasTag(Tags.TOON))
 		{
 			damageAllEnemiesThorns(5);
+		}
+		
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
 		}
 	}
 

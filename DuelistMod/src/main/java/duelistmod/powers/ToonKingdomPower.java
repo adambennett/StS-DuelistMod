@@ -1,11 +1,8 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -64,8 +61,8 @@ public class ToonKingdomPower extends AbstractPower
     	{ 
     		if (TOON_DMG > 0) { DuelistCard.damageSelfNotHP(TOON_DMG); }
     		if (TOON_DMG > 0) { TOON_DMG--; } 
-    		AbstractCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TOON);
-    		AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(randomToon, 1, true, false));
+    		//AbstractCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TOON);
+    		//AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(randomToon, 1, true, false));
     	}
     	
     	this.amount = TOON_DMG;

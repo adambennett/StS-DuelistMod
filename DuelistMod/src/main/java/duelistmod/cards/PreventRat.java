@@ -38,7 +38,7 @@ public class PreventRat extends DuelistCard
         this.tags.add(Tags.ORB_DECK);
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
     	this.startingOPODeckCopies = 2;
-        this.startingOrbDeckCopies = 2;
+        this.orbDeckCopies = 2;
         this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;

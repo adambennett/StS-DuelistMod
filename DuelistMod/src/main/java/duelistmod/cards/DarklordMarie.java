@@ -47,7 +47,7 @@ public class DarklordMarie extends DuelistCard
         this.tags.add(Tags.HEAL_DECK);
         this.tags.add(Tags.ORIGINAL_HEAL_DECK);
         this.startingOPHDeckCopies = 2;
-        this.startingHealDeckCopies = 2;
+        this.healDeckCopies = 2;
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
         this.setupStartingCopies();

@@ -38,7 +38,7 @@ public class FluteSummoning extends DuelistCard
         this.tags.add(Tags.GENERATION_DECK);
         this.tags.add(Tags.OP_DRAGON_DECK);
         this.startingOPDragDeckCopies = 1;
-		this.startingGenDeckCopies = 1;
+		this.generationDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();
@@ -53,7 +53,7 @@ public class FluteSummoning extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.DRAGON);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, true, false, false, false, 1, 4, 0, 1, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, true, false, false, false, 1, 4, 0, 1, 0, 0));
 		}
     }
 

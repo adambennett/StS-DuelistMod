@@ -18,6 +18,20 @@ public class CardRewardRelicE extends CustomRelic
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
     @Override
+	public boolean canSpawn()
+	{
+		// Only spawn for non-Duelist characters
+		if (DuelistMod.hasCardRewardRelic) { return false; }
+		else { return true; }
+	}
+    
+    @Override
+    public void onEquip()
+    {
+    	DuelistMod.hasCardRewardRelic = true;
+    }
+    
+    @Override
     public void onVictory() 
     {
     	int roll = AbstractDungeon.relicRng.random(1, 3);

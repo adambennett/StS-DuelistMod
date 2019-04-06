@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,7 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.patches.*;
 
 public class SevenColoredFish extends DuelistCard 
@@ -40,15 +39,17 @@ public class SevenColoredFish extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(Tags.MONSTER);
-        if (Loader.isModLoaded("conspire")) { this.tags.add(Tags.GOOD_TRIB); }
+        this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.ORIGINAL_DECK);   
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
+        this.tags.add(Tags.AQUA_DECK);
+		this.aquaDeckCopies = 3;
     	this.startingOPODeckCopies = 2;
         this.startingOriginalDeckCopies = 2;
-        this.startingExodiaDeckCopies = 4;
+        this.exodiaDeckCopies = 4;
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
@@ -91,7 +92,7 @@ public class SevenColoredFish extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

@@ -8,7 +8,7 @@ public class MagnetDeck extends DuelistCustomLoadout
 {
     public MagnetDeck()
     {
-        this.ID = 15;
+        this.ID = 9;
         this.Name = "Magnet Deck";
     }
 

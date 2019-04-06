@@ -37,6 +37,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags LEGACY_DARKNESS;
 	@SpireEnum public static AbstractCard.CardTags LEGEND_BLUE_EYES;
 	@SpireEnum public static AbstractCard.CardTags LIMITED;
+	@SpireEnum public static AbstractCard.CardTags MACHINE;
 	@SpireEnum public static AbstractCard.CardTags MACHINE_DECK;
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER;
@@ -45,6 +46,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags METAL_RAIDERS;
 	@SpireEnum public static AbstractCard.CardTags MONSTER;
 	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
+	@SpireEnum public static AbstractCard.CardTags NATURIA;
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
 	@SpireEnum public static AbstractCard.CardTags NO_CREATOR;
 	@SpireEnum public static AbstractCard.CardTags OJAMA;

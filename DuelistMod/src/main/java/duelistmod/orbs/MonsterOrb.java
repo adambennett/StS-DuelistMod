@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedAction;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistOrb;
 import duelistmod.patches.DuelistCard;
 
@@ -66,7 +66,7 @@ public class MonsterOrb extends DuelistOrb
 		for (int i = 0; i < this.evokeAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, false, true, false, false, 1, 4, 0, 0, 1, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, true, false, false, 1, 4, 0, 0, 1, 2));
 			if (DuelistMod.debug) { System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 		if (DuelistMod.debug) { System.out.println("theDuelist:MonsterOrb --- > triggered evoke!"); }
@@ -83,7 +83,7 @@ public class MonsterOrb extends DuelistOrb
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 	}

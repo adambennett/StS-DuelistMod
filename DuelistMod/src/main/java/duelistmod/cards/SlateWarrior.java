@@ -43,7 +43,7 @@ public class SlateWarrior extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ORB_DECK);
 		this.tags.add(Tags.FIEND);
-		this.startingOrbDeckCopies = 1;
+		this.orbDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();

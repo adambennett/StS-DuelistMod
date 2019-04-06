@@ -16,35 +16,32 @@ import duelistmod.powers.*;
 public class VanityFiend extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = duelistmod.DuelistMod.makeID("SummonedSkull");
+	public static final String ID = duelistmod.DuelistMod.makeID("VanityFiend");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DuelistMod.makePath(Strings.SUMMONED_SKULL);
+	public static final String IMG = DuelistMod.makePath(Strings.VANITY_FIEND);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.BASIC;
-	private static final CardTarget TARGET = CardTarget.ENEMY;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
+	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
-	private static final int DAMAGE = 11;
+	private static final int DAMAGE = 18;
 	// /STAT DECLARATION/
 
 	public VanityFiend() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
 		this.tributes = this.baseTributes = 1;
-		this.magicNumber = this.baseMagicNumber = this.tributes;
 		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.METAL_RAIDERS);
 		this.tags.add(Tags.FIEND);
 		this.misc = 0;
 		this.originalName = this.name;
-		//this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
@@ -66,8 +63,7 @@ public class VanityFiend extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			//this.tributes = this.magicNumber = this.baseMagicNumber = 0;
-			this.upgradeDamage(4);
+			this.upgradeDamage(6);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

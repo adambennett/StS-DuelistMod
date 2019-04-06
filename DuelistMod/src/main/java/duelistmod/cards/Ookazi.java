@@ -39,7 +39,7 @@ public class Ookazi extends DuelistCard
         this.tags.add(Tags.GENERATION_DECK);
         this.tags.add(Tags.ORIGINAL_DECK);       
         this.startingOriginalDeckCopies = 2;
-		this.startingGenDeckCopies = 2;
+		this.generationDeckCopies = 2;
         this.damageA = 5;
         this.damageB = 9;
         this.damageC = 7;

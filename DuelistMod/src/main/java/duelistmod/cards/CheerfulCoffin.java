@@ -34,7 +34,7 @@ public class CheerfulCoffin extends DuelistCard
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 2;
+        this.exodiaDeckCopies = 2;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 3;
         this.setupStartingCopies();

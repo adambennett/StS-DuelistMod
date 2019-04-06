@@ -8,7 +8,7 @@ public class ResummonDeck extends DuelistCustomLoadout
 {
     public ResummonDeck()
     {
-        this.ID = 9;
+        this.ID = 14;
         this.Name = "Resummon Deck";
     }
 

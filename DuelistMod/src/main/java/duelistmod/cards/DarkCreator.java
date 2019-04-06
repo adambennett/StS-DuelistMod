@@ -42,7 +42,7 @@ public class DarkCreator extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.originalName = this.name;
         //this.purgeOnUse = true;
-        this.startingDeckCopies = 1;
+        this.standardDeckCopies = 1;
         this.setupStartingCopies();
     }
 

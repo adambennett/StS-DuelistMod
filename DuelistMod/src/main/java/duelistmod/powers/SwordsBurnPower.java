@@ -1,7 +1,6 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -10,7 +9,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.*;
+import duelistmod.patches.DuelistCard;
 
 // 
 
@@ -63,10 +62,7 @@ public class SwordsBurnPower extends AbstractPower
     	{ 
     		for (int i = 0; i < this.amount; i++)
     		{
-	    		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOrb(); }
-	    		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrb(); }
-	    		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrb(); }
-	    		else { RandomOrbHelper.channelRandomOrb(); }
+	    		DuelistCard.channelRandom();
     		}
     	}
     	finished = true;

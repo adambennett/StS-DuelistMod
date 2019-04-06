@@ -13,10 +13,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.*;
+import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedAction;
+import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.cards.Token;
 import duelistmod.interfaces.DuelistOrb;
 import duelistmod.patches.DuelistCard;
 import duelistmod.powers.SummonPower;
@@ -80,7 +81,7 @@ public class Mist extends DuelistOrb
 	    		}
 	    	}
 	    	
-	    	DuelistCard.tributeChecker(p, tokens);
+	    	DuelistCard.tributeChecker(p, tokens, new Token(), false);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.amount -= tokens;
 	    	DuelistCard.applyRandomBuffPlayer(p, tokens, false);
@@ -103,7 +104,7 @@ public class Mist extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		DuelistCard randomAqua = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
-		AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
 	}
 
 	private void triggerPassiveEffect()

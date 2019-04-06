@@ -42,10 +42,10 @@ public class TheCreator extends DuelistCard
         this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.NO_CREATOR);
         this.tags.add(Tags.EXEMPT);
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
         this.originalName = this.name;
         //this.purgeOnUse = true;
-        this.startingDeckCopies = 1;
+        this.standardDeckCopies = 1;
         this.setupStartingCopies();
     }
 

@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 
-import conspire.orbs.Water;
 import duelistmod.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
@@ -44,7 +43,6 @@ public class GateGuardian extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GUARDIAN);
         this.tags.add(Tags.METAL_RAIDERS);
-        this.tags.add(Tags.CONSPIRE);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
@@ -70,8 +68,7 @@ public class GateGuardian extends DuelistCard
 	    				channel(orbB);
 	    				break;
 	    			case "Suijin":
-	    				AbstractOrb orbC = new Water();
-	    				channel(orbC);
+	    				channelWater();
 	    				break;
 	    			default:
 	    				break;

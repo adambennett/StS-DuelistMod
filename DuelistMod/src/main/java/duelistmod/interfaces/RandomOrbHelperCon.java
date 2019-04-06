@@ -11,6 +11,12 @@ import duelistmod.orbs.*;
 
 public class RandomOrbHelperCon 
 {
+	public static void channelWater()
+	{
+		AbstractOrb water = new Water();
+		AbstractDungeon.actionManager.addToTop(new ChannelAction(water));
+	}
+	
 	public static void channelRandomOrb()
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
 import duelistmod.patches.*;
@@ -39,6 +40,7 @@ public class SteamTrainKing extends DuelistCard
         this.baseDamage = this.damage = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.ALL);
         this.originalName = this.name;
         this.exhaust = true;
@@ -116,6 +118,7 @@ public class SteamTrainKing extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(1);
+            this.upgradeTributes(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -124,8 +127,10 @@ public class SteamTrainKing extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
+		if (tributingCard.hasTag(Tags.SUPERHEAVY))
+		{
+			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, DuelistMod.superheavyDex));
+		}
 	}
 
 

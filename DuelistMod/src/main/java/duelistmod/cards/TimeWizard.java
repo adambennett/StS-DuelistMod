@@ -36,8 +36,9 @@ public class TimeWizard extends DuelistCard
         this.tags.add(Tags.FULL);
         this.tags.add(Tags.GENERATION_DECK);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 1;
-		this.startingGenDeckCopies = 1;
+        this.tags.add(Tags.SPELLCASTER);
+        this.exodiaDeckCopies = 1;
+		this.generationDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;

@@ -34,8 +34,8 @@ public class BarrelDragon extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 10;
-    private static int MIN_TURNS_ROLL = 1;
-    private static int MAX_TURNS_ROLL = 10;
+    private static int MIN_TURNS_ROLL = 2;
+    private static int MAX_TURNS_ROLL = 6;
     private static final int RANDOM_ENEMIES = 3;
     // /STAT DECLARATION/
 
@@ -44,10 +44,10 @@ public class BarrelDragon extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = RANDOM_ENEMIES;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.REPLAYSPIRE);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
@@ -109,8 +109,6 @@ public class BarrelDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            MIN_TURNS_ROLL = 4;
-            MAX_TURNS_ROLL = 12;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -158,6 +156,11 @@ public class BarrelDragon extends DuelistCard
 		{ 
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
+		
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
 		}
 	}
 

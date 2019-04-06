@@ -2,6 +2,7 @@ package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.*;
@@ -52,15 +53,22 @@ public class MillenniumCoin extends CustomRelic
 	    		{
 		            if (rollCheck < 10) { rollCheck++; }
 	    		}
+	    		setDescription();
 	        }
-	        
-	        //getUpdatedDescription();
 	    }
 
 	// Description
 	@Override
 	public String getUpdatedDescription() {
-		return DESCRIPTIONS[0] + 10 + DESCRIPTIONS[1];
+		return DESCRIPTIONS[0] + this.counter + DESCRIPTIONS[1];
+	}
+	
+	public void setDescription()
+	{
+		description = getUpdatedDescription();
+        tips.clear();
+        tips.add(new PowerTip(name, description));
+        initializeTips();
 	}
 
 	// Which relic to return on making a copy of this relic.

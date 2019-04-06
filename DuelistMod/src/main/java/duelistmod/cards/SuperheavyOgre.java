@@ -79,7 +79,7 @@ public class SuperheavyOgre extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.SUPERHEAVY))
 		{
-			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, 1));
+			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, DuelistMod.superheavyDex));
 		}
 		
 	}

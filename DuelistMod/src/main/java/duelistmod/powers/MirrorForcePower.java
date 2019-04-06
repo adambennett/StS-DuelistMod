@@ -76,7 +76,7 @@ public class MirrorForcePower extends AbstractPower
     @Override
     public int onAttacked(DamageInfo info, int damageAmount)
     {
-    	if (info.owner instanceof AbstractMonster)
+    	if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && (info.owner != null) && (info.owner != this.owner) && (!this.owner.hasPower("Buffer")))
     	{
     		//PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
         	if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner && this.amount > 0) 

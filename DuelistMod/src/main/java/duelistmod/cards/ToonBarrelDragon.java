@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.patches.*;
@@ -48,6 +48,7 @@ public class ToonBarrelDragon extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.DRAGON);
+		this.tags.add(Tags.MACHINE);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.FULL);
 		this.misc = 0;
@@ -83,6 +84,8 @@ public class ToonBarrelDragon extends DuelistCard
 			AbstractMonster mon = AbstractDungeon.getMonsters().monsters.get(i);
 			damageThroughBlock(mon, p, damageArray[i], AbstractGameAction.AttackEffect.FIRE);
 		}
+		
+		
 	}
 
 	// Which card to return when making a copy of this card.
@@ -142,12 +145,21 @@ public class ToonBarrelDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
+		// Dragon
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
 		{ 
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
 		}
+		
+		// Toon
 		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThorns(5); }
+		
+		// Machine
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
 	}
 
 

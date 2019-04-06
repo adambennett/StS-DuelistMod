@@ -50,8 +50,8 @@ public class InsectToken extends DuelistCard
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

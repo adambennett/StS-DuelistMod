@@ -39,6 +39,9 @@ public class SuperheavyScales extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SUPERHEAVY);
 		this.tags.add(Tags.GOOD_TRIB);
+		this.tags.add(Tags.MAGNET_DECK);
+		this.superheavyDeckCopies = 4;
+		this.setupStartingCopies();
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
@@ -74,9 +77,8 @@ public class SuperheavyScales extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.SUPERHEAVY))
 		{
-			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, 1));
+			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, DuelistMod.superheavyDex));
 		}
-
 	}
 
 	@Override

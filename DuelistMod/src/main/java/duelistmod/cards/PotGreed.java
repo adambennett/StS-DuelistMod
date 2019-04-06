@@ -35,7 +35,7 @@ public class PotGreed extends DuelistCard
     	this.tags.add(Tags.POT);
     	this.tags.add(Tags.LEGEND_BLUE_EYES);
     	this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
 		this.originalName = this.name;
 		this.setupStartingCopies();
     }

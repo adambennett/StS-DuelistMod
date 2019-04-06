@@ -64,7 +64,7 @@ public class ComicHand extends DuelistCard
     		}
     	}
     	
-    	tributeChecker(player(), tokens);
+    	tributeChecker(player(), tokens, this, false);
     	summonsInstance.summonList = newSummonList;
     	summonsInstance.amount -= tokens;
     	for (int i = 0; i < tokens; i++)

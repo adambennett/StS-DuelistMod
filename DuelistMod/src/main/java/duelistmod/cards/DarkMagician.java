@@ -45,8 +45,8 @@ public class DarkMagician extends DuelistCard
         this.tags.add(Tags.SPELLCASTER_DECK);
         this.tags.add(Tags.OP_SPELLCASTER_DECK);
         this.startingOPSPDeckCopies = 1;
-        this.startingExodiaDeckCopies = 2;
-        this.startingSpellcasterDeckCopies = 1;
+        this.exodiaDeckCopies = 2;
+        this.spellcasterDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;

@@ -39,8 +39,8 @@ public class TokenVacuum extends DuelistCard
         this.tags.add(Tags.FULL);
         this.misc = 0;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 10;
-        this.upgradeDmg = 5;
+        this.damage = this.baseDamage = 7;
+        this.upgradeDmg = 3;
     }
 
     // Actions the card should do.
@@ -63,7 +63,7 @@ public class TokenVacuum extends DuelistCard
     		}
     	}
     	
-    	tributeChecker(player(), tokens);
+    	tributeChecker(player(), tokens, this, true);
     	summonsInstance.summonList = newSummonList;
     	summonsInstance.amount -= tokens;
     	for (int i = 0; i < tokens; i++)

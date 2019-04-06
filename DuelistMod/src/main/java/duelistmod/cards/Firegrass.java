@@ -37,7 +37,8 @@ public class Firegrass extends DuelistCard
         this.tags.add(Tags.NATURE_DECK);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
-        this.startingNatureDeckCopies = 2;
+        this.tags.add(Tags.PLANT);
+        this.natureDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
         this.setupStartingCopies();
@@ -73,8 +74,8 @@ public class Firegrass extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 
 

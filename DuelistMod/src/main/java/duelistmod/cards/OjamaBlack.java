@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.orbs.Black;
 import duelistmod.patches.*;
 
 public class OjamaBlack extends DuelistCard 
@@ -38,9 +40,8 @@ public class OjamaBlack extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.OJAMA);
 		this.tags.add(Tags.INVASION_CHAOS);
-		this.tags.add(Tags.REPLAYSPIRE);
 		this.tags.add(Tags.OJAMA_DECK);
-		this.startingOjamaDeckCopies = 2;
+		this.ojamaDeckCopies = 2;
 		this.baseBlock = this.block = 5;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;
@@ -55,27 +56,8 @@ public class OjamaBlack extends DuelistCard
 	{
 		// Summon
 		summon(p, this.summons, this);
-
-		// Get random monster target
-		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-
-		// Get number of debuffs
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
-		int randomDebuffNumU = AbstractDungeon.cardRandomRng.random(1, 3); 
-
-		// Set number of debuffs to right number (based on upgrade status)
-		int primary = 4;
-		if (this.upgraded) { primary = randomDebuffNumU; }
-		else { primary = randomDebuffNum; }
-
-		// For each debuff to apply, apply a random debuff with a new random turn number
-		for (int i = 0; i < primary; i++)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
-		}
-
-		//block(this.block);
+		AbstractOrb black = new Black();
+		channel(black);
 	}
 
 	// Which card to return when making a copy of this card.

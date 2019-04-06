@@ -29,7 +29,7 @@ public class AltarTribute extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-	private static final int COST = 1;
+	private static final int COST = 2;
 	// /STAT DECLARATION/
 
 	public AltarTribute() 
@@ -71,7 +71,7 @@ public class AltarTribute extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBaseCost(0);
+			this.upgradeBaseCost(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

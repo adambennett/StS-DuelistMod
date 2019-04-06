@@ -27,7 +27,7 @@ public class Terraforming extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Terraforming() {
@@ -36,7 +36,7 @@ public class Terraforming extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();
@@ -51,7 +51,7 @@ public class Terraforming extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.FIELDSPELL);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, false, false, false, false, 1, 5, 0, 0, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, false, false, false, 1, 5, 0, 0, 0, 0));
 		}
     }
 
@@ -68,6 +68,7 @@ public class Terraforming extends DuelistCard
             this.upgradeName();
             //this.upgradeMagicNumber(1);
             this.isInnate = true;
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

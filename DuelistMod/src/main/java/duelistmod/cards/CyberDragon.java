@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.orbs.Glitch;
@@ -43,6 +43,7 @@ public class CyberDragon extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.REDUCED);
         this.misc = 0;
@@ -125,6 +126,11 @@ public class CyberDragon extends DuelistCard
 		{ 
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
+		
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
 		}
 		
 	}

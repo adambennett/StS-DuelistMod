@@ -27,7 +27,7 @@ public class DarkMagicianGirl extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 1;
+	private static final int COST = 2;
 	// /STAT DECLARATION/
 
 	public DarkMagicianGirl() {
@@ -37,12 +37,12 @@ public class DarkMagicianGirl extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.LIMITED);
 		this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 2;
+        this.exodiaDeckCopies = 2;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
-		this.block = this.baseBlock = 7;
+		this.block = this.baseBlock = 10;
 		this.setupStartingCopies();
 	}
 
@@ -52,7 +52,7 @@ public class DarkMagicianGirl extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		block(this.block);
-		AbstractOrb buffer = new ReducerOrb();
+		AbstractOrb buffer = new Air();
 		channel(buffer);
 	}
 
@@ -89,7 +89,7 @@ public class DarkMagicianGirl extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			//this.upgradeMagicNumber(U_OVERFLOW);
-			this.upgradeBaseCost(1);
+			this.upgradeBlock(4);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

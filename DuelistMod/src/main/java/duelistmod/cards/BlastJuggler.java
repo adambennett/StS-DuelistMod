@@ -2,18 +2,17 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
-import basemod.ReflectionHacks;
 import duelistmod.*;
-import duelistmod.interfaces.RandomEffectsHelper;
 import duelistmod.patches.*;
+import duelistmod.powers.SummonPower;
 
 public class BlastJuggler extends DuelistCard 
 {
@@ -32,10 +31,7 @@ public class BlastJuggler extends DuelistCard
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
-	private static int MIN_TURNS_ROLL = 3;
-	private static int MAX_TURNS_ROLL = 7;
-	private static int DEBUFFS = 3;
-	private ArrayList<AbstractCard> tooltips;
+	//private ArrayList<AbstractCard> tooltips;
 	// /STAT DECLARATION/
 
 	public BlastJuggler() 
@@ -44,13 +40,13 @@ public class BlastJuggler extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.METAL_RAIDERS);
 		this.tags.add(Tags.GOOD_TRIB);
-		this.tags.add(Tags.REPLAYSPIRE);
+		this.tags.add(Tags.MACHINE);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.baseDamage = this.damage = 5;
-		tooltips = new ArrayList<>();
-		tooltips.add(new ExplosiveToken());
+		//tooltips = new ArrayList<>();
+		//tooltips.add(new ExplosiveToken());
 	}
 
 
@@ -59,8 +55,32 @@ public class BlastJuggler extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		summon(p, 1, new ExplosiveToken("Exploding Token"));
 		attack(m, this.baseAFX, this.damage);
+		int tokens = 0;
+    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+    	ArrayList<String> summonsList = summonsInstance.summonList;
+    	ArrayList<String> newSummonList = new ArrayList<String>();
+    	for (String s : summonsList)
+    	{
+    		if ((s.equals("Explosive Token") || (s.equals("Exploding Token"))))
+    		{
+    			tokens++;
+    		}
+    		else
+    		{
+    			newSummonList.add(s);
+    		}
+    	}
+    	
+    	tributeChecker(player(), tokens, this, false);
+    	summonsInstance.summonList = newSummonList;
+    	summonsInstance.amount -= tokens;
+    	for (int i = 0; i < tokens; i++)
+    	{
+    		AbstractMonster randomM = getRandomMonster();
+    		int roll = AbstractDungeon.cardRandomRng.random(1, 3);
+    		attack(randomM, this.baseAFX, roll);
+    	}
 	}
 
 	// Which card to return when making a copy of this card.
@@ -87,13 +107,9 @@ public class BlastJuggler extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-
-		// For each debuff to apply, apply a random debuff with a new random turn number
-		for (int i = 0; i < DEBUFFS; i++)
+		if (tributingCard.hasTag(Tags.MACHINE))
 		{
-			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, randomTurnNum), targetMonster);
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
 		}
 	}
 
@@ -121,6 +137,7 @@ public class BlastJuggler extends DuelistCard
 		summon(p, 1, new ExplosiveToken("Exploding Token"));
 	}
 	
+	/*
 	@Override
 	public void renderCardTip(SpriteBatch sb) 
 	{
@@ -151,7 +168,7 @@ public class BlastJuggler extends DuelistCard
 			}
 		}
 	}
-
+	*/
 
 	@Override
 	public String getID() {

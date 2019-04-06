@@ -73,7 +73,10 @@ public class SuperheavySwordsman extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+		if (tributingCard.hasTag(Tags.SUPERHEAVY))
+		{
+			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, DuelistMod.superheavyDex));
+		}
 
 	}
 

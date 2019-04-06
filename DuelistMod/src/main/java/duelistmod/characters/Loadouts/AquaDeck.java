@@ -8,7 +8,7 @@ public class AquaDeck extends DuelistCustomLoadout
 {
     public AquaDeck()
     {
-        this.ID = 16;
+        this.ID = 6;
         this.Name = "Aqua Deck";
         this.cardCount = "?? Cards";
     }

@@ -39,6 +39,7 @@ public class AllyJustice extends DuelistCard
         this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.MACHINE);
         this.originalName = this.name;
         this.exhaust = true;
     }
@@ -108,8 +109,10 @@ public class AllyJustice extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
 	}
 
 

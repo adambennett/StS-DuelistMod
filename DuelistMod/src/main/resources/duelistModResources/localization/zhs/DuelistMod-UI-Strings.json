@@ -1,20 +1,16 @@
 {
 	"theDuelist:ConfigMenuText": {
 		"TEXT": [ 
-			"删除所有卡通卡（需要重新启动）",
-			"删除所有Exodia卡（需要重新启动）",
-			"允许14个额外的交叉模块卡（需要重启）",
-			"启动甲板：",
-			"卡套装尺寸：",
-			"注意：加载Archetype API时，卡片移除选项无效",
-			"主动决斗卡： ",
-			"更改卡组需要重新启动才能生效。",
-			"开始一个新的运行来改变你的起始牌。",
-			"挑战模式",
-			"解锁所有甲板",
-			"关闭Monster/Spell/Trap标签",
-			"重置所有决斗者进度（重置重置进度）",
-			"Reset Duelist Progress (RESETS PROGESS ON RESTART)"
+			"Remove ALL Toon cards",
+			"Remove ALL Exodia cards",
+			"Allow 14 extra crossover mod cards (REQUIRES RESTART)",
+			"Starting Deck:",
+			"Reward/Shop Pool Fill Type:",
+			"Active Duelist Cards: ",
+			"Starting deck only affects Custom Runs.",
+			"Challenge Mode",
+			"Unlock all Decks",
+			"Turn off Monster/Spell/Trap tags"
 		]
 	}
 }

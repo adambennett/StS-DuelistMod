@@ -2,10 +2,9 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -37,7 +36,7 @@ public class Polymerization extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
@@ -60,14 +59,16 @@ public class Polymerization extends DuelistCard
 	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
 	    		if (cardCopy != null && !hitCreator)
 				{
-					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-					if (summon.upgraded) { cardCopy.upgrade(); }
-					cardCopy.freeToPlayOnce = true;
-					cardCopy.applyPowers();
-					cardCopy.purgeOnUse = true;
-					AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-					cardCopy.onResummon(1);
-					cardCopy.checkResummon();
+	    			DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false);
+    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+    				if (this.upgrade) { cardCopy.upgrade(); }
+    				cardCopy.freeToPlayOnce = true;
+    				cardCopy.applyPowers();
+    				cardCopy.purgeOnUse = true;
+    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
+    				cardCopy.onResummon(1);
+    				cardCopy.checkResummon();*/
+    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 				}
 	    		if (summon.originalName.equals("The Creator")) { hitCreator = true; if (DuelistMod.debug) { System.out.println("theDuelist:Polymerization:use() ---> hitCreator triggered and set to true"); } }
 			}

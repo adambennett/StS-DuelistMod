@@ -37,6 +37,9 @@ public class RevivalJam extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.LABYRINTH_NIGHTMARE);
+        this.tags.add(Tags.AQUA_DECK);
+		this.aquaDeckCopies = 1;
+		this.setupStartingCopies();
         this.originalName = this.name;
         this.isSummon = true;
         this.baseMagicNumber = this.magicNumber = 2;
@@ -73,7 +76,7 @@ public class RevivalJam extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

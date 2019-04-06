@@ -39,7 +39,6 @@ public class NutrientZ extends DuelistCard
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.LEGACY_DARKNESS);
-        this.tags.add(Tags.REPLAYSPIRE);
         this.exhaust = true;
 		this.originalName = this.name;
     }

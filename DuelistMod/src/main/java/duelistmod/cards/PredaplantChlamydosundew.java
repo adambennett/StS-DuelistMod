@@ -76,8 +76,8 @@ public class PredaplantChlamydosundew extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 
 

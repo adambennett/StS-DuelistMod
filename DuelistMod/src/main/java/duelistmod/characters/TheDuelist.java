@@ -307,7 +307,7 @@ public class TheDuelist extends CustomPlayer {
 		 * Revival Jam x1
 		 * Oh Fish x1
 		 * Umi x1
-		 * ?? x1 : Aqua that tributes 2 and deals damage + block, more if you have all aquas
+		 * Aqua Spirit x1
 		 * 
 		 */
 		
@@ -344,8 +344,7 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void doCharSelectScreenSelectEffect() {
 		CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
-		CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
-				false); // Screen Effect
+		CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT, false); // Screen Effect
 	}
 
 	// Character Select on-button-press sound effect
@@ -359,14 +358,8 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public int getAscensionMaxHPLoss() 
 	{
-		if (DuelistMod.challengeMode)
-		{
-			return 40;
-		}
-		else
-		{
-			return 5;
-		}
+		if (DuelistMod.challengeMode) { return 25; }
+		else { return 5;	}
 	}
 
 	// Should return the card color enum to be associated with your character.
@@ -460,17 +453,19 @@ public class TheDuelist extends CustomPlayer {
 		return panels;
 	}
 
-	/*
-	@Override
-	public CardGroup getArchetypeSelectionCardsPool() 
+	public static Texture GetCharacterPortrait(int id)
 	{
-		return theDuelistArchetypeSelectionCards;
+	    Texture result;
+	    if (!DuelistMod.characterPortraits.containsKey(id))
+	    {
+	        result = new Texture(DuelistMod.makePath("charSelect/duelist_portrait_" + id + ".png"));
+	        DuelistMod.characterPortraits.put(id, result);
+	    }
+	    else
+	    {
+	        result = DuelistMod.characterPortraits.get(id);
+	    }
+	
+	    return result;
 	}
-
-	@Override
-	public int numberOfDefaultArchetypes() {
-		return numberOfArchetypes;
-	}
-	*/
-
 }

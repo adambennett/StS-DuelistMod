@@ -36,7 +36,7 @@ public class GiantTrunade extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.REDUCED);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 2;
+        this.exodiaDeckCopies = 2;
         this.setupStartingCopies();
     }
 

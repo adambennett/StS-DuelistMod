@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.patches.*;
@@ -37,6 +38,7 @@ public class CannonSoldier extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = DAMAGE;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.METAL_RAIDERS);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
@@ -69,16 +71,19 @@ public class CannonSoldier extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
 	}
 
 	
 
 	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
+	public void onResummon(int summons)
+	{
 		
 	}
 

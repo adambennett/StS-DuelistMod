@@ -41,6 +41,9 @@ public class SuperheavyMagnet extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.REDUCED);
+        this.tags.add(Tags.MAGNET_DECK);
+		this.superheavyDeckCopies = 1;
+		this.setupStartingCopies();
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
     }
@@ -129,8 +132,10 @@ public class SuperheavyMagnet extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+		if (tributingCard.hasTag(Tags.SUPERHEAVY))
+		{
+			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, DuelistMod.superheavyDex));
+		}
 	}
 
 

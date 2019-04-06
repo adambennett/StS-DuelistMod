@@ -73,14 +73,15 @@ public class PlayFromDiscardAction extends AbstractGameAction
 				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
     			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
     			{
-    				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
     				if (this.upgrade) { cardCopy.upgrade(); }
     				cardCopy.freeToPlayOnce = true;
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
-    				cardCopy.checkResummon();
+    				cardCopy.checkResummon();*/
     				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
     			}
 				//this.p.discardPile.removeCard(card);
@@ -98,14 +99,15 @@ public class PlayFromDiscardAction extends AbstractGameAction
 					DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
 	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 	    			{
-	    				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+	    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 	    				if (this.upgrade) { cardCopy.upgrade(); }
 	    				cardCopy.freeToPlayOnce = true;
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 	    				cardCopy.onResummon(1);
-	    				cardCopy.checkResummon();
+	    				cardCopy.checkResummon();*/
 	    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 	    			}
 					//this.p.discardPile.removeCard(card);
@@ -138,14 +140,15 @@ public class PlayFromDiscardAction extends AbstractGameAction
 				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
     			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
     			{
-    				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
     				if (this.upgrade) { cardCopy.upgrade(); }
     				cardCopy.freeToPlayOnce = true;
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
-    				cardCopy.checkResummon();
+    				cardCopy.checkResummon();*/
     				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
     			}
 				//this.p.discardPile.removeCard(c);

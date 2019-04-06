@@ -8,7 +8,7 @@ public class OrbDeck extends DuelistCustomLoadout
 {
     public OrbDeck()
     {
-        this.ID = 8;
+        this.ID = 13;
         this.Name = "Orb Deck";
     }
 

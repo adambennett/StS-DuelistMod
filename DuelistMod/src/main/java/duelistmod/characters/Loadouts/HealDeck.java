@@ -8,7 +8,7 @@ public class HealDeck extends DuelistCustomLoadout
 {
     public HealDeck()
     {
-        this.ID = 12;
+        this.ID = 17;
         this.Name = "Heal Deck";
         this.cardCount = "12 Cards";
     }

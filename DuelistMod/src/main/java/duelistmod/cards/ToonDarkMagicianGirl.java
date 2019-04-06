@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
+import duelistmod.orbs.Air;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -44,12 +45,10 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.TOON);
 		this.tags.add(Tags.SPELLCASTER);
-		this.tags.add(Tags.FULL);
-		this.tags.add(Tags.REPLAYSPIRE);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
-		this.block = this.baseBlock = 15;
+		this.block = this.baseBlock = 10;
 	}
 
 	// Actions the card should do.
@@ -58,8 +57,8 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		block(this.block);
-		AbstractOrb crystal = new CrystalOrb();
-		channel(crystal);
+		AbstractOrb air = new Air();
+		channel(air);
 	}
 
 	@Override
@@ -97,7 +96,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			//this.upgradeMagicNumber(U_OVERFLOW);
-			this.upgradeBaseCost(0);
+			this.upgradeBlock(5);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

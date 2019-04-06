@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.orbs.Glitch;
@@ -36,6 +37,7 @@ public class MachineKing extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ALL);
+		this.tags.add(Tags.MACHINE);
 		this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
 
@@ -104,8 +106,10 @@ public class MachineKing extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
 	}
 
 

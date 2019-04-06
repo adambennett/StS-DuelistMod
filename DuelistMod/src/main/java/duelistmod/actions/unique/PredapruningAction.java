@@ -73,14 +73,15 @@ public class PredapruningAction extends AbstractGameAction
 				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
     			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
     			{
-    				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
     				if (this.upgrade) { cardCopy.upgrade(); }
     				cardCopy.freeToPlayOnce = true;
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
-    				cardCopy.checkResummon();
+    				cardCopy.checkResummon();*/
     				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(DuelistCard.newCopyOfMonster(cardCopy.originalName)); }
     			}
 				this.isDone = true;
@@ -97,14 +98,15 @@ public class PredapruningAction extends AbstractGameAction
 					DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
 	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 	    			{
-	    				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+	    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 	    				if (this.upgrade) { cardCopy.upgrade(); }
 	    				cardCopy.freeToPlayOnce = true;
 	    				cardCopy.applyPowers();
 	    				cardCopy.purgeOnUse = true;
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 	    				cardCopy.onResummon(1);
-	    				cardCopy.checkResummon();
+	    				cardCopy.checkResummon();*/
 	    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(DuelistCard.newCopyOfMonster(cardCopy.originalName)); }
 	    			}
 				}
@@ -135,14 +137,15 @@ public class PredapruningAction extends AbstractGameAction
 				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
 				if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
     			{
-    				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+					DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
     				if (this.upgrade) { cardCopy.upgrade(); }
     				cardCopy.freeToPlayOnce = true;
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
-    				cardCopy.checkResummon();
+    				cardCopy.checkResummon();*/
     				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(DuelistCard.newCopyOfMonster(cardCopy.originalName)); }
     			}
 			

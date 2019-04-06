@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.patches.*;
@@ -33,6 +34,7 @@ public class Jinzo extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PHARAOH_SERVANT);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.ALL);
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;
@@ -101,8 +103,10 @@ public class Jinzo extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
 	}
 
 

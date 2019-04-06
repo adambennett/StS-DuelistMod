@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 public class Utilities
 {
     public static final Logger Logger = LogManager.getLogger(Utilities.class.getName());
+    
+    public static int factorial(int n) { return (n == 1 || n == 0) ? 1 : n * factorial(n - 1); } 
 
     public static <T> T SafeCast(Object o, Class<T> type)
     {
@@ -51,4 +53,28 @@ public class Utilities
 
         return res;
     }
+
+	public static String titleCase(String text) {
+	    if (text == null || text.isEmpty()) {
+	        return text;
+	    }
+	
+	    StringBuilder converted = new StringBuilder();
+	
+	    boolean convertNext = true;
+	    for (char ch : text.toCharArray()) {
+	        if (Character.isSpaceChar(ch)) {
+	            convertNext = true;
+	        } else if (convertNext) {
+	            ch = Character.toTitleCase(ch);
+	            convertNext = false;
+	        } else {
+	            ch = Character.toLowerCase(ch);
+	        }
+	        converted.append(ch);
+	    }
+	
+	    return converted.toString();
+	}
+
 }

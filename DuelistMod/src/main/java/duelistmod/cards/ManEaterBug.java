@@ -79,8 +79,8 @@ public class ManEaterBug extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); attackAllEnemies(AFX, this.multiDamage); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); attackAllEnemies(AFX, this.multiDamage); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 
 

@@ -41,7 +41,7 @@ public class RyuKokki extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.RESUMMON_DECK);
         this.tags.add(Tags.ZOMBIE);
-        this.startingResummonDeckCopies = 1;
+        this.resummonDeckCopies = 1;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;
         this.setupStartingCopies();

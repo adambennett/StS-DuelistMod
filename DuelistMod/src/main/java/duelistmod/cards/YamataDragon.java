@@ -41,7 +41,7 @@ public class YamataDragon extends DuelistCard
     	this.tags.add(Tags.DRAGON);
     	this.tags.add(Tags.GOOD_TRIB);
     	this.tags.add(Tags.DRAGON_DECK);
-        this.startingDragDeckCopies = 1;
+        this.dragonDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 1;

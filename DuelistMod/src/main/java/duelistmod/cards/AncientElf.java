@@ -35,7 +35,7 @@ public class AncientElf extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.ORB_DECK);
-        this.startingOrbDeckCopies = 1;
+        this.orbDeckCopies = 1;
 		this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;

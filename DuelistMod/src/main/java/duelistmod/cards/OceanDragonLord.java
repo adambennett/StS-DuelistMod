@@ -125,7 +125,7 @@ public class OceanDragonLord extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

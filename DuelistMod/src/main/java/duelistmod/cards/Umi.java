@@ -13,9 +13,9 @@ import duelistmod.powers.*;
 public class Umi extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Yami");
+    public static final String ID = DuelistMod.makeID("Umi");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.YAMI);
+    public static final String IMG = DuelistMod.makePath(Strings.UMI);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -40,7 +40,7 @@ public class Umi extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new YamiPower(p, p));
+    	applyPowerToSelf(new UmiPower(p, p));
     }
 
     // Which card to return when making a copy of this card.

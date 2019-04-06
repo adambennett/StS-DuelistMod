@@ -34,7 +34,7 @@ public class GoldenApples extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TRAP);
     	this.tags.add(Tags.INCREMENT_DECK);
-    	this.startingIncDeckCopies = 2;
+    	this.incrementDeckCopies = 2;
 		this.originalName = this.name;
 		this.setupStartingCopies();
     }

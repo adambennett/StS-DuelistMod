@@ -42,7 +42,7 @@ public class InsectKnight extends DuelistCard
         this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.OP_NATURE_DECK);
         this.startingOPNDeckCopies = 2;
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
@@ -82,8 +82,8 @@ public class InsectKnight extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 
 	@Override

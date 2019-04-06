@@ -8,7 +8,7 @@ public class MachineDeck extends DuelistCustomLoadout
 {
     public MachineDeck()
     {
-        this.ID = 17;
+        this.ID = 8;
         this.Name = "Machine Deck";
     }
 

@@ -46,11 +46,11 @@ public class SealedPack extends AbstractPotion {
 			int roll = AbstractDungeon.cardRandomRng.random(1, 5);
 			if (roll == 1)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, true, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, true, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 			}
 			else
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomCard, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
 			}
 		}
 	}

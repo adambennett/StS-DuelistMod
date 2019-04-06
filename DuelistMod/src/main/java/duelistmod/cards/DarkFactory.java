@@ -39,6 +39,7 @@ public class DarkFactory extends DuelistCard
 		this.energyOnUse = ENERGY;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.REDUCED);
+		this.tags.add(Tags.MACHINE);
 		this.misc = 0;
 		this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;

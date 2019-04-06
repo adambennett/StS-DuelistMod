@@ -1,69 +1,88 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 
 public class DarkEnergy extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Yami");
+    public static final String ID = DuelistMod.makeID("DarkEnergy");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.YAMI);
+    public static final String IMG = DuelistMod.makePath(Strings.DARK_ENERGY);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
+    
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DarkEnergy() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.METAL_RAIDERS);
-        this.tags.add(Tags.FIELDSPELL);
-        this.originalName = this.name;
-    }
-
-    // Actions the card should do.
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	applyPowerToSelf(new YamiPower(p, p));
-    }
-
-    // Which card to return when making a copy of this card.
-    @Override
-    public AbstractCard makeCopy() {
-        return new DarkEnergy();
-    }
-
-    // Upgraded stats.
-    @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBaseCost(1);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
-    }
+        this.baseDamage = this.damage = 6;
+        this.magicNumber = this.baseMagicNumber = 3;
+		this.originalName = this.name;
+		this.exhaust = true;
+		this.setupStartingCopies();
+	}
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) 
+	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
+		attack(m);
+		ArrayList<DuelistCard> aquas = new ArrayList<DuelistCard>();
+		for (int i = 0; i < this.magicNumber + 2; i++)
+		{
+			DuelistCard random = (DuelistCard) returnTrulyRandomFromSet(Tags.FIEND);
+			while (aquas.contains(random)) { random = (DuelistCard) returnTrulyRandomFromSet(Tags.FIEND); }
+			aquas.add(random);
+		}
+		
+		if (aquas.size() >= this.magicNumber)
+		{
+			for (int i = 0; i < this.magicNumber; i++)
+			{
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, false, true, false, true, false, false, 1, 4, 0, 0, 0, 1));
+			}
+		}
+	}
+
+	@Override
+	public AbstractCard makeCopy() { return new DarkEnergy(); }
+
+	@Override
+	public void upgrade() 
+	{
+		if (!upgraded) 
+		{
+			upgradeName();
+			this.upgradeDamage(3);
+			this.rawDescription = UPGRADE_DESCRIPTION;
+			this.initializeDescription();
+		}
+	}
+
+	
+
+	@Override
+	public void onTribute(DuelistCard tributingCard) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -76,14 +95,14 @@ public class DarkEnergy extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		// TODO Auto-generated method stub
 		
 	}
 

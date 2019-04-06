@@ -61,14 +61,16 @@ public class GaiaDragonChamp extends DuelistCard
     		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
 			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 			{
-				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-				if (summon.upgraded) { cardCopy.upgrade(); }
+				DuelistCard.fullResummon(cardCopy, this.upgraded, m, false);
+				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+				if (this.upgrade) { cardCopy.upgrade(); }
 				cardCopy.freeToPlayOnce = true;
 				cardCopy.applyPowers();
 				cardCopy.purgeOnUse = true;
 				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 				cardCopy.onResummon(1);
-				cardCopy.checkResummon();
+				cardCopy.checkResummon();*/
+				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 			}
     	}
     	
@@ -78,14 +80,16 @@ public class GaiaDragonChamp extends DuelistCard
     		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
 			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 			{
-				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-				if (summon.upgraded) { cardCopy.upgrade(); }
+				DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false);
+				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+				if (this.upgrade) { cardCopy.upgrade(); }
 				cardCopy.freeToPlayOnce = true;
 				cardCopy.applyPowers();
 				cardCopy.purgeOnUse = true;
 				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 				cardCopy.onResummon(1);
-				cardCopy.checkResummon();
+				cardCopy.checkResummon();*/
+				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 			}
     	}
     }

@@ -52,7 +52,7 @@ public class OrbEvokerPower extends AbstractPower
     @Override
     public void onEvokeOrb(AbstractOrb orb) 
     {
-    	DuelistMod.resetRandomBuffs(this.amount);
+    	BuffHelper.resetRandomBuffs(this.amount);
     	DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.amount, false);
     }
     

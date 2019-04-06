@@ -229,19 +229,37 @@ public class SummonPower extends AbstractPower
 		return false;
 	}
 	
+	public boolean isMonsterSummoned(String name)
+	{
+		if (summonList.size() > 0)
+		{
+			if (summonList.contains(name))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void updateStringColors()
 	{
 		ArrayList<CardTags> goodTags = new ArrayList<CardTags>();
 		goodTags.add(Tags.AQUA);
 		goodTags.add(Tags.FIEND);
 		goodTags.add(Tags.DRAGON);
+		goodTags.add(Tags.SUPERHEAVY);
+		goodTags.add(Tags.MACHINE);
+		goodTags.add(Tags.INSECT);
+		goodTags.add(Tags.PLANT);
+		goodTags.add(Tags.NATURIA);
+		goodTags.add(Tags.TOON);
 		coloredSummonList = new ArrayList<String>();
 		for (String s : summonList)
 		{
 			DuelistCard ref = DuelistMod.summonMap.get(s);
 			if (ref == null) { ref = new Token(); }
 			String coloredString = "";
-			if ((ref.hasTag(Tags.GOOD_TRIB) && !(ref instanceof Token)) || (DuelistMod.hasTags(ref, goodTags) && !(ref instanceof Token))) 
+			if ((ref.hasTag(Tags.GOOD_TRIB) && !(ref instanceof Token)) || (StarterDeckSetup.hasTags(ref, goodTags) && !(ref instanceof Token))) 
 			{
 				coloredString = "#b" + s;
 				coloredString = coloredString.replaceAll("\\s", " #b"); 

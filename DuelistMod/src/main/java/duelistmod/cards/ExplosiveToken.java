@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.patches.*;
+import duelistmod.relics.MachineToken;
 
 public class ExplosiveToken extends DuelistCard 
 {
@@ -31,20 +32,31 @@ public class ExplosiveToken extends DuelistCard
 
     public ExplosiveToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); }
     public ExplosiveToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); }
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) 
+    {
+    	summon(AbstractDungeon.player, 1, this); 
+    }
     @Override public AbstractCard makeCopy() { return new ExplosiveToken(); }
     @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (DuelistMod.challengeMode) 
-		{ 
-			int damageRoll = AbstractDungeon.cardRandomRng.random(1, 6);
-			damageSelf(damageRoll); 
-		}
-		else 
-		{ 
+		if (AbstractDungeon.player.hasRelic(MachineToken.ID))
+		{
 			int damageRoll = AbstractDungeon.cardRandomRng.random(1, 3);
-			damageSelf(damageRoll); 
+			attack(getRandomMonster(), this.baseAFX, damageRoll);
+		}
+		else
+		{
+			if (DuelistMod.challengeMode) 
+			{ 
+				int damageRoll = AbstractDungeon.cardRandomRng.random(1, 6);
+				damageSelf(damageRoll); 
+			}
+			else 
+			{ 
+				int damageRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+				damageSelf(damageRoll); 
+			}
 		}
 	}
 	@Override public void onResummon(int summons) { }

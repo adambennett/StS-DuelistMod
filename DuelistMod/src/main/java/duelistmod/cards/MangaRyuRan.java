@@ -39,8 +39,9 @@ public class MangaRyuRan extends DuelistCard
         this.toon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);
+        this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.TOON_DECK);
-        this.startingToonDeckCopies = 1;
+        this.toonDeckCopies = 1;
 		this.originalName = this.name;
         this.setupStartingCopies();
     }

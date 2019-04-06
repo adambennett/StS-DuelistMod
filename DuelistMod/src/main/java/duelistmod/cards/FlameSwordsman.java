@@ -38,7 +38,6 @@ public class FlameSwordsman extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
-        this.tags.add(Tags.REPLAYSPIRE);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;

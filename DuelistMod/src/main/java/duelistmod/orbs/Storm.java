@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedAction;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistOrb;
 import duelistmod.patches.DuelistCard;
 
@@ -59,7 +59,7 @@ public class Storm extends DuelistOrb
 		applyFocus();
 		DuelistCard randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
 		while (!randomPower.type.equals(CardType.POWER)) { randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard(); }
-		AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomPower, false, true, false, true, false, false, false, false, 1, 6 - this.evokeAmount, 0, 0, 0, 0));
+		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomPower, false, true, false, true, false, false, false, false, 1, 6 - this.evokeAmount, 0, 0, 0, 0));
 	}
 	
 	@Override

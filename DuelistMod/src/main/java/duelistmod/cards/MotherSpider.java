@@ -37,7 +37,7 @@ public class MotherSpider extends DuelistCard
         this.tags.add(Tags.NATURE_DECK);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
-        this.startingNatureDeckCopies = 1;
+        this.natureDeckCopies = 1;
         this.baseMagicNumber = this.magicNumber = 5;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;
@@ -108,8 +108,8 @@ public class MotherSpider extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 
 

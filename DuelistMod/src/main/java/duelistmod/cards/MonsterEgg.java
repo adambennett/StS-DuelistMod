@@ -1,9 +1,8 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -38,7 +37,7 @@ public class MonsterEgg extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GENERATION_DECK);
-		this.startingGenDeckCopies = 1;
+		this.generationDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;
@@ -59,14 +58,15 @@ public class MonsterEgg extends DuelistCard
     	while (extraDragA.hasTag(Tags.EXEMPT)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.MONSTER, Tags.TOON); }
     	String cardNameA = extraDragA.originalName;    	
     	if (DuelistMod.debug) { System.out.println("theDuelist:MonsterEgg --- > Generated: " + cardNameA); }
-    	if (!extraDragA.tags.contains(Tags.TRIBUTE)) { extraDragA.misc = 52; }    	
+    	fullResummon(extraDragA, this.upgraded, m, false);
+    	/*if (!extraDragA.tags.contains(Tags.TRIBUTE)) { extraDragA.misc = 52; }    	
         extraDragA.freeToPlayOnce = true;       
         extraDragA.applyPowers();      
         extraDragA.purgeOnUse = true;
         if (this.upgraded) { extraDragA.upgrade();  }
         AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));    	
         extraDragA.onResummon(1);
-        extraDragA.checkResummon();
+        extraDragA.checkResummon();*/
     }
 
     // Which card to return when making a copy of this card.

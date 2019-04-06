@@ -40,7 +40,7 @@ public class LegendExodia extends DuelistCard
         this.tags.add(Tags.EXODIA);
         this.tags.add(Tags.FULL);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
         this.damage = this.baseDamage = 20;
         this.exhaust = true;
         this.originalName = this.name;

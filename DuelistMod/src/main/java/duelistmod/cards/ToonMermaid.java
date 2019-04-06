@@ -42,7 +42,7 @@ public class ToonMermaid extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.TOON_DECK);
-        this.startingToonDeckCopies = 1;
+        this.toonDeckCopies = 1;
 		this.originalName = this.name;
         this.isSummon = true;
         this.setupStartingCopies();

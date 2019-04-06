@@ -42,7 +42,7 @@ public class InjectionFairy extends DuelistCard
 		this.tags.add(Tags.HEAL_DECK);
 		this.tags.add(Tags.ORIGINAL_HEAL_DECK);
 	    this.startingOPHDeckCopies = 1;
-        this.startingHealDeckCopies = 1;
+        this.healDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;

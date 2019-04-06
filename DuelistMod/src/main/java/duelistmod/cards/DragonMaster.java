@@ -60,14 +60,15 @@ public class DragonMaster extends DuelistCard
         	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA.originalName.equals("Gandora")) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON); }
         	String cardNameA = extraDragA.originalName;
         	if (DuelistMod.debug) { System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA); }
-        	if (!extraDragA.tags.contains(Tags.TRIBUTE)) { extraDragA.misc = 52; }
+        	fullResummon(extraDragA, this.upgraded, m, false);
+        	/*if (!extraDragA.tags.contains(Tags.TRIBUTE)) { extraDragA.misc = 52; }
         	extraDragA.freeToPlayOnce = true;
         	extraDragA.applyPowers();
         	extraDragA.purgeOnUse = true;
         	if (this.upgraded) { extraDragA.upgrade(); }
         	AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));
         	extraDragA.onResummon(1);
-        	extraDragA.checkResummon();
+        	extraDragA.checkResummon();*/
     	}
     }
 

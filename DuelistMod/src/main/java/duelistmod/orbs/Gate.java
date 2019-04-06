@@ -23,7 +23,7 @@ import duelistmod.patches.DuelistCard;
 @SuppressWarnings("unused")
 public class Gate extends DuelistOrb
 {
-	public static final String ID = duelistmod.DuelistMod.makeID("Gate");
+	public static final String ID = DuelistMod.makeID("Gate");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 1.0F; 
@@ -52,9 +52,10 @@ public class Gate extends DuelistOrb
 		originalPassive = this.basePassiveAmount;
 		DuelistCard thunder = new SangaThunder();
 		DuelistCard earth = new SangaEarth();
+		DuelistCard water = new SangaWater(); 
 		guardians.add(thunder); 
 		guardians.add(earth);
-		if (DuelistMod.isConspire) { DuelistCard water = new SangaWater(); guardians.add(water); }
+		guardians.add(water);
 	}
 
 	@Override
@@ -71,7 +72,6 @@ public class Gate extends DuelistOrb
 		DuelistCard secondRandom = guardians.get(AbstractDungeon.cardRandomRng.random(guardians.size() - 1));
 		DuelistCard.summon(AbstractDungeon.player, 1, firstRandom);
 		DuelistCard.summon(AbstractDungeon.player, 1, secondRandom);
-		//DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS, "Gate Token", false);
 	}
 
 	@Override

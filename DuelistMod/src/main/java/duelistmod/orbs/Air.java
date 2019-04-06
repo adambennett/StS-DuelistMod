@@ -46,7 +46,7 @@ public class Air extends DuelistOrb
 		originalPassive = this.basePassiveAmount;
 		checkFocus();
 	}
-
+	
 	@Override
 	public void updateDescription()
 	{
@@ -60,6 +60,7 @@ public class Air extends DuelistOrb
 	{
 		applyFocus();
 		AbstractDungeon.player.increaseMaxOrbSlots(this.evokeAmount, true);
+		if (DuelistMod.debug) { System.out.println("air orb evoked, gained orb slot. orb slots: " + AbstractDungeon.player.maxOrbs); }
 	}
 	
 	@Override
@@ -154,18 +155,6 @@ public class Air extends DuelistOrb
 	@Override
 	public void checkFocus()
 	{
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
-		{
-			this.baseEvokeAmount = 1 + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-		}
-		else 
-		{
-			this.baseEvokeAmount = 1;
-		}
-		if (DuelistMod.debug)
-		{
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
-		}
 		applyFocus();
 		updateDescription();
 	}

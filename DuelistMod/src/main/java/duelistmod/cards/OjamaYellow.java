@@ -39,7 +39,7 @@ public class OjamaYellow extends DuelistCard
 		this.tags.add(Tags.OJAMA);
 		this.tags.add(Tags.INVASION_CHAOS);
 		this.tags.add(Tags.OJAMA_DECK);
-		this.startingOjamaDeckCopies = 2;
+		this.ojamaDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.summons = this.baseSummons = SUMMONS;
@@ -57,8 +57,8 @@ public class OjamaYellow extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
-			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, true, true, true, true, 1, 4, 0, 2, 0, 2)); }
-			else { AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, true, true, false, false, 1, 4, 0, 1, 0, 1)); }
+			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, true, true, true, true, 1, 4, 0, 2, 0, 2)); }
+			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, true, true, false, false, 1, 4, 0, 1, 0, 1)); }
 		}
 	}
 

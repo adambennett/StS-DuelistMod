@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedAction;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.*;
 import duelistmod.patches.DuelistCard;
 
@@ -62,7 +62,7 @@ public class Black extends DuelistOrb
 	public void onEvoke()
 	{
 		DuelistCard randomFiend = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.FIEND);
-		AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomFiend, false, true, false, false, true, true, false, true, 0, 0, 0, this.evokeAmount, 0, this.evokeAmount));
+		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomFiend, false, true, false, false, true, true, false, true, 0, 0, 0, this.evokeAmount, 0, this.evokeAmount));
 	}
 
 	@Override

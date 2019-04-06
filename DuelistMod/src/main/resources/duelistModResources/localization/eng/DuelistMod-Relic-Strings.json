@@ -132,6 +132,27 @@
 			"Whenever you #yInvert, repeat the same #yInvert action."
 		]
 	},
+	"theDuelist:NaturiaRelic": {
+		"NAME": "Nature Orb",
+		"FLAVOR": "An orb covered with leaves and dirt. How odd.",
+		"DESCRIPTIONS": [
+			"Your #yNaturia powers deal #b2 damage per #yNaturia monster instead of #b1."
+		]
+	},
+	"theDuelist:InsectRelic": {
+		"NAME": "Bug Token",
+		"FLAVOR": "A dirty token shaped like a beetle.",
+		"DESCRIPTIONS": [
+			"Whenever you apply #yPoison from #yTributing an #yInsect or #yPlant, add #b", " extra poison. Upon defeating Bosses and Elites, have a #b25% chance to further increase this #yPoison buff by #b1."
+		]
+	},
+	"theDuelist:MachineToken": {
+		"NAME": "Machine Token",
+		"FLAVOR": "A mechanical token covered with small wires and strange markings. Best not fiddle with it too much.",
+		"DESCRIPTIONS": [
+			"#yExplosive #yTokens deal damage randomly to enemies instead of damaging you."
+		]
+	},
 	"theDuelist:PlaceholderRelic2": {
 		"NAME": "Placeholder Relic 2",
 		"FLAVOR": "You feel stronger.",

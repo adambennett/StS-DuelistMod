@@ -187,7 +187,6 @@ public class CharacterSelectScreenPatch
     private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
     {
     	DuelistCharacterSelect.refreshCharacterDecks();
-        int currentLevel = UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST);
         int currentTotalScore = UnlockTracker.getCurrentScoreTotal(TheDuelistEnum.THE_DUELIST);
         DuelistCharacterSelect.GetSelectedLoadout().Refresh(currentTotalScore, selectScreen, option);
     }

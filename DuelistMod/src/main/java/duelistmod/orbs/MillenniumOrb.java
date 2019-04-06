@@ -38,7 +38,7 @@ public class MillenniumOrb extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -75,7 +75,7 @@ public class MillenniumOrb extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
-		MillenniumEffect.runMillenniumEffect(0);
+		PuzzleHelper.runSpecialEffect(this.passiveAmount, 0);
 	}
 
 	@Override

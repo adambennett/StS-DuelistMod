@@ -8,7 +8,7 @@ public class RandomDeckSmall extends DuelistCustomLoadout
 {
     public RandomDeckSmall()
     {
-        this.ID = 5;
+        this.ID = 18;
         this.Name = "Random Deck (Small)";
     }
 

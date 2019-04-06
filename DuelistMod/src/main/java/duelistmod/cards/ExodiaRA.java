@@ -41,7 +41,7 @@ public class ExodiaRA extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.LIMITED);
         this.tags.add(Tags.EXODIA_DECK);
-        this.startingExodiaDeckCopies = 1;
+        this.exodiaDeckCopies = 1;
         this.damage = this.baseDamage = 6;
         this.summons = this.baseSummons = 1;
         this.block = this.baseBlock = 1;

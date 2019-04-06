@@ -45,7 +45,6 @@ public class SangaWater extends DuelistCard
     	this.tags.add(Tags.GUARDIAN);
     	this.tags.add(Tags.METAL_RAIDERS);
     	this.tags.add(Tags.GOOD_TRIB);
-    	this.tags.add(Tags.CONSPIRE);
     	this.tags.add(Tags.AQUA);
     	this.misc = 0;
 		this.originalName = this.name;
@@ -61,8 +60,7 @@ public class SangaWater extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Water();
-    	channel(orb);
+    	channelWater();
     }
 
     // Which card to return when making a copy of this card.
@@ -121,7 +119,7 @@ public class SangaWater extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

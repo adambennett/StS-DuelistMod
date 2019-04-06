@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,35 +17,33 @@ import duelistmod.powers.*;
 public class SkullArchfiend extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = duelistmod.DuelistMod.makeID("SummonedSkull");
+	public static final String ID = DuelistMod.makeID("SkullArchfiend");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-	public static final String IMG = DuelistMod.makePath(Strings.SUMMONED_SKULL);
+	public static final String IMG = DuelistMod.makePath(Strings.SKULL_ARCHFIEND);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.BASIC;
+	private static final CardRarity RARITY = CardRarity.RARE;
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-	private static final int COST = 1;
-	private static final int DAMAGE = 11;
+	private static final int COST = 2;
+	private static final int DAMAGE = 22;
 	// /STAT DECLARATION/
 
 	public SkullArchfiend() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = this.baseTributes = 1;
-		this.magicNumber = this.baseMagicNumber = this.tributes;
+		this.tributes = this.baseTributes = 3;
+		this.magicNumber = this.baseMagicNumber = 1;
 		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.METAL_RAIDERS);
 		this.tags.add(Tags.FIEND);
 		this.misc = 0;
 		this.originalName = this.name;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
@@ -53,6 +52,15 @@ public class SkullArchfiend extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
+		for (AbstractCard c : p.discardPile.group)
+		{
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dC = (DuelistCard)c;
+				dC.modifyTributes(this.magicNumber);
+			}
+			AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(c.uuid, this.magicNumber * 6));
+		}
 	}
 
 	// Which card to return when making a copy of this card.
@@ -67,7 +75,7 @@ public class SkullArchfiend extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			//this.tributes = this.magicNumber = this.baseMagicNumber = 0;
-			this.upgradeDamage(4);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

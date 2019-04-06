@@ -39,6 +39,9 @@ public class AlphaMagnet extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LIMITED);
         this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET_DECK);
+		this.superheavyDeckCopies = 1;
+		this.setupStartingCopies();
         this.originalName = this.name;
         this.isSummon = true;
     }
@@ -47,7 +50,8 @@ public class AlphaMagnet extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
+    	//summon(p, this.summons, this);
+    	summon();
     	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
     	attack(m, AFX, this.damage);
     }

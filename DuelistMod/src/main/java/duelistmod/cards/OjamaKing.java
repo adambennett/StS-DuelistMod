@@ -43,9 +43,8 @@ public class OjamaKing extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.OJAMA);
-        this.tags.add(Tags.REPLAYSPIRE);
         this.tags.add(Tags.OJAMA_DECK);
-		this.startingOjamaDeckCopies = 1;
+		this.ojamaDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
@@ -64,7 +63,7 @@ public class OjamaKing extends DuelistCard
 		for (int i = 0; i < RAND_CARDS; i++)
 		{
 			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(card, false, true, true, false, true, true, true, true, 1, 4, 0, 1, 1, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, true, true, true, true, 1, 4, 0, 1, 1, 2));
 		}
 		
 		// Give self 3 random buffs

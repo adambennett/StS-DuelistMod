@@ -39,7 +39,7 @@ public class BookSecret extends DuelistCard
         this.tags.add(Tags.GENERATION_DECK);
         this.tags.add(Tags.OP_SPELLCASTER_DECK);
         this.startingOPSPDeckCopies = 1;
-		this.startingGenDeckCopies = 2;
+		this.generationDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();
@@ -54,7 +54,7 @@ public class BookSecret extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELLCASTER);
-			AbstractDungeon.actionManager.addToTop(new RandomizedAction(randomMonster, this.upgraded, true, false, true, false, true, false, false, 1, 4, 0, 0, 0, 1));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, true, false, false, 1, 4, 0, 0, 0, 1));
 		}
     }
 

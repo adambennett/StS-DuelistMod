@@ -81,14 +81,15 @@ public class Shadow extends DuelistOrb
     			DuelistCard cardCopy = DuelistCard.newCopyOfMonster(cardName);
     			if (cardCopy != null)
     			{
-    				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+    				DuelistCard.fullResummon(cardCopy, chosen.upgraded, m, false);
+    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
     				cardCopy.freeToPlayOnce = true;
     				cardCopy.applyPowers();
     				cardCopy.purgeOnUse = true;
     				if (chosen.upgraded) { cardCopy.upgrade(); }
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
-    				cardCopy.checkResummon();
+    				cardCopy.checkResummon();*/
     				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
     			}
     		

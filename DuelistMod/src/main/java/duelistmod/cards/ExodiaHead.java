@@ -40,7 +40,7 @@ public class ExodiaHead extends DuelistCard
         if (!DuelistMod.challengeMode)
         {
         	this.tags.add(Tags.EXODIA_DECK);
-        	this.startingExodiaDeckCopies = 1;
+        	this.exodiaDeckCopies = 1;
         }
         this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 1;

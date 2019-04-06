@@ -8,7 +8,7 @@ public class ToonDeck extends DuelistCustomLoadout
 {
     public ToonDeck()
     {
-        this.ID = 7;
+        this.ID = 4;
         this.Name = "Toon Deck";
     }
 

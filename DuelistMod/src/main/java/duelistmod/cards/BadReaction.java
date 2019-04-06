@@ -41,7 +41,7 @@ public class BadReaction extends DuelistCard
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.HEAL_DECK);
-        this.startingHealDeckCopies = 1;
+        this.healDeckCopies = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
     }

@@ -3,10 +3,9 @@ package duelistmod.cards;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -67,6 +66,8 @@ public class PredaplantDrosophyllum extends DuelistCard
 			    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
 						if (cardCopy != null)
 						{
+							DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false);
+		    				/*
 							if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 							if (summon.upgraded) { cardCopy.upgrade(); }
 							cardCopy.freeToPlayOnce = true;
@@ -74,7 +75,7 @@ public class PredaplantDrosophyllum extends DuelistCard
 							cardCopy.purgeOnUse = true;
 							AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 							cardCopy.onResummon(1);
-							cardCopy.checkResummon();
+							cardCopy.checkResummon();*/
 						}
     				}
     				else
@@ -84,14 +85,15 @@ public class PredaplantDrosophyllum extends DuelistCard
     						DuelistCard cardCopy = DuelistCard.newCopyOfMonster(plant.originalName);
     						if (cardCopy != null)
     						{
-    							if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+    							DuelistCard.fullResummon(cardCopy, plant.upgraded, m, false);
+    							/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
     							if (plant.upgraded) { cardCopy.upgrade(); }
     							cardCopy.freeToPlayOnce = true;
     							cardCopy.applyPowers();
     							cardCopy.purgeOnUse = true;
     							AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     							cardCopy.onResummon(1);
-    							cardCopy.checkResummon();
+    							cardCopy.checkResummon();*/
     						}
     					}
     				}
@@ -111,7 +113,7 @@ public class PredaplantDrosophyllum extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeDamage(3);
+            this.upgradeDamage(6);
             this.upgradeTributes(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
@@ -155,8 +157,8 @@ public class PredaplantDrosophyllum extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 
 

@@ -8,7 +8,7 @@ public class GenerationDeck extends DuelistCustomLoadout
 {
     public GenerationDeck()
     {
-        this.ID = 10;
+        this.ID = 12;
         this.Name = "Generation Deck";
         this.cardCount = "16 Cards";
     }

@@ -3,9 +3,10 @@ import java.util.ArrayList;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 
 import basemod.abstracts.CustomPlayer;
-import duelistmod.DuelistMod;
+import duelistmod.*;
 
 
 @SpirePatch(
@@ -20,10 +21,13 @@ public class CardColorsPoolPatch
 	{
 		if (__instance.name.equals("the Duelist"))
 		{
-			DuelistMod.fillColoredCards();
+			PoolHelpers.fillColoredCards();
 			for (AbstractCard c : DuelistMod.coloredCards)
 			{
-				tmpPool.add(c);
+				if (!c.rarity.equals(CardRarity.SPECIAL))
+				{
+					tmpPool.add(c);
+				}				
 			}
 		}
 	}

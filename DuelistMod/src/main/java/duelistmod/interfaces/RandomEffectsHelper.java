@@ -2,11 +2,9 @@ package duelistmod.interfaces;
 
 import java.util.ArrayList;
 
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.mod.replay.powers.NecroticPoisonPower;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
@@ -25,24 +23,12 @@ public class RandomEffectsHelper
 		AbstractPower weak = new WeakPower(targetMonster, turnNum, false);
 		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
-		if (Loader.isModLoaded("ReplayTheSpireMod"))
-    	{
-			AbstractPower nPoison = new NecroticPoisonPower(targetMonster, p, turnNum);
-			debuffs.add(slow);
-			debuffs.add(vulnerable);
-			debuffs.add(poison);
-			debuffs.add(nPoison);
-			debuffs.add(weak);
-			debuffs.add(constricted);
-    	}
-		else
-		{
-			debuffs.add(slow);
-			debuffs.add(vulnerable);
-			debuffs.add(poison);
-			debuffs.add(weak);
-			debuffs.add(constricted);
-		}
+		debuffs.add(slow);
+		debuffs.add(vulnerable);
+		debuffs.add(poison);
+		debuffs.add(weak);
+		debuffs.add(constricted);
+		
 
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
@@ -60,23 +46,10 @@ public class RandomEffectsHelper
 		AbstractPower weak = new WeakPower(targetMonster, turnNum, true);
 		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
-		if (Loader.isModLoaded("ReplayTheSpireMod"))
-    	{
-			AbstractPower nPoison = new NecroticPoisonPower(targetMonster, p, turnNum);
-			debuffs.add(vulnerable);
-			debuffs.add(poison);
-			debuffs.add(nPoison);
-			debuffs.add(weak);
-			debuffs.add(constricted);
-			
-    	}
-		else
-		{
-			debuffs.add(vulnerable);
-			debuffs.add(poison);
-			debuffs.add(weak);
-			debuffs.add(constricted);
-		}
+		debuffs.add(vulnerable);
+		debuffs.add(poison);
+		debuffs.add(weak);
+		debuffs.add(constricted);
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
 		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);
@@ -103,40 +76,21 @@ public class RandomEffectsHelper
 		AbstractPower confusion = new ConfusionPower(p);
 		AbstractPower corruption = new CorruptionPower(p);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
-		if (Loader.isModLoaded("ReplayTheSpireMod"))
-    	{
-			AbstractPower nPoison = new NecroticPoisonPower(p, p, turnNum);
-			debuffs.add(slow);
-			debuffs.add(vulnerable);
-			debuffs.add(poison);
-			debuffs.add(nPoison);
-			debuffs.add(weak);
-			debuffs.add(entangled);
-			debuffs.add(hexed);
-			debuffs.add(summonSick);
-			debuffs.add(tributeSick);
-			debuffs.add(evokeSick);
-			debuffs.add(attackBurn);
-			//debuffs.add(beatOfDeath);
-			debuffs.add(confusion);
-			debuffs.add(corruption);
-    	}
-		else
-		{
-			debuffs.add(slow);
-			debuffs.add(vulnerable);
-			debuffs.add(poison);
-			debuffs.add(weak);
-			debuffs.add(entangled);
-			debuffs.add(hexed);
-			debuffs.add(summonSick);
-			debuffs.add(tributeSick);
-			debuffs.add(evokeSick);
-			debuffs.add(attackBurn);
-			//debuffs.add(beatOfDeath);
-			debuffs.add(confusion);
-			debuffs.add(corruption);
-		}
+		
+		debuffs.add(slow);
+		debuffs.add(vulnerable);
+		debuffs.add(poison);
+		debuffs.add(weak);
+		debuffs.add(entangled);
+		debuffs.add(hexed);
+		debuffs.add(summonSick);
+		debuffs.add(tributeSick);
+		debuffs.add(evokeSick);
+		debuffs.add(attackBurn);
+		//debuffs.add(beatOfDeath);
+		debuffs.add(confusion);
+		debuffs.add(corruption);
+	
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
 		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);

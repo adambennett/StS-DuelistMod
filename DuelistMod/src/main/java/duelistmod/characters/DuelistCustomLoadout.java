@@ -42,8 +42,68 @@ public class DuelistCustomLoadout
 		}
 		
 		DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
-		if (DuelistMod.deckIndex == 1) { selectScreen.bgCharImg = DuelistMod.GetCharacterPortrait(1); }
-		else { selectScreen.bgCharImg = DuelistMod.GetCharacterPortrait(0); }
+		
+		// Stanard
+		if (DuelistMod.deckIndex == 0) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+		
+		// Dragon
+		if (DuelistMod.deckIndex == 1) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+		
+		// Nature
+		else if (DuelistMod.deckIndex == 2) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+		
+		// Spellcaster
+		else if (DuelistMod.deckIndex == 3) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Toon
+		else if (DuelistMod.deckIndex == 4) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+		
+		// Zombie
+		else if (DuelistMod.deckIndex == 5) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+		
+		// Aqua
+		else if (DuelistMod.deckIndex == 6) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
+		
+		// Fiend
+		else if (DuelistMod.deckIndex == 7) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Machine
+		else if (DuelistMod.deckIndex == 8) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Superheavy
+		else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Creator
+		else if (DuelistMod.deckIndex == 10) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Ojama
+		else if (DuelistMod.deckIndex == 11) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Generation
+		else if (DuelistMod.deckIndex == 12) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Orb
+		else if (DuelistMod.deckIndex == 13) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Resummon
+		else if (DuelistMod.deckIndex == 14) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Increment
+		else if (DuelistMod.deckIndex == 15) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Exodia
+		else if (DuelistMod.deckIndex == 16) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Heal
+		else if (DuelistMod.deckIndex == 17) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Random (Small)
+		else if (DuelistMod.deckIndex == 18) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		// Random (Big)
+		else if (DuelistMod.deckIndex == 19) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		
+		else { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
 	}
 
 	public String GetDescription()

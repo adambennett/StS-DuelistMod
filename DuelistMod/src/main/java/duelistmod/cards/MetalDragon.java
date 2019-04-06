@@ -44,6 +44,7 @@ public class MetalDragon extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GOOD_TRIB);
         this.misc = 0;

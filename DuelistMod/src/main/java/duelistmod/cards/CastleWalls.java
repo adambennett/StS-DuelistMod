@@ -37,8 +37,8 @@ public class CastleWalls extends DuelistCard
         this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.ORIGINAL_DECK);       
         this.startingOriginalDeckCopies = 2;
-        this.startingExodiaDeckCopies = 4;
-        this.startingDeckCopies = 2;
+        this.exodiaDeckCopies = 4;
+        this.standardDeckCopies = 2;
         this.originalName = this.name;
         this.setupStartingCopies();
     }

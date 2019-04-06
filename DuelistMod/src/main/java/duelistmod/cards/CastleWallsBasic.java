@@ -45,16 +45,16 @@ public class CastleWallsBasic extends DuelistCard
         this.tags.add(Tags.HEAL_DECK);
         this.tags.add(Tags.CREATOR_DECK);
         this.tags.add(Tags.GENERATION_DECK);
-		this.startingGenDeckCopies = 3;
-        this.startingDeckCopies = 2;
-        this.startingDragDeckCopies = 3;
-        this.startingSpellcasterDeckCopies = 2;
-        this.startingNatureDeckCopies = 4;
-        this.startingToonDeckCopies = 2;
-        this.startingCreatorDeckCopies = 3;
-        this.startingOrbDeckCopies = 2;
-        this.startingResummonDeckCopies = 2;
-        this.startingHealDeckCopies = 3;
+		this.generationDeckCopies = 3;
+        this.standardDeckCopies = 2;
+        this.dragonDeckCopies = 3;
+        this.spellcasterDeckCopies = 2;
+        this.natureDeckCopies = 4;
+        this.toonDeckCopies = 2;
+        this.creatorDeckCopies = 3;
+        this.orbDeckCopies = 2;
+        this.resummonDeckCopies = 2;
+        this.healDeckCopies = 3;
         this.originalName = this.name;
         this.setupStartingCopies();
     }

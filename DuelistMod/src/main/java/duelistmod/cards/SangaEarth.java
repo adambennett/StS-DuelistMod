@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -44,7 +43,7 @@ public class SangaEarth extends DuelistCard
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.GUARDIAN);
     	this.tags.add(Tags.METAL_RAIDERS);
-    	if (Loader.isModLoaded("conspire")) { this.tags.add(Tags.GOOD_TRIB); }
+    	this.tags.add(Tags.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;

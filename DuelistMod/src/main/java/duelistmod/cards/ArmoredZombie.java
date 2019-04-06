@@ -39,7 +39,7 @@ public class ArmoredZombie extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
         this.startingOPRDeckCopies = 2;
-        this.startingResummonDeckCopies = 2;
+        this.resummonDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
         this.block = this.baseBlock = 5;

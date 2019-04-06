@@ -34,6 +34,7 @@ public class LordD extends DuelistCard
 	public LordD() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
+		this.tags.add(Tags.SPELLCASTER);
 		this.tributes = this.baseTributes = 2;
 		this.originalName = this.name;
 

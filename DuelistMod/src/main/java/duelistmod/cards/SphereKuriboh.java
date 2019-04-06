@@ -34,7 +34,7 @@ public class SphereKuriboh extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.INCREMENT_DECK);
-        this.startingDeckCopies = 1;
+        this.standardDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.setupStartingCopies();

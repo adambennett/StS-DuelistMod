@@ -8,14 +8,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.RandomEffectsHelper;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
 public class OjamaKnight extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("OjamaKnight");
+    public static final String ID = DuelistMod.makeID("OjamaKnight");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.OJAMA_KNIGHT);
     public static final String NAME = cardStrings.NAME;
@@ -31,21 +30,18 @@ public class OjamaKnight extends DuelistCard
     private static final int COST = 2;
     private static int MIN_BUFF_TURNS_ROLL = 1;
     private static int MAX_BUFF_TURNS_ROLL = 6;
-    private static int MIN_DEBUFF_TURNS_ROLL = 3;
-    private static int MAX_DEBUFF_TURNS_ROLL = 6;
     // /STAT DECLARATION/
 
     public OjamaKnight() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.OJAMA);
-        this.tags.add(Tags.REPLAYSPIRE);
         this.tags.add(Tags.OJAMA_DECK);
-		this.startingOjamaDeckCopies = 1;
+		this.ojamaDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 3;
     }
 
     
@@ -55,31 +51,9 @@ public class OjamaKnight extends DuelistCard
     {
     	// Tribute
 		tribute(p, this.tributes, false, this);
-
-		// Get number of buffs & debuffs
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
-    	int randomDebuffNumU = AbstractDungeon.cardRandomRng.random(1, 3); 
-    	int randomBuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
-    	int randomBuffNumU = AbstractDungeon.cardRandomRng.random(1, 3); 
-    	
-    	// Set number of buffs & debuffs to right number (based on upgrade status)
-    	int primary = 4;	int primaryB = 4;
-    	if (this.upgraded) { primary = randomDebuffNumU; primaryB = randomBuffNumU;  }
-    	else { primary = randomDebuffNum; primaryB = randomBuffNum; }
- 
-		// Give self 'primaryB' random buffs
-		for (int i = 0; i < primaryB; i++)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL);
-			applyRandomBuffPlayer(p, randomTurnNum, true);
-		}
-		
-		// Give 'primary' random debuffs to enemy
-		for (int i = 0; i < primary; i++)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum), m);
-		}
+		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL);
+		applyRandomBuffPlayer(p, randomTurnNum, true);
+		invert(1);
     }
 
     // Which card to return when making a copy of this card.
@@ -90,12 +64,24 @@ public class OjamaKnight extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
+    public void upgrade() 
+    {
+    	if (this.canUpgrade())
+    	{
+    		if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+	        if (this.tributes > 0) { this.upgradeTributes(-1); }
+	        else if (this.cost > 0) { this.upgradeBaseCost(this.cost - 1); }
+	        this.rawDescription = UPGRADE_DESCRIPTION;
+	        this.initializeDescription();
+    	}
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.tributes > 0 || this.cost > 0) { return true; }
+    	else { return false; }
     }
     
     // If player doesn't have enough summons, can't play card

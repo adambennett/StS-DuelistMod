@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.interfaces.DuelistOrb;
 import duelistmod.patches.DuelistCard;
 import duelistmod.powers.SummonPower;
@@ -60,7 +60,7 @@ public class Consumer extends DuelistOrb
 	{
 		applyFocus();
 		int tribs = DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
-		DuelistMod.resetRandomBuffs(tribs);
+		BuffHelper.resetRandomBuffs(tribs);
 		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, tribs, false);
 	}
 	

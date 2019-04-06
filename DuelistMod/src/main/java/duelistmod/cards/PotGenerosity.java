@@ -23,7 +23,7 @@ public class PotGenerosity extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION 	
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;

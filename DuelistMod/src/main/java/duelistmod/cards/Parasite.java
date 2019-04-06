@@ -33,7 +33,6 @@ public class Parasite extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.PHARAOH_SERVANT);
-		this.tags.add(Tags.REPLAYSPIRE);
 		this.tags.add(Tags.INSECT);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.originalName = this.name;
@@ -71,8 +70,8 @@ public class Parasite extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 5); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), 3); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 
 
