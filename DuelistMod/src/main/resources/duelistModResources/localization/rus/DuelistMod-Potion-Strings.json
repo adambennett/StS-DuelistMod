@@ -3,6 +3,10 @@
         "NAME": "Millennium Elixir",
         "DESCRIPTIONS": ["Gain 2 random #ybuffs."]
 },
+"theDuelist:ExtraOrbsBottle": {
+        "NAME": "Fairy Bottle",
+        "DESCRIPTIONS": ["Increase your Orb slots by #b", "."]
+},
 "theDuelist:SealedPack": {
         "NAME": "Small Booster",
         "DESCRIPTIONS": ["Open a #yLegend #yof #yBlue #yEyes booster pack. Add #b3 #yrandomized cards from this set to your hand."]
@@ -10,6 +14,70 @@
 "theDuelist:SealedPackB": {
         "NAME": "Small Pack",
         "DESCRIPTIONS": ["Open a booster pack containing cards from #yPharaoh's #yServant and #yMetal #yRaiders. Add #b3 #yrandomized cards from either of these sets to your hand."]
+},
+"theDuelist:OrbBottle": {
+        "NAME": "Foggy Bottle",
+        "DESCRIPTIONS": ["Channel a random Orb.", "Channel #b", " random Orbs."]
+},
+"theDuelist:AirBottle": {
+        "NAME": "Bottled Wind",
+        "DESCRIPTIONS": ["Channel an #yAir.", "Channel #b", " #yAir Orbs."]
+},
+"theDuelist:BlackBottle": {
+        "NAME": "Bottled Darkness",
+        "DESCRIPTIONS": ["Channel a #yBlack.", "Channel #b", " #yBlack Orbs."]
+},
+"theDuelist:DragonOrbBottle": {
+        "NAME": "Dragon Potion",
+        "DESCRIPTIONS": ["Channel a #yDragonOrb.", "Channel #b", " #yDragonOrbs."]
+},
+"theDuelist:DragonOrbPlusBottle": {
+        "NAME": "Super Dragon Potion",
+        "DESCRIPTIONS": ["Channel an #yupgraded #yDragonOrb.", "Channel #b", " #yupgraded #yDragonOrbs."]
+},
+"theDuelist:EarthBottle": {
+        "NAME": "Spell Bottle",
+        "DESCRIPTIONS": ["Channel an #yEarth.", "Channel #b", " #yEarth Orbs."]
+},
+"theDuelist:FireBottle": {
+        "NAME": "Bottled Fire",
+        "DESCRIPTIONS": ["Channel a #yFire.", "Channel #b", " #yFire Orbs."]
+},
+"theDuelist:GadgetBottle": {
+        "NAME": "Amazon Package",
+        "DESCRIPTIONS": ["Channel a #yGadget.", "Channel #b", " #yGadget Orbs."]
+},
+"theDuelist:GlitchBottle": {
+        "NAME": "Broken Bottle",
+        "DESCRIPTIONS": ["Channel a #yGlitch.", "Channel #b", " #yGlitch Orbs."]
+},
+"theDuelist:MetalBottle": {
+        "NAME": "Liquid Metal",
+        "DESCRIPTIONS": ["Channel a #yMetal.", "Channel #b", " #yMetal Orbs."]
+},
+"theDuelist:MonsterOrbBottle": {
+        "NAME": "Bottled MonsterOrb",
+        "DESCRIPTIONS": ["Channel a #yMonsterOrb.", "Channel #b", " #yMonsterOrbs."]
+},
+"theDuelist:SandBottle": {
+        "NAME": "Hourglass",
+        "DESCRIPTIONS": ["Channel a #ySand.", "Channel #b", " #ySand Orbs."]
+},
+"theDuelist:StormBottle": {
+        "NAME": "Bottled Storm",
+        "DESCRIPTIONS": ["Channel a #yStorm.", "Channel #b", " #yStorm Orbs."]
+},
+"theDuelist:SummonerBottle": {
+        "NAME": "Bottled Summoner",
+        "DESCRIPTIONS": ["Channel a #ySummoner.", "Channel #b", " #ySummoner Orbs."]
+},
+"theDuelist:TributeBottle": {
+        "NAME": "Summoner's Bottle",
+        "DESCRIPTIONS": ["Reduce the #yTribute cost of all monsters in your by #b", " for this turn."]
+},
+"theDuelist:BigTributeBottle": {
+        "NAME": "Magician's Bottle",
+        "DESCRIPTIONS": ["Reduce the #yTribute cost of all monsters in your hand by #b", " for the rest of combat."]
 },
 "theDuelist:JoeyJuice": {
         "NAME": "Joey Juice",

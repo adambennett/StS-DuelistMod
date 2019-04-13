@@ -73,7 +73,7 @@
 		"NAME": "Millennium Branch",
 		"FLAVOR": "The branch of a tree from the Ancient Egyptian era.",
 		"DESCRIPTIONS": [
-			"At the start of turn, #yResummon a random monster you have summoned this run for every card you #yExhausted on the previous turn."
+			"At the start of turn, #yResummon a random monster you have summoned this run for every #b2 cards you #yExhausted on the previous turn."
 		]
 	},
 	"theDuelist:AeroRelic": {
@@ -151,6 +151,27 @@
 		"FLAVOR": "A mechanical token covered with small wires and strange markings. Best not fiddle with it too much.",
 		"DESCRIPTIONS": [
 			"#yExplosive #yTokens deal damage randomly to enemies instead of damaging you."
+		]
+	},
+	"theDuelist:DragonRelic": {
+		"NAME": "Dragon Statue",
+		"FLAVOR": "A small statue shaped like a dragon.",
+		"DESCRIPTIONS": [
+			"When you gain #yStrength from #yTributing a #yDragon, gain #b1 extra #yStrength."
+		]
+	},
+	"theDuelist:SummonAnchor": {
+		"NAME": "Summoning Anchor",
+		"FLAVOR": "A small red and yellow anchor. What a strange color scheme.",
+		"DESCRIPTIONS": [
+			"#ySummon #b1 Token at the start of each combat."
+		]
+	},
+	"theDuelist:RandomTributeMonsterRelic": {
+		"NAME": "Tribute Egg",
+		"FLAVOR": "A glowing red egg shaped object. It holds mysterious power.",
+		"DESCRIPTIONS": [
+			"Add a random #yTribute monster to your deck. Set the monsters #yTribute cost to #b1."
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {

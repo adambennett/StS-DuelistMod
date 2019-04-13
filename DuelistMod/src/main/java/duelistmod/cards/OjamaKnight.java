@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -24,7 +25,7 @@ public class OjamaKnight extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -36,12 +37,9 @@ public class OjamaKnight extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.OJAMA);
-        this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
-		this.setupStartingCopies();
-		this.tributes = this.baseTributes = 3;
+		this.tributes = this.baseTributes = 2;
     }
 
     

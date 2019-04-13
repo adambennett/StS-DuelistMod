@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -40,6 +42,7 @@ public class FiendSkull extends DuelistCard
 		this.tributes = this.baseTributes = 3;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.DRAGON);
+		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.LEGACY_DARKNESS);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.REDUCED);
@@ -111,9 +114,18 @@ public class FiendSkull extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard.hasTag(Tags.DRAGON)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
+		}		
 		
+		if (tributingCard.hasTag(Tags.FIEND))
+		{
+			AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, 1));
+		}
 	}
 
 

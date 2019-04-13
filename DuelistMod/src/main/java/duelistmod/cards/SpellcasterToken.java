@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class SpellcasterToken extends DuelistCard 
@@ -21,11 +22,11 @@ public class SpellcasterToken extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
-    private static final int COST = -1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public SpellcasterToken() 
@@ -42,9 +43,8 @@ public class SpellcasterToken extends DuelistCard
     	this.tags.add(Tags.SPELLCASTER);
     }
     
-    @Override public void use(AbstractPlayer p, AbstractMonster m) { }
+    @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(p, 1, this); }
     @Override public AbstractCard makeCopy() { return new SpellcasterToken(); }
-    @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
 		

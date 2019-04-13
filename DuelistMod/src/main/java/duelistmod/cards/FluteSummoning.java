@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class FluteSummoning extends DuelistCard 
@@ -53,7 +54,8 @@ public class FluteSummoning extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.DRAGON);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, true, false, false, false, 1, 4, 0, 1, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, false, randomMonster.baseTributes > 0, false, false, false, 1, 4, 0, 1, 0, 0));
+			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
     }
 
@@ -68,7 +70,7 @@ public class FluteSummoning extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(0);
             //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

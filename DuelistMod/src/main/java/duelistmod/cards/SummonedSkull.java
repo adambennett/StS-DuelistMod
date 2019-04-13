@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -42,7 +43,9 @@ public class SummonedSkull extends DuelistCard
 		this.tags.add(Tags.METAL_RAIDERS);
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.EXODIA_DECK);
-		this.tags.add(Tags.ORIGINAL_DECK);       
+		this.tags.add(Tags.ORIGINAL_DECK);    
+		this.tags.add(Tags.FIEND_DECK);
+        this.zombieDeckCopies = 1;
         this.startingOriginalDeckCopies = 1;
         this.exodiaDeckCopies = 2;
 		this.misc = 0;

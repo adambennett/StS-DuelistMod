@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class ContractExodia extends DuelistCard 
@@ -48,7 +49,8 @@ public class ContractExodia extends DuelistCard
     	{
     		DuelistCard exodia = (DuelistCard) returnTrulyRandomFromSet(Tags.EXODIA);
     		while (exodia.originalName.equals(this.originalName)) { exodia = (DuelistCard) returnTrulyRandomFromSet(Tags.EXODIA); }
-    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(exodia, this.upgraded, true, true, true, false, false, false, false, 1, 4, 0, 0, 0, 0));
+    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(exodia, this.upgraded, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
+    		if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
     	}
     }
 

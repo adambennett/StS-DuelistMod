@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class HeavyStorm extends DuelistCard 
@@ -57,7 +58,15 @@ public class HeavyStorm extends DuelistCard
     	{
     		for (AbstractPower powerToRemove : g.powers)
         	{
-        		removePower(powerToRemove, g);
+    			if (g.name.equals("Eviscerating Totem") || g.name.equals("Encouraging Totem") || g.name.equals("Debilitating Totem") || g.name.equals("Totem Speaker"))
+    			{
+    				if (DuelistMod.debug) { System.out.println("bad power"); }
+    			}
+    			else
+    			{
+    				removePower(powerToRemove, g);
+    				if (DuelistMod.debug) { System.out.println("Heavy Storm removed power: " + g.name); }
+    			}        		
         	}
     	}
     }

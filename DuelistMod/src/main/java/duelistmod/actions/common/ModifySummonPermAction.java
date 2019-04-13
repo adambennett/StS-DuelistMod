@@ -2,7 +2,7 @@ package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class ModifySummonPermAction extends AbstractGameAction 
 {

@@ -24,7 +24,7 @@ public class BuffHelper {
 
 	public static void resetBuffPool()
 	{
-		int noBuffs = AbstractDungeon.cardRandomRng.random(3, 6);
+		int noBuffs = AbstractDungeon.cardRandomRng.random(DuelistMod.lowNoBuffs, DuelistMod.highNoBuffs);
 		DuelistMod.randomBuffs = new ArrayList<AbstractPower>();
 		DuelistMod.randomBuffStrings = new ArrayList<String>();
 		for (int i = 0; i < noBuffs; i++)
@@ -76,7 +76,7 @@ public class BuffHelper {
 		AbstractPower sadistic = new SadisticPower(p, turnNum);
 		AbstractPower storm = new StormPower(p, 1);
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
-		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
+		AbstractPower tombLoot = new TombLooterPower(p, turnNum);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
@@ -153,7 +153,7 @@ public class BuffHelper {
 		AbstractPower sadistic = new SadisticPower(p, turnNum);
 		AbstractPower storm = new StormPower(p, 1);
 		AbstractPower orbHeal = new OrbHealerPower(p, turnNum);
-		AbstractPower tombLoot = new EnergyTreasurePower(p, turnNum);
+		AbstractPower tombLoot = new TombLooterPower(p, turnNum);
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);

@@ -8,16 +8,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FocusPower;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class SlateWarrior extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = duelistmod.DuelistMod.makeID("SlateWarrior");
+	public static final String ID = DuelistMod.makeID("SlateWarrior");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.SLATE_WARRIOR);
 	public static final String NAME = cardStrings.NAME;
@@ -26,27 +26,23 @@ public class SlateWarrior extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
-	private static final int DAMAGE = 6;
+	private static final int DAMAGE = 8;
 	// /STAT DECLARATION/
 
 	public SlateWarrior() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = this.baseTributes = 1;
-		this.magicNumber = this.baseMagicNumber = 1;
+		this.tributes = this.baseTributes = 2;
 		this.tags.add(Tags.MONSTER);
-		this.tags.add(Tags.ORB_DECK);
 		this.tags.add(Tags.FIEND);
-		this.orbDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
@@ -55,7 +51,11 @@ public class SlateWarrior extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
-		applyPowerToSelf(new FocusPower(p, this.magicNumber));
+		for (AbstractCard c : p.discardPile.group)
+		{
+			c.modifyCostForTurn(-c.cost);
+			c.isCostModifiedForTurn = true;
+		}
 	}
 
 	// Which card to return when making a copy of this card.
@@ -69,7 +69,8 @@ public class SlateWarrior extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(2);
+			this.upgradeTributes(-1);
+			this.upgradeDamage(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

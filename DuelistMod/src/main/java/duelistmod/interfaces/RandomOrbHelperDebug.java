@@ -41,7 +41,7 @@ public class RandomOrbHelperDebug
 		orbs.add(new Gadget());
 		orbs.add(new Lava());
 		orbs.add(new Metal());
-		orbs.add(new MillenniumOrb());
+		//orbs.add(new MillenniumOrb());
 		orbs.add(new Mist());
 		orbs.add(new Mud());
 		orbs.add(new Sand());

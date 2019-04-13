@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.Token;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.relics.*;
 
 public class SummonPower extends AbstractPower
@@ -29,7 +29,10 @@ public class SummonPower extends AbstractPower
 	public ArrayList<String> coloredSummonList = new ArrayList<String>();
 
 	// Constructor for summon() in DuelistCard
-	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc, DuelistCard c) {
+	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc, DuelistCard c) 
+	{
+		if (summonList.size() > 0) { System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS > 0");}
+		else if (DuelistMod.debug) {  System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS < 0"); }
 		// Set power fields
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -58,7 +61,10 @@ public class SummonPower extends AbstractPower
 
 	
 	// Constructor for powerSummon() in DuelistCard
-	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) {
+	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) 
+	{
+		if (summonList.size() > 0) { System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS > 0");}
+		else if (DuelistMod.debug) {  System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS < 0"); }
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
@@ -251,7 +257,6 @@ public class SummonPower extends AbstractPower
 		goodTags.add(Tags.MACHINE);
 		goodTags.add(Tags.INSECT);
 		goodTags.add(Tags.PLANT);
-		goodTags.add(Tags.NATURIA);
 		goodTags.add(Tags.TOON);
 		coloredSummonList = new ArrayList<String>();
 		for (String s : summonList)
@@ -259,13 +264,13 @@ public class SummonPower extends AbstractPower
 			DuelistCard ref = DuelistMod.summonMap.get(s);
 			if (ref == null) { ref = new Token(); }
 			String coloredString = "";
-			if ((ref.hasTag(Tags.GOOD_TRIB) && !(ref instanceof Token)) || (StarterDeckSetup.hasTags(ref, goodTags) && !(ref instanceof Token))) 
+			if (ref.hasTag(Tags.NATURIA))
 			{
-				coloredString = "#b" + s;
-				coloredString = coloredString.replaceAll("\\s", " #b"); 
+				coloredString = "[#008000]" + s;
+				coloredString = coloredString.replaceAll("\\s", " [#008000]");
 				coloredSummonList.add(coloredString);
 			}
-			else if (ref.hasTag(Tags.BAD_TRIB) && !(ref instanceof Token))
+			else if (ref.hasTag(Tags.BAD_TRIB))
 			{
 				coloredString = "[#FF5252]" + s;
 				coloredString = coloredString.replaceAll("\\s", " [#FF5252]");
@@ -275,6 +280,12 @@ public class SummonPower extends AbstractPower
 			{
 				coloredString = "[#C0B0C0]" + s;
 				coloredString = coloredString.replaceAll("\\s", " [#C0B0C0]");
+				coloredSummonList.add(coloredString);
+			}
+			else if ((ref.hasTag(Tags.GOOD_TRIB)) || (StarterDeckSetup.hasTags(ref, goodTags))) 
+			{
+				coloredString = "#b" + s;
+				coloredString = coloredString.replaceAll("\\s", " #b"); 
 				coloredSummonList.add(coloredString);
 			}
 			else

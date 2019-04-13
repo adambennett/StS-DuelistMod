@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.Glitch;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
@@ -124,15 +125,14 @@ public class CyberDragon extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) {
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
 		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
 		}
 		
 		if (tributingCard.hasTag(Tags.MACHINE))
 		{
 			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
 		}
-		
 	}
 
 

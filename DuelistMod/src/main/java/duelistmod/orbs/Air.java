@@ -4,17 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.AeroRelic;
 
@@ -59,7 +58,8 @@ public class Air extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		AbstractDungeon.player.increaseMaxOrbSlots(this.evokeAmount, true);
+		//AbstractDungeon.player.increaseMaxOrbSlots(this.evokeAmount, true);
+		AbstractDungeon.actionManager.addToTop(new IncreaseMaxOrbAction(this.evokeAmount));
 		if (DuelistMod.debug) { System.out.println("air orb evoked, gained orb slot. orb slots: " + AbstractDungeon.player.maxOrbs); }
 	}
 	

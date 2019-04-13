@@ -267,6 +267,26 @@
         "NAME": "Aerodynamics",
         "DESCRIPTIONS": ["Your #yAir Orbs will always #yChannel randomly at the start of turn." ]
 },
+"theDuelist:NaturiaPower": {
+        "NAME": "Naturia Monsters",
+        "DESCRIPTIONS": ["At the end of turn, deal #b", " damage to ALL enemies." ]
+},
+"theDuelist:SacredTreePower": {
+        "NAME": "Sacred Tree",
+        "DESCRIPTIONS": ["Your #yNaturia monsters deal 50% more damage and gain 50% more block." ]
+},
+"theDuelist:UmiPower": {
+        "NAME": "Umi",
+        "DESCRIPTIONS": ["Your #yAqua monsters deal 50% more damage and gain 50% more block." ]
+},
+"theDuelist:ToonCannonPower": {
+        "NAME": "Toon Cannon Soldier",
+        "DESCRIPTIONS": ["Whenever you #ySummon a #yToon, deal #b", " damage to ALL enemies." ]
+},
+"theDuelist:SuperheavyDexGainPower": {
+        "NAME": "Samurai's Wisdom",
+        "DESCRIPTIONS": ["Whenever you play a Power card, gain #b", " #yDexterity." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

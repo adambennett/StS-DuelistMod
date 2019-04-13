@@ -13,7 +13,6 @@ import basemod.BaseMod;
 import basemod.abstracts.DynamicVariable;
 import basemod.helpers.TooltipInfo;
 import duelistmod.Tags;
-import duelistmod.patches.DuelistCard;
 
 public class DuelistModalChoice
 {

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.unique.PlayFromDiscardAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class MonsterReborn extends DuelistCard 

@@ -8,13 +8,13 @@
       "DESCRIPTION": "Counts monsters currently summoned. Maximum of #b5 Summons."
     },
 	{
-	  "PROPER_NAME": "Monster Orb",
-      "NAMES": [
-        "Monster Orb",
-		"monsterorb"
-      ],
-      "DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized monster cards to your hand. #yEvoke also adds #yrandomized monsters to your hand."
-    },
+		"PROPER_NAME": "MonsterOrb",
+		"NAMES": [
+		  "MonsterOrb",
+		  "monsterorb"
+		],
+		"DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized monster cards to your hand. #yEvoke also adds #yrandomized monsters to your hand."
+	},
     {
 	  "PROPER_NAME": "Resummon",
       "NAMES": [
@@ -57,14 +57,14 @@
       ],      
       "DESCRIPTION": "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0."
     },
-    {
-	  "PROPER_NAME": "Dragon Orb",
-      "NAMES": [
-        "Dragon Orb",
-		"dragonorb"
-      ],      
-      "DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0."
-    },
+	{
+		"PROPER_NAME": "DragonOrb",
+		"NAMES": [
+		  "DragonOrb",
+		  "dragonorb"
+		],
+		"DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0."
+	},
     {
 	  "PROPER_NAME": "Overflow",
       "NAMES": [
@@ -258,13 +258,13 @@
     "DESCRIPTION": "#yPassive: Whenever you draw a #yZombie, reduce the #yTribute cost by #b1 for this combat. NL #yEvoke: Deal a random amount of damage to a random enemy. Deals more damage with a higher evoke amount."
   },
   {
-    "PROPER_NAME": "Millennium Orb",
-    "NAMES": [
-      "Millennium Orb",
-	  "millennium orb"
-    ],   
-    "DESCRIPTION": "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Channel a random orb."
-  },
+		"PROPER_NAME": "MillenniumOrb",
+		"NAMES": [
+		  "MillenniumOrb",
+		  "millenniumorb"
+		],
+		"DESCRIPTION": "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add X #yrandomized cards from your deck pool into your hand."
+	},
   {
     "PROPER_NAME": "Metal",
     "NAMES": [
@@ -311,7 +311,7 @@
       "Storm",
 	  "storm"
     ],   
-    "DESCRIPTION": "#yPassive: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b1. NL #yEvoke: Adds #yRandomized Power cards to your hand."
+    "DESCRIPTION": "#yPassive: Adds #yRandomized Power cards to your hand.NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b1. "
   },
   {
     "PROPER_NAME": "Invert",
@@ -356,6 +356,14 @@
 	  "black"
     ],   
     "DESCRIPTION": "#yPassive: At the start of turn, apply a random debuff with #b1 stack to a random enemy. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
+  },
+  {
+    "PROPER_NAME": "Immortal",
+    "NAMES": [
+      "Immortal",
+	  "immortal"
+    ],   
+    "DESCRIPTION": "If an #yImmortal card is in the discard pile, gain [E] at the start of turn."
   },
   {
     "PROPER_NAME": "Gate",

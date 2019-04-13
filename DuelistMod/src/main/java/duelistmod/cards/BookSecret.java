@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,8 +10,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
-import duelistmod.patches.*;
+import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 
 public class BookSecret extends DuelistCard 
 {
@@ -51,10 +54,18 @@ public class BookSecret extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		// Add random cards to hand
+    	ArrayList<DuelistCard> randomCards = new ArrayList<DuelistCard>();
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELLCASTER);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, true, false, false, 1, 4, 0, 0, 0, 1));
+			while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELLCASTER); }
+			randomCards.add(randomMonster);
+		}
+		
+		for (DuelistCard randomMonster : randomCards)
+		{
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, false, false, randomMonster.baseSummons > 0, false, false, 1, 4, 0, 0, 0, 1));
+			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
     }
 

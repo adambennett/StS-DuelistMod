@@ -1,6 +1,8 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.relics.MachineToken;
 
@@ -23,11 +26,11 @@ public class ExplosiveToken extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
-    private static final int COST = -1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public ExplosiveToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); }
@@ -37,13 +40,12 @@ public class ExplosiveToken extends DuelistCard
     	summon(AbstractDungeon.player, 1, this); 
     }
     @Override public AbstractCard makeCopy() { return new ExplosiveToken(); }
-    @Override public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
 		if (AbstractDungeon.player.hasRelic(MachineToken.ID))
 		{
 			int damageRoll = AbstractDungeon.cardRandomRng.random(1, 3);
-			attack(getRandomMonster(), this.baseAFX, damageRoll);
+			AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.getRandomMonster(), new DamageInfo(player(), damageRoll, damageTypeForTurn), AttackEffect.FIRE));
 		}
 		else
 		{

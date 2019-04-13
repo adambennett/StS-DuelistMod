@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.relics.NaturiaRelic;
 
 
 public class NaturiaPower extends AbstractPower 
@@ -72,6 +73,13 @@ public class NaturiaPower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];  
+    	if (AbstractDungeon.player.hasRelic(NaturiaRelic.ID))
+    	{
+    		this.description = DESCRIPTIONS[2] + this.amount * 2 + DESCRIPTIONS[1];  
+    	}
+    	else
+    	{
+    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];  
+    	}    	
     }
 }

@@ -16,8 +16,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
@@ -73,14 +72,11 @@ public class Consumer extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		if (p.hasPower(SummonPower.POWER_ID))
+		AbstractPlayer p = AbstractDungeon.player;		
+		if (DuelistCard.getSummons(p) >= this.passiveAmount)
 		{
-			if (p.getPower(SummonPower.POWER_ID).amount >= this.passiveAmount)
-			{
-				this.triggerPassiveEffect();
-			}
-		}
+			this.triggerPassiveEffect();
+		}		
 	}
 
 	private void triggerPassiveEffect()

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -38,7 +39,7 @@ public class MillenniumShield extends DuelistCard
         this.misc = 0;
         this.dex = 4;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 1;
     }
 
     // Actions the card should do.
@@ -60,7 +61,7 @@ public class MillenniumShield extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (this.tributes > 0) { this.tributes--; } 
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

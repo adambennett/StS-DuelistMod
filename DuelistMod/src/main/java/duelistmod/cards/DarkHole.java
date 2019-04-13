@@ -1,6 +1,6 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 
 public class DarkHole extends DuelistCard 
 {
@@ -30,6 +31,7 @@ public class DarkHole extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
+    private static int blockTotal = 0;
     // /STAT DECLARATION/
 
     public DarkHole() 
@@ -49,7 +51,7 @@ public class DarkHole extends DuelistCard
     	// Get target block and remove all of it
     	if (!upgraded)
     	{
-    		int blockTotal = 0;
+    		blockTotal = 0;
     		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
     		{    			
     			if (mon.currentBlock > 0) 
@@ -58,13 +60,11 @@ public class DarkHole extends DuelistCard
     				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
     			}
     		}
-    		this.baseBlock = this.block = blockTotal; 
-    		applyPowers();
-    		block(this.block);
+    		block(blockTotal);
 	    }
     	else
     	{
-    		int blockTotal = 0;
+    		blockTotal = 0;
     		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
     		{    			
     			if (mon.currentBlock > 0) 
@@ -77,16 +77,23 @@ public class DarkHole extends DuelistCard
     			{
     				if (a.type.equals(PowerType.BUFF))
     				{
-    					DuelistCard.removePower(a, mon);
+    					if (a.name.equals("Eviscerating Totem") || a.name.equals("Encouraging Totem") || a.name.equals("Debilitating Totem") || a.name.equals("Totem Speaker"))
+    		    		{
+    	    				if (DuelistMod.debug) { System.out.println("bad power"); }
+    	    			}
+    	    			else
+    	    			{
+    	    				removePower(a, mon);
+    	    				if (DuelistMod.debug) { System.out.println("Dark Hole removed power: " + a.name); }
+    	    			}        	
+    					
     				}
     			}
     		}
-    		this.baseBlock = this.block = blockTotal; 
-    		applyPowers();
-    		block(this.block);
+    		block(blockTotal);
     	}
     }
-
+    
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

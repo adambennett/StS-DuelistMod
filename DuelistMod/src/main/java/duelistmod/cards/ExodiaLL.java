@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.ExodiaPower;
 
@@ -43,7 +44,6 @@ public class ExodiaLL extends DuelistCard
         this.baseBlock = this.block = 5;
         this.summons = this.baseSummons = 1;
         this.damage = this.baseDamage = 1;
-        this.exhaust = true;
         this.exodiaName = "Left Leg";
         this.originalName = this.name;
         this.setupStartingCopies();

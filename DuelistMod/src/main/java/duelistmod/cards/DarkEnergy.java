@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class DarkEnergy extends DuelistCard 
@@ -59,7 +60,8 @@ public class DarkEnergy extends DuelistCard
 		{
 			for (int i = 0; i < this.magicNumber; i++)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, false, true, false, true, false, false, 1, 4, 0, 0, 0, 1));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, false, true, false, aquas.get(i).baseSummons > 0, false, false, 1, 4, 0, 0, 0, 1));
+				if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 			}
 		}
 	}

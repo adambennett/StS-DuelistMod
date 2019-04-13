@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class DeathCheckAction extends AbstractGameAction
 {

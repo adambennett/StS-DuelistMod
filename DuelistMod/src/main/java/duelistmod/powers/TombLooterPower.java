@@ -8,19 +8,19 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 
-public class EnergyTreasurePower extends AbstractPower 
+public class TombLooterPower extends AbstractPower 
 {
     public AbstractCreature source;
-    public static final String POWER_ID = duelistmod.DuelistMod.makeID("EnergyTreasurePower");
+    public static final String POWER_ID = duelistmod.DuelistMod.makeID("TombLooterPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.ENERGY_TREASURE_POWER);
 
-    public EnergyTreasurePower(final AbstractCreature owner, int newAmount) 
+    public TombLooterPower(final AbstractCreature owner, int newAmount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -43,7 +43,7 @@ public class EnergyTreasurePower extends AbstractPower
     	if (this.amount > 0) 
     	{ 
     		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-    		if (roll < 3)
+    		if (roll < 6)
     		{
 	    		this.amount -= Math.floor(this.amount/3); 
 	    		if (this.amount < 1) 
@@ -51,7 +51,7 @@ public class EnergyTreasurePower extends AbstractPower
 	    			DuelistCard.removePower(this, AbstractDungeon.player); 
 	    		} 
     		}
-    		else if (roll == 4)
+    		else if (roll == 7)
     		{
     			this.amount += 10;
     			this.flash();

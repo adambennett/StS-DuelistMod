@@ -15,8 +15,7 @@ import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")
 public class Storm extends DuelistOrb
@@ -41,8 +40,8 @@ public class Storm extends DuelistOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
-		originalEvoke = this.baseEvokeAmount;
-		originalPassive = this.basePassiveAmount;
+		this.originalEvoke = this.baseEvokeAmount;
+		this.originalPassive = this.basePassiveAmount;
 		checkFocus();
 	}
 
@@ -50,16 +49,25 @@ public class Storm extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0];
+		this.description = DESC[0] + this.evokeAmount + DESC[1];
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		applyFocus();
-		DuelistCard randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
-		while (!randomPower.type.equals(CardType.POWER)) { randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard(); }
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomPower, false, true, false, true, false, false, false, false, 1, 6 - this.evokeAmount, 0, 0, 0, 0));
+		if (AbstractDungeon.player.hasEmptyOrb())
+		{
+			AbstractDungeon.player.decreaseMaxOrbSlots(1);
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+			{
+				if (c.hasTag(Tags.MONSTER))
+				{
+					DuelistCard dragC = (DuelistCard)c;
+					dragC.changeTributesInBattle(-this.evokeAmount, true);
+				}
+			}
+			
+		}
 	}
 	
 	@Override
@@ -76,19 +84,10 @@ public class Storm extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
-		if (AbstractDungeon.player.hasEmptyOrb())
-		{
-			AbstractDungeon.player.decreaseMaxOrbSlots(1);
-			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-			{
-				if (c.hasTag(Tags.MONSTER))
-				{
-					DuelistCard dragC = (DuelistCard)c;
-					dragC.changeTributesInBattle(-this.passiveAmount, true);
-				}
-			}
-			
-		}
+		applyFocus();
+		DuelistCard randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
+		while (!randomPower.type.equals(CardType.POWER)) { randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard(); }
+		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomPower, false, true, false, true, false, false, false, false, 1, 6 - this.passiveAmount, 0, 0, 0, 0));
 	}
 
 	@Override

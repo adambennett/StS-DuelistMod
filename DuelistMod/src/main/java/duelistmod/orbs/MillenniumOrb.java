@@ -6,18 +6,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
+import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.interfaces.*;
-import duelistmod.patches.DuelistCard;
-import duelistmod.powers.*;
 
 @SuppressWarnings("unused")
 public class MillenniumOrb extends DuelistOrb
@@ -32,12 +32,14 @@ public class MillenniumOrb extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
+	private static int setEvoke = 2;
 	
-	public MillenniumOrb()
+	public MillenniumOrb(int evoke)
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = evoke;
+		setEvoke = evoke;
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -51,14 +53,49 @@ public class MillenniumOrb extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0];
+		this.description = DESC[0] + this.evokeAmount + DESC[1];
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		DuelistCard.channelRandom();
+		if (StarterDeckSetup.isDeckArchetype())
+		{
+			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
+			for (int i = 0; i < 50; i++)
+			{
+				int index = StarterDeckSetup.getCurrentDeck().getPoolCards().size() - 1;
+				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
+				AbstractCard c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll);
+				while (deckCards.contains(c))
+				{
+					indexRoll = AbstractDungeon.cardRandomRng.random(index);
+					c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll);
+				}
+				deckCards.add(c);
+			}
+			//deckCards.addAll(StarterDeckSetup.getCurrentDeck().getPoolCards());
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 5, 0, 2, 0, 2));
+		}
+		else
+		{
+			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
+			for (int i = 0; i < 50; i++)
+			{
+				int index = DuelistMod.myCards.size() - 1;
+				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
+				AbstractCard c = DuelistMod.myCards.get(indexRoll);
+				while (deckCards.contains(c))
+				{
+					indexRoll = AbstractDungeon.cardRandomRng.random(index);
+					c = DuelistMod.myCards.get(indexRoll);
+				}
+				deckCards.add(c);
+			}
+			//deckCards.addAll(DuelistMod.myCards);
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 5, 0, 2, 0, 2));
+		}
 	}
 	
 	@Override
@@ -76,6 +113,25 @@ public class MillenniumOrb extends DuelistOrb
 	public void triggerPassiveEffect()
 	{
 		PuzzleHelper.runSpecialEffect(this.passiveAmount, 0);
+	}
+	
+	@Override
+	public void checkFocus()
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			this.baseEvokeAmount = setEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		}
+		else 
+		{
+			this.baseEvokeAmount = setEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 
 	@Override
@@ -122,14 +178,14 @@ public class MillenniumOrb extends DuelistOrb
 	@Override
 	public AbstractOrb makeCopy()
 	{
-		return new MillenniumOrb();
+		return new MillenniumOrb(2);
 	}
 	
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{
 		// Render evoke amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 	}
 	
 	@Override

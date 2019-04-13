@@ -44,7 +44,9 @@ public class CharacterSelectScreenPatch
         float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "###############", 9999.0F, 0.0F); // Level 22
 
         POS_X = 180f * Settings.scale;
-        POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale) - 175f;
+        //POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale);
+        POS_Y = ((float) Settings.HEIGHT / 3.25F);
+        //POS_Y = ((float) Settings.HEIGHT / 2.0F) - (40 * Settings.scale);
 
         startingCardsLabelHb = new Hitbox(leftTextWidth, 50.0F * Settings.scale);
         startingCardsSelectedHb = new Hitbox(rightTextWidth, 50f * Settings.scale);

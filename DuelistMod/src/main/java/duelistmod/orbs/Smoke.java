@@ -13,8 +13,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")
 public class Smoke extends DuelistOrb

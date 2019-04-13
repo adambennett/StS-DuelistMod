@@ -11,6 +11,8 @@ public class Utilities
 {
     public static final Logger Logger = LogManager.getLogger(Utilities.class.getName());
     
+    
+    
     public static int factorial(int n) { return (n == 1 || n == 0) ? 1 : n * factorial(n - 1); } 
 
     public static <T> T SafeCast(Object o, Class<T> type)

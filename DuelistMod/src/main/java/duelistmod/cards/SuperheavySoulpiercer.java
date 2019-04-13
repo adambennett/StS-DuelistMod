@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.Sand;
 import duelistmod.patches.*;
 

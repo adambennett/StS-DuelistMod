@@ -16,8 +16,7 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 
 @SuppressWarnings("unused")

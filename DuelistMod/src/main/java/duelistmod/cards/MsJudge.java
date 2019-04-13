@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class MsJudge extends DuelistCard 
@@ -34,6 +35,8 @@ public class MsJudge extends DuelistCard
 	public MsJudge() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.summons = this.baseSummons = 1;
+		this.baseBlock = this.block = 6;
+		this.magicNumber = this.baseMagicNumber = 2;
 		this.isSummon = true;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
@@ -46,7 +49,8 @@ public class MsJudge extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		channelRandom();
+		block(this.block);
+		if (DuelistMod.trapCombatCount > 0) { block(this.magicNumber * DuelistMod.trapCombatCount); }
 	}
 
 	// Which card to return when making a copy of this card.
@@ -60,7 +64,7 @@ public class MsJudge extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBaseCost(0);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

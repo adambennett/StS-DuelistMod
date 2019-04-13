@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class ResummonBranch extends CustomRelic
 {
@@ -23,6 +23,12 @@ public class ResummonBranch extends CustomRelic
     public ResummonBranch() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL); }
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
+    @Override
+    public void atBattleStart()
+    {
+    	setCounter(0);
+    }
+    
     @Override
     public void onEquip()
     {
@@ -60,7 +66,7 @@ public class ResummonBranch extends CustomRelic
 			if (modMonsters.size() > 0)
 			{
 				if (count > counterLimit) { counter = counterLimit; }
-	    		for (int i = 0; i < count; i++)
+	    		for (int i = 0; i < count / 2; i++)
 	    		{
 					this.flash();
 	    			DuelistCard toResummon = modMonsters.get(AbstractDungeon.relicRng.random(modMonsters.size() - 1));

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.Earth;
 import duelistmod.patches.*;
 
@@ -41,7 +42,7 @@ public class OjamaGreen extends DuelistCard
 		this.tags.add(Tags.DARK_CRISIS);
 		this.tags.add(Tags.REDUCED);
 		this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 1;
+		this.ojamaDeckCopies = 2;
 		this.exhaust = true;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;

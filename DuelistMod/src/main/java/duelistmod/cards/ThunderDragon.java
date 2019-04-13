@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -82,17 +83,19 @@ public class ThunderDragon extends DuelistCard
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
 		{ 
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) 
-			{
-				AbstractOrb orb = new Lightning();
-				channel(orb);
-				applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1));
+			{ 
+				applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); 
 			}
 			else 
 			{ 
-				AbstractOrb orb = new Lightning();
-				channel(orb);
-				applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); 
+				applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); 
 			}
+		}
+
+		if (tributingCard.hasTag(Tags.DRAGON)) 
+		{		
+			AbstractOrb orb = new Lightning();
+			channel(orb);
 		}
 	}
 

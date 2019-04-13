@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class Ojamagic extends DuelistCard 
@@ -32,7 +33,7 @@ public class Ojamagic extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int MIN_CARDS = 1;
     private static final int MAX_CARDS = 4;
     private ArrayList<AbstractCard> tooltips;
@@ -43,12 +44,9 @@ public class Ojamagic extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
         this.tags.add(Tags.REDUCED);
-        this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 1;
 		tooltips = new ArrayList<>();
 		tooltips.add(new RedMedicine());
 		this.originalName = this.name;
-		this.setupStartingCopies();
 	}
 
 	@Override

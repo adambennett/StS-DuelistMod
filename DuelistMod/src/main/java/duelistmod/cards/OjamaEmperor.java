@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
-import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -61,7 +61,8 @@ public class OjamaEmperor extends DuelistCard
 		for (int i = 0; i < RAND_CARDS; i++)
 		{
 			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, true, true, true, true, 1, 4, 0, 1, 1, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, false, false, true, true, 1, 4, 0, 1, 1, 2));
+			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 		
 		// Give self 3 random buffs

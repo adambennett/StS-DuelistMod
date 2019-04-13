@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.NaturiaPower;
 
@@ -47,9 +48,10 @@ public class NaturiaLandoise extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, this.baseAFX, this.damage);
-    	applyPowerToSelf(new NaturiaPower(m, p, 1));
+    	applyPowerToSelf(new NaturiaPower(p, p, 1));
     	DuelistCard randomNat = (DuelistCard) returnTrulyRandomFromSets(Tags.NATURIA, Tags.MONSTER);
     	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomNat, this.upgraded, true, true, true));
+    	if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
     }
 
     // Which card to return when making a copy of this card.

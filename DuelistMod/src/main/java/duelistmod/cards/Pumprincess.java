@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class Pumprincess extends DuelistCard 

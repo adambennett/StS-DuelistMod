@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.*;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 

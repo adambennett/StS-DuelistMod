@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -66,8 +67,11 @@ public class PredaplantChimerafflesia extends DuelistCard
     			if (c.hasTag(Tags.PREDAPLANT))
     			{
     				DuelistCard poly = new Polymerization();
-    				poly.costForTurn = 0;
-    				poly.isCostModifiedForTurn = true;
+    				if (poly.cost > 0) 
+    				{ 
+    					poly.modifyCostForCombat(-poly.cost);
+    					poly.isCostModified= true;
+    				}
     				poly.purgeOnUse = true;
     				poly.rawDescription = "Purge. NL " + c.rawDescription;
 		            poly.initializeDescription();

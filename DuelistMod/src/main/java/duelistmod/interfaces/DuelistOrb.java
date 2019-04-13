@@ -9,8 +9,8 @@ import duelistmod.DuelistMod;
 
 public class DuelistOrb extends AbstractOrb {
 
-	protected static int originalPassive = 0;
-	protected static int originalEvoke = 0;
+	protected int originalPassive = 0;
+	protected int originalEvoke = 0;
 	
 	@Override
 	public AbstractOrb makeCopy() {

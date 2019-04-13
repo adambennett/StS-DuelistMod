@@ -68,7 +68,7 @@ public class MillenniumPuzzleShared extends CustomRelic {
 	public void atBattleStart() 
 	{
 		this.flash();
-		PuzzleHelper.atBattleStartHelper(SUMMONS);
+		PuzzleHelper.atBattleStartHelper(SUMMONS, 0);
 		getDeckDesc();
 		/*if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{

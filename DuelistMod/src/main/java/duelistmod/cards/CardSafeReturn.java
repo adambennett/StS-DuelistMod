@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -41,7 +42,7 @@ public class CardSafeReturn extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new CardSafePower(p, p, 1));
+    	applyPowerToSelf(new CardSafePower(p, p, 2));
     }
 
     // Which card to return when making a copy of this card.

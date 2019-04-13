@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 
 public class PotGenerosityPower extends AbstractPower 

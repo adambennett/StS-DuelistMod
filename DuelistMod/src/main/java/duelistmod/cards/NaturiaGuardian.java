@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -56,7 +57,7 @@ public class NaturiaGuardian extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, this.baseAFX, this.damage);
-    	applyPowerToSelf(new NaturiaPower(m, p, 1));
+    	applyPowerToSelf(new NaturiaPower(p, p, 1));
     	if (!upgraded) { AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(new NaturiaHorneedle(), this.magicNumber, true, true)); }
     	else 
     	{

@@ -13,7 +13,7 @@ import basemod.abstracts.CustomCard;
 import duelistmod.*;
 import duelistmod.actions.common.SpecificCardDiscardToDeckAction;
 import duelistmod.cards.AxeDespair;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 /* 	
  * Lose 10 strength at the end of turn and
@@ -50,6 +50,7 @@ public class DespairPower extends AbstractPower
 		ATTACHED_AXE = card;
 		STR_LOSS = strLoss;
 		this.updateDescription();
+		//AbstractDungeon.actionManager.addToTop(new SpecificCardDiscardToDeckAction(this.owner, ATTACHED_AXE));
 	}
 	
 	@Override
@@ -95,7 +96,15 @@ public class DespairPower extends AbstractPower
 					DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, -1 * STR_LOSS));
 					
 					// Take the Axe of Despair we just played out of the discard and put on top of the deck
-					AbstractDungeon.actionManager.addToTop(new SpecificCardDiscardToDeckAction(this.owner, ATTACHED_AXE));
+					boolean cardStillExists = false;
+					for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+					{
+						if (c.uuid.equals(ATTACHED_AXE.uuid))
+						{
+							cardStillExists = true;
+						}
+					}
+					if (cardStillExists) { AbstractDungeon.actionManager.addToTop(new SpecificCardDiscardToDeckAction(this.owner, ATTACHED_AXE)); }
 					AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, this, 1));
 				}
 			}

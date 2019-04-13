@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -48,7 +49,7 @@ public class NaturiaRosewhip extends DuelistCard
     {
     	summon(p, this.summons, this);
     	block(this.block);
-    	applyPowerToSelf(new NaturiaPower(m, p, 1));
+    	applyPowerToSelf(new NaturiaPower(p, p, 1));
     	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(new NaturiaRosewhip(), 1, true, true));
     }
 

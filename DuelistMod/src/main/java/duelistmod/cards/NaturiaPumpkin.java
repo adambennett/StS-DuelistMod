@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.NaturiaPower;
 
@@ -49,7 +50,7 @@ public class NaturiaPumpkin extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, this.baseAFX, this.damage);
-    	applyPowerToSelf(new NaturiaPower(m, p, 1));
+    	applyPowerToSelf(new NaturiaPower(p, p, 1));
     	ArrayList<DuelistCard> nats = new ArrayList<DuelistCard>();
     	for (AbstractCard c : player().hand.group){ if (c.hasTag(Tags.NATURIA)) { nats.add((DuelistCard) c); }}
     	if (nats.size() > 0)

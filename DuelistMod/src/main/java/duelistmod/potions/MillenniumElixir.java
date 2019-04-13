@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class MillenniumElixir extends AbstractPotion {
 

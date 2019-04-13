@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.FetchFromTag;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class ToonTable extends DuelistCard 

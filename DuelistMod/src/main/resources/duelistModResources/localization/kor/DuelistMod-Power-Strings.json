@@ -13,7 +13,7 @@
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["#yToons can be played. NL Take #b", " damage each time you play a #yToon card.", "#yToons can be played." ]
+        "DESCRIPTIONS": ["#yToons can be played. NL Lose #b", " HP each time you play a #yToon card.", "#yToons can be played." ]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
@@ -61,15 +61,19 @@
 },
 "theDuelist:BadReactionPower": {
         "NAME": "Bad Reaction to Simochi",
+        "DESCRIPTIONS": ["Whenever you attempt to heal, deal #b", " damage to ALL enemies for every #b", " HP you would gain, and heal for 0 instead." ]
+},
+"theDuelist:SpecialBadReactionPower": {
+        "NAME": "Bad Reaction to Simochi+",
         "DESCRIPTIONS": ["During your turn, deal #b", " damage to ALL enemies for every #b", " HP you gain." ]
 },
 "theDuelist:CastlePower": {
         "NAME": "Castle of Dark Illusions",
-        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", "#yIncrement #b", "." ]
+        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", " #yIncrement #b", "." ]
 },
 "theDuelist:EmperorPower": {
         "NAME": "Mausoleum of the Emperor",
-        "DESCRIPTIONS": ["The first #yTribute card you play each turn does not #yTribute. Take #b", " damage each turn." ]
+        "DESCRIPTIONS": ["The first #yTribute card you play each turn does not #yTribute. Lose #b", " HP each turn." ]
 },
 "theDuelist:MagicCylinderPower": {
         "NAME": "Magic Cylinder",
@@ -139,9 +143,9 @@
         "NAME": "Blessing of Ra",
         "DESCRIPTIONS": ["Each time you #yEvoke, gain a random buff that lasts for #b", " turns." ]
 },
-"theDuelist:EnergyTreasurePower": {
+"theDuelist:TombLooterPower": {
         "NAME": "Tomb Looter",
-        "DESCRIPTIONS": ["Each time you attack with a max stack of #ySummons, gain #b", " Gold. 30% chance to reduce at the end of turn, 10% chance to increase." ]
+        "DESCRIPTIONS": ["Each time you attack with a max stack of #ySummons, gain #b", " Gold." ]
 },
 "theDuelist:HealGoldPower": {
         "NAME": "Tomb Pilferer",
@@ -217,7 +221,7 @@
 },
 "theDuelist:NaturePower": {
         "NAME": "Nature's Blessing",
-        "DESCRIPTIONS": ["At the start of turn, #ySummon #b" , " #yInsect, #yPlant or #yPredaplant #yToken. Chosen randomly." ]
+        "DESCRIPTIONS": ["At the start of turn, #ySummon #b" , " #yInsect, #yPlant or #yPredaplant #yToken. Chosen randomly.", " #yInsect, #yPlant or #yPredaplant #yTokens. Chosen randomly." ]
 },
 "theDuelist:CardSafePower": {
         "NAME": "Card of Safe Return",
@@ -233,7 +237,7 @@
 },
 "theDuelist:HeartUndertrap": {
         "NAME": "Trap the Underdog",
-        "DESCRIPTIONS": ["Whenever you draw a Trap, gain 10 HP." ]
+        "DESCRIPTIONS": ["Whenever you draw a Trap, gain #b3 HP." ]
 },
 "theDuelist:HeartUndertribute": {
         "NAME": "Tribute the Underdog",
@@ -246,6 +250,46 @@
 "theDuelist:SphereKuribohPower": {
         "NAME": "Sphere Kuriboh",
         "DESCRIPTIONS": ["Whenever you #yIncrement, add a #yrandomized card to your hand." ]
+},
+"theDuelist:CallGravePower": {
+        "NAME": "Call of Grave",
+        "DESCRIPTIONS": ["At the start of turn, #yResummon #b", " random monster that you have summoned this combat.", " random monsters that you have summoned this combat." ]
+},
+"theDuelist:GoblinRemedyPower": {
+        "NAME": "Goblin's Secret Remedy",
+        "DESCRIPTIONS": ["Whenever you #ySummon, heal #b", " HP.", " HP." ]
+},
+"theDuelist:ExodiaRenewalPower": {
+        "NAME": "EXODIARENEWALPLACEHOLDER",
+        "DESCRIPTIONS": ["Whenever you trigger #yExodia, do not reset your collected pieces." ]
+},
+"theDuelist:ObliteratePower": {
+        "NAME": "EXODIARENEWALPLACEHOLDER",
+        "DESCRIPTIONS": ["Double the damage of the Exodia effect the next #b", " time you trigger it.", " times you trigger it" ]
+},
+"theDuelist:AerodynamicsPower": {
+        "NAME": "Aerodynamics",
+        "DESCRIPTIONS": ["Your #yAir Orbs will always #yChannel randomly at the start of turn." ]
+},
+"theDuelist:NaturiaPower": {
+        "NAME": "Naturia Monsters",
+        "DESCRIPTIONS": ["At the end of turn, if you have [#008000]at [#008000]least [#008000]1 [#006400]Naturia [#006400]monster summoned, deal #b", " damage to ALL enemies.", "At the end of turn, if you have [#008000]at [#008000]least [#008000]1 [#006400]Naturia [#006400]monster summoned, deal #y" ]
+},
+"theDuelist:SacredTreePower": {
+        "NAME": "Sacred Tree",
+        "DESCRIPTIONS": ["Your #yNaturia monsters deal 50% more damage and gain 50% more block." ]
+},
+"theDuelist:UmiPower": {
+        "NAME": "Umi",
+        "DESCRIPTIONS": ["Your #yAqua monsters deal 50% more damage and gain 50% more block." ]
+},
+"theDuelist:ToonCannonPower": {
+        "NAME": "Toon Cannon Soldier",
+        "DESCRIPTIONS": ["Whenever you #ySummon a #yToon, deal #b", " damage to ALL enemies." ]
+},
+"theDuelist:SuperheavyDexGainPower": {
+        "NAME": "Samurai's Wisdom",
+        "DESCRIPTIONS": ["Whenever you play a Power card, gain #b", " #yDexterity." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

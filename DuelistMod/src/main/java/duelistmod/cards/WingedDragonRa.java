@@ -7,10 +7,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.orbs.MillenniumOrb;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class WingedDragonRa extends DuelistCard 
@@ -41,28 +44,19 @@ public class WingedDragonRa extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
 		this.originalName = this.name;
-		this.damage = this.baseDamage = 1;
+		this.damage = this.baseDamage = 10;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int manaUsed = getXEffect();
-    	/*
-    	int summons = 0; int maxSummons = 0;
-    	if (player().hasPower(SummonPower.POWER_ID)) { summons = getSummons(p) * 3;  maxSummons = getMaxSummons(p); }
-    	int cardsPlayed = (p.cardsPlayedThisTurn - 1) * 4;
-    	if (cardsPlayed < 0) { cardsPlayed = 0; }
-    	int damageTotal = (cardsPlayed + summons) * manaUsed;
-    	if (upgraded) { damageTotal += maxSummons; }
-    	this.baseDamage = this.damage = damageTotal;
-    	*/
-    	applyPowers();
-    	attack(m, AFX, (DuelistMod.summonCombatCount * this.damage )* manaUsed);
-    	tribute(p, this.tributes, false, this);
+    	tribute();
+    	attack(m, AFX, this.damage);
+    	AbstractOrb mo = new MillenniumOrb(getXEffect());
+    	channel(mo);
     	useXEnergy();
     }
 
@@ -78,7 +72,7 @@ public class WingedDragonRa extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeTributes(-1);
-            this.upgradeDamage(1);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -123,8 +117,8 @@ public class WingedDragonRa extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
 		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
 		}
 	}
 

@@ -1,8 +1,5 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
-import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,7 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.actions.common.ModifyTributeAction;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class FiendishChain extends DuelistCard 
@@ -37,56 +36,27 @@ public class FiendishChain extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.originalName = this.name;
 		this.tags.add(Tags.TRAP);
-		this.tags.add(Tags.ORB_DECK);
-		this.orbDeckCopies = 1;
 		this.tributes = this.baseTributes = 1;
+		this.baseBlock = this.block = 15;
 		this.baseMagicNumber = this.magicNumber = 2;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		ArrayList<DuelistCard> tribList = tribute(p, this.tributes, false, this);
-		// Upgraded
-		if (upgraded)
+		tribute();
+		block(this.block);
+		for (AbstractCard c : p.hand.group)
 		{
-			// Check tribute(s) for fiend(s)
-			boolean foundFiend = false;
-			if (tribList.size() > 0)
+			if (c instanceof DuelistCard)
 			{
-				for (DuelistCard c : tribList)
+				DuelistCard dC = (DuelistCard)c;
+				if (dC.tributes > 0)
 				{
-					if (c.hasTag(Tags.FIEND))
-					{
-						foundFiend = true;
-						break;
-					}
+					AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, this.magicNumber, true));
 				}
 			}
-			
-			// If fiend tribute
-			if (foundFiend)
-			{
-				for (int i = 0; i < AbstractDungeon.player.orbs.size(); i++)
-				{
-					evokeMult(2, AbstractDungeon.player.orbs.get(i));
-				}
-				AbstractDungeon.actionManager.addToTop(new RemoveAllOrbsAction());
-			}
-			
-			// No fiend tribute
-			else
-			{
-				evokeMult(this.magicNumber);
-			}
-		}
-		
-		// Un-upgraded
-		else
-		{
-			evokeMult(this.magicNumber);
 		}
 	}
 
@@ -101,7 +71,7 @@ public class FiendishChain extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(1);
+			this.upgradeMagicNumber(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

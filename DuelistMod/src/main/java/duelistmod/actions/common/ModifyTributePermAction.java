@@ -2,7 +2,7 @@ package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class ModifyTributePermAction extends AbstractGameAction 
 {
@@ -18,7 +18,8 @@ public class ModifyTributePermAction extends AbstractGameAction
 	@Override
 	public void update() 
 	{
-		this.cardToModify.modifyTributesPerm(this.amount); 		
+		this.cardToModify.modifyTributesPerm(this.amount); 	
+		//this.cardToModify.originalDescription = this.cardToModify.rawDescription;
 		this.isDone = true;
 	}
 	

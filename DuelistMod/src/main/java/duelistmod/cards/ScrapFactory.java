@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -39,10 +40,10 @@ public class ScrapFactory extends DuelistCard
 		this.energyOnUse = ENERGY;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ORIGINAL_DECK);  
-		this.tags.add(Tags.STANDARD_DECK);
 		this.tags.add(Tags.MACHINE);
+		this.tags.add(Tags.MACHINE_DECK);
+        this.machineDeckCopies = 1;
         this.startingOriginalDeckCopies = 1;
-        this.standardDeckCopies = 1;
 		this.misc = 0;
 		this.tributes = this.baseTributes = 1;
 		this.originalName = this.name;

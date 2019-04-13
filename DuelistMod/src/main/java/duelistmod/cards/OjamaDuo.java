@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class OjamaDuo extends DuelistCard 
@@ -47,6 +48,7 @@ public class OjamaDuo extends DuelistCard
 		DuelistCard blue = new OjamaBlue();
 		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(red, this.upgraded, true, true, true));
 		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(blue, this.upgraded, true, true, true));
+		if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 	}
 
 	@Override

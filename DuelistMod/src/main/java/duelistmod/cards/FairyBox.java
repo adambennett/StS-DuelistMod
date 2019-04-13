@@ -10,8 +10,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.patches.*;
+import duelistmod.actions.common.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 
 public class FairyBox extends DuelistCard 
 {
@@ -37,7 +38,7 @@ public class FairyBox extends DuelistCard
     public FairyBox() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.exhaust = true;
 		this.originalName = this.name;
 	}
@@ -45,21 +46,40 @@ public class FairyBox extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		if (DuelistMod.orbCards.size() > this.magicNumber)
+		if (!upgraded)
 		{
-			ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
-			for (int i = 0; i < this.magicNumber; i++)
+			if (DuelistMod.orbCards.size() > this.magicNumber)
 			{
-				DuelistCard orbCard = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-				while (orbs.contains(orbCard)) { orbCard = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
-				orbs.add(orbCard);
-			}
-			
-			for (DuelistCard c : orbs)
+				ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+				for (int i = 0; i < this.magicNumber; i++)
+				{
+					DuelistCard orbCard = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
+					while (orbs.contains(orbCard)) { orbCard = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+					orbs.add(orbCard);
+				}
+				
+				for (DuelistCard c : orbs)
+				{
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c, false, true, true, true, false, false, false, false, 1, 1, 0, 0, 0, 0));
+					if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
+				}
+			}		
+		}
+		else
+		{
+			if (DuelistMod.orbCards.size() > this.magicNumber)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c, false, true, true, true, false, false, false, false, 1, 1, 0, 0, 0, 0));
+				ArrayList<AbstractCard> orbs = new ArrayList<AbstractCard>();
+				for (int i = 0; i < 5; i++)
+				{
+					DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
+					while (orbs.contains(random)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+					orbs.add(random.makeCopy());
+				}
+				//for (DuelistCard c : DuelistMod.orbCards) { orbs.add(c.makeCopy()); }
+				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(orbs, false, this.magicNumber, false, true, true, true, false, false, true, 1, 1, 0, 0, 0, 0));
 			}
-		}		
+		}
 	}
 
 	@Override

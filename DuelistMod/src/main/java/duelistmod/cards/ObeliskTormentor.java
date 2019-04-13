@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -39,7 +40,7 @@ public class ObeliskTormentor extends DuelistCard
         this.tags.add(Tags.FIEND);
         this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 4;
+		this.tributes = this.baseTributes = 5;
 		this.baseMagicNumber = this.magicNumber = 6;
     }
 
@@ -64,7 +65,7 @@ public class ObeliskTormentor extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(2);
+            this.upgradeBaseCost(2);
             this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

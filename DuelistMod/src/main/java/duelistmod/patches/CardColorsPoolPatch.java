@@ -21,7 +21,12 @@ public class CardColorsPoolPatch
 	{
 		if (__instance.name.equals("the Duelist"))
 		{
-			PoolHelpers.fillColoredCards();
+			if (DuelistMod.shouldFill)
+			{ 
+				PoolHelpers.fillColoredCards(); 
+				DuelistMod.shouldFill = false;
+			}
+			else { PoolHelpers.coloredCardsHadCards(); }
 			for (AbstractCard c : DuelistMod.coloredCards)
 			{
 				if (!c.rarity.equals(CardRarity.SPECIAL))

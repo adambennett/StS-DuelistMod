@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.unique.CardDestructionAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class CardDestruction extends DuelistCard 

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 import basemod.BaseMod;
 import duelistmod.DuelistMod;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class RandomizedDrawPileAction extends AbstractGameAction {
 
@@ -204,11 +204,11 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (summonChangeCombatCheck)
+    			if (summonChangeCombatCheck && dC.baseSummons > 0)
     			{
     				dC.modifySummons(randomNum);
     			}
-    			else
+    			else if (dC.baseSummons > 0)
     			{
     				dC.modifySummonsForTurn(randomNum);
     			}
@@ -218,11 +218,11 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (tributeChangeCombatCheck)
+    			if (tributeChangeCombatCheck && dC.baseTributes > 0)
     			{
     				dC.modifyTributes(-randomNum);
     			}
-    			else
+    			else if (dC.baseTributes > 0)
     			{
     				dC.modifyTributesForTurn(-randomNum);
     			}

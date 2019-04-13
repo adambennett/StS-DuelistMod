@@ -2,7 +2,7 @@ package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class ModifySummonAction extends AbstractGameAction {
 	DuelistCard cardToModify;
@@ -19,7 +19,7 @@ public class ModifySummonAction extends AbstractGameAction {
 	@Override
 	public void update() {
 		if (forTurn) { this.cardToModify.modifySummons(this.amount); }
-		else { this.cardToModify.modifySummonsForTurn(this.amount); }
+		else { this.cardToModify.originalDescription = this.cardToModify.rawDescription; this.cardToModify.modifySummonsForTurn(this.amount); }
 		this.isDone = true;
 	}
 	

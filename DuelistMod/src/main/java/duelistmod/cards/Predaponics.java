@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
-import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 
 public class Predaponics extends DuelistCard 

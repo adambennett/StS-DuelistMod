@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -41,6 +42,7 @@ public class RyuKokki extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.RESUMMON_DECK);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.EXEMPT);
         this.resummonDeckCopies = 1;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;

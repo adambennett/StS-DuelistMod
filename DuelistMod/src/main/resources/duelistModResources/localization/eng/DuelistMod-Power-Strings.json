@@ -143,9 +143,9 @@
         "NAME": "Blessing of Ra",
         "DESCRIPTIONS": ["Each time you #yEvoke, gain a random buff that lasts for #b", " turns." ]
 },
-"theDuelist:EnergyTreasurePower": {
+"theDuelist:TombLooterPower": {
         "NAME": "Tomb Looter",
-        "DESCRIPTIONS": ["Each time you attack with a max stack of #ySummons, gain #b", " Gold. 30% chance to reduce at the end of turn, 10% chance to increase." ]
+        "DESCRIPTIONS": ["Each time you attack with a max stack of #ySummons, gain #b", " Gold." ]
 },
 "theDuelist:HealGoldPower": {
         "NAME": "Tomb Pilferer",
@@ -221,7 +221,7 @@
 },
 "theDuelist:NaturePower": {
         "NAME": "Nature's Blessing",
-        "DESCRIPTIONS": ["At the start of turn, #ySummon #b" , " #yInsect, #yPlant or #yPredaplant #yToken. Chosen randomly." ]
+        "DESCRIPTIONS": ["At the start of turn, #ySummon #b" , " #yInsect, #yPlant or #yPredaplant #yToken. Chosen randomly.", " #yInsect, #yPlant or #yPredaplant #yTokens. Chosen randomly." ]
 },
 "theDuelist:CardSafePower": {
         "NAME": "Card of Safe Return",
@@ -237,7 +237,7 @@
 },
 "theDuelist:HeartUndertrap": {
         "NAME": "Trap the Underdog",
-        "DESCRIPTIONS": ["Whenever you draw a Trap, gain 10 HP." ]
+        "DESCRIPTIONS": ["Whenever you draw a Trap, gain #b3 HP." ]
 },
 "theDuelist:HeartUndertribute": {
         "NAME": "Tribute the Underdog",
@@ -273,7 +273,7 @@
 },
 "theDuelist:NaturiaPower": {
         "NAME": "Naturia Monsters",
-        "DESCRIPTIONS": ["At the end of turn, deal #b", " damage to ALL enemies." ]
+        "DESCRIPTIONS": ["At the end of turn, if you have [#008000]at [#008000]least [#008000]1 [#006400]Naturia [#006400]monster summoned, deal #b", " damage to ALL enemies.", "At the end of turn, if you have [#008000]at [#008000]least [#008000]1 [#006400]Naturia [#006400]monster summoned, deal #y" ]
 },
 "theDuelist:SacredTreePower": {
         "NAME": "Sacred Tree",

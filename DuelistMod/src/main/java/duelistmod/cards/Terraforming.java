@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class Terraforming extends DuelistCard 
@@ -51,7 +52,7 @@ public class Terraforming extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.FIELDSPELL);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, false, false, false, 1, 5, 0, 0, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, false, false, false, 0, 1, 0, 0, 0, 0));
 		}
     }
 

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -37,7 +38,7 @@ public class SnowdustDragon extends DuelistCard
     public SnowdustDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 18;
-        this.upgradeDmg = 3;
+        this.upgradeDmg = 5;
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -68,8 +69,7 @@ public class SnowdustDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
-            this.tributes = 1;
-            //this.upgradeBaseCost(1);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -109,11 +109,12 @@ public class SnowdustDragon extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
 		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
 		}
 	}
 

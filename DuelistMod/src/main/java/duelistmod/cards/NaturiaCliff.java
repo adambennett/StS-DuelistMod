@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.NaturiaPower;
 
@@ -45,7 +46,7 @@ public class NaturiaCliff extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, this.baseAFX, this.damage);
-    	applyPowerToSelf(new NaturiaPower(m, p, 1));
+    	applyPowerToSelf(new NaturiaPower(p, p, 1));
     }
 
     // Which card to return when making a copy of this card.

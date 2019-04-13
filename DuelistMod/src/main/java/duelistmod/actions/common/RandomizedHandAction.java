@@ -7,11 +7,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
-import duelistmod.DuelistMod;
-import duelistmod.patches.DuelistCard;
+import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 
-public class RandomizedHandAction extends AbstractGameAction {
 
+
+public class RandomizedHandAction extends AbstractGameAction 
+{
 	private AbstractCard cardRef;
 	private boolean exhaustCheck = false;
 	private boolean etherealCheck = false;
@@ -41,6 +43,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 		this.highTributeRoll = 1;
 		this.tributeChangeCombatCheck = false;
 		this.summonChangeCombatCheck = false;
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean extras)
@@ -65,6 +74,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 			this.tributeCheck = true; 
 			this.summonCheck = true; 
 		}
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal)
@@ -78,6 +94,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 		this.exhaustCheck = false; 
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust)
@@ -91,6 +114,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust, boolean costChange)
@@ -106,6 +136,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
 		if (costChange) { this.costChangeCheck = true; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange)
@@ -127,6 +164,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 		if (costChange)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange, boolean tribChangeCombat, boolean summonChangeCombat)
@@ -148,6 +192,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 		if (costChange)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean costChange, int lowCost, int highCost) 
@@ -175,6 +226,13 @@ public class RandomizedHandAction extends AbstractGameAction {
 			this.highCostRoll = highCost;
 		}
 		else { this.costChangeCheck = false; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
 	}
 	
     public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange, boolean tribChangeCombat, boolean summonChangeCombat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon) 
@@ -196,6 +254,11 @@ public class RandomizedHandAction extends AbstractGameAction {
 		if (costChange)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+		}
     }
 
     public void update() {
@@ -231,11 +294,11 @@ public class RandomizedHandAction extends AbstractGameAction {
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (summonChangeCombatCheck)
+    			if (summonChangeCombatCheck && dC.baseSummons > 0)
     			{
     				dC.modifySummons(randomNum);
     			}
-    			else
+    			else if (dC.baseSummons > 0)
     			{
     				dC.modifySummonsForTurn(randomNum);
     			}
@@ -245,11 +308,11 @@ public class RandomizedHandAction extends AbstractGameAction {
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (tributeChangeCombatCheck)
+    			if (tributeChangeCombatCheck && dC.baseTributes > 0)
     			{
     				dC.modifyTributes(-randomNum);
     			}
-    			else
+    			else if (dC.baseTributes > 0)
     			{
     				dC.modifyTributesForTurn(-randomNum);
     			}
@@ -288,6 +351,10 @@ public class RandomizedHandAction extends AbstractGameAction {
             	if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)
             	{
             		AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
+            		if (DuelistMod.debug) 
+            		{
+            			DuelistMod.logger.info("Added " + c.originalName + " to hand from RandomizedAction"); 
+            		}
             	}
             	else
             	{

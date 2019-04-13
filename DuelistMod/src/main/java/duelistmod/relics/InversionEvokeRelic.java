@@ -15,7 +15,7 @@ public class InversionEvokeRelic extends CustomRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("AeroRelic");
+	public static final String ID = duelistmod.DuelistMod.makeID("InversionEvokeRelic");
 	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 

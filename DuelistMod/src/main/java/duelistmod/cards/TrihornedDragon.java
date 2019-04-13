@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
+import duelistmod.actions.common.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -60,16 +62,32 @@ public class TrihornedDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
+    	attack(m, AFX, this.damage);    	
     	if (tributeList.size() > 0)
     	{
+    		int dragons = 0;
     		for (DuelistCard c : tributeList)
     		{
     			if (c.hasTag(Tags.DRAGON))
-    			{    				
+    			{    			
+    				dragons++;
     				if (!this.upgraded) { channelRandom(); }
-    				else { openRandomOrbChoice(3, "Channel an Orb"); }
     			}
+    		}
+    		
+    		if (this.upgraded && dragons > 0)
+    		{
+    			if (DuelistMod.orbCards.size() > dragons + 2)
+				{
+					ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+					for (int i = 0; i < dragons + 2; i++)
+					{
+						DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
+						while (orbs.contains(random)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+						orbs.add((DuelistCard)random.makeCopy());
+					}
+					AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, dragons, false, false, false));
+				}
     		}
     	}
     }
@@ -130,9 +148,9 @@ public class TrihornedDragon extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
 		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
-		}		
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
+		}	
 	}
 
 	@Override

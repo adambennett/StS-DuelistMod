@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 
@@ -31,15 +32,13 @@ public class DarklordMarie extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int SUMMONS = 1;
-    private static final int OVERFLOW_AMT = 4;
     private static final int COST = 1;
     private static final int HEAL = 3;
-    private static final int U_HEAL = 4;
     private static final int DAMAGE = 6;
 
     public DarklordMarie() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = OVERFLOW_AMT;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
@@ -63,8 +62,7 @@ public class DarklordMarie extends DuelistCard
             AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
             // Heal
-            if (!upgraded) { heal(player(), HEAL); }
-            else { heal(player(), U_HEAL); }
+            heal(player(), HEAL);
         }
     }
 
@@ -85,6 +83,7 @@ public class DarklordMarie extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

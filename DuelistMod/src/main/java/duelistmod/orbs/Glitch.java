@@ -21,7 +21,6 @@ import duelistmod.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.Token;
 import duelistmod.interfaces.*;
-import duelistmod.patches.DuelistCard;
 
 @SuppressWarnings("unused")
 public class Glitch extends DuelistOrb
@@ -267,12 +266,12 @@ public class Glitch extends DuelistOrb
 				break;
 			case "Add #b1 random #ySpellcaster to hand":
 				DuelistCard randomSpellcaster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.SPELLCASTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpellcaster, false, true, true, false, true, false, true, false, 1, 4, 0, 1, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpellcaster, false, true, true, false, randomSpellcaster.baseTributes > 0, false, true, false, 1, 4, 0, 1, 0, 0));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yMonster to hand":
 				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, true, false, true, 1, 4, 0, 0, 1, 2));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, randomMonster.baseSummons > 0, false, true, 1, 4, 0, 0, 1, 2));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Lose #b1 strength":
@@ -317,7 +316,7 @@ public class Glitch extends DuelistOrb
 				for (int i = 0; i < RAND_CARDS; i++)
 				{
 					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, true, true, true, true, 1, 4, 0, 1, 1, 2));
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, false, false, true, true, 1, 4, 0, 1, 1, 2));
 				}
 				
 				// Give self 3 random buffs

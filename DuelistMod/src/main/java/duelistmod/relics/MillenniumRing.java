@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.DuelistCard;
 
 public class MillenniumRing extends CustomRelic {
 
@@ -23,7 +23,7 @@ public class MillenniumRing extends CustomRelic {
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_RING_RELIC_OUTLINE);
 
 	public MillenniumRing() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 
 	// Summon 1 on turn start

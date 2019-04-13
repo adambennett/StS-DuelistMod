@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.Black;
 import duelistmod.patches.*;
 

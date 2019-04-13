@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedDrawPileAction;
 import duelistmod.actions.unique.ExhaustSpecificCardSuperFastAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class Ojamassimilation extends DuelistCard 
@@ -38,11 +39,9 @@ public class Ojamassimilation extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
-        this.tags.add(Tags.OJAMA_DECK);
-		this.ojamaDeckCopies = 1;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;
-		this.setupStartingCopies();
+		this.exhaust = true;
 	}
 
 	@Override

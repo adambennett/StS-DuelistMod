@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class SuperheavyScales extends DuelistCard 
@@ -40,7 +41,7 @@ public class SuperheavyScales extends DuelistCard
 		this.tags.add(Tags.SUPERHEAVY);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 4;
+		this.superheavyDeckCopies = 3;
 		this.setupStartingCopies();
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;

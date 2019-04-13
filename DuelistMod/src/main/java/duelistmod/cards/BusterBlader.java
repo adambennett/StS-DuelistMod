@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class BusterBlader extends DuelistCard 
@@ -33,6 +34,7 @@ public class BusterBlader extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 16;
+    private int dragons = 0;
     //private static final int UPGRADE_PLUS_DMG = 2;
     // /STAT DECLARATION/
 
@@ -54,7 +56,7 @@ public class BusterBlader extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int dragons = 0;
+    	dragons = 0;
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	if (tributeList.size() > 0)
     	{
@@ -66,10 +68,9 @@ public class BusterBlader extends DuelistCard
 	    		}
 	    	}
     	}
-    	int newDamage = (this.magicNumber * dragons) + DAMAGE;
-    	this.damage = newDamage;
-    	applyPowers();
-    	attack(m, AFX, this.damage);
+    	
+    	int newDamage = this.damage + (this.magicNumber * dragons);
+    	attack(m, AFX, newDamage);
     }
 
     // Which card to return when making a copy of this card.

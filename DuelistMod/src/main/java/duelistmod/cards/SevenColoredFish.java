@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class SevenColoredFish extends DuelistCard 
@@ -46,7 +47,7 @@ public class SevenColoredFish extends DuelistCard
         this.tags.add(Tags.ORIGINAL_DECK);   
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
         this.tags.add(Tags.AQUA_DECK);
-		this.aquaDeckCopies = 3;
+		this.aquaDeckCopies = 2;
     	this.startingOPODeckCopies = 2;
         this.startingOriginalDeckCopies = 2;
         this.exodiaDeckCopies = 4;
@@ -64,7 +65,8 @@ public class SevenColoredFish extends DuelistCard
     	attack(m, AFX, this.damage);
     	
     	// for testing
-    	//printSetDetails(new CardTags[] {DefaultMod.MONSTER, DefaultMod.SPELL, DefaultMod.TRAP, DefaultMod.DRAGON, DefaultMod.LEGEND_BLUE_EYES, DefaultMod.METAL_RAIDERS, DefaultMod.PHARAOH_SERVANT});
+    	//Debug.printNonBasicSetCards(DuelistMod.myCards);
+    	//PoolHelpers.printNonDeckCards();
     }
 
     // Which card to return when making a copy of this card.
@@ -92,7 +94,7 @@ public class SevenColoredFish extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 

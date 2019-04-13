@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -38,11 +39,11 @@ public class EmpressMantis extends DuelistCard
         this.tags.add(Tags.LABYRINTH_NIGHTMARE);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
-        this.tags.add(Tags.OP_NATURE_DECK);
-        this.startingOPNDeckCopies = 1;
+        this.tags.add(Tags.NATURE_DECK);
+        this.natureDeckCopies = 1;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;
-        this.damage = this.baseDamage = 14;
+        this.damage = this.baseDamage = 10;
         this.setupStartingCopies();
     }
 

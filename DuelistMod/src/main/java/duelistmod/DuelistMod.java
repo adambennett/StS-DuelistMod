@@ -1,5 +1,6 @@
 package duelistmod;
 
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -32,6 +33,7 @@ import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.*;
+import basemod.abstracts.*;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import duelistmod.actions.common.RandomizedHandAction;
@@ -48,14 +50,14 @@ import duelistmod.variables.*;
 
 
 @SpireInitializer @SuppressWarnings("unused")
-public class DuelistMod
+public class DuelistMod 
 implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber,
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
 PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
 RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
-PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
+PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 {
-	public static final Logger logger = LogManager.getLogger("theDuelist:DuelistMod ---> " + DuelistMod.class.getName());
+	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
@@ -77,8 +79,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	static CardTags chosenDeckTag = Tags.STANDARD_DECK;
 	static int randomDeckSmallSize = 10;
 	static int randomDeckBigSize = 15;
-	private static boolean runInProgress = false;
-	private static boolean ranFunc = false;
 	
 	// Global Fields
 	
@@ -97,6 +97,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public static final String PROP_UNLOCK = "unlockAllDecks";
 	public static final String PROP_FLIP = "flipCardTags";
 	public static final String PROP_RESET = "resetProg";
+	public static final String PROP_DEBUG = "debug";
+	public static String seenString = "";
 	public static Properties duelistDefaults = new Properties();
 	public static boolean toonBtnBool = false;
 	public static boolean exodiaBtnBool = false;
@@ -125,6 +127,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
 	public static ArrayList<String> startingDecks = new ArrayList<String>();
 	public static ArrayList<String> randomBuffStrings = new ArrayList<String>();
+	public static ArrayList<DuelistCard> archetypeCards = new ArrayList<DuelistCard>();
 	
 	// Global Flags
 	public static boolean toonWorldTemp = false;
@@ -137,15 +140,20 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public static boolean gotBeastStr = false;
 	public static boolean gotMimicLv1 = false;
 	public static boolean gotMimicLv3 = false;
+	public static boolean immortalInDiscard = false;
 	public static boolean upgradedMimicLv3 = false;
 	public static boolean giveUpgradedMimicLv3 = false;
 	public static boolean ultimateOfferingTrig = false;
 	public static boolean playedOneCardThisCombat = false;
 	public static boolean hasCardRewardRelic = false;
+	public static boolean shouldFill = true;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 
 	// Numbers
+	public static int lowNoBuffs = 3;
+	public static int highNoBuffs = 6;
+	public static int deckArchetypePoolCheck = 10;
 	public static int lastMaxSummons = 5;
 	//public static int toonDamage = 7;
 	public static int spellCombatCount = 0;
@@ -159,6 +167,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public static int cardsToDraw = 5;
 	public static int resummonDeckDamage = 1;
 	public static int deckIndex = 0;
+	public static int normalSelectDeck = -1;
 	public static int dragonStr = 1;
 	public static int insectPoisonDmg = 3;
 	public static final int baseInsectPoison = 3;
@@ -171,6 +180,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public static int machineArt = 1;
 	public static int beastStrSummons = 0;
 	public static int mimic1Copies = 0;
+	public static int extraCardsFromRandomArch = 25;
+	public static int archRoll1 = -1;
+	public static int archRoll2 = -1;
 	
 	// Other
 	public static StarterDeck currentDeck;
@@ -185,8 +197,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public static int orbSlots = 3;
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
-	public static final boolean debug = true;		// print statements only really
-	public static final boolean addTokens = true;	// adds debug tokens to library
+	public static boolean debug = false;			// print statements only, used in mod option panel
+	public static final boolean addTokens = false;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -240,15 +252,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	// =============== SUBSCRIBE, CREATE THE COLOR, INITIALIZE =================
 
 	public DuelistMod() {
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Subscribe to BaseMod hooks");
-
+		logger.info("Subscribe to BaseMod hooks");
 		BaseMod.subscribe(this);
 
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Done subscribing");
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Creating the color " + AbstractCardEnum.DUELIST.toString());
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Creating the color " + AbstractCardEnum.DUELIST_MONSTERS.toString());
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Creating the color " + AbstractCardEnum.DUELIST_SPELLS.toString());
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Creating the color " + AbstractCardEnum.DUELIST_TRAPS.toString());
+		logger.info("Done subscribing");
+		logger.info("Creating the color " + AbstractCardEnum.DUELIST.toString());
+		logger.info("Creating the color " + AbstractCardEnum.DUELIST_MONSTERS.toString());
+		logger.info("Creating the color " + AbstractCardEnum.DUELIST_SPELLS.toString());
+		logger.info("Creating the color " + AbstractCardEnum.DUELIST_TRAPS.toString());
 
 		// Register Default Gray
 		/*
@@ -292,9 +303,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 				makePath(Strings.SKILL_DEFAULT_BLUE_PORTRAIT), makePath(Strings.POWER_DEFAULT_BLUE_PORTRAIT),
 				makePath(Strings.ENERGY_ORB_DEFAULT_BLUE_PORTRAIT), makePath(Strings.CARD_ENERGY_ORB_BLUE));
 
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Done creating the color");
+		logger.info("Done creating the color");
 		
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Setting up or loading the settings config file");
+		logger.info("Setting up or loading the settings config file");
 		duelistDefaults.setProperty(PROP_TOON_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_OJAMA_BTN, "FALSE");
@@ -309,6 +320,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		duelistDefaults.setProperty(PROP_UNLOCK, "FALSE");
 		duelistDefaults.setProperty(PROP_FLIP, "FALSE");
 		duelistDefaults.setProperty(PROP_RESET, "FALSE");
+		duelistDefaults.setProperty(PROP_DEBUG, "FALSE");
 		
 		cardSets.add("Standard"); 
 		cardSets.add("Basic + Deck Archetype");
@@ -319,16 +331,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		cardSets.add("Always ALL Cards");
 		
 		int save = 0;
-		StarterDeck regularDeck = new StarterDeck(Tags.STANDARD_DECK, "Standard Deck (11 cards)", save, "Standard Deck", true); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck dragDeck = new StarterDeck(Tags.DRAGON_DECK, "Dragon Deck (11 cards)", save, "Dragon Deck", false); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck natDeck = new StarterDeck(Tags.NATURE_DECK, "Nature Deck (11 cards)", save, "Nature Deck", false); starterDeckList.add(natDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck spellcDeck = new StarterDeck(Tags.SPELLCASTER_DECK, "Spellcaster Deck (9 cards)", save, "Spellcaster Deck", false); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck regularDeck = new StarterDeck(Tags.STANDARD_DECK, "Standard Deck (10 cards)", save, "Standard Deck", true); starterDeckList.add(regularDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck dragDeck = new StarterDeck(Tags.DRAGON_DECK, "Dragon Deck (10 cards)", save, "Dragon Deck", false); starterDeckList.add(dragDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck natDeck = new StarterDeck(Tags.NATURE_DECK, "Nature Deck (10 cards)", save, "Nature Deck", false); starterDeckList.add(natDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck spellcDeck = new StarterDeck(Tags.SPELLCASTER_DECK, "Spellcaster Deck (10 cards)", save, "Spellcaster Deck", false); starterDeckList.add(spellcDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck toonDeck = new StarterDeck(Tags.TOON_DECK, "Toon Deck (10 cards)", save, "Toon Deck", false); starterDeckList.add(toonDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck zombieDeck = new StarterDeck(Tags.ZOMBIE_DECK, "Zombie Deck (?? cards)", save, "Zombie Deck", false); starterDeckList.add(zombieDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck aquaDeck = new StarterDeck(Tags.AQUA_DECK, "Aqua Deck (?? cards)", save, "Aqua Deck", false); starterDeckList.add(aquaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck fiendDeck = new StarterDeck(Tags.FIEND_DECK, "Fiend Deck (?? cards)", save, "Fiend Deck", false); starterDeckList.add(fiendDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck machineDeck = new StarterDeck(Tags.MACHINE_DECK, "Machine Deck (?? cards)", save, "Machine Deck", false); starterDeckList.add(machineDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
-		StarterDeck magnetDeck = new StarterDeck(Tags.MAGNET_DECK, "Superheavy Deck (?? cards)", save, "Superheavy Deck", false); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck zombieDeck = new StarterDeck(Tags.ZOMBIE_DECK, "Zombie Deck (10 cards)", save, "Zombie Deck", false); starterDeckList.add(zombieDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck aquaDeck = new StarterDeck(Tags.AQUA_DECK, "Aqua Deck (10 cards)", save, "Aqua Deck", false); starterDeckList.add(aquaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck fiendDeck = new StarterDeck(Tags.FIEND_DECK, "Fiend Deck (10 cards)", save, "Fiend Deck", false); starterDeckList.add(fiendDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck machineDeck = new StarterDeck(Tags.MACHINE_DECK, "Machine Deck (10 cards)", save, "Machine Deck", false); starterDeckList.add(machineDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck magnetDeck = new StarterDeck(Tags.MAGNET_DECK, "Superheavy Deck (10 cards)", save, "Superheavy Deck", false); starterDeckList.add(magnetDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck creaDeck = new StarterDeck(Tags.CREATOR_DECK, "Creator Deck (10 cards)", save, "Creator Deck", true); starterDeckList.add(creaDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ojDeck = new StarterDeck(Tags.OJAMA_DECK, "Ojama Deck (12 cards)", save, "Ojama Deck", true); starterDeckList.add(ojDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck gDeck = new StarterDeck(Tags.GENERATION_DECK, "Generation Deck (16 cards)", save, "Generation Deck", true); starterDeckList.add(gDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
@@ -357,6 +369,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
             setIndex = config.getInt(PROP_SET);
             cardCount = config.getInt(PROP_CARDS);
             deckIndex = config.getInt(PROP_DECK);
+            debug = config.getBool(PROP_DEBUG);
             chosenDeckTag = StarterDeckSetup.findDeckTag(deckIndex);
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
             resummonDeckDamage = config.getInt(PROP_RESUMMON_DMG);
@@ -376,14 +389,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			orbSlots = 3;
 		}
 
-		logger.info("theDuelist:DuelistMod:DuelistMod() ---> Done setting up or loading the settings config file");
+		logger.info("Done setting up or loading the settings config file");
 	}
 
 
 	public static void initialize() {
-		logger.info("theDuelist:DuelistMod:initialize() ---> Initializing Duelist Mod");
+		logger.info("Initializing Duelist Mod");
 		DuelistMod defaultmod = new DuelistMod();
-		logger.info("theDuelist:DuelistMod:initialize() ---> Duelist Mod Initialized");
+		logger.info("Duelist Mod Initialized");
 	}
 
 	// ============== /SUBSCRIBE, CREATE THE COLOR, INITIALIZE/ =================
@@ -400,7 +413,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 
 		receiveEditPotions();
 
-		logger.info("theDuelist:DuelistMod:receiveEditCharacters() ---> Done editing characters");
+		logger.info("Done editing characters");
 
 	}
 
@@ -414,7 +427,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public void receivePostInitialize() 
 	{	
 		// MOD OPTIONS PANEL
-		logger.info("theDuelist:DuelistMod:receivePostInitialize() ---> Loading badge image and mod options");
+		logger.info("Loading badge image and mod options");
 		String loc = Localization.localize();
 
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
@@ -435,12 +448,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		settingsPanel.addUIElement(cardLabelTxt);
 		yPos-=50;
 		// END Card Count Label
-		
+
 		// Check Box A
 		String toonString = UI_String.TEXT[0];
 		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton(toonString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			toonBtnBool = button.enabled;
+			shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -458,6 +472,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		ModLabeledToggleButton exodiaBtn = new ModLabeledToggleButton(exodiaString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, exodiaBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			exodiaBtnBool = button.enabled;
+			shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -475,6 +490,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		ModLabeledToggleButton ojamaBtn = new ModLabeledToggleButton(ojamaString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, ojamaBtnBool, settingsPanel, (label) -> {}, (button) -> 
 		{
 			ojamaBtnBool = button.enabled;
+			shouldFill = true;
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -575,6 +591,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		// END Set Size Selector
 		
 		// Starting Deck Selector
+		if (CardCrawlGame.isInARun()) { logger.info("was in a run");}
+		else { logger.info("wasnt in a run"); }
 		String deckString = UI_String.TEXT[3];
 		ModLabel setSelectLabelTxtB = new ModLabel(deckString, xLabPos, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectLabelTxtB);
@@ -582,6 +600,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		settingsPanel.addUIElement(setSelectColorTxtB);
 		yPos-=15;
 		ModButton setSelectLeftBtnB = new ModButton(xLArrow, yPos, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+			
 			if (deckIndex == 0) { deckIndex = DECKS - 1; }
 			else { deckIndex--; }
 			if (deckIndex < 0) { deckIndex = 0; }
@@ -594,21 +613,24 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 				e.printStackTrace();
 			}
 			StarterDeckSetup.resetStarterDeck();
+			
 		});
-		if (!runInProgress) { settingsPanel.addUIElement(setSelectLeftBtnB); }
+		settingsPanel.addUIElement(setSelectLeftBtnB);
 		ModButton setSelectRightBtnB = new ModButton(xRArrow, yPos, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
-			deckIndex = (deckIndex+1)%DECKS;
-			setSelectColorTxtB.text = startingDecks.get(deckIndex);
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_DECK, deckIndex);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			StarterDeckSetup.resetStarterDeck();
+			
+				deckIndex = (deckIndex+1)%DECKS;
+				setSelectColorTxtB.text = startingDecks.get(deckIndex);
+				try {
+					SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+					config.setInt(PROP_DECK, deckIndex);
+					config.save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				StarterDeckSetup.resetStarterDeck();
+			
 		});
-		if (!runInProgress) { settingsPanel.addUIElement(setSelectRightBtnB); }
+		settingsPanel.addUIElement(setSelectRightBtnB);
 		yPos-=50;
 		// Starting Deck Selector
 
@@ -616,10 +638,27 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		String freshString = UI_String.TEXT[6];
 		ModLabel extraLabelTxtB = new ModLabel(freshString, xLabPos, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(extraLabelTxtB);
-		yPos-=35;
+		yPos-=50;
 		// END Info Labels
+		
+		// Check Box DEBUG
+		String debugString = UI_String.TEXT[10];
+		ModLabeledToggleButton debugBtn = new ModLabeledToggleButton(debugString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, debug, settingsPanel, (label) -> {}, (button) -> 
+		{
+			debug = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_DEBUG, debug);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//resetCharSelect();
+		});
+		settingsPanel.addUIElement(debugBtn);
+		yPos-=50;
+		// END Check Box DEBUG
 
-		logger.info("theDuelist:DuelistMod:receivePostInitialize() ---> Done loading badge Image and mod options");
+		logger.info("Done loading badge Image and mod options");
 
 	}
 
@@ -630,14 +669,39 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 
 
 	public void receiveEditPotions() {
-		logger.info("theDuelist:DuelistMod:receiveEditPotions() ---> Beginning to edit potions");
+		logger.info("Beginning to edit potions");
 
+		ArrayList<AbstractPotion> pots = new ArrayList<AbstractPotion>();
+		pots.add(new MillenniumElixir());
+		pots.add(new SealedPack());
+		pots.add(new SealedPackB());
+		pots.add(new OrbBottle());
+		pots.add(new AirBottle());
+		pots.add(new BlackBottle());
+		pots.add(new DragonOrbBottle());
+		pots.add(new DragonOrbPlusBottle());
+		pots.add(new EarthBottle());
+		pots.add(new FireBottle());
+		pots.add(new GadgetBottle());
+		pots.add(new GlitchBottle());
+		pots.add(new MetalBottle());
+		pots.add(new MonsterOrbBottle());
+		pots.add(new SandBottle());
+		pots.add(new StormBottle());
+		pots.add(new SummonerBottle());
+		pots.add(new ExtraOrbsBottle());
+		pots.add(new TributeBottle());
+		pots.add(new BigTributeBottle());
+		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, p.ID, TheDuelistEnum.THE_DUELIST); }
+		
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
-		BaseMod.addPotion(MillenniumElixir.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, MillenniumElixir.POTION_ID, TheDuelistEnum.THE_DUELIST);
-		BaseMod.addPotion(SealedPack.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, SealedPack.POTION_ID, TheDuelistEnum.THE_DUELIST);
-		BaseMod.addPotion(SealedPackB.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, SealedPackB.POTION_ID, TheDuelistEnum.THE_DUELIST);
+		//BaseMod.addPotion(MillenniumElixir.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, MillenniumElixir.POTION_ID, TheDuelistEnum.THE_DUELIST);
+		//BaseMod.addPotion(SealedPack.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, SealedPack.POTION_ID, TheDuelistEnum.THE_DUELIST);
+		//BaseMod.addPotion(SealedPackB.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, SealedPackB.POTION_ID, TheDuelistEnum.THE_DUELIST);
+		//BaseMod.addPotion(OrbBottle.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, OrbBottle.POTION_ID, TheDuelistEnum.THE_DUELIST);
+		//BaseMod.addPotion(AirBottle.class, Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, AirBottle.POTION_ID, TheDuelistEnum.THE_DUELIST);
 
-		logger.info("theDuelist:DuelistMod:receiveEditPotions() ---> Done editing potions");
+		logger.info("Done editing potions");
 	}
 
 	// ================ /ADD POTIONS/ ===================
@@ -647,7 +711,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 
 	@Override
 	public void receiveEditRelics() {
-		logger.info("theDuelist:DuelistMod:receiveEditRelics() ---> Adding relics");
+		logger.info("Adding relics");
 
 		// This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
 		BaseMod.addRelicToCustomPool(new MillenniumPuzzle(), AbstractCardEnum.DUELIST);
@@ -668,6 +732,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		BaseMod.addRelicToCustomPool(new InsectRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new NaturiaRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MachineToken(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new DragonRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new SummonAnchor(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new RandomTributeMonsterRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST); }
 		BaseMod.addRelicToCustomPool(new GiftAnubis(), AbstractCardEnum.DUELIST);
@@ -691,11 +758,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		UnlockTracker.markRelicAsSeen(MachineToken.ID);
 		UnlockTracker.markRelicAsSeen(StoneExxod.ID);
 		UnlockTracker.markRelicAsSeen(GiftAnubis.ID);
+		UnlockTracker.markRelicAsSeen(DragonRelic.ID);
+		UnlockTracker.markRelicAsSeen(SummonAnchor.ID);
+		//UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
+		
 
 		// This adds a relic to the Shared pool. Every character can find this relic.
 		BaseMod.addRelic(new MillenniumPuzzleShared(), RelicType.SHARED);
 
-		logger.info("theDuelist:DuelistMod:receiveEditRelics() ---> Done adding relics!");
+		logger.info("Done adding relics!");
 	}
 
 	// ================ /ADD RELICS/ ===================
@@ -710,44 +781,47 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		BaseMod.addDynamicVariable(new SummonMagicNumber());
 
 		// ================ ORB CARDS ===================
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> adding orb cards to array for orb modal");
+		logger.info("adding orb cards to array for orb modal");
 		CardLibrary.setupOrbCards();
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done adding orb cards to array");
+		logger.info("done adding orb cards to array");
 		
 		// ================ LIBRARY CARDS ===================
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> adding all cards to myCards array");
+		logger.info("adding all cards to myCards array");
 		CardLibrary.setupMyCards();
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done adding all cards to myCards array");
+		logger.info("done adding all cards to myCards array");
 
 		// ================ STARTER DECKS ===================
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> filling up starting decks");
+		logger.info("filling up starting decks");
 		StarterDeckSetup.initStartDeckArrays();
 		StarterDeckSetup.initStarterDeckPool();
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> starting deck set as: " + chosenDeckTag.name());
+		logger.info("starting deck set as: " + chosenDeckTag.name());
 		
 		// ================ SUMMON MAP ===================
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> filling summonMap");
+		logger.info("filling summonMap");
 		CardLibrary.fillSummonMap(myCards);
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done filling summonMap");
+		logger.info("done filling summonMap");
 
 		// ================ METRICS HELPER ===================
 		if (DuelistMod.debug)
 		{
-			logger.info("theDuelist:DuelistMod:receiveEditCards() ---> START SQL METRICS PRINT");
+			logger.info("START SQL METRICS PRINT");
 			Debug.outputSQLListsForMetrics();
-			logger.info("theDuelist:DuelistMod:receiveEditCards() ---> END SQL METRICS PRINT");
+			logger.info("END SQL METRICS PRINT");
+			logger.info("checking for non-basic, non-archetype cards");
+			PoolHelpers.printNonDeckCards();
+			logger.info("done checking for non-basic, non-archetype cards");
 		}
 		
 		// ================ COMPENDIUM MANIPULATION ===================
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> begin checking config options and removing cards");
+		logger.info("begin checking config options and removing cards");
 		CardLibrary.removeCardsFromSet();
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> all needed cards have been removed from myCards array");
+		logger.info("all needed cards have been removed from myCards array");
 		
 		// ================ COLORED CARDS ===================
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> filling colored cards with necessary spells and traps to add to card reward/shop pool");
+		logger.info("filling colored cards with necessary spells and traps to add to card reward/shop pool");
 		PoolHelpers.fillColoredCards();
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done filling colored cards");
-		logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done");
+		logger.info("done filling colored cards");
+		logger.info("done");
 	}
 
 	// ================ /ADD CARDS/ ===================
@@ -758,7 +832,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 
 	@Override
 	public void receiveEditStrings() {
-		logger.info("theDuelist:DuelistMod:receiveEditStrings() ---> Beginning to edit strings");
+		logger.info("Beginning to edit strings");
 
 		String loc = Localization.localize();
 		
@@ -783,7 +857,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		// Character Strings
 		BaseMod.loadCustomStringsFile(CharacterStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Character-Strings.json");
 
-		logger.info("theDuelist:DuelistMod:receiveEditStrings() ---> Done editing strings");
+		logger.info("Done editing strings");
 	}
 
 	// ================ /LOAD THE TEXT/ ===================
@@ -861,6 +935,23 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
+		if (StarterDeckSetup.getCurrentDeck().getIndex() != normalSelectDeck && normalSelectDeck > -1)
+		{
+			deckIndex = normalSelectDeck;
+			if (debug) { logger.info("reset selected deck to: " + StarterDeckSetup.getCurrentDeck().getSimpleName()); }
+			if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID))
+			{
+				MillenniumPuzzle mp = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
+				mp.getDeckDesc();
+			}
+			
+			if (AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID))
+			{
+				MillenniumPuzzleShared mp = (MillenniumPuzzleShared) AbstractDungeon.player.getRelic(MillenniumPuzzleShared.ID);
+				mp.getDeckDesc();
+			}
+		}
+		
 		if (!AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) { naturiaDmg = 1; }
 		
 		if (gotFirePot)
@@ -873,7 +964,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		if (gotBeastStr)
 		{
 			DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, beastStrSummons));
-			if (debug) { logger.info("theDuelist:DuelistMod:receiveOnBattleStart() ---> got beast fangs strength buff flag, strength value is: " + beastStrSummons); }
+			if (debug) { logger.info("got beast fangs strength buff flag, strength value is: " + beastStrSummons); }
 			gotBeastStr = false;
 		}
 		
@@ -896,7 +987,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		{
 			if (c instanceof DuelistCard)
 			{
-				((DuelistCard) c).startBattleReset();
+				((DuelistCard)c).startBattleReset();
 			}
 		}
 		BuffHelper.resetBuffPool();
@@ -906,9 +997,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		summonCombatCount = 0;
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
-		logger.info("theDuelist:DuelistMod:receiveOnBattleStart() ---> Reset max summons to 5");
+		logger.info("Reset max summons to 5");
 		if (hasRing) { lastMaxSummons = 8; if (challengeMode) { lastMaxSummons = 7; }}
-		if (hasKey) { lastMaxSummons = 5; logger.info("theDuelist:DuelistMod:receiveOnBattleStart() ---> Reset max summons to 5");}
+		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -938,7 +1029,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			UnlockTracker.unlockProgress.putInteger(TheDuelistEnum.THE_DUELIST.toString() + "UnlockLevel", 0);
 			SaveFile saveFile = new SaveFile(SaveFile.SaveType.POST_COMBAT);
 			SaveAndContinue.save(saveFile);
-			logger.info("theDuelist:DuelistMod:receivePostBattle() ---> unlock level was greater than 0, reset to 0");
+			logger.info("unlock level was greater than 0, reset to 0");
 		}
 		playedOneCardThisCombat = false;
 		lastMaxSummons = 5;
@@ -947,13 +1038,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		summonCombatCount = 0;
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
-		logger.info("theDuelist:DuelistMod:receivePostBattle() ---> Reset max summons to 5");
+		logger.info("Reset max summons to 5");
 		if (hasRing)
 		{ 
 			lastMaxSummons = 8; 
 			if (challengeMode) { lastMaxSummons = 7; }
 		}
-		if (hasKey) { lastMaxSummons = 5; logger.info("theDuelist:DuelistMod:receiveOnBattleStart() ---> Reset max summons to 5");}
+		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -992,21 +1083,25 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	@Override
 	public void receivePostDeath() 
 	{
+		// reset saved colored cards array so when I try to load it will find nothing and instead fill colored cards again manually
+		logger.info("does this happen when you win?");
+		coloredCards = new ArrayList<AbstractCard>();
+		archRoll1 = -1;
+		archRoll2 = -1;
+		shouldFill = true;
 		monstersThisRun = new ArrayList<DuelistCard>();
 		monstersThisCombat = new ArrayList<DuelistCard>();
 		spellsThisRun = new ArrayList<DuelistCard>();
 		spellsThisCombat = new ArrayList<DuelistCard>();
 		trapsThisRun = new ArrayList<DuelistCard>();
 		trapsThisCombat = new ArrayList<DuelistCard>();
-		runInProgress = false;
-		if (debug) { logger.info("Set run in progress to false"); }
-		ranFunc = false;
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
 		spellRunCount = 0;
 		trapRunCount = 0;
 		summonRunCount = 0;
+		dragonStr = 1;
 		insectPoisonDmg = baseInsectPoison;
 		naturiaDmg = 1;
 		AbstractPlayer.customMods = new ArrayList<String>();
@@ -1030,7 +1125,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	public void receiveCardUsed(AbstractCard arg0) 
 	{
 		playedOneCardThisCombat = true;
-		logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> Card: " + arg0.name);
+		logger.info("Card Used: " + arg0.name);
 		if (arg0.hasTag(Tags.SPELL))
 		{
 			spellCombatCount++;
@@ -1038,9 +1133,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			
 			spellsThisCombat.add((DuelistCard) arg0.makeCopy());
 			spellsThisRun.add((DuelistCard) arg0.makeCopy());
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> incremented spellsThisCombat, new value: " + spellCombatCount);
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> incremented spellRunCombat, new value: " + spellRunCount);
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> added " + arg0.originalName + " to spellsThisCombat, spellsThisRun");
+			logger.info("incremented spellsThisCombat, new value: " + spellCombatCount);
+			logger.info("incremented spellRunCombat, new value: " + spellRunCount);
+			logger.info("added " + arg0.originalName + " to spellsThisCombat, spellsThisRun");
 		}
 		
 		if (arg0.hasTag(Tags.MONSTER))
@@ -1049,9 +1144,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			//summonRunCount++;
 			monstersThisCombat.add((DuelistCard) arg0.makeCopy());
 			monstersThisRun.add((DuelistCard) arg0.makeCopy());
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> incremented summonsThisCombat, new value: " + summonCombatCount);
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> incremented summonRunCount, new value: " + summonRunCount);
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> added " + arg0.originalName + " to monstersThisCombat, monstersThisRun");
+			logger.info("incremented summonsThisCombat, new value: " + summonCombatCount);
+			logger.info("incremented summonRunCount, new value: " + summonRunCount);
+			logger.info("added " + arg0.originalName + " to monstersThisCombat, monstersThisRun");
 		}
 		
 		if (arg0.hasTag(Tags.TRAP))
@@ -1060,16 +1155,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			trapRunCount++;
 			trapsThisCombat.add((DuelistCard) arg0.makeCopy());
 			trapsThisRun.add((DuelistCard) arg0.makeCopy());
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> incremented trapsThisCombat, new value: " + trapCombatCount);
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> incremented spellRunCombat, new value: " + trapRunCount);
-			logger.info("theDuelist:DuelistMod:receiveCardUsed() ---> added " + arg0.originalName + " to trapsThisCombat, trapsThisRun");
+			logger.info("incremented trapsThisCombat, new value: " + trapCombatCount);
+			logger.info("incremented spellRunCombat, new value: " + trapRunCount);
+			logger.info("added " + arg0.originalName + " to trapsThisCombat, trapsThisRun");
 		}
 	}
 
 	@Override
 	public void receivePostCreateStartingDeck(PlayerClass arg0, CardGroup arg1) 
 	{
-		logger.info("theDuelist:DuelistMod:receivePostCreateStartingDeck() ---> Ran function. Has postDungeonInit ran?: " + ranFunc);
 		boolean badMods = false;
 		ArrayList<String> badModNames = new ArrayList<String>();
 		badModNames.add("Insanity");
@@ -1102,7 +1196,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 		}
 		else
 		{
-			logger.info("theDuelist:DuelistMod:receivePostCreateStartingDeck() ---> found bad mods");
+			logger.info("found bad mods");
 		}
 	}
 	
@@ -1130,28 +1224,28 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			{
 				hasSmokeOrb = true;
 				smoke = (Smoke) orb;
-				if (debug) { logger.info("theDuelist:DuelistMod:receivePostDraw() ---> found a Smoke orb, set flag");  }
+				if (debug) { logger.info("found a Smoke orb, set flag");  }
 			}
 			
 			if (orb.name.equals("Lava"))
 			{
 				hasLavaOrb = true;
 				lava = (Lava) orb;
-				if (debug) { logger.info("theDuelist:DuelistMod:receivePostDraw() ---> found a Lava orb, set flag");  }
+				if (debug) { logger.info("found a Lava orb, set flag");  }
 			}
 			
 			if (orb.name.equals("Fire"))
 			{
 				hasFireOrb = true;
 				fire = (FireOrb) orb;
-				if (debug) { logger.info("theDuelist:DuelistMod:receivePostDraw() ---> found a Fire orb, set flag");  }
+				if (debug) { logger.info("found a Fire orb, set flag");  }
 			}
 			
 			if (orb.name.equals("Splash"))
 			{
 				hasSplashOrb = true;
 				splash = (Splash) orb;
-				if (debug) { logger.info("theDuelist:DuelistMod:receivePostDraw() ---> found a Splash orb, set flag");  }
+				if (debug) { logger.info("found a Splash orb, set flag");  }
 			}
 		}
 	
@@ -1189,7 +1283,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			int handSize = AbstractDungeon.player.hand.size();
 			if (arg0.hasTag(Tags.TRAP))
 			{
-				DuelistCard.heal(AbstractDungeon.player, 10);
+				DuelistCard.heal(AbstractDungeon.player, 3);
 			}
 		}
 		
@@ -1213,25 +1307,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	@Override
 	public void receivePostDungeonInitialize() 
 	{
-		hasCardRewardRelic = false;
-		runInProgress = true;
-		if (debug) { logger.info("Set run in progress"); }
-		ranFunc = true;
-		monstersThisCombat = new ArrayList<DuelistCard>();
-		monstersThisRun = new ArrayList<DuelistCard>();
-		spellsThisRun = new ArrayList<DuelistCard>();
-		spellsThisCombat = new ArrayList<DuelistCard>();
-		trapsThisRun = new ArrayList<DuelistCard>();
-		trapsThisCombat = new ArrayList<DuelistCard>();
+		logger.info("dungeon initialize hook");
 	}
 	
 
 	@Override
 	public void receivePostDungeonUpdate() 
 	{
-		runInProgress = true;
-		if (debug) { logger.info("Set run in progress"); }
-		ranFunc = true;
+		
+		
 	}
 
 	@Override
@@ -1249,8 +1333,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 	@Override
 	public boolean receivePreMonsterTurn(AbstractMonster arg0) 
 	{
-		// Variable Manipulation
-		summonTurnCount = 0;
+		immortalInDiscard = false;
 		AbstractPlayer p = AbstractDungeon.player;
 		
 		// Fix tributes & summons that were modified for turn only
@@ -1297,35 +1380,78 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber
 			int msgRoll = AbstractDungeon.cardRandomRng.random(1, 100);
 			if (debug)
 			{				
-				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 2.5F, 2.0F));
-				AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Screw the rules, I have money!", 1.0F, 2.0F));
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
 			}
 			else
 			{
 				if (msgRoll <= 2)
 				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 2.5F, 2.0F));
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Screw the rules, I have money!", 1.0F, 2.0F));
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
 				}
 			}
 		}
 		
-		
+		summonTurnCount = 0;
 		// Mirror Force Helper
 		if (p.hasPower(MirrorForcePower.POWER_ID) && p.currentBlock > 0)
 		{
 			MirrorForcePower instance = (MirrorForcePower) AbstractDungeon.player.getPower(MirrorForcePower.POWER_ID);
 			instance.PLAYER_BLOCK = p.currentBlock;
-			if (debug)
-			{
-				logger.info("theDuelist:DuelistMod:receiveOnPlayerLoseBlock() ---> set mirror force power block to: " + p.currentBlock + ".");
+			if (debug) { logger.info("set mirror force power block to: " + p.currentBlock + "."); }
+		}
+		return true;
+	}
+	
+	@Override
+	public void receiveStartAct()
+	{
+		if (!shouldFill && AbstractDungeon.actNum == 1)
+		{
+			if (debug) { logger.info("Started act and should fill was false. Act #1! So we reset everything!!"); }
+			coloredCards = new ArrayList<AbstractCard>();
+			archRoll1 = -1;
+			archRoll2 = -1;
+			shouldFill = true;
+			monstersThisRun = new ArrayList<DuelistCard>();
+			monstersThisCombat = new ArrayList<DuelistCard>();
+			spellsThisRun = new ArrayList<DuelistCard>();
+			spellsThisCombat = new ArrayList<DuelistCard>();
+			trapsThisRun = new ArrayList<DuelistCard>();
+			trapsThisCombat = new ArrayList<DuelistCard>();
+			spellCombatCount = 0;
+			trapCombatCount = 0;
+			summonCombatCount = 0;
+			spellRunCount = 0;
+			trapRunCount = 0;
+			summonRunCount = 0;
+			dragonStr = 1;
+			insectPoisonDmg = baseInsectPoison;
+			naturiaDmg = 1;
+			AbstractPlayer.customMods = new ArrayList<String>();
+			hasRing = false;
+			hasKey = false;
+			lastMaxSummons = 5;
+			if (challengeMode) { lastMaxSummons = 4; }
+			swordsPlayed = 0;
+			CardCrawlGame.dungeon.initializeCardPools();
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
+				config.setBool(PROP_HAS_KEY, hasKey);
+				config.setInt(PROP_RESUMMON_DMG, 1);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
-		if (debug)
+		else if (!shouldFill)
 		{
-			logger.info("theDuelist:DuelistMod:receiveOnPlayerLoseBlock() ---> player lost " + arg0 + " block.");
+			shouldFill = true;
+			if (debug) { logger.info("Started act and should fill was false. Act was not #1, so we only reset shouldFill so the pool would be filled with different cards from any random archetypes, or unchanged if there are none."); }
 		}
+		logger.info("triggered start act sub");
 		
-		return true;
 	}
 }

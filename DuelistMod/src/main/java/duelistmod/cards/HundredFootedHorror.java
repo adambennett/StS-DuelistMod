@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -33,14 +34,11 @@ public class HundredFootedHorror extends DuelistCard
     public HundredFootedHorror() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.NATURE_DECK);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
-        this.natureDeckCopies = 1;
         this.baseMagicNumber = this.magicNumber = 10;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

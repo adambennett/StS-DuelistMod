@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class Scapegoat extends DuelistCard 
@@ -42,7 +43,7 @@ public class Scapegoat extends DuelistCard
         this.magicNumber = this.baseMagicNumber = INC_SUMMONS;
         this.tags.add(Tags.SPELL);
 		this.originalName = this.name;
-		this.summons = this.baseSummons = 1;
+		this.summons = this.baseSummons = 4;
 		tooltips = new ArrayList<>();
 		tooltips.add(new KuribohToken());
     }

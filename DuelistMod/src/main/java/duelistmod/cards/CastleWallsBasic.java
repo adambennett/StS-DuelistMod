@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.helpers.BaseModCardTags;
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class CastleWallsBasic extends DuelistCard 
@@ -45,16 +46,25 @@ public class CastleWallsBasic extends DuelistCard
         this.tags.add(Tags.HEAL_DECK);
         this.tags.add(Tags.CREATOR_DECK);
         this.tags.add(Tags.GENERATION_DECK);
+        this.tags.add(Tags.MACHINE_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
+        this.tags.add(Tags.FIEND_DECK);
+        this.tags.add(Tags.AQUA_DECK);
+        this.zombieDeckCopies = 3;
+        this.fiendDeckCopies = 3;
+        this.zombieDeckCopies = 3;
+        this.machineDeckCopies = 2;
 		this.generationDeckCopies = 3;
         this.standardDeckCopies = 2;
-        this.dragonDeckCopies = 3;
+        this.dragonDeckCopies = 2;
         this.spellcasterDeckCopies = 2;
-        this.natureDeckCopies = 4;
+        this.natureDeckCopies = 3;
         this.toonDeckCopies = 2;
         this.creatorDeckCopies = 3;
         this.orbDeckCopies = 2;
         this.resummonDeckCopies = 2;
         this.healDeckCopies = 3;
+        this.aquaDeckCopies = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
     }

@@ -5,7 +5,6 @@ import java.util.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 
 import duelistmod.*;
-import duelistmod.patches.DuelistCard;
 
 public class StarterDeck 
 {
@@ -16,6 +15,7 @@ public class StarterDeck
 	private String simpleName;
 	private ArrayList<DuelistCard> deck = new ArrayList<DuelistCard>();
 	private ArrayList<DuelistCard> poolCards = new ArrayList<DuelistCard>();
+	private ArrayList<DuelistCard> archetypeCards = new ArrayList<DuelistCard>();
 	private static Map<CardTags, Integer> deckCopiesMap = new HashMap<CardTags, Integer>();
 	private int index;
 	private boolean fullPool = false;
@@ -162,6 +162,19 @@ public class StarterDeck
 	public void fillPoolCards(ArrayList<DuelistCard> poolCards)
 	{
 		this.poolCards.addAll(poolCards);
+	}
+
+	public ArrayList<DuelistCard> getArchetypeCards() {
+		return archetypeCards;
+	}
+
+	public void setArchetypeCards(ArrayList<DuelistCard> archetypeCards) {
+		this.archetypeCards = archetypeCards;
+	}
+	
+	public void fillArchetypeCards(ArrayList<DuelistCard> archetypeCards)
+	{
+		this.archetypeCards.addAll(archetypeCards);
 	}
 	
 }

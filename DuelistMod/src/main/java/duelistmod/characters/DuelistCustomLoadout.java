@@ -26,6 +26,7 @@ public class DuelistCustomLoadout
 	public void Refresh(int currentLevel, CharacterSelectScreen selectScreen, CharacterOption option)
 	{
 		DuelistMod.deckIndex = index;
+		DuelistMod.normalSelectDeck = index;
 		Locked = unlockLevel > currentLevel;
 		
 		if (Locked)
@@ -43,7 +44,7 @@ public class DuelistCustomLoadout
 		
 		DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
 		
-		// Stanard
+		// Standard
 		if (DuelistMod.deckIndex == 0) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
 		// Dragon

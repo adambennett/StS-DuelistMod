@@ -310,6 +310,48 @@
       "DESCRIPTION": "宝珠: 在开始时，将随机改变怪物卡添加到您的手中。激发还将随机改变怪物添加到你的手中。"
   },
   {
+    "PROPER_NAME": "Naturia",
+    "NAMES": [
+      "Naturia",
+	  "naturia"
+    ],   
+    "DESCRIPTION": "Whenever you #ySummon a #yNaturia monster, it deals #b1 damage to all enemies at the end of turn for the rest of combat as long as you have at least 1 #yNaturia monster summoned."
+  },
+  {
+    "PROPER_NAME": "Superheavy",
+    "NAMES": [
+      "Superheavy",
+	  "superheavy"
+    ],   
+    "DESCRIPTION": "When you #yTribute a #ySuperheavy for another #ySuperheavy, gain #b1 #yDexterity."
+  },
+  {
+    "PROPER_NAME": "Machine",
+    "NAMES": [
+      "Machine",
+	  "Machines",
+	  "machine",
+	  "machines"
+    ],   
+    "DESCRIPTION": "When you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
+  },
+  {
+    "PROPER_NAME": "Black",
+    "NAMES": [
+      "Black",
+	  "black"
+    ],   
+    "DESCRIPTION": "#yPassive: At the start of turn, apply a random debuff with #b1 stack to a random enemy. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
+  },
+  {
+    "PROPER_NAME": "Immortal",
+    "NAMES": [
+      "Immortal",
+	  "immortal"
+    ],   
+    "DESCRIPTION": "If an #yImmortal card is in the discard pile, gain [E] at the start of turn."
+  },
+  {
     "PROPER_NAME": "门",
     "NAMES": [
       "gate",

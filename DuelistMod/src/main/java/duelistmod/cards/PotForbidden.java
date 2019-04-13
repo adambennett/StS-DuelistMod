@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
@@ -56,7 +58,7 @@ public class PotForbidden extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
 		drawPowers = new ArrayList<DuelistCard>();
-		ArrayList<DuelistCard> chooseCards = new ArrayList<DuelistCard>();
+		ArrayList<AbstractCard> chooseCards = new ArrayList<AbstractCard>();
 		drawPowers.add(new HeartUnderdog());
 		drawPowers.add(new HeartUnderspell());
 		drawPowers.add(new HeartUndertrap());
@@ -67,7 +69,9 @@ public class PotForbidden extends DuelistCard
 			while (chooseCards.contains(drawCard)) { drawCard = returnRandomFromArray(drawPowers); }
 			chooseCards.add(drawCard);
 		}
-		openRandomCardChoice(3, chooseCards);
+		
+		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(chooseCards, false, 1, false, false, false, true, false, false, true, 0, 0, 0, 0, 0, 0));
+		//openRandomCardChoice(3, chooseCards);
     }
 
     // Which card to return when making a copy of this card.

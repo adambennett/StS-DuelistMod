@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.actions.unique.ReduceRandomCardsAction;
+import duelistmod.interfaces.DuelistCard;
 
 
 public class ReducerPower extends AbstractPower 
@@ -52,6 +53,8 @@ public class ReducerPower extends AbstractPower
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
+    	if (this.amount > 0) { DuelistCard.reducePower(this, this.owner, 1); }
+    	else { DuelistCard.removePower(this, this.owner); }
     	updateDescription();
 	}
     

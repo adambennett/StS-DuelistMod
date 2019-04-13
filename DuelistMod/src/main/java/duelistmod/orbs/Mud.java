@@ -15,8 +15,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")
 public class Mud extends DuelistOrb
@@ -112,7 +111,7 @@ public class Mud extends DuelistOrb
 		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 3);
 		boolean flippy = false;
 		if (upgradeRoll == 1) { flippy = true; }
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomNature, flippy, true, true, true, true, true, false, true, 1, 4, 0, 1, 0, 1));
+		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomNature, flippy, true, true, true, randomNature.baseTributes > 0, randomNature.baseSummons > 0, false, true, 1, 4, 0, 1, 0, 1));
 	}
 
 	@Override

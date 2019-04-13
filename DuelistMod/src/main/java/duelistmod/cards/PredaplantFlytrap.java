@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.VioletCrystalPower;
 

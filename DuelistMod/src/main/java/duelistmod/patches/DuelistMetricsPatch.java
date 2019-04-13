@@ -1,20 +1,11 @@
 
 package duelistmod.patches;
 
-
-import java.lang.reflect.*;
-
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.metrics.Metrics;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.screens.DeathScreen;
-
 // Copied from Slimbound:
 // Copied from The Mystic Mod:
 //   	https://github.com/JohnnyDevo/The-Mystic-Project/blob/master/src/main/java/mysticmod/Patches/MysticMetricsPatch.java
 //
+
 /*
 public class DuelistMetricsPatch {
 
@@ -24,7 +15,7 @@ public class DuelistMetricsPatch {
 	
 			public static void Prefix(Metrics __instance, @ByRef String[] url, String fileName) {
 				if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
-					url[0] = "https://sites.google.com/a/softwaredev.site/duelistmod-metrics/";
+					url[0] = "http://softwaredev.site/MetricsSite";
 				}
 			}
 	
@@ -61,3 +52,4 @@ public class DuelistMetricsPatch {
 	
 }
 */
+

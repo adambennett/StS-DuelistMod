@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.actions.unique.RedMedicineAction;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 
 
 public class RedMedicine extends DuelistCard 
@@ -29,15 +31,12 @@ public class RedMedicine extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
-    private static int MIN_TURNS_ROLL = 1;
-    private static int MAX_TURNS_ROLL = 5;
-    private static final int BUFFS = 1;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public RedMedicine() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = BUFFS;
+        this.magicNumber = this.baseMagicNumber = 4;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.REDUCED);
@@ -52,29 +51,18 @@ public class RedMedicine extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Get random number of turns for buff to apply for
-		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-		int randomTurnNumB = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-
-		/*
-		// Get two random buffs
-		AbstractPower randomBuff = getRandomBuffSmall(p, randomTurnNum);
-		AbstractPower randomBuffB = getRandomBuffSmall(p, randomTurnNumB);
-
-		// Apply random buff(s)
-		applyPowerToSelf(randomBuff);
-		*/
-		AbstractPower a = applyRandomBuffPlayer(p, randomTurnNum, false);
-		if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicine --- > Generated buff: " + a.name ); }
-		//if (this.upgraded) { applyPowerToSelf(randomBuffB); }
-		if (this.upgraded) 
-		{ 
-			int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-			if (roll == 1)
-			{
-				applyRandomBuffPlayer(p, randomTurnNumB, false); 
-				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicine(Upgrade) --- > Generated buff: " + a.name ); }
-			}
+		if (!this.upgraded)
+		{
+			int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 4);
+			AbstractPower a = applyRandomBuffPlayer(p, randomTurnNum, false);
+			if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicine --- > Generated buff: " + a.name ); }
+		}
+		else
+		{
+			int amountroll = AbstractDungeon.cardRandomRng.random(1, 2);
+			int lowRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+			int highRoll = AbstractDungeon.cardRandomRng.random(3, 6);
+			AbstractDungeon.actionManager.addToTop(new RedMedicineAction(amountroll, m, this.magicNumber, lowRoll, highRoll));
 		}
     }
 
@@ -87,13 +75,22 @@ public class RedMedicine extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.isInnate = true;
+    public void upgrade() 
+    {
+        if (canUpgrade()) 
+        {
+            if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	return true;
     }
 
 	@Override

@@ -104,7 +104,7 @@
   "theDuelist:MillenniumOrb": {
     "NAME": "Millennium Orb",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Channel a random Orb."
+	   "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yrandomized cards from your deck pool into your hand."
     ]
   },
   "theDuelist:Metal": {
@@ -140,7 +140,7 @@
   "theDuelist:Storm": {
     "NAME": "Storm",
     "DESCRIPTION": [
-	  "#yPassive: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", ". NL #yEvoke: Adds #yRandomized Power cards to your hand."
+	   "#yPassive: Add #b1 #yRandomized Power card to your hand. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", "."
     ]
   },
   "theDuelist:Summoner": {

@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class FiendMegacyber extends DuelistCard
@@ -34,15 +34,15 @@ public class FiendMegacyber extends DuelistCard
 
     public FiendMegacyber() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PHARAOH_SERVANT);
         this.tags.add(Tags.FIEND);
-        this.tags.add(Tags.ORIGINAL_ORB_DECK);
-    	this.startingOPODeckCopies = 1;
+        this.tags.add(Tags.FIEND_DECK);
+    	this.fiendDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
+        this.block = this.baseBlock = 12;
         this.setupStartingCopies();
     }
 
@@ -51,9 +51,7 @@ public class FiendMegacyber extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.magicNumber, false, this);
-    	applyPowerToSelf(new StrengthPower(player(), 1));
-    	if (!this.upgraded) { channelRandom(); }
-    	else { openRandomOrbChoice(5, "Channel an Orb"); }
+    	block(this.block);
     }
 
     // Which card to return when making a copy of this card.
@@ -67,6 +65,7 @@ public class FiendMegacyber extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -1,59 +1,53 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class PatricianDarkness extends DuelistCard
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("RedEyesZombie");
+    public static final String ID = DuelistMod.makeID("PatricianDarkness");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.RED_EYES_ZOMBIE);
+    public static final String IMG = DuelistMod.makePath(Strings.PATRICIAN_DARKNESS);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int DAMAGE = 19;
-    private static final int UPGRADE_PLUS_DMG = 4;
     // /STAT DECLARATION/
 
     public PatricianDarkness() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = DAMAGE;
+    	this.baseDamage = this.damage = 11;
     	this.tags.add(Tags.MONSTER);
-    	this.tags.add(Tags.DRAGON);
-    	this.tags.add(Tags.GOOD_TRIB);
-    	this.tags.add(Tags.REDUCED);
     	this.tags.add(Tags.ZOMBIE);
+    	this.tags.add(Tags.ZOMBIE_DECK);
+        this.zombieDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
+    	tribute();
+    	attack(m);
     }
 
     // Which card to return when making a copy of this card.
@@ -67,7 +61,7 @@ public class PatricianDarkness extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -109,11 +103,7 @@ public class PatricianDarkness extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
-		}
+		
 	}
 
 
@@ -121,9 +111,7 @@ public class PatricianDarkness extends DuelistCard
 	@Override
 	public void onResummon(int summons) 
 	{
-		applyPowerToSelf((AbstractPower) new StrengthPower(AbstractDungeon.player, 3));
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		attack(m, AFX, 10);
+		
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.MillenniumOrb;
 import duelistmod.patches.*;
 
@@ -40,7 +41,7 @@ public class MillenniumOrbCard extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractOrb orb = new MillenniumOrb();
+    	AbstractOrb orb = new MillenniumOrb(1);
     	channel(orb);
     }
     

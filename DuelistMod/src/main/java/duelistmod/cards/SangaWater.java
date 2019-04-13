@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import conspire.orbs.Water;
 import duelistmod.*;
-import duelistmod.actions.common.*;
-import duelistmod.patches.*;
+import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class SangaWater extends DuelistCard 
@@ -119,7 +118,7 @@ public class SangaWater extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, true, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 4, 0, 0, 0, 2));
 		}
 	}
 
@@ -133,20 +132,13 @@ public class SangaWater extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Water();
-    	channel(orb);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
-		summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Water();
-    	channel(orb);
+		
 	}
 
 	@Override

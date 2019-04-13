@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class Graverobber extends DuelistCard 
@@ -39,6 +41,7 @@ public class Graverobber extends DuelistCard
         this.tags.add(Tags.ALL);
         this.misc = 0;
 		this.originalName = this.name;
+		this.magicNumber = this.baseMagicNumber = 1;
 		this.exhaust = true;
     }
 
@@ -46,45 +49,35 @@ public class Graverobber extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int loopMax = 4;
-    	int loopCheck = 0;
 		drawPowers = new ArrayList<DuelistCard>();
-		ArrayList<DuelistCard> chooseCards = new ArrayList<DuelistCard>();
+		ArrayList<AbstractCard> chooseCards = new ArrayList<AbstractCard>();
 		for (DuelistCard c : DuelistMod.spellsThisRun) { drawPowers.add(c); }
 		for (DuelistCard c : DuelistMod.trapsThisRun) { drawPowers.add(c); }
-		
-		if (!upgraded)
+
+		if (drawPowers.size() >= 0)
 		{
-			if (drawPowers.size() > 0)
+			while (chooseCards.size() < this.magicNumber)
 			{
-				DuelistCard randomSpell = drawPowers.get(AbstractDungeon.cardRandomRng.random(drawPowers.size() - 1));
-				if (randomSpell != null)
-				{
-					AbstractCard cardCopy = randomSpell.makeCopy();
-					//if (!cardCopy.tags.contains(DefaultMod.TRIBUTE)) { cardCopy.misc = 52; }
-					cardCopy.freeToPlayOnce = true;
-					cardCopy.applyPowers();
-					cardCopy.purgeOnUse = true;
-					AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-					//cardCopy.onResummon(1);
-					//cardCopy.checkResummon();
-				}
+				DuelistCard drawCard = returnRandomFromArray(drawPowers);
+				chooseCards.add(drawCard);
+				if (DuelistMod.debug) { System.out.println("graverobber added : " + drawCard.originalName + " to chooseCards in the while loop"); }
+			}
+			
+			if (chooseCards.size() > 0) 
+			{ 
+				int roll = 1;
+				int lowRoll = 1;
+				int highRoll = 4;
+				if (upgraded) { lowRoll = 0; highRoll = 0; roll = 2; }
+				if (DuelistMod.debug) { System.out.println("graverobber found choose cards to be > 0"); }
+				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(chooseCards, false, roll, false, !this.upgraded, false, true, false, false, false, lowRoll, highRoll, 0, 0, 0, 0));
 			}
 		}
 		else
 		{
-			if (drawPowers.size() >= 0)
-			{
-				while (chooseCards.size() < 3)
-				{
-					DuelistCard drawCard = returnRandomFromArray(drawPowers);
-					while (chooseCards.contains(drawCard) && loopCheck < loopMax) { drawCard = returnRandomFromArray(drawPowers); loopCheck++; }
-					chooseCards.add(drawCard);
-				}
-				
-				if (chooseCards.size() > 0) { openRandomCardChoice(3, chooseCards); }
-			}
+			if (DuelistMod.debug) { System.out.println("graverobber found draw powers size was 0"); }
 		}
+		
     }
 
     // Which card to return when making a copy of this card.
@@ -98,6 +91,7 @@ public class Graverobber extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class ArmoredZombie extends DuelistCard 
@@ -38,6 +39,8 @@ public class ArmoredZombie extends DuelistCard
         this.tags.add(Tags.RESUMMON_DECK);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
+        this.zombieDeckCopies = 2;
         this.startingOPRDeckCopies = 2;
         this.resummonDeckCopies = 2;
         this.originalName = this.name;

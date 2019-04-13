@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.patches.*;
+import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 
 public class Wiretap extends DuelistCard 
 {
@@ -20,6 +23,7 @@ public class Wiretap extends DuelistCard
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String[] EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
@@ -44,19 +48,28 @@ public class Wiretap extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	for (AbstractCard a : p.hand.group) { if (!a.originalName.equals("Wiretap")) { handCards.add(a); }}
-    	if (handCards.size() > 0)
+    	if (upgraded)
     	{
-			for (int i = 0; i < this.magicNumber; i++)
-			{
-	    		AbstractCard cardCopy = returnRandomFromArrayAbstract(handCards).makeStatEquivalentCopy();
-				if (cardCopy != null)
-				{
-					if (cardCopy.upgraded) { cardCopy.upgrade(); }
-					cardCopy.applyPowers();
-					addCardToHand(cardCopy);
-				}
-			}
+    		for (AbstractCard a : p.hand.group) { if (!a.uuid.equals(this.uuid)) { handCards.add(a.makeStatEquivalentCopy()); }}
+    		if (handCards.size() > 0)
+    		{
+    			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, true, handCards.size(), handCards)); }
+    			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, true, this.magicNumber, handCards)); }    			
+    		}
+    	}
+    	else
+    	{
+    		for (AbstractCard a : p.hand.group) { if (!a.uuid.equals(this.uuid)) { handCards.add(a); }}
+    		if (handCards.size() > 0)
+        	{			
+        		AbstractCard cardCopy = returnRandomFromArrayAbstract(handCards).makeStatEquivalentCopy();
+    			if (cardCopy != null)
+    			{
+    				if (cardCopy.upgraded) { cardCopy.upgrade(); }
+    				cardCopy.applyPowers();
+    				addCardToHand(cardCopy);
+    			}			
+        	}
     	}
     }
 
@@ -70,12 +83,34 @@ public class Wiretap extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.rawDescription = UPGRADE_DESCRIPTION;
+        if (canUpgrade()) 
+        {
+        	// Name
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+            
+        	// Choose number of cards upgrade after initial upgrade from copy randomly
+        	if (timesUpgraded != 1 && this.baseMagicNumber < 5) { this.upgradeMagicNumber(1); }
+           
+        	// Description
+        	if (timesUpgraded == 1) { this.rawDescription = UPGRADE_DESCRIPTION; }
+        	else { this.rawDescription = EXTENDED_DESCRIPTION[0]; }
             this.initializeDescription();
         }
+        else { this.upgraded = true; }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.baseMagicNumber < 5)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
 
 	@Override

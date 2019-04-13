@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
 
@@ -65,10 +66,12 @@ public class BlastJuggler extends DuelistCard
     		if ((s.equals("Explosive Token") || (s.equals("Exploding Token"))))
     		{
     			tokens++;
+    			//if (DuelistMod.debug) { System.out.println("Blast juggler found an explosive token that monster: " + s + " :::: tokens so far: " + tokens); }
     		}
     		else
     		{
     			newSummonList.add(s);
+    			//if (DuelistMod.debug) { System.out.println("Blast juggler added a non-explosive token to the new summons list. that monster: " + s); }
     		}
     	}
     	
@@ -81,6 +84,8 @@ public class BlastJuggler extends DuelistCard
     		int roll = AbstractDungeon.cardRandomRng.random(1, 3);
     		attack(randomM, this.baseAFX, roll);
     	}
+    	
+    	summon(player(), 0, new Token());
 	}
 
 	// Which card to return when making a copy of this card.

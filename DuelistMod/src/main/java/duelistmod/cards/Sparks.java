@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.helpers.BaseModCardTags;
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class Sparks extends DuelistCard 
@@ -46,6 +47,15 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.RESUMMON_DECK);
         this.tags.add(Tags.HEAL_DECK);
         this.tags.add(Tags.CREATOR_DECK);
+        this.tags.add(Tags.MACHINE_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
+        this.tags.add(Tags.FIEND_DECK);
+        this.tags.add(Tags.AQUA_DECK);
+        this.aquaDeckCopies = 1;
+        this.fiendDeckCopies = 2;
+        this.zombieDeckCopies = 2;
+        this.zombieDeckCopies = 2;
+        this.machineDeckCopies = 2;
         this.standardDeckCopies = 5;
         this.dragonDeckCopies = 5;
         this.spellcasterDeckCopies = 3;
@@ -54,7 +64,7 @@ public class Sparks extends DuelistCard
         this.creatorDeckCopies = 3;
         this.orbDeckCopies = 3;
         this.resummonDeckCopies = 2;
-        this.healDeckCopies = 3;
+        this.healDeckCopies = 3;        
         this.originalName = this.name;
         this.setupStartingCopies();
     }

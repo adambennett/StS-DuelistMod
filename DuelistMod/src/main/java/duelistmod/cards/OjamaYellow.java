@@ -9,12 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class OjamaYellow extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = duelistmod.DuelistMod.makeID("OjamaYellow");
+	public static final String ID = DuelistMod.makeID("OjamaYellow");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.OJAMA_YELLOW);
 	public static final String NAME = cardStrings.NAME;
@@ -28,13 +29,11 @@ public class OjamaYellow extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
-	private static final int SUMMONS = 1;
-	private static final int CARDS = 2;
 	// /STAT DECLARATION/
 
 	public OjamaYellow() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseMagicNumber = this.magicNumber = CARDS;
+		this.baseMagicNumber = this.magicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.OJAMA);
 		this.tags.add(Tags.INVASION_CHAOS);
@@ -42,7 +41,7 @@ public class OjamaYellow extends DuelistCard
 		this.ojamaDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;
-		this.summons = this.baseSummons = SUMMONS;
+		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.setupStartingCopies();
 	}
@@ -57,8 +56,9 @@ public class OjamaYellow extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
-			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, true, true, true, true, 1, 4, 0, 2, 0, 2)); }
-			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, true, true, false, false, 1, 4, 0, 1, 0, 1)); }
+			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, true, true, 1, 4, 0, 2, 0, 2)); }
+			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, false, false, 1, 4, 0, 1, 0, 1)); }
+			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 	}
 
@@ -73,7 +73,7 @@ public class OjamaYellow extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			//this.upgradeMagicNumber(1);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

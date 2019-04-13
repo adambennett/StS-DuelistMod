@@ -14,8 +14,7 @@ import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")
 public class DragonOrb extends DuelistOrb

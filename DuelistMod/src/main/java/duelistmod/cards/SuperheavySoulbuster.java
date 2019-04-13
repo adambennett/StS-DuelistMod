@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class SuperheavySoulbuster extends DuelistCard 
@@ -33,7 +34,7 @@ public class SuperheavySoulbuster extends DuelistCard
     public SuperheavySoulbuster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.damage = this.baseDamage = 9;
+        this.damage = this.baseDamage = 6;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.MAGNET_DECK);

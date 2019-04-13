@@ -216,7 +216,7 @@ public class Strings
 	public static final String INSECT_QUEEN = "cards/Insect_Queen.png";
 	public static final String INVIGORATION = "cards/Invigoration.png";
 	public static final String INVITATION = "cards/Invitation_Dark_Sleep.png";
-	public static final String ISALND_TURTLE = "cards/Island_Turtle.png";
+	public static final String ISLAND_TURTLE = "cards/Island_Turtle.png";
 	public static final String JAM_BREEDING = "cards/Jam_Breeding.png";
 	public static final String JERRY_BEANS = "cards/Jerry_Beans_Man.png";
 	public static final String JINZO = "cards/Jinzo.png";
@@ -512,6 +512,8 @@ public class Strings
 	public static final String RESUMMON_BRANCH_RELIC_OUTLINE = "relics/outline/ResummonBranchOutline.png";
 	public static final String TEMP_RELIC = "relics/PlaceholderRelicIcon.png";
 	public static final String TEMP_RELIC_OUTLINE = "relics/PlaceholderRelicIcon.png";
+	public static final String TRIBUTE_EGG_RELIC = "relics/TributeMonsterEggRelic.png";
+	public static final String TRIBUTE_EGG_RELIC_OUTLINE = "relics/TributeMonsterEggRelic.png";
 	// =============== /RELIC IMAGES/ =======================================================================================================================================================
 	
 	// =============== POWER IMAGES =========================================================================================================================================================

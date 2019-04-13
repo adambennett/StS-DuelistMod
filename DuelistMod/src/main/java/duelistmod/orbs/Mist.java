@@ -18,8 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.cards.Token;
-import duelistmod.interfaces.DuelistOrb;
-import duelistmod.patches.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
 
 @SuppressWarnings("unused")

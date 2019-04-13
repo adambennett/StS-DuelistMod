@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
 public class DarkMimicLv3 extends DuelistCard 

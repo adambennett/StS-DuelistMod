@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 
 public class NutrientZ extends DuelistCard 

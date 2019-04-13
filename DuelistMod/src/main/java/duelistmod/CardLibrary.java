@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
 import duelistmod.cards.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbCards.*;
-import duelistmod.patches.DuelistCard;
 
 public class CardLibrary {
 
@@ -27,14 +27,10 @@ public class CardLibrary {
 		{ 
 			if ((!c.hasTag(Tags.RANDOMONLY) && (!c.hasTag(Tags.RANDOMONLY_NOCREATOR))))
 			{
-				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); DuelistMod.summonMap.put(c.originalName, c); tempCardCount++;
-				//summonMap.put(c.originalName, c);	
+				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); DuelistMod.summonMap.put(c.originalName, c); 
+				if (!c.hasTag(Tags.TOKEN)) { tempCardCount++; }
 			}
-			else
-			{
-				//summonMap.put(c.originalName, c);				
-				if (!c.rarity.equals(CardRarity.SPECIAL)) { UnlockTracker.unlockCard(c.getID()); }
-			}
+			else { if (!c.rarity.equals(CardRarity.SPECIAL)) { UnlockTracker.unlockCard(c.getID()); }}
 		}
 		
 		if (!DuelistMod.fullDebug)
@@ -416,7 +412,34 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new FabledGallabas());
 		DuelistMod.myCards.add(new BattleOx());
 		DuelistMod.myCards.add(new DarkstormDragon());
-	
+		DuelistMod.myCards.add(new GrossGhost());
+		DuelistMod.myCards.add(new PortraitSecret());
+		DuelistMod.myCards.add(new RedSprinter());
+		DuelistMod.myCards.add(new Tierra());
+		DuelistMod.myCards.add(new PatricianDarkness());
+		DuelistMod.myCards.add(new WingedKuriboh());
+		DuelistMod.myCards.add(new JunkKuriboh());
+		DuelistMod.myCards.add(new FluteKuriboh());
+		DuelistMod.myCards.add(new ApprenticeIllusionMagician());
+		DuelistMod.myCards.add(new BlueDragonSummoner());
+		DuelistMod.myCards.add(new DarkHorizon());
+		DuelistMod.myCards.add(new Skelesaurus());
+		DuelistMod.myCards.add(new RedGadget());
+		DuelistMod.myCards.add(new GreenGadget());
+		DuelistMod.myCards.add(new YellowGadget());
+		DuelistMod.myCards.add(new BlizzardWarrior());
+		DuelistMod.myCards.add(new DarkPaladin());
+		DuelistMod.myCards.add(new BigKoala());
+		DuelistMod.myCards.add(new AncientGearChimera());
+		DuelistMod.myCards.add(new AncientGearGadjiltron());
+		DuelistMod.myCards.add(new AncientGearGolem());
+		DuelistMod.myCards.add(new WhiteMagicalHat());
+		DuelistMod.myCards.add(new BattleguardKing());
+		
+		// Add tokens to 'The Duelist' section of compendium
+		if (!DuelistMod.addTokens) { for (DuelistCard c : getTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}
+		
+		
 		// DEBUG CARD STUFF
 		if (DuelistMod.debug)
 		{
@@ -440,7 +463,7 @@ public class CardLibrary {
 		
 		if (DuelistMod.addTokens)
 		{
-			DuelistMod.myCards.add(new Token());
+			DuelistMod.myCards.addAll(getTokens());
 			DuelistMod.myCards.add(new BadToken());			
 			DuelistMod.myCards.add(new GreatMoth());
 			DuelistMod.myCards.add(new HeartUnderspell());
@@ -510,7 +533,7 @@ public class CardLibrary {
 		DuelistMod.summonMap.put("Glitch Token", new Token());
 		DuelistMod.summonMap.put("Summoner Token", new Token());
 		DuelistMod.summonMap.put("Gate Token", new Token());
-		DuelistMod.summonMap.put("Jam Token", new Token());
+		DuelistMod.summonMap.put("Jam Token", new JamToken());
 		DuelistMod.summonMap.put("Castle Token", new Token());
 		DuelistMod.summonMap.put("Storm Token", new Token());
 		DuelistMod.summonMap.put("Random Token", new Token());
@@ -526,6 +549,7 @@ public class CardLibrary {
 		DuelistMod.summonMap.put("Underdog Token", new Token());
 		DuelistMod.summonMap.put("Judge Token", new Token());
 		DuelistMod.summonMap.put("Exxod Token", new Token());
+		DuelistMod.summonMap.put("Relic Token", new Token());
 		DuelistMod.summonMap.put("Spellcaster Token", new SpellcasterToken());
 		DuelistMod.summonMap.put("Predaplant Token", new PredaplantToken());
 		DuelistMod.summonMap.put("Kuriboh Token", new KuribohToken());
@@ -534,6 +558,37 @@ public class CardLibrary {
 		DuelistMod.summonMap.put("Shadow Token", new ShadowToken());
 		DuelistMod.summonMap.put("Insect Token", new InsectToken());
 		DuelistMod.summonMap.put("Plant Token", new PlantToken());
+		DuelistMod.summonMap.put("Dragon Token", new DragonToken());
+		DuelistMod.summonMap.put("Fiend Token", new FiendToken());
+		DuelistMod.summonMap.put("Machine Token", new MachineToken());
+		DuelistMod.summonMap.put("Superheavy Token", new SuperheavyToken());
+		DuelistMod.summonMap.put("Toon Token", new ToonToken());
+		DuelistMod.summonMap.put("Zombie Token", new ZombieToken());
+		DuelistMod.summonMap.put("Aqua Token", new AquaToken());
+	}
+	
+	public static ArrayList<DuelistCard> getTokens()
+	{
+		ArrayList<DuelistCard> tokens = new ArrayList<DuelistCard>();
+		tokens.add(new AquaToken());
+		tokens.add(new DragonToken());
+		tokens.add(new ExodiaToken());
+		tokens.add(new SpellcasterToken());
+		tokens.add(new PredaplantToken());
+		tokens.add(new KuribohToken());
+		tokens.add(new ExplosiveToken());
+		tokens.add(new ShadowToken());
+		tokens.add(new InsectToken());
+		tokens.add(new PlantToken());
+		tokens.add(new FiendToken());
+		tokens.add(new MachineToken());
+		tokens.add(new SuperheavyToken());
+		tokens.add(new ToonToken());
+		tokens.add(new ZombieToken());
+		tokens.add(new JamToken());
+		tokens.add(new Token());
+		tokens.add(new DamageToken());
+		return tokens;
 	}
 
 }
