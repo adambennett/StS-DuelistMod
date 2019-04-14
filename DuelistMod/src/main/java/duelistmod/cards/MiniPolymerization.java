@@ -59,16 +59,8 @@ public class MiniPolymerization extends DuelistCard
 	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
 				if (cardCopy != null && !hitCreator)
 				{
-					DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false);
-    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-    				if (this.upgrade) { cardCopy.upgrade(); }
-    				cardCopy.freeToPlayOnce = true;
-    				cardCopy.applyPowers();
-    				cardCopy.purgeOnUse = true;
-    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-    				cardCopy.onResummon(1);
-    				cardCopy.checkResummon();*/
-    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
+					if (!this.upgraded) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
+	    			else { DuelistCard.polyResummon(cardCopy, summon.upgraded, m, false); }
 				}
 				if (summon.originalName.equals("The Creator")) { hitCreator = true; if (DuelistMod.debug) { System.out.println("theDuelist:MiniPolymerization:use() ---> hitCreator triggered and set to true"); } }
 			}

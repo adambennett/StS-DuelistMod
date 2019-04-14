@@ -26,6 +26,7 @@ public class InsectRelic extends CustomRelic {
 	public InsectRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 		this.counter = 1;
+		setDescription();
 	}
 	
 	@Override

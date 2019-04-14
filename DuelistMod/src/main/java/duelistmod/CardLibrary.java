@@ -342,7 +342,7 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new ValkMagnet());
 		DuelistMod.myCards.add(new BarrelDragon());
 		DuelistMod.myCards.add(new DarkMirrorForce());
-		DuelistMod.myCards.add(new MagicCylinder());
+		//DuelistMod.myCards.add(new MagicCylinder());
 		DuelistMod.myCards.add(new NutrientZ());
 		DuelistMod.myCards.add(new OjamaBlack());
 		DuelistMod.myCards.add(new OjamaKing());

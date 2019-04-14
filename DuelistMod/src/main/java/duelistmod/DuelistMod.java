@@ -198,6 +198,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = false;			// print statements only, used in mod option panel
+	public static boolean debugMsg = false;			// for secret msg
 	public static final boolean addTokens = false;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
@@ -373,7 +374,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
             chosenDeckTag = StarterDeckSetup.findDeckTag(deckIndex);
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
             resummonDeckDamage = config.getInt(PROP_RESUMMON_DMG);
-            if (debug) { lastMaxSummons = 50; }
             hasRing = config.getBool(PROP_HAS_RING);
             hasKey = config.getBool(PROP_HAS_KEY);
             
@@ -998,7 +998,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
 		logger.info("Reset max summons to 5");
-		if (hasRing) { lastMaxSummons = 8; if (challengeMode) { lastMaxSummons = 7; }}
+		if (hasRing) { lastMaxSummons = 8; if (challengeMode) { lastMaxSummons = 7; } logger.info("reset to 8");}
 		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1007,8 +1007,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if (fullDebug) { lastMaxSummons = 50; }
 	}
 
 	@Override
@@ -1043,6 +1041,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		{ 
 			lastMaxSummons = 8; 
 			if (challengeMode) { lastMaxSummons = 7; }
+			logger.info("reset to 8 B");
 		}
 		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
@@ -1378,7 +1377,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		if (summonTurnCount > 2)
 		{
 			int msgRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-			if (debug)
+			if (debugMsg)
 			{				
 				AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
 				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));

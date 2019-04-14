@@ -214,7 +214,7 @@ public class StarterDeckSetup {
 		spellcasterCards.add(new BlueDragonSummoner());
 		spellcasterCards.add(new ApprenticeIllusionMagician());
 		spellcasterCards.add(new DarkHorizon());
-		spellcasterCards.add(new MagicCylinder());
+		//spellcasterCards.add(new MagicCylinder());
 		spellcasterCards.add(new MachineFactory());
 		spellcasterCards.add(new DarkPaladin());
 		spellcasterCards.add(new WhiteMagicalHat());
@@ -345,7 +345,7 @@ public class StarterDeckSetup {
 		toonCards.add(new ShadowToon());
 		toonCards.add(new ToonBriefcase());
 		toonCards.add(new HeartUnderdog());
-		toonCards.add(new MagicCylinder());
+		//toonCards.add(new MagicCylinder());
 		toonCards.add(new MiniPolymerization());
 		toonCards.add(new RedMedicine());
 		toonCards.add(new TributeDoomed());
@@ -429,11 +429,10 @@ public class StarterDeckSetup {
 		aquaCards.add(new OhFish());
 		aquaCards.add(new GracefulCharity());
 		aquaCards.add(new HeartUnderdog());
-		aquaCards.add(new MagicCylinder());
+		//aquaCards.add(new MagicCylinder());
 		aquaCards.add(new RedMedicine());
 		aquaCards.add(new SwordsConcealing());
 		//aquaCards.add(new DarkMimicLv1());
-		//aquaCards.add(new DarkMimicLv3());
 		aquaCards.add(new PotDuality());
 		//aquaCards.add(new HyperancientShark());
 		//aquaCards.add(new KaiserSeaHorse());
@@ -450,7 +449,6 @@ public class StarterDeckSetup {
 		fiendCards.add(new GatesDarkWorld());
 		fiendCards.add(new FiendishChain());
 		fiendCards.add(new DarkMimicLv1());
-		fiendCards.add(new DarkMimicLv3());
 		fiendCards.add(new DarkBlade());
 		fiendCards.add(new DarkMasterZorc());
 		fiendCards.add(new FiendMegacyber());
@@ -471,7 +469,7 @@ public class StarterDeckSetup {
 		fiendCards.add(new RedSprinter());
 		fiendCards.add(new Tierra());
 		fiendCards.add(new GracefulCharity());
-		fiendCards.add(new MagicCylinder());
+		//fiendCards.add(new MagicCylinder());
 		fiendCards.add(new MonsterReborn());
 		fiendCards.add(new CardSafeReturn());
 		fiendCards.add(new CallGrave());
@@ -511,7 +509,7 @@ public class StarterDeckSetup {
 		machineCards.add(new SteamTrainKing());
 		machineCards.add(new JunkKuriboh());
 		machineCards.add(new MachineFactory());
-		machineCards.add(new MagicCylinder());
+		//machineCards.add(new MagicCylinder());
 		machineCards.add(new RedMedicine());
 		machineCards.add(new GracefulCharity());
 		machineCards.add(new HeartUnderdog());
@@ -577,7 +575,7 @@ public class StarterDeckSetup {
 		magnetCards.add(new SuperheavySoulpiercer());
 		magnetCards.add(new SuperheavySoulshield());
 		magnetCards.add(new SwordsConcealing());
-		magnetCards.add(new MagicCylinder());
+		//magnetCards.add(new MagicCylinder());
 		magnetCards.add(new HeartUnderdog());
 		for (int i = 0; i < DuelistMod.magnetSlider; i++)
 		{

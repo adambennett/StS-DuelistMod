@@ -2217,6 +2217,40 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static void polyResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target, boolean superFast)
+	{
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (!instance.isMonsterSummoned(new VanityFiend().originalName))
+			{
+				cardCopy = (DuelistCard) cardCopy.makeCopy();
+				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+				if (upgradeResummon) { cardCopy.upgrade(); }
+				cardCopy.freeToPlayOnce = true;
+				cardCopy.applyPowers();
+				cardCopy.purgeOnUse = true;
+				if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(cardCopy, target)); }
+				else { AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(cardCopy, target, 1.0F)); }
+				cardCopy.onResummon(1);
+				cardCopy.checkResummon();
+			}		
+		}
+		else
+		{
+			cardCopy = (DuelistCard) cardCopy.makeCopy();
+			if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
+			if (upgradeResummon) { cardCopy.upgrade(); }
+			cardCopy.freeToPlayOnce = true;
+			cardCopy.applyPowers();
+			cardCopy.purgeOnUse = true;
+			if (superFast) { AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(cardCopy, target)); }
+			else { AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(cardCopy, target, 1.0F)); }
+			cardCopy.onResummon(1);
+			cardCopy.checkResummon();
+		}
+	}
+	
 	public static void playNoResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractCreature target, boolean superFast)
 	{
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))

@@ -69,7 +69,7 @@ public class DragonPlusOrb extends DuelistOrb
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, true, true, true, false, randomMonster.baseTributes > 0, false, false, false, 1, 4, 1, 2, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, true, true, true, false, randomMonster.baseTributes > 0, false, false, false, 1, 3, 1, 2, 0, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:DragonOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}
 	}

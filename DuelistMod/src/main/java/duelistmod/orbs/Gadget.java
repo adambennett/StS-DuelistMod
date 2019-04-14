@@ -81,7 +81,7 @@ public class Gadget extends DuelistOrb
 	public void triggerPassiveEffect()
 	{
 		DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TRAP);
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomTrap, false, true, true, true, false, false, false, false, this.passiveAmount - 1, this.passiveAmount, 0, 0, 0, 0));
+		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomTrap, false, true, true, true, false, false, false, false, 0, 2, 0, 0, 0, 0));
 	}
 
 	@Override

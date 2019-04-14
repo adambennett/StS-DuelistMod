@@ -76,7 +76,7 @@ public class PoolHelpers
 				
 				// Add 1 random archetype cards
 				randomArchetypeHelper(4, 4);
-				if (DuelistMod.debug) { DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredPools() ---> setIndex was 0, but we filled with Basic + 1 random archetype because you are using a deck with no specific archetype. your deck: " + StarterDeckSetup.findDeck(DuelistMod.deckIndex).getSimpleName() + ", and the random archetype you rolled: " + DuelistMod.archRoll1); }
+				//if (DuelistMod.debug) { DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredPools() ---> setIndex was 0, but we filled with Basic + 1 random archetype because you are using a deck with no specific archetype. your deck: " + StarterDeckSetup.findDeck(DuelistMod.deckIndex).getSimpleName() + ", and the random archetype you rolled: " + DuelistMod.archRoll1); }
 			}
 		}
 		
@@ -198,6 +198,17 @@ public class PoolHelpers
 			}
 		}
 		// /POWER CHECK/
+		
+		if (DuelistMod.debug)
+		{
+			for (AbstractCard c : DuelistMod.coloredCards)
+			{
+				if (c.rarity.equals(CardRarity.SPECIAL) || c.rarity.equals(CardRarity.BASIC))
+				{
+					DuelistMod.logger.info("Found bad card inside colored cards after filling. Card Name: " + c.originalName);
+				}
+			}
+		}
 	}
 	
 	public static void allCardsFillHelper()

@@ -356,7 +356,7 @@
 	},
 	"theDuelist:Ojamatch": {
 		"NAME": "Ojamatch",
-		"DESCRIPTION": "Invert your next orb X times. Exhaust.",
+		"DESCRIPTION": "Invert your next orb X times. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Invert your next orb X times."
 	},
 	"theDuelist:Ojamassimilation": {
@@ -521,8 +521,8 @@
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
-		"DESCRIPTION": "Tribute all Summons (min. 4) NL For 3 turns, ignore all HP damage. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Innate NL Tribute all Summons (min. 4) NL For 3 turns, ignore all HP damage. Exhaust."
+		"DESCRIPTION": "Tribute all Summons (min. 3) NL For 2 turns, ignore all HP damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute all Summons (min. 3) NL For 3 turns, ignore all HP damage. Exhaust."
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "Time Wizard",

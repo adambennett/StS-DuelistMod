@@ -3,16 +3,14 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.mod.replay.orbs.CrystalOrb;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.Air;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class ToonDarkMagicianGirl extends DuelistCard 
@@ -135,18 +133,12 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		AbstractOrb crystal = new CrystalOrb();
-		channel(crystal);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		AbstractOrb crystal = new CrystalOrb();
-		channel(crystal);
+		
 		
 	}
 
