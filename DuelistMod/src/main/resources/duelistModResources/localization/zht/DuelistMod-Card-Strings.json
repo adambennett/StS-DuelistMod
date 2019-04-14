@@ -356,7 +356,7 @@
 	},
 	"theDuelist:Ojamatch": {
 		"NAME": "Ojamatch",
-		"DESCRIPTION": "Invert your next orb X times. Exhaust.",
+		"DESCRIPTION": "Invert your next orb X times. NL Exhaust.",
 		"UPGRADE_DESCRIPTION": "Invert your next orb X times."
 	},
 	"theDuelist:Ojamassimilation": {
@@ -521,8 +521,8 @@
 	},
 	"theDuelist:SwordsRevealing": {
 		"NAME": "Swords: Revealing Light",
-		"DESCRIPTION": "Tribute all Summons (min. 4) NL For 3 turns, ignore all HP damage. Exhaust.",
-		"UPGRADE_DESCRIPTION": "Innate NL Tribute all Summons (min. 4) NL For 3 turns, ignore all HP damage. Exhaust."
+		"DESCRIPTION": "Tribute all Summons (min. 3) NL For 2 turns, ignore all HP damage. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute all Summons (min. 3) NL For 3 turns, ignore all HP damage. Exhaust."
 	},
 	"theDuelist:TimeWizard": {
 		"NAME": "Time Wizard",
@@ -1775,6 +1775,121 @@
 		"NAME": "Dark Paladin",
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Choose an Orb to Channel.",
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Choose an Orb to Channel."
+	},
+	"theDuelist:BattleFootballer": {
+		"NAME": "Battle Footballer",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:EarthquakeGiant": {
+		"NAME": "Earthquake Giant",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
+	},
+	"theDuelist:EvilswarmHeliotrope": {
+		"NAME": "Evilswarm Heliotrope",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:GadgetSoldier": {
+		"NAME": "Gadget Soldier",
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add !M! Damage Tokens to your hand.",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add !M! Damage Tokens to your hand."
+	},
+	"theDuelist:LegendaryFlameLord": {
+		"NAME": "Legendary Flame Lord",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava."
+	},
+	"theDuelist:TurretWarrior": {
+		"NAME": "Turret Warrior",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you play a Token, deal !M! damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you play a Token, deal !M! damage to ALL enemies."
+	},
+	"theDuelist:WormApocalypse": {
+		"NAME": "Worm Apocalypse",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Add a randomized Spell to your hand.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Add a randomized Spell to your hand."
+	},
+	"theDuelist:WormBarses": {
+		"NAME": "Worm Barses",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:WormWarlord": {
+		"NAME": "Worm Warlord",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Add a randomized Trap to your hand.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Add a randomized Trap to your hand."
+	},
+	"theDuelist:WormKing": {
+		"NAME": "Worm King",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:ArmorBreaker": {
+		"NAME": "ArmorBreaker",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Remove all block from an enemy.",
+		"UPGRADE_DESCRIPTION": "Innate NL Summon !duelist:SUMM! NL Remove all block from an enemy."
+	},
+	"theDuelist:GauntletWarrior": {
+		"NAME": "Gauntlet Warrior",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
+	},
+	"theDuelist:CommandKnight": {
+		"NAME": "Command Knight",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust."
+	},
+	"theDuelist:GaiaMidNightSun": {
+		"NAME": "Gaia Mid-Night Sun",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:DrivenDaredevil": {
+		"NAME": "Driven Daredevil",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy."
+	},
+	"theDuelist:GilfordLegend": {
+		"NAME": "Gilford, the Legend",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:ReinforcementsArmy": {
+		"NAME": "Reinforcements of the Army",
+		"DESCRIPTION": "Summon a duplicate of each monster you play this turn.",
+		"UPGRADE_DESCRIPTION": "Innate NL Summon a duplicate of each monster you play this turn."
+	},
+	"theDuelist:BlockGolem": {
+		"NAME": "Block Golem",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Exhaust.",
+		"UPGRADE_DESCRIPTION": "Innate NL Summon !duelist:SUMM! NL Gain !B! Block. NL Exhaust."
+	},
+	"theDuelist:GorgonicCerberus": {
+		"NAME": "Gorgonic Cerberus",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn."
+	},
+	"theDuelist:GorgonicGargoyle": {
+		"NAME": "Gorgonic Gargoyle",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn."
+	},
+	"theDuelist:GorgonicGuardian": {
+		"NAME": "Gorgonic Guardian",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn.",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn."
+	},
+	"theDuelist:DokiDoki": {
+		"NAME": "Doki Doki",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL If you have played a Spell this turn, gain !B! Block. Otherwise, deal !D! damage.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL If you have played a Spell this turn, gain !B! Block. Otherwise, deal !D! damage."
+	},
+	"theDuelist:GiantSoldierSteel": {
+		"NAME": "Giant Steel Soldier",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:AbstractBuffCard": {
 		"NAME": "Buff",
