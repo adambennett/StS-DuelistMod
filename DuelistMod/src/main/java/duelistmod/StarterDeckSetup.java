@@ -95,7 +95,25 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new SmallLabyrinthWall());
 		DuelistMod.basicCards.add(new Polymerization());
 		DuelistMod.basicCards.add(new BigKoala());
-		DuelistMod.basicCards.add(new BattleguardKing());
+		DuelistMod.basicCards.add(new BattleguardKing());		
+		DuelistMod.basicCards.add(new BattleFootballer());
+		DuelistMod.basicCards.add(new EarthquakeGiant());
+		DuelistMod.basicCards.add(new EvilswarmHeliotrope());
+		DuelistMod.basicCards.add(new LegendaryFlameLord());
+		DuelistMod.basicCards.add(new WormApocalypse());
+		DuelistMod.basicCards.add(new WormBarses());
+		DuelistMod.basicCards.add(new WormWarlord());
+		DuelistMod.basicCards.add(new WormKing());
+		DuelistMod.basicCards.add(new ArmorBreaker());
+		DuelistMod.basicCards.add(new GauntletWarrior());
+		DuelistMod.basicCards.add(new CommandKnight());
+		DuelistMod.basicCards.add(new GaiaMidnight());
+		DuelistMod.basicCards.add(new DrivenDaredevil());
+		DuelistMod.basicCards.add(new GilfordLegend());
+		DuelistMod.basicCards.add(new ReinforcementsArmy());
+		DuelistMod.basicCards.add(new BlockGolem());
+		DuelistMod.basicCards.add(new DokiDoki());
+		DuelistMod.basicCards.add(new GiantSoldierSteel());
 
 		DuelistMod.archetypeCards.addAll(DuelistMod.basicCards);
 		
@@ -508,7 +526,7 @@ public class StarterDeckSetup {
 		machineCards.add(new MetalDragon());
 		machineCards.add(new SteamTrainKing());
 		machineCards.add(new JunkKuriboh());
-		machineCards.add(new MachineFactory());
+		machineCards.add(new MachineFactory());		
 		//machineCards.add(new MagicCylinder());
 		machineCards.add(new RedMedicine());
 		machineCards.add(new GracefulCharity());
@@ -521,6 +539,8 @@ public class StarterDeckSetup {
 		machineCards.add(new AncientGearChimera());
 		machineCards.add(new AncientGearGadjiltron());
 		machineCards.add(new AncientGearGolem());
+		machineCards.add(new TurretWarrior());
+		machineCards.add(new GadgetSoldier());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());

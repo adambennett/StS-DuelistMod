@@ -291,6 +291,14 @@
         "NAME": "Samurai's Wisdom",
         "DESCRIPTIONS": ["Whenever you play a Power card, gain #b", " #yDexterity." ]
 },
+"theDuelist:TurretWarriorPower": {
+        "NAME": "Turret Warrior",
+        "DESCRIPTIONS": ["Whenever you play a Token, deal #b", " damage to ALL enemies." ]
+},
+"theDuelist:ReinforcementsPower": {
+        "NAME": "Reinforcements",
+        "DESCRIPTIONS": ["Whenever you play a monster this turn, #ySummon a duplicate of it." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

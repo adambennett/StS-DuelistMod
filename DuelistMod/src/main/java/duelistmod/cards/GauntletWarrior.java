@@ -4,75 +4,68 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.orbs.MillenniumOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
-public class WingedDragonRa extends DuelistCard 
+public class GauntletWarrior extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("WingedDragonRa");
+    public static final String ID = duelistmod.DuelistMod.makeID("GauntletWarrior");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.WINGED_DRAGON_RA);
+    public static final String IMG = DuelistMod.makeCardPath("GauntletWarrior.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-    
+
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = -1;
+    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public WingedDragonRa() {
+    public GauntletWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseDamage = this.damage = 9;
+        this.baseBlock = this.block = 9;
+        this.tributes = this.baseTributes = 1;
+        this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.GOD);
-        this.tags.add(Tags.DRAGON);
-        this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
-        this.tributes = this.baseTributes = 3;
-		this.originalName = this.name;
-		this.damage = this.baseDamage = 10;
+        this.originalName = this.name;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	attack(m, AFX, this.damage);
-    	AbstractOrb mo = new MillenniumOrb(getXEffect());
-    	if (getXEffect() > 0) { channel(mo); }
-    	useXEnergy();
+		tribute(p, this.tributes, false, this);
+		summon(p, this.summons, this);
+		attack(m, AFX, this.damage);
+		block(this.block);
     }
-
+		
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new WingedDragonRa();
+        return new GauntletWarrior();
     }
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
+    public void upgrade() 
+    {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
-            this.upgradeDamage(5);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -86,7 +79,7 @@ public class WingedDragonRa extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
     	
-    	// Pumpking & Princess
+  		// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
     	
   		// Mausoleum check
@@ -113,14 +106,11 @@ public class WingedDragonRa extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
-		}
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
 	}
+
 
 
 	@Override
@@ -130,14 +120,15 @@ public class WingedDragonRa extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) {
-		// TODO Auto-generated method stub
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		
 		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

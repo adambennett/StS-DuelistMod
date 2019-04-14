@@ -434,7 +434,27 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new AncientGearGadjiltron());
 		DuelistMod.myCards.add(new AncientGearGolem());
 		DuelistMod.myCards.add(new WhiteMagicalHat());
-		DuelistMod.myCards.add(new BattleguardKing());
+		DuelistMod.myCards.add(new BattleguardKing());		
+		DuelistMod.myCards.add(new BattleFootballer());
+		DuelistMod.myCards.add(new EarthquakeGiant());
+		DuelistMod.myCards.add(new EvilswarmHeliotrope());
+		DuelistMod.myCards.add(new GadgetSoldier());
+		DuelistMod.myCards.add(new LegendaryFlameLord());
+		DuelistMod.myCards.add(new TurretWarrior());
+		DuelistMod.myCards.add(new WormApocalypse());
+		DuelistMod.myCards.add(new WormBarses());
+		DuelistMod.myCards.add(new WormWarlord());
+		DuelistMod.myCards.add(new WormKing());
+		DuelistMod.myCards.add(new ArmorBreaker());
+		DuelistMod.myCards.add(new GauntletWarrior());
+		DuelistMod.myCards.add(new CommandKnight());
+		DuelistMod.myCards.add(new GaiaMidnight());
+		DuelistMod.myCards.add(new DrivenDaredevil());
+		DuelistMod.myCards.add(new GilfordLegend());
+		DuelistMod.myCards.add(new ReinforcementsArmy());
+		DuelistMod.myCards.add(new BlockGolem());
+		DuelistMod.myCards.add(new DokiDoki());
+		DuelistMod.myCards.add(new GiantSoldierSteel());
 		
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) { for (DuelistCard c : getTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}

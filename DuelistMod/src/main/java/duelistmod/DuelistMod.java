@@ -147,6 +147,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean playedOneCardThisCombat = false;
 	public static boolean hasCardRewardRelic = false;
 	public static boolean shouldFill = true;
+	public static boolean playedSpellThisTurn = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 
@@ -998,7 +999,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
 		logger.info("Reset max summons to 5");
-		if (hasRing) { lastMaxSummons = 8; if (challengeMode) { lastMaxSummons = 7; } logger.info("reset to 8");}
+		if (hasRing) 
+		{ 
+			//lastMaxSummons = 8; 
+			//if (challengeMode) 
+			//{ 
+			//	lastMaxSummons = 7; 
+			//} 
+			//logger.info("reset to 8");
+		}
 		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1037,12 +1046,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
 		logger.info("Reset max summons to 5");
-		if (hasRing)
+		/*if (hasRing)
 		{ 
 			lastMaxSummons = 8; 
 			if (challengeMode) { lastMaxSummons = 7; }
 			logger.info("reset to 8 B");
-		}
+		}*/
 		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -1129,7 +1138,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		{
 			spellCombatCount++;
 			spellRunCount++;
-			
+			playedSpellThisTurn = true;
 			spellsThisCombat.add((DuelistCard) arg0.makeCopy());
 			spellsThisRun.add((DuelistCard) arg0.makeCopy());
 			logger.info("incremented spellsThisCombat, new value: " + spellCombatCount);
@@ -1146,6 +1155,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			logger.info("incremented summonsThisCombat, new value: " + summonCombatCount);
 			logger.info("incremented summonRunCount, new value: " + summonRunCount);
 			logger.info("added " + arg0.originalName + " to monstersThisCombat, monstersThisRun");
+		
+			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID))
+			{
+				DuelistCard dC = (DuelistCard)arg0;
+				if (dC.tributes < 1) { DuelistCard.summon(AbstractDungeon.player, 1, (DuelistCard)arg0); }
+			}
 		}
 		
 		if (arg0.hasTag(Tags.TRAP))
@@ -1332,6 +1347,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	@Override
 	public boolean receivePreMonsterTurn(AbstractMonster arg0) 
 	{
+		playedSpellThisTurn = false;
 		immortalInDiscard = false;
 		AbstractPlayer p = AbstractDungeon.player;
 		

@@ -38,8 +38,16 @@ public class MillenniumOrb extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = evoke;
-		setEvoke = evoke;
+		if (evoke > 0)
+		{
+			this.baseEvokeAmount = this.evokeAmount = evoke;
+			setEvoke = evoke;
+		}
+		else 
+		{
+			this.baseEvokeAmount = this.evokeAmount = 1;
+			setEvoke = 1;
+		}
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);

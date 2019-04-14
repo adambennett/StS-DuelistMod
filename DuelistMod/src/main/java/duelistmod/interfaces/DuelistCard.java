@@ -1686,11 +1686,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							c.onTribute(card); 
 							if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
 						}
+						if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
 						return tributeList;
 					}
 					else
 					{
 						empInstance.flag = true;
+						if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
 						return tributeList;
 					}
 				}
@@ -1755,6 +1757,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						c.onTribute(card); 
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
 					}
+					if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
 					return tributeList;
 				}
 			}
@@ -1762,6 +1765,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else
 		{
 			//card.misc = 0;
+			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
 			return tributeList;
 		}
 
