@@ -852,7 +852,7 @@
 	"theDuelist:NaturiaSacredTree": {
 		"NAME": "Naturia Sacred Tree",
 		"DESCRIPTION": "Your Naturia monster cards deal 50% more damage and gain 50% more Block.",
-		"UPGRADE_DESCRIPTION": "Your Naturia monster cards deal 50% more damage and gain 50% more Block."
+		"UPGRADE_DESCRIPTION": "Innate NL Your Naturia monster cards deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:VioletCrystal": {
 		"NAME": "Violet Crystal",
@@ -1454,12 +1454,12 @@
 	"theDuelist:NaturiaGuardian": {
 		"NAME": "Naturia Guardian",
 		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! copies of Naturia Horneedle into your draw pile.",
-		"UPGRADE_DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! upgraded copies of Naturia Horneedle into your draw pile."
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! copies of Naturia Horneedle into your draw pile."
 	},
 	"theDuelist:NaturiaHorneedle": {
 		"NAME": "Naturia Horneedle",
 		"DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",
-		"UPGRADE_DESCRIPTION": "Naturia InsectNL Summon !duelist:SUMM! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:NaturiaLandoise": {
 		"NAME": "Naturia Landoise",

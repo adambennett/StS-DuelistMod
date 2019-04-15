@@ -1,6 +1,6 @@
 package duelistmod.actions.unique;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
@@ -16,27 +16,30 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private boolean upgrade = false;
+	private UUID callingCard;
 	private AbstractMonster m;
 
-	public PlayRandomFromDiscardAction(int amount)
+	public PlayRandomFromDiscardAction(int amount, UUID callingCard)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, amount);
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
 		this.m = AbstractDungeon.getRandomMonster();
+		this.callingCard = callingCard;
 	}
 	
-	public PlayRandomFromDiscardAction(int amount, AbstractMonster m)
+	public PlayRandomFromDiscardAction(int amount, AbstractMonster m, UUID callingCard)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, amount);
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.duration = Settings.ACTION_DUR_MED;
 		this.m = m;
+		this.callingCard = callingCard;
 	}
 	
-	public PlayRandomFromDiscardAction(int amount, boolean upgraded, AbstractMonster m)
+	public PlayRandomFromDiscardAction(int amount, boolean upgraded, AbstractMonster m, UUID callingCard)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, amount);
@@ -44,8 +47,8 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.m = m;
+		this.callingCard = callingCard;
 	}
-
 
 	public void update() {
 		CardGroup tmp;
@@ -54,7 +57,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : this.p.discardPile.group) 
 			{
-				if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT))
+				if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT) && !c.uuid.equals(callingCard))
 				//if (c.hasTag(DefaultMod.MONSTER))
 				{
 					tmp.addToRandomSpot(c);

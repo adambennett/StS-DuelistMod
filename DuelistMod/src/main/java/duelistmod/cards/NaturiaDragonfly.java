@@ -52,7 +52,7 @@ public class NaturiaDragonfly extends DuelistCard
     	block(this.block);
     	attack(m, this.baseAFX, this.damage);
     	applyPowerToSelf(new NaturiaPower(p, p, 1));
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(new NaturiaDragonfly(), 1, true, true));
+    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
     }
 
     // Which card to return when making a copy of this card.

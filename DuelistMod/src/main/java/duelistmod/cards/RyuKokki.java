@@ -54,7 +54,7 @@ public class RyuKokki extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> tribList = tribute(p, this.tributes, false, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m));
+    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m, this.uuid));
     	if (tribList.size() > 0)
     	{
     		for (DuelistCard c : tribList)

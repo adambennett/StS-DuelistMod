@@ -78,8 +78,13 @@ public class NaturiaGuardian extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
+            for (AbstractCard c : tooltips)
+            {
+            	c.upgrade();
+            }
         }
     }
     

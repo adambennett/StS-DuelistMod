@@ -51,12 +51,12 @@ public class SoulAbsorbingBone extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, this.upgraded, getRandomMonster()));
+    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, this.upgraded, getRandomMonster(), this.uuid));
     	if (tributeList.size() > 0) 
     	{ 
     		for (DuelistCard c : tributeList) 
     		{ 
-    			if (c.hasTag(Tags.ZOMBIE)) 
+    			if (c.hasTag(Tags.ZOMBIE) && !c.hasTag(Tags.EXEMPT)) 
     			{ 
     				fullResummon(c, this.upgraded, getRandomMonster(), false);
     			} 

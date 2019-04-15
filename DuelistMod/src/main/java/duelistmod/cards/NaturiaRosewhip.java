@@ -50,7 +50,7 @@ public class NaturiaRosewhip extends DuelistCard
     	summon(p, this.summons, this);
     	block(this.block);
     	applyPowerToSelf(new NaturiaPower(p, p, 1));
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(new NaturiaRosewhip(), 1, true, true));
+    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
     }
 
     // Which card to return when making a copy of this card.

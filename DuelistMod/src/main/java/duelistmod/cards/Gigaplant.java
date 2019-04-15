@@ -53,7 +53,7 @@ public class Gigaplant extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	applyPower(new PoisonPower(m, p, 10), m);
-    	AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(this.magicNumber, true, m));
+    	AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(this.magicNumber, true, m, this.uuid));
     }
 
     // Which card to return when making a copy of this card.

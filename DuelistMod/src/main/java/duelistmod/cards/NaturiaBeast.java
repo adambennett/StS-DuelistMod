@@ -50,7 +50,7 @@ public class NaturiaBeast extends DuelistCard
     	summon(p, this.summons, this);
     	attack(m, this.baseAFX, this.damage);
     	applyPowerToSelf(new NaturiaPower(p, p, 1));
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(new NaturiaBeast(), this.magicNumber, true, true));
+    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.magicNumber, true, true));
     }
 
     // Which card to return when making a copy of this card.

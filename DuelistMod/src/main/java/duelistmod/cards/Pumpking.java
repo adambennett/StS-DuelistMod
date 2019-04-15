@@ -52,8 +52,8 @@ public class Pumpking extends DuelistCard
     	int castleDarkMod = 0;
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	if (tributeList.size() > 0) { for (DuelistCard c : tributeList) { if (c.isCastle) { castleDarkMod += 3; }}}
-    	if (!upgraded) { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1 + castleDarkMod, true, m)); }
-    	else { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(2 + castleDarkMod, true, m)); }
+    	if (!upgraded) { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1 + castleDarkMod, true, m, this.uuid)); }
+    	else { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(2 + castleDarkMod, true, m, this.uuid)); }
     }
 
     // Which card to return when making a copy of this card.

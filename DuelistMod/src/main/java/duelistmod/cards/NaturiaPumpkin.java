@@ -52,7 +52,7 @@ public class NaturiaPumpkin extends DuelistCard
     	attack(m, this.baseAFX, this.damage);
     	applyPowerToSelf(new NaturiaPower(p, p, 1));
     	ArrayList<DuelistCard> nats = new ArrayList<DuelistCard>();
-    	for (AbstractCard c : player().hand.group){ if (c.hasTag(Tags.NATURIA)) { nats.add((DuelistCard) c); }}
+    	for (AbstractCard c : player().hand.group){ if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.EXEMPT)) { nats.add((DuelistCard) c); }}
     	if (nats.size() > 0)
     	{
     		DuelistCard c = nats.get(AbstractDungeon.cardRandomRng.random(nats.size() - 1));

@@ -49,7 +49,7 @@ public class Pumprincess extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m));
+    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m, this.uuid));
     }
 
     // Which card to return when making a copy of this card.
@@ -85,18 +85,13 @@ public class Pumprincess extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m));
+		
 		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m));
+		
 	}
 
 	@Override
