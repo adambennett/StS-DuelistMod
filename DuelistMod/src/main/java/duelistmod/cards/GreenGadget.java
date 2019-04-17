@@ -56,7 +56,7 @@ public class GreenGadget extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		attack(m, this.baseAFX, this.damage);
+		block(this.block);
 		if (!upgraded)
 		{
 			ArrayList<DuelistCard> tokens = CardLibrary.getTokens();
