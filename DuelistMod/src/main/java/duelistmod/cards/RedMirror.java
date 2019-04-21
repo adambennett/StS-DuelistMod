@@ -46,14 +46,14 @@ public class RedMirror extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasPower(DoomdogPower.POWER_ID))
+    	if (p.hasPower(RedMirrorPower.POWER_ID))
     	{
-    		p.getPower(DoomdogPower.POWER_ID).amount++;
-    		p.getPower(DoomdogPower.POWER_ID).updateDescription();
+    		p.getPower(RedMirrorPower.POWER_ID).amount++;
+    		p.getPower(RedMirrorPower.POWER_ID).updateDescription();
     	}
     	else
     	{
-    		applyPowerToSelf(new DoomdogPower(p, p, 1));
+    		applyPowerToSelf(new RedMirrorPower(p, p, 1));
     	}
     }
 
