@@ -92,7 +92,7 @@ public class ToonAncientGear extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.TOON))
 		{
-			damageAllEnemiesThorns(5);
+			damageAllEnemiesThornsFire(5);
 		}
 		
 		if (tributingCard.hasTag(Tags.MACHINE))

@@ -56,9 +56,12 @@ public class BigFire extends DuelistCard
     	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
     	for (AbstractMonster g : monsters)
     	{
-    		int randomDmgNumM = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
-    		AbstractDungeon.actionManager.addToTop(new DamageAction(g, new DamageInfo(p, randomDmgNumM, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
-    		if (DuelistMod.debug) { System.out.println("theDuelist:BigFire --- > Damaged a monster for: " + randomDmgNumM); }
+    		if (!g.isDead)
+    		{
+	    		int randomDmgNumM = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
+	    		AbstractDungeon.actionManager.addToTop(new DamageAction(g, new DamageInfo(p, randomDmgNumM, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+	    		if (DuelistMod.debug) { System.out.println("theDuelist:BigFire --- > Damaged a monster for: " + randomDmgNumM); }
+    		}
     	}
     }
 

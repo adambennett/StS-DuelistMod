@@ -1,13 +1,11 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
 
 public class MillenniumKey extends CustomRelic 
 {
@@ -23,49 +21,20 @@ public class MillenniumKey extends CustomRelic
     @Override
     public void atBattleStart() 
     {
-    	flash();
-    	DuelistCard.setMaxSummons(AbstractDungeon.player, 5);
-    	try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_MAX_SUMMONS, 5);
-			config.save();
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    	
     }
     
     @Override
 	public void onEquip()
 	{
-		DuelistMod.hasKey = true;
+		//DuelistMod.hasKey = true;
 		AbstractDungeon.player.energy.energyMaster++;
-		DuelistCard.setMaxSummons(AbstractDungeon.player, 5);
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_MAX_SUMMONS, 5);
-			config.setBool(DuelistMod.PROP_HAS_KEY, DuelistMod.hasKey);
-			config.save();
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override
 	public void onUnequip()
 	{
 		AbstractDungeon.player.energy.energyMaster--;
-		DuelistMod.hasKey = false;
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
-			config.setBool(DuelistMod.PROP_HAS_KEY, DuelistMod.hasKey);
-			config.save();
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:setMaxSummons() ---> ran try block, lastMaxSummons: " + DuelistMod.lastMaxSummons); }
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
     // Description

@@ -80,7 +80,7 @@ public class CardLibrary {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
 			config.setInt(DuelistMod.PROP_CARDS, DuelistMod.cardCount);
 			config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
-			config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
+			//config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
 			config.setInt(DuelistMod.PROP_RESUMMON_DMG, DuelistMod.resummonDeckDamage);
 			config.save();
 		} catch (Exception e) {
@@ -455,6 +455,8 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new BlockGolem());
 		DuelistMod.myCards.add(new DokiDoki());
 		DuelistMod.myCards.add(new GiantSoldierSteel());
+		DuelistMod.myCards.add(new Doomdog());
+		DuelistMod.myCards.add(new RedMirror());
 		
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) { for (DuelistCard c : getTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}

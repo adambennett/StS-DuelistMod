@@ -37,7 +37,7 @@ public class FiendishChain extends DuelistCard
 		this.originalName = this.name;
 		this.tags.add(Tags.TRAP);
 		this.tributes = this.baseTributes = 1;
-		this.baseBlock = this.block = 15;
+		this.baseBlock = this.block = 10;
 		this.baseMagicNumber = this.magicNumber = 2;
 	}
 
@@ -49,7 +49,7 @@ public class FiendishChain extends DuelistCard
 		block(this.block);
 		for (AbstractCard c : p.hand.group)
 		{
-			if (c instanceof DuelistCard)
+			if (c instanceof DuelistCard && !c.uuid.equals(this.uuid))
 			{
 				DuelistCard dC = (DuelistCard)c;
 				if (dC.tributes > 0)

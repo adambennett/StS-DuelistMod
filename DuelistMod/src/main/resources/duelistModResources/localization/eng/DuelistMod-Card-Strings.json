@@ -311,8 +311,8 @@
 	},
 	"theDuelist:ObeliskTormentor": {
 		"NAME": "Obelisk",
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies.",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies."
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies."
 	},
 	"theDuelist:OjamaBlack": {
 		"NAME": "Ojama Black",
@@ -371,8 +371,8 @@
 	},
 	"theDuelist:OjamaEmperor": {
 		"NAME": "Ojama Emperor",
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb.",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb."
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb. Exhaust.",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Ojamania NL Gain !M! HP. NL Channel a random Orb. Exhaust."
 	},
 	"theDuelist:OjamaCountry": {
 		"NAME": "Ojama Country",
@@ -886,8 +886,8 @@
 	},
 	"theDuelist:StrayLambs": {
 		"NAME": "Stray Lambs",
-		"DESCRIPTION": "Increment !M!. Summon !duelist:SUMM! Kuriboh Token.",
-		"UPGRADE_DESCRIPTION": "Increment !M!. Summon !duelist:SUMM! Kuriboh Tokens."
+		"DESCRIPTION": "Increment !M!. NL Summon !duelist:SUMM! Kuriboh Token.",
+		"UPGRADE_DESCRIPTION": "Increment !M!. NL Summon !duelist:SUMM! Kuriboh Tokens."
 	},
 	"theDuelist:KingYami": {
 		"NAME": "King Yamimakai",
@@ -1558,13 +1558,13 @@
 	},
 	"theDuelist:DarkMimicLv1": {
 		"NAME": "Dark Mimic Lv1",
-		"DESCRIPTION": "Fiend NL Ethereal NL Summon !duelist:SUMM! NL Draw 1 card. NL Overflow 1 - Add the start of your next combat, add a copy of Dark Mimic Lv3 to your hand.",
-		"UPGRADE_DESCRIPTION": "Fiend NL Ethereal NL Summon !duelist:SUMM! NL Draw 2 cards. NL Overflow 1 - Add the start of your next combat, add a copy of Dark Mimic Lv3 to your hand."
+		"DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM!. Draw 1 card. NL Overflow 1 - Remove this from your deck. At the start of your next combat, add a copy of Dark Mimic Lv3 to your hand.",
+		"UPGRADE_DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM!. Draw 2 cards. NL Overflow 1 - Remove this from your deck. At the start of your next combat, add a copy of Dark Mimic Lv3 to your hand."
 	},
 	"theDuelist:DarkMimicLv3": {
 		"NAME": "Dark Mimic Lv3",
-		"DESCRIPTION": "Ethereal NL Fiend. Summon !duelist:SUMM! NL Draw 2 cards. Gain !B! Block. NL Overflow 1 - Add the start of your next combat, draw 4 cards.",
-		"UPGRADE_DESCRIPTION": "Ethereal NL Fiend. Summon !duelist:SUMM! NL Draw 3 cards. Gain !B! Block. NL Overflow 1 - Add the start of your next combat, draw 5 cards."
+		"DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM! NL Draw 2 cards. Gain !B! Block. NL Overflow 1 - At the start of your next combat, draw 4 cards.",
+		"UPGRADE_DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM! NL Draw 3 cards. Gain !B! Block. NL Overflow 1 - At the start of your next combat, draw 5 cards."
 	},
 	"theDuelist:FairyBox": {
 		"NAME": "Fairy Box",
@@ -1648,8 +1648,8 @@
 	},
 	"theDuelist:VanityFiend": {
 		"NAME": "Vanity's Fiend",
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned.",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned."
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned."
 	},
 	"theDuelist:RegenMummy": {
 		"NAME": "Regenerating Mummy",
@@ -1697,7 +1697,7 @@
 		"UPGRADE_DESCRIPTION": "Immortal Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exhaust."
 	},
 	"theDuelist:Tierra": {
-		"NAME": "Tierra, Source of Destruction",
+		"NAME": "Tierra",
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tributes of all monsters (everywhere) by !M!.",
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tributes of all monsters (everywhere) by !M!."
 	},
@@ -1827,7 +1827,7 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:ArmorBreaker": {
-		"NAME": "ArmorBreaker",
+		"NAME": "Armor Breaker",
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Remove all block from an enemy.",
 		"UPGRADE_DESCRIPTION": "Innate NL Summon !duelist:SUMM! NL Remove all block from an enemy."
 	},
@@ -1857,9 +1857,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:ReinforcementsArmy": {
-		"NAME": "Reinforcements of the Army",
+		"NAME": "Reinforcements of Army",
 		"DESCRIPTION": "Summon a duplicate of each monster you play this turn.",
-		"UPGRADE_DESCRIPTION": "Innate NL Summon a duplicate of each monster you play this turn."
+		"UPGRADE_DESCRIPTION": "Summon a duplicate of each monster you play this turn."
 	},
 	"theDuelist:BlockGolem": {
 		"NAME": "Block Golem",
@@ -1890,6 +1890,16 @@
 		"NAME": "Giant Steel Soldier",
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:Doomdog": {
+		"NAME": "Doomdog Octhros",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, deal !M! damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, deal !M! damage to ALL enemies."
+	},
+	"theDuelist:RedMirror": {
+		"NAME": "Red Mirror",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, reduce the cost of all cards in your discard pile by 1 for this turn.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, reduce the cost of all cards in your discard pile by 1 for this turn."
 	},
 	"theDuelist:AbstractBuffCard": {
 		"NAME": "Buff",

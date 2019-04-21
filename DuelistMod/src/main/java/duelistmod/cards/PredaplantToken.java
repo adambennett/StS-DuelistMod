@@ -38,6 +38,7 @@ public class PredaplantToken extends DuelistCard
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
     	this.tags.add(Tags.INSECT); 
+    	this.purgeOnUse = true;
     }
     
     public PredaplantToken(String tokenName) 
@@ -47,6 +48,7 @@ public class PredaplantToken extends DuelistCard
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
     	this.tags.add(Tags.INSECT);
+    	this.purgeOnUse = true;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }

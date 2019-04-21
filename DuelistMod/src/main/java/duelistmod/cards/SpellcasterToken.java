@@ -34,6 +34,7 @@ public class SpellcasterToken extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.SPELLCASTER); 
+    	this.purgeOnUse = true;
     }
     
     public SpellcasterToken(String tokenName) 
@@ -41,6 +42,7 @@ public class SpellcasterToken extends DuelistCard
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.SPELLCASTER);
+    	this.purgeOnUse = true;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(p, 1, this); }

@@ -579,5 +579,7 @@ public class Strings
 	public static final String SACRED_TREE_POWER = "powers/SacredTreePower.png";
 	public static final String SUPERHEAVY_DEX_GAIN_POWER = "powers/SuperheavyDexGainPower.png";
 	public static final String UMI_POWER = "powers/UmiPower.png";
+	public static final String TURRET_WARRIOR_POWER = "powers/TurretWarriorPower.png";
+	public static final String REINFORCEMENTS_POWER = "powers/ReinforcementsPower.png";
 	// =============== /POWER IMAGES/ =======================================================================================================================================================
 }

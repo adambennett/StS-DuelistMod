@@ -1,13 +1,10 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
 
 public class MillenniumRing extends CustomRelic {
 
@@ -18,7 +15,7 @@ public class MillenniumRing extends CustomRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumRing");
+	public static final String ID = DuelistMod.makeID("MillenniumRing");
 	public static final String IMG = DuelistMod.makePath(Strings.M_RING_RELIC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_RING_RELIC_OUTLINE);
 
@@ -30,36 +27,19 @@ public class MillenniumRing extends CustomRelic {
 	@Override
 	public void atBattleStart() 
 	{
-		this.flash();
-		DuelistCard.incMaxSummons(AbstractDungeon.player, 3);
+		
 	}
 	
 	@Override
 	public void onEquip()
 	{
-		DuelistMod.hasRing = true;
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_HAS_RING, DuelistMod.hasRing);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	
+		DuelistMod.defaultMaxSummons+= 3;
 	}
 	
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.hasRing = false;
-		try {
-			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setBool(DuelistMod.PROP_HAS_RING, DuelistMod.hasRing);
-			config.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		DuelistMod.defaultMaxSummons-= 3;
 	}
 
 	// Description

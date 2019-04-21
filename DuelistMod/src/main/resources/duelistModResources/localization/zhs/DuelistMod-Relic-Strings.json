@@ -174,6 +174,13 @@
 			"Add a random #yTribute monster to your deck. Set the monsters #yTribute cost to #b1."
 		]
 	},
+	"theDuelist:FiendRelic": {
+		"NAME": "Dark Token",
+		"FLAVOR": "A small darkened token. It feels evil.",
+		"DESCRIPTIONS": [
+			"Move an additional card to your hand each time you #yTribute a #yFiend for another #yFiend."
+		]
+	},
 	"theDuelist:PlaceholderRelic2": {
 		"NAME": "Placeholder Relic 2",
 		"FLAVOR": "You feel stronger.",

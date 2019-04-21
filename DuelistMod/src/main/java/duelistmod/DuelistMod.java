@@ -90,8 +90,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static final String PROP_DECK = "deckIndex";
 	public static final String PROP_CARDS = "cardCount";
 	public static final String PROP_MAX_SUMMONS = "lastMaxSummons";
-	public static final String PROP_HAS_KEY = "hasKey";
-	public static final String PROP_HAS_RING = "hasRing";
 	public static final String PROP_RESUMMON_DMG = "resummonDeckDamage";
 	public static final String PROP_CHALLENGE = "challengeMode";
 	public static final String PROP_UNLOCK = "unlockAllDecks";
@@ -132,8 +130,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	// Global Flags
 	public static boolean toonWorldTemp = false;
 	public static boolean resetProg = false;
-	public static boolean hasRing = false;
-	public static boolean hasKey = false;
 	public static boolean checkTrap = false;
 	public static boolean checkUO = false;
 	public static boolean gotFirePot = false;
@@ -156,6 +152,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int highNoBuffs = 6;
 	public static int deckArchetypePoolCheck = 10;
 	public static int lastMaxSummons = 5;
+	public static int defaultMaxSummons = 5;
 	//public static int toonDamage = 7;
 	public static int spellCombatCount = 0;
 	public static int summonCombatCount = 0;
@@ -315,8 +312,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		duelistDefaults.setProperty(PROP_DECK, "0");
 		duelistDefaults.setProperty(PROP_CARDS, "200");
 		duelistDefaults.setProperty(PROP_MAX_SUMMONS, "5");
-		duelistDefaults.setProperty(PROP_HAS_KEY, "FALSE");
-		duelistDefaults.setProperty(PROP_HAS_RING, "FALSE");
 		duelistDefaults.setProperty(PROP_RESUMMON_DMG, "1");
 		duelistDefaults.setProperty(PROP_CHALLENGE, "FALSE");
 		duelistDefaults.setProperty(PROP_UNLOCK, "FALSE");
@@ -375,8 +370,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
             chosenDeckTag = StarterDeckSetup.findDeckTag(deckIndex);
             lastMaxSummons = config.getInt(PROP_MAX_SUMMONS);
             resummonDeckDamage = config.getInt(PROP_RESUMMON_DMG);
-            hasRing = config.getBool(PROP_HAS_RING);
-            hasKey = config.getBool(PROP_HAS_KEY);
             
         } catch (Exception e) { e.printStackTrace(); }
 		
@@ -992,23 +985,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			}
 		}
 		BuffHelper.resetBuffPool();
-		lastMaxSummons = 5;
+		lastMaxSummons = defaultMaxSummons;
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
-		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
-		logger.info("Reset max summons to 5");
-		if (hasRing) 
-		{ 
-			//lastMaxSummons = 8; 
-			//if (challengeMode) 
-			//{ 
-			//	lastMaxSummons = 7; 
-			//} 
-			//logger.info("reset to 8");
-		}
-		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -1039,20 +1020,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			logger.info("unlock level was greater than 0, reset to 0");
 		}
 		playedOneCardThisCombat = false;
-		lastMaxSummons = 5;
+		lastMaxSummons = defaultMaxSummons;
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
-		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
-		logger.info("Reset max summons to 5");
-		/*if (hasRing)
-		{ 
-			lastMaxSummons = 8; 
-			if (challengeMode) { lastMaxSummons = 7; }
-			logger.info("reset to 8 B");
-		}*/
-		if (hasKey) { lastMaxSummons = 5; logger.info("Reset max summons to 5");}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -1113,15 +1085,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		insectPoisonDmg = baseInsectPoison;
 		naturiaDmg = 1;
 		AbstractPlayer.customMods = new ArrayList<String>();
-		hasRing = false;
-		hasKey = false;
+		defaultMaxSummons = 5;
 		lastMaxSummons = 5;
-		if (challengeMode) { lastMaxSummons = 4; }
 		swordsPlayed = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
-			config.setBool(PROP_HAS_KEY, hasKey);
 			config.setInt(PROP_RESUMMON_DMG, 1);
 			config.save();
 		} catch (Exception e) {
@@ -1445,21 +1414,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			insectPoisonDmg = baseInsectPoison;
 			naturiaDmg = 1;
 			AbstractPlayer.customMods = new ArrayList<String>();
-			hasRing = false;
-			hasKey = false;
-			lastMaxSummons = 5;
-			if (challengeMode) { lastMaxSummons = 4; }
 			swordsPlayed = 0;
 			CardCrawlGame.dungeon.initializeCardPools();
-			try {
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
-				config.setBool(PROP_HAS_KEY, hasKey);
-				config.setInt(PROP_RESUMMON_DMG, 1);
-				config.save();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 		else if (!shouldFill)
 		{

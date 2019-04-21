@@ -34,7 +34,7 @@ public class WormWarlord extends DuelistCard
 
     public WormWarlord() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
+        this.baseDamage = this.damage = 13;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;

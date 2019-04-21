@@ -119,7 +119,7 @@ public class RedEyesToon extends DuelistCard
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
 		}
-		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThorns(5); }	
+		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }	
 	}
 
 	@Override

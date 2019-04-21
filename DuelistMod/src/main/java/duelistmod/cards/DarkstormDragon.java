@@ -67,7 +67,7 @@ public class DarkstormDragon extends DuelistCard
     	if (handDrags.size() > 0)
     	{
     		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
-    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(card, this.magicNumber, false));
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(card, -this.magicNumber, false));
     	}
     	
     }

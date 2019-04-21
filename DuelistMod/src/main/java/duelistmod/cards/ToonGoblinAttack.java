@@ -92,7 +92,7 @@ public class ToonGoblinAttack extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.TOON))
 		{
-			damageAllEnemiesThorns(5);
+			damageAllEnemiesThornsFire(5);
 		}
 	}
 

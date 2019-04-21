@@ -154,7 +154,7 @@ public class ToonBarrelDragon extends DuelistCard
 		}
 		
 		// Toon
-		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThorns(5); }
+		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }
 		
 		// Machine
 		if (tributingCard.hasTag(Tags.MACHINE))

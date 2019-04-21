@@ -54,7 +54,7 @@ public class DuelistCustomLoadout
 		else if (DuelistMod.deckIndex == 2) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
 		// Spellcaster
-		else if (DuelistMod.deckIndex == 3) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		else if (DuelistMod.deckIndex == 3) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
 		// Toon
 		else if (DuelistMod.deckIndex == 4) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
@@ -66,13 +66,13 @@ public class DuelistCustomLoadout
 		else if (DuelistMod.deckIndex == 6) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
 		// Fiend
-		else if (DuelistMod.deckIndex == 7) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		else if (DuelistMod.deckIndex == 7) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
 		// Machine
-		else if (DuelistMod.deckIndex == 8) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		else if (DuelistMod.deckIndex == 8) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
 		// Superheavy
-		else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
+		else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
 		// Creator
 		else if (DuelistMod.deckIndex == 10) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }

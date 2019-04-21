@@ -36,6 +36,7 @@ public class InsectToken extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.INSECT); 
+    	this.purgeOnUse = true;
     }
     
     public InsectToken(String tokenName) 
@@ -43,6 +44,7 @@ public class InsectToken extends DuelistCard
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.INSECT);
+    	this.purgeOnUse = true;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(p, 1, this); }

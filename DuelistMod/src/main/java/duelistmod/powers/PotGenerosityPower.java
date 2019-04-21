@@ -36,7 +36,7 @@ public class PotGenerosityPower extends AbstractPower
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount > 0) { this.amount--; if (this.amount < 1) { DuelistCard.removePower(this, AbstractDungeon.player); } }
+    	if (this.amount > 0) { this.amount--; if (this.amount < 1) { DuelistCard.removePower(this, AbstractDungeon.player); updateDescription(); } }
     	else { DuelistCard.removePower(this, AbstractDungeon.player); }
 	}
 

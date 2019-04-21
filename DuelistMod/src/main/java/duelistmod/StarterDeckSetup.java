@@ -232,7 +232,6 @@ public class StarterDeckSetup {
 		spellcasterCards.add(new BlueDragonSummoner());
 		spellcasterCards.add(new ApprenticeIllusionMagician());
 		spellcasterCards.add(new DarkHorizon());
-		//spellcasterCards.add(new MagicCylinder());
 		spellcasterCards.add(new MachineFactory());
 		spellcasterCards.add(new DarkPaladin());
 		spellcasterCards.add(new WhiteMagicalHat());
@@ -487,7 +486,6 @@ public class StarterDeckSetup {
 		fiendCards.add(new RedSprinter());
 		fiendCards.add(new Tierra());
 		fiendCards.add(new GracefulCharity());
-		//fiendCards.add(new MagicCylinder());
 		fiendCards.add(new MonsterReborn());
 		fiendCards.add(new CardSafeReturn());
 		fiendCards.add(new CallGrave());
@@ -496,13 +494,8 @@ public class StarterDeckSetup {
 		fiendCards.add(new Pumpking());
 		fiendCards.add(new Pumprincess());
 		fiendCards.add(new PotDuality());
-		if (!DuelistMod.toonBtnBool)
-		{
-			fiendCards.add(new ToonWorld());
-			fiendCards.add(new ToonKingdom());
-			fiendCards.add(new ToonSummonedSkull());
-			//fiendCards.add(new ToonMermaid());
-		}
+		fiendCards.add(new Doomdog());
+		fiendCards.add(new RedMirror());
 		fiendDeck.fillPoolCards(DuelistMod.basicCards);
 		fiendDeck.fillPoolCards(fiendCards);		
 		fiendDeck.fillArchetypeCards(fiendCards);

@@ -50,7 +50,7 @@ public class FiendMegacyber extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.magicNumber, false, this);
+    	tribute(p, this.tributes, false, this);
     	block(this.block);
     }
 
@@ -108,10 +108,11 @@ public class FiendMegacyber extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.FIEND))
-		{
-			AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, 1));
-		}
+		// Fiend Tribute
+		AbstractPlayer p = AbstractDungeon.player;
+		if (p.hasPower(DoomdogPower.POWER_ID)) { int dmgAmount = p.getPower(DoomdogPower.POWER_ID).amount; damageAllEnemiesThornsNormal(dmgAmount); }
+		if (p.hasPower(RedMirrorPower.POWER_ID)) { for (AbstractCard c : p.discardPile.group) { if (c.cost > 0)	{ c.modifyCostForTurn(-p.getPower(RedMirrorPower.POWER_ID).amount);	c.isCostModifiedForTurn = true;	}}}
+		if (tributingCard.hasTag(Tags.FIEND)) { AbstractDungeon.actionManager.addToBottom(new FetchAction(p.discardPile, DuelistMod.fiendDraw)); }
 	}
 
 	@Override

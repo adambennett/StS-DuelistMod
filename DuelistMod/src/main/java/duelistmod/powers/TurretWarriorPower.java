@@ -19,7 +19,7 @@ public class TurretWarriorPower extends AbstractPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePath(Strings.TOON_CANNON_SOLDIER_POWER);
+    public static final String IMG = DuelistMod.makePath(Strings.TURRET_WARRIOR_POWER);
     
     public TurretWarriorPower(final AbstractCreature owner, final AbstractCreature source, int toonDmg) 
     {
@@ -39,7 +39,7 @@ public class TurretWarriorPower extends AbstractPower
     {
     	if (c.hasTag(Tags.TOKEN))
     	{
-    		DuelistCard.damageAllEnemiesThorns(this.amount);
+    		DuelistCard.damageAllEnemiesThornsNormal(this.amount);
     	}
     }
     

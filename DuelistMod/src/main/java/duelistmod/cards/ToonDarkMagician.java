@@ -116,7 +116,7 @@ public class ToonDarkMagician extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		//if (tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
-		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThorns(5); }
+		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }
 	}
 
 

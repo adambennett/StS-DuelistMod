@@ -64,7 +64,7 @@ public class NaturiaPower extends AbstractPower
 				int naturias = instance.getNumberOfTypeSummoned(Tags.NATURIA);
 				if (naturias > 0)
 				{
-					DuelistCard.damageAllEnemiesThorns(this.amount * DuelistMod.naturiaDmg);
+					DuelistCard.damageAllEnemiesThornsPoison(this.amount * DuelistMod.naturiaDmg);
 				}
 			}
     	}

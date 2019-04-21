@@ -34,12 +34,14 @@ public class ToonToken extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.TOON);
+    	this.purgeOnUse = true;
     }
     public ToonToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.TOON);
+    	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
@@ -51,7 +53,7 @@ public class ToonToken extends DuelistCard
     
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThorns(5); }
+		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }
 	}
 	
 	@Override public void onResummon(int summons) 

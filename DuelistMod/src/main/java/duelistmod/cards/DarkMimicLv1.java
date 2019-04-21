@@ -3,6 +3,7 @@ package duelistmod.cards;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -15,6 +16,7 @@ import duelistmod.*;
 import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.*;
 
 public class DarkMimicLv1 extends DuelistCard 
 {
@@ -72,6 +74,11 @@ public class DarkMimicLv1 extends DuelistCard
         		DuelistMod.mimic1Copies++; 
         		if (!DuelistMod.giveUpgradedMimicLv3) { DuelistMod.giveUpgradedMimicLv3 = this.upgraded; }
         	}
+            
+            if (player().masterDeck.group.contains(this))
+            {
+            	AbstractDungeon.player.masterDeck.removeCard(this);
+            }
            
         }
     }
@@ -136,8 +143,11 @@ public class DarkMimicLv1 extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+		// Fiend Tribute
+		AbstractPlayer p = AbstractDungeon.player;
+		if (p.hasPower(DoomdogPower.POWER_ID)) { int dmgAmount = p.getPower(DoomdogPower.POWER_ID).amount; damageAllEnemiesThornsNormal(dmgAmount); }
+		if (p.hasPower(RedMirrorPower.POWER_ID)) { for (AbstractCard c : p.discardPile.group) { if (c.cost > 0)	{ c.modifyCostForTurn(-p.getPower(RedMirrorPower.POWER_ID).amount);	c.isCostModifiedForTurn = true;	}}}
+		if (tributingCard.hasTag(Tags.FIEND)) { AbstractDungeon.actionManager.addToBottom(new FetchAction(p.discardPile, DuelistMod.fiendDraw)); }
 	}
 
 

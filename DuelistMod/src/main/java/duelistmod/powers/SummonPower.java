@@ -17,14 +17,13 @@ import duelistmod.relics.*;
 
 public class SummonPower extends AbstractPower
 {
-	public static final String POWER_ID = duelistmod.DuelistMod.makeID("SummonPower");
+	public static final String POWER_ID = DuelistMod.makeID("SummonPower");
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePath(Strings.SUMMON_POWER);
 
-	public int MAX_SUMMONS = 5;
-	public int test = 5;
+	public int MAX_SUMMONS = DuelistMod.defaultMaxSummons;
 	public ArrayList<String> summonList = new ArrayList<String>();
 	public ArrayList<String> coloredSummonList = new ArrayList<String>();
 
@@ -42,13 +41,12 @@ public class SummonPower extends AbstractPower
 		this.description = desc;
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
-		
-		// Change Max Summons if player has either of the two relics that effect it
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 4; }
-		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 8; }
-		
+
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
 		if (DuelistMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DuelistMod.lastMaxSummons; }
+		
+		// Force max summons of 5 when player has Millennium Key
+		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
 		
 		// Add the new summon(s) to the list
 		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); }}
@@ -73,9 +71,13 @@ public class SummonPower extends AbstractPower
 		this.description = desc;
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
-		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 4; }
-		else if (AbstractDungeon.player.hasRelic(MillenniumRing.ID)) { MAX_SUMMONS = 8; }
+		
+		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
 		if (DuelistMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DuelistMod.lastMaxSummons; }
+				
+		// Force max summons of 5 when player has Millennium Key
+		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
+		
 		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon);  }}
 		updateCount(this.amount);
 		updateStringColors();
@@ -85,13 +87,13 @@ public class SummonPower extends AbstractPower
 	@Override
 	public void onVictory()
 	{
-		DuelistMod.lastMaxSummons = 5;
+	
 	}
 	
 	@Override
 	public void onDeath()
 	{
-		DuelistMod.lastMaxSummons = 5;
+
 	}
 	
 	@Override

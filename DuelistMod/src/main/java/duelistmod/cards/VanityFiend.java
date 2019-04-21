@@ -27,18 +27,18 @@ public class VanityFiend extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
-	private static final int DAMAGE = 18;
+	private static final int DAMAGE = 10;
 	// /STAT DECLARATION/
 
 	public VanityFiend() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = this.baseTributes = 1;
+		this.summons = this.baseSummons = 1;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
 		this.misc = 0;
@@ -49,7 +49,7 @@ public class VanityFiend extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
+		summon();
 		attack(m, AFX, this.damage);
 	}
 
@@ -64,7 +64,7 @@ public class VanityFiend extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(6);
+			this.upgradeDamage(4);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -110,10 +110,11 @@ public class VanityFiend extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard)
 	{
-		if (tributingCard.hasTag(Tags.FIEND))
-		{
-			AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, 1));
-		}
+		// Fiend Tribute
+		AbstractPlayer p = AbstractDungeon.player;
+		if (p.hasPower(DoomdogPower.POWER_ID)) { int dmgAmount = p.getPower(DoomdogPower.POWER_ID).amount; damageAllEnemiesThornsNormal(dmgAmount); }
+		if (p.hasPower(RedMirrorPower.POWER_ID)) { for (AbstractCard c : p.discardPile.group) { if (c.cost > 0)	{ c.modifyCostForTurn(-p.getPower(RedMirrorPower.POWER_ID).amount);	c.isCostModifiedForTurn = true;	}}}
+		if (tributingCard.hasTag(Tags.FIEND)) { AbstractDungeon.actionManager.addToBottom(new FetchAction(p.discardPile, DuelistMod.fiendDraw)); }
 	}
 
 	@Override

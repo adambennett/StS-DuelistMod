@@ -596,10 +596,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 
-	public static void damageAllEnemiesThorns(int damage)
+	public static void damageAllEnemiesThornsPoison(int damage)
 	{
 		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
 		attackAll(AbstractGameAction.AttackEffect.POISON, damageArray, DamageType.THORNS);
+	}
+	
+	public static void damageAllEnemiesThornsNormal(int damage)
+	{
+		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
+		attackAll(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageArray, DamageType.THORNS);
+	}
+	
+	public static void damageAllEnemiesThornsFire(int damage)
+	{
+		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
+		attackAll(AbstractGameAction.AttackEffect.FIRE, damageArray, DamageType.THORNS);
 	}
 	// =============== /ATTACK FUNCTIONS/ =======================================================================================================================================================
 	
@@ -970,7 +982,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThorns(power.amount);
+					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
 				DuelistMod.summonCombatCount += startSummons;
@@ -1024,7 +1036,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThorns(power.amount);
+					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
 				// Check for Ultimate Offering
@@ -1145,7 +1157,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThorns(power.amount);
+					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
 				DuelistMod.summonCombatCount += startSummons;
@@ -1199,7 +1211,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThorns(power.amount);
+					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
 				// Update UI
@@ -1260,7 +1272,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThorns(power.amount);
+					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
 				DuelistMod.summonCombatCount += startSummons;
@@ -1307,7 +1319,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThorns(power.amount);
+					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
 				// Check for Ultimate Offering
@@ -1428,7 +1440,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
 			{
 				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThorns(power.amount);
+				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 			}
 			
 			DuelistMod.summonCombatCount += startSummons;
@@ -1482,7 +1494,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
 			{
 				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThorns(power.amount);
+				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 			}
 			
 			// Check for Ultimate Offering
@@ -1542,7 +1554,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
 			{
 				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThorns(power.amount);
+				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 			}
 		}
 
@@ -1592,7 +1604,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
 			{
 				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThorns(power.amount);
+				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 			}
 			
 			// Update UI
@@ -2096,12 +2108,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			if (!p.hasRelic(MillenniumKey.ID)) { return summonsInstance.MAX_SUMMONS; }
-			else 
-			{ 
-				if (summonsInstance.MAX_SUMMONS > 4) { summonsInstance.MAX_SUMMONS = 4;}
-				return summonsInstance.MAX_SUMMONS;
-			}
+			return summonsInstance.MAX_SUMMONS;
 		}
 	}
 
@@ -2111,7 +2118,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			summonsInstance.MAX_SUMMONS = amount; DuelistMod.lastMaxSummons = amount;
-			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4; DuelistMod.lastMaxSummons = 4;}
+			if (summonsInstance.MAX_SUMMONS > 5 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 5; DuelistMod.lastMaxSummons = 5;}
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
@@ -2133,7 +2140,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			summonsInstance.MAX_SUMMONS += amount; DuelistMod.lastMaxSummons += amount;
-			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4; DuelistMod.lastMaxSummons = 4;}
+			if (summonsInstance.MAX_SUMMONS > 5 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 5; DuelistMod.lastMaxSummons = 5;}
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
@@ -2161,7 +2168,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
 			summonsInstance.MAX_SUMMONS -= amount; DuelistMod.lastMaxSummons -= amount;
-			if (summonsInstance.MAX_SUMMONS > 4 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 4; DuelistMod.lastMaxSummons = 4;}
+			if (summonsInstance.MAX_SUMMONS > 5 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 5; DuelistMod.lastMaxSummons = 5;}
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();

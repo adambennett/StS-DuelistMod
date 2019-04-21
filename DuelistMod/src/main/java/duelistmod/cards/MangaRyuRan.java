@@ -115,7 +115,7 @@ public class MangaRyuRan extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.TOON))
 		{
-			damageAllEnemiesThorns(5);
+			damageAllEnemiesThornsFire(5);
 		}
 		
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 

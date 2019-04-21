@@ -94,7 +94,7 @@ public class ToonMermaid extends DuelistCard
 	{
 		if (tributingCard.hasTag(Tags.TOON))
 		{
-			damageAllEnemiesThorns(5);
+			damageAllEnemiesThornsFire(5);
 		}
 	}
 

@@ -36,6 +36,7 @@ public class PlantToken extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.PLANT); 
+    	this.purgeOnUse = true;
     }
     
     public PlantToken(String tokenName) 
@@ -43,6 +44,7 @@ public class PlantToken extends DuelistCard
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.PLANT); 
+    	this.purgeOnUse = true;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }

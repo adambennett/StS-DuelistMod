@@ -39,13 +39,14 @@ public class TributeDoomed extends DuelistCard
         this.tags.add(Tags.ALL);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
+		this.tributes = this.baseTributes = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, 1, false, this);
+    	tribute(p, this.tributes, false, this);
     	AbstractDungeon.actionManager.addToTop(new PlayFromDiscardAction(this.magicNumber, this.upgraded, m));
     }
 

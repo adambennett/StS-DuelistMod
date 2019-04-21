@@ -1891,6 +1891,16 @@
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block."
 	},
+	"theDuelist:Doomdog": {
+		"NAME": "Doomdog Octhros",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, deal !M! damage to ALL enemies.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, deal !M! damage to ALL enemies."
+	},
+	"theDuelist:RedMirror": {
+		"NAME": "Red Mirror",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, reduce the cost of all cards in your discard pile by 1 for this turn.",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, reduce the cost of all cards in your discard pile by 1 for this turn."
+	},
 	"theDuelist:AbstractBuffCard": {
 		"NAME": "Buff",
 		"DESCRIPTION": "Shouldn't appear in-game"
