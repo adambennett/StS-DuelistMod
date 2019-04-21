@@ -140,7 +140,7 @@
   "theDuelist:Storm": {
     "NAME": "Storm",
     "DESCRIPTION": [
-	  "#yPassive: Add #b1 #yRandomized Power card to your hand. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", "."
+	  "#yPassive: At the start of turn, add #b1 #yRandomized Power card to your hand. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", "."
     ]
   },
   "theDuelist:Summoner": {

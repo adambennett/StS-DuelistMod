@@ -199,7 +199,7 @@
 	  "fiend",
 	  "fiends"
     ],   
-    "DESCRIPTION": "When you #yTribute a #yFiend for another #yFiend, place #b1 card from your discard pile into your hand."
+    "DESCRIPTION": "When you #yTribute a #yFiend for another #yFiend, place #b1 card from your discard pile into your hand. That card gains #yExhaust."
   },
   {
     "PROPER_NAME": "Aqua",

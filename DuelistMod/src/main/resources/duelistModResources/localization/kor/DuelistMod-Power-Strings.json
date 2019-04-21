@@ -9,7 +9,7 @@
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
-        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal 3 damage to #b", " random enemy.", " random enemies.",]
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal 3 damage to ", " random enemy.", " random enemies.",]
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
@@ -298,6 +298,14 @@
 "theDuelist:ReinforcementsPower": {
         "NAME": "Reinforcements",
         "DESCRIPTIONS": ["Whenever you play a monster this turn, #ySummon a duplicate of it." ]
+},
+"theDuelist:DoomdogPower": {
+        "NAME": "Doomdog",
+        "DESCRIPTIONS": ["Whenever you #yTribute a #yFiend for another #yFiend, deal #b", " damage to ALL enemies." ]
+},
+"theDuelist:RedMirrorPower": {
+        "NAME": "Red Mirror",
+        "DESCRIPTIONS": ["Whenever you #yTribute a #yFiend for another #yFiend, reduce the cost of all cards in your discard pile by #b", " for this turn." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

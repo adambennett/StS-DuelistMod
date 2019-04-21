@@ -501,8 +501,8 @@
 	},
 	"theDuelist:ShardGreed": {
 		"NAME": "Shard of Greed",
-		"DESCRIPTION": "At the start of your turn, draw 1 additional card. Every 3 turns, draw 1 extra card.",
-		"UPGRADE_DESCRIPTION": "Innate NL At the start of your turn, draw 1 additional card. Every 3 turns, draw 1 extra card."
+		"DESCRIPTION": "At the start of turn, draw 1 additional card. Every 3 turns, draw 1 extra card.",
+		"UPGRADE_DESCRIPTION": "Innate NL At the start of turn, draw 1 additional card. Every 3 turns, draw 1 extra card."
 	},
 	"theDuelist:SummonedSkull": {
 		"NAME": "Summoned Skull",

@@ -1108,8 +1108,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			spellCombatCount++;
 			spellRunCount++;
 			playedSpellThisTurn = true;
-			spellsThisCombat.add((DuelistCard) arg0.makeCopy());
-			spellsThisRun.add((DuelistCard) arg0.makeCopy());
+			spellsThisCombat.add((DuelistCard) arg0.makeStatEquivalentCopy());
+			spellsThisRun.add((DuelistCard) arg0.makeStatEquivalentCopy());
 			logger.info("incremented spellsThisCombat, new value: " + spellCombatCount);
 			logger.info("incremented spellRunCombat, new value: " + spellRunCount);
 			logger.info("added " + arg0.originalName + " to spellsThisCombat, spellsThisRun");
@@ -1119,8 +1119,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		{
 			//summonCombatCount++;
 			//summonRunCount++;
-			monstersThisCombat.add((DuelistCard) arg0.makeCopy());
-			monstersThisRun.add((DuelistCard) arg0.makeCopy());
+			monstersThisCombat.add((DuelistCard) arg0.makeStatEquivalentCopy());
+			monstersThisRun.add((DuelistCard) arg0.makeStatEquivalentCopy());
 			logger.info("incremented summonsThisCombat, new value: " + summonCombatCount);
 			logger.info("incremented summonRunCount, new value: " + summonRunCount);
 			logger.info("added " + arg0.originalName + " to monstersThisCombat, monstersThisRun");
@@ -1136,8 +1136,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		{
 			trapCombatCount++;
 			trapRunCount++;
-			trapsThisCombat.add((DuelistCard) arg0.makeCopy());
-			trapsThisRun.add((DuelistCard) arg0.makeCopy());
+			trapsThisCombat.add((DuelistCard) arg0.makeStatEquivalentCopy());
+			trapsThisRun.add((DuelistCard) arg0.makeStatEquivalentCopy());
 			logger.info("incremented trapsThisCombat, new value: " + trapCombatCount);
 			logger.info("incremented spellRunCombat, new value: " + trapRunCount);
 			logger.info("added " + arg0.originalName + " to trapsThisCombat, trapsThisRun");

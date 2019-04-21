@@ -72,8 +72,8 @@
         "DESCRIPTIONS": ["Channel a #ySummoner.", "Channel #b", " #ySummoner Orbs."]
 },
 "theDuelist:TributeBottle": {
-        "NAME": "Summoner's Bottle",
-        "DESCRIPTIONS": ["Reduce the #yTribute cost of all monsters in your by #b", " for this turn."]
+        "NAME": "Magic Bottle",
+        "DESCRIPTIONS": ["Reduce the #yTribute cost of all monsters in your hand by #b", " for this turn."]
 },
 "theDuelist:BigTributeBottle": {
         "NAME": "Magician's Bottle",

@@ -311,7 +311,7 @@
       "Storm",
 	  "storm"
     ],   
-    "DESCRIPTION": "#yPassive: Adds #yRandomized Power cards to your hand.NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b1. "
+    "DESCRIPTION": "#yPassive: Adds #yRandomized Power cards to your hand at the start of turn. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b1. "
   },
   {
     "PROPER_NAME": "Invert",
