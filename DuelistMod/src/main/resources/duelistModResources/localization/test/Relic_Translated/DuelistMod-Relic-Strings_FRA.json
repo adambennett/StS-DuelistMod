@@ -1,0 +1,193 @@
+{
+	"theDuelist:AeroRelic": {
+		"DESCRIPTIONS": [
+			"Vos orbes #yAir toujours #yChannel un orbe aléatoire."
+		],
+		"FLAVOR": "Un orbe étrange avec un pouvoir mystérieux.",
+		"NAME": "Orbe de slifer"
+	},
+	"theDuelist:CardRewardRelicA": {
+		"DESCRIPTIONS": [
+			"À chaque fois que vous remportez un combat, recevez # b5 de récompenses supplémentaires et utilisez # b1 #yCharge. Commence par # b2 #yCharges. Après avoir vaincu les boss et les élites, gagnez # b1 #yCharge."
+		],
+		"FLAVOR": "Un jeton très utile.",
+		"NAME": "Jeton de récompense"
+	},
+	"theDuelist:CardRewardRelicB": {
+		"DESCRIPTIONS": [
+			"À chaque fois que vous remportez un combat, recevez # b2 de récompenses supplémentaires et utilisez # b1 #yCharge. Commence par # b10 #yCharges. Après avoir vaincu les boss et les élites, gagnez # b2 #yCharges."
+		],
+		"FLAVOR": "Un jeton très utile.",
+		"NAME": "Jeton de récompense"
+	},
+	"theDuelist:CardRewardRelicC": {
+		"DESCRIPTIONS": [
+			"À chaque fois que vous remportez un combat, recevez # b1 une récompense supplémentaire et utilisez # b1 #yCharge. Commence par # b6 #yCharges. Après avoir vaincu les boss et les élites, gagnez # b1 #yCharge."
+		],
+		"FLAVOR": "Un orbe très utile.",
+		"NAME": "Orbe de récompense"
+	},
+	"theDuelist:CardRewardRelicD": {
+		"DESCRIPTIONS": [
+			"Chaque fois que vous gagnez un combat, vous avez # b25% de chances de recevoir # b10 de récompenses supplémentaires."
+		],
+		"FLAVOR": "Un orbe étrange.",
+		"NAME": "Orbe de récompense"
+	},
+	"theDuelist:CardRewardRelicE": {
+		"DESCRIPTIONS": [
+			"À chaque fois que vous remportez un combat, vous avez # b33% de chances de recevoir # de récompenses de carte b3 supplémentaires."
+		],
+		"FLAVOR": "Une pierre étrange.",
+		"NAME": "Pierre de récompense"
+	},
+	"theDuelist:DragonRelic": {
+		"DESCRIPTIONS": [
+			"Lorsque vous gagnez #yStrength de #yTributing un #yDragon, gagnez # b1 supplémentaire #yStrength."
+		],
+		"FLAVOR": "Une petite statue en forme de dragon.",
+		"NAME": "Statue de dragon"
+	},
+	"theDuelist:FiendRelic": {
+		"DESCRIPTIONS": [
+			"Déplacez une carte supplémentaire dans votre main chaque fois que vous #yTribuez un #yFiend à un autre #yFiend."
+		],
+		"FLAVOR": "Un petit jeton noirci. Ça fait mal.",
+		"NAME": "Jeton noir"
+	},
+	"theDuelist:GiftAnubis": {
+		"DESCRIPTIONS": [
+			" NL Invoque # b1 et consomme # b1 #yCharge. NL commence par # b2 #yCharges. NL Après avoir vaincu les boss et les élites, gagnez # b3 #yCharges."
+		],
+		"FLAVOR": "Un cadeau d'Anubis lui-même.",
+		"NAME": "Don d'Anubis"
+	},
+	"theDuelist:InsectRelic": {
+		"DESCRIPTIONS": [
+			"Chaque fois que vous appliquez #yPoison de #yTributing un #yInsect ou #yPlant, ajoutez #b",
+			" poison supplémentaire. Après avoir vaincu les boss et les élites, vous avez # b25% de chances d'augmenter encore cette amélioration de #yPoison de # b1."
+		],
+		"FLAVOR": "Un jeton sale en forme de scarabée.",
+		"NAME": "Jeton de bogue"
+	},
+	"theDuelist:InversionEvokeRelic": {
+		"DESCRIPTIONS": [
+			"Chaque fois que vous #yInvert, répétez la même action #yInvert."
+		],
+		"FLAVOR": "Un orbe étrange.",
+		"NAME": "Orbe d'inversion"
+	},
+	"theDuelist:InversionRelic": {
+		"DESCRIPTIONS": [
+			"À chaque fois que vous #yvertissez, #yévoquez deux fois l'orbe d'origine."
+		],
+		"FLAVOR": "Une pierre d'aspect étrange.",
+		"NAME": "Pierre d'inversion"
+	},
+	"theDuelist:MachineToken": {
+		"DESCRIPTIONS": [
+			"#yExplosive #yTokens infligent des dégâts aléatoires aux ennemis au lieu de vous endommager."
+		],
+		"FLAVOR": "Un jeton mécanique recouvert de petits fils et de marques étranges. Mieux vaut ne pas trop le tripoter.",
+		"NAME": "Jeton de machine"
+	},
+	"theDuelist:MillenniumCoin": {
+		"DESCRIPTIONS": [
+			"Chaque fois que vous #yEvoke, vous avez une chance de gagner #b",
+			" Or. NL À chaque fois que vous battez un élite ou un boss, ajoutez # b10 Gold à cet effet et avez une # b30% de chances d'augmenter de 3% le modificateur de probabilité d'évocation."
+		],
+		"FLAVOR": "Une belle pièce.",
+		"NAME": "Pièce du millénaire"
+	},
+	"theDuelist:MillenniumEye": {
+		"DESCRIPTIONS": [
+			"Au début de chaque combat, gagnez #yToon #yWorld."
+		],
+		"FLAVOR": "Il a été créé 3 000 ans auparavant avec d'autres objets du millénaire par Aknadin. Après sa création, Aknadin lui-même a mis l'Œil, sacrifiant ainsi son œil gauche.",
+		"NAME": "Millennium Eye"
+	},
+	"theDuelist:MillenniumKey": {
+		"DESCRIPTIONS": [
+			"Gagnez 1 [E] au début de chaque tour. Votre maximum #ySummons ne peut pas être supérieur à # b5."
+		],
+		"FLAVOR": "Après sa fabrication, la clé du millénaire a été remise à Shimon, l'incarnation égyptienne de Salomon Muto, mais plus tard, elle a été transmise à Shada.",
+		"NAME": "Clé du millénaire"
+	},
+	"theDuelist:MillenniumPuzzle": {
+		"DESCRIPTIONS": [
+			"Au début de chaque combat, déclenchez un effet en fonction de votre deck de départ choisi."
+		],
+		"FLAVOR": "Il était à l'origine connu sous le nom de pendentif du millénaire, mais après avoir été brisé et avoir besoin d'être assemblé, il est devenu le puzzle du millénaire.",
+		"NAME": "Puzzle du millénaire"
+	},
+	"theDuelist:MillenniumPuzzleShared": {
+		"DESCRIPTIONS": [
+			"Au début de chaque combat, déclenchez un effet en fonction de votre deck de départ choisi."
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:MillenniumRing": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:MillenniumRod": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:NaturiaRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:PlaceholderRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:PlaceholderRelic2": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:RandomTributeMonsterRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:ResummonBranch": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:StoneExxod": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:SummonAnchor": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	}
+}

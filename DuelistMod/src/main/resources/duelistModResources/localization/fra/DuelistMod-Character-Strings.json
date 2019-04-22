@@ -1,16 +1,16 @@
 {
 	"Duelist": {
-		"NAMES": [
-			"The Duelist"
-		],
-		"TEXT": [
-			"The Duelist summons and tributes monster cards to slay the spire. NL Play your favorite deckbuilding game with a Yu-Gi-Oh! twist.",
-			"the Duelist",
-			"You touch the heart. NL Is this the heart of the cards?",
-			"Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
-		],
 		"KEYWORDS": [
 			""
+		],
+		"NAMES": [
+			"Le duelliste"
+		],
+		"TEXT": [
+			"Le duelliste invoque et rend hommage aux cartes de monstres pour tuer la flèche. NL Jouez à votre jeu de construction de pont préféré avec un Yu-Gi-Oh! torsion.",
+			"Le duelliste",
+			"Vous touchez le coeur. NL Est-ce le cœur des cartes?",
+			"En naviguant dans une rue non éclairée, vous rencontrez plusieurs personnages encapuchonnés au beau milieu d'un rituel sombre. Lorsque vous vous approchez, ils se tournent vers vous à l'unisson. Le plus grand d'entre eux a les dents crochues et étend une longue main pâle vers vous. NL ~ \"Rejoignez-nous ~ ~ ~ ~ en duel ~ ~ un, ~ ~ et ~ ~ sentez ~ ~ la ~ ~ chaleur ~ ~ de ~ ~ la ~ ~ Spire.\" ~"
 		]
 	}
 }

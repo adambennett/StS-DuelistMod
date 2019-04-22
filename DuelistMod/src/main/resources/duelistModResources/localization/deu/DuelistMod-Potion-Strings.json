@@ -1,0 +1,159 @@
+{
+	"theDuelist:AirBottle": {
+		"DESCRIPTIONS": [
+			"Channel ein #yAir.",
+			"Channel #b",
+			" #yAir Orbs."
+		],
+		"NAME": "Abgefüllter Wind"
+	},
+	"theDuelist:BigTributeBottle": {
+		"DESCRIPTIONS": [
+			"Reduzieren Sie die Kosten für #yTribute aller Monster in Ihrer Hand um #b",
+			" für den Rest des Kampfes."
+		],
+		"NAME": "Flasche des Magiers"
+	},
+	"theDuelist:BlackBottle": {
+		"DESCRIPTIONS": [
+			"Channel ein #yBlack.",
+			"Channel #b",
+			" #yBlack Orbs."
+		],
+		"NAME": "Abgefüllte Dunkelheit"
+	},
+	"theDuelist:DragonOrbBottle": {
+		"DESCRIPTIONS": [
+			"Channel eine #yDragonOrb.",
+			"Channel #b",
+			" #yDragonOrbs."
+		],
+		"NAME": "Drachentrank"
+	},
+	"theDuelist:DragonOrbPlusBottle": {
+		"DESCRIPTIONS": [
+			"Channel #yupraged #yDragonOrb.",
+			"Channel #b",
+			" #yupgraded #yDragonOrbs."
+		],
+		"NAME": "Superdrachentrank"
+	},
+	"theDuelist:EarthBottle": {
+		"DESCRIPTIONS": [
+			"Channel #yEarth",
+			"Channel #b",
+			" #yEarth Orbs."
+		],
+		"NAME": "Zauber Flasche"
+	},
+	"theDuelist:ExtraOrbsBottle": {
+		"DESCRIPTIONS": [
+			"Erhöhe deine Orb-Slots um #b",
+			"."
+		],
+		"NAME": "Fee Flasche"
+	},
+	"theDuelist:FireBottle": {
+		"DESCRIPTIONS": [
+			"Channel ein #yFire.",
+			"Channel #b",
+			" #yFire Orbs."
+		],
+		"NAME": "Eingelegtes Feuer"
+	},
+	"theDuelist:GadgetBottle": {
+		"DESCRIPTIONS": [
+			"Channel ein #yGadget.",
+			"Channel #b",
+			" #yGadget Orbs."
+		],
+		"NAME": "Amazon-Paket"
+	},
+	"theDuelist:GlitchBottle": {
+		"DESCRIPTIONS": [
+			"Channel ein #yGlitch.",
+			"Channel #b",
+			" #yGlitch Orbs."
+		],
+		"NAME": "Gebrochene Flasche"
+	},
+	"theDuelist:JoeyJuice": {
+		"DESCRIPTIONS": [
+			"Wenden Sie 2 zufällige #Edefuffs an."
+		],
+		"NAME": "Joey Juice"
+	},
+	"theDuelist:MetalBottle": {
+		"DESCRIPTIONS": [
+			"Channel ein #yMetal.",
+			"Channel #b",
+			" #yMetallkugeln."
+		],
+		"NAME": "Flüssiges Metall"
+	},
+	"theDuelist:MillenniumElixir": {
+		"DESCRIPTIONS": [
+			"Gewinnen Sie 2 zufällige #Buffs."
+		],
+		"NAME": "Millennium Elixir"
+	},
+	"theDuelist:MonsterOrbBottle": {
+		"DESCRIPTIONS": [
+			"Channel eine #yMonsterOrb.",
+			"Channel #b",
+			" #yMonsterOrbs."
+		],
+		"NAME": "Abgefüllte MonsterOrb"
+	},
+	"theDuelist:OrbBottle": {
+		"DESCRIPTIONS": [
+			"Kanal eine zufällige Kugel.",
+			"Channel #b",
+			" zufällige Kugeln."
+		],
+		"NAME": "Nebelige Flasche"
+	},
+	"theDuelist:SandBottle": {
+		"DESCRIPTIONS": [
+			"Channel #YSand.",
+			"Channel #b",
+			" #ySand Orbs."
+		],
+		"NAME": "Sanduhr"
+	},
+	"theDuelist:SealedPack": {
+		"DESCRIPTIONS": [
+			"Öffne ein #yLegend #yoflight #yEyes Boosterpack. Füge deiner Hand #b3 #randomisierte Karten aus diesem Set hinzu."
+		],
+		"NAME": "Kleiner Booster"
+	},
+	"theDuelist:SealedPackB": {
+		"DESCRIPTIONS": [
+			"Öffne ein Booster-Pack mit Karten von # yPharaohs #yServant und #yMetal #yRaiders. Füge deiner Hand #b3 #randomisierte Karten aus einem dieser Sets hinzu."
+		],
+		"NAME": "Kleine Packung"
+	},
+	"theDuelist:StormBottle": {
+		"DESCRIPTIONS": [
+			"Channel ein #yStorm.",
+			"Channel #b",
+			" #yStorm Orbs."
+		],
+		"NAME": "Abgefüllter Sturm"
+	},
+	"theDuelist:SummonerBottle": {
+		"DESCRIPTIONS": [
+			"Channel einen #ySummoner.",
+			"Channel #b",
+			" #ySummoner-Kugeln."
+		],
+		"NAME": "Abgefüllter Beschwörer"
+	},
+	"theDuelist:TributeBottle": {
+		"DESCRIPTIONS": [
+			"Reduzieren Sie die Kosten für #yTribute aller Monster in Ihrer Hand um #b",
+			" für diese Wende."
+		],
+		"NAME": "Magische Flasche"
+	}
+}

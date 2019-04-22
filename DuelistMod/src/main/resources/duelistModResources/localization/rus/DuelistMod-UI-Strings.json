@@ -1,9 +1,9 @@
 {
 	"theDuelist:ConfigMenuText": {
 		"TEXT": [ 
-			"Remove ALL Toon cards [Resets your card pool if currently in a run]",
-			"Remove ALL Exodia cards [Resets your card pool if currently in a run]",
-			"Remove ALL Ojama cards [Resets your card pool if currently in a run]",
+			"Remove ALL Toon cards",
+			"Remove ALL Exodia cards",
+			"Remove ALL Ojama cards",
 			"Starting Deck:",
 			"Reward/Shop Pool Fill Type:",
 			"Active Duelist Cards: ",
@@ -11,7 +11,9 @@
 			"Challenge Mode",
 			"Unlock all Decks",
 			"Turn off Monster/Spell/Trap tags",
-			"Extra Debug Info"
+			"Extra Debug Info",
+			"Remove Creator cards",
+			"Old character model"
 		]
 	}
 }

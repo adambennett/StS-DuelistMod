@@ -1,0 +1,193 @@
+{
+	"theDuelist:AeroRelic": {
+		"DESCRIPTIONS": [
+			"Ваш #yAir шары всегда #yChannel случайный шар."
+		],
+		"FLAVOR": "Странный шар с таинственной силой.",
+		"NAME": "Шар Слайфера"
+	},
+	"theDuelist:CardRewardRelicA": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы выигрываете бой, получите # b5 дополнительные награды за карту и потребляйте # b1 #yCharge. Начинается с # b2 #yCharges. После победы над боссами и элитами, получите # b1 #yCharge."
+		],
+		"FLAVOR": "Очень полезный жетон.",
+		"NAME": "Знак вознаграждения"
+	},
+	"theDuelist:CardRewardRelicB": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы выигрываете бой, получайте # b2 дополнительные награды за карту и потребляйте # b1 #yCharge. Начинается с # b10 #yCharges. После победы над боссами и элитами, получите # b2 #yCharges."
+		],
+		"FLAVOR": "Очень полезный жетон.",
+		"NAME": "Знак вознаграждения"
+	},
+	"theDuelist:CardRewardRelicC": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы выигрываете бой, получите # b1 дополнительную карту и потребляйте # b1 #yCharge. Начинается с # b6 #yCharges. После победы над боссами и элитами, получите # b1 #yCharge."
+		],
+		"FLAVOR": "Очень полезный шар.",
+		"NAME": "Вознаграждение Orb"
+	},
+	"theDuelist:CardRewardRelicD": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы выигрываете бой, с вероятностью # b25% вы можете получить дополнительные награды # b10."
+		],
+		"FLAVOR": "Странный шар.",
+		"NAME": "Вознаграждение Orb"
+	},
+	"theDuelist:CardRewardRelicE": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы выигрываете бой, с вероятностью # b33% получите дополнительные награды # b3."
+		],
+		"FLAVOR": "Странный камень.",
+		"NAME": "Награда Камень"
+	},
+	"theDuelist:DragonRelic": {
+		"DESCRIPTIONS": [
+			"Когда вы получаете #yStrength от #yTributing #yDragon, получаете # b1 дополнительно #yStrength."
+		],
+		"FLAVOR": "Маленькая статуя в форме дракона.",
+		"NAME": "Статуя дракона"
+	},
+	"theDuelist:FiendRelic": {
+		"DESCRIPTIONS": [
+			"Перемещайте дополнительную карту к своей руке каждый раз, когда вы #yTribute #yFiend для другого #yFiend."
+		],
+		"FLAVOR": "Маленький затемненный жетон. Это чувствует зло.",
+		"NAME": "Темный жетон"
+	},
+	"theDuelist:GiftAnubis": {
+		"DESCRIPTIONS": [
+			" NL Summon # b1 и потреблять # b1 #yCharge. NL начинается с # b2 #yCharges. NL После победы над боссами и элитами, наберите # b3 #yCharges."
+		],
+		"FLAVOR": "Подарок от самого Анубиса.",
+		"NAME": "Дар Анубиса"
+	},
+	"theDuelist:InsectRelic": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы применяете #yPoison из #yTributing #yInsect или #yPlant, добавьте #b",
+			" дополнительный яд После победы над боссами и элитами, есть шанс # b25% увеличить этот бафф #yPoison на # b1."
+		],
+		"FLAVOR": "Грязный жетон в форме жука.",
+		"NAME": "Жетон ошибки"
+	},
+	"theDuelist:InversionEvokeRelic": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #yInvert, повторите то же самое действие #yInvert."
+		],
+		"FLAVOR": "Странно выглядящий шар.",
+		"NAME": "Сфера Инверсии"
+	},
+	"theDuelist:InversionRelic": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #yInvert, #yEvoke оригинальный шар дважды."
+		],
+		"FLAVOR": "Странно выглядящий камень.",
+		"NAME": "Инверсионный камень"
+	},
+	"theDuelist:MachineToken": {
+		"DESCRIPTIONS": [
+			"#yExplosive #yTokens наносит случайный урон врагам вместо того, чтобы наносить вам урон."
+		],
+		"FLAVOR": "Механический жетон, покрытый маленькими проводами и странными отметками. Лучше не возиться с этим слишком много.",
+		"NAME": "Машинный токен"
+	},
+	"theDuelist:MillenniumCoin": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yEvoke, есть шанс получить #b",
+			" Золото. NL Каждый раз, когда вы побеждаете элиту или босса, добавляйте к этому эффекту золото # b10 и с вероятностью # b30% увеличьте увеличение модификатора шанса призыва на # b10%."
+		],
+		"FLAVOR": "Красивая монета.",
+		"NAME": "Миллениум Монета"
+	},
+	"theDuelist:MillenniumEye": {
+		"DESCRIPTIONS": [
+			"В начале каждого боя получите #yToon #yWorld."
+		],
+		"FLAVOR": "Он был создан Акнадином за 3000 лет до этого с другими предметами тысячелетия. После его создания Акнадин сам надевает Глаз, жертвуя при этом своим левым глазом.",
+		"NAME": "Тысячелетие глаз"
+	},
+	"theDuelist:MillenniumKey": {
+		"DESCRIPTIONS": [
+			"Получите 1 [E] в начале каждого хода. Ваш максимальный #ySummons не может быть выше, чем # b5."
+		],
+		"FLAVOR": "После того, как это было сделано, Ключ Тысячелетия был передан египетскому воплощению Соломона Муто, Шимону, но позже он был передан Шаде.",
+		"NAME": "Ключ тысячелетия"
+	},
+	"theDuelist:MillenniumPuzzle": {
+		"DESCRIPTIONS": [
+			"В начале каждого боя запускайте эффект в зависимости от выбранной вами стартовой колоды."
+		],
+		"FLAVOR": "Первоначально он был известен как кулон тысячелетия, но после того, как он был разрушен и потребовал сборки, он стал известен как загадка тысячелетия.",
+		"NAME": "Пазл тысячелетия"
+	},
+	"theDuelist:MillenniumPuzzleShared": {
+		"DESCRIPTIONS": [
+			"В начале каждого боя запускайте эффект в зависимости от выбранной вами стартовой колоды."
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:MillenniumRing": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:MillenniumRod": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:NaturiaRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:PlaceholderRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:PlaceholderRelic2": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:RandomTributeMonsterRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:ResummonBranch": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:StoneExxod": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:SummonAnchor": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	}
+}

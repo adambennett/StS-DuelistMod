@@ -1,0 +1,193 @@
+{
+	"theDuelist:AeroRelic": {
+		"DESCRIPTIONS": [
+			"#yAir orbs는 항상 #y 임의의 orb를 채널합니다."
+		],
+		"FLAVOR": "신비한 힘을 지닌 이상한 구슬.",
+		"NAME": "오라비의 보주"
+	},
+	"theDuelist:CardRewardRelicA": {
+		"DESCRIPTIONS": [
+			"전투에서 승리 할 때마다 # b5의 추가 카드 보상을 받고 # b1 #y 차지를 소모합니다. # b2 #yCharge로 시작합니다. 보스와 엘리트를 물리 치면 # b1 #yCharge를 얻습니다."
+		],
+		"FLAVOR": "매우 유용한 토큰.",
+		"NAME": "보상 토큰"
+	},
+	"theDuelist:CardRewardRelicB": {
+		"DESCRIPTIONS": [
+			"전투에서 승리 할 때마다 # b2 추가 카드 보상을 받고 # b1 #y 충전을 소모합니다. # b10 #yCharge로 시작합니다. 보스와 엘리트를 물리 치면 # b2 #yCharge를 얻습니다."
+		],
+		"FLAVOR": "매우 유용한 토큰.",
+		"NAME": "보상 토큰"
+	},
+	"theDuelist:CardRewardRelicC": {
+		"DESCRIPTIONS": [
+			"전투에서 승리 할 때마다 # b1의 추가 카드 보상을 받고 # b1 #y 차지를 소모합니다. # b6 #yCharge로 시작합니다. 보스와 엘리트를 물리 치면 # b1 #yCharge를 얻습니다."
+		],
+		"FLAVOR": "매우 도움이되는 구.",
+		"NAME": "보상 보주"
+	},
+	"theDuelist:CardRewardRelicD": {
+		"DESCRIPTIONS": [
+			"전투에서 승리 할 때마다 # b25 %의 추가 카드 보너스를받을 기회가 있습니다."
+		],
+		"FLAVOR": "이상한 구라.",
+		"NAME": "보상 보주"
+	},
+	"theDuelist:CardRewardRelicE": {
+		"DESCRIPTIONS": [
+			"전투에서 승리 할 때마다 # b3 %의 추가 카드 보상을 # b3받을 기회가 있습니다."
+		],
+		"FLAVOR": "이상한 돌.",
+		"NAME": "스톤 보상"
+	},
+	"theDuelist:DragonRelic": {
+		"DESCRIPTIONS": [
+			"#y 드래곤을 만들어서 #y 힘을 얻으면 # b1 여분의 #y 힘을 얻습니다."
+		],
+		"FLAVOR": "드래곤처럼 생긴 작은 동상.",
+		"NAME": "용 동상"
+	},
+	"theDuelist:FiendRelic": {
+		"DESCRIPTIONS": [
+			"#y 파이어 폭스를 #y 파이어 폭스로 추가 할 때마다 추가 카드를 손에 넣습니다."
+		],
+		"FLAVOR": "작은 검은 토큰. 그것은 악의를 느낀다.",
+		"NAME": "다크 토큰"
+	},
+	"theDuelist:GiftAnubis": {
+		"DESCRIPTIONS": [
+			" NL 소환 # b1 # b1 #y 차지. NL # b2 #yCharge로 시작합니다. NL 보스와 엘리트를 물리 치면 # b3 #yCharge를 얻습니다."
+		],
+		"FLAVOR": "아누비스가 보낸 선물.",
+		"NAME": "아누비스의 선물"
+	},
+	"theDuelist:InsectRelic": {
+		"DESCRIPTIONS": [
+			"#yPyison 또는 #yPlant를 작성하여 #yPoison을 적용 할 때마다 #b를 추가하십시오.",
+			" 여분의 독. 보스와 엘리트를 물리 치면이 # yPoison 버프를 # b1만큼 더 증가시킬 기회가 # b25 % 있습니다."
+		],
+		"FLAVOR": "딱정벌레 모양의 더러운 토큰.",
+		"NAME": "버그 토큰"
+	},
+	"theDuelist:InversionEvokeRelic": {
+		"DESCRIPTIONS": [
+			"#y 전환 할 때마다 동일한 #y 전환 작업을 반복하십시오."
+		],
+		"FLAVOR": "이상한 찾고 구를.",
+		"NAME": "반전 구슬"
+	},
+	"theDuelist:InversionRelic": {
+		"DESCRIPTIONS": [
+			"#y 전환 할 때마다 #y 원본 오브에 두 번 표시하십시오."
+		],
+		"FLAVOR": "이상한 찾고 돌.",
+		"NAME": "반전 스톤"
+	},
+	"theDuelist:MachineToken": {
+		"DESCRIPTIONS": [
+			"#yExplosive #yTokens는 피해를 입히지 않고 적에게 무작위로 피해를줍니다."
+		],
+		"FLAVOR": "작은 전선과 이상한 표시가있는 기계적 토큰. 너무 많이 들여다 보지 않는 것이 가장 좋습니다.",
+		"NAME": "머신 토큰"
+	},
+	"theDuelist:MillenniumCoin": {
+		"DESCRIPTIONS": [
+			"#yEvoke 할 때마다 #b를 얻을 기회가 있습니다.",
+			" 금. NL 엘리트 또는 보스를 물리 칠 때마다 # b10 골드를 추가하여 # b10 %의 확률로 증가 할 확률이 # b10 %만큼 증가합니다."
+		],
+		"FLAVOR": "아름다운 동전.",
+		"NAME": "밀레니엄 코인"
+	},
+	"theDuelist:MillenniumEye": {
+		"DESCRIPTIONS": [
+			"각 전투가 시작될 때 #yToon #yWorld를 얻습니다."
+		],
+		"FLAVOR": "그것은 Aknadin의 다른 Millennium Items와 함께 3000 년 전에 만들어졌습니다. 창조 된 후, Aknadin 자신은 눈을 입어 그 과정에서 그의 왼쪽 눈을 희생시켰다.",
+		"NAME": "밀레니엄 아이"
+	},
+	"theDuelist:MillenniumKey": {
+		"DESCRIPTIONS": [
+			"각 턴의 시작시에 1 [G]를 얻는다. 최대 # 수는 # b5보다 높을 수 없습니다."
+		],
+		"FLAVOR": "그것이 만들어진 후에 밀레니엄 열쇠는 솔로몬 무토의 이집트 화신 인 시몬 (Shimon)에게 주어졌지만 후에 샤다 (Shada)로 전해졌다.",
+		"NAME": "천년기 열쇠"
+	},
+	"theDuelist:MillenniumPuzzle": {
+		"DESCRIPTIONS": [
+			"각 전투가 시작될 때, 선택한 시작 데크에 따라 효과를 발동하십시오."
+		],
+		"FLAVOR": "그것은 원래 밀레니엄 펜던트로 알려져 있었지만 산산이 부서지고 조립이 요구 된 후 Millennium Puzzle으로 알려지게되었습니다.",
+		"NAME": "밀레니엄 퍼즐"
+	},
+	"theDuelist:MillenniumPuzzleShared": {
+		"DESCRIPTIONS": [
+			"각 전투가 시작될 때, 선택한 시작 데크에 따라 효과를 발동하십시오."
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:MillenniumRing": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:MillenniumRod": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:NaturiaRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:PlaceholderRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:PlaceholderRelic2": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:RandomTributeMonsterRelic": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:ResummonBranch": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:StoneExxod": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	},
+	"theDuelist:SummonAnchor": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"FLAVOR": "",
+		"NAME": ""
+	}
+}

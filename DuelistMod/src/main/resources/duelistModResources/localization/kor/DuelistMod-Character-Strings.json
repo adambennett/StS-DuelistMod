@@ -1,16 +1,16 @@
 {
 	"Duelist": {
-		"NAMES": [
-			"The Duelist"
-		],
-		"TEXT": [
-			"The Duelist summons and tributes monster cards to slay the spire. NL Play your favorite deckbuilding game with a Yu-Gi-Oh! twist.",
-			"the Duelist",
-			"You touch the heart. NL Is this the heart of the cards?",
-			"Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
-		],
 		"KEYWORDS": [
 			""
+		],
+		"NAMES": [
+			"듀얼리스트"
+		],
+		"TEXT": [
+			"듀얼리스트는 첨탑을 죽이기 위해 몬스터 카드를 소환하고 공물로 만듭니다. NL Yu-Gi-Oh로 좋아하는 데크 게임을 즐겨보세요! 트위스트.",
+			"듀얼리스트",
+			"당신은 심장을 만지십시오. NL 카드의 핵심입니까?",
+			"조명이없는 거리를 탐색하면 어두운 의식이 진행되는 동안 두건의 인물이 보입니다. 당신이 다가 갈 때, 그들은 당신을 섬뜩한 조화 속에서 뒤돌아 봅니다. 그 중에서 가장 키가 큰 것은 치아가 빠져 나와 길게 창백한 손을 너에게로 밀어 낸다. NL ~ \"가입 ~ ~ 우리 ~ ~ 결투 ~ ~ ~ ~ ~ ~ ~ ~ ~ 느낌 ~ ~ ~ ~ ~ 따뜻함 ~ ~ ~ ~ Spire.\"~"
 		]
 	}
 }

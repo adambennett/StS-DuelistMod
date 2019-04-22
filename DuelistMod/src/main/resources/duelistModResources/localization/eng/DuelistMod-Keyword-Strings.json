@@ -18,42 +18,48 @@
     {
 	  "PROPER_NAME": "Resummon",
       "NAMES": [
-        "resummon"
+        "resummon",
+		"Resummon"
       ],     
       "DESCRIPTION": "Certain cards (like Monster Reborn) allow you to Resummon monsters. When you Resummon a monster, it replays the card, ignoring #yTribute costs. Some monsters have extra effects that trigger when they are Resummoned."
     },
     {
 	  "PROPER_NAME": "Tribute",
       "NAMES": [
-        "tribute"
+        "tribute",
+		"Tribute"
       ],      
       "DESCRIPTION": "Removes X #ySummons. Unless you have enough #ySummons to #yTribute, you cannot play a #yTribute card."
     },
     {
 	  "PROPER_NAME": "Increment",
       "NAMES": [
-        "increment"
+        "increment",
+		"Increment"
       ],      
       "DESCRIPTION": "Increase your maximum #ySummons by the number given."
     },
     {
 	 "PROPER_NAME": "Buffer",
       "NAMES": [
-        "buffer"
+        "buffer",
+		"Buffer"
       ],     
       "DESCRIPTION": "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ybuffs."
     },
     {
 	  "PROPER_NAME": "Summoner",
       "NAMES": [
-        "summoner"
+        "summoner",
+		"Summoner"
       ],      
       "DESCRIPTION": "#yOrb: #ySummon #ySpellcater Tokens at the end of turn. #yEvoke increases your max #ySummons."
     },
     {
 	  "PROPER_NAME": "Reducer",
       "NAMES": [
-        "reducer"
+        "reducer",
+		"Reducer"
       ],      
       "DESCRIPTION": "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0."
     },
@@ -68,7 +74,8 @@
     {
 	  "PROPER_NAME": "Overflow",
       "NAMES": [
-        "overflow"
+        "overflow",
+		"Overflow"
       ],      
       "DESCRIPTION": "When a card with #yOverflow is in your hand at the end of the turn, activate an effect. This effect has a limited amount of uses."
     },
@@ -91,14 +98,16 @@
     {
 	 "PROPER_NAME": "Ojamania",
       "NAMES": [
-        "ojamania"
+        "ojamania",
+		"Ojamania"
       ],      
       "DESCRIPTION": "Add #b2 #yrandomized cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
     },
      {
 	  "PROPER_NAME": "Dragon",
       "NAMES": [
-        "dragon"
+        "dragon",
+		"Dragon"
       ],      
       "DESCRIPTION": "When you #yTribute a #yDragon for another #yDragon, Gain #b1 #yStrength."
     },

@@ -33,6 +33,7 @@ public class MillenniumOrb extends DuelistOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	private static int setEvoke = 2;
+	private int counter = 3;
 	
 	public MillenniumOrb(int evoke)
 	{
@@ -101,7 +102,6 @@ public class MillenniumOrb extends DuelistOrb
 				}
 				deckCards.add(c);
 			}
-			//deckCards.addAll(DuelistMod.myCards);
 			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 5, 0, 2, 0, 2));
 		}
 	}
@@ -116,6 +116,8 @@ public class MillenniumOrb extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		triggerPassiveEffect();
+		if (this.counter == 0) { this.onEvoke(); }
+		else { this.counter--; }
 	}
 
 	public void triggerPassiveEffect()

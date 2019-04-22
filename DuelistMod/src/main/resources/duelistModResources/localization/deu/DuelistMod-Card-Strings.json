@@ -1,0 +1,2313 @@
+{
+	"theDuelist:AbstractBuffCard": {
+		"DESCRIPTION": "Sollte nicht im Spiel erscheinen",
+		"NAME": "Polieren"
+	},
+	"theDuelist:AcidTrapHole": {
+		"DESCRIPTION": "Verwerfen !M! zufällige Monster von deinem Nachziehstapel und verursache Schaden in Höhe ihres kombinierten Gesamtschadens.",
+		"NAME": "Säurefalle Loch",
+		"UPGRADE_DESCRIPTION": "Angeborener NL Abwurf !M! zufällige Monster von deinem Nachziehstapel und verursache Schaden in Höhe ihres kombinierten Gesamtschadens."
+	},
+	"theDuelist:AirOrbCard": {
+		"DESCRIPTION": "Eine Luftkugel kanalisieren.",
+		"NAME": "Luft",
+		"UPGRADE_DESCRIPTION": "Eine Luftkugel kanalisieren."
+	},
+	"theDuelist:AllyJustice": {
+		"DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Artefakte. NL Auspuff.",
+		"NAME": "Gerechtigkeit Clausolas",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Artefakte. NL Auspuff."
+	},
+	"theDuelist:AlphaMagnet": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Gewinne Alpha-Magnet für den Rest des Kampfes.",
+		"NAME": "A. Magnetkrieger",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Gewinne Alpha-Magnet für den Rest des Kampfes. NL Auspuff."
+	},
+	"theDuelist:AltarTribute": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinne HP in Höhe des kombinierten Gesamtschadens und der Blockierung aller Tribut.",
+		"NAME": "Altar für Tribut",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinne HP in Höhe des kombinierten Gesamtschadens und der Blockierung aller Tribut."
+	},
+	"theDuelist:AncientElf": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Rufe deine nächste Kugel hervor. NL Gewinn !B! Block.",
+		"NAME": "Uralter Elf",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Rufe deine nächste Kugel hervor. NL Gewinn !B! Block."
+	},
+	"theDuelist:AncientGearChimera": {
+		"DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Add !M! zufällige Token auf Ihrer Hand.",
+		"NAME": "Uralte Gang-Chimäre",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Add !M! zufällige Token auf Ihrer Hand."
+	},
+	"theDuelist:AncientGearGadjiltron": {
+		"DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Add !M! Schadensmarken an Ihrer Hand.",
+		"NAME": "Uralte Ausrüstung Gadjiltron",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Add !M! Schadensmarken an Ihrer Hand."
+	},
+	"theDuelist:AncientGearGolem": {
+		"DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Gewinn !M! Metallisieren NL Fügen Sie Ihrer Hand 3 Token hinzu.",
+		"NAME": "Uralter Ausrüstungsgolem",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Gewinn !M! Metallisieren NL Fügen Sie Ihrer Hand 3 Token hinzu."
+	},
+	"theDuelist:AncientRules": {
+		"DESCRIPTION": "Reduzieren Sie die Tributkosten aller Tributmonster in Ihrem Nachziehstapel und legen Sie sie vorbei !M! für diesen Kampf. Auspuff.",
+		"NAME": "Alte Regeln",
+		"UPGRADE_DESCRIPTION": "Reduzieren Sie die Tributkosten aller Tributmonster in Ihrem Nachziehstapel und legen Sie sie vorbei !M! für diesen Kampf. Auspuff."
+	},
+	"theDuelist:AngelTrumpeter": {
+		"DESCRIPTION": "Pflanze NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Angel Trumpeter",
+		"UPGRADE_DESCRIPTION": "Pflanze NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:ApprenticeIllusionMagician": {
+		"DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Gewinn !M! Fokus. NL Deal !D! Beschädigung.",
+		"NAME": "A. Illusionsmagier",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Gewinn !M! Fokus. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:AquaSpirit": {
+		"DESCRIPTION": "Aqua NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL bietet ein zusätzliches !M! Schaden, wenn Sie nur Aqua Monster beschworen haben.",
+		"NAME": "Aqua Spirit",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL bietet ein zusätzliches !M! Schaden, wenn Sie nur Aqua Monster beschworen haben."
+	},
+	"theDuelist:AquaToken": {
+		"DESCRIPTION": "Aqua NL herbeirufen 1",
+		"NAME": "Aqua Token",
+		"UPGRADE_DESCRIPTION": "Aqua NL herbeirufen 1"
+	},
+	"theDuelist:ArchfiendSoldier": {
+		"DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Erzfeind Soldat",
+		"UPGRADE_DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:ArmorBreaker": {
+		"DESCRIPTION": "Herbeirufen !duelist:SUMM! NL Entferne alle Blöcke eines Feindes.",
+		"NAME": "Rüstungsbrecher",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Beschwörung !duelist:SUMM! NL Entferne alle Blöcke eines Feindes."
+	},
+	"theDuelist:ArmoredBee": {
+		"DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Deal !D! Beschädigung.",
+		"NAME": "Gepanzerte Biene",
+		"UPGRADE_DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:ArmoredZombie": {
+		"DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Resummon: 10 Block gewinnen.",
+		"NAME": "Gepanzerter Zombie",
+		"UPGRADE_DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Resummon: 10 Block gewinnen."
+	},
+	"theDuelist:AxeDespair": {
+		"DESCRIPTION": "In diesem Zug ist NL Gain !M! Stärke. NL Ende des Zuges: Biete 2 NL als Tribut an (oder erlange 30 Schaden). NL Lege diese Karte auf deinen Nachziehstapel.",
+		"NAME": "Axt der Verzweiflung",
+		"UPGRADE_DESCRIPTION": "In diesem Zug ist NL Gain !M! Stärke. NL Ende des Zuges: Biete 2 NL als Tribut an (oder erlange 30 Schaden). NL Lege diese Karte auf deinen Nachziehstapel."
+	},
+	"theDuelist:BSkullDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn Sie einen Drachen als Tribut anbieten, fügen Sie Ihrer Hand eine Kopie von Summoned Skull hinzu.",
+		"NAME": "B. Schädeldrache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn Sie einen Drachen als Tribut anbieten, fügen Sie Ihrer Hand eine Kopie von Summoned Skull hinzu."
+	},
+	"theDuelist:BabyDragon": {
+		"DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Baby Drache",
+		"UPGRADE_DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:BadReaction": {
+		"DESCRIPTION": "Immer wenn du versuchst zu heilen, erhältst du 0 HP und handelst stattdessen !D! Schaden für ALLE Feinde für jede HP, die du gewonnen hättest.",
+		"NAME": "Schlechte Reaktion",
+		"UPGRADE_DESCRIPTION": "Immer wenn du versuchst zu heilen, erhältst du 0 HP und handelst stattdessen !D! Schaden für ALLE Feinde für jede HP, die du gewonnen hättest."
+	},
+	"theDuelist:BadReactionRare": {
+		"DESCRIPTION": "Immer wenn du heilst, beschäftige dich !D! Schaden für ALLE Feinde für jede geheilte HP.",
+		"NAME": "Schlechte Reaktion",
+		"UPGRADE_DESCRIPTION": "Immer wenn du heilst, beschäftige dich !D! Schaden für ALLE Feinde für jede geheilte HP."
+	},
+	"theDuelist:BadToken": {
+		"DESCRIPTION": "Invertiere alle deine Kugeln.",
+		"NAME": "Debuggen",
+		"UPGRADE_DESCRIPTION": "Invertiere alle deine Kugeln."
+	},
+	"theDuelist:BarrelDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenden Sie 3 zufällige Debuffs an !M! zufällige Feinde.",
+		"NAME": "Fass Drache",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenden Sie 2 zufällige Debuffs an !M! zufällige Feinde."
+	},
+	"theDuelist:BasicArchetype": {
+		"DESCRIPTION": "Fügen Sie jede Duelist-Karte Ihrem Kartenpool hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Duelist",
+			"Jede einzelne Karte, die im Mod verfügbar ist, einschließlich Karten mit Zufallsgenerierung."
+		],
+		"NAME": "Duelist-Karten"
+	},
+	"theDuelist:BasicInsect": {
+		"DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Bewerben Sie sich !M! Vergiften.",
+		"NAME": "Grundlegendes Insekt",
+		"UPGRADE_DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Bewerben Sie sich !M! Vergiften."
+	},
+	"theDuelist:BattleFootballer": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block.",
+		"NAME": "Schlacht Fußballer",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block."
+	},
+	"theDuelist:BattleOx": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Schlachtochsen",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:BattleguardKing": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Battleguard-König",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:BeastFangs": {
+		"DESCRIPTION": "Bereinigung NL Zu Beginn deines nächsten Kampfes erhältst du eine Stärke, die der Hälfte der Anzahl der in diesem Kampf beschworenen Monster entspricht.",
+		"NAME": "Tierzähne",
+		"UPGRADE_DESCRIPTION": "Bereinigung NL Zu Beginn deines nächsten Kampfes erhältst du eine Stärke, die der Hälfte der Anzahl der in diesem Kampf beschworenen Monster entspricht."
+	},
+	"theDuelist:BeaverWarrior": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Beaver Warrior",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:BetaMagnet": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Gewinn Beta-Magnet für den Rest des Kampfes.",
+		"NAME": "B. Magnetkrieger",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Gewinn Beta-Magnet für den Rest des Kampfes. NL Auspuff."
+	},
+	"theDuelist:BigCastleWalls": {
+		"DESCRIPTION": "Gewinn !B! Block.",
+		"NAME": "Große Burgmauer",
+		"UPGRADE_DESCRIPTION": "Gewinn !B! Block."
+	},
+	"theDuelist:BigFire": {
+		"DESCRIPTION": "ALLE Feinde erleiden zufällig (0-25) Schaden.",
+		"NAME": "Enormes Feuer",
+		"UPGRADE_DESCRIPTION": "ALLE Feinde erleiden zufällig (0-30) Schaden."
+	},
+	"theDuelist:BigKoala": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block.",
+		"NAME": "Großer Koala",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block."
+	},
+	"theDuelist:BigLabyrinthWall": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block.",
+		"NAME": "Große Labyrinthwand",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block."
+	},
+	"theDuelist:BlackOrbCard": {
+		"DESCRIPTION": "Kanal eine schwarze Kugel.",
+		"NAME": "Schwarz",
+		"UPGRADE_DESCRIPTION": "Kanal eine schwarze Kugel."
+	},
+	"theDuelist:BlacklandFireDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Feuert ein Feuer ab.",
+		"NAME": "Blackland Fire Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Feuert ein Feuer ab."
+	},
+	"theDuelist:BlastJuggler": {
+		"DESCRIPTION": "Machine NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Biete alle deine Sprengzeichen an, um zufälligen Feinden Schaden zuzufügen.",
+		"NAME": "Sprengjongleur",
+		"UPGRADE_DESCRIPTION": "Machine NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Biete alle deine Sprengzeichen an, um zufälligen Feinden Schaden zuzufügen."
+	},
+	"theDuelist:BlazeOrbCard": {
+		"DESCRIPTION": "Lass eine Blaze-Kugel laufen.",
+		"NAME": "Blaze",
+		"UPGRADE_DESCRIPTION": "Lass eine Blaze-Kugel laufen."
+	},
+	"theDuelist:BlizzardDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel a Frost.",
+		"NAME": "Blizzard Drache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel a Frost."
+	},
+	"theDuelist:BlizzardPrincess": {
+		"DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel 2 Frost.",
+		"NAME": "Blizzard-Prinzessin",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel 2 Frost."
+	},
+	"theDuelist:BlizzardWarrior": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Channel 2 Frost.",
+		"NAME": "Blizzard-Krieger",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Channel 2 Frost."
+	},
+	"theDuelist:BlockGolem": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Auspuff.",
+		"NAME": "Block Golem",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Beschwörung !duelist:SUMM! NL Gain !B! Block. NL Auspuff."
+	},
+	"theDuelist:BlueDragonSummoner": {
+		"DESCRIPTION": "Spellcaster NL Beschwörung !duelist:SUMM! NL Lass eine zufällige Kugel laufen.",
+		"NAME": "Blauer Drachenbeschwörer",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Beschwörung !duelist:SUMM! NL Lass eine zufällige Kugel laufen."
+	},
+	"theDuelist:BlueEyes": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "Blauäugiger w. Drache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:BlueEyesToon": {
+		"DESCRIPTION": "Toon NL Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block).",
+		"NAME": "Blauäugiger Toon Dragon",
+		"UPGRADE_DESCRIPTION": "Toon NL Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block)."
+	},
+	"theDuelist:BlueEyesUltimate": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "Blauäugiger Ultimativ Drache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:BookSecret": {
+		"DESCRIPTION": "Füg m hinzu! randomisierte Zauberkünstler an deine Hand. Auspuff.",
+		"NAME": "Buch geheime Künste",
+		"UPGRADE_DESCRIPTION": "Füg m hinzu! randomisierte, verbesserte Zauberkünstler auf deine Hand. Auspuff."
+	},
+	"theDuelist:BottomlessTrapHole": {
+		"DESCRIPTION": "Wirf jedes Monster in deinem Nachziehstapel ab. Deal !D! Schaden für jedes ausrangierte Monster. NL Auspuff.",
+		"NAME": "Bodenloses Fallloch",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Wirf jedes Monster in deinem Nachziehstapel ab. Deal !D! Schaden für jedes ausrangierte Monster. NL Auspuff."
+	},
+	"theDuelist:BufferOrbCard": {
+		"DESCRIPTION": "Lenke eine Pufferkugel.",
+		"NAME": "Puffer",
+		"UPGRADE_DESCRIPTION": "Lenke eine Pufferkugel."
+	},
+	"theDuelist:BusterBlader": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL bietet ein zusätzliches !M! Schaden für jeden Drachen als Tribut.",
+		"NAME": "Buster Blader",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL bietet ein zusätzliches !M! Schaden für jeden Drachen als Tribut."
+	},
+	"theDuelist:CallGrave": {
+		"DESCRIPTION": "Zu Beginn eines jeden Zuges, resummon ein zufälliges Monster, das du diesen Kampf beschworen hast.",
+		"NAME": "Ruf des Grabes",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Zu Beginn jedes Spielzugs, resummon ein zufälliges Monster, das du diesen Kampf beschworen hast."
+	},
+	"theDuelist:CannonSoldier": {
+		"DESCRIPTION": "Machine NL herbeirufen !duelist:SUMM! NL Zu Beginn des Zuges, Tribut 1 und Deal !M! Schaden an einem zufälligen Feind.",
+		"NAME": "Kanonensoldat",
+		"UPGRADE_DESCRIPTION": "Machine NL herbeirufen !duelist:SUMM! NL Zu Beginn des Zuges, Tribut 1 und Deal !M! Schaden an einem zufälligen Feind."
+	},
+	"theDuelist:CardDestruction": {
+		"DESCRIPTION": "Erschöpfen Sie Ihre Hand. Füg m hinzu! zufällige Karte auf Ihre Hand für jede abgelegte Karte. Jede Karte kostet 0 und erschöpft sich. Auspuff.",
+		"NAME": "Zerstörung der Karte",
+		"UPGRADE_DESCRIPTION": "Erschöpfen Sie Ihre Hand. Füg m hinzu! zufällig aktualisierte Karte auf Ihre Hand für jede verworfene Karte. Jede Karte kostet 0, hat Ätherisch und ist erschöpft. Auspuff."
+	},
+	"theDuelist:CardSafeReturn": {
+		"DESCRIPTION": "Ziehe immer 2 Karten, wenn du wiederaufnimmst.",
+		"NAME": "Karte der sicheren Rückkehr",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Ziehen Sie bei jeder Wiederholung 2 Karten."
+	},
+	"theDuelist:CastleDarkIllusions": {
+		"DESCRIPTION": "Beschwören !duelist:SUMM! NL Wenn du deinen Ziehstapel mischst, dann beschwöre 5. Beschwöre 5. Wenn dieses Monster als Tribut für Pumpking eingesetzt wird, füge 3 Pumpking-Effekt hinzu.",
+		"NAME": "Castle Dark Illusion",
+		"UPGRADE_DESCRIPTION": "Herbeirufen !duelist:SUMM! NL. Wann immer du deinen Nachziehstapel mischst, Inkrement 5. Wenn dieses Monster als Tribut für Pumpking angeboten wird, füge 3 Pumpking-Effekt hinzu."
+	},
+	"theDuelist:CastleWalls": {
+		"DESCRIPTION": "Gewinn !B! Block.",
+		"NAME": "Burgmauern",
+		"UPGRADE_DESCRIPTION": "Gewinn !B! Block."
+	},
+	"theDuelist:CastleWallsBasic": {
+		"DESCRIPTION": "Verteidige NL Gain !B! Block.",
+		"NAME": "Burgmauern",
+		"UPGRADE_DESCRIPTION": "Verteidige NL Gain !B! Block."
+	},
+	"theDuelist:CatapultTurtle": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Zu Beginn des Zuges Tribut ALL Beschwöre und handele !D! Schaden für alle an ALLE Feinde.",
+		"NAME": "Katapult Schildkröte",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Zu Beginn des Zuges Tribut ALL Beschwöre und handele !D! Schaden für alle an ALLE Feinde."
+	},
+	"theDuelist:CaveDragon": {
+		"DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Höhle Drache",
+		"UPGRADE_DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:CelticGuardian": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Keltischer Wächter",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:ChangeHeart": {
+		"DESCRIPTION": "Setze deine maximale Beschwörung auf 8. Auspuff.",
+		"NAME": "Sinneswandel",
+		"UPGRADE_DESCRIPTION": "Setze deine maximale Beschwörung auf 10. Auspuff."
+	},
+	"theDuelist:CheerfulCoffin": {
+		"DESCRIPTION": "Verwerfen !M! Karten.",
+		"NAME": "Fröhlicher Sarg",
+		"UPGRADE_DESCRIPTION": "Verwerfen !M! Karten."
+	},
+	"theDuelist:Cloning": {
+		"DESCRIPTION": "Kopiere ein zufälliges Monster in deine Hand.",
+		"EXTENDED_DESCRIPTION": [
+			"Wähle !M! Monster in der Hand zu kopieren."
+		],
+		"NAME": "Klonen",
+		"UPGRADE_DESCRIPTION": "Wähle ein Monster in der Hand aus, das du kopieren möchtest."
+	},
+	"theDuelist:ClownZombie": {
+		"DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Clown-Zombie",
+		"UPGRADE_DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:CocoonEvolution": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Wenn Sie Petit Moth als Tribut anbieten, fügen Sie Ihrer Hand nach drei weiteren Runden eine Kopie von Great Moth hinzu.",
+		"NAME": "Kokon der Evolution",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Wenn Sie Petit Moth als Tribut anbieten, fügen Sie Ihrer Hand nach zwei weiteren Zügen eine Kopie der Großen Motte hinzu."
+	},
+	"theDuelist:CocoonRef": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Wenn Sie Petit Moth als Tribut anbieten, fügen Sie Ihrer Hand nach drei weiteren Runden eine Kopie von Great Moth hinzu.",
+		"NAME": "Kokon der Evolution",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Wenn Sie Petit Moth als Tribut anbieten, fügen Sie Ihrer Hand nach zwei weiteren Zügen eine Kopie der Großen Motte hinzu."
+	},
+	"theDuelist:ComicHand": {
+		"DESCRIPTION": "Tribut alle deine Toons. Beschwöre ein zufälliges Monster und handele !D! Schaden für einen zufälligen Gegner für jeden Toon Tribut.",
+		"NAME": "Comic Hand",
+		"UPGRADE_DESCRIPTION": "Tribut alle deine Toons. Beschwöre ein zufälliges Monster und handele !D! Schaden für einen zufälligen Gegner für jeden Toon Tribut."
+	},
+	"theDuelist:CommandKnight": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Erhöhe die Beschwörung aller Monster in deiner Hand um !M!. NL Auspuff.",
+		"NAME": "Befehlsritter",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Erhöhe die Beschwörung aller Monster in deiner Hand um !M!. NL Auspuff."
+	},
+	"theDuelist:ConsumerOrbCard": {
+		"DESCRIPTION": "Einen Verbraucher kanalisieren.",
+		"NAME": "Verbraucher",
+		"UPGRADE_DESCRIPTION": "Einen Verbraucher kanalisieren."
+	},
+	"theDuelist:ContractExodia": {
+		"DESCRIPTION": "Füge deiner Hand 2 zufällig ausgewählte Exodia-Karten hinzu.",
+		"NAME": "Vertrag mit Exodia",
+		"UPGRADE_DESCRIPTION": "Füge deiner Hand 2 zufällig ausgewählte Exodia-Karten hinzu."
+	},
+	"theDuelist:CrystalOrbCard": {
+		"DESCRIPTION": "Lenke eine Kristallkugel.",
+		"NAME": "Kristall",
+		"UPGRADE_DESCRIPTION": "Lenke eine Kristallkugel."
+	},
+	"theDuelist:CurseDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden NL Wenn du einen Drachen als Tribut anbietest, erhältst du 5 HP.",
+		"NAME": "Fluch des Drachen",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn Sie einen Drachen als Tribut anbieten, erhalten Sie 5 HP."
+	},
+	"theDuelist:CyberDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block). NL Wenn du einen Drachen als Tribut anbietest, leite eine Störung.",
+		"NAME": "Cyber Dragon",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block). NL Wenn du einen Drachen als Tribut anbietest, leite eine Störung."
+	},
+	"theDuelist:DamageToken": {
+		"DESCRIPTION": "1 NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Zeichen",
+		"UPGRADE_DESCRIPTION": "1 NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:DarkBlade": {
+		"DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung. NL Channel a Dark. NL Verlieren !M! HP.",
+		"NAME": "Dunkle Klinge",
+		"UPGRADE_DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung. NL Channel a Dark. NL Verlieren !M! HP."
+	},
+	"theDuelist:DarkCreator": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Erschöpfen Sie jede Karte in Ihrem Nachzieh- und Ablagestapel. NL Nimm 1 Kosten, ätherische Kopien von 5 einzigartigen, zufälligen Duelist-Karten für jede erschöpfte Karte (maximal 50) auf deinen Nachziehstapel. Befreit.",
+		"NAME": "Dunkler Schöpfer",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Erschöpfen Sie jede Karte in Ihrem Nachzieh- und Ablagestapel. NL Nimm 1 Kosten, ätherische Kopien von 5 einzigartigen, zufälligen Duelist-Karten für jede erschöpfte Karte (maximal 50) auf deinen Nachziehstapel. Befreit."
+	},
+	"theDuelist:DarkEnergy": {
+		"DESCRIPTION": "Deal !D! Beschädigung. NL Add !M! Randomisierte Fiend Karten auf deine Hand.",
+		"NAME": "Dunkle Energie",
+		"UPGRADE_DESCRIPTION": "Deal !D! Beschädigung. NL Add !M! Randomisierte Fiend Karten auf deine Hand."
+	},
+	"theDuelist:DarkFactory": {
+		"DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Gewinne [R] [R] [R].",
+		"NAME": "Dunkle Fabrik",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Gewinne [R] [R] [R] [R]."
+	},
+	"theDuelist:DarkHole": {
+		"DESCRIPTION": "Stehle allen Block von ALLEN Feinden.",
+		"NAME": "Dunkles Loch",
+		"UPGRADE_DESCRIPTION": "Stehle allen Block von ALLEN Feinden. Entferne alle Buffs von ALLEN Feinden."
+	},
+	"theDuelist:DarkHorizon": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Rufe deine nächste Kugel hervor !M! mal.",
+		"NAME": "Dunkler Horizont",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Rufe deine nächste Kugel hervor !M! mal. Wenn Sie einen Hexer als Tribut anbieten, rufen Sie stattdessen ALLE Ihre Kugeln zweimal auf."
+	},
+	"theDuelist:DarkMagician": {
+		"DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Beschwörer kanalisieren",
+		"NAME": "Dunkler Magier",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Beschwörer kanalisieren"
+	},
+	"theDuelist:DarkMagicianGirl": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Channel a Air.",
+		"NAME": "DM. Mädchen",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Channel a Air."
+	},
+	"theDuelist:DarkMasterZorc": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel 3 Dark.",
+		"NAME": "Dunkler Meister Zorc",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel 3 Dark."
+	},
+	"theDuelist:DarkMimicLv1": {
+		"DESCRIPTION": "Ethereal Fiend NL herbeirufen !duelist:SUMM!. 1 Karte ziehen NL Overflow 1 - Entfernen Sie diesen von Ihrem Deck. Füge zu Beginn deines nächsten Kampfes eine Kopie von Dark Mimic Lv3 deiner Hand hinzu.",
+		"NAME": "Dark Mimic Lv1",
+		"UPGRADE_DESCRIPTION": "Ethereal Fiend NL herbeirufen !duelist:SUMM!. Ziehe 2 Karten. NL Overflow 1 - Entfernen Sie diesen von Ihrem Deck. Füge zu Beginn deines nächsten Kampfes eine Kopie von Dark Mimic Lv3 deiner Hand hinzu."
+	},
+	"theDuelist:DarkMimicLv3": {
+		"DESCRIPTION": "Ethereal Fiend NL herbeirufen !duelist:SUMM! NL Ziehe 2 Karten. Gewinn !B! Block. NL Überlauf 1 - Ziehe zu Beginn deines nächsten Kampfes 4 Karten.",
+		"NAME": "Dark Mimic Lv3",
+		"UPGRADE_DESCRIPTION": "Ethereal Fiend NL herbeirufen !duelist:SUMM! NL Ziehe 3 Karten. Gewinn !B! Block. NL Überlauf 1 - Ziehe zu Beginn deines nächsten Kampfes 5 Karten."
+	},
+	"theDuelist:DarkMirrorForce": {
+		"DESCRIPTION": "Wenn Sie das nächste Mal HP verlieren, erhalten Sie einen zufälligen Debuff, der dem Schaden entspricht, und 0 Schaden. Auspuff.",
+		"NAME": "Dunkle Spiegelkraft",
+		"UPGRADE_DESCRIPTION": "Wenn Sie das nächste Mal HP verlieren, erhalten Sie einen zufälligen Debuff, der dem Schaden entspricht, und 0 Schaden. Auspuff."
+	},
+	"theDuelist:DarkOrbCard": {
+		"DESCRIPTION": "Lenke eine dunkle Kugel.",
+		"NAME": "Dunkel",
+		"UPGRADE_DESCRIPTION": "Lenke eine dunkle Kugel."
+	},
+	"theDuelist:DarkPaladin": {
+		"DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wähle eine Kugel zum Kanal.",
+		"NAME": "Dunkler Paladin",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wähle eine Kugel zum Kanal."
+	},
+	"theDuelist:DarkfireDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel einen Schatten.",
+		"NAME": "Darkfire Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel einen Schatten."
+	},
+	"theDuelist:DarklordMarie": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. Überlauf !M! - 3 HP gewinnen.",
+		"NAME": "Darklord Marie",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. Überlauf !M! - 4 HP gewinnen."
+	},
+	"theDuelist:DarkstormDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Reduzieren Sie die Tributkosten eines zufälligen Drachen in Ihrer Hand um !M! für diese Wende.",
+		"NAME": "Darkstorm Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Reduzieren Sie die Tributkosten eines zufälligen Drachen in Ihrer Hand um !M! für diese Wende."
+	},
+	"theDuelist:DianKeto": {
+		"DESCRIPTION": "Heilen Sie !M! HP. Auspuff.",
+		"NAME": "Dian Keto",
+		"UPGRADE_DESCRIPTION": "Heilen Sie !M! HP. Auspuff."
+	},
+	"theDuelist:DokiDoki": {
+		"DESCRIPTION": "Herbeirufen !duelist:SUMM! NL Wenn du in diesem Zug einen Zauber gespielt hast, erhältst du !B! Block. Ansonsten handeln Sie !D! Beschädigung.",
+		"NAME": "Doki Doki",
+		"UPGRADE_DESCRIPTION": "Herbeirufen !duelist:SUMM! NL Wenn du in diesem Zug einen Zauber gespielt hast, erhältst du !B! Block. Ansonsten handeln Sie !D! Beschädigung."
+	},
+	"theDuelist:Doomdog": {
+		"DESCRIPTION": "Fiend NL herbeirufen !duelist:SUMM! NL Wenn du einen Fiend für einen anderen Tribut anbietest, mache einen Deal !M! Schaden an ALLEN Feinden.",
+		"NAME": "Doomdog Octhros",
+		"UPGRADE_DESCRIPTION": "Fiend NL herbeirufen !duelist:SUMM! NL Wenn du einen Fiend für einen anderen Tribut anbietest, mache einen Deal !M! Schaden an ALLEN Feinden."
+	},
+	"theDuelist:DoubleCoston": {
+		"DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Doppelte Coston",
+		"UPGRADE_DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:DragonCaptureJar": {
+		"DESCRIPTION": "Drachen, die gespielt werden, werden zu Beginn Ihres nächsten Spielzugs Ihrer Hand wieder hinzugefügt.",
+		"NAME": "Drachenfangglas",
+		"UPGRADE_DESCRIPTION": "Drachen, die gespielt werden, werden zu Beginn Ihres nächsten Spielzugs Ihrer Hand wieder hinzugefügt."
+	},
+	"theDuelist:DragonMaster": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Erstellen Sie !M! zufällig Dragon und resummon es auf den Zielfeind. Befreit.",
+		"NAME": "Drachenmeister Ritter",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Erstellen Sie !M! zufällig verbesserte Dragon und resummon es auf den Zielfeind. Befreit."
+	},
+	"theDuelist:DragonOrbCard": {
+		"DESCRIPTION": "Leite eine DrachenOrb.",
+		"NAME": "Drachenkugel",
+		"UPGRADE_DESCRIPTION": "Leite eine DrachenOrb."
+	},
+	"theDuelist:DragonPiper": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Reduziert die Tributkosten aller Drachen in deiner Hand für den Rest des Kampfes auf 1.",
+		"NAME": "Dragon Piper",
+		"UPGRADE_DESCRIPTION": "Herbeirufen !duelist:SUMM! NL. Reduziere die Tributkosten aller Drachen in deiner Hand für den Rest des Kampfes auf 0."
+	},
+	"theDuelist:DragonToken": {
+		"DESCRIPTION": "Drachen NL Beschwörung 1",
+		"NAME": "Dragon Token",
+		"UPGRADE_DESCRIPTION": "Drachen NL Beschwörung 1"
+	},
+	"theDuelist:DragonsArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Drachenkarten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Drachen",
+			"Alle Drachenmonster, Berg, Flöte der Beschwörung des Drachen, Lord of D., Buster Blader und Drachenfangglas. Keine Toons, keine Gottkarten."
+		],
+		"NAME": "Drachen"
+	},
+	"theDuelist:DrivenDaredevil": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Bewerben Sie sich !M! Stärke zu einem Feind.",
+		"NAME": "Dredder Draufgänger",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Bewerben Sie sich !M! Stärke zu einem Feind."
+	},
+	"theDuelist:EarthOrbCard": {
+		"DESCRIPTION": "Lenke eine Erdkugel.",
+		"NAME": "Erde",
+		"UPGRADE_DESCRIPTION": "Lenke eine Erdkugel."
+	},
+	"theDuelist:EarthquakeGiant": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Gewinn !B! Block.",
+		"NAME": "Erdbeben-Riese",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Gewinn !B! Block."
+	},
+	"theDuelist:EmpressMantis": {
+		"DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "Kaiserin Mantis",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:EvilswarmHeliotrope": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Evilswarm Heliotrop",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:ExodiaArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Exodia-Karten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Exodia",
+			"5 Stücke Exoida plus legendäre Exodia inkarniert."
+		],
+		"NAME": "Exodia"
+	},
+	"theDuelist:ExodiaHead": {
+		"DESCRIPTION": "Spellcaster NL Wenn du alle 4 anderen Teile von Exodia hast, erhältst du 1 Exodia. Auspuff.",
+		"NAME": "Exodia Head",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Wenn du alle 4 anderen Teile von Exodia hast, erhältst du 1 Exodia."
+	},
+	"theDuelist:ExodiaLA": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinne 1 Exodia.",
+		"NAME": "Exodia L. Arm",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinne 1 Exodia."
+	},
+	"theDuelist:ExodiaLL": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Gewinne 1 Exodia.",
+		"NAME": "Exodia L. Leg",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Gewinne 1 Exodia."
+	},
+	"theDuelist:ExodiaRA": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinne 1 Exodia.",
+		"NAME": "Exodia R. Arm",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinne 1 Exodia."
+	},
+	"theDuelist:ExodiaRL": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Gewinne 1 Exodia.",
+		"NAME": "Exodia R. Leg",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Gewinne 1 Exodia."
+	},
+	"theDuelist:ExodiaToken": {
+		"DESCRIPTION": "Wiederholt ein zufälliges Stück Exodia",
+		"NAME": "Exxod-Token",
+		"UPGRADE_DESCRIPTION": "Wiederholt ein zufälliges Stück Exodia"
+	},
+	"theDuelist:ExploderDragon": {
+		"DESCRIPTION": "Drache NL Beschwörung !duelist:SUMM! Explosive Token. NL Deal !D! Beschädigung.",
+		"NAME": "Exploder Drache",
+		"UPGRADE_DESCRIPTION": "Drache NL Beschwörung !duelist:SUMM! Explosive Token. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:ExplosiveToken": {
+		"DESCRIPTION": "Beschwöre 1 NL Niederlage (1-3), wenn Ihr Tribut gewährt wird.",
+		"NAME": "Token explodieren",
+		"UPGRADE_DESCRIPTION": "Beschwöre 1 NL Niederlage (1-3), wenn Ihr Tribut gewährt wird."
+	},
+	"theDuelist:FabledAshenveil": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn dies einen Feind tötet, erstatten Sie Ihre Tribut.",
+		"NAME": "Sagenhafter Eschentalveil",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn dies einen Feind tötet, erstatten Sie Ihre Tribut."
+	},
+	"theDuelist:FabledGallabas": {
+		"DESCRIPTION": "Immortal Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn dies einen Feind tötet, erstatten Sie Ihre Tribut.",
+		"NAME": "Sagenhafte Gallabas",
+		"UPGRADE_DESCRIPTION": "Immortal Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn dies einen Feind tötet, erstatten Sie Ihre Tribut."
+	},
+	"theDuelist:FairyBox": {
+		"DESCRIPTION": "Füg m hinzu! Kugelkarten auf deine Hand. NL Auspuff.",
+		"NAME": "Fairy Box",
+		"UPGRADE_DESCRIPTION": "Wähle !M! Kugelkarten, die Sie Ihrer Hand hinzufügen können. NL Auspuff."
+	},
+	"theDuelist:FeatherPho": {
+		"DESCRIPTION": "Verwerfen !M! Karte von Ihrer Hand. Platzieren !M! Karte von Ihrem Ablagestapel in Ihre Hand.",
+		"NAME": "Phoenix-Feder",
+		"UPGRADE_DESCRIPTION": "Verwerfen !M! Karten von deiner Hand. Platzieren !M! Karten von Ihrem Ablagestapel in Ihre Hand."
+	},
+	"theDuelist:FiendMegacyber": {
+		"DESCRIPTION": "Tribut der Unterweltler !duelist:TRIB! NL Gewinn !B! Block.",
+		"NAME": "Unterweltler Megacyber",
+		"UPGRADE_DESCRIPTION": "Tribut der Unterweltler !duelist:TRIB! NL Gewinn !B! Block."
+	},
+	"theDuelist:FiendSkull": {
+		"DESCRIPTION": "Fiend Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Bewerben 3 Verwundbar.",
+		"NAME": "Unterweltler-Schädeldrache",
+		"UPGRADE_DESCRIPTION": "Fiend Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Bewerben 3 Verwundbar."
+	},
+	"theDuelist:FiendToken": {
+		"DESCRIPTION": "beschwören 1",
+		"NAME": "Unterweltler-Token",
+		"UPGRADE_DESCRIPTION": "beschwören 1"
+	},
+	"theDuelist:FiendishChain": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Erhöhe den Tribut aller Monster in deiner Hand um !M!.",
+		"NAME": "Teuflische Kette",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Erhöhe den Tribut aller Monster in deiner Hand um !M!."
+	},
+	"theDuelist:FinalFlame": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Bewerben Sie sich !M! Schwach.",
+		"NAME": "Letzte Flamme",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Bewerben Sie sich !M! Schwach."
+	},
+	"theDuelist:FireOrbCard": {
+		"DESCRIPTION": "Lenke eine Feuerkugel.",
+		"NAME": "Feuer",
+		"UPGRADE_DESCRIPTION": "Lenke eine Feuerkugel."
+	},
+	"theDuelist:Firegrass": {
+		"DESCRIPTION": "Plant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Firegrass",
+		"UPGRADE_DESCRIPTION": "Plant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:Fissure": {
+		"DESCRIPTION": "Deal !D! Schaden für ALLE Gegner für jede deiner Beschwörungen.",
+		"NAME": "SPALT",
+		"UPGRADE_DESCRIPTION": "Deal !D! Schaden für ALLE Gegner für jede deiner Beschwörungen."
+	},
+	"theDuelist:FiveHeaded": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL befreit.",
+		"NAME": "Fünfköpfiger Drache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL befreit."
+	},
+	"theDuelist:FlameSwordsman": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL !M! % Chance, zu Beginn des nächsten Kampfes einen Feuertrank zu erhalten (max. 1).",
+		"NAME": "Flammenschwertkämpfer",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL !M! % Chance, zu Beginn des nächsten Kampfes einen Feuertrank zu erhalten (max. 1)."
+	},
+	"theDuelist:FluteKuriboh": {
+		"DESCRIPTION": "Inkrement !M! NL Gewinn !B! Block. NL Auspuff.",
+		"NAME": "Flöte von Kuriboh",
+		"UPGRADE_DESCRIPTION": "Inkrement !M! NL Gewinn !B! Block. NL Auspuff."
+	},
+	"theDuelist:FluteSummoning": {
+		"DESCRIPTION": "Füge deiner Hand 2 randomisierte Drachen hinzu. Auspuff.",
+		"NAME": "Flöte der Beschwörung des Drachen",
+		"UPGRADE_DESCRIPTION": "Füge deiner Hand 3 randomisierte, verbesserte Drachen hinzu. Auspuff."
+	},
+	"theDuelist:FogKing": {
+		"DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Verursacht Schaden in Höhe des kombinierten Schadens aller Tribut.",
+		"NAME": "Fog King",
+		"UPGRADE_DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Verursacht Schaden in Höhe des kombinierten Schadens aller Tribut 9 zusätzlichen Schaden."
+	},
+	"theDuelist:FortressWarrior": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinn !B! Block.",
+		"NAME": "Festungskrieger",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinn !B! Block."
+	},
+	"theDuelist:FrontierWiseman": {
+		"DESCRIPTION": "Spellcaster NL Herbeirufen !duelist:SUMM! NL die Erde.",
+		"NAME": "Frontier Wiseman",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Herbeirufen !duelist:SUMM! NL die Erde."
+	},
+	"theDuelist:FrostOrbCard": {
+		"DESCRIPTION": "Lenke eine Frostkugel.",
+		"NAME": "Frost",
+		"UPGRADE_DESCRIPTION": "Lenke eine Frostkugel."
+	},
+	"theDuelist:GadgetOrbCard": {
+		"DESCRIPTION": "Eine Gadget-Kugel kanalisieren.",
+		"NAME": "Gadget",
+		"UPGRADE_DESCRIPTION": "Eine Gadget-Kugel kanalisieren."
+	},
+	"theDuelist:GadgetSoldier": {
+		"DESCRIPTION": "Machine NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Add !M! Schadensmarken an Ihrer Hand.",
+		"NAME": "Gadget-Soldat",
+		"UPGRADE_DESCRIPTION": "Machine NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Add !M! Schadensmarken an Ihrer Hand."
+	},
+	"theDuelist:GaiaDragonChamp": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Füge ein Monster der Monster hinzu, die du als Tribut benutzt hast (zufällig ausgewählt).",
+		"NAME": "G. Drachenmeister",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Fasse 1 der Monster, die du als Tribut benutzt hast, neu zusammen (wählt die letzte Beschwörung aus)."
+	},
+	"theDuelist:GaiaFierce": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "G. Wilder Ritter",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:GaiaMidNightSun": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Gaia Mid-Night Sun",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:GammaMagnet": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Ziehe 1 Karte. NL Gewinn Gamma-Magnet für den Rest des Kampfes.",
+		"NAME": "G. Magnet Warrior",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören 2 Karten ziehen. NL Gewinn Gamma-Magnet für den Rest des Kampfes. NL Auspuff."
+	},
+	"theDuelist:Gandora": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! Erschöpfen Sie Ihre Hand. Deal !D! Schaden plus !M! Schaden für jede Karte erschöpft. Füge deiner Hand 3 zufällig verbesserte Drachen hinzu. Auspuff.",
+		"NAME": "Gandora",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! Erschöpfen Sie Ihre Hand. Deal !D! Schaden plus !M! Schaden für jede Karte erschöpft. Füge deiner Hand 4 zufällig verbesserte Drachen hinzu. Auspuff."
+	},
+	"theDuelist:GateGuardian": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Wenn du einen Guardian als Tribut anbietest, leite den passenden Orb. NL Rufe ALLE Kugeln aus. NL Channel a Gate.",
+		"NAME": "Gate Guardian",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Wenn du einen Guardian als Tribut anbietest, leite den passenden Orb. NL Beschwöre 2 Kugeln. NL Channel a Gate."
+	},
+	"theDuelist:GateOrbCard": {
+		"DESCRIPTION": "Channel ein Gate.",
+		"NAME": "Tor",
+		"UPGRADE_DESCRIPTION": "Channel ein Gate."
+	},
+	"theDuelist:GatesDarkWorld": {
+		"DESCRIPTION": "Eure Freunde und Zombies verursachen 100% mehr Schaden und erhalten 100% mehr Block.",
+		"NAME": "Tore der dunklen Welt",
+		"UPGRADE_DESCRIPTION": "Eure Freunde und Zombies verursachen 100% mehr Schaden und erhalten 100% mehr Block."
+	},
+	"theDuelist:GauntletWarrior": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinn !B! Block.",
+		"NAME": "Gauntlet Warrior",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinn !B! Block."
+	},
+	"theDuelist:GeminiElf": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Resummon: 15 HP erhalten.",
+		"NAME": "Zwillinge Elf",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Resummon: 15 HP erhalten."
+	},
+	"theDuelist:GiantSoldier": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block.",
+		"NAME": "Riesenstein Soldat",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block."
+	},
+	"theDuelist:GiantSoldierSteel": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block.",
+		"NAME": "Riesiger Stahlsoldat",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block."
+	},
+	"theDuelist:GiantTrunade": {
+		"DESCRIPTION": "Beschwöre ALLE Kugeln. Auspuff.",
+		"NAME": "Riesiger Trunade",
+		"UPGRADE_DESCRIPTION": "Beschwöre ALLE Kugeln."
+	},
+	"theDuelist:Gigaplant": {
+		"DESCRIPTION": "Plant NL Tribut !duelist:TRIB! NL 10 Gift anwenden. Führe eine verbesserte Kopie eines zufälligen Monsters von deinem Ablagestapel aus. Befreit.",
+		"NAME": "Gigaplant",
+		"UPGRADE_DESCRIPTION": "Plant NL Tribut !duelist:TRIB! NL 10 Gift anwenden. Aktualisierte Kopien von !M! zufällige Monster von deinem Ablagestapel. Befreit."
+	},
+	"theDuelist:GilfordLegend": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Gilford, die Legende",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:GlassOrbCard": {
+		"DESCRIPTION": "Lenke eine Glaskugel.",
+		"NAME": "Glas",
+		"UPGRADE_DESCRIPTION": "Lenke eine Glaskugel."
+	},
+	"theDuelist:GlitchOrbCard": {
+		"DESCRIPTION": "Lenke eine Glitch-Kugel.",
+		"NAME": "Panne",
+		"UPGRADE_DESCRIPTION": "Lenke eine Glitch-Kugel."
+	},
+	"theDuelist:GoblinSecret": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Immer wenn du beschwörst, heile !M! HP.",
+		"NAME": "Goblins Geheimmittel",
+		"UPGRADE_DESCRIPTION": "Angeborener NL Tribut !duelist:TRIB! NL Immer wenn du beschwörst, heile !M! HP."
+	},
+	"theDuelist:GodArchetype": {
+		"DESCRIPTION": "Fügen Sie alle Gott-Karten Ihrem Kartenpool hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Gott karten",
+			"Slifer der Himmelsdrache, Obelisk der Peiniger, der geflügelte Drache von Ra und der Schöpfer."
+		],
+		"NAME": "Gott karten"
+	},
+	"theDuelist:GoldenApples": {
+		"DESCRIPTION": "Erhalte 1 Block für jedes Monster, das du diesen Kampf beschworen hast.",
+		"NAME": "Goldene Äpfel",
+		"UPGRADE_DESCRIPTION": "Erhalte 1 Block für jedes Monster, das du diesen Kampf beschworen hast."
+	},
+	"theDuelist:GorgonicCerberus": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Verringere für jedes Monster, das du in diesem Spielzug beschwörst, die Kosten dieser Karte für diesen Spielzug um 1.",
+		"NAME": "Gorgonic Cerberus",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Verringere für jedes Monster, das du in diesem Spielzug beschwörst, die Kosten dieser Karte für diesen Spielzug um 1."
+	},
+	"theDuelist:GorgonicGargoyle": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Verringere für jedes Monster, das du in diesem Spielzug beschwörst, die Kosten dieser Karte für diesen Spielzug um 1.",
+		"NAME": "Gorgonic Gargoyle",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Verringere für jedes Monster, das du in diesem Spielzug beschwörst, die Kosten dieser Karte für diesen Spielzug um 1."
+	},
+	"theDuelist:GorgonicGuardian": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Verringere für jedes Monster, das du in diesem Spielzug beschwörst, die Kosten dieser Karte für diesen Spielzug um 1.",
+		"NAME": "Gorgonischer Wächter",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Verringere für jedes Monster, das du in diesem Spielzug beschwörst, die Kosten dieser Karte für diesen Spielzug um 1."
+	},
+	"theDuelist:GracefulCharity": {
+		"DESCRIPTION": "Ziehe 3 Karten. NL Wirf 2 Karten ab.",
+		"NAME": "Anmutige Nächstenliebe",
+		"UPGRADE_DESCRIPTION": "Ziehe 3 Karten. NL Wirf eine Karte ab."
+	},
+	"theDuelist:Grasschopper": {
+		"DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Deal !D! Schaden für alle Feinde für jedes Insekt oder jede Pflanze, die du als Tribut anbietest, um dies zu spielen.",
+		"NAME": "Grasschopper",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Deal !D! Schaden für alle Feinde für jedes Insekt oder jede Pflanze, die du als Tribut anbietest, um dies zu spielen."
+	},
+	"theDuelist:Graverobber": {
+		"DESCRIPTION": "Wähle einen zufälligen Zauber oder eine Falle, den du diesen Lauf gespielt hast, und füge ihn deiner Hand hinzu. Auspuff.",
+		"NAME": "Grabräuber",
+		"UPGRADE_DESCRIPTION": "Wähle 2 zufällige Zaubersprüche oder Fallen, die du in diesem Lauf gespielt hast, und füge sie deiner Hand hinzu. Sie kosten 0 in dieser Runde. Auspuff."
+	},
+	"theDuelist:GravityAxe": {
+		"DESCRIPTION": "Gewinn !M! Stärke. NL Für den Rest des Kampfes kannst du keine Stärke gewinnen oder verlieren.",
+		"NAME": "Schwerkraft Axt",
+		"UPGRADE_DESCRIPTION": "Gewinn !M! Stärke. NL Für den Rest des Kampfes kannst du keine Stärke gewinnen oder verlieren."
+	},
+	"theDuelist:GreatMoth": {
+		"DESCRIPTION": "Insekten-NL Spülung. Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Bewerben Sie sich !M! Vergiften. NL Fügen Sie Ihrer Hand eine Kopie von Petit Moth hinzu.",
+		"NAME": "Große Motte",
+		"UPGRADE_DESCRIPTION": "Insekten-NL Spülung. Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Bewerben Sie sich !M! Vergiften. NL Fügen Sie Ihrer Hand eine Kopie von Petit Moth hinzu."
+	},
+	"theDuelist:GreatRef": {
+		"DESCRIPTION": "Insekten-NL Spülung. Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Bewerben Sie sich !M! Vergiften. NL Fügen Sie Ihrer Hand eine Kopie von Petit Moth hinzu.",
+		"NAME": "Große Motte",
+		"UPGRADE_DESCRIPTION": "Insekten-NL Spülung. Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Bewerben Sie sich !M! Vergiften. NL Fügen Sie Ihrer Hand eine Kopie von Petit Moth hinzu."
+	},
+	"theDuelist:GreenGadget": {
+		"DESCRIPTION": "Machine NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Add !M! zufällige Token auf Ihrer Hand.",
+		"NAME": "Grünes Gadget",
+		"UPGRADE_DESCRIPTION": "Machine NL herbeirufen !duelist:SUMM! NL Gain !B! Block. NL Wähle !M! zufällige Token, die Sie Ihrer Hand hinzufügen können."
+	},
+	"theDuelist:GrossGhost": {
+		"DESCRIPTION": "Ethereal NL Unsterblicher Unterweltler NL Tribut !duelist:TRIB! NL Erhöht die Tributkosten aller Handkarten um !M!",
+		"NAME": "Grosser Geist",
+		"UPGRADE_DESCRIPTION": "Ethereal NL Unsterblicher Unterweltler NL Tribut !duelist:TRIB! NL Erhöht die Tributkosten aller Handkarten um !M!"
+	},
+	"theDuelist:GuardianAngel": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Deal !M! Zusätzlicher Schaden für jeden Spellcaster, dem du Tribut zählst. Heilung, auch wenn viel Schaden angerichtet wird.",
+		"NAME": "Schutzengel Joan",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Deal !M! Zusätzlicher Schaden für jeden Spellcaster, dem du Tribut zählst. Heilung, auch wenn viel Schaden angerichtet wird."
+	},
+	"theDuelist:GuardianArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Guardian-Karten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Wächter",
+			"Sanga of Thunder, Suijin, Kazejin und Gate Guardian."
+		],
+		"NAME": "Wächter"
+	},
+	"theDuelist:HammerShot": {
+		"DESCRIPTION": "Deal !D! Schaden multipliziert mit deiner maximalen Beschwörung für ALLE Feinde.",
+		"NAME": "Hammerschuss",
+		"UPGRADE_DESCRIPTION": "Deal !D! Schaden multipliziert mit deiner maximalen Beschwörung für ALLE Feinde."
+	},
+	"theDuelist:HaneHane": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Wenn dieses Monster als Tribut angeboten wird, beschwöre 1 und gewinne !B! Block.",
+		"NAME": "Hane Hane",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Wenn dieses Monster als Tribut angeboten wird, beschwöre 1 und gewinne !B! Block."
+	},
+	"theDuelist:HarpieFeather": {
+		"DESCRIPTION": "Gewinnblock gleich !M! mal die Anzahl der Buffs, die Sie haben.",
+		"NAME": "Harpie-Staubwedel",
+		"UPGRADE_DESCRIPTION": "Gewinnblock gleich !M! mal die Anzahl der Buffs, die Sie haben."
+	},
+	"theDuelist:HeartUnderdog": {
+		"DESCRIPTION": "Immer wenn du ein Monster ziehst, ziehe 1 Karte.",
+		"NAME": "Herz des Underdog",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Wenn Sie ein Monster ziehen, ziehen Sie 1 Karte."
+	},
+	"theDuelist:HeartUnderspell": {
+		"DESCRIPTION": "Immer wenn du einen Zauber ziehst, kopiere ihn.",
+		"NAME": "Zauber des Underdog",
+		"UPGRADE_DESCRIPTION": "Angeborenes NL Wenn Sie einen Zauber zeichnen, kopieren Sie ihn."
+	},
+	"theDuelist:HeartUndertrap": {
+		"DESCRIPTION": "Immer wenn du eine Falle ziehst, erhältst du 3 HP.",
+		"NAME": "Falle den Underdog",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Wenn Sie eine Falle zeichnen, erhalten Sie 3 HP."
+	},
+	"theDuelist:HeartUndertribute": {
+		"DESCRIPTION": "Immer wenn du ein Tributmonster ziehst, beschwöre 1.",
+		"NAME": "Tribut an den Underdog",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Wenn du ein Tributmonster ziehst, beschwöre 1."
+	},
+	"theDuelist:HeavyStorm": {
+		"DESCRIPTION": "Entferne ALLE Kräfte von dir und ALLEN Feinden. Auspuff.",
+		"NAME": "Starker Sturm",
+		"UPGRADE_DESCRIPTION": "Entferne ALLE Kräfte von dir und ALLEN Feinden. Auspuff."
+	},
+	"theDuelist:HellfireOrbCard": {
+		"DESCRIPTION": "Lenke eine Höllenfeuerkugel.",
+		"NAME": "Höllenfeuer",
+		"UPGRADE_DESCRIPTION": "Lenke eine Höllenfeuerkugel."
+	},
+	"theDuelist:Hinotama": {
+		"DESCRIPTION": "Deal !D! Schaden zufällig (2-3).",
+		"NAME": "Hinotama",
+		"UPGRADE_DESCRIPTION": "Deal !D! Schaden zufällig (2-4) von Zeiten."
+	},
+	"theDuelist:HundredFootHorror": {
+		"DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Bewerben Sie sich !M! Vergiften.",
+		"NAME": "Hundertfüßiger Horror",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Bewerben Sie sich !M! Vergiften."
+	},
+	"theDuelist:IceQueen": {
+		"DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Invertiere deine nächste Kugel zweimal. NL Channel !M! Frost.",
+		"NAME": "Eiskönigin",
+		"UPGRADE_DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Invertiere deine nächste Kugel zweimal. NL Channel !M! Frost."
+	},
+	"theDuelist:IcyCrevasse": {
+		"DESCRIPTION": "Wenn Sie Frost kanalisiert haben, erhalten Sie eine zufällige Menge (1-2) des Fokus.",
+		"NAME": "Eisige Gletscherspalte",
+		"UPGRADE_DESCRIPTION": "Erhalte 1 Fokus für jeden Frost, den du kanalisiert hast."
+	},
+	"theDuelist:Illusionist": {
+		"DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Gewinn !B! Block.",
+		"NAME": "Illusionist Gesichtsloser Magier",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Gewinn !B! Block."
+	},
+	"theDuelist:ImperialOrder": {
+		"DESCRIPTION": "Legen Sie zu Beginn des Zuges die Kosten für !M! zufällige Zauber- oder Fallenkarte in deiner Hand zu 0.",
+		"NAME": "Kaiserliche Ordnung",
+		"UPGRADE_DESCRIPTION": "Legen Sie zu Beginn des Zuges die Kosten für !M! zufällige Zauber- oder Fallenkarten in deiner Hand zu 0."
+	},
+	"theDuelist:InjectionFairy": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !M! HP.",
+		"NAME": "Injection Fee Lily",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !M! HP. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:InsectArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Insektenkarten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Insekten",
+			"Alle Insektenmonster sowie Violetter Kristall, Super Solar Nutrient und Cocoon of Evolution."
+		],
+		"NAME": "Insekten"
+	},
+	"theDuelist:InsectKnight": {
+		"DESCRIPTION": "Insekt NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Insektenritter",
+		"UPGRADE_DESCRIPTION": "Insekt NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:InsectQueen": {
+		"DESCRIPTION": "Insekt NL Tribut ALL Beschwörung. Bewerben Sie sich !M! Mal so viel Gift für ALLE Feinde. Reduziere deine maximale Beschwörung um 1.",
+		"NAME": "Insektenkönigin",
+		"UPGRADE_DESCRIPTION": "Insekt NL Tribut ALL Beschwörung. Bewerben Sie sich !M! Mal so viel Gift für ALLE Feinde."
+	},
+	"theDuelist:InsectToken": {
+		"DESCRIPTION": "Insekten-NL Beschwörung 1",
+		"NAME": "Insekten-Token",
+		"UPGRADE_DESCRIPTION": "Insekten-NL Beschwörung 1"
+	},
+	"theDuelist:Invigoration": {
+		"DESCRIPTION": "Wiederholt ein zufälliges Insekt oder eine Pflanze auf einen Feind.",
+		"NAME": "Belebung",
+		"UPGRADE_DESCRIPTION": "Wählen Sie ein Insekt oder eine Pflanze aus, um einen Feind erneut zu besiegen."
+	},
+	"theDuelist:InvitationDarkSleep": {
+		"DESCRIPTION": "Spellcaster NL Beschwörung !duelist:SUMM! NL Betäuben Sie einen zufälligen Feind. NL Auspuff.",
+		"NAME": "Einladung zum dunklen Schlaf",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Herbeirufen !duelist:SUMM! NL Betäube einen Feind. NL Auspuff."
+	},
+	"theDuelist:IslandTurtle": {
+		"DESCRIPTION": "Aqua NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Inselschildkröte",
+		"UPGRADE_DESCRIPTION": "Aqua NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:JamBreeding": {
+		"DESCRIPTION": "Zu Beginn des Zuges beschwöre !M! und füge einem zufälligen Feind 3 Schaden zu.",
+		"NAME": "Jam Breed Machine",
+		"UPGRADE_DESCRIPTION": "Zu Beginn des Zuges beschwöre !M! und füge einem zufälligen Feind 3 Schaden zu."
+	},
+	"theDuelist:JamToken": {
+		"DESCRIPTION": "Aqua NL herbeirufen 1",
+		"NAME": "Jam Token",
+		"UPGRADE_DESCRIPTION": "Aqua NL herbeirufen 1"
+	},
+	"theDuelist:JerryBeansMan": {
+		"DESCRIPTION": "Pflanze NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Jerry Beans Man",
+		"UPGRADE_DESCRIPTION": "Pflanze NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:Jinzo": {
+		"DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Fallen kosten 0.",
+		"NAME": "Jinzo",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Maschine NL Tribut !duelist:TRIB! NL Fallen kosten 0."
+	},
+	"theDuelist:JiraiGumo": {
+		"DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL 50% Chance, umzugehen !D! Beschädigung.",
+		"NAME": "Jirai Gumo",
+		"UPGRADE_DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL 50% Chance, umzugehen !D! Beschädigung."
+	},
+	"theDuelist:JudgeMan": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Richter Man",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:JunkKuriboh": {
+		"DESCRIPTION": "Maschinen-NL Beschwörung !duelist:SUMM! NL Inkrement !M! NL Auspuff.",
+		"NAME": "Junk Kuriboh",
+		"UPGRADE_DESCRIPTION": "Maschinen-NL Beschwörung !duelist:SUMM! NL Inkrement !M! NL Auspuff."
+	},
+	"theDuelist:KingYami": {
+		"DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "König Yamimakai",
+		"UPGRADE_DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:Kuriboh": {
+		"DESCRIPTION": "Inkrement !M!. NL Das Kuriboh-Token beschwören. NL Auspuff.",
+		"NAME": "Kuriboh",
+		"UPGRADE_DESCRIPTION": "Inkrement !M!. NL Das Kuriboh-Token beschwören. NL Auspuff."
+	},
+	"theDuelist:KuribohToken": {
+		"DESCRIPTION": "Beschwöre 1 NL Gewinn als unangreifbar, wenn sie für ein Nicht-Drachenmonster als Tribut angeboten wird.",
+		"NAME": "Kuriboh-Token",
+		"UPGRADE_DESCRIPTION": "Beschwöre 1 NL Gewinn als unangreifbar, wenn sie für ein Nicht-Drachenmonster als Tribut angeboten wird."
+	},
+	"theDuelist:LabyrinthWall": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block.",
+		"NAME": "Labyrinthwand",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block."
+	},
+	"theDuelist:Lajinn": {
+		"DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Lajinn Mystical Genie",
+		"UPGRADE_DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:LavaOrbCard": {
+		"DESCRIPTION": "Lava-Kugel kanalisieren.",
+		"NAME": "Lava",
+		"UPGRADE_DESCRIPTION": "Lava-Kugel kanalisieren."
+	},
+	"theDuelist:LegendaryExodia": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Wenn Sie ein Stück Exodia als Tribut anbieten, dann spielen Sie !D! Beschädigung. Füge 10 Schaden für jedes Stück Exodia hinzu, das du als Tribut anbietest.",
+		"NAME": "L. Exodia inkarniert",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Wenn Sie ein Stück Exodia als Tribut anbieten, dann spielen Sie !D! Beschädigung. Füge 10 Schaden für jedes Stück Exodia hinzu, das du als Tribut anbietest."
+	},
+	"theDuelist:LegendaryFisherman": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Kanal ein Wasser. NL Wenn Sie für diese Karte 7-farbigen Fisch als Tribut anbieten, ziehen Sie 2 Karten. NL Auspuff.",
+		"NAME": "Legendärer Fischer",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Kanal ein Wasser. NL Wenn Sie für diese Karte 7-farbigen Fisch als Tribut anbieten, ziehen Sie 2 Karten."
+	},
+	"theDuelist:LegendaryFlameLord": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Kanal eine Lava.",
+		"NAME": "Legendärer Flammenherr",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Kanal eine Lava."
+	},
+	"theDuelist:LesserDragon": {
+		"DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Kleiner Drache",
+		"UPGRADE_DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:LeviaDragon": {
+		"DESCRIPTION": "Aqua Dragon NL Tribut !duelist:TRIB! NL Channel a Splash.",
+		"NAME": "Levia-Drache",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribut !duelist:TRIB! NL Channel a Splash."
+	},
+	"theDuelist:LightOrbCard": {
+		"DESCRIPTION": "Lenke eine Lichtkugel.",
+		"NAME": "Licht",
+		"UPGRADE_DESCRIPTION": "Lenke eine Lichtkugel."
+	},
+	"theDuelist:LightningOrbCard": {
+		"DESCRIPTION": "Lenke eine Blitzkugel.",
+		"NAME": "Blitz",
+		"UPGRADE_DESCRIPTION": "Lenke eine Blitzkugel."
+	},
+	"theDuelist:LordD": {
+		"DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Channel a DrachenOrb.",
+		"NAME": "Herr von D.",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Channel und verbessertes DrachenOrb."
+	},
+	"theDuelist:MachineFactory": {
+		"DESCRIPTION": "Ersetze alle deine Kugeln mit Glitch-Kugeln. NL Auspuff.",
+		"NAME": "Maschinenfabrik",
+		"UPGRADE_DESCRIPTION": "Beschwöre alle deine Kugeln. Führe für jede hervorgerufene Kugel einen Glitch aus. NL Auspuff."
+	},
+	"theDuelist:MachineKing": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Channel a Glitch.",
+		"NAME": "Machine King",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Channel a Glitch."
+	},
+	"theDuelist:MachineToken": {
+		"DESCRIPTION": "Maschine NL beschwören 1",
+		"NAME": "Maschinen-Token",
+		"UPGRADE_DESCRIPTION": "Maschinen-NL Beschwörung 1"
+	},
+	"theDuelist:MagicCylinder": {
+		"DESCRIPTION": "5 Reflexion gewinnen.",
+		"NAME": "Magischer Zylinder",
+		"UPGRADE_DESCRIPTION": "Gewinne 5 Reflexion und einen zufälligen Buff."
+	},
+	"theDuelist:MagnetArchetype": {
+		"DESCRIPTION": "Fügen Sie Magnet Warrior-Karten Ihrem Kartenpool hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Magnet Krieger",
+			"Alpha Magnet Warrior, Beta Magnet Warrior, Gamma Magnet Warrior und Valkyrion."
+		],
+		"NAME": "Magnet Krieger"
+	},
+	"theDuelist:ManEaterBug": {
+		"DESCRIPTION": "Insekt NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Wenn Sie dies für ein Insekt oder eine Pflanze als Tribut anbieten, handeln Sie !M! Schaden an allen Feinden.",
+		"NAME": "Menschenfresser Bug",
+		"UPGRADE_DESCRIPTION": "Insekt NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Wenn Sie dies für ein Insekt oder eine Pflanze als Tribut anbieten, handeln Sie !M! Schaden an allen Feinden."
+	},
+	"theDuelist:MangaRyuRan": {
+		"DESCRIPTION": "Toon Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block).",
+		"NAME": "Manga Ryu-Ran",
+		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block)."
+	},
+	"theDuelist:Mathematician": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Deal X! Beschädigung. NL Auspuff.",
+		"NAME": "Mathematiker",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Deal X! Beschädigung. NL Auspuff."
+	},
+	"theDuelist:Mausoleum": {
+		"DESCRIPTION": "Die erste Karte, die Sie in jedem Spielzug mit Tribut spielen, ist kein Tribut. Nimm pro Runde 1 Schaden.",
+		"NAME": "Kaiser Mausoleum",
+		"UPGRADE_DESCRIPTION": "Die erste Karte, die Sie in jedem Spielzug mit Tribut spielen, ist kein Tribut. Nimm pro Runde 1 Schaden."
+	},
+	"theDuelist:MetalDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !B! Block.",
+		"NAME": "Metalldrache",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !B! Block."
+	},
+	"theDuelist:MetalOrbCard": {
+		"DESCRIPTION": "Lenke eine Metallkugel.",
+		"NAME": "Metall",
+		"UPGRADE_DESCRIPTION": "Lenke eine Metallkugel."
+	},
+	"theDuelist:MillenniumOrbCard": {
+		"DESCRIPTION": "Kanal eine MillenniumOrb.",
+		"NAME": "Millennium",
+		"UPGRADE_DESCRIPTION": "Kanal eine MillenniumOrb."
+	},
+	"theDuelist:MillenniumShield": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinne 4 Geschicklichkeit. NL Auspuff.",
+		"NAME": "Millennium-Schild",
+		"UPGRADE_DESCRIPTION": "Gewinnen Sie 4 Geschicklichkeit. Auspuff."
+	},
+	"theDuelist:MindAir": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Ihre Luftkugeln kanalisieren immer eine Kugel.",
+		"NAME": "Mind Air",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Ihre Luftkugeln kanalisieren immer eine Kugel."
+	},
+	"theDuelist:MiniPolymerization": {
+		"DESCRIPTION": "Spielen Sie eine Kopie eines zufälligen Monsters aus Ihrer Hand gegen einen Feind.",
+		"NAME": "Mini-Polymerisation",
+		"UPGRADE_DESCRIPTION": "Spielen Sie eine Kopie eines zufälligen Monsters aus Ihrer Hand gegen einen Feind. Kann ausgenommene Monster wählen."
+	},
+	"theDuelist:MirrorForce": {
+		"DESCRIPTION": "Wenn du das nächste Mal angegriffen wirst, füge ALLEN Feinden so viel Schaden zu.",
+		"NAME": "Spiegelkraft",
+		"UPGRADE_DESCRIPTION": "Wenn du das nächste Mal angegriffen wirst, füge ALLE Feinde doppelt so viel Schaden zu."
+	},
+	"theDuelist:MistOrbCard": {
+		"DESCRIPTION": "Lenke eine Nebelkugel.",
+		"NAME": "Nebel",
+		"UPGRADE_DESCRIPTION": "Lenke eine Nebelkugel."
+	},
+	"theDuelist:MoltenZombie": {
+		"DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Resummon: Füge ALLE Feinde 15 Schadenspunkte zu.",
+		"NAME": "Geschmolzener Zombie",
+		"UPGRADE_DESCRIPTION": "Zombie NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Resummon: Füge ALLE Feinde 20 Schadenspunkte zu."
+	},
+	"theDuelist:MonsterEgg": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Erstellen Sie ein zufälliges Monster und setzen Sie es auf dem gegnerischen Gegner fort.",
+		"NAME": "Monster-Ei",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Erstellen Sie ein zufällig verbessertes Monster und setzen Sie den gegnerischen Gegner erneut ab."
+	},
+	"theDuelist:MonsterOrbCard": {
+		"DESCRIPTION": "Leite eine MonsterOrb.",
+		"NAME": "Monster Orb",
+		"UPGRADE_DESCRIPTION": "Leite eine MonsterOrb."
+	},
+	"theDuelist:MonsterReborn": {
+		"DESCRIPTION": "Wähle !M! Monster, die du von deinem Ablagestapel auflösen kannst. NL Auspuff.",
+		"NAME": "Monster wiedergeboren",
+		"UPGRADE_DESCRIPTION": "Wähle !M! Monster, die du verbessern und aus deinem Ablagestapel resummon kannst. NL Auspuff."
+	},
+	"theDuelist:MotherSpider": {
+		"DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Bewerben Sie sich !M! Vergiften.",
+		"NAME": "Mutter Spinne",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribut !duelist:TRIB! NL Bewerben Sie sich !M! Vergiften."
+	},
+	"theDuelist:Mountain": {
+		"DESCRIPTION": "Eure Drachen verursachen 50% mehr Schaden und erhalten 50% mehr Block. Immer wenn du Stärke erhältst, indem du einen Drachen als Tribut anbietest, erhältst du 1 zusätzliche Stärke.",
+		"NAME": "Berg",
+		"UPGRADE_DESCRIPTION": "Eure Drachen verursachen 50% mehr Schaden und erhalten 50% mehr Block. Immer wenn du Stärke erhältst, indem du einen Drachen als Tribut anbietest, erhältst du 1 zusätzliche Stärke."
+	},
+	"theDuelist:MsJudge": {
+		"DESCRIPTION": "Unterweltler NL beschwören !duelist:SUMM! NL Gain !B! Block. NL Gewinnen Sie zusätzlich !M! Block für jede Falle, die diesen Kampf gespielt hat.",
+		"NAME": "Frau Richter",
+		"UPGRADE_DESCRIPTION": "Unterweltler NL beschwören !duelist:SUMM! NL Gain !B! Block. NL Gewinnen Sie zusätzlich !M! Block für jede Falle, die diesen Kampf gespielt hat."
+	},
+	"theDuelist:MudOrbCard": {
+		"DESCRIPTION": "Kanal eine Schlammkugel.",
+		"NAME": "Schlamm",
+		"UPGRADE_DESCRIPTION": "Kanal eine Schlammkugel."
+	},
+	"theDuelist:MysticalElf": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Mystischer Elf",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:MythicalBeast": {
+		"DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Schaden plus !M! Für jeden Zauber, der in diesem Kampf gespielt wird, wird zusätzlicher Schaden verursacht.",
+		"NAME": "Mythische Bestie Cerberus",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Schaden plus !M! Für jeden Zauber, der in diesem Kampf gespielt wird, wird zusätzlicher Schaden verursacht."
+	},
+	"theDuelist:NatureArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Insekten-, Pflanzen- und Predaplant-Karten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Natur",
+			"Alle Insekten-, Pflanzen- und Predaplant-Monster; Cocoon of Evolution, Supersolar-Nährstoff, Predaponics, Predapruning und Violet Crystal."
+		],
+		"NAME": "Natur"
+	},
+	"theDuelist:NaturiaBeast": {
+		"DESCRIPTION": "Naturia NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Shuffle !M! Kopie dieser Karte in deinen Nachziehstapel.",
+		"NAME": "Naturia Bestie",
+		"UPGRADE_DESCRIPTION": "Naturia NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Shuffle !M! Kopien dieser Karte in den Nachziehstapel."
+	},
+	"theDuelist:NaturiaCliff": {
+		"DESCRIPTION": "Naturia NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Naturia-Klippe",
+		"UPGRADE_DESCRIPTION": "Naturia NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:NaturiaDragonfly": {
+		"DESCRIPTION": "Naturia Insect NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Deal !D! Beschädigung. NL Mische 1 Kopie dieser Karte in deinen Nachziehstapel.",
+		"NAME": "Naturia Libelle",
+		"UPGRADE_DESCRIPTION": "Naturia Insect NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Deal !D! Beschädigung. NL Mische 1 Kopie dieser Karte in deinen Nachziehstapel."
+	},
+	"theDuelist:NaturiaGuardian": {
+		"DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Shuffle !M! Kopien von Naturia Horneedle in den Nachziehstapel.",
+		"NAME": "Naturia-Wächter",
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Shuffle !M! Kopien von Naturia Horneedle in den Nachziehstapel."
+	},
+	"theDuelist:NaturiaHorneedle": {
+		"DESCRIPTION": "Naturia Insect NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Naturia Horneedle",
+		"UPGRADE_DESCRIPTION": "Naturia Insect NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:NaturiaLandoise": {
+		"DESCRIPTION": "Naturia NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Füge deiner Hand ein randomisiertes Naturia-Monster hinzu.",
+		"NAME": "Naturia Landoise",
+		"UPGRADE_DESCRIPTION": "Naturia NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Füge deiner Hand ein randomisiertes Naturia-Monster hinzu."
+	},
+	"theDuelist:NaturiaMantis": {
+		"DESCRIPTION": "Naturia Insect NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Mische 1 Kopie dieser Karte in deinen Nachziehstapel.",
+		"NAME": "Naturia Mantis",
+		"UPGRADE_DESCRIPTION": "Naturia Insect NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Mische 1 Kopie dieser Karte in deinen Nachziehstapel."
+	},
+	"theDuelist:NaturiaPineapple": {
+		"DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Deal !D! Beschädigung.",
+		"NAME": "Naturia Ananas",
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:NaturiaPumpkin": {
+		"DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Baue ein zufälliges Naturia-Monster aus deiner Hand auf.",
+		"NAME": "Naturia Kürbis",
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Resummon eine verbesserte Kopie eines zufälligen Naturia-Monsters von deiner Hand."
+	},
+	"theDuelist:NaturiaRosewhip": {
+		"DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Mische 1 Kopie dieser Karte in deinen Nachziehstapel.",
+		"NAME": "Naturia Rosewhip",
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Mische 1 Kopie dieser Karte in deinen Nachziehstapel."
+	},
+	"theDuelist:NaturiaSacredTree": {
+		"DESCRIPTION": "Eure Naturia-Monsterkarten verursachen 50% mehr Schaden und erhalten 50% mehr Block.",
+		"NAME": "Naturia heiliger Baum",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Eure Naturia-Monsterkarten verursachen 50% mehr Schaden und erhalten 50% mehr Block."
+	},
+	"theDuelist:NaturiaStrawberry": {
+		"DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Naturia Erdbeere",
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:NeoMagic": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Neo Magic Schwertkämpfer",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:NutrientZ": {
+		"DESCRIPTION": "Wenn Sie weniger als 30 HP haben, gewinnen Sie !M! HP und 3 zufällige Debuffs. Auspuff.",
+		"NAME": "Nährstoff Z",
+		"UPGRADE_DESCRIPTION": "Wenn Sie weniger als 30 HP haben, gewinnen Sie !M! HP und 3 zufällige Debuffs. Auspuff."
+	},
+	"theDuelist:ObeliskTormentor": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Jedes Mal, wenn Sie Tribut anbieten, handeln Sie !M! Schaden an ALLEN Feinden.",
+		"NAME": "Obelisk",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Jedes Mal, wenn Sie Tribut anbieten, handeln Sie !M! Schaden an ALLEN Feinden."
+	},
+	"theDuelist:OceanDragonLord": {
+		"DESCRIPTION": "Aqua Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel ein Splash.",
+		"NAME": "Ocean Dragon Lord",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel ein Splash."
+	},
+	"theDuelist:OhFish": {
+		"DESCRIPTION": "Füg m hinzu! randomisierte Aquakarten auf die Hand.",
+		"NAME": "Oh Fisch",
+		"UPGRADE_DESCRIPTION": "Füg m hinzu! randomisierte Aquakarten auf die Hand."
+	},
+	"theDuelist:OjamaArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Ojama-Karten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Ojama",
+			"Alle 5 Ojama-Monster sowie Ojamagic und Ojamuscle."
+		],
+		"NAME": "Ojama"
+	},
+	"theDuelist:OjamaBlack": {
+		"DESCRIPTION": "Herbeirufen !duelist:SUMM! NL einen schwarzen Kanal.",
+		"NAME": "Ojama Black",
+		"UPGRADE_DESCRIPTION": "Herbeirufen !duelist:SUMM! NL einen schwarzen Kanal."
+	},
+	"theDuelist:OjamaBlue": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Bewerben Sie sich !M! zufällige Debuffs NL Lenke eine Pufferkugel.",
+		"NAME": "Ojama Blue",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Bewerben Sie sich !M! zufällige Debuffs NL Lenke eine Pufferkugel."
+	},
+	"theDuelist:OjamaCountry": {
+		"DESCRIPTION": "Füg m hinzu! randomisierte Karten auf Ihre Hand. Auspuff.",
+		"NAME": "Ojama-Land",
+		"UPGRADE_DESCRIPTION": "Füg m hinzu! randomisierte Karten auf Ihre Hand."
+	},
+	"theDuelist:OjamaDeltaHurricane": {
+		"DESCRIPTION": "Kanal ein Schwarzes, Erde und Schlamm.",
+		"NAME": "Ojama Delta Hurricane",
+		"UPGRADE_DESCRIPTION": "Angeborener NL Kanal a Black, Earth and Mud."
+	},
+	"theDuelist:OjamaDuo": {
+		"DESCRIPTION": "Fügen Sie der Hand randomisierte Kopien von Ojama Red and Blue hinzu. NL Auspuff.",
+		"NAME": "Ojama Duo",
+		"UPGRADE_DESCRIPTION": "Fügen Sie der Hand randomisierte Kopien von Ojama Red and Blue hinzu. NL Auspuff."
+	},
+	"theDuelist:OjamaEmperor": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Ojamania NL Gewinn !M! HP. NL Kanal eine zufällige Kugel. Auspuff.",
+		"NAME": "Ojama Kaiser",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Ojamania NL Gewinn !M! HP. NL Kanal eine zufällige Kugel. Auspuff."
+	},
+	"theDuelist:OjamaGreen": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Gewinne einen zufälligen Buff. NL Channel eine Erde. NL Auspuff.",
+		"NAME": "Ojama Green",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Gewinne einen zufälligen Buff. NL Channel eine Erde. NL Auspuff."
+	},
+	"theDuelist:OjamaKing": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Ojamania. NL",
+		"NAME": "Ojama King",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Ojamania. NL"
+	},
+	"theDuelist:OjamaKnight": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinne einen zufälligen Buff. NL Invertiere deine nächste Kugel.",
+		"NAME": "Ojama Ritter",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinne einen zufälligen Buff. NL Invertiere deine nächste Kugel."
+	},
+	"theDuelist:OjamaPajama": {
+		"DESCRIPTION": "Randomize die magischen Zahlen auf allen Ihren Karten.",
+		"NAME": "Ojama-Pyjama",
+		"UPGRADE_DESCRIPTION": "Randomize die magischen Zahlen auf allen Ihren Karten."
+	},
+	"theDuelist:OjamaRed": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !M! zufällige Buffs. NL Kanal eine schwarze Kugel.",
+		"NAME": "Ojama Red",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !M! zufällige Buffs. NL Kanal eine schwarze Kugel."
+	},
+	"theDuelist:OjamaTrio": {
+		"DESCRIPTION": "Fügen Sie Ihrer Hand Kopien von Ojama Black, Yellow und Green hinzu.",
+		"NAME": "Ojama Trio",
+		"UPGRADE_DESCRIPTION": "Fügen Sie Ihrer Hand Kopien von Ojama Black, Yellow und Green hinzu."
+	},
+	"theDuelist:OjamaYellow": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Addiere !M! randomisierte Monsterkarten auf deine Hand. Auspuff.",
+		"NAME": "Ojama Yellow",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Addiere !M! randomisierte Monsterkarten auf deine Hand. Auspuff."
+	},
+	"theDuelist:Ojamagic": {
+		"DESCRIPTION": "Mischen Sie eine zufällige Anzahl (1-4) roter Medizinkarten in Ihren Nachziehstapel.",
+		"NAME": "Ojamagic",
+		"UPGRADE_DESCRIPTION": "Mischen Sie eine zufällige Menge (1-4) der aktualisierten roten Medizinkarten in Ihren Nachziehstapel."
+	},
+	"theDuelist:Ojamassimilation": {
+		"DESCRIPTION": "Erschöpfen Sie alle Zauber überall. Für jeden verbrauchten Zauber füge einen zufälligen Ojama zu deinem Ziehstapel hinzu und du hast eine kleine Chance, einen zufälligen Buff zu erhalten.",
+		"NAME": "Ojamassimilation",
+		"UPGRADE_DESCRIPTION": "Erschöpfen Sie alle Zauber überall. Füge für jeden erschöpften Zauber einen zufällig ausgewählten, verbesserten Ojama zu deinem Ziehstapel hinzu und habe eine kleine Chance, einen zufälligen Buff zu erhalten."
+	},
+	"theDuelist:Ojamatch": {
+		"DESCRIPTION": "Kehre deine nächste Kugel X um. NL Auspuff.",
+		"NAME": "Ojamatch",
+		"UPGRADE_DESCRIPTION": "Kehre deine nächste Kugel X um."
+	},
+	"theDuelist:Ojamuscle": {
+		"DESCRIPTION": "Mische eine zufällige Menge (1-3) von Ojama Yellow-Karten in deinen Nachziehstapel.",
+		"NAME": "Ojamuscle",
+		"UPGRADE_DESCRIPTION": "Mische eine zufällige Menge (1-3) der aktualisierten gelben Karten von Ojama in deinen Nachziehstapel."
+	},
+	"theDuelist:Ookazi": {
+		"DESCRIPTION": "Verursachen Sie eine zufällige Menge (5-9) des Schadens.",
+		"NAME": "Ookazi",
+		"UPGRADE_DESCRIPTION": "Verursachen Sie eine zufällige Menge (7-12) Schaden."
+	},
+	"theDuelist:Parasite": {
+		"DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Am Ende des Zuges besteht die Möglichkeit, zufällige Gegner zu debuffen. Mit mehr Beschwörungsstapeln werden die Chancen erhöht.",
+		"NAME": "Parasit Paracide",
+		"UPGRADE_DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Am Ende des Zuges besteht die Möglichkeit, zufällige Gegner zu debuffen. Mit mehr Beschwörungsstapeln werden die Chancen erhöht."
+	},
+	"theDuelist:PatricianDarkness": {
+		"DESCRIPTION": "Zombie NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "Patrizier der Dunkelheit",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:PetitMoth": {
+		"DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Petit Moth",
+		"UPGRADE_DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:PetitRef": {
+		"DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Petit Moth",
+		"UPGRADE_DESCRIPTION": "Insect NL herbeirufen !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:PlantToken": {
+		"DESCRIPTION": "Plant NL herbeirufen 1",
+		"NAME": "Pflanzenmarker",
+		"UPGRADE_DESCRIPTION": "Plant NL herbeirufen 1"
+	},
+	"theDuelist:PlantsArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenvorrat Pflanzenkarten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Pflanzen",
+			"Alle Pflanzenmonster sowie Veilchenkristall, Super Solar Nutrient, Predapruning und Predaponics."
+		],
+		"NAME": "Pflanzen"
+	},
+	"theDuelist:PlasmaOrbCard": {
+		"DESCRIPTION": "Lenke eine Plasma-Kugel.",
+		"NAME": "Plasma",
+		"UPGRADE_DESCRIPTION": "Lenke eine Plasma-Kugel."
+	},
+	"theDuelist:Polymerization": {
+		"DESCRIPTION": "Resummon !M! Kopien zufälliger Monster von deiner Hand auf einen Feind.",
+		"NAME": "Polymerisation",
+		"UPGRADE_DESCRIPTION": "Resummon !M! Kopien zufälliger Monster von deiner Hand auf einen Feind. Kann ausgenommene Monster wählen."
+	},
+	"theDuelist:PortraitSecret": {
+		"DESCRIPTION": "Unterweltler beschwören !duelist:SUMM! NL Gain !M! Stärke. Erhöhe die Tribut einer zufälligen Karte in deiner Hand für diesen Spielzug um 2. Auspuff.",
+		"NAME": "Das Geheimnis des Portraits",
+		"UPGRADE_DESCRIPTION": "Unterweltler beschwören !duelist:SUMM! NL Gain !M! Stärke. Erhöhe die Tribut einer zufälligen Karte in deiner Hand für diesen Spielzug um 2. Auspuff."
+	},
+	"theDuelist:PotAvarice": {
+		"DESCRIPTION": "Tribut ALL Beschwörung. NL Inkrement (der ausgeschüttete Betrag). NL Auspuff.",
+		"NAME": "Topf mit Habsucht",
+		"UPGRADE_DESCRIPTION": "Tribut ALL Beschwörung. NL Inkrement (der ausgeschüttete Betrag 3). NL Auspuff."
+	},
+	"theDuelist:PotDichotomy": {
+		"DESCRIPTION": "X beschwören !duelist:SUMM!",
+		"NAME": "Dichotomie-Topf",
+		"UPGRADE_DESCRIPTION": "X beschwören !duelist:SUMM!"
+	},
+	"theDuelist:PotDuality": {
+		"DESCRIPTION": "Zeichne !M! Karten. NL Gewinn !B! Block.",
+		"NAME": "Pot von Dualität",
+		"UPGRADE_DESCRIPTION": "Zeichne !M! Karten. NL Gewinn !B! Block."
+	},
+	"theDuelist:PotForbidden": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Wähle einen starken Draw-Effekt. NL Auspuff.",
+		"NAME": "Topf der Verbotenen",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Wähle einen starken Draw-Effekt. NL Auspuff."
+	},
+	"theDuelist:PotGenerosity": {
+		"DESCRIPTION": "Bilden! Bei jeder Beschwörung gewinnt [R].",
+		"NAME": "Topf der Großzügigkeit",
+		"UPGRADE_DESCRIPTION": "Bilden! Bei jeder Beschwörung gewinnt [R]."
+	},
+	"theDuelist:PotGreed": {
+		"DESCRIPTION": "Ziehe 2 Karten. NL Auspuff.",
+		"NAME": "Topf der Habgier",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Ziehe 2 Karten. NL Auspuff."
+	},
+	"theDuelist:PotsArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Potkarten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Töpfe",
+			"Pot of Geiz, Pot of Duality, Pot of Dichotomy, Pot of Großzügigkeit, Pot of Gier."
+		],
+		"NAME": "Töpfe"
+	},
+	"theDuelist:PowerKaishin": {
+		"DESCRIPTION": "Kanal eine zufällige Kugel. NL Auspuff.",
+		"NAME": "Macht von Kaishin",
+		"UPGRADE_DESCRIPTION": "Angeborener NL Kanal eine zufällige Kugel. NL Auspuff."
+	},
+	"theDuelist:PredaplantChimerafflesia": {
+		"DESCRIPTION": "Predaplant NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn Sie einen Predaplant als Tribut anbieten, fügen Sie Ihrer Hand eine 0-kostige Polymerisationskopie hinzu.",
+		"NAME": "P. Chimerafflesia",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn Sie einen Predaplant als Tribut anbieten, fügen Sie Ihrer Hand eine 0-kostige Polymerisationskopie hinzu."
+	},
+	"theDuelist:PredaplantChlamydosundew": {
+		"DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Holt eine Pflanze oder ein Insekt von deinem Nachziehstapel.",
+		"NAME": "P. Chlamydosundew",
+		"UPGRADE_DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Nimm 2 Pflanzen oder Insekten von deinem Nachziehstapel."
+	},
+	"theDuelist:PredaplantDrosophyllum": {
+		"DESCRIPTION": "Predaplant NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn du einen Predaplant als Tribut anbietest, resummon eine Kopie eines zufälligen Pflanzenmonsters von deiner Hand.",
+		"NAME": "P. Drosophyllum",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wenn du einen Predaplant als Tribut anbietest, resummon eine Kopie ALLER Plant-Monster von deiner Hand."
+	},
+	"theDuelist:PredaplantFlytrap": {
+		"DESCRIPTION": "Predaplant NL Beschwörung von Predaplant-Token. NL Bewerben Sie sich !M! Vergiften.",
+		"NAME": "P. Fliegenfalle",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Beschwörung von Predaplant-Token. NL Bewerben Sie sich !M! Vergiften."
+	},
+	"theDuelist:PredaplantPterapenthes": {
+		"DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "P. Pterapenthes",
+		"UPGRADE_DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:PredaplantSarraceniant": {
+		"DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Wann immer Sie Angriffsschaden erhalten, bewerben Sie sich !M! Gift für ALLE Feinde.",
+		"NAME": "P. Sarraceniant",
+		"UPGRADE_DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Wann immer Sie Angriffsschaden erhalten, bewerben Sie sich !M! Gift für ALLE Feinde."
+	},
+	"theDuelist:PredaplantSpinodionaea": {
+		"DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Wenn du dieses Monster für ein Insekt oder eine Pflanze als Tribut anbietest, füge deiner Hand eine zufällige Predaplant-Karte hinzu.",
+		"NAME": "P. Spinodionaea",
+		"UPGRADE_DESCRIPTION": "Predaplant NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Wenn du dieses Monster für ein Insekt oder eine Pflanze als Tribut anbietest, füge deiner Hand eine zufällige Predaplant-Karte hinzu."
+	},
+	"theDuelist:PredaplantToken": {
+		"DESCRIPTION": "Predaplant NL herbeirufen 1",
+		"NAME": "Predaplant Token",
+		"UPGRADE_DESCRIPTION": "Predaplant NL herbeirufen 1"
+	},
+	"theDuelist:Predaponics": {
+		"DESCRIPTION": "Entferne alle Artefakte von einem Feind. NL Bewerben Sie sich !M! Vergiften. NL 1 zufälligen Debuff anwenden.",
+		"NAME": "Predaponik",
+		"UPGRADE_DESCRIPTION": "Entferne alle Artefakte von einem Feind. NL Bewerben Sie sich !M! Vergiften. NL 1 zufälligen Debuff anwenden."
+	},
+	"theDuelist:Predapruning": {
+		"DESCRIPTION": "Wähle !M! Pflanze Monster, die du aus deinem Ablagestapel resummon kannst. NL Wenn du ein Predaplant-Monster wählst, füge eine Kopie davon deiner Hand hinzu.",
+		"NAME": "Predapruning",
+		"UPGRADE_DESCRIPTION": "Wähle !M! Pflanze Monster, die du aus deinem Ablagestapel resummonst. NL Wenn du ein Predaplant-Monster wählst, füge eine Kopie davon deiner Hand hinzu."
+	},
+	"theDuelist:PreventRat": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block.",
+		"NAME": "Ratte verhindern",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block."
+	},
+	"theDuelist:Pumpking": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Mache eine verbesserte Kopie eines zufälligen Monsters von deinem Ablagestapel. NL befreit.",
+		"NAME": "Pumpking",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Resummon 2 verbesserte Kopien eines zufälligen Monsters von deinem Ablagestapel. NL befreit."
+	},
+	"theDuelist:Pumprincess": {
+		"DESCRIPTION": "Herbeirufen !duelist:SUMM! NL Nimm eine Kopie eines zufälligen Monsters von deinem Ablagestapel auf. NL befreit.",
+		"NAME": "Pumprincess",
+		"UPGRADE_DESCRIPTION": "Herbeirufen !duelist:SUMM! NL Nimm eine verbesserte Kopie eines zufälligen Monsters von deinem Ablagestapel auf. NL befreit."
+	},
+	"theDuelist:RadiantMirrorForce": {
+		"DESCRIPTION": "Wann immer Sie HP verlieren, Zuwachs !M!.",
+		"NAME": "Kraft des strahlenden Spiegels",
+		"UPGRADE_DESCRIPTION": "Wann immer Sie HP verlieren, Zuwachs !M!."
+	},
+	"theDuelist:Raigeki": {
+		"DESCRIPTION": "Deal !D! ALLEN Feinden Schaden zufügen (durch Block). NL Hat eine kleine Chance, jeden Feind zu betäuben.",
+		"NAME": "Raigeki",
+		"UPGRADE_DESCRIPTION": "Deal !D! ALLEN Feinden Schaden zufügen (durch Block). NL Hat eine hohe Chance, jeden Feind zu betäuben."
+	},
+	"theDuelist:RainMercy": {
+		"DESCRIPTION": "Sie und ALLE Feinde heilen eine zufällige Menge (5-20) HP. Auspuff.",
+		"NAME": "Regen der Barmherzigkeit",
+		"UPGRADE_DESCRIPTION": "Sie und ALLE Feinde heilen eine zufällige Menge (10-25) HP. Auspuff."
+	},
+	"theDuelist:RandomSoldier": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Gewinne eine zufällige Menge (2-6) von Block.",
+		"NAME": "R. Steinsoldat",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Gewinne eine zufällige Menge (3-7) von Block."
+	},
+	"theDuelist:RedEyes": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Bewerben Sie sich !M! Schwach.",
+		"NAME": "R. Eyes Black Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Bewerben Sie sich !M! Schwach."
+	},
+	"theDuelist:RedEyesToon": {
+		"DESCRIPTION": "Toon Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block).",
+		"NAME": "Rote Augen Toon",
+		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block)."
+	},
+	"theDuelist:RedEyesZombie": {
+		"DESCRIPTION": "Zombie Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Resummon: 3 Stärke gewinnen.",
+		"NAME": "R. Eyes Zombie Dragon",
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Resummon: 3 Stärke gewinnen."
+	},
+	"theDuelist:RedGadget": {
+		"DESCRIPTION": "Machine NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Add !M! zufällige Token auf Ihrer Hand.",
+		"NAME": "Red Gadget",
+		"UPGRADE_DESCRIPTION": "Machine NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Wähle !M! zufällige Token, die Sie Ihrer Hand hinzufügen können."
+	},
+	"theDuelist:RedMedicine": {
+		"DESCRIPTION": "Gewinne einen zufälligen Buff. NL Auspuff.",
+		"NAME": "Rote Medizin",
+		"UPGRADE_DESCRIPTION": "Wähle (1-2) zufällige Buffs (von !M! Wahlmöglichkeiten). NL Auspuff."
+	},
+	"theDuelist:RedMirror": {
+		"DESCRIPTION": "Fiend NL herbeirufen !duelist:SUMM! NL. Wenn Sie einen Fiend für einen anderen Tribut anbieten, reduzieren Sie die Kosten aller Karten in Ihrem Ablagestapel in diesem Zug um 1.",
+		"NAME": "Roter Spiegel",
+		"UPGRADE_DESCRIPTION": "Fiend NL herbeirufen !duelist:SUMM! NL. Wenn Sie einen Fiend für einen anderen Tribut anbieten, reduzieren Sie die Kosten aller Karten in Ihrem Ablagestapel in diesem Zug um 1."
+	},
+	"theDuelist:RedSprinter": {
+		"DESCRIPTION": "Immortal Fiend NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Auspuff.",
+		"NAME": "RedSprinter",
+		"UPGRADE_DESCRIPTION": "Immortal Fiend NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Auspuff."
+	},
+	"theDuelist:ReducerOrbCard": {
+		"DESCRIPTION": "Lenke eine Reducer-Kugel.",
+		"NAME": "Reduzierstück",
+		"UPGRADE_DESCRIPTION": "Lenke eine Reducer-Kugel."
+	},
+	"theDuelist:RegenMummy": {
+		"DESCRIPTION": "Lösche NL Zombie NL Tribut !duelist:TRIB! NL Put !M! Karten von Ihrem Auslassstapel in Ihre Hand. Befreit.",
+		"NAME": "Mumie regenerieren",
+		"UPGRADE_DESCRIPTION": "Lösche NL Zombie NL Put !M! Karten von Ihrem Auslassstapel in Ihre Hand. Befreit."
+	},
+	"theDuelist:Reinforcements": {
+		"DESCRIPTION": "Gewinn !M! Stärke. Auspuff.",
+		"NAME": "Verstärkung",
+		"UPGRADE_DESCRIPTION": "Gewinn !M! Stärke. Auspuff."
+	},
+	"theDuelist:ReinforcementsArmy": {
+		"DESCRIPTION": "Beschwöre ein Duplikat jedes Monsters, das du in diesem Zug spielst.",
+		"NAME": "Verstärkung der Armee",
+		"UPGRADE_DESCRIPTION": "Beschwöre ein Duplikat jedes Monsters, das du in diesem Zug spielst."
+	},
+	"theDuelist:Relinquished": {
+		"DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Kanal 1 Dunkel.",
+		"NAME": "Aufgegeben",
+		"UPGRADE_DESCRIPTION": "Hexer NL Kanal 1 Dunkel."
+	},
+	"theDuelist:ResummonArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Resummon-Karten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Resummon",
+			"Alle Monster mit Resummon-Effekten und alle Resummon-Unterstützungskarten wie Monster Reborn, Tribut to the Doomed usw."
+		],
+		"NAME": "Resummon"
+	},
+	"theDuelist:RevivalJam": {
+		"DESCRIPTION": "Aqua NL herbeirufen !duelist:SUMM! NL Wenn du dieses Monster als Tribut anbietest, beschwöre !M! Jam-Token",
+		"NAME": "Wiederbelebung Jam",
+		"UPGRADE_DESCRIPTION": "Aqua NL herbeirufen !duelist:SUMM! NL Wenn du dieses Monster als Tribut anbietest, beschwöre !M! Jam-Token"
+	},
+	"theDuelist:RyuKokki": {
+		"DESCRIPTION": "Zombie NL Tribut !duelist:TRIB! NL Resummon ein zufälliges Monster von deinem Ablagestapel. Wenn du einen Zombie als Tribut anbietest, resummon es. Befreit.",
+		"NAME": "Ryu Kokki",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribut !duelist:TRIB! NL Resummon ein zufälliges Monster von deinem Ablagestapel. Wenn du einen Zombie als Tribut anbietest, resummon es. Befreit."
+	},
+	"theDuelist:SandOrbCard": {
+		"DESCRIPTION": "Kanal eine Sandkugel.",
+		"NAME": "Sand",
+		"UPGRADE_DESCRIPTION": "Kanal eine Sandkugel."
+	},
+	"theDuelist:SangaEarth": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Kanal auf der Erde. NL Deal !D! Beschädigung.",
+		"NAME": "Kazejin",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Kanal auf der Erde. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:SangaThunder": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Blende einen Blitz. NL Deal !D! Beschädigung.",
+		"NAME": "Sanga des Donners",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Blende einen Blitz. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:SangaWater": {
+		"DESCRIPTION": "Aqua NL Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Kanal mit Wasser. NL Deal !D! Beschädigung.",
+		"NAME": "Suijin",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribut !duelist:TRIB! NL Beschwörung !duelist:SUMM! NL Kanal mit Wasser. NL Deal !D! Beschädigung."
+	},
+	"theDuelist:Sangan": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. Füge deiner Hand eine Kopie eines zufälligen Zaubers hinzu, den du diesen Kampf gespielt hast.",
+		"NAME": "Sangan",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. Füge deiner Hand eine 0-Kosten-Kopie eines zufälligen Zaubers hinzu, den du diesen Kampf gespielt hast."
+	},
+	"theDuelist:Scapegoat": {
+		"DESCRIPTION": "Inkrement !M!. NL Beschwörung von Kuriboh-Token. NL Auspuff.",
+		"NAME": "Sündenbock",
+		"UPGRADE_DESCRIPTION": "Inkrement !M!. NL Beschwörung von Kuriboh-Token. NL Auspuff."
+	},
+	"theDuelist:ScrapFactory": {
+		"DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Gewinn [R] [R].",
+		"NAME": "Schrottfabrik",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribut !duelist:TRIB! NL Gewinne [R] [R] [R]."
+	},
+	"theDuelist:SevenColoredFish": {
+		"DESCRIPTION": "Aqua NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "7-farbiger Fisch",
+		"UPGRADE_DESCRIPTION": "Aqua NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:ShadowOrbCard": {
+		"DESCRIPTION": "Lenke eine Schattenkugel.",
+		"NAME": "Schatten",
+		"UPGRADE_DESCRIPTION": "Lenke eine Schattenkugel."
+	},
+	"theDuelist:ShadowToken": {
+		"DESCRIPTION": "1 NL beschwören Bei Tribut werden die Passiv- und Evokationsbeträge aller Schattenkugeln um 1 erhöht.",
+		"NAME": "Schatten-Token",
+		"UPGRADE_DESCRIPTION": "1 NL beschwören Bei Tribut werden die Passiv- und Evokationsbeträge aller Schattenkugeln um 1 erhöht."
+	},
+	"theDuelist:ShadowToon": {
+		"DESCRIPTION": "Füg m hinzu! randomisierte Toon-Karten auf Ihre Hand.",
+		"NAME": "Schatten-Toon",
+		"UPGRADE_DESCRIPTION": "Füg m hinzu! randomisierte, verbesserte Toon-Karten auf die Hand."
+	},
+	"theDuelist:ShallowGrave": {
+		"DESCRIPTION": "Zufällig resummon !M! Monster aus deinem Ablagestapel.",
+		"NAME": "Flaches Grab",
+		"UPGRADE_DESCRIPTION": "Zufällig resummon !M! Monster aus deinem Ablagestapel."
+	},
+	"theDuelist:ShardGreed": {
+		"DESCRIPTION": "Ziehe zu Beginn des Zuges 1 zusätzliche Karte. Ziehen Sie alle 3 Runden eine zusätzliche Karte.",
+		"NAME": "Splitter der Gier",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Ziehe zu Beginn des Zuges 1 zusätzliche Karte. Ziehen Sie alle 3 Runden eine zusätzliche Karte."
+	},
+	"theDuelist:Skelesaurus": {
+		"DESCRIPTION": "Zombie NL Herbeirufen !duelist:SUMM! Shadow Token NL Deal !D! Beschädigung.",
+		"NAME": "Skelesaurus",
+		"UPGRADE_DESCRIPTION": "Zombie-NL Beschwörung !duelist:SUMM!!duelist:SUMM!!duelist:SUMM!!duelist:SUMM!!duelist:SUMM!!duelist:SUMM!. Beschädigung."
+	},
+	"theDuelist:SkullArchfiend": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Erhöhe die Tributkosten und den Schaden aller Monster in deinem Ablagestapel um !M! bzw. 6.",
+		"NAME": "Schädel-Erzunterweltler",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Erhöhe die Tributkosten und den Schaden aller Monster in deinem Ablagestapel um !M! bzw. 12."
+	},
+	"theDuelist:SlateWarrior": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Setzen Sie die Kosten aller Karten in Ihrem Ablagestapel für diesen Spielzug auf 0.",
+		"NAME": "Schiefer Krieger",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Setzen Sie die Kosten aller Karten in Ihrem Ablagestapel für diesen Spielzug auf 0."
+	},
+	"theDuelist:SliferSky": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Bei jeder Beschwörung kanalisieren Sie eine zufällige Kugel NL (max. 2 / Zug).",
+		"NAME": "Slifer Sky Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Bei jeder Beschwörung kanalisieren Sie eine zufällige Kugel NL (max. 4 / Zug)."
+	},
+	"theDuelist:SmallLabyrinthWall": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block.",
+		"NAME": "Mini L. Wall",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Gewinn !B! Block."
+	},
+	"theDuelist:SmashingGround": {
+		"DESCRIPTION": "Zielen Sie einen zufälligen Feind an und handeln Sie !D! Schaden für jedes Monster, das du diesen Kampf beschworen hast. Auspuff.",
+		"NAME": "Zerschlagung",
+		"UPGRADE_DESCRIPTION": "Zielen Sie einen zufälligen Feind an und handeln Sie !D! Schaden für jedes Monster, das du diesen Kampf beschworen hast. Auspuff."
+	},
+	"theDuelist:SmokeOrbCard": {
+		"DESCRIPTION": "Lenke eine Rauchkugel.",
+		"NAME": "Rauch",
+		"UPGRADE_DESCRIPTION": "Lenke eine Rauchkugel."
+	},
+	"theDuelist:SnowDragon": {
+		"DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Channel a Frost.",
+		"NAME": "Schneedrache",
+		"UPGRADE_DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Channel a Frost."
+	},
+	"theDuelist:SnowdustDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel a Frost.",
+		"NAME": "Schneestaub Drache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel a Frost."
+	},
+	"theDuelist:SoulAbsorbingBone": {
+		"DESCRIPTION": "Zombie NL Tribut !duelist:TRIB! NL Resummon !M! zufälliges Monster von deinem Ablagestapel. Wenn du Zombies als Tribut anbietest, dann resummon sie.",
+		"NAME": "Seelenknochenturm",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribut !duelist:TRIB! NL Resummon !M! zufällige Monster von deinem Ablagestapel. Wenn du Zombies als Tribut anbietest, dann resummon sie."
+	},
+	"theDuelist:Sparks": {
+		"DESCRIPTION": "Streik NL Deal !D! Beschädigung.",
+		"NAME": "Funken",
+		"UPGRADE_DESCRIPTION": "Streik NL Deal !D! Beschädigung."
+	},
+	"theDuelist:SpellcasterArchetype": {
+		"DESCRIPTION": "Füge Zauberkarten deinem Kartenpool hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Zauberkünstler",
+			"Alle Hexer, Yami und das Buch der geheimen Künste. Keine Exodia-Karten."
+		],
+		"NAME": "Zauberkünstler"
+	},
+	"theDuelist:SpellcasterToken": {
+		"DESCRIPTION": "Hexenmeister NL Beschwörung 1",
+		"NAME": "Zauberprüfer-Token",
+		"UPGRADE_DESCRIPTION": "Hexenmeister NL Beschwörung 1"
+	},
+	"theDuelist:SpellsArchetype": {
+		"DESCRIPTION": "Füge deinem Kartenpool Zauberkarten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Zaubersprüche",
+			"Alle Zaubersprüche, mit Ausnahme von Toon-Zaubersprüchen und bestimmten Schlüsselwörtern (wie Yami, Berg, Violetter Kristall)."
+		],
+		"NAME": "Zaubersprüche"
+	},
+	"theDuelist:SphereKuriboh": {
+		"DESCRIPTION": "Wenn Sie inkrementieren, fügen Sie Ihrer Hand eine randomisierte Karte hinzu.",
+		"NAME": "Kugel Kuriboh",
+		"UPGRADE_DESCRIPTION": "Angeborene NL Wenn Sie inkrementieren, fügen Sie Ihrer Hand eine randomisierte Karte hinzu."
+	},
+	"theDuelist:SpiritHarp": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Geist der Harfe",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:SplashOrbCard": {
+		"DESCRIPTION": "Lenke eine Splash-Kugel.",
+		"NAME": "Spritzen",
+		"UPGRADE_DESCRIPTION": "Lenke eine Splash-Kugel."
+	},
+	"theDuelist:SteamTrainKing": {
+		"DESCRIPTION": "Superheavy Machine NL Tribut !duelist:TRIB! NL Nimm ALLE Monster in deinem Nachziehstapel aus. Verursachen Sie Schaden in Höhe ihres kombinierten Gesamtschadens. Auspuff.",
+		"NAME": "Dampfzug König",
+		"UPGRADE_DESCRIPTION": "Superheavy Machine NL Tribut !duelist:TRIB! NL Nimm ALLE Monster in deinem Nachziehstapel aus. Verursachen Sie Schaden in Höhe ihres kombinierten Gesamtschadens. Auspuff."
+	},
+	"theDuelist:StimPack": {
+		"DESCRIPTION": "Beschwört !duelist:SUMM! Explodierende Token.",
+		"NAME": "Stim Pack",
+		"UPGRADE_DESCRIPTION": "Beschwört !duelist:SUMM! Explodierende Token. NL Beschwöre !M! Tokens"
+	},
+	"theDuelist:StormOrbCard": {
+		"DESCRIPTION": "Lenke eine Sturmkugel.",
+		"NAME": "Sturm",
+		"UPGRADE_DESCRIPTION": "Lenke eine Sturmkugel."
+	},
+	"theDuelist:StormingMirrorForce": {
+		"DESCRIPTION": "Jedes Mal, wenn ein Feind angreift, beschwöre 1.",
+		"NAME": "Stürmische Spiegelkraft",
+		"UPGRADE_DESCRIPTION": "Jedes Mal, wenn ein Feind angreift, beschwöre 1."
+	},
+	"theDuelist:StrayLambs": {
+		"DESCRIPTION": "Inkrement !M!. NL Das Kuriboh-Token beschwören.",
+		"NAME": "Streunende Lämmer",
+		"UPGRADE_DESCRIPTION": "Inkrement !M!. NL Beschwörung von Kuriboh-Token."
+	},
+	"theDuelist:SummonedSkull": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "Beschworener Schädel",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:SummonerOrbCard": {
+		"DESCRIPTION": "Kanalisiere eine Beschwörer-Kugel.",
+		"NAME": "Beschwörer",
+		"UPGRADE_DESCRIPTION": "Kanalisiere eine Beschwörer-Kugel."
+	},
+	"theDuelist:SuperSolarNutrient": {
+		"DESCRIPTION": "Füg m hinzu! randomisierte Insekten oder Pflanzen an Ihrer Hand. Auspuff.",
+		"NAME": "Super Solar-Nährstoff",
+		"UPGRADE_DESCRIPTION": "Füg m hinzu! randomisierte, verbesserte Insekten oder Pflanzen zur Hand. Auspuff."
+	},
+	"theDuelist:SuperancientDinobeast": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Für jeden Drachen, der diese Karte ausspielt, erhältst du 10 Blocks.",
+		"NAME": "Überragender Dinobeast",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Für jeden Drachen, der diese Karte ausspielt, erhältst du 10 Blocks."
+	},
+	"theDuelist:SuperheavyArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenvorrat superschöne Karten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Sehr schwer",
+			"Alle superschweren Monster plus Dampfzugkönig."
+		],
+		"NAME": "Sehr schwer"
+	},
+	"theDuelist:SuperheavyBenkei": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Geschicklichkeit. NL Auspuff.",
+		"NAME": "Superschwer Benkei",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Geschicklichkeit. NL Auspuff."
+	},
+	"theDuelist:SuperheavyBlueBrawler": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Geschicklichkeit. NL Auspuff.",
+		"NAME": "Superschwerer Brawler",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Geschicklichkeit. NL Auspuff."
+	},
+	"theDuelist:SuperheavyDaihachi": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !M! Geschicklichkeit. NL Gewinn !B! Block. NL Auspuff.",
+		"NAME": "Superschwerer Daihachi",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !M! Geschicklichkeit. NL Gewinn !B! Block. NL Auspuff."
+	},
+	"theDuelist:SuperheavyFlutist": {
+		"DESCRIPTION": "Superschwere NL Beschwörung !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Superschwerer Flötist",
+		"UPGRADE_DESCRIPTION": "Superschwere NL Beschwörung !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:SuperheavyGeneral": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Geschicklichkeit. NL Auspuff.",
+		"NAME": "Superschwerer General",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Gewinn !M! Geschicklichkeit. NL Auspuff."
+	},
+	"theDuelist:SuperheavyMagnet": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Gewinne 2 zufällige Magneten.",
+		"NAME": "Superschwerer Magnet",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Gewinne 2 zufällige Magneten."
+	},
+	"theDuelist:SuperheavyOgre": {
+		"DESCRIPTION": "Superschwere NL Beschwörung !duelist:SUMM! NL Gewinne !M! Geschicklichkeit. NL Auspuff.",
+		"NAME": "Superschwerer Oger",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Gewinn !M! Geschicklichkeit. NL Auspuff."
+	},
+	"theDuelist:SuperheavyScales": {
+		"DESCRIPTION": "Superschwere NL Beschwörung !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Superschwer Skalen",
+		"UPGRADE_DESCRIPTION": "Superschwere NL Beschwörung !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:SuperheavySoulbeads": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Gewinn !M! Verwischen.",
+		"NAME": "Superschwere Soulbeads",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Gewinn !M! Verwischen."
+	},
+	"theDuelist:SuperheavySoulbuster": {
+		"DESCRIPTION": "Superheavy NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Superschwerer Soulbuster",
+		"UPGRADE_DESCRIPTION": "Superheavy NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:SuperheavySoulclaw": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Wann immer du eine Power spielst, gewinne !M! Geschicklichkeit.",
+		"NAME": "Superschwere Seelenklaue",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Wann immer du eine Power spielst, gewinne !M! Geschicklichkeit."
+	},
+	"theDuelist:SuperheavySoulhorns": {
+		"DESCRIPTION": "Superheavy NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinn !B! Block.",
+		"NAME": "Superschwere Seelenhörner",
+		"UPGRADE_DESCRIPTION": "Superheavy NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinn !B! Block."
+	},
+	"theDuelist:SuperheavySoulpiercer": {
+		"DESCRIPTION": "Superheavy NL Tribut !duelist:TRIB! NL Bewerben Sie sich !M! Schleppend. NL Channel a Sand.",
+		"NAME": "Superschwerer Soulpiercer",
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribut !duelist:TRIB! NL Bewerben Sie sich !M! Schleppend. NL Kanal 2 Sand."
+	},
+	"theDuelist:SuperheavySoulshield": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !M! Überzogene Rüstung",
+		"NAME": "Superschwerer Seelenschild",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !M! Überzogene Rüstung"
+	},
+	"theDuelist:SuperheavySwordsman": {
+		"DESCRIPTION": "Superschwere NL Beschwörung !duelist:SUMM! NL Erzielt 1 Geschicklichkeit.",
+		"NAME": "Superschwerer Schwertkämpfer",
+		"UPGRADE_DESCRIPTION": "Superheavy NL herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Gewinnen Sie 1 Geschicklichkeit."
+	},
+	"theDuelist:SuperheavyToken": {
+		"DESCRIPTION": "Superschwerer NL Beschwörung 1",
+		"NAME": "Superschweres Token",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Beschwörung 1"
+	},
+	"theDuelist:SuperheavyWaraji": {
+		"DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !M! Geschicklichkeit. NL Auspuff.",
+		"NAME": "Superschwerer Waraji",
+		"UPGRADE_DESCRIPTION": "Superschwerer NL Tribut !duelist:TRIB! NL Gewinn !M! Geschicklichkeit. NL Gewinn !B! Block. NL Auspuff."
+	},
+	"theDuelist:SwordDeepSeated": {
+		"DESCRIPTION": "Gewinne in diesem Zug 5 Stärke. NL Add !M! Kopien dieser Karte auf den Nachziehstapel, plus !M! Für jedes Schwert mit tief sitzender Figur hast du diesen Kampf mehr Exemplare.",
+		"NAME": "Schwert mit tiefem Sitz",
+		"UPGRADE_DESCRIPTION": "Gewinne in diesem Zug 5 Stärke. NL Add !M! Kopie dieser Karte auf deinen Nachziehstapel, plus !M! Für jedes Schwert von Tiefsitzenden, das du in diesem Kampf gespielt hast, mehr Kopie. NL Auspuff."
+	},
+	"theDuelist:SwordsBurning": {
+		"DESCRIPTION": "Jedes Mal, wenn Sie evozieren, kanalisieren Sie eine zufällige Kugel.",
+		"NAME": "Schwerter: brennendes Licht",
+		"UPGRADE_DESCRIPTION": "Jedes Mal, wenn Sie evozieren, kanalisieren Sie eine zufällige Kugel."
+	},
+	"theDuelist:SwordsConcealing": {
+		"DESCRIPTION": "Jedes Mal, wenn Sie eine Karte spielen, gewinnen Sie !M! Block. Betroffen von Geschicklichkeit.",
+		"NAME": "Schwerter: Licht verbergen",
+		"UPGRADE_DESCRIPTION": "Jedes Mal, wenn Sie eine Karte spielen, gewinnen Sie !M! Block. Betroffen von Geschicklichkeit."
+	},
+	"theDuelist:SwordsRevealing": {
+		"DESCRIPTION": "Alle Beschwörungen als Tribut anbieten (min. 3) NL Ignoriere allen HP-Schaden für 2 Runden. Auspuff.",
+		"NAME": "Schwerter: Licht enthüllen",
+		"UPGRADE_DESCRIPTION": "Alle Beschwörungen als Tribut anbieten (min. 3) NL Ignoriere allen HP-Schaden für 3 Runden. Auspuff."
+	},
+	"theDuelist:TerraTerrible": {
+		"DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "Terra der Schreckliche",
+		"UPGRADE_DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:Terraforming": {
+		"DESCRIPTION": "Füge deiner Hand einen randomisierten Feldzauber hinzu. NL Auspuff.",
+		"NAME": "Terraforming",
+		"UPGRADE_DESCRIPTION": "Angeborenes NL Füge deiner Hand einen randomisierten Feldzauber hinzu. NL Auspuff."
+	},
+	"theDuelist:TheCreator": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Erschöpfen Sie jede Karte in Ihrem Nachzieh- und Ablagestapel. NL Nimm 1 Kosten, ätherische Kopien von JEDER Duelist-Karte in deinen Nachziehstapel. Befreit.",
+		"NAME": "Der Schöpfer",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Erschöpfen Sie jede Karte in Ihrem Nachzieh- und Ablagestapel. NL Nimm 1 Kosten, ätherische Kopien von JEDER Duelist-Karte in deinen Nachziehstapel. Befreit."
+	},
+	"theDuelist:ThousandEyesIdol": {
+		"DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Invertiere deine nächste Kugel.",
+		"NAME": "Tausend Augen Idol",
+		"UPGRADE_DESCRIPTION": "Hexer NL Invertiere deine nächste Kugel."
+	},
+	"theDuelist:ThousandEyesRestrict": {
+		"DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Invertiere alle deine Kugeln und lass dann für jede Kugel, die du hast, eine Dunkelheit zu.",
+		"NAME": "Tausend Augen einschränken",
+		"UPGRADE_DESCRIPTION": "Hexenmeister NL Tribut !duelist:TRIB! NL Invertiere alle deine Kugeln und lass dann für jede Kugel, die du hast, eine Dunkelheit zu."
+	},
+	"theDuelist:ThunderDragon": {
+		"DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Wenn Sie dies für einen Drachen als Tribut anbieten, kanalisieren Sie einen Blitz.",
+		"NAME": "Blitzdrache",
+		"UPGRADE_DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung. NL Wenn Sie dies für einen Drachen als Tribut anbieten, kanalisieren Sie einen Blitz."
+	},
+	"theDuelist:Tierra": {
+		"DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Erhöhe die Tribut aller Monster (überall) um !M!.",
+		"NAME": "Tierra",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Erhöhe die Tribut aller Monster (überall) um !M!."
+	},
+	"theDuelist:TimeWizard": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Zu Beginn des Spielzugs wird eine zufällige Aktion ausgelöst.",
+		"NAME": "Zeit-Assistent",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Zu Beginn des Spielzugs wird eine zufällige Aktion ausgelöst."
+	},
+	"theDuelist:Token": {
+		"DESCRIPTION": "1 NL Gewinn beschwören !B! Block.",
+		"NAME": "Zeichen",
+		"UPGRADE_DESCRIPTION": "1 NL Gewinn beschwören !B! Block."
+	},
+	"theDuelist:TokenVacuum": {
+		"DESCRIPTION": "Tribut ALLE deine Token. Beschwöre ein zufälliges Monster und handele !D! Schaden für einen zufälligen Feind für jeden Tribut.",
+		"NAME": "Token-Vakuum",
+		"UPGRADE_DESCRIPTION": "Tribut ALLE deine Token. Beschwöre ein zufälliges Monster und handele !D! Schaden für einen zufälligen Feind für jeden Tribut."
+	},
+	"theDuelist:ToonAncientGear": {
+		"DESCRIPTION": "Toon Machine NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block.",
+		"NAME": "Toon Ancient Gear",
+		"UPGRADE_DESCRIPTION": "Toon Machine NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block."
+	},
+	"theDuelist:ToonBarrelDragon": {
+		"DESCRIPTION": "Toon Machine Dragon NL Tribut !duelist:TRIB! NL Füge jedem Feind zufällig (25-40) Schaden zu (durch einen Block).",
+		"NAME": "Toon-Fass-Drache",
+		"UPGRADE_DESCRIPTION": "Toon Machine Dragon NL Tribut !duelist:TRIB! NL Füge jedem Feind zufällig (30-45) Schaden zu (durch einen Block)."
+	},
+	"theDuelist:ToonBriefcase": {
+		"DESCRIPTION": "Wann immer Sie eine Toon-Karte spielen, fügen Sie sie zu Beginn des nächsten Spielzugs Ihrer Hand hinzu.",
+		"NAME": "Toon Aktentasche",
+		"UPGRADE_DESCRIPTION": "Wann immer Sie eine Toon-Karte spielen, fügen Sie sie zu Beginn des nächsten Spielzugs Ihrer Hand hinzu."
+	},
+	"theDuelist:ToonCannonSoldier": {
+		"DESCRIPTION": "Toon Machine NL herbeirufen !duelist:SUMM! NL Wann immer Sie einen Toon beschwören, handeln Sie !M! Schaden an allen Feinden.",
+		"NAME": "Toon-Kanonensoldat",
+		"UPGRADE_DESCRIPTION": "Toon Machine NL herbeirufen !duelist:SUMM! NL Wann immer Sie einen Toon beschwören, handeln Sie !M! Schaden an allen Feinden."
+	},
+	"theDuelist:ToonDarkMagician": {
+		"DESCRIPTION": "Toon Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block). Beschwörer kanalisieren",
+		"NAME": "Toon Dunkler Magier",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block). Beschwörer kanalisieren"
+	},
+	"theDuelist:ToonDarkMagicianGirl": {
+		"DESCRIPTION": "Toon Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Channel a Air.",
+		"NAME": "Toon D.M. Mädchen",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Channel a Air."
+	},
+	"theDuelist:ToonDefense": {
+		"DESCRIPTION": "Toon NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Behalte deine Hand in dieser Runde.",
+		"NAME": "Toon Verteidigung",
+		"UPGRADE_DESCRIPTION": "Toon NL Tribut !duelist:TRIB! NL Gewinn !B! Block. NL Behalten Sie Ihre Hand für !M! wendet sich."
+	},
+	"theDuelist:ToonGeminiElf": {
+		"DESCRIPTION": "Toon Spellcaster NL herbeirufen !duelist:SUMM! NL",
+		"NAME": "Toon Zwillinge Elf",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL herbeirufen !duelist:SUMM! NL"
+	},
+	"theDuelist:ToonKingdom": {
+		"DESCRIPTION": "Gewinne oder ersetze den Effekt von Toon World. Nimm für jeden gespielten Toon abnehmenden Schaden.",
+		"NAME": "Toon Königreich",
+		"UPGRADE_DESCRIPTION": "Gewinne oder ersetze den Effekt von Toon World. Nimm für jeden gespielten Toon abnehmenden Schaden."
+	},
+	"theDuelist:ToonMagic": {
+		"DESCRIPTION": "Setze die Kosten für ALLE Toon-Karten in deiner Hand für diesen Zug auf 0.",
+		"NAME": "Toon-Magie",
+		"UPGRADE_DESCRIPTION": "Setze die Kosten für ALLE Toon-Karten in deiner Hand für diesen Zug auf 0."
+	},
+	"theDuelist:ToonMask": {
+		"DESCRIPTION": "Toon NL Füge jedem Feind zufällig (10-40) Schaden zu.",
+		"NAME": "Toon Mask",
+		"UPGRADE_DESCRIPTION": "Toon NL Füge jedem Feind zufällig (15-50) Schaden zu."
+	},
+	"theDuelist:ToonMaskedSorcerer": {
+		"DESCRIPTION": "Toon Spellcaster NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Wähle eine Kugel zum Kanal.",
+		"NAME": "Toon Masked Sorcerer",
+		"UPGRADE_DESCRIPTION": "Toon Spellcaster NL Beschwörung !duelist:SUMM! NL Deal !D! Beschädigung. NL Wähle eine Kugel zum Kanal."
+	},
+	"theDuelist:ToonMermaid": {
+		"DESCRIPTION": "Toon NL Herbeirufen !duelist:SUMM! NL Deal !D! Schaden (durch Block).",
+		"NAME": "Toon Mermaid",
+		"UPGRADE_DESCRIPTION": "Toon NL Herbeirufen !duelist:SUMM! NL Deal !D! Schaden (durch Block)."
+	},
+	"theDuelist:ToonRollback": {
+		"DESCRIPTION": "ALLE gespielten Toons werden in diesem Zug zufällig in Ihre Hand kopiert.",
+		"NAME": "Toon Rollback",
+		"UPGRADE_DESCRIPTION": "ALLE gespielten Toons werden in diesem Zug zufällig in Ihre Hand kopiert."
+	},
+	"theDuelist:ToonSummonedSkull": {
+		"DESCRIPTION": "Toon Fiend NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block). NL Gewinne 2 Stärke.",
+		"NAME": "Toon S. Skull",
+		"UPGRADE_DESCRIPTION": "Toon Fiend NL Tribut !duelist:TRIB! NL Deal !D! Schaden (durch Block). NL Gewinnt 3 Stärke."
+	},
+	"theDuelist:ToonTable": {
+		"DESCRIPTION": "Hol dir eine Toon-Karte von deinem Nachziehstapel.",
+		"NAME": "Toon Inhaltsverzeichnis",
+		"UPGRADE_DESCRIPTION": "Hol dir eine Toon-Karte von deinem Nachziehstapel. NL Holen Sie eine Toon-Karte von Ihrem Ablagestapel."
+	},
+	"theDuelist:ToonToken": {
+		"DESCRIPTION": "Toon NL herbeirufen 1",
+		"NAME": "Toon-Token",
+		"UPGRADE_DESCRIPTION": "Toon NL herbeirufen 1"
+	},
+	"theDuelist:ToonWorld": {
+		"DESCRIPTION": "Ermöglicht das Spielen von Toon-Karten. Für jeden gespielten Toon verlieren Sie eine abnehmende Menge an HP.",
+		"NAME": "Toon World",
+		"UPGRADE_DESCRIPTION": "Angeborenes NL Ermöglicht das Spielen von Toon-Karten. Für jeden gespielten Toon verlieren Sie eine abnehmende Menge an HP."
+	},
+	"theDuelist:ToonsArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Toon-Karten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Toons",
+			"ALLE Toon-Karten."
+		],
+		"NAME": "Toons"
+	},
+	"theDuelist:TrapHole": {
+		"DESCRIPTION": "Bei jeder Beschwörung besteht eine Chance von 30%, das Monster sofort als Tribut anzubieten und dann das Monster erneut zu sammeln.",
+		"NAME": "Trap Hole",
+		"UPGRADE_DESCRIPTION": "Bei jeder Beschwörung haben Sie eine Chance von 50%, das Monster sofort zu tributieren und dann erneut zu summen."
+	},
+	"theDuelist:TrapsArchetype": {
+		"DESCRIPTION": "Fügen Sie Ihrem Kartenpool Fallenkarten hinzu.",
+		"EXTENDED_DESCRIPTION": [
+			"Fallen",
+			"Alle Fallenkarten außer Toon Mask."
+		],
+		"NAME": "Fallen"
+	},
+	"theDuelist:TributeDoomed": {
+		"DESCRIPTION": "Tribut !duelist:TRIB! NL Wähle !M! Monster zum Wiederaufnehmen von Ihrem Ablagestapel.",
+		"NAME": "Hommage an das Schicksal",
+		"UPGRADE_DESCRIPTION": "Tribut !duelist:TRIB! NL Wähle !M! Monster, das du verbessern und aus deinem Ablagestapel resummon kannst."
+	},
+	"theDuelist:TrihornedDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Lenke für jeden Drachen, dem du Tribut zählst, eine zufällige Kugel, um dies zu spielen.",
+		"NAME": "Tri-Horned Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Wähle für jeden Drachen, den du als Tribut anbietest, eine Kugel zum Kanal, um dies zu spielen."
+	},
+	"theDuelist:TurretWarrior": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Immer wenn Sie ein Token spielen, handeln Sie !M! Schaden an ALLEN Feinden.",
+		"NAME": "Turret Warrior",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören Immer wenn Sie ein Token spielen, handeln Sie !M! Schaden an ALLEN Feinden."
+	},
+	"theDuelist:TwinBarrelDragon": {
+		"DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Bewerben Sie sich !M! Verwundbar",
+		"NAME": "Twin Barrel Dragon",
+		"UPGRADE_DESCRIPTION": "Drache NL Herbeirufen !duelist:SUMM! NL Gewinne !B! Block. NL Bewerben Sie sich !M! Verwundbar"
+	},
+	"theDuelist:TwinHeadedFire": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "T.H. Feuerdrache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:UltimateOffering": {
+		"DESCRIPTION": "Wann immer Sie versuchen, mit einem Stapel maximaler Vorladungen zu beschwören: 3 HP, Inkrement !M! und dann beschwöre !M!.",
+		"NAME": "Das ultimative Angebot",
+		"UPGRADE_DESCRIPTION": "Wann immer Sie versuchen, mit einem Stapel maximaler Vorladungen zu beschwören: 3 HP, Inkrement !M! und dann beschwöre !M!."
+	},
+	"theDuelist:Umi": {
+		"DESCRIPTION": "Eure Aqua-Monsterkarten verursachen 50% mehr Schaden und erhalten 50% mehr Block.",
+		"NAME": "Umi",
+		"UPGRADE_DESCRIPTION": "Eure Aqua-Monsterkarten verursachen 50% mehr Schaden und erhalten 50% mehr Block."
+	},
+	"theDuelist:ValkMagnet": {
+		"DESCRIPTION": "Wenn du alle drei Magneten hast: Herbeirufen !duelist:SUMM! und handele !D! Beschädigung. ALLE Magnete entfernen.",
+		"NAME": "Walküre",
+		"UPGRADE_DESCRIPTION": "Wenn du alle drei Magneten hast: Herbeirufen !duelist:SUMM! und handele !D! Beschädigung."
+	},
+	"theDuelist:VanityFiend": {
+		"DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung. NL Du kannst nicht weiterspielen, während dieses Monster beschworen wird.",
+		"NAME": "Vanitys Unterweltler",
+		"UPGRADE_DESCRIPTION": "Freund beschwören !duelist:SUMM! NL Deal !D! Beschädigung. NL Du kannst nicht weiterspielen, während dieses Monster beschworen wird."
+	},
+	"theDuelist:VioletCrystal": {
+		"DESCRIPTION": "Eure Insekten und Pflanzen verursachen 50% mehr Schaden und erhalten 50% mehr Block. Wann immer Sie Gift verabreichen, indem Sie ein Insekt oder eine Pflanze als Tribut anbieten, wenden Sie 2 zusätzliche Giftstoffe an.",
+		"NAME": "Violetter Kristall",
+		"UPGRADE_DESCRIPTION": "Eure Insekten und Pflanzen verursachen 50% mehr Schaden und erhalten 50% mehr Block. Wann immer Sie Gift verabreichen, indem Sie ein Insekt oder eine Pflanze als Tribut anbieten, wenden Sie 2 zusätzliche Giftstoffe an."
+	},
+	"theDuelist:WaterOrbCard": {
+		"DESCRIPTION": "Kanal eine Wasserkugel.",
+		"NAME": "Wasser",
+		"UPGRADE_DESCRIPTION": "Kanal eine Wasserkugel."
+	},
+	"theDuelist:WhiteHornDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Kanalisieren Sie eine Luft.",
+		"NAME": "Weißhorn-Drache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Kanalisieren Sie eine Luft."
+	},
+	"theDuelist:WhiteMagicalHat": {
+		"DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Wenn du Orbs kanalisiert hast, kehre deine nächste Orb um. Ansonsten kanalisieren Sie eine zufällige Kugel.",
+		"NAME": "Weißer magischer Hut",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL herbeirufen !duelist:SUMM! NL Wenn du Orbs kanalisiert hast, kehre deine nächste Orb um. Ansonsten kanalisieren Sie eine zufällige Kugel."
+	},
+	"theDuelist:WhiteNightDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Kanalisieren Sie eine Luft.",
+		"NAME": "Weißer Nachtdrache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. Kanalisieren Sie eine Luft."
+	},
+	"theDuelist:WingedDragonRa": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel eine MillenniumOrb. NL befreit.",
+		"NAME": "Winged Dragon Ra",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung. NL Channel eine MillenniumOrb. NL befreit."
+	},
+	"theDuelist:WingedKuriboh": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören !M! NL Deal !D! Beschädigung.",
+		"NAME": "Geflügelter Kuriboh",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL beschwören !M! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:Wiretap": {
+		"DESCRIPTION": "Kopieren Sie eine zufällige Karte in Ihre Hand.",
+		"EXTENDED_DESCRIPTION": [
+			"Wähle !M! Karten in der Hand zu kopieren."
+		],
+		"NAME": "Wiretap",
+		"UPGRADE_DESCRIPTION": "Wählen Sie eine Karte in der Hand aus, die Sie kopieren möchten."
+	},
+	"theDuelist:Wiseman": {
+		"DESCRIPTION": "Reinigen. NL Erhöhe 1 Trank-Slot.",
+		"NAME": "Wisemans Kelch",
+		"UPGRADE_DESCRIPTION": "Reinigen. NL Erhöhe 1 Trank-Slot."
+	},
+	"theDuelist:WorldCarrot": {
+		"DESCRIPTION": "Pflanze NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung.",
+		"NAME": "W. Carrotweight Champ",
+		"UPGRADE_DESCRIPTION": "Pflanze NL Herbeirufen !duelist:SUMM! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:WormApocalypse": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Füge deiner Hand einen randomisierten Zauber hinzu.",
+		"NAME": "Wurm-Apokalypse",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block. NL Füge deiner Hand einen randomisierten Zauber hinzu."
+	},
+	"theDuelist:WormBarses": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block.",
+		"NAME": "Wurm Barses",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Gewinne beschwören !B! Block."
+	},
+	"theDuelist:WormKing": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung.",
+		"NAME": "Wurm-König",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung."
+	},
+	"theDuelist:WormWarlord": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Fügen Sie Ihrer Hand eine randomisierte Falle hinzu.",
+		"NAME": "Worm Warlord",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Fügen Sie Ihrer Hand eine randomisierte Falle hinzu."
+	},
+	"theDuelist:YamataDragon": {
+		"DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung.",
+		"NAME": "Yamata Drache",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribut !duelist:TRIB! NL Deal !D! Beschädigung."
+	},
+	"theDuelist:Yami": {
+		"DESCRIPTION": "Eure Zauberwirker verursachen 50% mehr Schaden und erhalten 50% mehr Block. Immer wenn du einen Hexer beschwörst, erhältst du 1 zusätzliche Beschwörung.",
+		"NAME": "Yami",
+		"UPGRADE_DESCRIPTION": "Eure Zauberwirker verursachen 50% mehr Schaden und erhalten 50% mehr Block. Immer wenn du einen Hexer beschwörst, erhältst du 1 zusätzliche Beschwörung."
+	},
+	"theDuelist:YellowGadget": {
+		"DESCRIPTION": "Machine NL herbeirufen !duelist:SUMM! NL Addiere !M! zufällige Token auf Ihrer Hand.",
+		"NAME": "Gelbes Gerät",
+		"UPGRADE_DESCRIPTION": "Machine NL herbeirufen !duelist:SUMM! NL Wähle !M! zufällige Token, die Sie Ihrer Hand hinzufügen können."
+	},
+	"theDuelist:ZombieToken": {
+		"DESCRIPTION": "Zombie NL herbeirufen 1",
+		"NAME": "Zombie-Token",
+		"UPGRADE_DESCRIPTION": "Zombie NL herbeirufen 1"
+	},
+	"theDuelist:Zombyra": {
+		"DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Verlieren !M! HP.",
+		"NAME": "Zombyra",
+		"UPGRADE_DESCRIPTION": "herbeirufen !duelist:SUMM! NL Deal beschwören !D! Beschädigung. NL Verlieren !M! HP."
+	}
+}

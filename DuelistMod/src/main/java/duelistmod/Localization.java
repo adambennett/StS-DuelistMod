@@ -28,6 +28,10 @@ public class Localization {
 	        	return "zht";
 	        case KOR:
 	        	return "kor";
+	        case DEU:
+	        	return "deu";
+	        case FRA:
+	        	return "fra";
 	        default:
 	            return "eng";
 	    }

@@ -1,0 +1,375 @@
+{
+	"0": {
+		"DESCRIPTION": "Zählt derzeit beschworene Monster. Maximum von # b5 Summons.",
+		"NAMES": [
+			"herbeirufen",
+			"Ladung"
+		],
+		"PROPER_NAME": "herbeirufen"
+	},
+	"1": {
+		"DESCRIPTION": "#yOrb: Fügt deiner Hand zu Beginn des Spielzugs #yrandomisierte Monsterkarten hinzu. #yEvoke fügt deiner Hand auch #yrandomisierte Monster hinzu.",
+		"NAMES": [
+			"MonsterOrb",
+			"MonsterOrb"
+		],
+		"PROPER_NAME": "MonsterOrb"
+	},
+	"2": {
+		"DESCRIPTION": "Bestimmte Karten (wie Monster Reborn) ermöglichen es Ihnen, Monster erneut zu spielen. Wenn Sie ein Monster erneut spielen, spielt es die Karte erneut ab und ignoriert #yTribute-Kosten. Einige Monster haben zusätzliche Effekte, die ausgelöst werden, wenn sie erneut gespielt werden.",
+		"NAMES": [
+			"Resummon"
+		],
+		"PROPER_NAME": "Resummon"
+	},
+	"3": {
+		"DESCRIPTION": "Entfernt X #ySummons. Wenn Sie nicht genügend #ySummons für #yTribute haben, können Sie keine #yTribute-Karte spielen.",
+		"NAMES": [
+			"Tribut"
+		],
+		"PROPER_NAME": "Tribut"
+	},
+	"4": {
+		"DESCRIPTION": "Erhöhen Sie die Anzahl Ihrer #ySummons um die angegebene Anzahl.",
+		"NAMES": [
+			"Zuwachs"
+		],
+		"PROPER_NAME": "Zuwachs"
+	},
+	"5": {
+		"DESCRIPTION": "#yOrb: Erhöhe deine Kraftstacks zu Beginn des Zuges. #yEvoke gibt zufällige #Buffs.",
+		"NAMES": [
+			"Puffer"
+		],
+		"PROPER_NAME": "Puffer"
+	},
+	"6": {
+		"DESCRIPTION": "#yOrb: #ySummon #ySpellcater Token am Ende des Zuges. #yEvoke erhöht Ihre maximale Anzahl von #ySummons.",
+		"NAMES": [
+			"Beschwörer"
+		],
+		"PROPER_NAME": "Beschwörer"
+	},
+	"7": {
+		"DESCRIPTION": "#yOrb: Zu Beginn des Zuges erhöhen Sie die Anzahl der Karten, wenn diese ausgelöst wird. #yEvoke setzt die Kosten für zufällige Karten in Ihrer Hand auf 0.",
+		"NAMES": [
+			"Reduzierstück"
+		],
+		"PROPER_NAME": "Reduzierstück"
+	},
+	"8": {
+		"DESCRIPTION": "#yOrb: Fügt deiner Hand zu Beginn des Spielzugs #Yandragon-Karten hinzu. #yEvoke setzt die Kosten für zufällige #yDragons in Ihrer Hand auf 0.",
+		"NAMES": [
+			"DragonOrb",
+			"DragonOrb"
+		],
+		"PROPER_NAME": "DragonOrb"
+	},
+	"9": {
+		"DESCRIPTION": "Wenn sich eine Karte mit #yOverflow am Ende des Spielzugs in der Hand befindet, aktivieren Sie einen Effekt. Dieser Effekt ist nur begrenzt nutzbar.",
+		"NAMES": [
+			"Überlauf"
+		],
+		"PROPER_NAME": "Überlauf"
+	},
+	"10": {
+		"DESCRIPTION": "Kann nur gespielt werden, wenn #yToon #yWorld aktiv ist. Wenn du ein Toon-Monster mit einem anderen Toon als Tribut anbietest, füge allen Gegnern # b5 Schaden zu.",
+		"NAMES": [
+			"Toon",
+			"Toons"
+		],
+		"PROPER_NAME": "Toon"
+	},
+	"11": {
+		"DESCRIPTION": "Marken, die mit den #yMagnet #yWarrior-Monstern in Verbindung stehen. #yMagnete haben keine inhärente Wirkung.",
+		"NAMES": [
+			"Magnet",
+			"Magnete"
+		],
+		"PROPER_NAME": "Magnet"
+	},
+	"12": {
+		"DESCRIPTION": "Füge deiner Hand # b2 #randomisierte Karten hinzu, diese kosten in diesem Zug # b0. Wende # b1 zufällig #buff an. Wende zufällige # b2 #Debuffs an einem Feind an.",
+		"NAMES": [
+			"Ojamania"
+		],
+		"PROPER_NAME": "Ojamania"
+	},
+	"13": {
+		"DESCRIPTION": "Wenn Sie #yTribute #yDragon für ein anderes #yDragon verwenden, erhalten Sie # b1 #yStrength.",
+		"NAMES": [
+			"Drachen"
+		],
+		"PROPER_NAME": "Drachen"
+	},
+	"14": {
+		"DESCRIPTION": "Wenn du angreifst und die einzigen Monster, die du gerade beschworen hast, #ySpellcasters sind, erhältst du # b5 Block. Sie müssen mindestens # b1 #ySpellcaster beschworen haben, um diesen Effekt auszulösen.",
+		"NAMES": [
+			"Zauberkünstler"
+		],
+		"PROPER_NAME": "Zauberkünstler"
+	},
+	"15": {
+		"DESCRIPTION": "Wenn Sie ein #yInsect-Monster #yTribute für eine #yInsect- oder #yPflanze #Bibeln, wenden Sie # b3 #yPoison auf ALLE Feinde an.",
+		"NAMES": [
+			"Insekt",
+			"Insekten"
+		],
+		"PROPER_NAME": "Insekt"
+	},
+	"16": {
+		"DESCRIPTION": "Wenn du #yTribute ein #yPlant-Monster für ein #yInsect oder ein #yPlant tribute, wende # b3 #yPoison auf ALLE Gegner an.",
+		"NAMES": [
+			"Pflanze",
+			"Pflanzen"
+		],
+		"PROPER_NAME": "Pflanze"
+	},
+	"17": {
+		"DESCRIPTION": "#yPredaplant-Monster werden als #yPlants behandelt. Wenn Sie ein #yPredaplant-Monster #yTribute für eine #yInsect- oder #yPlant-Instanz einsetzen, wenden Sie # b3 #yPoison an ALLE Feinde an.",
+		"NAMES": [
+			"prädaplant",
+			"Predaplants"
+		],
+		"PROPER_NAME": "prädaplant"
+	},
+	"18": {
+		"DESCRIPTION": "#yOrb: Fügt deiner Hand zu Beginn des Spielzugs #Yandyized #YSpell-Karten hinzu. #yEvoke fügt Ihrer Hand außerdem #yrandomized #ySpells hinzu.",
+		"NAMES": [
+			"Erde",
+			"Erde"
+		],
+		"PROPER_NAME": "Erde"
+	},
+	"19": {
+		"DESCRIPTION": "#yOrb: Zu Beginn des Zuges haben Sie die Chance, #yChannel eine zufällige #yOrb. Sie haben eine höhere Chance, wenn die einzigen Monster, die Sie gerade beschworen haben, #yDragons sind. #yEvoke erhöht Ihre #yOrb-Slots um # b1.",
+		"NAMES": [
+			"Luft",
+			"Luft"
+		],
+		"PROPER_NAME": "Luft"
+	},
+	"20": {
+		"DESCRIPTION": "#yOrb: Wenn Sie #yDragons zeichnen, werden die #yTribute-Kosten für diese Runde gesenkt. Wenn #yEvoked, reduziert #yTribute die Kosten von #yDragons (überall) für den Rest des Kampfes.",
+		"NAMES": [
+			"Feuer",
+			"Feuer"
+		],
+		"PROPER_NAME": "Feuer"
+	},
+	"21": {
+		"DESCRIPTION": "#yOrb: Löst zu Beginn des Spielzugs eine zufällige Aktion aus. #yEvoke löst auch zufällige Aktionen aus.",
+		"NAMES": [
+			"Panne",
+			"Panne"
+		],
+		"PROPER_NAME": "Panne"
+	},
+	"22": {
+		"DESCRIPTION": "#yOrb: Zu Beginn des Zuges besteht eine Chance #b20%, #ySummon ein [# FF5252] Shadow [# FF5252] -Token zu setzen. #yEvoke: #yResummon Monster von deinem Ablagestapel auf zufällige Feinde.",
+		"NAMES": [
+			"Schatten",
+			"Schatten"
+		],
+		"PROPER_NAME": "Schatten"
+	},
+	"23": {
+		"DESCRIPTION": "#yOrb: Wenn Sie #yAquas zeichnen, werden die #yTribute-Kosten für diese Runde gesenkt. Wenn #yEvoked, erhöht sich die Anzahl der #ySummons aller #yAqua-Monster für den Rest des Kampfes.",
+		"NAMES": [
+			"Spritzen",
+			"Spritzen"
+		],
+		"PROPER_NAME": "Spritzen"
+	},
+	"24": {
+		"DESCRIPTION": "Wenn du #yResummon #yZombie spielst, erhältst du # b10 Block.",
+		"NAMES": [
+			"Zombie",
+			"Zombies",
+			"Zombie",
+			"Zombies"
+		],
+		"PROPER_NAME": "Zombie"
+	},
+	"25": {
+		"DESCRIPTION": "Wenn Sie einen #yFiend für einen anderen #yFiend #yTribute machen, legen Sie eine # b1-Karte aus Ihrem Ablagestapel in Ihre Hand. Diese Karte erhält #yExhaust.",
+		"NAMES": [
+			"Teufel",
+			"Unterweltler",
+			"Teufel",
+			"Unterweltler"
+		],
+		"PROPER_NAME": "Teufel"
+	},
+	"26": {
+		"DESCRIPTION": "Wenn Sie ein #yAqua für ein anderes #yAqua #yTribute machen, fügen Sie Ihrer Hand ein #yandraisiertes #yAqua-Monster hinzu.",
+		"NAMES": [
+			"AQUA",
+			"AQUA"
+		],
+		"PROPER_NAME": "AQUA"
+	},
+	"27": {
+		"DESCRIPTION": "Bei #yRandomized-Karten wurden möglicherweise die Kosten geändert, #yTribute-Kosten wurden reduziert, #ySummons wurde erhöht, möglicherweise #yExhaust und es wurden #yUpgraded oder #yEthereal.",
+		"NAMES": [
+			"Zufällig",
+			"Zufällig"
+		],
+		"PROPER_NAME": "Zufällig"
+	},
+	"28": {
+		"DESCRIPTION": "Kann nicht #yResummoned sein.",
+		"NAMES": [
+			"Befreit",
+			"Befreit"
+		],
+		"PROPER_NAME": "Befreit"
+	},
+	"29": {
+		"DESCRIPTION": "#yOrb: Zu Beginn des Spielzugs heile für jedes Monster, das diesen Kampf beschworen hat, # b1 HP. NL #yEvoke: Heile # b3 HP für jedes Monster, das diesen Kampf beschworen hat.",
+		"NAMES": [
+			"Blaze",
+			"Blaze"
+		],
+		"PROPER_NAME": "Blaze"
+	},
+	"30": {
+		"DESCRIPTION": "#yOrb: Zu Beginn des Zuges #yTribute # b2 und gewinne temporäre HP in Höhe der gesamten Energiekosten aller Tribute. NL #yEvoke: #yTribute ALL Beschwörung, gewinne einen zufälligen #yBuff, der dem Betrag entspricht, der verteilt wird.",
+		"NAMES": [
+			"Verbraucher",
+			"Verbraucher"
+		],
+		"PROPER_NAME": "Verbraucher"
+	},
+	"31": {
+		"DESCRIPTION": "#yOrb: Füge zu Beginn des Spielzugs deiner Hand ein #yRandomized #yTrap hinzu. NL #yEvoke: Spielen Sie eine zufällige #yTrap, die Sie bei einem zufälligen Feind gespielt haben.",
+		"NAMES": [
+			"Gadget",
+			"Gadget"
+		],
+		"PROPER_NAME": "Gadget"
+	},
+	"32": {
+		"DESCRIPTION": "#yOrb: Wenn Sie einen #yZombie zeichnen, reduzieren Sie die #yTribute-Kosten für diesen Kampf um # b1. NL #yEvoke: Füge einem zufälligen Feind zufällig Schaden zu. Verursacht mehr Schaden mit einer höheren Evokationsmenge.",
+		"NAMES": [
+			"Lava",
+			"Lava"
+		],
+		"PROPER_NAME": "Lava"
+	},
+	"33": {
+		"DESCRIPTION": "#yOrb: Aktiviere zu Beginn des Spielzugs die #yMillennium #yPuzzle. NL #yEvoke: Wähle und kaufe X # -Randomized-Karten aus deinem Deck-Pool auf deine Hand.",
+		"NAMES": [
+			"MillenniumOrb",
+			"MillenniumOrb"
+		],
+		"PROPER_NAME": "MillenniumOrb"
+	},
+	"34": {
+		"DESCRIPTION": "#yOrb: Am Ende des Zuges erhältst du #yBlock entsprechend der Anzahl der gespielten #ySpells plus # b1. NL #yEvoke: Gewinne #yMetallicize # b2.",
+		"NAMES": [
+			"Metall",
+			"Metall"
+		],
+		"PROPER_NAME": "Metall"
+	},
+	"35": {
+		"DESCRIPTION": "#yOrb: Füge zu Beginn des Spielzugs deiner Hand ein #yRandomized #yPlant oder #yInsect hinzu. NL #yEvoke: Erhöhe die Beschwörung aller #yInsect- und #yPlant-Monster (überall) für diesen Kampf um 1.",
+		"NAMES": [
+			"Schlamm",
+			"Schlamm"
+		],
+		"PROPER_NAME": "Schlamm"
+	},
+	"36": {
+		"DESCRIPTION": "#yOrb: Füge zu Beginn des Zuges ein #yRandomized #yAqua-Monster zu deiner Hand hinzu. NL #yPassive: Erhöhe am Ende des Zuges die Beschwörung aller #yAqua-Monster in deiner Hand, des Ablagestapels und des Ablassstapels um # b1. NL #yEvoke: #yTribute alle #yAqua-Monster und #ySummon ein zufälliges Monster für jedes. Gewinnen Sie eine zufällige #yBuff, die der Anzahl der #yAqua-Monster #yTributed entspricht.",
+		"NAMES": [
+			"Nebel",
+			"Nebel"
+		],
+		"PROPER_NAME": "Nebel"
+	},
+	"37": {
+		"DESCRIPTION": "#yOrb: Wende zu Beginn des Spielzugs einen zufälligen Gegner mit # b1 #ySlow an. NL #yEvoke: Wende ALLE Gegner mit # b4 #ySlow an.",
+		"NAMES": [
+			"Sand",
+			"Sand"
+		],
+		"PROPER_NAME": "Sand"
+	},
+	"38": {
+		"DESCRIPTION": "#yOrb: Immer wenn du ein Monster ziehst, erhöhe die #yTribute-Kosten um # b4 und den Schaden für diesen Zug um # b12. NL #yEvoke: #yIncrement # b5.",
+		"NAMES": [
+			"Rauch",
+			"Rauch"
+		],
+		"PROPER_NAME": "Rauch"
+	},
+	"39": {
+		"DESCRIPTION": "#yOrb: Fügt deiner Hand zu Beginn des Spielzugs #yRandomized Power-Karten hinzu. NL #yEvoke: Wenn Sie über leere Orb-Slots verfügen, verbrauchen Sie einen und reduzieren Sie die #yTribute-Kosten aller Monster in Ihrem Nachziehstapel um # b1.",
+		"NAMES": [
+			"Sturm",
+			"Sturm"
+		],
+		"PROPER_NAME": "Sturm"
+	},
+	"40": {
+		"DESCRIPTION": "#yInverting ist dasselbe wie #yEvoking, nur dass Sie #yChannel eine Kugel, die das \"Gegenteil\" derjenigen ist, die Sie #yEvoked verwenden.",
+		"NAMES": [
+			"Umkehren",
+			"Umkehren",
+			"Inversion",
+			"Inversion"
+		],
+		"PROPER_NAME": "Umkehren"
+	},
+	"41": {
+		"DESCRIPTION": "Immer wenn du #ySummon ein #yNaturia-Monster spielst, fügt es am Ende des Spielzugs allen Gegnern # b1 Schaden zu, solange du mindestens 1 #yNaturia-Monster beschworen hast.",
+		"NAMES": [
+			"Naturia",
+			"Naturia"
+		],
+		"PROPER_NAME": "Naturia"
+	},
+	"42": {
+		"DESCRIPTION": "Wenn Sie #yTribute #ySuperheavy für ein anderes #ySuperheavy verwenden, erhalten Sie # b1 #yDexterity.",
+		"NAMES": [
+			"Sehr schwer",
+			"Sehr schwer"
+		],
+		"PROPER_NAME": "Sehr schwer"
+	},
+	"43": {
+		"DESCRIPTION": "Wenn Sie #yTribute #yMachine für eine andere #yMachine verwenden, erhalten Sie # b1 #yArtifact.",
+		"NAMES": [
+			"Maschine",
+			"Maschinen",
+			"Maschine",
+			"Maschinen"
+		],
+		"PROPER_NAME": "Maschine"
+	},
+	"44": {
+		"DESCRIPTION": "#yPassive: Füge zu Beginn des Zuges einen zufälligen Debuff mit # b1-Stack auf einen zufälligen Gegner aus. NL #yEvoke: Füge deiner Hand ein #yrandomized #yFiend hinzu.",
+		"NAMES": [
+			"Schwarz",
+			"Schwarz"
+		],
+		"PROPER_NAME": "Schwarz"
+	},
+	"45": {
+		"DESCRIPTION": "Wenn sich eine #yImmortal-Karte auf dem Ablagestapel befindet, erhalten Sie zu Beginn des Zuges [E].",
+		"NAMES": [
+			"Unsterblich",
+			"Unsterblich"
+		],
+		"PROPER_NAME": "Unsterblich"
+	},
+	"46": {
+		"DESCRIPTION": "#yOrb: Füge ALLEN Feinden Schaden zu, gewinne #yEnergy und #yBlock. NL #yGate ist von #yFocus nicht betroffen.",
+		"NAMES": [
+			"Tor"
+		],
+		"PROPER_NAME": "Tor"
+	}
+}

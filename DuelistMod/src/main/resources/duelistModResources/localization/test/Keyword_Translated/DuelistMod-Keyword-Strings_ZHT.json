@@ -1,5 +1,5 @@
-[
-	{
+{
+	"0": {
 		"DESCRIPTION": "計算目前召喚的怪物。最多＃b5傳票。",
 		"NAMES": [
 			"召喚",
@@ -7,7 +7,7 @@
 		],
 		"PROPER_NAME": "召喚"
 	},
-	{
+	"1": {
 		"DESCRIPTION": "#yOrb：在回合開始時，將#yrandomized monster cards添加到你的手中。 #yEvoke還會將#yrandomized怪物添加到您的手中。",
 		"NAMES": [
 			"MonsterOrb",
@@ -15,49 +15,49 @@
 		],
 		"PROPER_NAME": "MonsterOrb"
 	},
-	{
+	"2": {
 		"DESCRIPTION": "某些卡片（如Monster Reborn）允許你重新製作怪物。當你重新召喚一個怪物時，它會重放該卡，忽略#yTribute成本。一些怪物有額外的效果，當他們被重新召喚時會觸發。",
 		"NAMES": [
 			"resummon"
 		],
 		"PROPER_NAME": "resummon"
 	},
-	{
+	"3": {
 		"DESCRIPTION": "刪除X #ySummons。除非你有足夠的#ySummons到#yTribute，否則你不能玩#yTribute卡。",
 		"NAMES": [
 			"貢"
 		],
 		"PROPER_NAME": "貢"
 	},
-	{
+	"4": {
 		"DESCRIPTION": "按給定的數字增加你的最大#ySummons。",
 		"NAMES": [
 			"增量"
 		],
 		"PROPER_NAME": "增量"
 	},
-	{
+	"5": {
 		"DESCRIPTION": "#yOrb：在回合開始時增加你的力量籌碼。 #yEvoke隨機提供#ybuffs。",
 		"NAMES": [
 			"緩衝"
 		],
 		"PROPER_NAME": "緩衝"
 	},
-	{
+	"6": {
 		"DESCRIPTION": "#yOrb：#ySummon #ySpellcater轉牌尾的代幣。 #yEvoke增加你的最大#ySummons。",
 		"NAMES": [
 			"召喚師"
 		],
 		"PROPER_NAME": "召喚師"
 	},
-	{
+	"7": {
 		"DESCRIPTION": "#yOrb：在回合開始時，增加卡被減少時被喚起。 #yEvoke將手中隨機卡的成本設置為0。",
 		"NAMES": [
 			"減速器"
 		],
 		"PROPER_NAME": "減速器"
 	},
-	{
+	"8": {
 		"DESCRIPTION": "#yOrb：在回合開始時，將#yrandomized #yDragon卡添加到您的手中。 #yEvoke將手中隨機#yDragons的成本設置為0。",
 		"NAMES": [
 			"DragonOrb",
@@ -65,14 +65,14 @@
 		],
 		"PROPER_NAME": "DragonOrb"
 	},
-	{
+	"9": {
 		"DESCRIPTION": "如果在轉牌結束時手中有#yOverflow的牌，請激活效果。這種效果的用途有限。",
 		"NAMES": [
 			"溢出"
 		],
 		"PROPER_NAME": "溢出"
 	},
-	{
+	"10": {
 		"DESCRIPTION": "只有在#yToon #yWorld處於活動狀態時才能播放。如果你使用另一個卡通向一個卡通怪物致敬，對所有敵人造成＃b5傷害。",
 		"NAMES": [
 			"香椿",
@@ -80,7 +80,7 @@
 		],
 		"PROPER_NAME": "香椿"
 	},
-	{
+	"11": {
 		"DESCRIPTION": "與#yMagnet #yWarrior怪物相關的標記。 #yMagnets沒有固有的影響。",
 		"NAMES": [
 			"磁鐵",
@@ -88,28 +88,28 @@
 		],
 		"PROPER_NAME": "磁鐵"
 	},
-	{
+	"12": {
 		"DESCRIPTION": "將＃b2 #yrandomized卡添加到您的手中，本回合費用為＃b0。隨機應用＃b1 #ybuff。將＃b2隨機#ydebuffs應用於敵人。",
 		"NAMES": [
 			"ojamania"
 		],
 		"PROPER_NAME": "ojamania"
 	},
-	{
+	"13": {
 		"DESCRIPTION": "當#yTribute #yDragon為另一個#yDragon時，Gain＃b1 #yStrength。",
 		"NAMES": [
 			"龍"
 		],
 		"PROPER_NAME": "龍"
 	},
-	{
+	"14": {
 		"DESCRIPTION": "當你攻擊時，如果你當前召喚的唯一怪物是#ySpellcasters，則獲得＃b5 Block。你需要召喚至少＃b1 #ySpellcaster來觸發這個效果。",
 		"NAMES": [
 			"施法者"
 		],
 		"PROPER_NAME": "施法者"
 	},
-	{
+	"15": {
 		"DESCRIPTION": "當#yTribute #yInsect怪物為#yInsect或#yPlant時，將＃b3 #yPoison應用於所有敵人。",
 		"NAMES": [
 			"昆蟲",
@@ -117,7 +117,7 @@
 		],
 		"PROPER_NAME": "昆蟲"
 	},
-	{
+	"16": {
 		"DESCRIPTION": "當#yTribute #yPlant怪物為#yInsect或#yPlant時，將＃b3 #yPoison應用於所有敵人。",
 		"NAMES": [
 			"廠",
@@ -125,7 +125,7 @@
 		],
 		"PROPER_NAME": "廠"
 	},
-	{
+	"17": {
 		"DESCRIPTION": "#yPredaplant怪物被視為#yPlants。當#yTribute #yPredaplant怪物為#yInsect或#yPlant時，將＃b3 #yPoison應用於所有敵人。",
 		"NAMES": [
 			"predaplant",
@@ -133,7 +133,7 @@
 		],
 		"PROPER_NAME": "predaplant"
 	},
-	{
+	"18": {
 		"DESCRIPTION": "#yOrb：在回合開始時，將#yrandomized #ySpell卡添加到您的手中。 #yEvoke還會將#yrandomized #ySpells添加到您的手中。",
 		"NAMES": [
 			"地球",
@@ -141,7 +141,7 @@
 		],
 		"PROPER_NAME": "地球"
 	},
-	{
+	"19": {
 		"DESCRIPTION": "#yOrb：在回合開始時，有機會#yChannel隨機#yOrb。如果您目前召喚的唯一怪物是#yDragons，那麼你有更高的機會。 #yEvoke通過＃b1增加#yOrb插槽。",
 		"NAMES": [
 			"空氣",
@@ -149,7 +149,7 @@
 		],
 		"PROPER_NAME": "空氣"
 	},
-	{
+	"20": {
 		"DESCRIPTION": "#yOrb：當你繪製#yDragons時，減少他們的#yTribute成本。當#yEvoked時，為其餘的戰鬥減少#yDragons（無處不在）的#yTribute成本。",
 		"NAMES": [
 			"火",
@@ -157,7 +157,7 @@
 		],
 		"PROPER_NAME": "火"
 	},
-	{
+	"21": {
 		"DESCRIPTION": "#yOrb：在回合開始時，觸發一個隨機動作。 #yEvoke還會觸發隨機操作。",
 		"NAMES": [
 			"毛刺",
@@ -165,7 +165,7 @@
 		],
 		"PROPER_NAME": "毛刺"
 	},
-	{
+	"22": {
 		"DESCRIPTION": "#yOrb：在回合開始時，有＃b20％的機會#ySummon一個[＃FF5252]暗影[＃FF5252]令牌。 #yEvoke：#yResummon怪物從你的丟棄堆上隨機敵人。",
 		"NAMES": [
 			"陰影",
@@ -173,7 +173,7 @@
 		],
 		"PROPER_NAME": "陰影"
 	},
-	{
+	"23": {
 		"DESCRIPTION": "#yOrb：當您繪製#yAquas時，減少他們在該回合的#yTribute成本。當#yEvoked時，在剩下的戰鬥中增加所有#yAqua怪物的#ySummons數量。",
 		"NAMES": [
 			"濺",
@@ -181,7 +181,7 @@
 		],
 		"PROPER_NAME": "濺"
 	},
-	{
+	"24": {
 		"DESCRIPTION": "當你#yResummon a #yZombie時，獲得＃b10 Block。",
 		"NAMES": [
 			"殭屍",
@@ -191,7 +191,7 @@
 		],
 		"PROPER_NAME": "殭屍"
 	},
-	{
+	"25": {
 		"DESCRIPTION": "當#yTribute #yFiend換另一個#yFiend時，請將棄牌堆中的＃b1卡放入你的手中。那張牌獲得#yExhaust。",
 		"NAMES": [
 			"惡魔",
@@ -201,7 +201,7 @@
 		],
 		"PROPER_NAME": "惡魔"
 	},
-	{
+	"26": {
 		"DESCRIPTION": "當你為另一個#yAqua #yTribute #yAqua時，在你的手上添加一個#yrandomized #yAqua怪物。",
 		"NAMES": [
 			"水族",
@@ -209,7 +209,7 @@
 		],
 		"PROPER_NAME": "水族"
 	},
-	{
+	"27": {
 		"DESCRIPTION": "#yRandomized卡可能會改變其成本，＃yTribute成本降低，＃ySummons增加，可能#yExhaust，並可能成為#yUpgraded或#yEthereal。",
 		"NAMES": [
 			"隨機",
@@ -217,7 +217,7 @@
 		],
 		"PROPER_NAME": "隨機"
 	},
-	{
+	"28": {
 		"DESCRIPTION": "不能#yResummoned。",
 		"NAMES": [
 			"豁免",
@@ -225,7 +225,7 @@
 		],
 		"PROPER_NAME": "豁免"
 	},
-	{
+	"29": {
 		"DESCRIPTION": "#yOrb：在回合開始時，為每個怪物召喚＃b1 HP召喚這場戰鬥。 NL #yEvoke：為每個怪物治療＃b3 HP召喚這場戰鬥。",
 		"NAMES": [
 			"火焰",
@@ -233,7 +233,7 @@
 		],
 		"PROPER_NAME": "火焰"
 	},
-	{
+	"30": {
 		"DESCRIPTION": "#yOrb：在回合開始時，＃yTribute＃b2並獲得臨時HP等於所有貢獻的總能量成本。 NL #yEvoke：#yTribute ALL召喚，獲得一個隨機的#yBuff等於tributed的數量。",
 		"NAMES": [
 			"消費者",
@@ -241,7 +241,7 @@
 		],
 		"PROPER_NAME": "消費者"
 	},
-	{
+	"31": {
 		"DESCRIPTION": "#yOrb：在回合開始時，將#yRandomized #yTrap添加到您的手中。 NL #yEvoke：隨機播放#yTrap你已經在隨機敵人身上玩過這個遊戲。",
 		"NAMES": [
 			"小工具",
@@ -249,7 +249,7 @@
 		],
 		"PROPER_NAME": "小工具"
 	},
-	{
+	"32": {
 		"DESCRIPTION": "#yOrb：每當你繪製一個#yZombie時，為這場戰鬥減少#yTribute成本＃b1。 NL #yEvoke：對隨機敵人造成隨機傷害。以更高的召喚量造成更多傷害。",
 		"NAMES": [
 			"岩漿",
@@ -257,7 +257,7 @@
 		],
 		"PROPER_NAME": "岩漿"
 	},
-	{
+	"33": {
 		"DESCRIPTION": "#yOrb：在回合開始時，激活#yMillennium #yPuzzle。 NL #yEvoke：選擇並將甲板池中的X #yrandomized卡添加到您的手中。",
 		"NAMES": [
 			"MillenniumOrb",
@@ -265,7 +265,7 @@
 		],
 		"PROPER_NAME": "MillenniumOrb"
 	},
-	{
+	"34": {
 		"DESCRIPTION": "#yOrb：在回合結束時，獲得#yBlock等於此戰鬥中#ySpells的數量加上＃b1。 NL #yEvoke：獲得#yMetallicize＃b2。",
 		"NAMES": [
 			"金屬",
@@ -273,7 +273,7 @@
 		],
 		"PROPER_NAME": "金屬"
 	},
-	{
+	"35": {
 		"DESCRIPTION": "#yOrb：在開始時，將#yRandomized #yPlant或#yInsect添加到您的手中。 NL #yEvoke：為此戰鬥增加所有#yInsect和#yPlant怪物（無處不在）的召喚。",
 		"NAMES": [
 			"泥",
@@ -281,7 +281,7 @@
 		],
 		"PROPER_NAME": "泥"
 	},
-	{
+	"36": {
 		"DESCRIPTION": "#yOrb：在回合開始時，將#yRandomized #yAqua怪物添加到你的手中。 NL #yPassive：在回合結束時，增加你手中所有#yAqua怪物的召喚，棄掉堆積，並用＃b1排出堆積物。 NL #yEvoke：#yTribute所有#yAqua怪物和#ySummon各自的隨機怪物。獲得一個隨機的#yBuff等於#yAqua怪物#yTributed的數量。",
 		"NAMES": [
 			"薄霧",
@@ -289,7 +289,7 @@
 		],
 		"PROPER_NAME": "薄霧"
 	},
-	{
+	"37": {
 		"DESCRIPTION": "#yOrb：在回合開始時，將＃b1 #ySlow應用於隨機敵人。 NL #yEvoke：將＃b4 #ySlow應用於所有敵人。",
 		"NAMES": [
 			"砂",
@@ -297,7 +297,7 @@
 		],
 		"PROPER_NAME": "砂"
 	},
-	{
+	"38": {
 		"DESCRIPTION": "#yOrb：當你繪製怪物時，將#yTribute成本增加＃b4並在本回合中增加＃b12的傷害。 NL #yEvoke：#yIncrement＃b5。",
 		"NAMES": [
 			"抽煙",
@@ -305,7 +305,7 @@
 		],
 		"PROPER_NAME": "抽煙"
 	},
-	{
+	"39": {
 		"DESCRIPTION": "#yOrb：在回合開始時將#yRandomized Power卡添加到您的手中。 NL #yEvoke：如果您有任何空的Orb插槽，請使用一個並減少繪圖堆中所有怪物的#yTribute成本＃b1。",
 		"NAMES": [
 			"風暴",
@@ -313,7 +313,7 @@
 		],
 		"PROPER_NAME": "風暴"
 	},
-	{
+	"40": {
 		"DESCRIPTION": "#yInverting與#yEvoking相同，不同之處在於你也#yChannel一個與#yEvoked相反的Orb。",
 		"NAMES": [
 			"倒置",
@@ -323,7 +323,7 @@
 		],
 		"PROPER_NAME": "倒置"
 	},
-	{
+	"41": {
 		"DESCRIPTION": "每當你#ySummon一個#yNaturia怪物時，只要你召喚至少1個#yNaturia怪物，它就會在剩下的戰鬥中對所有敵人造成＃b1點傷害。",
 		"NAMES": [
 			"Naturia",
@@ -331,7 +331,7 @@
 		],
 		"PROPER_NAME": "Naturia"
 	},
-	{
+	"42": {
 		"DESCRIPTION": "當你為另一個#ySuperheavy #yTribute #ySuperheavy時，獲得＃b1 #yDexterity。",
 		"NAMES": [
 			"超重",
@@ -339,7 +339,7 @@
 		],
 		"PROPER_NAME": "超重"
 	},
-	{
+	"43": {
 		"DESCRIPTION": "當#yTribute #yMachine為另一個#yMachine時，獲得＃b1 #yArtifact。",
 		"NAMES": [
 			"機",
@@ -349,7 +349,7 @@
 		],
 		"PROPER_NAME": "機"
 	},
-	{
+	"44": {
 		"DESCRIPTION": "#yPassive：在回合開始時，將＃b1堆棧的隨機debuff應用於隨機敵人。 NL #yEvoke：將#yrandomized #yFiend添加到您的手中。",
 		"NAMES": [
 			"黑色",
@@ -357,7 +357,7 @@
 		],
 		"PROPER_NAME": "黑色"
 	},
-	{
+	"45": {
 		"DESCRIPTION": "如果#yImmortal卡在棄牌堆中，則在回合開始時獲得[E]。",
 		"NAMES": [
 			"不朽",
@@ -365,11 +365,11 @@
 		],
 		"PROPER_NAME": "不朽"
 	},
-	{
+	"46": {
 		"DESCRIPTION": "#yOrb：對所有敵人造成傷害，獲得#yEnergy和#yBlock。 NL #yGate不受#yFocus的影響。",
 		"NAMES": [
 			"門"
 		],
 		"PROPER_NAME": "門"
 	}
-]
+}

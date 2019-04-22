@@ -1,16 +1,16 @@
 {
 	"Duelist": {
-		"NAMES": [
-			"The Duelist"
-		],
-		"TEXT": [
-			"The Duelist summons and tributes monster cards to slay the spire. NL Play your favorite deckbuilding game with a Yu-Gi-Oh! twist.",
-			"the Duelist",
-			"You touch the heart. NL Is this the heart of the cards?",
-			"Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~dueling~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
-		],
 		"KEYWORDS": [
 			""
+		],
+		"NAMES": [
+			"дуэлянт"
+		],
+		"TEXT": [
+			"Дуэлянт вызывает и отдает карты монстров, чтобы убить шпиля. Н.Л. Играйте в свою любимую игру по сборке колод с Yu-Gi-Oh! твист.",
+			"дуэлянт",
+			"Ты касаешься сердца. Н.Л. Это сердце карт?",
+			"Пройдя по неосвещенной улице, вы встретите несколько фигур в капюшонах посреди какого-то темного ритуала. Когда вы подходите, они обращаются к вам в жутком унисон. Самый высокий из них обнажает клыки и протягивает длинную, бледную руку к вам. NL ~ \"Присоединяйся ~ ~ нас ~ ~ дуэль ~ ~ один, ~ ~ и ~ ~ чувствовать ~ ~ ~ ~ тепло ~ ~ ~ ~ ~ ~ Шпиль\". ~"
 		]
 	}
 }
