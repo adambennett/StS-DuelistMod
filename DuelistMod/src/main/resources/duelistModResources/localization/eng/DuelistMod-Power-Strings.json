@@ -9,7 +9,7 @@
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
-        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal 3 damage to ", " random enemy.", " random enemies.",]
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal 3 damage to ", " random enemy.", " random enemies."]
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",

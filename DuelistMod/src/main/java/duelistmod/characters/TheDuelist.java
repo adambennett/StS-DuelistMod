@@ -76,8 +76,8 @@ public class TheDuelist extends CustomPlayer {
 		super(name, setClass, orbTextures,
 				//"duelistModResources/images/char/defaultCharacter/orb/vfx.png", null,
 				"duelistModResources/images/char/defaultCharacter/orb/vfxB.png", null,
-				new SpriterAnimation(
-						"duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml"));
+				new SpriterAnimation(DuelistMod.characterModel));
+						//"duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml"));
 						//"duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml"));
 						//"duelistModResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 

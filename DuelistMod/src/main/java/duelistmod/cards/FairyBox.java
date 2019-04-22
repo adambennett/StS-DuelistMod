@@ -91,7 +91,8 @@ public class FairyBox extends DuelistCard
 		if (!upgraded) 
 		{
 			this.upgradeName();
-			this.upgradeMagicNumber(1);
+			if (this.magicNumber < 5) { this.upgradeMagicNumber(1); }
+			else { this.upgraded = true; }
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

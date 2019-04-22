@@ -120,22 +120,21 @@ public class CharacterSelectScreenPatch
         selectScreen.confirmButton.isDisabled = info.Locked;
         if (description != null && !info.Locked)
         {
-            float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
-            FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.5f);
+           // float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
+           // FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.6f);
             FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
-            FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
+           // FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
         }
         else if (description != null && info.Locked)
         {
-        	 float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
-             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.5f);
+        	 //float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
+             //FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.6f);
              FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
-             FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
+            // FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
         }
 
        // FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, UIStrings.TEXT[0], startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, "Starting Deck: ", startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
-       
         FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, info.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
 
         if (!startingCardsLeftHb.hovered)

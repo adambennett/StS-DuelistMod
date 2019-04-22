@@ -269,8 +269,32 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to add to your hand", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to add to your hand", false); }
+			if (this.amount >= tmp.group.size())
+			{
+				for (AbstractCard c : tmp.group)
+				{
+					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
+					{
+						this.p.createHandIsFullDialog();
+						if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
+					}
+					else
+					{
+						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
+					}
+					this.p.hand.refreshHandLayout();
+					this.p.hand.applyPowers();
+				}
+				
+				AbstractDungeon.gridSelectScreen.selectedCards.clear();
+				this.p.hand.refreshHandLayout();
+			}
+			
+			else
+			{
+				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to add to your hand", false); }
+				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to add to your hand", false); }
+			}
 			tickDuration();
 			return;
 		}

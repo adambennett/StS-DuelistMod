@@ -30,7 +30,7 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new CelticGuardian());
 		DuelistMod.basicCards.add(new CheerfulCoffin());
 		DuelistMod.basicCards.add(new Cloning());
-		DuelistMod.basicCards.add(new DarkCreator());
+		if (!DuelistMod.creatorBtnBool) {DuelistMod.basicCards.add(new DarkCreator()); }
 		DuelistMod.basicCards.add(new DarkFactory());
 		DuelistMod.basicCards.add(new DarkHole());
 		DuelistMod.basicCards.add(new DarkMirrorForce());
@@ -77,7 +77,7 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new SuperancientDinobeast());
 		DuelistMod.basicCards.add(new SwordsRevealing());
 		DuelistMod.basicCards.add(new Terraforming());
-		DuelistMod.basicCards.add(new TheCreator());
+		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); }
 		DuelistMod.basicCards.add(new TokenVacuum());
 		DuelistMod.basicCards.add(new BigFire());
 		DuelistMod.basicCards.add(new UltimateOffering());

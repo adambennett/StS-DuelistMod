@@ -1,0 +1,549 @@
+{
+	"theDuelist:AerodynamicsPower": {
+		"DESCRIPTIONS": [
+			"Your #yAir Orbs will always #yChannel randomly at the start of turn."
+		],
+		"NAME": "Aerodynamics"
+	},
+	"theDuelist:AlphaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "Alpha Magnet"
+	},
+	"theDuelist:BadReactionPower": {
+		"DESCRIPTIONS": [
+			"Whenever you attempt to heal, deal #b",
+			" damage to ALL enemies for every #b",
+			" HP you would gain, and heal for 0 instead."
+		],
+		"NAME": "Bad Reaction to Simochi"
+	},
+	"theDuelist:BetaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "Beta Magnet"
+	},
+	"theDuelist:CallGravePower": {
+		"DESCRIPTIONS": [
+			"At the start of turn, #yResummon #b",
+			" random monster that you have summoned this combat.",
+			" random monsters that you have summoned this combat."
+		],
+		"NAME": "Call of Grave"
+	},
+	"theDuelist:CannonPower": {
+		"DESCRIPTIONS": [
+			"At the start of turn, #yTribute #b",
+			" and deal #b",
+			" damage to #b",
+			" random enemy. (5 total damage)",
+			" damage to random enemies. (",
+			" total damage)"
+		],
+		"NAME": "Cannon Soldier"
+	},
+	"theDuelist:CardSafePower": {
+		"DESCRIPTIONS": [
+			"Whenever you #yResummon, draw #b",
+			" card.",
+			" cards."
+		],
+		"NAME": "Card of Safe Return"
+	},
+	"theDuelist:CastlePower": {
+		"DESCRIPTIONS": [
+			"Whenever you shuffle your deck,",
+			" #ySummon #b",
+			" #yIncrement #b",
+			"."
+		],
+		"NAME": "Castle of Dark Illusions"
+	},
+	"theDuelist:CatapultPower": {
+		"DESCRIPTIONS": [
+			"At the start of turn, #yTribute all #ySummons and deal #b",
+			" damage for each to all enemies."
+		],
+		"NAME": "Catapult Power"
+	},
+	"theDuelist:CocoonPower": {
+		"DESCRIPTIONS": [
+			"After #b",
+			" turn, add a copy of #yGreat #yMoth to your hand.",
+			" turns, add a copy of #yGreat #yMoth to your hand."
+		],
+		"NAME": "Cocoon of Evolution"
+	},
+	"theDuelist:CrystallizerPower": {
+		"DESCRIPTIONS": [
+			"Crystal orbs give an additional #b",
+			" #yFocus to adjacent orbs. NL At the end of your turn, if at least half your orb slots are empty, #yChannel #b",
+			" #yCrystal. NL Counts slots containing #yGlass as empty."
+		],
+		"NAME": "Crystallizer"
+	},
+	"theDuelist:DarkMirrorPower": {
+		"DESCRIPTIONS": [
+			"The next time you are about to take damage, gain a random debuff equal to the damage instead."
+		],
+		"NAME": "Dark Mirror Force"
+	},
+	"theDuelist:DespairPower": {
+		"DESCRIPTIONS": [
+			"At the end of turn, lose #b",
+			" #yStrength, #yTribute #b",
+			" and place Axe of Despair on the top of your deck. If you do not have enough Tributes, lose 30 HP."
+		],
+		"NAME": "Axe of Despair"
+	},
+	"theDuelist:DoomdogPower": {
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute a #yFiend for another #yFiend, deal #b",
+			" damage to ALL enemies."
+		],
+		"NAME": "Doomdog"
+	},
+	"theDuelist:DragonCapturePower": {
+		"DESCRIPTIONS": [
+			"#yDragon monsters played this turn are added back to your hand at the start of your next turn. #yDragons: "
+		],
+		"NAME": "Dragon Capture Jar"
+	},
+	"theDuelist:EmperorPower": {
+		"DESCRIPTIONS": [
+			"The first #yTribute card you play each turn does not #yTribute. Lose #b",
+			" HP each turn."
+		],
+		"NAME": "Mausoleum of the Emperor"
+	},
+	"theDuelist:EvokeSicknessPower": {
+		"DESCRIPTIONS": [
+			"Each time you #yEvoke, take #b",
+			" damage."
+		],
+		"NAME": "Fury of Ra"
+	},
+	"theDuelist:ExodiaPower": {
+		"DESCRIPTIONS": [
+			"Assemble all five pieces of Exodia to unleash a powerful damage effect on ALL enemies. #yPieces #yof #yExodia: ",
+			"#b",
+			"The full power of #yExodia will be unleashed on ALL enemies at the end of turn. #yDamage: #b"
+		],
+		"NAME": "The Forbidden One"
+	},
+	"theDuelist:ExodiaRenewalPower": {
+		"DESCRIPTIONS": [
+			"Whenever you trigger #yExodia, do not reset your collected pieces."
+		],
+		"NAME": "EXODIARENEWALPLACEHOLDER"
+	},
+	"theDuelist:GammaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "Gamma Magnet"
+	},
+	"theDuelist:GatesDarkPower": {
+		"DESCRIPTIONS": [
+			"Your #yFiends and #yZombies deal 100% more damage and gain 100% more #yBlock."
+		],
+		"NAME": "Gate of Dark World"
+	},
+	"theDuelist:GoblinRemedyPower": {
+		"DESCRIPTIONS": [
+			"Whenever you #ySummon, heal #b",
+			" HP.",
+			" HP."
+		],
+		"NAME": "Goblin's Secret Remedy"
+	},
+	"theDuelist:GravityAxePower": {
+		"DESCRIPTIONS": [
+			"Cannot gain or lose #yStrength."
+		],
+		"NAME": "Gravity Axe"
+	},
+	"theDuelist:GreedShardPower": {
+		"DESCRIPTIONS": [
+			"Every 3 turns, draw ",
+			" extra card at the start of turn. TURN: #b"
+		],
+		"NAME": "Shard of Greed"
+	},
+	"theDuelist:HealGoldPower": {
+		"DESCRIPTIONS": [
+			"Each time you gain HP, gain #b",
+			" Gold."
+		],
+		"NAME": "Tomb Pilferer"
+	},
+	"theDuelist:HeartUnderdogPower": {
+		"DESCRIPTIONS": [
+			"Whenever you draw a monster, draw 1 card."
+		],
+		"NAME": "Heart of the Underdog"
+	},
+	"theDuelist:HeartUnderspell": {
+		"DESCRIPTIONS": [
+			"Whenever you draw a Spell, create a #yrandomized copy of it."
+		],
+		"NAME": "Spells of the Underdog"
+	},
+	"theDuelist:HeartUndertrap": {
+		"DESCRIPTIONS": [
+			"Whenever you draw a Trap, gain #b3 HP."
+		],
+		"NAME": "Trap the Underdog"
+	},
+	"theDuelist:HeartUndertribute": {
+		"DESCRIPTIONS": [
+			"Whenever you draw a Tribute monster, Summon 1."
+		],
+		"NAME": "Tribute the Underdog"
+	},
+	"theDuelist:ImperialPower": {
+		"DESCRIPTIONS": [
+			"At the start of turn, set the cost of #b",
+			" random #ySpell or #yTrap card in your hand to 0 for this turn.",
+			" random #ySpell or #yTrap cards in your hand to 0 for this turn."
+		],
+		"NAME": "Imperial Order"
+	},
+	"theDuelist:JamPower": {
+		"DESCRIPTIONS": [
+			"At the start of your turn, #ySummon #b",
+			" and deal 3 damage to ",
+			" random enemy.",
+			" random enemies."
+		],
+		"NAME": "Jam Breeder"
+	},
+	"theDuelist:JinzoPower": {
+		"DESCRIPTIONS": [
+			"Your Trap cards cost 0."
+		],
+		"NAME": "Jinzo"
+	},
+	"theDuelist:MagicCylinderPower": {
+		"DESCRIPTIONS": [
+			"The next time you lose HP, gain #b",
+			" #yReflection",
+			".",
+			", and a random buff."
+		],
+		"NAME": "Magic Cylinder"
+	},
+	"theDuelist:MirrorForcePower": {
+		"DESCRIPTIONS": [
+			"The next time you are attacked, deal ",
+			"that much damage to ALL enemies.",
+			"2x that much damage to ALL enemies."
+		],
+		"NAME": "Mirror Force"
+	},
+	"theDuelist:MirrorPower": {
+		"DESCRIPTIONS": [
+			"The next time you take unblocked damage, deal the much damage to ALL enemies."
+		],
+		"NAME": "Mirror Force"
+	},
+	"theDuelist:MountainPower": {
+		"DESCRIPTIONS": [
+			"Your #yDragons deal 50% more damage and gain 50% more block. Whenever you gain #yStrength from Tributing a #yDragon, gain 1 extra #yStrength."
+		],
+		"NAME": "Mountain"
+	},
+	"theDuelist:NaturePower": {
+		"DESCRIPTIONS": [
+			"At the start of turn, #ySummon #b",
+			" #yInsect, #yPlant or #yPredaplant #yToken. Chosen randomly.",
+			" #yInsect, #yPlant or #yPredaplant #yTokens. Chosen randomly."
+		],
+		"NAME": "Nature's Blessing"
+	},
+	"theDuelist:NaturiaPower": {
+		"DESCRIPTIONS": [
+			"At the end of turn, if you have [#008000]at [#008000]least [#008000]1 [#006400]Naturia [#006400]monster summoned, deal #b",
+			" damage to ALL enemies.",
+			"At the end of turn, if you have [#008000]at [#008000]least [#008000]1 [#006400]Naturia [#006400]monster summoned, deal #y"
+		],
+		"NAME": "Naturia Monsters"
+	},
+	"theDuelist:ObeliskPower": {
+		"DESCRIPTIONS": [
+			"Each time you #yTribute, deal #b",
+			" damage to ALL enemies."
+		],
+		"NAME": "Obelisk, the Tormentor"
+	},
+	"theDuelist:ObliteratePower": {
+		"DESCRIPTIONS": [
+			"Double the damage of the Exodia effect the next #b",
+			" time you trigger it.",
+			" times you trigger it"
+		],
+		"NAME": "EXODIARENEWALPLACEHOLDER"
+	},
+	"theDuelist:OrbEvokerPower": {
+		"DESCRIPTIONS": [
+			"Each time you #yEvoke, gain a random buff that lasts for #b",
+			" turns."
+		],
+		"NAME": "Blessing of Ra"
+	},
+	"theDuelist:OrbHealPower": {
+		"DESCRIPTIONS": [
+			"Each time you #yEvoke, gain #b",
+			" HP."
+		],
+		"NAME": "Gaze of Anubis"
+	},
+	"theDuelist:ParasitePower": {
+		"DESCRIPTIONS": [
+			"At the end of turn, have a chance to #ydebuff random enemies. Chances are raised with more #ysummon stacks. #yChance #yModifier: #b"
+		],
+		"NAME": "Parasite Paracide"
+	},
+	"theDuelist:PotGenerosityPower": {
+		"DESCRIPTIONS": [
+			"Each time you #ySummon, gain [E] NL Turns Remaining: #b"
+		],
+		"NAME": "Pot of Generosity"
+	},
+	"theDuelist:RadiantMirrorPower": {
+		"DESCRIPTIONS": [
+			"Whenever you lose HP, Increment #b",
+			"."
+		],
+		"NAME": "Radiant Mirror Force"
+	},
+	"theDuelist:RedMirrorPower": {
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute a #yFiend for another #yFiend, reduce the cost of all cards in your discard pile by #b",
+			" for this turn."
+		],
+		"NAME": "Red Mirror"
+	},
+	"theDuelist:ReducerPower": {
+		"DESCRIPTIONS": [
+			"At the start of turn, reduce the cost of #b",
+			" card in your hand by 1.",
+			" cards in your hand by 1."
+		],
+		"NAME": "Reductionist"
+	},
+	"theDuelist:ReinforcementsPower": {
+		"DESCRIPTIONS": [
+			"Whenever you play a monster this turn, #ySummon a duplicate of it."
+		],
+		"NAME": "Reinforcements"
+	},
+	"theDuelist:SacredTreePower": {
+		"DESCRIPTIONS": [
+			"Your #yNaturia monsters deal 50% more damage and gain 50% more block."
+		],
+		"NAME": "Sacred Tree"
+	},
+	"theDuelist:SarraceniantPower": {
+		"DESCRIPTIONS": [
+			"Whenever you are attacked, apply #b",
+			" #yPoison to ALL enemies."
+		],
+		"NAME": "Predaplant Sarraceniant"
+	},
+	"theDuelist:SliferSkyPower": {
+		"DESCRIPTIONS": [
+			"Whenever you #ySummon, #yChannel a random #yOrb. You may only trigger this effect #b",
+			" times this turn."
+		],
+		"NAME": "Slifer the Sky Dragon"
+	},
+	"theDuelist:SpecialBadReactionPower": {
+		"DESCRIPTIONS": [
+			"During your turn, deal #b",
+			" damage to ALL enemies for every #b",
+			" HP you gain."
+		],
+		"NAME": "Bad Reaction to Simochi+"
+	},
+	"theDuelist:SpellCounterPower": {
+		"DESCRIPTIONS": [
+			"No inherent effect. Play magic monster cards to activate."
+		],
+		"NAME": "Spell Counter"
+	},
+	"theDuelist:SphereKuribohPower": {
+		"DESCRIPTIONS": [
+			"Whenever you #yIncrement, add a #yrandomized card to your hand."
+		],
+		"NAME": "Sphere Kuriboh"
+	},
+	"theDuelist:StormingMirrorPower": {
+		"DESCRIPTIONS": [
+			"Each time an enemy attacks, #ySummon 1."
+		],
+		"NAME": "Storming Mirror Force"
+	},
+	"theDuelist:SummonPower": {
+		"DESCRIPTIONS": [
+			"#b",
+			" monsters summoned. Maximum of #b",
+			" Summons. #yMonsters #ySummoned: "
+		],
+		"NAME": "Summons"
+	},
+	"theDuelist:SummonSicknessPower": {
+		"DESCRIPTIONS": [
+			"Each time you #ySummon, take #b",
+			" damage."
+		],
+		"NAME": "Summoning Sickness"
+	},
+	"theDuelist:SuperheavyDexGainPower": {
+		"DESCRIPTIONS": [
+			"Whenever you play a Power card, gain #b",
+			" #yDexterity."
+		],
+		"NAME": "Samurai's Wisdom"
+	},
+	"theDuelist:SwordDeepPower": {
+		"DESCRIPTIONS": [
+			"At the end of turn, lose #b",
+			" #yStrength."
+		],
+		"NAME": "Sword of Deep Seated"
+	},
+	"theDuelist:SwordsBurnPower": {
+		"DESCRIPTIONS": [
+			"Each time you #yEvoke, #yChannel #b",
+			" random #yOrb.",
+			" random #yOrbs."
+		],
+		"NAME": "Swords of Burning Light"
+	},
+	"theDuelist:SwordsConcealPower": {
+		"DESCRIPTIONS": [
+			"Each time you play a card, gain #b",
+			" block."
+		],
+		"NAME": "Swords of Concealing Light"
+	},
+	"theDuelist:SwordsRevealPower": {
+		"DESCRIPTIONS": [
+			"Ignore all HP damage for #b",
+			" more turns."
+		],
+		"NAME": "Swords of Revealing Light"
+	},
+	"theDuelist:TimeWizardPower": {
+		"DESCRIPTIONS": [
+			"At the start of turn, trigger #b",
+			" random effect. NL #yEffect #yThis #yTurn: ",
+			" random effects. NL #yEffects #yThis #yTurn: "
+		],
+		"NAME": "Time Wizard"
+	},
+	"theDuelist:TombLooterPower": {
+		"DESCRIPTIONS": [
+			"Each time you attack with a max stack of #ySummons, gain #b",
+			" Gold."
+		],
+		"NAME": "Tomb Looter"
+	},
+	"theDuelist:ToonBriefcasePower": {
+		"DESCRIPTIONS": [
+			"#yToon cards played this turn are added back to your hand at the start of your next turn. #yToons: "
+		],
+		"NAME": "Toon Briefcase"
+	},
+	"theDuelist:ToonCannonPower": {
+		"DESCRIPTIONS": [
+			"Whenever you #ySummon a #yToon, deal #b",
+			" damage to ALL enemies."
+		],
+		"NAME": "Toon Cannon Soldier"
+	},
+	"theDuelist:ToonKingdomPower": {
+		"DESCRIPTIONS": [
+			"#yToons can be played. NL Take #b",
+			" damage each time you play a #yToon card, and shuffle a random #yToon card into your draw pile.",
+			"#yToons can be played. Each time you play a #yToon card, shuffle a random #yToon card into your draw pile."
+		],
+		"NAME": "Toon Kingdom"
+	},
+	"theDuelist:ToonRollbackPower": {
+		"DESCRIPTIONS": [
+			"#yRandomized copies of #yToon monsters played this turn are added to your hand."
+		],
+		"NAME": "Toon Rollback"
+	},
+	"theDuelist:ToonWorldPower": {
+		"DESCRIPTIONS": [
+			"#yToons can be played. NL Lose #b",
+			" HP each time you play a #yToon card.",
+			"#yToons can be played."
+		],
+		"NAME": "Toon World"
+	},
+	"theDuelist:TrapHolePower": {
+		"DESCRIPTIONS": [
+			"Whenever you #ySummon, have a #b",
+			"% chance to immediately #yTribute that monster and then #yResummon it."
+		],
+		"NAME": "Trap Hole"
+	},
+	"theDuelist:TributeSicknessPower": {
+		"DESCRIPTIONS": [
+			"Each time you #yTribute, take #b",
+			" damage."
+		],
+		"NAME": "Pharaoh's Curse"
+	},
+	"theDuelist:TributeToonPower": {
+		"DESCRIPTIONS": [
+			"Each time you #yTribute, add a #yrandomized #yToon monster to your hand."
+		],
+		"NAME": "Pegasus Wings"
+	},
+	"theDuelist:TributeToonPowerB": {
+		"DESCRIPTIONS": [
+			"Each time you #yTribute, add a #yrandomized #yToon card to your hand."
+		],
+		"NAME": "Pegasus Wings+"
+	},
+	"theDuelist:TurretWarriorPower": {
+		"DESCRIPTIONS": [
+			"Whenever you play a Token, deal #b",
+			" damage to ALL enemies."
+		],
+		"NAME": "Turret Warrior"
+	},
+	"theDuelist:UltimateOfferingPower": {
+		"DESCRIPTIONS": [
+			"Whenever you #ySummon with a max stack of summons: lose 3 HP, #yIncrement #b",
+			" and then #ySummon #b",
+			"."
+		],
+		"NAME": "Ultimate Offering"
+	},
+	"theDuelist:UmiPower": {
+		"DESCRIPTIONS": [
+			"Your #yAqua monsters deal 50% more damage and gain 50% more block."
+		],
+		"NAME": "Umi"
+	},
+	"theDuelist:VioletCrystalPower": {
+		"DESCRIPTIONS": [
+			"Your #yInsects and #yPlants deal 50% more damage and gain 50% more block. Whenever you apply #yPoison from Tributing an #yInsect or #yPlant, apply 2 extra #yPoison."
+		],
+		"NAME": "Violet Crystal"
+	},
+	"theDuelist:YamiPower": {
+		"DESCRIPTIONS": [
+			"Your #ySpellcasters deal 50% more damage and gain 50% more block. Whenever you #ySummon a #ySpellcaster, gain 1 extra #ySummon."
+		],
+		"NAME": "Yami"
+	}
+}

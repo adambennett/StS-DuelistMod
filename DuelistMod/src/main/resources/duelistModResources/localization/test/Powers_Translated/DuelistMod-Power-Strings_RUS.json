@@ -1,0 +1,549 @@
+{
+	"theDuelist:AerodynamicsPower": {
+		"DESCRIPTIONS": [
+			"Ваши #yAir Orbs всегда будут #yChannel случайным образом в начале хода."
+		],
+		"NAME": "аэродинамика"
+	},
+	"theDuelist:AlphaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "Альфа Магнит"
+	},
+	"theDuelist:BadReactionPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы пытаетесь излечиться, действуйте #b",
+			" Урон ВСЕМ врагам за каждый #b",
+			" HP вы получите, и вместо этого вылечите 0."
+		],
+		"NAME": "Плохая реакция на симочи"
+	},
+	"theDuelist:BetaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "Бета Магнит"
+	},
+	"theDuelist:CallGravePower": {
+		"DESCRIPTIONS": [
+			"В начале хода #yResummon #b",
+			" случайный монстр, которого вы вызвали в этом бою.",
+			" случайные монстры, которых вы вызвали в этом бою."
+		],
+		"NAME": "Зов Могилы"
+	},
+	"theDuelist:CannonPower": {
+		"DESCRIPTIONS": [
+			"В начале хода #yTribute #b",
+			" и сделка #b",
+			" повреждение #b",
+			" случайный враг. (5 всего урона)",
+			" урон случайным врагам. (",
+			" общий урон)"
+		],
+		"NAME": "Пушка солдат"
+	},
+	"theDuelist:CardSafePower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #yResummon, нарисуйте #b",
+			" карта.",
+			" карты."
+		],
+		"NAME": "Карта безопасного возврата"
+	},
+	"theDuelist:CastlePower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы перетасовываете свою колоду,",
+			" #ySummon #b",
+			" #yIncrement #b",
+			","
+		],
+		"NAME": "Замок Темных Иллюзий"
+	},
+	"theDuelist:CatapultPower": {
+		"DESCRIPTIONS": [
+			"В начале хода #yTribute all #ySummons и сделка #b",
+			" урон для каждого всем врагам."
+		],
+		"NAME": "Мощность катапульты"
+	},
+	"theDuelist:CocoonPower": {
+		"DESCRIPTIONS": [
+			"После #b",
+			" включите копию #yGreat #yMoth в вашу руку.",
+			" Затем добавьте копию #yGreat #yMoth в вашу руку."
+		],
+		"NAME": "Кокон Эволюции"
+	},
+	"theDuelist:CrystallizerPower": {
+		"DESCRIPTIONS": [
+			"Хрустальные шары дают дополнительный #b",
+			" #yFocus к смежным сферам. NL В конце вашего хода, если хотя бы половина ваших слотов с шарами пуста, #yChannel #b",
+			" #yCrystal. NL Считает слоты, содержащие #yGlass как пустые."
+		],
+		"NAME": "Кристаллизатор"
+	},
+	"theDuelist:DarkMirrorPower": {
+		"DESCRIPTIONS": [
+			"В следующий раз, когда вы собираетесь получить урон, вместо этого получите случайный дебафф, равный урону."
+		],
+		"NAME": "Сила Темного Зеркала"
+	},
+	"theDuelist:DespairPower": {
+		"DESCRIPTIONS": [
+			"В конце хода теряем #b",
+			" #yStrength, #yTribute #b",
+			" и поместите Топор Отчаяния на верх колоды. Если вам не хватает Дани, потеряйте 30 HP."
+		],
+		"NAME": "Топор Отчаяния"
+	},
+	"theDuelist:DoomdogPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #yTribute #yFiend для другого #yFiend, сделка #b",
+			" Урон ВСЕМ врагам."
+		],
+		"NAME": "Doomdog"
+	},
+	"theDuelist:DragonCapturePower": {
+		"DESCRIPTIONS": [
+			"#yDragon монстры, сыгранные в этом ходу, добавляются к вашей руке в начале вашего следующего хода. #yDragons:"
+		],
+		"NAME": "Баночка для захвата дракона"
+	},
+	"theDuelist:EmperorPower": {
+		"DESCRIPTIONS": [
+			"Первая карта #yTribute, которую вы разыгрываете каждый ход, не #yTribute. Потерять #b",
+			" HP каждый ход."
+		],
+		"NAME": "Мавзолей Императора"
+	},
+	"theDuelist:EvokeSicknessPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yEvoke, возьмите #b",
+			" повреждение."
+		],
+		"NAME": "Ярость Ра"
+	},
+	"theDuelist:ExodiaPower": {
+		"DESCRIPTIONS": [
+			"Соберите все пять частей Exodia, чтобы нанести мощный урон всем ВРАГАМ. #yPieces #yof #yExodia:",
+			"#b",
+			"Вся мощь #yExodia будет раскрыта для ВСЕХ врагов в конце хода. #yDamage: #b"
+		],
+		"NAME": "Запретный"
+	},
+	"theDuelist:ExodiaRenewalPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы запускаете #yExodia, не сбрасывайте свои собранные фигуры."
+		],
+		"NAME": "EXODIARENEWALPLACEHOLDER"
+	},
+	"theDuelist:GammaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "Гамма Магнит"
+	},
+	"theDuelist:GatesDarkPower": {
+		"DESCRIPTIONS": [
+			"Ваши #yFiends и #yZombies наносят на 100% больше урона и получают на 100% больше #yBlock."
+		],
+		"NAME": "Врата Темного Мира"
+	},
+	"theDuelist:GoblinRemedyPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #ySummon, исцелите #b",
+			" HP.",
+			" HP."
+		],
+		"NAME": "Секретное средство Гоблина"
+	},
+	"theDuelist:GravityAxePower": {
+		"DESCRIPTIONS": [
+			"Не может получить или потерять #yStrength."
+		],
+		"NAME": "Гравитационный топор"
+	},
+	"theDuelist:GreedShardPower": {
+		"DESCRIPTIONS": [
+			"Каждые 3 хода",
+			" дополнительная карта в начале хода. ПОВОРОТ: #b"
+		],
+		"NAME": "Осколок Жадности"
+	},
+	"theDuelist:HealGoldPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы получаете HP, набирайте #b",
+			" Золото."
+		],
+		"NAME": "Гробница воришка"
+	},
+	"theDuelist:HeartUnderdogPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы рисуете монстра, возьмите 1 карту."
+		],
+		"NAME": "Сердце Подземелья"
+	},
+	"theDuelist:HeartUnderspell": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы рисуете Заклинание, создайте #yrandomized его копию."
+		],
+		"NAME": "Заклинания Подземелья"
+	},
+	"theDuelist:HeartUndertrap": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы рисуете Ловушку, наберите # b3 HP."
+		],
+		"NAME": "Ловушка Подземелья"
+	},
+	"theDuelist:HeartUndertribute": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы рисуете Дани монстра, призывайте 1."
+		],
+		"NAME": "Дань Underdog"
+	},
+	"theDuelist:ImperialPower": {
+		"DESCRIPTIONS": [
+			"В начале хода установите стоимость #b",
+			" случайная карта #ySpell или #yTrap в вашей руке до 0 для этого хода.",
+			" случайные карты #ySpell или #yTrap в вашей руке до 0 для этого хода."
+		],
+		"NAME": "Императорский Орден"
+	},
+	"theDuelist:JamPower": {
+		"DESCRIPTIONS": [
+			"В начале вашего хода #ySummon #b",
+			" и нанести 3 повреждения",
+			" случайный враг.",
+			" случайные враги"
+		],
+		"NAME": "Jam Breeder"
+	},
+	"theDuelist:JinzoPower": {
+		"DESCRIPTIONS": [
+			"Ваши карты-ловушки стоят 0."
+		],
+		"NAME": "Jinzo"
+	},
+	"theDuelist:MagicCylinderPower": {
+		"DESCRIPTIONS": [
+			"В следующий раз, когда вы потеряете HP, наберите #b",
+			" #yReflection",
+			",",
+			"и случайный бафф."
+		],
+		"NAME": "Волшебный цилиндр"
+	},
+	"theDuelist:MirrorForcePower": {
+		"DESCRIPTIONS": [
+			"В следующий раз, когда вас атакуют, действуйте",
+			"такой большой урон ВСЕМ врагам.",
+			"В 2 раза больше урона ВСЕМ врагам."
+		],
+		"NAME": "Mirror Force"
+	},
+	"theDuelist:MirrorPower": {
+		"DESCRIPTIONS": [
+			"В следующий раз, когда вы получите неблокированный урон, нанесите большой урон ВСЕМ врагам."
+		],
+		"NAME": "Mirror Force"
+	},
+	"theDuelist:MountainPower": {
+		"DESCRIPTIONS": [
+			"Ваши #yDragons наносят на 50% больше урона и получают на 50% больше блока. Всякий раз, когда вы получаете #yStrength от приведения в действие #yDragon, вы получаете 1 дополнительный #yStrength."
+		],
+		"NAME": "гора"
+	},
+	"theDuelist:NaturePower": {
+		"DESCRIPTIONS": [
+			"В начале хода #ySummon #b",
+			" #yInsect, #yPlant или #yPredaplant #yToken. Выбирается случайно.",
+			" #yInsect, #yPlant или #yPredaplant #yTokens. Выбирается случайно."
+		],
+		"NAME": "Благословение природы"
+	},
+	"theDuelist:NaturiaPower": {
+		"DESCRIPTIONS": [
+			"В конце хода, если у вас есть [# 008000] как минимум [# 008000] как минимум [# 008000] 1 [# 006400] монстр Naturia [# 006400], сделка #b",
+			" Урон ВСЕМ врагам.",
+			"В конце хода, если у вас есть [# 008000] как минимум [# 008000] как минимум [# 008000] 1 [# 006400] Naturia [# 006400] монстр, сделка #y"
+		],
+		"NAME": "Naturia Monsters"
+	},
+	"theDuelist:ObeliskPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yTribute, сделка #b",
+			" Урон ВСЕМ врагам."
+		],
+		"NAME": "Обелиск, Мучитель"
+	},
+	"theDuelist:ObliteratePower": {
+		"DESCRIPTIONS": [
+			"В следующий раз удвоите урон от эффекта Exodia",
+			" раз вы вызываете это.",
+			" раз вы вызываете его"
+		],
+		"NAME": "EXODIARENEWALPLACEHOLDER"
+	},
+	"theDuelist:OrbEvokerPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yEvoke, получаете случайный бафф, который длится #b",
+			" получается."
+		],
+		"NAME": "Благословение Ра"
+	},
+	"theDuelist:OrbHealPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yEvoke, получить #b",
+			" HP."
+		],
+		"NAME": "Взгляд Анубиса"
+	},
+	"theDuelist:ParasitePower": {
+		"DESCRIPTIONS": [
+			"В конце хода у вас есть шанс обуздать случайных врагов. Шансы повышаются с большим количеством #ysummon стеков. #yChance #yModifier: #b"
+		],
+		"NAME": "Паразит"
+	},
+	"theDuelist:PotGenerosityPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #ySummon, получаете [E] NL Turns Remaining: #b"
+		],
+		"NAME": "Горшок Щедрости"
+	},
+	"theDuelist:RadiantMirrorPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы теряете HP, увеличьте #b",
+			","
+		],
+		"NAME": "Radiant Mirror Force"
+	},
+	"theDuelist:RedMirrorPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #yTribute #yFiend для другого #yFiend, уменьшите стоимость всех карт в вашей стопке сброса на #b",
+			" для этого хода."
+		],
+		"NAME": "Красное Зеркало"
+	},
+	"theDuelist:ReducerPower": {
+		"DESCRIPTIONS": [
+			"В начале хода уменьшите стоимость #b",
+			" карта в вашей руке на 1.",
+			" карты в вашей руке по 1."
+		],
+		"NAME": "Редукционистская"
+	},
+	"theDuelist:ReinforcementsPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы играете монстра в этом ходу, #ySummon дублируйте его."
+		],
+		"NAME": "подкрепление"
+	},
+	"theDuelist:SacredTreePower": {
+		"DESCRIPTIONS": [
+			"Ваши #yNaturia монстры наносят на 50% больше урона и получают на 50% больше блока."
+		],
+		"NAME": "Священное дерево"
+	},
+	"theDuelist:SarraceniantPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда на вас нападают, примените #b",
+			" #y отравление ВСЕМ врагам."
+		],
+		"NAME": "Предаплант Саррацениант"
+	},
+	"theDuelist:SliferSkyPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #ySummon, #yChannel случайный #yOrb. Вы можете активировать только этот эффект #b",
+			" раз этот поворот."
+		],
+		"NAME": "Слайфер Небесный Дракон"
+	},
+	"theDuelist:SpecialBadReactionPower": {
+		"DESCRIPTIONS": [
+			"Во время вашего хода сделка #b",
+			" Урон ВСЕМ врагам за каждый #b",
+			" HP вы получаете."
+		],
+		"NAME": "Плохая реакция на симочи"
+	},
+	"theDuelist:SpellCounterPower": {
+		"DESCRIPTIONS": [
+			"Нет присущего эффекта. Играйте в карты волшебных монстров, чтобы активировать."
+		],
+		"NAME": "Счетчик орфографии"
+	},
+	"theDuelist:SphereKuribohPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #yIncrement, добавьте карту #yrandomized в вашу руку."
+		],
+		"NAME": "Сфера Курибо"
+	},
+	"theDuelist:StormingMirrorPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда враг атакует, #ySummon 1."
+		],
+		"NAME": "Storming Mirror Force"
+	},
+	"theDuelist:SummonPower": {
+		"DESCRIPTIONS": [
+			"#b",
+			" монстры вызваны. Максимум #b",
+			" Призываются. #yMonsters #ySummoned:"
+		],
+		"NAME": "Вызов"
+	},
+	"theDuelist:SummonSicknessPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #ySummon, возьмите #b",
+			" повреждение."
+		],
+		"NAME": "Призывая болезнь"
+	},
+	"theDuelist:SuperheavyDexGainPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы разыгрываете карту Power, набирайте #b",
+			" #yDexterity."
+		],
+		"NAME": "Самурайская мудрость"
+	},
+	"theDuelist:SwordDeepPower": {
+		"DESCRIPTIONS": [
+			"В конце хода теряем #b",
+			" #yStrength."
+		],
+		"NAME": "Меч Глубокого Сидения"
+	},
+	"theDuelist:SwordsBurnPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yEvoke, #yChannel #b",
+			" Случайный #yOrb.",
+			" случайные #yOrbs."
+		],
+		"NAME": "Мечи Пылающего Света"
+	},
+	"theDuelist:SwordsConcealPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы играете в карту, набирайте #b",
+			" блок."
+		],
+		"NAME": "Мечи Скрытого Света"
+	},
+	"theDuelist:SwordsRevealPower": {
+		"DESCRIPTIONS": [
+			"Игнорировать весь урон HP для #b",
+			" больше поворотов."
+		],
+		"NAME": "Мечи разоблачающего света"
+	},
+	"theDuelist:TimeWizardPower": {
+		"DESCRIPTIONS": [
+			"В начале хода, триггер #b",
+			" случайный эффект NL #yEffect #yThis #yTurn:",
+			" случайные эффекты. NL #yEffects #yThis #yTurn:"
+		],
+		"NAME": "Волшебник Времени"
+	},
+	"theDuelist:TombLooterPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы атакуете с максимальным стеком #ySummons, получите #b",
+			" Золото."
+		],
+		"NAME": "Гробница Грабитель"
+	},
+	"theDuelist:ToonBriefcasePower": {
+		"DESCRIPTIONS": [
+			"Карты #yToon, сыгранные в этом ходу, добавляются к вашей руке в начале вашего следующего хода. #yToons:"
+		],
+		"NAME": "Портфель мультяшек"
+	},
+	"theDuelist:ToonCannonPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #ySummon #yToon, сделайте #b",
+			" Урон ВСЕМ врагам."
+		],
+		"NAME": "Toon Cannon Soldier"
+	},
+	"theDuelist:ToonKingdomPower": {
+		"DESCRIPTIONS": [
+			"#yToons можно играть. NL Take #b",
+			" наносите урон каждый раз, когда вы разыгрываете карту #yToon, и перетасовываете случайную карту #yToon в свою колоду.",
+			"#yToons можно играть. Каждый раз, когда вы разыгрываете карту #yToon, перетасуйте случайную карту #yToon в свою колоду."
+		],
+		"NAME": "Toon Kingdom"
+	},
+	"theDuelist:ToonRollbackPower": {
+		"DESCRIPTIONS": [
+			"#yRandomized копии #yToon монстров, сыгранных в этот ход, добавляются в вашу руку."
+		],
+		"NAME": "Toon Rollback"
+	},
+	"theDuelist:ToonWorldPower": {
+		"DESCRIPTIONS": [
+			"#yToons можно играть. NL Lose #b",
+			" HP каждый раз, когда вы играете в карту #yToon.",
+			"#yToons можно играть."
+		],
+		"NAME": "Мир Мультяшек"
+	},
+	"theDuelist:TrapHolePower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #ySummon, есть #b",
+			"% шанс немедленно #yTribute этого монстра, а затем #yResummon его."
+		],
+		"NAME": "Ловушка"
+	},
+	"theDuelist:TributeSicknessPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yTribute, возьмите #b",
+			" повреждение."
+		],
+		"NAME": "Проклятие фараона"
+	},
+	"theDuelist:TributeToonPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yTribute, добавьте #yrandomized #yToon монстра в вашу руку."
+		],
+		"NAME": "Крылья Пегаса"
+	},
+	"theDuelist:TributeToonPowerB": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы #yTribute, добавьте карту #yrandomized #yToon в вашу руку."
+		],
+		"NAME": "Крылья Пегаса"
+	},
+	"theDuelist:TurretWarriorPower": {
+		"DESCRIPTIONS": [
+			"Каждый раз, когда вы разыгрываете токен, раздайте #b",
+			" Урон ВСЕМ врагам."
+		],
+		"NAME": "Турель Воин"
+	},
+	"theDuelist:UltimateOfferingPower": {
+		"DESCRIPTIONS": [
+			"Всякий раз, когда вы #ySummon с максимальным стеком призыва: потеряйте 3 HP, #yIncrement #b",
+			" а затем #ySummon #b",
+			","
+		],
+		"NAME": "Окончательное предложение"
+	},
+	"theDuelist:UmiPower": {
+		"DESCRIPTIONS": [
+			"Ваши #yAqua монстры наносят на 50% больше урона и получают на 50% больше блока."
+		],
+		"NAME": "Umi"
+	},
+	"theDuelist:VioletCrystalPower": {
+		"DESCRIPTIONS": [
+			"Ваши #yInsects и #yPlants наносят на 50% больше урона и получают на 50% больше блока. Всякий раз, когда вы применяете #yPoison от Tributing #yInsect или #yPlant, применяйте 2 дополнительных #yPoison."
+		],
+		"NAME": "Фиолетовый кристалл"
+	},
+	"theDuelist:YamiPower": {
+		"DESCRIPTIONS": [
+			"Ваши #ySpellcasters наносят на 50% больше урона и получают на 50% больше блока. Каждый раз, когда вы #ySummon #ySpellcaster, получите 1 дополнительный #ySummon."
+		],
+		"NAME": "Ями"
+	}
+}
