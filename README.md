@@ -13,7 +13,7 @@ Discord Server: https://discord.gg/Tcwws6U
 - Googly Eyes
 
 # Introduction
-The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 230+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 8 new relics and 3 new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist).
+The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 360+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 22 new relics and 20 new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist), with the sole exception of the Millennium Puzzle, which may show up in the shop for all other characters.   
 
 This is a work in progress, and there will likely be some bugs and minor issues. I will do my best to address any unforeseen problems that arise, and of course I will be doing my own continued playtesting and debugging. Expect periodic updates. My contact information is listed at the end of this description if you would like to reach me directly with issues/feedback/bug reports/suggestions/hate mail. Thanks for playing!
 
@@ -33,6 +33,11 @@ Predaplant - More specific type of Plant. Predaplants are treated as Plants, but
 Zombie - Whenever you Resummon a Zombie, you gain 5 Block.  
 Fiend - Whenever you Tribute a Fiend for another Fiend, you place one card from your discard pile back into your hand.  
 Aqua - Whenever you Tribute an Aqua for another Aqua, a randomized Aqua is added to your hand.  
+Invert - Similar to evoking an orb, but you also channel an orb that is the 'opposite' of the evoked orb.   
+Immortal - When an Immortal card is in your discard pile at the start of turn, you gain 1 Energy.   
+Machine - When you Tribute a Machine for another Machine, gain 1 Artifact.   
+Superheavy - When you Tribute a Superheavy for another Superheavy, gain 1 Dexterity.    
+Naturia - Whenever you Summon a Naturia monster, it deals 1 damage to all enemies at the end of turn for the rest of combat as long as you have at least 1 Naturia monster summoned.  
 
 # Gameplay Mechanics
 ## Summoning & Tributing
@@ -52,7 +57,7 @@ The 'Increment' keyword signifies that your maximum number of summons will incre
 All Duelist cards are of type Monster, Spell, Trap or Token. This change is somewhat cosmetic only - and by that I mean that every card is also either an Attack, Skill or Power. The new card types used by this mod are for thematic flavor and gameplay reasons only. For example, some cards will specifically trigger effects regarding Monster cards. You should look at the type listed on the card in this situation. Conversely, some enemies may trigger effects when you play non-Attack cards. You should look at the picture shape of the card in this situation, as any card that is technically an Attack will still have the diagonally-cut squarish shape found on Attack cards in the base game. Duelist cards that are technically Skills will still have rectangular shaped card images, Powers will still be circular, you get the idea. The base game types (Attack, Skill, Power) and Duelist types (Monster, Trap, Spell) are not associated in any way. For example, there are Attack Monsters, Skill Monsters, Power Monsters, Attack Spells, Skill Spells, Power Traps, etc. Tokens are not cards that will ever be played, and exist only as a way to trigger certain effects, or generally, simply as a generic summon to tribute from your summons list.
 	
 ## Custom Orbs
-There are 12 custom orbs added with this mod. I don't believe it will be possible to channel these orbs outside of using the Duelist character though. These orbs are: Air, Buffer, DragonOrb, Earth, Fire, Gate, Glitch, MonsterOrb, Reducer, Shadow, Splash, and Summoner. Some may be channeled directly via card effect, others may only be channeled indirectly via random effects.
+There are 24 custom orbs added with this mod. I don't believe it will be possible to channel these orbs outside of using the Duelist character though. Some may be channeled directly via card effect, others may only be channeled indirectly via random effects.
 
 ## Random Actions (Time Wizard & Glitch orb)
 This card and this orb are the only ways to currently trigger a 'random action'. The list of actions for both is similar. The full list of actions as they appear in the array for each card is given below.
@@ -68,312 +73,41 @@ Insect Tokens: 		These tokens simply provide extra ways to trigger Insect effect
 Plant Tokens: 		These tokens simply provide extra ways to trigger Plant effects.  
 
 # Mod Options
-## Remove all Toon cards
-This option will remove the 14 Toon cards from the game. Toggle the box to your desired preference and then restart the game. Checking this option and then using the Toon deck may lead to undefined behavior.
+## Getting to Mod Options
+From the main menu: Mods -> Duelist Mod -> Config. The config button is on the bottom left, near the return to main menu button
 
-## Remove all Exodia cards
-This option will remove the 6 Exodia cards from the game. Functions the same as the 'Remove all Toons' option.
+## Remove all Toon/Ojama/Exodia cards
+This option will remove all Toon/Ojama/Exodia cards from your card reward and shop pools. Selecting this option during a run will reset your card pool, which may change which random archetype cards are in your pool.
 
-## Allow mod crossover cards
-There are 14 bonus cards that can be added to the game if you have this option checked and you load the game with both Replay the Spire and Conspire.
+## Unlock All Decks
+Allows you to select any starting deck at the character select screen. Your score is still tracked in the background. All the decks are always unlocked for custom runs.
+
+## Challenge Mode
+Makes the game harder in various ways without directly altering any specific card effects. Primarily, Millennium Puzzle special effects are turned off and replaced with Explosive Token summons.
+
+## Flip Tags
+This option, when selected, will change cards to instead be tagged as Attack/Skill/Power. Turning the option off will re-enable Monster/Spell/Trap tags on the cards. Card colors are never altered. 
 
 ## Starting Deck
-This option lets you choose which deck you would like to use for your custom runs.  
-
-## Unlock All Decks  
-This options enables all starter decks to be selectable for normal runs, even if you do not have enough Total Score.  
-
-## Turn off Monster/Spell/Trap tags  
-This option will flip all card tags to instead say Attack/Skill/Power instead of Monster/Skill/Trap. You may flip this option without even restarting the game, and the cards should change tags appropriately.
-
-# Challenge Mode  
-This option enables Challenge Mode! This setting makes the game much harder. No card stats are changed, but many effects of orbs, cards, and random effects are much worse. For example, the list of possible orbs you are able to channel randomly in Challenge Mode does not contain powerful orbs such as Summoner or Plasma.
-
-## Set Size
-You can change this option to remove large groups of the cards from the game. There are 5 different card sets to select from: Core, Limited, Reduced, Full and All. The Core set is the smallest, with only 61 cards, while the All set is the largest set with 186 cards. If you have both 'Remove cards' mod options turned off, the 'Allow crossover cards' option turned on, and the card set size set to 'All', then the game will have the maximum number of possible cards at 200. The number of cards currently turned on is always displayed in the options panel after the 'Active Duelist Cards:' label. This setting is largely untested, so there may be some bugs when using sets other than 'All'.
+This option lets you choose which deck you would like to use for your custom runs.
 
 # Known Issues
 - Downgrading cards does not work properly when cards that have Tribute-based upgrades become Downgraded. However in most cases, this is beneficial and it should never crash the game or cause any other major side effects.  
 - Future Diary relic (Aspiration) sometimes causes issues  
-- Buffer orb has problems with powers that don't stack, needs major overhaul  
-- Pumprincess/Pumpking/Gigaplant cannot resummon each other, and Shallow Grave cannot resummon these cards either   
-- Mirror Force is buggy and sometimes does way too much damage   
-- Ultimate Offering can sometimes get into an infinite loop and murder you   
+- Buffer orb has problems with powers that don't stack, needs major overhaul   
 - Many cards with tribute-based upgrades are slightly buggy and can have undefined behavior   
 - Monkei's Paw relic (Halation) causes various issues, beware   
 - Time Maze and Toon Rollback/Toon Magic interaction is buggy   
-- Heavy Storm doesn't always remove powers properly from everyone, and exhausts although the card text does not say so   
-- Bottled Mercury relic sometimes gets set on the wrong card after save & quit (Infinite Spire)   
-
-# To Do (ordered by priority)
-- Bug fixes/stability updates
-- Balance updates  
-- Finish ZHS translations
-- Add more: starter decks, cards, powers, relics, potions, mod options
-- Add some new custom run modifiers
-- Additional ranslations (French, Korean, maybe Russian)  
-- Add event(s)  
-- Add enemies  
-
+- Heavy Storm causes issues sometimes, and may not always remove ALL powers as stated. (Gremlin Nob strength, Thievery is not removed properly when fighting Mugger)   
+- Bottled Mercury relic sometimes gets set on the wrong card after save & quit (Infinite Spire)  
+- Gravity Axe doesn't appear to give you 3 strength right away if you play it with 0 strength   
+ 
 # Creator Information
 Thanks for playing the Duelist! Please let me know if you have any feedback or bug reports! 
 
 Email: nyoxidestsmods@gmail.com
 
 Discord: Nyoxide#3464
-
-# Card List
-  
-#### Core  
-7-Colored Fish - *Core*  
-Armored Zombie - *Core*  
-Axe of Despair - *Core*  
-B. Eyes Ultimate - *Core*  
-B.E. White Dragon - *Core*  
-Baby Dragon - *Core*  
-Blizzard Dragon - *Core*  
-Buster Blader - *Core*  
-Cannon Soldier - *Core*  
-Card Destruction - *Core*  
-Castle Dark Illusion - *Core*  
-Castle Walls - *Core*  
-Catapult Turtle - *Core*  
-Cave Dragon - *Core*  
-Celtic Guardian - *Core*  
-Change of Heart - *Core*  
-Dark Magician - *Core*  
-Darklord Marie - *Core*  
-Dian Keto - *Core*  
-Dragon Capture Jar - *Core*  
-Fiend Megacyber - *Core*  
-Fissure - *Core*  
-Flute of Summoning Dragon - *Core*  
-Fortress Warrior - *Core*  
-G. Dragon Champion - *Core*  
-G. Fierce Knight - *Core*  
-Gemini Elf - *Core*  
-Giant Stone Soldier - *Core*  
-Golden Apples - *Core*  
-Graceful Charity - *Core*  
-Gravity Axe - *Core*  
-Hane Hane - *Core*  
-Hinotoma - *Core*  
-Imperial Order - *Core*  
-Injection Fairy Lily - *Core*  
-Insect Queen - *Core*  
-Island Turtle - *Core*  
-Jam Breed Machine - *Core*  
-Judge Man - *Core*  
-Kazejin - *Core*  
-Kuriboh - *Core*  
-Labyrinth Wall - *Core*  
-Lesser Dragon - *Core*  
-Lord of D. - *Core*  
-Mini L. Wall - *Core*  
-Mirror Force - *Core*  
-Monster Reborn - *Core*  
-Mountain - *Core*  
-Mystical Elf - *Core*  
-Neo Magic - *Core*  
-Obelisk - *Core*  
-Ookazi - *Core*  
-Pot of Generosity - *Core*  
-Pot of Greed - *Core*  
-Prevent Rat - *Core*  
-Pumpking - *Core*  
-R. Eyes Black Dragon - *Core*  
-Raigeki - *Core*  
-Rain of Mercy - *Core*  
-Relinquished - *Core*  
-Sanga of Thunder - *Core*  
-Scapegoat - *Core*  
-Scrap Factory - *Core*  
-Slifer Sky Dragon - *Core*  
-Snow Dragon - *Core*  
-Snowdust Dragon - *Core*  
-Sphere Kuriboh - *Core*  
-Spirit of the Harp - *Core*  
-Summoned Skull - *Core*  
-Superheavy Benkei - *Core*  
-Superheavy Scales - *Core*  
-Superheavy Swordsman - *Core*  
-Superheavy Waraji - *Core*  
-Thunder Dragon - *Core*  
-Tremendous Fire - *Core*  
-Winged Dragon Ra - *Core*  
-Wiseman's Chalice - *Core*  
-Yami - *Core*  
-
-  
-#### Limited    
-A. Magnet Warrior - *Limited*  
-Ancient Rules - *Limited*  
-B. Magnet Warrior - *Limited*  
-Bad Reaction - *Limited*  
-D.M. Girl - *Limited*  
-Dark Hole - *Limited*  
-Emperor Mausoleum - *Limited*  
-Exodia Head - *Limited*  
-Exodia L. Arm - *Limited*  
-Exodia L. Leg - *Limited*  
-Exodia R. Arm - *Limited*  
-Exodia R. Leg - *Limited*  
-G. Magnet Warrior - *Limited*  
-Millennium Shield - *Limited*  
-Phoenix Feather - *Limited*  
-Valkyrion - *Limited*  
-  
-#### Reduced  
-Curse of Dragon - *Reduced*  
-Cyber Dragon - *Reduced*  
-Dark Factory - *Reduced*  
-Fiend Skull Dragon - *Reduced*  
-Five Headed Dragon - *Reduced*  
-Giant Trunade - *Reduced*  
-Harpie Feather Duster - *Reduced*  
-Molten Zombie - *Reduced*  
-Ojama Green - *Reduced*  
-Ojama Yellow - *Reduced*  
-Ojamagic - *Reduced*  
-Ojamuscle - *Reduced*  
-Pot of Avarice - *Reduced*  
-Pot of Dichotomy - *Reduced*  
-Pot of Duality - *Reduced*  
-Pumprincess - *Reduced*  
-R. Eyes Zombie Dragon - *Reduced*  
-Red Medicine - *Reduced*  
-Shard of Greed - *Reduced*  
-Storming Mirror Force - *Reduced*  
-Superheavy Brawler - *Reduced*  
-Superheavy Daihachi - *Reduced*  
-Superheavy Flutist - *Reduced*  
-Superheavy General - *Reduced*  
-Superheavy Magnet - *Reduced*  
-Superheavy Ogre - *Reduced*  
-Swords: Burning Light - *Reduced*  
-Swords: Concealing Light - *Reduced*  
-  
-#### Full  
-B.E. Toon Dragon - *Full*  
-Dragon Master Knight - *Full*  
-Gandora - *Full*  
-L. Exodia Incarnate - *Full*  
-Radiant Mirror Force - *Full*  
-Red Eyes Toon - *Full*  
-Superancient Dinobeast - *Full*  
-Swords: Revealing Light - *Full*  
-Time Wizard - *Full*  
-Token Vacuum - *Full*  
-Toon Barrel Dragon - *Full*  
-Toon Briefcase - *Full*  
-Toon D.M. Girl - *Full*  
-Toon Dark Magician - *Full*  
-Toon Gemini Elf - *Full*  
-Toon Kingdom - *Full*  
-Toon Magic - *Full*  
-Toon Mask - *Full*  
-Toon Mermaid - *Full*  
-Toon Rollback - *Full*  
-Toon S. Skull - *Full*  
-Toon World - *Full*  
-Trap Hole - *Full*  
-  
-#### All  
-Acid Trap Hole - *All*  
-Altar Tribute - *All*  
-B. Skull Dragon - *All*  
-Basic Insect - *All*  
-Blackland Fire Dragon - *All*  
-Blizzard Princess - *All*  
-Book Secret Arts - *All*  
-Bottomless Trap Hole - *All*  
-Card of Safe Return - *All*  
-Cheerful Coffin - *All*  
-Cloning - *All*  
-Cocoon of Evolution - *All*  
-Comic Hand - *All*  
-Contract Exodia - *All*  
-Dark Creator - *All*  
-Darkfire Dragon - *All*  
-Double Coston - *All*  
-Empress Mantis - *All*  
-Exploder Dragon - *All*  
-Fog King - *All*  
-Gates Dark World - *All*  
-Gigaplant - *All*  
-Grasschopper - *All*  
-Guardian Angel Joan - *All*  
-Hammer Shot - *All*  
-Heart Underdog - *All*  
-Heavy Storm - *All*  
-Icy Crevasse - *All*  
-Illusionist - *All*  
-Insect Knight - *All*  
-Invigoration - *All*  
-Invitation Dark Sleep - *All*  
-Jerry Beans Man - *All*  
-Jinzo - *All*  
-Jirai Gumo - *All*  
-King Yamimakai - *All*  
-Lajinn Mystical Genie - *All*  
-Levia-Dragon - *All*  
-Machine Factory - *All*  
-Machine King - *All*  
-Man-Eater Bug - *All*  
-Metal Dragon - *All*  
-Mini-Polymerization - *All*  
-Monster Egg - *All*  
-Mythical Beast - *All*  
-Ocean Dragon Lord - *All*  
-P. Chimerafflesia - *All*  
-P. Chlamydosundew - *All*  
-P. Drosophyllum - *All*  
-P. Flytrap - *All*  
-P. Pterapenthes - *All*  
-P. Sarraceniant - *All*  
-P. Spinodionaea - *All*  
-Petit Moth - *All*  
-Polymerization - *All*  
-Pot Forbidden - *All*  
-Predaponics - *All*  
-Predapruning - *All*  
-Reinforcements - *All*
-Revival Jam - *All*  
-Shadow Toon - *All*  
-Shallow Grave - *All*  
-Smashing Ground - *All*  
-Steam Train King - *All*  
-Stim Pack - *All*  
-Super Solar Nutrient - *All*  
-Sword of Deep-Seated - *All*  
-Terra Terrible - *All*  
-Terraforming - *All*  
-The Creator - *All*  
-Tri-Horned Dragon - *All*  
-Tribute to Doomed - *All*  
-Ultimate Offering - *All*
-Violet Crystal - *All*  
-White Night Dragon - *All*  
-White-Horned Dragon - *All*  
-Wiretap - *All*  
-  
-#### Bonus Mod-Crossover
-Barrel Dragon - *Crossover* - *Replay the Spire*  
-Blast Juggler - *Crossover* - *Replay the Spire*  
-Dark Mirror Force - *Crossover* - *Replay the Spire*  
-Flame Swordsman - *Crossover* - *Replay the Spire*  
-Gate Guardian - *Crossover* - *Conspire*  
-Legendary Fisherman - *Crossover* - *Conspire*  
-Magic Cylinder - *Crossover* - *Replay the Spire*  
-Nutrient Z - *Crossover* - *Replay the Spire*  
-Ojama Black - *Crossover* - *Replay the Spire*  
-Ojama King - *Crossover* - *Replay the Spire*  
-Ojama Knight - *Crossover* - *Replay the Spire*  
-Parasite Paracide - *Crossover* - *Replay the Spire*  
-Suijin - *Crossover* - *Conspire*
-
-#### Random Generation Only
-None currently  
   
 #### Toon cards removed by Mod Option  
 B.E. Toon Dragon - *Toons*  

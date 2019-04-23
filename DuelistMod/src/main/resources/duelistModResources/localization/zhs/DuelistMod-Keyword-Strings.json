@@ -1,6 +1,6 @@
 [
 	{
-		"DESCRIPTION": "计算目前召唤的怪物。最多＃b5传票。",
+		"DESCRIPTION": "计算目前召唤的怪物。最多5传票。",
 		"NAMES": [
 			"召唤",
 			"传票"
@@ -8,7 +8,7 @@
 		"PROPER_NAME": "召唤"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，将#yrandomized monster cards添加到你的手中。 #yEvoke还会将#yrandomized怪物添加到您的手中。",
+		"DESCRIPTION": "宝珠：在回合开始时，将随机怪物卡片添加到你的手中。唤起还会将随机怪物添加到您的手中。",
 		"NAMES": [
 			"MonsterOrb",
 			"MonsterOrb"
@@ -16,49 +16,49 @@
 		"PROPER_NAME": "MonsterOrb"
 	},
 	{
-		"DESCRIPTION": "某些卡片（如Monster Reborn）允许你重新制作怪物。当你重新召唤一个怪物时，它会重放该卡，忽略#yTribute成本。一些怪物有额外的效果，当他们被重新召唤时会触发。",
+		"DESCRIPTION": "某些卡片（如怪物重生）允许你重新制作怪物。当你重新召唤一个怪物时，它会重放该卡，忽略贡成本。一些怪物有额外的效果，当他们被重新召唤时会触发。",
 		"NAMES": [
 			"Resummon"
 		],
 		"PROPER_NAME": "Resummon"
 	},
 	{
-		"DESCRIPTION": "删除X #ySummons。除非你有足够的#ySummons到#yTribute，否则你不能玩#yTribute卡。",
+		"DESCRIPTION": "删除X 召唤。除非你有足够的召唤到贡，否则你不能玩贡卡。",
 		"NAMES": [
 			"贡"
 		],
 		"PROPER_NAME": "贡"
 	},
 	{
-		"DESCRIPTION": "按给定的数字增加你的最大#ySummons。",
+		"DESCRIPTION": "按给定的数字增加你的最大召唤。",
 		"NAMES": [
 			"增量"
 		],
 		"PROPER_NAME": "增量"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时增加你的力量筹码。 #yEvoke随机提供#ybuffs。",
+		"DESCRIPTION": "宝珠：在回合开始时增加你的力量筹码。唤起随机提供积极的力量。",
 		"NAMES": [
 			"缓冲"
 		],
 		"PROPER_NAME": "缓冲"
 	},
 	{
-		"DESCRIPTION": "#yOrb：#ySummon #ySpellcater转牌尾的代币。 #yEvoke增加你的最大#ySummons。",
+		"DESCRIPTION": "宝珠：召唤 施法者转牌尾的代币。唤起增加你的最大召唤。",
 		"NAMES": [
 			"召唤师"
 		],
 		"PROPER_NAME": "召唤师"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，增加卡被减少时被唤起。 #yEvoke将手中随机卡的成本设置为0。",
+		"DESCRIPTION": "宝珠：在回合开始时，增加卡被减少时被唤起。唤起将手中随机卡的成本设置为0。",
 		"NAMES": [
 			"减速器"
 		],
 		"PROPER_NAME": "减速器"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，将#yrandomized #yDragon卡添加到您的手中。 #yEvoke将手中随机#yDragons的成本设置为0。",
+		"DESCRIPTION": "宝珠：在回合开始时，将随机龙卡添加到您的手中。唤起将手中随机龙的成本设置为0。",
 		"NAMES": [
 			"DragonOrb",
 			"DragonOrb"
@@ -66,14 +66,14 @@
 		"PROPER_NAME": "DragonOrb"
 	},
 	{
-		"DESCRIPTION": "如果在转牌结束时手中有#yOverflow的牌，请激活效果。这种效果的用途有限。",
+		"DESCRIPTION": "如果在转牌结束时手中有溢出的牌，请激活效果。这种效果的用途有限。",
 		"NAMES": [
 			"溢出"
 		],
 		"PROPER_NAME": "溢出"
 	},
 	{
-		"DESCRIPTION": "只有在#yToon #yWorld处于活动状态时才能播放。如果你使用另一个卡通向一个卡通怪物致敬，对所有敌人造成＃b5伤害。",
+		"DESCRIPTION": "只有在卡通世界处于活动状态时才能播放。如果你使用另一个卡通向一个卡通怪物致敬，对所有敌人造成5伤害。",
 		"NAMES": [
 			"香椿",
 			"卡通"
@@ -81,7 +81,7 @@
 		"PROPER_NAME": "香椿"
 	},
 	{
-		"DESCRIPTION": "与#yMagnet #yWarrior怪物相关的标记。 #yMagnets没有固有的影响。",
+		"DESCRIPTION": "与磁铁战士怪物相关的标记。磁铁没有固有的影响。",
 		"NAMES": [
 			"磁铁",
 			"磁铁"
@@ -89,28 +89,28 @@
 		"PROPER_NAME": "磁铁"
 	},
 	{
-		"DESCRIPTION": "将＃b2 #yrandomized卡添加到您的手中，本回合费用为＃b0。随机应用＃b1 #ybuff。将＃b2随机#ydebuffs应用于敌人。",
+		"DESCRIPTION": "将2 随机卡添加到您的手中，本回合费用为0。随机应用1积极的力量。将2随机负面力量应用于敌人。",
 		"NAMES": [
 			"ojamania"
 		],
 		"PROPER_NAME": "ojamania"
 	},
 	{
-		"DESCRIPTION": "当#yTribute #yDragon为另一个#yDragon时，Gain＃b1 #yStrength。",
+		"DESCRIPTION": "当贡 龙为另一个龙时，获得1点力量。",
 		"NAMES": [
 			"龙"
 		],
 		"PROPER_NAME": "龙"
 	},
 	{
-		"DESCRIPTION": "当你攻击时，如果你当前召唤的唯一怪物是#ySpellcasters，则获得＃b5 Block。你需要召唤至少＃b1 #ySpellcaster来触发这个效果。",
+		"DESCRIPTION": "当你攻击时，如果你当前召唤的唯一怪物是施法者，则获得5格挡。你需要召唤至少1施法者来触发这个效果。",
 		"NAMES": [
 			"施法者"
 		],
 		"PROPER_NAME": "施法者"
 	},
 	{
-		"DESCRIPTION": "当#yTribute #yInsect怪物为#yInsect或#yPlant时，将＃b3 #yPoison应用于所有敌人。",
+		"DESCRIPTION": "当贡 昆虫怪物为昆虫或厂时，将3 中毒应用于所有敌人。",
 		"NAMES": [
 			"昆虫",
 			"昆虫"
@@ -118,7 +118,7 @@
 		"PROPER_NAME": "昆虫"
 	},
 	{
-		"DESCRIPTION": "当#yTribute #yPlant怪物为#yInsect或#yPlant时，将＃b3 #yPoison应用于所有敌人。",
+		"DESCRIPTION": "当贡 厂怪物为昆虫或厂时，将3 中毒应用于所有敌人。",
 		"NAMES": [
 			"厂",
 			"植物"
@@ -126,7 +126,7 @@
 		"PROPER_NAME": "厂"
 	},
 	{
-		"DESCRIPTION": "#yPredaplant怪物被视为#yPlants。当#yTribute #yPredaplant怪物为#yInsect或#yPlant时，将＃b3 #yPoison应用于所有敌人。",
+		"DESCRIPTION": "Predaplant怪物被视为厂。当贡 Predaplant怪物为昆虫或厂时，将3 中毒应用于所有敌人。",
 		"NAMES": [
 			"predaplant",
 			"predaplants"
@@ -134,7 +134,7 @@
 		"PROPER_NAME": "predaplant"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，将#yrandomized #ySpell卡添加到您的手中。 #yEvoke还会将#yrandomized #ySpells添加到您的手中。",
+		"DESCRIPTION": "宝珠：在回合开始时，将随机 Spell卡添加到您的手中。 唤起还会将随机 Spells添加到您的手中。",
 		"NAMES": [
 			"地球",
 			"地球"
@@ -142,7 +142,7 @@
 		"PROPER_NAME": "地球"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，有机会#yChannel随机#yOrb。如果您目前召唤的唯一怪物是#yDragons，那么你有更高的机会。 #yEvoke通过＃b1增加#yOrb插槽。",
+		"DESCRIPTION": "宝珠：在回合开始时，有机会生成随机宝珠。如果您目前召唤的唯一怪物是龙，那么你有更高的机会。 唤起通过1增加宝珠插槽。",
 		"NAMES": [
 			"空气",
 			"空气"
@@ -150,7 +150,7 @@
 		"PROPER_NAME": "空气"
 	},
 	{
-		"DESCRIPTION": "#yOrb：当你绘制#yDragons时，减少他们的#yTribute成本。当#yEvoked时，为其余的战斗减少#yDragons（无处不在）的#yTribute成本。",
+		"DESCRIPTION": "宝珠：当你绘制龙时，减少他们的贡成本。当唤起d时，为其余的战斗减少龙（无处不在）的贡成本。",
 		"NAMES": [
 			"火",
 			"火"
@@ -158,7 +158,7 @@
 		"PROPER_NAME": "火"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，触发一个随机动作。 #yEvoke还会触发随机操作。",
+		"DESCRIPTION": "宝珠：在回合开始时，触发一个随机动作。 唤起还会触发随机操作。",
 		"NAMES": [
 			"毛刺",
 			"毛刺"
@@ -166,7 +166,7 @@
 		"PROPER_NAME": "毛刺"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，有＃b20％的机会#ySummon一个[＃FF5252]暗影[＃FF5252]令牌。 #yEvoke：#yResummon怪物从你的丢弃堆上随机敌人。",
+		"DESCRIPTION": "宝珠：在回合开始时，有20％的机会召唤一个暗影令牌。 唤起：Resummon怪物从你的丢弃堆上随机敌人。",
 		"NAMES": [
 			"阴影",
 			"阴影"
@@ -174,7 +174,7 @@
 		"PROPER_NAME": "阴影"
 	},
 	{
-		"DESCRIPTION": "#yOrb：当您绘制#yAquas时，减少他们在该回合的#yTribute成本。当#yEvoked时，在剩下的战斗中增加所有#yAqua怪物的#ySummons数量。",
+		"DESCRIPTION": "宝珠：当您绘制水族时，减少他们在该回合的贡成本。当唤起d时，在剩下的战斗中增加所有水族怪物的召唤数量。",
 		"NAMES": [
 			"溅",
 			"溅"
@@ -182,7 +182,7 @@
 		"PROPER_NAME": "溅"
 	},
 	{
-		"DESCRIPTION": "当你#yResummon a #yZombie时，获得＃b10 Block。",
+		"DESCRIPTION": "当你Resummon僵尸时，获得10 格挡。",
 		"NAMES": [
 			"僵尸",
 			"植物大战僵尸",
@@ -192,7 +192,7 @@
 		"PROPER_NAME": "僵尸"
 	},
 	{
-		"DESCRIPTION": "当#yTribute #yFiend换另一个#yFiend时，请将弃牌堆中的＃b1卡放入你的手中。那张牌获得#yExhaust。",
+		"DESCRIPTION": "当贡 恶魔换另一个恶魔时，请将弃牌堆中的1卡放入你的手中。",
 		"NAMES": [
 			"恶魔",
 			"煞星",
@@ -202,7 +202,7 @@
 		"PROPER_NAME": "恶魔"
 	},
 	{
-		"DESCRIPTION": "当你为另一个#yAqua #yTribute #yAqua时，在你的手上添加一个#yrandomized #yAqua怪物。",
+		"DESCRIPTION": "当你为另一个水族 贡 水族时，在你的手上添加一个随机 水族怪物。",
 		"NAMES": [
 			"水族",
 			"水族"
@@ -210,7 +210,7 @@
 		"PROPER_NAME": "水族"
 	},
 	{
-		"DESCRIPTION": "#yRandomized卡可能会改变其成本，＃yTribute成本降低，＃ySummons增加，可能#yExhaust，并可能成为#yUpgraded或#yEthereal。",
+		"DESCRIPTION": "随机卡可能会改变其成本，贡成本降低，召唤增加，可能消耗，并可能成为升级或虚无。",
 		"NAMES": [
 			"随机",
 			"随机"
@@ -218,7 +218,7 @@
 		"PROPER_NAME": "随机"
 	},
 	{
-		"DESCRIPTION": "不能#yResummoned。",
+		"DESCRIPTION": "不能Resummoned。",
 		"NAMES": [
 			"豁免",
 			"豁免"
@@ -226,7 +226,7 @@
 		"PROPER_NAME": "豁免"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，为每个怪物召唤＃b1 HP召唤这场战斗。 NL #yEvoke：为每个怪物治疗＃b3 HP召唤这场战斗。",
+		"DESCRIPTION": "宝珠：在回合开始时，为每个怪物召唤1 HP召唤这场战斗。唤起：为每个怪物治疗3 HP召唤这场战斗。",
 		"NAMES": [
 			"火焰",
 			"火焰"
@@ -234,7 +234,7 @@
 		"PROPER_NAME": "火焰"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，＃yTribute＃b2并获得临时HP等于所有贡献的总能量成本。 NL #yEvoke：#yTribute ALL召唤，获得一个随机的#yBuff等于tributed的数量。",
+		"DESCRIPTION": "宝珠：在回合开始时，贡2并获得临时HP等于所有贡献的总能量成本。唤起：贡 ALL召唤，获得一个随机的积极的力量等于贡d的数量。",
 		"NAMES": [
 			"消费者",
 			"消费者"
@@ -242,7 +242,7 @@
 		"PROPER_NAME": "消费者"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，将#yRandomized #yTrap添加到您的手中。 NL #yEvoke：随机播放#yTrap你已经在随机敌人身上玩过这个游戏。",
+		"DESCRIPTION": "宝珠：在回合开始时，将随机 Trap添加到您的手中。唤起：随机播放Trap你已经在随机敌人身上玩过这个游戏。",
 		"NAMES": [
 			"小工具",
 			"小工具"
@@ -250,7 +250,7 @@
 		"PROPER_NAME": "小工具"
 	},
 	{
-		"DESCRIPTION": "#yOrb：每当你绘制一个#yZombie时，为这场战斗减少#yTribute成本＃b1。 NL #yEvoke：对随机敌人造成随机伤害。以更高的召唤量造成更多伤害。",
+		"DESCRIPTION": "宝珠：每当你绘制一个Zombie时，为这场战斗减少贡成本1。唤起：对随机敌人造成随机伤害。以更高的召唤量造成更多伤害。",
 		"NAMES": [
 			"岩浆",
 			"岩浆"
@@ -258,7 +258,7 @@
 		"PROPER_NAME": "岩浆"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，激活#yMillennium #yPuzzle。 NL #yEvoke：选择并将甲板池中的X #yrandomized卡添加到您的手中。",
+		"DESCRIPTION": "宝珠：在回合开始时，激活Millennium Puzzle。唤起：选择并将甲板池中的X 随机卡添加到您的手中。",
 		"NAMES": [
 			"MillenniumOrb",
 			"MillenniumOrb"
@@ -266,7 +266,7 @@
 		"PROPER_NAME": "MillenniumOrb"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合结束时，获得#yBlock等于此战斗中#ySpells的数量加上＃b1。 NL #yEvoke：获得#yMetallicize＃b2。",
+		"DESCRIPTION": "宝珠：在回合结束时，获得格挡等于此战斗中Spells的数量加上1。唤起：获得Metallicize2。",
 		"NAMES": [
 			"金属",
 			"金属"
@@ -274,7 +274,7 @@
 		"PROPER_NAME": "金属"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在开始时，将#yRandomized #yPlant或#yInsect添加到您的手中。 NL #yEvoke：为此战斗增加所有#yInsect和#yPlant怪物（无处不在）的召唤。",
+		"DESCRIPTION": "宝珠：在开始时，将随机 厂或昆虫添加到您的手中。唤起：为此战斗增加所有昆虫和厂怪物（无处不在）的召唤。",
 		"NAMES": [
 			"泥",
 			"泥"
@@ -282,7 +282,7 @@
 		"PROPER_NAME": "泥"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，将#yRandomized #yAqua怪物添加到你的手中。 NL #yPassive：在回合结束时，增加你手中所有#yAqua怪物的召唤，弃掉堆积，并用＃b1排出堆积物。 NL #yEvoke：#yTribute所有#yAqua怪物和#ySummon各自的随机怪物。获得一个随机的#yBuff等于#yAqua怪物#yTributed的数量。",
+		"DESCRIPTION": "宝珠：在回合开始时，将随机 水族怪物添加到你的手中。Passive：在回合结束时，增加你手中所有水族怪物的召唤，弃掉堆积，并用1排出堆积物。唤起：贡所有水族怪物和召唤各自的随机怪物。获得一个随机的积极的力量等于水族怪物贡d的数量。",
 		"NAMES": [
 			"薄雾",
 			"薄雾"
@@ -290,7 +290,7 @@
 		"PROPER_NAME": "薄雾"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时，将＃b1 #ySlow应用于随机敌人。 NL #yEvoke：将＃b4 #ySlow应用于所有敌人。",
+		"DESCRIPTION": "宝珠：在回合开始时，将1 Slow应用于随机敌人。唤起：将4 Slow应用于所有敌人。",
 		"NAMES": [
 			"砂",
 			"砂"
@@ -298,7 +298,7 @@
 		"PROPER_NAME": "砂"
 	},
 	{
-		"DESCRIPTION": "#yOrb：当你绘制怪物时，将#yTribute成本增加＃b4并在本回合中增加＃b12的伤害。 NL #yEvoke：#yIncrement＃b5。",
+		"DESCRIPTION": "宝珠：当你绘制怪物时，将贡成本增加4并在本回合中增加12的伤害。唤起：增量5。",
 		"NAMES": [
 			"抽烟",
 			"抽烟"
@@ -306,7 +306,7 @@
 		"PROPER_NAME": "抽烟"
 	},
 	{
-		"DESCRIPTION": "#yOrb：在回合开始时将#yRandomized Power卡添加到您的手中。 NL #yEvoke：如果您有任何空的Orb插槽，请使用一个并减少绘图堆中所有怪物的#yTribute成本＃b1。",
+		"DESCRIPTION": "宝珠：在回合开始时将随机 Power卡添加到您的手中。唤起：如果您有任何空的宝珠插槽，请使用一个并减少绘图堆中所有怪物的贡成本1。",
 		"NAMES": [
 			"风暴",
 			"风暴"
@@ -314,7 +314,7 @@
 		"PROPER_NAME": "风暴"
 	},
 	{
-		"DESCRIPTION": "#yInverting与#yEvoking相同，不同之处在于你也#yChannel一个与#yEvoked相反的Orb。",
+		"DESCRIPTION": "倒置与激发相同，不同之处在于你也生成一个与唤起d相反的宝珠。",
 		"NAMES": [
 			"倒置",
 			"倒置",
@@ -324,7 +324,7 @@
 		"PROPER_NAME": "倒置"
 	},
 	{
-		"DESCRIPTION": "每当你#ySummon一个#yNaturia怪物时，只要你召唤至少1个#yNaturia怪物，它就会在剩下的战斗中对所有敌人造成＃b1点伤害。",
+		"DESCRIPTION": "每当你召唤一个Naturia怪物时，只要你召唤至少1个Naturia怪物，它就会在剩下的战斗中对所有敌人造成1点伤害。",
 		"NAMES": [
 			"Naturia",
 			"Naturia"
@@ -332,7 +332,7 @@
 		"PROPER_NAME": "Naturia"
 	},
 	{
-		"DESCRIPTION": "当你为另一个#ySuperheavy #yTribute #ySuperheavy时，获得＃b1 #yDexterity。",
+		"DESCRIPTION": "当你为另一个超重贡超重时，获得1敏捷",
 		"NAMES": [
 			"超重",
 			"超重"
@@ -340,7 +340,7 @@
 		"PROPER_NAME": "超重"
 	},
 	{
-		"DESCRIPTION": "当#yTribute #yMachine为另一个#yMachine时，获得＃b1 #yArtifact。",
+		"DESCRIPTION": "当贡 机为另一个机时，获得1人工制品。",
 		"NAMES": [
 			"机",
 			"机",
@@ -350,7 +350,7 @@
 		"PROPER_NAME": "机"
 	},
 	{
-		"DESCRIPTION": "#yPassive：在回合开始时，将＃b1堆栈的随机debuff应用于随机敌人。 NL #yEvoke：将#yrandomized #yFiend添加到您的手中。",
+		"DESCRIPTION": "宝珠：在回合开始时，将1堆栈的随机负面力量应用于随机敌人。唤起：将随机 恶魔添加到您的手中。",
 		"NAMES": [
 			"黑色",
 			"黑色"
@@ -358,7 +358,7 @@
 		"PROPER_NAME": "黑色"
 	},
 	{
-		"DESCRIPTION": "如果#yImmortal卡在弃牌堆中，则在回合开始时获得[E]。",
+		"DESCRIPTION": "如果不朽卡在弃牌堆中，则在回合开始时获得 [E] ",
 		"NAMES": [
 			"不朽",
 			"不朽"
@@ -366,7 +366,7 @@
 		"PROPER_NAME": "不朽"
 	},
 	{
-		"DESCRIPTION": "#yOrb：对所有敌人造成伤害，获得#yEnergy和#yBlock。 NL #yGate不受#yFocus的影响。",
+		"DESCRIPTION": "宝珠：对所有敌人造成伤害，获得 [E] 和格挡。 门不受集中的影响。",
 		"NAMES": [
 			"门"
 		],

@@ -104,7 +104,7 @@
   "theDuelist:MillenniumOrb": {
     "NAME": "Millennium Orb",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yrandomized cards from your deck pool into your hand."
+	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yrandomized cards from your deck pool into your hand. NL This evoke effect is triggered every #b3 turns."
     ]
   },
   "theDuelist:Metal": {

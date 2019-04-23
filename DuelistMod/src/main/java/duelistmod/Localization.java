@@ -24,8 +24,8 @@ public class Localization {
 	            return "eng";
 	        case ZHS:
 	        	return "zhs";
-	        case ZHT:
-	        	return "zht";
+	        //case ZHT:
+	       // 	return "zht";
 	        case KOR:
 	        	return "kor";
 	        case DEU:
