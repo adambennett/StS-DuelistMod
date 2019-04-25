@@ -73,7 +73,7 @@ public class FeatherPho extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
     	
-    	if (p.hand.group.size() >= this.magicNumber) { return true; }
+    	if (p.hand.group.size() >= this.magicNumber + 1) { return true; }
     	
     	this.cantUseMessage = "You need at least " + this.magicNumber + " cards in hand";
     	return false;
