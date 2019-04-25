@@ -196,6 +196,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static TheDuelist duelistChar;
 	public static StarterDeck currentDeck;
 	public static ModLabel setSelectColorTxtB;
+	public static ModLabeledToggleButton flipBtn;
 	
 	// Global Character Stats
 	public static int energyPerTurn = 3;
@@ -579,9 +580,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		
 		// Flip card tags
 		String flipString = UI_String.TEXT[9];
-		ModLabeledToggleButton flipBtn = new ModLabeledToggleButton(flipString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, flipCardTags, settingsPanel, (label) -> {}, (button) -> 
+		flipBtn = new ModLabeledToggleButton(flipString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, flipCardTags, settingsPanel, (label) -> {}, (button) -> 
 		{
 			flipCardTags = button.enabled;
+			if (flipCardTags) { flipBtn.text.text = UI_String.TEXT[13]; }
+			else { flipBtn.text.text = UI_String.TEXT[9]; }
 			try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
@@ -700,7 +703,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		logger.info("Done loading badge Image and mod options");
 
 	}
-	
+
 
 	private void resetDuelist() 
 	{
