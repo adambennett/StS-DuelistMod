@@ -31,7 +31,7 @@ public class MachineKing extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	//private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-	private static final int COST = 1;
+	private static final int COST = 0;
 	// /STAT DECLARATION/
 
 	public MachineKing() {
@@ -39,7 +39,7 @@ public class MachineKing extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ALL);
 		this.tags.add(Tags.MACHINE);
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 1;
 		this.originalName = this.name;
 
 	}

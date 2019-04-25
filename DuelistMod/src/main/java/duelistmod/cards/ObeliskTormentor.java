@@ -40,7 +40,7 @@ public class ObeliskTormentor extends DuelistCard
         this.tags.add(Tags.FIEND);
         this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 5;
+		this.tributes = this.baseTributes = 3;
 		this.baseMagicNumber = this.magicNumber = 6;
     }
 

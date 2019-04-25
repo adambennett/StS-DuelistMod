@@ -2686,11 +2686,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			for (int i = 0; i < numberOfInverts; i++)
 			{				
 				int invertedOrbs = 0;
-				ArrayList<AbstractOrb> baseOrbs = new ArrayList<AbstractOrb>();
+				//ArrayList<AbstractOrb> baseOrbs = new ArrayList<AbstractOrb>();
+				ArrayList<String> invertOrbNames = new ArrayList<String>();
 				int loopCount = AbstractDungeon.player.filledOrbCount();
 				for (int j = 0; j < loopCount; j++)
 				{
-					baseOrbs.add(AbstractDungeon.player.orbs.get(j));
+					//baseOrbs.add(AbstractDungeon.player.orbs.get(j));
+					invertOrbNames.add(AbstractDungeon.player.orbs.get(j).name);
 					evokeMult(amount, AbstractDungeon.player.orbs.get(j));
 					//evokeMult(amount);
 					System.out.println("Orb we added to baseOrbs: " + AbstractDungeon.player.orbs.get(j).makeCopy());
@@ -2700,8 +2702,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				System.out.println("(B) orb slots::::: " + AbstractDungeon.player.maxOrbs);
 				for (int j = 0; j < invertedOrbs; j++)
 				{
-					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(baseOrbs.get(j).name)));
-					System.out.println("Orb we inverted to channel: " + baseOrbs.get(j).makeCopy());
+					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(invertOrbNames.get(j)).makeCopy()));
+					System.out.println("Orb we inverted to channel: " + invertOrbNames.get(j));
 				}
 				
 			}
@@ -2720,18 +2722,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				resetInvertStringMap();
 				int invertedOrbs = 0;
-				ArrayList<AbstractOrb> baseOrbs = new ArrayList<AbstractOrb>();
+				ArrayList<String> baseOrbs = new ArrayList<String>();
 				int loopCount = AbstractDungeon.player.filledOrbCount();
 				for (int j = 0; j < loopCount; j++)
 				{
 					evokeMult(amount, AbstractDungeon.player.orbs.get(j));
 					invertedOrbs++;
-					baseOrbs.add(AbstractDungeon.player.orbs.get(j));
+					baseOrbs.add(AbstractDungeon.player.orbs.get(j).name);
 				}
 		
 				for (int j = 0; j < invertedOrbs; j++)
 				{
-					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(baseOrbs.get(j).name).makeCopy()));
+					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(baseOrbs.get(j)).makeCopy()));
 				}
 			}
 		}
@@ -2799,14 +2801,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			int numberOfInverts;
 			if (AbstractDungeon.player.hasRelic(InversionRelic.ID)) { amount++; }
 			if (AbstractDungeon.player.hasRelic(InversionEvokeRelic.ID)) { numberOfInverts = 2; }
-			else { numberOfInverts = 1; }			
+			else { numberOfInverts = 1; }		
+			resetInvertStringMap();
+			AbstractOrb o = AbstractDungeon.player.orbs.get(0);
+			String orbToInvert = o.name;
+			evokeMult(amount * numberOfInverts, AbstractDungeon.player.orbs.get(0));
+			AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
 			for (int i = 0; i < numberOfInverts; i++)
 			{
-				resetInvertStringMap();
-				AbstractOrb o = AbstractDungeon.player.orbs.get(i);
-				evokeMult(amount, AbstractDungeon.player.orbs.get(i));
-				AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
-				AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(o.name).makeCopy()));
+				AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(orbToInvert).makeCopy()));
 			}
 		}
 	}

@@ -38,7 +38,7 @@ public class AquaSpirit extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 10;
         this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 6;
+        this.baseMagicNumber = this.magicNumber = 15;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.AQUA_DECK);
@@ -74,7 +74,7 @@ public class AquaSpirit extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(6);
+            this.upgradeMagicNumber(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

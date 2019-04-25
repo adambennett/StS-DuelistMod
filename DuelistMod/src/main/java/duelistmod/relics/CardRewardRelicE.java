@@ -38,7 +38,7 @@ public class CardRewardRelicE extends CustomRelic
     	if (roll == 1)
     	{
     		flash();
-	    	for (int i = 0; i < 3; i++) { AbstractDungeon.getCurrRoom().addCardToRewards(); }  	
+	    	for (int i = 0; i < 2; i++) { AbstractDungeon.getCurrRoom().addCardToRewards(); }  	
     	}
     }
 }

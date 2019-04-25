@@ -35,7 +35,6 @@ public class CardDestruction extends DuelistCard
 
     public CardDestruction() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = CARDS;
         this.exhaust = true;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.GENERATION_DECK);
@@ -55,7 +54,6 @@ public class CardDestruction extends DuelistCard
     	if (handSize < 0) { handSize = 0; }
     	
     	// Exhaust all cards
-    	//AbstractDungeon.actionManager.addToTop(new DiscardAction(p, p, handSize, true));
     	for (AbstractCard card : AbstractDungeon.player.hand.group)
     	{
     		AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.hand));
@@ -66,43 +64,7 @@ public class CardDestruction extends DuelistCard
     	{
     		AbstractDungeon.actionManager.addToBottom(new CardDestructionAction(this.upgraded));
     	}
-    	
-    	/*
-    	if (!this.upgraded)
-    	{
-	    	// For each discarded card, add a random card to hand
-	    	for (int i = 0; i < handSize; i++)
-	    	{
-	    	
-	    		DuelistCard randomMonster = (DuelistCard) returnTrulyRandomDuelistCard();
-				randomMonster.costForTurn = 0;
-				randomMonster.isCostModifiedForTurn = true;
-				randomMonster.exhaust = true;
-				randomMonster.rawDescription = randomMonster.rawDescription + " NL Exhaust.";
-				randomMonster.initializeDescription();
-				addCardToHand(randomMonster);
-				
-	    		AbstractDungeon.actionManager.addToTop(new CardDestructionAction(false));
-	    	}
-    	}
-    	else
-    	{
-    		// For each discarded card, add 1 random upgraded card to hand
-	    	for (int i = 0; i < handSize; i++)
-	    	{
-	    		
-	    		DuelistCard randomMonster = (DuelistCard) returnTrulyRandomDuelistCard();
-				randomMonster.costForTurn = 0;
-				randomMonster.isCostModifiedForTurn = true;
-				randomMonster.upgrade();
-				randomMonster.exhaust = true;
-				randomMonster.rawDescription = randomMonster.rawDescription + " NL Exhaust.";
-				randomMonster.initializeDescription();
-				addCardToHand(randomMonster);
-			
-	    	}
-    	}
-    	*/
+
     }
 
     // Which card to return when making a copy of this card.

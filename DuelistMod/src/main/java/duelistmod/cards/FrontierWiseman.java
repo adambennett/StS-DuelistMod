@@ -28,7 +28,7 @@ public class FrontierWiseman extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 1;
+	private static final int COST = 0;
 	// /STAT DECLARATION/
 
 	public FrontierWiseman() {
@@ -37,7 +37,7 @@ public class FrontierWiseman extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.misc = 0;
 		this.originalName = this.name;
-		this.summons = this.baseSummons = 1;
+		this.summons = this.baseSummons = 2;
 		this.isSummon = true;
 	}
 

@@ -72,37 +72,42 @@ public class MillenniumOrb extends DuelistOrb
 		if (StarterDeckSetup.isDeckArchetype())
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
+			ArrayList<String> deckCardNames = new ArrayList<String>();
 			for (int i = 0; i < 50; i++)
 			{
 				int index = StarterDeckSetup.getCurrentDeck().getPoolCards().size() - 1;
 				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
-				AbstractCard c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll);
-				while (deckCards.contains(c))
+				AbstractCard c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll).makeStatEquivalentCopy();
+				while (deckCardNames.contains(c.name))
 				{
 					indexRoll = AbstractDungeon.cardRandomRng.random(index);
-					c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll);
+					c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll).makeStatEquivalentCopy();
 				}
 				deckCards.add(c);
+				deckCardNames.add(c.name);
 			}
-			//deckCards.addAll(StarterDeckSetup.getCurrentDeck().getPoolCards());
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 5, 0, 2, 0, 2));
+			int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, highRoll, 0, 2, 0, 2));
 		}
 		else
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
+			ArrayList<String> deckCardNames = new ArrayList<String>();
 			for (int i = 0; i < 50; i++)
 			{
 				int index = DuelistMod.myCards.size() - 1;
 				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
-				AbstractCard c = DuelistMod.myCards.get(indexRoll);
-				while (deckCards.contains(c))
+				AbstractCard c = DuelistMod.myCards.get(indexRoll).makeStatEquivalentCopy();
+				while (deckCardNames.contains(c.name))
 				{
 					indexRoll = AbstractDungeon.cardRandomRng.random(index);
-					c = DuelistMod.myCards.get(indexRoll);
+					c = DuelistMod.myCards.get(indexRoll).makeStatEquivalentCopy();
 				}
 				deckCards.add(c);
+				deckCardNames.add(c.name);
 			}
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 5, 0, 2, 0, 2));
+			int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, highRoll, 0, 2, 0, 2));
 		}
 	}
 	

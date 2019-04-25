@@ -28,7 +28,7 @@ public class SangaEarth extends DuelistCard
 
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -49,7 +49,7 @@ public class SangaEarth extends DuelistCard
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.summons = this.baseSummons = 1;
-		this.tributes = this.baseTributes = 3;
+		this.tributes = this.baseTributes = 1;
     }
 
     // Actions the card should do.

@@ -39,13 +39,13 @@ public class CardRewardRelicA extends CustomRelic
     	if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) 
         {
             flash();
-            setCounter(counter + 1);
+            setCounter(counter + 2);
         }
     	
     	if (this.counter > 0)
     	{
     		flash();
-	    	for (int i = 0; i < 5; i++) { AbstractDungeon.getCurrRoom().addCardToRewards(); }
+	    	AbstractDungeon.getCurrRoom().addCardToRewards();
 	    	setCounter(counter - 1);
     	}
     }

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class FeatherPho extends DuelistCard 
 {
@@ -63,6 +63,20 @@ public class FeatherPho extends DuelistCard
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	if (p.hand.group.size() >= this.magicNumber) { return true; }
+    	
+    	this.cantUseMessage = "You need at least " + this.magicNumber + " cards in hand";
+    	return false;
     }
 
 	@Override

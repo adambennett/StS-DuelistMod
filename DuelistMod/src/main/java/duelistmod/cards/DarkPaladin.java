@@ -34,8 +34,8 @@ public class DarkPaladin extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
-    private static final int COST = 2;
-    private static final int DAMAGE = 19;
+    private static final int COST = 1;
+    private static final int DAMAGE = 24;
     // /STAT DECLARATION/
 
     public DarkPaladin() {
@@ -45,7 +45,7 @@ public class DarkPaladin extends DuelistCard
         this.tags.add(Tags.SPELLCASTER);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 2;
     }
 
     // Actions the card should do.

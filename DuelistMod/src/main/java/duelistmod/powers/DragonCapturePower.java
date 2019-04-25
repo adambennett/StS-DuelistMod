@@ -58,10 +58,12 @@ public class DragonCapturePower extends AbstractPower
 			DuelistCard.addCardToHand(c);
 		}
 		
+		//DuelistCard.removePower(this, this.owner);
 		pieces = new ArrayList<AbstractCard>();
 		this.amount = 0;
 		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
 		updateDescription();
+		
     }
 
 	@Override

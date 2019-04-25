@@ -25,6 +25,14 @@ public class DragonRelic extends CustomRelic {
 	}
 	
 	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Dragon Deck")) { return true; }
+		else { return false; }
+	}
+	
+	@Override
 	public void onEquip()
 	{
 		setDescription();

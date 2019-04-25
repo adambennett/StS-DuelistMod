@@ -282,9 +282,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL At the start of turn, Tribute 1 and deal !M! damage to a random enemy."
 	},
 	"theDuelist:CardDestruction": {
-		"DESCRIPTION": "Exhaust your hand. Add !M! random card to your hand for each card discarded. Each card costs 0 and exhausts. Exhaust.",
+		"DESCRIPTION": "Exhaust your hand. Add a random card to your hand for each card discarded. Each card costs 0 and exhausts.",
 		"NAME": "Card Destruction",
-		"UPGRADE_DESCRIPTION": "Exhaust your hand. Add !M! random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts. Exhaust."
+		"UPGRADE_DESCRIPTION": "Exhaust your hand. Add a random upgraded card to your hand for each card discarded. Each card costs 0, has Ethereal, and exhausts."
 	},
 	"theDuelist:CardSafeReturn": {
 		"DESCRIPTION": "Whenever you Resummon, draw 2 cards.",
@@ -440,9 +440,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel 3 Dark."
 	},
 	"theDuelist:DarkMimicLv1": {
-		"DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM!. Draw 1 card. NL Overflow 1 - Remove this from your deck. At the start of your next combat, add a copy of Dark Mimic Lv3 to your hand.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM!. Draw 1 card. NL Overflow 1 - Remove this from your deck. At the start of your next combat, add a copy of Dark Mimic Lv3 to your hand.",
 		"NAME": "Dark Mimic Lv1",
-		"UPGRADE_DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM!. Draw 2 cards. NL Overflow 1 - Remove this from your deck. At the start of your next combat, add a copy of Dark Mimic Lv3 to your hand."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM!. Draw 2 cards. NL Overflow 1 - Remove this from your deck. At the start of your next combat, add a copy of Dark Mimic Lv3 to your hand."
 	},
 	"theDuelist:DarkMimicLv3": {
 		"DESCRIPTION": "Ethereal Fiend NL Summon !duelist:SUMM! NL Draw 2 cards. Gain !B! Block. NL Overflow 1 - At the start of your next combat, draw 4 cards.",
@@ -500,9 +500,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:DragonCaptureJar": {
-		"DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn.",
+		"DESCRIPTION": "Whenever you play a Dragon, add it back to your hand at the start of next turn.",
 		"NAME": "Dragon Capture Jar",
-		"UPGRADE_DESCRIPTION": "Dragons that are played are added back to your hand at the start of your next turn."
+		"UPGRADE_DESCRIPTION": "Whenever you play a Dragon, add it back to your hand at the start of next turn."
 	},
 	"theDuelist:DragonMaster": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random Dragon and Resummon it on the target enemy. Exempt.",
@@ -681,9 +681,9 @@
 		"UPGRADE_DESCRIPTION": "Increment !M! NL Gain !B! Block. NL Exhaust."
 	},
 	"theDuelist:FluteSummoning": {
-		"DESCRIPTION": "Add 2 randomized Dragons to your hand. Exhaust.",
+		"DESCRIPTION": "Add !M! randomized Dragons to your hand. Exhaust.",
 		"NAME": "Flute of Summoning Dragon",
-		"UPGRADE_DESCRIPTION": "Add 3 randomized, upgraded Dragons to your hand. Exhaust."
+		"UPGRADE_DESCRIPTION": "Add !M! randomized, upgraded Dragons to your hand. Exhaust."
 	},
 	"theDuelist:FogKing": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal damage equal to the combined damage of all Tributes.",
@@ -839,9 +839,9 @@
 		"UPGRADE_DESCRIPTION": "Draw 3 cards. NL Discard a card."
 	},
 	"theDuelist:Grasschopper": {
-		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to all enemies for each Insect or Plant you Tribute to play this.",
+		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect or Plant you Tribute to play this.",
 		"NAME": "Grasschopper",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to all enemies for each Insect or Plant you Tribute to play this."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect or Plant you Tribute to play this."
 	},
 	"theDuelist:Graverobber": {
 		"DESCRIPTION": "Choose a randomized Spell or Trap you have played this run and add it to your hand. Exhaust.",
@@ -1117,7 +1117,7 @@
 	"theDuelist:MachineKing": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel a Glitch.",
 		"NAME": "Machine King",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel a Glitch."
+		"UPGRADE_DESCRIPTION": "Channel a Glitch."
 	},
 	"theDuelist:MachineToken": {
 		"DESCRIPTION": "Machine NL Summon 1",
@@ -1153,9 +1153,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal X! damage. NL Exhaust."
 	},
 	"theDuelist:Mausoleum": {
-		"DESCRIPTION": "The first card you play with Tribute each turn does not Tribute. Take 1 damage each turn.",
+		"DESCRIPTION": "The first Tribute monster you play each turn does not Tribute. Take 1 damage each turn.",
 		"NAME": "Emperor Mausoleum",
-		"UPGRADE_DESCRIPTION": "The first card you play with Tribute each turn does not Tribute. Take 1 damage each turn."
+		"UPGRADE_DESCRIPTION": "The first Tribute monster you play each turn does not Tribute. Take 1 damage each turn."
 	},
 	"theDuelist:MetalDragon": {
 		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !B! Block.",
@@ -1394,9 +1394,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain a random buff. NL Invert your next Orb."
 	},
 	"theDuelist:OjamaPajama": {
-		"DESCRIPTION": "Randomize the magic numbers on all your cards.",
+		"DESCRIPTION": "Randomize the magic numbers on ALL of your cards.",
 		"NAME": "Ojama Pajama",
-		"UPGRADE_DESCRIPTION": "Randomize the magic numbers on all your cards."
+		"UPGRADE_DESCRIPTION": "Randomize the magic numbers on ALL of your cards."
 	},
 	"theDuelist:OjamaRed": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! random buffs. NL Channel a Black.",
@@ -2072,9 +2072,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you play a Toon card, add it back to your hand at the start of next turn."
 	},
 	"theDuelist:ToonCannonSoldier": {
-		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies.",
+		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal 5 damage to all enemies.",
 		"NAME": "Toon Cannon Soldier",
-		"UPGRADE_DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal !M! damage to all enemies."
+		"UPGRADE_DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal 5 damage to all enemies."
 	},
 	"theDuelist:ToonDarkMagician": {
 		"DESCRIPTION": "Toon Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage (through Block). Channel a Summoner.",
@@ -2203,9 +2203,9 @@
 		"UPGRADE_DESCRIPTION": "Your Aqua monster cards deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:ValkMagnet": {
-		"DESCRIPTION": "If you have all three Magnets: Summon !duelist:SUMM! and deal !D! damage. Remove ALL magnets.",
+		"DESCRIPTION": "If you have all three Magnets: Summon !duelist:SUMM! and deal !D! damage. Remove ALL magnets. Exempt.",
 		"NAME": "Valkyrion",
-		"UPGRADE_DESCRIPTION": "If you have all three Magnets: Summon !duelist:SUMM! and deal !D! damage."
+		"UPGRADE_DESCRIPTION": "If you have all three Magnets: Summon !duelist:SUMM! and deal !D! damage. Exempt."
 	},
 	"theDuelist:VanityFiend": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned.",

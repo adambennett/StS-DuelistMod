@@ -14,7 +14,7 @@ public class CardRewardRelicD extends CustomRelic
     public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
     // /FIELDS
 
-    public CardRewardRelicD() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL); }
+    public CardRewardRelicD() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL); }
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
     @Override
@@ -34,11 +34,11 @@ public class CardRewardRelicD extends CustomRelic
     @Override
     public void onVictory() 
     {
-    	int roll = AbstractDungeon.relicRng.random(1, 4);
-    	if (roll == 1)
+    	int roll = AbstractDungeon.relicRng.random(1, 100);
+    	if (roll <= 5)
     	{
     		flash();
-	    	for (int i = 0; i < 10; i++) { AbstractDungeon.getCurrRoom().addCardToRewards(); }  	
+	    	for (int i = 0; i < 5; i++) { AbstractDungeon.getCurrRoom().addCardToRewards(); }  	
     	}
     }
 }

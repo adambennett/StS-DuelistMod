@@ -24,6 +24,14 @@ public class NaturiaRelic extends CustomRelic {
 	}
 	
 	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Nature Deck")) { return true; }
+		else { return false; }
+	}
+	
+	@Override
 	public void onEquip()
 	{
 		DuelistMod.naturiaDmg = 2;

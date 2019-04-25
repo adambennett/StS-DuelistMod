@@ -28,7 +28,7 @@ public class MillenniumShield extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public MillenniumShield() {
@@ -39,7 +39,7 @@ public class MillenniumShield extends DuelistCard
         this.misc = 0;
         this.dex = 4;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
     }
 
     // Actions the card should do.

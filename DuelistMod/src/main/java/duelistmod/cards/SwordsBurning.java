@@ -56,7 +56,7 @@ public class SwordsBurning extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

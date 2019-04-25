@@ -25,6 +25,14 @@ public class FiendRelic extends CustomRelic {
 	}
 	
 	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Fiend Deck")) { return true; }
+		else { return false; }
+	}
+	
+	@Override
 	public void onEquip()
 	{
 		setDescription();

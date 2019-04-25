@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -49,7 +49,7 @@ public class SuperheavySoulbeads extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	block(this.block);
-    	applyPowerToSelf(new DexterityPower(p, this.dex));
+    	applyPowerToSelf(new BlurPower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

@@ -57,7 +57,7 @@ public class DarkstormDragon extends DuelistCard
     	ArrayList<AbstractCard> handDrags = new ArrayList<AbstractCard>();
     	for (AbstractCard c : player().hand.group)
     	{
-    		if (c.hasTag(Tags.DRAGON))
+    		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.tributes > 0) { handDrags.add(c); }

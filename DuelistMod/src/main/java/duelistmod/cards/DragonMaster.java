@@ -36,8 +36,8 @@ public class DragonMaster extends DuelistCard
 
     public DragonMaster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 4;
-        this.baseDamage = this.damage = 20;
+        this.tributes = this.baseTributes = 2;
+        this.baseDamage = this.damage = 25;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.GOOD_TRIB);

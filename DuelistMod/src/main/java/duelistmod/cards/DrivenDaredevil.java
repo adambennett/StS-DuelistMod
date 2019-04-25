@@ -36,7 +36,7 @@ public class DrivenDaredevil extends DuelistCard
         this.baseDamage = this.damage = 6;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 3;
-        this.magicNumber = this.baseMagicNumber = 4;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.originalName = this.name;
     }
 
@@ -60,8 +60,8 @@ public class DrivenDaredevil extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(2);
-            this.upgradeMagicNumber(2);
+            this.upgradeSummons(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

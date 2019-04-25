@@ -46,6 +46,7 @@ public class RedMirror extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	summon();
     	if (p.hasPower(RedMirrorPower.POWER_ID))
     	{
     		p.getPower(RedMirrorPower.POWER_ID).amount++;

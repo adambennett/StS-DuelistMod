@@ -87,35 +87,35 @@
 		"NAME": "Reward Token",
 		"FLAVOR": "A very helpful token.",
 		"DESCRIPTIONS": [
-			"Whenever you win combat, receive #b5 extra card rewards and consume #b1 #yCharge. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
+			"Whenever you win combat, receive #b1 extra card reward and consume #b1 #yCharge. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, gain #b2 #yCharges."
 		]
 	},
 	"theDuelist:CardRewardRelicB": {
 		"NAME": "Reward Token+",
 		"FLAVOR": "A VERY helpful token.",
 		"DESCRIPTIONS": [
-			"Whenever you win combat, receive #b2 extra card rewards and consume #b1 #yCharge. Starts with #b10 #yCharges. Upon defeating Bosses and Elites, gain #b2 #yCharges."
+			"Whenever you win combat, receive #b2 extra card rewards and consume #b1 #yCharge. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
 		]
 	},
 	"theDuelist:CardRewardRelicC": {
 		"NAME": "Reward Orb",
 		"FLAVOR": "A very helpful orb.",
 		"DESCRIPTIONS": [
-			"Whenever you win combat, receive #b1 extra card reward and consume #b1 #yCharge. Starts with #b6 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
+			"Whenever you win combat, receive #b1 extra card reward and consume #b1 #yCharge. Starts with #b5 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
 		]
 	},
 	"theDuelist:CardRewardRelicD": {
 		"NAME": "Reward Orb+",
 		"FLAVOR": "A strange orb.",
 		"DESCRIPTIONS": [
-			"Whenever you win combat, have a #b25% chance to receive #b10 extra card rewards."
+			"Whenever you win combat, have a #b5% chance to receive #b5 extra card rewards."
 		]
 	},
 	"theDuelist:CardRewardRelicE": {
 		"NAME": "Reward Stone",
 		"FLAVOR": "A strange stone.",
 		"DESCRIPTIONS": [
-			"Whenever you win combat, have a #b33% chance to receive #b3 extra card rewards."
+			"Whenever you win combat, have a #b33% chance to receive #b2 extra card rewards."
 		]
 	},
 	"theDuelist:InversionRelic": {

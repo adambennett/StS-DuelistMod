@@ -18,7 +18,7 @@ public class DarkMagician extends DuelistCard
 {
     // TEXT DECLARATION
 
-    public static final String ID = duelistmod.DuelistMod.makeID("DarkMagician");
+    public static final String ID = DuelistMod.makeID("DarkMagician");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.DARK_MAGICIAN);
     public static final String NAME = cardStrings.NAME;
@@ -33,7 +33,7 @@ public class DarkMagician extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 15;
+    private static final int DAMAGE = 19;
     // /STAT DECLARATION/
 
     public DarkMagician() {
@@ -75,7 +75,7 @@ public class DarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

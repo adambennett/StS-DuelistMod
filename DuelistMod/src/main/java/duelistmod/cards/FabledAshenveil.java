@@ -39,7 +39,7 @@ public class FabledAshenveil extends DuelistCard
 	public FabledAshenveil() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 3;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);		
 		this.misc = 0;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -14,8 +15,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.unique.PurgeSpecificCard;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class DarkMimicLv1 extends DuelistCard 
@@ -44,7 +46,6 @@ public class DarkMimicLv1 extends DuelistCard
         this.tags.add(Tags.FIEND);
         this.misc = 0;
         this.originalName = this.name;
-        this.isEthereal = true;
         this.isSummon = true;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 1;
@@ -75,11 +76,16 @@ public class DarkMimicLv1 extends DuelistCard
         		if (!DuelistMod.giveUpgradedMimicLv3) { DuelistMod.giveUpgradedMimicLv3 = this.upgraded; }
         	}
             
-            if (player().masterDeck.group.contains(this))
+            for (AbstractCard c : player().masterDeck.group)
             {
-            	AbstractDungeon.player.masterDeck.removeCard(this);
-            }
+            	if (c.originalName.equals(this.originalName))
+            	{
+            		AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(c, player().masterDeck));
+            		break;
+            	}
+            }          
            
+            AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(this, player().discardPile));          
         }
     }
 

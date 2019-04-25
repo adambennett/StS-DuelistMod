@@ -22,6 +22,14 @@ public class InversionRelic extends CustomRelic {
 	public InversionRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
 	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Spellcaster Deck")) { return true; }
+		else { return false; }
+	}
 
 	// Description
 	@Override

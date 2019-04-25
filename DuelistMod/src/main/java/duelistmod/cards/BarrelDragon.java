@@ -74,10 +74,10 @@ public class BarrelDragon extends DuelistCard
 		}
 		
 		// If number of enemies < debuff targets, set debuff targets # to number of enemies
-		if (temp < this.magicNumber) { this.magicNumber = this.baseMagicNumber = temp; }
+		if (temp > this.magicNumber) { temp = this.magicNumber; }
 		
 		// 3-4 times, apply 1 or 2 random debuffs to a random enemy
-		for (int i = 0; i < this.magicNumber; i++)
+		for (int i = 0; i < temp; i++)
 		{
 			// Get random number of turns for debuff to apply for (1-10)
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);

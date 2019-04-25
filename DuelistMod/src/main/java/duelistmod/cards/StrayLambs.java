@@ -53,7 +53,7 @@ public class StrayLambs extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	incMaxSummons(p, 2);
+    	incMaxSummons(p, this.magicNumber);
     	summon(p, this.summons, new KuribohToken());
     }
 

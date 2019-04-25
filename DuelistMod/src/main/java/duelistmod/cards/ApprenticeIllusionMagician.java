@@ -31,7 +31,7 @@ public class ApprenticeIllusionMagician extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
-	private static final int DAMAGE = 6;
+	private static final int DAMAGE = 8;
 	// /STAT DECLARATION/
 
 	public ApprenticeIllusionMagician() {

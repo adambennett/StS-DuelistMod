@@ -41,11 +41,11 @@
 },
 "theDuelist:ToonBriefcasePower": {
         "NAME": "Toon Briefcase",
-        "DESCRIPTIONS": ["#yToon cards played this turn are added back to your hand at the start of your next turn. #yToons: "]
+        "DESCRIPTIONS": ["#yToons played this turn are added back to your hand at the start of your next turn. #yToons: "]
 },
 "theDuelist:DragonCapturePower": {
         "NAME": "Dragon Capture Jar",
-        "DESCRIPTIONS": ["#yDragon monsters played this turn are added back to your hand at the start of your next turn. #yDragons: "]
+        "DESCRIPTIONS": ["#yDragons played this turn are added back to your hand at the start of your next turn. #yDragons: "]
 },
 "theDuelist:PotGenerosityPower": {
         "NAME": "Pot of Generosity",

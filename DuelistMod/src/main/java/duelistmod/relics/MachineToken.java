@@ -16,6 +16,14 @@ public class MachineToken extends CustomRelic
 	public MachineToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Machine Deck")) { return true; }
+		else { return false; }
+	}
 
 	// Description
 	@Override

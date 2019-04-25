@@ -81,6 +81,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	static int randomDeckSmallSize = 10;
 	static int randomDeckBigSize = 15;
 	
+	
 	// Global Fields
 	
 	// Config Settings
@@ -102,6 +103,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static String seenString = "";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String defaultChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
+	public static final String oldChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
 	public static Properties duelistDefaults = new Properties();
 	public static boolean toonBtnBool = false;
 	public static boolean exodiaBtnBool = false;
@@ -437,11 +439,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		// MOD OPTIONS PANEL
 		logger.info("Loading badge image and mod options");
 		String loc = Localization.localize();
-
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		ModPanel settingsPanel = new ModPanel();
-		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 		UIStrings UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
+		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 		
 		float yPos = 750.0f;
 		float xLabPos = 360.0f;
@@ -450,14 +451,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		float xSelection = 900.0f;
 		float xSecondCol = 490.0f;
 		
-		
 		// Card Count Label
 		String cardsString = UI_String.TEXT[5];
 		ModLabel cardLabelTxt = new ModLabel(cardsString + cardCount, xLabPos - 10, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(cardLabelTxt);
 		yPos-=50;
 		// END Card Count Label
-
+		
 		// Remove Toons
 		String toonString = UI_String.TEXT[0];
 		ModLabeledToggleButton toonBtn = new ModLabeledToggleButton(toonString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, toonBtnBool, settingsPanel, (label) -> {}, (button) -> 
@@ -510,6 +510,40 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		settingsPanel.addUIElement(exodiaBtn);
 		// END Remove Exodia
 		
+		// Check Remove Ojama
+		String ojamaString = UI_String.TEXT[2];
+		ModLabeledToggleButton ojamaBtn = new ModLabeledToggleButton(ojamaString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, ojamaBtnBool, settingsPanel, (label) -> {}, (button) -> 
+		{
+			ojamaBtnBool = button.enabled;
+			shouldFill = true;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_OJAMA_BTN, ojamaBtnBool);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//resetCharSelect();
+		});
+		settingsPanel.addUIElement(ojamaBtn);
+		yPos-=50;
+		// END Remove Ojama
+		
+		// Unlock all decks
+		String unlockString = UI_String.TEXT[8];
+		ModLabeledToggleButton unlockBtn = new ModLabeledToggleButton(unlockString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, unlockAllDecks, settingsPanel, (label) -> {}, (button) -> 
+		{
+			unlockAllDecks = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_UNLOCK, unlockAllDecks);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//resetCharSelect();
+		});
+		settingsPanel.addUIElement(unlockBtn);
+		// END Unlock all decks
+		
 		// Switch to old character model
 		String oldCharString = UI_String.TEXT[12];
 		ModLabeledToggleButton oldCharBtn = new ModLabeledToggleButton(oldCharString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, oldCharacter, settingsPanel, (label) -> {}, (button) -> 
@@ -527,58 +561,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		yPos-=50;
 		// END Switch to old character model
 		
-		// Check Remove Ojama
-		String ojamaString = UI_String.TEXT[2];
-		ModLabeledToggleButton ojamaBtn = new ModLabeledToggleButton(ojamaString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, ojamaBtnBool, settingsPanel, (label) -> {}, (button) -> 
-		{
-			ojamaBtnBool = button.enabled;
-			shouldFill = true;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_OJAMA_BTN, ojamaBtnBool);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-			//resetCharSelect();
-		});
-		settingsPanel.addUIElement(ojamaBtn);
-		yPos-=50;
-		// END Remove Ojama
-		
-		// Flip card tags
-		String flipString = UI_String.TEXT[9];
-		ModLabeledToggleButton flipBtn = new ModLabeledToggleButton(flipString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, flipCardTags, settingsPanel, (label) -> {}, (button) -> 
-		{
-			flipCardTags = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_FLIP, flipCardTags);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-			//resetCharSelect();
-		});
-		settingsPanel.addUIElement(flipBtn);
-		yPos-=50;
-		// END Flip card tags
-		
-		// Unlock all decks
-		String unlockString = UI_String.TEXT[8];
-		ModLabeledToggleButton unlockBtn = new ModLabeledToggleButton(unlockString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, unlockAllDecks, settingsPanel, (label) -> {}, (button) -> 
-		{
-			unlockAllDecks = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_UNLOCK, unlockAllDecks);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-			//resetCharSelect();
-		});
-		settingsPanel.addUIElement(unlockBtn);
-		yPos-=50;
-		// END Unlock all decks
-		
 		// Challenge Mode
 		String challengeString = UI_String.TEXT[7];
 		ModLabeledToggleButton challengeBtn = new ModLabeledToggleButton(challengeString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, challengeMode, settingsPanel, (label) -> {}, (button) -> 
@@ -593,9 +575,43 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			//resetCharSelect();
 		});
 		settingsPanel.addUIElement(challengeBtn);
-		yPos-=50;
 		// END Challenge Mode
+		
+		// Flip card tags
+		String flipString = UI_String.TEXT[9];
+		ModLabeledToggleButton flipBtn = new ModLabeledToggleButton(flipString, xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, flipCardTags, settingsPanel, (label) -> {}, (button) -> 
+		{
+			flipCardTags = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_FLIP, flipCardTags);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//resetCharSelect();
+		});
+		settingsPanel.addUIElement(flipBtn);
+		yPos-=50;
+		// END Flip card tags
+		
+		// Check Box DEBUG
+		String debugString = UI_String.TEXT[10];
+		ModLabeledToggleButton debugBtn = new ModLabeledToggleButton(debugString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, debug, settingsPanel, (label) -> {}, (button) -> 
+		{
+			debug = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_DEBUG, debug);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			//resetCharSelect();
+		});
+		settingsPanel.addUIElement(debugBtn);
+		yPos-=100;
+		// END Check Box DEBUG
 
+		
 		// Set Size Selector
 		String setString = UI_String.TEXT[4];
 		ModLabel setSelectLabelTxt = new ModLabel(setString,xLabPos, yPos,settingsPanel,(me)->{});
@@ -633,8 +649,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		// END Set Size Selector
 		
 		// Starting Deck Selector
-		if (CardCrawlGame.isInARun()) { logger.info("was in a run");}
-		else { logger.info("wasnt in a run"); }
 		String deckString = UI_String.TEXT[3];
 		ModLabel setSelectLabelTxtB = new ModLabel(deckString, xLabPos, yPos,settingsPanel,(me)->{});
 		settingsPanel.addUIElement(setSelectLabelTxtB);
@@ -679,34 +693,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		// Info Labels
 		String freshString = UI_String.TEXT[6];
 		ModLabel extraLabelTxtB = new ModLabel(freshString, xLabPos, yPos,settingsPanel,(me)->{});
-		settingsPanel.addUIElement(extraLabelTxtB);
-		yPos-=50;
+		//settingsPanel.addUIElement(extraLabelTxtB);
+		yPos-=100;
 		// END Info Labels
 		
-		// Check Box DEBUG
-		String debugString = UI_String.TEXT[10];
-		ModLabeledToggleButton debugBtn = new ModLabeledToggleButton(debugString,xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, debug, settingsPanel, (label) -> {}, (button) -> 
-		{
-			debug = button.enabled;
-			try 
-			{
-				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
-				config.setBool(PROP_DEBUG, debug);
-				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
-			//resetCharSelect();
-		});
-		settingsPanel.addUIElement(debugBtn);
-		yPos-=50;
-		// END Check Box DEBUG
-
 		logger.info("Done loading badge Image and mod options");
 
 	}
+	
 
 	private void resetDuelist() 
 	{
-		if (characterModel.equals(defaultChar)) { characterModel = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml"; }
+		if (oldCharacter) { characterModel = oldChar; }
 		else { characterModel = defaultChar; }
 	}
 
@@ -1020,6 +1018,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		{			
 			if (upgradedMimicLv3) { DuelistCard.draw(4); }
 			else { DuelistCard.draw(5); }
+			gotMimicLv3 = false;
 		}
 		else if (gotMimicLv1)
 		{			
@@ -1029,6 +1028,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 				if (giveUpgradedMimicLv3) { mimic.upgrade(); }
 				DuelistCard.addCardToHand(mimic);
 			}			
+			
+			gotMimicLv1 = false;
 		}
 
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
