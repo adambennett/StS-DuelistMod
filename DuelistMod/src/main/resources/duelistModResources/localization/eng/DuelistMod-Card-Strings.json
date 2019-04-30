@@ -1773,9 +1773,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Set the cost of all cards in your discard pile to 0 for this turn."
 	},
 	"theDuelist:SliferSky": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you Summon, Gain 1 Strength.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you Summon, Gain !M! Strength.",
 		"NAME": "Slifer Sky Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you Summon, Gain 1 Strength."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Whenever you Summon, Gain !M! Strength."
 	},
 	"theDuelist:SmallLabyrinthWall": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block.",
