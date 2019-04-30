@@ -1,21 +1,25 @@
-package duelistmod.cards;
+package duelistmod.cards.tokens;
+
+import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.cards.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
-public class Token extends DuelistCard 
+public class ExodiaToken extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Token");
+    public static final String ID = DuelistMod.makeID("ExodiaToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
+    public static final String IMG = DuelistMod.makePath(Strings.EXODIA_HEAD);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -23,32 +27,37 @@ public class Token extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public Token() 
+    public ExodiaToken() 
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-    	this.baseBlock = this.block = 1;
     	this.purgeOnUse = true;
+    	
     }
-    public Token(String tokenName) 
+    public ExodiaToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
-    	this.tags.add(Tags.TOKEN); 
-    	this.baseBlock = this.block = 1;
+    	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
+    	
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, new Token("Resummoned Token"));
-    	block(this.block);
+    	ArrayList<DuelistCard> exodias = new ArrayList<DuelistCard>();
+    	exodias.add(new ExodiaHead());
+    	exodias.add(new ExodiaLA());
+    	exodias.add(new ExodiaLL());
+    	exodias.add(new ExodiaRA());
+    	exodias.add(new ExodiaRL());
+    	DuelistCard.fullResummon(exodias.get(AbstractDungeon.cardRandomRng.random(exodias.size() - 1)), false, m, false);
     }
-    @Override public AbstractCard makeCopy() { return new Token(); }
+    @Override public AbstractCard makeCopy() { return new ExodiaToken(); }
 
     
     
@@ -66,12 +75,7 @@ public class Token extends DuelistCard
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBlock(2);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
+		
 	}
 	
 	@Override

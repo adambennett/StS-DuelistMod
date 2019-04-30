@@ -2,279 +2,279 @@
 	{
 		"DESCRIPTION": "Compte les monstres actuellement invoqués. Maximum de #b5 convocations.",
 		"NAMES": [
-			"convoquer",
-			"Assignation"
+			"invoquer",
+			"invoquez"
 		],
-		"PROPER_NAME": "convoquer"
+		"PROPER_NAME": "Invocation"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, ajoute des cartes de monstre #andréennes à votre main. #yEvoke ajoute également des monstres #andrandisés à votre main.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, ajoute des cartes de monstre #andréennes à votre main. #yEvoke ajoute également des monstres #andrandisés à votre main.",
 		"NAMES": [
-			"MonsterOrb",
+			"orbe-monstre",
 			"MonsterOrb"
 		],
-		"PROPER_NAME": "MonsterOrb"
+		"PROPER_NAME": "Orbe-monstre"
 	},
 	{
 		"DESCRIPTION": "Certaines cartes (comme Monster Reborn) vous permettent de retrouver des monstres. Lorsque vous reconnaissez un monstre, il rejoue la carte en ignorant les coûts de #yTribute. Certains monstres ont des effets supplémentaires qui se déclenchent lorsqu'ils sont résumés.",
 		"NAMES": [
-			"Reprise"
+			"réinvoque"
 		],
-		"PROPER_NAME": "Reprise"
+		"PROPER_NAME": "Réinvoquer"
 	},
 	{
-		"DESCRIPTION": "Supprime X #ySummons. Sauf si vous avez assez de #ySummons pour #yTribute, vous ne pouvez pas jouer une carte #yTribute.",
+		"DESCRIPTION": "Supprime X #yInvocation(s) #ynormale(s). Sauf si vous avez assez de #yInvocation(s) #ynormale(s) pour #yTribute, vous ne pouvez pas jouer une carte #yTribute.",
 		"NAMES": [
-			"hommage"
+			"sacrifiez"
 		],
-		"PROPER_NAME": "hommage"
+		"PROPER_NAME": "Sacrifice"
 	},
 	{
-		"DESCRIPTION": "Augmentez votre maximum #ySummons du nombre donné.",
+		"DESCRIPTION": "Augmentez votre maximum #yInvocation(s) #ynormale(s) du nombre donné.",
 		"NAMES": [
-			"incrément"
+			"incrémentez"
 		],
-		"PROPER_NAME": "incrément"
+		"PROPER_NAME": "Incrémenter"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Augmentez votre puissance au début du tour. #yEvoke donne des #ybuffs aléatoires.",
+		"DESCRIPTION": "#yOrbe: Augmentez votre force au début du tour. #yEvoke donne des #ybuffs aléatoires.",
 		"NAMES": [
-			"Tampon"
+			"buffer"
 		],
-		"PROPER_NAME": "Tampon"
+		"PROPER_NAME": "Buffer"
 	},
 	{
-		"DESCRIPTION": "#yOrb: #ySummon #ySpellcater Jetons à la fin du tour. #yEvoke augmente votre maximum #ySummons.",
+		"DESCRIPTION": "#yOrbe: #ySummon #ySpellcater Jetons à la fin du tour. #yEvoke augmente votre maximum #yInvocation(s) #ynormale(s).",
 		"NAMES": [
-			"Invocateur"
+			"invocateur"
 		],
 		"PROPER_NAME": "Invocateur"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, augmentez le nombre de cartes réduites lorsque cela est évoqué. #yEvoke fixe à 0 le coût des cartes aléatoires dans votre main.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, augmentez le nombre de cartes réduites lorsque cela est évoqué. #yEvoke fixe à 0 le coût des cartes aléatoires dans votre main.",
 		"NAMES": [
-			"Réducteur"
+			"réducteur"
 		],
 		"PROPER_NAME": "Réducteur"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, ajoute des cartes #yrandomisées #yDragon à votre main. #yEvoke définit le coût de #yDragons aléatoires dans votre main à 0.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, ajoute des cartes #yrandomisées #yDragon à votre main. #yEvoke définit le coût de #yDragons aléatoires dans votre main à 0.",
 		"NAMES": [
 			"DragonOrb",
 			"DragonOrb"
 		],
-		"PROPER_NAME": "DragonOrb"
+		"PROPER_NAME": "Orbe-Dragon"
 	},
 	{
 		"DESCRIPTION": "Lorsqu'une carte avec #yOverflow est dans votre main à la fin du tour, activez un effet. Cet effet a un nombre d'utilisations limité.",
 		"NAMES": [
-			"débordement"
+			"conservé"
 		],
-		"PROPER_NAME": "débordement"
+		"PROPER_NAME": "Conservation"
 	},
 	{
 		"DESCRIPTION": "Ne peut être joué que si #yToon #yWorld est actif. Si vous Hommage un monstre Toon en utilisant un autre Toon, infligez #b5 points de dégâts à tous les ennemis.",
 		"NAMES": [
 			"toon",
-			"Toons"
+			"toons"
 		],
-		"PROPER_NAME": "toon"
+		"PROPER_NAME": "Toon"
 	},
 	{
-		"DESCRIPTION": "Jetons associés aux monstres #yMagnet #yWarrior. #yMagnets n'ont pas d'effet inhérent.",
+		"DESCRIPTION": "Jetons associés aux monstres #yMagnet #yWarrior. #yaimants n'ont pas d'effet inhérent.",
 		"NAMES": [
 			"aimant",
 			"aimants"
 		],
-		"PROPER_NAME": "aimant"
+		"PROPER_NAME": "Aimant"
 	},
 	{
 		"DESCRIPTION": "Ajoutez des cartes #b2 #en standard à votre main, elles coûtent #b0 ce tour-ci. Appliquez #b1 au hasard #ybuff. Appliquez #b2 random #ydebuffs à un ennemi.",
 		"NAMES": [
 			"ojamania"
 		],
-		"PROPER_NAME": "ojamania"
+		"PROPER_NAME": "Ojamania"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous #y attribuez un #yDragon à un autre #yDragon, gagnez #b1 #yStrength.",
 		"NAMES": [
 			"dragon"
 		],
-		"PROPER_NAME": "dragon"
+		"PROPER_NAME": "Dragon"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous attaquez, si les seuls monstres que vous avez invoqués sont #ySpellcasters, gagnez #b5 Block. Vous devez avoir convoqué au moins #b1 #ySpellcaster pour déclencher cet effet.",
 		"NAMES": [
-			"lanceur de sorts"
+			"magicien"
 		],
-		"PROPER_NAME": "lanceur de sorts"
+		"PROPER_NAME": "Magicien"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous #y attribuez un monstre #yInsect à un #yInsect ou à un #yPlant, appliquez #b3 #yPoison à TOUS les ennemis.",
 		"NAMES": [
 			"insecte",
-			"Insectes"
+			"insectes"
 		],
-		"PROPER_NAME": "insecte"
+		"PROPER_NAME": "Insecte"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous #y attribuez un monstre #yPlant à un #yInsect ou à un #yPlant, appliquez #b3 #yPoison à TOUS les ennemis.",
 		"NAMES": [
-			"Plante",
-			"Les plantes"
+			"plante",
+			"plantes"
 		],
 		"PROPER_NAME": "Plante"
 	},
 	{
 		"DESCRIPTION": "Les monstres #yPredaplant sont traités comme des #yPlants. Lorsque vous #y attribuez un monstre #yPredaplant à un #yInsect ou à un #yPlant, appliquez #b3 #yPoison à TOUS les ennemis.",
 		"NAMES": [
-			"pré-implantation",
+			"préda-Plante",
 			"prédaplants"
 		],
-		"PROPER_NAME": "pré-implantation"
+		"PROPER_NAME": "Préda-Plante"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, ajoute des cartes #yrandomisées #ySpell à votre main. #yEvoke ajoute également #yandrogles #yrandomisés à votre main.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, ajoute des cartes #yrandomisées #ySpell à votre main. #yEvoke ajoute également #yandrogles #yrandomisés à votre main.",
 		"NAMES": [
-			"Terre",
-			"Terre"
+			"terre",
+			"terre"
 		],
 		"PROPER_NAME": "Terre"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, avoir une chance de #ychanger un #yOrb aléatoire. Vous avez plus de chances si les seuls monstres que vous avez invoqués à l'heure actuelle sont #yDragons. #yEvoke augmente vos créneaux #yOrb de #b1.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, avoir une chance de #ychanger un #yOrbe aléatoire. Vous avez plus de chances si les seuls monstres que vous avez invoqués à l'heure actuelle sont #yDragons. #yEvoke augmente vos créneaux #yOrbe de #b1.",
 		"NAMES": [
-			"Air",
-			"Air"
+			"air",
+			"air"
 		],
 		"PROPER_NAME": "Air"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Lorsque vous dessinez #yDragons, réduit leur coût en #yTribute pour ce tour. Lorsque #yEvoked, réduit le coût de #yTraute de #yDragons (partout) pour le reste du combat.",
+		"DESCRIPTION": "#yOrbe: Lorsque vous dessinez #yDragons, réduit leur coût en #yTribute pour ce tour. Lorsque #yEvoked, réduit le coût de #yTraute de #yDragons (partout) pour le reste du combat.",
 		"NAMES": [
-			"Feu",
-			"Feu"
+			"feu",
+			"feu"
 		],
 		"PROPER_NAME": "Feu"
 	},
 	{
-		"DESCRIPTION": "#yOrb: au début du tour, déclenche une action aléatoire. #yEvoke déclenche également des actions aléatoires.",
+		"DESCRIPTION": "#yOrbe: au début du tour, déclenche une action aléatoire. #yEvoke déclenche également des actions aléatoires.",
 		"NAMES": [
-			"Glitch",
-			"Glitch"
+			"glitch",
+			"glitch"
 		],
 		"PROPER_NAME": "Glitch"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, vous avez #b20% de chances de #ySummon un jeton [#FF5252] Shadow [#FF5252]. #yEvoke: #yResumez les monstres de votre pile de défausse sur des ennemis aléatoires.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, vous avez #b20% de chances de #ySummon un jeton [#FF5252] Shadow [#FF5252]. #yEvoke: #yResumez les monstres de votre pile de défausse sur des ennemis aléatoires.",
 		"NAMES": [
-			"Ombre",
-			"Ombre"
+			"ombre",
+			"ombre"
 		],
 		"PROPER_NAME": "Ombre"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Lorsque vous dessinez des #yAquas, réduit leur coût en #yTribute pour ce tour. Lorsque #yEvoked, le nombre de #ySummons de TOUS les monstres #yAqua augmente pour le reste du combat.",
+		"DESCRIPTION": "#yOrbe: Lorsque vous dessinez des #yAquas, réduit leur coût en #yTribute pour ce tour. Lorsque #yEvoked, le nombre de #yInvocation(s) #ynormale(s) de TOUS les monstres #yAqua augmente pour le reste du combat.",
 		"NAMES": [
-			"Éclaboussure",
-			"Éclaboussure"
+			"éclaboussure",
+			"éclaboussure"
 		],
 		"PROPER_NAME": "Éclaboussure"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous #yResummon un #yZombie, gagnez #b10 Block.",
 		"NAMES": [
-			"Zombi",
-			"Des morts-vivants",
-			"Zombi",
-			"Des morts-vivants"
+			"zombi",
+			"morts-vivants",
+			"zombie",
+			"mort-vivant"
 		],
 		"PROPER_NAME": "Zombi"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous #y attribuez un #yFiend à un autre #yFiend, placez la carte #b1 de votre pile de défausse dans votre main. Cette carte gagne #yExhaust.",
 		"NAMES": [
-			"Démon",
-			"Fiends",
-			"Démon",
-			"Fiends"
+			"démon",
+			"fiend",
+			"démons",
+			"fiends"
 		],
 		"PROPER_NAME": "Démon"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous #y attribuez une #yAqua à un autre #yAqua, ajoutez un monstre #yrandomisé #yAqua à votre main.",
 		"NAMES": [
-			"Aqua",
-			"Aqua"
+			"eau",
+			"aquatique"
 		],
-		"PROPER_NAME": "Aqua"
+		"PROPER_NAME": "Eau"
 	},
 	{
-		"DESCRIPTION": "Les coûts des cartes #y Randomized peuvent être modifiés, ceux de #yTribute réduits, ceux de #ySummons augmentés, ils peuvent devenir #yExhaust et peuvent devenir #y Upgraded ou #yEthereal.",
+		"DESCRIPTION": "Les coûts des cartes #y Randomized peuvent être modifiés, ceux de #yTribute réduits, ceux de #yInvocation(s) #ynormale(s) augmentés, ils peuvent devenir #yExhaust et peuvent devenir #y Upgraded ou #yEthereal.",
 		"NAMES": [
-			"Randomisé",
-			"Randomisé"
+			"randomisé",
+			"randomisé"
 		],
 		"PROPER_NAME": "Randomisé"
 	},
 	{
 		"DESCRIPTION": "Ne peut pas être #yResummoned.",
 		"NAMES": [
-			"Exempter",
-			"Exempter"
+			"exempter",
+			"exempter"
 		],
 		"PROPER_NAME": "Exempter"
 	},
 	{
-		"DESCRIPTION": "#yOrb: au début du tour, soignez #b1 PV de chaque monstre invoqué pour ce combat. NL #yEvoke: Soignez #b3 PV pour chaque monstre invoqué ce combat.",
+		"DESCRIPTION": "#yOrbe: au début du tour, soignez #b1 PV de chaque monstre invoqué pour ce combat. NL #yEvoke: Soignez #b3 PV pour chaque monstre invoqué ce combat.",
 		"NAMES": [
-			"Flamber",
-			"Flamber"
+			"flamber",
+			"flamber"
 		],
 		"PROPER_NAME": "Flamber"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, #yTribute #b2 et gagnez des PV temporaires égaux au coût total en énergie de tous les hommages. NL #yEvoke: #yTribute TOUTES les invocations, gagne un #yBuff aléatoire égal au montant rendu en tribut.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, #yTribute #b2 et gagnez des PV temporaires égaux au coût total en énergie de tous les hommages. NL #yEvoke: #yTribute TOUTES les invocations, gagne un #yBuff aléatoire égal au montant rendu en tribut.",
 		"NAMES": [
-			"Consommateur",
-			"Consommateur"
+			"consommateur",
+			"consommateur"
 		],
 		"PROPER_NAME": "Consommateur"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, ajoutez un #yTrap #yRandomized à votre main. NL #yEvoke: Jouez au hasard sur un #yTrap que vous avez joué sur un ennemi au hasard.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, ajoutez un #yTrap #yRandomized à votre main. NL #yEvoke: Jouez au hasard sur un #yTrap que vous avez joué sur un ennemi au hasard.",
 		"NAMES": [
-			"Gadget",
-			"Gadget"
+			"gadget",
+			"gadget"
 		],
 		"PROPER_NAME": "Gadget"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Chaque fois que vous dessinez un #yZombie, réduisez le coût de #yTribute de #b1 pour ce combat. NL #yEvoke: inflige un montant aléatoire de dégâts à un ennemi aléatoire. Inflige plus de dégâts avec une quantité d'évocation plus élevée.",
+		"DESCRIPTION": "#yOrbe: Chaque fois que vous dessinez un #yZombie, réduisez le coût de #yTribute de #b1 pour ce combat. NL #yEvoke: inflige un montant aléatoire de dégâts à un ennemi aléatoire. Inflige plus de dégâts avec une quantité d'évocation plus élevée.",
 		"NAMES": [
-			"Lave",
-			"Lave"
+			"lave",
+			"lave"
 		],
 		"PROPER_NAME": "Lave"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, activez le #yMillennium #yPuzzle. NL #yEvoke: Choisissez et ajoutez dans votre main des cartes X #ANDRANDOMISEES de votre pool de deck.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, activez le #yMillennium #yPuzzle. NL #yEvoke: Choisissez et ajoutez dans votre main des cartes X #ANDRANDOMISEES de votre pool de deck.",
 		"NAMES": [
-			"MillenniumOrb",
-			"MillenniumOrb"
+			"millenniumOrb",
+			"millenniumOrb"
 		],
 		"PROPER_NAME": "MillenniumOrb"
 	},
 	{
-		"DESCRIPTION": "#yOrb: À la fin du tour, gagnez #yBlock égal au nombre de #ySpells joués lors de ce combat plus #b1. NL #yEvoke: Gagnez #yMetallicize #b2.",
+		"DESCRIPTION": "#yOrbe: À la fin du tour, gagnez #yBlock égal au nombre de #ySpells joués lors de ce combat plus #b1. NL #yEvoke: Gagnez #yMetallicize #b2.",
 		"NAMES": [
-			"Métal",
-			"Métal"
+			"métal",
+			"métal"
 		],
 		"PROPER_NAME": "Métal"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, ajoutez un #yRandomized #yPlant ou #yInsect à votre main. NL #yEvoke: Augmentez les invocations de tous les monstres #yInsect et #yPlant (partout) de 1 pour ce combat.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, ajoutez un #yRandomized #yPlant ou #yInsect à votre main. NL #yEvoke: Augmentez les invocations de tous les monstres #yInsect et #yPlant (partout) de 1 pour ce combat.",
 		"NAMES": [
 			"Boue",
 			"Boue"
@@ -282,15 +282,15 @@
 		"PROPER_NAME": "Boue"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Au début du tour, ajoutez un monstre #y Randomized #yAqua à votre main. NL #yPassive: à la fin du tour, augmentez les invocations de tous les monstres #yAqua dans votre main, mettez votre pile au rebut et votre pile d'échappement de #b1. NL #yEvoke: #y Attribuez tous les monstres #yAqua et #ySummon à un monstre aléatoire pour chacun. Gagnez un #yBuff aléatoire égal à la quantité de monstres #yAqua #yTributed.",
+		"DESCRIPTION": "#yOrbe: Au début du tour, ajoutez un monstre #y Randomized #yAqua à votre main. NL #yPassive: à la fin du tour, augmentez les invocations de tous les monstres #yAqua dans votre main, mettez votre pile au rebut et votre pile d'échappement de #b1. NL #yEvoke: #y Attribuez tous les monstres #yAqua et #ySummon à un monstre aléatoire pour chacun. Gagnez un #yBuff aléatoire égal à la quantité de monstres #yAqua #yTributed.",
 		"NAMES": [
-			"Brouillard",
-			"Brouillard"
+			"brouillard",
+			"brouillard"
 		],
 		"PROPER_NAME": "Brouillard"
 	},
 	{
-		"DESCRIPTION": "#yOrb: au début du tour, appliquez #b1 #ySlow à un ennemi aléatoire. NL #yEvoke: Appliquez #b4 #ySlow à TOUS les ennemis.",
+		"DESCRIPTION": "#yOrbe: au début du tour, appliquez #b1 #ySlow à un ennemi aléatoire. NL #yEvoke: Appliquez #b4 #ySlow à TOUS les ennemis.",
 		"NAMES": [
 			"Le sable",
 			"Le sable"
@@ -298,25 +298,25 @@
 		"PROPER_NAME": "Le sable"
 	},
 	{
-		"DESCRIPTION": "#yOrb: Chaque fois que vous dessinez un monstre, augmentez le coût de #yTribute de #b4 et augmentez les dégâts de #b12 pour ce tour. NL #yEvoke: #yIncrement #b5.",
+		"DESCRIPTION": "#yOrbe: Chaque fois que vous dessinez un monstre, augmentez le coût de #yTribute de #b4 et augmentez les dégâts de #b12 pour ce tour. NL #yEvoke: #yIncrement #b5.",
 		"NAMES": [
-			"Fumée",
-			"Fumée"
+			"fumée",
+			"fumée"
 		],
 		"PROPER_NAME": "Fumée"
 	},
 	{
-		"DESCRIPTION": "#yOrb: ajoute des cartes de puissance #y Randomized à votre main au début du tour. NL #yEvoke: si vous avez des emplacements vides Orb, utilisez-en un et réduisez le coût en #yTribute de tous les monstres de votre pioche de #b1.",
+		"DESCRIPTION": "#yOrbe: ajoute des cartes de puissance #y Randomized à votre main au début du tour. NL #yEvoke: si vous avez des emplacements vides Orb, utilisez-en un et réduisez le coût en #yTribute de tous les monstres de votre pioche de #b1.",
 		"NAMES": [
-			"Orage",
-			"Orage"
+			"orage",
+			"orage"
 		],
 		"PROPER_NAME": "Orage"
 	},
 	{
 		"DESCRIPTION": "#yInverting est identique à #yEvoking, sauf que vous avez également #yChannel un orbe qui est \"l'opposé\" de celui que vous avez #yEvoked.",
 		"NAMES": [
-			"Inverser",
+			"inverser",
 			"Inverser",
 			"inversion",
 			"inversion"
@@ -326,47 +326,55 @@
 	{
 		"DESCRIPTION": "À chaque fois que vous #ySummon un monstre #yNaturia, il inflige #b1 points de dégâts à tous les ennemis à la fin du tour pour le reste du combat, aussi longtemps que vous avez au moins un monstre #yNaturia invoqué.",
 		"NAMES": [
-			"Naturia",
-			"Naturia"
+			"naturia",
+			"naturia"
 		],
 		"PROPER_NAME": "Naturia"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous attribuez un #ySuperheavy à un autre #ySuperheavy, gagnez #b1 #yDexterity.",
 		"NAMES": [
-			"Très lourd",
-			"Très lourd"
+			"massif",
+			"massifs"
 		],
-		"PROPER_NAME": "Très lourd"
+		"PROPER_NAME": "Massif"
 	},
 	{
 		"DESCRIPTION": "Lorsque vous #y attribuez une #yMachine à une autre #yMachine, gagnez #b1 #yArtifact.",
 		"NAMES": [
-			"Machine",
-			"Machines",
-			"Machine",
-			"Machines"
+			"machine",
+			"machines",
+			"machine",
+			"machines"
 		],
 		"PROPER_NAME": "Machine"
 	},
 	{
 		"DESCRIPTION": "#yPassive: au début du tour, appliquez un debuff aléatoire avec la pile #b1 à un ennemi aléatoire. NL #yEvoke: Ajoutez un #yrandomized #yFiend à votre main.",
 		"NAMES": [
-			"Noir",
-			"Noir"
+			"noir",
+			"noir"
 		],
 		"PROPER_NAME": "Noir"
 	},
 	{
 		"DESCRIPTION": "Si une carte #yImmortal est dans la pile de défausse, gagnez [E] au début du tour.",
 		"NAMES": [
-			"Immortel",
-			"Immortel"
+			"immortel",
+			"immortel"
 		],
 		"PROPER_NAME": "Immortel"
 	},
 	{
-		"DESCRIPTION": "#yOrb: inflige des dégâts à TOUS les ennemis, gagnez #yEnergy et #yBlock. NL #yGate n'est pas affecté par #yFocus.",
+		"PROPER_NAME": "Roulette",
+		"NAMES": [
+		  "Roulette",
+		  "roulette"
+		],   
+		"DESCRIPTION": "50% chance to trigger the action given after this keyword."
+	},
+	{
+		"DESCRIPTION": "#yOrbe: inflige des dégâts à TOUS les ennemis, gagnez #yEnergy et #yBlock. NL #yGate n'est pas affecté par #yFocus.",
 		"NAMES": [
 			"porte"
 		],

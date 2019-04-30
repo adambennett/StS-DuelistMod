@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
 import duelistmod.cards.*;
+import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbCards.*;
 
@@ -594,7 +595,7 @@ public class CardLibrary {
 		ArrayList<DuelistCard> tokens = new ArrayList<DuelistCard>();
 		tokens.add(new AquaToken());
 		tokens.add(new DragonToken());
-		tokens.add(new ExodiaToken());
+		if (!DuelistMod.exodiaBtnBool) { tokens.add(new ExodiaToken()); }
 		tokens.add(new SpellcasterToken());
 		tokens.add(new PredaplantToken());
 		tokens.add(new KuribohToken());
@@ -605,7 +606,7 @@ public class CardLibrary {
 		tokens.add(new FiendToken());
 		tokens.add(new MachineToken());
 		tokens.add(new SuperheavyToken());
-		tokens.add(new ToonToken());
+		if (!DuelistMod.toonBtnBool) { tokens.add(new ToonToken()); }
 		tokens.add(new ZombieToken());
 		tokens.add(new JamToken());
 		tokens.add(new Token());

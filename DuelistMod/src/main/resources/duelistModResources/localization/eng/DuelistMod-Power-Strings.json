@@ -89,7 +89,7 @@
 },
 "theDuelist:SliferSkyPower": {
         "NAME": "Slifer the Sky Dragon",
-        "DESCRIPTIONS": ["Whenever you #ySummon, #yChannel a random #yOrb. You may only trigger this effect #b", " times this turn." ]
+        "DESCRIPTIONS": ["Whenever you #ySummon, Gain #b", " #yStrength." ]
 },
 "theDuelist:ExodiaPower": {
         "NAME": "The Forbidden One",
@@ -306,6 +306,14 @@
 "theDuelist:RedMirrorPower": {
         "NAME": "Red Mirror",
         "DESCRIPTIONS": ["Whenever you #yTribute a #yFiend for another #yFiend, reduce the cost of all cards in your discard pile by #b", " for this turn." ]
+},
+"theDuelist:LeviaDragonPower": {
+        "NAME": "Levia Dragon",
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies and add 2 #yrandomized #yAqua monsters to your draw pile." ]
+},
+"theDuelist:BlizzardDragonPower": {
+        "NAME": "Blizzard Dragon",
+        "DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

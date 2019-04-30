@@ -141,6 +141,7 @@ public class StarterDeckSetup {
 		dragonCards.add(new FiendSkull());
 		dragonCards.add(new FiveHeaded());
 		dragonCards.add(new FluteSummoning());
+		dragonCards.add(new Gandora());
 		dragonCards.add(new GaiaDragonChamp());
 		dragonCards.add(new GravityAxe());
 		dragonCards.add(new LesserDragon());
@@ -534,6 +535,7 @@ public class StarterDeckSetup {
 		machineCards.add(new AncientGearGolem());
 		machineCards.add(new TurretWarrior());
 		machineCards.add(new GadgetSoldier());
+		machineCards.add(new ExploderDragon());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());

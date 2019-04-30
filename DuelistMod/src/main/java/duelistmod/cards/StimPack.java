@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 

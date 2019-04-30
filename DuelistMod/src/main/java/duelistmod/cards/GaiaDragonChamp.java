@@ -19,7 +19,7 @@ import duelistmod.powers.*;
 public class GaiaDragonChamp extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("GaiaDragonChamp");
+    public static final String ID = DuelistMod.makeID("GaiaDragonChamp");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.GAIA_DRAGON_CHAMP);
     public static final String NAME = cardStrings.NAME;
@@ -63,15 +63,6 @@ public class GaiaDragonChamp extends DuelistCard
 			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 			{
 				DuelistCard.fullResummon(cardCopy, this.upgraded, m, false);
-				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-				if (this.upgrade) { cardCopy.upgrade(); }
-				cardCopy.freeToPlayOnce = true;
-				cardCopy.applyPowers();
-				cardCopy.purgeOnUse = true;
-				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-				cardCopy.onResummon(1);
-				cardCopy.checkResummon();*/
-				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 			}
     	}
     	
@@ -82,15 +73,6 @@ public class GaiaDragonChamp extends DuelistCard
 			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 			{
 				DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false);
-				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-				if (this.upgrade) { cardCopy.upgrade(); }
-				cardCopy.freeToPlayOnce = true;
-				cardCopy.applyPowers();
-				cardCopy.purgeOnUse = true;
-				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-				cardCopy.onResummon(1);
-				cardCopy.checkResummon();*/
-				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
 			}
     	}
     }

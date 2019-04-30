@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.cards.Token;
+import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.relics.*;
 

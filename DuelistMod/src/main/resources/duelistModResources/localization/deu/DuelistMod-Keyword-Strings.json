@@ -375,6 +375,14 @@
 		"PROPER_NAME": "Unsterblich"
 	},
 	{
+    "PROPER_NAME": "Roulette",
+    "NAMES": [
+      "Roulette",
+	  "roulette"
+    ],   
+    "DESCRIPTION": "50% chance to trigger the action given after this keyword."
+	},
+	{
 		"DESCRIPTION": "#yOrb: Füge ALLEN Feinden Schaden zu, gewinne #yEnergy und #yBlock. NL #yGate ist von #yFocus nicht betroffen.",
 		"NAMES": [
 			"Tor"

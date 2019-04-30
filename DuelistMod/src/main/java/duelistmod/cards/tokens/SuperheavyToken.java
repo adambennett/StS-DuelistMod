@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -48,6 +48,8 @@ public class SuperheavyToken extends DuelistCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
+    	int roll = AbstractDungeon.cardRandomRng.random(1,2);
+    	if (roll == 1) { applyPowerToSelf(new DexterityPower(p, 1)); }
     }
     @Override public AbstractCard makeCopy() { return new SuperheavyToken(); }
 

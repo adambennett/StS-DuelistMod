@@ -6,14 +6,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.orbs.Splash;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class LeviaDragon extends DuelistCard 
@@ -31,9 +29,9 @@ public class LeviaDragon extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public LeviaDragon() {
@@ -46,7 +44,7 @@ public class LeviaDragon extends DuelistCard
     	this.tags.add(Tags.GOOD_TRIB);
     	this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 4;
 		
     }
 
@@ -55,8 +53,7 @@ public class LeviaDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	AbstractOrb orb = new Splash();
-    	channel(orb);
+    	applyPowerToSelf(new LeviaDragonPower(p, p, 1));
     }
 
     // Which card to return when making a copy of this card.
@@ -68,12 +65,22 @@ public class LeviaDragon extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeTributes(-1);
+        if (canUpgrade()) 
+        {
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+            if (this.tributes > 1) { this.upgradeTributes(-1); }
+            else { this.upgraded = true; }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.tributes > 1) { return true; }
+    	return false;
     }
     
     // If player doesn't have enough summons, can't play card
@@ -122,7 +129,7 @@ public class LeviaDragon extends DuelistCard
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
 			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 4, 0, 0, 0, 2));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 2));
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 	}

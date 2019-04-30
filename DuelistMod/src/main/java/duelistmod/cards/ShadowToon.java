@@ -11,6 +11,7 @@ import duelistmod.*;
 import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.SummonPower;
 
 public class ShadowToon extends DuelistCard 
 {
@@ -29,12 +30,11 @@ public class ShadowToon extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    private static final int CARDS = 3;
     // /STAT DECLARATION/
 
     public ShadowToon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = CARDS;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.ALL);
@@ -46,11 +46,16 @@ public class ShadowToon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.TOON);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, false, false, false, 1, 4, 0, 0, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
+		}
+		
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (instance.isOnlyTypeSummoned(Tags.TOON)) { heal(p, this.magicNumber); }
 		}
     }
 
@@ -65,8 +70,7 @@ public class ShadowToon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

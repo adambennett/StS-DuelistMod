@@ -15,9 +15,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
-import duelistmod.DuelistMod;
-import duelistmod.cards.Token;
+import duelistmod.*;
+import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
+import duelistmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Buffer extends DuelistOrb
@@ -58,6 +59,7 @@ public class Buffer extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
+		BuffHelper.resetRandomBuffs(this.evokeAmount);
 		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
 		if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
 	}
@@ -65,7 +67,21 @@ public class Buffer extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		applyFocus();
+		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (instance.isOnlyTypeSummoned(Tags.SPELLCASTER))
+			{
+				rollCheck += 4;
+			}
+		}
+		if (roll < rollCheck)
+		{
+			this.triggerPassiveEffect();
+		}
 	}
 
 	private void triggerPassiveEffect()
@@ -93,21 +109,23 @@ public class Buffer extends DuelistOrb
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			if (buffs.size() > 0)
-			{
-				int randomNum = AbstractDungeon.cardRandomRng.random(buffs.size() - 1);
-				if (buffs.get(randomNum).name.equals("Summons")) 
+			{				
+				for (AbstractPower buff : buffs)
 				{
-					DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
-					if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
+					if (buff.name.equals("Summons"))
+					{
+						DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
+						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
+					}
+					else
+					{
+						buff.amount += 1; buff.updateDescription(); 
+						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Buffed " + buff.name + " on passive trigger. New amount: " + buff.amount); }
+					}
 				}
-				else 
-				{ 
-					buffs.get(randomNum).amount += 1; buffs.get(randomNum).updateDescription(); 
-					if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Buffed " + buffs.get(randomNum).name + " on passive trigger. New amount: " + buffs.get(randomNum).amount); }
-				}
-				
 			}
 		}
+	
 		applyFocus();
 		updateDescription();
 	}

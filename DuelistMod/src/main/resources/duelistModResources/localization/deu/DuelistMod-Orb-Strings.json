@@ -164,7 +164,8 @@
 			"#yPassive: Zu Beginn des Zuges besteht eine Chance #b20% von #ySummon #b",
 			" [# FF5252] Schatten [# FF5252] Token. NL #yEvoke: #yResummon #b",
 			" zufälliges Monster aus deinem Ablagestapel auf einen zufälligen Feind.",
-			" zufällige Monster aus deinem Ablagestapel auf zufällige Feinde."
+			" zufällige Monster aus deinem Ablagestapel auf zufällige Feinde.", 
+			" [# FF5252] Schatten [# FF5252] Token. NL #yEvoke: #yResummon #b"
 		],
 		"NAME": "Schatten"
 	},

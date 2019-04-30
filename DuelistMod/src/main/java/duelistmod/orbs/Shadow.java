@@ -16,8 +16,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.cards.Token;
+import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
+import duelistmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Shadow extends DuelistOrb
@@ -57,8 +58,22 @@ public class Shadow extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
-		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
+		if (this.evokeAmount < 2 && this.passiveAmount < 2)
+		{
+			this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		}
+		else if (this.evokeAmount < 2 && this.passiveAmount >= 2)
+		{
+			this.description = DESC[0] + this.passiveAmount + DESC[4] + this.evokeAmount + DESC[2];
+		}
+		else if (this.evokeAmount >= 2 && this.passiveAmount < 2)
+		{
+			this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; 
+		}
+		else
+		{
+			this.description = DESC[0] + this.passiveAmount + DESC[4] + this.evokeAmount + DESC[3]; 
+		}
 	}
 
 	@Override
@@ -99,8 +114,18 @@ public class Shadow extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
+		applyFocus();
 		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-		if (roll <= 2)
+		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (instance.isOnlyTypeSummoned(Tags.ZOMBIE))
+			{
+				rollCheck += 4;
+			}
+		}
+		if (roll < rollCheck)
 		{
 			this.triggerPassiveEffect();
 		}
@@ -115,6 +140,8 @@ public class Shadow extends DuelistOrb
 	{
 		this.baseEvokeAmount = this.evokeAmount += 1;
 		this.basePassiveAmount = this.passiveAmount += 1;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
 		applyFocus();
 		updateDescription();
 	}

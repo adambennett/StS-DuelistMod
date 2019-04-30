@@ -162,9 +162,10 @@
 	"theDuelist:Shadow": {
 		"DESCRIPTION": [
 			"#yPassive: au début du tour, avez une # b20% de chance de #ySummon #b",
-			" [# FF5252] Ombres [# FF5252] Jetons. NL #yEvoke: #yResummon #b",
+			" [# FF5252] Ombres [# FF5252] Jeton. NL #yEvoke: #yResummon #b",
 			" Monstre aléatoire de votre pile de défausse sur un ennemi aléatoire.",
-			" Monstres aléatoires de votre pile de défausse sur des ennemis aléatoires."
+			" Monstres aléatoires de votre pile de défausse sur des ennemis aléatoires.",
+			" [# FF5252] Ombres [# FF5252] Jetons. NL #yEvoke: #yResummon #b"
 		],
 		"NAME": "Ombre"
 	},

@@ -15,7 +15,7 @@ import duelistmod.patches.*;
 public class FluteSummoning extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("FluteSummoning");
+    public static final String ID = DuelistMod.makeID("FluteSummoning");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.FLUTE_SUMMONING);
     public static final String NAME = cardStrings.NAME;
@@ -40,6 +40,7 @@ public class FluteSummoning extends DuelistCard
         this.tags.add(Tags.OP_DRAGON_DECK);
         this.startingOPDragDeckCopies = 1;
 		this.generationDeckCopies = 1;
+		this.block = this.baseBlock = 5;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();
@@ -50,11 +51,11 @@ public class FluteSummoning extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		// Add random cards to hand
+    	block(this.block);
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.DRAGON);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, false, randomMonster.baseTributes > 0, false, false, false, 1, 4, 0, 1, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, false, randomMonster.baseTributes > 0, false, false, false, 1, 3, 0, 1, 0, 0));
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
     }
@@ -71,6 +72,7 @@ public class FluteSummoning extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(0);
+            this.upgradeBlock(2);
             //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

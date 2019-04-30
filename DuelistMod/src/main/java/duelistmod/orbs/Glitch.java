@@ -19,8 +19,9 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
-import duelistmod.cards.Token;
+import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
+import duelistmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Glitch extends DuelistOrb
@@ -177,10 +178,17 @@ public class Glitch extends DuelistOrb
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			randomActionNum = AbstractDungeon.cardRandomRng.random(passiveActions.size() - 1);
-			//randomActionNum = 3; // Exhaust
-			//randomActionNum = 4; // Gold
 			lastAction = runAction(passiveActions.get(randomActionNum));
 			lastTurnActions.add(lastAction);
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID) && !lastAction.equals("Lose #b5 HP"))
+			{
+				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (instance.isOnlyTypeSummoned(Tags.MACHINE))
+				{
+					runAction(lastAction);
+					if (DuelistMod.debug) { DuelistMod.logger.info("Glitch orb triggered passive action twice because the player only had machine monsters summoned at the start of turn. Passive action triggered: " + lastAction); }
+				}
+			}
 		}
 		
 		applyFocus();
@@ -252,7 +260,7 @@ public class Glitch extends DuelistOrb
 				break;
 			case "Add #b1 random #ySpell to hand":
 				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.SPELL);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpell, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpell, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#yEvoke #b1 Orb.":
@@ -261,17 +269,17 @@ public class Glitch extends DuelistOrb
 				break;
 			case "Add #b1 random #yTrap to hand":
 				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TRAP);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomTrap, false, true, true, false, false, false, false, false, 1, 4, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomTrap, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #ySpellcaster to hand":
 				DuelistCard randomSpellcaster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.SPELLCASTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpellcaster, false, true, true, false, randomSpellcaster.baseTributes > 0, false, true, false, 1, 4, 0, 1, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpellcaster, false, true, true, false, randomSpellcaster.baseTributes > 0, false, true, false, 1, 3, 0, 1, 0, 0));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yMonster to hand":
 				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, randomMonster.baseSummons > 0, false, true, 1, 4, 0, 0, 1, 2));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, randomMonster.baseSummons > 0, false, true, 1, 3, 0, 0, 1, 2));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Lose #b1 strength":
@@ -316,7 +324,7 @@ public class Glitch extends DuelistOrb
 				for (int i = 0; i < RAND_CARDS; i++)
 				{
 					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, false, false, true, true, 1, 4, 0, 1, 1, 2));
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, false, false, true, true, 1, 3, 0, 1, 1, 2));
 				}
 				
 				// Give self 3 random buffs

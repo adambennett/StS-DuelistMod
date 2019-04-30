@@ -10,20 +10,19 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.cards.tokens.ShadowToken;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.orbs.Shadow;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class DarkfireDragon extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("DarkfireDragon");
+    public static final String ID = DuelistMod.makeID("DarkfireDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.DARKFIRE_DRAGON);
     public static final String NAME = cardStrings.NAME;
@@ -55,6 +54,7 @@ public class DarkfireDragon extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
+		this.magicNumber = this.baseMagicNumber = 2;
 		tooltips = new ArrayList<>();
 		tooltips.add(new ShadowToken());
     }
@@ -65,8 +65,14 @@ public class DarkfireDragon extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Shadow();
-    	channel(orb);
+    	for (AbstractCard c : p.hand.group)
+    	{
+    		if (!c.uuid.equals(this.uuid) && c.hasTag(Tags.DRAGON) && c.cost > 0)
+    		{
+    			if (c.cost >= this.magicNumber) { c.modifyCostForTurn(-this.magicNumber); c.isCostModifiedForTurn = true; }
+    			else { c.modifyCostForTurn(-c.cost); c.isCostModifiedForTurn = true; }
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -80,7 +86,7 @@ public class DarkfireDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -121,7 +127,8 @@ public class DarkfireDragon extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
 		{ 
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }

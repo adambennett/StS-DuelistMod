@@ -375,6 +375,14 @@
     "DESCRIPTION": "If an #yImmortal card is in the discard pile, gain [E] at the start of turn."
   },
   {
+    "PROPER_NAME": "Roulette",
+    "NAMES": [
+      "Roulette",
+	  "roulette"
+    ],   
+    "DESCRIPTION": "50% chance to trigger the action given after this keyword."
+  },
+  {
     "PROPER_NAME": "Gate",
     "NAMES": [
       "gate"

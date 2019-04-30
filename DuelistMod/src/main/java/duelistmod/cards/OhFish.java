@@ -13,6 +13,7 @@ import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.SummonPower;
 
 public class OhFish extends DuelistCard 
 {
@@ -40,7 +41,7 @@ public class OhFish extends DuelistCard
         this.tags.add(Tags.AQUA_DECK);
 		this.aquaDeckCopies = 1;
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.magicNumber = this.baseMagicNumber = 4;
 		this.setupStartingCopies();
 	}
 
@@ -59,9 +60,16 @@ public class OhFish extends DuelistCard
 		{
 			for (int i = 0; i < this.magicNumber; i++)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, false, true, false, aquas.get(i).baseSummons > 0, false, false, 1, 4, 0, 0, 0, 1));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, false, true, false, aquas.get(i).baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
 				if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 			}
+		}
+		
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			int aquaDmg = instance.getNumberOfTypeSummoned(Tags.AQUA) * this.magicNumber;
+			damageAllEnemiesThornsNormal(aquaDmg);
 		}
 	}
 
@@ -74,7 +82,7 @@ public class OhFish extends DuelistCard
 		if (!upgraded) 
 		{
 			upgradeName();
-			this.upgradeMagicNumber(1);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

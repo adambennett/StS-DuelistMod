@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -6,19 +6,19 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
+import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.cards.SevenColoredFish;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 
-public class DragonToken extends DuelistCard 
+public class JamToken extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("DragonToken");
+    public static final String ID = DuelistMod.makeID("JamToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.BABY_DRAGON);
+    public static final String IMG = DuelistMod.makePath(Strings.REVIVAL_JAM);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -32,34 +32,36 @@ public class DragonToken extends DuelistCard
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public DragonToken() 
+    public JamToken() 
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-    	this.tags.add(Tags.DRAGON);
+    	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
     }
-    public DragonToken(String tokenName) 
+    public JamToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
-    	this.tags.add(Tags.DRAGON);
+    	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
+    	addCardToHand(new SevenColoredFish());
     }
-    @Override public AbstractCard makeCopy() { return new DragonToken(); }
+    @Override public AbstractCard makeCopy() { return new JamToken(); }
 
     
     
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
+		if (tributingCard.hasTag(Tags.AQUA))
+		{
+			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 2));
+			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 	}
 	

@@ -540,6 +540,14 @@
 		],
 		"NAME": "Cristal violet"
 	},
+		"theDuelist:LeviaDragonPower": {
+        "NAME": "Levia Dragon",
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies and add 2 #yrandomized #yAqua monsters to your draw pile." ]
+	},
+	"theDuelist:BlizzardDragonPower": {
+			"NAME": "Blizzard Dragon",
+			"DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
+	},
 	"theDuelist:YamiPower": {
 		"DESCRIPTIONS": [
 			"Votre #ySpellcasters inflige 50% de dégâts supplémentaires et gagne un blocage de 50%. À chaque fois que vous #ySummon un #ySpellcaster, gagnez un #ySummon supplémentaire."

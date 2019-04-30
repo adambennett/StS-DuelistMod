@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.cards.tokens.ExplosiveToken;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;

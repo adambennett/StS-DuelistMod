@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 
@@ -69,7 +69,21 @@ public class Blaze extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{		
-		this.triggerPassiveEffect();		
+		applyFocus();
+		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (instance.isOnlyTypeSummoned(Tags.SPELLCASTER))
+			{
+				rollCheck += 4;
+			}
+		}
+		if (roll < rollCheck)
+		{
+			this.triggerPassiveEffect();
+		}
 	}
 
 	private void triggerPassiveEffect()

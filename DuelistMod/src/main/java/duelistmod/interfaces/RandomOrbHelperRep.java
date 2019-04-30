@@ -34,7 +34,7 @@ public class RandomOrbHelperRep
 			orbs.add(new GlassOrb()); 
 			orbs.add(new CrystalOrb());
 			orbs.add(new Black());
-			//orbs.add(new Blaze());
+			orbs.add(new Blaze());
 			orbs.add(new Consumer());
 			orbs.add(new Gadget());
 			orbs.add(new Lava());
@@ -69,7 +69,7 @@ public class RandomOrbHelperRep
 			orbs.add(new Shadow());
 			orbs.add(new Splash());
 			orbs.add(new Black());
-			//orbs.add(new Blaze());
+			orbs.add(new Blaze());
 			orbs.add(new Consumer());
 			orbs.add(new Gadget());
 			orbs.add(new Lava());
@@ -101,7 +101,7 @@ public class RandomOrbHelperRep
 			orbs.add(new Splash());
 			orbs.add(new CrystalOrb());
 			orbs.add(new Black());
-			//orbs.add(new Blaze());
+			orbs.add(new Blaze());
 			orbs.add(new Consumer());
 			orbs.add(new Gadget());
 			orbs.add(new Lava());
@@ -135,7 +135,7 @@ public class RandomOrbHelperRep
 			orbs.add(new Shadow());
 			orbs.add(new Splash());
 			orbs.add(new Black());
-			//orbs.add(new Blaze());
+			orbs.add(new Blaze());
 			orbs.add(new Consumer());
 			orbs.add(new Gadget());
 			orbs.add(new Lava());
@@ -168,7 +168,7 @@ public class RandomOrbHelperRep
 			returnOrbs.add(new CrystalOrb());
 			returnOrbs.add(new GlassOrb()); 
 			returnOrbs.add(new Black());
-			//returnOrbs.add(new Blaze());
+			returnOrbs.add(new Blaze());
 			returnOrbs.add(new Consumer());
 			returnOrbs.add(new Gadget());
 			returnOrbs.add(new Lava());
@@ -203,7 +203,7 @@ public class RandomOrbHelperRep
 			returnOrbs.add(new Shadow());
 			returnOrbs.add(new Splash());
 			returnOrbs.add(new Black());
-			//returnOrbs.add(new Blaze());
+			returnOrbs.add(new Blaze());
 			returnOrbs.add(new Consumer());
 			returnOrbs.add(new Gadget());
 			returnOrbs.add(new Lava());

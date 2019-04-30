@@ -540,6 +540,14 @@
 		],
 		"NAME": "바이올렛 크리스탈"
 	},
+		"theDuelist:LeviaDragonPower": {
+        "NAME": "Levia Dragon",
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies and add 2 #yrandomized #yAqua monsters to your draw pile." ]
+	},
+	"theDuelist:BlizzardDragonPower": {
+			"NAME": "Blizzard Dragon",
+			"DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
+	},
 	"theDuelist:YamiPower": {
 		"DESCRIPTIONS": [
 			"# 마법 점포가 50 %의 대미지를주고 50 %의 방어를 얻습니다. #y 스펠 캐스터를 석방 할 때마다 # 1 추가 스톤을 얻는다."

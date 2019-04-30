@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class MetalDragon extends DuelistCard 
@@ -37,8 +37,9 @@ public class MetalDragon extends DuelistCard
     public MetalDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 18;
-        this.baseBlock = this.block = 18;
-        this.upgradeDmg = 2;
+        //this.baseBlock = this.block = 18;
+        this.magicNumber = this.baseMagicNumber = 8;
+        this.upgradeDmg = 4;
         this.upgradeBlk = 2;
         this.tributes = this.baseTributes = 4;
         //this.summons = 1;
@@ -57,9 +58,9 @@ public class MetalDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		tribute(p, this.tributes, false, this);
-		//summon(p, this.summons, this);
 		attack(m, AFX, this.damage);
-		block(this.block);
+		//block(this.block);
+		applyPowerToSelf(new MetallicizePower(p, this.magicNumber));
     }
 		
     // Which card to return when making a copy of this card.
@@ -75,7 +76,8 @@ public class MetalDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(upgradeDmg);
-            this.upgradeBlock(upgradeBlk);
+            //this.upgradeBlock(upgradeBlk);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -191,6 +191,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int extraCardsFromRandomArch = 25;
 	public static int archRoll1 = -1;
 	public static int archRoll2 = -1;
+	public static int gravAxeStr = -99;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -593,6 +594,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			} catch (Exception e) { e.printStackTrace(); }
 			//resetCharSelect();
 		});
+		if (flipCardTags) { flipBtn.text.text = UI_String.TEXT[13]; }
+		else { flipBtn.text.text = UI_String.TEXT[9]; }
 		settingsPanel.addUIElement(flipBtn);
 		yPos-=50;
 		// END Flip card tags
@@ -1102,7 +1105,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	@Override
 	public void receivePostPowerApplySubscriber(AbstractPower power, AbstractCreature target, AbstractCreature source) 
 	{
-	
+		if (debug)
+		{
+			logger.info("Power Applied: " + power.name + " - Target: " + target.name + " - Source: " + source.name);
+			if (power.name.equals("Strength"))
+			{
+				logger.info("Caught Strength application!");
+			}
+		}
 	}
 
 	@Override
@@ -1114,6 +1124,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			{
 				DuelistOrb oOrb = (DuelistOrb) o;
 				oOrb.checkFocus();
+			}
+		}
+		
+		if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID) && debug)
+		{
+			if (AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount != gravAxeStr && AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
+			{
+				logger.info("Got the wrong value for gravAxeStr == player.strength.amount, Player Strength: " + AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount + " - gravAxeStr: " + gravAxeStr);
 			}
 		}
 	}
@@ -1318,7 +1336,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			}
 		}
 		
-		// Undertrap - Draw trap = gain 10 HP
+		// Undertrap - Draw trap = gain 3 HP
 		if (AbstractDungeon.player.hasPower(HeartUndertrapPower.POWER_ID))
 		{
 			int handSize = AbstractDungeon.player.hand.size();

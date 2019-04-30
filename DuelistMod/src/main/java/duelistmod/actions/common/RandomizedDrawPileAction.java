@@ -108,6 +108,21 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
 		if (costChange) { this.costChangeCheck = true; }
 	}
 	
+	public RandomizedDrawPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust, boolean costChange, int lowCost, int highCost)
+	{
+		this.actionType = ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_FAST;
+		this.cardRef = c;
+		this.lowCostRoll = 1;
+		this.highCostRoll = 4;
+		this.tributeCheck = false;
+		this.summonCheck = false;
+		if (upgrade) { this.upgradeCheck = true; }
+		if (ethereal) { this.etherealCheck = true; }
+		if (exhaust) { this.exhaustCheck = true; }
+		if (costChange) { this.costChangeCheck = true; }
+	}
+	
 	public RandomizedDrawPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange)
 	{
 		this.actionType = ActionType.CARD_MANIPULATION;

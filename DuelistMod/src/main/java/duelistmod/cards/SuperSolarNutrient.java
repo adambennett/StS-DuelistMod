@@ -6,11 +6,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class SuperSolarNutrient extends DuelistCard 
 {
@@ -25,16 +26,15 @@ public class SuperSolarNutrient extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
-    private static final int CARDS = 3;
     // /STAT DECLARATION/
 
     public SuperSolarNutrient() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = CARDS;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.GENERATION_DECK);
         this.tags.add(Tags.OP_NATURE_DECK);
@@ -50,11 +50,11 @@ public class SuperSolarNutrient extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		// Add random cards to hand
+		applyPower(new PoisonPower(m, p, this.magicNumber), m);
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.INSECT);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, randomMonster.baseSummons > 0, false, false, 1, 4, 0, 0, 0, 1));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
 		}
     }
 

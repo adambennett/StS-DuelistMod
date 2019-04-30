@@ -366,6 +366,14 @@
 		"PROPER_NAME": "бессмертный"
 	},
 	{
+    "PROPER_NAME": "Roulette",
+    "NAMES": [
+      "Roulette",
+	  "roulette"
+    ],   
+    "DESCRIPTION": "50% chance to trigger the action given after this keyword."
+	},
+	{
 		"DESCRIPTION": "#yOrb: Нанести урон ВСЕМ врагам, получить #yEnergy и #yBlock. NL #yGate не зависит от #yFocus.",
 		"NAMES": [
 			"Ворота"

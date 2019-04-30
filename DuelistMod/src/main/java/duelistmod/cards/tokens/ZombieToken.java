@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,16 +8,16 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.actions.unique.PlayRandomFromDiscardAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
-public class JamToken extends DuelistCard 
+public class ZombieToken extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("JamToken");
+    public static final String ID = DuelistMod.makeID("ZombieToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.REVIVAL_JAM);
+    public static final String IMG = DuelistMod.makePath(Strings.ARMORED_ZOMBIE);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -31,36 +31,37 @@ public class JamToken extends DuelistCard
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public JamToken() 
+    public ZombieToken() 
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-    	this.tags.add(Tags.AQUA);
+    	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
     }
-    public JamToken(String tokenName) 
+    public ZombieToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
-    	this.tags.add(Tags.AQUA);
+    	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
+    	int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+    	if (roll == 1)
+    	{
+    		m = AbstractDungeon.getRandomMonster();
+        	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m, this.uuid));
+    	}
     }
-    @Override public AbstractCard makeCopy() { return new JamToken(); }
+    @Override public AbstractCard makeCopy() { return new ZombieToken(); }
 
     
     
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.AQUA))
-		{
-			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 4, 0, 0, 0, 2));
-			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
-		}
+		
 	}
 	
 	@Override public void onResummon(int summons) 

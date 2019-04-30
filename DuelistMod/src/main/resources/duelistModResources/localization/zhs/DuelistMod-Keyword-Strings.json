@@ -366,6 +366,14 @@
 		"PROPER_NAME": "不朽"
 	},
 	{
+    "PROPER_NAME": "Roulette",
+    "NAMES": [
+      "Roulette",
+	  "roulette"
+    ],   
+    "DESCRIPTION": "50% chance to trigger the action given after this keyword."
+	},
+	{
 		"DESCRIPTION": "宝珠：对所有敌人造成伤害，获得 [E] 和格挡。 门不受集中的影响。",
 		"NAMES": [
 			"门"

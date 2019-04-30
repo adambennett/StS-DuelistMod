@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.*;
+import duelistmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Black extends DuelistOrb
@@ -67,7 +68,21 @@ public class Black extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		applyFocus();
+		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			if (instance.isOnlyTypeSummoned(Tags.FIEND))
+			{
+				rollCheck += 4;
+			}
+		}
+		if (roll < rollCheck)
+		{
+			this.triggerPassiveEffect();
+		}
 	}
 
 	private void triggerPassiveEffect()

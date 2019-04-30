@@ -37,9 +37,16 @@ public class GravityAxePower extends AbstractPower
         	DuelistCard.applyPowerToSelf(new StrengthPower(this.owner, strGain));
         	int startStr = owner.getPower(StrengthPower.POWER_ID).amount + strGain;
         	this.FINAL_STRENGTH = startStr;
+        	DuelistMod.gravAxeStr = strGain;
         }
-        else { this.FINAL_STRENGTH = strGain; }
+        else { this.FINAL_STRENGTH = strGain; DuelistMod.gravAxeStr = strGain; }
         this.updateDescription();
+    }
+    
+    @Override
+    public void onRemove() 
+    {
+    	
     }
     
     @Override

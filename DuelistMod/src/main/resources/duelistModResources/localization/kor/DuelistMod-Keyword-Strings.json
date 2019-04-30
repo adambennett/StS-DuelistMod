@@ -366,6 +366,14 @@
 		"PROPER_NAME": "죽지 않는"
 	},
 	{
+    "PROPER_NAME": "Roulette",
+    "NAMES": [
+      "Roulette",
+	  "roulette"
+    ],   
+    "DESCRIPTION": "50% chance to trigger the action given after this keyword."
+	},
+	{
 		"DESCRIPTION": "#yOrb : 모든 적에게 데미지를 입히고 #yEgygy 및 #yBlock을 얻습니다. NL #yGate는 #yFocus의 영향을받지 않습니다.",
 		"NAMES": [
 			"문"

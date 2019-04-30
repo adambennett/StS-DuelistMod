@@ -38,7 +38,7 @@ public class SliferSky extends DuelistCard
         this.tags.add(Tags.GOD);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tributes = this.baseTributes = 5;
+        this.tributes = this.baseTributes = 4;
         this.misc = 0;
         this.baseMagicNumber = this.magicNumber = 2;
 		this.originalName = this.name;
@@ -49,15 +49,7 @@ public class SliferSky extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	if (!p.hasPower(SliferSkyPower.POWER_ID)) { applyPowerToSelf(new SliferSkyPower(p, this.magicNumber)); }
-    	else
-    	{
-    		SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-    		instance.turnTriggers += this.magicNumber;
-    		instance.triggerAllowed = true;
-    		instance.amount += this.magicNumber;
-    		instance.updateDescription();
-    	}
+    	applyPowerToSelf(new SliferSkyPower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,7 +14,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class SnowdustDragon extends DuelistCard 
@@ -32,7 +34,7 @@ public class SnowdustDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SnowdustDragon() {
@@ -51,10 +53,16 @@ public class SnowdustDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
+    	ArrayList<DuelistCard> tribList = tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb frost = new Frost();
-    	channel(frost);
+    	for (DuelistCard c : tribList)
+    	{
+    		if (c.hasTag(Tags.DRAGON))
+    		{
+		    	AbstractOrb frost = new Frost();
+		    	channel(frost);
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.

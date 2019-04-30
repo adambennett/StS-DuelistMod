@@ -10,6 +10,7 @@ import duelistmod.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.actions.unique.TheCreatorAction;
 import duelistmod.cards.*;
+import duelistmod.cards.tokens.ExplosiveToken;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
