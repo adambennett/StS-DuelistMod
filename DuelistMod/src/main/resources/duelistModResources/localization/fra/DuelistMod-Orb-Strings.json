@@ -1,152 +1,204 @@
 {
-  "theDuelist:Gate": {
-    "NAME": "Gate",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain [E] . NL #yEvoke: #ySummon #b", " random #yGuardians. NL Unaffected by #yFocus."
-    ]
-  },
-  "theDuelist:Buffer": {
-    "NAME": "Buffer",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", ". You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b", " turns."
-    ]
-  },
-  "theDuelist:MonsterOrb": {
-    "NAME": "MonsterOrb",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized monster to your hand. NL #yEvoke: Add #b", " #yrandomized monsters to your hand.", " #yrandomized monsters to your hand. NL #yEvoke: Add #b"
-    ]
-  },
-  "theDuelist:DragonOrb": {
-    "NAME": "DragonOrb",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
-    ]
-  },
-   "theDuelist:DragonPlusOrb": {
-    "NAME": "DragonOrb+",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
-    ]
-  },
-  "theDuelist:ReducerOrb": {
-    "NAME": "Reducer",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase this Orb's evoke amount by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
-    ]
-  },
-  "theDuelist:Earth": {
-    "NAME": "Earth",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized #ySpells to your hand. NL #yEvoke: Add #b", " #yrandomized #ySpell to your hand.", " #yrandomized #ySpells to your hand.", " #yrandomized #ySpell to your hand. NL #yEvoke: Add #b"
-    ]
-  },
-  "theDuelist:Air": {
-    "NAME": "Air",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if the only monsters you currently have summoned are #yDragons.", " NL #yEvoke: Gain #b", " #yOrb slot. NL Unaffected by #yFocus.", " #yOrb slots. NL Unaffected by #yFocus."
-    ]
-  },
-  "theDuelist:Black": {
-    "NAME": "Black",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to apply a random debuff with #b", " stack to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yrandomized #yFiend to your hand.", " stacks to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
-    ]
-  },
-  "theDuelist:FireOrb": {
-    "NAME": "Fire",
-    "DESCRIPTION": [
-      "#yPassive: Whenever you draw a #yDragon, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Reduce the #yTribute cost of #yDragons in your hand, discard, and exhaust by #b", " for this combat."
-    ]
-  },
-  "theDuelist:Glitch": {
-    "NAME": "Glitch",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, trigger #b", " random effects. NL #yEvoke: Trigger #b", " random effect. If the only monsters you currently have summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ", " random effects. If the only monsters you currently have summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL "
-    ]
-  },
-  "theDuelist:Shadow": {
-    "NAME": "Shadow",
-    "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #ySummon #b", " [#FF5252]Shadow [#FF5252]Token. You have a higher chance if the only monsters you currently have summoned are #yZombies. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies.", " [#FF5252]Shadow [#FF5252]Tokens. You have a higher chance if the only monsters you currently have summoned are #yZombies. NL #yEvoke: #yResummon #b"
-    ]
-  },
-  "theDuelist:Splash": {
-    "NAME": "Splash",
-    "DESCRIPTION": [
-	  "#yPassive: Whenever you draw an #yAqua, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Increase the summons of #yAqua monsters (everywhere) by #b", " for this combat."
-    ]
-  },
-  "theDuelist:Blaze": {
-    "NAME": "Blaze",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, have a chance to heal #b", " HP for each monster summoned this combat. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Heal #b", " HP for each monster summoned this combat."
-    ]
-  },
-  "theDuelist:Consumer": {
-    "NAME": "Consumer",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, #yTribute #b", " and gain temporary HP equal to the total energy cost of all tributes. NL #yEvoke: #yTribute all summons, gain a random #yBuff equal to the amount tributed."
-    ]
-  },
-  "theDuelist:Gadget": {
-    "NAME": "Gadget",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized #yTrap to your hand. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
-    ]
-  },
-  "theDuelist:Lava": {
-    "NAME": "Lava",
-    "DESCRIPTION": [
-	  "#yPassive: Whenever you draw a #yZombie, reduce the #yTribute cost by #b" , " for this combat. NL #yEvoke: Deal a random amount of damage to a random enemy. Deals more damage with a higher evoke amount."
-    ]
-  },
-  "theDuelist:MillenniumOrb": {
-    "NAME": "Millennium Orb",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yrandomized cards from your deck pool into your hand. NL This evoke effect is triggered every #b3 turns."
-    ]
-  },
-  "theDuelist:Metal": {
-    "NAME": "Metal",
-    "DESCRIPTION": [
-	  "#yPassive: At the end of turn, gain #yBlock equal to the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", "."
-    ]
-  },
-  "theDuelist:Mud": {
-    "NAME": "Mud",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized #yPlant or #yInsect to your hand. NL #yEvoke: Increase the summons of all #yInsect and #yPlant monsters (everywhere) by #b", " for this combat."
-    ]
-  },
-  "theDuelist:Mist": {
-    "NAME": "Mist",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized #yAqua monster to your hand. NL #yPassive: At the end of turn, increase the summons of all #yAqua monsters in your hand, discard pile, and exhaust pile by #b", ". NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
-    ]
-  },
-  "theDuelist:Sand": {
-    "NAME": "Sand",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, apply #b", " #ySlow to a random enemy. NL #yEvoke: Apply #b", " #ySlow to ALL enemies."
-    ]
-  },
-  "theDuelist:Smoke": {
-    "NAME": "Smoke",
-    "DESCRIPTION": [
-	  "#yPassive: Whenver you draw a monster, increase the #yTribute cost by #b", " and increase the damage by #b", " for this turn. NL #yEvoke: #yIncrement #b", "."
-    ]
-  },
-  "theDuelist:Storm": {
-    "NAME": "Storm",
-    "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add #b1 #yRandomized Power card to your hand. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", "."
-    ]
-  },
-  "theDuelist:Summoner": {
-    "NAME": "Summoner",
-    "DESCRIPTION": [
-      "#yPassive: At the end of turn, #ySummon #b", " Spellcaster Token. NL #yEvoke: #yIncrement #b", "."
-    ]
-  }
+	"theDuelist:Air": {
+		"DESCRIPTION": [
+			"#yPassive: Au début du tour, tentez une chance de #yChanner un #yOrb aléatoire. Vous avez plus de chances si les seuls monstres que vous avez invoqués à l'heure actuelle sont #yDragons.",
+			" NL #yEvoke: Gagner #b",
+			" Emplacement #yOrb. NL Non affecté par #yFocus.",
+			" #yOrb slots. NL Non affecté par #yFocus."
+		],
+		"NAME": "Air"
+	},
+	"theDuelist:Black": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, appliquez un debuff aléatoire avec #b",
+			" empiler à un ennemi au hasard. NL #yEvoke: Ajoutez un #yrandomized #yFiend à votre main.",
+			" empile à un ennemi aléatoire. NL #yEvoke: Ajoutez un #yrandomized #yFiend à votre main."
+		],
+		"NAME": "Noir"
+	},
+	"theDuelist:Blaze": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, soignez #b",
+			" HP pour chaque monstre invoqué ce combat. NL #yEvoke: Soins #b",
+			" HP pour chaque monstre invoqué ce combat."
+		],
+		"NAME": "Flamber"
+	},
+	"theDuelist:Buffer": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, augmentez #b",
+			" piles aléatoires #ybuff par # b1. NL #yEvoke: Gagnez un #buff aléatoire qui dure pour #b",
+			" se tourne."
+		],
+		"NAME": "Tampon"
+	},
+	"theDuelist:Consumer": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, #yTribute #b",
+			" et gagnez des PV temporaires égaux au coût total en énergie de tous les hommages (multiplied by the number of monsters tributed). NL #yEvoke: #yTribute toutes les invocations, gagne un #yBuff aléatoire égal au montant rendu."
+		],
+		"NAME": "Consommateur"
+	},
+	"theDuelist:DragonOrb": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, ajoutez #b",
+			" #yrandomized #yDragon à votre main. NL #yEvoke: Modifier le coût de #b",
+			" #yDragons au hasard dans votre main à 0."
+		],
+		"NAME": "DragonOrb"
+	},
+	"theDuelist:DragonPlusOrb": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, ajoutez #b",
+			" #yrandomized #yDragon à votre main. NL #yEvoke: Modifier le coût de #b",
+			" #yDragons au hasard dans votre main à 0."
+		],
+		"NAME": "DragonOrb"
+	},
+	"theDuelist:Earth": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, ajoutez #b",
+			" #yrandomized #ySpells à votre main. NL #yEvoke: Ajouter #b",
+			" #yrandomized #ySpell dans votre main.",
+			" #yrandomized #ySpells à votre main.",
+			" #yrandomized #ySpell dans votre main. NL #yEvoke: Ajouter #b"
+		],
+		"NAME": "Terre"
+	},
+	"theDuelist:FireOrb": {
+		"DESCRIPTION": [
+			"#yPassive: chaque fois que vous dessinez un #yDragon, réduisez le coût de #yTribute de #b",
+			" pour ce tour. NL #yEvoke: Réduisez le coût #yTribute de #yDragons dans votre main, défaussez-vous et utilisez les gaz d'échappement en #b",
+			" pour ce combat."
+		],
+		"NAME": "Feu"
+	},
+	"theDuelist:Gadget": {
+		"DESCRIPTION": [
+			"#yPassive: Au début du tour, ajoutez un #yTrap #andRandomisé à votre main. NL #yEvoke: Jouez au hasard sur un #yTrap que vous avez joué sur un ennemi au hasard."
+		],
+		"NAME": "Gadget"
+	},
+	"theDuelist:Gate": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, donnez le #b",
+			" dégâts à TOUS les ennemis, gagne #b",
+			" bloquer et gagner [E]. NL #yEvoke: #ySummon #b",
+			" aléatoires #yGuardians. NL Non affecté par #yFocus."
+		],
+		"NAME": "porte"
+	},
+	"theDuelist:Glitch": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, déclenchez #b",
+			" effets aléatoires. NL #yEvoke: Trigger #b",
+			" effet aléatoire. NL #yLast #yEffects #yTriggered: NL",
+			" effets aléatoires. NL #yLast #yEffects #yTriggered: NL"
+		],
+		"NAME": "Glitch"
+	},
+	"theDuelist:Lava": {
+		"DESCRIPTION": [
+			"#yPassive: chaque fois que vous dessinez un #yZombie, réduisez le coût de #yTribute de #b",
+			" pour ce combat. NL #yEvoke: inflige un montant aléatoire de dégâts à un ennemi aléatoire. Inflige plus de dégâts avec une quantité d'évocation plus élevée."
+		],
+		"NAME": "Lave"
+	},
+	"theDuelist:Metal": {
+		"DESCRIPTION": [
+			"#yPassive: à la fin du tour, gagnez #yBlock égal au nombre de #ySpells joués lors de ce combat plus #b",
+			". NL #yEvoke: Gagner #yMetallicize #b",
+			"."
+		],
+		"NAME": "Métal"
+	},
+	"theDuelist:MillenniumOrb": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, activez le #yMillennium #yPuzzle. NL #yEvoke: Choisissez et ajoutez #b",
+			" cartes #yrandomized de votre pool de deck dans votre main."
+		],
+		"NAME": "Millennium Orb"
+	},
+	"theDuelist:Mist": {
+		"DESCRIPTION": [
+			"#yPassive: Au début du tour, ajoutez un monstre #yRandomized #yAqua à votre main. NL #yPassive: à la fin du tour, augmentez les invocations de tous les monstres #yAqua dans votre main, votre pile de défausse et votre pile d'échappement de #b",
+			". NL #yEvoke: #y Attribuez tous les monstres #yAqua et #ySummon à un monstre aléatoire pour chacun. Gagnez un #yBuff aléatoire égal à la quantité de monstres #yAqua #yTributed."
+		],
+		"NAME": "Brouillard"
+	},
+	"theDuelist:MonsterOrb": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, ajoutez #b",
+			" monstre #andré à votre main. NL #yEvoke: Ajouter #b",
+			" # monstres irandomisés à votre main.",
+			" # monstres irandomisés à votre main. NL #yEvoke: Ajouter #b"
+		],
+		"NAME": "MonsterOrb"
+	},
+	"theDuelist:Mud": {
+		"DESCRIPTION": [
+			"#yPassive: Au début du tour, ajoutez un #yRandomized #yPlant ou #yInsect à votre main. NL #yEvoke: Augmentez les invocations de tous les monstres #yInsect et #yPlant (partout) de #b",
+			" pour ce combat."
+		],
+		"NAME": "Boue"
+	},
+	"theDuelist:ReducerOrb": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, augmentez le montant d'évocation de #b",
+			". NL #yEvoke: Modifier le coût de #b",
+			" carte aléatoire dans votre main à 0.",
+			" cartes aléatoires dans votre main à 0."
+		],
+		"NAME": "Réducteur"
+	},
+	"theDuelist:Sand": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, appliquez #b",
+			" #ySlow à un ennemi au hasard. NL #yEvoke: Appliquer #b",
+			" #ySlow à TOUS les ennemis."
+		],
+		"NAME": "Le sable"
+	},
+	"theDuelist:Shadow": {
+		"DESCRIPTION": [
+			"#yPassive: au début du tour, avez une # b20% de chance de #ySummon #b",
+			" [# FF5252] Ombres [# FF5252] Jeton. NL #yEvoke: #yResummon #b",
+			" Monstre aléatoire de votre pile de défausse sur un ennemi aléatoire.",
+			" Monstres aléatoires de votre pile de défausse sur des ennemis aléatoires.",
+			" [# FF5252] Ombres [# FF5252] Jetons. NL #yEvoke: #yResummon #b"
+		],
+		"NAME": "Ombre"
+	},
+	"theDuelist:Smoke": {
+		"DESCRIPTION": [
+			"#yPassive: chaque fois que vous dessinez un monstre, augmentez le coût de #yTribute de #b",
+			" et augmente les dégâts de #b",
+			" pour ce tour. NL #yEvoke: #yIncrement #b",
+			"."
+		],
+		"NAME": "Fumée"
+	},
+	"theDuelist:Splash": {
+		"DESCRIPTION": [
+			"#yPassive: chaque fois que vous dessinez un #yAqua, réduisez le coût de #yTribute de #b",
+			" pour ce tour. NL #yEvoke: Augmenter le nombre de convocations des monstres #yAqua (partout) de #b",
+			" pour ce combat."
+		],
+		"NAME": "Éclaboussure"
+	},
+	"theDuelist:Storm": {
+		"DESCRIPTION": [
+			"#yPassive: Au début du tour, ajoutez la carte Power # b1 #yRandomized à votre main. NL #yEvoke: si vous avez des emplacements vides Orb, utilisez-en un et réduisez le coût en tribut #yTribute de tous les monstres de votre pioche par #b.",
+			"."
+		],
+		"NAME": "Orage"
+	},
+	"theDuelist:Summoner": {
+		"DESCRIPTION": [
+			"#yPassive: à la fin du tour, #ySummon #b",
+			" Jeton de lanceur de sorts. NL #yEvoke: #yIncrement #b",
+			"."
+		],
+		"NAME": "Invocateur"
+	}
 }

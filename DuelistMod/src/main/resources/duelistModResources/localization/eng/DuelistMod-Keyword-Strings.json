@@ -37,7 +37,7 @@
         "increment",
 		"Increment"
       ],      
-      "DESCRIPTION": "Increase your maximum #ySummons by the number given."
+      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b2 turns."
     },
     {
 	 "PROPER_NAME": "Buffer",
@@ -172,7 +172,7 @@
       "Glitch",
 	  "glitch"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, triggers a random action. #yEvoke also triggers random actions."
+    "DESCRIPTION": "#yOrb: At the start of turn, triggers a random action. If the only monsters you currently have summoned are #yMachines, trigger the effect twice. #yEvoke also triggers random actions."
   },
   {
    "PROPER_NAME": "Shadow",
@@ -180,7 +180,7 @@
       "Shadow",
 	  "shadow"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, have a #b20% chance to #ySummon a [#FF5252]Shadow [#FF5252]Token. #yEvoke: #yResummon monsters from your discard pile on random enemies."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #ySummon a [#FF5252]Shadow [#FF5252]Token. You have a higher chance if the only monsters you currently have summoned are #yZombies. #yEvoke: #yResummon monsters from your discard pile on random enemies."
   },
   {
     "PROPER_NAME": "Splash",
@@ -240,7 +240,7 @@
       "Blaze",
 	  "blaze"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, heal #b1 HP for each monster summoned this combat. NL #yEvoke: Heal #b3 HP for each monster summoned this combat."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to heal #b1 HP for each monster summoned this combat. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Heal #b3 HP for each monster summoned this combat."
   },
   {
     "PROPER_NAME": "Consumer",
@@ -248,7 +248,7 @@
       "Consumer",
 	  "consumer"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, #yTribute #b2 and gain temporary HP equal to the total energy cost of all tributes. NL #yEvoke: #yTribute ALL summons, gain a random #yBuff equal to the amount tributed."
+    "DESCRIPTION": "#yOrb: At the start of turn, #yTribute #b2 and gain temporary HP equal to the total energy cost of all tributes multiplied by the number of tributes. NL #yEvoke: #yTribute ALL summons, gain a random #yBuff equal to the amount tributed."
   },
   {
     "PROPER_NAME": "Gadget",
@@ -312,7 +312,7 @@
       "Smoke",
 	  "smoke"
     ],   
-    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase the #yTribute cost by #b4 and increase the damage by #b12 for this turn. NL #yEvoke: #yIncrement #b5."
+    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase the #yTribute cost by #b2 and increase the damage by #b6 for this turn. NL #yEvoke: #yIncrement #b3."
   },
   {
     "PROPER_NAME": "Storm",
@@ -364,7 +364,7 @@
       "Black",
 	  "black"
     ],   
-    "DESCRIPTION": "#yPassive: At the start of turn, apply a random debuff with #b1 stack to a random enemy. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to apply a random debuff with #b1 stack to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
   },
   {
     "PROPER_NAME": "Immortal",

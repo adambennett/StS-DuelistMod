@@ -86,7 +86,7 @@
   "theDuelist:Consumer": {
     "NAME": "Consumer",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, #yTribute #b", " and gain temporary HP equal to the total energy cost of all tributes. NL #yEvoke: #yTribute all summons, gain a random #yBuff equal to the amount tributed."
+	  "#yPassive: At the start of turn, #yTribute #b", " and gain temporary HP equal to the total energy cost of all tributes multiplied by the number of monsters tributed. NL #yEvoke: #yTribute all summons, gain a random #yBuff equal to the amount tributed."
     ]
   },
   "theDuelist:Gadget": {

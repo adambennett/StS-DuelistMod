@@ -50,6 +50,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean extras)
@@ -81,6 +82,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal)
@@ -101,6 +103,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust)
@@ -121,6 +124,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust, boolean costChange)
@@ -143,6 +147,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange)
@@ -171,6 +176,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange, boolean tribChangeCombat, boolean summonChangeCombat)
@@ -199,6 +205,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
 	public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean costChange, int lowCost, int highCost) 
@@ -233,6 +240,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
 		}
+		checkFlags();
 	}
 	
     public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange, boolean tribChangeCombat, boolean summonChangeCombat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon) 
@@ -259,6 +267,18 @@ public class RandomizedHandAction extends AbstractGameAction
 			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
 		}
+		checkFlags();
+    }
+    
+    private void checkFlags()
+    {
+    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
+    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
+    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
+    	if (DuelistMod.alwaysUpgrade) { this.upgradeCheck = true; }
+    	if (DuelistMod.neverUpgrade) { this.upgradeCheck = false; }
+    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
+    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
     }
 
     public void update() {
@@ -302,13 +322,30 @@ public class RandomizedHandAction extends AbstractGameAction
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (summonChangeCombatCheck && dC.baseSummons > 0)
+    			if (DuelistMod.onlySummonIncreases)
     			{
-    				dC.modifySummons(randomNum);
+    				if (dC.baseSummons + randomNum > dC.baseSummons)
+    				{
+    					if (summonChangeCombatCheck && dC.baseSummons > 0)
+    	    			{
+    	    				dC.modifySummons(randomNum);
+    	    			}
+    	    			else if (dC.baseSummons > 0)
+    	    			{
+    	    				dC.modifySummonsForTurn(randomNum);
+    	    			}
+    				}
     			}
-    			else if (dC.baseSummons > 0)
+    			else
     			{
-    				dC.modifySummonsForTurn(randomNum);
+	    			if (summonChangeCombatCheck && dC.baseSummons > 0)
+	    			{
+	    				dC.modifySummons(randomNum);
+	    			}
+	    			else if (dC.baseSummons > 0)
+	    			{
+	    				dC.modifySummonsForTurn(randomNum);
+	    			}
     			}
     		}
     		
@@ -316,13 +353,30 @@ public class RandomizedHandAction extends AbstractGameAction
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (tributeChangeCombatCheck && dC.baseTributes > 0)
+    			if (DuelistMod.onlyTributeDecreases)
     			{
-    				dC.modifyTributes(-randomNum);
+    				if (dC.baseTributes + randomNum < dC.baseTributes)
+    				{
+    					if (tributeChangeCombatCheck && dC.baseTributes > 0)
+    	    			{
+    	    				dC.modifyTributes(-randomNum);
+    	    			}
+    	    			else if (dC.baseTributes > 0)
+    	    			{
+    	    				dC.modifyTributesForTurn(-randomNum);
+    	    			}
+    				}
     			}
-    			else if (dC.baseTributes > 0)
+    			else
     			{
-    				dC.modifyTributesForTurn(-randomNum);
+	    			if (tributeChangeCombatCheck && dC.baseTributes > 0)
+	    			{
+	    				dC.modifyTributes(-randomNum);
+	    			}
+	    			else if (dC.baseTributes > 0)
+	    			{
+	    				dC.modifyTributesForTurn(-randomNum);
+	    			}
     			}
     		}
     		

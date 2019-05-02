@@ -15,7 +15,15 @@
 			"Remove Creator cards",
 			"Old character model",
 			"Randomized: No Cost Changes",
-			"Randomized: Costs Only Decrease"
+			"Randomized: Costs Only Decrease",
+			"Randomized: No Tribute Changes",
+			"Randomized: Tributes Only Decrease",
+			"Randomized: No Summon Changes",
+			"Randomized: Summons Only Increase",
+			"Randomized: Always Upgrade",
+			"Randomized: Never Upgrade",
+			"Randomized: Ethereal",
+			"Randomized: Exhaust"
 		]
 	}
 }

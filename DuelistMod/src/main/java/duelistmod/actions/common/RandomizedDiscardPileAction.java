@@ -41,6 +41,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 		this.highTributeRoll = 1;
 		this.tributeChangeCombatCheck = false;
 		this.summonChangeCombatCheck = false;
+		checkFlags();
 	}
 	
 	public RandomizedDiscardPileAction(AbstractCard c, boolean extras)
@@ -61,10 +62,11 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 			this.upgradeCheck = true; 
 			this.etherealCheck = true; 
 			this.exhaustCheck = true; 
-			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }
+			this.costChangeCheck = true;
 			this.tributeCheck = true; 
 			this.summonCheck = true; 
 		}
+		checkFlags();
 	}
 	
 	public RandomizedDiscardPileAction(AbstractCard c, boolean upgrade, boolean ethereal)
@@ -78,6 +80,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 		this.exhaustCheck = false; 
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
+		checkFlags();
 	}
 	
 	public RandomizedDiscardPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust)
@@ -91,6 +94,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
+		checkFlags();
 	}
 	
 	public RandomizedDiscardPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust, boolean costChange)
@@ -105,7 +109,8 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges) { this.costChangeCheck = true; }
+		if (costChange) { this.costChangeCheck = true; }
+		checkFlags();
 	}
 	
 	public RandomizedDiscardPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange)
@@ -124,9 +129,10 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (costChange)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
+		checkFlags();
 	}
 	
 	public RandomizedDiscardPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange, boolean tribChangeCombat, boolean summonChangeCombat)
@@ -145,9 +151,10 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (costChange)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
+		checkFlags();
 	}
 	
     public RandomizedDiscardPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange, boolean tribChangeCombat, boolean summonChangeCombat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon) 
@@ -166,9 +173,21 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (costChange)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
+		checkFlags();
+    }
+    
+    private void checkFlags()
+    {
+    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
+    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
+    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
+    	if (DuelistMod.alwaysUpgrade) { this.upgradeCheck = true; }
+    	if (DuelistMod.neverUpgrade) { this.upgradeCheck = false; }
+    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
+    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
     }
 
     public void update() {
@@ -206,19 +225,36 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 	    			c.costForTurn = randomNum;
 	    			c.isCostModifiedForTurn = true;
     			}
-    		}     
+    		}       
     		
     		if (summonCheck && c instanceof DuelistCard)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowSummonRoll, highSummonRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (summonChangeCombatCheck && dC.baseSummons > 0)
+    			if (DuelistMod.onlySummonIncreases)
     			{
-    				dC.modifySummons(randomNum);
+    				if (dC.baseSummons + randomNum > dC.baseSummons)
+    				{
+    					if (summonChangeCombatCheck && dC.baseSummons > 0)
+    	    			{
+    	    				dC.modifySummons(randomNum);
+    	    			}
+    	    			else if (dC.baseSummons > 0)
+    	    			{
+    	    				dC.modifySummonsForTurn(randomNum);
+    	    			}
+    				}
     			}
-    			else if (dC.baseSummons > 0)
+    			else
     			{
-    				dC.modifySummonsForTurn(randomNum);
+	    			if (summonChangeCombatCheck && dC.baseSummons > 0)
+	    			{
+	    				dC.modifySummons(randomNum);
+	    			}
+	    			else if (dC.baseSummons > 0)
+	    			{
+	    				dC.modifySummonsForTurn(randomNum);
+	    			}
     			}
     		}
     		
@@ -226,13 +262,30 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowTributeRoll, highTributeRoll);
     			DuelistCard dC = (DuelistCard)c;
-    			if (tributeChangeCombatCheck && dC.baseTributes > 0)
+    			if (DuelistMod.onlyTributeDecreases)
     			{
-    				dC.modifyTributes(-randomNum);
+    				if (dC.baseTributes + randomNum < dC.baseTributes)
+    				{
+    					if (tributeChangeCombatCheck && dC.baseTributes > 0)
+    	    			{
+    	    				dC.modifyTributes(-randomNum);
+    	    			}
+    	    			else if (dC.baseTributes > 0)
+    	    			{
+    	    				dC.modifyTributesForTurn(-randomNum);
+    	    			}
+    				}
     			}
-    			else if (dC.baseTributes > 0)
+    			else
     			{
-    				dC.modifyTributesForTurn(-randomNum);
+	    			if (tributeChangeCombatCheck && dC.baseTributes > 0)
+	    			{
+	    				dC.modifyTributes(-randomNum);
+	    			}
+	    			else if (dC.baseTributes > 0)
+	    			{
+	    				dC.modifyTributesForTurn(-randomNum);
+	    			}
     			}
     		}
     		

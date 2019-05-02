@@ -84,7 +84,7 @@ public class Consumer extends DuelistOrb
 		ArrayList<DuelistCard> tribList = DuelistCard.listReturnPowerTribute(AbstractDungeon.player, this.passiveAmount, false);
 		int totalCost = 0;
 		if (tribList.size() > 0) { for (DuelistCard c : tribList) { totalCost += (c.cost); }}
-		AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, totalCost));
+		AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, totalCost * this.passiveAmount));
 	}
 
 	@Override

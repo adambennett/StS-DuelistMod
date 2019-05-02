@@ -107,8 +107,7 @@ public class PuzzleHelper
 	
 			// Spellcaster Deck
 			case 3:
-				int rollS = AbstractDungeon.cardRandomRng.random(0 + extra, 2 + extra);
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra + rollS, "Spellcaster Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Spellcaster Token", false);
 				break;
 				
 			// Toon Deck
