@@ -693,7 +693,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		yPos-=50;
 		// END No Cost Changes for Randomized Cards Button
 		
 		// No Cost Changes for Randomized Cards Button
