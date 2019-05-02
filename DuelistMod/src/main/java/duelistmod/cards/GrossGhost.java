@@ -41,6 +41,7 @@ public class GrossGhost extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
+		this.tags.add(Tags.NEVER_EXHAUST);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.isEthereal = true;

@@ -14,7 +14,9 @@
 			"Extra Debug Info",
 			"Remove Creator cards",
 			"Old character model",
-			"Switch to Monster/Spell/Trap tags"
+			"Switch to Monster/Spell/Trap tags",
+			"Randomized: No Cost Changes",
+			"Randomized: Costs Only Decrease"
 		]
 	}
 }

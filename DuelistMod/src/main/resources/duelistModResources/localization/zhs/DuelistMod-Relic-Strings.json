@@ -167,6 +167,20 @@
 			"#ySummon #b1 Token at the start of each combat."
 		]
 	},
+	"theDuelist:SpellcasterToken": {
+		"NAME": "Spellcaster Token",
+		"FLAVOR": "A glowing purple token that seems to hold a mysterious power.",
+		"DESCRIPTIONS": [
+			"Whenever you #yChannel an orb you also #yChannel a random orb."
+		]
+	},
+	"theDuelist:SpellcasterOrb": {
+		"NAME": "Spellcaster Orb",
+		"FLAVOR": "A glowing purple orb that seems to hold a mysterious power.",
+		"DESCRIPTIONS": [
+			"Whenever you #yChannel an orb deal #b3 damage to ALL enemies."
+		]
+	},
 	"theDuelist:RandomTributeMonsterRelic": {
 		"NAME": "Tribute Egg",
 		"FLAVOR": "A glowing red egg shaped object. It holds mysterious power.",

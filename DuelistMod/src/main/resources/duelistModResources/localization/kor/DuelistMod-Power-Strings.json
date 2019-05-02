@@ -548,6 +548,10 @@
 			"NAME": "Blizzard Dragon",
 			"DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
 	},
+		"theDuelist:TwoJamPower": {
+        "NAME": "Jam Breeding Machine",
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
+	},
 	"theDuelist:YamiPower": {
 		"DESCRIPTIONS": [
 			"# 마법 점포가 50 %의 대미지를주고 50 %의 방어를 얻습니다. #y 스펠 캐스터를 석방 할 때마다 # 1 추가 스톤을 얻는다."

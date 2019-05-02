@@ -14,7 +14,9 @@
 			"Extra Debug Info",
 			"Remove Creator cards",
 			"Old character model",
-			"Current Tags: Attack/Skill/Power"
+			"Current Tags: Attack/Skill/Power",
+			"Randomized: No Cost Changes",
+			"Randomized: Costs Only Decrease"
 		]
 	}
 }

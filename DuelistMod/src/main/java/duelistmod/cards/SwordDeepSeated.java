@@ -1,7 +1,6 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,8 +10,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
+import duelistmod.actions.common.RandomizedDrawPileAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class SwordDeepSeated extends DuelistCard 
@@ -69,8 +69,8 @@ public class SwordDeepSeated extends DuelistCard
     	if (!p.hasPower(GravityAxePower.POWER_ID)) { applyPowerToSelf(new SwordDeepPower(p, p, 1, STR_GAIN)); }
     	AbstractCard sword = new SwordDeepSeated();
     	if (upgraded) { sword.upgrade(); }
-    	AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(sword, this.magicNumber, true, true));
-    	AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(sword, this.magicNumber * DuelistMod.swordsPlayed, true, true));
+    	for (int i = 0; i < this.magicNumber; i++) { AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(sword, this.upgraded, true)); }
+    	for (int i = 0; i < this.magicNumber * DuelistMod.swordsPlayed; i++) { AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(sword, this.upgraded, true)); }
     	DuelistMod.swordsPlayed++;
     }
 

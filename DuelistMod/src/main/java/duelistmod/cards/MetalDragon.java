@@ -51,6 +51,7 @@ public class MetalDragon extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

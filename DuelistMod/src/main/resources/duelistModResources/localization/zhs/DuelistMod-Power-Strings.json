@@ -548,6 +548,10 @@
 			"NAME": "Blizzard Dragon",
 			"DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
 	},
+		"theDuelist:TwoJamPower": {
+        "NAME": "Jam Breeding Machine",
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
+	},
 	"theDuelist:YamiPower": {
 		"DESCRIPTIONS": [
 			"你的#ySpellcasters造成的伤害提高50％，并获得50％的阻挡。每当你#ySummon #ySpellcaster时，额外增加1个#ySummon。"

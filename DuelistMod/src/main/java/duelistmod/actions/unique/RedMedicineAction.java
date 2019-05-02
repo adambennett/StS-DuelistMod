@@ -63,7 +63,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new CuriosityPower(p, 1));
 			toReturn.add(new AerodynamicsPower(p, p));
 			toReturn.add(new NaturiaPower(p, p, turnNum));
-			
+			toReturn.add(new TwoJamPower(p, 1, turnNum, 2));
 		}
 		else
 		{
@@ -107,6 +107,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new MayhemPower(p, 1));
 			toReturn.add(new AmplifyPower(p, 1));
 			toReturn.add(new BufferPower(p, 1));
+			toReturn.add(new TwoJamPower(p, 1, turnNum, 4));			
 		}
 		return toReturn;
 	}

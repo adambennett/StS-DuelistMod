@@ -30,7 +30,6 @@ public class CardDestruction extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 3;
-    private static final int CARDS = 1;
     // /STAT DECLARATION/
 
     public CardDestruction() {
@@ -63,6 +62,9 @@ public class CardDestruction extends DuelistCard
     	for (int i = 0; i < handSize; i++)
     	{
     		AbstractDungeon.actionManager.addToBottom(new CardDestructionAction(this.upgraded));
+    		
+    		// Debug Mode - switch the line above for the line below, pass in the desired card and card destruction will fill your hand with it
+    		//AbstractDungeon.actionManager.addToBottom(new CardDestructionAction(this.upgraded, new GrossGhost()));
     	}
 
     }

@@ -9,7 +9,7 @@
 },
 "theDuelist:JamPower": {
         "NAME": "Jam Breeder",
-        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal 3 damage to ", " random enemy.", " random enemies."]
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon ", " and deal 3 damage to #b", " random enemy.", " random enemies."]
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
@@ -314,6 +314,10 @@
 "theDuelist:BlizzardDragonPower": {
         "NAME": "Blizzard Dragon",
         "DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
+},
+"theDuelist:TwoJamPower": {
+        "NAME": "Jam Breeding Machine",
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

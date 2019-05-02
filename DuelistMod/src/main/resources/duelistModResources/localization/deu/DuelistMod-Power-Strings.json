@@ -548,6 +548,10 @@
 			"NAME": "Blizzard Dragon",
 			"DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
 	},
+	"theDuelist:TwoJamPower": {
+        "NAME": "Jam Breeding Machine",
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
+	},
 	"theDuelist:YamiPower": {
 		"DESCRIPTIONS": [
 			"Eure #ySpellcasters verursachen 50% mehr Schaden und gewinnen 50% mehr Block. Immer wenn du #ySummon #ySpellcaster hast, erhältst du 1 zusätzlichen #ySummon."

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 
 import basemod.BaseMod;
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 
 public class RandomizedDiscardPileAction extends AbstractGameAction {
@@ -61,7 +61,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 			this.upgradeCheck = true; 
 			this.etherealCheck = true; 
 			this.exhaustCheck = true; 
-			this.costChangeCheck = true; 
+			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }
 			this.tributeCheck = true; 
 			this.summonCheck = true; 
 		}
@@ -105,7 +105,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange) { this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges) { this.costChangeCheck = true; }
 	}
 	
 	public RandomizedDiscardPileAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange)
@@ -124,7 +124,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 	}
@@ -145,7 +145,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 	}
@@ -166,7 +166,7 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
     }
@@ -180,25 +180,33 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
     			c.upgrade();
     		}
             
-            if (!c.isEthereal && etherealCheck) {
+            if (!c.isEthereal && etherealCheck && !c.hasTag(Tags.NEVER_ETHEREAL)) {
                 c.isEthereal = true;
                 c.rawDescription = "Ethereal NL " + c.rawDescription;
-               // c.initializeDescription();
     		}
     		
-    		if (!c.exhaust && exhaustCheck) {
+    		if (!c.exhaust && exhaustCheck && !c.hasTag(Tags.NEVER_EXHAUST)) {
                 c.exhaust = true;
                 c.rawDescription = c.rawDescription + " NL Exhaust.";
-               // c.initializeDescription();
     		}
     		
     		if (costChangeCheck)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
-    			c.costForTurn = randomNum;
-    			c.isCostModifiedForTurn = true;
-    			//c.initializeDescription();
-    		}       
+    			if (DuelistMod.onlyCostDecreases)
+    			{
+    				if (randomNum < c.cost)
+    				{
+    					c.costForTurn = randomNum;
+    	    			c.isCostModifiedForTurn = true;
+    				}
+    			}
+    			else
+    			{
+	    			c.costForTurn = randomNum;
+	    			c.isCostModifiedForTurn = true;
+    			}
+    		}     
     		
     		if (summonCheck && c instanceof DuelistCard)
     		{

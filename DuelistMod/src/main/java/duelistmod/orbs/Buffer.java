@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import duelistmod.*;
 import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
-import duelistmod.powers.SummonPower;
+import duelistmod.powers.*;
 
 @SuppressWarnings("unused")
 public class Buffer extends DuelistOrb
@@ -67,7 +67,7 @@ public class Buffer extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		applyFocus();
+		/*applyFocus();
 		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
 		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
@@ -81,7 +81,10 @@ public class Buffer extends DuelistOrb
 		if (roll < rollCheck)
 		{
 			this.triggerPassiveEffect();
-		}
+		}*/
+		
+		applyFocus();
+		triggerPassiveEffect();
 	}
 
 	private void triggerPassiveEffect()
@@ -116,6 +119,16 @@ public class Buffer extends DuelistOrb
 					{
 						DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
 						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
+					}
+					else if (buff.name.equals("Jam Breeding Machine"))
+					{
+						TwoJamPower jamBreed = (TwoJamPower) buff;
+						String buffIndex = "Enemies Damaged (Amount #1)";
+						int roll = AbstractDungeon.cardRandomRng.random(1, 3);
+						if (roll == 2) { buffIndex = "Summons/turn (Amount #2)"; jamBreed.amount2++; jamBreed.updateDescription(); }						
+						else if (roll == 3) { buffIndex = "Damage (turnDmg)"; jamBreed.turnDmg++; jamBreed.updateDescription(); }
+						else { jamBreed.amount++; jamBreed.updateDescription(); }
+						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Buffed Jam Breeding Machine! Which amount did we buff: " + buffIndex); }
 					}
 					else
 					{

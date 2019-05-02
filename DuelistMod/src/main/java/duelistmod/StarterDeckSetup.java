@@ -145,7 +145,7 @@ public class StarterDeckSetup {
 		dragonCards.add(new GaiaDragonChamp());
 		dragonCards.add(new GravityAxe());
 		dragonCards.add(new LesserDragon());
-		dragonCards.add(new LeviaDragon());
+		//dragonCards.add(new LeviaDragon());
 		dragonCards.add(new LordD());
 		dragonCards.add(new MetalDragon());
 		dragonCards.add(new Mountain());
@@ -501,12 +501,7 @@ public class StarterDeckSetup {
 		fiendDeck.fillPoolCards(fiendCards);		
 		fiendDeck.fillArchetypeCards(fiendCards);
 		DuelistMod.archetypeCards.addAll(fiendCards);
-		
-		// TEMPORARY UNTIL FIEND & ZOMBIE HAVE ENOUGH CARDS
-		//fiendDeck.fillArchetypeCards(zombieCards);
-		//fiendDeck.fillPoolCards(zombieCards);
-		//zombieDeck.fillArchetypeCards(fiendCards);
-		//zombieDeck.fillPoolCards(fiendCards);
+
 		
 		// Machine Deck
 		StarterDeck machineDeck = DuelistMod.starterDeckNamesMap.get("Machine Deck");

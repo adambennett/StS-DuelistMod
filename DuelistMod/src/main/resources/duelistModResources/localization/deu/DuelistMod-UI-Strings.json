@@ -13,7 +13,9 @@
 			"Turn off Monster/Spell/Trap tags",
 			"Extra Debug Info",
 			"Remove Creator cards",
-			"Old character model"
+			"Old character model",
+			"Randomized: No Cost Changes",
+			"Randomized: Costs Only Decrease"
 		]
 	}
 }

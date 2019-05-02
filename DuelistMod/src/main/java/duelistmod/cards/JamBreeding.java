@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.JamPower;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.TwoJamPower;
 
 public class JamBreeding extends DuelistCard 
 {
@@ -46,8 +46,17 @@ public class JamBreeding extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	//AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new JamPower(p, 1, this.magicNumber), 1));
-    	applyPowerToSelf(new JamPower(p, 1, this.magicNumber));
+    	if (p.hasPower(TwoJamPower.POWER_ID) && this.upgraded)
+    	{
+    		applyPowerToSelf(new TwoJamPower(p, 1, 1));
+    		TwoJamPower jp = (TwoJamPower) p.getPower(TwoJamPower.POWER_ID);
+    		jp.amount2++;
+    		jp.updateDescription();
+    	}
+    	else
+    	{
+    		applyPowerToSelf(new TwoJamPower(p, 1, this.magicNumber));
+    	}
     }
 
 

@@ -70,7 +70,7 @@ public class RandomizedHandAction extends AbstractGameAction
 			this.upgradeCheck = true; 
 			this.etherealCheck = true; 
 			this.exhaustCheck = true; 
-			this.costChangeCheck = true; 
+			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }
 			this.tributeCheck = true; 
 			this.summonCheck = true; 
 		}
@@ -135,7 +135,7 @@ public class RandomizedHandAction extends AbstractGameAction
 		if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange) { this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges) { this.costChangeCheck = true; }
 		if (DuelistMod.debug)
 		{
 			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -161,7 +161,7 @@ public class RandomizedHandAction extends AbstractGameAction
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 		if (DuelistMod.debug)
@@ -189,7 +189,7 @@ public class RandomizedHandAction extends AbstractGameAction
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 		if (DuelistMod.debug)
@@ -219,7 +219,7 @@ public class RandomizedHandAction extends AbstractGameAction
 		this.exhaustCheck = false;
 		this.tributeCheck = false;
 		this.summonCheck = false;
-		if (costChange)	
+		if (costChange && !DuelistMod.noCostChanges)	
 		{ 
 			this.costChangeCheck = true; 
 			this.lowCostRoll = lowCost;
@@ -251,7 +251,7 @@ public class RandomizedHandAction extends AbstractGameAction
         if (upgrade) { this.upgradeCheck = true; }
 		if (ethereal) { this.etherealCheck = true; }
 		if (exhaust) { this.exhaustCheck = true; }
-		if (costChange)	{ this.costChangeCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
 		if (tributeChange) { this.tributeCheck = true; }
 		if (summonChange) { this.summonCheck = true; }
 		if (DuelistMod.debug)
@@ -270,24 +270,32 @@ public class RandomizedHandAction extends AbstractGameAction
     			c.upgrade();
     		}
             
-            if (!c.isEthereal && etherealCheck) {
+            if (!c.isEthereal && etherealCheck && !c.hasTag(Tags.NEVER_ETHEREAL)) {
                 c.isEthereal = true;
                 c.rawDescription = "Ethereal NL " + c.rawDescription;
-               // c.initializeDescription();
     		}
     		
-    		if (!c.exhaust && exhaustCheck) {
+    		if (!c.exhaust && exhaustCheck && !c.hasTag(Tags.NEVER_EXHAUST)) {
                 c.exhaust = true;
                 c.rawDescription = c.rawDescription + " NL Exhaust.";
-               // c.initializeDescription();
     		}
     		
     		if (costChangeCheck)
     		{
     			int randomNum = AbstractDungeon.cardRandomRng.random(lowCostRoll, highCostRoll);
-    			c.costForTurn = randomNum;
-    			c.isCostModifiedForTurn = true;
-    			//c.initializeDescription();
+    			if (DuelistMod.onlyCostDecreases)
+    			{
+    				if (randomNum < c.cost)
+    				{
+    					c.costForTurn = randomNum;
+    	    			c.isCostModifiedForTurn = true;
+    				}
+    			}
+    			else
+    			{
+	    			c.costForTurn = randomNum;
+	    			c.isCostModifiedForTurn = true;
+    			}
     		}       
     		
     		if (summonCheck && c instanceof DuelistCard)

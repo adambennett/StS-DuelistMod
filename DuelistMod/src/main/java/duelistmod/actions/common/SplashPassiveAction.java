@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
+import duelistmod.Tags;
 import duelistmod.interfaces.DuelistCard;
 
 public class SplashPassiveAction extends AbstractGameAction 
@@ -21,10 +22,10 @@ public class SplashPassiveAction extends AbstractGameAction
         if (this.duration == Settings.ACTION_DUR_FAST) 
         {
             AbstractCard c = DuelistCard.returnTrulyRandomDuelistCard().makeStatEquivalentCopy();
-            if (!c.isEthereal) 
+            if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) 
             {
                 c.isEthereal = true;
-                c.rawDescription = "Ethereal. NL " + c.rawDescription;
+                c.rawDescription = "Ethereal NL " + c.rawDescription;
             }              
             if (c.cost > 0)
 			{

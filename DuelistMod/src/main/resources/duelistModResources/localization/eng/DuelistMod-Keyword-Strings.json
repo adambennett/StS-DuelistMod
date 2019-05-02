@@ -383,6 +383,14 @@
     "DESCRIPTION": "50% chance to trigger the action given after this keyword."
   },
   {
+    "PROPER_NAME": "Metallicize",
+    "NAMES": [
+      "Metallicize",
+	  "metallicize"
+    ],   
+    "DESCRIPTION": "At the end of turn, gain #yBlock equal to the amount of #yMetallicize stacks you currently have."
+  },
+  {
     "PROPER_NAME": "Gate",
     "NAMES": [
       "gate"

@@ -7,32 +7,44 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
+import duelistmod.Tags;
 import duelistmod.interfaces.DuelistCard;
 
 public class CardDestructionAction extends AbstractGameAction 
 {
 	private boolean upgrade = false;
+	private boolean debugCardMode = false;
+	private AbstractCard card;
 	
     public CardDestructionAction(boolean upgrade) {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_FAST;
         this.upgrade = upgrade;
     }
+    
+    public CardDestructionAction(boolean upgrade, AbstractCard fillHandWithThisCard) {
+        this.actionType = ActionType.CARD_MANIPULATION;
+        this.duration = Settings.ACTION_DUR_FAST;
+        this.upgrade = upgrade;
+        this.card = fillHandWithThisCard;
+        this.debugCardMode = true;
+    }
 
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) 
         {
             AbstractCard c = DuelistCard.returnTrulyRandomDuelistCard().makeStatEquivalentCopy();
+            if (debugCardMode) { c = card; }
             if (upgrade)
             {
             	c.upgrade();
             }
-            if (!c.exhaust) 
+            if (!c.exhaust && !c.hasTag(Tags.NEVER_EXHAUST)) 
             {
                 c.exhaust = true;
                 c.rawDescription = c.rawDescription + " NL Exhaust.";
             }        
-            if (!c.isEthereal && upgrade)
+            if (!c.isEthereal && upgrade && !c.hasTag(Tags.NEVER_ETHEREAL))
             {
             	c.isEthereal = true;
             	c.rawDescription = "Ethereal NL " + c.rawDescription;

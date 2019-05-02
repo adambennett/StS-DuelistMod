@@ -515,9 +515,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a DragonOrb."
 	},
 	"theDuelist:DragonPiper": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dragons in your hand to 1 for the rest of combat.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 1 for the rest of combat.",
 		"NAME": "Dragon Piper",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Reduce the Tribute cost of all Dragons in your hand to 0 for the rest of combat."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Set the Tribute cost of all Dragons in your hand to 0 for the rest of combat."
 	},
 	"theDuelist:DragonToken": {
 		"DESCRIPTION": "Dragon NL Summon 1 NL Reduce the Tribute cost of a random monster in your hand by 1 for this turn.",
@@ -1158,9 +1158,9 @@
 		"UPGRADE_DESCRIPTION": "The first Tribute monster you play each turn does not Tribute. Take 1 damage each turn."
 	},
 	"theDuelist:MetalDragon": {
-		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize.",
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize. NL Exhaust.",
 		"NAME": "Metal Dragon",
-		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize."
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Metallicize. NL Exhaust."
 	},
 	"theDuelist:MetalOrbCard": {
 		"DESCRIPTION": "Channel a Metal Orb.",
@@ -1175,7 +1175,7 @@
 	"theDuelist:MillenniumShield": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain 4 Dexterity. NL Exhaust.",
 		"NAME": "Millennium Shield",
-		"UPGRADE_DESCRIPTION": "Gain 4 Dexterity. Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain 4 Dexterity. Exhaust."
 	},
 	"theDuelist:MindAir": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Your Air orbs always Channel an orb.",

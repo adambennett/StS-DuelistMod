@@ -94,6 +94,8 @@ public class BuffHelper {
 		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower aero = new AerodynamicsPower(p, p);
 		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
+		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
+		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
 		/* LOOK UP BUFFS DOC IN NOTEPAD */
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
@@ -105,7 +107,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia
+					naturia, jambreedC
 			};
 		}
 		else
@@ -117,7 +119,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia
+					naturia, jambreed
 			};
 		}
 		for (AbstractPower a : buffs)
@@ -171,6 +173,8 @@ public class BuffHelper {
 		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower aero = new AerodynamicsPower(p, p);
 		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
+		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
+		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
 		{
@@ -180,7 +184,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia
+					naturia, jambreedC
 			};
 		}
 		else
@@ -192,7 +196,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia
+					naturia, jambreed
 			};
 		}
 		for (AbstractPower a : buffs)

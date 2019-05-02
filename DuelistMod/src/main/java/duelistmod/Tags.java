@@ -47,6 +47,8 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MONSTER;
 	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
 	@SpireEnum public static AbstractCard.CardTags NATURIA;
+	@SpireEnum public static AbstractCard.CardTags NEVER_ETHEREAL;
+	@SpireEnum public static AbstractCard.CardTags NEVER_EXHAUST;
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
 	@SpireEnum public static AbstractCard.CardTags NO_CREATOR;
 	@SpireEnum public static AbstractCard.CardTags OJAMA;
