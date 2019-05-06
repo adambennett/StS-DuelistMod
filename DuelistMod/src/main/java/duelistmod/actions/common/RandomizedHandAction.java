@@ -24,7 +24,7 @@ public class RandomizedHandAction extends AbstractGameAction
 	private boolean summonChangeCombatCheck = false;
 	private boolean tributeChangeCombatCheck = false;
 	private int lowCostRoll = 1;
-	private int highCostRoll = 4;
+	private int highCostRoll = 3;
 	private int lowSummonRoll = 1;
 	private int highSummonRoll = 2;
 	private int lowTributeRoll = 1;
@@ -36,7 +36,7 @@ public class RandomizedHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_FAST;
 		this.cardRef = c;
 		this.lowCostRoll = 1;
-		this.highCostRoll = 4;
+		this.highCostRoll = 3;
 		this.lowSummonRoll = 0;
 		this.highSummonRoll = 2;
 		this.lowTributeRoll = 0;
@@ -59,7 +59,7 @@ public class RandomizedHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_FAST;
 		this.cardRef = c;
 		this.lowCostRoll = 1;
-		this.highCostRoll = 4;
+		this.highCostRoll = 3;
 		this.lowSummonRoll = 0;
 		this.highSummonRoll = 2;
 		this.lowTributeRoll = 0;
@@ -68,7 +68,7 @@ public class RandomizedHandAction extends AbstractGameAction
 		this.summonChangeCombatCheck = false; 
 		if (extras)
 		{
-			this.upgradeCheck = true; 
+			this.upgradeCheck = false; 
 			this.etherealCheck = true; 
 			this.exhaustCheck = true; 
 			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }

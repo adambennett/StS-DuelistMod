@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.relics.AquaRelicB;
 
 public class SevenColoredFish extends DuelistCard 
 {
@@ -91,10 +91,26 @@ public class SevenColoredFish extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		if (tributingCard.originalName.equals("Legendary Fisherman")) { draw(2); }
+		
+		// Aqua Tribute
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
-			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 2));
+			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.baseSummons > 0)
+					{
+						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+					}
+					
+					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					{
+						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+					}
+				}
+			}
 		}
 	}
 

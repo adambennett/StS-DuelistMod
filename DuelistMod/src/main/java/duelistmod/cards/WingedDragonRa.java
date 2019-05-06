@@ -44,7 +44,7 @@ public class WingedDragonRa extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 4;
 		this.originalName = this.name;
 		this.damage = this.baseDamage = 10;
     }
@@ -55,8 +55,11 @@ public class WingedDragonRa extends DuelistCard
     {
     	tribute();
     	attack(m, AFX, this.damage);
-    	AbstractOrb mo = new MillenniumOrb(getXEffect() + 1);
-    	channel(mo);
+    	if (getXEffect() > 0)
+    	{
+    		AbstractOrb mo = new MillenniumOrb(getXEffect());
+    		channel(mo);
+    	}
     	useXEnergy();
     }
 

@@ -181,6 +181,27 @@
 			"Whenever you #yChannel an orb deal #b3 damage to ALL enemies."
 		]
 	},
+	"theDuelist:AquaRelic": {
+		"NAME": "Aqua Orb",
+		"FLAVOR": "A small blue sphere that smells a bit salty.",
+		"DESCRIPTIONS": [
+			"When you gain #ySummons from #yTributing an #yAqua, gain #b1 extra #ySummon.", "#ySynergy with #yAqua #yToken: NL #yTributes are also decreased by #b2."
+		]
+	},
+	"theDuelist:AquaRelicB": {
+		"NAME": "Aqua Token",
+		"FLAVOR": "A small blue token shaped like seashell. It is quite damp.",
+		"DESCRIPTIONS": [
+			"When you #yTribute an #yAqua for another #yAqua, decrease the #yTributes of all monsters in your hand by #y1 for this turn."
+		]
+	},
+	"theDuelist:NatureRelic": {
+		"NAME": "Nature Token",
+		"FLAVOR": "An orb covered with mud and grass. Gross.",
+		"DESCRIPTIONS": [
+			"If you apply at least #b25 #yPoison in combat, drop an extra card reward."
+		]
+	},
 	"theDuelist:RandomTributeMonsterRelic": {
 		"NAME": "Tribute Egg",
 		"FLAVOR": "A glowing red egg shaped object. It holds mysterious power.",

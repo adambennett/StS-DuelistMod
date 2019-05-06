@@ -2305,6 +2305,11 @@
 		"NAME": "Знак зомби",
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon 1"
 	},
+	"theDuelist:LostBlueBreaker": {
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Randomly Resummon !M! random Aqua monsters.",
+		"NAME": "Lost Blue Breaker",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Randomly Resummon !M! random Aqua monsters."
+	},
 	"theDuelist:Zombyra": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! повреждение. NL Lose !M! HP.",
 		"NAME": "Zombyra",

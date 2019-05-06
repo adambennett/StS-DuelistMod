@@ -73,7 +73,7 @@ public class MillenniumOrb extends DuelistOrb
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
 			ArrayList<String> deckCardNames = new ArrayList<String>();
-			for (int i = 0; i < 50; i++)
+			for (int i = 0; i < 30; i++)
 			{
 				int index = StarterDeckSetup.getCurrentDeck().getPoolCards().size() - 1;
 				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
@@ -86,8 +86,8 @@ public class MillenniumOrb extends DuelistOrb
 				deckCards.add(c);
 				deckCardNames.add(c.name);
 			}
-			int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, highRoll, 0, 2, 0, 2));
+			//int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 3, 0, 2, 0, 1));
 		}
 		else
 		{

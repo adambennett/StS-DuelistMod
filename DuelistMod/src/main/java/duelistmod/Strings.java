@@ -517,6 +517,7 @@ public class Strings
 	// =============== /RELIC IMAGES/ =======================================================================================================================================================
 	
 	// =============== POWER IMAGES =========================================================================================================================================================
+	public static final String PLACEHOLDER_POWER = "powers/PlaceholderPower.png";
 	public static final String AERO_POWER = "powers/AerodynamicsPower.png";
 	public static final String ALPHA_MAG_POWER = "powers/AlphaMagPower.png";
 	public static final String BAD_REACTION_POWER = "powers/BadReactionPower.png";

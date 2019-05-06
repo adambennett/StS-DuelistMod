@@ -447,14 +447,16 @@ public class StarterDeckSetup {
 		aquaCards.add(new OhFish());
 		aquaCards.add(new GracefulCharity());
 		aquaCards.add(new HeartUnderdog());
-		//aquaCards.add(new MagicCylinder());
 		aquaCards.add(new RedMedicine());
 		aquaCards.add(new SwordsConcealing());
-		//aquaCards.add(new DarkMimicLv1());
 		aquaCards.add(new PotDuality());
 		//aquaCards.add(new HyperancientShark());
 		//aquaCards.add(new KaiserSeaHorse());
 		//aquaCards.add(new UnshavenAngler());
+		aquaCards.add(new LostBlueBreaker());
+		aquaCards.add(new Wingedtortoise());
+		aquaCards.add(new GemKnightAmethyst());
+		aquaCards.add(new ToadallyAwesome());
 		aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
@@ -497,6 +499,7 @@ public class StarterDeckSetup {
 		fiendCards.add(new PotDuality());
 		fiendCards.add(new Doomdog());
 		fiendCards.add(new RedMirror());
+		fiendCards.add(new DarknessNeosphere());
 		fiendDeck.fillPoolCards(DuelistMod.basicCards);
 		fiendDeck.fillPoolCards(fiendCards);		
 		fiendDeck.fillArchetypeCards(fiendCards);

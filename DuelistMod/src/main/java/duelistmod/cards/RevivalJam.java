@@ -3,15 +3,14 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.tokens.JamToken;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.relics.AquaRelicB;
 
 public class RevivalJam extends DuelistCard 
 {
@@ -74,12 +73,27 @@ public class RevivalJam extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		summon(player(), this.magicNumber, new Token("Jam Token"));
+		summon(player(), this.magicNumber, new JamToken());
+		
+		// Aqua Tribute
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
-			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 2));
-			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
+			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.baseSummons > 0)
+					{
+						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+					}
+					
+					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					{
+						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+					}
+				}
+			}
 		}
 	}
 

@@ -69,7 +69,7 @@ public class ManEaterBug extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(3);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -82,6 +82,12 @@ public class ManEaterBug extends DuelistCard
 		// Check for insect
 		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
 		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		
+		// Man Eater Bug Effect
+		if (tributingCard.hasTag(Tags.INSECT))
+		{
+			DuelistCard.damageAllEnemiesThornsNormal(7);
+		}
 	}
 
 

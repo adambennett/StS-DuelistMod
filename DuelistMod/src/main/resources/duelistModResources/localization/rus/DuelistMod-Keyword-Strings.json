@@ -202,7 +202,7 @@
 		"PROPER_NAME": "изверг"
 	},
 	{
-		"DESCRIPTION": "Когда вы #yдань #yAqua для другого #yAqua, добавьте #yrandomized #yAqua монстра в вашу руку.",
+		"DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #y1 for this turn.",
 		"NAMES": [
 			"вода",
 			"вода"

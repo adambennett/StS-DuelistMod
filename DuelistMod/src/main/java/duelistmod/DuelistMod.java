@@ -216,6 +216,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int fiendDraw = 1;
 	public static int aquaLowCostRoll = 1;
 	public static int aquaHighCostRoll = 4;
+	public static int aquaInc = 1;
 	public static int superheavyDex = 1;
 	public static int naturiaDmg = 1;
 	public static int machineArt = 1;
@@ -225,6 +226,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int archRoll1 = -1;
 	public static int archRoll2 = -1;
 	public static int gravAxeStr = -99;
+	public static int poisonAppliedThisCombat = 0;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -618,6 +620,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		BaseMod.addRelicToCustomPool(new SummonAnchor(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SpellcasterToken(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SpellcasterOrb(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new AquaRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new AquaRelicB(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new NatureRelic(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new RandomTributeMonsterRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST); }
@@ -644,6 +649,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		UnlockTracker.markRelicAsSeen(GiftAnubis.ID);
 		UnlockTracker.markRelicAsSeen(DragonRelic.ID);
 		UnlockTracker.markRelicAsSeen(SummonAnchor.ID);
+		UnlockTracker.markRelicAsSeen(SpellcasterToken.ID);
+		UnlockTracker.markRelicAsSeen(SpellcasterOrb.ID);
+		UnlockTracker.markRelicAsSeen(AquaRelic.ID);
+		UnlockTracker.markRelicAsSeen(AquaRelicB.ID);
+		UnlockTracker.markRelicAsSeen(NatureRelic.ID);
 		//UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
 		
 
@@ -883,6 +893,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		trapCombatCount = 0;
 		summonCombatCount = 0;
 		swordsPlayed = 0;
+		poisonAppliedThisCombat = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -937,6 +948,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	@Override
 	public void receivePostPowerApplySubscriber(AbstractPower power, AbstractCreature target, AbstractCreature source) 
 	{
+		if (power != null)
+		{
+			if (power.ID.equals(PoisonPower.POWER_ID))
+			{
+				poisonAppliedThisCombat+=power.amount;
+				if (debug) { logger.info("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat); }
+			}
+		}
 		if (debug)
 		{
 			if (power != null && target != null && source != null)

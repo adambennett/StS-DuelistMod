@@ -1723,9 +1723,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 									int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
 									for (int i : temp) { i = i * tributes; }
 									AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-									DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-									while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-									AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+									for (int i = 0; i < instance.amount2; i++)
+									{
+										DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
+										while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+										AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+									}
 								}
 							}
 							if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
@@ -1809,9 +1812,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
 								for (int i : temp) { i = i * tributes; }
 								AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-								DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-								while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-								AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+								for (int i = 0; i < instance.amount2; i++)
+								{
+									DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
+									while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+									AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+								}
 							}
 						}
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
@@ -1900,9 +1906,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
 								for (int i : temp) { i = i * tributes; }
 								AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-								DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-								while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-								AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+								for (int i = 0; i < instance.amount2; i++)
+								{
+									DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
+									while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+									AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+								}
 							}
 						}
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
@@ -1976,9 +1985,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
 							for (int i : temp) { i = i * tributes; }
 							AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-							DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-							while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-							AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+							for (int i = 0; i < instance.amount2; i++)
+							{
+								DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
+								while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+								AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+							}
 						}
 					}
 					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
@@ -2060,9 +2072,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
 								for (int i : temp) { i = i * tributes; }
 								AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-								DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-								while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-								AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+								for (int i = 0; i < instance.amount2; i++)
+								{
+									DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
+									while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+									AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+								}
 							}
 						}
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
@@ -2136,9 +2151,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
 							for (int i : temp) { i = i * tributes; }
 							AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-							DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-							while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-							AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+							for (int i = 0; i < instance.amount2; i++)
+							{
+								DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
+								while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+								AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+							}
 						}
 					}
 					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
@@ -2204,9 +2222,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							int[] temp = new int[] {damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk, damageObelisk};
 							for (int i : temp) { i = i * tributes; }
 							AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(p, temp, DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-							DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-							while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-							AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+							for (int i = 0; i < instance.amount2; i++)
+							{
+								DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
+								while (randomAqua.baseSummons < 1) { randomAqua = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+								AbstractDungeon.actionManager.addToTop(new RandomizedDrawPileAction(randomAqua, false, false, true, true, 0, 1));
+							}
 						}
 					}
 					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tributeChecker() ---> Called " + c.originalName + "'s onTribute()"); }

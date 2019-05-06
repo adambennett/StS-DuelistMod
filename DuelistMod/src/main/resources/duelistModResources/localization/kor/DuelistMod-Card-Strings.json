@@ -2305,6 +2305,11 @@
 		"NAME": "좀비 토큰",
 		"UPGRADE_DESCRIPTION": "좀비 소환 1"
 	},
+	"theDuelist:LostBlueBreaker": {
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Randomly Resummon !M! random Aqua monsters.",
+		"NAME": "Lost Blue Breaker",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Randomly Resummon !M! random Aqua monsters."
+	},
 	"theDuelist:Zombyra": {
 		"DESCRIPTION": "소환 !duelist:SUMM! 거래 !D! 손해. 패 !M! HP.",
 		"NAME": "잠 비라",

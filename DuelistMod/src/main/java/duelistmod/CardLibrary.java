@@ -458,6 +458,12 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new GiantSoldierSteel());
 		DuelistMod.myCards.add(new Doomdog());
 		DuelistMod.myCards.add(new RedMirror());
+		DuelistMod.myCards.add(new LostBlueBreaker());
+		DuelistMod.myCards.add(new Wingedtortoise());
+		DuelistMod.myCards.add(new GemKnightAmethyst());
+		DuelistMod.myCards.add(new ToadallyAwesome());
+		DuelistMod.myCards.add(new DarknessNeosphere());
+		
 		
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) { for (DuelistCard c : getTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}

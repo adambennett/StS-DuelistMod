@@ -1,16 +1,15 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 
-public class LeviaDragonPower extends AbstractPower 
+public class LeviaDragonPower extends TwoAmountPower 
 {
     public AbstractCreature source;
 
@@ -21,7 +20,7 @@ public class LeviaDragonPower extends AbstractPower
     public static final String IMG = DuelistMod.makePath(Strings.LEVIA_POWER);
     public int DAMAGE = 5;
 
-    public LeviaDragonPower(final AbstractCreature owner, final AbstractCreature source, int newAmount) 
+    public LeviaDragonPower(final AbstractCreature owner, final AbstractCreature source, int newAmount, int cards) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -31,6 +30,7 @@ public class LeviaDragonPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = newAmount;
+        this.amount2 = cards;
         this.updateDescription();
     }
     
@@ -66,6 +66,6 @@ public class LeviaDragonPower extends AbstractPower
 	public void updateDescription() 
     {
     	if (this.amount != DAMAGE) { DAMAGE = this.amount; }
-        this.description = DESCRIPTIONS[0] + DAMAGE + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + DAMAGE + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[2];
     }
 }

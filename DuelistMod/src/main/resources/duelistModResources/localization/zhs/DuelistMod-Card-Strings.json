@@ -2305,6 +2305,11 @@
 		"NAME": "僵尸令牌",
 		"UPGRADE_DESCRIPTION": "僵尸召唤1"
 	},
+	"theDuelist:LostBlueBreaker": {
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Randomly Resummon !M! random Aqua monsters.",
+		"NAME": "Lost Blue Breaker",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Randomly Resummon !M! random Aqua monsters."
+	},
 	"theDuelist:Zombyra": {
 		"DESCRIPTION": "召唤 !duelist:SUMM! 交易 !D! 损伤。输了 !M! 生命值。",
 		"NAME": "Zombyra",

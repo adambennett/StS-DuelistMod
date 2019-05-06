@@ -216,7 +216,7 @@
       "Aqua",
 	  "aqua"
     ],   
-    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, add a #yrandomized #yAqua monster to your hand."
+    "DESCRIPTION": "When you #yTribute an #yAqua for another #yAqua, increase the #ySummons of all monsters in your hand by #b1 for this turn."
   },
   {
     "PROPER_NAME": "Randomized",

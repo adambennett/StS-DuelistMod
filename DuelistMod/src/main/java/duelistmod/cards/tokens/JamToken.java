@@ -3,15 +3,14 @@ package duelistmod.cards.tokens;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.cards.SevenColoredFish;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.relics.AquaRelicB;
 
 public class JamToken extends DuelistCard 
 {
@@ -57,11 +56,25 @@ public class JamToken extends DuelistCard
     
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
+		// Aqua Tribute
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
-			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 2));
-			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
+			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.baseSummons > 0)
+					{
+						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+					}
+					
+					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					{
+						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+					}
+				}
+			}
 		}
 	}
 	

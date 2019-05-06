@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.relics.AquaRelicB;
 
 public class LeviaDragon extends DuelistCard 
 {
@@ -45,6 +45,7 @@ public class LeviaDragon extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 4;
+		this.magicNumber = this.baseMagicNumber = 1;
 		
     }
 
@@ -53,7 +54,7 @@ public class LeviaDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	applyPowerToSelf(new LeviaDragonPower(p, p, 1));
+    	applyPowerToSelf(new LeviaDragonPower(p, p, this.magicNumber, 2));
     }
 
     // Which card to return when making a copy of this card.
@@ -64,13 +65,18 @@ public class LeviaDragon extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
+    public void upgrade() 
+    {
         if (canUpgrade()) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            if (this.tributes > 1) { this.upgradeTributes(-1); }
-            else { this.upgraded = true; }
+            if (this.tributes > 1) 
+            { 
+            	if (this.timesUpgraded%2 == 1) { this.upgradeTributes(-1); }
+            	else { this.upgradeMagicNumber(1); }
+            }
+            else { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -79,8 +85,7 @@ public class LeviaDragon extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.tributes > 1) { return true; }
-    	return false;
+    	return true;
     }
     
     // If player doesn't have enough summons, can't play card
@@ -126,11 +131,25 @@ public class LeviaDragon extends DuelistCard
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
 		}
 		
+		// Aqua Tribute
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
-			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 2));
-			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
+			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.baseSummons > 0)
+					{
+						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+					}
+					
+					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					{
+						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+					}
+				}
+			}
 		}
 	}
 

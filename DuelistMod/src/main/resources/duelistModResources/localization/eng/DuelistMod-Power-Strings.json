@@ -309,7 +309,7 @@
 },
 "theDuelist:LeviaDragonPower": {
         "NAME": "Levia Dragon",
-        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies and add 2 #yrandomized #yAqua monsters to your draw pile." ]
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies and add #b", " #yrandomized #yAqua monsters to your draw pile." ]
 },
 "theDuelist:BlizzardDragonPower": {
         "NAME": "Blizzard Dragon",
@@ -317,7 +317,11 @@
 },
 "theDuelist:TwoJamPower": {
         "NAME": "Jam Breeding Machine",
-        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
+        "DESCRIPTIONS": ["At the start of turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
+},
+"theDuelist:DarknessNeospherePower": {
+        "NAME": "Darkness Neosphere",
+        "DESCRIPTIONS": ["At the end of turn, ALL enemies lose #b", " #yStrength and all monsters in your draw pile gain #b", " #yTribute.", " #yTributes."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

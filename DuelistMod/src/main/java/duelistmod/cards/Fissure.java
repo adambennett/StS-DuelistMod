@@ -1,15 +1,15 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class Fissure extends DuelistCard 
 {
@@ -24,10 +24,9 @@ public class Fissure extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
+	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
 	private static final int DAMAGE = 3;
 	private static final int U_DMG = 1;
@@ -51,12 +50,21 @@ public class Fissure extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
+		int lowestHP = AbstractDungeon.getMonsters().monsters.get(0).currentHealth;
+		AbstractMonster selected = AbstractDungeon.getMonsters().monsters.get(0);
+		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
+		{
+			if (!mon.isDead && !mon.isDying && mon.currentHealth < lowestHP)
+			{
+				selected = mon;
+				if (DuelistMod.debug && mon.name != null) { DuelistMod.logger.info("Fissure: found a new monster with lowest HP. Old lowest HP was: " + lowestHP + " -- and new HP is: " + mon.currentHealth + " -- New Selected Monster: " + mon.name); }
+				lowestHP = mon.currentHealth;
+			}
+		}
 		int playerSummons = getSummons(p);
 		int newDamage = this.damage * playerSummons;
-		//this.initializeDescription();
-		int[] damageArray = new int[] { newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage };
 		this.applyPowers();
-		attackAllEnemies(AFX, damageArray);
+		attack(selected, this.baseAFX, newDamage);
 	}
 
 	// Which card to return when making a copy of this card.

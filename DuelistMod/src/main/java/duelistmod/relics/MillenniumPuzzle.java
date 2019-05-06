@@ -325,13 +325,13 @@ public class MillenniumPuzzle extends CustomRelic {
 			switch (deck)
 			{
 			
-			//Stanard Deck
+			//Standard Deck
 			case 0:
 				localdesc = "At the start of combat, #ySummon #b2 Puzzle Tokens, gain a random amount (0-10) of #yBlock and gain #b1 #yBlur.";
 				break;
 			// Dragon Deck
 			case 1:
-				localdesc = "At the start of combat, #ySummon #b1 #yDragon Token and gain #b1 #yStrength for each Act.";
+				localdesc = "At the start of combat, #ySummon #b1 #yDragon Token and apply #b" + AbstractDungeon.actNum + " #yWeak or #yVulnerable to a random enemy.";
 				break;
 	
 			// Nature Deck
@@ -341,7 +341,7 @@ public class MillenniumPuzzle extends CustomRelic {
 	
 			// Spellcaster Deck
 			case 3:
-				localdesc = "At the start of combat, #ySummon #b2 Spellcaster Tokens.";
+				localdesc = "At the start of combat, #ySummon #b1 #ySpellcaster Token, and have a chance to #yChannel a random Orb.";
 				break;
 				
 			// Toon Deck
@@ -351,32 +351,33 @@ public class MillenniumPuzzle extends CustomRelic {
 				
 			// Zombie Deck
 			case 5:		
-				localdesc = "At the start of combat, #ySummon #b2 #yZombie Tokens.";
+				localdesc = "At the start of combat, #ySummon #b2 #yZombie Tokens and add a #yRandomized #yZombie to your hand.";
 				break;
 				
 			// Aqua Deck
 			case 6:		
-				localdesc = "At the start of combat, #ySummon #b2 #yAqua Tokens.";
+				if (AbstractDungeon.actNum < 2) { localdesc = "At the start of combat, #ySummon #b1 #yAqua Token and have a chance to draw #b" + AbstractDungeon.actNum + " card."; }
+				else { localdesc = "At the start of combat, #ySummon #b1 #yAqua Token and have a chance to draw #b" + AbstractDungeon.actNum + " cards."; }
 				break;
 	
 			// Fiend Deck
 			case 7:		
-				localdesc = "At the start of combat, #ySummon #b2 #yFiend Tokens.";
+				localdesc = "At the start of combat, sum up the total #yTribute cost of ALL monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat, and give that monster #yExhaust. Additonally, #ySummon #b1 #yFiend Token.";
 				break;
 	
 			// Machine Deck
 			case 8:		
-				localdesc = "At the start of combat, #ySummon #b2 #yMachine Tokens.";
+				localdesc = "At the start of combat, #ySummon #b1 #yMachine Token and gain #b1 #yArtifact.";
 				break;
 				
 			// Superheavy Deck
 			case 9:		
-				localdesc = "At the start of combat, #ySummon #b2 #ySuperheavy Tokens.";
+				localdesc = "At the start of combat, #ySummon #b1 #ySuperheavy Token, gain a random amount (0-5) of #yBlock and gain #b2 #yBlur.";
 				break;
 				
 			// Creator Deck
 			case 10:
-				localdesc = "At the start of combat, #ySummon #b2 Puzzle Tokens, and add a random combination of #yRandomized copies of Jinzo, Trap Hole and Ultimate Offering to your hand.";
+				localdesc = "At the start of combat, #ySummon #b2 Puzzle Tokens, and add a random combination of #yRandomized copies of #bJinzo, #bTrap Hole and #bUltimate #bOffering to your hand.";
 				break;
 			
 			// Ojama Deck
@@ -396,7 +397,7 @@ public class MillenniumPuzzle extends CustomRelic {
 			
 			// Resummon Deck
 			case 14:				
-				localdesc = "At the start of combat, #ySummon #2 Resummon Tokens.";
+				localdesc = "At the start of combat, #ySummon #2 #yResummon Tokens.";
 				break;
 					
 			// Increment Deck

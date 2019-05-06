@@ -41,7 +41,7 @@ public class OhFish extends DuelistCard
         this.tags.add(Tags.AQUA_DECK);
 		this.aquaDeckCopies = 1;
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 4;
+		this.magicNumber = this.baseMagicNumber = 1;
 		this.setupStartingCopies();
 	}
 
@@ -60,7 +60,7 @@ public class OhFish extends DuelistCard
 		{
 			for (int i = 0; i < this.magicNumber; i++)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, false, true, false, aquas.get(i).baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(aquas.get(i), this.upgraded, true, true, true, false, aquas.get(i).baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
 				if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 			}
 		}

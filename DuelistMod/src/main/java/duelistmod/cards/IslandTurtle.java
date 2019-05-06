@@ -11,6 +11,7 @@ import duelistmod.*;
 import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.relics.AquaRelicB;
 
 public class IslandTurtle extends DuelistCard 
 {
@@ -75,11 +76,25 @@ public class IslandTurtle extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
+		// Aqua Tribute
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
-			DuelistCard randomAqua = (DuelistCard) returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER).makeCopy();
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, randomAqua.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 2));
-			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
+			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.baseSummons > 0)
+					{
+						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+					}
+					
+					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					{
+						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+					}
+				}
+			}
 		}
 	}
 

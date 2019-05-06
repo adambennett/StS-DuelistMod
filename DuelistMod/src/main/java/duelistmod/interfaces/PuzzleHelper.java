@@ -2,16 +2,19 @@ package duelistmod.interfaces;
 
 import java.util.ArrayList;
 
+import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
-import duelistmod.actions.common.CardSelectScreenResummonAction;
+import duelistmod.actions.common.*;
 import duelistmod.actions.unique.TheCreatorAction;
 import duelistmod.cards.*;
 import duelistmod.cards.tokens.ExplosiveToken;
-import duelistmod.patches.*;
+import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.*;
 
 public class PuzzleHelper 
@@ -21,7 +24,6 @@ public class PuzzleHelper
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
-			//getDeckDesc();
 			if (DuelistMod.fullDebug) { if (AbstractPlayer.customMods.size() < 1 && !DuelistMod.challengeMode) { runSpecialEffect(summons, 35 + extra); } else if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, 35, "Puzzle Token", false); } else { DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token")); }}
 			else
 			{
@@ -94,9 +96,12 @@ public class PuzzleHelper
 	
 			// Dragon Deck
 			case 1:
-				int floor = AbstractDungeon.actNum;				
+				int floor = AbstractDungeon.actNum;
+				AbstractMonster randy = AbstractDungeon.getRandomMonster();			
 				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
-				DuelistCard.applyPowerToSelf(new StrengthPower(p, floor));
+				int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+				if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
+				else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
 				break;
 	
 			// Nature Deck
@@ -107,7 +112,9 @@ public class PuzzleHelper
 	
 			// Spellcaster Deck
 			case 3:
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Spellcaster Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Spellcaster Token", false);
+				int rollSp = AbstractDungeon.cardRandomRng.random(1, 4);				
+				if (rollSp == 1) { DuelistCard.channelRandom(); }
 				break;
 				
 			// Toon Deck
@@ -119,26 +126,66 @@ public class PuzzleHelper
 			// Zombie Deck
 			case 5:		
 				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Zombie Token", false);
+				DuelistCard randZomb = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(Tags.ZOMBIE);
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randZomb, true));
 				break;
 				
 			// Aqua Deck
 			case 6:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Aqua Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false);
+				int rollAq = AbstractDungeon.cardRandomRng.random(1, 3);
+				if (rollAq == 1) { DuelistCard.draw(AbstractDungeon.actNum); }
 				break;
 
 			// Fiend Deck
 			case 7:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Fiend Token", false);
+				// Summon Fiend Token
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Fiend Token", false);
+				
+				// Keep track of total numbers of tributes in deck
+				int totalTribs = 0;
+				
+				// Keep track of all cards that deal damage in deck
+				ArrayList<AbstractCard> dmgCards = new ArrayList<AbstractCard>();
+				
+				// Find all cards that deal damage and count tributes
+				for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+				{
+					if (c instanceof DuelistCard)
+					{
+						DuelistCard dC = (DuelistCard)c;
+						if (dC.tributes > 0)
+						{
+							totalTribs += dC.tributes;
+						}
+					}
+					
+					if (c.damage > 0)
+					{
+						dmgCards.add(c);
+					}
+				}
+				
+				// Increase damage of a random damage card by totalTribs
+				if (totalTribs > 0)
+				{
+					AbstractCard randomDmg = dmgCards.get(AbstractDungeon.cardRandomRng.random(dmgCards.size() - 1));
+					AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomDmg.uuid, totalTribs));
+					AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
+				}
 				break;
 
 			// Machine Deck
 			case 8:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Machine Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Machine Token", false);
+				DuelistCard.applyPowerToSelf(new ArtifactPower(p, 2));
 				break;
 				
 			// Superheavy Deck
 			case 9:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Superheavy Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Superheavy Token", false);
+				DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
+				DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 5));
 				break;
 				
 			// Creator Deck
