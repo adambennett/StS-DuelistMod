@@ -56,7 +56,7 @@ public class Grasschopper extends DuelistCard
     	{
     		for (DuelistCard c : tributeList)
     		{
-    			if (c.hasTag(Tags.INSECT) || c.hasTag(Tags.PLANT))
+    			if (c.hasTag(Tags.INSECT))
     			{
     				insects++;
     			}

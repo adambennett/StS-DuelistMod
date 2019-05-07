@@ -37,7 +37,6 @@ public class NaturiaStrawberry extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);
-        this.tags.add(Tags.INSECT);
         this.originalName = this.name;
         this.isSummon = true;
     }
@@ -72,9 +71,9 @@ public class NaturiaStrawberry extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		// Check for plant
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
+		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
 	}
 
 

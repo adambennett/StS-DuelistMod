@@ -53,7 +53,7 @@ public class SuperSolarNutrient extends DuelistCard
 		applyPower(new PoisonPower(m, p, this.magicNumber), m);
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.INSECT);
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSets(Tags.INSECT, Tags.PLANT);
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, false, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
 		}
     }

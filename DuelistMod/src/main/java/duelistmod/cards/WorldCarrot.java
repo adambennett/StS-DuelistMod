@@ -39,7 +39,6 @@ public class WorldCarrot extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.INSECT);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.ALL);
         this.originalName = this.name;
@@ -76,9 +75,9 @@ public class WorldCarrot extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		// Check for plant
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
+		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
 	}
 
 	@Override

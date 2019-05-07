@@ -61,13 +61,6 @@ public class Invigoration extends DuelistCard
 	    	String cardNameA = extraDragA.originalName;    	
 	    	if (DuelistMod.debug) { System.out.println("theDuelist:Invigoration --- > Generated: " + cardNameA); }
 	    	fullResummon(extraDragA, false, m, false);
-	    	/*if (!extraDragA.tags.contains(Tags.TRIBUTE)) { extraDragA.misc = 52; }    	
-	        extraDragA.freeToPlayOnce = true;       
-	        extraDragA.applyPowers();      
-	        extraDragA.purgeOnUse = true;
-	        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(extraDragA, m));    	
-	        extraDragA.onResummon(1);
-	        extraDragA.checkResummon();*/
     	}
     	else
     	{
@@ -83,7 +76,6 @@ public class Invigoration extends DuelistCard
     		}
     		
     		AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(natureMonsters, 1, false, false, m));
-    		//openRandomCardChoiceDuelist(3, natureMonsters, true);
     	}
     }
 

@@ -839,9 +839,9 @@
 		"UPGRADE_DESCRIPTION": "Draw 3 cards. NL Discard a card."
 	},
 	"theDuelist:Grasschopper": {
-		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect or Plant you Tribute to play this.",
+		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect you Tribute to play this.",
 		"NAME": "Grasschopper",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect or Plant you Tribute to play this."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect you Tribute to play this."
 	},
 	"theDuelist:Graverobber": {
 		"DESCRIPTION": "Choose a Randomized Spell or Trap you have played this run and add it to your hand. Exhaust.",
@@ -1138,9 +1138,9 @@
 		"NAME": "Magnet Warriors"
 	},
 	"theDuelist:ManEaterBug": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for an Insect or Plant, deal !M! damage to all enemies.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for an Insect, deal !M! damage to all enemies.",
 		"NAME": "Man-Eater Bug",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for an Insect or Plant, deal !M! damage to all enemies."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this for an Insect, deal !M! damage to all enemies."
 	},
 	"theDuelist:MangaRyuRan": {
 		"DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through block).",
@@ -1336,7 +1336,7 @@
 		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Splash."
 	},
 	"theDuelist:OhFish": {
-		"DESCRIPTION": "Add !M! Randomized Aqua cards to your hand. For each Aqua monster you currently have summoned, deal !M! damage to ALL enemies.",
+		"DESCRIPTION": "Add !M! Randomized Aqua card to your hand. For each Aqua monster you currently have summoned, deal !M! damage to ALL enemies.",
 		"NAME": "Oh Fish!",
 		"UPGRADE_DESCRIPTION": "Add !M! Randomized Aqua cards to your hand. For each Aqua monster you currently have summoned, deal !M! damage to ALL enemies."
 	},
@@ -2624,5 +2624,65 @@
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Lose !M! HP.",
 		"NAME": "Zombyra",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Lose !M! HP."
+	},
+	"theDuelist:AquaTypeCard": {
+		"DESCRIPTION": "Aqua",
+		"NAME": "Aqua",
+		"UPGRADE_DESCRIPTION": "Aqua"
+	},
+	"theDuelist:DragonTypeCard": {
+		"DESCRIPTION": "Dragon",
+		"NAME": "Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon"
+	},
+	"theDuelist:FiendTypeCard": {
+		"DESCRIPTION": "Fiend",
+		"NAME": "Fiend",
+		"UPGRADE_DESCRIPTION": "Fiend"
+	},
+	"theDuelist:InsectTypeCard": {
+		"DESCRIPTION": "Insect",
+		"NAME": "Insect",
+		"UPGRADE_DESCRIPTION": "Insect"
+	},
+	"theDuelist:MachineTypeCard": {
+		"DESCRIPTION": "Machine",
+		"NAME": "Machine",
+		"UPGRADE_DESCRIPTION": "Machine"
+	},
+	"theDuelist:NaturiaTypeCard": {
+		"DESCRIPTION": "Naturia",
+		"NAME": "Naturia",
+		"UPGRADE_DESCRIPTION": "Naturia"
+	},
+	"theDuelist:PlantTypeCard": {
+		"DESCRIPTION": "Plant",
+		"NAME": "Plant",
+		"UPGRADE_DESCRIPTION": "Plant"
+	},
+	"theDuelist:PredaplantTypeCard": {
+		"DESCRIPTION": "Predaplant",
+		"NAME": "Predaplant",
+		"UPGRADE_DESCRIPTION": "Predaplant"
+	},
+	"theDuelist:SpellcasterTypeCard": {
+		"DESCRIPTION": "Spellcaster",
+		"NAME": "Spellcaster",
+		"UPGRADE_DESCRIPTION": "Spellcaster"
+	},
+	"theDuelist:SuperheavyTypeCard": {
+		"DESCRIPTION": "Superheavy",
+		"NAME": "Superheavy",
+		"UPGRADE_DESCRIPTION": "Superheavy"
+	},
+	"theDuelist:ToonTypeCard": {
+		"DESCRIPTION": "Toon",
+		"NAME": "Toon",
+		"UPGRADE_DESCRIPTION": "Toon"
+	},
+	"theDuelist:ZombieTypeCard": {
+		"DESCRIPTION": "Zombie",
+		"NAME": "Zombie",
+		"UPGRADE_DESCRIPTION": "Zombie"
 	}
 }

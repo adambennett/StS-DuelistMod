@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -35,7 +36,6 @@ public class PredaplantPterapenthes extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PREDAPLANT);
         this.tags.add(Tags.ALL);
-        this.tags.add(Tags.INSECT);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.GOOD_TRIB);
         this.summons = this.baseSummons = 1;
@@ -72,9 +72,12 @@ public class PredaplantPterapenthes extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		// Check for plant
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
+		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
+		
+		// Check for Predaplant
+		if (tributingCard.hasTag(Tags.PREDAPLANT)) { applyPowerToSelf(new ThornsPower(player(), DuelistMod.predaplantThorns)); }
 	}
 
 

@@ -38,7 +38,6 @@ public class PredaplantToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
-    	this.tags.add(Tags.INSECT); 
     	this.purgeOnUse = true;
     }
     
@@ -48,7 +47,6 @@ public class PredaplantToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
-    	this.tags.add(Tags.INSECT);
     	this.purgeOnUse = true;
     }
     
@@ -60,9 +58,12 @@ public class PredaplantToken extends DuelistCard
     @Override public AbstractCard makeCopy() { return new PredaplantToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		// Check for plant
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
+		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
+		
+		// Check for Predaplant
+		if (tributingCard.hasTag(Tags.PREDAPLANT)) { applyPowerToSelf(new ThornsPower(player(), DuelistMod.predaplantThorns)); }
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

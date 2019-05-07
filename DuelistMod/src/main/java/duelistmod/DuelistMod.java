@@ -255,6 +255,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int normalSelectDeck = -1;
 	public static int dragonStr = 1;
 	public static int insectPoisonDmg = 3;
+	public static int plantConstricted = 1;
+	public static int predaplantThorns = 1;
 	public static final int baseInsectPoison = 3;
 	public static int spellcasterBlk = 5;
 	public static int fiendDraw = 1;

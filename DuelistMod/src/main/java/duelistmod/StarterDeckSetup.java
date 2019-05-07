@@ -114,6 +114,7 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new BlockGolem());
 		DuelistMod.basicCards.add(new DokiDoki());
 		DuelistMod.basicCards.add(new GiantSoldierSteel());
+		DuelistMod.basicCards.add(new RainbowJar());
 
 		DuelistMod.archetypeCards.addAll(DuelistMod.basicCards);
 		
@@ -425,6 +426,7 @@ public class StarterDeckSetup {
 		zombieCards.add(new TrapHole());
 		zombieCards.add(new TributeDoomed());
 		zombieCards.add(new PotDuality());
+		zombieCards.add(new SwordsBurning());
 		
 		zombieDeck.fillPoolCards(DuelistMod.basicCards);
 		zombieDeck.fillPoolCards(zombieCards);		

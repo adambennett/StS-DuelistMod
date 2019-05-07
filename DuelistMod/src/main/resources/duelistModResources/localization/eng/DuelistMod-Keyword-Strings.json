@@ -124,7 +124,7 @@
         "insect",
 		"insects"
       ],     
-      "DESCRIPTION": "When you #yTribute an #yInsect monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+      "DESCRIPTION": "When you #yTribute an #yInsect monster for another #yInsect, apply #b3 #yPoison to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Plant",
@@ -132,7 +132,7 @@
         "plant",
 		"plants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPlant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b1 #yConstricted to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Predaplant",
@@ -140,7 +140,7 @@
         "predaplant",
 		"predaplants"
       ],      
-      "DESCRIPTION": "#yPredaplant monsters are treated as #yPlants. When you #yTribute a #yPredaplant monster for an #yInsect or a #yPlant, apply #b3 #yPoison to ALL enemies."
+      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for a #yPlant, apply #b1 #yConstricted to ALL enemies. NL When you #yTribute a #yPredaplant for another #yPredaplant, apply #b1 #yConstricted to ALL enemies and gain #b1 #yThorns. NL #yPredaplant monsters are treated as #yPlants. "
     },
   {
    "PROPER_NAME": "Earth",

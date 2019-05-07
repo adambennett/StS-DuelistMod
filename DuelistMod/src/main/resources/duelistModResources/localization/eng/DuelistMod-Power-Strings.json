@@ -325,7 +325,7 @@
 },
 "theDuelist:RainbowCapturePower": {
         "NAME": "Rainbow Capture Jar",
-        "DESCRIPTIONS": ["#y", " played this turn are added back to your hand at the start of your next turn. #y", ": "]
+        "DESCRIPTIONS": ["#y", " monsters played this turn are added back to your hand at the start of your next turn. #y", "s: "]
 },
 "theDuelist:ExplosiveMagicianPower": {
         "NAME": "Explosive Magician",

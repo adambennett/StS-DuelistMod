@@ -37,7 +37,6 @@ public class PlantToken extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.PLANT); 
-    	this.tags.add(Tags.INSECT); 
     	this.purgeOnUse = true;
     }
     
@@ -46,7 +45,6 @@ public class PlantToken extends DuelistCard
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.PLANT); 
-    	this.tags.add(Tags.INSECT); 
     	this.purgeOnUse = true;
     }
     
@@ -58,9 +56,9 @@ public class PlantToken extends DuelistCard
     @Override public AbstractCard makeCopy() { return new PlantToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		// Check for plant
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
+		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
