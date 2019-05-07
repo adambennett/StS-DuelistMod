@@ -93,7 +93,7 @@ public class ToonSummonedSkull extends DuelistCard
 		else if (this.misc == 52) { return true; }
 
 		// Check for Toon World
-		else if (!p.hasPower(ToonWorldPower.POWER_ID) && !p.hasPower(ToonKingdomPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; return false; }
+		else if (!p.hasPower(ToonWorldPower.POWER_ID) && !p.hasPower(ToonKingdomPower.POWER_ID)) { this.cantUseMessage = DuelistMod.toonWorldString; return false; }
 
 		// Mausoleum check
 		else if (p.hasPower(EmperorPower.POWER_ID))
@@ -114,7 +114,7 @@ public class ToonSummonedSkull extends DuelistCard
 		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
 
 		// Player doesn't have something required at this point
-		if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; }
+		if (!p.hasPower(ToonWorldPower.POWER_ID)) { this.cantUseMessage = DuelistMod.toonWorldString; }
 		else { this.cantUseMessage = this.tribString; }
 		return false;
 	}

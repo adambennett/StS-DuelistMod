@@ -105,7 +105,7 @@ public class InsectQueen extends DuelistCard
   		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
 
   		// Player doesn't have something required at this point
-  		this.cantUseMessage = "You need at least 1 Summon";
+  		this.cantUseMessage = DuelistMod.needSummonsString;
   		return false;
   	}
 

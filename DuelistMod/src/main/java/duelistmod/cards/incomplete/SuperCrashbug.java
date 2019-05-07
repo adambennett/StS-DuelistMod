@@ -1,60 +1,62 @@
-package duelistmod.cards;
+package duelistmod.cards.incomplete;
 
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
-import duelistmod.interfaces.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.AlphaMagPower;
 
-public class Predaplanet extends DuelistCard 
+public class SuperCrashbug extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Predaponics");
+    public static final String ID = DuelistMod.makeID("AlphaMagnet");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.PREDAPONICS);
+    public static final String IMG = DuelistMod.makePath(Strings.ALPHA_MAGNET);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final CardType TYPE = CardType.ATTACK;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public Predaplanet() {
+    public SuperCrashbug() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.ALL);
+        this.baseDamage = this.damage = 6;
+        this.summons = this.baseSummons = 1;
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.LIMITED);
+        this.tags.add(Tags.MAGNETWARRIOR);
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(m, p,  ArtifactPower.POWER_ID));
-    	applyPower(new PoisonPower(m, p, this.magicNumber), m);
-    	int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 3);
-    	AbstractPower randomDebuff = RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum);
-    	applyPower(randomDebuff, m);
+    	summon(p, this.summons, this);
+    	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
+    	attack(m, AFX, this.damage);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Predaplanet();
+        return new SuperCrashbug();
     }
 
     // Upgraded stats.
@@ -62,7 +64,8 @@ public class Predaplanet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(3);
+            this.upgradeBaseCost(0);
+            this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -85,13 +88,20 @@ public class Predaplanet extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	applyPowerToSelf(new AlphaMagPower(p, p));
+    	attack(m, AFX, this.damage);
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
-		
+		AbstractPlayer p = AbstractDungeon.player;
+		summon(p, summons, this);
+    	applyPowerToSelf(new AlphaMagPower(p, p));
+    	attack(m, AFX, this.damage);
 	}
 
 	@Override

@@ -112,29 +112,29 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			Collections.sort(tmp.group, GridSort.getComparator());
 			if (this.randomTarget && this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to Resummon randomly", false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to Resummon randomly", false); }
+				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false); }
+				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString, false); }
 				tickDuration();
 				return;
 			}
 			else if (!this.randomTarget && this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to Resummon on the target enemy", false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to Resummon on the target enemy", false); }
+				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString, false); }
+				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString, false); }
 				tickDuration();
 				return;
 			}
 			else if (this.randomTarget && !this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to Play (targets chosen randomly)", false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to Play (targets chosen randomly)", false); }
+				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString, false); }
+				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString, false); }
 				tickDuration();
 				return;
 			}
 			else if (!this.randomTarget && !this.resummon)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to Play on the target enemy", false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to Play on the target enemy", false); }
+				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString, false); }
+				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString, false); }
 				tickDuration();
 				return;
 			}

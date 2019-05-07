@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
+import duelistmod.orbs.Lava;
 
 // 
 
@@ -62,7 +63,9 @@ public class SwordsBurnPower extends AbstractPower
     	{ 
     		for (int i = 0; i < this.amount; i++)
     		{
-	    		DuelistCard.channelRandom();
+	    		//DuelistCard.channelRandom();
+    			AbstractOrb lava = new Lava();
+    			DuelistCard.channel(lava);
     		}
     	}
     	finished = true;

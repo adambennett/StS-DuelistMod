@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import duelistmod.Strings;
 import duelistmod.interfaces.DuelistCard;
 
 public class FetchFromEitherTag extends AbstractGameAction
@@ -89,11 +90,11 @@ public class FetchFromEitherTag extends AbstractGameAction
 			// Open card selection window
 			if (this.amount == 1) 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a " + searchTag.name().toLowerCase() + " or a " + searchTagB.name().toLowerCase() + " to add to your hand", false);
+				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseAString + searchTag.name().toLowerCase() + Strings.configOrAString + searchTagB.name().toLowerCase() + Strings.configAddCardHandString, false);
 			} 
 			else 
 			{
-				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " " + searchTag.name().toLowerCase() + "s or " + searchTagB.name().toLowerCase() + "s to add to your hand", false);
+				AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + " " + searchTag.name().toLowerCase() + Strings.configSOrString + searchTagB.name().toLowerCase() + Strings.configAddCardHandPluralString, false);
 			}
 			tickDuration();
 			return;

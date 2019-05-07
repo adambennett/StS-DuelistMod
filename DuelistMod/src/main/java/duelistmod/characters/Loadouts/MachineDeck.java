@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class MachineDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class MachineDeck extends DuelistCustomLoadout
     public MachineDeck()
     {
         this.ID = 8;
-        this.Name = "Machine Deck";
+        this.Name = DuelistMod.machineDeckString;
     }
 
     @Override

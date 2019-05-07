@@ -1,6 +1,6 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -43,6 +43,7 @@ public class Glitch extends DuelistOrb
 	private int evokeActionSize = 0;
 	public String lastAction = "None";
 	public ArrayList<String> lastTurnActions = new ArrayList<String>();
+	public Map<String, String> translationMap = new HashMap<String, String>();	
 	
 	// OJAMANIA FIELDS
 	private static int MIN_BUFF_TURNS_ROLL = 1;
@@ -74,51 +75,48 @@ public class Glitch extends DuelistOrb
 		this.updateDescription();
 		
 		// Setup passive action list
-		passiveActions.add("Draw #b1 card");	
-		passiveActions.add("Draw #b1 card");
-		passiveActions.add("Gain #b10 HP");
-		passiveActions.add("Gain #b5 HP");
-		passiveActions.add("Gain #b5 HP");
+		passiveActions.add("Draw #b1 card");									translationMap.put("Draw #b1 card", Strings.configDraw1Card);
+		passiveActions.add("Draw #b1 card");									
+		passiveActions.add("Gain #b10 HP");										translationMap.put("Gain #b10 HP", Strings.configGain10HP);
+		passiveActions.add("Gain #b5 HP");										translationMap.put("Gain #b5 HP", Strings.configGain5HP);
+		passiveActions.add("Gain #b5 HP");										
+		passiveActions.add("Lose #b5 HP");										translationMap.put("Lose #b5 HP", Strings.configLose5HP);
 		passiveActions.add("Lose #b5 HP");
 		passiveActions.add("Lose #b5 HP");
-		passiveActions.add("Lose #b5 HP");
-		passiveActions.add("Apply #b1 random #ydebuff to random enemy");	
+		passiveActions.add("Apply #b1 random #ydebuff to random enemy");		translationMap.put("Apply #b1 random #ydebuff to random enemy", Strings.configApply1RandomDebuff);
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");
+		passiveActions.add("Add #b1 random #yTrap to hand");					translationMap.put("Add #b1 random #yTrap to hand", Strings.configAddRandomTrap);
 		passiveActions.add("Add #b1 random #yTrap to hand");
-		passiveActions.add("Add #b1 random #yTrap to hand");
-		passiveActions.add("Add #b1 random #yMonster to hand");
-		passiveActions.add("Add #b1 random #yEthereal Duelist card to hand");
-		passiveActions.add("Gain #b15 #yBlock");	
-		passiveActions.add("Gain #b10 #yBlock");
+		passiveActions.add("Add #b1 random #yMonster to hand");					translationMap.put("Add #b1 random #yMonster to hand", Strings.configAddRandomMonster);
+		passiveActions.add("Add #b1 random #yEthereal Duelist card to hand");	translationMap.put("Add #b1 random #yEthereal Duelist card to hand", Strings.configAddRandomEtherealDuelist);
+		passiveActions.add("Gain #b15 #yBlock");								translationMap.put("Gain #b15 #yBlock", Strings.configGain15Block);
+		passiveActions.add("Gain #b10 #yBlock");								translationMap.put("Gain #b10 #yBlock", Strings.configGain10Block);
+		passiveActions.add("Gain #b5 #yBlock");									translationMap.put("Gain #b5 #yBlock", Strings.configGain5Block);
 		passiveActions.add("Gain #b5 #yBlock");
-		passiveActions.add("Gain #b5 #yBlock");
+		passiveActions.add("#ySummon #b1");										translationMap.put("#ySummon #b1", Strings.configSummon);
 		passiveActions.add("#ySummon #b1");	
-		passiveActions.add("#ySummon #b1");	
-		passiveActions.add("#ySummon #b2");
-		passiveActions.add("#yIncrement #b1");	
-		passiveActions.add("#yIncrement #b2");
-		passiveActions.add("Gain [E] "); 
-		//passiveActions.add("Gain #b1 Artifacts");
-		//passiveActions.add("Gain #b2 Artifacts");
+		passiveActions.add("#ySummon #b2");										translationMap.put("#ySummon #b2", Strings.configSummon2);
+		passiveActions.add("#yIncrement #b1");									translationMap.put("#yIncrement #b1", Strings.configIncrement);
+		passiveActions.add("#yIncrement #b2");									translationMap.put("#yIncrement #b2", Strings.configIncrement2);
+		passiveActions.add("Gain [E] "); 										translationMap.put("Gain [E] ", Strings.configGainEnergy);
 		passiveActionSize = passiveActions.size();
 		
 		// Setup evoke action list
-		evokeActions.add("Orb slots+1");
+		evokeActions.add("Orb slots+1");										translationMap.put("Orb slots+1", Strings.configOrbSlots);
 		evokeActions.add("Draw #b1 card");	
 		evokeActions.add("Draw #b1 card");	
-		evokeActions.add("Draw #b2 cards");	
-		evokeActions.add("Gain a random amount of gold (5-200)");
+		evokeActions.add("Draw #b2 cards");										translationMap.put("Draw #b2 cards", Strings.configDraw2Cards);
+		evokeActions.add("Gain a random amount of gold (5-200)");				translationMap.put("Gain a random amount of gold (5-200)", Strings.configGainGoldB);
 		evokeActions.add("Apply #b1 random #ydebuff to random enemy");
-		evokeActions.add("Add #b1 random #yTrap to hand");
-		evokeActions.add("Add #b1 random #ySpellcaster to hand");
+		evokeActions.add("Add #b1 random #yTrap to hand");		
+		evokeActions.add("Add #b1 random #ySpellcaster to hand");				translationMap.put("Add #b1 random #ySpellcaster to hand", Strings.configAddRandomSpellcaster);
 		evokeActions.add("Add #b1 random #yEthereal Duelist card to hand");
-		evokeActions.add("Gain #b15 #yBlock");	
+		evokeActions.add("Gain #b15 #yBlock");				
 		evokeActions.add("#ySummon #b2");
 		evokeActions.add("#yIncrement #b2");
-		evokeActions.add("#yOjamania");	
-		if (!DuelistMod.challengeMode) { evokeActions.add("Gain [E] [E] "); }
-		evokeActions.add("Channel a Glitch");
-		//evokeActions.add("Gain #b3 Artifacts");
+		evokeActions.add("#yOjamania");											translationMap.put("#yOjamania", Strings.configOjamania);
+		if (!DuelistMod.challengeMode) { evokeActions.add("Gain [E] [E] "); }	translationMap.put("Gain [E] [E] ", Strings.configGain2Energies);
+		evokeActions.add("Channel a Glitch");									translationMap.put("Channel a Glitch", Strings.configChannel);
 		evokeActionSize = evokeActions.size();
 	}
 
@@ -179,13 +177,14 @@ public class Glitch extends DuelistOrb
 		{
 			randomActionNum = AbstractDungeon.cardRandomRng.random(passiveActions.size() - 1);
 			lastAction = runAction(passiveActions.get(randomActionNum));
-			lastTurnActions.add(lastAction);
+			lastTurnActions.add(translationMap.get(lastAction));
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID) && !lastAction.equals("Lose #b5 HP"))
 			{
 				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
 				if (instance.isOnlyTypeSummoned(Tags.MACHINE))
 				{
 					runAction(lastAction);
+					lastTurnActions.add(translationMap.get(lastAction));
 					if (DuelistMod.debug) { DuelistMod.logger.info("Glitch orb triggered passive action twice because the player only had machine monsters summoned at the start of turn. Passive action triggered: " + lastAction); }
 				}
 			}

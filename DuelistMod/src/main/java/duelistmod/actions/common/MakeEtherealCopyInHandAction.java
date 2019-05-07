@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 import basemod.BaseMod;
-import duelistmod.Tags;
+import duelistmod.*;
 
 @SuppressWarnings("unused")
 public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions.AbstractGameAction
@@ -29,7 +29,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		this.isOtherCardInCenter = isOtherCardInCenter;
 		if (upgrade) { this.c.upgrade(); }
 		this.c.isEthereal = true;
-		this.c.rawDescription = "Ethereal NL " + this.c.rawDescription;
+		this.c.rawDescription = DuelistMod.etherealForCardText + this.c.rawDescription;
 	}
 
 	public MakeEtherealCopyInHandAction(AbstractCard card, boolean upgrade) {
@@ -47,7 +47,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		this.c = card;
 		if (upgrade) { this.c.upgrade(); }
 		this.c.isEthereal = true;
-		this.c.rawDescription = "Ethereal NL " + this.c.rawDescription;
+		this.c.rawDescription = DuelistMod.etherealForCardText + this.c.rawDescription;
 	}
 
 	public MakeEtherealCopyInHandAction(AbstractCard card, int amount, boolean isOtherCardInCenter, boolean upgrade) {
@@ -59,7 +59,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 	{
 		if (!c.isEthereal) {
             c.isEthereal = true;
-            c.rawDescription = "Ethereal NL " + c.rawDescription;
+            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
             c.initializeDescription();
 		}
 		
@@ -92,7 +92,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		
 		if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
             c.isEthereal = true;
-            c.rawDescription = "Ethereal NL " + c.rawDescription;
+            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
             c.initializeDescription();
 		}
 		
@@ -105,7 +105,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 				{
 					if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
 			            c.isEthereal = true;
-			            c.rawDescription = "Ethereal NL " + c.rawDescription;
+			            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
 			            c.initializeDescription();
 					}
 					AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(this.c
@@ -123,7 +123,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 			{
 				if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
 		            c.isEthereal = true;
-		            c.rawDescription = "Ethereal NL " + c.rawDescription;
+		            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
 		            c.initializeDescription();
 				}
 				AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(this.c
@@ -135,7 +135,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 			{
 				if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
 		            c.isEthereal = true;
-		            c.rawDescription = "Ethereal NL " + c.rawDescription;
+		            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
 		            c.initializeDescription();
 				}
 				AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(this.c
@@ -155,7 +155,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 			{
 				if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
 		            c.isEthereal = true;
-		            c.rawDescription = "Ethereal NL " + c.rawDescription;
+		            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
 		            c.initializeDescription();
 				}
 				AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(this.c
@@ -167,7 +167,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 			{
 				if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
 		            c.isEthereal = true;
-		            c.rawDescription = "Ethereal NL " + c.rawDescription;
+		            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
 		            c.initializeDescription();
 				}
 				AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(this.c
@@ -184,7 +184,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 			{
 				if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
 		            c.isEthereal = true;
-		            c.rawDescription = "Ethereal NL " + c.rawDescription;
+		            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
 		            c.initializeDescription();
 				}
 				for (int i = 0; i < this.amount; i++) {
@@ -195,7 +195,7 @@ public class MakeEtherealCopyInHandAction extends com.megacrit.cardcrawl.actions
 		default: 
 			if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) {
 	            c.isEthereal = true;
-	            c.rawDescription = "Ethereal NL " + c.rawDescription;
+	            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
 	            c.initializeDescription();
 			}
 			for (int i = 0; i < handAmt; i++) {

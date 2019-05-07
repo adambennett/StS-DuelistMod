@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class OjamaDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class OjamaDeck extends DuelistCustomLoadout
     public OjamaDeck()
     {
         this.ID = 11;
-        this.Name = "Ojama Deck";
+        this.Name = DuelistMod.ojamaDeckString;
     }
 
     @Override

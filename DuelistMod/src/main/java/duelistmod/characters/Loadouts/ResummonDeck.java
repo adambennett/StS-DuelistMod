@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class ResummonDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class ResummonDeck extends DuelistCustomLoadout
     public ResummonDeck()
     {
         this.ID = 14;
-        this.Name = "Resummon Deck";
+        this.Name = DuelistMod.resummonDeckString;
     }
 
     @Override

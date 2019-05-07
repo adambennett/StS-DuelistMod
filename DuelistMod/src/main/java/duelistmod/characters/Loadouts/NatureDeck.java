@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class NatureDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class NatureDeck extends DuelistCustomLoadout
     public NatureDeck()
     {
         this.ID = 2;
-        this.Name = "Nature Deck";
+        this.Name = DuelistMod.natureDeckString;
     }
 
     @Override

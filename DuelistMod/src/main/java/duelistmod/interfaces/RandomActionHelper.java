@@ -1,6 +1,6 @@
 package duelistmod.interfaces;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -29,6 +29,7 @@ public class RandomActionHelper
     // Action List
     public static ArrayList<String> actions = new ArrayList<String>();
     public static int randomIndex = 0;
+    public static Map<String, String> translationMap = new HashMap<String, String>();	
     
     public static String triggerRandomAction(int timesTriggered, boolean upgradeOjamaniaCards)
 	{
@@ -42,6 +43,8 @@ public class RandomActionHelper
 			lastAction = runAction(actions.get(randomActionNum), upgradeOjamaniaCards);
 		}
 		
+		if (translationMap.get(lastAction) != null) { lastAction = translationMap.get(lastAction); }
+		else if (DuelistMod.debug) { DuelistMod.logger.info("Got a null translation for a random action, so we just loaded the English"); }
 		return lastAction;
 	}
 
@@ -263,7 +266,7 @@ public class RandomActionHelper
 		actions = new ArrayList<String>();
 		if (!DuelistMod.challengeMode) 
 		{ 
-			actions.add("Gain a random amount of gold (1-50)"); 
+			actions.add("Gain a random amount of gold (1-50)");
 			actions.add("Draw #b2 cards");	
 			actions.add("Gain #b5 HP");
 			actions.add("Gain #b10 HP");
@@ -277,8 +280,6 @@ public class RandomActionHelper
 		}
 		else
 		{
-			//actions.add("#yExhaust #b1 random card in hand");
-			//actions.add("#yExhaust #b1 random card in hand");	
 			actions.add("Add #b1 random #yEthereal Duelist card to hand");
 			actions.add("Gain #b5 HP");
 			actions.add("#ySummon #b1");
@@ -303,6 +304,28 @@ public class RandomActionHelper
 		actions.add("#ySummon #b1");	
 		actions.add("#ySummon #b1");	
 		actions.add("#yIncrement #b1");	
+		
+		translationMap.put("Gain a random amount of gold (1-50)", Strings.configGainGoldA);
+		translationMap.put("Draw #b2 cards", Strings.configDraw2Cards);
+		translationMap.put("Gain #b5 HP", Strings.configGain5HP);
+		translationMap.put("Gain #b10 HP", Strings.configGain10HP);
+		translationMap.put("#ySummon #b2", Strings.configSummon2);
+		translationMap.put("#yOjamania", Strings.configOjamania);
+		translationMap.put("Gain [E] ", Strings.configGainEnergy);
+		translationMap.put("Channel a Glitch", Strings.configChannel);
+		translationMap.put("#yIncrement #b2", Strings.configIncrement2);
+		translationMap.put("Lose #b1 HP", Strings.configLose1HP);
+		translationMap.put("Gain #b1 Artifact", Strings.configGainArtifact);
+		translationMap.put("Add #b1 random #yEthereal Duelist card to hand", Strings.configAddRandomEtherealDuelist);
+		translationMap.put("#ySummon #b1", Strings.configSummon);
+		translationMap.put("#yIncrement #b1", Strings.configIncrement);
+		translationMap.put("Draw #b1 card", Strings.configDraw1Card);
+		translationMap.put("Apply #b2 random #ydebuffs to random enemy", Strings.configApply1RandomDebuff);
+		translationMap.put("Apply #b1 random #ydebuff to random enemy", Strings.configApply2RandomDebuffs);
+		translationMap.put("Add #b1 random #yTrap to hand", Strings.configAddRandomTrap);
+		translationMap.put("Add #b1 random #yMonster to hand", Strings.configAddRandomMonster);
+		translationMap.put("Gain #b10 #yBlock", Strings.configGain10Block);
+		translationMap.put("Gain #b5 #yBlock",Strings.configGain5Block);
 	}
 
 }

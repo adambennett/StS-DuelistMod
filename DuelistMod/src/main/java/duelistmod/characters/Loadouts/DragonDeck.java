@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class DragonDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class DragonDeck extends DuelistCustomLoadout
     public DragonDeck()
     {
         this.ID = 1;
-        this.Name = "Dragon Deck";
+        this.Name = DuelistMod.dragonDeckString;
         this.cardCount = "10 Cards";
     }
 

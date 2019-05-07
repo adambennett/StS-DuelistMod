@@ -4,11 +4,11 @@ public class Strings
 {
 	// =============== ASSETS FOLDER =========================================================================================================================================================
 	static final String DEFAULT_MOD_ASSETS_FOLDER = "duelistModResources/images";
-	// =============== /BLUE CARD BG/ =======================================================================================================================================================
+	// =============== /ASSETS FOLDER/ =======================================================================================================================================================
 	
 	// =============== MOD BADGE =========================================================================================================================================================
 	public static final String BADGE_IMAGE = "Badge.png";
-	// =============== /BLUE CARD BG/ =======================================================================================================================================================
+	// =============== /MOD BADGE/ =======================================================================================================================================================
 	
 	// =============== CHARACTER ASSETS =========================================================================================================================================================
 	public static final String THE_DEFAULT_BUTTON = "charSelect/DuelistCharacterButtonB.png";
@@ -585,4 +585,53 @@ public class Strings
 	public static final String LEVIA_POWER = "powers/LeviaPower.png";
 	public static final String BLIZZARD_DRAGON_POWER = "powers/BlizzardDragonPower.png";
 	// =============== /POWER IMAGES/ =======================================================================================================================================================
+
+	// =============== CONFIG STRINGS =========================================================================================================================================================
+	public static String configChooseString = "";
+	public static String configAddCardHandString = "";
+	public static String configAddCardHandPluralString = "";
+	public static String configResummonRandomlyString = "";
+	public static String configResummonRandomlyPluralString = "";
+	public static String configResummonRandomlyTargetString = "";
+	public static String configResummonRandomlyTargetPluralString = "";
+	public static String configCardPlayString = "";
+	public static String configCardPlayPluralString = "";
+	public static String configCardPlayTargetString = "";
+	public static String configCardPlayTargetPluralString = "";
+	public static String configChooseAString = "";
+	public static String configOrAString = "";
+	public static String configToAddToYourHandString = "";
+	public static String configSOrString = "";
+	public static String configToAddToYourHandPluralString = "";
+	public static String configBuffToGainString = "";
+	public static String configBuffToGainPluralString = "";
+	public static String configDraw1Card = "";
+	public static String configDraw2Cards = "";
+	public static String configLose5HP = "";
+	public static String configApply2RandomDebuffs = "";
+	public static String configApply1RandomDebuff = "";
+	public static String configAddRandomTrap = "";
+	public static String configAddRandomMonster = "";
+	public static String configAddRandomEtherealDuelist = "";
+	public static String configAddRandomSpellcaster = "";
+	public static String configGain10HP = "";
+	public static String configGain5HP = "";
+	public static String configGain15Block = "";
+	public static String configGain10Block = "";
+	public static String configGain5Block = "";
+	public static String configGainGoldA = "";
+	public static String configGainGoldB = "";
+	public static String configGainArtifact = "";
+	public static String configGainEnergy = "";
+	public static String configGain2Energies = "";
+	public static String configSummon = "";
+	public static String configSummon2 = "";
+	public static String configIncrement = "";
+	public static String configIncrement2 = "";
+	public static String configOrbSlots = "";
+	public static String configOjamania = "";
+	public static String configChannel = "";
+	public static String configLose1HP = "";
+	// =============== /CONFIG STRINGS/ =======================================================================================================================================================
+
 }

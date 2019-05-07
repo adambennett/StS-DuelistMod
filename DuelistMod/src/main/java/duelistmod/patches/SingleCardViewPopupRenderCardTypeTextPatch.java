@@ -28,13 +28,25 @@ public class SingleCardViewPopupRenderCardTypeTextPatch
 	        boolean isToken = DuelistMod.isToken(reflectedCard);
 	        boolean isArchetype = DuelistMod.isArchetype(reflectedCard);
 	        boolean isOrbCard = DuelistMod.isOrbCard(reflectedCard);
-	        
-	        if (isMonster) 			{ label[0] = "Monster"; 	} 
-	        else if (isTrap) 		{ label[0] = "Trap";  		} 
-	        else if (isSpell) 		{ label[0] = "Spell";   	}
-	        else if (isToken)		{ label[0] = "Token"; 		}
-	        else if (isArchetype)	{ label[0] = "Set"; 		}
-	        else if (isOrbCard)		{ label[0] = "Orb";			}
+
+	        if (DuelistMod.monsterTagString.equals(""))
+	        {
+		        if (isMonster) 			{ label[0] = "Monster"; 	} 
+		        else if (isTrap) 		{ label[0] = "Trap";  		} 
+		        else if (isSpell) 		{ label[0] = "Spell";   	}
+		        else if (isToken)		{ label[0] = "Token"; 		}
+		        else if (isArchetype)	{ label[0] = "Type"; 		}
+		        else if (isOrbCard)		{ label[0] = "Orb";			}
+	        }
+	        else
+	        {
+	        	if (isMonster) 			{ label[0] = DuelistMod.monsterTagString; 		} 
+		        else if (isTrap) 		{ label[0] = DuelistMod.trapTagString;  		} 
+		        else if (isSpell) 		{ label[0] = DuelistMod.spellTagString;   		}
+		        else if (isToken)		{ label[0] = DuelistMod.tokenTagString; 		}
+		        else if (isArchetype)	{ label[0] = DuelistMod.typeTagString; 			}
+		        else if (isOrbCard)		{ label[0] = DuelistMod.orbTagString;			}
+	        }
     	}
     }
 

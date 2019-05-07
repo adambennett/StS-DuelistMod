@@ -10,7 +10,31 @@
 		"NAME": "Millennium Puzzle",
 		"FLAVOR": "It was originally known as the Millennium Pendant, but after being shattered and requiring assembly it came to be known as the Millennium Puzzle.",
 		"DESCRIPTIONS": [
-			"At the start of each combat, trigger an effect depending on your chosen starting deck."
+			"At the start of each combat, trigger an effect depending on your chosen starting deck.",
+			"Challenge Mode: #ySummon #b1 [#FF5252]Exploding [#FF5252]Token at the start of combat. You start each combat with 4 max summons.",
+			"At the start of combat, #ySummon #b2 Puzzle Tokens, gain a random amount (0-10) of #yBlock and gain #b1 #yBlur.",
+			"At the start of combat, #ySummon #b1 #yDragon Token and apply #b",
+			" #yWeak or #yVulnerable to a random enemy.",
+			"At the start of combat, #ySummon #b1 or #b2 #yInsect/Plant/Predaplant Tokens and gain Nature's Blessing.",
+			"At the start of combat, #ySummon #b1 #ySpellcaster Token, and have a chance to #yChannel a random Orb.",
+			"At the start of combat, #ySummon #b2 #yToon Tokens and play #b1 of #b3 random #yToon cards for free.",
+			"At the start of combat, #ySummon #b2 #yZombie Tokens and add a #yRandomized #yZombie to your hand.",
+			"At the start of combat, #ySummon #b1 #yAqua Token and have a chance to draw #b",
+			" card.",
+			" cards.",
+			"At the start of combat, sum up the total #yTribute cost of ALL monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat, and give that monster #yExhaust. Additonally, #ySummon #b1 #yFiend Token.",
+			"At the start of combat, #ySummon #b1 #yMachine Token and gain #b1 #yArtifact.",
+			"At the start of combat, #ySummon #b1 #ySuperheavy Token, gain a random amount (0-5) of #yBlock and gain #b2 #yBlur.",
+			"At the start of combat, #ySummon #b2 Puzzle Tokens, and add a random combination of #yRandomized copies of #bJinzo, #bTrap Hole and #bUltimate #bOffering to your hand.",
+			"At the start of combat, #ySummon a random amount of Bonanza Tokens and gain a random #yBuff.",
+			"At the start of combat, #ySummon #b5 Bonanza Tokens and add some random Duelist cards to your draw pile.",
+			"At the start of combat, #ySummon #b1 Orb Token and #yChannel #b1 of #b3 random Orbs.",
+			"At the start of combat, #ySummon #2 #yResummon Tokens.",
+			"At the start of combat, #yIncrement and #ySummon #b1 for each Act.",
+			"At the start of combat, #ySummon #b1 Exxod Token and draw #b2 extra cards.",
+			"At the start of combat, #ySummon #b1 Puzzle Token and gain Gaze of Anubis.",
+			"At the start of combat, #ySummon a random amount #b(2-5) of Puzzle Tokens.",
+			"At the start of combat, #ySummon a random amount #b(2-4) of Puzzle Tokens."
 		]
 	},
 	"theDuelist:MillenniumPuzzleShared": {

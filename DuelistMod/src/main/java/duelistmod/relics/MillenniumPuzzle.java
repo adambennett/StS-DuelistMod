@@ -68,67 +68,6 @@ public class MillenniumPuzzle extends CustomRelic {
 		this.flash();
 		getDeckDesc();
 		PuzzleHelper.atBattleStartHelper(summons, extra);
-		/*if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
-		{
-			//getDeckDesc();
-			if (DuelistMod.fullDebug) { if (AbstractPlayer.customMods.size() < 1 && !DuelistMod.challengeMode) { runSpecialEffect(35); } else if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, 35, "Puzzle Token", false); } else { DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token")); }}
-			else
-			{
-				// Normal Runs
-				if (AbstractPlayer.customMods.size() < 1 && !DuelistMod.challengeMode) { runSpecialEffect(0); }
-				
-				// Custom Runs & No Challenge Mode
-				else if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, 2, "Puzzle Token", false); }
-				
-				// Challenge Mode (anywhere)
-				else { DuelistCard.summon(AbstractDungeon.player, 1, new ExplosiveToken("Exploding Token")); }
-			}
-		}
-		else
-		{
-			switch (AbstractDungeon.player.chosenClass)
-			{
-            	case IRONCLAD:
-            		int floor = AbstractDungeon.actNum;				
-            		DuelistCard.heal(AbstractDungeon.player, floor);
-            		//setDescription("IRONCLAD: At the start of combat, heal 1 HP for each Act.");
-            	    break;
-                case THE_SILENT:      
-                	int floorB = AbstractDungeon.actNum;	
-                	DuelistCard.draw(floorB);
-                	//setDescription("SILENT: At the start of combat, draw 1 card for each Act.");
-                    break;
-                case DEFECT:    
-                	int floorC = AbstractDungeon.actNum;
-                	int rolly = AbstractDungeon.cardRandomRng.random(1,4);
-                	if (rolly == 1) { AbstractDungeon.player.increaseMaxOrbSlots(floorC + 1, true); }
-                	else if (rolly == 2 || rolly == 3) { AbstractDungeon.player.increaseMaxOrbSlots(1, true); }
-                	else { DuelistCard.applyPowerToSelf(new FocusPower(AbstractDungeon.player, floorC + 1)); }
-                	//setDescription("DEFECT: At the start of combat, increase your Orb slots by a random amount or gain Focus. Chosen randomly. The amount of Focus and Orb slots increases the more Acts you complete.");
-                    break;
-                    
-                // Modded Character
-                default:
-                	//setDescription("MODDED CHAR: At the start of combat, randomly choose to heal or gain gold.");
-                	int floorD = AbstractDungeon.actNum;	
-                	int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-                	switch (roll)
-                	{
-	                	case 1:
-	                		DuelistCard.gainGold(floorD * 15, AbstractDungeon.player, true);
-	                		break;
-	                	case 2:
-	                		DuelistCard.heal(AbstractDungeon.player, floorD);
-	                		break;	                	
-	                	default:
-	                		DuelistCard.gainGold(floorD * 15, AbstractDungeon.player, true);
-	                		break;
-                	}
-                    break;
-			}
-		}
-		*/
-		
 	}
 
 	@Override
@@ -155,147 +94,7 @@ public class MillenniumPuzzle extends CustomRelic {
 		return new MillenniumPuzzle();
 	}
 
-	/*
-	private static void runSpecialEffect(int extra)
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		switch (StarterDeckSetup.getCurrentDeck().getIndex())
-		{
-			// Standard Deck
-			case 0:
-				DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Puzzle Token", false);
-				DuelistCard.applyPowerToSelf(new BlurPower(p, 1));
-				DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 10));
-				break;
-	
-			// Dragon Deck
-			case 1:
-				int floor = AbstractDungeon.actNum;				
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
-				DuelistCard.applyPowerToSelf(new StrengthPower(p, floor));
-				break;
-	
-			// Nature Deck
-			case 2:				
-				PuzzleHelper.natureDeckAction(extra);
-		    	DuelistCard.applyPowerToSelf(new NaturePower(p, p, 1));
-				break;
-	
-			// Spellcaster Deck
-			case 3:
-				int rollS = AbstractDungeon.cardRandomRng.random(0, 2);
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra + rollS, "Spellcaster Token", false);
-				break;
-				
-			// Toon Deck
-			case 4:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				PuzzleHelper.toonDeckAction(p, extra);
-				break;
-				
-			// Zombie Deck
-			case 5:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				break;
-				
-			// Aqua Deck
-			case 6:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				break;
 
-			// Fiend Deck
-			case 7:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				break;
-
-			// Machine Deck
-			case 8:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				break;
-				
-			// Superheavy Deck
-			case 9:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				break;
-				
-			// Creator Deck
-			case 10:
-				PuzzleHelper.creatorDeckAction(extra);
-				break;
-			
-			// Ojama Deck
-			case 11:
-				int floorD = AbstractDungeon.actNum;
-				int rngTurnNum = AbstractDungeon.cardRandomRng.random(1, floorD + 1);
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Bonanza Token", false);
-				DuelistCard.applyRandomBuffPlayer(p, rngTurnNum, false); 
-				break;
-	
-			// Generation Deck
-			case 12:
-				// whenever you play a new card this run, add a random common duelist card to your hand
-				int floorE = AbstractDungeon.actNum;
-				for (int i = 0; i < 1 + floorE; i++)
-				{
-					DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
-					AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
-				}
-				DuelistCard.powerSummon(AbstractDungeon.player, 5 + extra, "Bonanza Token", false);
-				break;	
-				
-			// Orb Deck
-			case 13:
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Orb Token", false);
-				new Token().openRandomOrbChoiceNoGlass(3);				
-				break;
-			
-			// Resummon Deck
-			case 14:				
-				DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Resummon Token", false);
-				break;
-					
-			// Increment Deck
-			case 15:
-				int floorG = AbstractDungeon.actNum;
-				DuelistCard.incMaxSummons(p, 1 + floorG);
-				DuelistCard.powerSummon(AbstractDungeon.player, extra + floorG, "Puzzle Token", false);
-				break;
-				
-			// Exodia Deck
-			case 16:
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Exxod Token", false);
-				DuelistCard.draw(2);
-				break;	
-			
-			// Heal Deck
-			case 17:
-				int floorF = AbstractDungeon.actNum;
-				int rng = AbstractDungeon.cardRandomRng.random(3, floorF + 4);
-				DuelistCard.applyPowerToSelf(new OrbHealerPower(p, rng));
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
-				break;	
-
-			// Random (Small) Deck
-			case 18:
-				// whenever you play a new card this run, gain 15 block
-				int summonRollA = AbstractDungeon.cardRandomRng.random(2, 5);
-				DuelistCard.powerSummon(AbstractDungeon.player, summonRollA + extra, "Puzzle Token", false);
-				break;
-	
-			// Random (Big) Deck
-			case 19:
-				int summonRollB = AbstractDungeon.cardRandomRng.random(2, 4);
-				DuelistCard.powerSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
-				break;
-
-			// Generic
-			default:
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
-				break;
-		}
-	}
-	*/
-	
 	public void setDescription()
 	{
 		description = getUpdatedDescription();
@@ -318,7 +117,7 @@ public class MillenniumPuzzle extends CustomRelic {
 		int deck = StarterDeckSetup.getCurrentDeck().getIndex();
 		if (DuelistMod.challengeMode)
 		{
-			localdesc = "Challenge Mode: #ySummon #b1 [#FF5252]Exploding [#FF5252]Token at the start of combat. You start each combat with 4 max summons.";
+			localdesc = DESCRIPTIONS[1];
 		}
 		else
 		{
@@ -327,107 +126,107 @@ public class MillenniumPuzzle extends CustomRelic {
 			
 			//Standard Deck
 			case 0:
-				localdesc = "At the start of combat, #ySummon #b2 Puzzle Tokens, gain a random amount (0-10) of #yBlock and gain #b1 #yBlur.";
+				localdesc = DESCRIPTIONS[2];
 				break;
 			// Dragon Deck
 			case 1:
-				localdesc = "At the start of combat, #ySummon #b1 #yDragon Token and apply #b" + AbstractDungeon.actNum + " #yWeak or #yVulnerable to a random enemy.";
+				localdesc = DESCRIPTIONS[3] + AbstractDungeon.actNum + DESCRIPTIONS[4];
 				break;
 	
 			// Nature Deck
 			case 2:				
-				localdesc = "At the start of combat, #ySummon #b1 or #b2 #yInsect/Plant/Predaplant Tokens and gain Nature's Blessing.";
+				localdesc = DESCRIPTIONS[5];
 				break;
 	
 			// Spellcaster Deck
 			case 3:
-				localdesc = "At the start of combat, #ySummon #b1 #ySpellcaster Token, and have a chance to #yChannel a random Orb.";
+				localdesc = DESCRIPTIONS[6];
 				break;
 				
 			// Toon Deck
 			case 4:		
-				localdesc = "At the start of combat, #ySummon #b2 #yToon Tokens and play #b1 of #b3 random #yToon cards for free.";
+				localdesc = DESCRIPTIONS[7];
 				break;
 				
 			// Zombie Deck
 			case 5:		
-				localdesc = "At the start of combat, #ySummon #b2 #yZombie Tokens and add a #yRandomized #yZombie to your hand.";
+				localdesc = DESCRIPTIONS[8];
 				break;
 				
 			// Aqua Deck
 			case 6:		
-				if (AbstractDungeon.actNum < 2) { localdesc = "At the start of combat, #ySummon #b1 #yAqua Token and have a chance to draw #b" + AbstractDungeon.actNum + " card."; }
-				else { localdesc = "At the start of combat, #ySummon #b1 #yAqua Token and have a chance to draw #b" + AbstractDungeon.actNum + " cards."; }
+				if (AbstractDungeon.actNum < 2) { localdesc = DESCRIPTIONS[9] + AbstractDungeon.actNum + DESCRIPTIONS[10]; }
+				else { localdesc = DESCRIPTIONS[9] + AbstractDungeon.actNum + DESCRIPTIONS[11]; }
 				break;
 	
 			// Fiend Deck
 			case 7:		
-				localdesc = "At the start of combat, sum up the total #yTribute cost of ALL monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat, and give that monster #yExhaust. Additonally, #ySummon #b1 #yFiend Token.";
+				localdesc = DESCRIPTIONS[12];
 				break;
 	
 			// Machine Deck
 			case 8:		
-				localdesc = "At the start of combat, #ySummon #b1 #yMachine Token and gain #b1 #yArtifact.";
+				localdesc = DESCRIPTIONS[13];
 				break;
 				
 			// Superheavy Deck
 			case 9:		
-				localdesc = "At the start of combat, #ySummon #b1 #ySuperheavy Token, gain a random amount (0-5) of #yBlock and gain #b2 #yBlur.";
+				localdesc = DESCRIPTIONS[14];
 				break;
 				
 			// Creator Deck
 			case 10:
-				localdesc = "At the start of combat, #ySummon #b2 Puzzle Tokens, and add a random combination of #yRandomized copies of #bJinzo, #bTrap Hole and #bUltimate #bOffering to your hand.";
+				localdesc = DESCRIPTIONS[15];
 				break;
 			
 			// Ojama Deck
 			case 11:
-				localdesc = "At the start of combat, #ySummon a random amount of Bonanza Tokens and gain a random #yBuff.";
+				localdesc = DESCRIPTIONS[16];
 				break;
 	
 			// Generation Deck
 			case 12:
-				localdesc = "At the start of combat, #ySummon #b5 Bonanza Tokens and add some random Duelist cards to your draw pile.";
+				localdesc = DESCRIPTIONS[17];
 				break;	
 				
 			// Orb Deck
 			case 13:
-				localdesc = "At the start of combat, #ySummon #b1 Orb Token and #yChannel #b1 of #b3 random Orbs.";
+				localdesc = DESCRIPTIONS[18];
 				break;
 			
 			// Resummon Deck
 			case 14:				
-				localdesc = "At the start of combat, #ySummon #2 #yResummon Tokens.";
+				localdesc = DESCRIPTIONS[19];
 				break;
 					
 			// Increment Deck
 			case 15:
-				localdesc = "At the start of combat, #yIncrement and #ySummon #b1 for each Act.";
+				localdesc = DESCRIPTIONS[20];
 				break;
 				
 			// Exodia Deck
 			case 16:
-				localdesc = "At the start of combat, #ySummon #b1 Exxod Token and draw #b2 extra cards.";
+				localdesc = DESCRIPTIONS[21];
 				break;	
 			
 			// Heal Deck
 			case 17:
-				localdesc = "At the start of combat, #ySummon #b1 Puzzle Token and gain Gaze of Anubis.";
+				localdesc = DESCRIPTIONS[22];
 				break;	
 	
 			// Random (Small) Deck
 			case 18:
-				localdesc = "At the start of combat, #ySummon a random amount #b(2-5) of Puzzle Tokens.";
+				localdesc = DESCRIPTIONS[23];
 				break;
 	
 			// Random (Big) Deck
 			case 19:
-				localdesc = "At the start of combat, #ySummon a random amount #b(2-4) of Puzzle Tokens.";
+				localdesc = DESCRIPTIONS[24];
 				break;
 	
 			// Generic
 			default:
-				localdesc = "Failed to find a deck string, unfortunately.";
+				localdesc = "Failed to find a deck string.";
 				break;
 			}
 		}

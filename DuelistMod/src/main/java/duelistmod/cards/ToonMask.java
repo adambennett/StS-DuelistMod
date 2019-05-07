@@ -96,7 +96,7 @@ public class ToonMask extends DuelistCard
     	if (p.hasPower(ToonWorldPower.POWER_ID) || p.hasPower(ToonKingdomPower.POWER_ID)) { return true; }
     	
     	// Otherwise
-    	this.cantUseMessage = "You need Toon World";
+    	this.cantUseMessage = DuelistMod.toonWorldString;
     	return false;
     }
 

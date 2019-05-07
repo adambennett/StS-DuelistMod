@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class OrbDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class OrbDeck extends DuelistCustomLoadout
     public OrbDeck()
     {
         this.ID = 13;
-        this.Name = "Orb Deck";
+        this.Name = DuelistMod.orbDeckString;
     }
 
     @Override

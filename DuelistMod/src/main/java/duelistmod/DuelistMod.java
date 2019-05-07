@@ -62,9 +62,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	private static final String MODNAME = "Duelist Mod";
-	private static final String AUTHOR = "Nyoxide";
-	private static final String DESCRIPTION = "A Slay the Spire adaptation of Yu-Gi-Oh!";
+	private static String modName = "Duelist Mod";
+	private static String modAuthor = "Nyoxide";
+	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
 	private static String modID = "duelistmod";
 	private static ArrayList<String> cardSets = new ArrayList<String>();
 	static ArrayList<StarterDeck> starterDeckList = new ArrayList<StarterDeck>();
@@ -142,8 +142,52 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean randomizeEthereal = true;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
-	
-	
+	public static String etherealForCardText = "";
+	public static String exhaustForCardText = "";
+	public static String powerGainCardText = "";
+	public static String toonWorldString = "";
+	public static String needSummonsString = "";
+	public static String tribString = "";
+	public static String featherPhoCantUseString = "";
+	public static String featherPhoCantUseStringB = "";
+	public static String nutrientZString = "";
+	public static String purgeString = "";
+	public static String magnetString = "";	
+	public static String aquaDeckString = "";
+	public static String creatorDeckString = "";
+	public static String dragonDeckString = "";
+	public static String exodiaDeckString = "";
+	public static String fiendDeckString = "";
+	public static String generationDeckString = "";
+	public static String healDeckString = "";
+	public static String incDeckString = "";
+	public static String machineDeckString = "";
+	public static String magnetDeckString = "";
+	public static String natureDeckString = "";
+	public static String ojamaDeckString = "";
+	public static String orbDeckString = "";
+	public static String randomBigDeckString = "";
+	public static String randomSmallDeckString = "";
+	public static String resummonDeckString = "";
+	public static String spellcasterDeckString = "";
+	public static String standardDeckString = "";
+	public static String toonDeckString = "";
+	public static String zombieDeckString = "";
+	public static String deckUnlockString = "";
+	public static String deckUnlockStringB = "";	
+	public static String monsterTagString = "";
+	public static String spellTagString = "";
+	public static String trapTagString = "";
+	public static String tokenTagString = "";
+	public static String typeTagString = "";
+	public static String orbTagString = "";	
+	public static String exodiaAlmostAllString = "";
+	public static String exodiaBothArmsString = "";
+	public static String exodiaBothLegsString = "";
+	public static String exodiaLeftArmString = "";
+	public static String exodiaRightArmString = "";
+	public static String exodiaLeftLegString = "";
+	public static String exodiaRightLegString = "";	
 	// Maps and Lists
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
 	public static HashMap<String, AbstractPower> buffMap = new HashMap<String, AbstractPower>();
@@ -541,9 +585,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		String loc = Localization.localize();
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
+		setupExtraConfigStrings();
 		settingsPanel = new ModPanel();
 		configPanelSetup();
-		BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 		logger.info("Done loading badge Image and mod options");
 	}
 	// =============== / POST-INITIALIZE/ =================
@@ -1803,6 +1848,104 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		settingsPanel.addUIElement(setSelectRightBtnB);
 
 
+	}
+	
+	private void setupExtraConfigStrings()
+	{
+		etherealForCardText = Config_UI_String.TEXT[24];
+		exhaustForCardText = Config_UI_String.TEXT[25];
+		powerGainCardText = Config_UI_String.TEXT[26];
+		toonWorldString = Config_UI_String.TEXT[27];
+		needSummonsString = Config_UI_String.TEXT[28];
+		tribString = Config_UI_String.TEXT[29];
+		modName = Config_UI_String.TEXT[30];
+		modAuthor = Config_UI_String.TEXT[31];
+		modDescription = Config_UI_String.TEXT[32];
+		featherPhoCantUseString = Config_UI_String.TEXT[33];
+		featherPhoCantUseStringB = Config_UI_String.TEXT[34];
+		nutrientZString = Config_UI_String.TEXT[35];
+		purgeString = Config_UI_String.TEXT[36];
+		magnetString = Config_UI_String.TEXT[37];		
+		aquaDeckString = Config_UI_String.TEXT[38];
+		creatorDeckString = Config_UI_String.TEXT[39];
+		dragonDeckString = Config_UI_String.TEXT[40];
+		exodiaDeckString = Config_UI_String.TEXT[41];
+		fiendDeckString = Config_UI_String.TEXT[42];
+		generationDeckString = Config_UI_String.TEXT[43];
+		healDeckString = Config_UI_String.TEXT[44];
+		incDeckString = Config_UI_String.TEXT[45];
+		machineDeckString = Config_UI_String.TEXT[46];
+		magnetDeckString = Config_UI_String.TEXT[47];
+		natureDeckString = Config_UI_String.TEXT[48];
+		ojamaDeckString = Config_UI_String.TEXT[49];
+		orbDeckString = Config_UI_String.TEXT[50];
+		randomBigDeckString = Config_UI_String.TEXT[51];
+		randomSmallDeckString = Config_UI_String.TEXT[52];
+		resummonDeckString = Config_UI_String.TEXT[53];
+		spellcasterDeckString = Config_UI_String.TEXT[54];
+		standardDeckString = Config_UI_String.TEXT[55];
+		toonDeckString = Config_UI_String.TEXT[56];
+		zombieDeckString = Config_UI_String.TEXT[57];
+		deckUnlockString = Config_UI_String.TEXT[58];
+		deckUnlockStringB = Config_UI_String.TEXT[59];
+		monsterTagString = Config_UI_String.TEXT[60];
+		spellTagString = Config_UI_String.TEXT[61];
+		trapTagString = Config_UI_String.TEXT[62];
+		tokenTagString = Config_UI_String.TEXT[63];
+		typeTagString = Config_UI_String.TEXT[64];
+		orbTagString = Config_UI_String.TEXT[65];		
+		exodiaAlmostAllString = Config_UI_String.TEXT[66];
+		exodiaBothLegsString = Config_UI_String.TEXT[67];
+		exodiaLeftArmString = Config_UI_String.TEXT[68];
+		exodiaRightArmString = Config_UI_String.TEXT[69];
+		exodiaBothArmsString = Config_UI_String.TEXT[70];
+		exodiaLeftLegString = Config_UI_String.TEXT[71];
+		exodiaRightLegString = Config_UI_String.TEXT[72];		
+		Strings.configChooseString = Config_UI_String.TEXT[73];
+		Strings.configAddCardHandString = Config_UI_String.TEXT[74];
+		Strings.configAddCardHandPluralString = Config_UI_String.TEXT[75];
+		Strings.configResummonRandomlyString = Config_UI_String.TEXT[76];
+		Strings.configResummonRandomlyPluralString = Config_UI_String.TEXT[77];
+		Strings.configResummonRandomlyTargetString = Config_UI_String.TEXT[78];
+		Strings.configResummonRandomlyTargetPluralString = Config_UI_String.TEXT[79];
+		Strings.configCardPlayString = Config_UI_String.TEXT[80];
+		Strings.configCardPlayPluralString = Config_UI_String.TEXT[81];
+		Strings.configCardPlayTargetString = Config_UI_String.TEXT[82];
+		Strings.configCardPlayTargetPluralString = Config_UI_String.TEXT[83];
+		Strings.configChooseAString = Config_UI_String.TEXT[84];
+		Strings.configOrAString = Config_UI_String.TEXT[85];
+		Strings.configToAddToYourHandString = Config_UI_String.TEXT[86];
+		Strings.configSOrString = Config_UI_String.TEXT[87];
+		Strings.configToAddToYourHandPluralString = Config_UI_String.TEXT[88];
+		Strings.configBuffToGainString = Config_UI_String.TEXT[89];
+		Strings.configBuffToGainPluralString = Config_UI_String.TEXT[90];	
+		Strings.configDraw1Card = Config_UI_String.TEXT[91];
+		Strings.configDraw2Cards = Config_UI_String.TEXT[92];
+		Strings.configLose5HP = Config_UI_String.TEXT[93];
+		Strings.configApply2RandomDebuffs = Config_UI_String.TEXT[94];
+		Strings.configApply1RandomDebuff = Config_UI_String.TEXT[95];
+		Strings.configAddRandomTrap = Config_UI_String.TEXT[96];
+		Strings.configAddRandomMonster = Config_UI_String.TEXT[97];
+		Strings.configAddRandomEtherealDuelist = Config_UI_String.TEXT[98];
+		Strings.configAddRandomSpellcaster = Config_UI_String.TEXT[99];
+		Strings.configGain10HP = Config_UI_String.TEXT[100];
+		Strings.configGain5HP = Config_UI_String.TEXT[101];
+		Strings.configGain15Block = Config_UI_String.TEXT[102];
+		Strings.configGain10Block = Config_UI_String.TEXT[103];
+		Strings.configGain5Block = Config_UI_String.TEXT[104];
+		Strings.configGainGoldA = Config_UI_String.TEXT[105];
+		Strings.configGainGoldB = Config_UI_String.TEXT[106];
+		Strings.configGainArtifact = Config_UI_String.TEXT[107];
+		Strings.configGainEnergy = Config_UI_String.TEXT[108];
+		Strings.configGain2Energies = Config_UI_String.TEXT[109];
+		Strings.configSummon = Config_UI_String.TEXT[110];
+		Strings.configSummon2 = Config_UI_String.TEXT[111];
+		Strings.configIncrement = Config_UI_String.TEXT[112];
+		Strings.configIncrement2 = Config_UI_String.TEXT[113];
+		Strings.configOrbSlots = Config_UI_String.TEXT[114];
+		Strings.configOjamania = Config_UI_String.TEXT[115];
+		Strings.configChannel = Config_UI_String.TEXT[116];
+		Strings.configLose1HP = Config_UI_String.TEXT[117];
 	}
 	
 	private void addRandomized(String property1, String property2, boolean btnBool1, boolean btnBool2)

@@ -3,6 +3,7 @@ package duelistmod.actions.common;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import duelistmod.DuelistMod;
 import duelistmod.interfaces.BuffCard;
 
 public class ModifyPowerToApplyAction extends AbstractGameAction {
@@ -20,7 +21,7 @@ public class ModifyPowerToApplyAction extends AbstractGameAction {
 	public void update() 
 	{
 		this.cardToModify.powerToApply = power;
-		this.cardToModify.rawDescription = "Gain !M! " + power.name + ".";
+		this.cardToModify.rawDescription = DuelistMod.powerGainCardText + power.name + ".";
 		this.cardToModify.name = power.name;
 		this.cardToModify.initializeDescription();
 		this.isDone = true;

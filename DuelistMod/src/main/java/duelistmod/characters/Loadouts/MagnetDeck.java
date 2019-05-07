@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class MagnetDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class MagnetDeck extends DuelistCustomLoadout
     public MagnetDeck()
     {
         this.ID = 9;
-        this.Name = "Magnet Deck";
+        this.Name = DuelistMod.magnetDeckString;
     }
 
     @Override

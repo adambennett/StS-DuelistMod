@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.incomplete;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -86,7 +86,7 @@ public class ToonCyberDragon extends DuelistCard
     	if (p.hasPower(ToonWorldPower.POWER_ID) || p.hasPower(ToonKingdomPower.POWER_ID)) { return true; }
     	
     	// Otherwise
-    	this.cantUseMessage = "You need Toon World";
+    	this.cantUseMessage = DuelistMod.toonWorldString;
     	return false;
     }
 

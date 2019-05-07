@@ -62,7 +62,7 @@ public class SmallLabyrinthWall extends DuelistCard
     {
         if (!this.upgraded) 
         {
-            this.upgradeName("Labyrinth Wall");
+            this.upgradeName(new LabyrinthWall().name);
             this.upgradeBlock(UPGRADE_PLUS_BLK);
             this.tributes = 2;
             this.upgradeBaseCost(2);
@@ -73,7 +73,9 @@ public class SmallLabyrinthWall extends DuelistCard
 
         else if (this.upgraded && !this.secondUpgrade)
         {
-        	this.name = "Labyrinth Wall+";
+        	String newName = new LabyrinthWall().name;
+        	newName += "+";
+        	this.name = newName; 
         	this.upgradeBlock(5);
             this.initializeDescription();
             this.secondUpgrade = true;

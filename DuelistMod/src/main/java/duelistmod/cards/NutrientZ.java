@@ -82,7 +82,7 @@ public class NutrientZ extends DuelistCard
  	{
  		boolean canUse = super.canUse(p, m); 
  		if (!canUse) { return false; }
- 		else if (p.currentHealth >= 40) { this.cantUseMessage = "Your HP is too high"; return false; }
+ 		else if (p.currentHealth >= 40) { this.cantUseMessage = DuelistMod.nutrientZString; return false; }
  		else if (p.currentHealth < 40) { return true; }
  		return false;
  	}

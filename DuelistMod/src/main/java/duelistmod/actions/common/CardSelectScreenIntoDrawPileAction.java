@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 import basemod.BaseMod;
+import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 
 public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
@@ -140,13 +141,13 @@ public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
 					if (!gridCard.isEthereal && etherealCheck) 
 					{
 		                gridCard.isEthereal = true;
-		                gridCard.rawDescription = "Ethereal NL " + gridCard.rawDescription;
+		                gridCard.rawDescription = DuelistMod.etherealForCardText + gridCard.rawDescription;
 		    		}
 		    		
 		    		if (!gridCard.exhaust && exhaustCheck) 
 		    		{
 		                gridCard.exhaust = true;
-		                gridCard.rawDescription = gridCard.rawDescription + " NL Exhaust.";
+		                gridCard.rawDescription = gridCard.rawDescription + DuelistMod.exhaustForCardText;
 		    		}
 		    		
 		    		if (costChangeCheck)
@@ -189,8 +190,8 @@ public class CardSelectScreenIntoDrawPileAction extends AbstractGameAction
 				tmp.addToTop(gridCard);
 			}
 			
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to add to your hand", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to add to your hand", false); }
+			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
+			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString, false); }
 			tickDuration();
 			return;
 		}

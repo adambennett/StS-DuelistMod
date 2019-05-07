@@ -88,7 +88,7 @@ public class BlueEyesToon extends DuelistCard
   		else if (this.misc == 52) { return true; }
     	
     	// Check for Toon World
-  		else if (!p.hasPower(ToonWorldPower.POWER_ID) && !p.hasPower(ToonKingdomPower.POWER_ID)) { this.cantUseMessage = "You need Toon World"; return false; }
+  		else if (!p.hasPower(ToonWorldPower.POWER_ID) && !p.hasPower(ToonKingdomPower.POWER_ID)) { this.cantUseMessage = DuelistMod.toonWorldString; return false; }
     	
     	// Mausoleum check
     	else if (p.hasPower(EmperorPower.POWER_ID))

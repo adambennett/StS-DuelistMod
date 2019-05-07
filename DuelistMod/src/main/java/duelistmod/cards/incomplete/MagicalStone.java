@@ -1,39 +1,42 @@
-package duelistmod.cards;
+package duelistmod.cards.incomplete;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
 
-public class Wasteland extends DuelistCard 
+public class MagicalStone extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Yami");
+    public static final String ID = duelistmod.DuelistMod.makeID("FeatherPho");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.YAMI);
+    public static final String IMG = DuelistMod.makePath(Strings.FEATHER_PHOENIX);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
+    private static int pickup = 1;
     // /STAT DECLARATION/
 
-    public Wasteland() {
+    public MagicalStone() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.LIMITED);
+        this.magicNumber = this.baseMagicNumber = pickup;
         this.originalName = this.name;
     }
 
@@ -41,13 +44,14 @@ public class Wasteland extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new YamiPower(p, p));
+       discardTop(this.magicNumber, false);
+       AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Wasteland();
+        return new MagicalStone();
     }
 
     // Upgraded stats.
@@ -55,15 +59,14 @@ public class Wasteland extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
+	public void onTribute(DuelistCard tributingCard) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -76,14 +79,14 @@ public class Wasteland extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class ToonDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class ToonDeck extends DuelistCustomLoadout
     public ToonDeck()
     {
         this.ID = 4;
-        this.Name = "Toon Deck";
+        this.Name = DuelistMod.toonDeckString;
     }
 
     @Override

@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class ExodiaDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class ExodiaDeck extends DuelistCustomLoadout
     public ExodiaDeck()
     {
         this.ID = 16;
-        this.Name = "Exodia Deck";
+        this.Name = DuelistMod.exodiaDeckString;
         this.cardCount = "60 Cards";
     }
 

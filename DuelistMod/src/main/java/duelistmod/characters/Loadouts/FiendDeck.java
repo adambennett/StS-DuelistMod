@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class FiendDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class FiendDeck extends DuelistCustomLoadout
     public FiendDeck()
     {
         this.ID = 7;
-        this.Name = "Fiend Deck";
+        this.Name = DuelistMod.fiendDeckString;
         this.cardCount = "?? Cards";
     }
 

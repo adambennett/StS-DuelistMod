@@ -201,12 +201,12 @@ public class RandomizedDiscardPileAction extends AbstractGameAction {
             
             if (!c.isEthereal && etherealCheck && !c.hasTag(Tags.NEVER_ETHEREAL)) {
                 c.isEthereal = true;
-                c.rawDescription = "Ethereal NL " + c.rawDescription;
+                c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
     		}
     		
     		if (!c.exhaust && exhaustCheck && !c.hasTag(Tags.NEVER_EXHAUST)) {
                 c.exhaust = true;
-                c.rawDescription = c.rawDescription + " NL Exhaust.";
+                c.rawDescription = c.rawDescription + DuelistMod.exhaustForCardText;
     		}
     		
     		if (costChangeCheck)

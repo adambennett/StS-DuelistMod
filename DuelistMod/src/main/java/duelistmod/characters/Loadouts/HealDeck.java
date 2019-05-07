@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class HealDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class HealDeck extends DuelistCustomLoadout
     public HealDeck()
     {
         this.ID = 17;
-        this.Name = "Heal Deck";
+        this.Name = DuelistMod.healDeckString;
         this.cardCount = "12 Cards";
     }
 

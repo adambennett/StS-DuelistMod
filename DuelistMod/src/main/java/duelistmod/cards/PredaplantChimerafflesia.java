@@ -73,7 +73,7 @@ public class PredaplantChimerafflesia extends DuelistCard
     					poly.isCostModified= true;
     				}
     				poly.purgeOnUse = true;
-    				poly.rawDescription = "Purge. NL " + c.rawDescription;
+    				poly.rawDescription = DuelistMod.purgeString + c.rawDescription;
 		            poly.initializeDescription();
     				addCardToHand(poly);
     			}

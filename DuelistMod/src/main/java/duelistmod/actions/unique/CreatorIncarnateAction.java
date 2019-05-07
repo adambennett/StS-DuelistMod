@@ -179,13 +179,13 @@ public class CreatorIncarnateAction extends AbstractGameAction
 					if (!gridCard.isEthereal && etherealCheck) 
 					{
 		                gridCard.isEthereal = true;
-		                gridCard.rawDescription = "Ethereal NL " + gridCard.rawDescription;
+		                gridCard.rawDescription = DuelistMod.etherealForCardText + gridCard.rawDescription;
 		    		}
 		    		
 		    		if (!gridCard.exhaust && exhaustCheck) 
 		    		{
 		                gridCard.exhaust = true;
-		                gridCard.rawDescription = gridCard.rawDescription + " NL Exhaust.";
+		                gridCard.rawDescription = gridCard.rawDescription + DuelistMod.exhaustForCardText;
 		    		}
 		    		
 		    		if (costChangeCheck && gridCard.cost > -1)
@@ -269,8 +269,8 @@ public class CreatorIncarnateAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " card to add to your hand", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " cards to add to your hand", false); }
+			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
+			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString, false); }
 			tickDuration();
 			return;
 		}

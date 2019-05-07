@@ -391,6 +391,14 @@
     "DESCRIPTION": "At the end of turn, gain #yBlock equal to the amount of #yMetallicize stacks you currently have."
   },
   {
+    "PROPER_NAME": "Tidal",
+    "NAMES": [
+      "Tidal",
+	  "tidal"
+    ],   
+    "DESCRIPTION": "When played, the power of one random effect of this card is increased by 1."
+  },
+  {
     "PROPER_NAME": "Gate",
     "NAMES": [
       "gate"

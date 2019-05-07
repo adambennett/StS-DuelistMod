@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
-import duelistmod.Tags;
+import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 
 public class RandomEtherealCardToHand extends AbstractGameAction {
@@ -27,7 +27,7 @@ public class RandomEtherealCardToHand extends AbstractGameAction {
             if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) 
             {
                 c.isEthereal = true;
-                c.rawDescription = "Ethereal NL " + c.rawDescription;
+                c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
             }              
             c.initializeDescription();
             AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c));

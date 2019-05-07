@@ -3,6 +3,8 @@ package duelistmod.actions.common;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import duelistmod.DuelistMod;
+
 public class ModifyExhaustAction extends AbstractGameAction {
 	AbstractCard cardToModify;
 	
@@ -18,7 +20,7 @@ public class ModifyExhaustAction extends AbstractGameAction {
 		if (!this.cardToModify.exhaust) 
 		{
 			this.cardToModify.exhaust = true;
-			this.cardToModify.rawDescription = this.cardToModify.rawDescription + " NL Exhaust.";
+			this.cardToModify.rawDescription = this.cardToModify.rawDescription + DuelistMod.exhaustForCardText;
 			this.cardToModify.initializeDescription();
 		}
 		this.isDone = true;

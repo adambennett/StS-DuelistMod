@@ -136,8 +136,8 @@ public class RedMedicineAction extends AbstractGameAction
 				powerCard.magicNumber = powerCard.baseMagicNumber;
 				powerCard.powerToApply = power;
 				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> powerCard.powerToApply was set to: " + power.name + ", with amount: " + power.amount); }
-				if (power.amount > 0) { powerCard.rawDescription = "Gain !M! " + power.name + "."; }
-				else { powerCard.rawDescription = "Gain " + power.name + ".";  }
+				if (power.amount > 0) { powerCard.rawDescription = DuelistMod.powerGainCardText + power.name + "."; }
+				else { powerCard.rawDescription = DuelistMod.powerGainCardText + power.name + ".";  }
 				powerCard.name = power.name;
 				powerCard.initializeDescription();
 				buffs.add(powerCard);
@@ -152,8 +152,8 @@ public class RedMedicineAction extends AbstractGameAction
 				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> added " + card.originalName + " into grid selection pool"); }
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Buff to Gain", false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Buffs to Gain", false); }
+			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainString, false); }
+			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainPluralString, false); }
 			tickDuration();
 			return;
 		}
@@ -169,9 +169,9 @@ public class RedMedicineAction extends AbstractGameAction
 				bC.magicNumber = bC.baseMagicNumber;
 				bC.powerToApply = powerMap.get(bC.uuid);
 				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> bC.powerToApply was set to: " + powerMap.get(bC.uuid).name + ", with amount: " + powerMap.get(bC.uuid).amount); }
-				bC.rawDescription = "Gain !M! " + powerMap.get(bC.uuid).name + ".";
-				if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = "Gain !M! " + powerMap.get(bC.uuid).name + "."; }
-				else { bC.rawDescription = "Gain " + powerMap.get(bC.uuid).name + ".";  }
+				bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";
+				if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + "."; }
+				else { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";  }
 				bC.name = powerMap.get(bC.uuid).name;
 				bC.initializeDescription();
 				if (bC.powerToApply != null) { DuelistCard.playNoResummon(bC, false, this.m, false); }

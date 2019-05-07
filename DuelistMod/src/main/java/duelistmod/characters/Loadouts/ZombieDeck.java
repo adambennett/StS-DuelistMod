@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class ZombieDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class ZombieDeck extends DuelistCustomLoadout
     public ZombieDeck()
     {
         this.ID = 5;
-        this.Name = "Zombie Deck";
+        this.Name = DuelistMod.zombieDeckString;
         this.cardCount = "?? Cards";
     }
 

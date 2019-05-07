@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
-import duelistmod.Tags;
+import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 
 public class CardDestructionAction extends AbstractGameAction 
@@ -42,12 +42,12 @@ public class CardDestructionAction extends AbstractGameAction
             if (!c.exhaust && !c.hasTag(Tags.NEVER_EXHAUST)) 
             {
                 c.exhaust = true;
-                c.rawDescription = c.rawDescription + " NL Exhaust.";
+                c.rawDescription = c.rawDescription + DuelistMod.exhaustForCardText;
             }        
             if (!c.isEthereal && upgrade && !c.hasTag(Tags.NEVER_ETHEREAL))
             {
             	c.isEthereal = true;
-            	c.rawDescription = "Ethereal NL " + c.rawDescription;
+            	c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
             }
             if (c.cost > 0)
 			{

@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class AquaDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class AquaDeck extends DuelistCustomLoadout
     public AquaDeck()
     {
         this.ID = 6;
-        this.Name = "Aqua Deck";
+        this.Name = DuelistMod.aquaDeckString;
         this.cardCount = "?? Cards";
     }
 

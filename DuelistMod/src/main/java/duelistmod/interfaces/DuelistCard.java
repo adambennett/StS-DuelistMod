@@ -81,7 +81,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public String upgradeType;
 	public String exodiaName = "None";
 	public String originalName;
-	public String tribString = "Not enough #rSummons.";
+	public String tribString = DuelistMod.tribString;
 	public String originalDescription = "Uh-oh. This card had its summons or tributes modified and somehow lost the original description! Go yell at Nyoxide.";
 	public boolean toon = false;
 	public boolean isSummon = false;

@@ -1,54 +1,48 @@
-package duelistmod.cards;
+package duelistmod.cards.incomplete;
 
-import com.evacipated.cardcrawl.modthespire.Loader;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.*;
 import duelistmod.relics.AquaRelicB;
 
-public class HyperancientShark extends DuelistCard 
+public class KaiserSeaHorse extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("SevenColoredFish");
+
+    public static final String ID = duelistmod.DuelistMod.makeID("BabyDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.SEVEN_COLORED_FISH);
+    public static final String IMG = DuelistMod.makePath(Strings.BABY_DRAGON);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-
+    
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.BASIC;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 5;
-    private static final int SUMMONS = 1;
-    //private static final int U_SUMMONS = 1;
     // /STAT DECLARATION/
 
-    public HyperancientShark() {
+    public KaiserSeaHorse() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.baseBlock = this.block = 4;
         this.tags.add(Tags.MONSTER);
-        if (Loader.isModLoaded("conspire")) { this.tags.add(Tags.GOOD_TRIB); }
-        this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.GOOD_TRIB);
+        this.summons = this.baseSummons = 2;
         this.originalName = this.name;
-        this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
-        //this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -56,16 +50,14 @@ public class HyperancientShark extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	attack(m, AFX, this.damage);
-    	
-    	// for testing
-    	//printSetDetails(new CardTags[] {DefaultMod.MONSTER, DefaultMod.SPELL, DefaultMod.TRAP, DefaultMod.DRAGON, DefaultMod.LEGEND_BLUE_EYES, DefaultMod.METAL_RAIDERS, DefaultMod.PHARAOH_SERVANT});
+    	block(this.block);
+    	// check for Time Wizard?
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new HyperancientShark();
+        return new KaiserSeaHorse();
     }
 
     // Upgraded stats.
@@ -73,8 +65,7 @@ public class HyperancientShark extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeMagicNumber(U_SUMMONS);
-            this.upgradeDamage(3);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -83,6 +74,12 @@ public class HyperancientShark extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
+		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+		{ 
+			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
+			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
+		}
+		
 		// Aqua Tribute
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
@@ -112,12 +109,11 @@ public class HyperancientShark extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
+	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
+    	block(this.block);
 		
 	}
 
@@ -125,7 +121,7 @@ public class HyperancientShark extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
+    	block(this.block);
 		
 	}
 

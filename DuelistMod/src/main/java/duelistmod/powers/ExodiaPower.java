@@ -182,22 +182,22 @@ public class ExodiaPower extends AbstractPower
 		}
 		else if (checkForLegs() && checkForArms())
 		{
-			this.description = DESCRIPTIONS[0] + "Both arms and legs.";
+			this.description = DESCRIPTIONS[0] + DuelistMod.exodiaAlmostAllString;
 		}
 		else if (checkForLegs() && !checkForArms())
 		{
-			String descr = "Both legs, ";
-			if (checkForPiece("Left Arm")) { descr += "Left Arm, "; }
-			if (checkForPiece("Right Arm")) { descr += "Right Arm, "; }
+			String descr = DuelistMod.exodiaBothLegsString;
+			if (checkForPiece("Left Arm")) { descr += DuelistMod.exodiaLeftArmString; }
+			if (checkForPiece("Right Arm")) { descr += DuelistMod.exodiaRightArmString; }
 			int endingIndex = descr.lastIndexOf(",");
 	        String finalPiece = descr.substring(0, endingIndex) + ".";
 			this.description = DESCRIPTIONS[0] + finalPiece;
 		}
 		else if (checkForArms() && !checkForLegs())
 		{
-			String descr = "Both arms, ";
-			if (checkForPiece("Left Leg")) { descr += "Left Leg, "; }
-			if (checkForPiece("Right Leg")) { descr += "Right Leg, "; }
+			String descr = DuelistMod.exodiaBothArmsString;
+			if (checkForPiece("Left Leg")) { descr += DuelistMod.exodiaLeftLegString; }
+			if (checkForPiece("Right Leg")) { descr += DuelistMod.exodiaRightLegString; }
 			int endingIndex = descr.lastIndexOf(",");
 	        String finalPiece = descr.substring(0, endingIndex) + ".";
 			this.description = DESCRIPTIONS[0] + finalPiece;

@@ -25,13 +25,25 @@ public class AbstractCardRenderTypePatch
 	        boolean isToken = DuelistMod.isToken(__instance);
 	        boolean isArchetype = DuelistMod.isArchetype(__instance);
 	        boolean isOrbCard = DuelistMod.isOrbCard(__instance);
-	        
-	        if (isMonster) 			{ text[0] = "Monster"; 	} 
-	        else if (isTrap) 		{ text[0] = "Trap";  	} 
-	        else if (isSpell) 		{ text[0] = "Spell";    }
-	        else if (isToken)		{ text[0] = "Token"; 	}
-	        else if (isArchetype)	{ text[0] = "Set";		}
-	        else if (isOrbCard) 	{ text[0] = "Orb"; 		}
+  
+	        if (DuelistMod.monsterTagString.equals(""))
+	        {
+		        if (isMonster) 			{ text[0] = "Monster"; 	} 
+		        else if (isTrap) 		{ text[0] = "Trap";  	} 
+		        else if (isSpell) 		{ text[0] = "Spell";    }
+		        else if (isToken)		{ text[0] = "Token"; 	}
+		        else if (isArchetype)	{ text[0] = "Type";		}
+		        else if (isOrbCard) 	{ text[0] = "Orb"; 		}
+	        }
+	        else
+	        {
+	        	if (isMonster) 			{ text[0] = DuelistMod.monsterTagString; 	} 
+		        else if (isTrap) 		{ text[0] = DuelistMod.trapTagString;  		} 
+		        else if (isSpell) 		{ text[0] = DuelistMod.spellTagString;    	}
+		        else if (isToken)		{ text[0] = DuelistMod.tokenTagString;		}
+		        else if (isArchetype)	{ text[0] = DuelistMod.typeTagString;		}
+		        else if (isOrbCard) 	{ text[0] = DuelistMod.orbTagString; 		}
+	        }
     	}
     }
 

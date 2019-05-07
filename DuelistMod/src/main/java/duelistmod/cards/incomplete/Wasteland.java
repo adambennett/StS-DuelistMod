@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.incomplete;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,7 +11,7 @@ import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
-public class Umiiruka extends DuelistCard 
+public class Wasteland extends DuelistCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Yami");
@@ -30,7 +30,7 @@ public class Umiiruka extends DuelistCard
     private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public Umiiruka() {
+    public Wasteland() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
@@ -47,7 +47,7 @@ public class Umiiruka extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Umiiruka();
+        return new Wasteland();
     }
 
     // Upgraded stats.

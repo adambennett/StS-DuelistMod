@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class SpellcasterDeck extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class SpellcasterDeck extends DuelistCustomLoadout
     public SpellcasterDeck()
     {
         this.ID = 3;
-        this.Name = "Spellcaster Deck";
+        this.Name = DuelistMod.spellcasterDeckString;
     }
 
     @Override

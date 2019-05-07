@@ -2,6 +2,7 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 
 public class RandomDeckBig extends DuelistCustomLoadout
@@ -9,7 +10,7 @@ public class RandomDeckBig extends DuelistCustomLoadout
     public RandomDeckBig()
     {
         this.ID = 19;
-        this.Name = "Random Deck (Big)";
+        this.Name = DuelistMod.randomBigDeckString;
     }
 
     @Override

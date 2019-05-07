@@ -31,7 +31,7 @@ public class DuelistCustomLoadout
 		
 		if (Locked)
 		{
-			lockedDescription = "Unlocks at " + unlockLevel +  " Total Score (" + currentLevel +  ")";
+			lockedDescription = DuelistMod.deckUnlockString + unlockLevel +  DuelistMod.deckUnlockStringB + currentLevel +  ")";
 		}
 		
 		try {
