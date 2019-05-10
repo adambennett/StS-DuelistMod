@@ -175,8 +175,8 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public int getAscensionMaxHPLoss() 
 	{
-		if (DuelistMod.challengeMode) { return 25; }
-		else { return 5;	}
+		if (DuelistMod.challengeMode) { return 30; }
+		else { return 20; }
 	}
 
 	// Should return the card color enum to be associated with your character.

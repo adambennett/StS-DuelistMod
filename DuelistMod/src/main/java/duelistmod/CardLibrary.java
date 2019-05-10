@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
 import duelistmod.cards.*;
+import duelistmod.cards.incomplete.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbCards.*;
@@ -464,6 +465,11 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new ToadallyAwesome());
 		DuelistMod.myCards.add(new DarknessNeosphere());
 		DuelistMod.myCards.add(new RainbowJar());
+		DuelistMod.myCards.add(new WingedKuriboh9());
+		DuelistMod.myCards.add(new WingedKuriboh10());
+		DuelistMod.myCards.add(new SpikedGillman());
+		DuelistMod.myCards.add(new TripodFish());
+		DuelistMod.myCards.add(new MagicalStone());
 		
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) { for (DuelistCard c : getTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}
@@ -553,32 +559,33 @@ public class CardLibrary {
 			DuelistMod.summonMap.put(c.originalName, c);	
 		}
 		
-		//summonMap.put("R. Stone Soldier", new RandomSoldier());
-		DuelistMod.summonMap.put("Token", new Token());
 		DuelistMod.summonMap.put("Great Moth", new GreatMoth());
-		DuelistMod.summonMap.put("Puzzle Token", new Token());
-		DuelistMod.summonMap.put("Ancient Token", new Token());
+		
 		DuelistMod.summonMap.put("Anubis Token", new Token());
 		DuelistMod.summonMap.put("Glitch Token", new Token());
 		DuelistMod.summonMap.put("Summoner Token", new Token());
-		DuelistMod.summonMap.put("Gate Token", new Token());
-		DuelistMod.summonMap.put("Jam Token", new JamToken());
-		DuelistMod.summonMap.put("Castle Token", new Token());
-		DuelistMod.summonMap.put("Storm Token", new Token());
-		DuelistMod.summonMap.put("Random Token", new Token());
 		DuelistMod.summonMap.put("Pot Token", new Token());
 		DuelistMod.summonMap.put("Buffer Token", new Token());
 		DuelistMod.summonMap.put("Blood Token", new Token());
 		DuelistMod.summonMap.put("Hane Token", new Token());
-		DuelistMod.summonMap.put("Bonanza Token", new Token());
 		DuelistMod.summonMap.put("Orb Token", new Token());
-		DuelistMod.summonMap.put("Resummon Token", new Token());
-		DuelistMod.summonMap.put("Resummoned Token", new Token());
 		DuelistMod.summonMap.put("Stim Token", new Token());
 		DuelistMod.summonMap.put("Underdog Token", new Token());
-		DuelistMod.summonMap.put("Judge Token", new Token());
-		DuelistMod.summonMap.put("Exxod Token", new Token());
-		DuelistMod.summonMap.put("Relic Token", new Token());
+		DuelistMod.summonMap.put("Tribute Token", new Token());
+		DuelistMod.summonMap.put("Summon Token", new Token());
+		DuelistMod.summonMap.put("Gold Token", new Token());
+		DuelistMod.summonMap.put("Magnet Token", new Token());
+		DuelistMod.summonMap.put("Cocoon Token", new Token());
+		DuelistMod.summonMap.put("Potion Token", new Token());
+		DuelistMod.summonMap.put("God Token", new Token());
+		
+		DuelistMod.summonMap.put("Token", new Token());
+		DuelistMod.summonMap.put("Jam Token", new JamToken());
+		DuelistMod.summonMap.put("Castle Token", new CastleToken());
+		DuelistMod.summonMap.put("Storm Token", new StormToken());
+		DuelistMod.summonMap.put("Puzzle Token", new PuzzleToken());
+		DuelistMod.summonMap.put("Relic Token", new RelicToken());
+		DuelistMod.summonMap.put("Bonanza Token", new BonanzaToken());
 		DuelistMod.summonMap.put("Spellcaster Token", new SpellcasterToken());
 		DuelistMod.summonMap.put("Predaplant Token", new PredaplantToken());
 		DuelistMod.summonMap.put("Kuriboh Token", new KuribohToken());
@@ -594,6 +601,8 @@ public class CardLibrary {
 		DuelistMod.summonMap.put("Toon Token", new ToonToken());
 		DuelistMod.summonMap.put("Zombie Token", new ZombieToken());
 		DuelistMod.summonMap.put("Aqua Token", new AquaToken());
+		DuelistMod.summonMap.put("Exodia Token", new ExodiaToken());
+		DuelistMod.summonMap.put("Damage Token", new DamageToken());
 	}
 	
 	public static ArrayList<DuelistCard> getTokens()
@@ -617,6 +626,27 @@ public class CardLibrary {
 		tokens.add(new JamToken());
 		tokens.add(new Token());
 		tokens.add(new DamageToken());
+		tokens.add(new CastleToken());
+		tokens.add(new StormToken());
+		tokens.add(new RelicToken());
+		tokens.add(new PuzzleToken());
+		tokens.add(new BonanzaToken());		
+		//tokens.add(new AnubisToken());
+		//tokens.add(new GlitchToken());
+		//tokens.add(new SummonerToken());
+		//tokens.add(new PotToken());
+		//tokens.add(new BloodToken());
+		//tokens.add(new HaneToken());
+		//tokens.add(new OrbToken());
+		//tokens.add(new StimToken());
+		//tokens.add(new UnderdogToken());
+		//tokens.add(new TributeToken());
+		//tokens.add(new SummonToken());
+		//tokens.add(new GoldToken());
+		//tokens.add(new MagnetToken());
+		//tokens.add(new CocoonToken());
+		//tokens.add(new PotionToken());
+		//tokens.add(new GodToken());
 		return tokens;
 	}
 

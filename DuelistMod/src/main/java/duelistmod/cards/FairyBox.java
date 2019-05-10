@@ -76,7 +76,6 @@ public class FairyBox extends DuelistCard
 					while (orbs.contains(random)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
 					orbs.add(random.makeCopy());
 				}
-				//for (DuelistCard c : DuelistMod.orbCards) { orbs.add(c.makeCopy()); }
 				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(orbs, false, this.magicNumber, false, true, true, true, false, false, true, 1, 1, 0, 0, 0, 0));
 			}
 		}

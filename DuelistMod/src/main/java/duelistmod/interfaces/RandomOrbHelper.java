@@ -51,7 +51,7 @@ public class RandomOrbHelper
 			orbs.add(new Frost());
 			orbs.add(new Gate()); 
 			orbs.add(new Buffer());
-			orbs.add(new Summoner());
+			orbs.add(new Summoner(1));
 			orbs.add(new MonsterOrb());
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
@@ -111,7 +111,7 @@ public class RandomOrbHelper
 			orbs.add(new Dark());
 			orbs.add(new Frost());
 			orbs.add(new Buffer());
-			orbs.add(new Summoner());
+			orbs.add(new Summoner(1));
 			orbs.add(new MonsterOrb());
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
@@ -172,7 +172,7 @@ public class RandomOrbHelper
 			returnOrbs.add(new Frost());
 			returnOrbs.add(new Gate()); 
 			returnOrbs.add(new Buffer());
-			returnOrbs.add(new Summoner());
+			returnOrbs.add(new Summoner(1));
 			returnOrbs.add(new MonsterOrb());
 			returnOrbs.add(new DragonOrb());
 			returnOrbs.add(new ReducerOrb()); 
@@ -214,8 +214,8 @@ public class RandomOrbHelper
 		DuelistMod.invertStringMap.put(new Shadow().name, new MillenniumOrb(2));
 		DuelistMod.invertStringMap.put(new MillenniumOrb(2).name, new Shadow());		
 		DuelistMod.invertStringMap.put(new Sand().name, new Frost());		
-		DuelistMod.invertStringMap.put(new Summoner().name, new Consumer());
-		DuelistMod.invertStringMap.put(new Consumer().name, new Summoner());		
+		DuelistMod.invertStringMap.put(new Summoner(1).name, new Consumer());
+		DuelistMod.invertStringMap.put(new Consumer().name, new Summoner(1));		
 		DuelistMod.invertStringMap.put(new Glitch().name, new Gadget());
 		DuelistMod.invertStringMap.put(new Gadget().name, new Glitch());		
 		DuelistMod.invertStringMap.put(new Lightning().name, new Earth());

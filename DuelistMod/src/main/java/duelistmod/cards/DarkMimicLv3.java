@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -59,6 +60,7 @@ public class DarkMimicLv3 extends DuelistCard
             	DuelistMod.gotMimicLv3 = true;  
             	DuelistMod.upgradedMimicLv3 = this.upgraded;
             }
+            AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(this, player().discardPile));   
         }
     }
 

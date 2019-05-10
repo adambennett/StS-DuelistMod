@@ -33,7 +33,7 @@ public class DarkMagician extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 19;
+    private static final int DAMAGE = 16;
     // /STAT DECLARATION/
 
     public DarkMagician() {
@@ -48,6 +48,7 @@ public class DarkMagician extends DuelistCard
         this.startingOPSPDeckCopies = 1;
         this.exodiaDeckCopies = 2;
         this.spellcasterDeckCopies = 1;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
@@ -60,7 +61,7 @@ public class DarkMagician extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb summoner = new Summoner();
+    	AbstractOrb summoner = new Summoner(this.magicNumber);
     	channel(summoner);
     }
 
@@ -75,7 +76,7 @@ public class DarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,6 +18,7 @@ import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.Glitch;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.relics.DragonRelicB;
 
 public class CyberDragon extends DuelistCard 
 {
@@ -132,6 +134,14 @@ public class CyberDragon extends DuelistCard
 		if (tributingCard.hasTag(Tags.MACHINE))
 		{
 			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
+		
+		if (tributingCard.hasTag(Tags.DRAGON) && AbstractDungeon.player.hasRelic(DragonRelicB.ID))
+		{
+			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
+			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
+			if (AbstractDungeon.player.getRelic(DragonRelicB.ID).counter == 1) { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 0; }
+			else { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 1; }
 		}
 	}
 

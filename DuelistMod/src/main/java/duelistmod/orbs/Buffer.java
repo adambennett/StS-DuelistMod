@@ -67,7 +67,7 @@ public class Buffer extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		/*applyFocus();
+		applyFocus();
 		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
 		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
@@ -81,10 +81,8 @@ public class Buffer extends DuelistOrb
 		if (roll < rollCheck)
 		{
 			this.triggerPassiveEffect();
-		}*/
-		
-		applyFocus();
-		triggerPassiveEffect();
+		}
+
 	}
 
 	private void triggerPassiveEffect()
@@ -117,8 +115,8 @@ public class Buffer extends DuelistOrb
 				{
 					if (buff.name.equals("Summons"))
 					{
-						DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
-						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
+						//DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
+						//if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
 					}
 					else if (buff.name.equals("Jam Breeding Machine"))
 					{

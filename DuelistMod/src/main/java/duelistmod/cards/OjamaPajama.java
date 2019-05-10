@@ -28,14 +28,14 @@ public class OjamaPajama extends DuelistCard
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 0;
 
     // /STAT DECLARATION/
 
     public OjamaPajama() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.TRAP);
         this.tags.add(Tags.OJAMA);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 4;

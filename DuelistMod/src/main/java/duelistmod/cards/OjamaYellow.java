@@ -55,7 +55,7 @@ public class OjamaYellow extends DuelistCard
 		// Add random cards to hand
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.MONSTER);
 			if (upgraded) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, true, true, 1, 2, 0, 2, 0, 2)); }
 			else { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, true, randomMonster.baseTributes > 0, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 1, 0, 1)); }
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }

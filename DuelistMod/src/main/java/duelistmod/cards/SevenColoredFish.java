@@ -90,7 +90,7 @@ public class SevenColoredFish extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.originalName.equals("Legendary Fisherman")) { draw(2); }
+		if (tributingCard.originalName.equals("Legendary Fisherman")) { drawTag(2, Tags.AQUA); }
 		
 		// Aqua Tribute
 		if (tributingCard.hasTag(Tags.AQUA))

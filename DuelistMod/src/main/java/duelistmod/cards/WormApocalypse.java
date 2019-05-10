@@ -46,7 +46,7 @@ public class WormApocalypse extends DuelistCard
     {
     	summon(p, this.summons, this);
     	block(this.block);
-    	DuelistCard randSpell = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELL);
+    	DuelistCard randSpell = (DuelistCard) returnTrulyRandomInCombatFromSet(Tags.SPELL);
     	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randSpell, this.upgraded, true, false, true, false, false, false, false, 0, 2, 0, 0, 0, 0));
     }
 

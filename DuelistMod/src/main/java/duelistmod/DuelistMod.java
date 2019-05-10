@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
 import com.megacrit.cardcrawl.core.*;
@@ -188,6 +189,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static String exodiaRightArmString = "";
 	public static String exodiaLeftLegString = "";
 	public static String exodiaRightLegString = "";	
+	
 	// Maps and Lists
 	public static HashMap<String, DuelistCard> summonMap = new HashMap<String, DuelistCard>();
 	public static HashMap<String, AbstractPower> buffMap = new HashMap<String, AbstractPower>();
@@ -208,6 +210,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static ArrayList<String> startingDecks = new ArrayList<String>();
 	public static ArrayList<String> randomBuffStrings = new ArrayList<String>();
 	public static ArrayList<DuelistCard> archetypeCards = new ArrayList<DuelistCard>();
+	public static ArrayList<CardTags> monsterTypes = new ArrayList<CardTags>();
+	public static ArrayList<CardTags> summonedTypesThisTurn = new ArrayList<CardTags>();
 	
 	// Global Flags
 	public static boolean toonWorldTemp = false;
@@ -225,6 +229,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean playedOneCardThisCombat = false;
 	public static boolean hasCardRewardRelic = false;
 	public static boolean shouldFill = true;
+	public static boolean dragonRelicBFlipper = false;
 	public static boolean playedSpellThisTurn = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
@@ -465,8 +470,20 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		duelistDefaults.setProperty(PROP_R_EXHAUST, "TRUE");
 		duelistDefaults.setProperty(PROP_ALWAYS_UPGRADE, "FALSE");
 		duelistDefaults.setProperty(PROP_NEVER_UPGRADE, "FALSE");
-
 		
+		monsterTypes.add(Tags.AQUA);
+		monsterTypes.add(Tags.DRAGON);
+		monsterTypes.add(Tags.FIEND);
+		monsterTypes.add(Tags.INSECT);
+		monsterTypes.add(Tags.MACHINE);
+		monsterTypes.add(Tags.NATURIA);
+		monsterTypes.add(Tags.PLANT);
+		monsterTypes.add(Tags.PREDAPLANT);
+		monsterTypes.add(Tags.SPELLCASTER);
+		monsterTypes.add(Tags.SUPERHEAVY);
+		monsterTypes.add(Tags.TOON);
+		monsterTypes.add(Tags.ZOMBIE);
+
 		cardSets.add("Standard"); 
 		cardSets.add("Basic + Deck Archetype");
 		cardSets.add("Basic Only");
@@ -670,6 +687,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		BaseMod.addRelicToCustomPool(new AquaRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new AquaRelicB(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new NatureRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new ZombieRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new DragonRelicB(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new RandomTributeMonsterRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST); }
@@ -701,6 +720,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		UnlockTracker.markRelicAsSeen(AquaRelic.ID);
 		UnlockTracker.markRelicAsSeen(AquaRelicB.ID);
 		UnlockTracker.markRelicAsSeen(NatureRelic.ID);
+		UnlockTracker.markRelicAsSeen(ZombieRelic.ID);
+		UnlockTracker.markRelicAsSeen(DragonRelicB.ID);
 		//UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
 		
 
@@ -871,7 +892,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		if (c.hasTag(Tags.ORB_CARD)) { return true; }
 		else { return false; }
 	}
-
+	
 	// HOOKS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
@@ -1161,6 +1182,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 				{
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
 					for (AbstractCard c : startingDeck) { newStartGroup.addToRandomSpot(c); }
+					if (AbstractDungeon.ascensionLevel >= 10) 
+					{
+						newStartGroup.addToRandomSpot(new AscendersBane());
+						UnlockTracker.markCardAsSeen("AscendersBane");
+					}
 					arg1.initializeDeck(newStartGroup);
 					arg1.sortAlphabetically(true);
 				}
@@ -1245,7 +1271,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			int handSize = AbstractDungeon.player.hand.size();
 			if (arg0.hasTag(Tags.SPELL) && handSize < 10)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(arg0.makeCopy(), arg0.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(arg0.makeStatEquivalentCopy(), arg0.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 			}
 		}
 		
@@ -1308,6 +1334,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		playedSpellThisTurn = false;
 		immortalInDiscard = false;
 		AbstractPlayer p = AbstractDungeon.player;
+		summonedTypesThisTurn = new ArrayList<CardTags>();
 		
 		// Fix tributes & summons that were modified for turn only
 		for (AbstractCard c : AbstractDungeon.player.discardPile.group)

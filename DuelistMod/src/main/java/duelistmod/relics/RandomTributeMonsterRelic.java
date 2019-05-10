@@ -28,8 +28,8 @@ public class RandomTributeMonsterRelic extends CustomRelic {
 	@Override
 	public void onEquip()
 	{
-		DuelistCard deckUpgradedTribs = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER);
-		while (deckUpgradedTribs.baseTributes < 1) { deckUpgradedTribs = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER); }
+		DuelistCard deckUpgradedTribs = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
+		while (deckUpgradedTribs.baseTributes < 1) { deckUpgradedTribs = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER); }
     	deckUpgradedTribs.modifyTributesPerm(-deckUpgradedTribs.baseTributes + 1);
     	AbstractDungeon.player.masterDeck.addToRandomSpot(deckUpgradedTribs);   	
 	}

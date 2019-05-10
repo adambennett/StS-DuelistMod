@@ -33,7 +33,7 @@
 },
 "theDuelist:GreedShardPower": {
         "NAME": "Shard of Greed",
-        "DESCRIPTIONS": ["Every 3 turns, draw ", " extra card at the start of turn. TURN: #b"]
+        "DESCRIPTIONS": ["At the start of turn, draw #b", " monster.", " monsters."]
 },
 "theDuelist:MirrorPower": {
         "NAME": "Mirror Force",

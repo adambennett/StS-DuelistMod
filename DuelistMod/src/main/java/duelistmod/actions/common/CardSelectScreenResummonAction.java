@@ -153,8 +153,6 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				{
 					DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
 				}
-				//this.p.hand.refreshHandLayout();
-				//this.p.hand.applyPowers();
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();

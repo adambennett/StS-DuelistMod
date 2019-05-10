@@ -1,5 +1,7 @@
 package duelistmod.cards.tokens;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,7 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.relics.AquaRelicB;
@@ -49,6 +51,21 @@ public class AquaToken extends DuelistCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
+    	ArrayList<AbstractCard> handDrags = new ArrayList<AbstractCard>();
+    	for (AbstractCard c : player().hand.group)
+    	{
+    		if (!c.uuid.equals(this.uuid) && c instanceof DuelistCard)
+    		{
+    			DuelistCard dC = (DuelistCard)c;
+    			if (dC.summons > 0) { handDrags.add(c); }
+    		}
+    	}
+    	
+    	if (handDrags.size() > 0)
+    	{
+    		DuelistCard card = (DuelistCard) handDrags.get(AbstractDungeon.cardRandomRng.random(handDrags.size() - 1));
+    		AbstractDungeon.actionManager.addToTop(new ModifySummonAction(card, 1, false));
+    	}
     }
     @Override public AbstractCard makeCopy() { return new AquaToken(); }
 

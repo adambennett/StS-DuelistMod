@@ -435,26 +435,6 @@ public class Strings
 	public static final String ZOMBYRA = "cards/Zombyra.png";
 	// =============== /CARD IMAGES/ =======================================================================================================================================================
 	
-	// =============== ARCHETYPE CARD IMAGES =========================================================================================================================================================
-	public static final String BASIC_ARCH = "archetypes/Basic.png";
-	public static final String DRAGON_ARCH = "archetypes/Dragon.png";
-	public static final String EXODIA_ARCH = "archetypes/Exodia.png";
-	public static final String GOD_ARCH = "archetypes/God.png";
-	public static final String GUARDIAN_ARCH = "archetypes/Guardian.png";
-	public static final String INSECT_ARCH = "archetypes/Insect.png";
-	public static final String MAGNET_ARCH = "archetypes/Magnet.png";
-	public static final String NATURE_ARCH = "archetypes/Nature.png";
-	public static final String OJAMA_ARCH = "archetypes/Ojama.png";
-	public static final String PLANTS_ARCH = "archetypes/Plant.png";
-	public static final String POTS_ARCH = "archetypes/Pot.png";
-	public static final String RESUMMON_ARCH = "archetypes/Resummon.png";
-	public static final String SPELLCASTER_ARCH = "archetypes/Spellcaster.png";
-	public static final String SPELLS_ARCH = "archetypes/Spell.png";
-	public static final String SUPERHEAVY_ARCH = "archetypes/Superheavy.png";
-	public static final String TOON_ARCH = "archetypes/Toon.png";
-	public static final String TRAP_ARCH = "archetypes/Trap.png";
-	// =============== /ARCHETYPE CARD IMAGES/ =======================================================================================================================================================
-	
 	// =============== ORB CARD IMAGES =========================================================================================================================================================
 	public static final String AIR_ORB_CARD = "orbCards/AirCard.png";
 	public static final String BLACK_ORB_CARD = "orbCards/BlackCard.png";

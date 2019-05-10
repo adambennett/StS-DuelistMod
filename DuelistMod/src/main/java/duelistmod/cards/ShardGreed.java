@@ -1,15 +1,20 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
+import duelistmod.cards.typecards.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.GreedShardPower;
 
 public class ShardGreed extends DuelistCard 
 {
@@ -43,7 +48,30 @@ public class ShardGreed extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!p.hasPower(GreedShardPower.POWER_ID)) { applyPower(new GreedShardPower(p, p), p); }
+    	if (!p.hasPower(GreedShardPower.POWER_ID))
+    	{
+	    	ArrayList<DuelistCard> types = new ArrayList<DuelistCard>();
+	    	types.add(new AquaGreedShard(1));
+	    	types.add(new DragonGreedShard(1));
+	    	types.add(new FiendGreedShard(1));
+	    	types.add(new InsectGreedShard(1));
+	    	types.add(new MachineGreedShard(1));
+	    	types.add(new NaturiaGreedShard(1));
+	    	types.add(new PlantGreedShard(1));
+	    	types.add(new PredaplantGreedShard(1));
+	    	types.add(new SpellcasterGreedShard(1));
+	    	types.add(new SuperheavyGreedShard(1));
+	    	types.add(new ToonGreedShard(1));
+	    	types.add(new ZombieGreedShard(1));
+	    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+    	}
+    	
+    	else
+    	{
+    		GreedShardPower pow = (GreedShardPower) p.getPower(GreedShardPower.POWER_ID);
+    		pow.amount++;
+    		pow.updateDescription();
+    	}
     }
 
 

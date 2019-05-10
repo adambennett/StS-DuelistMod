@@ -4,9 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 
-import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 
@@ -34,7 +33,7 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
 		this.duration = Settings.ACTION_DUR_FAST;
 		this.cardRef = c;
 		this.lowCostRoll = 1;
-		this.highCostRoll = 4;
+		this.highCostRoll = 3;
 		this.lowSummonRoll = 0;
 		this.highSummonRoll = 2;
 		this.lowTributeRoll = 0;
@@ -50,7 +49,7 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
 		this.duration = Settings.ACTION_DUR_FAST;
 		this.cardRef = c;
 		this.lowCostRoll = 1;
-		this.highCostRoll = 4;
+		this.highCostRoll = 3;
 		this.lowSummonRoll = 0;
 		this.highSummonRoll = 2;
 		this.lowTributeRoll = 0;
@@ -59,7 +58,7 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
 		this.summonChangeCombatCheck = false; 
 		if (extras)
 		{
-			this.upgradeCheck = true; 
+			this.upgradeCheck = false; 
 			this.etherealCheck = true; 
 			this.exhaustCheck = true; 
 			if (!DuelistMod.noCostChanges) { this.costChangeCheck = true; }
@@ -306,18 +305,7 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
     		}
     		
             c.initializeDescription();
-            
-            if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)
-            {
-            	AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c));
-            }
-            else
-            {
-            	if (DuelistMod.debug)
-            	{
-            		System.out.println("theDuelist:RandomizedHandAction:update() ---> got a hand size bigger than allowed, so skipped adding card to hand");
-            	}
-            }
+            AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c));            
             this.tickDuration();
         }
         this.isDone = true;

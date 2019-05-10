@@ -49,7 +49,7 @@ public class Sangan extends DuelistCard
     	attack(m, AFX, this.damage);
     	if (DuelistMod.spellsThisCombat.size() > 0)
     	{
-	    	DuelistCard randomSpell = (DuelistCard) DuelistMod.spellsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.spellsThisCombat.size() - 1)).makeCopy();
+	    	DuelistCard randomSpell = (DuelistCard) DuelistMod.spellsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.spellsThisCombat.size() - 1)).makeStatEquivalentCopy();
 	    	if (this.upgraded && randomSpell.cost > 0)
 	    	{
 		    	randomSpell.modifyCostForCombat(-randomSpell.cost);

@@ -68,7 +68,7 @@ public class Earth extends DuelistOrb
 	{
 		for (int i = 0; i < this.evokeAmount; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.SPELL);
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, true, true, true, false, false, false, false, false, 1, 2, 0, 0, 0, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 		}
@@ -85,7 +85,7 @@ public class Earth extends DuelistOrb
 	{
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.SPELL);
+			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
 		}

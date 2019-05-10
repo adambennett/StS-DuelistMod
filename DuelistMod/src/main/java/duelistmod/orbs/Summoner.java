@@ -27,12 +27,12 @@ public class Summoner extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 
-	public Summoner()
+	public Summoner(int passive)
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Summoner.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 1;
 		if (DuelistMod.challengeMode)
 		{
 			this.baseEvokeAmount = this.evokeAmount = 1;
@@ -50,7 +50,8 @@ public class Summoner extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		if (this.passiveAmount > 1) { this.description = DESC[0] + this.passiveAmount + DESC[3] + this.evokeAmount + DESC[2]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
 	}
 
 	@Override
@@ -115,7 +116,7 @@ public class Summoner extends DuelistOrb
 	@Override
 	public AbstractOrb makeCopy()
 	{
-		return new Summoner();
+		return new Summoner(this.basePassiveAmount);
 	}
 	
 	@Override

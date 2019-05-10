@@ -29,9 +29,9 @@
 			"At the start of combat, #ySummon a random amount of Bonanza Tokens and gain a random #yBuff.",
 			"At the start of combat, #ySummon #b5 Bonanza Tokens and add some random Duelist cards to your draw pile.",
 			"At the start of combat, #ySummon #b1 Orb Token and #yChannel #b1 of #b3 random Orbs.",
-			"At the start of combat, #ySummon #2 #yResummon Tokens.",
+			"At the start of combat, #ySummon #2 #yZombie Tokens.",
 			"At the start of combat, #yIncrement and #ySummon #b1 for each Act.",
-			"At the start of combat, #ySummon #b1 Exxod Token and draw #b2 extra cards.",
+			"At the start of combat, #ySummon #b1 Exodia Token and draw #b2 extra cards.",
 			"At the start of combat, #ySummon #b1 Puzzle Token and gain Gaze of Anubis.",
 			"At the start of combat, #ySummon a random amount #b(2-5) of Puzzle Tokens.",
 			"At the start of combat, #ySummon a random amount #b(2-4) of Puzzle Tokens."
@@ -209,7 +209,7 @@
 		"NAME": "Aqua Orb",
 		"FLAVOR": "A small blue sphere that smells a bit salty.",
 		"DESCRIPTIONS": [
-			"When you gain #ySummons from #yTributing an #yAqua, gain #b1 extra #ySummon.", "#ySynergy with #yAqua #yToken: NL #yTributes are also decreased by #b2."
+			"When you gain #ySummons from #yTributing an #yAqua, gain #b1 extra #ySummon. NL Synergy: #yAqua #yToken", "If the player has #yAqua #yToken, #yTributes are also decreased by #b2."
 		]
 	},
 	"theDuelist:AquaRelicB": {
@@ -238,6 +238,20 @@
 		"FLAVOR": "A small darkened token. It feels evil.",
 		"DESCRIPTIONS": [
 			"Move an additional card to your hand each time you #yTribute a #yFiend for another #yFiend."
+		]
+	},
+	"theDuelist:ZombieRelic": {
+		"NAME": "Lava Token",
+		"FLAVOR": "A smoldering, soot covered token. It's very hot!",
+		"DESCRIPTIONS": [
+			"Your #yLava orbs never deal less than #b5 damage."
+		]
+	},
+	"theDuelist:DragonRelicB": {
+		"NAME": "Dragon Pendant",
+		"FLAVOR": "A small necklace with a pendant shaped like a dragon.",
+		"DESCRIPTIONS": [
+			"Every other time you #yTribute a #yDragon for another #yDragon, draw #b1 #yRare card."
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {

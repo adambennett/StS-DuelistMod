@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -47,8 +48,7 @@ public class PuzzleHelper
             		//setDescription("IRONCLAD: At the start of combat, heal 1 HP for each Act.");
             	    break;
                 case THE_SILENT:      
-                	int floorB = AbstractDungeon.actNum;	
-                	DuelistCard.draw(floorB);
+                	DuelistCard.drawRare(1, CardRarity.RARE);
                 	//setDescription("SILENT: At the start of combat, draw 1 card for each Act.");
                     break;
                 case DEFECT:    
@@ -232,7 +232,7 @@ public class PuzzleHelper
 			
 			// Resummon Deck
 			case 14:				
-				DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Resummon Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Zombie Token", false);
 				break;
 					
 			// Increment Deck
@@ -244,7 +244,7 @@ public class PuzzleHelper
 				
 			// Exodia Deck
 			case 16:
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Exxod Token", false);
+				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Exodia Token", false);
 				DuelistCard.draw(2);
 				break;	
 			

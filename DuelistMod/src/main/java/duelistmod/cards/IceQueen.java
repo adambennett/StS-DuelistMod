@@ -5,11 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class IceQueen extends DuelistCard 
@@ -46,12 +45,12 @@ public class IceQueen extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	invert(2);
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-	    	AbstractOrb frost = new Frost();
-	    	channel(frost);
-    	}
+    	invertIceQueen(2, this.magicNumber);
+    	//for (int i = 0; i < this.magicNumber; i++)
+    	//{
+	   // 	AbstractOrb frost = new Frost();
+	    //	channel(frost);
+    	//}
     }
 
     // Which card to return when making a copy of this card.

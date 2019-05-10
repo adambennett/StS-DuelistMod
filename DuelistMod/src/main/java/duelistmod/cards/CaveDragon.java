@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,6 +13,7 @@ import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.relics.DragonRelicB;
 
 public class CaveDragon extends DuelistCard 
 {
@@ -80,6 +82,14 @@ public class CaveDragon extends DuelistCard
 		{ 
 			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
 			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
+		}
+		
+		if (tributingCard.hasTag(Tags.DRAGON) && AbstractDungeon.player.hasRelic(DragonRelicB.ID))
+		{
+			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
+			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
+			if (AbstractDungeon.player.getRelic(DragonRelicB.ID).counter == 1) { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 0; }
+			else { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 1; }
 		}
 	}
 

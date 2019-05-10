@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
+import duelistmod.relics.ZombieRelic;
 
 @SuppressWarnings("unused")
 public class Lava extends DuelistOrb
@@ -60,6 +61,10 @@ public class Lava extends DuelistOrb
 	{
 		applyFocus();
 		int damageRoll = AbstractDungeon.cardRandomRng.random(1, 12 + this.evokeAmount);
+		if (AbstractDungeon.player.hasRelic(ZombieRelic.ID))
+		{
+			damageRoll = AbstractDungeon.cardRandomRng.random(5, 12 + this.evokeAmount);
+		}
 		int enemiesCount = 0;
 		for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 		{

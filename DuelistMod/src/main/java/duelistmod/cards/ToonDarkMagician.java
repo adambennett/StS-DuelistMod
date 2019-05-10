@@ -47,6 +47,7 @@ public class ToonDarkMagician extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
+		this.magicNumber = this.baseMagicNumber = 1;
 	}
 
 	// Actions the card should do.
@@ -55,7 +56,7 @@ public class ToonDarkMagician extends DuelistCard
 	{
 		tribute(p, this.tributes, false, this);
 		damageThroughBlock(m, p, this.damage, AFX);
-		AbstractOrb summoner = new Summoner();
+		AbstractOrb summoner = new Summoner(this.magicNumber);
 		channel(summoner);
 	}
 

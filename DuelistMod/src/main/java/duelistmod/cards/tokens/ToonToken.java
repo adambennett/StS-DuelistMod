@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class ToonToken extends DuelistCard 
@@ -36,6 +36,7 @@ public class ToonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
     }
     public ToonToken(String tokenName) 
     { 
@@ -43,10 +44,12 @@ public class ToonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
+    	drawTag(this.magicNumber, Tags.TOON);
     }
     @Override public AbstractCard makeCopy() { return new ToonToken(); }
 

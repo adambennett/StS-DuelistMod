@@ -71,7 +71,7 @@ public class Smoke extends DuelistOrb
 
 	public void triggerPassiveEffect(DuelistCard c)
 	{
-		if (c.hasTag(Tags.MONSTER))
+		if (c.hasTag(Tags.MONSTER) && c.tributes > 0)
 		{
 			DuelistCard dragC = (DuelistCard)c;
 			dragC.changeTributesInBattle(this.passiveAmount, false);

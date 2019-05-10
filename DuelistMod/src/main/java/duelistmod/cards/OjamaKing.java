@@ -59,7 +59,7 @@ public class OjamaKing extends DuelistCard
 		// Add 5 random cards to hand, set cost to 0
 		for (int i = 0; i < RAND_CARDS; i++)
 		{
-			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+			AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeStatEquivalentCopy();
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, false, false, true, true, 1, 3, 0, 1, 1, 2));
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}

@@ -1,51 +1,47 @@
 package duelistmod.cards.incomplete;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class MagicalStone extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("FeatherPho");
+    public static final String ID = DuelistMod.makeID("MagicalStone");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.FEATHER_PHOENIX);
+    public static final String IMG = DuelistMod.makePath(Strings.MAGICAL_STONE);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    private static int pickup = 1;
     // /STAT DECLARATION/
 
     public MagicalStone() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.LIMITED);
-        this.magicNumber = this.baseMagicNumber = pickup;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       discardTop(this.magicNumber, false);
-       AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, this.magicNumber));
+       drawTag(this.magicNumber, Tags.SPELL);
     }
 
     // Which card to return when making a copy of this card.
@@ -57,12 +53,32 @@ public class MagicalStone extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeMagicNumber(1);
+        if (canUpgrade()) 
+        {
+        	if (this.timesUpgraded > 1) 
+        	{ 
+        		this.upgradeName(NAME + "+" + this.timesUpgraded); 
+        		this.upgradeMagicNumber(1); 
+        	}
+        	else if (this.timesUpgraded == 1)
+        	{
+        		this.upgradeName(NAME + "+" + this.timesUpgraded); 
+        		this.upgradeBaseCost(0);
+        	}
+	    	else
+	    	{ 
+	    		this.upgradeName(NAME + "+"); 
+	    		this.exhaust = false;
+	    	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	return true;
     }
 
 	@Override

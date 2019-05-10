@@ -40,7 +40,7 @@ public class GammaMagnet extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNETWARRIOR);
         this.tags.add(Tags.LIMITED);
-        this.draw = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
@@ -56,7 +56,7 @@ public class GammaMagnet extends DuelistCard
     	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }
     	
     	// Draw cards
-    	draw(this.draw);
+    	drawTag(this.magicNumber, Tags.MONSTER);
     }
 
     // Which card to return when making a copy of this card.
@@ -70,8 +70,7 @@ public class GammaMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
-            this.draw = 2;
+            this.upgradeMagicNumber(1);
             this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
@@ -97,18 +96,12 @@ public class GammaMagnet extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p)));
-    	draw(this.draw);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p)));
-    	draw(this.draw);
+		
 		
 	}
 

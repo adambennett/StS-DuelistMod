@@ -135,7 +135,7 @@ public class RandomActionHelper
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #ySpell to hand":
-				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.SPELL);
+				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpell, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
@@ -150,7 +150,7 @@ public class RandomActionHelper
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yTrap to hand":
-				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TRAP);
+				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.TRAP);
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomTrap, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
@@ -160,7 +160,7 @@ public class RandomActionHelper
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #yMonster to hand":
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER);
+				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, randomMonster.baseSummons > 0, false, true, 1, 3, 0, 0, 1, 2));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
@@ -189,11 +189,11 @@ public class RandomActionHelper
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#ySummon #b1":
-				DuelistCard.summon(AbstractDungeon.player, 1, new Token("Random Token"));
+				DuelistCard.summon(AbstractDungeon.player, 1, new Token("Glitch Token"));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#ySummon #b2":
-				DuelistCard.summon(AbstractDungeon.player, 2, new Token("Random Token"));
+				DuelistCard.summon(AbstractDungeon.player, 2, new Token("Glitch Token"));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#yIncrement #b1":
@@ -209,7 +209,7 @@ public class RandomActionHelper
 				// Add 5 random cards to hand, set cost to 0
 				for (int i = 0; i < RAND_CARDS; i++)
 				{
-					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeStatEquivalentCopy();
 					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, false, false, true, true, 1, 3, 0, 1, 1, 2));
 				}
 				

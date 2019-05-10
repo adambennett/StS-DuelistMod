@@ -29,7 +29,7 @@ public class HammerShot extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 3;
+    private static final int DAMAGE = 2;
     private static final int U_DMG = 1;
     // /STAT DECLARATION/
 

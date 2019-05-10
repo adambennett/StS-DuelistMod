@@ -51,7 +51,7 @@ public class MillenniumPuzzleShared extends CustomRelic {
 	        		setDescription("At the start of combat, heal 1 HP for each Act you have completed.");
 	        	    break;
 	            case THE_SILENT:            	
-	            	setDescription("At the start of combat, draw 1 card for each Act you have completed.");
+	            	setDescription("At the start of combat, draw 1 Rare.");
 	                break;
 	            case DEFECT:         	
 	            	setDescription("At the start of combat, increase your Orb slots by a random amount or gain Focus. Chosen randomly. The amount of Focus and Orb slots increases for each Act you complete.");

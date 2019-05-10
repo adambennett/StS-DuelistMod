@@ -3,6 +3,7 @@ package duelistmod.orbCards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -41,7 +42,8 @@ public class SummonerOrbCard extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractOrb orb = new Summoner();
+    	int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+    	AbstractOrb orb = new Summoner(roll);
     	channel(orb);
     }
     

@@ -146,7 +146,7 @@
   "theDuelist:Summoner": {
     "NAME": "Summoner",
     "DESCRIPTION": [
-      "#yPassive: At the end of turn, #ySummon #b", " Spellcaster Token. NL #yEvoke: #yIncrement #b", "."
+      "#yPassive: At the end of turn, #ySummon #b", " Spellcaster Token. NL #yEvoke: #yIncrement #b", ".", " Spellcaster Tokens. NL #yEvoke: #yIncrement #b"
     ]
   }
 }

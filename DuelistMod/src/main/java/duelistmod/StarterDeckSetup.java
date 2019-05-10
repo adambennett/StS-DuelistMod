@@ -7,8 +7,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import duelistmod.cards.*;
+import duelistmod.cards.incomplete.*;
 import duelistmod.interfaces.*;
-import duelistmod.patches.*;
+import duelistmod.patches.TheDuelistEnum;
 
 public class StarterDeckSetup {
 
@@ -16,26 +17,20 @@ public class StarterDeckSetup {
 	public static void initStarterDeckPool()
 	{
 		// Non-archetype Set
-		DuelistMod.basicCards = new ArrayList<DuelistCard>();
-		DuelistMod.basicCards.add(new AcidTrapHole());
+		DuelistMod.basicCards = new ArrayList<DuelistCard>();		
 		DuelistMod.basicCards.add(new AlphaMagnet());
 		DuelistMod.basicCards.add(new BetaMagnet());
 		DuelistMod.basicCards.add(new BlastJuggler());
-		DuelistMod.basicCards.add(new BlizzardWarrior());
-		DuelistMod.basicCards.add(new BottomlessTrapHole());
 		DuelistMod.basicCards.add(new CardDestruction());
 		DuelistMod.basicCards.add(new CannonSoldier());
 		DuelistMod.basicCards.add(new CastleWalls());
 		DuelistMod.basicCards.add(new CatapultTurtle());
 		DuelistMod.basicCards.add(new CelticGuardian());
-		DuelistMod.basicCards.add(new CheerfulCoffin());
 		DuelistMod.basicCards.add(new Cloning());
 		if (!DuelistMod.creatorBtnBool) {DuelistMod.basicCards.add(new DarkCreator()); }
 		DuelistMod.basicCards.add(new DarkFactory());
 		DuelistMod.basicCards.add(new DarkHole());
 		DuelistMod.basicCards.add(new DarkMirrorForce());
-		DuelistMod.basicCards.add(new DianKeto());
-		DuelistMod.basicCards.add(new FinalFlame());
 		DuelistMod.basicCards.add(new Fissure());
 		DuelistMod.basicCards.add(new FlameSwordsman());
 		DuelistMod.basicCards.add(new FortressWarrior());
@@ -52,8 +47,8 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new Kuriboh());
 		DuelistMod.basicCards.add(new LabyrinthWall());
 		DuelistMod.basicCards.add(new Mausoleum());
-		DuelistMod.basicCards.add(new MillenniumShield());
 		DuelistMod.basicCards.add(new MirrorForce());
+		DuelistMod.basicCards.add(new MillenniumShield());
 		DuelistMod.basicCards.add(new MonsterEgg());
 		DuelistMod.basicCards.add(new ObeliskTormentor());
 		DuelistMod.basicCards.add(new FeatherPho());
@@ -74,7 +69,6 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new StimPack());
 		DuelistMod.basicCards.add(new StormingMirrorForce());
 		DuelistMod.basicCards.add(new StrayLambs());
-		DuelistMod.basicCards.add(new SuperancientDinobeast());
 		DuelistMod.basicCards.add(new SwordsRevealing());
 		DuelistMod.basicCards.add(new Terraforming());
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); }
@@ -99,23 +93,23 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new BattleFootballer());
 		DuelistMod.basicCards.add(new EarthquakeGiant());
 		DuelistMod.basicCards.add(new EvilswarmHeliotrope());
-		DuelistMod.basicCards.add(new LegendaryFlameLord());
 		DuelistMod.basicCards.add(new WormApocalypse());
 		DuelistMod.basicCards.add(new WormBarses());
 		DuelistMod.basicCards.add(new WormWarlord());
 		DuelistMod.basicCards.add(new WormKing());
 		DuelistMod.basicCards.add(new ArmorBreaker());
-		DuelistMod.basicCards.add(new GauntletWarrior());
-		DuelistMod.basicCards.add(new CommandKnight());
-		DuelistMod.basicCards.add(new GaiaMidnight());
-		DuelistMod.basicCards.add(new DrivenDaredevil());
+		DuelistMod.basicCards.add(new GauntletWarrior());		
+		DuelistMod.basicCards.add(new GaiaMidnight());		
 		DuelistMod.basicCards.add(new GilfordLegend());
 		DuelistMod.basicCards.add(new ReinforcementsArmy());
 		DuelistMod.basicCards.add(new BlockGolem());
 		DuelistMod.basicCards.add(new DokiDoki());
 		DuelistMod.basicCards.add(new GiantSoldierSteel());
 		DuelistMod.basicCards.add(new RainbowJar());
-
+		DuelistMod.basicCards.add(new WingedKuriboh9());
+		DuelistMod.basicCards.add(new WingedKuriboh10());
+		DuelistMod.basicCards.add(new MagicalStone());
+		
 		DuelistMod.archetypeCards.addAll(DuelistMod.basicCards);
 		
 		// Dragon Deck && Old Dragon
@@ -170,6 +164,8 @@ public class StarterDeckSetup {
 		dragonCards.add(new TwinHeadedFire());
 		dragonCards.add(new DarkstormDragon());
 		dragonCards.add(new AncientGearGadjiltron());
+		dragonCards.add(new CheerfulCoffin());
+		dragonCards.add(new SuperancientDinobeast());
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());
@@ -237,6 +233,9 @@ public class StarterDeckSetup {
 		spellcasterCards.add(new MachineFactory());
 		spellcasterCards.add(new DarkPaladin());
 		spellcasterCards.add(new WhiteMagicalHat());
+		spellcasterCards.add(new LegendaryFlameLord());
+		spellcasterCards.add(new BlizzardWarrior());
+		spellcasterCards.add(new DianKeto());
 		if (!DuelistMod.exodiaBtnBool)
 		{
 			spellcasterCards.add(new ExodiaHead());
@@ -328,6 +327,9 @@ public class StarterDeckSetup {
 		natureCards.add(new HeartUnderdog());
 		natureCards.add(new RedMedicine());
 		natureCards.add(new PotDuality());
+		natureCards.add(new AcidTrapHole());
+		natureCards.add(new BottomlessTrapHole());
+		natureCards.add(new CheerfulCoffin());
 		//natureCards.add(new WorldTree());
 		//natureCards.add(new Predaplanet());
 		
@@ -372,7 +374,8 @@ public class StarterDeckSetup {
 		toonCards.add(new GracefulCharity());
 		toonCards.add(new SwordsConcealing());
 		toonCards.add(new TrapHole());
-		toonCards.add(new CardSafeReturn());
+		toonCards.add(new CheerfulCoffin());
+		toonCards.add(new DrivenDaredevil());
 		if (!DuelistMod.ojamaBtnBool)
 		{
 			toonCards.add(new OjamaRed());
@@ -427,7 +430,10 @@ public class StarterDeckSetup {
 		zombieCards.add(new TributeDoomed());
 		zombieCards.add(new PotDuality());
 		zombieCards.add(new SwordsBurning());
-		
+		zombieCards.add(new LegendaryFlameLord());
+		zombieCards.add(new AcidTrapHole());
+		zombieCards.add(new BottomlessTrapHole());
+		zombieCards.add(new DrivenDaredevil());
 		zombieDeck.fillPoolCards(DuelistMod.basicCards);
 		zombieDeck.fillPoolCards(zombieCards);		
 		zombieDeck.fillArchetypeCards(zombieCards);
@@ -459,6 +465,11 @@ public class StarterDeckSetup {
 		aquaCards.add(new Wingedtortoise());
 		aquaCards.add(new GemKnightAmethyst());
 		aquaCards.add(new ToadallyAwesome());
+		aquaCards.add(new SpikedGillman());
+		aquaCards.add(new TripodFish());
+		aquaCards.add(new AcidTrapHole());
+		aquaCards.add(new BottomlessTrapHole());
+		aquaCards.add(new CommandKnight());
 		aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
@@ -492,7 +503,7 @@ public class StarterDeckSetup {
 		fiendCards.add(new Tierra());
 		fiendCards.add(new GracefulCharity());
 		fiendCards.add(new MonsterReborn());
-		fiendCards.add(new CardSafeReturn());
+		//fiendCards.add(new CardSafeReturn());
 		fiendCards.add(new CallGrave());
 		fiendCards.add(new MiniPolymerization());
 		fiendCards.add(new TributeDoomed());
@@ -502,6 +513,10 @@ public class StarterDeckSetup {
 		fiendCards.add(new Doomdog());
 		fiendCards.add(new RedMirror());
 		fiendCards.add(new DarknessNeosphere());
+		fiendCards.add(new AcidTrapHole());
+		fiendCards.add(new BottomlessTrapHole());
+		fiendCards.add(new CheerfulCoffin());
+		fiendCards.add(new DrivenDaredevil());
 		fiendDeck.fillPoolCards(DuelistMod.basicCards);
 		fiendDeck.fillPoolCards(fiendCards);		
 		fiendDeck.fillArchetypeCards(fiendCards);
@@ -536,6 +551,7 @@ public class StarterDeckSetup {
 		machineCards.add(new TurretWarrior());
 		machineCards.add(new GadgetSoldier());
 		machineCards.add(new ExploderDragon());
+		machineCards.add(new DianKeto());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());

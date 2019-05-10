@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,7 +10,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.ModifyTributePermAction;
+import duelistmod.actions.common.*;
+import duelistmod.cards.typecards.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 
@@ -38,15 +41,9 @@ public class BadToken extends DuelistCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	
-    	DuelistCard deckUpgradedTribs = new BlueEyes();
-    	AbstractDungeon.actionManager.addToTop(new ModifyTributePermAction(deckUpgradedTribs, -2));
-    	AbstractDungeon.player.masterDeck.addToRandomSpot(deckUpgradedTribs);   	
     }
    
-    
-    
-    
-    
+
     @Override public AbstractCard makeCopy() { return new BadToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) {}
 	@Override public void onResummon(int summons) { }

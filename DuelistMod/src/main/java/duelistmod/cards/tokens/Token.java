@@ -45,7 +45,7 @@ public class Token extends DuelistCard
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, new Token("Resummoned Token"));
+    	summon(p, 1, this);
     	block(this.block);
     }
     @Override public AbstractCard makeCopy() { return new Token(); }

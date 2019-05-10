@@ -69,6 +69,7 @@ public class BookSecret extends DuelistCard
 		}
 		
 		channelRandom();
+		if (upgraded) { channelRandom(); }
     }
 
     // Which card to return when making a copy of this card.
@@ -82,8 +83,6 @@ public class BookSecret extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -49,6 +49,7 @@ public class Ojamuscle extends DuelistCard
 		tooltips = new ArrayList<>();
 		tooltips.add(new OjamaYellow());
 		this.originalName = this.name;
+		this.exhaust = true;
 		this.setupStartingCopies();
 	}
 
