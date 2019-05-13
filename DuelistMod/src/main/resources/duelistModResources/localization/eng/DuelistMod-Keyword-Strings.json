@@ -37,7 +37,7 @@
         "increment",
 		"Increment"
       ],      
-      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b2 turns."
+      "DESCRIPTION": "Increase your maximum #ySummons by the number given."
     },
     {
 	 "PROPER_NAME": "Buffer",
@@ -45,7 +45,7 @@
         "buffer",
 		"Buffer"
       ],     
-      "DESCRIPTION": "#yOrb: Increase your power stacks at the start of turn. #yEvoke gives random #ybuffs."
+      "DESCRIPTION": "yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b2 turns."
     },
     {
 	  "PROPER_NAME": "Summoner",
