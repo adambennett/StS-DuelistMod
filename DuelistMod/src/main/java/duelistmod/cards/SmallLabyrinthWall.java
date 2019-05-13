@@ -28,7 +28,7 @@ public class SmallLabyrinthWall extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int BLOCK = 15;
+    private static final int BLOCK = 12;
     private static final int UPGRADE_PLUS_BLK = 5;
     private boolean secondUpgrade = false;
     // /STAT DECLARATION/

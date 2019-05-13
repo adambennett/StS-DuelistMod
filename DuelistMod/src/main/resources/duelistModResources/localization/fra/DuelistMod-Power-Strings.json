@@ -319,6 +319,98 @@
         "NAME": "Jam Breeding Machine",
         "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
 	},
+	"theDuelist:DarknessNeospherePower": {
+        "NAME": "Darkness Neosphere",
+        "DESCRIPTIONS": ["At the end of turn, ALL enemies lose #b", " #yStrength and all monsters in your draw pile gain #b", " #yTribute.", " #yTributes."]
+	},
+	"theDuelist:RainbowCapturePower": {
+			"NAME": "Rainbow Capture Jar",
+			"DESCRIPTIONS": ["#y", " monsters played this turn are added back to your hand at the start of your next turn. #y", "s: "]
+	},
+	"theDuelist:ExplosiveMagicianPower": {
+			"NAME": "Explosive Magician",
+			"DESCRIPTIONS": ["For the next #b", " turn, lose #b", " turns, lose #b", " turn, heal #b", " turns, heal #b", " HP.",   ]
+	},
+	"theDuelist:RainbowKuribohPower": {
+			"NAME": "Rainbow Kuriboh",
+			"DESCRIPTIONS": ["Whenever you #ySummon a monster that does not match your deck archetype, deal #b", " damage to ALL enemies."  ]
+	},
+	"theDuelist:KuribohrnPower": {
+			"NAME": "Kuribohrn",
+			"DESCRIPTIONS": ["Whenver you #ySummon 2 different types of monsters in the same turn, randomly #yResummon a random #yZombie."  ]
+	},
+	"theDuelist:SpikedGillmanPower": {
+			"NAME": "Spiked Gillman",
+			"DESCRIPTIONS": ["Your #yAqua monsters deal an additional #b", " damage."  ]
+	},
+	"theDuelist:TripodFishPower": {
+			"NAME": "Tripod Fish",
+			"DESCRIPTIONS": ["Each time you #ySummon an #yAqua monster, add #b", " #yRandomized #yAqua monster into your draw pile, discard pile and exhaust pile.", " #yRandomized #yAqua monsters into your draw pile, discard pile and exhaust pile."  ]
+	},
+	"theDuelist:TradetoadPower": {
+			"NAME": "Tradetoad",
+			"DESCRIPTIONS": ["At the start of turn, #yExhaust one random card and draw #b", " card. Anytime you exhaust an Aqua monster with this effect, draw an additional card.", " cards. Anytime you exhaust an Aqua monster with this effect, draw an additional card."  ]
+	},
+	"theDuelist:DoubleSharkPower": {
+			"NAME": "Double Shark",
+			"DESCRIPTIONS": ["Whenever you #ySummon an #yAqua monster for the next #b", " turn, deal #b", " turns, deal #b", " damage to #b", " random enemy twice.", " random enemies twice."  ]
+	},
+	"theDuelist:AquaJetPower": {
+			"NAME": "Aqua Jet",
+			"DESCRIPTIONS": ["Your #yAqua monsters deal an additional #b", " damage. Each time you attack with an #yAqua monster, increase the extra damage by #b1. NL #yTurns #yRemaining: #b"  ]
+	},
+	"theDuelist:ForgottenTemplePower": {
+			"NAME": "Forgotten Temple",
+			"DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, increase the #ySummons of all #yAqua monsters in your draw pile by #b", "."  ]
+	},
+	"theDuelist:PoseidonWavePower": {
+			"NAME": "Poseidon Wave",
+			"DESCRIPTIONS": ["Whenever you would receive damage: if you have any #yAqua monsters summoned, #yTribute all of them and receive no damage."  ]
+	},
+	"theDuelist:WetlandsPower": {
+			"NAME": "Wetlands",
+			"DESCRIPTIONS": ["All non-Tribute #yAqua monsters deal #b", " extra damage and gain #b", " extra #yBlock."  ]
+	},
+	"theDuelist:DrillBarnaclePower": {
+			"NAME": "Drill Barnacle",
+			"DESCRIPTIONS": ["Whenever you draw an #yAqua monster, deal #b", " damage to ALL enemies."  ]
+	},
+	"theDuelist:DarklordSuperbiaPower": {
+			"NAME": "Darklord Superbia",
+			"DESCRIPTIONS": ["In #b", " turn, gain #b3 stacks of #y", " turns, gain #b3 stacks of #y"  ]
+	},
+	"theDuelist:SpellbookPowerPower": {
+			"NAME": "Spellbook of Power",
+			"DESCRIPTIONS": ["Whenever you #yTribute a #ySpellcaster for another, add #b", " #yRandomized #ySpellcaster to your hand.", " #yRandomized #ySpellcasters to your hand."  ]
+	},
+	"theDuelist:SpellbookKnowledgePower": {
+			"NAME": "Spellbook of Knowledge",
+			"DESCRIPTIONS": ["Whenever you #yTribute a #ySpellcaster for another, gain #b", " #yFocus."  ]
+	},
+	"theDuelist:SpellbookMiraclePower": {
+			"NAME": "Spellbook of Miracles",
+			"DESCRIPTIONS": ["Whenever you #yTribute a #ySpellcaster for another, #yInvert your next orb."  ]
+	},
+	"theDuelist:MagiciansLeftHandPower": {
+			"NAME": "Magician's Left Hand",
+			"DESCRIPTIONS": ["Whenever you #yInvert, gain #b", " #yFocus."  ]
+	},
+	"theDuelist:EnlightenmentPower": {
+			"NAME": "Enlightenment",
+			"DESCRIPTIONS": ["Whenever you #yTribute, have a chance to #yChannel a random orb."  ]
+	},
+	"theDuelist:EmpowermentPower": {
+			"NAME": "Empowerment",
+			"DESCRIPTIONS": ["Whenever you #yChannel an orb that fills your last orb slot, gain #b", " #yFocus."  ]
+	},
+	"theDuelist:DiffusionWaveMotionPower": {
+			"NAME": "Diffusion Wave Motion",
+			"DESCRIPTIONS": ["At the end of turn, have a chance to #yInvert your next orb."  ]
+	},
+	"theDuelist:BigEyePower": {
+			"NAME": "Big Eye",
+			"DESCRIPTIONS": ["While this monster is summoned, your draw pile is viewed in order."  ]
+	},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

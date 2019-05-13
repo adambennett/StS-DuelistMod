@@ -814,9 +814,9 @@
 		"NAME": "God Cards"
 	},
 	"theDuelist:GoldenApples": {
-		"DESCRIPTION": "Gain 1 Block for each monster you have summoned this combat.",
+		"DESCRIPTION": "Gain !M! Block for each monster you have summoned this combat.",
 		"NAME": "Golden Apples",
-		"UPGRADE_DESCRIPTION": "Gain 1 Block for each monster you have summoned this combat."
+		"UPGRADE_DESCRIPTION": "Gain !M! Block for each monster you have summoned this combat."
 	},
 	"theDuelist:GorgonicCerberus": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn.",
@@ -897,9 +897,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL If this monster is tributed, Summon 1 and gain !B! Block."
 	},
 	"theDuelist:HarpieFeather": {
-		"DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have.",
+		"DESCRIPTION": "Exhaust ALL Status cards in your discard pile.",
 		"NAME": "Harpie Feather Duster",
-		"UPGRADE_DESCRIPTION": "Gain Block equal to !M! times the number of buffs you have."
+		"UPGRADE_DESCRIPTION": "Exhaust ALL Status cards in your draw and discard piles."
 	},
 	"theDuelist:HeartUnderdog": {
 		"DESCRIPTION": "Whenever you draw a monster, draw 1 card.",

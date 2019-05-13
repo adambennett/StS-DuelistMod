@@ -1,24 +1,21 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class HarpieFeather extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("HarpieFeather");
+    public static final String ID = DuelistMod.makeID("HarpieFeather");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.HARPIE_FEATHER);
     public static final String NAME = cardStrings.NAME;
@@ -31,33 +28,38 @@ public class HarpieFeather extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public HarpieFeather() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.damage = this.baseDamage = 0;
-    	this.magicNumber = this.baseMagicNumber = 2;
     	this.originalName = this.name;
     	this.tags.add(Tags.SPELL);
-    	this.tags.add(Tags.REDUCED);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int totalPowered = 0;
-    	ArrayList<AbstractPower> playerPowers = AbstractDungeon.player.powers;
-		for (AbstractPower a : playerPowers)
-		{
-			if ((a.type == PowerType.BUFF) && !a.name.equals("Player Statistics")) 
-			{
-				totalPowered += this.magicNumber; 
-				if (DuelistMod.debug) { System.out.println("theDuelist:HarpieFeather:use() ---> found buff: " + a.name); }
-			}
-		}
-		block(totalPowered);
+    	for (AbstractCard c : p.discardPile.group)
+    	{
+    		if (c.type.equals(CardType.STATUS))
+    		{
+    			AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.discardPile));
+    		}
+    	}
+    	
+    	if (this.upgraded)
+    	{
+    		for (AbstractCard c : p.drawPile.group)
+        	{
+        		if (c.type.equals(CardType.STATUS))
+        		{
+        			AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile));
+        		}
+        	}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -71,8 +73,6 @@ public class HarpieFeather extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            //this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

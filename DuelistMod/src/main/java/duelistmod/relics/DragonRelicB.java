@@ -22,7 +22,7 @@ public class DragonRelicB extends CustomRelic {
 	
 	public DragonRelicB() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
-		this.counter = 0;
+		//this.counter = 0;
 	}
 	
 	@Override
@@ -36,8 +36,8 @@ public class DragonRelicB extends CustomRelic {
 	@Override
 	public void onTrigger() 
 	{
-		if (DuelistMod.dragonRelicBFlipper) { setCounter(1); }
-		else { setCounter(0); }
+		//if (DuelistMod.dragonRelicBFlipper) { setCounter(1); }
+		//else { setCounter(0); }
 	}
 	
 	
@@ -45,7 +45,7 @@ public class DragonRelicB extends CustomRelic {
 	public void onEquip()
 	{
 		setDescription();
-		this.counter = 0;
+		//this.counter = 0;
 	}
 	
 	@Override

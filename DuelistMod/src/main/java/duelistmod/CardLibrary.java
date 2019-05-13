@@ -178,7 +178,7 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new BlastJuggler());
 		DuelistMod.myCards.add(new MachineKing());
 		DuelistMod.myCards.add(new BookSecret());
-		DuelistMod.myCards.add(new HeavyStorm());
+		//DuelistMod.myCards.add(new HeavyStorm());
 		DuelistMod.myCards.add(new FogKing());
 		DuelistMod.myCards.add(new Lajinn());
 		DuelistMod.myCards.add(new KingYami());

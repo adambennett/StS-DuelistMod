@@ -382,6 +382,22 @@
     ],   
     "DESCRIPTION": "50% chance to trigger the action given after this keyword."
 	},
+	 {
+    "PROPER_NAME": "Metallicize",
+    "NAMES": [
+      "Metallicize",
+	  "metallicize"
+    ],   
+    "DESCRIPTION": "At the end of turn, gain #yBlock equal to the amount of #yMetallicize stacks you currently have."
+  },
+  {
+    "PROPER_NAME": "Tidal",
+    "NAMES": [
+      "Tidal",
+	  "tidal"
+    ],   
+    "DESCRIPTION": "When played, the power of one random effect of this card is increased by 1."
+  },
 	{
 		"DESCRIPTION": "#yOrb: Füge ALLEN Feinden Schaden zu, gewinne #yEnergy und #yBlock. NL #yGate ist von #yFocus nicht betroffen.",
 		"NAMES": [

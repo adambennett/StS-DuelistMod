@@ -29,7 +29,7 @@ public class ObeliskTormentor extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
 
@@ -41,7 +41,7 @@ public class ObeliskTormentor extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
-		this.baseMagicNumber = this.magicNumber = 6;
+		this.baseMagicNumber = this.magicNumber = 8;
     }
 
 
@@ -65,7 +65,7 @@ public class ObeliskTormentor extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeBaseCost(1);
             this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -37,6 +37,7 @@ public class GoldenApples extends DuelistCard
     	this.tags.add(Tags.INCREMENT_DECK);
     	this.incrementDeckCopies = 2;
 		this.originalName = this.name;
+		this.magicNumber = this.baseMagicNumber = 2;
 		this.setupStartingCopies();
     }
 
@@ -44,7 +45,7 @@ public class GoldenApples extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	block(DuelistMod.summonCombatCount);
+    	block(DuelistMod.summonCombatCount * this.magicNumber);
     }
 
 
@@ -59,7 +60,7 @@ public class GoldenApples extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
