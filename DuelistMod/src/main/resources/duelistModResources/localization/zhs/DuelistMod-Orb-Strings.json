@@ -1,204 +1,152 @@
 {
-	"theDuelist:Air": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，有机会#yChannel随机#yOrb。如果您目前召唤的唯一怪物是#yDragons，那么你有更高的机会。",
-			" #yEvoke：获得#b",
-			" #yOrb插槽。不受#yFocus的影响。",
-			" #yOrb插槽。不受#yFocus的影响。"
-		],
-		"NAME": "空气"
-	},
-	"theDuelist:Black": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，使用#b应用随机debuff",
-			" 堆叠到一个随机的敌人。 #yEvoke：将#yrandomized #yFiend添加到您的手中。",
-			" 堆叠到一个随机的敌人。 #yEvoke：将#yrandomized #yFiend添加到您的手中。"
-		],
-		"NAME": "黑色"
-	},
-	"theDuelist:Blaze": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，治疗#b",
-			" 惠普为每个怪物召唤了这场战斗。 #yEvoke：治愈#b",
-			" 惠普为每个怪物召唤了这场战斗。"
-		],
-		"NAME": "火焰"
-	},
-	"theDuelist:Buffer": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，增加#b",
-			" 随机#ybuff堆栈＃b1。 #yEvoke：获得持续#b的随机#ybuff",
-			" 转。"
-		],
-		"NAME": "缓冲"
-	},
-	"theDuelist:Consumer": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，＃yTribute #b",
-			" 并获得临时HP等于所有贡献的总能量成本。 #yEvoke：#yTribute all summons，获得一个等于tributed的随机#yBuff。"
-		],
-		"NAME": "消费者"
-	},
-	"theDuelist:DragonOrb": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，添加#b",
-			" #yrandomized #yDragon到你手上。 #yEvoke：改变#b的成本",
-			" 随机#yDragons在你的手中为0。"
-		],
-		"NAME": "DragonOrb"
-	},
-	"theDuelist:DragonPlusOrb": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，添加#b",
-			" #yrandomized #yDragon到你手上。 #yEvoke：改变#b的成本",
-			" 随机#yDragons在你的手中为0。"
-		],
-		"NAME": "DragonOrb"
-	},
-	"theDuelist:Earth": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，添加#b",
-			" #yrandomized #ySpells到你手上。 #yEvoke：添加#b",
-			" #yrandomized #ySpell到你手上。",
-			" #yrandomized #ySpells到你手上。",
-			" #yrandomized #ySpell到你手上。 #yEvoke：添加#b"
-		],
-		"NAME": "地球"
-	},
-	"theDuelist:FireOrb": {
-		"DESCRIPTION": [
-			"#yPassive：无论何时绘制#yDragon，都要按#b减少#yTribute成本",
-			" 为了这个回合。 #yEvoke：减少手中#yDrions的#yTribute成本，丢弃并耗尽#b",
-			" 为了这场战斗。"
-		],
-		"NAME": "火"
-	},
-	"theDuelist:Gadget": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，将#yRandomized #yTrap添加到您的手中。 #yEvoke：随机玩一个随机的#yTrap你已经在随机敌人身上玩过这个游戏。"
-		],
-		"NAME": "小工具"
-	},
-	"theDuelist:Gate": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，交易#b",
-			" 对所有敌人造成伤害，获得#b",
-			" 阻止，获得[E]。 #yEvoke：#ySummon #b",
-			" 随机#yGuardians。不受#yFocus的影响。"
-		],
-		"NAME": "门"
-	},
-	"theDuelist:Glitch": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，触发#b",
-			" 随机效应。 #yEvoke：触发#b",
-			" 随机效应。 #yLast #yEffects #yTriggered：",
-			" 随机效应。 #yLast #yEffects #yTriggered："
-		],
-		"NAME": "毛刺"
-	},
-	"theDuelist:Lava": {
-		"DESCRIPTION": [
-			"#yPassive：无论何时绘制#yZombie，都要按#b减少#yTribute成本",
-			" 为了这场战斗。 #yEvoke：对随机敌人造成随机伤害。以更高的召唤量造成更多伤害。"
-		],
-		"NAME": "岩浆"
-	},
-	"theDuelist:Metal": {
-		"DESCRIPTION": [
-			"#yPassive：在回合结束时，获得#yBlock等于此战斗中#ySpells的数量加#b",
-			"。 #yEvoke：获得#yMetallicize #b",
-			"。"
-		],
-		"NAME": "金属"
-	},
-	"theDuelist:MillenniumOrb": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，激活#yMillennium #yPuzzle。 #yEvoke：选择并添加#b",
-			" #yrandomized卡从您的甲板池到您的手中。"
-		],
-		"NAME": "千年宝珠"
-	},
-	"theDuelist:Mist": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，将#yRandomized #yAqua怪物添加到你的手中。 #yPassive：在回合结束时，增加你手中所有#yAqua怪物的召唤，弃掉堆积，并用#b排出堆积物",
-			"。 #yEvoke：#yTribute所有#yAqua怪物和#ySummon各自的随机怪物。获得一个随机的#yBuff等于#yAqua怪物#yTributed的数量。"
-		],
-		"NAME": "薄雾"
-	},
-	"theDuelist:MonsterOrb": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，添加#b",
-			" #yrandomized怪物到你手上。 #yEvoke：添加#b",
-			" #yrandomized怪物到你的手。",
-			" #yrandomized怪物到你的手。 #yEvoke：添加#b"
-		],
-		"NAME": "MonsterOrb"
-	},
-	"theDuelist:Mud": {
-		"DESCRIPTION": [
-			"#yPassive：在开始时，将#yRandomized #yPlant或#yInsect添加到您的手中。 #yEvoke：通过#b增加所有#yInsect和#yPlant怪物（无处不在）的传票",
-			" 为了这场战斗。"
-		],
-		"NAME": "泥"
-	},
-	"theDuelist:ReducerOrb": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，通过#b增加唤起量",
-			"。 #yEvoke：改变#b的成本",
-			" 你手中的随机牌为0。",
-			" 你手中的随机牌为0。"
-		],
-		"NAME": "减速器"
-	},
-	"theDuelist:Sand": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，应用#b",
-			" #ySlow给一个随机的敌人。 #yEvoke：应用#b",
-			" #ySlow对所有敌人。"
-		],
-		"NAME": "砂"
-	},
-	"theDuelist:Shadow": {
-		"DESCRIPTION": [
-			"#yPassive：在回合开始时，有＃b20％的机会#ySummon #b",
-			" [＃FF5252]暗影[＃FF5252]代币。 #yEvoke：#yResummon #b",
-			" 随机怪物从你丢弃的堆上随机敌人。",
-			" 随机怪物从你的丢弃堆上随机的怪物。",
-			" [＃FF5252]暗影[＃FF5252]代币。 #yEvoke：#yResummon #b"
-		],
-		"NAME": "阴影"
-	},
-	"theDuelist:Smoke": {
-		"DESCRIPTION": [
-			"#yPassive：当你画怪物的时候，用#b增加#yTribute成本",
-			" 并通过#b增加伤害",
-			" 为了这个回合。 #yEvoke：#yIncrement #b",
-			"。"
-		],
-		"NAME": "抽烟"
-	},
-	"theDuelist:Splash": {
-		"DESCRIPTION": [
-			"#yPassive：无论何时绘制#yAqua，都要按#b减少#yTribute成本",
-			" 为了这个回合。 #yEvoke：通过#b增加#yAqua怪物（无处不在）的召唤",
-			" 为了这场战斗。"
-		],
-		"NAME": "溅"
-	},
-	"theDuelist:Storm": {
-		"DESCRIPTION": [
-			"#yPassive：在开始时，将＃b1 #yRandomized Power卡添加到您的手中。 #yEvoke：如果你有任何空的Orb插槽，请消耗一个，并减少#b中所有怪物的#yTribute成本#b",
-			"。"
-		],
-		"NAME": "风暴"
-	},
-	"theDuelist:Summoner": {
-		"DESCRIPTION": [
-			"#yPassive：在回合结束时，＃ySummon #b",
-			" 施法者代币。 #yEvoke：#yIncrement #b",
-			"。"
-		],
-		"NAME": "召唤师"
-	}
+  "theDuelist:Gate": {
+    "NAME": "门",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时， 对所有敌人造成 #b", " 点伤害， 获得 #b", " 点格挡, 并获得 [E] 。 NL #y激发: #y召唤 #b", " 随机 #y守护者。 NL 不受 #y集中 影响。"
+    ]
+  },
+  "theDuelist:Buffer": {
+    "NAME": "增益",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时，有几率提升自己所有增益效果 #b", " 层。如果仅召唤#y魔法师族 在场，将有更高几率。NL #y激发: 获得1层随机 #y增益效果 持续 #b", " 回合。"
+    ]
+  },
+  "theDuelist:MonsterOrb": {
+    "NAME": "怪兽",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时， 将 #b", " 张 #y随机 #y怪兽 增加到手牌中。 NL #y激发: 将 #b", " 张 #y随机 怪兽增加到手牌中。", " #y随机 #y怪兽 增加到手牌中。 NL #y激发: 将 #b"
+    ]
+  },
+  "theDuelist:DragonOrb": {
+    "NAME": "龙族",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时，将 #b", " 张 #y随机 #y龙族 增加到手牌中。 NL #y激发: 将手牌中耗能为 #b", " 的随机 #y龙族变为0。"
+    ]
+  },
+   "theDuelist:DragonPlusOrb": {
+    "NAME": "龙族+",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时，将 #b", " 张 #y随机 #y龙族 增加到手牌中。 NL #y激发: 将手牌中耗能为 #b", " 的随机 #y龙族变为0。"
+    ]
+  },
+  "theDuelist:ReducerOrb": {
+    "NAME": "减速",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时， 增加此充能球的激发数值 #b", " 点。 NL #y激发: 将手牌中耗能为 #b", " 的随机牌变为0。", "的随机牌变为0。"
+    ]
+  },
+  "theDuelist:Earth": {
+    "NAME": "地属性",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时，将 #b", " 张 #y随机 #y魔法卡 增加到手牌中。 NL #y激发: 将 #b", " 张 #y随机 #y魔法卡 增加到手牌中。", "张 #y随机 #y魔法卡 增加到手牌中", " #y随机ized #ySpell to your hand。 NL #y激发: 将 #b "
+    ]
+  },
+  "theDuelist:Air": {
+    "NAME": "空气",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时， 有几率 #y生成 1个随机 #y充能球。如果仅召唤#y龙族 在场，将有更高几率。", " NL #y激发: 获得 #b", "个 #y充能球 栏位。 NL 不受 #y集中 影响。", "个 #y充能球 栏位。 NL 不受 #y集中 影响。"
+    ]
+  },
+  "theDuelist:Black": {
+    "NAME": "暗属性",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时， 有几率给予随机敌人 #b", " 个随机负面效果。如果仅召唤#y恶魔族 在场，将有更高几率。 NL #y激发: 将1张 #y随机 #y恶魔族 增加到手牌中。", "个随机负面效果。如果仅召唤#y恶魔族 在场，将有更高几率。 NL #y激发: 将1张 #y随机 #y恶魔族 增加到手牌中。"
+    ]
+  },
+  "theDuelist:FireOrb": {
+    "NAME": "火焰",
+    "DESCRIPTION": [
+      "#y被动: 每当抽到1张 #y龙族，本回合减少其 #y祭品 消耗 #b", "点。 NL #y激发: 本场战斗减少手牌，弃牌堆和消耗牌堆中的#y龙族 的#y祭品 消耗#b", "点。"
+    ]
+  },
+  "theDuelist:Glitch": {
+    "NAME": "故障",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时， 触发 #b", " 随机效果。 NL #y激发: 触发 #b", " 随机效果。如果仅召唤#y机械族 在场，触发效果2次。 NL #y持续  #y触发 #y效果: NL ", " 随机效果。如果仅召唤#y机械族 在场，触发效果2次。 NL #y持续  #y触发 #y效果: NL "
+    ]
+  },
+  "theDuelist:Shadow": {
+    "NAME": "影子",
+    "DESCRIPTION": [
+      "#y被动: 回合开始时， 有几率 #y召唤 #b", "个 [#FF5252]影子 [#FF5252]衍生物。如果仅召唤#y不死族 在场，将有更高几率。 NL #y激发:对随机敌人从弃牌堆中#y特殊召唤 #b", " 只随机怪兽。", "只随机怪兽。", "个 [#FF5252]影子 [#FF5252]衍生物。如果仅召唤#y不死族 在场，将有更高几率。 NL #y激发:对随机敌人从弃牌堆中#y特殊召唤 #b"
+    ]
+  },
+  "theDuelist:Splash": {
+    "NAME": "飞溅",
+    "DESCRIPTION": [
+	  "#y被动: 每当 抽到1张 #y水族，本回合减少其 #y祭品 消耗 #b", "点。 NL #y激发: 本场战斗提升所有#y水族 召唤数 #b", " 点。"
+    ]
+  },
+  "theDuelist:Blaze": {
+    "NAME": "烈焰",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时， 本场战斗每召唤过1只怪兽，有几率回复#b", " 生命。如果仅召唤#y魔法师族 在场，将有更高几率。 NL #y激发: 本场战斗每召唤过1只怪兽，回复 #b", "生命。"
+    ]
+  },
+  "theDuelist:Consumer": {
+    "NAME": "消费",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时， #y祭品 #b", " ，获得临时生命，数值等于祭品总耗能数乘祭品数。NL #y激发: #y祭品 所有召唤怪兽, 获得1个随机 #y增益效果，层数等于祭品数。"
+    ]
+  },
+  "theDuelist:Gadget": {
+    "NAME": "零件",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时，将 #b", " 张 #y随机 #y陷阱卡 增加到手牌中。。 NL #y激发: 对随机敌人打出随机1张本场战斗中打出过的 #y陷阱卡。"
+    ]
+  },
+  "theDuelist:Lava": {
+    "NAME": "熔岩",
+    "DESCRIPTION": [
+	  "#y被动: 每当抽到1张 #y龙族，本场战斗减少其 #y祭品 消耗 #b", "点。 NL #y激发: 队随即敌人造成1次随机数值伤害。 激发数值越高，造成伤害越高。"
+    ]
+  },
+  "theDuelist:MillenniumOrb": {
+    "NAME": "千年",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时，发动 #y千年 #y积木。 NL #y激发:从卡池中选择 #b", "张 #y随机牌增加到手牌中。 NL 此激发效果每3回合触发。"
+    ]
+  },
+  "theDuelist:Metal": {
+    "NAME": "金属",
+    "DESCRIPTION": [
+	  "#y被动: 回合结束时，获得 #y点格挡，数值等于本场战斗打出过的 #y魔法卡 数量额外加 #b", "。 NL #y激发: 获得 #b", "层 #y金属化。"
+    ]
+  },
+  "theDuelist:Mud": {
+    "NAME": "泥浆",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时，将 #b", " 张 #y随机 #y植物族 或 #y昆虫族 增加到手牌中。 NL #y激发: 本场战斗提升所有#y植物族 和 #y昆虫族 召唤数 #b", " 点。"
+    ]
+  },
+  "theDuelist:Mist": {
+    "NAME": "霞雾",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时，将 #b", " 张 #y随机 #y水族 增加到手牌中。  NL #y被动: 回合结束时，增加手牌，弃牌堆和消耗牌堆中的#y水族 的#y召唤数 #b", "点。 NL #y激发: #y祭品 所有 #y水族 怪兽，每有1只祭品，随机#y召唤 1只随机怪兽。 获得1个随机 #y增益效果，层数等于#y水族 怪兽#y祭品数。"
+    ]
+  },
+  "theDuelist:Sand": {
+    "NAME": "沙石",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时，给予随机敌人 #b", "层 #y缓慢。 NL #y激发: 给予所有敌人 #b", "层 #y缓慢。"
+    ]
+  },
+  "theDuelist:Smoke": {
+    "NAME": "烟雾",
+    "DESCRIPTION": [
+	  "#y被动: 每当抽到1只怪兽，本回合提升其 #y祭品 消耗 #b", "点，并提升#b", "点伤害。 NL #y激发: #y增殖 #b", "。"
+    ]
+  },
+  "theDuelist:Storm": {
+    "NAME": "风暴",
+    "DESCRIPTION": [
+	  "#y被动: 回合开始时， 将 #b1 张#y随机 能力牌增加到手牌中。 NL #y激发: 如果有空的充能球栏位，失去1个充能球栏位并减少抽牌堆中所有怪兽的#y祭品 消耗#b", "点。"
+    ]
+  },
+  "theDuelist:Summoner": {
+    "NAME": "召唤士",
+    "DESCRIPTION": [
+      "#y被动: 回合结束时， #y召唤 #b", "个魔法师衍生物。 NL #y激发: #y增殖 #b", ".", "魔法师衍生物。 NL #y激发: #y增殖 #b"。"
+    ]
+  }
 }
