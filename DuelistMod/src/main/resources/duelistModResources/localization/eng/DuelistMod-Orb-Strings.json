@@ -122,7 +122,7 @@
   "theDuelist:Mist": {
     "NAME": "Mist",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized #yAqua monster to your hand. NL #yPassive: At the end of turn, increase the summons of all #yAqua monsters in your hand, discard pile, and exhaust pile by #b", ". NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
+	  "#yPassive: At the start of turn, add #b", " #yRandomized #yAqua monster to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed.", " #yRandomized #yAqua monsters to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
     ]
   },
   "theDuelist:Sand": {

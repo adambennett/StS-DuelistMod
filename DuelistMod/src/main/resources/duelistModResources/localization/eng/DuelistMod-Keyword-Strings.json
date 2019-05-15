@@ -296,7 +296,7 @@
       "Mist",
 	  "mist"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, add a #yRandomized #yAqua monster to your hand. NL #yPassive: At the end of turn, increase the summons of all #yAqua monsters in your hand, discard pile, and exhaust pile by #b1. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
+    "DESCRIPTION": "#yOrb: At the start of turn, add a #yRandomized #yAqua monster to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
   },
   {
     "PROPER_NAME": "Sand",
@@ -403,6 +403,6 @@
     "NAMES": [
       "gate"
     ],   
-    "DESCRIPTION": "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yGate is unaffected by #yFocus."
+    "DESCRIPTION": "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yEvoke: Summon random Guardians. NL #yGate is unaffected by #yFocus."
   }
 ]
