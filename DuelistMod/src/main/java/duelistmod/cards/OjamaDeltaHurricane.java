@@ -60,7 +60,7 @@ public class OjamaDeltaHurricane extends DuelistCard
 		if (!upgraded) 
 		{
 			this.upgradeName();
-			this.upgradeBaseCost(1);
+			this.isInnate = true;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

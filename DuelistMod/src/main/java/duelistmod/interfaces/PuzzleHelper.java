@@ -154,21 +154,27 @@ public class PuzzleHelper
 					if (c instanceof DuelistCard)
 					{
 						DuelistCard dC = (DuelistCard)c;
-						if (dC.tributes > 0)
+						if (dC.hasTag(Tags.MONSTER))
 						{
-							totalTribs += dC.tributes;
+							if (dC.tributes > 0)
+							{
+								totalTribs += dC.tributes;
+							}
+							
+							if (c.damage > 0)
+							{
+								dmgCards.add(c);
+							}
 						}
 					}
 					
-					if (c.damage > 0)
-					{
-						dmgCards.add(c);
-					}
+					
 				}
 				
 				// Increase damage of a random damage card by totalTribs
-				if (totalTribs > 0)
+				if (totalTribs > 0 && dmgCards.size() > 0)
 				{
+					if (DuelistMod.debug) { DuelistMod.logger.info("Puzzle Helper::Fiend Deck Effect: total tributes in deck: " + totalTribs); }
 					AbstractCard randomDmg = dmgCards.get(AbstractDungeon.cardRandomRng.random(dmgCards.size() - 1));
 					AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomDmg.uuid, totalTribs));
 					AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));

@@ -50,8 +50,8 @@ public class Tierra extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute();
 		attack(m);
+		tribute();		
 		ArrayList<DuelistCard> handTribs = new ArrayList<DuelistCard>();
 		for (AbstractCard c : p.hand.group)
 		{

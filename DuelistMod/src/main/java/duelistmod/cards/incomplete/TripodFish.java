@@ -64,7 +64,6 @@ public class TripodFish extends DuelistCard
         {
         	this.upgradeName(); 
         	this.upgradeMagicNumber(1);
-        	this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

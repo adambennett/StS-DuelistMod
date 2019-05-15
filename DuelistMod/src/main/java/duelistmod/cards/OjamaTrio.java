@@ -38,6 +38,7 @@ public class OjamaTrio extends DuelistCard
         this.tags.add(Tags.OJAMA_DECK);
 		this.ojamaDeckCopies = 1;
 		this.originalName = this.name;
+		this.exhaust = true;
 		this.setupStartingCopies();
 	}
 

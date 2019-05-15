@@ -62,7 +62,6 @@ public class Jinzo extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBaseCost(2);
-            this.isInnate = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

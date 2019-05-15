@@ -83,6 +83,13 @@ public class PredaplantSpinodionaea extends DuelistCard
 		
 		// Check for Predaplant
 		if (tributingCard.hasTag(Tags.PREDAPLANT)) { applyPowerToSelf(new ThornsPower(player(), DuelistMod.predaplantThorns)); }
+		
+		// Unique Card Effect
+		if (tributingCard.hasTag(Tags.PLANT))
+		{
+			DuelistCard rand = (DuelistCard) returnTrulyRandomFromSet(Tags.PREDAPLANT);
+			addCardToHand(rand);
+		}
 	}
 
 

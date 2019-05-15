@@ -3403,8 +3403,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static AbstractCard returnTrulyRandomInCombatFromSet(CardTags setToFindFrom) 
 	{
-		AbstractCard c = AbstractDungeon.returnTrulyRandomCardInCombat();
-		while (!c.hasTag(setToFindFrom)) { c = AbstractDungeon.returnTrulyRandomCardInCombat(); }
+		AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
+		while (!c.hasTag(setToFindFrom)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
 		return c;
 	}
 
@@ -3426,6 +3426,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			return new Token();
 		}
+	}
+	
+	public static AbstractCard returnTrulyRandomDuelistCardInCombat() 
+	{
+		AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
+		while (!(c instanceof DuelistCard)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
+		return c;
 	}
 
 	public static AbstractCard returnTrulyRandomFromSets(CardTags setToFindFrom, CardTags anotherSetToFindFrom) 
@@ -3561,22 +3568,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		DuelistCard find = DuelistMod.summonMap.get(name);
 		if (find != null) { return (DuelistCard) find.makeCopy(); }
 		else { return new Token(); }
-	}
-	
-	public static void addRandomCardToHand()
-	{
-		if (AbstractDungeon.player.hand.group.size() < BaseMod.MAX_HAND_SIZE)
-		{
-			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeStatEquivalentCopy(), false));
-		}
-	}
-
-	public static void addRandomCardToHand0Cost()
-	{
-		if (AbstractDungeon.player.hand.group.size() < BaseMod.MAX_HAND_SIZE)
-		{
-			AbstractDungeon.actionManager.addToBottom(new Make0CostHandCardAction(AbstractDungeon.returnTrulyRandomCardInCombat().makeStatEquivalentCopy(), false));
-		}
 	}
 
 	// =============== /RANDOM CARD FUNCTIONS/ =======================================================================================================================================================

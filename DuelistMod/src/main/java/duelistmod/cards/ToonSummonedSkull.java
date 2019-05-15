@@ -58,8 +58,8 @@ public class ToonSummonedSkull extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
 		damageThroughBlock(m, p, this.damage, AFX);
+		tribute(p, this.tributes, false, this);		
 		applyPowerToSelf(new StrengthPower(p, this.magicNumber));
 	}
 

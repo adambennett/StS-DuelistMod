@@ -52,6 +52,7 @@ public class DarkCreator extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> randomCreatedCards = new ArrayList<DuelistCard>();
+    	ArrayList<String> randomCreatedCardNames = new ArrayList<String>();
     	tribute(p, this.tributes, false, this);
     	ArrayList<AbstractCard> drawPile = p.drawPile.group;
     	int drawPileSize = drawPile.size();
@@ -63,9 +64,10 @@ public class DarkCreator extends DuelistCard
     	if (loopCount > 50) { loopCount = 50; }
     	for (int i = 0; i < loopCount; i++)
 		{
-			DuelistCard card = (DuelistCard) returnTrulyRandomDuelistCard();
-			while (card.hasTag(Tags.NO_CREATOR) || randomCreatedCards.contains(card)) { card = (DuelistCard) returnTrulyRandomDuelistCard(); }
+			DuelistCard card = (DuelistCard) returnTrulyRandomDuelistCardInCombat();
+			while (card.rarity.equals(CardRarity.SPECIAL) || card.hasTag(Tags.TOKEN) || card.hasTag(Tags.NO_CREATOR) || randomCreatedCardNames.contains(card.originalName)) { card =  (DuelistCard) returnTrulyRandomDuelistCardInCombat(); }
 			randomCreatedCards.add(card);
+			randomCreatedCardNames.add(card.originalName);
 		}
 		for (DuelistCard c : randomCreatedCards) { AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, c, 1, true, false)); }
     }

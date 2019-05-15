@@ -33,7 +33,7 @@ public class CardDestructionAction extends AbstractGameAction
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) 
         {
-            AbstractCard c = DuelistCard.returnTrulyRandomDuelistCard().makeStatEquivalentCopy();
+            AbstractCard c = DuelistCard.returnTrulyRandomDuelistCardInCombat().makeStatEquivalentCopy();
             if (debugCardMode) { c = card; }
             if (upgrade)
             {

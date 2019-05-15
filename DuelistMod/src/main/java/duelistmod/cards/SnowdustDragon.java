@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -42,7 +41,7 @@ public class SnowdustDragon extends DuelistCard
     public SnowdustDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 18;
-        this.upgradeDmg = 5;
+        this.upgradeDmg = 6;
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -79,7 +78,6 @@ public class SnowdustDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
-            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

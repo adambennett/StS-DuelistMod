@@ -222,6 +222,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean gotBeastStr = false;
 	public static boolean gotMimicLv1 = false;
 	public static boolean gotMimicLv3 = false;
+	public static boolean trigFirePot = false;
+	public static boolean trigBeastStr = false;
+	public static boolean trigMimicLv1 = false;
+	public static boolean trigMimicLv3 = false;
 	public static boolean immortalInDiscard = false;
 	public static boolean upgradedMimicLv3 = false;
 	public static boolean giveUpgradedMimicLv3 = false;
@@ -918,7 +922,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		
 		if (gotFirePot)
 		{
-			gotFirePot = false;
+			trigFirePot = true;
 			AbstractPotion firePot = new FirePotion();
 	    	AbstractDungeon.actionManager.addToTop(new ObtainPotionAction(firePot));
 		}
@@ -927,14 +931,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		{
 			DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, beastStrSummons));
 			if (debug) { logger.info("got beast fangs strength buff flag, strength value is: " + beastStrSummons); }
-			gotBeastStr = false;
+			trigBeastStr = true;
 		}
 		
 		if (gotMimicLv3)
 		{			
 			if (upgradedMimicLv3) { DuelistCard.draw(4); }
 			else { DuelistCard.draw(5); }
-			gotMimicLv3 = false;
+			trigMimicLv3 = true;
 		}
 		else if (gotMimicLv1)
 		{			
@@ -945,7 +949,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 				DuelistCard.addCardToHand(mimic);
 			}			
 			
-			gotMimicLv1 = false;
+			trigMimicLv1 = true;
 		}
 
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
@@ -997,6 +1001,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		trapCombatCount = 0;
 		summonCombatCount = 0;
 		swordsPlayed = 0;
+		if (trigFirePot && gotFirePot) { gotFirePot = false; trigFirePot = false; }
+		if (trigBeastStr && gotBeastStr) { gotBeastStr = false; trigBeastStr = false; }
+		if (trigMimicLv1 && gotMimicLv1) { gotMimicLv1 = false; trigMimicLv1 = false; }
+		if (trigMimicLv3 && gotMimicLv3) { gotMimicLv3 = false; trigMimicLv3 = false; }
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);

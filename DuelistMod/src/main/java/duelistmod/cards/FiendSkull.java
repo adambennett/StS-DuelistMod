@@ -3,7 +3,6 @@ package duelistmod.cards;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,7 +12,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.relics.DragonRelicB;
 
@@ -56,8 +55,8 @@ public class FiendSkull extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
+		tribute(p, this.tributes, false, this);		
 		applyPower(new VulnerablePower(m, 3, true), m);
 	}
 

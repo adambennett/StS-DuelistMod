@@ -46,8 +46,8 @@ public class DarkMasterZorc extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
     	attack(m, this.baseAFX, this.damage);
+    	tribute(p, this.tributes, false, this);    	
     	for (int i = 0; i < 3; i++)
     	{
     		AbstractOrb dark = new Dark();

@@ -51,8 +51,8 @@ public class SkullArchfiend extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
+		tribute(p, this.tributes, false, this);		
 		for (AbstractCard c : p.discardPile.group)
 		{
 			if (c instanceof DuelistCard)

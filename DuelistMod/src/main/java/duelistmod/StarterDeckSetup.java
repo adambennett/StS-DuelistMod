@@ -21,7 +21,6 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new AlphaMagnet());
 		DuelistMod.basicCards.add(new BetaMagnet());		
 		DuelistMod.basicCards.add(new CardDestruction());
-		DuelistMod.basicCards.add(new CannonSoldier());
 		DuelistMod.basicCards.add(new CastleWalls());
 		DuelistMod.basicCards.add(new CatapultTurtle());
 		DuelistMod.basicCards.add(new CelticGuardian());

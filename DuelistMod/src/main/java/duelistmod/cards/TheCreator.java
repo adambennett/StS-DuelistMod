@@ -71,10 +71,10 @@ public class TheCreator extends DuelistCard
     		AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.discardPile, true));
     	}
     	
-    	// Add a 1 cost for combat, ethereal copy of EVERY Duelist Card to draw pile
-		for (DuelistCard card : DuelistMod.myCards)
+    	// Add a 1 cost for combat, ethereal copy of EVERY Duelist Card in pool to draw pile
+		for (AbstractCard card : DuelistMod.coloredCards)
 		{
-			if (card instanceof DuelistCard && !card.hasTag(Tags.NO_CREATOR)) 
+			if (card instanceof DuelistCard && !card.hasTag(Tags.NO_CREATOR) && !card.hasTag(Tags.TOKEN) && !card.rarity.equals(CardRarity.SPECIAL)) 
 			{
 				AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, card, 1, true, false));
 			}

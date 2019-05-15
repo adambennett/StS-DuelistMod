@@ -35,7 +35,6 @@ public class AxeDespair extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     private static final int STR_GAIN = 8;
-    private static final int UPGRADE_STR_GAIN = 1;
     // /STAT DECLARATION/
 
 
@@ -68,8 +67,7 @@ public class AxeDespair extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(UPGRADE_STR_GAIN);
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

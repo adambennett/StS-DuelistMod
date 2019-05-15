@@ -370,9 +370,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Consumer."
 	},
 	"theDuelist:ContractExodia": {
-		"DESCRIPTION": "Add 3 Randomized Exodia cards to your hand.",
+		"DESCRIPTION": "Add 3 Randomized Exodia cards to your hand. Exhaust.",
 		"NAME": "Contract with Exodia",
-		"UPGRADE_DESCRIPTION": "Add 3 Randomized Exodia cards to your hand."
+		"UPGRADE_DESCRIPTION": "Add 3 Randomized Exodia cards to your hand. Exhaust."
 	},
 	"theDuelist:CrystalOrbCard": {
 		"DESCRIPTION": "Channel a Crystal Orb.",
@@ -616,9 +616,9 @@
 		"UPGRADE_DESCRIPTION": "Immortal Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this kills an enemy, refund your tributes."
 	},
 	"theDuelist:FairyBox": {
-		"DESCRIPTION": "Add !M! Orb cards to your hand. NL Exhaust.",
+		"DESCRIPTION": "Add !M! random orb cards to your hand. NL Exhaust.",
 		"NAME": "Fairy Box",
-		"UPGRADE_DESCRIPTION": "Choose !M! Orb cards to add to your hand. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Choose !M! orb cards to add to your hand. NL Exhaust."
 	},
 	"theDuelist:FeatherPho": {
 		"DESCRIPTION": "Discard !M! card from your hand. Place !M! card from your discard pile into your hand.",
@@ -641,9 +641,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1 NL Set the cost of a random card in your discard pile to 0."
 	},
 	"theDuelist:FiendishChain": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Increase the Tribute of all monsters in your hand by !M!.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Increase the Tributes of all monsters in your hand by !M!.",
 		"NAME": "Fiendish Chain",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Increase the Tribute of all monsters in your hand by !M!."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Increase the Tributes of all monsters in your hand by !M!."
 	},
 	"theDuelist:FinalFlame": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
@@ -1022,7 +1022,7 @@
 	"theDuelist:Jinzo": {
 		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Traps cost 0.",
 		"NAME": "Jinzo",
-		"UPGRADE_DESCRIPTION": "Innate NL Machine NL Tribute !duelist:TRIB! NL Traps cost 0."
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Traps cost 0."
 	},
 	"theDuelist:JiraiGumo": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL 50% chance to deal !D! damage.",
@@ -1404,9 +1404,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! random buffs. NL Channel a Black."
 	},
 	"theDuelist:OjamaTrio": {
-		"DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand.",
+		"DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand. Exhaust.",
 		"NAME": "Ojama Trio",
-		"UPGRADE_DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand."
+		"UPGRADE_DESCRIPTION": "Add copies of Ojama Black, Yellow and Green to your hand. Exhaust."
 	},
 	"theDuelist:OjamaYellow": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Add !M! Randomized monster cards to your hand. Exhaust.",
@@ -1507,9 +1507,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Choose a powerful draw effect. NL Exhaust."
 	},
 	"theDuelist:PotGenerosity": {
-		"DESCRIPTION": "For !M! turns, each time you Summon, gain [R].",
+		"DESCRIPTION": "For !M! turns, each time you Summon gain [R].",
 		"NAME": "Pot of Generosity",
-		"UPGRADE_DESCRIPTION": "For !M! turns, each time you Summon, gain [R]."
+		"UPGRADE_DESCRIPTION": "For !M! turns, each time you Summon gain [R]."
 	},
 	"theDuelist:PotGreed": {
 		"DESCRIPTION": "Draw 2 cards. NL Exhaust.",
@@ -1560,9 +1560,9 @@
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Whenever you receive attack damage, apply !M! Poison to ALL enemies."
 	},
 	"theDuelist:PredaplantSpinodionaea": {
-		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this monster for an Insect or Plant, add a random Predaplant card to your hand.",
+		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this monster a Plant, add a random Predaplant card to your hand.",
 		"NAME": "P. Spinodionaea",
-		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this monster for an Insect or Plant, add a random Predaplant card to your hand."
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute this monster for a Plant, add a random Predaplant card to your hand."
 	},
 	"theDuelist:PredaplantToken": {
 		"DESCRIPTION": "Predaplant NL Summon 1 NL Gain 1 Thorns.",
@@ -1570,9 +1570,9 @@
 		"UPGRADE_DESCRIPTION": "Predaplant NL Summon 1 NL Gain 1 Thorns."
 	},
 	"theDuelist:Predaponics": {
-		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff.",
+		"DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply a random debuff.",
 		"NAME": "Predaponics",
-		"UPGRADE_DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply 1 random debuff."
+		"UPGRADE_DESCRIPTION": "Remove all Artifacts from an enemy. NL Apply !M! Poison. NL Apply a random debuff."
 	},
 	"theDuelist:Predapruning": {
 		"DESCRIPTION": "Choose !M! Plant monster to Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand.",
@@ -2017,9 +2017,9 @@
 		"UPGRADE_DESCRIPTION": "Innate NL Add a Randomized Field Spell to your hand. NL Exhaust."
 	},
 	"theDuelist:TheCreator": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of EVERY Duelist Card into your draw pile. Exempt.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of ALL Duelist cards in the current card pool into your draw pile. Exempt.",
 		"NAME": "The Creator",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of EVERY Duelist Card into your draw pile. Exempt."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust every card in your draw pile and discard pile. NL Put 1 cost, Ethereal copies of ALL Duelist cards in the current card pool into your draw pile. Exempt."
 	},
 	"theDuelist:ThousandEyesIdol": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Invert your next Orb.",
@@ -2213,9 +2213,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned."
 	},
 	"theDuelist:VioletCrystal": {
-		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison.",
+		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased.",
 		"NAME": "Violet Crystal",
-		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Whenever you apply Poison from Tributing an Insect or Plant, apply 2 extra Poison."
+		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased."
 	},
 	"theDuelist:WaterOrbCard": {
 		"DESCRIPTION": "Channel a Water Orb.",
@@ -2381,9 +2381,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tidal NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned."
 	},
 	"theDuelist:TripodFish": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Each time you Summon an Aqua monster, add !M! Randomized Aqua monster to your draw pile, discard pile and exhaust pile.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Each time you Summon an Aqua monster, add !M! Randomized Aqua monster to your draw pile, discard pile and exhaust pile.",
 		"NAME": "Tripod Fish",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Each time you Summon an Aqua monster, add !M! Randomized Aqua monsters to your draw pile, discard pile and exhaust pile."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Each time you Summon an Aqua monster, add !M! Randomized Aqua monsters to your draw pile, discard pile and exhaust pile."
 	},
 	"theDuelist:Tradetoad": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL At the start of turn, exhaust a card and draw !M! cards. Anytime you exhaust an Aqua monster with this effect, draw an additional card.",
