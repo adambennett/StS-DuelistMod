@@ -185,7 +185,7 @@
 },
 "theDuelist:VioletCrystalPower": {
         "NAME": "Violet Crystal",
-        "DESCRIPTIONS": ["Your #yInsects and #yPlants deal 50% more damage and gain 50% more block. Whenever you apply #yPoison from Tributing an #yInsect or #yPlant, apply 2 extra #yPoison." ]
+        "DESCRIPTIONS": ["Your #yInsects and #yPlants deal 50% more damage and gain 50% more block. #yInsect and #yPlant tributing effects are increased." ]
 },
 "theDuelist:YamiPower": {
         "NAME": "Yami",
