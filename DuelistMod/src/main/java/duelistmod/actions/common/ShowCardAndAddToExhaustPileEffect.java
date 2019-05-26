@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.CardPoofEffect;
 
+import duelistmod.DuelistMod;
+
 @SuppressWarnings("unused")
 public class ShowCardAndAddToExhaustPileEffect extends com.megacrit.cardcrawl.vfx.AbstractGameEffect
 {
@@ -19,7 +21,7 @@ public class ShowCardAndAddToExhaustPileEffect extends com.megacrit.cardcrawl.vf
 
 	public ShowCardAndAddToExhaustPileEffect(AbstractCard srcCard, float x, float y, boolean randomSpot, boolean cardOffset, boolean toBottom)
 	{
-		this.card = srcCard.makeStatEquivalentCopy();
+		this.card = cardCopy(srcCard);
 		this.cardOffset = cardOffset;
 		this.duration = 1.5F;
 		this.randomSpot = randomSpot;
@@ -34,7 +36,7 @@ public class ShowCardAndAddToExhaustPileEffect extends com.megacrit.cardcrawl.vf
 		AbstractDungeon.effectsQueue.add(new CardPoofEffect(this.card.target_x, this.card.target_y));
 		this.card.drawScale = 0.01F;
 		this.card.targetDrawScale = 1.0F;
-		com.megacrit.cardcrawl.core.CardCrawlGame.sound.play("CARD_OBTAIN");
+		com.megacrit.cardcrawl.core.CardCrawlGame.sound.play("CARD_EXHAUST");
 		if (toBottom) {
 			AbstractDungeon.player.exhaustPile.addToBottom(srcCard);
 		}
@@ -55,7 +57,7 @@ public class ShowCardAndAddToExhaustPileEffect extends com.megacrit.cardcrawl.vf
 	}
 
 	public ShowCardAndAddToExhaustPileEffect(AbstractCard srcCard, boolean randomSpot, boolean toBottom) {
-		this.card = srcCard.makeStatEquivalentCopy();
+		this.card = cardCopy(srcCard);
 		this.duration = 1.5F;
 		this.randomSpot = randomSpot;
 		this.card.target_x = MathUtils.random(Settings.WIDTH * 0.1F, Settings.WIDTH * 0.9F);
@@ -129,6 +131,18 @@ public class ShowCardAndAddToExhaustPileEffect extends com.megacrit.cardcrawl.vf
 		if (!this.isDone) {
 			this.card.render(sb);
 		}
+	}
+	
+	private AbstractCard cardCopy(AbstractCard c)
+	{
+		AbstractCard retCard = c.makeStatEquivalentCopy();
+		if (c.exhaust && !retCard.exhaust)
+		{
+			retCard.exhaust = true;
+			retCard.rawDescription = retCard.rawDescription + DuelistMod.exhaustForCardText;
+			retCard.initializeDescription();
+		}
+		return retCard;
 	}
 
 	public void dispose() {}

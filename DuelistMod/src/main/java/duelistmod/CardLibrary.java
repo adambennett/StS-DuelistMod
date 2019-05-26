@@ -487,6 +487,18 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new RageDeepSea());
 		DuelistMod.myCards.add(new SpearfishSoldier());
 		DuelistMod.myCards.add(new HydraViper());
+		DuelistMod.myCards.add(new AbyssWarrior());
+		DuelistMod.myCards.add(new AmphibiousBugroth());
+		DuelistMod.myCards.add(new BlizzardDefender());
+		DuelistMod.myCards.add(new Boneheimer());
+		DuelistMod.myCards.add(new CannonballSpearShellfish());
+		DuelistMod.myCards.add(new CrystalEmeraldTortoise());
+		DuelistMod.myCards.add(new DeepDiver());
+		DuelistMod.myCards.add(new CatShark());
+		DuelistMod.myCards.add(new BigWhale());
+		DuelistMod.myCards.add(new BlizzardThunderbird());
+		DuelistMod.myCards.add(new DiamondDust());
+		DuelistMod.myCards.add(new GoldenFlyingFish());
 		
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)

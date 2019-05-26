@@ -14,19 +14,19 @@
   "theDuelist:MonsterOrb": {
     "NAME": "MonsterOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized monster to your hand. NL #yEvoke: Add #b", " #yrandomized monsters to your hand.", " #yrandomized monsters to your hand. NL #yEvoke: Add #b"
+      "#yPassive: At the start of turn, add #b", " #yRandomized monster to your hand. NL #yEvoke: Add #b", " #yRandomized monsters to your hand.", " #yRandomized monsters to your hand. NL #yEvoke: Add #b"
     ]
   },
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
+      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
     ]
   },
    "theDuelist:DragonPlusOrb": {
     "NAME": "DragonOrb+",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
+      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
     ]
   },
   "theDuelist:ReducerOrb": {
@@ -38,7 +38,7 @@
   "theDuelist:Earth": {
     "NAME": "Earth",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yrandomized #ySpells to your hand. NL #yEvoke: Add #b", " #yrandomized #ySpell to your hand.", " #yrandomized #ySpells to your hand.", " #yrandomized #ySpell to your hand. NL #yEvoke: Add #b"
+      "#yPassive: At the start of turn, add #b", " #yRandomized #ySpells to your hand. NL #yEvoke: Add #b", " #yRandomized #ySpell to your hand.", " #yRandomized #ySpells to your hand.", " #yRandomized #ySpell to your hand. NL #yEvoke: Add #b"
     ]
   },
   "theDuelist:Air": {
@@ -50,7 +50,7 @@
   "theDuelist:Black": {
     "NAME": "Black",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to apply a random debuff with #b", " stack to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yrandomized #yFiend to your hand.", " stacks to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
+      "#yPassive: At the start of turn, have a chance to apply a random debuff with #b", " stack to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand.", " stacks to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand."
     ]
   },
   "theDuelist:FireOrb": {
@@ -104,7 +104,7 @@
   "theDuelist:MillenniumOrb": {
     "NAME": "Millennium Orb",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yrandomized cards from your deck pool into your hand."
+	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yRandomized cards from your deck pool into your hand."
     ]
   },
   "theDuelist:Metal": {

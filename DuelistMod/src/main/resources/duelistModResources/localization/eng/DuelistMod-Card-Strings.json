@@ -2306,9 +2306,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon 1 NL Roulette: Resummon a monster randomly from your discard pile."
 	},
 	"theDuelist:LostBlueBreaker": {
-		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Create and randomly Resummon !M! random Aqua monsters.",
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Create and randomly Resummon !M! random Aqua monsters. NL Exempt.",
 		"NAME": "Lost Blue Breaker",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Create and randomly Resummon !M! random Aqua monsters."
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Create and randomly Resummon !M! random Aqua monsters. NL Exempt."
 	},
 	"theDuelist:Wingedtortoise": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Increment !M!. NL Gain !B! Block.",
@@ -2366,19 +2366,19 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Your Aqua monsters deal an additional !M! damage."
 	},
 	"theDuelist:SwampFrog": {
-		"DESCRIPTION": "Aqua NL Tidal NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Swamp Frog",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tidal NL Summon !duelist:SUMM! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:SharkStickers": {
-		"DESCRIPTION": "Aqua NL Tidal NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Gold.",
+		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Gold.",
 		"NAME": "Shark Stickers",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tidal NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Gold."
+		"UPGRADE_DESCRIPTION": "Tidal Aqua NL NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Gold."
 	},
 	"theDuelist:RageDeepSea": {
-		"DESCRIPTION": "Aqua NL Tidal NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned.",
+		"DESCRIPTION": "Tidal Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned.",
 		"NAME": "Rage of the Deep",
-		"UPGRADE_DESCRIPTION": "Aqua NL Tidal NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned."
+		"UPGRADE_DESCRIPTION": "Tidal Aqua NL NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned."
 	},
 	"theDuelist:TripodFish": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Each time you Summon an Aqua monster, add !M! Randomized Aqua monster into your exhaust pile.",
@@ -2481,9 +2481,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Plated Armor."
 	},
 	"theDuelist:BlizzardDefender": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this card, draw a card.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, draw a card.",
 		"NAME": "Defender of Ice Barrier",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this card, draw a card."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL When you Tribute this monster, draw a card."
 	},
 	"theDuelist:Boneheimer": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -2492,7 +2492,7 @@
 	},
 	"theDuelist:CannonballSpearShellfish": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Increase the Summons of all Aqua monsters in your hand by !M! for the rest of combat. NL Exhaust.",
-		"NAME": "Cannonball Spear Shellfish",
+		"NAME": "Spear Shellfish",
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Increase the Summons of all Aqua monsters in your hand by !M! for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:CenterFrog": {
@@ -2511,9 +2511,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage for each Aqua monster in your draw pile and !M! damage for each Aqua monster you have summoned."
 	},
 	"theDuelist:DeepDiver": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Choose a Randomized Aqua monster to add to your hand. NL Add !M! copies to your draw pile and exhaust pile.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Choose a Randomized Aqua monster to add to your hand. NL Add !M! copies into your exhaust pile.",
 		"NAME": "Deep Diver",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Choose a Randomized Aqua monster to add to your hand. NL Add !M! copies to your draw pile and exhaust pile."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Choose a Randomized Aqua monster to add to your hand. NL Add !M! copies into your exhaust pile."
 	},
 	"theDuelist:DrillBarnacle": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Whenever you draw an Aqua monster, deal !M! damage to ALL enemies.",
@@ -2521,9 +2521,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Whenever you draw an Aqua monster, deal !M! damage to ALL enemies."
 	},
 	"theDuelist:SplashCapture": {
-		"DESCRIPTION": "Aqua NL Add !M! Randomized Aqua monsters to your hand and exhaust pile.",
+		"DESCRIPTION": "Add !M! Randomized Aqua monsters to your hand and exhaust pile.",
 		"NAME": "Splash Capture",
-		"UPGRADE_DESCRIPTION": "Aqua NL Add !M! Randomized Aqua monsters to your hand and exhaust pile."
+		"UPGRADE_DESCRIPTION": "Add !M! Randomized Aqua monsters to your hand and exhaust pile."
 	},
 	"theDuelist:CallAtlanteans": {
 		"DESCRIPTION": "Channel a Mist. NL Choose !M! random Aqua monsters to add into your exhaust pile. NL Exhaust.",
@@ -2541,9 +2541,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute ALL of your Aqua monsters. Summon a random monster and deal !D! damage to a random enemy for each Aqua tributed."
 	},
 	"theDuelist:BigWaveSmallWave": {
-		"DESCRIPTION": "Tribute all Aqua monsters and Resummon a random monster that costs that many tributes.",
+		"DESCRIPTION": "Tribute ALL Aqua monsters and Resummon a random monster that costs that many tributes.",
 		"NAME": "Big Wave Small Wave",
-		"UPGRADE_DESCRIPTION": "Tribute all Aqua monsters and Resummon a random upgraded monster that costs that many tributes."
+		"UPGRADE_DESCRIPTION": "Tribute ALL Aqua monsters and Resummon a random upgraded monster that costs that many tributes."
 	},
 	"theDuelist:CatShark": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",

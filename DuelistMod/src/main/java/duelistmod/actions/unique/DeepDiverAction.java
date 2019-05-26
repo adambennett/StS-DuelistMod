@@ -1,4 +1,4 @@
-package duelistmod.actions.common;
+package duelistmod.actions.unique;
 
 import java.util.*;
 
@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 import basemod.BaseMod;
 import duelistmod.*;
+import duelistmod.actions.common.ShowCardAndAddToExhaustPileEffect;
 import duelistmod.interfaces.DuelistCard;
 
-public class CardSelectScreenIntoHandAction extends AbstractGameAction
+public class DeepDiverAction extends AbstractGameAction
 {
 	private AbstractPlayer p;
 	private boolean upgrade;
@@ -36,8 +37,9 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	private int highTributeRoll = 0;
 	private boolean sendExtraToDiscard = false;
 	private boolean damageBlockRandomize = false;
+	private int amountToExhaust = 1;
   
-	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
+	public DeepDiverAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, int amount2)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -45,12 +47,13 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.amount = amount;
+		this.amountToExhaust = amount2;
 		this.cards = cardsToChooseFrom;
 		this.randomize = false;
 		this.sendExtraToDiscard = sendExtraToDiscard;
 	}
 	
-	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, boolean randomize, boolean combat)
+	public DeepDiverAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, boolean randomize, boolean combat, int amount2)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -58,6 +61,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.amount = amount;
+		this.amountToExhaust = amount2;
 		this.cards = cardsToChooseFrom;
 		this.randomize = randomize;
 		this.exhaustCheck = true;
@@ -76,7 +80,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.sendExtraToDiscard = sendExtraToDiscard;
 	}
 	
-	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange)
+	public DeepDiverAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, int amount2)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -84,6 +88,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.amount = amount;
+		this.amountToExhaust = amount2;
 		this.cards = cardsToChooseFrom;
 		this.randomize = true;
 		this.exhaustCheck = exhaust;
@@ -92,7 +97,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.sendExtraToDiscard = sendExtraToDiscard;
 	}
 	
-	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck)
+	public DeepDiverAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, int amount2)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -100,6 +105,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.amount = amount;
+		this.amountToExhaust = amount2;
 		this.cards = cardsToChooseFrom;
 		this.randomize = true;
 		this.exhaustCheck = exhaust;
@@ -110,7 +116,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.sendExtraToDiscard = sendExtraToDiscard;
 	}
 	
-	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
+	public DeepDiverAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, int amount2)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -118,6 +124,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.amount = amount;
+		this.amountToExhaust = amount2;
 		this.cards = cardsToChooseFrom;
 		this.randomize = true;
 		this.exhaustCheck = exhaust;
@@ -137,7 +144,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.sendExtraToDiscard = sendExtraToDiscard;
 	}
 	
-	public CardSelectScreenIntoHandAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
+	public DeepDiverAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, int amount2)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -145,6 +152,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.amount = amount;
+		this.amountToExhaust = amount2;
 		this.cards = cardsToChooseFrom;
 		this.randomize = true;
 		this.exhaustCheck = exhaust;
@@ -194,15 +202,15 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    			System.out.println("randomNum: " + randomNum);
 		    			if (costChangeCombatCheck)
 		    			{
-		    				int gridCardCost = gridCard.cost;
+		    				int gridCardBaseCost = gridCard.cost;
 		    				gridCard.modifyCostForCombat(-gridCard.cost + randomNum);
-			    			if (randomNum != gridCardCost) { gridCard.isCostModified = true; }
+			    			if (randomNum != gridCardBaseCost) { gridCard.isCostModified = true; }
 		    			}
 		    			else
 		    			{
-		    				int gridCardCost = gridCard.cost;
+		    				int gridCardBaseCost = gridCard.cost;
 		    				gridCard.modifyCostForTurn(-gridCard.cost + randomNum);
-		    				if (randomNum != gridCardCost) { gridCard.isCostModifiedForTurn = true; }
+		    				if (randomNum != gridCardBaseCost) { gridCard.isCostModifiedForTurn = true; }
 		    			}
 		    		}       
 		    		
@@ -266,7 +274,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 				tmp.addToTop(gridCard);
 				if (DuelistMod.debug)
 				{
-					System.out.println("theDuelist:CreatorIncarnateAction:update() ---> added " + gridCard.originalName + " into grid selection pool");
+					System.out.println("theDuelist:DeepDiverAction:update() ---> added " + gridCard.originalName + " into grid selection pool");
 				}
 			}
 			
@@ -278,12 +286,13 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
 					{
 						this.p.createHandIsFullDialog();
-						if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
+						if (sendExtraToDiscard) { this.p.discardPile.addToTop(cardCopy(c)); }
 					}
 					else
 					{
-						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
+						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(cardCopy(c)));
 					}
+					for (int i = 0; i < this.amountToExhaust; i++) { AbstractDungeon.effectList.add(new ShowCardAndAddToExhaustPileEffect(cardCopy(c), true, false)); }
 					this.p.hand.refreshHandLayout();
 					this.p.hand.applyPowers();
 				}
@@ -310,12 +319,13 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 				if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
 				{
 					this.p.createHandIsFullDialog();
-					if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
+					if (sendExtraToDiscard) { this.p.discardPile.addToTop(cardCopy(c)); }
 				}
 				else
 				{
-					AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
+					AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(cardCopy(c)));
 				}
+				for (int i = 0; i < this.amountToExhaust; i++) { AbstractDungeon.effectList.add(new ShowCardAndAddToExhaustPileEffect(cardCopy(c), true, false)); }
 				this.p.hand.refreshHandLayout();
 				this.p.hand.applyPowers();
 			}
@@ -323,5 +333,17 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 			this.p.hand.refreshHandLayout();
 		}
 		tickDuration();
+	}
+	
+	private AbstractCard cardCopy(AbstractCard c)
+	{
+		AbstractCard retCard = c.makeStatEquivalentCopy();
+		if (c.exhaust && !retCard.exhaust)
+		{
+			retCard.exhaust = true;
+			retCard.rawDescription = retCard.rawDescription + DuelistMod.exhaustForCardText;
+			retCard.initializeDescription();
+		}
+		return retCard;
 	}
 }

@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.incomplete;
 
 import java.util.ArrayList;
 
@@ -14,12 +14,12 @@ import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
-public class ComicHand extends DuelistCard 
+public class DiamondDust extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("ComicHand");
+    public static final String ID = DuelistMod.makeID("DiamondDust");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.COMIC_HAND);
+    public static final String IMG = DuelistMod.makeCardPath("DiamondDust.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -34,15 +34,13 @@ public class ComicHand extends DuelistCard
     private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public ComicHand() {
+    public DiamondDust() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL); 
-        this.tags.add(Tags.ALL);
-        //this.tags.add(Tags.TOON);
         this.misc = 0;
         this.originalName = this.name;
-        this.damage = this.baseDamage = 12;
-        this.upgradeDmg = 6;
+        this.damage = this.baseDamage = 7;
+        this.upgradeDmg = 3;
     }
 
     // Actions the card should do.
@@ -55,7 +53,7 @@ public class ComicHand extends DuelistCard
     	ArrayList<String> newSummonList = new ArrayList<String>();
     	for (String s : summonsList)
     	{
-    		if (DuelistMod.summonMap.get(s).hasTag(Tags.TOON))
+    		if (DuelistMod.summonMap.get(s).hasTag(Tags.AQUA))
     		{
     			tokens++;
     		}
@@ -76,15 +74,12 @@ public class ComicHand extends DuelistCard
     		AbstractMonster randomM = getRandomMonster();
     		attack(randomM, AFX, this.damage);
     	}
-    	
-    	
-
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ComicHand();
+        return new DiamondDust();
     }
 
     // Upgraded stats.
@@ -103,8 +98,6 @@ public class ComicHand extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 
 	@Override
 	public void onResummon(int summons) {

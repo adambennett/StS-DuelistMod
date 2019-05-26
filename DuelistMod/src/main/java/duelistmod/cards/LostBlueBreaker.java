@@ -3,14 +3,12 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.relics.AquaRelicB;
 
@@ -40,6 +38,7 @@ public class LostBlueBreaker extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 10;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();

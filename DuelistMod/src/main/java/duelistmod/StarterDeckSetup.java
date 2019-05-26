@@ -459,6 +459,18 @@ public class StarterDeckSetup {
 		aquaCards.add(new RageDeepSea());
 		aquaCards.add(new SpearfishSoldier());	
 		aquaCards.add(new HydraViper());
+		aquaCards.add(new AbyssWarrior());
+		aquaCards.add(new AmphibiousBugroth());
+		aquaCards.add(new BlizzardDefender());
+		aquaCards.add(new Boneheimer());
+		aquaCards.add(new CannonballSpearShellfish());
+		aquaCards.add(new CrystalEmeraldTortoise());
+		aquaCards.add(new DeepDiver());
+		aquaCards.add(new CatShark());
+		aquaCards.add(new BigWhale());
+		aquaCards.add(new BlizzardThunderbird());
+		aquaCards.add(new DiamondDust());
+		aquaCards.add(new GoldenFlyingFish());
 		aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);

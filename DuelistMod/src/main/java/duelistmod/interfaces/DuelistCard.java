@@ -218,6 +218,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			dCard.baseSummons = this.baseSummons;
 			dCard.isSummonModPerm = this.isSummonModPerm;
 			dCard.isTribModPerm = this.isTribModPerm;
+			dCard.exhaust = this.exhaust;
 		}
 		return card;
 	}
@@ -883,6 +884,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== MISC ACTION FUNCTIONS =========================================================================================================================================================
+	public AbstractCard makeFullCopy()
+	{
+		AbstractCard c = super.makeStatEquivalentCopy();
+		c.exhaust = this.exhaust;
+		return c;
+	}
+	
 	public static ArrayList<CardTags> getAllMonsterTypes(AbstractCard c)
 	{
 		ArrayList<CardTags> toRet = new ArrayList<CardTags>();
@@ -1103,12 +1111,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (!DuelistMod.summonedTypesThisTurn.contains(t))
 						{
 							DuelistMod.summonedTypesThisTurn.add(t);
-							if (DuelistMod.kuribohrnFlipper) 
-							{ 
-								DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-								fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+							if (player().hasPower(KuribohrnPower.POWER_ID))
+							{
+								if (DuelistMod.kuribohrnFlipper) 
+								{ 
+									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+								}
+								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 							}
-							DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 						}
 					}					
 					DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
@@ -1226,12 +1237,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (!DuelistMod.summonedTypesThisTurn.contains(t))
 							{
 								DuelistMod.summonedTypesThisTurn.add(t);
-								if (DuelistMod.kuribohrnFlipper) 
-								{ 
-									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+								if (player().hasPower(KuribohrnPower.POWER_ID))
+								{
+									if (DuelistMod.kuribohrnFlipper) 
+									{ 
+										DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+										fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+									}
+									DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 								}
-								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 							}
 						}
 						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
@@ -1378,12 +1392,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (!DuelistMod.summonedTypesThisTurn.contains(t))
 						{
 							DuelistMod.summonedTypesThisTurn.add(t);
-							if (DuelistMod.kuribohrnFlipper) 
-							{ 
-								DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-								fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+							if (player().hasPower(KuribohrnPower.POWER_ID))
+							{
+								if (DuelistMod.kuribohrnFlipper) 
+								{ 
+									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+								}
+								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 							}
-							DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 						}
 					}
 					DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
@@ -1490,12 +1507,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (!DuelistMod.summonedTypesThisTurn.contains(t))
 							{
 								DuelistMod.summonedTypesThisTurn.add(t);
-								if (DuelistMod.kuribohrnFlipper) 
-								{ 
-									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+								if (player().hasPower(KuribohrnPower.POWER_ID))
+								{
+									if (DuelistMod.kuribohrnFlipper) 
+									{ 
+										DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+										fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+									}
+									DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 								}
-								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 							}
 						}
 						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
@@ -1606,12 +1626,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (!DuelistMod.summonedTypesThisTurn.contains(t))
 						{
 							DuelistMod.summonedTypesThisTurn.add(t);
-							if (DuelistMod.kuribohrnFlipper) 
-							{ 
-								DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-								fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+							if (player().hasPower(KuribohrnPower.POWER_ID))
+							{
+								if (DuelistMod.kuribohrnFlipper) 
+								{ 
+									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+								}
+								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 							}
-							DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 						}
 						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
 					}
@@ -1723,12 +1746,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							if (!DuelistMod.summonedTypesThisTurn.contains(t))
 							{
 								DuelistMod.summonedTypesThisTurn.add(t);
-								if (DuelistMod.kuribohrnFlipper) 
-								{ 
-									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+								if (player().hasPower(KuribohrnPower.POWER_ID))
+								{
+									if (DuelistMod.kuribohrnFlipper) 
+									{ 
+										DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+										fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+									}
+									DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 								}
-								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 							}
 						}
 						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
@@ -1874,12 +1900,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (!DuelistMod.summonedTypesThisTurn.contains(t))
 					{
 						DuelistMod.summonedTypesThisTurn.add(t);
-						if (DuelistMod.kuribohrnFlipper) 
-						{ 
-							DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-							fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+						if (player().hasPower(KuribohrnPower.POWER_ID))
+						{
+							if (DuelistMod.kuribohrnFlipper) 
+							{ 
+								DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+								fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+							}
+							DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 						}
-						DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 					}
 				}
 				DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
@@ -1992,12 +2021,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (!DuelistMod.summonedTypesThisTurn.contains(t))
 						{
 							DuelistMod.summonedTypesThisTurn.add(t);
-							if (DuelistMod.kuribohrnFlipper) 
-							{ 
-								DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-								fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+							if (player().hasPower(KuribohrnPower.POWER_ID))
+							{
+								if (DuelistMod.kuribohrnFlipper) 
+								{ 
+									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
+									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
+								}
+								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 							}
-							DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
 						}
 					}
 					DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
