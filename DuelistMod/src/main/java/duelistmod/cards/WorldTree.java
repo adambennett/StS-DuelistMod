@@ -8,15 +8,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class WorldTree extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Yami");
+    public static final String ID = DuelistMod.makeID("WorldTree");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.YAMI);
+    public static final String IMG = DuelistMod.makeCardPath("World_Tree.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -32,16 +32,16 @@ public class WorldTree extends DuelistCard
 
     public WorldTree() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.FIELDSPELL);
         this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.tags.add(Tags.SPELL);   
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new YamiPower(p, p));
+    	applyPowerToSelf(new WorldTreePower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -52,13 +52,24 @@ public class WorldTree extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBaseCost(1);
+    public void upgrade() 
+    {
+        if (canUpgrade()) 
+        {
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+        	if (timesUpgraded == 1) { this.isInnate = true; }
+        	else { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber < 10) { return true; }
+    	else { return false; }
     }
 
 	@Override
@@ -67,7 +78,6 @@ public class WorldTree extends DuelistCard
 		// TODO Auto-generated method stub
 		
 	}
-
 
 	@Override
 	public void onResummon(int summons) {

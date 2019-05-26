@@ -1,8 +1,7 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -31,10 +30,10 @@ public class WingedDragonRa extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.FIRE;
+    //private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = -1;
     // /STAT DECLARATION/
 
@@ -48,7 +47,7 @@ public class WingedDragonRa extends DuelistCard
         this.misc = 0;
         this.tributes = this.baseTributes = 4;
 		this.originalName = this.name;
-		this.damage = this.baseDamage = 10;
+		//this.damage = this.baseDamage = 10;
     }
 
     // Actions the card should do.
@@ -56,7 +55,7 @@ public class WingedDragonRa extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attack(m, AFX, this.damage);
+    	//attack(m, AFX, this.damage);
     	if (getXEffect() > 0)
     	{
     		AbstractOrb mo = new MillenniumOrb(getXEffect());
@@ -77,7 +76,7 @@ public class WingedDragonRa extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeTributes(-1);
-            this.upgradeDamage(5);
+            //this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -130,8 +129,13 @@ public class WingedDragonRa extends DuelistCard
 		{
 			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
 			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
-			if (AbstractDungeon.player.getRelic(DragonRelicB.ID).counter == 1) { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 0; }
-			else { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 1; }
+		}
+		
+		if (tributingCard.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
+		{
+			TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
+			power.amount2++;
+			power.updateDescription();
 		}
 	}
 

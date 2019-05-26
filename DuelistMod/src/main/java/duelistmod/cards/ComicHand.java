@@ -38,7 +38,7 @@ public class ComicHand extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL); 
         this.tags.add(Tags.ALL);
-        this.tags.add(Tags.TOON);
+        //this.tags.add(Tags.TOON);
         this.misc = 0;
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
@@ -68,6 +68,7 @@ public class ComicHand extends DuelistCard
     	tributeChecker(player(), tokens, this, false);
     	summonsInstance.summonList = newSummonList;
     	summonsInstance.amount -= tokens;
+    	//summonsInstance.updateDescription();
     	for (int i = 0; i < tokens; i++)
     	{
     		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
@@ -75,6 +76,8 @@ public class ComicHand extends DuelistCard
     		AbstractMonster randomM = getRandomMonster();
     		attack(randomM, AFX, this.damage);
     	}
+    	
+    	
 
     }
 

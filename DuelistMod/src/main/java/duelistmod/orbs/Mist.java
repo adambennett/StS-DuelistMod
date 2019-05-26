@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.actions.common.*;
 import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
@@ -54,7 +54,8 @@ public class Mist extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1];
+		if (this.passiveAmount > 1) { this.description = DESC[0] + this.passiveAmount + DESC[2]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[1]; }
 	}
 
 	@Override
@@ -83,6 +84,7 @@ public class Mist extends DuelistOrb
 	    	DuelistCard.tributeChecker(p, tokens, new Token(), false);
 	    	summonsInstance.summonList = newSummonList;
 	    	summonsInstance.amount -= tokens;
+	    	//summonsInstance.updateDescription();
 	    	DuelistCard.applyRandomBuffPlayer(p, tokens, false);
 	    	for (int i = 0; i < tokens; i++)
 	    	{
@@ -96,44 +98,20 @@ public class Mist extends DuelistOrb
 	public void onEndOfTurn()
 	{
 		checkFocus();
-		this.triggerPassiveEffect();
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		DuelistCard randomAqua = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAqua, false, true, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+		triggerPassiveEffect();
 	}
 
 	private void triggerPassiveEffect()
 	{
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
-		{
-			if (c.hasTag(Tags.AQUA))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeSummonsInBattle(this.passiveAmount, true);
-			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-		{
-			if (c.hasTag(Tags.AQUA))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeSummonsInBattle(this.passiveAmount, true);
-			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
-		{
-			if (c.hasTag(Tags.AQUA))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeSummonsInBattle(this.passiveAmount, true);
-			}
-		}
+		DuelistCard randomAquaHand = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
+		DuelistCard randomAquaExhaust = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
+		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAquaHand, false, true, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+		AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randomAquaExhaust, false, true, true, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
 	}
 
 	@Override

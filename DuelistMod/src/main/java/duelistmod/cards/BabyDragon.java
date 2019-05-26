@@ -1,6 +1,8 @@
 package duelistmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -91,8 +93,13 @@ public class BabyDragon extends DuelistCard
 		{
 			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
 			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
-			DragonRelicB drag = (DragonRelicB) AbstractDungeon.player.getRelic(DragonRelicB.ID);
-			drag.onTrigger();
+		}
+		
+		if (tributingCard.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
+		{
+			TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
+			power.amount2++;
+			power.updateDescription();
 		}
 	}
 

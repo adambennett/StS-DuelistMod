@@ -1,4 +1,4 @@
-package duelistmod.cards.incomplete;
+package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,15 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 
-public class SpikedGillman extends DuelistCard 
+public class DropOff extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("SpikedGillman");
+    public static final String ID = DuelistMod.makeID("DropOff");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("SpikedGillman.png");
+    public static final String IMG = DuelistMod.makeCardPath("DropOff.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -26,40 +24,37 @@ public class SpikedGillman extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final CardType TYPE = CardType.SKILL;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public SpikedGillman() {
+    public DropOff() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 5;
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.AQUA);
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.tags.add(Tags.TRAP);
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
-    	applyPowerToSelf(new SpikedGillmanPower(p, p, this.magicNumber));
+    	applyPowerToSelf(DuelistCard.getTypeAssociatedBuff(DuelistMod.lastTagSummoned, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new SpikedGillman();
+        return new DropOff();
     }
 
     // Upgraded stats.
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
@@ -69,37 +64,13 @@ public class SpikedGillman extends DuelistCard
         }
     }
     
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
-    }
-
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Aqua Tribute
-		if (tributingCard.hasTag(Tags.AQUA))
-		{
-			for (AbstractCard c : player().hand.group)
-			{
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.baseSummons > 0)
-					{
-						dC.modifySummonsForTurn(DuelistMod.aquaInc);
-					}
-					
-					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
-					{
-						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
-					}
-				}
-			}
-		}
+		// TODO Auto-generated method stub
+		
 	}
-
+	
 	@Override
 	public void onResummon(int summons) {
 		// TODO Auto-generated method stub

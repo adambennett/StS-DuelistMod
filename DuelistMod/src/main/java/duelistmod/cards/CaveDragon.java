@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -88,8 +89,13 @@ public class CaveDragon extends DuelistCard
 		{
 			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
 			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
-			if (AbstractDungeon.player.getRelic(DragonRelicB.ID).counter == 1) { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 0; }
-			else { AbstractDungeon.player.getRelic(DragonRelicB.ID).counter = 1; }
+		}
+		
+		if (tributingCard.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
+		{
+			TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
+			power.amount2++;
+			power.updateDescription();
 		}
 	}
 

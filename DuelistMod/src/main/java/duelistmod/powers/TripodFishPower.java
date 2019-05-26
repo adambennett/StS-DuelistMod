@@ -44,7 +44,7 @@ public class TripodFishPower extends AbstractPower implements IShufflePower
 	public void updateDescription() 
 	{
 		// Description Layout: Effect, singular, plural
-		if (this.amount > 2) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
+		if (this.amount > 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
 		else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
 
 	}

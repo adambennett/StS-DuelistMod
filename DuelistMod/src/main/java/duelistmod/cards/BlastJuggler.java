@@ -79,6 +79,7 @@ public class BlastJuggler extends DuelistCard
     	tributeChecker(player(), tokens, this, false);
     	summonsInstance.summonList = newSummonList;
     	summonsInstance.amount -= tokens;
+    	//summonsInstance.updateDescription();
     	for (int i = 0; i < tokens; i++)
     	{
     		AbstractMonster randomM = getRandomMonster();

@@ -64,7 +64,7 @@ public class CastleWallsBasic extends DuelistCard
         this.orbDeckCopies = 2;
         this.resummonDeckCopies = 2;
         this.healDeckCopies = 3;
-        this.aquaDeckCopies = 1;
+        this.aquaDeckCopies = 2;
         this.originalName = this.name;
         this.setupStartingCopies();
     }

@@ -22,19 +22,18 @@ public class CardLibrary {
 		return null;
 	}
 
-	public static void removeCardsFromSet()
+	public static void addCardsToGame()
 	{
-		int tempCardCount = 0;
 		for (DuelistCard c : DuelistMod.myCards) 
 		{ 
 			if ((!c.hasTag(Tags.RANDOMONLY) && (!c.hasTag(Tags.RANDOMONLY_NOCREATOR))))
 			{
 				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); DuelistMod.summonMap.put(c.originalName, c); 
-				if (!c.hasTag(Tags.TOKEN)) { tempCardCount++; }
 			}
 			else { if (!c.rarity.equals(CardRarity.SPECIAL)) { UnlockTracker.unlockCard(c.getID()); }}
 		}
 		
+		/*
 		if (!DuelistMod.fullDebug)
 		{
 			if (DuelistMod.exodiaBtnBool)
@@ -73,14 +72,13 @@ public class CardLibrary {
 				}
 			}
 		}
-		
-		DuelistMod.cardCount = tempCardCount;
+		*/
 		
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			config.setInt(DuelistMod.PROP_CARDS, DuelistMod.cardCount);
+			//config.setInt(DuelistMod.PROP_CARDS, DuelistMod.cardCount);
 			config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
 			//config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
 			config.setInt(DuelistMod.PROP_RESUMMON_DMG, DuelistMod.resummonDeckDamage);
@@ -470,6 +468,26 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new SpikedGillman());
 		DuelistMod.myCards.add(new TripodFish());
 		DuelistMod.myCards.add(new MagicalStone());
+		DuelistMod.myCards.add(new Kuribohrn());
+		DuelistMod.myCards.add(new BigWaveSmallWave());
+		DuelistMod.myCards.add(new DropOff());
+		DuelistMod.myCards.add(new GraydleSlimeJr());
+		DuelistMod.myCards.add(new FrillerRabca());
+		DuelistMod.myCards.add(new GiantRex());
+		DuelistMod.myCards.add(new IronhammerGiant());
+		DuelistMod.myCards.add(new GiantOrc());
+		DuelistMod.myCards.add(new ChaosAncientGearGiant());
+		DuelistMod.myCards.add(new PowerGiant());
+		DuelistMod.myCards.add(new DarkFusion());
+		DuelistMod.myCards.add(new WorldTree());
+		DuelistMod.myCards.add(new TyrantWing());
+		DuelistMod.myCards.add(new WhitefishSalvage());
+		
+		DuelistMod.cardCount = 0;
+		for (int i = 0; i < DuelistMod.myCards.size(); i++)
+		{
+			DuelistMod.cardCount++;
+		}
 		
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) { for (DuelistCard c : getTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}
@@ -507,6 +525,14 @@ public class CardLibrary {
 			for (DuelistCard orbCard : DuelistMod.orbCards) { DuelistMod.myCards.add(orbCard); }
 		}
 		// END DEBUG CARD STUFF
+		
+		try {
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setInt(DuelistMod.PROP_CARDS, DuelistMod.cardCount);
+			config.save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void setupOrbCards()
@@ -631,22 +657,21 @@ public class CardLibrary {
 		tokens.add(new RelicToken());
 		tokens.add(new PuzzleToken());
 		tokens.add(new BonanzaToken());		
-		//tokens.add(new AnubisToken());
-		//tokens.add(new GlitchToken());
-		//tokens.add(new SummonerToken());
-		//tokens.add(new PotToken());
-		//tokens.add(new BloodToken());
-		//tokens.add(new HaneToken());
 		//tokens.add(new OrbToken());
-		//tokens.add(new StimToken());
 		//tokens.add(new UnderdogToken());
 		//tokens.add(new TributeToken());
 		//tokens.add(new SummonToken());
 		//tokens.add(new GoldToken());
 		//tokens.add(new MagnetToken());
 		//tokens.add(new CocoonToken());
-		//tokens.add(new PotionToken());
 		//tokens.add(new GodToken());
+		//tokens.add(new PotionToken());
+		//tokens.add(new GlitchToken());
+		//tokens.add(new AnubisToken());
+		//tokens.add(new PotToken());
+		//tokens.add(new BloodToken());
+		//tokens.add(new HaneToken());
+		//tokens.add(new StimToken());
 		return tokens;
 	}
 

@@ -612,6 +612,7 @@ public class Strings
 	public static String configOjamania = "";
 	public static String configChannel = "";
 	public static String configLose1HP = "";
+	public static String configSummonsIconText = "";
 	// =============== /CONFIG STRINGS/ =======================================================================================================================================================
 
 }

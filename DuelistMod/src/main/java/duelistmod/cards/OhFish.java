@@ -38,11 +38,8 @@ public class OhFish extends DuelistCard
     public OhFish() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.AQUA_DECK);
-		this.aquaDeckCopies = 1;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
-		this.setupStartingCopies();
 	}
 
 	@Override
@@ -82,7 +79,7 @@ public class OhFish extends DuelistCard
 		if (!upgraded) 
 		{
 			upgradeName();
-			this.upgradeMagicNumber(2);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

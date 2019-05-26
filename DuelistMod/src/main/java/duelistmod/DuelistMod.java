@@ -47,6 +47,7 @@ import duelistmod.patches.*;
 import duelistmod.potions.*;
 import duelistmod.powers.*;
 import duelistmod.relics.*;
+import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
 
 
@@ -235,6 +236,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean shouldFill = true;
 	public static boolean dragonRelicBFlipper = false;
 	public static boolean playedSpellThisTurn = false;
+	public static boolean kuribohrnFlipper = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 
@@ -286,6 +288,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	// Other
 	public static TheDuelist duelistChar;
 	public static StarterDeck currentDeck;
+	public static CombatIconViewer combatIconViewer;
+	public static CardTags lastTagSummoned = Tags.DRAGON;
 	
 	// Config Menu
 	public static float yPos = 760.0f;
@@ -341,7 +345,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = false;			// print statements only, used in mod option panel
 	public static boolean debugMsg = false;			// for secret msg
-	public static final boolean addTokens = false;	// adds debug tokens to library
+	public static final boolean addTokens = true;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -374,6 +378,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 
     public static String makeEventPath(String resourcePath) {
         return makePath("events/" + resourcePath);
+    }
+    
+    public static String makeIconPath(String resourcePath) {
+        return makePath("icons/" + resourcePath);
     }
 
     // =============== /MAKE IMAGE PATHS/ =================
@@ -475,18 +483,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		duelistDefaults.setProperty(PROP_ALWAYS_UPGRADE, "FALSE");
 		duelistDefaults.setProperty(PROP_NEVER_UPGRADE, "FALSE");
 		
-		monsterTypes.add(Tags.AQUA);
-		monsterTypes.add(Tags.DRAGON);
-		monsterTypes.add(Tags.FIEND);
-		monsterTypes.add(Tags.INSECT);
-		monsterTypes.add(Tags.MACHINE);
-		monsterTypes.add(Tags.NATURIA);
-		monsterTypes.add(Tags.PLANT);
-		monsterTypes.add(Tags.PREDAPLANT);
-		monsterTypes.add(Tags.SPELLCASTER);
-		monsterTypes.add(Tags.SUPERHEAVY);
-		monsterTypes.add(Tags.TOON);
-		monsterTypes.add(Tags.ZOMBIE);
+		monsterTypes.add(Tags.AQUA);			// Spiked Gillman
+		monsterTypes.add(Tags.DRAGON);			// Strength
+		monsterTypes.add(Tags.FIEND);			// Doomdog
+		monsterTypes.add(Tags.INSECT);			// Cocoon
+		monsterTypes.add(Tags.MACHINE);			// Artifact
+		monsterTypes.add(Tags.NATURIA);			// Naturia
+		monsterTypes.add(Tags.PLANT);			// Constriction
+		monsterTypes.add(Tags.PREDAPLANT);		// Thorns
+		monsterTypes.add(Tags.SPELLCASTER);		// Focus
+		monsterTypes.add(Tags.SUPERHEAVY);		// Dexterity
+		monsterTypes.add(Tags.TOON);			// Retain
+		monsterTypes.add(Tags.ZOMBIE);			// Trap Hole
 
 		cardSets.add("Standard"); 
 		cardSets.add("Basic + Deck Archetype");
@@ -612,6 +620,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		settingsPanel = new ModPanel();
 		configPanelSetup();
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
+		combatIconViewer = new CombatIconViewer();
 		logger.info("Done loading badge Image and mod options");
 	}
 	// =============== / POST-INITIALIZE/ =================
@@ -740,18 +749,20 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	// ================ ADD CARDS ===================
 
 	@Override
-	public void receiveEditCards() {
-		//logger.info("Adding variables");
-		// Add the Custom Dynamic Variables
+	public void receiveEditCards() 
+	{
+		// ================ VARIABLES ===================
+		logger.info("adding variables");
 		BaseMod.addDynamicVariable(new TributeMagicNumber());
 		BaseMod.addDynamicVariable(new SummonMagicNumber());
+		logger.info("done adding variables");
 
 		// ================ ORB CARDS ===================
 		logger.info("adding orb cards to array for orb modal");
 		CardLibrary.setupOrbCards();
 		logger.info("done adding orb cards to array");
 		
-		// ================ LIBRARY CARDS ===================
+		// ================ PRIVATE LIBRARY SETUP ===================
 		logger.info("adding all cards to myCards array");
 		CardLibrary.setupMyCards();
 		logger.info("done adding all cards to myCards array");
@@ -770,24 +781,24 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		// ================ METRICS HELPER ===================
 		if (DuelistMod.debug)
 		{
-			logger.info("START SQL METRICS PRINT");
-			Debug.outputSQLListsForMetrics();
-			logger.info("END SQL METRICS PRINT");
+			//logger.info("START SQL METRICS PRINT");
+			//Debug.outputSQLListsForMetrics();
+			//logger.info("END SQL METRICS PRINT");
 			logger.info("checking for non-basic, non-archetype cards");
 			PoolHelpers.printNonDeckCards();
 			logger.info("done checking for non-basic, non-archetype cards");
 		}
 		
-		// ================ COMPENDIUM MANIPULATION ===================
-		logger.info("begin checking config options and removing cards");
-		CardLibrary.removeCardsFromSet();
-		logger.info("all needed cards have been removed from myCards array");
+		// ================ COMPENDIUM SETUP ===================
+		logger.info("begin checking config options and adding cards to the game");
+		CardLibrary.addCardsToGame();
+		logger.info("done adding cards to the game");
 		
 		// ================ COLORED CARDS ===================
-		logger.info("filling colored cards with necessary spells and traps to add to card reward/shop pool");
+		logger.info("filling colored cards array to use for reward pool");
 		PoolHelpers.fillColoredCards();
 		logger.info("done filling colored cards");
-		logger.info("done");
+		logger.info("done receiveEditCards()");
 	}
 
 	// ================ /ADD CARDS/ ===================
@@ -1197,6 +1208,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 					}
 					arg1.initializeDeck(newStartGroup);
 					arg1.sortAlphabetically(true);
+					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
 				}
 			}
 		}
@@ -1343,6 +1355,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		immortalInDiscard = false;
 		AbstractPlayer p = AbstractDungeon.player;
 		summonedTypesThisTurn = new ArrayList<CardTags>();
+		kuribohrnFlipper = false;
 		
 		// Fix tributes & summons that were modified for turn only
 		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
@@ -1983,6 +1996,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		Strings.configOjamania = Config_UI_String.TEXT[115];
 		Strings.configChannel = Config_UI_String.TEXT[116];
 		Strings.configLose1HP = Config_UI_String.TEXT[117];
+		Strings.configSummonsIconText = Config_UI_String.TEXT[118];
 	}
 	
 	private void addRandomized(String property1, String property2, boolean btnBool1, boolean btnBool2)

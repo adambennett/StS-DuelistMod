@@ -1,27 +1,23 @@
-package duelistmod.cards.incomplete;
-
-import java.util.ArrayList;
+package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
-import duelistmod.cards.tokens.KuribohToken;
-import duelistmod.cards.typecards.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.*;
+import duelistmod.relics.AquaRelicB;
 
-public class WingedKuriboh9 extends DuelistCard 
+public class SpikedGillman extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("WingedKuribohLv9");
+    public static final String ID = DuelistMod.makeID("SpikedGillman");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("WingedKuribohLv9.png");
+    public static final String IMG = DuelistMod.makeCardPath("SpikedGillman.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -30,67 +26,78 @@ public class WingedKuriboh9 extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public WingedKuriboh9() {
+    public SpikedGillman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 8;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.AQUA);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, new KuribohToken());
-    	block(this.block);
-    	ArrayList<DuelistCard> types = new ArrayList<DuelistCard>();
-    	types.add(new AquaDrawTypeCard(this.magicNumber));
-    	types.add(new DragonDrawTypeCard(this.magicNumber));
-    	types.add(new FiendDrawTypeCard(this.magicNumber));
-    	types.add(new InsectDrawTypeCard(this.magicNumber));
-    	types.add(new MachineDrawTypeCard(this.magicNumber));
-    	types.add(new NaturiaDrawTypeCard(this.magicNumber));
-    	types.add(new PlantDrawTypeCard(this.magicNumber));
-    	types.add(new PredaplantDrawTypeCard(this.magicNumber));
-    	types.add(new SpellcasterDrawTypeCard(this.magicNumber));
-    	types.add(new SuperheavyDrawTypeCard(this.magicNumber));
-    	types.add(new ToonDrawTypeCard(this.magicNumber));
-    	types.add(new ZombieDrawTypeCard(this.magicNumber));
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+    	summon();
+    	applyPowerToSelf(new SpikedGillmanPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new WingedKuriboh9();
+        return new SpikedGillman();
     }
 
     // Upgraded stats.
     @Override
     public void upgrade() 
     {
-        if (!this.upgraded) 
+        if (canUpgrade()) 
         {
-        	this.upgradeName();
-        	this.upgradeBlock(4);
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	return true;
     }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
+		// Aqua Tribute
+		if (tributingCard.hasTag(Tags.AQUA))
+		{
+			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.baseSummons > 0)
+					{
+						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+					}
+					
+					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					{
+						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+					}
+				}
+			}
+		}
 	}
 
 	@Override

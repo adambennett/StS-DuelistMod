@@ -2,7 +2,7 @@
   "theDuelist:Gate": {
     "NAME": "Gate",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain [E] . NL #yEvoke: #ySummon #b", " random #yGuardians. NL Unaffected by #yFocus."
+      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain [E] . NL #yEvoke: #ySummon #b", " random #yGuardians. NL Gate is unaffected by #yFocus."
     ]
   },
   "theDuelist:Buffer": {
@@ -44,7 +44,7 @@
   "theDuelist:Air": {
     "NAME": "Air",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if the only monsters you currently have summoned are #yDragons.", " NL #yEvoke: Gain #b", " #yOrb slot. NL Unaffected by #yFocus.", " #yOrb slots. NL Unaffected by #yFocus."
+      "#yPassive: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if the only monsters you currently have summoned are #yDragons.", " NL #yEvoke: Gain #b", " #yOrb slot. NL Air is unaffected by #yFocus.", " #yOrb slots. NL Air is unaffected by #yFocus."
     ]
   },
   "theDuelist:Black": {
@@ -104,7 +104,7 @@
   "theDuelist:MillenniumOrb": {
     "NAME": "Millennium Orb",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yrandomized cards from your deck pool into your hand. NL This evoke effect is triggered every #b3 turns."
+	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yrandomized cards from your deck pool into your hand."
     ]
   },
   "theDuelist:Metal": {
@@ -122,7 +122,7 @@
   "theDuelist:Mist": {
     "NAME": "Mist",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add #b", " #yRandomized #yAqua monster to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed.", " #yRandomized #yAqua monsters to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
+	  "#yPassive: At the start of turn, add #b", " #yRandomized #yAqua monster to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters tributed.", " #yRandomized #yAqua monsters to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters tributed."
     ]
   },
   "theDuelist:Sand": {

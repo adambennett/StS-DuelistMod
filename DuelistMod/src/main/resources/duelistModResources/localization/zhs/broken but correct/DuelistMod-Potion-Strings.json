@@ -1,0 +1,86 @@
+{
+"theDuelist:MillenniumElixir": {
+        "NAME": "千年圣水",
+        "DESCRIPTIONS": ["获得2个随机#y增益效果。"]
+},
+"theDuelist:ExtraOrbsBottle": {
+        "NAME": "瓶装仙子",
+        "DESCRIPTIONS": ["增加 #b", "个充能球槽."]
+},
+"theDuelist:SealedPack": {
+        "NAME": "小增强剂",
+        "DESCRIPTIONS": ["打开1个#y青眼白龙传说增强包。从中#y随机 将#b3 张卡增加到手牌中。"]
+},
+"theDuelist:SealedPackB": {
+        "NAME": "小补充剂",
+        "DESCRIPTIONS": ["打开1个#y钢铁袭击者和#y法老仆人补充包。从中#y随机 将#b3 张卡增加到手牌中。"]
+},
+"theDuelist:OrbBottle": {
+        "NAME": "瓶装雾霭",
+        "DESCRIPTIONS": ["生成1个随机充能球。", "生成 #b", " 个随机充能球。"]
+},
+"theDuelist:AirBottle": {
+        "NAME": "瓶装风卷",
+        "DESCRIPTIONS": ["生成1个 #y空气 充能球。", "生成 #b", "个#y空气 充能球。"]
+},
+"theDuelist:BlackBottle": {
+        "NAME": "瓶装黑暗",
+        "DESCRIPTIONS": ["生成1个 #y黑暗 充能球。", "生成 #b", "个 #y黑暗 充能球。"]
+},
+"theDuelist:DragonOrbBottle": {
+        "NAME": "龙族药水",
+        "DESCRIPTIONS": ["生成1个 #y龙族 充能球。", "生成 #b", "个 #y龙族 充能球。"]
+},
+"theDuelist:DragonOrbPlusBottle": {
+        "NAME": "超级龙药",
+        "DESCRIPTIONS": ["生成1个 #y龙族+ 充能球。", "生成 #b", "个 #y龙族+ 充能球。"]
+},
+"theDuelist:EarthBottle": {
+        "NAME": "瓶装魔法",
+        "DESCRIPTIONS": ["生成1个 #y地属性 充能球。", "生成 #b", "个 #y地属性 充能球。"]
+},
+"theDuelist:FireBottle": {
+        "NAME": "瓶装烈火",
+        "DESCRIPTIONS": ["生成1个 #y火焰 充能球。", "生成 #b", "个 #y火焰 充能球。"]
+},
+"theDuelist:GadgetBottle": {
+        "NAME": "快递包裹",
+        "DESCRIPTIONS": ["生成1个 #y零件 充能球。", "生成 #b", "个 #y零件 充能球。"]
+},
+"theDuelist:GlitchBottle": {
+        "NAME": "残破装瓶",
+        "DESCRIPTIONS": ["生成1个 #y故障 充能球。", "生成 #b", "个 #y故障 充能球。"]
+},
+"theDuelist:MetalBottle": {
+        "NAME": "液态金属",
+        "DESCRIPTIONS": ["生成1个 #y金属 充能球。", "生成 #b", "个 #y金属 充能球。"]
+},
+"theDuelist:MonsterOrbBottle": {
+        "NAME": "瓶装怪兽",
+        "DESCRIPTIONS": ["生成1个 #y怪兽 充能球。", "生成 #b", "个 #y怪兽 充能球。"]
+},
+"theDuelist:SandBottle": {
+        "NAME": "时滴沙漏",
+        "DESCRIPTIONS": ["生成1个 #y沙石 充能球。", "生成 #b", "个 #y沙石 充能球。"]
+},
+"theDuelist:StormBottle": {
+        "NAME": "瓶装暴风",
+        "DESCRIPTIONS": ["生成1个 #y风暴 充能球。", "生成 #b", "个 #y风暴 充能球。"]
+},
+"theDuelist:SummonerBottle": {
+        "NAME": "召唤士瓶",
+        "DESCRIPTIONS": ["生成1个 #y召唤士 充能球。", "生成 #b", "个 #y召唤士 充能球。"]
+},
+"theDuelist:TributeBottle": {
+        "NAME": "魔法装瓶",
+        "DESCRIPTIONS": ["本回合减少手牌中所有怪兽的#y祭品 消耗#b", "点。"]
+},
+"theDuelist:BigTributeBottle": {
+        "NAME": "魔术师瓶",
+        "DESCRIPTIONS": ["本场战斗减少手牌中所有怪兽的#y祭品 消耗#b", "点。"]
+},
+"theDuelist:JoeyJuice": {
+        "NAME": "城之橙汁",
+        "DESCRIPTIONS": ["给予2个随机#y负面效果。"]
+}
+}

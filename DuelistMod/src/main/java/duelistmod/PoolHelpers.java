@@ -257,7 +257,7 @@ public class PoolHelpers
 		for (AbstractCard c : DuelistMod.basicCards) { if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.coloredCards.add(c); }}
 		
 		// Add 2 random archetype cards
-		if (DuelistMod.archRoll1 == -1)
+		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1)
 		{
 			int archRoll = randomArchetypeHelper(4, 4);
 			DuelistMod.archRoll1 = archRoll;

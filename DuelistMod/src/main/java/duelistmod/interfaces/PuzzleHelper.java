@@ -176,6 +176,9 @@ public class PuzzleHelper
 				{
 					if (DuelistMod.debug) { DuelistMod.logger.info("Puzzle Helper::Fiend Deck Effect: total tributes in deck: " + totalTribs); }
 					AbstractCard randomDmg = dmgCards.get(AbstractDungeon.cardRandomRng.random(dmgCards.size() - 1));
+					DuelistCard dC = (DuelistCard)randomDmg;
+					dC.fiendDeckDmgMod = true;
+					dC.originalDamage = dC.damage;
 					AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomDmg.uuid, totalTribs));
 					AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
 				}
@@ -244,7 +247,7 @@ public class PuzzleHelper
 			// Increment Deck
 			case 15:
 				int floorG = AbstractDungeon.actNum;
-				DuelistCard.incMaxSummons(p, 1 + floorG);
+				DuelistCard.incMaxSummons(p, floorG);
 				DuelistCard.powerSummon(AbstractDungeon.player, extra + floorG, "Puzzle Token", false);
 				break;
 				

@@ -410,9 +410,9 @@
 		"UPGRADE_DESCRIPTION": "造成 !D! 点伤害。将 !M! 张随机的恶魔族增加到手牌中。"
 	},
 	"theDuelist:DarkFactory": {
-		"DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [R] [R] [R]。",
+		"DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [G] [G] [G] ",
 		"NAME": "暗之量产工厂",
-		"UPGRADE_DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [R] [R] [R] [R]。"
+		"UPGRADE_DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [G] [G] [G] [G] "
 	},
 	"theDuelist:DarkHole": {
 		"DESCRIPTION": "偷走所有敌人的所有格挡。",
@@ -766,9 +766,9 @@
 		"UPGRADE_DESCRIPTION": "魔法师族。 NL  召唤数 !duelist:SUMM!  NL 特殊召唤：获得15生命。"
 	},
 	"theDuelist:GiantSoldier": {
-		"DESCRIPTION": "召唤数 !duelist:SUMM! 获得 !B! 点格挡。",
+		"DESCRIPTION": "召唤 !duelist:SUMM! 获得 !B! 点格挡。召唤",
 		"NAME": "岩石巨兵",
-		"UPGRADE_DESCRIPTION": "召唤数 !duelist:SUMM! 获得 !B! 点格挡。"
+		"UPGRADE_DESCRIPTION": "召唤 !duelist:SUMM! 获得 !B! 点格挡。"
 	},
 	"theDuelist:GiantSoldierSteel": {
 		"DESCRIPTION": "召唤数 !duelist:SUMM! 获得 !B! 点格挡。",
@@ -1507,9 +1507,9 @@
 		"UPGRADE_DESCRIPTION": "恶魔族。 NL 祭品数 !duelist:TRIB! 选择1个强大的抽牌效果。 NL  消耗。"
 	},
 	"theDuelist:PotGenerosity": {
-		"DESCRIPTION": " !M! 个回合内，每次召唤时，获得 [R]。",
+		"DESCRIPTION": " !M! 个回合内，每次召唤时，获得 [G] ",
 		"NAME": "谦虚之壶",
-		"UPGRADE_DESCRIPTION": " !M! 个回合内，每次召唤时，获得 [R]。"
+		"UPGRADE_DESCRIPTION": " !M! 个回合内，每次召唤时，获得 [G] "
 	},
 	"theDuelist:PotGreed": {
 		"DESCRIPTION": "抽2张牌。 NL  消耗。",
@@ -1723,9 +1723,9 @@
 		"UPGRADE_DESCRIPTION": "增殖 !M! 。 NL 召唤 !duelist:SUMM! 个栗子球衍生物。 NL  消耗。"
 	},
 	"theDuelist:ScrapFactory": {
-		"DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [R] [R]。",
+		"DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [G] [G] ",
 		"NAME": "废铁工厂",
-		"UPGRADE_DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [R] [R] [R]。"
+		"UPGRADE_DESCRIPTION": "机械族。 NL  祭品数 !duelist:TRIB! 获得 [G] [G] [G] "
 	},
 	"theDuelist:SevenColoredFish": {
 		"DESCRIPTION": "水族 NL 召唤数 !duelist:SUMM! 造成 !D! 点伤害。",

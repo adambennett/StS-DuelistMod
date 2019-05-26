@@ -396,7 +396,7 @@
       "Tidal",
 	  "tidal"
     ],   
-    "DESCRIPTION": "When played, the power of one random effect of this card is increased by 1."
+    "DESCRIPTION": "When played, the power of one random effect of this card is increased by #b1."
   },
   {
     "PROPER_NAME": "Gate",

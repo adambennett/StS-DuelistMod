@@ -93,7 +93,7 @@ public class MillenniumOrb extends DuelistOrb
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
 			ArrayList<String> deckCardNames = new ArrayList<String>();
-			for (int i = 0; i < 50; i++)
+			for (int i = 0; i < 30; i++)
 			{
 				int index = DuelistMod.myCards.size() - 1;
 				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
@@ -121,8 +121,6 @@ public class MillenniumOrb extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		triggerPassiveEffect();
-		if (this.counter == 0) { this.onEvoke(); }
-		else { this.counter--; }
 	}
 
 	public void triggerPassiveEffect()

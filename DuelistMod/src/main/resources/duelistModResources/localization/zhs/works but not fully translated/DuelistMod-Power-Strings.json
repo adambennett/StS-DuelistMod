@@ -1,0 +1,561 @@
+{
+	"theDuelist:AerodynamicsPower": {
+		"DESCRIPTIONS": [
+			"你的#yAir Orbs在开始时总是随机#yChannel。"
+		],
+		"NAME": "空气动力学"
+	},
+	"theDuelist:AlphaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "阿尔法磁铁"
+	},
+	"theDuelist:BadReactionPower": {
+		"DESCRIPTIONS": [
+			"每当你试图治愈时，交易#b",
+			" 每个#b对所有敌人造成伤害",
+			" 惠普，你会获得，并治愈0而不是。"
+		],
+		"NAME": "对Simochi的不良反应"
+	},
+	"theDuelist:BetaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "Beta磁铁"
+	},
+	"theDuelist:CallGravePower": {
+		"DESCRIPTIONS": [
+			"在开始时，＃yResummon #b",
+			" 你召唤这场战斗的随机怪物。",
+			" 随机怪物，你已经召唤了这场战斗。"
+		],
+		"NAME": "坟墓的召唤"
+	},
+	"theDuelist:CannonPower": {
+		"DESCRIPTIONS": [
+			"在回合开始时，＃yTribute #b",
+			" 交易#b",
+			" #b损坏",
+			" 随机的敌人。 （总共5点伤害）",
+			" 对随机敌人造成伤害。 （",
+			" 总伤害）"
+		],
+		"NAME": "大炮士兵"
+	},
+	"theDuelist:CardSafePower": {
+		"DESCRIPTIONS": [
+			"每当你#yResummon时，画#b",
+			" 卡。",
+			" 牌。"
+		],
+		"NAME": "安全返回卡"
+	},
+	"theDuelist:CastlePower": {
+		"DESCRIPTIONS": [
+			"每当你洗牌时，",
+			" #ySummon #b",
+			" #yIncrement #b",
+			"。"
+		],
+		"NAME": "黑暗幻觉城堡"
+	},
+	"theDuelist:CatapultPower": {
+		"DESCRIPTIONS": [
+			"在开始时，＃yTribute所有#ySummons并交易#b",
+			" 对所有敌人造成的伤害。"
+		],
+		"NAME": "弹射力量"
+	},
+	"theDuelist:CocoonPower": {
+		"DESCRIPTIONS": [
+			"#b之后",
+			" 转过来，将#yGreat #yMoth的副本添加到您的手中。",
+			" 转身，将#yGreat #yMoth的副本添加到您的手中。"
+		],
+		"NAME": "进化的茧"
+	},
+	"theDuelist:CrystallizerPower": {
+		"DESCRIPTIONS": [
+			"水晶球提供额外的#b",
+			" #yFocus到相邻的球体。在你的回合结束时，如果你的orb插槽至少有一半是空的，那么#yChannel #b",
+			" #yCrystal。将包含#yGlass的插槽计为空。"
+		],
+		"NAME": "结晶"
+	},
+	"theDuelist:DarkMirrorPower": {
+		"DESCRIPTIONS": [
+			"下次你即将受到伤害时，获得一个等于伤害的随机debuff。"
+		],
+		"NAME": "暗镜力"
+	},
+	"theDuelist:DespairPower": {
+		"DESCRIPTIONS": [
+			"在结束时，输掉#b",
+			" #yStrength，＃yTribute #b",
+			" 并将绝望之斧放在甲板的顶部。如果你没有足够的Tributes，则输掉30 HP。"
+		],
+		"NAME": "绝望的斧头"
+	},
+	"theDuelist:DoomdogPower": {
+		"DESCRIPTIONS": [
+			"每当你#yTribute #yFiend换另一个#yFiend时，交易#b",
+			" 对所有敌人造成伤害。"
+		],
+		"NAME": "Doomdog"
+	},
+	"theDuelist:DragonCapturePower": {
+		"DESCRIPTIONS": [
+			"在本回合中播放的#yDragon怪物会在您下一回合开始时添加回您的手中。 #yDragons："
+		],
+		"NAME": "龙捕获罐"
+	},
+	"theDuelist:EmperorPower": {
+		"DESCRIPTIONS": [
+			"你每回合玩的第一张#yTribute牌都没有#yTribute。失去#b",
+			" 惠普每转一圈。"
+		],
+		"NAME": "皇帝陵墓"
+	},
+	"theDuelist:EvokeSicknessPower": {
+		"DESCRIPTIONS": [
+			"每次#yEvoke时，请带#b",
+			" 损伤。"
+		],
+		"NAME": "Ra的愤怒"
+	},
+	"theDuelist:ExodiaPower": {
+		"DESCRIPTIONS": [
+			"组装所有五件Exodia，对所有敌人释放强大的伤害效果。 #yPieces #yof #yExodia：",
+			"#B",
+			"在回合结束时，所有敌人都会释放#yExodia的全部力量。 #yDamage：#b"
+		],
+		"NAME": "被禁止的人"
+	},
+	"theDuelist:ExodiaRenewalPower": {
+		"DESCRIPTIONS": [
+			"每当您触发#yExodia时，请勿重置收集的碎片。"
+		],
+		"NAME": "EXODIARENEWALPLACEHOLDER"
+	},
+	"theDuelist:GammaMagPower": {
+		"DESCRIPTIONS": [
+			""
+		],
+		"NAME": "伽玛磁铁"
+	},
+	"theDuelist:GatesDarkPower": {
+		"DESCRIPTIONS": [
+			"你的#yFiends和#yZombies造成的伤害提高100％，并获得100％的#yBlock。"
+		],
+		"NAME": "黑暗世界之门"
+	},
+	"theDuelist:GoblinRemedyPower": {
+		"DESCRIPTIONS": [
+			"每当你#ySummon，治愈#b",
+			" 生命值。",
+			" 生命值。"
+		],
+		"NAME": "地精的秘密补救措施"
+	},
+	"theDuelist:GravityAxePower": {
+		"DESCRIPTIONS": [
+			"无法获得或失去#yStrength。"
+		],
+		"NAME": "重力斧"
+	},
+	"theDuelist:GreedShardPower": {
+		"DESCRIPTIONS": [
+			"每转3圈，抽签",
+			" 转弯开始时的额外卡。转：#b"
+		],
+		"NAME": "贪婪碎片"
+	},
+	"theDuelist:HealGoldPower": {
+		"DESCRIPTIONS": [
+			"每次获得HP时，获得#b",
+			" 金。"
+		],
+		"NAME": "坟墓Pilferer"
+	},
+	"theDuelist:HeartUnderdogPower": {
+		"DESCRIPTIONS": [
+			"每当你画一个怪物时，画1张牌。"
+		],
+		"NAME": "失败者的心脏"
+	},
+	"theDuelist:HeartUnderspell": {
+		"DESCRIPTIONS": [
+			"每当你绘制一个法术时，都要创建一个#yrandomized副本。"
+		],
+		"NAME": "失败者的法术"
+	},
+	"theDuelist:HeartUndertrap": {
+		"DESCRIPTIONS": [
+			"每当你画一个陷阱，获得＃b3 HP。"
+		],
+		"NAME": "陷阱失败者"
+	},
+	"theDuelist:HeartUndertribute": {
+		"DESCRIPTIONS": [
+			"每当你画一个贡物怪物时，召唤1。"
+		],
+		"NAME": "向失败者致敬"
+	},
+	"theDuelist:ImperialPower": {
+		"DESCRIPTIONS": [
+			"在开始时，设置#b的成本",
+			" 随机#ySpell或#yTrap卡在你的手中转为0。",
+			" 随机的#ySpell或#yTrap卡在你的手中为0转。"
+		],
+		"NAME": "帝国勋章"
+	},
+	"theDuelist:JamPower": {
+		"DESCRIPTIONS": [
+			"在你的回合开始时，＃ySummon #b",
+			" 并造成3点伤害",
+			" 随机的敌人。",
+			" 随机的敌人。"
+		],
+		"NAME": "果酱饲养员"
+	},
+	"theDuelist:JinzoPower": {
+		"DESCRIPTIONS": [
+			"您的陷阱卡费用为0。"
+		],
+		"NAME": "Jinzo"
+	},
+	"theDuelist:MagicCylinderPower": {
+		"DESCRIPTIONS": [
+			"下次失去HP时，获得#b",
+			" #yReflection",
+			"。",
+			"和一个随机的buff。"
+		],
+		"NAME": "Magic Cylinder"
+	},
+	"theDuelist:MirrorForcePower": {
+		"DESCRIPTIONS": [
+			"下次受到攻击时，交易",
+			"对所有敌人造成太大伤害。",
+			"对所有敌人造成2倍的伤害。"
+		],
+		"NAME": "镜力"
+	},
+	"theDuelist:MirrorPower": {
+		"DESCRIPTIONS": [
+			"下次你受到未受阻挡的伤害时，对所有敌人造成很大伤害。"
+		],
+		"NAME": "镜力"
+	},
+	"theDuelist:MountainPower": {
+		"DESCRIPTIONS": [
+			"你的#yDragons造成的伤害提高50％，并且获得50％的阻挡。无论何时从#yDragon中获得#yStrength，都需要额外增加1个#yStrength。"
+		],
+		"NAME": "山"
+	},
+	"theDuelist:NaturePower": {
+		"DESCRIPTIONS": [
+			"在开始时，＃ySummon #b",
+			" #yInsect，＃yPlant或#yPredaplant #yToken。随机选择。",
+			" #yInsect，＃yPlant或#yPredaplant #yTokens。随机选择。"
+		],
+		"NAME": "大自然的祝福"
+	},
+	"theDuelist:NaturiaPower": {
+		"DESCRIPTIONS": [
+			"在回合结束时，如果[＃008000] [＃008000]至少[＃008000] 1 [＃006400] Naturia [＃006400]怪物被召唤，那么交易#b",
+			" 对所有敌人造成伤害。",
+			"在回合结束时，如果你[＃008000] [＃008000]至少[＃008000] 1 [＃006400] Naturia [＃006400]怪物被召唤[＃008000]，交易#y"
+		],
+		"NAME": "Naturia Monsters"
+	},
+	"theDuelist:ObeliskPower": {
+		"DESCRIPTIONS": [
+			"每次#yTribute，交易#b",
+			" 对所有敌人造成伤害。"
+		],
+		"NAME": "方尖碑，Tormentor"
+	},
+	"theDuelist:ObliteratePower": {
+		"DESCRIPTIONS": [
+			"将下一个#b的Exodia效果加倍",
+			" 你触发它的时间。",
+			" 你触发它的次数"
+		],
+		"NAME": "EXODIARENEWALPLACEHOLDER"
+	},
+	"theDuelist:OrbEvokerPower": {
+		"DESCRIPTIONS": [
+			"每当你#yEvoke时，获得一个持续的buff，持续#b",
+			" 转。"
+		],
+		"NAME": "Ra的祝福"
+	},
+	"theDuelist:OrbHealPower": {
+		"DESCRIPTIONS": [
+			"每次#yEvoke，获得#b",
+			" 生命值。"
+		],
+		"NAME": "阿努比斯的凝视"
+	},
+	"theDuelist:ParasitePower": {
+		"DESCRIPTIONS": [
+			"在回合结束时，有机会#ydebuff随机敌人。有更多#ysummon堆栈可能会引发机会。 #yChance #yModifier：#b"
+		],
+		"NAME": "寄生虫Paracide"
+	},
+	"theDuelist:PotGenerosityPower": {
+		"DESCRIPTIONS": [
+			"每当你#ySummon时，获得[E]转为剩余：#b"
+		],
+		"NAME": "慷慨的锅"
+	},
+	"theDuelist:RadiantMirrorPower": {
+		"DESCRIPTIONS": [
+			"每当你失去HP时，增量#b",
+			"。"
+		],
+		"NAME": "辐射镜力"
+	},
+	"theDuelist:RedMirrorPower": {
+		"DESCRIPTIONS": [
+			"每当你为另一个#yFiend #yTribute #yFiend时，通过#b降低丢弃堆中所有卡的成本",
+			" 为了这个回合。"
+		],
+		"NAME": "红镜"
+	},
+	"theDuelist:ReducerPower": {
+		"DESCRIPTIONS": [
+			"在开始时，降低#b的成本",
+			" 卡在你手中1。",
+			" 手中的牌由1。"
+		],
+		"NAME": "还原"
+	},
+	"theDuelist:ReinforcementsPower": {
+		"DESCRIPTIONS": [
+			"每当你在这回合玩怪物时，＃ySummon都会重复它。"
+		],
+		"NAME": "增援"
+	},
+	"theDuelist:SacredTreePower": {
+		"DESCRIPTIONS": [
+			"你的#yNaturia怪物造成的伤害提高50％，并且可以获得50％的额外伤害。"
+		],
+		"NAME": "神圣的树"
+	},
+	"theDuelist:SarraceniantPower": {
+		"DESCRIPTIONS": [
+			"无论何时受到攻击，都应用#b",
+			" #yPoison对所有敌人。"
+		],
+		"NAME": "Predaplant Sarraceniant"
+	},
+	"theDuelist:SliferSkyPower": {
+		"DESCRIPTIONS": [
+			"每当你#ySummon，＃yChannel随机#yOrb。你可能只会触发这个效果#b",
+			" 轮到这一刻。"
+		],
+		"NAME": "Slifer the Sky Dragon"
+	},
+	"theDuelist:SpecialBadReactionPower": {
+		"DESCRIPTIONS": [
+			"在轮到你的时候，交易#b",
+			" 每个#b对所有敌人造成伤害",
+			" 惠普你获得了。"
+		],
+		"NAME": "对Simochi的不良反应"
+	},
+	"theDuelist:SpellCounterPower": {
+		"DESCRIPTIONS": [
+			"没有内在的影响。玩魔法怪物卡来激活。"
+		],
+		"NAME": "法术计数器"
+	},
+	"theDuelist:SphereKuribohPower": {
+		"DESCRIPTIONS": [
+			"每当你#yIncrement时，都要添加一张#yrandomized卡。"
+		],
+		"NAME": "球形Kuriboh"
+	},
+	"theDuelist:StormingMirrorPower": {
+		"DESCRIPTIONS": [
+			"每次敌人攻击时，＃ySummon 1。"
+		],
+		"NAME": "猛烈的镜子力量"
+	},
+	"theDuelist:SummonPower": {
+		"DESCRIPTIONS": [
+			"#B",
+			" 召唤怪物。最大#b",
+			" 传票。 #yMonsters #ySummoned："
+		],
+		"NAME": "传票"
+	},
+	"theDuelist:SummonSicknessPower": {
+		"DESCRIPTIONS": [
+			"每次#ySummon时，请带#b",
+			" 损伤。"
+		],
+		"NAME": "召唤疾病"
+	},
+	"theDuelist:SuperheavyDexGainPower": {
+		"DESCRIPTIONS": [
+			"无论何时玩Power Card，都要获得#b",
+			" #yDexterity。"
+		],
+		"NAME": "武士的智慧"
+	},
+	"theDuelist:SwordDeepPower": {
+		"DESCRIPTIONS": [
+			"在结束时，输掉#b",
+			" #yStrength。"
+		],
+		"NAME": "深深的剑"
+	},
+	"theDuelist:SwordsBurnPower": {
+		"DESCRIPTIONS": [
+			"每次你#yEvoke，＃yChannel #b",
+			" 随机#yOrb。",
+			" 随机#yOrbs。"
+		],
+		"NAME": "燃烧之剑"
+	},
+	"theDuelist:SwordsConcealPower": {
+		"DESCRIPTIONS": [
+			"每次玩牌时，都要获得#b",
+			" 块。"
+		],
+		"NAME": "隐藏光剑"
+	},
+	"theDuelist:SwordsRevealPower": {
+		"DESCRIPTIONS": [
+			"忽略#b的所有HP伤害",
+			" 更多转弯。"
+		],
+		"NAME": "揭示之光的剑"
+	},
+	"theDuelist:TimeWizardPower": {
+		"DESCRIPTIONS": [
+			"在回合开始时，触发#b",
+			" 随机效应。 #yEffect #yThis #yTurn：",
+			" 随机效应。 #yEffects #yThis #yTurn："
+		],
+		"NAME": "时间向导"
+	},
+	"theDuelist:TombLooterPower": {
+		"DESCRIPTIONS": [
+			"每次用最大堆栈的#ySummons攻击时，获得#b",
+			" 金。"
+		],
+		"NAME": "坟墓枪手"
+	},
+	"theDuelist:ToonBriefcasePower": {
+		"DESCRIPTIONS": [
+			"#yToon本回合玩的牌会在你下一回合开始时添加回你手中。 #yToons："
+		],
+		"NAME": "香椿公文包"
+	},
+	"theDuelist:ToonCannonPower": {
+		"DESCRIPTIONS": [
+			"每当你#ySummon #yToon，交易#b",
+			" 对所有敌人造成伤害。"
+		],
+		"NAME": "香椿炮兵"
+	},
+	"theDuelist:ToonKingdomPower": {
+		"DESCRIPTIONS": [
+			"#yToons可以播放。拿#b",
+			" 每次玩#yToon牌时都会造成伤害，并随机将#yToon卡随机抽入你的抽牌中。",
+			"#yToons可以播放。每次你玩#yToon卡时，随机将#yToon卡随机抽入你的画堆。"
+		],
+		"NAME": "香椿王国"
+	},
+	"theDuelist:ToonRollbackPower": {
+		"DESCRIPTIONS": [
+			"#yTandomized副本#yToon怪物在本回合中被添加到你的手中。"
+		],
+		"NAME": "香椿回滚"
+	},
+	"theDuelist:ToonWorldPower": {
+		"DESCRIPTIONS": [
+			"#yToons可以播放。失去#b",
+			" 惠普每次玩#yToon卡。",
+			"#yToons可以播放。"
+		],
+		"NAME": "香椿世界"
+	},
+	"theDuelist:TrapHolePower": {
+		"DESCRIPTIONS": [
+			"每当你#ySummon，都有一个#b",
+			"有机会立刻#yTribute那怪物然后#yResummon它。"
+		],
+		"NAME": "陷阱洞"
+	},
+	"theDuelist:TributeSicknessPower": {
+		"DESCRIPTIONS": [
+			"每次你#yTribute，拿#b",
+			" 损伤。"
+		],
+		"NAME": "法老的诅咒"
+	},
+	"theDuelist:TributeToonPower": {
+		"DESCRIPTIONS": [
+			"每次#yTribute时，都要添加一个#yrandomized #yToon怪物。"
+		],
+		"NAME": "飞马翼"
+	},
+	"theDuelist:TributeToonPowerB": {
+		"DESCRIPTIONS": [
+			"每次#yTribute时，都会添加#yrandomized #yToon卡。"
+		],
+		"NAME": "飞马翼"
+	},
+	"theDuelist:TurretWarriorPower": {
+		"DESCRIPTIONS": [
+			"每当你玩一个令牌，交易#b",
+			" 对所有敌人造成伤害。"
+		],
+		"NAME": "炮塔战士"
+	},
+	"theDuelist:UltimateOfferingPower": {
+		"DESCRIPTIONS": [
+			"每当你#ySummon的最大堆叠召唤：输掉3 HP，＃yIncrement #b",
+			" 然后#ySummon #b",
+			"。"
+		],
+		"NAME": "终极产品"
+	},
+	"theDuelist:UmiPower": {
+		"DESCRIPTIONS": [
+			"你的#yAqua怪物造成的伤害提高50％，并且可以获得50％的额外伤害。"
+		],
+		"NAME": "乌米"
+	},
+	"theDuelist:VioletCrystalPower": {
+		"DESCRIPTIONS": [
+			"你的#yInsects和#yPlants造成的伤害提高50％，并获得50％的阻挡。每当你从#yInsect或#yPlant中试用#yPoison时，再申请2个#yPoison。"
+		],
+		"NAME": "紫罗兰色水晶"
+	},
+		"theDuelist:LeviaDragonPower": {
+        "NAME": "Levia Dragon",
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies and add 2 #yrandomized #yAqua monsters to your draw pile." ]
+	},
+	"theDuelist:BlizzardDragonPower": {
+			"NAME": "Blizzard Dragon",
+			"DESCRIPTIONS": ["Whenever you #ySummon a #yDragon: #yChannel a #yFrost." ]
+	},
+		"theDuelist:TwoJamPower": {
+        "NAME": "Jam Breeding Machine",
+        "DESCRIPTIONS": ["At the start of your turn, #ySummon #b", " and deal #b", " damage to #b", " random enemy.", " random enemies."]
+	},
+	"theDuelist:YamiPower": {
+		"DESCRIPTIONS": [
+			"你的#ySpellcasters造成的伤害提高50％，并获得50％的阻挡。每当你#ySummon #ySpellcaster时，额外增加1个#ySummon。"
+		],
+		"NAME": "雅美"
+	}
+}

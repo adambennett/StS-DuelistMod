@@ -46,19 +46,19 @@ public class OjamaPajama extends DuelistCard
 	{
 		for (AbstractCard c : player().drawPile.group)
 		{
-			int roll = AbstractDungeon.cardRandomRng.random(c.magicNumber - this.magicNumber, c.magicNumber + this.magicNumber);
+			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + this.magicNumber);
 			AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(c, roll));
 		}
 		
 		for (AbstractCard c : player().discardPile.group)
 		{
-			int roll = AbstractDungeon.cardRandomRng.random(c.magicNumber - this.magicNumber, c.magicNumber + this.magicNumber);
+			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + this.magicNumber);
 			AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(c, roll));
 		}
 		
 		for (AbstractCard c : player().hand.group)
 		{
-			int roll = AbstractDungeon.cardRandomRng.random(c.magicNumber - this.magicNumber, c.magicNumber + this.magicNumber);
+			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + this.magicNumber);
 			AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(c, roll));
 		}
 	}

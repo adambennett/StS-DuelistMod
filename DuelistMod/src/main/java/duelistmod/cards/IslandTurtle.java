@@ -8,9 +8,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.AquaRelicB;
 
 public class IslandTurtle extends DuelistCard 
@@ -40,7 +39,7 @@ public class IslandTurtle extends DuelistCard
 		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tags.add(Tags.AQUA);
 		this.tags.add(Tags.AQUA_DECK);
-		this.aquaDeckCopies = 2;
+		this.aquaDeckCopies = 1;
 		this.setupStartingCopies();
 		this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
