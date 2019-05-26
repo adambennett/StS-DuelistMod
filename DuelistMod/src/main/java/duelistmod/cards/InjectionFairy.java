@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.SummonPower;
 
 public class InjectionFairy extends DuelistCard 
 {
@@ -25,7 +26,7 @@ public class InjectionFairy extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
@@ -35,7 +36,7 @@ public class InjectionFairy extends DuelistCard
 	public InjectionFairy() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.summons = 1;
-		this.heal = this.baseMagicNumber = this.magicNumber = 6;
+		this.heal = this.baseMagicNumber = this.magicNumber = 4;
 		this.baseDamage = this.damage = 3;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.LEGACY_DARKNESS);
@@ -55,8 +56,15 @@ public class InjectionFairy extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		heal(p, this.heal);
-		if (upgraded) { attack(m, AFX, this.damage); }
+		if (p.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower power = (SummonPower) p.getPower(SummonPower.POWER_ID);
+			if (power.isOnlyTypeSummoned(Tags.SPELLCASTER))
+			{
+				heal(p, this.heal);
+			}
+		}
+		attack(m, AFX, this.damage); 
 	}
 
 	// Which card to return when making a copy of this card.
@@ -70,8 +78,7 @@ public class InjectionFairy extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.target = CardTarget.ENEMY;
-			//this.upgradeBaseCost(0);
+			this.upgradeDamage(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

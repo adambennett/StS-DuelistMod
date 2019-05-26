@@ -39,6 +39,7 @@ public class FinalFlame extends DuelistCard
     	this.baseDamage = this.damage = DAMAGE;
     	this.tags.add(Tags.SPELL);
     	this.tags.add(Tags.STANDARD_DECK);
+    	this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.standardDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;

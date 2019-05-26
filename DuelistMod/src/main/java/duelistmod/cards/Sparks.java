@@ -38,6 +38,7 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(BaseModCardTags.BASIC_STRIKE);
         this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.STANDARD_DECK);
         this.tags.add(Tags.DRAGON_DECK);
         this.tags.add(Tags.SPELLCASTER_DECK);

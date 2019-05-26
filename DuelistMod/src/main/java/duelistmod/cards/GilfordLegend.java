@@ -32,7 +32,7 @@ public class GilfordLegend extends DuelistCard
 
     public GilfordLegend() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = 2;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 3;
         this.originalName = this.name;
@@ -57,7 +57,7 @@ public class GilfordLegend extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

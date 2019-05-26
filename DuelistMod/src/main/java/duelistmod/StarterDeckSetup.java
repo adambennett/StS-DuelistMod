@@ -454,6 +454,11 @@ public class StarterDeckSetup {
 		aquaCards.add(new GraydleSlimeJr());
 		aquaCards.add(new FrillerRabca());	
 		aquaCards.add(new WhitefishSalvage());	
+		aquaCards.add(new SwampFrog());	
+		aquaCards.add(new SharkStickers());	
+		aquaCards.add(new RageDeepSea());
+		aquaCards.add(new SpearfishSoldier());	
+		aquaCards.add(new HydraViper());
 		aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);

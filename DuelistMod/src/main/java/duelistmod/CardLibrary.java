@@ -482,6 +482,11 @@ public class CardLibrary {
 		DuelistMod.myCards.add(new WorldTree());
 		DuelistMod.myCards.add(new TyrantWing());
 		DuelistMod.myCards.add(new WhitefishSalvage());
+		DuelistMod.myCards.add(new SwampFrog());
+		DuelistMod.myCards.add(new SharkStickers());
+		DuelistMod.myCards.add(new RageDeepSea());
+		DuelistMod.myCards.add(new SpearfishSoldier());
+		DuelistMod.myCards.add(new HydraViper());
 		
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)

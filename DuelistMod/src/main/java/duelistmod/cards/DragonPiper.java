@@ -34,6 +34,7 @@ public class DragonPiper extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.METAL_RAIDERS);
         this.originalName = this.name;
         this.isSummon = true;
     }

@@ -274,6 +274,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int aquaLowCostRoll = 1;
 	public static int aquaHighCostRoll = 4;
 	public static int aquaInc = 1;
+	public static int aquaTidalBoost = 1;
 	public static int superheavyDex = 1;
 	public static int naturiaDmg = 1;
 	public static int machineArt = 1;
@@ -345,7 +346,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = false;			// print statements only, used in mod option panel
 	public static boolean debugMsg = false;			// for secret msg
-	public static final boolean addTokens = true;	// adds debug tokens to library
+	public static final boolean addTokens = false;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================

@@ -962,9 +962,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap cards in your hand to 0."
 	},
 	"theDuelist:InjectionFairy": {
-		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !M! HP.",
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have only Spellcasters summoned, gain !M! HP.",
 		"NAME": "Injection Fairy Lily",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !M! HP. NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have only Spellcasters summoned, gain !M! HP."
 	},
 	"theDuelist:InsectArchetype": {
 		"DESCRIPTION": "Add Insect cards to your card pool.",
@@ -2431,9 +2431,9 @@
 		"UPGRADE_DESCRIPTION": "Your Aqua monsters deal an additional 1 damage. Each time you attack with an Aqua monster, increase the extra damage by 1. Lasts for !M! turns."
 	},
 	"theDuelist:FishRain": {
-		"DESCRIPTION": "Randomly Resummon !M! random Aqua monsters.",
+		"DESCRIPTION": "Create and randomly Resummon !M! random Aqua monsters.",
 		"NAME": "Fish Rain",
-		"UPGRADE_DESCRIPTION": "Randomly Resummon !M! random Aqua monsters."
+		"UPGRADE_DESCRIPTION": "Create and randomly Resummon !M! random Aqua monsters."
 	},
 	"theDuelist:FishKicks": {
 		"DESCRIPTION": "Channel a Mist. NL If you have at least !M! Aqua monsters in your Exhaust pile, deal !D! damage to a random enemy.",
@@ -2456,9 +2456,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you would receive damage: if you have any Aqua monsters summoned, Tribute all of them and receive no damage."
 	},
 	"theDuelist:Surface": {
-		"DESCRIPTION": "Randomly Resummon a copy of a random Aqua monster from your draw pile.",
+		"DESCRIPTION": "Resummon a copy of a random Aqua monster from your draw pile.",
 		"NAME": "Surface",
-		"UPGRADE_DESCRIPTION": "Randomly Resummon a copy of a random Aqua monster from your draw pile."
+		"UPGRADE_DESCRIPTION": "Resummon a copy of a random Aqua monster from your draw pile."
 	},
 	"theDuelist:UnderworldEggClutch": {
 		"DESCRIPTION": "Deal !D! damage to ALL enemies for each Aqua monster in your draw pile.",

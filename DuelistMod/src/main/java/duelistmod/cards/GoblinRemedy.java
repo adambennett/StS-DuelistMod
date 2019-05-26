@@ -34,6 +34,7 @@ public class GoblinRemedy extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.HEAL_DECK);
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.healDeckCopies = 1;
         this.magicNumber = this.baseMagicNumber = 1;
 		this.originalName = this.name;

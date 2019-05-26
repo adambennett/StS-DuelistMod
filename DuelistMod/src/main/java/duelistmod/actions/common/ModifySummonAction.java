@@ -9,11 +9,11 @@ public class ModifySummonAction extends AbstractGameAction {
 	boolean forTurn = true;
 	
 	
-	public ModifySummonAction(DuelistCard card, int addAmount, boolean turnOnly) {
+	public ModifySummonAction(DuelistCard card, int addAmount, boolean combat) {
 		this.setValues(this.target, this.source, addAmount);
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.cardToModify = card;
-		this.forTurn = turnOnly;
+		this.forTurn = combat;
 	}
 	
 	@Override

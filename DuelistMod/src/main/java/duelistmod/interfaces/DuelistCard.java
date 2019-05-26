@@ -545,6 +545,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(player(), damageAmounts, dmgForTurn, effect));
 	}
+	
+	public static void attackAllEnemies(int damage)
+	{
+		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
+		attackAll(AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, damageArray, DamageType.NORMAL);
+	}
 
 	public static void damageAllEnemiesFire(int damage)
 	{
