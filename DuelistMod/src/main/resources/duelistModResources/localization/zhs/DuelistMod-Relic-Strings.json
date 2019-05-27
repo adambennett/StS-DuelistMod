@@ -1,264 +1,264 @@
 {
 	"theDuelist:PlaceholderRelic": {
-		"NAME": "å ä½ç¬¦",
-		"FLAVOR": "è¿™åªè›‡æ˜¯æœ‹å‹ã€‚",
+		"NAME": "Õ¼Î»·û",
+		"FLAVOR": "ÕâÖ»ÉßÊÇÅóÓÑ¡£",
 		"DESCRIPTIONS": [
-			"é¢å¤–èŽ·å¾— [R] ã€‚"
+			"¶îÍâ»ñµÃ [R] ¡£"
 		]
 	},
 	"theDuelist:MillenniumPuzzle": {
-		"NAME": "åƒå¹´ç§¯æœ¨",
-		"FLAVOR": "è¿™åŽŸæœ¬è¢«è®¤ä¸ºæ˜¯åƒå¹´æŒ‚å ï¼Œä½†ç»è¿‡äº†æ‹†æ•£å†ç»„è£…åŽç»ˆäºŽè¢«è®¤å‡ºæ˜¯åƒå¹´ç§¯æœ¨ã€‚",
+		"NAME": "Ç§Äê»ýÄ¾",
+		"FLAVOR": "ÕâÔ­±¾±»ÈÏÎªÊÇÇ§Äê¹Ò×¹£¬µ«¾­¹ýÁË²ðÉ¢ÔÙ×é×°ºóÖÕÓÚ±»ÈÏ³öÊÇÇ§Äê»ýÄ¾¡£",
 		"DESCRIPTIONS": [
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œæ ¹æ®æ‰€é€‰èµ·å§‹å¡ç»„è§¦å‘1ä¸ªæ•ˆæžœã€‚",
-			"æŒ‘æˆ˜æ¨¡å¼: æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 ä¸ª[#FF5252]çˆ†ç ´ [#FF5252]è¡ç”Ÿç‰©ã€‚ èµ·å§‹æœ€å¤§å¬å”¤æ•°ä¸º4ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b2 ä¸ªç§¯æœ¨è¡ç”Ÿç‰©ï¼ŒèŽ·å¾—éšæœº (0-10) ç‚¹#yæ ¼æŒ¡ å¹¶èŽ·å¾— #b1 å±‚#yæ®‹å½±ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 ä¸ª#yé¾™æ— è¡ç”Ÿç‰©å¹¶ç»™äºˆ1ä¸ªéšæœºæ•Œäºº #b",
-			"å±‚ #yè™šå¼± æˆ– #yæ˜“ä¼¤ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 åˆ° #b2 ä¸ª#yæ˜†è™«/æ¤ç‰©/æ•é£Ÿæ¤ç‰© è¡ç”Ÿç‰©å¹¶èŽ·å¾—è‡ªç„¶ç¥ç¦ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 ä¸ª#yé­”æ³•å¸ˆ è¡ç”Ÿç‰©å¹¶æœ‰å‡ çŽ‡#yç”Ÿæˆ 1ä¸ªéšæœºçš„å……èƒ½çƒã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b2 ä¸ª#yå¡é€š è¡ç”Ÿç‰©å¹¶ä»Ž#b3 å¼ éšæœº#yå¡é€š é€‰æ‹©#b1 å¼ æ‰“å‡ºã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b2 ä¸ª#yä¸æ­» è¡ç”Ÿç‰©å¹¶å°†1å¼  #yéšæœº #yä¸æ­»æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 ä¸ª#yæ°´æ— è¡ç”Ÿç‰©å¹¶æœ‰å‡ çŽ‡æŠ½#b",
-			" å¼ å¡ã€‚",
-			" å¼ å¡ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ#yå¬å”¤ #b1 ä¸ª#yä¸æ­» è¡ç”Ÿç‰©ï¼Œæœ¬åœºæˆ˜æ–—æå‡æŠ½ç‰Œå †ä¸­1åªéšæœºæ€ªå…½çš„ä¼¤å®³å¹¶#yæ¶ˆè€—ï¼Œæ•°å€¼ç­‰äºŽæŠ½ç‰Œå †ä¸­æ‰€æœ‰æ€ªå…½çš„ç¥­å“æ¶ˆè€—æ€»å’Œã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 #yæœºæ¢° è¡ç”Ÿç‰©å¹¶èŽ·å¾— #b1 å±‚#yäººå·¥åˆ¶å“ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 ä¸ª#yè¶…é‡ è¡ç”Ÿç‰©, èŽ·å¾—éšæœº (0-5) ç‚¹#yæ ¼æŒ¡ å¹¶èŽ·å¾— #b2 å±‚#yæ®‹å½±ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b2 ä¸ªç§¯æœ¨è¡ç”Ÿç‰©ï¼Œéšæœºå°†1å¼ #bäººé€ äºº æˆ–#bè½ç©´ æˆ–#bè¡€ä¹‹ä»£å¿ å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ éšæœºæ•°é‡çš„æœºä¼šè¡ç”Ÿç‰©å¹¶èŽ·å¾—1ä¸ªéšæœº#yå¢žç›Šæ•ˆæžœã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b5 ä¸ªæœºä¼šè¡ç”Ÿç‰©å¹¶å°†éšæœºå‡ å¼ å†³æ–—å¡å¢žåŠ åˆ°æŠ½ç‰Œå †ä¸­ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 ä¸ªå……èƒ½çƒè¡ç”Ÿç‰©å¹¶ ä»Ž#b3 ä¸ªéšæœºå……èƒ½çƒä¸­é€‰æ‹©#yç”Ÿæˆ#b1 ä¸ªã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #2 ä¸ª#yä¸æ­» è¡ç”Ÿç‰©ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¢žæ®– å¹¶#yå¬å”¤ #b1ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤ #b1 ä¸ªäº”å°¸å— è¡ç”Ÿç‰© å¹¶é¢å¤–æŠ½#b2 å¼ å¡ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬#b1 ä¸ªç§¯æœ¨è¡ç”Ÿç‰© and èŽ·å¾—é˜¿åŠªæ¯”æ–¯çš„å‡è§†ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤éšæœº#b(2-5) ä¸ªç§¯æœ¨è¡ç”Ÿç‰©ã€‚",
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¬å”¤éšæœº#b(2-2) ä¸ªç§¯æœ¨è¡ç”Ÿç‰©ã€‚"
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬¸ù¾ÝËùÑ¡ÆðÊ¼¿¨×é´¥·¢1¸öÐ§¹û¡£",
+			"ÌôÕ½Ä£Ê½: Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸ö[ #FF5252]±¬ÆÆ [ #FF5252]ÑÜÉúÎï¡£ ÆðÊ¼×î´óÕÙ»½ÊýÎª4¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b2 ¸ö»ýÄ¾ÑÜÉúÎï£¬»ñµÃËæ»ú (0-10) µã #y¸ñµ² ²¢»ñµÃ #b1 ²ã #y²ÐÓ°¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸ö #yÁú×å ÑÜÉúÎï²¢¸øÓè1¸öËæ»úµÐÈË #b",
+			"²ã #yÐéÈõ »ò #yÒ×ÉË¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 µ½ #b2 ¸ö #yÀ¥³æ/Ö²Îï/²¶Ê³Ö²Îï ÑÜÉúÎï²¢»ñµÃ×ÔÈ»×£¸£¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸ö #yÄ§·¨Ê¦ ÑÜÉúÎï²¢ÓÐ¼¸ÂÊ #yÉú³É 1¸öËæ»úµÄ³äÄÜÇò¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b2 ¸ö #y¿¨Í¨ ÑÜÉúÎï²¢´Ó #b3 ÕÅËæ»ú #y¿¨Í¨ Ñ¡Ôñ #b1 ÕÅ´ò³ö¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b2 ¸ö #y²»ËÀ ÑÜÉúÎï²¢½«1ÕÅ #yËæ»ú #y²»ËÀ×åÔö¼Óµ½ÊÖÅÆÖÐ¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸ö #yË®×å ÑÜÉúÎï²¢ÓÐ¼¸ÂÊ³é #b",
+			" ÕÅ¿¨¡£",
+			" ÕÅ¿¨¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸ö #y²»ËÀ ÑÜÉúÎï£¬±¾³¡Õ½¶·ÌáÉý³éÅÆ¶ÑÖÐ1Ö»Ëæ»ú¹ÖÊÞµÄÉËº¦²¢ #yÏûºÄ£¬ÊýÖµµÈÓÚ³éÅÆ¶ÑÖÐËùÓÐ¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ×ÜºÍ¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 #y»úÐµ ÑÜÉúÎï²¢»ñµÃ #b1 ²ã #yÈË¹¤ÖÆÆ·¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸ö #y³¬ÖØ ÑÜÉúÎï, »ñµÃËæ»ú (0-5) µã #y¸ñµ² ²¢»ñµÃ #b2 ²ã #y²ÐÓ°¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b2 ¸ö»ýÄ¾ÑÜÉúÎï£¬Ëæ»ú½«1ÕÅ #bÈËÔìÈË »ò #bÂäÑ¨ »ò #bÑªÖ®´ú³¥ Ôö¼Óµ½ÊÖÅÆÖÐ¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ Ëæ»úÊýÁ¿µÄ»ú»áÑÜÉúÎï²¢»ñµÃ1¸öËæ»ú #yÔöÒæÐ§¹û¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b5 ¸ö»ú»áÑÜÉúÎï²¢½«Ëæ»ú¼¸ÕÅ¾ö¶·¿¨Ôö¼Óµ½³éÅÆ¶ÑÖÐ¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸ö³äÄÜÇòÑÜÉúÎï²¢ ´Ó #b3 ¸öËæ»ú³äÄÜÇòÖÐÑ¡Ôñ #yÉú³É #b1 ¸ö¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #2 ¸ö #y²»ËÀ ÑÜÉúÎï¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÔöÖ³ ²¢ #yÕÙ»½ #b1¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸öÎåÊ¬¿é ÑÜÉúÎï ²¢¶îÍâ³é #b2 ÕÅ¿¨¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ #b1 ¸ö»ýÄ¾ÑÜÉúÎï and »ñµÃ°¢Å¬±ÈË¹µÄÄýÊÓ¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½Ëæ»ú #b(2-5) ¸ö»ýÄ¾ÑÜÉúÎï¡£",
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½Ëæ»ú #b(2-2) ¸ö»ýÄ¾ÑÜÉúÎï¡£"
 		]
 	},
 	"theDuelist:MillenniumPuzzleShared": {
-		"NAME": "åƒå¹´ç§¯æœ¨",
-		"FLAVOR": "è¿™åŽŸæœ¬è¢«è®¤ä¸ºæ˜¯åƒå¹´æŒ‚å ï¼Œä½†ç»è¿‡äº†æ‹†æ•£å†ç»„è£…åŽç»ˆäºŽè¢«è®¤å‡ºæ˜¯åƒå¹´ç§¯æœ¨ã€‚",
+		"NAME": "Ç§Äê»ýÄ¾",
+		"FLAVOR": "ÕâÔ­±¾±»ÈÏÎªÊÇÇ§Äê¹Ò×¹£¬µ«¾­¹ýÁË²ðÉ¢ÔÙ×é×°ºóÖÕÓÚ±»ÈÏ³öÊÇÇ§Äê»ýÄ¾¡£",
 		"DESCRIPTIONS": [
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œæ ¹æ®æ‰€é€‰èµ·å§‹å¡ç»„è§¦å‘1ä¸ªæ•ˆæžœã€‚"
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬¸ù¾ÝËùÑ¡ÆðÊ¼¿¨×é´¥·¢1¸öÐ§¹û¡£"
 		]
 	},
 	"theDuelist:MillenniumEye": {
-		"NAME": "åƒå¹´çœ¼",
-		"FLAVOR": "è¿™æ˜¯åœ¨3000å¹´å‰ä¸Žå…¶ä»–åƒå¹´ç¥žå™¨ä¸€èµ·è¢«é˜¿å…‹é‚£ä¸æ‰€é€ ã€‚é˜¿å…‹é‚£ä¸ç‰ºç‰²äº†è‡ªå·±çš„å·¦çœ¼ï¼Œåœ¨åˆ¶é€ ä¹‹åŽè‡ªå·±æˆ´ä¸Šäº†åƒå¹´çœ¼ã€‚",
+		"NAME": "Ç§ÄêÑÛ",
+		"FLAVOR": "ÕâÊÇÔÚ3000ÄêÇ°ÓëÆäËûÇ§ÄêÉñÆ÷Ò»Æð±»°¢¿ËÄÇ¶¡ËùÔì¡£°¢¿ËÄÇ¶¡ÎþÉüÁË×Ô¼ºµÄ×óÑÛ£¬ÔÚÖÆÔìÖ®ºó×Ô¼º´÷ÉÏÁËÇ§ÄêÑÛ¡£",
 		"DESCRIPTIONS": [
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ èŽ·å¾— #yå¡é€šä¸–ç•Œã€‚"
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ »ñµÃ #y¿¨Í¨ÊÀ½ç¡£"
 		]
 	},
 	"theDuelist:MillenniumRing": {
-		"NAME": "åƒå¹´è½®",
-		"FLAVOR": "3000å¹´å‰ï¼Œåƒå¹´è½®å’Œå…¶ä»–åƒå¹´ç¥žå™¨æ˜¯ç‰ºç‰²äº†99ä¸ªå…‹é›·â€§è‰¾å°”é‚£æ‘æ°‘çš„çµé­‚è€Œåˆ¶é€ çš„ã€‚",
+		"NAME": "Ç§ÄêÂÖ",
+		"FLAVOR": "3000ÄêÇ°£¬Ç§ÄêÂÖºÍÆäËûÇ§ÄêÉñÆ÷ÊÇÎþÉüÁË99¸ö¿ËÀ×?°¬¶ûÄÇ´åÃñµÄÁé»ê¶øÖÆÔìµÄ¡£",
 		"DESCRIPTIONS": [
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ #yå¢žæ®– #b3ã€‚"
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÔöÖ³ #b3¡£"
 		]
 	},
 	"theDuelist:MillenniumKey": {
-		"NAME": "åƒå¹´é’¥åŒ™",
-		"FLAVOR": "åƒå¹´çš„é’¥åŒ™åˆ¶ä½œå®ŒæˆåŽäº¤ç»™äº†æ‰€ç½—é—¨ ç©†æ‰˜ï¼ˆè¥¿è’™ å§†æ‹‰ï¼‰çš„åŸƒåŠåŒ–èº«ï¼ŒåŠæ­¦è—¤åŒå…­çš„å‰ä¸–ï¼Œä½†åŽæ¥è¢«ä¼ ç»™äº†å¤è¿ªã€‚",
+		"NAME": "Ç§ÄêÔ¿³×",
+		"FLAVOR": "Ç§ÄêµÄÔ¿³×ÖÆ×÷Íê³Éºó½»¸øÁËËùÂÞÃÅ ÄÂÍÐ£¨Î÷ÃÉ Ä·À­£©µÄ°£¼°»¯Éí£¬¼°ÎäÌÙË«ÁùµÄÇ°ÊÀ£¬µ«ºóÀ´±»´«¸øÁËÏÄµÏ¡£",
 		"DESCRIPTIONS": [
-			"æ¯å›žåˆå¼€å§‹æ—¶ï¼ŒèŽ·å¾— 1 [E]ã€‚ æœ€å¤§#yå¬å”¤æ•° æ— æ³•é«˜äºŽ#b5ã€‚"
+			"Ã¿»ØºÏ¿ªÊ¼Ê±£¬»ñµÃ 1 [E]¡£ ×î´ó #yÕÙ»½Êý ÎÞ·¨¸ßÓÚ #b5¡£"
 		]
 	},
 	"theDuelist:MillenniumRod": {
-		"NAME": "åƒå¹´é”¡æ–",
-		"FLAVOR": "èµ›ç‰¹ç¥žå®˜æ˜¯åƒå¹´é”¡æ–çš„åŽŸæ‹¥æœ‰è€…ã€‚å®ƒä¸Žå…¶ä»–åƒå¹´ç¥žå™¨ä¸€èµ·å°†èƒ½å¤æ´»ä½å…‹ å†…æ´›æ³•ã€‚",
+		"NAME": "Ç§ÄêÎýÕÈ",
+		"FLAVOR": "ÈüÌØÉñ¹ÙÊÇÇ§ÄêÎýÕÈµÄÔ­ÓµÓÐÕß¡£ËüÓëÆäËûÇ§ÄêÉñÆ÷Ò»Æð½«ÄÜ¸´»î×ô¿Ë ÄÚÂå·¨¡£",
 		"DESCRIPTIONS": [
-			"æ¯å›žåˆå¼€å§‹æ—¶ï¼Œå°†1å¼ #yéšæœº #yé­”æ³•å¡ å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
+			"Ã¿»ØºÏ¿ªÊ¼Ê±£¬½«1ÕÅ #yËæ»ú #yÄ§·¨¿¨ Ôö¼Óµ½ÊÖÅÆÖÐ¡£"
 		]
 	},
 	"theDuelist:MillenniumCoin": {
-		"NAME": "åƒå¹´ç¡¬å¸",
-		"FLAVOR": "ä¸€ä¸ªç²¾ç¾Žçš„ç¡¬å¸ã€‚",
+		"NAME": "Ç§ÄêÓ²±Ò",
+		"FLAVOR": "Ò»¸ö¾«ÃÀµÄÓ²±Ò¡£",
 		"DESCRIPTIONS": [
-			"æ¯æ¬¡ #yæ¿€å‘ å……èƒ½çƒï¼Œæœ‰å‡ çŽ‡èŽ·å¾— #b", " é‡‘å¸ã€‚ NL æ¯æ¬¡æ‰“è´¥ç²¾è‹±æˆ–Bossï¼Œå¢žåŠ è¯¥æ•ˆæžœå¯èŽ·å¾—çš„ #b10 é‡‘å¸ï¼Œå¹¶æœ‰#b30% çš„å‡ çŽ‡æå‡æ¿€å‘è§¦å‘#b10% æ¦‚çŽ‡ã€‚"
+			"Ã¿´Î #y¼¤·¢ ³äÄÜÇò£¬ÓÐ¼¸ÂÊ»ñµÃ #b", " ½ð±Ò¡£ NL Ã¿´Î´ò°Ü¾«Ó¢»òBoss£¬Ôö¼Ó¸ÃÐ§¹û¿É»ñµÃµÄ #b10 ½ð±Ò£¬²¢ÓÐ #b30% µÄ¼¸ÂÊÌáÉý¼¤·¢´¥·¢ #b10% ¸ÅÂÊ¡£"
 		]
 	},
 	"theDuelist:StoneExxod": {
-		"NAME": "è‰¾å…‹ä½è¿ªäºšä¹‹çŸ³",
-		"FLAVOR": "ä¸€ä¸ªè¢«å°å°çš„ç¢Žç‰‡?",
+		"NAME": "°¬¿Ë×ôµÏÑÇÖ®Ê¯",
+		"FLAVOR": "Ò»¸ö±»·âÓ¡µÄËéÆ¬?",
 		"DESCRIPTIONS": [
-			"æ¯æ¬¡æ´—ç‰Œï¼Œå°†1å¼ éšæœº#yè‰¾å…‹ä½è¿ªäºš ç‰Œå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
+			"Ã¿´ÎÏ´ÅÆ£¬½«1ÕÅËæ»ú #y°¬¿Ë×ôµÏÑÇ ÅÆÔö¼Óµ½ÊÖÅÆÖÐ¡£"
 		]
 	},
 	"theDuelist:GiftAnubis": {
-		"NAME": "é˜¿åŠªæ¯”æ–¯çš„ç¤¼ç‰©",
-		"FLAVOR": "ä¸€ä¸ªç¤¼ç‰©ï¼Œæ¥è‡ªé˜¿åŠªæ¯”æ–¯ã€‚",
+		"NAME": "°¢Å¬±ÈË¹µÄÀñÎï",
+		"FLAVOR": "Ò»¸öÀñÎï£¬À´×Ô°¢Å¬±ÈË¹¡£",
 		"DESCRIPTIONS": [
-			"æ¶ˆè€—1 #yå……èƒ½ï¼Œå¬å”¤#b1ã€‚ NL èµ·å§‹æ‹¥æœ‰#b2 #yå……èƒ½ã€‚ NL æ¯æ¬¡æ‰“è´¥ç²¾è‹±æˆ–Bossï¼Œ èŽ·å¾— #b3 #yå……èƒ½ã€‚"
+			"ÏûºÄ1 #y³äÄÜ£¬ÕÙ»½ #b1¡£ NL ÆðÊ¼ÓµÓÐ #b2 #y³äÄÜ¡£ NL Ã¿´Î´ò°Ü¾«Ó¢»òBoss£¬ »ñµÃ #b3 #y³äÄÜ¡£"
 		]
 	},
 	"theDuelist:ResummonBranch": {
-		"NAME": "åƒå¹´æ ‘æž",
-		"FLAVOR": "è¿™æ˜¯æ¥è‡ªå¤åŸƒåŠæ—¶ä»£çš„1æ£µæ ‘çš„å°æ ‘æžã€‚",
+		"NAME": "Ç§ÄêÊ÷Ö¦",
+		"FLAVOR": "ÕâÊÇÀ´×Ô¹Å°£¼°Ê±´úµÄ1¿ÃÊ÷µÄÐ¡Ê÷Ö¦¡£",
 		"DESCRIPTIONS": [
-			"å›žåˆå¼€å§‹æ—¶ï¼Œä¸Šä¸ªå›žåˆæ¯æ¶ˆè€—#b2 å¼ å¡ï¼Œéšæœº#yç‰¹æ®Šå¬å”¤ 1åªæœ¬åœºæˆ˜æ–—ä¸­å¬å”¤è¿‡çš„æ€ªå…½ã€‚"
+			"»ØºÏ¿ªÊ¼Ê±£¬ÉÏ¸ö»ØºÏÃ¿ÏûºÄ #b2 ÕÅ¿¨£¬Ëæ»ú #yÌØÊâÕÙ»½ 1Ö»±¾³¡Õ½¶·ÖÐÕÙ»½¹ýµÄ¹ÖÊÞ¡£"
 		]
 	},
 	"theDuelist:AeroRelic": {
-		"NAME": "å¥¥è¥¿é‡Œæ–¯çš„å……èƒ½çƒ",
-		"FLAVOR": "ä¸€ä¸ªæœ‰ç€ç¥žç§˜åŠ›é‡çš„å¥‡æ€ªçš„å……èƒ½çƒã€‚",
+		"NAME": "°ÂÎ÷ÀïË¹µÄ³äÄÜÇò",
+		"FLAVOR": "Ò»¸öÓÐ×ÅÉñÃØÁ¦Á¿µÄÆæ¹ÖµÄ³äÄÜÇò¡£",
 		"DESCRIPTIONS": [
-			" #yç©ºæ°” å……èƒ½çƒå¿…å®šèƒ½#yç”Ÿæˆ 1ä¸ªéšæœºçš„å……èƒ½çƒã€‚"
+			" #y¿ÕÆø ³äÄÜÇò±Ø¶¨ÄÜ #yÉú³É 1¸öËæ»úµÄ³äÄÜÇò¡£"
 		]
 	},
 	"theDuelist:CardRewardRelicA": {
-		"NAME": "å¥–åŠ±è¡ç”Ÿç‰©",
-		"FLAVOR": "ä¸€ä¸ªéžå¸¸æœ‰å¸®åŠ©çš„è¡ç”Ÿç‰©ã€‚",
+		"NAME": "½±ÀøÑÜÉúÎï",
+		"FLAVOR": "Ò»¸ö·Ç³£ÓÐ°ïÖúµÄÑÜÉúÎï¡£",
 		"DESCRIPTIONS": [
-			"æ¯èƒœåˆ©1åœºæˆ˜æ–—ï¼Œæ¶ˆè€—#b1 å……èƒ½ï¼Œé¢å¤–èŽ·å¾—#b1 ä¸ªå¡ç‰Œå¥–åŠ±ã€‚ NL èµ·å§‹æ‹¥æœ‰#b2 #yå……èƒ½ã€‚NL æ¯æ¬¡æ‰“è´¥ç²¾è‹±æˆ–Bossï¼Œ èŽ·å¾— #b2 #yå……èƒ½ã€‚"
+			"Ã¿Ê¤Àû1³¡Õ½¶·£¬ÏûºÄ #b1 ³äÄÜ£¬¶îÍâ»ñµÃ #b1 ¸ö¿¨ÅÆ½±Àø¡£ NL ÆðÊ¼ÓµÓÐ #b2 #y³äÄÜ¡£NL Ã¿´Î´ò°Ü¾«Ó¢»òBoss£¬ »ñµÃ #b2 #y³äÄÜ¡£"
 		]
 	},
 	"theDuelist:CardRewardRelicB": {
-		"NAME": "å¥–åŠ±è¡ç”Ÿç‰©+",
-		"FLAVOR": "ä¸€ä¸ªéžå¸¸éžå¸¸æœ‰å¸®åŠ©çš„è¡ç”Ÿç‰©ã€‚",
+		"NAME": "½±ÀøÑÜÉúÎï+",
+		"FLAVOR": "Ò»¸ö·Ç³£·Ç³£ÓÐ°ïÖúµÄÑÜÉúÎï¡£",
 		"DESCRIPTIONS": [
-			"æ¯èƒœåˆ©1åœºæˆ˜æ–—ï¼Œæ¶ˆè€—#b1 å……èƒ½ï¼Œé¢å¤–èŽ·å¾—#b2 ä¸ªå¡ç‰Œå¥–åŠ±ã€‚ NL èµ·å§‹æ‹¥æœ‰#b2 #yå……èƒ½ã€‚NL æ¯æ¬¡æ‰“è´¥ç²¾è‹±æˆ–Bossï¼Œ èŽ·å¾— #b1 #yå……èƒ½ã€‚"
+			"Ã¿Ê¤Àû1³¡Õ½¶·£¬ÏûºÄ #b1 ³äÄÜ£¬¶îÍâ»ñµÃ #b2 ¸ö¿¨ÅÆ½±Àø¡£ NL ÆðÊ¼ÓµÓÐ #b2 #y³äÄÜ¡£NL Ã¿´Î´ò°Ü¾«Ó¢»òBoss£¬ »ñµÃ #b1 #y³äÄÜ¡£"
 		]
 	},
 	"theDuelist:CardRewardRelicC": {
-		"NAME": "å¥–åŠ±å……èƒ½çƒ",
-		"FLAVOR": "ä¸€ä¸ªéžå¸¸æœ‰å¸®åŠ©çš„å……èƒ½çƒã€‚",
+		"NAME": "½±Àø³äÄÜÇò",
+		"FLAVOR": "Ò»¸ö·Ç³£ÓÐ°ïÖúµÄ³äÄÜÇò¡£",
 		"DESCRIPTIONS": [
-			"æ¯èƒœåˆ©1åœºæˆ˜æ–—ï¼Œæ¶ˆè€—#b1 å……èƒ½ï¼Œé¢å¤–èŽ·å¾—#b1 ä¸ªå¡ç‰Œå¥–åŠ±ã€‚ NL èµ·å§‹æ‹¥æœ‰#b5 #yå……èƒ½ã€‚NL æ¯æ¬¡æ‰“è´¥ç²¾è‹±æˆ–Bossï¼Œ èŽ·å¾— #b1 #yå……èƒ½ã€‚"
+			"Ã¿Ê¤Àû1³¡Õ½¶·£¬ÏûºÄ #b1 ³äÄÜ£¬¶îÍâ»ñµÃ #b1 ¸ö¿¨ÅÆ½±Àø¡£ NL ÆðÊ¼ÓµÓÐ #b5 #y³äÄÜ¡£NL Ã¿´Î´ò°Ü¾«Ó¢»òBoss£¬ »ñµÃ #b1 #y³äÄÜ¡£"
 		]
 	},
 	"theDuelist:CardRewardRelicD": {
-		"NAME": "å¥–åŠ±å……èƒ½çƒ+",
-		"FLAVOR": "ä¸€ä¸ªå¥‡æ€ªçš„å……èƒ½çƒã€‚",
+		"NAME": "½±Àø³äÄÜÇò+",
+		"FLAVOR": "Ò»¸öÆæ¹ÖµÄ³äÄÜÇò¡£",
 		"DESCRIPTIONS": [
-			"æ¯èƒœåˆ©1åœºæˆ˜æ–—ï¼Œæœ‰ #b5% çš„å‡ çŽ‡èŽ·å¾—#b5 ä¸ªé¢å¤–å¡ç‰Œå¥–åŠ±ã€‚"
+			"Ã¿Ê¤Àû1³¡Õ½¶·£¬ÓÐ #b5% µÄ¼¸ÂÊ»ñµÃ #b5 ¸ö¶îÍâ¿¨ÅÆ½±Àø¡£"
 		]
 	},
 	"theDuelist:CardRewardRelicE": {
-		"NAME": "å¥–åŠ±çŸ³",
-		"FLAVOR": "ä¸€å—å¥‡æ€ªçš„çŸ³å¤´ã€‚",
+		"NAME": "½±ÀøÊ¯",
+		"FLAVOR": "Ò»¿éÆæ¹ÖµÄÊ¯Í·¡£",
 		"DESCRIPTIONS": [
-			"æ¯èƒœåˆ©1åœºæˆ˜æ–—ï¼Œ æœ‰ #b33% çš„å‡ çŽ‡èŽ·å¾—#b2 ä¸ªé¢å¤–å¡ç‰Œå¥–åŠ±ã€‚"
+			"Ã¿Ê¤Àû1³¡Õ½¶·£¬ ÓÐ #b33% µÄ¼¸ÂÊ»ñµÃ #b2 ¸ö¶îÍâ¿¨ÅÆ½±Àø¡£"
 		]
 	},
 	"theDuelist:InversionRelic": {
-		"NAME": "é‡ç½®çŸ³",
-		"FLAVOR": "ä¸€å—å¥‡å½¢æ€ªçŠ¶çš„çŸ³å¤´ã€‚",
+		"NAME": "ÖØÖÃÊ¯",
+		"FLAVOR": "Ò»¿éÆæÐÎ¹Ö×´µÄÊ¯Í·¡£",
 		"DESCRIPTIONS": [
-			"æ¯æ¬¡ #yé‡ç½® å……èƒ½çƒï¼Œ#yæ¿€å‘ åŽŸå……èƒ½çƒä¸¤æ¬¡ã€‚"
+			"Ã¿´Î #yÖØÖÃ ³äÄÜÇò£¬ #y¼¤·¢ Ô­³äÄÜÇòÁ½´Î¡£"
 		]
 	},
 	"theDuelist:InversionEvokeRelic": {
-		"NAME": "é‡ç½®å……èƒ½çƒ",
-		"FLAVOR": "ä¸€ä¸ªå¥‡å½¢æ€ªçŠ¶çš„å……èƒ½çƒã€‚",
+		"NAME": "ÖØÖÃ³äÄÜÇò",
+		"FLAVOR": "Ò»¸öÆæÐÎ¹Ö×´µÄ³äÄÜÇò¡£",
 		"DESCRIPTIONS": [
-			"æ¯æ¬¡ #yé‡ç½® å……èƒ½çƒï¼Œé‡å¤1æ¬¡ç›¸åŒ#yé‡ç½® åŠ¨ä½œã€‚"
+			"Ã¿´Î #yÖØÖÃ ³äÄÜÇò£¬ÖØ¸´1´ÎÏàÍ¬ #yÖØÖÃ ¶¯×÷¡£"
 		]
 	},
 	"theDuelist:NaturiaRelic": {
-		"NAME": "è‡ªç„¶å……èƒ½çƒ",
-		"FLAVOR": "ä¸€ä¸ªè¢«æ ‘å¶å’Œæ³¥åœŸè¦†ç›–çš„å……èƒ½çƒï¼ŒçœŸæ˜¯æ€ªçƒã€‚",
+		"NAME": "×ÔÈ»³äÄÜÇò",
+		"FLAVOR": "Ò»¸ö±»Ê÷Ò¶ºÍÄàÍÁ¸²¸ÇµÄ³äÄÜÇò£¬ÕæÊÇ¹ÖÇò¡£",
 		"DESCRIPTIONS": [
-			"æ¯åª#yè‡ªç„¶ æ€ªç‰©çš„#yè‡ªç„¶ åŠ›é‡é€ æˆçš„#b1 ç‚¹ ä¼¤å®³å˜ä¸º#b2 ç‚¹ã€‚"
+			"Ã¿Ö» #y×ÔÈ» ¹ÖÎïµÄ #y×ÔÈ» Á¦Á¿Ôì³ÉµÄ #b1 µã ÉËº¦±äÎª #b2 µã¡£"
 		]
 	},
 	"theDuelist:InsectRelic": {
-		"NAME": "è™«å­è¡ç”Ÿç‰©",
-		"FLAVOR": "ä¸€ä¸ªåƒç”²è™«ä¸€æ ·çš„è„å…®å…®çš„è¡ç”Ÿç‰©ã€‚",
+		"NAME": "³æ×ÓÑÜÉúÎï",
+		"FLAVOR": "Ò»¸öÏñ¼×³æÒ»ÑùµÄÔàÙâÙâµÄÑÜÉúÎï¡£",
 		"DESCRIPTIONS": [
-			"æ¯å½“å› #yç¥­å“ #yæ˜†è™«æ— æˆ–#yæ¤ç‰©æ— ç»™äºˆä¸­æ¯’ï¼Œé¢å¤–ç»™äºˆ#b", " å±‚ä¸­æ¯’ã€‚ æ¯æ¬¡æ‰“è´¥ç²¾è‹±æˆ–Bossï¼Œæœ‰#b25% çš„å‡ çŽ‡æå‡è¯¥æ•ˆæžœç»™äºˆçš„é¢å¤–#b1 å±‚#yä¸­æ¯’ã€‚"
+			"Ã¿µ±Òò #y¼ÀÆ· #yÀ¥³æ×å »ò #yÖ²Îï×å ¸øÓèÖÐ¶¾£¬¶îÍâ¸øÓè #b", " ²ãÖÐ¶¾¡£ Ã¿´Î´ò°Ü¾«Ó¢»òBoss£¬ÓÐ #b25% µÄ¼¸ÂÊÌáÉý¸ÃÐ§¹û¸øÓèµÄ¶îÍâ #b1 ²ã #yÖÐ¶¾¡£"
 		]
 	},
 	"theDuelist:MachineToken": {
-		"NAME": "æœºæ¢°è¡ç”Ÿç‰©",
-		"FLAVOR": "ä¸€ä¸ªè¦†ç›–ç€ç»†çº¿å’Œå¥‡æ€ªæ ‡è®°çš„æœºæ¢°è¡ç”Ÿç‰©ã€‚æœ€å¥½ä¸è¦ä¹±åŠ¨å®ƒã€‚",
+		"NAME": "»úÐµÑÜÉúÎï",
+		"FLAVOR": "Ò»¸ö¸²¸Ç×ÅÏ¸ÏßºÍÆæ¹Ö±ê¼ÇµÄ»úÐµÑÜÉúÎï¡£×îºÃ²»ÒªÂÒ¶¯Ëü¡£",
 		"DESCRIPTIONS": [
-			"#yçˆ†ç ´è¡ç”Ÿç‰© é€ æˆçš„ä¼¤å®³éšæœºä¼¤å®³æ•Œäººè€Œä¸ä¼¤å®³è‡ªå·±ã€‚"
+			" #y±¬ÆÆÑÜÉúÎï Ôì³ÉµÄÉËº¦Ëæ»úÉËº¦µÐÈË¶ø²»ÉËº¦×Ô¼º¡£"
 		]
 	},
 	"theDuelist:DragonRelic": {
-		"NAME": "é¾™æ—é›•åƒ",
-		"FLAVOR": "ä¸€ä¸ªåƒé¾™ä¸€æ ·çš„å°é›•åƒã€‚",
+		"NAME": "Áú×åµñÏñ",
+		"FLAVOR": "Ò»¸öÏñÁúÒ»ÑùµÄÐ¡µñÏñ¡£",
 		"DESCRIPTIONS": [
-			"æ¯å½“å› #yç¥­å“ #yé¾™æ— èŽ·å¾—#yåŠ›é‡ï¼Œé¢å¤–èŽ·å¾—#b1 ç‚¹#yåŠ›é‡ã€‚"
+			"Ã¿µ±Òò #y¼ÀÆ· #yÁú×å »ñµÃ #yÁ¦Á¿£¬¶îÍâ»ñµÃ #b1 µã #yÁ¦Á¿¡£"
 		]
 	},
 	"theDuelist:SummonAnchor": {
-		"NAME": "å¬å”¤é”š",
-		"FLAVOR": "ä¸€ä¸ªçº¢é»„ç›¸é—´çš„å°é”šã€‚å¤šä¹ˆå¥‡æ€ªçš„é¢œè‰²æ­é…ã€‚",
+		"NAME": "ÕÙ»½Ãª",
+		"FLAVOR": "Ò»¸öºì»ÆÏà¼äµÄÐ¡Ãª¡£¶àÃ´Ææ¹ÖµÄÑÕÉ«´îÅä¡£",
 		"DESCRIPTIONS": [
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ#yå¬å”¤ #b1 ä¸ªè¡ç”Ÿç‰©ã€‚"
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ #yÕÙ»½ #b1 ¸öÑÜÉúÎï¡£"
 		]
 	},
 	"theDuelist:SpellcasterToken": {
-		"NAME": "é­”æ³•å¸ˆè¡ç”Ÿç‰©",
-		"FLAVOR": "ä¸€ä¸ªå‘ç€ç´«å…‰çš„è¡ç”Ÿç‰©ï¼Œä¼¼ä¹Žæœ‰ç€ç¥žç§˜çš„åŠ›é‡ã€‚",
+		"NAME": "Ä§·¨Ê¦ÑÜÉúÎï",
+		"FLAVOR": "Ò»¸ö·¢×Å×Ï¹âµÄÑÜÉúÎï£¬ËÆºõÓÐ×ÅÉñÃØµÄÁ¦Á¿¡£",
 		"DESCRIPTIONS": [
-			"æ¯#yç”Ÿæˆ 1ä¸ªå……èƒ½çƒï¼Œé¢å¤–#yç”Ÿæˆ 1ä¸ªéšæœºçš„å……èƒ½çƒã€‚"
+			"Ã¿ #yÉú³É 1¸ö³äÄÜÇò£¬¶îÍâ #yÉú³É 1¸öËæ»úµÄ³äÄÜÇò¡£"
 		]
 	},
 	"theDuelist:SpellcasterOrb": {
-		"NAME": "é­”æ³•å¸ˆå……èƒ½çƒ",
-		"FLAVOR": "ä¸€ä¸ªå‘ç€ç´«å…‰çš„å……èƒ½çƒï¼Œä¼¼ä¹Žæœ‰ç€ç¥žç§˜çš„åŠ›é‡ã€‚",
+		"NAME": "Ä§·¨Ê¦³äÄÜÇò",
+		"FLAVOR": "Ò»¸ö·¢×Å×Ï¹âµÄ³äÄÜÇò£¬ËÆºõÓÐ×ÅÉñÃØµÄÁ¦Á¿¡£",
 		"DESCRIPTIONS": [
-			"æ¯#yç”Ÿæˆ 1ä¸ªå……èƒ½çƒï¼Œé¢å¤–å¯¹æ•Œäººé€ æˆ#b3 ç‚¹ä¼¤å®³ã€‚"
+			"Ã¿ #yÉú³É 1¸ö³äÄÜÇò£¬¶îÍâ¶ÔµÐÈËÔì³É #b3 µãÉËº¦¡£"
 		]
 	},
 	"theDuelist:AquaRelic": {
-		"NAME": "æ°´æ—å……èƒ½çƒ",
-		"FLAVOR": "é—»èµ·æ¥æœ‰ç‚¹å’¸çš„è“è‰²å°çƒã€‚",
+		"NAME": "Ë®×å³äÄÜÇò",
+		"FLAVOR": "ÎÅÆðÀ´ÓÐµãÏÌµÄÀ¶É«Ð¡Çò¡£",
 		"DESCRIPTIONS": [
-			"æ¯å½“å› #yç¥­å“ #yæ°´æ— èŽ·å¾—#yå¬å”¤ï¼Œé¢å¤–èŽ·å¾—#yå¬å”¤ #b1ã€‚", " NL ååŒä½œç”¨:é—ç‰© #yæ°´æ—è¡ç”Ÿç‰©: å¦‚æžœæ‹¥æœ‰ #yæ°´æ—è¡ç”Ÿç‰©ï¼Œ #yç¥­å“ æ¶ˆè€—å‡å°‘æ•ˆæžœå˜ä¸º#b2 ç‚¹ã€‚"
+			"Ã¿µ±Òò #y¼ÀÆ· #yË®×å »ñµÃ #yÕÙ»½£¬¶îÍâ»ñµÃ #yÕÙ»½ #b1¡£ NL Ð­Í¬×÷ÓÃ:ÒÅÎï #yË®×åÑÜÉúÎï", "Èç¹ûÓµÓÐ #yË®×åÑÜÉúÎï£¬ #y¼ÀÆ· ÏûºÄ¼õÉÙÐ§¹û±äÎª #b2 µã¡£"
 		]
 	},
 	"theDuelist:AquaRelicB": {
-		"NAME": "æ°´æ—è¡ç”Ÿç‰©",
-		"FLAVOR": "è´å£³çŠ¶çš„å°åž‹è“è‰²è¡ç”Ÿç‰©ï¼Œç›¸å½“æ½®æ¹¿ã€‚",
+		"NAME": "Ë®×åÑÜÉúÎï",
+		"FLAVOR": "±´¿Ç×´µÄÐ¡ÐÍÀ¶É«ÑÜÉúÎï£¬Ïàµ±³±Êª¡£",
 		"DESCRIPTIONS": [
-			"æ¯å½“1ä¸ª#yæ°´æ— ä½œä¸º#yæ°´æ— çš„#yç¥­å“ æ—¶ï¼Œæœ¬å›žåˆæ‰‹ç‰Œä¸­æ‰€æœ‰æ€ªå…½çš„#yç¥­å“ æ¶ˆè€—å‡å°‘#y1ç‚¹ã€‚"
+			"Ã¿µ±1¸ö #yË®×å ×÷Îª #yË®×å µÄ #y¼ÀÆ· Ê±£¬±¾»ØºÏÊÖÅÆÖÐËùÓÐ¹ÖÊÞµÄ #y¼ÀÆ· ÏûºÄ¼õÉÙ #y1µã¡£"
 		]
 	},
 	"theDuelist:NatureRelic": {
-		"NAME": "è‡ªç„¶è¡ç”Ÿç‰©",
-		"FLAVOR": "ä¸€ä¸ªè¢«æ³¥åœŸå’Œè‰è¦†ç›–çš„çƒä½“ã€‚è‰ï¼Œæ¶å¿ƒã€‚",
+		"NAME": "×ÔÈ»ÑÜÉúÎï",
+		"FLAVOR": "Ò»¸ö±»ÄàÍÁºÍ²Ý¸²¸ÇµÄÇòÌå¡£²Ý£¬¶ñÐÄ¡£",
 		"DESCRIPTIONS": [
-			"å¦‚æžœåœ¨ä¸€åœºæˆ˜æ–—ä¸­ç»™äºˆäº†è‡³å°‘#b25 å±‚#yä¸­æ¯’ï¼Œé¢å¤–æŽ‰è½1ä¸ªå¡ç‰Œå¥–åŠ±ã€‚"
+			"Èç¹ûÔÚÒ»³¡Õ½¶·ÖÐ¸øÓèÁËÖÁÉÙ #b25 ²ã #yÖÐ¶¾£¬¶îÍâµôÂä1¸ö¿¨ÅÆ½±Àø¡£"
 		]
 	},
 	"theDuelist:RandomTributeMonsterRelic": {
-		"NAME": "ç¥­å“è›‹",
-		"FLAVOR": "ä¸€ä¸ªå‘ç€çº¢å…‰çš„è›‹çŠ¶ç‰©ä½“ï¼Œæœ‰ç€ç¥žç§˜çš„åŠ›é‡ã€‚",
+		"NAME": "¼ÀÆ·µ°",
+		"FLAVOR": "Ò»¸ö·¢×Åºì¹âµÄµ°×´ÎïÌå£¬ÓÐ×ÅÉñÃØµÄÁ¦Á¿¡£",
 		"DESCRIPTIONS": [
-			"å°†1å¼ éšæœº#yç¥­å“ æ€ªå…½å¢žåŠ åˆ°ç‰Œåº“ä¸­ã€‚å°†è¿™ç§æ€ªå…½ç‰Œçš„#yç¥­å“ æ¶ˆè€—å˜ä¸º#b1 ç‚¹ã€‚"
+			"½«1ÕÅËæ»ú #y¼ÀÆ· ¹ÖÊÞÔö¼Óµ½ÅÆ¿âÖÐ¡£½«ÕâÖÖ¹ÖÊÞÅÆµÄ #y¼ÀÆ· ÏûºÄ±äÎª #b1 µã¡£"
 		]
 	},
 	"theDuelist:FiendRelic": {
-		"NAME": "æš—å±žæ€§è¡ç”Ÿç‰©",
-		"FLAVOR": "ä¸€ä¸ªå°åž‹æš—è‰²è¡ç”Ÿç‰©ï¼Œæ„Ÿè§‰å¾ˆé‚ªæ¶ã€‚",
+		"NAME": "°µÊôÐÔÑÜÉúÎï",
+		"FLAVOR": "Ò»¸öÐ¡ÐÍ°µÉ«ÑÜÉúÎï£¬¸Ð¾õºÜÐ°¶ñ¡£",
 		"DESCRIPTIONS": [
-			"æ¯å½“1ä¸ª#yæ¶é­”æ— ä½œä¸º#yæ¶é­”æ— çš„#yç¥­å“ æ—¶ï¼Œé¢å¤–å°†1å¼ ç‰Œå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
+			"Ã¿µ±1¸ö #y¶ñÄ§×å ×÷Îª #y¶ñÄ§×å µÄ #y¼ÀÆ· Ê±£¬¶îÍâ½«1ÕÅÅÆÔö¼Óµ½ÊÖÅÆÖÐ¡£"
 		]
 	},
 	"theDuelist:ZombieRelic": {
-		"NAME": "ç†”å²©è¡ç”Ÿç‰©",
-		"FLAVOR": "ä¸€ä¸ªé—·çƒ§ï¼Œç…¤çƒŸè¦†ç›–çš„è¡ç”Ÿç‰©ã€‚éžå¸¸ç«çƒ­ã€‚",
+		"NAME": "ÈÛÑÒÑÜÉúÎï",
+		"FLAVOR": "Ò»¸öÃÆÉÕ£¬ÃºÑÌ¸²¸ÇµÄÑÜÉúÎï¡£·Ç³£»ðÈÈ¡£",
 		"DESCRIPTIONS": [
-			" #yç†”å²© å……èƒ½çƒè‡³å°‘é€ æˆ#b5 ç‚¹ä¼¤å®³ã€‚"
+			" #yÈÛÑÒ ³äÄÜÇòÖÁÉÙÔì³É #b5 µãÉËº¦¡£"
 		]
 	},
 	"theDuelist:DragonRelicB": {
-		"NAME": "é¾™æ—æŒ‚å ",
-		"FLAVOR": "ä¸€ä¸ªå°é¡¹é“¾ä¸Šæœ‰ä¸€ä¸ªé¾™å½¢æŒ‚å ã€‚",
+		"NAME": "Áú×å¹Ò×¹",
+		"FLAVOR": "Ò»¸öÐ¡ÏîÁ´ÉÏÓÐÒ»¸öÁúÐÎ¹Ò×¹¡£",
 		"DESCRIPTIONS": [
-			"æ¯å½“1ä¸ª#yé¾™æ— ä½œä¸º#yé¾™æ— çš„#yç¥­å“ æ—¶ï¼ŒæŠ½ #b1 å¼ #yç¨€æœ‰ ç‰Œã€‚"
+			"Ã¿µ±1¸ö #yÁú×å ×÷Îª #yÁú×å µÄ #y¼ÀÆ· Ê±£¬³é #b1 ÕÅ #yÏ¡ÓÐ ÅÆ¡£"
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {
-		"NAME": "å ä½ç¬¦ 2",
-		"FLAVOR": "ä½ è¢«å¼ºåŒ–äº†ã€‚",
+		"NAME": "Õ¼Î»·û 2",
+		"FLAVOR": "Äã±»Ç¿»¯ÁË¡£",
 		"DESCRIPTIONS": [
-			"æ¯åœºæˆ˜æ–—å¼€å§‹æ—¶ï¼Œ é¢å¤–èŽ·å¾— 1 ç‚¹åŠ›é‡ã€‚"
+			"Ã¿³¡Õ½¶·¿ªÊ¼Ê±£¬ ¶îÍâ»ñµÃ 1 µãÁ¦Á¿¡£"
 		]
 	}
 }

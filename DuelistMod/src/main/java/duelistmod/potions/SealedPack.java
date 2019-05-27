@@ -13,7 +13,7 @@ import duelistmod.interfaces.DuelistCard;
 public class SealedPack extends AbstractPotion {
 
 
-	public static final String POTION_ID = duelistmod.DuelistMod.makeID("SealedPack");
+	public static final String POTION_ID = DuelistMod.makeID("SealedPack");
 	private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
 
 	public static final String NAME = potionStrings.NAME;

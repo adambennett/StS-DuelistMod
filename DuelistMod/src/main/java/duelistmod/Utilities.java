@@ -1,6 +1,9 @@
 package duelistmod;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.ModHelper;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +14,9 @@ public class Utilities
 {
     public static final Logger Logger = LogManager.getLogger(Utilities.class.getName());
     
-    
+    public static boolean isCustomModActive(String ID) {
+        return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);
+    }
     
     public static int factorial(int n) { return (n == 1 || n == 0) ? 1 : n * factorial(n - 1); } 
 

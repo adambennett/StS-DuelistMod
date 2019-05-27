@@ -1,86 +1,86 @@
 {
 "theDuelist:MillenniumElixir": {
-        "NAME": "åƒå¹´åœ£æ°´",
-        "DESCRIPTIONS": ["èŽ·å¾—2ä¸ªéšæœº#yå¢žç›Šæ•ˆæžœã€‚"]
+        "NAME": "Ç§ÄêÊ¥Ë®",
+        "DESCRIPTIONS": ["»ñµÃ2¸öËæ»ú#yÔöÒæÐ§¹û¡£"]
 },
 "theDuelist:ExtraOrbsBottle": {
-        "NAME": "ç“¶è£…ä»™å­",
-        "DESCRIPTIONS": ["å¢žåŠ  #b", "ä¸ªå……èƒ½çƒæ§½."]
+        "NAME": "Æ¿×°ÏÉ×Ó",
+        "DESCRIPTIONS": ["Ôö¼Ó #b", "¸ö³äÄÜÇò²Û."]
 },
 "theDuelist:SealedPack": {
-        "NAME": "å°å¢žå¼ºå‰‚",
-        "DESCRIPTIONS": ["æ‰“å¼€1ä¸ª#yé’çœ¼ç™½é¾™ä¼ è¯´å¢žå¼ºåŒ…ã€‚ ä»Žä¸­#yéšæœºå°†#b3å¼ å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"]
+        "NAME": "Ð¡ÔöÇ¿¼Á",
+        "DESCRIPTIONS": ["´ò¿ª1¸ö#yÇàÑÛ°×Áú´«ËµÔöÇ¿°ü¡£´ÓÖÐ#yËæ»ú ½«#b3 ÕÅ¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£"]
 },
 "theDuelist:SealedPackB": {
-        "NAME": "å°è¡¥å……å‰‚",
-        "DESCRIPTIONS": ["æ‰“å¼€1ä¸ª#yé’¢é“è¢­å‡»è€…å’Œ#yæ³•è€ä»†äººè¡¥å……åŒ…ã€‚ä»Žä¸­#yéšæœºå°†#b3å¼ å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"]
+        "NAME": "Ð¡²¹³ä¼Á",
+        "DESCRIPTIONS": ["´ò¿ª1¸ö#y¸ÖÌúÏ®»÷ÕßºÍ#y·¨ÀÏÆÍÈË²¹³ä°ü¡£´ÓÖÐ#yËæ»ú ½«#b3 ÕÅ¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£"]
 },
 "theDuelist:OrbBottle": {
-        "NAME": "ç“¶è£…é›¾éœ­",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ªéšæœºå……èƒ½çƒã€‚", "ç”Ÿæˆ #b", " ä¸ªéšæœºå……èƒ½çƒã€‚"]
+        "NAME": "Æ¿×°Îíö°",
+        "DESCRIPTIONS": ["Éú³É1¸öËæ»ú³äÄÜÇò¡£", "Éú³É #b", " ¸öËæ»ú³äÄÜÇò¡£"]
 },
 "theDuelist:AirBottle": {
-        "NAME": "ç“¶è£…é£Žå·",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yç©ºæ°”å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yç©ºæ°”å……èƒ½çƒã€‚"]
+        "NAME": "Æ¿×°·ç¾í",
+        "DESCRIPTIONS": ["Éú³É1¸ö #y¿ÕÆø ³äÄÜÇò¡£", "Éú³É #b", "¸ö#y¿ÕÆø ³äÄÜÇò¡£"]
 },
 "theDuelist:BlackBottle": {
-        "NAME": "ç“¶è£…é»‘æš—",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yé»‘æš—å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yé»‘æš—å……èƒ½çƒã€‚"]
+        "NAME": "Æ¿×°ºÚ°µ",
+        "DESCRIPTIONS": ["Éú³É1¸ö #yºÚ°µ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #yºÚ°µ ³äÄÜÇò¡£"]
 },
 "theDuelist:DragonOrbBottle": {
-        "NAME": "é¾™æ—è¯æ°´",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yé¾™æ—å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yé¾™æ—å……èƒ½çƒã€‚"]
+        "NAME": "Áú×åÒ©Ë®",
+        "DESCRIPTIONS": ["Éú³É1¸ö #yÁúÖé ³äÄÜÇò¡£", "Éú³É #b", "¸ö #yÁúÖé ³äÄÜÇò¡£"]
 },
 "theDuelist:DragonOrbPlusBottle": {
-        "NAME": "è¶…çº§é¾™è¯",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yå‡çº§è¿‡çš„#yé¾™æ—å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yå‡çº§è¿‡çš„#yé¾™æ—å……èƒ½çƒã€‚"]
+        "NAME": "³¬¼¶ÁúÒ©",
+        "DESCRIPTIONS": ["Éú³É1¸ö #yÁúÖé+ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #yÁúÖé+ ³äÄÜÇò¡£"]
 },
 "theDuelist:EarthBottle": {
-        "NAME": "ç“¶è£…é­”æ³•",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yåœ°å±žæ€§å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yåœ°å±žæ€§å……èƒ½çƒã€‚"]
+        "NAME": "Æ¿×°Ä§·¨",
+        "DESCRIPTIONS": ["Éú³É1¸ö #yµØÊôÐÔ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #yµØÊôÐÔ ³äÄÜÇò¡£"]
 },
 "theDuelist:FireBottle": {
-        "NAME": "ç“¶è£…çƒˆç«",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yç«ç„°å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yç«ç„°å……èƒ½çƒã€‚"]
+        "NAME": "Æ¿×°ÁÒ»ð",
+        "DESCRIPTIONS": ["Éú³É1¸ö #y»ðÑæ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #y»ðÑæ ³äÄÜÇò¡£"]
 },
 "theDuelist:GadgetBottle": {
-        "NAME": "å¿«é€’åŒ…è£¹",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yé›¶ä»¶å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yé›¶ä»¶å……èƒ½çƒã€‚"]
+        "NAME": "¿ìµÝ°ü¹ü",
+        "DESCRIPTIONS": ["Éú³É1¸ö #yÁã¼þ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #yÁã¼þ ³äÄÜÇò¡£"]
 },
 "theDuelist:GlitchBottle": {
-        "NAME": "æ®‹ç ´è£…ç“¶",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yæ•…éšœå……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yæ•…éšœå……èƒ½çƒã€‚"]
+        "NAME": "²ÐÆÆ×°Æ¿",
+        "DESCRIPTIONS": ["Éú³É1¸ö #y¹ÊÕÏ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #y¹ÊÕÏ ³äÄÜÇò¡£"]
 },
 "theDuelist:MetalBottle": {
-        "NAME": "æ¶²æ€é‡‘å±ž",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yé‡‘å±žå……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yé‡‘å±žå……èƒ½çƒã€‚"]
+        "NAME": "ÒºÌ¬½ðÊô",
+        "DESCRIPTIONS": ["Éú³É1¸ö #y½ðÊô ³äÄÜÇò¡£", "Éú³É #b", "¸ö #y½ðÊô ³äÄÜÇò¡£"]
 },
 "theDuelist:MonsterOrbBottle": {
-        "NAME": "ç“¶è£…æ€ªå…½",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yæ€ªå…½å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yæ€ªå…½å……èƒ½çƒã€‚"]
+        "NAME": "Æ¿×°¹ÖÊÞ",
+        "DESCRIPTIONS": ["Éú³É1¸ö #y¹ÖÊÞÖé ³äÄÜÇò¡£", "Éú³É #b", "¸ö #y¹ÖÊÞÖé ³äÄÜÇò¡£"]
 },
 "theDuelist:SandBottle": {
-        "NAME": "æ—¶æ»´æ²™æ¼",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yæ²™çŸ³å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yæ²™çŸ³å……èƒ½çƒã€‚"]
+        "NAME": "Ê±µÎÉ³Â©",
+        "DESCRIPTIONS": ["Éú³É1¸ö #yÉ³Ê¯ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #yÉ³Ê¯ ³äÄÜÇò¡£"]
 },
 "theDuelist:StormBottle": {
-        "NAME": "ç“¶è£…æš´é£Ž",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yé£Žæš´å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yé£Žæš´å……èƒ½çƒã€‚"]
+        "NAME": "Æ¿×°±©·ç",
+        "DESCRIPTIONS": ["Éú³É1¸ö #y·ç±© ³äÄÜÇò¡£", "Éú³É #b", "¸ö #y·ç±© ³äÄÜÇò¡£"]
 },
 "theDuelist:SummonerBottle": {
-        "NAME": "å¬å”¤å£«ç“¶",
-        "DESCRIPTIONS": ["ç”Ÿæˆ1ä¸ª #yå¬å”¤å£«å……èƒ½çƒã€‚", "ç”Ÿæˆ #b", "ä¸ª #yå¬å”¤å£«å……èƒ½çƒã€‚"]
+        "NAME": "ÕÙ»½Ê¿Æ¿",
+        "DESCRIPTIONS": ["Éú³É1¸ö #yÕÙ»½Ê¿ ³äÄÜÇò¡£", "Éú³É #b", "¸ö #yÕÙ»½Ê¿ ³äÄÜÇò¡£"]
 },
 "theDuelist:TributeBottle": {
-        "NAME": "é­”æ³•è£…ç“¶",
-        "DESCRIPTIONS": ["æœ¬å›žåˆå‡å°‘æ‰‹ç‰Œä¸­æ‰€æœ‰æ€ªå…½çš„#yç¥­å“æ¶ˆè€—#b", " ç‚¹ã€‚"]
+        "NAME": "Ä§·¨×°Æ¿",
+        "DESCRIPTIONS": ["±¾»ØºÏ¼õÉÙÊÖÅÆÖÐËùÓÐ¹ÖÊÞµÄ#y¼ÀÆ· ÏûºÄ#b", "µã¡£"]
 },
 "theDuelist:BigTributeBottle": {
-        "NAME": "é­”æœ¯å¸ˆç“¶",
-        "DESCRIPTIONS": ["æœ¬åœºæˆ˜æ–—å‡å°‘æ‰‹ç‰Œä¸­æ‰€æœ‰æ€ªå…½çš„#yç¥­å“æ¶ˆè€—#b", " ç‚¹ã€‚"]
+        "NAME": "Ä§ÊõÊ¦Æ¿",
+        "DESCRIPTIONS": ["±¾³¡Õ½¶·¼õÉÙÊÖÅÆÖÐËùÓÐ¹ÖÊÞµÄ#y¼ÀÆ· ÏûºÄ#b", "µã¡£"]
 },
 "theDuelist:JoeyJuice": {
-        "NAME": "åŸŽä¹‹æ©™æ±",
-        "DESCRIPTIONS": ["ç»™äºˆ2ä¸ªéšæœº#yè´Ÿé¢æ•ˆæžœã€‚"]
+        "NAME": "³ÇÖ®³ÈÖ­",
+        "DESCRIPTIONS": ["¸øÓè2¸öËæ»ú#y¸ºÃæÐ§¹û¡£"]
 }
 }

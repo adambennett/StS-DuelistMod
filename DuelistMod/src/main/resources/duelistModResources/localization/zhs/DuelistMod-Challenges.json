@@ -1,0 +1,106 @@
+{
+   "theDuelist:AllCards": {
+    "NAME": "All Cards",
+    "DESCRIPTION": "Every Duelist card will be in the card pool."
+  },
+   "theDuelist:AllSpells": {
+    "NAME": "All Spells",
+    "DESCRIPTION": "All Spell cards will be in the card pool."
+  },
+   "theDuelist:AllTraps": {
+    "NAME": "All Traps",
+    "DESCRIPTION": "All Trap cards will be in the card pool."
+  },
+   "theDuelist:AllMonsters": {
+    "NAME": "All Monsters",
+    "DESCRIPTION": "All Monster cards will be in the card pool."
+  },
+  "theDuelist:NoTributes": {
+    "NAME": "No Tribute Monsters",
+    "DESCRIPTION": "There will be no Tribute monsters in the card pool."
+  },
+  "theDuelist:NoSpells": {
+    "NAME": "No Spells",
+    "DESCRIPTION": "There will be no Spell cards in the card pool."
+  },
+  "theDuelist:NoTraps": {
+    "NAME": "No Traps",
+    "DESCRIPTION": "There will be no Trap cards in the card pool."
+  },
+  "theDuelist:StandardDeck": {
+    "NAME": "Standard Deck (10 cards)",
+    "DESCRIPTION": "Use the Standard Deck to start the run."
+  },
+  "theDuelist:DragonDeck": {
+    "NAME": "Dragon Deck (10 cards)",
+    "DESCRIPTION": "Use the Dragon Deck to start the run."
+  },
+  "theDuelist:NatureDeck": {
+    "NAME": "Nature Deck (10 cards)",
+    "DESCRIPTION": "Use the Nature Deck to start the run."
+  },
+  "theDuelist:SpellcasterDeck": {
+    "NAME": "Spellcaster Deck (10 cards)",
+    "DESCRIPTION": "Use the Spellcaster Deck to start the run."
+  },
+  "theDuelist:ToonDeck": {
+    "NAME": "Toon Deck (10 cards)",
+    "DESCRIPTION": "Use the Toon Deck to start the run."
+  },
+  "theDuelist:ZombieDeck": {
+    "NAME": "Zombie Deck (10 cards)",
+    "DESCRIPTION": "Use the Zombie Deck to start the run."
+  },
+  "theDuelist:AquaDeck": {
+    "NAME": "Aqua Deck (10 cards)",
+    "DESCRIPTION": "Use the Aqua Deck to start the run."
+  },
+  "theDuelist:FiendDeck": {
+    "NAME": "Fiend Deck (10 cards)",
+    "DESCRIPTION": "Use the Fiend Deck to start the run."
+  },
+  "theDuelist:MachineDeck": {
+    "NAME": "Machine Deck (10 cards)",
+    "DESCRIPTION": "Use the Machine Deck to start the run."
+  },
+  "theDuelist:SuperheavyDeck": {
+    "NAME": "Superheavy Deck (10 cards)",
+    "DESCRIPTION": "Use the Superheavy Deck to start the run."
+  },
+  "theDuelist:CreatorDeck": {
+    "NAME": "Creator Deck (10 cards)",
+    "DESCRIPTION": "Use the Creator Deck to start the run."
+  },
+  "theDuelist:OjamaDeck": {
+    "NAME": "Ojama Deck (12 cards)",
+    "DESCRIPTION": "Use the Ojama Deck to start the run."
+  },
+  "theDuelist:GenerationDeck": {
+    "NAME": "Generation Deck (10 cards)",
+    "DESCRIPTION": "Use the Generation Deck to start the run."
+  },
+  "theDuelist:ResummonDeck": {
+    "NAME": "Resummon Deck (10 cards)",
+    "DESCRIPTION": "Use the Resummon Deck to start the run."
+  },
+  "theDuelist:IncrementDeck": {
+    "NAME": "Increment Deck (14 cards)",
+    "DESCRIPTION": "Use the Increment Deck to start the run."
+  },
+  "theDuelist:ExodiaDeck": {
+    "NAME": "Exodia Deck (60 cards)",
+    "DESCRIPTION": "Use the Exodia Deck to start the run."
+  },
+  "theDuelist:HealDeck": {
+    "NAME": "Heal Deck (12 cards)",
+    "DESCRIPTION": "Use the Heal Deck to start the run."
+  },
+  "theDuelist:RandomSmallDeck": {
+    "NAME": "Random Deck (10 cards)",
+    "DESCRIPTION": "Use the Random Deck to start the run."
+  },
+  "theDuelist:RandomBigDeck": {
+    "NAME": "Random Deck (15 cards)",
+    "DESCRIPTION": "Use the Random Deck to start the run."
+  }
+}
