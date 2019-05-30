@@ -254,7 +254,7 @@
 	"theDuelist:BookSecret": {
 		"DESCRIPTION": "Add !M! Randomized Spellcasters to your hand. Channel a random Orb. Exhaust.",
 		"NAME": "Book Secret Arts",
-		"UPGRADE_DESCRIPTION": "Add !M! Randomized, upgraded Spellcasters to your hand. Channel 2 random Orbs. Exhaust."
+		"UPGRADE_DESCRIPTION": "Add !M! Randomized, upgraded Spellcasters to your hand. Channel !M! random Orbs. Exhaust."
 	},
 	"theDuelist:BottomlessTrapHole": {
 		"DESCRIPTION": "Discard every monster in your draw pile. Deal !D! damage for each monster discarded. NL Exhaust.",
@@ -415,9 +415,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain [G] [G] [G] [G]."
 	},
 	"theDuelist:DarkHole": {
-		"DESCRIPTION": "Steal all Block from ALL enemies.",
+		"DESCRIPTION": "Steal all Block from ALL enemies. NL Remove all of your debuffs.",
 		"NAME": "Dark Hole",
-		"UPGRADE_DESCRIPTION": "Steal all Block from ALL enemies. Remove all Buffs from ALL enemies."
+		"UPGRADE_DESCRIPTION": "Steal all Block from ALL enemies. NL Remove all of your debuffs. NL Remove all Buffs from ALL enemies."
 	},
 	"theDuelist:DarkHorizon": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Evoke your next Orb !M! times.",
@@ -460,9 +460,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Dark Orb."
 	},
 	"theDuelist:DarkPaladin": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Choose an Orb to Channel.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Choose !M! Orb to Channel.",
 		"NAME": "Dark Paladin",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Choose an Orb to Channel."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Choose !M! Orb to Channel."
 	},
 	"theDuelist:DarkfireDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the cost of all Dragons in your hand by !M! for this turn.",
@@ -470,9 +470,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the cost of all Dragons in your hand by !M! for this turn."
 	},
 	"theDuelist:DarklordMarie": {
-		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. Overflow !M! - gain 3 HP.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Overflow !M! - gain 3 HP.",
 		"NAME": "Darklord Marie",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. Overflow !M! - gain 4 HP."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Overflow !M! - gain 4 HP."
 	},
 	"theDuelist:DarkstormDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of a random Dragon in your hand by !M! for this turn.",
@@ -844,9 +844,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect you Tribute to play this."
 	},
 	"theDuelist:Graverobber": {
-		"DESCRIPTION": "Choose a Randomized Spell or Trap you have played this run and add it to your hand. Exhaust.",
+		"DESCRIPTION": "Choose !M! Randomized Spell or Trap you have played this run and add it to your hand. NL Exhaust.",
 		"NAME": "Graverobber",
-		"UPGRADE_DESCRIPTION": "Choose 2 Randomized Spells or Traps you have played this run and add them to your hand. They cost 0 this turn. Exhaust."
+		"UPGRADE_DESCRIPTION": "Choose !M! Spells or Traps you have played this run and add them to your hand. They cost 0 this turn. NL Exhaust."
 	},
 	"theDuelist:GravityAxe": {
 		"DESCRIPTION": "Gain !M! Strength. NL You cannot gain or lose Strength for the rest of combat.",
@@ -897,9 +897,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL If this monster is tributed, Summon 1 and gain !B! Block."
 	},
 	"theDuelist:HarpieFeather": {
-		"DESCRIPTION": "Exhaust ALL Status cards in your discard pile.",
+		"DESCRIPTION": "Exhaust ALL Status and Curse cards in your discard pile.",
 		"NAME": "Harpie Feather Duster",
-		"UPGRADE_DESCRIPTION": "Exhaust ALL Status cards in your draw and discard piles."
+		"UPGRADE_DESCRIPTION": "Exhaust ALL Status and Curse cards in your draw and discard piles."
 	},
 	"theDuelist:HeartUnderdog": {
 		"DESCRIPTION": "Whenever you draw a monster, draw 1 card.",
@@ -1834,9 +1834,9 @@
 		"NAME": "Spells"
 	},
 	"theDuelist:SphereKuriboh": {
-		"DESCRIPTION": "Whenever you Increment, add a Randomized card to your hand.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you Increment, add a Randomized card to your hand.",
 		"NAME": "Sphere Kuriboh",
-		"UPGRADE_DESCRIPTION": "Innate NL Whenever you Increment, add a Randomized card to your hand."
+		"UPGRADE_DESCRIPTION": "Innate NL Summon !duelist:SUMM! NL Whenever you Increment, add a Randomized card to your hand."
 	},
 	"theDuelist:SpiritHarp": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -1864,9 +1864,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Storm Orb."
 	},
 	"theDuelist:StormingMirrorForce": {
-		"DESCRIPTION": "Each time an enemy attacks, Summon 1.",
+		"DESCRIPTION": "Each time an enemy attacks, Summon 1 Storm Token.",
 		"NAME": "Storming Mirror Force",
-		"UPGRADE_DESCRIPTION": "Each time an enemy attacks, Summon 1."
+		"UPGRADE_DESCRIPTION": "Each time an enemy attacks, Summon 1 Storm Token."
 	},
 	"theDuelist:StrayLambs": {
 		"DESCRIPTION": "Increment !M!. NL Summon !duelist:SUMM! Kuriboh Token.",
@@ -2341,9 +2341,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL For 3 turns, lose !M! HP at the start of turn. NL After 3 turns, heal !M! HP at the start of turn for 6 turns."
 	},
 	"theDuelist:RainbowKuriboh": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment 2. NL Add !M! Randomized monsters (of a random type) to your hand.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M!. NL Add !M! Randomized monsters (of a random type) to your hand.",
 		"NAME": "Rainbow Kuriboh",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Increment 2. NL Add !M! Randomized monsters (of a random type) to your hand."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M!. NL Add !M! Randomized monsters (of a random type) to your hand."
 	},
 	"theDuelist:Kuribohrn": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Whenver you Summon 2 different types of monsters in the same turn, randomly Resummon a random Zombie.",
@@ -2436,14 +2436,14 @@
 		"UPGRADE_DESCRIPTION": "Create and randomly Resummon !M! random Aqua monsters."
 	},
 	"theDuelist:FishKicks": {
-		"DESCRIPTION": "Channel a Mist. NL If you have at least !M! Aqua monsters in your Exhaust pile, deal !D! damage to a random enemy.",
+		"DESCRIPTION": "Channel a Mist. NL If you have at least !M! Aqua monsters in your exhaust pile, deal !D! damage to a random enemy.",
 		"NAME": "Fish & Kicks",
-		"UPGRADE_DESCRIPTION": "Channel a Mist. NL If you have at least !M! Aqua monsters in your Exhaust pile, deal !D! damage to a random enemy."
+		"UPGRADE_DESCRIPTION": "Channel a Mist. NL If you have at least !M! Aqua monsters in your exhaust pile, deal !D! damage to a random enemy."
 	},
 	"theDuelist:FishSwaps": {
-		"DESCRIPTION": "Exhaust all Aqua monsters in your hand and draw a random Aqua monster from your draw pile for each card exhausted.",
+		"DESCRIPTION": "Exhaust all Aqua monsters in your hand and draw an Aqua monster from your draw pile for each card exhausted.",
 		"NAME": "Fish & Swaps",
-		"UPGRADE_DESCRIPTION": "Exhaust all Aqua monsters in your hand and draw a random Aqua monster from your draw pile for each card exhausted."
+		"UPGRADE_DESCRIPTION": "Exhaust all Aqua monsters in your hand and draw an Aqua monster from your draw pile for each card exhausted."
 	},
 	"theDuelist:ForgottenTemple": {
 		"DESCRIPTION": "Whenever you Tribute an Aqua monster, increase the Summons of all Aqua monsters in your draw pile by !M!.",
@@ -2616,9 +2616,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Design and add a custom card to your hand. NL Add a copy into your draw, discard and exhaust piles."
 	},
 	"theDuelist:BigEye": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL While this monster is summoned, your draw pile is viewed in order.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Your draw pile is viewed in order while this monster is summoned.",
 		"NAME": "Big Eye",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL While this monster is summoned, your draw pile is viewed in order."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Your draw pile is viewed in order while this monster is summoned."
 	},
 	"theDuelist:WingedKuribohLv9": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of monster and then draw !M! monster of that type.",
@@ -2766,19 +2766,14 @@
 		"UPGRADE_DESCRIPTION": "Roulette: Obtain a random potion."
 	},
 	"theDuelist:GlitchToken": {
-		"DESCRIPTION": "Machine NL Summon 1 NL Trigger a random effect.",
+		"DESCRIPTION": "Machine NL Summon 1 NL Trigger !M! random effect.",
 		"NAME": "Glitch Token",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon 1 NL Trigger a random effect."
+		"UPGRADE_DESCRIPTION": "Machine NL Summon 1 NL Trigger !M! random effect."
 	},
 	"theDuelist:AnubisToken": {
 		"DESCRIPTION": "Summon 1 NL Deal !D! damage for each relic you currently have to an enemy.",
 		"NAME": "Anubis Token",
 		"UPGRADE_DESCRIPTION": "Summon 1 NL Deal !D! damage for each relic you currently have to an enemy."
-	},
-	"theDuelist:PotToken": {
-		"DESCRIPTION": "Summon 1 NL Draw a Spell.",
-		"NAME": "Pot Token",
-		"UPGRADE_DESCRIPTION": "Summon 1 NL Draw a Spell."
 	},
 	"theDuelist:BloodToken": {
 		"DESCRIPTION": "Summon 1 NL Increment 1 NL Lose 1 HP.",
@@ -2791,9 +2786,9 @@
 		"UPGRADE_DESCRIPTION": "Summon 1 NL Gain !B! Block."
 	},
 	"theDuelist:StimToken": {
-		"DESCRIPTION": "Summon 1 NL Roulette: Gain 1 Strength for this turn.",
+		"DESCRIPTION": "Summon 1 NL Roulette: Gain !M! Strength for this turn.",
 		"NAME": "Stim Token",
-		"UPGRADE_DESCRIPTION": "Summon 1 NL Roulette: Gain 1 Strength for this turn."
+		"UPGRADE_DESCRIPTION": "Summon 1 NL Roulette: Gain !M! Strength for this turn."
 	},
 	"theDuelist:AquaTypeCard": {
 		"DESCRIPTION": "Aqua",
@@ -2858,12 +2853,12 @@
 	"theDuelist:DropOff": {
 		"DESCRIPTION": "Gain a buff based on the last type of monster you summoned. NL Exhaust.",
 		"NAME": "Drop Off",
-		"UPGRADE_DESCRIPTION": "Gain a buff based on the last type of monster you summoned. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Gain a powerful buff based on the last type of monster you summoned. NL Exhaust."
 	},
 	"theDuelist:RainbowBridge": {
-		"DESCRIPTION": "Add a copy of every monster you currently have summoned to your hand. NL Exhaust.",
+		"DESCRIPTION": "Add !M! copy of every monster you currently have summoned to your hand. NL Exhaust.",
 		"NAME": "Rainbow Bridge",
-		"UPGRADE_DESCRIPTION": "Add a copy of every monster you currently have summoned to your hand."
+		"UPGRADE_DESCRIPTION": "Add !M! copy of every monster you currently have summoned to your hand. NL Exhaust."
 	},
 	"theDuelist:RainbowLife": {
 		"DESCRIPTION": "For every !M! HP you have remaining, Resummon a monster of a random type.",
@@ -2921,7 +2916,7 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card."
 	},
 	"theDuelist:GiantTrapHole": {
-		"DESCRIPTION": "Add !M! Randomized Giants to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power.",
+		"DESCRIPTION": "Add !M! Randomized Giant to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power.",
 		"NAME": "Giant Trap Hole",
 		"UPGRADE_DESCRIPTION": "Add !M! Randomized Giants to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power."
 	},
@@ -2949,5 +2944,20 @@
 		"DESCRIPTION": "The next !M! Dragons you play deal an additional !M! damage. Gain more charges by tributing Dragons for other Dragons.",
 		"NAME": "Tyrant Wing",
 		"UPGRADE_DESCRIPTION": "The next !M! Dragons you play deal an additional !M! damage. Gain more charges by tributing Dragons for other Dragons."
+	},
+	"theDuelist:ZombieMaster": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random Zombie and Resummon it on the target enemy. Exempt.",
+		"NAME": "Zombie Master",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random upgraded Zombie and Resummon it on the target enemy. Exempt."
+	},
+	"theDuelist:ImperialTomb": {
+		"DESCRIPTION": "Purge half of your exhaust pile randomly. NL Shuffle the remaining cards back into your draw pile. NL Exhaust.",
+		"NAME": "Imperial Tomb",
+		"UPGRADE_DESCRIPTION": "Purge half of your exhaust pile randomly. NL Shuffle the remaining cards back into your draw pile. NL Exhaust."
+	},
+	"theDuelist:SpellbookLife": {
+		"DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP.",
+		"NAME": "Spellbook of Life",
+		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP."
 	}
 }

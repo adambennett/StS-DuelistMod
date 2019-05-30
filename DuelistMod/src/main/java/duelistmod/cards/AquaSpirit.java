@@ -74,6 +74,7 @@ public class AquaSpirit extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(3);
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(7); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -14,7 +14,7 @@ import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.cards.tokens.KuribohToken;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class Kuriboh extends DuelistCard 
 {
@@ -141,7 +141,7 @@ public class Kuriboh extends DuelistCard
 	public String getID() {
 		return ID;
 	}
-
+	
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
 		// TODO Auto-generated method stub

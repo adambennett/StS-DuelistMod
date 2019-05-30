@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -42,6 +41,7 @@ public class PowerGiant extends DuelistCard
         this.tributes = this.baseTributes = 6;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.GIANTS);
     }
 
     @Override

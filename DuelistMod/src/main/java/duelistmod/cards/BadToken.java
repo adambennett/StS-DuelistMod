@@ -3,9 +3,11 @@ package duelistmod.cards;
 import java.util.*;
 import java.util.Map.Entry;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -38,47 +40,7 @@ public class BadToken extends DuelistCard
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	Map<DuelistCard,Integer> cards = new HashMap<DuelistCard,Integer>();
-    	Map<Integer,Integer> noTribs = new HashMap<Integer,Integer>();
-    	ArrayList<ArrayList<DuelistCard>> tribLists = new ArrayList<ArrayList<DuelistCard>>();
-    	for (DuelistCard c : DuelistMod.myCards)
-    	{
-    		if (c.baseTributes > 0 && c.hasTag(Tags.MONSTER))
-    		{
-    			cards.put(c, c.baseTributes);
-    		}
-    	}
-    	
-    	for (int i = 0; i <= 20; i++)
-    	{
-    		noTribs.put(i, 0);
-    	}
-    	
-    	for (int i = 0; i <= 20; i++)
-    	{
-    		tribLists.add(new ArrayList<DuelistCard>());
-	    	for (Entry<DuelistCard, Integer> a : cards.entrySet())
-	    	{
-	    		if (a.getValue() == i) { noTribs.put(i, noTribs.get(i) + 1); tribLists.get(i).add(a.getKey()); }
-	    	}
-    	}
-    	
-    	int counter = 0;
-    	for (Entry<Integer,Integer> a : noTribs.entrySet())
-    	{
-    		if (tribLists.get(counter).size() > 0)
-    		{
-    			String tribsString = "";
-    			for (DuelistCard c : tribLists.get(counter))
-    			{
-    				tribsString += c.originalName + ", ";
-    			}
-    			System.out.println("Tributes: " + a.getKey() + " (#" + a.getValue() + ") :: List: " + tribsString);
-    		}
-    		else { System.out.println("Tributes: " + a.getKey() + " (#" + a.getValue() + ")"); }
-    		counter++;
-    	}
-    	
+    	Debug.printTributeInfo();
     }
    
 

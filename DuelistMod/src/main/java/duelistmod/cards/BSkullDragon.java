@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,7 +14,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.relics.DragonRelicB;
 
@@ -86,6 +85,7 @@ public class BSkullDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

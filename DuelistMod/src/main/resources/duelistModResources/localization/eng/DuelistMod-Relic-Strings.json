@@ -254,6 +254,13 @@
 			"Every other time you #yTribute a #yDragon for another #yDragon, draw #b1 #yRare card."
 		]
 	},
+	"theDuelist:UpgradeBuffRelic": {
+		"NAME": "Ultra Stone",
+		"FLAVOR": "A glowing red orb that seems to pulsate and emit a great power.",
+		"DESCRIPTIONS": [
+			"Upgrading Duelist cards will grant extra bonuses."
+		]
+	},
 	"theDuelist:PlaceholderRelic2": {
 		"NAME": "Placeholder Relic 2",
 		"FLAVOR": "You feel stronger.",

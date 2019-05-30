@@ -65,7 +65,6 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new SphereKuriboh());
 		DuelistMod.basicCards.add(new StormingMirrorForce());
 		DuelistMod.basicCards.add(new StrayLambs());
-		DuelistMod.basicCards.add(new SwordsRevealing());
 		DuelistMod.basicCards.add(new Terraforming());
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); }
 		DuelistMod.basicCards.add(new TokenVacuum());
@@ -92,13 +91,13 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new WormBarses());
 		DuelistMod.basicCards.add(new WormWarlord());
 		DuelistMod.basicCards.add(new WormKing());
-		DuelistMod.basicCards.add(new ArmorBreaker());
+		//DuelistMod.basicCards.add(new ArmorBreaker());
 		DuelistMod.basicCards.add(new GauntletWarrior());		
 		DuelistMod.basicCards.add(new GaiaMidnight());		
 		DuelistMod.basicCards.add(new GilfordLegend());
 		DuelistMod.basicCards.add(new ReinforcementsArmy());
 		DuelistMod.basicCards.add(new BlockGolem());
-		DuelistMod.basicCards.add(new DokiDoki());
+		//DuelistMod.basicCards.add(new DokiDoki());
 		DuelistMod.basicCards.add(new GiantSoldierSteel());
 		DuelistMod.basicCards.add(new RainbowJar());
 		DuelistMod.basicCards.add(new WingedKuriboh9());
@@ -108,6 +107,11 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new DropOff());
 		DuelistMod.basicCards.add(new GiantRex());
 		DuelistMod.basicCards.add(new PowerGiant());
+		DuelistMod.basicCards.add(new RainbowBridge());
+		DuelistMod.basicCards.add(new EarthGiant());
+		DuelistMod.basicCards.add(new RainbowKuriboh());
+		DuelistMod.basicCards.add(new ClearKuriboh());
+		DuelistMod.basicCards.add(new Linkuriboh());
 		
 		
 		DuelistMod.archetypeCards.addAll(DuelistMod.basicCards);
@@ -189,7 +193,6 @@ public class StarterDeckSetup {
 		spellcasterCards.add(new BadReactionRare());
 		spellcasterCards.add(new BlizzardPrincess());
 		spellcasterCards.add(new BookSecret());
-		spellcasterCards.add(new DarklordMarie());
 		spellcasterCards.add(new DarkMagicianGirl());
 		spellcasterCards.add(new DarkMagician());
 		spellcasterCards.add(new FogKing());
@@ -234,6 +237,7 @@ public class StarterDeckSetup {
 		spellcasterCards.add(new LegendaryFlameLord());
 		spellcasterCards.add(new BlizzardWarrior());
 		spellcasterCards.add(new DianKeto());
+		spellcasterCards.add(new SwordsRevealing());
 		if (!DuelistMod.exodiaBtnBool)
 		{
 			spellcasterCards.add(new ExodiaHead());
@@ -471,6 +475,11 @@ public class StarterDeckSetup {
 		aquaCards.add(new BlizzardThunderbird());
 		aquaCards.add(new DiamondDust());
 		aquaCards.add(new GoldenFlyingFish());
+		aquaCards.add(new Monokeros());
+		aquaCards.add(new FishSwaps());
+		aquaCards.add(new FishKicks());
+		aquaCards.add(new FishRain());
+		aquaCards.add(new PoseidonWave());
 		aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
@@ -520,6 +529,7 @@ public class StarterDeckSetup {
 		fiendCards.add(new Zombyra());
 		fiendCards.add(new GiantOrc());
 		fiendCards.add(new DarkFusion());
+		fiendCards.add(new DarklordMarie());
 		fiendDeck.fillPoolCards(DuelistMod.basicCards);
 		fiendDeck.fillPoolCards(fiendCards);		
 		fiendDeck.fillArchetypeCards(fiendCards);

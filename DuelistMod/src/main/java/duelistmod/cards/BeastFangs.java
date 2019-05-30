@@ -67,8 +67,14 @@ public class BeastFangs extends DuelistCard
     	{
     		if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-    		if (timesUpgraded == 1) { this.upgradeBaseCost(1); }
-    		else if (timesUpgraded == 2) { this.upgradeBaseCost(0); }
+    		if (timesUpgraded == 1) 
+    		{
+    			this.upgradeBaseCost(1); 
+    		}
+    		else if (timesUpgraded == 2) 
+    		{ 
+    			this.upgradeBaseCost(0);
+    		}
 	        this.rawDescription = UPGRADE_DESCRIPTION;
 	        this.initializeDescription();       
     	}

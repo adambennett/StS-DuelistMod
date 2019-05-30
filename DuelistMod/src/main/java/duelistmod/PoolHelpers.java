@@ -209,6 +209,15 @@ public class PoolHelpers
 				}
 			}
 		}
+		
+		DuelistMod.rareCardInPool = new ArrayList<AbstractCard>();
+		for (AbstractCard c : DuelistMod.coloredCards)
+		{
+			if (c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.TOKEN))
+			{
+				DuelistMod.rareCardInPool.add(c);
+			}
+		}
 	}
 	
 	public static void allCardsFillHelper()

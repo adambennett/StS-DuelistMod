@@ -32,7 +32,8 @@ public class Graverobber extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static ArrayList<DuelistCard> drawPowers = new ArrayList<DuelistCard>();
+    private static ArrayList<AbstractCard> drawPowers = new ArrayList<AbstractCard>();
+    private static ArrayList<String> drawPowerNames = new ArrayList<String>();
     // /STAT DECLARATION/
 
     public Graverobber() {
@@ -49,35 +50,20 @@ public class Graverobber extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		drawPowers = new ArrayList<DuelistCard>();
-		ArrayList<AbstractCard> chooseCards = new ArrayList<AbstractCard>();
-		for (DuelistCard c : DuelistMod.spellsThisRun) { drawPowers.add(c); }
-		for (DuelistCard c : DuelistMod.trapsThisRun) { drawPowers.add(c); }
+		drawPowers = new ArrayList<AbstractCard>();
+		drawPowerNames = new ArrayList<String>();
+		for (DuelistCard c : DuelistMod.spellsThisRun) { if (!drawPowerNames.contains(c.originalName)) { drawPowers.add(c); drawPowerNames.add(c.originalName); }}
+		for (DuelistCard c : DuelistMod.trapsThisRun)  { if (!drawPowerNames.contains(c.originalName)) { drawPowers.add(c); drawPowerNames.add(c.originalName); }}
 
 		if (drawPowers.size() >= 0)
 		{
-			while (chooseCards.size() < this.magicNumber)
-			{
-				DuelistCard drawCard = returnRandomFromArray(drawPowers);
-				chooseCards.add(drawCard);
-				if (DuelistMod.debug) { System.out.println("graverobber added : " + drawCard.originalName + " to chooseCards in the while loop"); }
-			}
-			
-			if (chooseCards.size() > 0) 
-			{ 
-				int roll = 1;
 				int lowRoll = 1;
-				int highRoll = 4;
-				if (upgraded) { lowRoll = 0; highRoll = 0; roll = 2; }
+				int highRoll = 3;
+				if (upgraded) { lowRoll = 0; highRoll = 0; }
 				if (DuelistMod.debug) { System.out.println("graverobber found choose cards to be > 0"); }
-				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(chooseCards, false, roll, false, !this.upgraded, false, true, false, false, false, lowRoll, highRoll, 0, 0, 0, 0));
-			}
+				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(drawPowers, false, this.magicNumber, false, false, false, true, false, false, false, lowRoll, highRoll, 0, 0, 0, 0));
 		}
-		else
-		{
-			if (DuelistMod.debug) { System.out.println("graverobber found draw powers size was 0"); }
-		}
-		
+		else { if (DuelistMod.debug) { System.out.println("graverobber found draw powers size was 0"); }}
     }
 
     // Which card to return when making a copy of this card.

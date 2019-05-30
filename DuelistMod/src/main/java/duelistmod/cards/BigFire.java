@@ -59,7 +59,9 @@ public class BigFire extends DuelistCard
     		if (!g.isDead)
     		{
 	    		int randomDmgNumM = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
-	    		AbstractDungeon.actionManager.addToTop(new DamageAction(g, new DamageInfo(p, randomDmgNumM, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+	    		int randomDmgNumM_Upgrade = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL_U);
+	    		if (!upgraded) { AbstractDungeon.actionManager.addToTop(new DamageAction(g, new DamageInfo(p, randomDmgNumM, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE)); }
+	    		else  { AbstractDungeon.actionManager.addToTop(new DamageAction(g, new DamageInfo(p, randomDmgNumM_Upgrade, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE)); }
 	    		if (DuelistMod.debug) { System.out.println("theDuelist:BigFire --- > Damaged a monster for: " + randomDmgNumM); }
     		}
     	}
@@ -76,7 +78,7 @@ public class BigFire extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            MAX_HEAL = MAX_HEAL_U;
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

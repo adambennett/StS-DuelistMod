@@ -18,11 +18,11 @@ public class Localization {
 	{
 		switch (Settings.language) 
 		{
-			case RUS:
-				return "rus";
+			//case RUS:
+			//	return "rus";
 			case ENG:
 				return "eng";
-			case ZHS:
+			/*case ZHS:
 				return "zhs";
 			case ZHT:
 				return "zht";
@@ -31,7 +31,7 @@ public class Localization {
 			case DEU:
 				return "deu";
 			case FRA:
-				return "fra";
+				return "fra";*/
 			default:
 				return "eng";
 		}

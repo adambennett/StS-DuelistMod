@@ -68,8 +68,14 @@ public class BookSecret extends DuelistCard
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 		
-		channelRandom();
-		if (upgraded) { channelRandom(); }
+		if (upgraded) 
+		{ 
+			for (int i = 0; i < this.magicNumber; i++) { channelRandom(); } 
+		}
+		else
+		{
+			channelRandom();
+		}
     }
 
     // Which card to return when making a copy of this card.
@@ -83,6 +89,7 @@ public class BookSecret extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(2); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

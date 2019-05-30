@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.SummonPower;
 
 public class ArmoredZombie extends DuelistCard 
 {
@@ -71,6 +72,7 @@ public class ArmoredZombie extends DuelistCard
         {
             this.upgradeName();
             this.upgradeSummons(1);
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(5); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -89,6 +91,48 @@ public class ArmoredZombie extends DuelistCard
 		//heal(AbstractDungeon.player, 10)
 		block(10);
 	}
+	
+    // Checking for Monster Zones if the challenge is enabled
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+
+    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	{
+    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+    		if (p.hasPower(SummonPower.POWER_ID))
+    		{
+    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+    			if (sums + this.summons <= max) 
+    			{ 
+    				return true; 
+    			}
+    			else 
+    			{ 
+    				if (sums < max) 
+    				{ 
+    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    					
+    				}
+    				else { this.cantUseMessage = "No monster zones remaining"; }
+    				return false; 
+    			}
+    		}
+    		else
+    		{
+    			return true;
+    		}
+    	}
+    	
+    	else
+    	{
+    		return true;
+    	}
+    }
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 

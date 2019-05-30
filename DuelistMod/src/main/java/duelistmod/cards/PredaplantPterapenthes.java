@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.VioletCrystalPower;
+import duelistmod.powers.*;
 
 public class PredaplantPterapenthes extends DuelistCard 
 {
@@ -56,6 +56,48 @@ public class PredaplantPterapenthes extends DuelistCard
     @Override
     public AbstractCard makeCopy() {
         return new PredaplantPterapenthes();
+    }
+    
+    // Checking for Monster Zones if the challenge is enabled
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+
+    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	{
+    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+    		if (p.hasPower(SummonPower.POWER_ID))
+    		{
+    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+    			if (sums + this.summons <= max) 
+    			{ 
+    				return true; 
+    			}
+    			else 
+    			{ 
+    				if (sums < max) 
+    				{ 
+    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    					
+    				}
+    				else { this.cantUseMessage = "No monster zones remaining"; }
+    				return false; 
+    			}
+    		}
+    		else
+    		{
+    			return true;
+    		}
+    	}
+    	
+    	else
+    	{
+    		return true;
+    	}
     }
 
     // Upgraded stats.

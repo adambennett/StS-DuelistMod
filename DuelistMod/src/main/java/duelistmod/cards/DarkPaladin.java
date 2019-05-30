@@ -1,7 +1,5 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -20,7 +18,7 @@ public class DarkPaladin extends DuelistCard
 {
     // TEXT DECLARATION
 
-    public static final String ID = duelistmod.DuelistMod.makeID("DarkPaladin");
+    public static final String ID = DuelistMod.makeID("DarkPaladin");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("DarkPaladin.png");
     public static final String NAME = cardStrings.NAME;
@@ -46,6 +44,7 @@ public class DarkPaladin extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
@@ -54,17 +53,23 @@ public class DarkPaladin extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, this.magicNumber, false, false, false));
+    	
+    	/*
     	if (DuelistMod.orbCards.size() > 5)
 		{
 			ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+			ArrayList<String> orbNames = new ArrayList<String>();
 			for (int i = 0; i < 5; i++)
 			{
 				DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-				while (orbs.contains(random)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+				while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
 				orbs.add((DuelistCard)random.makeCopy());
+				orbNames.add(random.name);
 			}
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, 1, false, false, false));
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false));
 		}
+		*/
     }
 
     // Which card to return when making a copy of this card.
@@ -75,10 +80,13 @@ public class DarkPaladin extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
+    public void upgrade() 
+    {
+        if (!this.upgraded) 
+        {
             this.upgradeName();
             this.upgradeTributes(-1);
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

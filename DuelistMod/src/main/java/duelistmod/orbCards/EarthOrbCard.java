@@ -48,6 +48,8 @@ public class EarthOrbCard extends DuelistCard
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
     	return true;
     }
 

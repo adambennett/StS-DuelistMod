@@ -69,6 +69,7 @@ public class BlizzardPrincess extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

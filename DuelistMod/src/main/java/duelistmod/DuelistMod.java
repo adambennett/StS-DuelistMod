@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
@@ -38,8 +38,9 @@ import basemod.abstracts.*;
 import basemod.animations.SpriterAnimation;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
-import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.cards.DarkMimicLv3;
+import duelistmod.actions.common.*;
+import duelistmod.cards.*;
+import duelistmod.cards.incomplete.EarthGiant;
 import duelistmod.characters.TheDuelist;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
@@ -204,12 +205,20 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static ArrayList<DuelistCard> spellsThisCombat = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> spellsThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> trapsThisCombat = new ArrayList<DuelistCard>();
-	public static ArrayList<DuelistCard> trapsThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> trapsThisRun = new ArrayList<DuelistCard>();	
+	public static ArrayList<DuelistCard> uniqueMonstersThisCombat = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> uniqueMonstersThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<AbstractCard> tinFluteCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> rareCardInPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
 	public static ArrayList<String> startingDecks = new ArrayList<String>();
 	public static ArrayList<String> randomBuffStrings = new ArrayList<String>();
+	public static ArrayList<String> invertableOrbNames = new ArrayList<String>();
 	public static ArrayList<DuelistCard> archetypeCards = new ArrayList<DuelistCard>();
 	public static ArrayList<CardTags> monsterTypes = new ArrayList<CardTags>();
 	public static ArrayList<CardTags> summonedTypesThisTurn = new ArrayList<CardTags>();
@@ -237,6 +246,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean dragonRelicBFlipper = false;
 	public static boolean playedSpellThisTurn = false;
 	public static boolean kuribohrnFlipper = false;
+	public static boolean hasUpgradeBuffRelic = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 
@@ -703,6 +713,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		BaseMod.addRelicToCustomPool(new NatureRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ZombieRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new DragonRelicB(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new UpgradeBuffRelic(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new RandomTributeMonsterRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST); }
@@ -736,6 +747,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		UnlockTracker.markRelicAsSeen(NatureRelic.ID);
 		UnlockTracker.markRelicAsSeen(ZombieRelic.ID);
 		UnlockTracker.markRelicAsSeen(DragonRelicB.ID);
+		UnlockTracker.markRelicAsSeen(UpgradeBuffRelic.ID);
 		//UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
 		
 
@@ -760,12 +772,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 
 		// ================ ORB CARDS ===================
 		logger.info("adding orb cards to array for orb modal");
-		CardLibrary.setupOrbCards();
+		DuelistCardLibrary.setupOrbCards();
 		logger.info("done adding orb cards to array");
 		
 		// ================ PRIVATE LIBRARY SETUP ===================
 		logger.info("adding all cards to myCards array");
-		CardLibrary.setupMyCards();
+		DuelistCardLibrary.setupMyCards();
 		logger.info("done adding all cards to myCards array");
 
 		// ================ STARTER DECKS ===================
@@ -776,7 +788,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		
 		// ================ SUMMON MAP ===================
 		logger.info("filling summonMap");
-		CardLibrary.fillSummonMap(myCards);
+		DuelistCardLibrary.fillSummonMap(myCards);
 		logger.info("done filling summonMap");
 
 		// ================ METRICS HELPER ===================
@@ -792,7 +804,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		
 		// ================ COMPENDIUM SETUP ===================
 		logger.info("begin checking config options and adding cards to the game");
-		CardLibrary.addCardsToGame();
+		DuelistCardLibrary.addCardsToGame();
 		logger.info("done adding cards to the game");
 		
 		// ================ COLORED CARDS ===================
@@ -907,6 +919,28 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	{
 		if (c.hasTag(Tags.ORB_CARD)) { return true; }
 		else { return false; }
+	}
+	
+	public static boolean playingChallengeSpire()
+	{
+		if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty") || Utilities.isCustomModActive("challengethespire:Silver Difficulty") || Utilities.isCustomModActive("challengethespire:Gold Difficulty") || Utilities.isCustomModActive("challengethespire:Platinum Difficulty") )
+		{
+			return true;
+		}
+		
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static int getChallengeDiffIndex()
+	{
+		if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty")) { return 1; }		
+		else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty")) { return 2; }		
+		else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty")) { return 3; }	
+		else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty")) { return 4; }
+		else { return -1; }
 	}
 	
 	// HOOKS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1105,6 +1139,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		spellsThisCombat = new ArrayList<DuelistCard>();
 		trapsThisRun = new ArrayList<DuelistCard>();
 		trapsThisCombat = new ArrayList<DuelistCard>();
+		uniqueMonstersThisRun = new ArrayList<DuelistCard>();
+		uniqueMonstersThisCombat = new ArrayList<DuelistCard>();
+		uniqueSpellsThisRun = new ArrayList<DuelistCard>();
+		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
+		uniqueTrapsThisRun = new ArrayList<DuelistCard>();
+		uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
@@ -1133,6 +1173,60 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	{
 		playedOneCardThisCombat = true;
 		logger.info("Card Used: " + arg0.name);
+		if (arg0.type.equals(CardType.ATTACK))
+		{
+			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+			{
+				if (c instanceof GiantOrc)
+				{					
+					if (c.cost > 0)
+					{
+						c.modifyCostForCombat(-c.magicNumber);
+			    		c.isCostModified = true;
+					}
+				}				
+			}
+			
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+			{
+				if (c instanceof GiantOrc)
+				{					
+					if (c.cost > 0)
+					{
+						c.modifyCostForCombat(-c.magicNumber);
+			    		c.isCostModified = true;
+					}
+				}
+			}
+		}
+		
+		if (arg0.type.equals(CardType.SKILL))
+		{
+			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+			{				
+				if (c instanceof EarthGiant)
+				{					
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
+					}
+				}
+			}
+			
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+			{				
+				if (c instanceof EarthGiant)
+				{					
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
+					}
+				}
+			}
+		}
+		
 		if (arg0.hasTag(Tags.SPELL))
 		{
 			spellCombatCount++;
@@ -1159,6 +1253,48 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			{
 				DuelistCard dC = (DuelistCard)arg0;
 				if (dC.tributes < 1) { DuelistCard.summon(AbstractDungeon.player, 1, (DuelistCard)arg0); }
+			}
+			
+			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+			{
+				if (c instanceof GiantRex)
+				{
+					GiantRex gr = (GiantRex)c;
+					if (gr.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(gr, -gr.magicNumber, true));
+					}
+				}
+				
+				if ((c instanceof ChaosAncientGearGiant) && arg0.hasTag(Tags.MACHINE))
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
+					}
+				}
+			}
+			
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+			{
+				if (c instanceof GiantRex)
+				{
+					GiantRex gr = (GiantRex)c;
+					if (gr.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(gr, -gr.magicNumber, true));
+					}
+				}
+				
+				if ((c instanceof ChaosAncientGearGiant) && arg0.hasTag(Tags.MACHINE))
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
+					}
+				}
 			}
 		}
 		
@@ -1327,6 +1463,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public void receivePostDungeonInitialize() 
 	{
 		logger.info("dungeon initialize hook");
+		if (debug) { logger.info("Playing Challenge the Spire: " + playingChallengeSpire()); }
 	}
 	
 
@@ -1442,6 +1579,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			spellsThisCombat = new ArrayList<DuelistCard>();
 			trapsThisRun = new ArrayList<DuelistCard>();
 			trapsThisCombat = new ArrayList<DuelistCard>();
+			uniqueMonstersThisRun = new ArrayList<DuelistCard>();
+			uniqueMonstersThisCombat = new ArrayList<DuelistCard>();
+			uniqueSpellsThisRun = new ArrayList<DuelistCard>();
+			uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
+			uniqueTrapsThisRun = new ArrayList<DuelistCard>();
+			uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
 			spellCombatCount = 0;
 			trapCombatCount = 0;
 			summonCombatCount = 0;

@@ -85,8 +85,8 @@ public class Storm extends DuelistOrb
 	private void triggerPassiveEffect()
 	{
 		applyFocus();
-		DuelistCard randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
-		while (!randomPower.type.equals(CardType.POWER)) { randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard(); }
+		DuelistCard randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCardInCombat();
+		while (!randomPower.type.equals(CardType.POWER)) { randomPower = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCardInCombat(); }
 		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomPower, false, true, false, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
 	}
 

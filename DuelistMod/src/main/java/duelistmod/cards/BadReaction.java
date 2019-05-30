@@ -78,6 +78,7 @@ public class BadReaction extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(U_DMG);
             this.upgradeMagicNumber(U_HEAL);
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

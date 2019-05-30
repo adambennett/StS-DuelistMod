@@ -36,17 +36,17 @@ public class CardRewardRelicB extends CustomRelic
     @Override
     public void onVictory() 
     {
-    	if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) 
-        {
-            flash();
-            setCounter(counter + 1);
-        }
-    	
     	if (this.counter > 0)
     	{
     		flash();
 	    	for (int i = 0; i < 2; i++) { AbstractDungeon.getCurrRoom().addCardToRewards(); }
 	    	setCounter(counter - 1);
     	}
+    	
+    	if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) 
+        {
+            flash();
+            setCounter(counter + 1);
+        }
     }
 }

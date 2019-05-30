@@ -32,8 +32,6 @@ public class NaturiaSacredTree extends DuelistCard
 
     public NaturiaSacredTree() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 3;
-        this.summons = this.baseSummons = 1;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.NATURIA);
         this.originalName = this.name;

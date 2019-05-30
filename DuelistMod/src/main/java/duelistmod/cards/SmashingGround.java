@@ -29,7 +29,7 @@ public class SmashingGround extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 2;
-	private static final int DAMAGE = 6;
+	private static final int DAMAGE = 5;
 	// /STAT DECLARATION/
 
 	public SmashingGround() {

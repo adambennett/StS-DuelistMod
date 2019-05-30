@@ -26,6 +26,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags FIEND_DECK;
 	@SpireEnum public static AbstractCard.CardTags FULL;
 	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
+	@SpireEnum public static AbstractCard.CardTags GIANTS;
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags GUARDIAN;

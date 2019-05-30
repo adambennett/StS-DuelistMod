@@ -22,6 +22,14 @@ public class ZombieRelic extends CustomRelic {
 	public ZombieRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Spellcaster Deck") || deck.equals("Zombie Deck")) { return true; }
+		else { return false; }
+	}
 
 	// Description
 	@Override

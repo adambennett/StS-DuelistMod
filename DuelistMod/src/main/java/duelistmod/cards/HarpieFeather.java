@@ -44,7 +44,7 @@ public class HarpieFeather extends DuelistCard
     {
     	for (AbstractCard c : p.discardPile.group)
     	{
-    		if (c.type.equals(CardType.STATUS))
+    		if (c.type.equals(CardType.STATUS) || c.type.equals(CardType.CURSE))
     		{
     			AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.discardPile));
     		}
@@ -54,7 +54,7 @@ public class HarpieFeather extends DuelistCard
     	{
     		for (AbstractCard c : p.drawPile.group)
         	{
-        		if (c.type.equals(CardType.STATUS))
+        		if (c.type.equals(CardType.STATUS) || c.type.equals(CardType.CURSE))
         		{
         			AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile));
         		}

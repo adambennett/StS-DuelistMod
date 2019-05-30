@@ -89,6 +89,7 @@ public class BottomlessTrapHole extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(1);
             this.isInnate = true;
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

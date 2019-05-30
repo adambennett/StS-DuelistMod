@@ -57,7 +57,7 @@ public class AncientGearChimera extends DuelistCard
 	{
 		tribute();
 		attack(m, this.baseAFX, this.damage);	
-		ArrayList<DuelistCard> tokens = CardLibrary.getTokens();
+		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard tk = tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
@@ -81,6 +81,7 @@ public class AncientGearChimera extends DuelistCard
 			this.upgradeName();
 			this.upgradeMagicNumber(1);
 			this.upgradeDamage(4);
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

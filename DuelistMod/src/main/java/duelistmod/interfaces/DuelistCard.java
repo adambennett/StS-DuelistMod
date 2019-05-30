@@ -998,6 +998,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		AbstractDungeon.actionManager.addToTop(new DrawFromTagAction(player(), cards, tag));	
 	}
+	
+	public static void drawTag(int cards, CardTags tag, boolean actionManagerBottom)
+	{
+		if (actionManagerBottom) { AbstractDungeon.actionManager.addToBottom(new DrawFromTagAction(player(), cards, tag));	}
+		else { AbstractDungeon.actionManager.addToTop(new DrawFromTagAction(player(), cards, tag));	}
+		
+	}
 
 	public static void drawRare(int cards, CardRarity tag)
 	{
@@ -1094,6 +1101,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				// Check for Power Giants
 				for (AbstractCard giantCard : player().hand.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
+				for (AbstractCard giantCard : player().discardPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
+				for (AbstractCard giantCard : player().drawPile.group)
 				{
 					if (giantCard instanceof PowerGiant)
 					{
@@ -1206,6 +1231,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (potSummons > 0)
 				{
 					for (AbstractCard giantCard : player().hand.group)
+					{
+						if (giantCard instanceof PowerGiant)
+						{
+							PowerGiant giant = (PowerGiant)giantCard;
+							giant.damageInc();
+						}
+					}
+					
+					for (AbstractCard giantCard : player().discardPile.group)
+					{
+						if (giantCard instanceof PowerGiant)
+						{
+							PowerGiant giant = (PowerGiant)giantCard;
+							giant.damageInc();
+						}
+					}
+					
+					for (AbstractCard giantCard : player().drawPile.group)
 					{
 						if (giantCard instanceof PowerGiant)
 						{
@@ -1383,6 +1426,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				}
 				
+				for (AbstractCard giantCard : player().discardPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
+				for (AbstractCard giantCard : player().drawPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
 				// Check for new summoned types			
 				ArrayList<CardTags> toRet = getAllMonsterTypes(c);
 				if (toRet.size() > 0)
@@ -1487,6 +1548,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (potSummons > 0)
 				{
 					for (AbstractCard giantCard : player().hand.group)
+					{
+						if (giantCard instanceof PowerGiant)
+						{
+							PowerGiant giant = (PowerGiant)giantCard;
+							giant.damageInc();
+						}
+					}
+					
+					for (AbstractCard giantCard : player().discardPile.group)
+					{
+						if (giantCard instanceof PowerGiant)
+						{
+							PowerGiant giant = (PowerGiant)giantCard;
+							giant.damageInc();
+						}
+					}
+					
+					for (AbstractCard giantCard : player().drawPile.group)
 					{
 						if (giantCard instanceof PowerGiant)
 						{
@@ -1617,6 +1696,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				}
 				
+				for (AbstractCard giantCard : player().discardPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
+				for (AbstractCard giantCard : player().drawPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
 				// Check for new summoned types
 				ArrayList<CardTags> toRet = getAllMonsterTypes(c);
 				if (toRet.size() > 0)
@@ -1715,6 +1812,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (potSummons > 0)
 				{
 					for (AbstractCard giantCard : player().hand.group)
+					{
+						if (giantCard instanceof PowerGiant)
+						{
+							PowerGiant giant = (PowerGiant)giantCard;
+							giant.damageInc();
+						}
+					}
+					
+					for (AbstractCard giantCard : player().discardPile.group)
+					{
+						if (giantCard instanceof PowerGiant)
+						{
+							PowerGiant giant = (PowerGiant)giantCard;
+							giant.damageInc();
+						}
+					}
+					
+					for (AbstractCard giantCard : player().drawPile.group)
 					{
 						if (giantCard instanceof PowerGiant)
 						{
@@ -1891,6 +2006,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 			}
 			
+			for (AbstractCard giantCard : player().discardPile.group)
+			{
+				if (giantCard instanceof PowerGiant)
+				{
+					PowerGiant giant = (PowerGiant)giantCard;
+					giant.damageInc();
+				}
+			}
+			
+			for (AbstractCard giantCard : player().drawPile.group)
+			{
+				if (giantCard instanceof PowerGiant)
+				{
+					PowerGiant giant = (PowerGiant)giantCard;
+					giant.damageInc();
+				}
+			}
+			
 			// Check for new summoned types
 			ArrayList<CardTags> toRet = getAllMonsterTypes(c);
 			if (toRet.size() > 0)
@@ -1994,6 +2127,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (potSummons > 0)
 			{
 				for (AbstractCard giantCard : player().hand.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
+				for (AbstractCard giantCard : player().discardPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
+				for (AbstractCard giantCard : player().drawPile.group)
 				{
 					if (giantCard instanceof PowerGiant)
 					{
@@ -2115,6 +2266,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					giant.damageInc();
 				}
 			}
+			
+			for (AbstractCard giantCard : player().discardPile.group)
+			{
+				if (giantCard instanceof PowerGiant)
+				{
+					PowerGiant giant = (PowerGiant)giantCard;
+					giant.damageInc();
+				}
+			}
+			
+			for (AbstractCard giantCard : player().drawPile.group)
+			{
+				if (giantCard instanceof PowerGiant)
+				{
+					PowerGiant giant = (PowerGiant)giantCard;
+					giant.damageInc();
+				}
+			}
 		}
 
 		else
@@ -2190,6 +2359,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						giant.damageInc();
 					}
 				}
+				
+				for (AbstractCard giantCard : player().discardPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
+				
+				for (AbstractCard giantCard : player().drawPile.group)
+				{
+					if (giantCard instanceof PowerGiant)
+					{
+						PowerGiant giant = (PowerGiant)giantCard;
+						giant.damageInc();
+					}
+				}
 			}
 			
 			// Update UI
@@ -2258,10 +2445,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 						if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-						// Check for Ironhammer Giants in player's hand
+						// Check for Ironhammer Giants in hand/discard/draw
 						if (tributes > 0)
 						{
 							for (AbstractCard c : player().hand.group)
+							{
+								if (c instanceof IronhammerGiant)
+								{
+									IronhammerGiant giant = (IronhammerGiant)c;
+									giant.costReduce();
+								}
+							}
+							
+							for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+							{
+								if (c instanceof IronhammerGiant)
+								{
+									IronhammerGiant giant = (IronhammerGiant)c;
+									giant.costReduce();
+								}
+							}
+							
+							for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 							{
 								if (c instanceof IronhammerGiant)
 								{
@@ -2360,10 +2565,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-					// Check for Ironhammer Giants in player's hand
+					// Check for Ironhammer Giants in hand/discard/draw
 					if (tributes > 0)
 					{
 						for (AbstractCard c : player().hand.group)
+						{
+							if (c instanceof IronhammerGiant)
+							{
+								IronhammerGiant giant = (IronhammerGiant)c;
+								giant.costReduce();
+							}
+						}
+						
+						for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+						{
+							if (c instanceof IronhammerGiant)
+							{
+								IronhammerGiant giant = (IronhammerGiant)c;
+								giant.costReduce();
+							}
+						}
+						
+						for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 						{
 							if (c instanceof IronhammerGiant)
 							{
@@ -2467,10 +2690,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-					// Check for Ironhammer Giants in player's hand
+					// Check for Ironhammer Giants in hand/discard/draw
 					if (tributes > 0)
 					{
 						for (AbstractCard c : player().hand.group)
+						{
+							if (c instanceof IronhammerGiant)
+							{
+								IronhammerGiant giant = (IronhammerGiant)c;
+								giant.costReduce();
+							}
+						}
+						
+						for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+						{
+							if (c instanceof IronhammerGiant)
+							{
+								IronhammerGiant giant = (IronhammerGiant)c;
+								giant.costReduce();
+							}
+						}
+						
+						for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 						{
 							if (c instanceof IronhammerGiant)
 							{
@@ -2559,10 +2800,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 				if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-				// Check for Ironhammer Giants in player's hand
+				// Check for Ironhammer Giants in hand/discard/draw
 				if (tributes > 0)
 				{
 					for (AbstractCard c : player().hand.group)
+					{
+						if (c instanceof IronhammerGiant)
+						{
+							IronhammerGiant giant = (IronhammerGiant)c;
+							giant.costReduce();
+						}
+					}
+					
+					for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+					{
+						if (c instanceof IronhammerGiant)
+						{
+							IronhammerGiant giant = (IronhammerGiant)c;
+							giant.costReduce();
+						}
+					}
+					
+					for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 					{
 						if (c instanceof IronhammerGiant)
 						{
@@ -2659,10 +2918,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 					if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-					// Check for Ironhammer Giants in player's hand
+					// Check for Ironhammer Giants in hand/discard/draw
 					if (tributes > 0)
 					{
 						for (AbstractCard c : player().hand.group)
+						{
+							if (c instanceof IronhammerGiant)
+							{
+								IronhammerGiant giant = (IronhammerGiant)c;
+								giant.costReduce();
+							}
+						}
+						
+						for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+						{
+							if (c instanceof IronhammerGiant)
+							{
+								IronhammerGiant giant = (IronhammerGiant)c;
+								giant.costReduce();
+							}
+						}
+						
+						for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 						{
 							if (c instanceof IronhammerGiant)
 							{
@@ -2751,10 +3028,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 				if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-				// Check for Ironhammer Giants in player's hand
+				// Check for Ironhammer Giants in hand/discard/draw
 				if (tributes > 0)
 				{
 					for (AbstractCard c : player().hand.group)
+					{
+						if (c instanceof IronhammerGiant)
+						{
+							IronhammerGiant giant = (IronhammerGiant)c;
+							giant.costReduce();
+						}
+					}
+					
+					for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+					{
+						if (c instanceof IronhammerGiant)
+						{
+							IronhammerGiant giant = (IronhammerGiant)c;
+							giant.costReduce();
+						}
+					}
+					
+					for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 					{
 						if (c instanceof IronhammerGiant)
 						{
@@ -2837,10 +3132,28 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(TributeToonPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSets(Tags.MONSTER, Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPower.POWER_ID), p, 1); }
 		if (p.hasPower(TributeToonPowerB.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(returnTrulyRandomFromSet(Tags.TOON), true, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0)); reducePower(p.getPower(TributeToonPowerB.POWER_ID), p, 1); }
 
-		// Check for Ironhammer Giants in player's hand
+		// Check for Ironhammer Giants in hand/discard/draw
 		if (tributes > 0)
 		{
 			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof IronhammerGiant)
+				{
+					IronhammerGiant giant = (IronhammerGiant)c;
+					giant.costReduce();
+				}
+			}
+			
+			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+			{
+				if (c instanceof IronhammerGiant)
+				{
+					IronhammerGiant giant = (IronhammerGiant)c;
+					giant.costReduce();
+				}
+			}
+			
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 			{
 				if (c instanceof IronhammerGiant)
 				{
@@ -3519,8 +3832,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				System.out.println("(B) orb slots::::: " + AbstractDungeon.player.maxOrbs);
 				for (int j = 0; j < invertedOrbs; j++)
 				{
-					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(invertOrbNames.get(j)).makeCopy()));
-					System.out.println("Orb we inverted to channel: " + invertOrbNames.get(j));
+					if (DuelistMod.invertableOrbNames.contains(invertOrbNames.get(j)))
+					{
+						AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(invertOrbNames.get(j)).makeCopy()));
+						if (DuelistMod.debug) { System.out.println("Orb we inverted to channel: " + invertOrbNames.get(j)); }
+					}
+					else
+					{
+						if (DuelistMod.debug) { System.out.println("Skipped inverting " + invertOrbNames.get(j) + " because we did not find an entry in the allowed invertable orbs names list"); }
+					}
 				}
 				
 			}
@@ -3550,7 +3870,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 				for (int j = 0; j < invertedOrbs; j++)
 				{
-					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(baseOrbs.get(j)).makeCopy()));
+					if (DuelistMod.invertableOrbNames.contains(baseOrbs.get(j)))
+					{
+						AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(baseOrbs.get(j)).makeCopy()));
+						if (DuelistMod.debug) { System.out.println("Orb we inverted to channel: " + baseOrbs.get(j)); }
+					}
+					else
+					{
+						if (DuelistMod.debug) { System.out.println("Skipped inverting " + baseOrbs.get(j) + " because we did not find an entry in the allowed invertable orbs names list"); }
+					}
 				}
 			}
 		}
@@ -3581,7 +3909,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
 			for (int i = 0; i < numberOfInverts; i++)
 			{
-				AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(orbToInvert).makeCopy()));
+				if (DuelistMod.invertableOrbNames.contains(orbToInvert))
+				{
+					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(orbToInvert).makeCopy()));
+					if (DuelistMod.debug) { System.out.println("Orb we inverted to channel: " + orbToInvert); }
+				}
+				else
+				{
+					if (DuelistMod.debug) { System.out.println("Skipped inverting " + orbToInvert + " because we did not find an entry in the allowed invertable orbs names list"); }
+				}
 			}
 		}
 	}
@@ -3605,75 +3941,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 			for (int i = 0; i < numberOfInverts; i++)
 			{
-				AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(orbToInvert).makeCopy()));
+				if (DuelistMod.invertableOrbNames.contains(orbToInvert))
+				{
+					AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(orbToInvert).makeCopy()));
+					if (DuelistMod.debug) { System.out.println("Orb we inverted to channel: " + orbToInvert); }
+				}
+				else
+				{
+					if (DuelistMod.debug) { System.out.println("Skipped inverting " + orbToInvert + " because we did not find an entry in the allowed invertable orbs names list"); }
+				}
 			}
 		}
 	}
-	
-	public static void invertWithoutRemove(int amount)
-	{
-		if (AbstractDungeon.player.orbs.size() > 0 && AbstractDungeon.player.hasOrb())
-		{
-			int numberOfInverts;
-			if (AbstractDungeon.player.hasRelic(InversionRelic.ID)) { amount++; }
-			if (AbstractDungeon.player.hasRelic(InversionEvokeRelic.ID)) { numberOfInverts = 2; }
-			else { numberOfInverts = 1; }			
-			for (int i = 0; i < numberOfInverts; i++)
-			{
-				resetInvertStringMap();
-				AbstractOrb o = AbstractDungeon.player.orbs.get(i);
-				evokeMult(amount, AbstractDungeon.player.orbs.get(i));
-				AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(o.name).makeCopy()));
-			}
-		}
-	}
-	
+
 	public static void invertMult(int amount, int numberOfInverts)
 	{
-		/*if (AbstractDungeon.player.orbs.size() > 0 && AbstractDungeon.player.hasOrb())
-		{
-			if (AbstractDungeon.player.hasRelic(InversionRelic.ID)) { amount++; }
-			if (AbstractDungeon.player.hasRelic(InversionEvokeRelic.ID)) { numberOfInverts++; }
-			ArrayList<String> names = new ArrayList<String>();
-			for (int i = 0; i < numberOfInverts; i++)
-			{
-				resetInvertStringMap();
-				AbstractOrb o = AbstractDungeon.player.orbs.get(i);
-				names.add(o.name);
-				evokeMult(amount, AbstractDungeon.player.orbs.get(i));
-				AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
-			}
-			
-			for (int i = 0; i < numberOfInverts; i++)
-			{
-				AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(names.get(i))));
-			}
-		}*/
-		
 		for (int i = 0; i < numberOfInverts; i++) { invert(amount); }
-	}
-	
-	public static void invertWithoutRemoveMult(int amount, int numberOfInverts)
-	{
-		/*if (AbstractDungeon.player.orbs.size() > 0 && AbstractDungeon.player.hasOrb())
-		{
-			if (AbstractDungeon.player.hasRelic(InversionRelic.ID)) { amount++; }
-			if (AbstractDungeon.player.hasRelic(InversionEvokeRelic.ID)) { numberOfInverts++; }
-			ArrayList<String> names = new ArrayList<String>();
-			for (int i = 0; i < numberOfInverts; i++)
-			{
-				resetInvertStringMap();
-				AbstractOrb o = AbstractDungeon.player.orbs.get(i);
-				names.add(o.name);
-				evokeMult(amount, AbstractDungeon.player.orbs.get(i));
-			}
-			
-			for (int i = 0; i < numberOfInverts; i++)
-			{
-				AbstractDungeon.actionManager.addToBottom(new ChannelAction(DuelistMod.invertStringMap.get(names.get(i))));
-			}
-		}*/
-		for (int i = 0; i < numberOfInverts; i++) { invertWithoutRemove(amount); }
 	}
 	
 	public static void removeOrbs(int amount)

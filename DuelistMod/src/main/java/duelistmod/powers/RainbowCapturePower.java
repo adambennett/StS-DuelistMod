@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.interfaces.*;
 
@@ -79,7 +81,7 @@ public class RainbowCapturePower extends AbstractPower
 	{
 		for (AbstractCard c : pieces)
 		{
-			DuelistCard.addCardToHand(c);
+			if (AbstractDungeon.player.hand.group.size() < BaseMod.MAX_HAND_SIZE) {	DuelistCard.addCardToHand(c); }
 		}
 		
 		//DuelistCard.removePower(this, this.owner);

@@ -74,11 +74,9 @@ public class CatapultPower extends AbstractPower
     			if (playerSummons > 0)
     			{
 					// Deal 10 damage to all enemies for each Tribute
-		        	int[] catapultDmg = new int[] {TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG, TURN_DMG};
-		        	for (int i = 0; i < playerSummons; i++)
-		        	{
-		        		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.owner, catapultDmg, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH));
-		        	}
+		        	int[] catapultDmg = new int[] {TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons, TURN_DMG * playerSummons};		        	
+		        	AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(this.owner, catapultDmg, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH));
+		        	
     			}
 	        }
     	}

@@ -150,13 +150,21 @@ public class BigWaveSmallWave extends DuelistCard
     @Override
 	public void upgrade() 
 	{
-		if (!upgraded) 
+		if (canUpgrade()) 
 		{
 			this.upgradeName();
+			this.upgradeBaseCost(0);			 
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
 	}
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (DuelistMod.hasUpgradeBuffRelic) { return true; }
+    	else { return false; }
+    }
 
 
 	@Override

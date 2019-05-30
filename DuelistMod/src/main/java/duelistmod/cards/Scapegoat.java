@@ -15,6 +15,7 @@ import duelistmod.*;
 import duelistmod.cards.tokens.KuribohToken;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.SummonPower;
 
 public class Scapegoat extends DuelistCard 
 {

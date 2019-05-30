@@ -61,6 +61,14 @@ public class DarkHole extends DuelistCard
     			}
     		}
     		block(blockTotal);
+    		
+    		for (AbstractPower pow : p.powers)
+    		{
+    			if (pow.type.equals(PowerType.DEBUFF))
+    			{
+    				removePower(pow, pow.owner);
+    			}
+    		}
 	    }
     	else
     	{
@@ -91,6 +99,14 @@ public class DarkHole extends DuelistCard
     			}
     		}
     		block(blockTotal);
+    		
+    		for (AbstractPower pow : p.powers)
+    		{
+    			if (pow.type.equals(PowerType.DEBUFF))
+    			{
+    				removePower(pow, pow.owner);
+    			}
+    		}
     	}
     }
     
