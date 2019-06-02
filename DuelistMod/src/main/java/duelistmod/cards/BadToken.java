@@ -1,17 +1,14 @@
 package duelistmod.cards;
 
-import java.util.*;
-import java.util.Map.Entry;
-
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 

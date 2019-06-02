@@ -18,7 +18,12 @@ public class Utilities
         return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);
     }
     
-    public static int factorial(int n) { return (n == 1 || n == 0) ? 1 : n * factorial(n - 1); } 
+    public static int factorial(int n) 
+    {
+    	if (n > 19) { n = 19; }
+    	DuelistMod.logger.info("Factorial iteration value: " + n);
+    	return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
+    } 
 
     public static <T> T SafeCast(Object o, Class<T> type)
     {

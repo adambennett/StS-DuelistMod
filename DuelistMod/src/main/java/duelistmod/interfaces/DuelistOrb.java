@@ -44,10 +44,32 @@ public class DuelistOrb extends AbstractOrb {
 	
 	public void setOriginalValues(int passive, int evoke)
 	{
-		originalPassive = passive;
-		originalEvoke = evoke;
+		this.originalPassive = passive;
+		this.originalEvoke = evoke;
 	}
 	
+	public int getOriginalEvoke()
+	{
+		return originalEvoke;
+	}
+
+	public void checkFocus() 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+		}
+		applyFocus();
+		updateDescription();
+	}
 	
 	/*
 	private void animationCode()
@@ -135,27 +157,6 @@ public class DuelistOrb extends AbstractOrb {
 	*/
 	
 	
-	public int getOriginalEvoke()
-	{
-		return originalEvoke;
-	}
-
-	public void checkFocus() 
-	{
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
-		{
-			this.basePassiveAmount = originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-		}
-		else
-		{
-			this.basePassiveAmount = originalPassive;
-		}
-		if (DuelistMod.debug)
-		{
-			//System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-		}
-		applyFocus();
-		updateDescription();
-	}
+	
 
 }

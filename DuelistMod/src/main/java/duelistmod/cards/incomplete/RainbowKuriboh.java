@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 
 public class RainbowKuriboh extends DuelistCard 
 {
@@ -52,7 +53,7 @@ public class RainbowKuriboh extends DuelistCard
     	for (int i = 0; i < this.magicNumber; i++)
     	{
     		DuelistCard randTypeMon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(randomTypeSelection);
-    		addCardToHand(randTypeMon);
+    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randTypeMon, true));
     	}
     }
 

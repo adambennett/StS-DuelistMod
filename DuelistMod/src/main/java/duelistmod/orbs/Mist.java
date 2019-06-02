@@ -108,10 +108,13 @@ public class Mist extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
-		DuelistCard randomAquaHand = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
-		DuelistCard randomAquaExhaust = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAquaHand, false, true, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
-		AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randomAquaExhaust, false, true, true, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+		for (int i = 0; i < this.passiveAmount; i++)
+		{
+			DuelistCard randomAquaHand = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
+			DuelistCard randomAquaExhaust = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAquaHand, false, true, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+			AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randomAquaExhaust, false, true, true, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+		}
 	}
 
 	@Override

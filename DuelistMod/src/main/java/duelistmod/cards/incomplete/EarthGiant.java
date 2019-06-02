@@ -48,7 +48,7 @@ public class EarthGiant extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attack(m);
+    	block(this.block);
     	if (this.tributes == 0)
     	{
     		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 7 - this.tributes, true));

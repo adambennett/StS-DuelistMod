@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.unique.OjamaPajamaAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class OjamaPajama extends DuelistCard 
 {
@@ -44,23 +44,7 @@ public class OjamaPajama extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		for (AbstractCard c : player().drawPile.group)
-		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + this.magicNumber);
-			AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(c, roll));
-		}
-		
-		for (AbstractCard c : player().discardPile.group)
-		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + this.magicNumber);
-			AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(c, roll));
-		}
-		
-		for (AbstractCard c : player().hand.group)
-		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + this.magicNumber);
-			AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(c, roll));
-		}
+		AbstractDungeon.actionManager.addToTop(new OjamaPajamaAction(this.magicNumber));
 	}
 
 	@Override

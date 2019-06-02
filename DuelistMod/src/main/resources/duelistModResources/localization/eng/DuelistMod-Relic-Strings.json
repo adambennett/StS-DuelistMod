@@ -11,7 +11,7 @@
 		"FLAVOR": "It was originally known as the Millennium Pendant, but after being shattered and requiring assembly it came to be known as the Millennium Puzzle.",
 		"DESCRIPTIONS": [
 			"At the start of each combat, trigger an effect depending on your chosen starting deck.",
-			"Challenge Mode: #ySummon #b1 [#FF5252]Exploding [#FF5252]Token at the start of combat. You start each combat with 4 max summons.",
+			"Challenge Mode: #ySummon #b1 [#FF5252]Exploding [#FF5252]Token at the start of combat. #ySummoning is restricted.",
 			"At the start of combat, #ySummon #b2 Puzzle Tokens, gain a random amount (0-10) of #yBlock and gain #b1 #yBlur.",
 			"At the start of combat, #ySummon #b1 #yDragon Token and apply #b",
 			" #yWeak or #yVulnerable to a random enemy.",

@@ -50,8 +50,9 @@ public class Fissure extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		int lowestHP = AbstractDungeon.getMonsters().monsters.get(0).currentHealth;
-		AbstractMonster selected = AbstractDungeon.getMonsters().monsters.get(0);
+		
+		AbstractMonster selected = AbstractDungeon.getRandomMonster();
+		int lowestHP = selected.currentHealth;
 		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
 		{
 			if (!mon.isDead && !mon.isDying && mon.currentHealth < lowestHP)
@@ -63,8 +64,10 @@ public class Fissure extends DuelistCard
 		}
 		int playerSummons = getSummons(p);
 		int newDamage = this.damage * playerSummons;
+		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure: damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
 		this.applyPowers();
 		attack(selected, this.baseAFX, newDamage);
+		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure (after applyPowers function and attacking): damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
 	}
 
 	// Which card to return when making a copy of this card.
