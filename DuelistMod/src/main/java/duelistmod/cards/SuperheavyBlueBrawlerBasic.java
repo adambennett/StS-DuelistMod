@@ -14,10 +14,10 @@ import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 
-public class SuperheavyBlueBrawler extends DuelistCard 
+public class SuperheavyBlueBrawlerBasic extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("SuperheavyBlueBrawler");
+    public static final String ID = DuelistMod.makeID("SuperheavyBlueBrawlerBasic");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.SUPERHEAVY_BLUE_BRAWLER);
     public static final String NAME = cardStrings.NAME;
@@ -26,7 +26,7 @@ public class SuperheavyBlueBrawler extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -34,16 +34,17 @@ public class SuperheavyBlueBrawler extends DuelistCard
     private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public SuperheavyBlueBrawler() {
+    public SuperheavyBlueBrawlerBasic() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
-        this.tributes = this.baseTributes = 2;
-        this.dex = 2;
-        this.exhaust = true;
+        this.baseDamage = this.damage = 9;
+        this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.REDUCED);
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.tags.add(Tags.MAGNET_DECK);
+		this.superheavyDeckCopies = 1;
+		this.setupStartingCopies();
+        this.magicNumber = this.baseMagicNumber = 1;
 		this.originalName = this.name;
     }
 
@@ -59,7 +60,7 @@ public class SuperheavyBlueBrawler extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new SuperheavyBlueBrawler();
+        return new SuperheavyBlueBrawlerBasic();
     }
 
     // Upgraded stats.

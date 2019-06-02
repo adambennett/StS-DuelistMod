@@ -1911,6 +1911,11 @@
 		"NAME": "Superheavy Brawler",
 		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust."
 	},
+	"theDuelist:SuperheavyBlueBrawlerBasic": {
+		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity.",
+		"NAME": "Superheavy Brawler",
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity."
+	},
 	"theDuelist:SuperheavyDaihachi": {
 		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! Dexterity. NL Gain !B! Block. NL Exhaust.",
 		"NAME": "Superheavy Daihachi",
