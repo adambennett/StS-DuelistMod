@@ -1,2945 +1,2965 @@
 {
 	"theDuelist:AbstractBuffCard": {
-		"DESCRIPTION": "²»Ó¦¸Ã³öÏÖÔÚÓÎÏ·ÖÐ",
-		"NAME": "ÔöÒæ"
+		"DESCRIPTION": "ä¸åº”è¯¥å‡ºçŽ°åœ¨æ¸¸æˆä¸­",
+		"NAME": "å¢žç›Š"
 	},
 	"theDuelist:AcidTrapHole": {
-		"DESCRIPTION": "´Ó³éÅÆ¶ÑÖÐËæ»ú¶ªÆú !M! ÕÅËæ»ú¹ÖÊÞ£¬Ôì³ÉÉËº¦µÈÓÚËüÃÇµÄ×ÜÉËº¦¡£",
-		"NAME": "Ðî»ýÁòËáµÄÂäÑ¨",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£´Ó³éÅÆ¶ÑÖÐËæ»ú¶ªÆú !M! ÕÅËæ»ú¹ÖÊÞ£¬Ôì³ÉÉËº¦µÈÓÚËüÃÇµÄ×ÜÉËº¦¡£"
+		"DESCRIPTION": "ä»ŽæŠ½ç‰Œå †ä¸­éšæœºä¸¢å¼ƒ !M! å¼ éšæœºæ€ªå…½ï¼Œé€ æˆä¼¤å®³ç­‰äºŽå®ƒä»¬çš„æ€»ä¼¤å®³ã€‚",
+		"NAME": "è“„ç§¯ç¡«é…¸çš„è½ç©´",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚ä»ŽæŠ½ç‰Œå †ä¸­éšæœºä¸¢å¼ƒ !M! å¼ éšæœºæ€ªå…½ï¼Œé€ æˆä¼¤å®³ç­‰äºŽå®ƒä»¬çš„æ€»ä¼¤å®³ã€‚"
 	},
 	"theDuelist:AirOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£",
-		"NAME": "¿ÕÆø",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚",
+		"NAME": "ç©ºæ°”",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚"
 	},
 	"theDuelist:AllyJustice": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ²ãÈË¹¤ÖÆÆ·¡£ÏûºÄ¡£",
-		"NAME": "ÕýÒåÃË¾ü »Ô½£Äñ",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ²ãÈË¹¤ÖÆÆ·¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! å±‚äººå·¥åˆ¶å“ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ­£ä¹‰ç›Ÿå†› è¾‰å‰‘é¸Ÿ",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! å±‚äººå·¥åˆ¶å“ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:AlphaMagnet": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ°¢¶û·¨´ÅÌú¡£",
-		"NAME": "´ÅÊ¯Õ½Ê¿°¢¶û·¨",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ°¢¶û·¨´ÅÌú¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾—é˜¿å°”æ³•ç£é“ã€‚",
+		"NAME": "ç£çŸ³æˆ˜å£«é˜¿å°”æ³•",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾—é˜¿å°”æ³•ç£é“ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:AltarTribute": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃµÈÓÚËùÓÐ¼ÀÆ·µãÉËº¦ºÍ¸ñµ²ÊýÖµµÄÉúÃü¡£",
-		"NAME": "Éü¼ÀµÄ¼ÀÌ³",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃµÈÓÚËùÓÐ¼ÀÆ·µãÉËº¦ºÍ¸ñµ²ÊýÖµµÄÉúÃü¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾—ç­‰äºŽæ‰€æœ‰ç¥­å“ç‚¹ä¼¤å®³å’Œæ ¼æŒ¡æ•°å€¼çš„ç”Ÿå‘½ã€‚",
+		"NAME": "ç‰²ç¥­çš„ç¥­å›",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾—ç­‰äºŽæ‰€æœ‰ç¥­å“ç‚¹ä¼¤å®³å’Œæ ¼æŒ¡æ•°å€¼çš„ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:AncientElf": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! ¼¤·¢ÏÂ¸ö³äÄÜÇò¡£»ñµÃ !B! ¸ñµ²¡£",
-		"NAME": "¹Å´ú¾«Áé",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! ¼¤·¢ÏÂ¸ö³äÄÜÇò¡£»ñµÃ !B! ¸ñµ²¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¿€å‘ä¸‹ä¸ªå……èƒ½çƒã€‚èŽ·å¾— !B! æ ¼æŒ¡ã€‚",
+		"NAME": "å¤ä»£ç²¾çµ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¿€å‘ä¸‹ä¸ªå……èƒ½çƒã€‚èŽ·å¾— !B! æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:AncientGearChimera": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ½« !M! ÕÅËæ»úÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ",
-		"NAME": "¹Å´úµÄ»úÐµºÏ³ÉÊÞ",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ½« !M! ÕÅËæ»úÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°† !M! å¼ éšæœºè¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­",
+		"NAME": "å¤ä»£çš„æœºæ¢°åˆæˆå…½",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°† !M! å¼ éšæœºè¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:AncientGearGadjiltron": {
-		"DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ½« !M! ÕÅÉËº¦ÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "¹Å´úµÄ»úÐµ¾ÞÁú",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ½« !M! ÕÅÉËº¦ÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°† !M! å¼ ä¼¤å®³è¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¤ä»£çš„æœºæ¢°å·¨é¾™",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°† !M! å¼ ä¼¤å®³è¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:AncientGearGolem": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! ²ã½ðÊô»¯¡£½« 3 ÕÅÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "¹Å´úµÄ»úÐµ¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! ²ã½ðÊô»¯¡£½« 3 ÕÅÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! å±‚é‡‘å±žåŒ–ã€‚å°† 3 å¼ è¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¤ä»£çš„æœºæ¢°å·¨äºº",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! å±‚é‡‘å±žåŒ–ã€‚å°† 3 å¼ è¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:AncientRules": {
-		"DESCRIPTION": "±¾³¡Õ½¶·ÖÐ³éÅÆ¶ÑµÄËùÓÐ¹ÖÊÞ¼õÉÙ¼ÀÆ·ÏûºÄ !M! µã¡£ÏûºÄ¡£",
-		"NAME": "¹ÅÖ®¹æÔò",
-		"UPGRADE_DESCRIPTION": "±¾³¡Õ½¶·ÖÐ³éÅÆ¶ÑµÄËùÓÐ¹ÖÊÞ¼õÉÙ¼ÀÆ·ÏûºÄ !M! µã¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æœ¬åœºæˆ˜æ–—ä¸­æŠ½ç‰Œå †çš„æ‰€æœ‰æ€ªå…½å‡å°‘ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "å¤ä¹‹è§„åˆ™",
+		"UPGRADE_DESCRIPTION": "æœ¬åœºæˆ˜æ–—ä¸­æŠ½ç‰Œå †çš„æ‰€æœ‰æ€ªå…½å‡å°‘ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:AngelTrumpeter": {
-		"DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÂüÍÓÂÞÌìÊ¹ºÅÊÖ",
-		"UPGRADE_DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ›¼é™€ç½—å¤©ä½¿å·æ‰‹",
+		"UPGRADE_DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ApprenticeIllusionMagician": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! µã¼¯ÖÐ¡£Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "»ÃÏëÖ®¼ûÏ°Ä§µ¼Ê¦",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! µã¼¯ÖÐ¡£Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¹»æƒ³ä¹‹è§ä¹ é­”å¯¼å¸ˆ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:AquaSpirit": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕÙ»½¹ýË®×å¹ÖÊÞ£¬¶îÍâÔì³É !M! µãÉËº¦¡£",
-		"NAME":"Ë®Ö®¾«Áé °¢¿â°¬Àöæ«",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕÙ»½¹ýË®×å¹ÖÊÞ£¬¶îÍâÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœå¬å”¤è¿‡æ°´æ—æ€ªå…½ï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME":"æ°´ä¹‹ç²¾çµ é˜¿åº“è‰¾ä¸½å¨…",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœå¬å”¤è¿‡æ°´æ—æ€ªå…½ï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:AquaToken": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý1 NL ±¾»ØºÏÌáÉýÊÖÅÆÖÐËæ»ú¹ÖÊÞ1µãÕÙ»½Êý¡£",
-		"NAME": "Ë®×åÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý1 NL ±¾»ØºÏÌáÉýÊÖÅÆÖÐËæ»ú¹ÖÊÞ1µãÕÙ»½Êý¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•°1 NL æœ¬å›žåˆæå‡æ‰‹ç‰Œä¸­éšæœºæ€ªå…½1ç‚¹å¬å”¤æ•°ã€‚",
+		"NAME": "æ°´æ—è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•°1 NL æœ¬å›žåˆæå‡æ‰‹ç‰Œä¸­éšæœºæ€ªå…½1ç‚¹å¬å”¤æ•°ã€‚"
 	},
 	"theDuelist:ArchfiendSoldier": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "¶ñÄ§×åÊ¿±ø",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ¶é­”æ—å£«å…µ",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ArmorBreaker": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ÒÆ³ýµÐÈËÉíÉÏËùÓÐ¸ñµ²¡£",
-		"NAME": "îø¼×ÆÆ»µÊ¿",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£ÕÙ»½Êý !duelist:SUMM! ÒÆ³ýµÐÈËÉíÉÏËùÓÐ¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! ç§»é™¤æ•Œäººèº«ä¸Šæ‰€æœ‰æ ¼æŒ¡ã€‚",
+		"NAME": "é“ ç”²ç ´åå£«",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚å¬å”¤æ•° !duelist:SUMM! ç§»é™¤æ•Œäººèº«ä¸Šæ‰€æœ‰æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:ArmoredBee": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "¼×·ä",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç”²èœ‚",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ArmoredZombie": {
-		"DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ÌØÊâÕÙ»½£º»ñµÃ10µã¸ñµ²¡£",
-		"NAME": "îøÎäÕß½©Ê¬",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ÌØÊâÕÙ»½£º»ñµÃ10µã¸ñµ²¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç‰¹æ®Šå¬å”¤ï¼šèŽ·å¾—10ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "é“ æ­¦è€…åƒµå°¸",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç‰¹æ®Šå¬å”¤ï¼šèŽ·å¾—10ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:AxeDespair": {
-		"DESCRIPTION": "±¾»ØºÏ»ñµÃ !M! µãÁ¦Á¿¡£»ØºÏ½áÊøÊ±£¬ÏûºÄ2µã¼ÀÆ·£¬·ñÔòµ½30µãÉËº¦¡£ NL ½«´ËÅÆ·ÅÔÚ³éÅÆ¶Ñ¶¥²¿¡£",
-		"NAME": "¶ñÄ§Ö®¸«",
-		"UPGRADE_DESCRIPTION": "±¾»ØºÏ»ñµÃ !M! µãÁ¦Á¿¡£»ØºÏ½áÊøÊ±£¬ÏûºÄ2µã¼ÀÆ·£¬·ñÔòÊÜµ½30µãÉËº¦¡£ NL ½«´ËÅÆ·ÅÔÚ³éÅÆ¶Ñ¶¥²¿¡£"
+		"DESCRIPTION": "æœ¬å›žåˆèŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚å›žåˆç»“æŸæ—¶ï¼Œæ¶ˆè€—2ç‚¹ç¥­å“ï¼Œå¦åˆ™åˆ°30ç‚¹ä¼¤å®³ã€‚ NL å°†æ­¤ç‰Œæ”¾åœ¨æŠ½ç‰Œå †é¡¶éƒ¨ã€‚",
+		"NAME": "æ¶é­”ä¹‹æ–§",
+		"UPGRADE_DESCRIPTION": "æœ¬å›žåˆèŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚å›žåˆç»“æŸæ—¶ï¼Œæ¶ˆè€—2ç‚¹ç¥­å“ï¼Œå¦åˆ™å—åˆ°30ç‚¹ä¼¤å®³ã€‚ NL å°†æ­¤ç‰Œæ”¾åœ¨æŠ½ç‰Œå †é¡¶éƒ¨ã€‚"
 	},
 	"theDuelist:BSkullDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÁú×å£¬¿ÉÒÔÔÚÊÖÅÆÖÐÔö¼Ó1¸öºÄÄÜÎª0µÄ¶ñÄ§ÕÙ»½¡£",
-		"NAME": "°µºÚÄ§Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÁú×å£¬¿ÉÒÔÔÚÊÖÅÆÖÐÔö¼Ó1¸öºÄÄÜÎª0µÄ¶ñÄ§ÕÙ»½¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰é¾™æ—ï¼Œå¯ä»¥åœ¨æ‰‹ç‰Œä¸­å¢žåŠ 1ä¸ªè€—èƒ½ä¸º0çš„æ¶é­”å¬å”¤ã€‚",
+		"NAME": "æš—é»‘é­”é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰é¾™æ—ï¼Œå¯ä»¥åœ¨æ‰‹ç‰Œä¸­å¢žåŠ 1ä¸ªè€—èƒ½ä¸º0çš„æ¶é­”å¬å”¤ã€‚"
 	},
 	"theDuelist:BabyDragon": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "±¦±´Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å®è´é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:BadReaction": {
-		"DESCRIPTION": "Ã¿µãÉúÃü»Ø¸´±äÎª¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "²»Á¼·´Ó¦",
-		"UPGRADE_DESCRIPTION": "Ã¿µãÉúÃü»Ø¸´±äÎª¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¯ç‚¹ç”Ÿå‘½å›žå¤å˜ä¸ºå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ä¸è‰¯ååº”",
+		"UPGRADE_DESCRIPTION": "æ¯ç‚¹ç”Ÿå‘½å›žå¤å˜ä¸ºå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BadReactionRare": {
-		"DESCRIPTION": "ÉúÃü»Ø¸´Ê±£¬Ã¿µã»Ø¸´¶¼»á¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "Ò©ÎïµÄ¸±×÷ÓÃ",
-		"UPGRADE_DESCRIPTION": "ÉúÃü»Ø¸´Ê±£¬Ã¿µã»Ø¸´¶¼»á¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç”Ÿå‘½å›žå¤æ—¶ï¼Œæ¯ç‚¹å›žå¤éƒ½ä¼šå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è¯ç‰©çš„å‰¯ä½œç”¨",
+		"UPGRADE_DESCRIPTION": "ç”Ÿå‘½å›žå¤æ—¶ï¼Œæ¯ç‚¹å›žå¤éƒ½ä¼šå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BadToken": {
-		"DESCRIPTION": "ÖØÖÃËùÓÐµÄ³äÄÜÇò¡£",
-		"NAME": "µ÷ÊÔ",
-		"UPGRADE_DESCRIPTION": "ÖØÖÃËùÓÐµÄ³äÄÜÇò¡£"
+		"DESCRIPTION": "é‡ç½®æ‰€æœ‰çš„å……èƒ½çƒã€‚",
+		"NAME": "è°ƒè¯•",
+		"UPGRADE_DESCRIPTION": "é‡ç½®æ‰€æœ‰çš„å……èƒ½çƒã€‚"
 	},
 	"theDuelist:BarrelDragon": {
-		"DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ¸öËæ»úµÄµÐÈË2¸öËæ»ú¸ºÃæÐ§¹û¡£",
-		"NAME": "×óÂÖÊÖÇ¹Áú",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ¸öËæ»úµÄµÐÈË3¸öËæ»ú¸ºÃæÐ§¹û¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! ä¸ªéšæœºçš„æ•Œäºº2ä¸ªéšæœºè´Ÿé¢æ•ˆæžœã€‚",
+		"NAME": "å·¦è½®æ‰‹æžªé¾™",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! ä¸ªéšæœºçš„æ•Œäºº3ä¸ªéšæœºè´Ÿé¢æ•ˆæžœã€‚"
 	},
 	"theDuelist:BasicInsect": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¸øÓè !M! ²ãÖÐ¶¾¡£",
-		"NAME": "À¥³æÈË¡£",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¸øÓè !M! ²ãÖÐ¶¾¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚",
+		"NAME": "æ˜†è™«äººã€‚",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚"
 	},
 	"theDuelist:BattleFootballer": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Õ½¶·éÏé­ÇòÔ±",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "æˆ˜æ–—æ©„æ¦„çƒå‘˜",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:BattleOx": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Å£Í·ÈË",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç‰›å¤´äºº",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BattleguardKing": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Õ½¶·Íõ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æˆ˜æ–—çŽ‹",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BeastFangs": {
-		"DESCRIPTION": "³ýÍâ¡£ÔÚÏÂÒ»´ÎÕ½¶·¿ªÊ¼Ê±£¬»ñµÃµÄÁ¦Á¿Ïàµ±ÓÚ±¾³¡Õ½¶·ÖÐÕÙ»½µÄ¹ÖÊÞÊýÁ¿µÄÒ»°ë¡£",
-		"NAME": "Ò°ÂùÈË¹úÍõ",
-		"UPGRADE_DESCRIPTION": "³ýÍâ¡£ÔÚÏÂÒ»´ÎÕ½¶·¿ªÊ¼Ê±£¬»ñµÃµÄÁ¦Á¿Ïàµ±ÓÚ±¾³¡Õ½¶·ÖÐÕÙ»½µÄ¹ÖÊÞÊýÁ¿µÄÒ»°ë¡£"
+		"DESCRIPTION": "é™¤å¤–ã€‚åœ¨ä¸‹ä¸€æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ï¼ŒèŽ·å¾—çš„åŠ›é‡ç›¸å½“äºŽæœ¬åœºæˆ˜æ–—ä¸­å¬å”¤çš„æ€ªå…½æ•°é‡çš„ä¸€åŠã€‚",
+		"NAME": "é‡Žè›®äººå›½çŽ‹",
+		"UPGRADE_DESCRIPTION": "é™¤å¤–ã€‚åœ¨ä¸‹ä¸€æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ï¼ŒèŽ·å¾—çš„åŠ›é‡ç›¸å½“äºŽæœ¬åœºæˆ˜æ–—ä¸­å¬å”¤çš„æ€ªå…½æ•°é‡çš„ä¸€åŠã€‚"
 	},
 	"theDuelist:BeaverWarrior": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Â·Ò×Ë¹",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è·¯æ˜“æ–¯",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BetaMagnet": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ±´Ëþ´ÅÌú¡£",
-		"NAME": "´ÅÊ¯Õ½Ê¿±´Ëþ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ±´Ëþ´ÅÌú¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—è´å¡”ç£é“ã€‚",
+		"NAME": "ç£çŸ³æˆ˜å£«è´å¡”",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—è´å¡”ç£é“ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:BigCastleWalls": {
-		"DESCRIPTION": "»ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "´ó³Ç±¤Ç½",
-		"UPGRADE_DESCRIPTION": "»ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å¤§åŸŽå ¡å¢™",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:BigFire": {
-		"DESCRIPTION": "ËùÓÐµÐÈË¶¼»áÊÜµ½Ëæ»ú£¨0-25£©µãÉËº¦¡£",
-		"NAME": "»ðÑ×µØÓü",
-		"UPGRADE_DESCRIPTION": "ËùÓÐµÐÈË¶¼»áÊÜµ½Ëæ»ú£¨0-30£©µãÉËº¦¡£"
+		"DESCRIPTION": "æ‰€æœ‰æ•Œäººéƒ½ä¼šå—åˆ°éšæœº ï¼ˆ0-25ï¼‰ ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç«ç‚Žåœ°ç‹±",
+		"UPGRADE_DESCRIPTION": "æ‰€æœ‰æ•Œäººéƒ½ä¼šå—åˆ°éšæœº ï¼ˆ0-30ï¼‰ ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BigKoala": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "¾Þ´óÊ÷ÐÜ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å·¨å¤§æ ‘ç†Š",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:BigLabyrinthWall": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "´óÃÔ¹¬Ç½",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å¤§è¿·å®«å¢™",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:BlackOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö°µÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "°µÊôÐÔ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö°µÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæš—å±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "æš—å±žæ€§",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæš—å±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:BlacklandFireDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öÑ×ÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "°µºÚÖ®ÁúÍõ",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öÑ×ÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç‚Žå±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "æš—é»‘ä¹‹é¾™çŽ‹",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç‚Žå±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:BlastJuggler": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ËùÓÐ±¬ÆÆÑÜÉúÎï£¬¶ÔËæ»úµÐÈËÔì³ÉÉËº¦£¬ÑÜÉúÎï²»¸øÓè×Ô¼ºÉËº¦¡£",
-		"NAME": "Õ¨µ¯ÏÈÉú",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ËùÓÐ±¬ÆÆÑÜÉúÎï£¬¶ÔËæ»úµÐÈËÔì³ÉÉËº¦£¬ÑÜÉúÎï²»¸øÓè×Ô¼ºÉËº¦¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“æ‰€æœ‰çˆ†ç ´è¡ç”Ÿç‰©ï¼Œå¯¹éšæœºæ•Œäººé€ æˆä¼¤å®³ï¼Œè¡ç”Ÿç‰©ä¸ç»™äºˆè‡ªå·±ä¼¤å®³ã€‚",
+		"NAME": "ç‚¸å¼¹å…ˆç”Ÿ",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“æ‰€æœ‰çˆ†ç ´è¡ç”Ÿç‰©ï¼Œå¯¹éšæœºæ•Œäººé€ æˆä¼¤å®³ï¼Œè¡ç”Ÿç‰©ä¸ç»™äºˆè‡ªå·±ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BlazeOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÑ×Íè ³äÄÜÇò¡£",
-		"NAME": "Ñ×Íè",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÑ×Íè ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªç‚Žä¸¸ å……èƒ½çƒã€‚",
+		"NAME": "ç‚Žä¸¸",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªç‚Žä¸¸ å……èƒ½çƒã€‚"
 	},
 	"theDuelist:BlizzardDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿µ±ÕÙ»½Áú×åÊ±£¬Éú³É1¸ö±ùËª³äÄÜÇò¡£",
-		"NAME": "Ñ©±©Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿µ±ÕÙ»½Áú×åÊ±£¬Éú³É1¸ö±ùËª³äÄÜÇò¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯å½“å¬å”¤é¾™æ—æ—¶ï¼Œç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚",
+		"NAME": "é›ªæš´é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯å½“å¬å”¤é¾™æ—æ—¶ï¼Œç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:BlizzardPrincess": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö±ùËª³äÄÜÇò¡£",
-		"NAME": "Ñ©±©¹«Ö÷",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö±ùËª³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚",
+		"NAME": "é›ªæš´å…¬ä¸»",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:BlizzardWarrior": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö±ùËª³äÄÜÇò¡£",
-		"NAME": "Ñ©±©Õ½Ê¿",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö±ùËª³äÄÜÇò¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚",
+		"NAME": "é›ªæš´æˆ˜å£«",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:BlockGolem": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£",
-		"NAME": "»ýÄ¾¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç§¯æœ¨å·¨äºº",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:BlueDragonSummoner": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£",
-		"NAME": "ÇàÁúÕÙ»½Ê¿",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚",
+		"NAME": "é’é¾™å¬å”¤å£«",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚"
 	},
 	"theDuelist:BlueEyes": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÇàÑÛ°×Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é’çœ¼ç™½é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BlueEyesToon": {
-		"DESCRIPTION": "¿¨Í¨ Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£",
-		"NAME": "ÇàÑÛ¿¨Í¨Áú",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£"
+		"DESCRIPTION": "å¡é€š é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚",
+		"NAME": "é’çœ¼å¡é€šé¾™",
+		"UPGRADE_DESCRIPTION": "å¡é€š é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚"
 	},
 	"theDuelist:BlueEyesUltimate": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÇàÑÛ¾¿¼«Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é’çœ¼ç©¶æžé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BookSecret": {
-		"DESCRIPTION": "½« !M! ÕÅËæ»úµÄÄ§·¨Ê¦×åÔö¼Óµ½ÊÖÅÆÖÐ¡£Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£ÏûºÄ¡£",
-		"NAME": "ÃØÊõÖ®Êé",
-		"UPGRADE_DESCRIPTION": "½« !M! ÕÅËæ»úÉý¼¶¹ýµÄÄ§·¨Ê¦×åÔö¼Óµ½ÊÖÅÆÖÐ¡£Éú³É2¸öËæ»úµÄ³äÄÜÇò¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°† !M! å¼ éšæœºçš„é­”æ³•å¸ˆæ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç§˜æœ¯ä¹‹ä¹¦",
+		"UPGRADE_DESCRIPTION": "å°† !M! å¼ éšæœºå‡çº§è¿‡çš„é­”æ³•å¸ˆæ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚ç”Ÿæˆ2ä¸ªéšæœºçš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:BottomlessTrapHole": {
-		"DESCRIPTION": "¶ªÆú³éÅÆ¶ÑÖÐµÄËùÓÐ¹ÖÊÞ¡£Ã¿¶ªÆú1¸ö¹ÖÊÞ£¬Ôì³É !D! µãÉËº¦¡£ÏûºÄ¡£",
-		"NAME": "ÄÎÂäµÄÂäÑ¨",
-		"UPGRADE_DESCRIPTION": "¶ªÆú³éÅÆ¶ÑÖÐµÄËùÓÐ¹ÖÊÞ¡£Ã¿¶ªÆú1¸ö¹ÖÊÞ£¬Ôì³É !D! µãÉËº¦¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ä¸¢å¼ƒæŠ½ç‰Œå †ä¸­çš„æ‰€æœ‰æ€ªå…½ã€‚æ¯ä¸¢å¼ƒ1ä¸ªæ€ªå…½ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "å¥ˆè½çš„è½ç©´",
+		"UPGRADE_DESCRIPTION": "ä¸¢å¼ƒæŠ½ç‰Œå †ä¸­çš„æ‰€æœ‰æ€ªå…½ã€‚æ¯ä¸¢å¼ƒ1ä¸ªæ€ªå…½ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:BufferOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÔöÒæÊ¿³äÄÜÇò¡£",
-		"NAME": "ÔöÒæ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÔöÒæÊ¿³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªå¢žç›Šå£«å……èƒ½çƒã€‚",
+		"NAME": "å¢žç›Šå£«",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªå¢žç›Šå£«å……èƒ½çƒã€‚"
 	},
 	"theDuelist:BusterBlader": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿¼ÀÆ·Ò»¸öÁú×å£¬¶îÍâÔì³É !M! µãÉËº¦¡£",
-		"NAME": "ÆÆ»µ½£Ê¿",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿¼ÀÆ·Ò»¸öÁú×å£¬¶îÍâÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯ç¥­å“ä¸€ä¸ªé¾™æ—ï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç ´åå‰‘å£«",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯ç¥­å“ä¸€ä¸ªé¾™æ—ï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:CallGrave": {
-		"DESCRIPTION": "»ØºÏ¿ªÊ¼Ê±£¬Ëæ»úÌØÊâÕÙ»½1¸ö±¾³¡Õ½¶·ÖÐÕÙ»½¹ýµÄ¹ÖÊÞ¡£",
-		"NAME": "À´×ÔÄ¹³¡µÄºôÉù",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£»ØºÏ¿ªÊ¼Ê±£¬Ëæ»úÌØÊâÕÙ»½1¸ö±¾³¡Õ½¶·ÖÐÕÙ»½¹ýµÄ¹ÖÊÞ¡£"
+		"DESCRIPTION": "å›žåˆå¼€å§‹æ—¶ï¼Œéšæœºç‰¹æ®Šå¬å”¤1ä¸ªæœ¬åœºæˆ˜æ–—ä¸­å¬å”¤è¿‡çš„æ€ªå…½ã€‚",
+		"NAME": "æ¥è‡ªå¢“åœºçš„å‘¼å£°",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚å›žåˆå¼€å§‹æ—¶ï¼Œéšæœºç‰¹æ®Šå¬å”¤1ä¸ªæœ¬åœºæˆ˜æ–—ä¸­å¬å”¤è¿‡çš„æ€ªå…½ã€‚"
 	},
 	"theDuelist:CannonSoldier": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬¼ÀÆ·1Ö»ÕÙ»½¹ÖÊÞ²¢¶ÔËæ»úµÐÈËÔì³É !M! µãÉËº¦¡£",
-		"NAME": "¼ÓÅ©ÅÚ±ø",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬¼ÀÆ·1Ö»ÕÙ»½²¢¶ÔËæ»úµÐÈËÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œç¥­å“1åªå¬å”¤æ€ªå…½å¹¶å¯¹éšæœºæ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "åŠ å†œç‚®å…µ",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œç¥­å“1åªå¬å”¤å¹¶å¯¹éšæœºæ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:CardDestruction": {
-		"DESCRIPTION": "ÏûºÄËùÓÐÊÖÅÆ¡£Ôö¼ÓÊÖÅÆÏàÍ¬ÊýÁ¿µÄËæ»úÅÆ¡£Ã¿ÕÅÅÆÏûºÄÇÒºÄÄÜÎª0¡£ÏûºÄ¡£",
-		"NAME": "ÊÖÔýÄ¨É±",
-		"UPGRADE_DESCRIPTION": "ÏûºÄËùÓÐÊÖÅÆ¡£Ôö¼ÓÊÖÅÆÏàÍ¬ÊýÁ¿µÄÉý¼¶¹ýµÄËæ»úÅÆ¡£Ã¿ÕÅÅÆÐéÎÞ£¬ÏûºÄÇÒºÄÄÜÎª0¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æ¶ˆè€—æ‰€æœ‰æ‰‹ç‰Œã€‚å¢žåŠ æ‰‹ç‰Œç›¸åŒæ•°é‡çš„éšæœºç‰Œã€‚æ¯å¼ ç‰Œæ¶ˆè€—ä¸”è€—èƒ½ä¸º0ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰‹æœ­æŠ¹æ€",
+		"UPGRADE_DESCRIPTION": "æ¶ˆè€—æ‰€æœ‰æ‰‹ç‰Œã€‚å¢žåŠ æ‰‹ç‰Œç›¸åŒæ•°é‡çš„å‡çº§è¿‡çš„éšæœºç‰Œã€‚æ¯å¼ ç‰Œè™šæ— ï¼Œæ¶ˆè€—ä¸”è€—èƒ½ä¸º0ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:CardSafeReturn": {
-		"DESCRIPTION": "Ã¿µ±ÌØÊâÕÙ»½Ê±£¬³éÈ¡2Ö»²»ËÀ×å¡£",
-		"NAME": "Éú»¹µÄ±¦Ôý",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Ã¿µ±ÌØÊâÕÙ»½Ê±£¬³éÈ¡2Ö»²»ËÀ×å¡£"
+		"DESCRIPTION": "æ¯å½“ç‰¹æ®Šå¬å”¤æ—¶ï¼ŒæŠ½å–2åªä¸æ­»æ—ã€‚",
+		"NAME": "ç”Ÿè¿˜çš„å®æœ­",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚æ¯å½“ç‰¹æ®Šå¬å”¤æ—¶ï¼ŒæŠ½å–2åªä¸æ­»æ—ã€‚"
 	},
 	"theDuelist:CastleDarkIllusions": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ã¿´ÎÏ´ÅÆ£¬¶îÍâÕÙ»½Êý 5¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷ÎªÄÏ¹ÏÍõµÄ¼ÀÆ·£¬½«ÄÏ¹ÏÍõµÄÐ§¹ûÔö¼ÓÖÁ3ÕÅÅÆ¡£",
-		"NAME": "°µ»ÞÖ®³Ç",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ã¿´ÎÏ´ÅÆ£¬¶îÍâÕÙ»½Êý 5¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷ÎªÄÏ¹ÏÍõµÄ¼ÀÆ·£¬½«ÄÏ¹ÏÍõµÄÐ§¹ûÔö¼ÓÖÁ3ÕÅÅÆ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æ¯æ¬¡æ´—ç‰Œï¼Œé¢å¤–å¬å”¤æ•° 5ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºå—ç“œçŽ‹çš„ç¥­å“ï¼Œå°†å—ç“œçŽ‹çš„æ•ˆæžœå¢žåŠ è‡³3å¼ ç‰Œã€‚",
+		"NAME": "æš—æ™¦ä¹‹åŸŽ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æ¯æ¬¡æ´—ç‰Œï¼Œé¢å¤–å¬å”¤æ•° 5ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºå—ç“œçŽ‹çš„ç¥­å“ï¼Œå°†å—ç“œçŽ‹çš„æ•ˆæžœå¢žåŠ è‡³3å¼ ç‰Œã€‚"
 	},
 	"theDuelist:CastleWalls": {
-		"DESCRIPTION": "»ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "³ÇÇ½",
-		"UPGRADE_DESCRIPTION": "»ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "åŸŽå¢™",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:CastleWallsBasic": {
-		"DESCRIPTION": "·ÀÓù¡£»ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "»ù´¡³ÇÇ½",
-		"UPGRADE_DESCRIPTION": "·ÀÓù¡£»ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "é˜²å¾¡ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "åŸºç¡€åŸŽå¢™",
+		"UPGRADE_DESCRIPTION": "é˜²å¾¡ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:CatapultTurtle": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ØºÏ¿ªÊ¼Ê±£¬¼ÀÆ·ËùÓÐÕÙ»½¹ÖÊÞ£¬Ã¿¸ö¼ÀÆ·¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "µ¯Éä¹ê",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ØºÏ¿ªÊ¼Ê±£¬¼ÀÆ·ËùÓÐÕÙ»½¹ÖÊÞ£¬Ã¿¸ö¼ÀÆ·¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å›žåˆå¼€å§‹æ—¶ï¼Œç¥­å“æ‰€æœ‰å¬å”¤æ€ªå…½ï¼Œæ¯ä¸ªç¥­å“å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¼¹å°„é¾Ÿ",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å›žåˆå¼€å§‹æ—¶ï¼Œç¥­å“æ‰€æœ‰å¬å”¤æ€ªå…½ï¼Œæ¯ä¸ªç¥­å“å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:CaveDragon": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "¾ÞÁú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å·¨é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:CelticGuardian": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "¾«Áé½£Ê¿",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç²¾çµå‰‘å£«",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ChangeHeart": {
-		"DESCRIPTION": "½«ÕÙ»½Êý×î´óÖµÉèÖÃÎª8¡£ÏûºÄ¡£",
-		"NAME": "ÐÄ±ä",
-		"UPGRADE_DESCRIPTION": "½«ÕÙ»½Êý×î´óÖµÉèÖÃÎª10¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°†å¬å”¤æ•°æœ€å¤§å€¼è®¾ç½®ä¸º8ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "å¿ƒå˜",
+		"UPGRADE_DESCRIPTION": "å°†å¬å”¤æ•°æœ€å¤§å€¼è®¾ç½®ä¸º10ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:CheerfulCoffin": {
-		"DESCRIPTION": "¶ªÆú !M! ÕÅÅÆ¡£",
-		"NAME": "¿ªÀÊµÄéëÔáÊ¦",
-		"UPGRADE_DESCRIPTION": "¶ªÆú !M! ÕÅÅÆ¡£"
+		"DESCRIPTION": "ä¸¢å¼ƒ !M! å¼ ç‰Œã€‚",
+		"NAME": "å¼€æœ—çš„æ®¡è‘¬å¸ˆ",
+		"UPGRADE_DESCRIPTION": "ä¸¢å¼ƒ !M! å¼ ç‰Œã€‚"
 	},
 	"theDuelist:Cloning": {
-		"DESCRIPTION": "Ëæ»ú¸´ÖÆÊÖÅÆÖÐµÄ¹ÖÊÞ¡£",
+		"DESCRIPTION": "éšæœºå¤åˆ¶æ‰‹ç‰Œä¸­çš„æ€ªå…½ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"Ñ¡Ôñ !M! ÕÅÊÖÅÆÖÐµÄ¹ÖÊÞ½øÐÐ¸´ÖÆ¡£"
+			"é€‰æ‹© !M! å¼ æ‰‹ç‰Œä¸­çš„æ€ªå…½è¿›è¡Œå¤åˆ¶ã€‚"
 		],
-		"NAME": "¿ËÂ¡¸´ÖÆ",
-		"UPGRADE_DESCRIPTION": "Ñ¡ÔñÊÖÅÆÖÐµÄ¹ÖÊÞ½øÐÐ¸´ÖÆ¡£"
+		"NAME": "å…‹éš†å¤åˆ¶",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©æ‰‹ç‰Œä¸­çš„æ€ªå…½è¿›è¡Œå¤åˆ¶ã€‚"
 	},
 	"theDuelist:ClownZombie": {
-		"DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "É±ÈËÐ¡³ó½©Ê¬",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ€äººå°ä¸‘åƒµå°¸",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:CocoonEvolution": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÓ×³æ±¦±¦£¬ÔÚ3»ØºÏºó½«Ò»¸ö´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "½ø»¯Ö®¼ë",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÓ×³æ±¦±¦£¬ÔÚ2»ØºÏºó½«Ò»¸ö´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰å¹¼è™«å®å®ï¼Œåœ¨3å›žåˆåŽå°†ä¸€ä¸ªå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "è¿›åŒ–ä¹‹èŒ§",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰å¹¼è™«å®å®ï¼Œåœ¨2å›žåˆåŽå°†ä¸€ä¸ªå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:CocoonRef": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÓ×³æ±¦±¦£¬ÔÚ3»ØºÏºó½«Ò»¸ö´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "½ø»¯Ö®¼ë",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÓ×³æ±¦±¦£¬ÔÚ2»ØºÏºó½«Ò»¸ö´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰å¹¼è™«å®å®ï¼Œåœ¨3å›žåˆåŽå°†ä¸€ä¸ªå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "è¿›åŒ–ä¹‹èŒ§",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰å¹¼è™«å®å®ï¼Œåœ¨2å›žåˆåŽå°†ä¸€ä¸ªå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:ComicHand": {
-		"DESCRIPTION": "¼ÀÆ·ËùÓÐ¿¨Í¨¹ÖÊÞ¡£ NL Ã¿¸ö¼ÀÆ·¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦²¢ÕÙ»½Ëæ»ú¹ÖÊÞ¡£",
-		"NAME": "Âþ³éÖ®ÊÖ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·ËùÓÐ¿¨Í¨¹ÖÊÞ¡£ NL Ã¿¸ö¼ÀÆ·¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦²¢ÕÙ»½Ëæ»ú¹ÖÊÞ¡£"
+		"DESCRIPTION": "ç¥­å“æ‰€æœ‰å¡é€šæ€ªå…½ã€‚ NL æ¯ä¸ªç¥­å“å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³å¹¶å¬å”¤éšæœºæ€ªå…½ã€‚",
+		"NAME": "æ¼«æŠ½ä¹‹æ‰‹",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ‰€æœ‰å¡é€šæ€ªå…½ã€‚ NL æ¯ä¸ªç¥­å“å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³å¹¶å¬å”¤éšæœºæ€ªå…½ã€‚"
 	},
 	"theDuelist:CommandKnight": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôö¼ÓÊÖÅÆÖÐËùÓÐ¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£ÏûºÄ¡£",
-		"NAME": "Ö¸»ÓÆïÊ¿",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôö¼ÓÊÖÅÆÖÐËùÓÐ¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¢žåŠ æ‰‹ç‰Œä¸­æ‰€æœ‰æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æŒ‡æŒ¥éª‘å£«",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¢žåŠ æ‰‹ç‰Œä¸­æ‰€æœ‰æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:ConsumerOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÏû·Ñ³äÄÜÇò¡£",
-		"NAME": "Ïû·Ñ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÏû·Ñ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ¶ˆè´¹å……èƒ½çƒã€‚",
+		"NAME": "æ¶ˆè´¹",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ¶ˆè´¹å……èƒ½çƒã€‚"
 	},
 	"theDuelist:ContractExodia": {
-		"DESCRIPTION": "Ôö¼Ó2ÕÅËæ»ú°¬¿Ë×ôµÏÑÇ²¿¼þµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "Óë°¬¿Ë×ôµÏÑÇµÄÆõÔ¼",
-		"UPGRADE_DESCRIPTION": "Ôö¼Ó3ÕÅËæ»ú°¬¿Ë×ôµÏÑÇ²¿¼þµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¢žåŠ 2å¼ éšæœºè‰¾å…‹ä½è¿ªäºšéƒ¨ä»¶åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "ä¸Žè‰¾å…‹ä½è¿ªäºšçš„å¥‘çº¦",
+		"UPGRADE_DESCRIPTION": "å¢žåŠ 3å¼ éšæœºè‰¾å…‹ä½è¿ªäºšéƒ¨ä»¶åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:CrystalOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öË®¾§³äÄÜÇò¡£",
-		"NAME": "Ë®¾§",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öË®¾§³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ°´æ™¶å……èƒ½çƒã€‚",
+		"NAME": "Crystal",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ°´æ™¶å……èƒ½çƒã€‚"
 	},
 	"theDuelist:CurseDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÁú×å¹ÖÊÞ£¬»Ø¸´5ÉúÃü¡£",
-		"NAME": "×çÖäÖ®Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÁú×å¹ÖÊÞ£¬»Ø¸´5ÉúÃü¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰é¾™æ—æ€ªå…½ï¼Œå›žå¤5ç”Ÿå‘½ã€‚",
+		"NAME": "è¯…å’’ä¹‹é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰é¾™æ—æ€ªå…½ï¼Œå›žå¤5ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:CyberDragon": {
-		"DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÁú×å¹ÖÊÞ£¬Éú³É1¸ö¹ÊÕÏ³äÄÜÇò¡£",
-		"NAME": "µç×ÓÁú",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÁú×å¹ÖÊÞ£¬Éú³É1¸ö¹ÊÕÏ³äÄÜÇò¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰é¾™æ—æ€ªå…½ï¼Œç”Ÿæˆ1ä¸ªæ•…éšœå……èƒ½çƒã€‚",
+		"NAME": "ç”µå­é¾™",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰é¾™æ—æ€ªå…½ï¼Œç”Ÿæˆ1ä¸ªæ•…éšœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:DamageToken": {
-		"DESCRIPTION": "ÕÙ»½Êý1 Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý1 Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•°1 é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•°1 é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:DarkBlade": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öºÚ°µ³äÄÜÇò¡£Ê§È¥ !M! ÉúÃü¡£",
-		"NAME": "°µÄ§½çµÄ¶ñÄ§ °µºÚÖ®½£",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öºÚ°µ³äÄÜÇò¡£Ê§È¥ !M! ÉúÃü¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚å¤±åŽ» !M! ç”Ÿå‘½ã€‚",
+		"NAME": "æš—é­”ç•Œçš„æ¶é­” æš—é»‘ä¹‹å‰‘",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚å¤±åŽ» !M! ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:DarkCreator": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÏûºÄ³éÅÆ¶ÑºÍÆúÅÆ¶ÑÖÐËùÓÐµÄÅÆ¡£Ã¿ÏûºÄ1ÕÅÅÆ£¬Ëæ»ú½«5ÕÅ²»Í¬µÄ£¬´øÓÐÐéÎÞÇÒºÄÄÜÎª1µÄ¾ö¶·ÅÆ·ÅÈë³éÅÆ¶ÑÖÐ£¨×î¶à50ÕÅ£©¡£¹ÌÊØ¡£",
-		"NAME": "°µºÚ´´ÊÀÉñ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÏûºÄ³éÅÆ¶ÑºÍÆúÅÆ¶ÑÖÐËùÓÐµÄÅÆ¡£Ã¿ÏûºÄ1ÕÅÅÆ£¬Ëæ»ú½«5ÕÅ²»Í¬µÄ£¬´øÓÐÐéÎÞÇÒºÄÄÜÎª1µÄ¾ö¶·ÅÆ·ÅÈë³éÅÆ¶ÑÖÐ£¨×î¶à50ÕÅ£©¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æŠ½ç‰Œå †å’Œå¼ƒç‰Œå †ä¸­æ‰€æœ‰çš„ç‰Œã€‚æ¯æ¶ˆè€—1å¼ ç‰Œï¼Œéšæœºå°†5å¼ ä¸åŒçš„ï¼Œå¸¦æœ‰è™šæ— ä¸”è€—èƒ½ä¸º1çš„å†³æ–—ç‰Œæ”¾å…¥æŠ½ç‰Œå †ä¸­ ï¼ˆæœ€å¤š50å¼ ï¼‰ã€‚å›ºå®ˆã€‚",
+		"NAME": "æš—é»‘åˆ›ä¸–ç¥ž",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æŠ½ç‰Œå †å’Œå¼ƒç‰Œå †ä¸­æ‰€æœ‰çš„ç‰Œã€‚æ¯æ¶ˆè€—1å¼ ç‰Œï¼Œéšæœºå°†5å¼ ä¸åŒçš„ï¼Œå¸¦æœ‰è™šæ— ä¸”è€—èƒ½ä¸º1çš„å†³æ–—ç‰Œæ”¾å…¥æŠ½ç‰Œå †ä¸­ ï¼ˆæœ€å¤š50å¼ ï¼‰ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:DarkEnergy": {
-		"DESCRIPTION": "Ôì³É !D! µãÉËº¦¡£ NL ½«Ëæ»ú !M! ÕÅ¶ñÄ§×åÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "°µÄÜÁ¿",
-		"UPGRADE_DESCRIPTION": "Ôì³É !D! µãÉËº¦¡£ NL ½« !M! ÕÅËæ»úµÄ¶ñÄ§×åÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†éšæœº !M! å¼ æ¶é­”æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "æš—èƒ½é‡",
+		"UPGRADE_DESCRIPTION": "é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°† !M! å¼ éšæœºçš„æ¶é­”æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:DarkFactory": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ [G] [G] [G] ",
-		"NAME": "°µÖ®Á¿²ú¹¤³§",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ [G] [G] [G] [G] "
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— [G] [G] [G] ",
+		"NAME": "æš—ä¹‹é‡äº§å·¥åŽ‚",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— [G] [G] [G] [G] "
 	},
 	"theDuelist:DarkHole": {
-		"DESCRIPTION": "Íµ×ßËùÓÐµÐÈËµÄËùÓÐ¸ñµ²¡£",
-		"NAME": "ºÚ¶´",
-		"UPGRADE_DESCRIPTION": "Íµ×ßËùÓÐµÐÈËµÄËùÓÐ¸ñµ²¡£ NL ÒÆ³ýËùÓÐµÐÈËµÄËùÓÐÔöÒæÐ§¹û¡£"
+		"DESCRIPTION": "å·èµ°æ‰€æœ‰æ•Œäººçš„æ‰€æœ‰æ ¼æŒ¡ã€‚",
+		"NAME": "é»‘æ´ž",
+		"UPGRADE_DESCRIPTION": "å·èµ°æ‰€æœ‰æ•Œäººçš„æ‰€æœ‰æ ¼æŒ¡ã€‚ NL ç§»é™¤æ‰€æœ‰æ•Œäººçš„æ‰€æœ‰å¢žç›Šæ•ˆæžœã€‚"
 	},
 	"theDuelist:DarkHorizon": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ¼¤·¢ÏÂ¸ö³äÄÜÇò !M! ´Î¡£",
-		"NAME": "°µºÚ±ß½ç",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ¼¤·¢ÏÂ¸ö³äÄÜÇò !M! ´Î¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐÄ§·¨Ê¦×å£¬¼¤·¢ËùÓÐ³äÄÜÇòÁ½´Î¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ¿€å‘ä¸‹ä¸ªå……èƒ½çƒ !M! æ¬¡ã€‚",
+		"NAME": "æš—é»‘è¾¹ç•Œ",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ¿€å‘ä¸‹ä¸ªå……èƒ½çƒ !M! æ¬¡ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰é­”æ³•å¸ˆæ—ï¼Œæ¿€å‘æ‰€æœ‰å……èƒ½çƒä¸¤æ¬¡ã€‚"
 	},
 	"theDuelist:DarkMagician": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öÕÙ»½Ê¿³äÄÜÇò¡£",
-		"NAME": "ºÚÄ§ÊõÊ¦",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öÇ¿´óµÄÕÙ»½Ê¿³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå¬å”¤å£«å……èƒ½çƒã€‚",
+		"NAME": "é»‘é­”æœ¯å¸ˆ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå¼ºå¤§çš„å¬å”¤å£«å……èƒ½çƒã€‚"
 	},
 	"theDuelist:DarkMagicianGirl": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£",
-		"NAME": "ºÚÄ§ÊõÅ®º¢",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚",
+		"NAME": "é»‘é­”æœ¯å¥³å­©",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚"
 	},
 	"theDuelist:DarkMasterZorc": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É3¸öºÚ°µ³äÄÜÇò¡£",
-		"NAME": "°µÖ®Ö§ÅäÕß ×ô¿Ë",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É3¸öºÚ°µ³äÄÜÇò¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ3ä¸ªé»‘æš—å……èƒ½çƒã€‚",
+		"NAME": "æš—ä¹‹æ”¯é…è€… ä½å…‹",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ3ä¸ªé»‘æš—å……èƒ½çƒã€‚"
 	},
 	"theDuelist:DarkMimicLv1": {
-		"DESCRIPTION": "ÐéÎÞ¡£¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! ³é1ÕÅÅÆ¡£ÊÖ¿Ó1 - ´ÓÅÆ¿âÖÐÒÆ³ýËü¡£ÔÚÏÂÒ»´ÎÕ½¶·¿ªÊ¼Ê±£¬½« °µºÚÖ®±¦Ïä¹Ö µÈ¼¶3 Ôö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "°µºÚÖ®±¦Ïä¹Ö µÈ¼¶1",
-		"UPGRADE_DESCRIPTION": "ÐéÎÞ¡£¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! ³é2ÕÅÅÆ¡£ÊÖ¿Ó1 - ´ÓÅÆ¿âÖÐÒÆ³ýËü¡£ÔÚÏÂÒ»´ÎÕ½¶·¿ªÊ¼Ê±£¬½« °µºÚÖ®±¦Ïä¹Ö µÈ¼¶3 Ôö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "è™šæ— ã€‚æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æŠ½1å¼ ç‰Œã€‚æ‰‹å‘1 - ä»Žç‰Œåº“ä¸­ç§»é™¤å®ƒã€‚åœ¨ä¸‹ä¸€æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ï¼Œå°† æš—é»‘ä¹‹å®ç®±æ€ª ç­‰çº§3 å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "æš—é»‘ä¹‹å®ç®±æ€ª ç­‰çº§1",
+		"UPGRADE_DESCRIPTION": "è™šæ— ã€‚æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æŠ½2å¼ ç‰Œã€‚æ‰‹å‘1 - ä»Žç‰Œåº“ä¸­ç§»é™¤å®ƒã€‚åœ¨ä¸‹ä¸€æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ï¼Œå°† æš—é»‘ä¹‹å®ç®±æ€ª ç­‰çº§3 å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:DarkMimicLv3": {
-		"DESCRIPTION": "ÐéÎÞ¡£¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! ³é2ÕÅÅÆ¡£»ñµÃ !B! µã¸ñµ²¡£ NL ÊÖ¿Ó1 - ÔÚÏÂÒ»´ÎÕ½¶·¿ªÊ¼Ê±£¬³é4ÕÅÅÆ¡£",
-		"NAME": "°µºÚÖ®±¦Ïä¹Ö µÈ¼¶3",
-		"UPGRADE_DESCRIPTION": "ÐéÎÞ¡£¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! ³é3ÕÅÅÆ¡£»ñµÃ !B! µã¸ñµ²¡£ NL ÊÖ¿Ó1 - ÔÚÏÂÒ»´ÎÕ½¶·¿ªÊ¼Ê±£¬³é5ÕÅÅÆ¡£"
+		"DESCRIPTION": "è™šæ— ã€‚æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æŠ½2å¼ ç‰Œã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æ‰‹å‘1 - åœ¨ä¸‹ä¸€æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ï¼ŒæŠ½4å¼ ç‰Œã€‚",
+		"NAME": "æš—é»‘ä¹‹å®ç®±æ€ª ç­‰çº§3",
+		"UPGRADE_DESCRIPTION": "è™šæ— ã€‚æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æŠ½3å¼ ç‰Œã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æ‰‹å‘1 - åœ¨ä¸‹ä¸€æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ï¼ŒæŠ½5å¼ ç‰Œã€‚"
 	},
 	"theDuelist:DarkMirrorForce": {
-		"DESCRIPTION": "ÏÂ´ÎÊ§È¥ÉúÃüÊ±£¬²»ÊÜÉúÃüÉËº¦²¢»ñµÃËæ»ú¸ºÃæÐ§¹û£¬²ãÊýµÈÓÚÉËº¦ÊýÖµ¡£ÏûºÄ¡£",
-		"NAME": "Ð°¶ñ·À»¤ÕÖ °µºÚÖ®Á¦",
-		"UPGRADE_DESCRIPTION": "ÏÂ´ÎÊ§È¥ÉúÃüÊ±£¬²»ÊÜÉúÃüÉËº¦²¢»ñµÃËæ»ú¸ºÃæÐ§¹û£¬²ãÊýµÈÓÚÉËº¦ÊýÖµ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ä¸‹æ¬¡å¤±åŽ»ç”Ÿå‘½æ—¶ï¼Œä¸å—ç”Ÿå‘½ä¼¤å®³å¹¶èŽ·å¾—éšæœºè´Ÿé¢æ•ˆæžœï¼Œå±‚æ•°ç­‰äºŽä¼¤å®³æ•°å€¼ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "é‚ªæ¶é˜²æŠ¤ç½© æš—é»‘ä¹‹åŠ›",
+		"UPGRADE_DESCRIPTION": "ä¸‹æ¬¡å¤±åŽ»ç”Ÿå‘½æ—¶ï¼Œä¸å—ç”Ÿå‘½ä¼¤å®³å¹¶èŽ·å¾—éšæœºè´Ÿé¢æ•ˆæžœï¼Œå±‚æ•°ç­‰äºŽä¼¤å®³æ•°å€¼ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:DarkOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öºÚ°µ³äÄÜÇò¡£",
-		"NAME": "ºÚ°µ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öºÚ°µ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚",
+		"NAME": "é»‘æš—",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚"
 	},
 	"theDuelist:DarkPaladin": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ñ¡ÔñÉú³É1¸ö³äÄÜÇò¡£",
-		"NAME": "³¬Ä§µ¼½£Ê¿ ºÚ°µÅÁÀ­¶¡",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ñ¡ÔñÉú³É1¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL é€‰æ‹©ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "è¶…é­”å¯¼å‰‘å£« é»‘æš—å¸•æ‹‰ä¸",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL é€‰æ‹©ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:DarkfireDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÊÖÅÆÖÐÁú×å¹ÖÊÞµÄºÄÄÜ¼õÉÙ2µã¡£",
-		"NAME": "°µºÚ»ðÑ×Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÊÖÅÆÖÐÁú×å¹ÖÊÞµÄºÄÄÜ¼õÉÙ2µã¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ‰‹ç‰Œä¸­é¾™æ—æ€ªå…½çš„è€—èƒ½å‡å°‘2ç‚¹ã€‚",
+		"NAME": "æš—é»‘ç«ç‚Žé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ‰‹ç‰Œä¸­é¾™æ—æ€ªå…½çš„è€—èƒ½å‡å°‘2ç‚¹ã€‚"
 	},
 	"theDuelist:DarklordMarie": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ÊÖ¿Ó !M! - »ñµÃ 3 ÉúÃü¡£",
-		"NAME": "¶é¡ªÄ§·¨Ê¦ ÂêÀö",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ÊÖ¿Ó !M! - »ñµÃ 4 ÉúÃü¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ‰‹å‘ !M! - èŽ·å¾— 3 ç”Ÿå‘½ã€‚",
+		"NAME": "å •â€”é­”æ³•å¸ˆ çŽ›ä¸½",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ‰‹å‘ !M! - èŽ·å¾— 4 ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:DarkstormDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÊÖÅÆÖÐµÄËæ»úÁú×å¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ¼õÉÙ !M! µã¡£",
-		"NAME": "°µºÚ±©·çÁú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÊÖÅÆÖÐµÄËæ»úÁú×å¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ¼õÉÙ !M! µã¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ‰‹ç‰Œä¸­çš„éšæœºé¾™æ—æ€ªå…½çš„ç¥­å“æ¶ˆè€—å‡å°‘ !M! ç‚¹ã€‚",
+		"NAME": "æš—é»‘æš´é£Žé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ‰‹ç‰Œä¸­çš„éšæœºé¾™æ—æ€ªå…½çš„ç¥­å“æ¶ˆè€—å‡å°‘ !M! ç‚¹ã€‚"
 	},
 	"theDuelist:DianKeto": {
-		"DESCRIPTION": "»Ø¸´ !M! ÉúÃü¡£ÏûºÄ¡£",
-		"NAME": "ÖÎÁÆÖ®Éñ µÏ°² ¿­ÌØ",
-		"UPGRADE_DESCRIPTION": "»Ø¸´ !M! ÉúÃü¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å›žå¤ !M! ç”Ÿå‘½ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ²»ç–—ä¹‹ç¥ž è¿ªå®‰ å‡¯ç‰¹",
+		"UPGRADE_DESCRIPTION": "å›žå¤ !M! ç”Ÿå‘½ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:DokiDoki": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Èç¹û±¾»ØºÏ´ò³ö¹ýÄ§·¨ÅÆ£¬»ñµÃ !B! µã¸ñµ²¡£ NL ·ñÔò£¬Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Å­ÆøÍÁÆ÷",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Èç¹û±¾»ØºÏ´ò³ö¹ýÄ§·¨ÅÆ£¬»ñµÃ !B! µã¸ñµ²¡£ NL ·ñÔò£¬Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¦‚æžœæœ¬å›žåˆæ‰“å‡ºè¿‡é­”æ³•ç‰Œï¼ŒèŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦åˆ™ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ€’æ°”åœŸå™¨",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¦‚æžœæœ¬å›žåˆæ‰“å‡ºè¿‡é­”æ³•ç‰Œï¼ŒèŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦åˆ™ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Doomdog": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿µ±1¸ö¶ñÄ§×å×÷Îª¶ñÄ§×å¼ÀÆ·Ê±£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£",
-		"NAME": "Ä§È® °Ë¹íÈ®",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿µ±1¸ö¶ñÄ§×å×÷Îª¶ñÄ§×å¼ÀÆ·Ê±£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å½“1ä¸ªæ¶é­”æ—ä½œä¸ºæ¶é­”æ—ç¥­å“æ—¶ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é­”çŠ¬ å…«é¬¼çŠ¬",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å½“1ä¸ªæ¶é­”æ—ä½œä¸ºæ¶é­”æ—ç¥­å“æ—¶ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:DoubleCoston": {
-		"DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ë«¼ÛÌå",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "åŒä»·ä½“",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:DragonCaptureJar": {
-		"DESCRIPTION": "Ã¿´ò³ö1ÕÅÁú×å¹ÖÊÞ£¬ÏÂ¸ö»ØºÏ¿ªÊ¼½«ÆäÔö¼Ó»ØÊÖÅÆÖÐ¡£",
-		"NAME": "Áú×å·âÓ¡Ö®ºø",
-		"UPGRADE_DESCRIPTION": "Ã¿´ò³ö1ÕÅÁú×å¹ÖÊÞ£¬ÏÂ¸ö»ØºÏ¿ªÊ¼½«ÆäÔö¼Ó»ØÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ¯æ‰“å‡º1å¼ é¾™æ—æ€ªå…½ï¼Œä¸‹ä¸ªå›žåˆå¼€å§‹å°†å…¶å¢žåŠ å›žæ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "é¾™æ—å°å°ä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": "æ¯æ‰“å‡º1å¼ é¾™æ—æ€ªå…½ï¼Œä¸‹ä¸ªå›žåˆå¼€å§‹å°†å…¶å¢žåŠ å›žæ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:DragonMaster": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ´´Ôì !M! ÕÅËæ»úÁú×å¹ÖÊÞ²¢¶ÔÄ¿±êµÐÈËÌØÊâÕÙ»½¡£¹ÌÊØ¡£",
-		"NAME": "¾¿¼«ÁúÆïÊ¿",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ´´Ôì !M! ÕÅËæ»úÉý¼¶¹ýµÄÁú×å¹ÖÊÞ²¢¶ÔÄ¿±êµÐÈËÌØÊâÕÙ»½¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL åˆ›é€  !M! å¼ éšæœºé¾™æ—æ€ªå…½å¹¶å¯¹ç›®æ ‡æ•Œäººç‰¹æ®Šå¬å”¤ã€‚å›ºå®ˆã€‚",
+		"NAME": "ç©¶æžé¾™éª‘å£«",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL åˆ›é€  !M! å¼ éšæœºå‡çº§è¿‡çš„é¾™æ—æ€ªå…½å¹¶å¯¹ç›®æ ‡æ•Œäººç‰¹æ®Šå¬å”¤ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:DragonOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÁúÖé³äÄÜÇò¡£",
-		"NAME": "Áú×å",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÁúÖé³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé¾™ç å……èƒ½çƒã€‚",
+		"NAME": "é¾™ç ",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé¾™ç å……èƒ½çƒã€‚"
 	},
 	"theDuelist:DragonPiper": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ±¾³¡Õ½¶·£¬ÊÖÅÆÖÐÁú×å¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ±äÎª1µã¡£",
-		"NAME": "ºøÄ§ÈË",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ±¾³¡Õ½¶·£¬ÊÖÅÆÖÐÁú×å¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ±äÎª0µã¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æœ¬åœºæˆ˜æ–—ï¼Œæ‰‹ç‰Œä¸­é¾™æ—æ€ªå…½çš„ç¥­å“æ¶ˆè€—å˜ä¸º1ç‚¹ã€‚",
+		"NAME": "å£¶é­”äºº",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æœ¬åœºæˆ˜æ–—ï¼Œæ‰‹ç‰Œä¸­é¾™æ—æ€ªå…½çš„ç¥­å“æ¶ˆè€—å˜ä¸º0ç‚¹ã€‚"
 	},
 	"theDuelist:DragonToken": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý1 NL ±¾»ØºÏ£¬ÊÖÅÆÖÐÒ»¸öËæ»ú¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ±äÎª1µã¡£",
-		"NAME": "Áú×åÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý1 NL ±¾»ØºÏ£¬ÊÖÅÆÖÐÒ»¸öËæ»ú¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ±äÎª1µã¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•°1 NL æœ¬å›žåˆï¼Œæ‰‹ç‰Œä¸­ä¸€ä¸ªéšæœºæ€ªå…½çš„ç¥­å“æ¶ˆè€—å˜ä¸º1ç‚¹ã€‚",
+		"NAME": "é¾™æ—è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•°1 NL æœ¬å›žåˆï¼Œæ‰‹ç‰Œä¸­ä¸€ä¸ªéšæœºæ€ªå…½çš„ç¥­å“æ¶ˆè€—å˜ä¸º1ç‚¹ã€‚"
 	},
 	"theDuelist:DragonsArchetype": {
-		"DESCRIPTION": "½«Áú×åÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†é¾™æ—å¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"Áú×å",
-			"ËùÓÐÁú×å¹ÖÊÞ£¬É½£¬ºôÁúµÑ£¬ÁúÖ®Ö§ÅäÕß£¬ÆÆ»µ½£Ê¿ºÍÁú×å·âÓ¡Ö®ºø¡£Ã»ÓÐ¿¨Í¨£¬Ã»ÓÐÉñÖ®¿¨¡£"
+			"é¾™æ—",
+			"æ‰€æœ‰é¾™æ—æ€ªå…½ï¼Œå±±ï¼Œå‘¼é¾™ç¬›ï¼Œé¾™ä¹‹æ”¯é…è€…ï¼Œç ´åå‰‘å£«å’Œé¾™æ—å°å°ä¹‹å£¶ã€‚æ²¡æœ‰å¡é€šï¼Œæ²¡æœ‰ç¥žä¹‹å¡ã€‚"
 		],
-		"NAME": "Áú×å"
+		"NAME": "é¾™æ—"
 	},
 	"theDuelist:DrivenDaredevil": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓèµÐÈË !M! µãÁ¦Á¿¡£",
-		"NAME": "²»ÍËµÄ»ÄÎäÕß",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓèµÐÈË !M! µãÁ¦Á¿¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆæ•Œäºº !M! ç‚¹åŠ›é‡ã€‚",
+		"NAME": "ä¸é€€çš„è’æ­¦è€…",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆæ•Œäºº !M! ç‚¹åŠ›é‡ã€‚"
 	},
 	"theDuelist:EarthOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "µØÊôÐÔ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "åœ°å±žæ€§",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:EarthquakeGiant": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "µØÕð¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "åœ°éœ‡å·¨äºº",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:EmpressMantis": {
-		"DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Å®µÛó«òë",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¥³å¸èž³èž‚",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:EvilswarmHeliotrope": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÈëÄ§¹í ÑªÊ¯",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å…¥é­”é¬¼ è¡€çŸ³",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ExodiaArchetype": {
-		"DESCRIPTION": "½«°¬¿Ë×ôµÏÑÇÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†è‰¾å…‹ä½è¿ªäºšç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"°¬¿Ë×ôµÏÑÇ",
-			"ÎåÊ¬¿é£¬ÒÔ¼°ÕÙ»½Éñ °¬¿Ë×ôµÏÑÇ¡£"
+			"è‰¾å…‹ä½è¿ªäºš",
+			"äº”å°¸å—ï¼Œä»¥åŠå¬å”¤ç¥ž è‰¾å…‹ä½è¿ªäºšã€‚"
 		],
-		"NAME": "°¬¿Ë×ôµÏÑÇ"
+		"NAME": "è‰¾å…‹ä½è¿ªäºš"
 	},
 	"theDuelist:ExodiaHead": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ NL Èç¹ûÓµÓÐ°¬¿Ë×ôµÏÑÇµÄÆäËû4¸ö²¿¼þ£¬»ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£ÏûºÄ¡£",
-		"NAME": "±»·âÓ¡µÄ°¬¿Ë×ôµÏÑÇ",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ NL Èç¹ûÓµÓÐ°¬¿Ë×ôµÏÑÇµÄÆäËû4¸ö²¿¼þ£¬»ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ NL å¦‚æžœæ‹¥æœ‰è‰¾å…‹ä½è¿ªäºšçš„å…¶ä»–4ä¸ªéƒ¨ä»¶ï¼ŒèŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¢«å°å°çš„è‰¾å…‹ä½è¿ªäºš",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ NL å¦‚æžœæ‹¥æœ‰è‰¾å…‹ä½è¿ªäºšçš„å…¶ä»–4ä¸ªéƒ¨ä»¶ï¼ŒèŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚"
 	},
 	"theDuelist:ExodiaLA": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£",
-		"NAME": "±»·âÓ¡ÕßµÄ×óÍó",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚",
+		"NAME": "è¢«å°å°è€…çš„å·¦è…•",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚"
 	},
 	"theDuelist:ExodiaLL": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£",
-		"NAME": "±»·âÓ¡ÕßµÄ×ó×ã",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚",
+		"NAME": "è¢«å°å°è€…çš„å·¦è¶³",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚"
 	},
 	"theDuelist:ExodiaRA": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£",
-		"NAME": "±»·âÓ¡ÕßµÄÓÒÍó",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚",
+		"NAME": "è¢«å°å°è€…çš„å³è…•",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚"
 	},
 	"theDuelist:ExodiaRL": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ1 Exodia¡£",
-		"NAME": "±»·âÓ¡ÕßµÄÓÒ×ã",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ1²ã°¬¿Ë×ôµÏÑÇ¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—1 Exodiaã€‚",
+		"NAME": "è¢«å°å°è€…çš„å³è¶³",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—1å±‚è‰¾å…‹ä½è¿ªäºšã€‚"
 	},
 	"theDuelist:ExodiaToken": {
-		"DESCRIPTION": "ÌØÊâÕÙ»½°¬¿Ë×ôµÏÑÇµÄ1¸öËæ»ú²¿¼þ¡£",
-		"NAME": "ÎåÊ¬¿éÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÌØÊâÕÙ»½°¬¿Ë×ôµÏÑÇµÄ1¸öËæ»ú²¿¼þ¡£"
+		"DESCRIPTION": "ç‰¹æ®Šå¬å”¤è‰¾å…‹ä½è¿ªäºšçš„1ä¸ªéšæœºéƒ¨ä»¶ã€‚",
+		"NAME": "äº”å°¸å—è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "ç‰¹æ®Šå¬å”¤è‰¾å…‹ä½è¿ªäºšçš„1ä¸ªéšæœºéƒ¨ä»¶ã€‚"
 	},
 	"theDuelist:ExploderDragon": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! ±¬Õ¨ÑÜÉúÎï¡£Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ºäÕ¨Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! ±¬Õ¨ÑÜÉúÎï¡£Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! çˆ†ç‚¸è¡ç”Ÿç‰©ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è½°ç‚¸é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! çˆ†ç‚¸è¡ç”Ÿç‰©ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ExplosiveToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ×÷Îª¼ÀÆ·Ê±Ê§È¥£¨1-3£©ÉúÃü¡£",
-		"NAME": "±¬Õ¨ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ×÷Îª¼ÀÆ·Ê±Ê§È¥£¨1-3£©ÉúÃü¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL ä½œä¸ºç¥­å“æ—¶å¤±åŽ» ï¼ˆ1-3ï¼‰ ç”Ÿå‘½ã€‚",
+		"NAME": "çˆ†ç‚¸è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL ä½œä¸ºç¥­å“æ—¶å¤±åŽ» ï¼ˆ1-3ï¼‰ ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:FabledAshenveil": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâÕÅÅÆÉ±ËÀµÐÈË£¬·µ»¹¼ÀÆ·¡£",
-		"NAME": "Ä§ºäÉñ ÑÇ¸øÓèÎ¬¶û",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâÕÅÅÆÉ±ËÀµÐÈË£¬·µ»¹¼ÀÆ·¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™å¼ ç‰Œæ€æ­»æ•Œäººï¼Œè¿”è¿˜ç¥­å“ã€‚",
+		"NAME": "é­”è½°ç¥ž äºšç»™äºˆç»´å°”",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™å¼ ç‰Œæ€æ­»æ•Œäººï¼Œè¿”è¿˜ç¥­å“ã€‚"
 	},
 	"theDuelist:FabledGallabas": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÒÅÑÔ¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâÕÅÅÆÉ±ËÀµÐÈË£¬·µ»¹¼ÀÆ·¡£",
-		"NAME": "Ä§ºäÉñ ¼Ó¶û°ÍË¹",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÒÅÑÔ¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâÕÅÅÆÉ±ËÀµÐÈË£¬·µ»¹¼ÀÆ·¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚é—è¨€ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™å¼ ç‰Œæ€æ­»æ•Œäººï¼Œè¿”è¿˜ç¥­å“ã€‚",
+		"NAME": "é­”è½°ç¥ž åŠ å°”å·´æ–¯",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚é—è¨€ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™å¼ ç‰Œæ€æ­»æ•Œäººï¼Œè¿”è¿˜ç¥­å“ã€‚"
 	},
 	"theDuelist:FairyBox": {
-		"DESCRIPTION": "½« !M! ÕÅËæ»ú³äÄÜÇòÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "¹ÖÊÞÏä",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ !M! ÕÅ³äÄÜÇòÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°† !M! å¼ éšæœºå……èƒ½çƒå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ€ªå…½ç®±",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹© !M! å¼ å……èƒ½çƒå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:FeatherPho": {
-		"DESCRIPTION": "¶ªÆúÊÖÅÆÖÐ !M! ÕÅÅÆ¡£´ÓÆúÅÆ¶ÑÖÐ½« !M! ÕÅÅÆ·ÅÈëÊÖÅÆ¡£",
-		"NAME": "·ï»ËÉñµÄÓðÃ«",
-		"UPGRADE_DESCRIPTION": "¶ªÆúÊÖÅÆÖÐ !M! ÕÅÅÆ¡£´ÓÆúÅÆ¶ÑÖÐ½« !M! ÕÅÅÆ·ÅÈëÊÖÅÆ¡£"
+		"DESCRIPTION": "ä¸¢å¼ƒæ‰‹ç‰Œä¸­ !M! å¼ ç‰Œã€‚ä»Žå¼ƒç‰Œå †ä¸­å°† !M! å¼ ç‰Œæ”¾å…¥æ‰‹ç‰Œã€‚",
+		"NAME": "å‡¤å‡°ç¥žçš„ç¾½æ¯›",
+		"UPGRADE_DESCRIPTION": "ä¸¢å¼ƒæ‰‹ç‰Œä¸­ !M! å¼ ç‰Œã€‚ä»Žå¼ƒç‰Œå †ä¸­å°† !M! å¼ ç‰Œæ”¾å…¥æ‰‹ç‰Œã€‚"
 	},
 	"theDuelist:FiendMegacyber": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ä§µ¼µç×Ó¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "é­”å¯¼ç”µå­å·¨äºº",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:FiendSkull": {
-		"DESCRIPTION": "¶ñÄ§×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè3²ãÒ×ÉË¡£",
-		"NAME": "ËÀÍöÄ§Áú",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè3²ãÒ×ÉË¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ3å±‚æ˜“ä¼¤ã€‚",
+		"NAME": "æ­»äº¡é­”é¾™",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ3å±‚æ˜“ä¼¤ã€‚"
 	},
 	"theDuelist:FiendToken": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý1 NL Ëæ»ú½«ÆúÅÆ¶ÑÖÐµÄ1ÕÅÅÆµÄºÄÄÜ±äÎª0¡£",
-		"NAME": "¶ñÄ§ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý1 NL Ëæ»ú½«ÆúÅÆ¶ÑÖÐµÄ1ÕÅÅÆµÄºÄÄÜ±äÎª0¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•°1 NL éšæœºå°†å¼ƒç‰Œå †ä¸­çš„1å¼ ç‰Œçš„è€—èƒ½å˜ä¸º0ã€‚",
+		"NAME": "æ¶é­”è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•°1 NL éšæœºå°†å¼ƒç‰Œå †ä¸­çš„1å¼ ç‰Œçš„è€—èƒ½å˜ä¸º0ã€‚"
 	},
 	"theDuelist:FiendishChain": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ôö¼ÓÊÖÅÆÖÐËùÓÐ¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "Ä§×åÖ®Á´",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ôö¼ÓÊÖÅÆÖÐËùÓÐ¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¢žåŠ æ‰‹ç‰Œä¸­æ‰€æœ‰æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "é­”æ—ä¹‹é“¾",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¢žåŠ æ‰‹ç‰Œä¸­æ‰€æœ‰æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:FinalFlame": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ²ãÐéÈõ¡£",
-		"NAME": "»ðÐÌ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ÐéÈõ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! å±‚è™šå¼±ã€‚",
+		"NAME": "ç«åˆ‘",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! è™šå¼±ã€‚"
 	},
 	"theDuelist:FireOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÑ×ÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "Ñ×ÊôÐÔ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÑ×ÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªç‚Žå±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "ç‚Žå±žæ€§",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªç‚Žå±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:Firegrass": {
-		"DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "»ðÑ×²Ý",
-		"UPGRADE_DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "ç«ç‚Žè‰",
+		"UPGRADE_DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:Fissure": {
-		"DESCRIPTION": "Ã¿ÓÐ1¸öÕÙ»½¹ÖÊÞ£¬¶ÔÉúÃüÖµ×îµÍµÄµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "µØ¸î",
-		"UPGRADE_DESCRIPTION": "Ã¿ÓÐ1¸öÕÙ»½¹ÖÊÞ£¬¶ÔÉúÃüÖµ×îµÍµÄµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¯æœ‰1ä¸ªå¬å”¤æ€ªå…½ï¼Œå¯¹ç”Ÿå‘½å€¼æœ€ä½Žçš„æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "åœ°å‰²",
+		"UPGRADE_DESCRIPTION": "æ¯æœ‰1ä¸ªå¬å”¤æ€ªå…½ï¼Œå¯¹ç”Ÿå‘½å€¼æœ€ä½Žçš„æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:FiveHeaded": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£¹ÌÊØ¡£",
-		"NAME": "ÎåÉñÁú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚å›ºå®ˆã€‚",
+		"NAME": "äº”ç¥žé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:FlameSwordsman": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ÏÂ´ÎÕ½¶·¿ªÊ¼Ê± !M! %¸ÅÂÊ»ñµÃÒ»Æ¿Ñ×ÊôÐÔÒ©Ë®£¨×î´ó¸ÅÂÊ100%£©¡£",
-		"NAME": "Ñ×Ö®½£Ê¿",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ÏÂ´ÎÕ½¶·¿ªÊ¼Ê± !M! %¸ÅÂÊ»ñµÃÒ»Æ¿Ñ×ÊôÐÔÒ©Ë®£¨×î´ó¸ÅÂÊ100%£©¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ä¸‹æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ !M! %æ¦‚çŽ‡èŽ·å¾—ä¸€ç“¶ç‚Žå±žæ€§è¯æ°´ ï¼ˆæœ€å¤§æ¦‚çŽ‡100%ï¼‰ã€‚",
+		"NAME": "ç‚Žä¹‹å‰‘å£«",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ä¸‹æ¬¡æˆ˜æ–—å¼€å§‹æ—¶ !M! %æ¦‚çŽ‡èŽ·å¾—ä¸€ç“¶ç‚Žå±žæ€§è¯æ°´ ï¼ˆæœ€å¤§æ¦‚çŽ‡100%ï¼‰ã€‚"
 	},
 	"theDuelist:FluteKuriboh": {
-		"DESCRIPTION": "ÔöÖ³ !M! »ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£",
-		"NAME": "Àõ×ÓÇòµÄºô»½µÑ",
-		"UPGRADE_DESCRIPTION": "ÔöÖ³ !M! »ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¢žæ®– !M! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ —å­çƒçš„å‘¼å”¤ç¬›",
+		"UPGRADE_DESCRIPTION": "å¢žæ®– !M! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:FluteSummoning": {
-		"DESCRIPTION": "»ñµÃ !B! µã¸ñµ²¡£ NL ½«2¸öËæ»úÁú×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "ºôÁúµÑ",
-		"UPGRADE_DESCRIPTION": "»ñµÃ !B! µã¸ñµ²¡£ NL ½«3¸öËæ»úÉý¼¶¹ýµÄÁú×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†2ä¸ªéšæœºé¾™æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "å‘¼é¾™ç¬›",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†3ä¸ªéšæœºå‡çº§è¿‡çš„é¾™æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:FogKing": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³ÉÉËº¦µÈÓÚËùÓÐ¼ÀÆ·µÄ×ÜÉËº¦¡£",
-		"NAME": "ÎíÖ®Íõ",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³ÉÉËº¦Ïàµ±ÓÚËùÓÐ¼ÀÆ·µÄ×ÜÉËº¦¼Ó9µã¶îÍâÉËº¦¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆä¼¤å®³ç­‰äºŽæ‰€æœ‰ç¥­å“çš„æ€»ä¼¤å®³ã€‚",
+		"NAME": "é›¾ä¹‹çŽ‹",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆä¼¤å®³ç›¸å½“äºŽæ‰€æœ‰ç¥­å“çš„æ€»ä¼¤å®³åŠ 9ç‚¹é¢å¤–ä¼¤å®³ã€‚"
 	},
 	"theDuelist:FortressWarrior": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÖØÐÍÕ½Ê¿",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "é‡åž‹æˆ˜å£«",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:FrontierWiseman": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "±ß¾³µÄ´óÏÍÕß",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "è¾¹å¢ƒçš„å¤§è´¤è€…",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:FrostOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö±ùËª³äÄÜÇò¡£",
-		"NAME": "±ùËª",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö±ùËª³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚",
+		"NAME": "å†°éœœ",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:GadgetOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÁã¼þ³äÄÜÇò¡£",
-		"NAME": "Áã¼þ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÁã¼þ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé›¶ä»¶å……èƒ½çƒã€‚",
+		"NAME": "é›¶ä»¶",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé›¶ä»¶å……èƒ½çƒã€‚"
 	},
 	"theDuelist:GadgetSoldier": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ôö¼Ó !M! ÕÅÉËº¦ÑÜÉúÎïµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "³ÝÂÖÕ½Ê¿",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ôö¼Ó !M! ÕÅÉËº¦ÑÜÉúÎïµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¢žåŠ  !M! å¼ ä¼¤å®³è¡ç”Ÿç‰©åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "é½¿è½®æˆ˜å£«",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¢žåŠ  !M! å¼ ä¼¤å®³è¡ç”Ÿç‰©åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:GaiaDragonChamp": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ÌØÊâÕÙ»½¼ÀÆ·ÖÐµÄ1¸ö¹ÖÊÞ£¨Ëæ»úÑ¡Ôñ£©¡£",
-		"NAME": "ÁúÆïÊ¿ ¸ÇÑÇ",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ÌØÊâÕÙ»½¼ÀÆ·ÖÐµÄ1¸ö¹ÖÊÞ£¨Ñ¡Ôñ×î½üµÄÕÙ»½¹ÖÊÞ£©¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç‰¹æ®Šå¬å”¤ç¥­å“ä¸­çš„1ä¸ªæ€ªå…½ï¼ˆéšæœºé€‰æ‹©ï¼‰ã€‚",
+		"NAME": "é¾™éª‘å£« ç›–äºš",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç‰¹æ®Šå¬å”¤ç¥­å“ä¸­çš„1ä¸ªæ€ªå…½ï¼ˆé€‰æ‹©æœ€è¿‘çš„å¬å”¤æ€ªå…½ï¼‰ã€‚"
 	},
 	"theDuelist:GaiaFierce": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "°µºÚÆïÊ¿ ¸ÇÑÇ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æš—é»‘éª‘å£« ç›–äºš",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:GaiaMidNightSun": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "°×Ò¹Ö®ÆïÊ¿ ¸ÇÑÇ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç™½å¤œä¹‹éª‘å£« ç›–äºš",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:GammaMagnet": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ³éÈ¡ !M! Ö»¹ÖÊÞ¡£»ñµÃÙ¤Âí´ÅÌú¡£",
-		"NAME": "´ÅÊ¯Õ½Ê¿Ù¤Âí",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ³é !M! Ö»¹ÖÊÞ¡£»ñµÃÙ¤Âí´ÅÌú¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æŠ½å– !M! åªæ€ªå…½ã€‚èŽ·å¾—ä¼½é©¬ç£é“ã€‚",
+		"NAME": "ç£çŸ³æˆ˜å£«ä¼½é©¬",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æŠ½ !M! åªæ€ªå…½ã€‚èŽ·å¾—ä¼½é©¬ç£é“ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:Gandora": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! ÏûºÄÊÖÅÆ¡£Ôì³É !D! ÉËº¦£¬Ã¿ÏûºÄ1ÕÅÅÆ¶îÍâÔì³É !M! µãÉËº¦¡£ NL ½«3ÕÅËæ»ú£¬Éý¼¶¹ýµÄÁú×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "ÆÆ»µÁú ¸Ê¶àÀ­",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! ÏûºÄÊÖÅÆ¡£Ôì³É !D! ÉËº¦£¬Ã¿ÏûºÄ1ÕÅÅÆ¶îÍâÔì³É !M! µãÉËº¦¡£ NL ½«4ÕÅËæ»ú£¬Éý¼¶¹ýµÄÁú×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æ‰‹ç‰Œã€‚é€ æˆ !D! ä¼¤å®³ï¼Œæ¯æ¶ˆè€—1å¼ ç‰Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚ NL å°†3å¼ éšæœºï¼Œå‡çº§è¿‡çš„é¾™æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç ´åé¾™ ç”˜å¤šæ‹‰",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æ‰‹ç‰Œã€‚é€ æˆ !D! ä¼¤å®³ï¼Œæ¯æ¶ˆè€—1å¼ ç‰Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚ NL å°†4å¼ éšæœºï¼Œå‡çº§è¿‡çš„é¾™æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:GateGuardian": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Èç¹û¼ÀÆ·ÖÐÓÐÊØ»¤Õß£¬Éú³É1¸öÏàÓ¦µÄ³äÄÜÇò¡£¼¤·¢ËùÓÐ³äÄÜÇò¡£Éú³É1¸öÃÅÖ®³äÄÜÇò¡£",
-		"NAME": "ÃÅÖ®ÊØ»¤Éñ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Èç¹û¼ÀÆ·ÖÐÓÐÊØ»¤Õß£¬Éú³É1¸öÏàÓ¦µÄ³äÄÜÇò¡£¼¤·¢2¸ö³äÄÜÇò¡£Éú³É1¸öÃÅÖ®³äÄÜÇò¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¦‚æžœç¥­å“ä¸­æœ‰å®ˆæŠ¤è€…ï¼Œç”Ÿæˆ1ä¸ªç›¸åº”çš„å……èƒ½çƒã€‚æ¿€å‘æ‰€æœ‰å……èƒ½çƒã€‚ç”Ÿæˆ1ä¸ªé—¨ä¹‹å……èƒ½çƒã€‚",
+		"NAME": "é—¨ä¹‹å®ˆæŠ¤ç¥ž",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¦‚æžœç¥­å“ä¸­æœ‰å®ˆæŠ¤è€…ï¼Œç”Ÿæˆ1ä¸ªç›¸åº”çš„å……èƒ½çƒã€‚æ¿€å‘2ä¸ªå……èƒ½çƒã€‚ç”Ÿæˆ1ä¸ªé—¨ä¹‹å……èƒ½çƒã€‚"
 	},
 	"theDuelist:GateOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÃÅÖ®³äÄÜÇò¡£",
-		"NAME": "ÃÅ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÃÅÖ®³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé—¨ä¹‹å……èƒ½çƒã€‚",
+		"NAME": "é—¨",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé—¨ä¹‹å……èƒ½çƒã€‚"
 	},
 	"theDuelist:GatesDarkWorld": {
-		"DESCRIPTION": "¶ñÄ§×åºÍ²»ËÀ×åµÄÉËº¦ºÍ¸ñµ²Ìá¸ß100£¥¡£",
-		"NAME": "°µºÚ½çÖ®ÃÅ",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×åºÍ²»ËÀ×åµÄÉËº¦ºÍ¸ñµ²Ìá¸ß100£¥¡£"
+		"DESCRIPTION": "æ¶é­”æ—å’Œä¸æ­»æ—çš„ä¼¤å®³å’Œæ ¼æŒ¡æé«˜100ï¼…ã€‚",
+		"NAME": "æš—é»‘ç•Œä¹‹é—¨",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—å’Œä¸æ­»æ—çš„ä¼¤å®³å’Œæ ¼æŒ¡æé«˜100ï¼…ã€‚"
 	},	
 	"theDuelist:GauntletWarrior": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÊÖ¼×Õ½Ê¿",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "æ‰‹ç”²æˆ˜å£«",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:GeminiElf": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! ÌØÊâÕÙ»½£º»ñµÃ15ÉúÃü¡£",
-		"NAME": "Ë«Éú¾«Áé",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! ÌØÊâÕÙ»½£º»ñµÃ15ÉúÃü¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç‰¹æ®Šå¬å”¤ï¼šèŽ·å¾—15ç”Ÿå‘½ã€‚",
+		"NAME": "åŒç”Ÿç²¾çµ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç‰¹æ®Šå¬å”¤ï¼šèŽ·å¾—15ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:GiantSoldier": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÑÒÊ¯¾Þ±ø",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å²©çŸ³å·¨å…µ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:GiantSoldierSteel": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "¸ÖÌú¾Þ±ø",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "é’¢é“å·¨å…µ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:GiantTrunade": {
-		"DESCRIPTION": "¼¤·¢ËùÓÐµÄ³äÄÜÇò¡£ÏûºÄ¡£",
-		"NAME": "ì«·ç",
-		"UPGRADE_DESCRIPTION": "¼¤·¢ËùÓÐµÄ³äÄÜÇò¡£"
+		"DESCRIPTION": "æ¿€å‘æ‰€æœ‰çš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚",
+		"NAME": "é£“é£Ž",
+		"UPGRADE_DESCRIPTION": "æ¿€å‘æ‰€æœ‰çš„å……èƒ½çƒã€‚"
 	},
 	"theDuelist:Gigaplant": {
-		"DESCRIPTION": "Ö²Îï×å¡£¼ÀÆ·Êý !duelist:TRIB! ¸øÓè10²ãÖÐ¶¾¡£´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ²¢Éý¼¶¡£¹ÌÊØ¡£",
-		"NAME": "¾ÞÐÍÖ²Îï",
-		"UPGRADE_DESCRIPTION": "Ö²Îï×å¡£¼ÀÆ·Êý !duelist:TRIB! ¸øÓè10²ãÖÐ¶¾¡£´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½ !M! ¸öËæ»ú¹ÖÊÞ²¢Éý¼¶¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "æ¤ç‰©æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ10å±‚ä¸­æ¯’ã€‚ä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½å¹¶å‡çº§ã€‚å›ºå®ˆã€‚",
+		"NAME": "å·¨åž‹æ¤ç‰©",
+		"UPGRADE_DESCRIPTION": "æ¤ç‰©æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ10å±‚ä¸­æ¯’ã€‚ä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤ !M! ä¸ªéšæœºæ€ªå…½å¹¶å‡çº§ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:GilfordLegend": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "´«ËµµÄÕ½Ê¿ ¼ª¶û¸£µÂ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ä¼ è¯´çš„æˆ˜å£« å‰å°”ç¦å¾·",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:GlassOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö²£Á§³äÄÜÇò¡£",
-		"NAME": "²£Á§",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö²£Á§³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªçŽ»ç’ƒå……èƒ½çƒã€‚",
+		"NAME": "Glass",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªçŽ»ç’ƒå……èƒ½çƒã€‚"
 	},
 	"theDuelist:GlitchOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö¹ÊÕÏ³äÄÜÇò¡£",
-		"NAME": "¹ÊÕÏ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö¹ÊÕÏ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ•…éšœå……èƒ½çƒã€‚",
+		"NAME": "æ•…éšœ",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ•…éšœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:GoblinSecret": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ã¿µ±ÕÙ»½Ê±£¬»Ø¸´ !M! ÉúÃü¡£",
-		"NAME": "¸ç²¼ÁÖµÄÃØÒ©",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿µ±ÕÙ»½Ê±£¬»Ø¸´ !M! ÉúÃü¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ¯å½“å¬å”¤æ—¶ï¼Œå›žå¤ !M! ç”Ÿå‘½ã€‚",
+		"NAME": "å“¥å¸ƒæž—çš„ç§˜è¯",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯å½“å¬å”¤æ—¶ï¼Œå›žå¤ !M! ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:GodArchetype": {
-		"DESCRIPTION": "½«ËùÓÐÉñÖ®¿¨Ôö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†æ‰€æœ‰ç¥žä¹‹å¡å¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"ÉñÖ®¿¨",
-			"°ÂÎ÷ÀïË¹Ö®Ìì¿ÕÁú£¬Å·±´ÀûË¹¿ËÖ®¾ÞÉñ±ø£¬Ì«ÑôÉñÖ®ÒíÉñÁú£¬´´ÊÀÉñ¡£"
+			"ç¥žä¹‹å¡",
+			"å¥¥è¥¿é‡Œæ–¯ä¹‹å¤©ç©ºé¾™ï¼Œæ¬§è´åˆ©æ–¯å…‹ä¹‹å·¨ç¥žå…µï¼Œå¤ªé˜³ç¥žä¹‹ç¿¼ç¥žé¾™ï¼Œåˆ›ä¸–ç¥žã€‚"
 		],
-		"NAME": "ÉñÖ®¿¨"
+		"NAME": "ç¥žä¹‹å¡"
 	},
 	"theDuelist:GoldenApples": {
-		"DESCRIPTION": "±¾³¡Õ½¶·£¬Ã¿´ÎÕÙ»½»ñµÃ !M! µã¸ñµ²¡£",
-		"NAME": "Ü½Àò¼ÎµÄÆ»¹û",
-		"UPGRADE_DESCRIPTION": "±¾³¡Õ½¶·£¬Ã¿´ÎÕÙ»½»ñµÃ !M! µã¸ñµ²¡£"
+		"DESCRIPTION": "æœ¬åœºæˆ˜æ–—ï¼Œæ¯æ¬¡å¬å”¤èŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "èŠ™èŽ‰å˜‰çš„è‹¹æžœ",
+		"UPGRADE_DESCRIPTION": "æœ¬åœºæˆ˜æ–—ï¼Œæ¯æ¬¡å¬å”¤èŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:GorgonicCerberus": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÃ¿´ÎÕÙ»½£¬´ËÅÆµÄºÄÄÜ¼õÉÙ1µã¡£",
-		"NAME": "ÉßÍ·µØÓüÈ®",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÃ¿´ÎÕÙ»½£¬´ËÅÆµÄºÄÄÜ¼õÉÙ1µã¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ¯æ¬¡å¬å”¤ï¼Œæ­¤ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚",
+		"NAME": "è›‡å¤´åœ°ç‹±çŠ¬",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ¯æ¬¡å¬å”¤ï¼Œæ­¤ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚"
 	},
 	"theDuelist:GorgonicGargoyle": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÃ¿´ÎÕÙ»½£¬´ËÅÆµÄºÄÄÜ¼õÉÙ1µã¡£",
-		"NAME": "ÉßÍ·Ê¯Ïñ¹Ö",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÃ¿´ÎÕÙ»½£¬´ËÅÆµÄºÄÄÜ¼õÉÙ1µã¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ¯æ¬¡å¬å”¤ï¼Œæ­¤ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚",
+		"NAME": "è›‡å¤´çŸ³åƒæ€ª",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ¯æ¬¡å¬å”¤ï¼Œæ­¤ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚"
 	},
 	"theDuelist:GorgonicGuardian": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÃ¿´ÎÕÙ»½£¬´ËÅÆµÄºÄÄÜ¼õÉÙ1µã¡£",
-		"NAME": "ÉßÍ·ÊØ»¤Õß",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÃ¿´ÎÕÙ»½£¬´ËÅÆµÄºÄÄÜ¼õÉÙ1µã¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ¯æ¬¡å¬å”¤ï¼Œæ­¤ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚",
+		"NAME": "è›‡å¤´å®ˆæŠ¤è€…",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆæ¯æ¬¡å¬å”¤ï¼Œæ­¤ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚"
 	},
 	"theDuelist:GracefulCharity": {
-		"DESCRIPTION": "³é3ÕÅÅÆ¡£¶ªÆú2ÕÅÅÆ¡£",
-		"NAME": "ÌìÊ¹µÄÊ©Éá",
-		"UPGRADE_DESCRIPTION": "³é3ÕÅÅÆ¡£¶ªÆú1ÕÅÅÆ¡£"
+		"DESCRIPTION": "æŠ½3å¼ ç‰Œã€‚ä¸¢å¼ƒ2å¼ ç‰Œã€‚",
+		"NAME": "å¤©ä½¿çš„æ–½èˆ",
+		"UPGRADE_DESCRIPTION": "æŠ½3å¼ ç‰Œã€‚ä¸¢å¼ƒ1å¼ ç‰Œã€‚"
 	},
 	"theDuelist:Grasschopper": {
-		"DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÀ¥³æ×å£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "¹ó¼×ó«òë",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÀ¥³æ×å£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç¥­å“ä¸­æ¯æœ‰1ä¸ªæ˜†è™«æ—ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è´µç”²èž³èž‚",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç¥­å“ä¸­æ¯æœ‰1ä¸ªæ˜†è™«æ—ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Graverobber": {
-		"DESCRIPTION": "Ñ¡Ôñ1ÕÅ±¾³¡Õ½¶·´ò³ö¹ýÄ§·¨¿¨»òÏÝÚå¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "µÁÄ¹Õß",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ2ÕÅ±¾³¡Õ½¶·´ò³ö¹ýÄ§·¨¿¨»òÏÝÚå¿¨Ôö¼Óµ½ÊÖÅÆÖÐ£¬±¾»ØºÏºÄÄÜÎª0¡£ÏûºÄ¡£"
+		"DESCRIPTION": "é€‰æ‹©1å¼ æœ¬åœºæˆ˜æ–—æ‰“å‡ºè¿‡é­”æ³•å¡æˆ–é™·é˜±å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç›—å¢“è€…",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©2å¼ æœ¬åœºæˆ˜æ–—æ‰“å‡ºè¿‡é­”æ³•å¡æˆ–é™·é˜±å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ï¼Œæœ¬å›žåˆè€—èƒ½ä¸º0ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:GravityAxe": {
-		"DESCRIPTION": "»ñµÃ !M! µãÁ¦Á¿¡£±¾³¡Õ½¶·ÖÐÎÞ·¨»ñµÃ»òÊ§È¥Á¦Á¿¡£",
-		"NAME": "ÖØÁ¦Ö®¸« ÅØÏø",
-		"UPGRADE_DESCRIPTION": "»ñµÃ !M! µãÁ¦Á¿¡£±¾³¡Õ½¶·ÖÐÎÞ·¨»ñµÃ»òÊ§È¥Á¦Á¿¡£"
+		"DESCRIPTION": "èŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚æœ¬åœºæˆ˜æ–—ä¸­æ— æ³•èŽ·å¾—æˆ–å¤±åŽ»åŠ›é‡ã€‚",
+		"NAME": "é‡åŠ›ä¹‹æ–§ å’†å“®",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚æœ¬åœºæˆ˜æ–—ä¸­æ— æ³•èŽ·å¾—æˆ–å¤±åŽ»åŠ›é‡ã€‚"
 	},
 	"theDuelist:GreatMoth": {
-		"DESCRIPTION": "À¥³æ×å¡£³ýÍâ¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ²ãÖÐ¶¾¡£½«1ÕÅ¾¿¼«´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "´ó·É¶ê",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£³ýÍâ¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ²ãÖÐ¶¾¡£½«1ÕÅ¾¿¼«´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚é™¤å¤–ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚å°†1å¼ ç©¶æžå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¤§é£žè›¾",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚é™¤å¤–ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚å°†1å¼ ç©¶æžå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:GreatRef": {
-		"DESCRIPTION": "À¥³æ×å¡£³ýÍâ¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ²ãÖÐ¶¾¡£½«1ÕÅ¾¿¼«´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "´ó·É¶ê",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£³ýÍâ¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ²ãÖÐ¶¾¡£½«1ÕÅ¾¿¼«´ó·É¶êÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚é™¤å¤–ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚å°†1å¼ ç©¶æžå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¤§é£žè›¾",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚é™¤å¤–ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚å°†1å¼ ç©¶æžå¤§é£žè›¾å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:GreenGadget": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôö¼Ó !M! ÕÅËæ»úÑÜÉúÎïµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "ÂÌÉ«Áã¼þ",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ñ¡Ôñ !M! ÕÅËæ»úÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¢žåŠ  !M! å¼ éšæœºè¡ç”Ÿç‰©åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "ç»¿è‰²é›¶ä»¶",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€‰æ‹© !M! å¼ éšæœºè¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:GrossGhost": {
-		"DESCRIPTION": "ÐéÎÞ¡£ÒÅÑÔ¡£¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôö¼ÓËùÓÐÊÖÅÆµÄ¼ÀÆ·ÏûºÄ !M! µã",
-		"NAME": "ÃÎÄ§µÄÍöÁé",
-		"UPGRADE_DESCRIPTION": "ÐéÎÞ¡£ÒÅÑÔ¡£¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôö¼ÓËùÓÐÊÖÅÆµÄ¼ÀÆ·ÏûºÄ !M! µã"
+		"DESCRIPTION": "è™šæ— ã€‚é—è¨€ã€‚æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¢žåŠ æ‰€æœ‰æ‰‹ç‰Œçš„ç¥­å“æ¶ˆè€— !M! ç‚¹",
+		"NAME": "æ¢¦é­”çš„äº¡çµ",
+		"UPGRADE_DESCRIPTION": "è™šæ— ã€‚é—è¨€ã€‚æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¢žåŠ æ‰€æœ‰æ‰‹ç‰Œçš„ç¥­å“æ¶ˆè€— !M! ç‚¹"
 	},
 	"theDuelist:GuardianAngel": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÄ§·¨Ê¦£¬¶îÍâÔì³É !M! µãÉËº¦²¢»Ø¸´ÉúÃü£¬ÊýÖµµÈÓÚÔì³ÉµÄ×ÜÉËº¦¡£",
-		"NAME": "ÊØ»¤ÌìÊ¹ ÕêµÂ",
-		"UPGRADE_DESCRIPTION": " ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÄ§·¨Ê¦£¬¶îÍâÔì³É !M! µãÉËº¦²¢»Ø¸´ÉúÃü£¬ÊýÖµµÈÓÚÔì³ÉµÄ×ÜÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé­”æ³•å¸ˆï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³å¹¶å›žå¤ç”Ÿå‘½ï¼Œæ•°å€¼ç­‰äºŽé€ æˆçš„æ€»ä¼¤å®³ã€‚",
+		"NAME": "å®ˆæŠ¤å¤©ä½¿ è´žå¾·",
+		"UPGRADE_DESCRIPTION": " ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé­”æ³•å¸ˆï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³å¹¶å›žå¤ç”Ÿå‘½ï¼Œæ•°å€¼ç­‰äºŽé€ æˆçš„æ€»ä¼¤å®³ã€‚"
 	},
 	"theDuelist:GuardianArchetype": {
-		"DESCRIPTION": "½«ÊØ»¤ÕßÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†å®ˆæŠ¤è€…ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"ÊØ»¤Õß",
-			"À×Ä§Éñ£¬Ë®Ä§Éñ£¬·çÄ§ÉñºÍÃÅÖ®ÊØ»¤Éñ¡£"
+			"å®ˆæŠ¤è€…",
+			"é›·é­”ç¥žï¼Œæ°´é­”ç¥žï¼Œé£Žé­”ç¥žå’Œé—¨ä¹‹å®ˆæŠ¤ç¥žã€‚"
 		],
-		"NAME": "ÊØ»¤Õß"
+		"NAME": "å®ˆæŠ¤è€…"
 	},
 	"theDuelist:HammerShot": {
-		"DESCRIPTION": "¶ÔËùÓÐµÐÈËÔì³ÉÉËº¦£¬ÊýÖµµÈÓÚ !D! ³ËÒÔ×î´óÕÙ»½Êý¡£",
-		"NAME": "é³»÷",
-		"UPGRADE_DESCRIPTION": "¶ÔËùÓÐµÐÈËÔì³ÉÉËº¦£¬ÊýÖµµÈÓÚ !D! ³ËÒÔ×î´óÕÙ»½Êý¡£"
+		"DESCRIPTION": "å¯¹æ‰€æœ‰æ•Œäººé€ æˆä¼¤å®³ï¼Œæ•°å€¼ç­‰äºŽ !D! ä¹˜ä»¥æœ€å¤§å¬å”¤æ•°ã€‚",
+		"NAME": "æ§Œå‡»",
+		"UPGRADE_DESCRIPTION": "å¯¹æ‰€æœ‰æ•Œäººé€ æˆä¼¤å®³ï¼Œæ•°å€¼ç­‰äºŽ !D! ä¹˜ä»¥æœ€å¤§å¬å”¤æ•°ã€‚"
 	},
 	"theDuelist:HaneHane": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷Îª¼ÀÆ·£¬¶îÍâÕÙ»½1²¢»ñµÃ !B! µã¸ñµ²¡£",
-		"NAME":¹þÄá¹þÄá",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷Îª¼ÀÆ·£¬¶îÍâÕÙ»½1²¢»ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºç¥­å“ï¼Œé¢å¤–å¬å”¤1å¹¶èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME":å“ˆå°¼å“ˆå°¼",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºç¥­å“ï¼Œé¢å¤–å¬å”¤1å¹¶èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:HarpieFeather": {
-		"DESCRIPTION": "ÏûºÄÆúÅÆ¶ÑÖÐËùÓÐµÄ×´Ì¬ÅÆ¡£",
-		"NAME": "Ó¥ÉíÅ®ÑýµÄÓðÃ«É¨",
-		"UPGRADE_DESCRIPTION": "ÏûºÄÆúÅÆ¶ÑºÍ³éÅÆ¶ÑÖÐËùÓÐµÄ×´Ì¬ÅÆ¡£"
+		"DESCRIPTION": "æ¶ˆè€—å¼ƒç‰Œå †ä¸­æ‰€æœ‰çš„çŠ¶æ€ç‰Œã€‚",
+		"NAME": "é¹°èº«å¥³å¦–çš„ç¾½æ¯›æ‰«",
+		"UPGRADE_DESCRIPTION": "æ¶ˆè€—å¼ƒç‰Œå †å’ŒæŠ½ç‰Œå †ä¸­æ‰€æœ‰çš„çŠ¶æ€ç‰Œã€‚"
 	},
 	"theDuelist:HeartUnderdog": {
-		"DESCRIPTION": "Ã¿µ±³éµ½¹ÖÊÞÊ±£¬³é1ÕÅÅÆ¡£",
-		"NAME": "·²ÈËµÄÒâÖ¾",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Ã¿µ±³éµ½¹ÖÊÞÊ±£¬³é1ÕÅÅÆ¡£"
+		"DESCRIPTION": "æ¯å½“æŠ½åˆ°æ€ªå…½æ—¶ï¼ŒæŠ½1å¼ ç‰Œã€‚",
+		"NAME": "å‡¡äººçš„æ„å¿—",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚æ¯å½“æŠ½åˆ°æ€ªå…½æ—¶ï¼ŒæŠ½1å¼ ç‰Œã€‚"
 	},
 	"theDuelist:HeartUnderspell": {
-		"DESCRIPTION": "Ã¿µ±³éµ½Ä§·¨Ê±£¬¸´ÖÆ¼ÓÈëÊÖÅÆ¡£",
-		"NAME": "·²ÈËµÄÄ§·¨",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Ã¿µ±³éµ½Ä§·¨Ê±£¬¸´ÖÆ¼ÓÈëÊÖÅÆ¡£"
+		"DESCRIPTION": "æ¯å½“æŠ½åˆ°é­”æ³•æ—¶ï¼Œå¤åˆ¶åŠ å…¥æ‰‹ç‰Œã€‚",
+		"NAME": "å‡¡äººçš„é­”æ³•",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚æ¯å½“æŠ½åˆ°é­”æ³•æ—¶ï¼Œå¤åˆ¶åŠ å…¥æ‰‹ç‰Œã€‚"
 	},
 	"theDuelist:HeartUndertrap": {
-		"DESCRIPTION": "Ã¿µ±³éµ½ÏÝÚåÊ±£¬»Ø¸´3 ÉúÃü¡£",
-		"NAME": "·²ÈËµÄÏÝÚå",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Ã¿µ±³éµ½ÏÝÚåÊ±£¬»Ø¸´3 ÉúÃü¡£"
+		"DESCRIPTION": "æ¯å½“æŠ½åˆ°é™·é˜±æ—¶ï¼Œå›žå¤3 ç”Ÿå‘½ã€‚",
+		"NAME": "å‡¡äººçš„é™·é˜±",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚æ¯å½“æŠ½åˆ°é™·é˜±æ—¶ï¼Œå›žå¤3 ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:HeartUndertribute": {
-		"DESCRIPTION": "Ã¿µ±³éµ½¼ÀÆ·¹ÖÊÞÊ±£¬¶îÍâÕÙ»½1¡£",
-		"NAME": "·²ÈËµÄ¼ÀÆ·",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Ã¿µ±³éµ½¼ÀÆ·¹ÖÊÞÊ±£¬¶îÍâÕÙ»½1¡£"
+		"DESCRIPTION": "æ¯å½“æŠ½åˆ°ç¥­å“æ€ªå…½æ—¶ï¼Œé¢å¤–å¬å”¤1ã€‚",
+		"NAME": "å‡¡äººçš„ç¥­å“",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚æ¯å½“æŠ½åˆ°ç¥­å“æ€ªå…½æ—¶ï¼Œé¢å¤–å¬å”¤1ã€‚"
 	},
 	"theDuelist:HeavyStorm": {
-		"DESCRIPTION": "ÒÆ³ý×Ô¼ººÍËùÓÐµÐÈËµÄËùÓÐÐ§¹û¡£ÏûºÄ¡£",
-		"NAME": "´ó·ç±©",
-		"UPGRADE_DESCRIPTION": "ÒÆ³ý×Ô¼ººÍËùÓÐµÐÈËµÄËùÓÐÐ§¹û¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç§»é™¤è‡ªå·±å’Œæ‰€æœ‰æ•Œäººçš„æ‰€æœ‰æ•ˆæžœã€‚æ¶ˆè€—ã€‚",
+		"NAME": "å¤§é£Žæš´",
+		"UPGRADE_DESCRIPTION": "ç§»é™¤è‡ªå·±å’Œæ‰€æœ‰æ•Œäººçš„æ‰€æœ‰æ•ˆæžœã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:HellfireOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öµØÓü»ð³äÄÜÇò¡£",
-		"NAME": "µØÓü»ð",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öµØÓü»ð³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªåœ°ç‹±ç«å……èƒ½çƒã€‚",
+		"NAME": "Hellfire",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªåœ°ç‹±ç«å……èƒ½çƒã€‚"
 	},
 	"theDuelist:Hinotama": {
-		"DESCRIPTION": "Ôì³É !D! µãÉËº¦£¨2-3£©´Î¡£",
-		"NAME": "»ðÇò",
-		"UPGRADE_DESCRIPTION": "Ôì³É !D! µãÉËº¦£¨2-4£©´Î¡£"
+		"DESCRIPTION": "é€ æˆ !D! ç‚¹ä¼¤å®³ï¼ˆ2-3ï¼‰æ¬¡ã€‚",
+		"NAME": "ç«çƒ",
+		"UPGRADE_DESCRIPTION": "é€ æˆ !D! ç‚¹ä¼¤å®³ï¼ˆ2-4ï¼‰æ¬¡ã€‚"
 	},
 	"theDuelist:HundredFootHorror": {
-		"DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! ¸øÓè !M! ²ãÖÐ¶¾¡£",
-		"NAME": "µØÓü´ó°Ù×ã",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! ¸øÓè !M! ²ãÖÐ¶¾¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚",
+		"NAME": "åœ°ç‹±å¤§ç™¾è¶³",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚"
 	},
 	"theDuelist:IceQueen": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! ÖØÖÃÏÂ1¸ö³äÄÜÇòÁ½´Î¡£Éú³É !M! ¸ö±ùËª³äÄÜÇò¡£",
-		"NAME": "±ùÖ®Å®Íõ",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! ÖØÖÃÏÂ1¸ö³äÄÜÇòÁ½´Î¡£Éú³É !M! ¸ö±ùËª³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é‡ç½®ä¸‹1ä¸ªå……èƒ½çƒä¸¤æ¬¡ã€‚ç”Ÿæˆ !M! ä¸ªå†°éœœå……èƒ½çƒã€‚",
+		"NAME": "å†°ä¹‹å¥³çŽ‹",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é‡ç½®ä¸‹1ä¸ªå……èƒ½çƒä¸¤æ¬¡ã€‚ç”Ÿæˆ !M! ä¸ªå†°éœœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:IcyCrevasse": {
-		"DESCRIPTION": "Èç¹ûÓÐÒÑÉú³É1¸ö¹ý±ùËª³äÄÜÇò£¬»ñµÃËæ»ú£¨1-2£©µã¼¯ÖÐ¡£",
-		"NAME": "³ðºÞÁÑ·ì",
-		"UPGRADE_DESCRIPTION": "Ã¿Éú³É¹ý1¸ö±ùËª³äÄÜÇò£¬»ñµÃ1µã¼¯ÖÐ¡£"
+		"DESCRIPTION": "å¦‚æžœæœ‰å·²ç”Ÿæˆ1ä¸ªè¿‡å†°éœœå……èƒ½çƒï¼ŒèŽ·å¾—éšæœºï¼ˆ1-2ï¼‰ç‚¹é›†ä¸­ã€‚",
+		"NAME": "ä»‡æ¨è£‚ç¼",
+		"UPGRADE_DESCRIPTION": "æ¯ç”Ÿæˆè¿‡1ä¸ªå†°éœœå……èƒ½çƒï¼ŒèŽ·å¾—1ç‚¹é›†ä¸­ã€‚"
 	},
 	"theDuelist:Illusionist": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÎÞÁ³»ÃÏëÊ¦",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "æ— è„¸å¹»æƒ³å¸ˆ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:ImperialOrder": {
-		"DESCRIPTION": "»ØºÏ¿ªÊ¼Ê±£¬°ÑÊÖÅÆÖÐËæ»ú !M! ÕÅÄ§·¨»òÏÝÚå¿¨ºÄÄÜ±äÎª0¡£",
-		"NAME": "Íõ¹¬µÄë·Ãü",
-		"UPGRADE_DESCRIPTION": "»ØºÏ¿ªÊ¼Ê±£¬°ÑÊÖÅÆÖÐËæ»ú !M! ÕÅÄ§·¨»òÏÝÚå¿¨ºÄÄÜ±äÎª0¡£"
+		"DESCRIPTION": "å›žåˆå¼€å§‹æ—¶ï¼ŒæŠŠæ‰‹ç‰Œä¸­éšæœº !M! å¼ é­”æ³•æˆ–é™·é˜±å¡è€—èƒ½å˜ä¸º0ã€‚",
+		"NAME": "çŽ‹å®«çš„æ••å‘½",
+		"UPGRADE_DESCRIPTION": "å›žåˆå¼€å§‹æ—¶ï¼ŒæŠŠæ‰‹ç‰Œä¸­éšæœº !M! å¼ é­”æ³•æˆ–é™·é˜±å¡è€—èƒ½å˜ä¸º0ã€‚"
 	},
 	"theDuelist:InjectionFairy": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û½öÕÙ»½¹ýÄ§·¨Ê¦×åÔÚ³¡£¬»Ø¸´ !M! ÉúÃü¡£",
-		"NAME": "×¢ÉäÌìÊ¹ ÀòÀò",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û½öÕÙ»½¹ýÄ§·¨Ê¦×åÔÚ³¡£¬»Ø¸´ !M! ÉúÃü¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœä»…å¬å”¤è¿‡é­”æ³•å¸ˆæ—åœ¨åœºï¼Œå›žå¤ !M! ç”Ÿå‘½ã€‚",
+		"NAME": "æ³¨å°„å¤©ä½¿ èŽ‰èŽ‰",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœä»…å¬å”¤è¿‡é­”æ³•å¸ˆæ—åœ¨åœºï¼Œå›žå¤ !M! ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:InsectArchetype": {
-		"DESCRIPTION": "½«À¥³æ×åÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†æ˜†è™«æ—å¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"À¥³æ×å",
-			"ËùÓÐÀ¥³æ×å¹ÖÊÞ£¬×ÏË®¾§£¬³¬ÓªÑøÌ«ÑôºÍ½ø»¯Ö®¼ë¡£"
+			"æ˜†è™«æ—",
+			"æ‰€æœ‰æ˜†è™«æ—æ€ªå…½ï¼Œç´«æ°´æ™¶ï¼Œè¶…è¥å…»å¤ªé˜³å’Œè¿›åŒ–ä¹‹èŒ§ã€‚"
 		],
-		"NAME": "À¥³æ×å"
+		"NAME": "æ˜†è™«æ—"
 	},
 	"theDuelist:InsectKnight": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "¼×³æ×°¼×ÆïÊ¿",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç”²è™«è£…ç”²éª‘å£«",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:InsectQueen": {
-		"DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·ËùÓÐÕÙ»½¹ÖÊÞ¡£¶ÔËùÓÐµÐÈË¸øÓè !M! ´ÎÖÐ¶¾£¬Ã¿´ÎÖÐ¶¾²ãÊýµÈÓÚÕÙ»½Êý¡£½«×î´óÕÙ»½Êý¼õÉÙ1µã¡£",
-		"NAME": "À¥³æÅ®Íõ",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·ËùÓÐÕÙ»½¹ÖÊÞ¡£¶ÔËùÓÐµÐÈË¸øÓè !M! ´ÎÖÐ¶¾£¬Ã¿´ÎÖÐ¶¾²ãÊýµÈÓÚÕÙ»½Êý¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ‰€æœ‰å¬å”¤æ€ªå…½ã€‚å¯¹æ‰€æœ‰æ•Œäººç»™äºˆ !M! æ¬¡ä¸­æ¯’ï¼Œæ¯æ¬¡ä¸­æ¯’å±‚æ•°ç­‰äºŽå¬å”¤æ•°ã€‚å°†æœ€å¤§å¬å”¤æ•°å‡å°‘1ç‚¹ã€‚",
+		"NAME": "æ˜†è™«å¥³çŽ‹",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ‰€æœ‰å¬å”¤æ€ªå…½ã€‚å¯¹æ‰€æœ‰æ•Œäººç»™äºˆ !M! æ¬¡ä¸­æ¯’ï¼Œæ¯æ¬¡ä¸­æ¯’å±‚æ•°ç­‰äºŽå¬å”¤æ•°ã€‚"
 	},
 	"theDuelist:InsectToken": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý1",
-		"NAME": "À¥³æÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý1"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•°1",
+		"NAME": "æ˜†è™«è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•°1"
 	},
 	"theDuelist:Invigoration": {
-		"DESCRIPTION": "Ñ¡Ôñ1¸öµÐÈË£¬Ëæ»úÌØÊâÕÙ»½Ò»¸öÖ²Îï×å¡£",
-		"NAME": "¾õÐÑ",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ1¸öµÐÈË£¬Ñ¡Ôñ1¸öÖ²Îï×åÌØÊâÕÙ»½¡£"
+		"DESCRIPTION": "é€‰æ‹©1ä¸ªæ•Œäººï¼Œéšæœºç‰¹æ®Šå¬å”¤ä¸€ä¸ªæ¤ç‰©æ—ã€‚",
+		"NAME": "è§‰é†’",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©1ä¸ªæ•Œäººï¼Œé€‰æ‹©1ä¸ªæ¤ç‰©æ—ç‰¹æ®Šå¬å”¤ã€‚"
 	},
 	"theDuelist:InvitationDarkSleep": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ñ£ÔÎ1¸öËæ»úµÄµÐÈË¡£ÏûºÄ¡£",
-		"NAME": "ÓÕ·¢°µºÚ³¤ÃßµÄÂ·Î÷·¨",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ñ£ÔÎ1¸öµÐÈË¡£ÏûºÄ¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! çœ©æ™•1ä¸ªéšæœºçš„æ•Œäººã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¯±å‘æš—é»‘é•¿çœ çš„è·¯è¥¿æ³•",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! çœ©æ™•1ä¸ªæ•Œäººã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:IslandTurtle": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "µº¹ê",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å²›é¾Ÿ",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:JamBreeding": {
-		"DESCRIPTION": "ÔÚ»ØºÏ¿ªÊ¼Ê±£¬ÕÙ»½ !M! ²¢¶ÔËæ»úµÐÈËÔì³É3µãÉËº¦¡£",
-		"NAME": "Ê·À³Ä·ÔöÖ³Â¯",
-		"UPGRADE_DESCRIPTION": "ÔÚ»ØºÏ¿ªÊ¼Ê±£¬ÕÙ»½ !M! ²¢¶ÔËæ»úµÐÈËÔì³É3µãÉËº¦¡£"
+		"DESCRIPTION": "åœ¨å›žåˆå¼€å§‹æ—¶ï¼Œå¬å”¤ !M! å¹¶å¯¹éšæœºæ•Œäººé€ æˆ3ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å²èŽ±å§†å¢žæ®–ç‚‰",
+		"UPGRADE_DESCRIPTION": "åœ¨å›žåˆå¼€å§‹æ—¶ï¼Œå¬å”¤ !M! å¹¶å¯¹éšæœºæ•Œäººé€ æˆ3ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:JamToken": {
-		"DESCRIPTION": "Ë®×å ÕÙ»½Êý 1",
-		"NAME": "Ê·À³Ä·ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "Ë®×å ÕÙ»½Êý 1"
+		"DESCRIPTION": "æ°´æ— å¬å”¤æ•° 1",
+		"NAME": "å²èŽ±å§†è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æ°´æ— å¬å”¤æ•° 1"
 	},
 	"theDuelist:JerryBeansMan": {
-		"DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÈíÌÇ¶¹ÈË",
-		"UPGRADE_DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è½¯ç³–è±†äºº",
+		"UPGRADE_DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Jinzo": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ËùÓÐÏÝÚåºÄÄÜÎª0¡£",
-		"NAME": "ÈËÔìÈË ÄîÁ¦ÕðÉåÕß",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ËùÓÐÏÝÚåºÄÄÜÎª0¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ‰€æœ‰é™·é˜±è€—èƒ½ä¸º0ã€‚",
+		"NAME": "äººé€ äºº å¿µåŠ›éœ‡æ…‘è€…",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ‰€æœ‰é™·é˜±è€—èƒ½ä¸º0ã€‚"
 	},
 	"theDuelist:JiraiGumo": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! 50£¥µÄ¼¸ÂÊÔì³É !D! µãÉËº¦¡£",
-		"NAME": "µØÀ×Ö©Öë",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! 50£¥µÄ¼¸ÂÊÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! 50ï¼…çš„å‡ çŽ‡é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "åœ°é›·èœ˜è››",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! 50ï¼…çš„å‡ çŽ‡é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:JudgeMan": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÉóÅÐÕß",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å®¡åˆ¤è€…",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:JunkKuriboh": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ !M! ¡£ÏûºÄ¡£",
-		"NAME": "·ÏÆ·Àõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ !M! ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å¢žæ®– !M! ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "åºŸå“æ —å­çƒ",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å¢žæ®– !M! ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:KingYami": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME":"°µÄ§½çµÄ°ÔÍõ",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME":"æš—é­”ç•Œçš„éœ¸çŽ‹",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Kuriboh": {
-		"DESCRIPTION": "ÔöÖ³ !M! ¡£ÕÙ»½ !duelist:SUMM! ¸öÀõ×ÓÇòÑÜÉúÎï¡£ÏûºÄ¡£",
-		"NAME": "Àõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": "ÔöÖ³ !M! ¡£ÕÙ»½ !duelist:SUMM! ¸öÀõ×ÓÇòÑÜÉúÎï¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¢žæ®– !M! ã€‚å¬å”¤ !duelist:SUMM! ä¸ªæ —å­çƒè¡ç”Ÿç‰©ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ —å­çƒ",
+		"UPGRADE_DESCRIPTION": "å¢žæ®– !M! ã€‚å¬å”¤ !duelist:SUMM! ä¸ªæ —å­çƒè¡ç”Ÿç‰©ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:KuribohToken": {
-		"DESCRIPTION": "ÕÙ»½Êý1 NL Ã¿µ±¼ÀÆ·ÖÐÓÐ·ÇÁú×å¹ÖÊÞÊ±£¬»ñµÃÎÞÊµÌå¡£",
-		"NAME": "Àõ×ÓÇòÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý1 NL Ã¿µ±¼ÀÆ·ÖÐÓÐ·ÇÁú×å¹ÖÊÞÊ±£¬»ñµÃÎÞÊµÌå¡£"
+		"DESCRIPTION": "å¬å”¤æ•°1 NL æ¯å½“ç¥­å“ä¸­æœ‰éžé¾™æ—æ€ªå…½æ—¶ï¼ŒèŽ·å¾—æ— å®žä½“ã€‚",
+		"NAME": "æ —å­çƒè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•°1 NL æ¯å½“ç¥­å“ä¸­æœ‰éžé¾™æ—æ€ªå…½æ—¶ï¼ŒèŽ·å¾—æ— å®žä½“ã€‚"
 	},
 	"theDuelist:LabyrinthWall": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÃÔ¹¬Ç½",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è¿·å®«å¢™",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:Lajinn": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "µÆÖ®Ä§¾«",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç¯ä¹‹é­”ç²¾",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:LavaOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÈÛÑÒ³äÄÜÇò¡£",
-		"NAME": "ÈÛÑÒ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÈÛÑÒ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªç†”å²©å……èƒ½çƒã€‚",
+		"NAME": "ç†”å²©",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªç†”å²©å……èƒ½çƒã€‚"
 	},
 	"theDuelist:LegendaryExodia": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Èç¹û¼ÀÆ·ÖÐÓÐÈÎºÎ°¬¿Ë×ôµÏÑÇ²¿¼þ£¬Ôì³É !D! µãÉËº¦¡£ NL Ã¿¶àÏ×¼À1¸ö°¬¿Ë×ôµÏÑÇ²¿¼þ£¬¶îÍâÔì³É10µãÉËº¦¡£",
-		"NAME": "ÕÙ»½Éñ °¬¿Ë×ôµÏÑÇ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Èç¹û¼ÀÆ·ÖÐÓÐÈÎºÎ°¬¿Ë×ôµÏÑÇ²¿¼þ£¬Ôì³É !D! µãÉËº¦¡£ NL Ã¿¶àÏ×¼À1¸ö°¬¿Ë×ôµÏÑÇ²¿¼þ£¬¶îÍâÔì³É10µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¦‚æžœç¥­å“ä¸­æœ‰ä»»ä½•è‰¾å…‹ä½è¿ªäºšéƒ¨ä»¶ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯å¤šçŒ®ç¥­1ä¸ªè‰¾å…‹ä½è¿ªäºšéƒ¨ä»¶ï¼Œé¢å¤–é€ æˆ10ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¬å”¤ç¥ž è‰¾å…‹ä½è¿ªäºš",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¦‚æžœç¥­å“ä¸­æœ‰ä»»ä½•è‰¾å…‹ä½è¿ªäºšéƒ¨ä»¶ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯å¤šçŒ®ç¥­1ä¸ªè‰¾å…‹ä½è¿ªäºšéƒ¨ä»¶ï¼Œé¢å¤–é€ æˆ10ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:LegendaryFisherman": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸öË®ÊôÐÔ³äÄÜÇò¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐ²ÊºçÓã£¬³éÈ¡2Ö»Ë®×å¡£ÏûºÄ¡£",
-		"NAME": "´«ËµµÄÓæÈË",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸öË®ÊôÐÔ³äÄÜÇò¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐ²ÊºçÓã£¬³éÈ¡2Ö»Ë®×å¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ªæ°´å±žæ€§å……èƒ½çƒã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰å½©è™¹é±¼ï¼ŒæŠ½å–2åªæ°´æ—ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ä¼ è¯´çš„æ¸”äºº",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ªæ°´å±žæ€§å……èƒ½çƒã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰å½©è™¹é±¼ï¼ŒæŠ½å–2åªæ°´æ—ã€‚"
 	},
 	"theDuelist:LegendaryFlameLord": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öÈÛÑÒ³äÄÜÇò¡£",
-		"NAME": "´«ËµµÄ±¬Ñ×Ê¹",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸öÈÛÑÒ³äÄÜÇò¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç†”å²©å……èƒ½çƒã€‚",
+		"NAME": "ä¼ è¯´çš„çˆ†ç‚Žä½¿",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç†”å²©å……èƒ½çƒã€‚"
 	},
 	"theDuelist:LesserDragon": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÏÂ¼¶Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ä¸‹çº§é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:LeviaDragon": {
-		"DESCRIPTION": "Ë®×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿µ±1Ö»Ë®×å¹ÖÊÞ×÷Îª¼ÀÆ·£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦£¬½«Á½ÕÅËæ»úË®×å¹ÖÊÞ¼ÓÈë³éÅÆ¶Ñ¡£",
-		"NAME": "º£Áú Ì©´ïÂ·Ë¹",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿µ±1Ö»Ë®×å¹ÖÊÞ×÷Îª¼ÀÆ·£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦£¬½«Á½ÕÅËæ»úË®×å¹ÖÊÞ¼ÓÈë³éÅÆ¶Ñ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯å½“1åªæ°´æ—æ€ªå…½ä½œä¸ºç¥­å“ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ï¼Œå°†ä¸¤å¼ éšæœºæ°´æ—æ€ªå…½åŠ å…¥æŠ½ç‰Œå †ã€‚",
+		"NAME": "æµ·é¾™ æ³°è¾¾è·¯æ–¯",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯å½“1åªæ°´æ—æ€ªå…½ä½œä¸ºç¥­å“ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ï¼Œå°†ä¸¤å¼ éšæœºæ°´æ—æ€ªå…½åŠ å…¥æŠ½ç‰Œå †ã€‚"
 	},
 	"theDuelist:LightOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö¹âÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "¹âÊôÐÔ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö¹âÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªå…‰å±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "Light",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªå…‰å±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:LightningOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÉÁµç³äÄÜÇò¡£",
-		"NAME": "ÉÁµç",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÉÁµç³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé—ªç”µå……èƒ½çƒã€‚",
+		"NAME": "é—ªç”µ",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé—ªç”µå……èƒ½çƒã€‚"
 	},
 	"theDuelist:LordD": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸öÁúÖé³äÄÜÇò¡£",
-		"NAME": "ÁúÖ®Ö§ÅäÕß",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸öÉý¼¶¹ýµÄÁúÖé³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ªé¾™ç å……èƒ½çƒã€‚",
+		"NAME": "é¾™ä¹‹æ”¯é…è€…",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ªå‡çº§è¿‡çš„é¾™ç å……èƒ½çƒã€‚"
 	},
 	"theDuelist:MachineFactory": {
-		"DESCRIPTION": "½«¹ÊÕÏ³äÄÜÇòÌæ»»ËùÓÐµÄ³äÄÜÇò¡£ÏûºÄ¡£",
-		"NAME": "»úÐµ¸ÄÔì¹¤³§",
-		"UPGRADE_DESCRIPTION": "¼¤·¢ËùÓÐµÄ³äÄÜÇò¡£Ã¿¸ö¼¤·¢1¸ö³äÄÜÇò£¬Éú³É1¸ö¹ÊÕÏ³äÄÜÇò¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°†æ•…éšœå……èƒ½çƒæ›¿æ¢æ‰€æœ‰çš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æœºæ¢°æ”¹é€ å·¥åŽ‚",
+		"UPGRADE_DESCRIPTION": "æ¿€å‘æ‰€æœ‰çš„å……èƒ½çƒã€‚æ¯ä¸ªæ¿€å‘1ä¸ªå……èƒ½çƒï¼Œç”Ÿæˆ1ä¸ªæ•…éšœå……èƒ½çƒã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:MachineKing": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸ö¹ÊÕÏ³äÄÜÇò¡£",
-		"NAME": "»úÐµÍõ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸ö¹ÊÕÏ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ªæ•…éšœå……èƒ½çƒã€‚",
+		"NAME": "æœºæ¢°çŽ‹",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ªæ•…éšœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:MachineToken": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý1",
-		"NAME": "»úÐµÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý1"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•°1",
+		"NAME": "æœºæ¢°è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•°1"
 	},
 	"theDuelist:MagicCylinder": {
-		"DESCRIPTION": "»ñµÃ5²ã·´Éä¡£",
-		"NAME": "Ä§·¨Í²",
-		"UPGRADE_DESCRIPTION": "»ñµÃ5²ã·´ÉäºÍËæ»úÔöÒæÐ§¹û¡£"
+		"DESCRIPTION": "èŽ·å¾—5å±‚åå°„ã€‚",
+		"NAME": "é­”æ³•ç­’",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾—5å±‚åå°„å’Œéšæœºå¢žç›Šæ•ˆæžœã€‚"
 	},
 	"theDuelist:MagnetArchetype": {
-		"DESCRIPTION": "½«´ÅÊ¯Õ½Ê¿ÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†ç£çŸ³æˆ˜å£«ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"´ÅÊ¯Õ½Ê¿",
-			"´ÅÊ¯Õ½Ê¿°¢¶û·¨£¬´ÅÊ¯Õ½Ê¿±´Ëþ£¬´ÅÊ¯Õ½Ê¿Ù¤ÂíºÍ´ÅÊ¯Õ½Ê¿ µç´ÅÎäÉñ¡£"
+			"ç£çŸ³æˆ˜å£«",
+			"ç£çŸ³æˆ˜å£«é˜¿å°”æ³•ï¼Œç£çŸ³æˆ˜å£«è´å¡”ï¼Œç£çŸ³æˆ˜å£«ä¼½é©¬å’Œç£çŸ³æˆ˜å£« ç”µç£æ­¦ç¥žã€‚"
 		],
-		"NAME": "´ÅÊ¯Õ½Ê¿"
+		"NAME": "ç£çŸ³æˆ˜å£«"
 	},
 	"theDuelist:ManEaterBug": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷ÎªÀ¥³æ×å¼ÀÆ·£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£",
-		"NAME": "Ê³ÈË³æ",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÎªÀ¥³æ×å¼ÀÆ·£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºæ˜†è™«æ—ç¥­å“ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é£Ÿäººè™«",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœä¸ºæ˜†è™«æ—ç¥­å“ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:MangaRyuRan": {
-		"DESCRIPTION": "¿¨Í¨ Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£",
-		"NAME": "¿¨Í¨µ°Áú",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£"
+		"DESCRIPTION": "å¡é€š é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚",
+		"NAME": "å¡é€šè›‹é¾™",
+		"UPGRADE_DESCRIPTION": "å¡é€š é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚"
 	},
 	"theDuelist:Mathematician": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !X! NL µãÉËº¦¡£ÏûºÄ¡£",
-		"NAME": "ÊýÑ§¼Ò",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !X! NL µãÉËº¦¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !X! NL ç‚¹ä¼¤å®³ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ•°å­¦å®¶",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !X! NL ç‚¹ä¼¤å®³ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:Mausoleum": {
-		"DESCRIPTION": "Ã¿»ØºÏ´ò³öµÄµÚ1ÕÅÏûºÄ¼ÀÆ·µÄÅÆ²»ÐèÒª¼ÀÆ·¡£Ã¿»ØºÏÊ§È¥1ÉúÃü¡£",
-		"NAME": "ËÀ»ÊµÛÖ®ÁêÄ¹",
-		"UPGRADE_DESCRIPTION": "Ã¿»ØºÏ´ò³öµÄµÚ1ÕÅÏûºÄ¼ÀÆ·µÄÅÆ²»ÐèÒª¼ÀÆ·¡£Ã¿»ØºÏÊ§È¥1ÉúÃü¡£"
+		"DESCRIPTION": "æ¯å›žåˆæ‰“å‡ºçš„ç¬¬1å¼ æ¶ˆè€—ç¥­å“çš„ç‰Œä¸éœ€è¦ç¥­å“ã€‚æ¯å›žåˆå¤±åŽ»1ç”Ÿå‘½ã€‚",
+		"NAME": "æ­»çš‡å¸ä¹‹é™µå¢“",
+		"UPGRADE_DESCRIPTION": "æ¯å›žåˆæ‰“å‡ºçš„ç¬¬1å¼ æ¶ˆè€—ç¥­å“çš„ç‰Œä¸éœ€è¦ç¥­å“ã€‚æ¯å›žåˆå¤±åŽ»1ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:MetalDragon": {
-		"DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ²ã½ðÊô»¯¡£ÏûºÄ¡£",
-		"NAME": "½ðÊôÁú",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ²ã½ðÊô»¯¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! å±‚é‡‘å±žåŒ–ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "é‡‘å±žé¾™",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! å±‚é‡‘å±žåŒ–ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:MetalOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö½ðÊô³äÄÜÇò¡£",
-		"NAME": "½ðÊô",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö½ðÊô³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé‡‘å±žå……èƒ½çƒã€‚",
+		"NAME": "é‡‘å±ž",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé‡‘å±žå……èƒ½çƒã€‚"
 	},
 	"theDuelist:MillenniumOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÇ§Äê³äÄÜÇò¡£",
-		"NAME": "Ç§Äê",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÇ§Äê³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªåƒå¹´å……èƒ½çƒã€‚",
+		"NAME": "åƒå¹´",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªåƒå¹´å……èƒ½çƒã€‚"
 	},
 	"theDuelist:MillenniumShield": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ4µãÃô½Ý¡£ÏûºÄ¡£",
-		"NAME": "Ç§Äê¶Ü",
-		"UPGRADE_DESCRIPTION": " ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ4µãÃô½Ý¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾—4ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "åƒå¹´ç›¾",
+		"UPGRADE_DESCRIPTION": " ç¥­å“æ•° !duelist:TRIB! èŽ·å¾—4ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:MindAir": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! ¿ÕÆø³äÄÜÇò×ÜÄÜÉú³É1¸ö³äÄÜÇò¡£",
-		"NAME": "±¾ÐÔ¿ÕÆø",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! ¿ÕÆø³äÄÜÇò×ÜÄÜÉú³É1¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç©ºæ°”å……èƒ½çƒæ€»èƒ½ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "æœ¬æ€§ç©ºæ°”",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ç©ºæ°”å……èƒ½çƒæ€»èƒ½ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:MiniPolymerization": {
-		"DESCRIPTION": "Ñ¡Ôñ1¸öµÐÈË£¬´ÓÊÖÅÆÖÐ¸´ÖÆ²¢ÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ¡£",
-		"NAME": "ÃÔÄãÈÚºÏ",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ1¸öµÐÈË£¬´ÓÊÖÅÆÖÐ¸´ÖÆ²¢ÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ¡£¿ÉÒÔÑ¡Ôñ¹ÌÊØ¹ÖÊÞ¡£"
+		"DESCRIPTION": "é€‰æ‹©1ä¸ªæ•Œäººï¼Œä»Žæ‰‹ç‰Œä¸­å¤åˆ¶å¹¶ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½ã€‚",
+		"NAME": "è¿·ä½ èžåˆ",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©1ä¸ªæ•Œäººï¼Œä»Žæ‰‹ç‰Œä¸­å¤åˆ¶å¹¶ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½ã€‚å¯ä»¥é€‰æ‹©å›ºå®ˆæ€ªå…½ã€‚"
 	},
 	"theDuelist:MirrorForce": {
-		"DESCRIPTION": "ÏÂ´ÎÊÜµ½¹¥»÷Ê±£¬¶ÔËùÓÐµÐÈËÔì³ÉµÈ±¶ÉËº¦¡£",
-		"NAME": "ÉñÊ¥·À»¤ÕÖ ·´Éä¾µÁ¦",
-		"UPGRADE_DESCRIPTION": "ÏÂ´ÎÊÜµ½¹¥»÷Ê±£¬¶ÔËùÓÐµÐÈËÔì³ÉË«±¶ÉËº¦¡£"
+		"DESCRIPTION": "ä¸‹æ¬¡å—åˆ°æ”»å‡»æ—¶ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆç­‰å€ä¼¤å®³ã€‚",
+		"NAME": "ç¥žåœ£é˜²æŠ¤ç½© åå°„é•œåŠ›",
+		"UPGRADE_DESCRIPTION": "ä¸‹æ¬¡å—åˆ°æ”»å‡»æ—¶ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆåŒå€ä¼¤å®³ã€‚"
 	},
 	"theDuelist:MistOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÏ¼Îí³äÄÜÇò¡£",
-		"NAME": "Ï¼Îí",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÏ¼Îí³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªéœžé›¾å……èƒ½çƒã€‚",
+		"NAME": "éœžé›¾",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªéœžé›¾å……èƒ½çƒã€‚"
 	},
 	"theDuelist:MoltenZombie": {
-		"DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ÌØÊâÕÙ»½£º¶ÔËùÓÐµÐÈËÔì³É15µãÉËº¦¡£",
-		"NAME": "×ÆÈÈ½©Ê¬",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ÌØÊâÕÙ»½£º¶ÔËùÓÐµÐÈËÔì³É20µãÉËº¦¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç‰¹æ®Šå¬å”¤ï¼šå¯¹æ‰€æœ‰æ•Œäººé€ æˆ15ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç¼çƒ­åƒµå°¸",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç‰¹æ®Šå¬å”¤ï¼šå¯¹æ‰€æœ‰æ•Œäººé€ æˆ20ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:MonsterEgg": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ¶ÔÄ¿±êµÐÈËÖÆÔì1¸öËæ»ú¹ÖÊÞ²¢ÌØÊâÕÙ»½¡£",
-		"NAME": "¹ÖÊÞµ°",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ¶ÔÄ¿±êµÐÈËÖÆÔì1¸öËæ»úÉý¼¶¹ýµÄ¹ÖÊÞ²¢ÌØÊâÕÙ»½¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¯¹ç›®æ ‡æ•Œäººåˆ¶é€ 1ä¸ªéšæœºæ€ªå…½å¹¶ç‰¹æ®Šå¬å”¤ã€‚",
+		"NAME": "æ€ªå…½è›‹",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¯¹ç›®æ ‡æ•Œäººåˆ¶é€ 1ä¸ªéšæœºå‡çº§è¿‡çš„æ€ªå…½å¹¶ç‰¹æ®Šå¬å”¤ã€‚"
 	},
 	"theDuelist:MonsterOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö¹ÖÊÞÖé³äÄÜÇò¡£",
-		"NAME": "¹ÖÊÞ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö¹ÖÊÞÖé³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ€ªå…½ç å……èƒ½çƒã€‚",
+		"NAME": "æ€ªå…½ç ",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ€ªå…½ç å……èƒ½çƒã€‚"
 	},
 	"theDuelist:MonsterReborn": {
-		"DESCRIPTION": "´ÓÆúÅÆ¶ÑÖÐÑ¡Ôñ !M! ÕÅ¹ÖÊÞÌØÊâÕÙ»½¡£ÏûºÄ¡£",
-		"NAME": "ËÀÕßËÕÉú",
-		"UPGRADE_DESCRIPTION": "´ÓÆúÅÆ¶ÑÖÐÑ¡Ôñ !M! ÕÅ¹ÖÊÞÉý¼¶²¢ÌØÊâÕÙ»½¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ä»Žå¼ƒç‰Œå †ä¸­é€‰æ‹© !M! å¼ æ€ªå…½ç‰¹æ®Šå¬å”¤ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ­»è€…è‹ç”Ÿ",
+		"UPGRADE_DESCRIPTION": "ä»Žå¼ƒç‰Œå †ä¸­é€‰æ‹© !M! å¼ æ€ªå…½å‡çº§å¹¶ç‰¹æ®Šå¬å”¤ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:MotherSpider": {
-		"DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! ¸øÓè !M! ²ãÖÐ¶¾¡£",
-		"NAME": "ÖëÄ¸Ö©Öë",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£¼ÀÆ·Êý !duelist:TRIB! ¸øÓè !M! ²ãÖÐ¶¾¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚",
+		"NAME": "è››æ¯èœ˜è››",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚"
 	},
 	"theDuelist:Mountain": {
-		"DESCRIPTION": "Áú×å¹ÖÊÞÔì³ÉÉËº¦Ìá¸ß50£¥£¬²¢¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£ NL Ã¿µ±Áú×å¹ÖÊÞ×÷Îª¼ÀÆ·¶ø»ñµÃÁ¦Á¿Ê±£¬¶îÍâ»ñµÃ1µãÁ¦Á¿¡£",
-		"NAME": "É½",
-		"UPGRADE_DESCRIPTION": "Áú×å¹ÖÊÞÔì³ÉÉËº¦Ìá¸ß50£¥£¬²¢¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£ NL Ã¿µ±Áú×å¹ÖÊÞ×÷Îª¼ÀÆ·¶ø»ñµÃÁ¦Á¿Ê±£¬¶îÍâ»ñµÃ1µãÁ¦Á¿¡£"
+		"DESCRIPTION": "é¾™æ—æ€ªå…½é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œå¹¶é¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚ NL æ¯å½“é¾™æ—æ€ªå…½ä½œä¸ºç¥­å“è€ŒèŽ·å¾—åŠ›é‡æ—¶ï¼Œé¢å¤–èŽ·å¾—1ç‚¹åŠ›é‡ã€‚",
+		"NAME": "å±±",
+		"UPGRADE_DESCRIPTION": "é¾™æ—æ€ªå…½é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œå¹¶é¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚ NL æ¯å½“é¾™æ—æ€ªå…½ä½œä¸ºç¥­å“è€ŒèŽ·å¾—åŠ›é‡æ—¶ï¼Œé¢å¤–èŽ·å¾—1ç‚¹åŠ›é‡ã€‚"
 	},
 	"theDuelist:MsJudge": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ±¾³¡Õ½¶·Ã¿´ò³ö¹ý1ÕÅÏÝÚå¿¨£¬¶îÍâ»ñµÃ !M! µã¸ñµ²¡£",
-		"NAME": "ÉóÅÐÅ®Ê¿",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ±¾³¡Õ½¶·Ã¿´ò³ö¹ý1ÕÅÏÝÚå¿¨£¬¶îÍâ»ñµÃ !M! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æœ¬åœºæˆ˜æ–—æ¯æ‰“å‡ºè¿‡1å¼ é™·é˜±å¡ï¼Œé¢å¤–èŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å®¡åˆ¤å¥³å£«",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æœ¬åœºæˆ˜æ–—æ¯æ‰“å‡ºè¿‡1å¼ é™·é˜±å¡ï¼Œé¢å¤–èŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:MudOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÄà½¬³äÄÜÇò¡£",
-		"NAME": "Äà½¬",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÄà½¬³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ³¥æµ†å……èƒ½çƒã€‚",
+		"NAME": "æ³¥æµ†",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ³¥æµ†å……èƒ½çƒã€‚"
 	},
 	"theDuelist:MysticalElf": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ê¥¾«Áé",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "åœ£ç²¾çµ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:MythicalBeast": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦£¬±¾³¡Õ½¶·Ã¿´ò³ö¹ý1ÕÅÄ§·¨¿¨£¬¶îÍâÔì³É !M! µãÉËº¦¡£",
-		"NAME": "Ä§µ¼ÊÞ ¿Ì¶ú°ØÂåË¹",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦£¬±¾³¡Õ½¶·Ã¿´ò³ö¹ý1ÕÅÄ§·¨¿¨£¬¶îÍâÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œæœ¬åœºæˆ˜æ–—æ¯æ‰“å‡ºè¿‡1å¼ é­”æ³•å¡ï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é­”å¯¼å…½ åˆ»è€³æŸæ´›æ–¯",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œæœ¬åœºæˆ˜æ–—æ¯æ‰“å‡ºè¿‡1å¼ é­”æ³•å¡ï¼Œé¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:NatureArchetype": {
-		"DESCRIPTION": "½«À¥³æ×å£¬Ö²Îï×åºÍ²¶Ê³Ö²ÎïÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†æ˜†è™«æ—ï¼Œæ¤ç‰©æ—å’Œæ•é£Ÿæ¤ç‰©ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"×ÔÈ»",
-			"ËùÓÐÀ¥³æ×å£¬Ö²Îï×åºÍ²¶Ê³Ö²Îï¹ÖÊÞ£»Ä§·¨¿¨°üÀ¨½ø»¯Ö®¼ë£¬³¬ÓªÑøÌ«Ñô£¬²¶Ê³»¨Åè£¬²¶Ê³¼Þ½ÓºÍ×ÏË®¾§¡£"
+			"è‡ªç„¶",
+			"æ‰€æœ‰æ˜†è™«æ—ï¼Œæ¤ç‰©æ—å’Œæ•é£Ÿæ¤ç‰©æ€ªå…½ï¼›é­”æ³•å¡åŒ…æ‹¬è¿›åŒ–ä¹‹èŒ§ï¼Œè¶…è¥å…»å¤ªé˜³ï¼Œæ•é£ŸèŠ±ç›†ï¼Œæ•é£Ÿå«æŽ¥å’Œç´«æ°´æ™¶ã€‚"
 		],
-		"NAME": "×ÔÈ»"
+		"NAME": "è‡ªç„¶"
 	},
 	"theDuelist:NaturiaBeast": {
-		"DESCRIPTION": "×ÔÈ» ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«ÕâÕÅÅÆ¸´ÖÆ !M! ÕÅµ½³éÅÆ¶ÑÖÐ²¢Ï´ÅÆ¡£",
-		"NAME": "×ÔÈ»ÊÞ",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«ÕâÕÅÅÆ¸´ÖÆ !M! ÕÅµ½³éÅÆ¶ÑÖÐ²¢Ï´ÅÆ¡£"
+		"DESCRIPTION": "è‡ªç„¶ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†è¿™å¼ ç‰Œå¤åˆ¶ !M! å¼ åˆ°æŠ½ç‰Œå †ä¸­å¹¶æ´—ç‰Œã€‚",
+		"NAME": "è‡ªç„¶å…½",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†è¿™å¼ ç‰Œå¤åˆ¶ !M! å¼ åˆ°æŠ½ç‰Œå †ä¸­å¹¶æ´—ç‰Œã€‚"
 	},
 	"theDuelist:NaturiaCliff": {
-		"DESCRIPTION": "×ÔÈ» ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "×ÔÈ»±Ú",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "è‡ªç„¶ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è‡ªç„¶å£",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:NaturiaDragonfly": {
-		"DESCRIPTION": "×ÔÈ» À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôì³É !D! µãÉËº¦¡£ NL ½«ÕâÕÅÅÆµÄ1ÕÅ¸´ÖÆÆ·¼ÓÈëµ½³éÅÆ¶ÑÖÐ¡£",
-		"NAME": "×ÔÈ»òßòÑ",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôì³É !D! µãÉËº¦¡£ NL ½«ÕâÕÅÅÆµÄ1ÕÅ¸´ÖÆÆ·¼ÓÈëµ½³éÅÆ¶ÑÖÐ¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†è¿™å¼ ç‰Œçš„1å¼ å¤åˆ¶å“åŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­ã€‚",
+		"NAME": "è‡ªç„¶èœ»èœ“",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†è¿™å¼ ç‰Œçš„1å¼ å¤åˆ¶å“åŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­ã€‚"
 	},
 	"theDuelist:NaturiaGuardian": {
-		"DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½« !M! ÕÅ×ÔÈ»»Æ·äÕë¼ÓÈëµ½³éÅÆ¶ÑÖÐ²¢Ï´ÅÆ¡£",
-		"NAME": "×ÔÈ»ÊØ»¤Õß",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½« !M! ÕÅ×ÔÈ»»Æ·äÕë¼ÓÈëµ½³éÅÆ¶ÑÖÐ²¢Ï´ÅÆ¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°† !M! å¼ è‡ªç„¶é»„èœ‚é’ˆåŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­å¹¶æ´—ç‰Œã€‚",
+		"NAME": "è‡ªç„¶å®ˆæŠ¤è€…",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°† !M! å¼ è‡ªç„¶é»„èœ‚é’ˆåŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­å¹¶æ´—ç‰Œã€‚"
 	},
 	"theDuelist:NaturiaHorneedle": {
-		"DESCRIPTION": "×ÔÈ» À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "×ÔÈ»»Æ·äÕë",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è‡ªç„¶é»„èœ‚é’ˆ",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:NaturiaLandoise": {
-		"DESCRIPTION": "×ÔÈ» ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«Ò»¸öËæ»úµÄ×ÔÈ»¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "×ÔÈ»µØ¹ê",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«Ò»¸öËæ»úµÄ×ÔÈ»¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "è‡ªç„¶ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†ä¸€ä¸ªéšæœºçš„è‡ªç„¶æ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "è‡ªç„¶åœ°é¾Ÿ",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†ä¸€ä¸ªéšæœºçš„è‡ªç„¶æ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:NaturiaMantis": {
-		"DESCRIPTION": "×ÔÈ» À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ½«ÕâÕÅÅÆµÄ1ÕÅ¸´ÖÆÆ·¼ÓÈëµ½³éÅÆ¶ÑÖÐ¡£",
-		"NAME": "×ÔÈ»ó«òë",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ½«ÕâÕÅÅÆµÄ1ÕÅ¸´ÖÆÆ·¼ÓÈëµ½³éÅÆ¶ÑÖÐ¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†è¿™å¼ ç‰Œçš„1å¼ å¤åˆ¶å“åŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­ã€‚",
+		"NAME": "è‡ªç„¶èž³èž‚",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†è¿™å¼ ç‰Œçš„1å¼ å¤åˆ¶å“åŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­ã€‚"
 	},
 	"theDuelist:NaturiaPineapple": {
-		"DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "×ÔÈ»²¤ÂÜ",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è‡ªç„¶è è",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:NaturiaPumpkin": {
-		"DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ´ÓÊÖÅÆÖÐÌØÊâÕÙ»½1¸öËæ»úµÄ×ÔÈ»¹ÖÊÞ¡£",
-		"NAME": "×ÔÈ»ÄÏ¹Ï",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ´ÓÊÖÅÆÖÐÌØÊâÕÙ»½Ëæ»ú×ÔÈ»¹ÖÊÞ²¢Éý¼¶¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ä»Žæ‰‹ç‰Œä¸­ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºçš„è‡ªç„¶æ€ªå…½ã€‚",
+		"NAME": "è‡ªç„¶å—ç“œ",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ä»Žæ‰‹ç‰Œä¸­ç‰¹æ®Šå¬å”¤éšæœºè‡ªç„¶æ€ªå…½å¹¶å‡çº§ã€‚"
 	},
 	"theDuelist:NaturiaRosewhip": {
-		"DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ½«ÕâÕÅÅÆµÄ1ÕÅ¸´ÖÆÆ·¼ÓÈëµ½³éÅÆ¶ÑÖÐ¡£",
-		"NAME": "×ÔÈ»Ç¾Þ±±Þ",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ½«ÕâÕÅÅÆµÄ1ÕÅ¸´ÖÆÆ·¼ÓÈëµ½³éÅÆ¶ÑÖÐ¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†è¿™å¼ ç‰Œçš„1å¼ å¤åˆ¶å“åŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­ã€‚",
+		"NAME": "è‡ªç„¶è”·è–‡éž­",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†è¿™å¼ ç‰Œçš„1å¼ å¤åˆ¶å“åŠ å…¥åˆ°æŠ½ç‰Œå †ä¸­ã€‚"
 	},
 	"theDuelist:NaturiaSacredTree": {
-		"DESCRIPTION": "×ÔÈ»¹ÖÊÞÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£",
-		"NAME": "×ÔÈ»µÄÉñÐÇÊ÷",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£×ÔÈ»¹ÖÊÞÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£"
+		"DESCRIPTION": "è‡ªç„¶æ€ªå…½é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚",
+		"NAME": "è‡ªç„¶çš„ç¥žæ˜Ÿæ ‘",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚è‡ªç„¶æ€ªå…½é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:NaturiaStrawberry": {
-		"DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "×ÔÈ»²ÝÝ®",
-		"UPGRADE_DESCRIPTION": "×ÔÈ» Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è‡ªç„¶è‰èŽ“",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶ æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:NeoMagic": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Ä§·¨½£Ê¿ Äá°Â",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é­”æ³•å‰‘å£« å°¼å¥¥",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:NutrientZ": {
-		"DESCRIPTION": "Èç¹ûÉúÃüµÍÓÚ30£¬»Ø¸´ !M! ÉúÃü£¬»ñµÃ3¸öËæ»ú¸ºÃæÐ§¹û¡£ÏûºÄ¡£",
-		"NAME": "ÌåÁ¦ÔöÇ¿¼Á ³¬ÖØZ",
-		"UPGRADE_DESCRIPTION": "Èç¹ûÉúÃüµÍÓÚ30£¬»Ø¸´ !M! ÉúÃü£¬»ñµÃ3¸öËæ»ú¸ºÃæÐ§¹û¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¦‚æžœç”Ÿå‘½ä½ŽäºŽ30ï¼Œå›žå¤ !M! ç”Ÿå‘½ï¼ŒèŽ·å¾—3ä¸ªéšæœºè´Ÿé¢æ•ˆæžœã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ä½“åŠ›å¢žå¼ºå‰‚ è¶…é‡Z",
+		"UPGRADE_DESCRIPTION": "å¦‚æžœç”Ÿå‘½ä½ŽäºŽ30ï¼Œå›žå¤ !M! ç”Ÿå‘½ï¼ŒèŽ·å¾—3ä¸ªéšæœºè´Ÿé¢æ•ˆæžœã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:ObeliskTormentor": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿´Î¼ÀÆ·Ê±£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£",
-		"NAME": "Å·±´ÀûË¹¿ËÖ®¾ÞÉñ±ø",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿´Î¼ÀÆ·Ê±£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯æ¬¡ç¥­å“æ—¶ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ¬§è´åˆ©æ–¯å…‹ä¹‹å·¨ç¥žå…µ",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯æ¬¡ç¥­å“æ—¶ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:OceanDragonLord": {
-		"DESCRIPTION": "Ë®×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö·É½¦³äÄÜÇò¡£",
-		"NAME": "º£ÁúÉñ Äá°ÂÌ©´ïÂ·Ë¹",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö·É½¦³äÄÜÇò¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªé£žæº…å……èƒ½çƒã€‚",
+		"NAME": "æµ·é¾™ç¥ž å°¼å¥¥æ³°è¾¾è·¯æ–¯",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªé£žæº…å……èƒ½çƒã€‚"
 	},
 	"theDuelist:OhFish": {
-		"DESCRIPTION": "½« !M! ÕÅËæ»úË®×åÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "´ó³ÔÓã¾ª£¡",
-		"UPGRADE_DESCRIPTION": "½« !M! ÕÅËæ»úË®×åÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "å°† !M! å¼ éšæœºæ°´æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¤§åƒé±¼æƒŠï¼",
+		"UPGRADE_DESCRIPTION": "å°† !M! å¼ éšæœºæ°´æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:OjamaArchetype": {
-		"DESCRIPTION": "½«ÈÅÂÒÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†æ‰°ä¹±ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"ÈÅÂÒ",
-			"ËùÓÐ5ÖÖÈÅÂÒ¹ÖÊÞ£¬ÈÅÂÒÄ§ÊõºÍÈÅÂÒ¼¡Èâ¡£"
+			"æ‰°ä¹±",
+			"æ‰€æœ‰5ç§æ‰°ä¹±æ€ªå…½ï¼Œæ‰°ä¹±é­”æœ¯å’Œæ‰°ä¹±è‚Œè‚‰ã€‚"
 		],
-		"NAME": "ÈÅÂÒ"
+		"NAME": "æ‰°ä¹±"
 	},
 	"theDuelist:OjamaBlack": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Éú1¸ö°µÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "ÈÅÂÒ ºÚ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Éú³É1¸ö°µÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! ç”Ÿ1ä¸ªæš—å±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "æ‰°ä¹± é»‘",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªæš—å±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:OjamaBlue": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ¸øÓèËæ»ú !M! ¸ö¸ºÃæÐ§¹û¡£Éú³É1¸öÔöÒæÊ¿³äÄÜÇò¡£",
-		"NAME": "ÈÅÂÒ À¶",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ¸øÓèËæ»ú !M! ¸ö¸ºÃæÐ§¹û¡£Éú³É1¸öÔöÒæÊ¿³äÄÜÇò¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ç»™äºˆéšæœº !M! ä¸ªè´Ÿé¢æ•ˆæžœã€‚ç”Ÿæˆ1ä¸ªå¢žç›Šå£«å……èƒ½çƒã€‚",
+		"NAME": "æ‰°ä¹± è“",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ç»™äºˆéšæœº !M! ä¸ªè´Ÿé¢æ•ˆæžœã€‚ç”Ÿæˆ1ä¸ªå¢žç›Šå£«å……èƒ½çƒã€‚"
 	},
 	"theDuelist:OjamaCountry": {
-		"DESCRIPTION": "Ôö¼Ó !M! ÕÅËæ»úÅÆµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒÖ®Ïç",
-		"UPGRADE_DESCRIPTION": "Ôö¼Ó !M! ÕÅËæ»úÅÆµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "å¢žåŠ  !M! å¼ éšæœºç‰Œåˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹±ä¹‹ä¹¡",
+		"UPGRADE_DESCRIPTION": "å¢žåŠ  !M! å¼ éšæœºç‰Œåˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:OjamaDeltaHurricane": {
-		"DESCRIPTION": "Éú³É1¸ö°µÊôÐÔ³äÄÜÇò£¬µØÊôÐÔ³äÄÜÇòºÍÄà½¬³äÄÜÇò¡£",
-		"NAME": "ÈÅÂÒÈý½Çì«·ç",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Éú³É1¸ö°µÊôÐÔ³äÄÜÇò£¬µØÊôÐÔ³äÄÜÇòºÍÄà½¬³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæš—å±žæ€§å……èƒ½çƒï¼Œåœ°å±žæ€§å……èƒ½çƒå’Œæ³¥æµ†å……èƒ½çƒã€‚",
+		"NAME": "æ‰°ä¹±ä¸‰è§’é£“é£Ž",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚ç”Ÿæˆ1ä¸ªæš—å±žæ€§å……èƒ½çƒï¼Œåœ°å±žæ€§å……èƒ½çƒå’Œæ³¥æµ†å……èƒ½çƒã€‚"
 	},
 	"theDuelist:OjamaDuo": {
-		"DESCRIPTION": "Ëæ»ú½«ÈÅÂÒ ºìºÍÈÅÂÒ À¶µÄ¸´ÖÆÆ·Ôö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒ¶þÈË×é",
-		"UPGRADE_DESCRIPTION": "Ëæ»ú½«ÈÅÂÒ ºìºÍÈÅÂÒ À¶µÄ¸´ÖÆÆ·Ôö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "éšæœºå°†æ‰°ä¹± çº¢å’Œæ‰°ä¹± è“çš„å¤åˆ¶å“å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹±äºŒäººç»„",
+		"UPGRADE_DESCRIPTION": "éšæœºå°†æ‰°ä¹± çº¢å’Œæ‰°ä¹± è“çš„å¤åˆ¶å“å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:OjamaEmperor": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÈÅÂÒ¿ñ »Ø¸´ !M! ÉúÃü¡£Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒ»ÊµÛ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÈÅÂÒ¿ñ »Ø¸´ !M! ÉúÃü¡£Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ‰°ä¹±ç‹‚ å›žå¤ !M! ç”Ÿå‘½ã€‚ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹±çš‡å¸",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ‰°ä¹±ç‹‚ å›žå¤ !M! ç”Ÿå‘½ã€‚ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:OjamaGreen": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒ ÂÌ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹± ç»¿",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:OjamaKing": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÈÅÂÒ¿ñ¡£",
-		"NAME": "ÈÅÂÒÍõ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÈÅÂÒ¿ñ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ‰°ä¹±ç‹‚ã€‚",
+		"NAME": "æ‰°ä¹±çŽ‹",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ‰°ä¹±ç‹‚ã€‚"
 	},
 	"theDuelist:OjamaKnight": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ1²ãËæ»úÔöÒæÐ§¹û¡£ÖØÖÃÏÂ¸ö³äÄÜÇò¡£",
-		"NAME": "ÈÅÂÒÆïÊ¿",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ1²ãËæ»úÔöÒæÐ§¹û¡£ÖØÖÃÏÂ¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾—1å±‚éšæœºå¢žç›Šæ•ˆæžœã€‚é‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "æ‰°ä¹±éª‘å£«",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾—1å±‚éšæœºå¢žç›Šæ•ˆæžœã€‚é‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:OjamaPajama": {
-		"DESCRIPTION": "Ëæ»úÌáÉýËùÓÐÅÆÉÏµÄÊý×Ö¡£",
-		"NAME": "ÈÅÂÒµ·ÂÒ",
-		"UPGRADE_DESCRIPTION": "Ëæ»úÌáÉýËùÓÐÅÆÉÏµÄÊý×Ö¡£"
+		"DESCRIPTION": "éšæœºæå‡æ‰€æœ‰ç‰Œä¸Šçš„æ•°å­—ã€‚",
+		"NAME": "æ‰°ä¹±æ£ä¹±",
+		"UPGRADE_DESCRIPTION": "éšæœºæå‡æ‰€æœ‰ç‰Œä¸Šçš„æ•°å­—ã€‚"
 	},
 	"theDuelist:OjamaRed": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! ¸öËæ»úÔöÒæÐ§¹û¡£Éú³É1¸ö°µÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "ÈÅÂÒ ºì",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! ¸öËæ»úÔöÒæÐ§¹û¡£Éú³É1¸ö°µÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚ç”Ÿæˆ1ä¸ªæš—å±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "æ‰°ä¹± çº¢",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚ç”Ÿæˆ1ä¸ªæš—å±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:OjamaTrio": {
-		"DESCRIPTION": "½«ÈÅÂÒ ºÚ£¬ÈÅÂÒ »ÆºÍÈÅÂÒ ÂÌÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "ÈÅÂÒÈýÈË×é",
-		"UPGRADE_DESCRIPTION": "½«ÈÅÂÒ ºÚ£¬ÈÅÂÒ »ÆºÍÈÅÂÒ ÂÌÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°†æ‰°ä¹± é»‘ï¼Œæ‰°ä¹± é»„å’Œæ‰°ä¹± ç»¿å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "æ‰°ä¹±ä¸‰äººç»„",
+		"UPGRADE_DESCRIPTION": "å°†æ‰°ä¹± é»‘ï¼Œæ‰°ä¹± é»„å’Œæ‰°ä¹± ç»¿å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:OjamaYellow": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ½« !M! ÕÅËæ»ú¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒ »Æ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ½« !M! ÕÅËæ»ú¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å°† !M! å¼ éšæœºæ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹± é»„",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å°† !M! å¼ éšæœºæ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:Ojamagic": {
-		"DESCRIPTION": "Ëæ»ú£¨1-4£©ÕÅµÄºìÉ«Ò©¼Á¼ÓÈë³éÅÆ¶Ñ²¢Ï´ÅÆ¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒÄ§Êõ",
-		"UPGRADE_DESCRIPTION": "Ëæ»ú£¨1-4£©ÕÅµÄÉý¼¶¹ýµÄºìÉ«Ò©¼Á¼ÓÈë³éÅÆ¶Ñ²¢Ï´ÅÆ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "éšæœºï¼ˆ1-4ï¼‰å¼ çš„çº¢è‰²è¯å‰‚åŠ å…¥æŠ½ç‰Œå †å¹¶æ´—ç‰Œã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹±é­”æœ¯",
+		"UPGRADE_DESCRIPTION": "éšæœºï¼ˆ1-4ï¼‰å¼ çš„å‡çº§è¿‡çš„çº¢è‰²è¯å‰‚åŠ å…¥æŠ½ç‰Œå †å¹¶æ´—ç‰Œã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:Ojamassimilation": {
-		"DESCRIPTION": "ÏûºÄËùÓÐÄ§·¨¿¨¡£Ã¿ÏûºÄ1ÕÅÄ§·¨¿¨£¬½«Ëæ»úµÄÈÅÂÒÅÆÔö¼Óµ½³éÅÆ¶ÑÖÐ²¢ÓÐÐ¡¼¸ÂÊ»ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£",
-		"NAME": "ÈÅÂÒ»¯",
-		"UPGRADE_DESCRIPTION": "ÏûºÄËùÓÐÄ§·¨¿¨¡£Ã¿ÏûºÄ1ÕÅÄ§·¨¿¨£¬½«Ëæ»úÉý¼¶¹ýµÄÈÅÂÒÅÆÔö¼Óµ½³éÅÆ¶ÑÖÐ²¢ÓÐÐ¡¼¸ÂÊ»ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£"
+		"DESCRIPTION": "æ¶ˆè€—æ‰€æœ‰é­”æ³•å¡ã€‚æ¯æ¶ˆè€—1å¼ é­”æ³•å¡ï¼Œå°†éšæœºçš„æ‰°ä¹±ç‰Œå¢žåŠ åˆ°æŠ½ç‰Œå †ä¸­å¹¶æœ‰å°å‡ çŽ‡èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚",
+		"NAME": "æ‰°ä¹±åŒ–",
+		"UPGRADE_DESCRIPTION": "æ¶ˆè€—æ‰€æœ‰é­”æ³•å¡ã€‚æ¯æ¶ˆè€—1å¼ é­”æ³•å¡ï¼Œå°†éšæœºå‡çº§è¿‡çš„æ‰°ä¹±ç‰Œå¢žåŠ åˆ°æŠ½ç‰Œå †ä¸­å¹¶æœ‰å°å‡ çŽ‡èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚"
 	},
 	"theDuelist:Ojamatch": {
-		"DESCRIPTION": "ÖØÖÃÏÂ¸ö³äÄÜÇòX´Î¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒÅä",
-		"UPGRADE_DESCRIPTION": "ÖØÖÃÏÂ¸ö³äÄÜÇòX´Î¡£"
+		"DESCRIPTION": "é‡ç½®ä¸‹ä¸ªå……èƒ½çƒXæ¬¡ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹±é…",
+		"UPGRADE_DESCRIPTION": "é‡ç½®ä¸‹ä¸ªå……èƒ½çƒXæ¬¡ã€‚"
 	},
 	"theDuelist:Ojamuscle": {
-		"DESCRIPTION": "Ëæ»ú£¨1-3£©ÕÅÈÅÂÒ »Æ¼ÓÈë³éÅÆ¶Ñ²¢Ï´ÅÆ¡£ÏûºÄ¡£",
-		"NAME": "ÈÅÂÒ¼¡Èâ",
-		"UPGRADE_DESCRIPTION": "Ëæ»ú£¨1-3£©ÕÅÈÅÂÒ »Æ¼ÓÈë³éÅÆ¶ÑÏ´ÅÆ²¢Éý¼¶¡£ÏûºÄ¡£"
+		"DESCRIPTION": "éšæœºï¼ˆ1-3ï¼‰å¼ æ‰°ä¹± é»„åŠ å…¥æŠ½ç‰Œå †å¹¶æ´—ç‰Œã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰°ä¹±è‚Œè‚‰",
+		"UPGRADE_DESCRIPTION": "éšæœºï¼ˆ1-3ï¼‰å¼ æ‰°ä¹± é»„åŠ å…¥æŠ½ç‰Œå †æ´—ç‰Œå¹¶å‡çº§ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:Ookazi": {
-		"DESCRIPTION": "Ôì³ÉËæ»ú£¨5-9£©µãÉËº¦¡£",
-		"NAME": "ÖçÒ¹µÄ´ó»ðÊÂ",
-		"UPGRADE_DESCRIPTION": "Ôì³ÉËæ»ú£¨7-12£©µãÉËº¦¡£"
+		"DESCRIPTION": "é€ æˆéšæœºï¼ˆ5-9ï¼‰ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ˜¼å¤œçš„å¤§ç«äº‹",
+		"UPGRADE_DESCRIPTION": "é€ æˆéšæœºï¼ˆ7-12ï¼‰ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Parasite": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ½áÊøÊ±£¬ÓÐ¼¸ÂÊ¸øÓèËæ»úµÐÈË¸ºÃæÐ§¹û¡£ÕÙ»½ÊýÔ½¸ß¼¸ÂÊÔ½´ó¡£",
-		"NAME": "¼ÄÉú³æ ÅÁÀ­ÈüµÂ",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ½áÊøÊ±£¬ÓÐ¼¸ÂÊ¸øÓèËæ»úµÐÈË¸ºÃæÐ§¹û¡£ÕÙ»½ÊýÔ½¸ß¼¸ÂÊÔ½´ó¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆç»“æŸæ—¶ï¼Œæœ‰å‡ çŽ‡ç»™äºˆéšæœºæ•Œäººè´Ÿé¢æ•ˆæžœã€‚å¬å”¤æ•°è¶Šé«˜å‡ çŽ‡è¶Šå¤§ã€‚",
+		"NAME": "å¯„ç”Ÿè™« å¸•æ‹‰èµ›å¾·",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆç»“æŸæ—¶ï¼Œæœ‰å‡ çŽ‡ç»™äºˆéšæœºæ•Œäººè´Ÿé¢æ•ˆæžœã€‚å¬å”¤æ•°è¶Šé«˜å‡ çŽ‡è¶Šå¤§ã€‚"
 	},
 	"theDuelist:PatricianDarkness": {
-		"DESCRIPTION": "²»ËÀ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ºÚ°µ¹ó×å",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é»‘æš—è´µæ—",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:PetitMoth": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ó×³æ±¦±¦",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å¹¼è™«å®å®",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:PetitRef": {
-		"DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ó×³æ±¦±¦",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å¹¼è™«å®å®",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:PlantToken": {
-		"DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý1",
-		"NAME": "Ö²ÎïÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý1"
+		"DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•°1",
+		"NAME": "æ¤ç‰©è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•°1"
 	},
 	"theDuelist:PlantsArchetype": {
-		"DESCRIPTION": "½«Ö²ÎïÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†æ¤ç‰©ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"Ö²Îï",
-			"ËùÓÐÖ²Îï×å¹ÖÊÞ£¬×ÏË®¾§£¬³¬ÓªÑøÌ«Ñô£¬²¶Ê³¼Þ½ÓºÍ²¶Ê³»¨Åè¡£"
+			"æ¤ç‰©",
+			"æ‰€æœ‰æ¤ç‰©æ—æ€ªå…½ï¼Œç´«æ°´æ™¶ï¼Œè¶…è¥å…»å¤ªé˜³ï¼Œæ•é£Ÿå«æŽ¥å’Œæ•é£ŸèŠ±ç›†ã€‚"
 		],
-		"NAME": "Ö²Îï"
+		"NAME": "æ¤ç‰©"
 	},
 	"theDuelist:PlasmaOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öµÈÀë×Ó³äÄÜÇò¡£",
-		"NAME": "µÈÀë×Ó",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öµÈÀë×Ó³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªç­‰ç¦»å­å……èƒ½çƒã€‚",
+		"NAME": "ç­‰ç¦»å­",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªç­‰ç¦»å­å……èƒ½çƒã€‚"
 	},
 	"theDuelist:Polymerization": {
-		"DESCRIPTION": "Ñ¡Ôñ1¸öµÐÈË£¬´ÓÊÖÅÆÖÐÌØÊâÕÙ»½ !M! ¸öËæ»ú¹ÖÊÞ¡£",
-		"NAME": "ÈÚºÏ",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ1¸öµÐÈË£¬´ÓÊÖÅÆÖÐÌØÊâÕÙ»½ !M! ¸öËæ»ú¹ÖÊÞ¡£¿ÉÒÔÌØÊâÕÙ»½¹ÌÊØ¹ÖÊÞ¡£"
+		"DESCRIPTION": "é€‰æ‹©1ä¸ªæ•Œäººï¼Œä»Žæ‰‹ç‰Œä¸­ç‰¹æ®Šå¬å”¤ !M! ä¸ªéšæœºæ€ªå…½ã€‚",
+		"NAME": "èžåˆ",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©1ä¸ªæ•Œäººï¼Œä»Žæ‰‹ç‰Œä¸­ç‰¹æ®Šå¬å”¤ !M! ä¸ªéšæœºæ€ªå…½ã€‚å¯ä»¥ç‰¹æ®Šå¬å”¤å›ºå®ˆæ€ªå…½ã€‚"
 	},
 	"theDuelist:PortraitSecret": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !M! µãÁ¦Á¿¡£ NL ±¾»ØºÏ½«ÊÖÅÆÖÐËæ»úÅÆµÄ¼ÀÆ·ÏûºÄÌá¸ß2µã¡£ÏûºÄ¡£",
-		"NAME": "»æ»­ÖÐµÄÇ±²ØÕß",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !M! µãÁ¦Á¿¡£ NL ±¾»ØºÏ½«ÊÖÅÆÖÐËæ»úÅÆµÄ¼ÀÆ·ÏûºÄÌá¸ß2µã¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚ NL æœ¬å›žåˆå°†æ‰‹ç‰Œä¸­éšæœºç‰Œçš„ç¥­å“æ¶ˆè€—æé«˜2ç‚¹ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç»˜ç”»ä¸­çš„æ½œè—è€…",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚ NL æœ¬å›žåˆå°†æ‰‹ç‰Œä¸­éšæœºç‰Œçš„ç¥­å“æ¶ˆè€—æé«˜2ç‚¹ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:PotAvarice": {
-		"DESCRIPTION": "¼ÀÆ·ËùÓÐÕÙ»½¡£ÔöÖ³£¨ÊýÖµµÈÓÚÕÙ»½Êý£©¡£ÏûºÄ¡£",
-		"NAME": "Ì°ÓûÖ®ºø",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·ËùÓÐÕÙ»½¡£ÔöÖ³£¨ÊýÖµµÈÓÚÕÙ»½Êý+3£©¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç¥­å“æ‰€æœ‰å¬å”¤ã€‚å¢žæ®–ï¼ˆæ•°å€¼ç­‰äºŽå¬å”¤æ•°ï¼‰ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è´ªæ¬²ä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ‰€æœ‰å¬å”¤ã€‚å¢žæ®–ï¼ˆæ•°å€¼ç­‰äºŽå¬å”¤æ•°+3ï¼‰ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:PotDichotomy": {
-		"DESCRIPTION": "ÕÙ»½ÊýX+ !duelist:SUMM! ",
-		"NAME": "Ì°Óû¶øÎÞÓûÖ®ºø",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½ÊýX+ !duelist:SUMM! "
+		"DESCRIPTION": "å¬å”¤æ•°X+ !duelist:SUMM! ",
+		"NAME": "è´ªæ¬²è€Œæ— æ¬²ä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•°X+ !duelist:SUMM! "
 	},
 	"theDuelist:PotDuality": {
-		"DESCRIPTION": "³é !M! ÕÅÅÆ¡£»ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ç¿Óû¶øÇ«ÐéÖ®ºø",
-		"UPGRADE_DESCRIPTION": "³é !M! ÕÅÅÆ¡£»ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æŠ½ !M! å¼ ç‰Œã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å¼ºæ¬²è€Œè°¦è™šä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": "æŠ½ !M! å¼ ç‰Œã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:PotForbidden": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ1¸öÇ¿´óµÄ³éÅÆÐ§¹û¡£ÏûºÄ¡£",
-		"NAME": "½û¼ÉÖ®ºø",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ1¸öÇ¿´óµÄ³éÅÆÐ§¹û¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©1ä¸ªå¼ºå¤§çš„æŠ½ç‰Œæ•ˆæžœã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç¦å¿Œä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©1ä¸ªå¼ºå¤§çš„æŠ½ç‰Œæ•ˆæžœã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:PotGenerosity": {
-		"DESCRIPTION": " !M! ¸ö»ØºÏÄÚ£¬Ã¿´ÎÕÙ»½Ê±£¬»ñµÃ [G] ",
-		"NAME": "Ç«ÐéÖ®ºø",
-		"UPGRADE_DESCRIPTION": " !M! ¸ö»ØºÏÄÚ£¬Ã¿´ÎÕÙ»½Ê±£¬»ñµÃ [G] "
+		"DESCRIPTION": " !M! ä¸ªå›žåˆå†…ï¼Œæ¯æ¬¡å¬å”¤æ—¶ï¼ŒèŽ·å¾— [G] ",
+		"NAME": "è°¦è™šä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": " !M! ä¸ªå›žåˆå†…ï¼Œæ¯æ¬¡å¬å”¤æ—¶ï¼ŒèŽ·å¾— [G] "
 	},
 	"theDuelist:PotGreed": {
-		"DESCRIPTION": "³é2ÕÅÅÆ¡£ÏûºÄ¡£",
-		"NAME": "Ç¿ÓûÖ®ºø",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£³é2ÕÅÅÆ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æŠ½2å¼ ç‰Œã€‚æ¶ˆè€—ã€‚",
+		"NAME": "å¼ºæ¬²ä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚æŠ½2å¼ ç‰Œã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:PotsArchetype": {
-		"DESCRIPTION": "½«ºøÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†å£¶ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"ºø",
-			"Ì°ÓûÖ®ºø£¬Ç¿ÓûÖ®ºø£¬Ç«ÐéÖ®ºø£¬Ç¿Óû¶øÇ«ÐéÖ®ºø£¬Ì°Óû¶øÎÞÓûÖ®ºø¡£"
+			"å£¶",
+			"è´ªæ¬²ä¹‹å£¶ï¼Œå¼ºæ¬²ä¹‹å£¶ï¼Œè°¦è™šä¹‹å£¶ï¼Œå¼ºæ¬²è€Œè°¦è™šä¹‹å£¶ï¼Œè´ªæ¬²è€Œæ— æ¬²ä¹‹å£¶ã€‚"
 		],
-		"NAME": "ºø"
+		"NAME": "å£¶"
 	},
 	"theDuelist:PowerKaishin": {
-		"DESCRIPTION": "Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£ÏûºÄ¡£",
-		"NAME": "²¨Èû¶¬Ö®Á¦",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ³¢å¡žå†¬ä¹‹åŠ›",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:PredaplantChimerafflesia": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐ²¶Ê³Ö²Îï£¬½«1ÕÅºÄÄÜÎª0µÄÈÚºÏÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "²¶Ê³Ö²Îï ÆæÃÀÀ­´ó»¨²Ý",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐ²¶Ê³Ö²Îï£¬½«1ÕÅºÄÄÜÎª0µÄÈÚºÏÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰æ•é£Ÿæ¤ç‰©ï¼Œå°†1å¼ è€—èƒ½ä¸º0çš„èžåˆå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "æ•é£Ÿæ¤ç‰© å¥‡ç¾Žæ‹‰å¤§èŠ±è‰",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰æ•é£Ÿæ¤ç‰©ï¼Œå°†1å¼ è€—èƒ½ä¸º0çš„èžåˆå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:PredaplantChlamydosundew": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! ´Ó³éÅÆ¶ÑÖÐÑ¡Ôñ1ÕÅÖ²Îï×å»òÀ¥³æ×å¼ÓÈëÊÖÅÆ¡£",
-		"NAME": "²¶Ê³Ö²Îï Ã©¸à²ËÉ¡òá",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! ´Ó³éÅÆ¶ÑÖÐÑ¡Ôñ2ÕÅÖ²Îï×å»òÀ¥³æ×å¼ÓÈëÊÖÅÆ¡£"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! ä»ŽæŠ½ç‰Œå †ä¸­é€‰æ‹©1å¼ æ¤ç‰©æ—æˆ–æ˜†è™«æ—åŠ å…¥æ‰‹ç‰Œã€‚",
+		"NAME": "æ•é£Ÿæ¤ç‰© èŒ…è†èœä¼žèœ¥",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! ä»ŽæŠ½ç‰Œå †ä¸­é€‰æ‹©2å¼ æ¤ç‰©æ—æˆ–æ˜†è™«æ—åŠ å…¥æ‰‹ç‰Œã€‚"
 	},
 	"theDuelist:PredaplantDrosophyllum": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐ²¶Ê³Ö²Îï£¬ÌØÊâÕÙ»½ÊÖÅÆÖÐ1ÕÅËæ»úµÄÖ²Îï×å¹ÖÊÞ¡£",
-		"NAME": "²¶Ê³Ö²Îï Â¶ËÉË®ó£Áú",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ¼ÀÆ· !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¹û¼ÀÆ·ÖÐÓÐ²¶Ê³Ö²Îï£¬ÌØÊâÕÙ»½ÊÖÅÆÖÐËùÓÐµÄÖ²Îï×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰æ•é£Ÿæ¤ç‰©ï¼Œç‰¹æ®Šå¬å”¤æ‰‹ç‰Œä¸­1å¼ éšæœºçš„æ¤ç‰©æ—æ€ªå…½ã€‚",
+		"NAME": "æ•é£Ÿæ¤ç‰© éœ²æ¾æ°´èž…é¾™",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© ç¥­å“ !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æžœç¥­å“ä¸­æœ‰æ•é£Ÿæ¤ç‰©ï¼Œç‰¹æ®Šå¬å”¤æ‰‹ç‰Œä¸­æ‰€æœ‰çš„æ¤ç‰©æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:PredaplantFlytrap": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! ²¶Ê³Ö²ÎïÑÜÉúÎï¡£¸øÓè !M! ²ãÖÐ¶¾¡£",
-		"NAME": "²¶Ê³Ö²Îï ²ÔÓ¬µØÓü²Ý",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! ²¶Ê³Ö²ÎïÑÜÉúÎï¡£¸øÓè !M! ²ãÖÐ¶¾¡£"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! æ•é£Ÿæ¤ç‰©è¡ç”Ÿç‰©ã€‚ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚",
+		"NAME": "æ•é£Ÿæ¤ç‰© è‹è‡åœ°ç‹±è‰",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! æ•é£Ÿæ¤ç‰©è¡ç”Ÿç‰©ã€‚ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚"
 	},
 	"theDuelist:PredaplantPterapenthes": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "²¶Ê³Ö²Îï ÖíÁý²ÝÒíÁú",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "æ•é£Ÿæ¤ç‰© çŒªç¬¼è‰ç¿¼é¾™",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:PredaplantSarraceniant": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! Ã¿µ±ÊÜµ½¹¥»÷ÉËº¦£¬¸øÓèËùÓÐµÐÈË !M! ²ãÖÐ¶¾¡£",
-		"NAME": "²¶Ê³Ö²Îï Æ¿×Ó²ÝÒÏ",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! Ã¿µ±ÊÜµ½¹¥»÷ÉËº¦£¬¸øÓèËùÓÐµÐÈË !M! ²ãÖÐ¶¾¡£"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! æ¯å½“å—åˆ°æ”»å‡»ä¼¤å®³ï¼Œç»™äºˆæ‰€æœ‰æ•Œäºº !M! å±‚ä¸­æ¯’ã€‚",
+		"NAME": "æ•é£Ÿæ¤ç‰© ç“¶å­è‰èš",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! æ¯å½“å—åˆ°æ”»å‡»ä¼¤å®³ï¼Œç»™äºˆæ‰€æœ‰æ•Œäºº !M! å±‚ä¸­æ¯’ã€‚"
 	},
 	"theDuelist:PredaplantSpinodionaea": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷ÎªÖ²Îï×å¼ÀÆ·£¬½«1ÕÅËæ»ú²¶Ê³Ö²ÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "²¶Ê³Ö²Îï ²¶Ó¬²Ý¼¬Áú",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷ÎªÖ²Îï×å¼ÀÆ·£¬½«1ÕÅËæ»ú²¶Ê³Ö²ÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºæ¤ç‰©æ—ç¥­å“ï¼Œå°†1å¼ éšæœºæ•é£Ÿæ¤ç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "æ•é£Ÿæ¤ç‰© æ•è‡è‰æ£˜é¾™",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºæ¤ç‰©æ—ç¥­å“ï¼Œå°†1å¼ éšæœºæ•é£Ÿæ¤ç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:PredaplantToken": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý 1 »ñµÃ1²ã¾£¼¬",
-		"NAME": "²¶Ê³Ö²ÎïÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï ÕÙ»½Êý 1 »ñµÃ1²ã¾£¼¬"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° 1 èŽ·å¾—1å±‚è†æ£˜",
+		"NAME": "æ•é£Ÿæ¤ç‰©è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰© å¬å”¤æ•° 1 èŽ·å¾—1å±‚è†æ£˜"
 	},
 	"theDuelist:Predaponics": {
-		"DESCRIPTION": "ÒÆ³ýµÐÈËÉíÉÏËùÓÐÈË¹¤ÖÆÆ·¡£¸øÓè !M! ²ãÖÐ¶¾¡£¸øÓè1¸öËæ»ú¸ºÃæÐ§¹û¡£",
-		"NAME": "²¶Ê³»¨Åè",
-		"UPGRADE_DESCRIPTION": "ÒÆ³ýµÐÈËÉíÉÏËùÓÐÈË¹¤ÖÆÆ·¡£¸øÓè !M! ²ãÖÐ¶¾¡£¸øÓè1¸öËæ»ú¸ºÃæÐ§¹û¡£"
+		"DESCRIPTION": "ç§»é™¤æ•Œäººèº«ä¸Šæ‰€æœ‰äººå·¥åˆ¶å“ã€‚ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚ç»™äºˆ1ä¸ªéšæœºè´Ÿé¢æ•ˆæžœã€‚",
+		"NAME": "æ•é£ŸèŠ±ç›†",
+		"UPGRADE_DESCRIPTION": "ç§»é™¤æ•Œäººèº«ä¸Šæ‰€æœ‰äººå·¥åˆ¶å“ã€‚ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚ç»™äºˆ1ä¸ªéšæœºè´Ÿé¢æ•ˆæžœã€‚"
 	},
 	"theDuelist:Predapruning": {
-		"DESCRIPTION": "´ÓÆúÅÆ¶ÑÖÐÑ¡Ôñ !M! ÕÅÖ²Îï×å¹ÖÊÞÌØÊâÕÙ»½¡£ NL Èç¹ûÑ¡Ôñ²¶Ê³Ö²Îï¹ÖÊÞ£¬½«Æä¸´ÖÆÆ·Ôö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "²¶Ê³¼Þ½Ó",
-		"UPGRADE_DESCRIPTION": "´ÓÆúÅÆ¶ÑÖÐÑ¡Ôñ !M! ÕÅÖ²Îï×å¹ÖÊÞÌØÊâÕÙ»½¡£ NL Èç¹ûÑ¡Ôñ²¶Ê³Ö²Îï¹ÖÊÞ£¬½«Æä¸´ÖÆÆ·Ôö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "ä»Žå¼ƒç‰Œå †ä¸­é€‰æ‹© !M! å¼ æ¤ç‰©æ—æ€ªå…½ç‰¹æ®Šå¬å”¤ã€‚ NL å¦‚æžœé€‰æ‹©æ•é£Ÿæ¤ç‰©æ€ªå…½ï¼Œå°†å…¶å¤åˆ¶å“å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "æ•é£Ÿå«æŽ¥",
+		"UPGRADE_DESCRIPTION": "ä»Žå¼ƒç‰Œå †ä¸­é€‰æ‹© !M! å¼ æ¤ç‰©æ—æ€ªå…½ç‰¹æ®Šå¬å”¤ã€‚ NL å¦‚æžœé€‰æ‹©æ•é£Ÿæ¤ç‰©æ€ªå…½ï¼Œå°†å…¶å¤åˆ¶å“å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:PreventRat": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ó²Ã«Êó",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "ç¡¬æ¯›é¼ ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:Pumpking": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ²¢Éý¼¶¡£¹ÌÊØ¡£",
-		"NAME": "ÄÏ¹ÏÍõ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ´ÓÆúÅÆ¶ÑÌØÊâÕÙ»½ 2¸öËæ»ú¹ÖÊÞ²¢Éý¼¶¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½å¹¶å‡çº§ã€‚å›ºå®ˆã€‚",
+		"NAME": "å—ç“œçŽ‹",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ä»Žå¼ƒç‰Œå †ç‰¹æ®Šå¬å”¤ 2ä¸ªéšæœºæ€ªå…½å¹¶å‡çº§ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:Pumprincess": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ¡£¹ÌÊØ¡£",
-		"NAME": "ÄÏ¹Ï¹«Ö÷",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ²¢Éý¼¶¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! ä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½ã€‚å›ºå®ˆã€‚",
+		"NAME": "å—ç“œå…¬ä¸»",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! ä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½å¹¶å‡çº§ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:RadiantMirrorForce": {
-		"DESCRIPTION": "Ã¿µ±Ê§È¥ÉúÃü£¬ÔöÖ³ !M! ",
-		"NAME": "ÉÁ¹â·À»¤ÕÖ ¹âÃ÷Ö®Á¦",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±Ê§È¥ÉúÃü£¬ÔöÖ³ !M! "
+		"DESCRIPTION": "æ¯å½“å¤±åŽ»ç”Ÿå‘½ï¼Œå¢žæ®– !M! ",
+		"NAME": "é—ªå…‰é˜²æŠ¤ç½© å…‰æ˜Žä¹‹åŠ›",
+		"UPGRADE_DESCRIPTION": "æ¯å½“å¤±åŽ»ç”Ÿå‘½ï¼Œå¢žæ®– !M! "
 	},
 	"theDuelist:Raigeki": {
-		"DESCRIPTION": "¶ÔËùÓÐµÐÈËÔì³É !D! µãÔì³ÉÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL Ã¿¸öµÐÈËÓÐÐ¡¸ÅÂÊÑ£ÔÎ¡£",
-		"NAME": "À×»÷",
-		"UPGRADE_DESCRIPTION": "¶ÔËùÓÐµÐÈËÔì³É !D! µãÔì³ÉÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL Ã¿¸öµÐÈËÓÐ´ó¸ÅÂÊÑ£ÔÎ¡£"
+		"DESCRIPTION": "å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹é€ æˆä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL æ¯ä¸ªæ•Œäººæœ‰å°æ¦‚çŽ‡çœ©æ™•ã€‚",
+		"NAME": "é›·å‡»",
+		"UPGRADE_DESCRIPTION": "å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹é€ æˆä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL æ¯ä¸ªæ•Œäººæœ‰å¤§æ¦‚çŽ‡çœ©æ™•ã€‚"
 	},
 	"theDuelist:RainMercy": {
-		"DESCRIPTION": "×Ô¼ººÍËùÓÐµÐÈËËæ»ú»Ø¸´£¨5-20£©ÉúÃü¡£ÏûºÄ¡£",
-		"NAME": "¶÷»ÝÖ®Óê",
-		"UPGRADE_DESCRIPTION": "×Ô¼ººÍËùÓÐµÐÈËËæ»ú»Ø¸´£¨10-25£©ÉúÃü¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è‡ªå·±å’Œæ‰€æœ‰æ•Œäººéšæœºå›žå¤ï¼ˆ5-20ï¼‰ç”Ÿå‘½ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ©æƒ ä¹‹é›¨",
+		"UPGRADE_DESCRIPTION": "è‡ªå·±å’Œæ‰€æœ‰æ•Œäººéšæœºå›žå¤ï¼ˆ10-25ï¼‰ç”Ÿå‘½ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:RandomSoldier": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃËæ»ú£¨2-6£©µã¸ñµ²¡£",
-		"NAME": "Ëæ»úÑÒÊ¯¾Þ±ø",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃËæ»ú£¨3-7£©µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾—éšæœºï¼ˆ2-6ï¼‰ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "éšæœºå²©çŸ³å·¨å…µ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾—éšæœºï¼ˆ3-7ï¼‰ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:RedEyes": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ²ãÐéÈõ¡£",
-		"NAME": "ÕæºìÑÛºÚÁú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¸øÓè !M! ²ãÐéÈõ¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! å±‚è™šå¼±ã€‚",
+		"NAME": "çœŸçº¢çœ¼é»‘é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç»™äºˆ !M! å±‚è™šå¼±ã€‚"
 	},
 	"theDuelist:RedEyesToon": {
-		"DESCRIPTION": "¿¨Í¨ Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£",
-		"NAME": "ÕæºìÑÛ¿¨Í¨Áú",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£"
+		"DESCRIPTION": "å¡é€š é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚",
+		"NAME": "çœŸçº¢çœ¼å¡é€šé¾™",
+		"UPGRADE_DESCRIPTION": "å¡é€š é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚"
 	},
 	"theDuelist:RedEyesZombie": {
-		"DESCRIPTION": "²»ËÀ×å Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ÌØÊâÕÙ»½£º»ñµÃ3µãÁ¦Á¿¡£",
-		"NAME": "ÕæºìÑÛ²»ËÀÁú",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å Áú×å¡£¼ÀÆ· !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ÌØÊâÕÙ»½£º»ñµÃ3µãÁ¦Á¿¡£"
+		"DESCRIPTION": "ä¸æ­»æ— é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç‰¹æ®Šå¬å”¤ï¼šèŽ·å¾—3ç‚¹åŠ›é‡ã€‚",
+		"NAME": "çœŸçº¢çœ¼ä¸æ­»é¾™",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ— é¾™æ—ã€‚ç¥­å“ !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç‰¹æ®Šå¬å”¤ï¼šèŽ·å¾—3ç‚¹åŠ›é‡ã€‚"
 	},
 	"theDuelist:RedGadget": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ëæ»ú !M! ÕÅÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "ºìÉ«Áã¼þ",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ñ¡Ôñ !M! ÕÅËæ»úÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL éšæœº !M! å¼ è¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "çº¢è‰²é›¶ä»¶",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL é€‰æ‹© !M! å¼ éšæœºè¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:RedMedicine": {
-		"DESCRIPTION": "»ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£ÏûºÄ¡£",
-		"NAME": "ºìÉ«Ò©¼Á",
-		"UPGRADE_DESCRIPTION": "´Ó !M! ¸öÑ¡ÏîÖÐÑ¡Ôñ£¨1-2£©Ëæ»úÔöÒæÐ§¹û¡£ÏûºÄ¡£"
+		"DESCRIPTION": "èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚æ¶ˆè€—ã€‚",
+		"NAME": "çº¢è‰²è¯å‰‚",
+		"UPGRADE_DESCRIPTION": "ä»Ž !M! ä¸ªé€‰é¡¹ä¸­é€‰æ‹©ï¼ˆ1-2ï¼‰éšæœºå¢žç›Šæ•ˆæžœã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:RedMirror": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿µ±1¸ö¶ñÄ§×å×÷Îª¶ñÄ§×å¼ÀÆ·Ê±£¬±¾»ØºÏÆúÅÆ¶ÑÖÐËùÓÐÅÆµÄºÄÄÜ¼õÉÙ1µã¡£",
-		"NAME": "ºìÁ«¾µ",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿µ±1¸ö¶ñÄ§×å×÷Îª¶ñÄ§×å¼ÀÆ·Ê±£¬±¾»ØºÏÆúÅÆ¶ÑÖÐËùÓÐÅÆµÄºÄÄÜ¼õÉÙ1µã¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å½“1ä¸ªæ¶é­”æ—ä½œä¸ºæ¶é­”æ—ç¥­å“æ—¶ï¼Œæœ¬å›žåˆå¼ƒç‰Œå †ä¸­æ‰€æœ‰ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚",
+		"NAME": "çº¢èŽ²é•œ",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å½“1ä¸ªæ¶é­”æ—ä½œä¸ºæ¶é­”æ—ç¥­å“æ—¶ï¼Œæœ¬å›žåˆå¼ƒç‰Œå †ä¸­æ‰€æœ‰ç‰Œçš„è€—èƒ½å‡å°‘1ç‚¹ã€‚"
 	},
 	"theDuelist:RedSprinter": {
-		"DESCRIPTION": "ÒÅÑÔ¡£¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ÏûºÄ¡£",
-		"NAME": "ºìÁ«¶ÌÅÜÕß",
-		"UPGRADE_DESCRIPTION": "ÒÅÑÔ¡£¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ÏûºÄ¡£"
+		"DESCRIPTION": "é—è¨€ã€‚æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "çº¢èŽ²çŸ­è·‘è€…",
+		"UPGRADE_DESCRIPTION": "é—è¨€ã€‚æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:ReducerOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö¼ò»¯³äÄÜÇò¡£",
-		"NAME": "¼ò»¯",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö¼ò»¯³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªç®€åŒ–å……èƒ½çƒã€‚",
+		"NAME": "ç®€åŒ–",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªç®€åŒ–å……èƒ½çƒã€‚"
 	},
 	"theDuelist:RegenMummy": {
-		"DESCRIPTION": "³ýÍâ ²»ËÀ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ !M! ÕÅÒÑÏûºÄµÄÅÆ£¬½«Æä¼ÓÈëµ½ÊÖÅÆÖÐ¡£¹ÌÊØ¡£",
-		"NAME": "ÔÙÉúÄ¾ÄËÒÁ",
-		"UPGRADE_DESCRIPTION": "³ýÍâ ²»ËÀ×å¡£ NL Ñ¡Ôñ !M! ÕÅÒÑÏûºÄµÄÅÆ£¬½«Æä¼ÓÈëµ½ÊÖÅÆÖÐ¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "é™¤å¤– ä¸æ­»æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€‰æ‹© !M! å¼ å·²æ¶ˆè€—çš„ç‰Œï¼Œå°†å…¶åŠ å…¥åˆ°æ‰‹ç‰Œä¸­ã€‚å›ºå®ˆã€‚",
+		"NAME": "å†ç”Ÿæœ¨ä¹ƒä¼Š",
+		"UPGRADE_DESCRIPTION": "é™¤å¤– ä¸æ­»æ—ã€‚ NL é€‰æ‹© !M! å¼ å·²æ¶ˆè€—çš„ç‰Œï¼Œå°†å…¶åŠ å…¥åˆ°æ‰‹ç‰Œä¸­ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:Reinforcements": {
-		"DESCRIPTION": "»ñµÃ !M! µãÁ¦Á¿¡£ÏûºÄ¡£",
-		"NAME": "Ô®¾ü",
-		"UPGRADE_DESCRIPTION": "»ñµÃ !M! µãÁ¦Á¿¡£ÏûºÄ¡£"
+		"DESCRIPTION": "èŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ´å†›",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:ReinforcementsArmy": {
-		"DESCRIPTION": "±¾»ØºÏÃ¿µ±´ò³ö1ÕÅ¹ÖÊÞÅÆ£¬ÕÙ»½1Ö»¸´ÖÆÆ·¡£",
-		"NAME": "ÔöÔ®",
-		"UPGRADE_DESCRIPTION": "±¾»ØºÏÃ¿µ±´ò³ö1ÕÅ¹ÖÊÞÅÆ£¬ÕÙ»½1Ö»¸´ÖÆÆ·¡£"
+		"DESCRIPTION": "æœ¬å›žåˆæ¯å½“æ‰“å‡º1å¼ æ€ªå…½ç‰Œï¼Œå¬å”¤1åªå¤åˆ¶å“ã€‚",
+		"NAME": "å¢žæ´",
+		"UPGRADE_DESCRIPTION": "æœ¬å›žåˆæ¯å½“æ‰“å‡º1å¼ æ€ªå…½ç‰Œï¼Œå¬å”¤1åªå¤åˆ¶å“ã€‚"
 	},
 	"theDuelist:Relinquished": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸öºÚ°µ³äÄÜÇò¡£",
-		"NAME": "ÄÉ¼ÀÖ®Ä§",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£Éú³É1¸öºÚ°µ³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚",
+		"NAME": "çº³ç¥­ä¹‹é­”",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚"
 	},
 	"theDuelist:ResummonArchetype ": {
-		"DESCRIPTION": "½«ÌØÊâÕÙ»½ÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†ç‰¹æ®Šå¬å”¤ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"ÌØÊâÕÙ»½",
-			"ËùÓÐ¾ßÓÐÌØÊâÕÙ»½Ð§¹ûµÄ¹ÖÊÞ£¬ÒÔ¼°ËùÓÐÌØÊâÕÙ»½Ö§³ÖÅÆ£¬ÈçËÀÕßËÕÉú£¬¶ÔËÀÕßµÄ¹©·îµÈ¡£"
+			"ç‰¹æ®Šå¬å”¤",
+			"æ‰€æœ‰å…·æœ‰ç‰¹æ®Šå¬å”¤æ•ˆæžœçš„æ€ªå…½ï¼Œä»¥åŠæ‰€æœ‰ç‰¹æ®Šå¬å”¤æ”¯æŒç‰Œï¼Œå¦‚æ­»è€…è‹ç”Ÿï¼Œå¯¹æ­»è€…çš„ä¾›å¥‰ç­‰ã€‚"
 		],
-		"NAME": "ÌØÊâÕÙ»½"
+		"NAME": "ç‰¹æ®Šå¬å”¤"
 	},
 	"theDuelist:RevivalJam": {
-		"DESCRIPTION": "Ë®×å ÕÙ»½Êý !duelist:SUMM! µ±Õâ¸ö¹ÖÊÞ×÷Îª¼ÀÆ·Ê±£¬ÕÙ»½ !M! ¸öÊ·À³Ä·ÑÜÉúÎï¡£",
-		"NAME": "ÔÙÉúÊ·À³Ä·",
-		"UPGRADE_DESCRIPTION": "Ë®×å ÕÙ»½Êý !duelist:SUMM! µ±Õâ¸ö¹ÖÊÞ×÷Îª¼ÀÆ·Ê±£¬ÕÙ»½ !M! ¸öÊ·À³Ä·ÑÜÉúÎï¡£"
+		"DESCRIPTION": "æ°´æ— å¬å”¤æ•° !duelist:SUMM! å½“è¿™ä¸ªæ€ªå…½ä½œä¸ºç¥­å“æ—¶ï¼Œå¬å”¤ !M! ä¸ªå²èŽ±å§†è¡ç”Ÿç‰©ã€‚",
+		"NAME": "å†ç”Ÿå²èŽ±å§†",
+		"UPGRADE_DESCRIPTION": "æ°´æ— å¬å”¤æ•° !duelist:SUMM! å½“è¿™ä¸ªæ€ªå…½ä½œä¸ºç¥­å“æ—¶ï¼Œå¬å”¤ !M! ä¸ªå²èŽ±å§†è¡ç”Ÿç‰©ã€‚"
 	},
 	"theDuelist:RyuKokki": {
-		"DESCRIPTION": "²»ËÀ×å¡£¼ÀÆ·Êý !duelist:TRIB! ´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐ²»ËÀ×å£¬ÌØÊâÕÙ»½ÄÇ¸ö¹ÖÊÞ¡£¹ÌÊØ¡£",
-		"NAME": "Áú¹Ç¹í",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£¼ÀÆ·Êý !duelist:TRIB! ´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½1¸öËæ»ú¹ÖÊÞ¡£ NL Èç¹û¼ÀÆ·ÖÐÓÐ²»ËÀ×å£¬ÌØÊâÕÙ»½ÄÇ¸ö¹ÖÊÞ¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰ä¸æ­»æ—ï¼Œç‰¹æ®Šå¬å”¤é‚£ä¸ªæ€ªå…½ã€‚å›ºå®ˆã€‚",
+		"NAME": "é¾™éª¨é¬¼",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæ€ªå…½ã€‚ NL å¦‚æžœç¥­å“ä¸­æœ‰ä¸æ­»æ—ï¼Œç‰¹æ®Šå¬å”¤é‚£ä¸ªæ€ªå…½ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:SandOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÉ³Ê¯³äÄÜÇò¡£",
-		"NAME": "É³Ê¯",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÉ³Ê¯³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ²™çŸ³å……èƒ½çƒã€‚",
+		"NAME": "æ²™çŸ³",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ²™çŸ³å……èƒ½çƒã€‚"
 	},
 	"theDuelist:SangaEarth": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "·çÄ§Éñ ÐÞåÈ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öµØÊôÐÔ³äÄÜÇò¡£Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é£Žé­”ç¥ž ä¿®è¿¦",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªåœ°å±žæ€§å……èƒ½çƒã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SangaThunder": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öÉÁµç³äÄÜÇò¡£Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "À×Ä§Éñ É£åÈ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öÉÁµç³äÄÜÇò¡£Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªé—ªç”µå……èƒ½çƒã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é›·é­”ç¥ž æ¡‘è¿¦",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªé—ªç”µå……èƒ½çƒã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SangaWater": {
-		"DESCRIPTION": "Ë®×å ¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öË®ÊôÐÔ³äÄÜÇò¡£Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Ë®Ä§Éñ Ë¹åÈ",
-		"UPGRADE_DESCRIPTION": "Ë®×å ¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! Éú³É1¸öË®ÊôÐÔ³äÄÜÇò¡£Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ— ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªæ°´å±žæ€§å……èƒ½çƒã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ°´é­”ç¥ž æ–¯è¿¦",
+		"UPGRADE_DESCRIPTION": "æ°´æ— ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! ç”Ÿæˆ1ä¸ªæ°´å±žæ€§å……èƒ½çƒã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Sangan": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«Ëæ»ú1ÕÅ±¾³¡Õ½¶·ÖÐ´ò³ö¹ýµÄÄ§·¨¿¨¸´ÖÆ²¢¼ÓÈëÊÖÅÆ¡£",
-		"NAME": "ÈýÑÛ¹Ö",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«Ëæ»ú1ÕÅ±¾³¡Õ½¶·ÖÐ´ò³ö¹ýµÄÄ§·¨¿¨¸´ÖÆ£¬ºÄÄÜ±ä³É0²¢¼ÓÈëÊÖÅÆ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†éšæœº1å¼ æœ¬åœºæˆ˜æ–—ä¸­æ‰“å‡ºè¿‡çš„é­”æ³•å¡å¤åˆ¶å¹¶åŠ å…¥æ‰‹ç‰Œã€‚",
+		"NAME": "ä¸‰çœ¼æ€ª",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†éšæœº1å¼ æœ¬åœºæˆ˜æ–—ä¸­æ‰“å‡ºè¿‡çš„é­”æ³•å¡å¤åˆ¶ï¼Œè€—èƒ½å˜æˆ0å¹¶åŠ å…¥æ‰‹ç‰Œã€‚"
 	},
 	"theDuelist:Scapegoat": {
-		"DESCRIPTION": "ÔöÖ³ !M! ¡£ÕÙ»½ !duelist:SUMM! ¸öÀõ×ÓÇòÑÜÉúÎï¡£ÏûºÄ¡£",
-		"NAME": "Ìæ×ïÑò",
-		"UPGRADE_DESCRIPTION": "ÔöÖ³ !M! ¡£ÕÙ»½ !duelist:SUMM! ¸öÀõ×ÓÇòÑÜÉúÎï¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¢žæ®– !M! ã€‚å¬å”¤ !duelist:SUMM! ä¸ªæ —å­çƒè¡ç”Ÿç‰©ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ›¿ç½ªç¾Š",
+		"UPGRADE_DESCRIPTION": "å¢žæ®– !M! ã€‚å¬å”¤ !duelist:SUMM! ä¸ªæ —å­çƒè¡ç”Ÿç‰©ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:ScrapFactory": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ [G] [G] ",
-		"NAME": "·ÏÌú¹¤³§",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ [G] [G] [G] "
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— [G] [G] ",
+		"NAME": "åºŸé“å·¥åŽ‚",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— [G] [G] [G] "
 	},
 	"theDuelist:SevenColoredFish": {
-		"DESCRIPTION": "Ë®×å ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "²ÊºçÓã",
-		"UPGRADE_DESCRIPTION": "Ë®×å ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ— å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å½©è™¹é±¼",
+		"UPGRADE_DESCRIPTION": "æ°´æ— å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ShadowOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÓ°×Ó³äÄÜÇò¡£",
-		"NAME": "Ó°×Ó",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÓ°×Ó³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªå½±å­å……èƒ½çƒã€‚",
+		"NAME": "å½±å­",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªå½±å­å……èƒ½çƒã€‚"
 	},
 	"theDuelist:ShadowToken": {
-		"DESCRIPTION": "ÕÙ»½Êý1 NL Ã¿µ±¼ÀÆ·Ê±£¬ËùÓÐÓ°×Ó³äÄÜÇòµÄ±»¶¯ºÍ¼¤·¢µÄÊýÖµÔö¼Ó1¡£",
-		"NAME": "Ó°×ÓÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý1 NL Ã¿µ±¼ÀÆ·Ê±£¬ËùÓÐÓ°×Ó³äÄÜÇòµÄ±»¶¯ºÍ¼¤·¢µÄÊýÖµÔö¼Ó1¡£"
+		"DESCRIPTION": "å¬å”¤æ•°1 NL æ¯å½“ç¥­å“æ—¶ï¼Œæ‰€æœ‰å½±å­å……èƒ½çƒçš„è¢«åŠ¨å’Œæ¿€å‘çš„æ•°å€¼å¢žåŠ 1ã€‚",
+		"NAME": "å½±å­è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•°1 NL æ¯å½“ç¥­å“æ—¶ï¼Œæ‰€æœ‰å½±å­å……èƒ½çƒçš„è¢«åŠ¨å’Œæ¿€å‘çš„æ•°å€¼å¢žåŠ 1ã€‚"
 	},
 	"theDuelist:ShadowToon": {
-		"DESCRIPTION": "Ôö¼Ó !M! ÕÅËæ»úµÄ¿¨Í¨µ½ÊÖÅÆÖÐ£¬Èç¹ûÕÙ»½¹ý¿¨Í¨¹ÖÊÞ£¬»Ø¸´ !M! ÉúÃü¡£",
-		"NAME": "Ó°×Ó¿¨Í¨",
-		"UPGRADE_DESCRIPTION": "Ôö¼Ó !M! ÕÅËæ»úÉý¼¶¹ýµÄ¿¨Í¨µ½ÊÖÅÆÖÐ£¬Èç¹ûÕÙ»½¹ý¿¨Í¨¹ÖÊÞ£¬»Ø¸´ !M! ÉúÃü¡£"
+		"DESCRIPTION": "å¢žåŠ  !M! å¼ éšæœºçš„å¡é€šåˆ°æ‰‹ç‰Œä¸­ï¼Œå¦‚æžœå¬å”¤è¿‡å¡é€šæ€ªå…½ï¼Œå›žå¤ !M! ç”Ÿå‘½ã€‚",
+		"NAME": "å½±å­å¡é€š",
+		"UPGRADE_DESCRIPTION": "å¢žåŠ  !M! å¼ éšæœºå‡çº§è¿‡çš„å¡é€šåˆ°æ‰‹ç‰Œä¸­ï¼Œå¦‚æžœå¬å”¤è¿‡å¡é€šæ€ªå…½ï¼Œå›žå¤ !M! ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:ShallowGrave": {
-		"DESCRIPTION": "´ÓÆúÅÆ¶ÑÖÐËæ»úÌØÊâÕÙ»½ !M! ¸ö¹ÖÊÞ¡£",
-		"NAME": "¹ýÇ³µÄÄ¹Ñ¨",
-		"UPGRADE_DESCRIPTION": "´ÓÆúÅÆ¶ÑÖÐËæ»úÌØÊâÕÙ»½ !M! ¸ö¹ÖÊÞ¡£"
+		"DESCRIPTION": "ä»Žå¼ƒç‰Œå †ä¸­éšæœºç‰¹æ®Šå¬å”¤ !M! ä¸ªæ€ªå…½ã€‚",
+		"NAME": "è¿‡æµ…çš„å¢“ç©´",
+		"UPGRADE_DESCRIPTION": "ä»Žå¼ƒç‰Œå †ä¸­éšæœºç‰¹æ®Šå¬å”¤ !M! ä¸ªæ€ªå…½ã€‚"
 	},
 	"theDuelist:ShardGreed": {
-		"DESCRIPTION": "Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å¡£»ØºÏ¿ªÊ¼Ê±£¬³éÈ¡1Ö»¸ÃÖÖ×å¹ÖÊÞ¡£",
-		"NAME": "Ç¿ÓûµÄËéÆ¬",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å¡£»ØºÏ¿ªÊ¼Ê±£¬³éÈ¡1Ö»¸ÃÖÖ×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—ã€‚å›žåˆå¼€å§‹æ—¶ï¼ŒæŠ½å–1åªè¯¥ç§æ—æ€ªå…½ã€‚",
+		"NAME": "å¼ºæ¬²çš„ç¢Žç‰‡",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—ã€‚å›žåˆå¼€å§‹æ—¶ï¼ŒæŠ½å–1åªè¯¥ç§æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:Skelesaurus": {
-		"DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½ !duelist:SUMM! ¸öÓ°×ÓÑÜÉúÎï¡£Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÌìÉúµÄ°×¹Ç¿ÖÁú",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½ !duelist:SUMM! ¸öÓ°×ÓÑÜÉúÎï¡£Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤ !duelist:SUMM! ä¸ªå½±å­è¡ç”Ÿç‰©ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¤©ç”Ÿçš„ç™½éª¨æé¾™",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤ !duelist:SUMM! ä¸ªå½±å­è¡ç”Ÿç‰©ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SkullArchfiend": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ôö¼ÓÆúÅÆ¶ÑÖÐËùÓÐ¹ÖÊÞ !M! µã¼ÀÆ·ÏûºÄºÍ6µãÉËº¦¡£",
-		"NAME": "Ñ¸À×Ö®Ä§Íõ º¡¹Ç¶ñÄ§",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ôö¼ÓÆúÅÆ¶ÑÖÐËùÓÐ¹ÖÊÞ !M! µã¼ÀÆ·ÏûºÄºÍ6µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¢žåŠ å¼ƒç‰Œå †ä¸­æ‰€æœ‰æ€ªå…½ !M! ç‚¹ç¥­å“æ¶ˆè€—å’Œ6ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è¿…é›·ä¹‹é­”çŽ‹ éª¸éª¨æ¶é­”",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¢žåŠ å¼ƒç‰Œå †ä¸­æ‰€æœ‰æ€ªå…½ !M! ç‚¹ç¥­å“æ¶ˆè€—å’Œ6ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SlateWarrior": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÖÐÆúÅÆ¶ÑÖÐËùÓÐÅÆµÄºÄÄÜÎª0¡£",
-		"NAME": "Å¦ÌØ",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ±¾»ØºÏÖÐÆúÅÆ¶ÑÖÐËùÓÐÅÆµÄºÄÄÜÎª0¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆä¸­å¼ƒç‰Œå †ä¸­æ‰€æœ‰ç‰Œçš„è€—èƒ½ä¸º0ã€‚",
+		"NAME": "çº½ç‰¹",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æœ¬å›žåˆä¸­å¼ƒç‰Œå †ä¸­æ‰€æœ‰ç‰Œçš„è€—èƒ½ä¸º0ã€‚"
 	},
 	"theDuelist:SliferSky": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿µ±ÕÙ»½Ê±£¬±¾»ØºÏ»ñµÃ !M! µãÁ¦Á¿¡£",
-		"NAME": "°ÂÎ÷ÀïË¹Ö®Ìì¿ÕÁú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿µ±ÕÙ»½Ê±£¬±¾»ØºÏ»ñµÃ !M! µãÁ¦Á¿¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯å½“å¬å”¤æ—¶ï¼Œæœ¬å›žåˆèŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚",
+		"NAME": "å¥¥è¥¿é‡Œæ–¯ä¹‹å¤©ç©ºé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯å½“å¬å”¤æ—¶ï¼Œæœ¬å›žåˆèŽ·å¾— !M! ç‚¹åŠ›é‡ã€‚"
 	},
 	"theDuelist:SmallLabyrinthWall": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÃÔÄãÃÔ¹¬Ç½",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è¿·ä½ è¿·å®«å¢™",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:SmashingGround": {
-		"DESCRIPTION": "¶Ô1¸öËæ»úµÐÈËÔì³É !D! µãÉËº¦£¬ÉËº¦´ÎÊýµÈÓÚ±¾³¡Õ½¶·ÖÐÕÙ»½¹ÖÊÞµÄÊýÁ¿¡£ÏûºÄ¡£",
-		"NAME": "µØËé",
-		"UPGRADE_DESCRIPTION": "¶Ô1¸öËæ»úµÐÈËÔì³É !D! µãÉËº¦£¬ÉËº¦´ÎÊýµÈÓÚ±¾³¡Õ½¶·ÖÐÕÙ»½¹ÖÊÞµÄÊýÁ¿¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¯¹1ä¸ªéšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œä¼¤å®³æ¬¡æ•°ç­‰äºŽæœ¬åœºæˆ˜æ–—ä¸­å¬å”¤æ€ªå…½çš„æ•°é‡ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "åœ°ç¢Ž",
+		"UPGRADE_DESCRIPTION": "å¯¹1ä¸ªéšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œä¼¤å®³æ¬¡æ•°ç­‰äºŽæœ¬åœºæˆ˜æ–—ä¸­å¬å”¤æ€ªå…½çš„æ•°é‡ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SmokeOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÑÌÎí³äÄÜÇò¡£",
-		"NAME": "ÑÌÎí",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÑÌÎí³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªçƒŸé›¾å……èƒ½çƒã€‚",
+		"NAME": "çƒŸé›¾",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªçƒŸé›¾å……èƒ½çƒã€‚"
 	},
 	"theDuelist:SnowDragon": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö±ùËª³äÄÜÇò¡£",
-		"NAME": "Ñ©Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö±ùËª³äÄÜÇò¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚",
+		"NAME": "é›ªé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:SnowdustDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÁú×å¹ÖÊÞ£¬Éú³É1¸ö±ùËª³äÄÜÇò¡£",
-		"NAME": "Ñ©³¾Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÁú×å¹ÖÊÞ£¬Éú³É1¸ö±ùËª³äÄÜÇò¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé¾™æ—æ€ªå…½ï¼Œç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚",
+		"NAME": "é›ªå°˜é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé¾™æ—æ€ªå…½ï¼Œç”Ÿæˆ1ä¸ªå†°éœœå……èƒ½çƒã€‚"
 	},
 	"theDuelist:SoulAbsorbingBone": {
-		"DESCRIPTION": "²»ËÀ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ëæ»ú´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½ !M! ¸ö¹ÖÊÞ¡£¼ÀÆ·ÖÐÃ¿ÓÐ1¸ö²»ËÀ×å£¬ÌØÊâÕÙ»½ÄÇ¸ö¹ÖÊÞ¡£",
-		"NAME": "ÎüÊÕ¾«ÆøµÄ¹ÇËþ",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ëæ»ú´ÓÆúÅÆ¶ÑÖÐÌØÊâÕÙ»½ !M! ¸ö¹ÖÊÞ¡£¼ÀÆ·ÖÐÃ¿ÓÐ1¸ö²»ËÀ×å£¬ÌØÊâÕÙ»½ÄÇ¸ö¹ÖÊÞ¡£"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚ç¥­å“æ•° !duelist:TRIB! éšæœºä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤ !M! ä¸ªæ€ªå…½ã€‚ç¥­å“ä¸­æ¯æœ‰1ä¸ªä¸æ­»æ—ï¼Œç‰¹æ®Šå¬å”¤é‚£ä¸ªæ€ªå…½ã€‚",
+		"NAME": "å¸æ”¶ç²¾æ°”çš„éª¨å¡”",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚ç¥­å“æ•° !duelist:TRIB! éšæœºä»Žå¼ƒç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤ !M! ä¸ªæ€ªå…½ã€‚ç¥­å“ä¸­æ¯æœ‰1ä¸ªä¸æ­»æ—ï¼Œç‰¹æ®Šå¬å”¤é‚£ä¸ªæ€ªå…½ã€‚"
 	},
 	"theDuelist:Sparks": {
-		"DESCRIPTION": "´ò»÷ Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "»ðÐÇ",
-		"UPGRADE_DESCRIPTION": "´ò»÷ Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ‰“å‡» é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç«æ˜Ÿ",
+		"UPGRADE_DESCRIPTION": "æ‰“å‡» é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SpellcasterArchetype": {
-		"DESCRIPTION": "½«Ä§·¨Ê¦ÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†é­”æ³•å¸ˆç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"Ä§·¨Ê¦×å",
-			"ËùÓÐÄ§·¨Ê¦×å£¬ÒÔ¼°°µºÍÃØÊõÖ®Êé¡£²»°üÀ¨°¬¿Ë×ôµÏÑÇÅÆ¡£"
+			"é­”æ³•å¸ˆæ—",
+			"æ‰€æœ‰é­”æ³•å¸ˆæ—ï¼Œä»¥åŠæš—å’Œç§˜æœ¯ä¹‹ä¹¦ã€‚ä¸åŒ…æ‹¬è‰¾å…‹ä½è¿ªäºšç‰Œã€‚"
 		],
-		"NAME": "Ä§·¨Ê¦×å"
+		"NAME": "é­”æ³•å¸ˆæ—"
 	},
 	"theDuelist:SpellcasterToken": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý1",
-		"NAME": "Ä§·¨Ê¦ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý1"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•°1",
+		"NAME": "é­”æ³•å¸ˆè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•°1"
 	},
 	"theDuelist:SpellsArchetype": {
-		"DESCRIPTION": "½«Ä§·¨¿¨Ôö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†é­”æ³•å¡å¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"Ä§·¨",
-			"ËùÓÐÄ§·¨£¬³ýÁË¿¨Í¨Ä§·¨ºÍÌØ¶¨×Ö¶ÎÄ§·¨£¨Èç°µ£¬É½£¬×ÏË®¾§£©¡£"
+			"é­”æ³•",
+			"æ‰€æœ‰é­”æ³•ï¼Œé™¤äº†å¡é€šé­”æ³•å’Œç‰¹å®šå­—æ®µé­”æ³•ï¼ˆå¦‚æš—ï¼Œå±±ï¼Œç´«æ°´æ™¶ï¼‰ã€‚"
 		],
-		"NAME": "Ä§·¨"
+		"NAME": "é­”æ³•"
 	},
 	"theDuelist:SphereKuriboh": {
-		"DESCRIPTION": "Ã¿µ±ÔöÖ³Ê±£¬½«1ÕÅËæ»úÅÆÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "ÇòÐÎÀõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Ã¿µ±ÔöÖ³Ê±£¬½«1ÕÅËæ»úÅÆÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ¯å½“å¢žæ®–æ—¶ï¼Œå°†1å¼ éšæœºç‰Œå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "çƒå½¢æ —å­çƒ",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚æ¯å½“å¢žæ®–æ—¶ï¼Œå°†1å¼ éšæœºç‰Œå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:SpiritHarp": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÊúÇÙ¾«Áé",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "ç«–ç´ç²¾çµ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:SplashOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö·É½¦³äÄÜÇòÇò¡£",
-		"NAME": "·É½¦",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö·É½¦³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé£žæº…å……èƒ½çƒçƒã€‚",
+		"NAME": "é£žæº…",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé£žæº…å……èƒ½çƒã€‚"
 	},
 	"theDuelist:SteamTrainKing": {
-		"DESCRIPTION": "³¬ÖØ »úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ÏûºÄ³éÅÆ¶ÑÖÐËùÓÐ¹ÖÊÞ¡£Ôì³ÉÉËº¦µÈÓÚËüÃÇµÄ×ÜÉËº¦¡£ÏûºÄ¡£",
-		"NAME": "³¬ÖØÕô¹í ÌúµÀÍõ",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ »úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ÏûºÄ³éÅÆ¶ÑÖÐËùÓÐ¹ÖÊÞ¡£Ôì³ÉÉËº¦µÈÓÚËüÃÇµÄ×ÜÉËº¦¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è¶…é‡ æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æŠ½ç‰Œå †ä¸­æ‰€æœ‰æ€ªå…½ã€‚é€ æˆä¼¤å®³ç­‰äºŽå®ƒä»¬çš„æ€»ä¼¤å®³ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…é‡è’¸é¬¼ é“é“çŽ‹",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æŠ½ç‰Œå †ä¸­æ‰€æœ‰æ€ªå…½ã€‚é€ æˆä¼¤å®³ç­‰äºŽå®ƒä»¬çš„æ€»ä¼¤å®³ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:StimPack": {
-		"DESCRIPTION": "ÕÙ»½ !duelist:SUMM! ¸ö±¬Õ¨ÑÜÉúÎï¡£",
-		"NAME": "ÐË·Ü¼Á",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½ !duelist:SUMM! ¸ö±¬Õ¨ÑÜÉúÎï¡£¶îÍâÕÙ»½ !M! ¸öÑÜÉúÎï¡£"
+		"DESCRIPTION": "å¬å”¤ !duelist:SUMM! ä¸ªçˆ†ç‚¸è¡ç”Ÿç‰©ã€‚",
+		"NAME": "å…´å¥‹å‰‚",
+		"UPGRADE_DESCRIPTION": "å¬å”¤ !duelist:SUMM! ä¸ªçˆ†ç‚¸è¡ç”Ÿç‰©ã€‚é¢å¤–å¬å”¤ !M! ä¸ªè¡ç”Ÿç‰©ã€‚"
 	},
 	"theDuelist:StormOrbCard": {
-		"DESCRIPTION": "Éú³É1¸ö·ç±©³äÄÜÇò¡£",
-		"NAME": "·ç±©",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸ö·ç±©³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªé£Žæš´å……èƒ½çƒã€‚",
+		"NAME": "é£Žæš´",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªé£Žæš´å……èƒ½çƒã€‚"
 	},
 	"theDuelist:StormingMirrorForce": {
-		"DESCRIPTION": "Ã¿¸öµÐÈË¹¥»÷Ê±£¬ÕÙ»½1¡£",
-		"NAME": "Éñ·ç·À»¤ÕÖ ´óÆøÖ®Á¦",
-		"UPGRADE_DESCRIPTION": "Ã¿¸öµÐÈË¹¥»÷Ê±£¬ÕÙ»½1¡£"
+		"DESCRIPTION": "æ¯ä¸ªæ•Œäººæ”»å‡»æ—¶ï¼Œå¬å”¤1ã€‚",
+		"NAME": "ç¥žé£Žé˜²æŠ¤ç½© å¤§æ°”ä¹‹åŠ›",
+		"UPGRADE_DESCRIPTION": "æ¯ä¸ªæ•Œäººæ”»å‡»æ—¶ï¼Œå¬å”¤1ã€‚"
 	},
 	"theDuelist:StrayLambs": {
-		"DESCRIPTION": "ÔöÖ³ !M! ¡£ÕÙ»½ !duelist:SUMM!¸öÀõ×ÓÇòÑÜÉúÎï¡£",
-		"NAME": "ÃÔÍ¾µÄ¸áÑò",
-		"UPGRADE_DESCRIPTION": "ÔöÖ³ !M! ¡£ÕÙ»½ !duelist:SUMM! ¸öÀõ×ÓÇòÑÜÉúÎï¡£"
+		"DESCRIPTION": "å¢žæ®– !M! ã€‚å¬å”¤ !duelist:SUMM! ä¸ªæ —å­çƒè¡ç”Ÿç‰©ã€‚",
+		"NAME": "è¿·é€”çš„ç¾”ç¾Š",
+		"UPGRADE_DESCRIPTION": "å¢žæ®– !M! ã€‚å¬å”¤ !duelist:SUMM! ä¸ªæ —å­çƒè¡ç”Ÿç‰©ã€‚"
 	},
 	"theDuelist:SummonedSkull": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "¶ñÄ§ÕÙ»½",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ¶é­”å¬å”¤",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SummonerOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öÕÙ»½Ê¿³äÄÜÇò¡£",
-		"NAME": "ÕÙ»½Ê¿",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÕÙ»½Ê¿³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªå¬å”¤å£«å……èƒ½çƒã€‚",
+		"NAME": "å¬å”¤å£«",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªå¬å”¤å£«å……èƒ½çƒã€‚"
 	},
 	"theDuelist:SuperSolarNutrient": {
-		"DESCRIPTION": "¸øÓè !M! ²ãÖÐ¶¾¡£½« !M! ÕÅËæ»úµÄÖ²Îï×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "³¬ÓªÑøÌ«Ñô",
-		"UPGRADE_DESCRIPTION": "¸øÓè !M! ²ãÖÐ¶¾¡£½« !M! ÕÅËæ»úÉý¼¶¹ýµÄÖ²Îï×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚å°† !M! å¼ éšæœºçš„æ¤ç‰©æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…è¥å…»å¤ªé˜³",
+		"UPGRADE_DESCRIPTION": "ç»™äºˆ !M! å±‚ä¸­æ¯’ã€‚å°† !M! å¼ éšæœºå‡çº§è¿‡çš„æ¤ç‰©æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SuperancientDinobeast": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÁú×å¹ÖÊÞ£¬»ñµÃ10µã¸ñµ²¡£",
-		"NAME": "³¬¹Å´ú¿ÖÊÞ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÁú×å¹ÖÊÞ£¬»ñµÃ10µã¸ñµ²¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé¾™æ—æ€ªå…½ï¼ŒèŽ·å¾—10ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è¶…å¤ä»£æå…½",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé¾™æ—æ€ªå…½ï¼ŒèŽ·å¾—10ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:SuperheavyArchetype": {
-		"DESCRIPTION": "½«³¬ÖØÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†è¶…é‡ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"³¬ÖØ",
-			"ËùÓÐ³¬ÖØ¹ÖÊÞ£¬ºÍ³¬ÖØÕô¹í ÌúµÀÍõ¡£"
+			"è¶…é‡",
+			"æ‰€æœ‰è¶…é‡æ€ªå…½ï¼Œå’Œè¶…é‡è’¸é¬¼ é“é“çŽ‹ã€‚"
 		],
-		"NAME": "³¬ÖØ"
+		"NAME": "è¶…é‡"
 	},
 	"theDuelist:SuperheavyBenkei": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£",
-		"NAME": "³¬ÖØÎäÕß ´óÛÍÇì",
-		"UPGRADE_DESCRIPTION": "Superheavy ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… å¤§å¼åº†",
+		"UPGRADE_DESCRIPTION": "Superheavy ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SuperheavyBlueBrawler": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£",
-		"NAME": "³¬ÖØÎäÕß ¹íÈô",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… é¬¼è‹¥",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚"
+	},
+	"theDuelist:SuperheavyBlueBrawlerBasic": {
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… é¬¼è‹¥",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚"
 	},
 	"theDuelist:SuperheavyDaihachi": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! µãÃô½Ý¡£»ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£",
-		"NAME": "³¬ÖØÎäÕß ´ó°Ë",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! µãÃô½Ý¡£»ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ç‚¹æ•æ·ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… å¤§å…«",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ç‚¹æ•æ·ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SuperheavyFlutist": {
-		"DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "³¬ÖØÎäÕß Ó°·¨Ê¦",
-		"UPGRADE_DESCRIPTION": "³¬ÖØÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… å½±æ³•å¸ˆ",
+		"UPGRADE_DESCRIPTION": "è¶…é‡å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:SuperheavyGeneral": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£",
-		"NAME": "³¬ÖØ»Ô½« Éºº÷",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…é‡è¾‰å°† çŠç‘š",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SuperheavyMagnet": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ2¸öËæ»ú´ÅÌú¡£",
-		"NAME": "³¬ÖØÎäÕß ´ÅÊ¯",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ2¸öËæ»ú´ÅÌú¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—2ä¸ªéšæœºç£é“ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… ç£çŸ³",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—2ä¸ªéšæœºç£é“ã€‚"
 	},
 	"theDuelist:SuperheavyOgre": {
-		"DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£",
-		"NAME": "³¬ÖØÉñ¹í ¾ÆÍÌÍ¯×Ó",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…é‡ç¥žé¬¼ é…’åžç«¥å­",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SuperheavyScales": {
-		"DESCRIPTION": "³¬ÖØÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "³¬ÖØÎäÕß Ìì³Ó",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "è¶…é‡å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… å¤©ç§¤",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:SuperheavySoulbeads": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ !M! ²ã²ÐÓ°¡£",
-		"NAME": "³¬ÖØÎäÕß×°Áô ËÀ·µ",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL »ñµÃ !M! ²ã²ÐÓ°¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾— !M! å±‚æ®‹å½±ã€‚",
+		"NAME": "è¶…é‡æ­¦è€…è£…ç•™ æ­»è¿”",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾— !M! å±‚æ®‹å½±ã€‚"
 	},
 	"theDuelist:SuperheavySoulbuster": {
-		"DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "³¬ÖØÎäÕß×°Áô ±¬ÁÑÊÖ¼×",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è¶…é‡æ­¦è€…è£…ç•™ çˆ†è£‚æ‰‹ç”²",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SuperheavySoulclaw": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ã¿´ò³ö1ÕÅÄÜÁ¦ÅÆ£¬»ñµÃ !M! µãÃô½Ý¡£",
-		"NAME": "³¬ÖØÎäÕß×°Áô ¹â×¦",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ã¿´ò³ö1ÕÅÄÜÁ¦ÅÆ£¬»ñµÃ !M! µãÃô½Ý¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æ¯æ‰“å‡º1å¼ èƒ½åŠ›ç‰Œï¼ŒèŽ·å¾— !M! ç‚¹æ•æ·ã€‚",
+		"NAME": "è¶…é‡æ­¦è€…è£…ç•™ å…‰çˆª",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æ¯æ‰“å‡º1å¼ èƒ½åŠ›ç‰Œï¼ŒèŽ·å¾— !M! ç‚¹æ•æ·ã€‚"
 	},
 	"theDuelist:SuperheavySoulhorns": {
-		"DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "³¬ÖØÎäÕß×°Áô Ë«½Ç",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è¶…é‡æ­¦è€…è£…ç•™ åŒè§’",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:SuperheavySoulpiercer": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! ¸øÓè !M! ²ã»ºÂý¡£Éú³É1¸öÉ³Ê¯³äÄÜÇò¡£",
-		"NAME": "³¬ÖØÎäÕß×°Áô ÑÒÈÚ",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! ¸øÓè !M! ²ã»ºÂý¡£Éú³É1¸öÉ³Ê¯³äÄÜÇò¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ !M! å±‚ç¼“æ…¢ã€‚ç”Ÿæˆ1ä¸ªæ²™çŸ³å……èƒ½çƒã€‚",
+		"NAME": "è¶…é‡æ­¦è€…è£…ç•™ å²©èž",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! ç»™äºˆ !M! å±‚ç¼“æ…¢ã€‚ç”Ÿæˆ1ä¸ªæ²™çŸ³å……èƒ½çƒã€‚"
 	},
 	"theDuelist:SuperheavySoulshield": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! ²ã¶à²ã»¤¼×¡£",
-		"NAME": "³¬ÖØÎäÕß×°Áô ¾Þ±Ú",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! ²ã¶à²ã»¤¼×¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! å±‚å¤šå±‚æŠ¤ç”²ã€‚",
+		"NAME": "è¶…é‡æ­¦è€…è£…ç•™ å·¨å£",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! å±‚å¤šå±‚æŠ¤ç”²ã€‚"
 	},
 	"theDuelist:SuperheavySwordsman": {
-		"DESCRIPTION": "³¬ÖØÕÙ»½Êý !duelist:SUMM! »ñµÃ1µãÃô½Ý¡£",
-		"NAME": "³¬ÖØÎäÕß µ¶á÷",
-		"UPGRADE_DESCRIPTION": "³¬ÖØÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ1µãÃô½Ý¡£"
+		"DESCRIPTION": "è¶…é‡å¬å”¤æ•° !duelist:SUMM! èŽ·å¾—1ç‚¹æ•æ·ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… åˆ€ç‹©",
+		"UPGRADE_DESCRIPTION": "è¶…é‡å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾—1ç‚¹æ•æ·ã€‚"
 	},
 	"theDuelist:SuperheavyToken": {
-		"DESCRIPTION": "³¬ÖØ ÕÙ»½Êý1",
-		"NAME": "³¬ÖØÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ÕÙ»½Êý1"
+		"DESCRIPTION": "è¶…é‡ å¬å”¤æ•°1",
+		"NAME": "è¶…é‡è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ å¬å”¤æ•°1"
 	},
 	"theDuelist:SuperheavyWaraji": {
-		"DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£",
-		"NAME": "³¬ÖØÎäÕß ´ó²ÝÐ¬",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !M! µãÃô½Ý¡£»ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£"
+		"DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¶…é‡æ­¦è€… å¤§è‰éž‹",
+		"UPGRADE_DESCRIPTION": "è¶…é‡ ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !M! ç‚¹æ•æ·ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SwordDeepSeated": {
-		"DESCRIPTION": "±¾»ØºÏ»ñµÃ5µãÁ¦Á¿¡£½« !M! ÕÅÕâÕÅÅÆµÄ¸´ÖÆÆ·Ôö¼Óµ½³éÅÆ¶Ñ£¬±¾³¡Õ½¶·Ã¿´ò³ö¹ý1ÕÅÖ´ÄîÖ®½££¬¶îÍâÔö¼Ó !M! ¸ö¸´ÖÆÆ·¡£",
-		"NAME": "Ö´ÄîÖ®½£",
-		"UPGRADE_DESCRIPTION": "±¾»ØºÏ»ñµÃ5µãÁ¦Á¿¡£½« !M! ÕÅÕâÕÅÅÆµÄ¸´ÖÆÆ·Ôö¼Óµ½³éÅÆ¶Ñ£¬±¾³¡Õ½¶·Ã¿´ò³ö¹ý1ÕÅÖ´ÄîÖ®½££¬¶îÍâÔö¼Ó !M! ¸ö¸´ÖÆÆ·¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æœ¬å›žåˆèŽ·å¾—5ç‚¹åŠ›é‡ã€‚å°† !M! å¼ è¿™å¼ ç‰Œçš„å¤åˆ¶å“å¢žåŠ åˆ°æŠ½ç‰Œå †ï¼Œæœ¬åœºæˆ˜æ–—æ¯æ‰“å‡ºè¿‡1å¼ æ‰§å¿µä¹‹å‰‘ï¼Œé¢å¤–å¢žåŠ  !M! ä¸ªå¤åˆ¶å“ã€‚",
+		"NAME": "æ‰§å¿µä¹‹å‰‘",
+		"UPGRADE_DESCRIPTION": "æœ¬å›žåˆèŽ·å¾—5ç‚¹åŠ›é‡ã€‚å°† !M! å¼ è¿™å¼ ç‰Œçš„å¤åˆ¶å“å¢žåŠ åˆ°æŠ½ç‰Œå †ï¼Œæœ¬åœºæˆ˜æ–—æ¯æ‰“å‡ºè¿‡1å¼ æ‰§å¿µä¹‹å‰‘ï¼Œé¢å¤–å¢žåŠ  !M! ä¸ªå¤åˆ¶å“ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SwordsBurning": {
-		"DESCRIPTION": "Ã¿´Î¼¤·¢³äÄÜÇò£¬Éú³É1¸öÈÛÑÒ³äÄÜÇò¡£",
-		"NAME": "Ñ×Ö®»¤·â½£",
-		"UPGRADE_DESCRIPTION": "Ã¿´Î¼¤·¢³äÄÜÇò£¬Éú³É1¸öÈÛÑÒ³äÄÜÇò¡£"
+		"DESCRIPTION": "æ¯æ¬¡æ¿€å‘å……èƒ½çƒï¼Œç”Ÿæˆ1ä¸ªç†”å²©å……èƒ½çƒã€‚",
+		"NAME": "ç‚Žä¹‹æŠ¤å°å‰‘",
+		"UPGRADE_DESCRIPTION": "æ¯æ¬¡æ¿€å‘å……èƒ½çƒï¼Œç”Ÿæˆ1ä¸ªç†”å²©å……èƒ½çƒã€‚"
 	},
 	"theDuelist:SwordsConcealing": {
-		"DESCRIPTION": "Ã¿´ò³ö1ÕÅÅÆ£¬»ñµÃ !M! µã¸ñµ²¡£ NL »ñµÃµÄ¸ñµ²ÊÜÃô½ÝÓ°Ïì¡£",
-		"NAME": "°µÖ®»¤·â½£",
-		"UPGRADE_DESCRIPTION": "Ã¿´ò³ö1ÕÅÅÆ£¬»ñµÃ !M! µã¸ñµ²¡£ NL »ñµÃµÄ¸ñµ²ÊÜÃô½ÝÓ°Ïì¡£"
+		"DESCRIPTION": "æ¯æ‰“å‡º1å¼ ç‰Œï¼ŒèŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—çš„æ ¼æŒ¡å—æ•æ·å½±å“ã€‚",
+		"NAME": "æš—ä¹‹æŠ¤å°å‰‘",
+		"UPGRADE_DESCRIPTION": "æ¯æ‰“å‡º1å¼ ç‰Œï¼ŒèŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚ NL èŽ·å¾—çš„æ ¼æŒ¡å—æ•æ·å½±å“ã€‚"
 	},
 	"theDuelist:SwordsRevealing": {
-		"DESCRIPTION": "¼ÀÆ·ËùÓÐÕÙ»½Êý£¨×îÐ¡Öµ3£© 2»ØºÏÄÚ£¬²»ÊÜÈÎºÎÉúÃüÉËº¦¡£ÏûºÄ¡£",
-		"NAME":"¹âÖ®»¤·â½£",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·ËùÓÐÕÙ»½Êý£¨×îÐ¡Öµ3£© 3»ØºÏÄÚ£¬²»ÊÜÈÎºÎÉúÃüÉËº¦¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç¥­å“æ‰€æœ‰å¬å”¤æ•°ï¼ˆæœ€å°å€¼3ï¼‰ 2å›žåˆå†…ï¼Œä¸å—ä»»ä½•ç”Ÿå‘½ä¼¤å®³ã€‚æ¶ˆè€—ã€‚",
+		"NAME":"å…‰ä¹‹æŠ¤å°å‰‘",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ‰€æœ‰å¬å”¤æ•°ï¼ˆæœ€å°å€¼3ï¼‰ 3å›žåˆå†…ï¼Œä¸å—ä»»ä½•ç”Ÿå‘½ä¼¤å®³ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:TerraTerrible": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Ä§ÈË Ì©À­",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é­”äºº æ³°æ‹‰",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Terraforming": {
-		"DESCRIPTION": "½«1ÕÅËæ»úµÄ³¡µØÄ§·¨¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "ÐÇÇò¸ÄÔì",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£½«1ÕÅËæ»úµÄ³¡µØÄ§·¨¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°†1å¼ éšæœºçš„åœºåœ°é­”æ³•å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ˜Ÿçƒæ”¹é€ ",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚å°†1å¼ éšæœºçš„åœºåœ°é­”æ³•å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:TheCreator": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÏûºÄ³éÅÆ¶ÑºÍÆúÅÆ¶ÑÖÐËùÓÐµÄÅÆ¡£½«ËùÓÐ±¾¿¨³ØµÄÅÆ¼ÓÈë³éÅÆ¶ÑÇÒÐéÎÞ£¬ºÄÄÜÎª1¡£¹ÌÊØ¡£",
-		"NAME": "´´ÊÀÉñ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ÏûºÄ³éÅÆ¶ÑºÍÆúÅÆ¶ÑÖÐËùÓÐµÄÅÆ¡£½«ËùÓÐ±¾¿¨³ØµÄÅÆ¼ÓÈë³éÅÆ¶ÑÇÒÐéÎÞ£¬ºÄÄÜÎª1¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æŠ½ç‰Œå †å’Œå¼ƒç‰Œå †ä¸­æ‰€æœ‰çš„ç‰Œã€‚å°†æ‰€æœ‰æœ¬å¡æ± çš„ç‰ŒåŠ å…¥æŠ½ç‰Œå †ä¸”è™šæ— ï¼Œè€—èƒ½ä¸º1ã€‚å›ºå®ˆã€‚",
+		"NAME": "åˆ›ä¸–ç¥ž",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! æ¶ˆè€—æŠ½ç‰Œå †å’Œå¼ƒç‰Œå †ä¸­æ‰€æœ‰çš„ç‰Œã€‚å°†æ‰€æœ‰æœ¬å¡æ± çš„ç‰ŒåŠ å…¥æŠ½ç‰Œå †ä¸”è™šæ— ï¼Œè€—èƒ½ä¸º1ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:ThousandEyesIdol": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! ÖØÖÃÏÂ1¸ö³äÄÜÇò¡£",
-		"NAME": "Ç§ÑÛÐ°½ÌÉñ",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ NL ÖØÖÃÏÂ1¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é‡ç½®ä¸‹1ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "åƒçœ¼é‚ªæ•™ç¥ž",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ NL é‡ç½®ä¸‹1ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:ThousandEyesRestrict": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! ÖØÖÃËùÓÐµÄ³äÄÜÇò£¬Ã¿ÓÐ1¸ö³äÄÜÇò£¬Éú³É1¸öºÚ°µ³äÄÜÇò¡£",
-		"NAME": "Ç§ÑÛÄÉ¼ÀÉñ",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! ÖØÖÃËùÓÐµÄ³äÄÜÇò£¬Ã¿ÓÐ1¸ö³äÄÜÇò£¬Éú³É1¸öºÚ°µ³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é‡ç½®æ‰€æœ‰çš„å……èƒ½çƒï¼Œæ¯æœ‰1ä¸ªå……èƒ½çƒï¼Œç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚",
+		"NAME": "åƒçœ¼çº³ç¥­ç¥ž",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é‡ç½®æ‰€æœ‰çš„å……èƒ½çƒï¼Œæ¯æœ‰1ä¸ªå……èƒ½çƒï¼Œç”Ÿæˆ1ä¸ªé»‘æš—å……èƒ½çƒã€‚"
 	},
 	"theDuelist:ThunderDragon": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷ÎªÁú×å¹ÖÊÞµÄ¼ÀÆ·£¬Éú³É1¸öÉÁµç³äÄÜÇò¡£",
-		"NAME": "À×Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Èç¹ûÕâ¸ö¹ÖÊÞ×÷ÎªÁú×å¹ÖÊÞµÄ¼ÀÆ·£¬Éú³É1¸öÉÁµç³äÄÜÇò¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºé¾™æ—æ€ªå…½çš„ç¥­å“ï¼Œç”Ÿæˆ1ä¸ªé—ªç”µå……èƒ½çƒã€‚",
+		"NAME": "é›·é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¦‚æžœè¿™ä¸ªæ€ªå…½ä½œä¸ºé¾™æ—æ€ªå…½çš„ç¥­å“ï¼Œç”Ÿæˆ1ä¸ªé—ªç”µå……èƒ½çƒã€‚"
 	},
 	"theDuelist:Tierra": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ôö¼ÓËùÓÐ¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "´´ÐÇÉñ ÌáÒ®À­",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ôö¼ÓËùÓÐ¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¢žåŠ æ‰€æœ‰æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "åˆ›æ˜Ÿç¥ž æè€¶æ‹‰",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¢žåŠ æ‰€æœ‰æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:TimeWizard": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬´¥·¢Ëæ»ú¶¯×÷¡£",
-		"NAME": "Ê±¼äÄ§ÊõÊ¦",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬´¥·¢Ëæ»ú¶¯×÷¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œè§¦å‘éšæœºåŠ¨ä½œã€‚",
+		"NAME": "æ—¶é—´é­”æœ¯å¸ˆ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œè§¦å‘éšæœºåŠ¨ä½œã€‚"
 	},
 	"theDuelist:Token": {
-		"DESCRIPTION": "ÕÙ»½Êý1 »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý1 »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•°1 èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•°1 èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:TokenVacuum": {
-		"DESCRIPTION": "¼ÀÆ·ËùÓÐÑÜÉúÎï¡£Ã¿¼ÀÆ·1¸öÑÜÉúÎï£¬ÕÙ»½1¸öËæ»ú¹ÖÊÞ²¢¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "ÑÜÉúÎïÎü³ýÆ÷",
-		"UPGRADE_DESCRIPTION": " ¼ÀÆ·ËùÓÐÑÜÉúÎï¡£Ã¿¼ÀÆ·1¸öÑÜÉúÎï£¬ÕÙ»½1¸öËæ»ú¹ÖÊÞ²¢¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ‰€æœ‰è¡ç”Ÿç‰©ã€‚æ¯ç¥­å“1ä¸ªè¡ç”Ÿç‰©ï¼Œå¬å”¤1ä¸ªéšæœºæ€ªå…½å¹¶å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "è¡ç”Ÿç‰©å¸é™¤å™¨",
+		"UPGRADE_DESCRIPTION": " ç¥­å“æ‰€æœ‰è¡ç”Ÿç‰©ã€‚æ¯ç¥­å“1ä¸ªè¡ç”Ÿç‰©ï¼Œå¬å”¤1ä¸ªéšæœºæ€ªå…½å¹¶å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ToonAncientGear": {
-		"DESCRIPTION": "¿¨Í¨ »úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "¿¨Í¨¹Å´úµÄ»úÐµ¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ »úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¡é€š æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å¡é€šå¤ä»£çš„æœºæ¢°å·¨äºº",
+		"UPGRADE_DESCRIPTION": "å¡é€š æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:ToonBarrelDragon": {
-		"DESCRIPTION": "¿¨Í¨ »úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! ¶ÔÃ¿¸öµÐÈËÔì³ÉÒ»´ÎËæ»ú£¨25-40£©µãÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£",
-		"NAME": "¿¨Í¨×óÂÖÊÖÇ¹Áú",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ »úÐµ×å¡£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! ¶ÔÃ¿¸öµÐÈËÔì³ÉÒ»´ÎËæ»ú£¨30-45£©µãÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£"
+		"DESCRIPTION": "å¡é€š æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¯¹æ¯ä¸ªæ•Œäººé€ æˆä¸€æ¬¡éšæœºï¼ˆ25-40ï¼‰ç‚¹ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚",
+		"NAME": "å¡é€šå·¦è½®æ‰‹æžªé¾™",
+		"UPGRADE_DESCRIPTION": "å¡é€š æœºæ¢°æ—ã€‚é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¯¹æ¯ä¸ªæ•Œäººé€ æˆä¸€æ¬¡éšæœºï¼ˆ30-45ï¼‰ç‚¹ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚"
 	},
 	"theDuelist:ToonBriefcase": {
-		"DESCRIPTION": "Ã¿´ò³ö1ÕÅ¿¨Í¨ÅÆÊ±£¬ÏÂ»ØºÏ¿ªÊ¼½«Ëü¼Ó»ØÊÖÅÆÖÐ¡£",
-		"NAME": "¿¨Í¨ÊÖÌáÏä",
-		"UPGRADE_DESCRIPTION": "Ã¿´ò³ö1ÕÅ¿¨Í¨ÅÆÊ±£¬ÏÂ»ØºÏ¿ªÊ¼½«Ëü¼Ó»ØÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ¯æ‰“å‡º1å¼ å¡é€šç‰Œæ—¶ï¼Œä¸‹å›žåˆå¼€å§‹å°†å®ƒåŠ å›žæ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¡é€šæ‰‹æç®±",
+		"UPGRADE_DESCRIPTION": "æ¯æ‰“å‡º1å¼ å¡é€šç‰Œæ—¶ï¼Œä¸‹å›žåˆå¼€å§‹å°†å®ƒåŠ å›žæ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:ToonCannonSoldier": {
-		"DESCRIPTION": "¿¨Í¨ »úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿µ±ÕÙ»½1¸ö¿¨Í¨¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£",
-		"NAME": "¿¨Í¨¼ÓÅ©ÅÚ±ø",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ »úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿µ±ÕÙ»½1¸ö¿¨Í¨¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "å¡é€š æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å½“å¬å”¤1ä¸ªå¡é€šæ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¡é€šåŠ å†œç‚®å…µ",
+		"UPGRADE_DESCRIPTION": "å¡é€š æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å½“å¬å”¤1ä¸ªå¡é€šæ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ToonDarkMagician": {
-		"DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL Éú³É1¸öÕÙ»½Ê¿³äÄÜÇò¡£",
-		"NAME": "¿¨Í¨ºÚÄ§ÊõÊ¦",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL Éú³É1¸öÕÙ»½Ê¿³äÄÜÇò¡£"
+		"DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL ç”Ÿæˆ1ä¸ªå¬å”¤å£«å……èƒ½çƒã€‚",
+		"NAME": "å¡é€šé»‘é­”æœ¯å¸ˆ",
+		"UPGRADE_DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL ç”Ÿæˆ1ä¸ªå¬å”¤å£«å……èƒ½çƒã€‚"
 	},
 	"theDuelist:ToonDarkMagicianGirl": {
-		"DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£",
-		"NAME": "¿¨Í¨ºÚÄ§ÊõÅ®º¢",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£"
+		"DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚",
+		"NAME": "å¡é€šé»‘é­”æœ¯å¥³å­©",
+		"UPGRADE_DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚"
 	},
 	"theDuelist:ToonDefense": {
-		"DESCRIPTION": "¿¨Í¨ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL ±¾»ØºÏ±£ÁôÊÖÅÆ¡£",
-		"NAME": "¿¨Í¨·ÀÓù",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ ¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL ±£ÁôÊÖÅÆ !M! ¸ö»ØºÏ¡£"
+		"DESCRIPTION": "å¡é€š ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æœ¬å›žåˆä¿ç•™æ‰‹ç‰Œã€‚",
+		"NAME": "å¡é€šé˜²å¾¡",
+		"UPGRADE_DESCRIPTION": "å¡é€š ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ä¿ç•™æ‰‹ç‰Œ !M! ä¸ªå›žåˆã€‚"
 	},
 	"theDuelist:ToonGeminiElf": {
-		"DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! ",
-		"NAME": "¿¨Í¨Ë«Éú¾«Áé",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! "
+		"DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ",
+		"NAME": "å¡é€šåŒç”Ÿç²¾çµ",
+		"UPGRADE_DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! "
 	},
 	"theDuelist:ToonKingdom": {
-		"DESCRIPTION": "»ñµÃ»òÌæ´ú¿¨Í¨ÊÀ½çµÄÐ§¹û¡£Ã¿´Î´ò³ö¿¨Í¨ÅÆÊÜµ½¸üÐ¡ÉËº¦¡£",
-		"NAME": "¿¨Í¨Íõ¹ú",
-		"UPGRADE_DESCRIPTION": "»ñµÃ»òÌæ´ú¿¨ÊÀ½çµÄÐ§¹û¡£Ã¿´Î´ò³ö¿¨Í¨ÅÆÊÜµ½¸üÐ¡ÉËº¦¡£"
+		"DESCRIPTION": "èŽ·å¾—æˆ–æ›¿ä»£å¡é€šä¸–ç•Œçš„æ•ˆæžœã€‚æ¯æ¬¡æ‰“å‡ºå¡é€šç‰Œå—åˆ°æ›´å°ä¼¤å®³ã€‚",
+		"NAME": "å¡é€šçŽ‹å›½",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾—æˆ–æ›¿ä»£å¡ä¸–ç•Œçš„æ•ˆæžœã€‚æ¯æ¬¡æ‰“å‡ºå¡é€šç‰Œå—åˆ°æ›´å°ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ToonMagic": {
-		"DESCRIPTION": "±¾»ØºÏ£¬ÊÖÅÆÖÐËùÓÐ¿¨Í¨ÅÆµÄºÄÄÜÎª0¡£",
-		"NAME": "¿¨Í¨Ä§Êõ",
-		"UPGRADE_DESCRIPTION": "±¾»ØºÏ£¬ÊÖÅÆÖÐËùÓÐ¿¨Í¨ÅÆµÄºÄÄÜÎª0¡£"
+		"DESCRIPTION": "æœ¬å›žåˆï¼Œæ‰‹ç‰Œä¸­æ‰€æœ‰å¡é€šç‰Œçš„è€—èƒ½ä¸º0ã€‚",
+		"NAME": "å¡é€šé­”æœ¯",
+		"UPGRADE_DESCRIPTION": "æœ¬å›žåˆï¼Œæ‰‹ç‰Œä¸­æ‰€æœ‰å¡é€šç‰Œçš„è€—èƒ½ä¸º0ã€‚"
 	},
 	"theDuelist:ToonMask": {
-		"DESCRIPTION": "¿¨Í¨ NL ¶ÔÃ¿¸öµÐÈËÔì³ÉÒ»´ÎËæ»ú£¨10-40£©µãÉËº¦¡£",
-		"NAME": "¿¨Í¨Ãæ¾ß",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ NL ¶ÔÃ¿¸öµÐÈËÔì³ÉÒ»´ÎËæ»ú£¨15-50£©µãÉËº¦¡£"
+		"DESCRIPTION": "å¡é€š NL å¯¹æ¯ä¸ªæ•Œäººé€ æˆä¸€æ¬¡éšæœºï¼ˆ10-40ï¼‰ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¡é€šé¢å…·",
+		"UPGRADE_DESCRIPTION": "å¡é€š NL å¯¹æ¯ä¸ªæ•Œäººé€ æˆä¸€æ¬¡éšæœºï¼ˆ15-50ï¼‰ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:ToonMaskedSorcerer": {
-		"DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ñ¡ÔñÉú³É1¸ö³äÄÜÇò¡£",
-		"NAME": "¿¨Í¨¼ÙÃæÄ§µÀÊ¿",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ñ¡ÔñÉú³É1¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL é€‰æ‹©ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "å¡é€šå‡é¢é­”é“å£«",
+		"UPGRADE_DESCRIPTION": "å¡é€š é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL é€‰æ‹©ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:ToonMermaid": {
-		"DESCRIPTION": "¿¨Í¨ ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£",
-		"NAME": "¿¨Í¨ÈËÓã",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£"
+		"DESCRIPTION": "å¡é€š å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚",
+		"NAME": "å¡é€šäººé±¼",
+		"UPGRADE_DESCRIPTION": "å¡é€š å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚"
 	},
 	"theDuelist:ToonRollback": {
-		"DESCRIPTION": "±¾»ØºÏËùÓÐ´ò³öµÄ¿¨Í¨ÅÆ¸´ÖÆµ½ÊÖÅÆÖÐ²¢Ëæ»úºÄÄÜ¡£",
-		"NAME": "¿¨Í¨µ¹´ø",
-		"UPGRADE_DESCRIPTION": "±¾»ØºÏËùÓÐ´ò³öµÄ¿¨Í¨ÅÆ¸´ÖÆµ½ÊÖÅÆÖÐ²¢Ëæ»úºÄÄÜ¡£"
+		"DESCRIPTION": "æœ¬å›žåˆæ‰€æœ‰æ‰“å‡ºçš„å¡é€šç‰Œå¤åˆ¶åˆ°æ‰‹ç‰Œä¸­å¹¶éšæœºè€—èƒ½ã€‚",
+		"NAME": "å¡é€šå€’å¸¦",
+		"UPGRADE_DESCRIPTION": "æœ¬å›žåˆæ‰€æœ‰æ‰“å‡ºçš„å¡é€šç‰Œå¤åˆ¶åˆ°æ‰‹ç‰Œä¸­å¹¶éšæœºè€—èƒ½ã€‚"
 	},
 	"theDuelist:ToonSummonedSkull": {
-		"DESCRIPTION": "¿¨Í¨ ¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL »ñµÃ2µãÁ¦Á¿¡£",
-		"NAME": "¿¨Í¨¶ñÄ§",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ ¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! ÉËº¦£¨ÎÞÊÓ¸ñµ²£©¡£ NL »ñµÃ3µãÁ¦Á¿¡£"
+		"DESCRIPTION": "å¡é€š æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL èŽ·å¾—2ç‚¹åŠ›é‡ã€‚",
+		"NAME": "å¡é€šæ¶é­”",
+		"UPGRADE_DESCRIPTION": "å¡é€š æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ä¼¤å®³ï¼ˆæ— è§†æ ¼æŒ¡ï¼‰ã€‚ NL èŽ·å¾—3ç‚¹åŠ›é‡ã€‚"
 	},
 	"theDuelist:ToonTable": {
-		"DESCRIPTION": "´Ó³éÅÆ¶ÑÖÐÑ¡Ôñ1ÕÅ¿¨Í¨ÅÆ¼ÓÈëµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "¿¨Í¨Ä¿Â¼",
-		"UPGRADE_DESCRIPTION": "´Ó³éÅÆ¶ÑºÍÆúÅÆ¶ÑÖÐÑ¡Ôñ1ÕÅ¿¨Í¨ÅÆ¼ÓÈëµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "ä»ŽæŠ½ç‰Œå †ä¸­é€‰æ‹©1å¼ å¡é€šç‰ŒåŠ å…¥åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¡é€šç›®å½•",
+		"UPGRADE_DESCRIPTION": "ä»ŽæŠ½ç‰Œå †å’Œå¼ƒç‰Œå †ä¸­é€‰æ‹©1å¼ å¡é€šç‰ŒåŠ å…¥åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:ToonToken": {
-		"DESCRIPTION": "¿¨Í¨ ÕÙ»½Êý1 NL ³éÈ¡ !M! Ö»¿¨Í¨¹ÖÊÞ",
-		"NAME": "¿¨Í¨ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨ ÕÙ»½Êý1 NL ³éÈ¡ !M! Ö»¿¨Í¨¹ÖÊÞ"
+		"DESCRIPTION": "å¡é€š å¬å”¤æ•°1 NL æŠ½å– !M! åªå¡é€šæ€ªå…½",
+		"NAME": "å¡é€šè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¡é€š å¬å”¤æ•°1 NL æŠ½å– !M! åªå¡é€šæ€ªå…½"
 	},
 	"theDuelist:ToonWorld": {
-		"DESCRIPTION": "¿ÉÒÔ´ò³ö¿¨Í¨ÅÆ¡£Ã¿´Î´ò³ö¿¨Í¨ÅÆ¶¼»áÊ§È¥ÉúÃü£¬ÊýÖµÖð½¥¼õÉÙ¡£",
-		"NAME": "¿¨Í¨ÊÀ½ç",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£¿ÉÒÔ´ò³ö¿¨Í¨ÅÆ¡£Ã¿´Î´ò³ö¿¨Í¨ÅÆ¶¼»áÊ§È¥ÉúÃü£¬ÊýÖµÖð½¥¼õÉÙ¡£"
+		"DESCRIPTION": "å¯ä»¥æ‰“å‡ºå¡é€šç‰Œã€‚æ¯æ¬¡æ‰“å‡ºå¡é€šç‰Œéƒ½ä¼šå¤±åŽ»ç”Ÿå‘½ï¼Œæ•°å€¼é€æ¸å‡å°‘ã€‚",
+		"NAME": "å¡é€šä¸–ç•Œ",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚å¯ä»¥æ‰“å‡ºå¡é€šç‰Œã€‚æ¯æ¬¡æ‰“å‡ºå¡é€šç‰Œéƒ½ä¼šå¤±åŽ»ç”Ÿå‘½ï¼Œæ•°å€¼é€æ¸å‡å°‘ã€‚"
 	},
 	"theDuelist:ToonsArchetype": {
-		"DESCRIPTION": "½«¿¨Í¨ÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†å¡é€šç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"¿¨Í¨",
-			"ËùÓÐ¿¨Í¨ÅÆ¡£"
+			"å¡é€š",
+			"æ‰€æœ‰å¡é€šç‰Œã€‚"
 		],
-		"NAME": "¿¨Í¨"
+		"NAME": "å¡é€š"
 	},
 	"theDuelist:TrapHole": {
-		"DESCRIPTION": "Ã¿µ±ÕÙ»½Ê±£¬ÓÐ30£¥µÄ¼¸ÂÊÁ¢¼´¼ÀÆ·£¬È»ºóÔÙ´ÎÌØÊâÕÙ»½¡£",
-		"NAME": "ÂäÑ¨",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±ÕÙ»½Ê±£¬ÓÐ50£¥µÄ¼¸ÂÊÁ¢¼´¼ÀÆ·£¬È»ºóÔÙ´ÎÌØÊâÕÙ»½¡£"
+		"DESCRIPTION": "æ¯å½“å¬å”¤æ—¶ï¼Œæœ‰30ï¼…çš„å‡ çŽ‡ç«‹å³ç¥­å“ï¼Œç„¶åŽå†æ¬¡ç‰¹æ®Šå¬å”¤ã€‚",
+		"NAME": "è½ç©´",
+		"UPGRADE_DESCRIPTION": "æ¯å½“å¬å”¤æ—¶ï¼Œæœ‰50ï¼…çš„å‡ çŽ‡ç«‹å³ç¥­å“ï¼Œç„¶åŽå†æ¬¡ç‰¹æ®Šå¬å”¤ã€‚"
 	},
 	"theDuelist:TrapsArchetype": {
-		"DESCRIPTION": "½«ÏÝÚåÅÆÔö¼Óµ½¿¨³ØÖÐ¡£",
+		"DESCRIPTION": "å°†é™·é˜±ç‰Œå¢žåŠ åˆ°å¡æ± ä¸­ã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"ÏÝÚå",
-			"ËùÓÐÏÝÚåÅÆ£¬²»°üÀ¨¿¨Í¨Ãæ¾ß¡£"
+			"é™·é˜±",
+			"æ‰€æœ‰é™·é˜±ç‰Œï¼Œä¸åŒ…æ‹¬å¡é€šé¢å…·ã€‚"
 		],
-		"NAME": "ÏÝÚå"
+		"NAME": "é™·é˜±"
 	},
 	"theDuelist:TributeDoomed": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ´ÓÆúÅÆ¶ÑÖÐÑ¡Ôñ !M! ¸ö¹ÖÊÞÌØÊâÕÙ»½¡£",
-		"NAME": "¶ÔËÀÕßµÄ¹©·î",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ´ÓÆúÅÆ¶ÑÑ¡Ôñ !M! ¸ö¹ÖÊÞÉý¼¶²¢ÌØÊâÕÙ»½¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ä»Žå¼ƒç‰Œå †ä¸­é€‰æ‹© !M! ä¸ªæ€ªå…½ç‰¹æ®Šå¬å”¤ã€‚",
+		"NAME": "å¯¹æ­»è€…çš„ä¾›å¥‰",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! ä»Žå¼ƒç‰Œå †é€‰æ‹© !M! ä¸ªæ€ªå…½å‡çº§å¹¶ç‰¹æ®Šå¬å”¤ã€‚"
 	},
 	"theDuelist:TrihornedDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÁú×å¹ÖÊÞ£¬³é1ÕÅº±¼ûÅÆ¡£",
-		"NAME": "Èý½ÇÄ§Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ¼ÀÆ·ÖÐÃ¿ÓÐ1¸öÁú×å¹ÖÊÞ£¬³é1ÕÅÏ¡ÓÐÅÆ¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé¾™æ—æ€ªå…½ï¼ŒæŠ½1å¼ ç½•è§ç‰Œã€‚",
+		"NAME": "ä¸‰è§’é­”é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç¥­å“ä¸­æ¯æœ‰1ä¸ªé¾™æ—æ€ªå…½ï¼ŒæŠ½1å¼ ç¨€æœ‰ç‰Œã€‚"
 	},
 	"theDuelist:TurretWarrior": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ã¿µ±´ò³ö1¸öÑÜÉúÎï£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£",
-		"NAME": "ÅÚËþÕ½Ê¿",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ã¿µ±´ò³ö1¸öÑÜÉúÎï£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æ¯å½“æ‰“å‡º1ä¸ªè¡ç”Ÿç‰©ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç‚®å¡”æˆ˜å£«",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æ¯å½“æ‰“å‡º1ä¸ªè¡ç”Ÿç‰©ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:TwinBarrelDragon": {
-		"DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¸øÓè !M! ²ãÒ×ÉË¡£",
-		"NAME": "Ë«¹ÜÊÖÇ¹Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¸øÓè !M! ²ãÒ×ÉË¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç»™äºˆ !M! å±‚æ˜“ä¼¤ã€‚",
+		"NAME": "åŒç®¡æ‰‹æžªé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL ç»™äºˆ !M! å±‚æ˜“ä¼¤ã€‚"
 	},
 	"theDuelist:TwinHeadedFire": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "±¬Ñ×Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "çˆ†ç‚Žé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:UltimateOffering": {
-		"DESCRIPTION": "Ã¿µ±ÕÙ»½Ê±³¬³ö×î´óÕÙ»½Êý£¬Ê§È¥3ÉúÃü£¬ÔöÁ¿ !M! ²¢ÕÙ»½Êý !M! ¡£",
-		"NAME": "ÑªÖ®´ú³¥",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±ÕÙ»½Ê±³¬³ö×î´óÕÙ»½Êý£¬Ê§È¥3ÉúÃü£¬ÔöÁ¿ !M! ²¢ÕÙ»½Êý !M! ¡£"
+		"DESCRIPTION": "æ¯å½“å¬å”¤æ—¶è¶…å‡ºæœ€å¤§å¬å”¤æ•°ï¼Œå¤±åŽ»3ç”Ÿå‘½ï¼Œå¢žé‡ !M! å¹¶å¬å”¤æ•° !M! ã€‚",
+		"NAME": "è¡€ä¹‹ä»£å¿",
+		"UPGRADE_DESCRIPTION": "æ¯å½“å¬å”¤æ—¶è¶…å‡ºæœ€å¤§å¬å”¤æ•°ï¼Œå¤±åŽ»3ç”Ÿå‘½ï¼Œå¢žé‡ !M! å¹¶å¬å”¤æ•° !M! ã€‚"
 	},
 	"theDuelist:Umi": {
-		"DESCRIPTION": "Ë®×å¹ÖÊÞÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£",
-		"NAME": "º£",
-		"UPGRADE_DESCRIPTION": "Ë®×å¹ÖÊÞÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£"
+		"DESCRIPTION": "æ°´æ—æ€ªå…½é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚",
+		"NAME": "æµ·",
+		"UPGRADE_DESCRIPTION": "æ°´æ—æ€ªå…½é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:ValkMagnet": {
-		"DESCRIPTION": "Èç¹ûÓµÓÐÈýÖÖ´ÅÌúÐ§¹û£¬ÕÙ»½Êý !duelist:SUMM! ²¢Ôì³É !D! µãÉËº¦¡£ NL ÒÆ³ýËùÓÐ´ÅÌúÐ§¹û¡£¹ÌÊØ¡£",
-		"NAME": "´ÅÊ¯Õ½Ê¿ µç´ÅÎäÉñ",
-		"UPGRADE_DESCRIPTION": "Èç¹ûÓÐÓµÓÐÈýÖÖ´ÅÌúÐ§¹û£¬ÕÙ»½Êý !duelist:SUMM! ²¢Ôì³É !D! µãÉËº¦¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "å¦‚æžœæ‹¥æœ‰ä¸‰ç§ç£é“æ•ˆæžœï¼Œå¬å”¤æ•° !duelist:SUMM! å¹¶é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç§»é™¤æ‰€æœ‰ç£é“æ•ˆæžœã€‚å›ºå®ˆã€‚",
+		"NAME": "ç£çŸ³æˆ˜å£« ç”µç£æ­¦ç¥ž",
+		"UPGRADE_DESCRIPTION": "å¦‚æžœæœ‰æ‹¥æœ‰ä¸‰ç§ç£é“æ•ˆæžœï¼Œå¬å”¤æ•° !duelist:SUMM! å¹¶é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:VanityFiend": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Õâ¸ö¹ÖÊÞÕÙ»½ÔÚ³¡Ê±£¬ÎÞ·¨ÌØÊâÕÙ»½¡£",
-		"NAME": "ÐéÎÞÄ§ÈË",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Õâ¸ö¹ÖÊÞÕÙ»½ÔÚ³¡Ê±£¬ÎÞ·¨ÌØÊâÕÙ»½¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL è¿™ä¸ªæ€ªå…½å¬å”¤åœ¨åœºæ—¶ï¼Œæ— æ³•ç‰¹æ®Šå¬å”¤ã€‚",
+		"NAME": "è™šæ— é­”äºº",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL è¿™ä¸ªæ€ªå…½å¬å”¤åœ¨åœºæ—¶ï¼Œæ— æ³•ç‰¹æ®Šå¬å”¤ã€‚"
 	},
 	"theDuelist:VioletCrystal": {
-		"DESCRIPTION": "À¥³æ×åºÍÖ²Îï×åÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£ NL Ö²Îï×åºÍÀ¥³æ×åµÄ¼ÀÆ·Ð§¹ûÌáÉý¡£",
-		"NAME": "×ÏË®¾§",
-		"UPGRADE_DESCRIPTION": "À¥³æ×åºÍÖ²Îï×åÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£ NL Ö²Îï×åºÍÀ¥³æ×åµÄ¼ÀÆ·Ð§¹ûÌáÉý¡£"
+		"DESCRIPTION": "æ˜†è™«æ—å’Œæ¤ç‰©æ—é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚ NL æ¤ç‰©æ—å’Œæ˜†è™«æ—çš„ç¥­å“æ•ˆæžœæå‡ã€‚",
+		"NAME": "ç´«æ°´æ™¶",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—å’Œæ¤ç‰©æ—é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚ NL æ¤ç‰©æ—å’Œæ˜†è™«æ—çš„ç¥­å“æ•ˆæžœæå‡ã€‚"
 	},
 	"theDuelist:WaterOrbCard": {
-		"DESCRIPTION": "Éú³É1¸öË®ÊôÐÔ³äÄÜÇò¡£",
-		"NAME": "Ë®ÊôÐÔ",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öË®ÊôÐÔ³äÄÜÇò¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ°´å±žæ€§å……èƒ½çƒã€‚",
+		"NAME": "Water",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªæ°´å±žæ€§å……èƒ½çƒã€‚"
 	},
 	"theDuelist:WhiteHornDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£",
-		"NAME": "°×½ÇÁú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚",
+		"NAME": "ç™½è§’é¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚"
 	},
 	"theDuelist:WhiteMagicalHat": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Èç¹ûÉú³É1¸ö¹ý³äÄÜÇò£¬ÖØÖÃÏÂ¸ö³äÄÜÇò¡£·ñÔò£¬Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£",
-		"NAME": "°×ÒÂ¹ÖµÁ",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Èç¹ûÉú³É1¸ö¹ý³äÄÜÇò£¬ÖØÖÃÏÂ¸ö³äÄÜÇò¡£·ñÔò£¬Éú³É1¸öËæ»úµÄ³äÄÜÇò¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! å¦‚æžœç”Ÿæˆ1ä¸ªè¿‡å……èƒ½çƒï¼Œé‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚å¦åˆ™ï¼Œç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚",
+		"NAME": "ç™½è¡£æ€ªç›—",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! å¦‚æžœç”Ÿæˆ1ä¸ªè¿‡å……èƒ½çƒï¼Œé‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚å¦åˆ™ï¼Œç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚"
 	},
 	"theDuelist:WhiteNightDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£",
-		"NAME": "Çà±ù°×Ò¹Áú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö¿ÕÆø³äÄÜÇò¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚",
+		"NAME": "é’å†°ç™½å¤œé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªç©ºæ°”å……èƒ½çƒã€‚"
 	},
 	"theDuelist:WingedDragonRa": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Éú³É1¸ö X ÊýÖµÐ§¹ûµÄÇ§Äê³äÄÜÇò¡£¹ÌÊØ¡£",
-		"NAME": "Ì«ÑôÉñÖ®ÒíÉñÁú",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Éú³É1¸ö X ÊýÖµÐ§¹ûµÄÇ§Äê³äÄÜÇò¡£¹ÌÊØ¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ç”Ÿæˆ1ä¸ª X æ•°å€¼æ•ˆæžœçš„åƒå¹´å……èƒ½çƒã€‚å›ºå®ˆã€‚",
+		"NAME": "å¤ªé˜³ç¥žä¹‹ç¿¼ç¥žé¾™",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ª X æ•°å€¼æ•ˆæžœçš„åƒå¹´å……èƒ½çƒã€‚å›ºå®ˆã€‚"
 	},
 	"theDuelist:WingedKuriboh": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ !M! ¡£Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÓðÒíÀõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ !M! ¡£Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¢žæ®– !M! ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç¾½ç¿¼æ —å­çƒ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¢žæ®– !M! ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Wiretap": {
-		"DESCRIPTION": "Ëæ»ú¸´ÖÆ1ÕÅÊÖÅÆ¡£",
+		"DESCRIPTION": "éšæœºå¤åˆ¶1å¼ æ‰‹ç‰Œã€‚",
 		"EXTENDED_DESCRIPTION": [
-			"Ñ¡Ôñ !M! ÕÅÊÖÅÆ½øÐÐ¸´ÖÆ¡£"
+			"é€‰æ‹© !M! å¼ æ‰‹ç‰Œè¿›è¡Œå¤åˆ¶ã€‚"
 		],
-		"NAME": "·´²é",
-		"UPGRADE_DESCRIPTION": "Ñ¡ÔñÊÖÅÆ½øÐÐ¸´ÖÆ¡£"
+		"NAME": "åæŸ¥",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©æ‰‹ç‰Œè¿›è¡Œå¤åˆ¶ã€‚"
 	},
 	"theDuelist:Wiseman": {
-		"DESCRIPTION": "³ýÍâ¡£»ñµÃ1¸öÒ©Ë®²Û¡£",
-		"NAME": "ÏÍÕßµÄÊ¥±­",
-		"UPGRADE_DESCRIPTION": "³ýÍâ¡£»ñµÃ1¸öÒ©Ë®²Û¡£"
+		"DESCRIPTION": "é™¤å¤–ã€‚èŽ·å¾—1ä¸ªè¯æ°´æ§½ã€‚",
+		"NAME": "è´¤è€…çš„åœ£æ¯",
+		"UPGRADE_DESCRIPTION": "é™¤å¤–ã€‚èŽ·å¾—1ä¸ªè¯æ°´æ§½ã€‚"
 	},
 	"theDuelist:WorldCarrot": {
-		"DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ºúÂÜ²·ÈË",
-		"UPGRADE_DESCRIPTION": "Ö²Îï×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "èƒ¡èåœäºº",
+		"UPGRADE_DESCRIPTION": "æ¤ç‰©æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:WormApocalypse": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ½«1ÕÅËæ»úÄ§·¨¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "°¢²¨¿ËÁ¢ÆÕË¹Òì³æ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ½«1ÕÅËæ»úÄ§·¨¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†1å¼ éšæœºé­”æ³•å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "é˜¿æ³¢å…‹ç«‹æ™®æ–¯å¼‚è™«",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†1å¼ éšæœºé­”æ³•å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:WormBarses": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "°Í¶ûÈøË¹Òì³æ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å·´å°”è¨æ–¯å¼‚è™«",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:WormKing": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "Òì³æÍõ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¼‚è™«çŽ‹",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:WormWarlord": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«1ÕÅËæ»úÏÝÚå¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "Òì³æÕ½Éñ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ½«1ÕÅËæ»úÏÝÚå¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†1å¼ éšæœºé™·é˜±å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å¼‚è™«æˆ˜ç¥ž",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†1å¼ éšæœºé™·é˜±å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:YamataDragon": {
-		"DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "°ËÙ¶´óÉß",
-		"UPGRADE_DESCRIPTION": "Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å…«ä¿£å¤§è›‡",
+		"UPGRADE_DESCRIPTION": "é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Yami": {
-		"DESCRIPTION": "Ä§·¨Ê¦×åÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£ NL Ã¿µ±ÕÙ»½Ä§·¨Ê¦×å£¬¶îÍâ»ñµÃ1µãÕÙ»½Êý¡£",
-		"NAME": "°µ",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×åÔì³ÉÉËº¦Ìá¸ß50£¥£¬¶îÍâ»ñµÃ50£¥µÄ¸ñµ²¡£ NL Ã¿µ±ÕÙ»½Ä§·¨Ê¦×å£¬¶îÍâ»ñµÃ1µãÕÙ»½Êý¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚ NL æ¯å½“å¬å”¤é­”æ³•å¸ˆæ—ï¼Œé¢å¤–èŽ·å¾—1ç‚¹å¬å”¤æ•°ã€‚",
+		"NAME": "æš—",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—é€ æˆä¼¤å®³æé«˜50ï¼…ï¼Œé¢å¤–èŽ·å¾—50ï¼…çš„æ ¼æŒ¡ã€‚ NL æ¯å½“å¬å”¤é­”æ³•å¸ˆæ—ï¼Œé¢å¤–èŽ·å¾—1ç‚¹å¬å”¤æ•°ã€‚"
 	},
 	"theDuelist:YellowGadget": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ëæ»ú½« !M! ÕÅÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "»ÆÉ«Áã¼þ",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ñ¡Ôñ !M! ÕÅËæ»úÑÜÉúÎïÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! éšæœºå°† !M! å¼ è¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "é»„è‰²é›¶ä»¶",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€‰æ‹© !M! å¼ éšæœºè¡ç”Ÿç‰©å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:ZombieToken": {
-		"DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý1",
-		"NAME": "²»ËÀÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å¡£ÕÙ»½Êý1"
+		"DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•°1",
+		"NAME": "ä¸æ­»è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—ã€‚å¬å”¤æ•°1"
 	},
 	"theDuelist:Zombyra": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ê§È¥ !M! ÉúÃü¡£",
-		"NAME": "Ê¬Ä§ÏÀ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ê§È¥ !M! ÉúÃü¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¤±åŽ» !M! ç”Ÿå‘½ã€‚",
+		"NAME": "å°¸é­”ä¾ ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å¤±åŽ» !M! ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:RainbowJar": {
-		"DESCRIPTION": "Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å¡£Ã¿´ò³ö1ÕÅÄÇÀàÖÖ×åµÄ¹ÖÊÞ£¬ÏÂ¸ö»ØºÏ¿ªÊ¼½«ÆäÔö¼Ó»ØÊÖÅÆÖÐ¡£",
-		"NAME": "²Êºç·âÓ¡Ö®ºø",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å¡£Ã¿´ò³ö1ÕÅÄÇÀàÖÖ×åµÄ¹ÖÊÞ£¬ÏÂ¸ö»ØºÏ¿ªÊ¼½«ÆäÔö¼Ó»ØÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—ã€‚æ¯æ‰“å‡º1å¼ é‚£ç±»ç§æ—çš„æ€ªå…½ï¼Œä¸‹ä¸ªå›žåˆå¼€å§‹å°†å…¶å¢žåŠ å›žæ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å½©è™¹å°å°ä¹‹å£¶",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—ã€‚æ¯æ‰“å‡º1å¼ é‚£ç±»ç§æ—çš„æ€ªå…½ï¼Œä¸‹ä¸ªå›žåˆå¼€å§‹å°†å…¶å¢žåŠ å›žæ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:ExplosiveMagician": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Èý»ØºÏÄÚ£¬Ã¿»ØºÏ¿ªÊ¼Ê§È¥ !M! ÉúÃü¡£Ö®ºóµÄÁù»ØºÏÄÚ£¬Ã¿»ØºÏ¿ªÊ¼»Ø¸´ !M! ÉúÃü¡£",
-		"NAME": "±¬ÆÆÄ§ÊõÊ¦",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å¡£ÕÙ»½Êý !duelist:SUMM! Èý»ØºÏÄÚ£¬Ã¿»ØºÏ¿ªÊ¼Ê§È¥ !M! ÉúÃü¡£Ö®ºóµÄÁù»ØºÏÄÚ£¬Ã¿»ØºÏ¿ªÊ¼»Ø¸´ !M! ÉúÃü¡£"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ä¸‰å›žåˆå†…ï¼Œæ¯å›žåˆå¼€å§‹å¤±åŽ» !M! ç”Ÿå‘½ã€‚ä¹‹åŽçš„å…­å›žåˆå†…ï¼Œæ¯å›žåˆå¼€å§‹å›žå¤ !M! ç”Ÿå‘½ã€‚",
+		"NAME": "çˆ†ç ´é­”æœ¯å¸ˆ",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—ã€‚å¬å”¤æ•° !duelist:SUMM! ä¸‰å›žåˆå†…ï¼Œæ¯å›žåˆå¼€å§‹å¤±åŽ» !M! ç”Ÿå‘½ã€‚ä¹‹åŽçš„å…­å›žåˆå†…ï¼Œæ¯å›žåˆå¼€å§‹å›žå¤ !M! ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:RainbowKuriboh": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ 2 ¡£½« !M! Ö»Ëæ»ú¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "²ÊºçÀõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ 2 ¡£½« !M! Ö»Ëæ»ú¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¢žæ®– 2 ã€‚å°† !M! åªéšæœºæ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "å½©è™¹æ —å­çƒ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¢žæ®– 2 ã€‚å°† !M! åªéšæœºæ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:Kuribohrn": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ã¿µ±1»ØºÏÄÚÕÙ»½2Ö»²»Í¬ÖÖ×åµÄ¹ÖÊÞ£¬Ëæ»úÌØÊâÕÙ»½1Ö»²»ËÀ×å¹ÖÊÞ¡£",
-		"NAME": "ËÕÉúÀõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": " ÕÙ»½Êý !duelist:SUMM! ¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£ NL ½«1Ö»Ëæ»ú¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ£¬ÓëÉÏÒ»Ö»´ò³öµÄ¹ÖÊÞÖÖ×åÏàÍ¬¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! æ¯å½“1å›žåˆå†…å¬å”¤2åªä¸åŒç§æ—çš„æ€ªå…½ï¼Œéšæœºç‰¹æ®Šå¬å”¤1åªä¸æ­»æ—æ€ªå…½ã€‚",
+		"NAME": "è‹ç”Ÿæ —å­çƒ",
+		"UPGRADE_DESCRIPTION": " å¬å”¤æ•° !duelist:SUMM! å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†1åªéšæœºæ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ï¼Œä¸Žä¸Šä¸€åªæ‰“å‡ºçš„æ€ªå…½ç§æ—ç›¸åŒã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:ClearKuriboh": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£ NL ÅÆ¿âÖÐÃ¿ÓÐ1Ö»ÏàÍ¬ÖÖ×åµÄ¹ÖÊÞ£¬ÏûºÄ¡£",
-		"NAME": "½à¾»Àõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£ NL ½«1Ö»Ëæ»ú¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ£¬ÓëÉÏÒ»Ö»´ò³öµÄ¹ÖÊÞÖÖ×åÏàÍ¬¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL ç‰Œåº“ä¸­æ¯æœ‰1åªç›¸åŒç§æ—çš„æ€ªå…½ï¼Œæ¶ˆè€—ã€‚",
+		"NAME": "æ´å‡€æ —å­çƒ",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL å°†1åªéšæœºæ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ï¼Œä¸Žä¸Šä¸€åªæ‰“å‡ºçš„æ€ªå…½ç§æ—ç›¸åŒã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:Linkuriboh": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! ¼ÀÆ·ËùÓÐÑÜÉúÎï£¬Ã¿Ö»¼ÀÆ·½«ÌØÊâÕÙ»½1Ö»Ëæ»úµÄÑÜÉúÎï¡£",
-		"NAME": "Á¬½ÓÀõ×ÓÇò",
-		"UPGRADE_DESCRIPTION": " ÕÙ»½Êý !duelist:SUMM! ¼ÀÆ·ËùÓÐÑÜÉúÎï£¬Ã¿Ö»¼ÀÆ·½«ÌØÊâÕÙ»½1Ö»Ëæ»úµÄÑÜÉúÎï¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! ç¥­å“æ‰€æœ‰è¡ç”Ÿç‰©ï¼Œæ¯åªç¥­å“å°†ç‰¹æ®Šå¬å”¤1åªéšæœºçš„è¡ç”Ÿç‰©ã€‚",
+		"NAME": "è¿žæŽ¥æ —å­çƒ",
+		"UPGRADE_DESCRIPTION": " å¬å”¤æ•° !duelist:SUMM! ç¥­å“æ‰€æœ‰è¡ç”Ÿç‰©ï¼Œæ¯åªç¥­å“å°†ç‰¹æ®Šå¬å”¤1åªéšæœºçš„è¡ç”Ÿç‰©ã€‚"
 	},
 	"theDuelist:SpikedGillman": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ë®×å¹ÖÊÞ¶îÍâÔì³É !M! µãÉËº¦¡£",
-		"NAME": "´ÌÓãÈË",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ë®×å¹ÖÊÞ¶îÍâÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ°´æ—æ€ªå…½é¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "åˆºé±¼äºº",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ°´æ—æ€ªå…½é¢å¤–é€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SwampFrog": {
-		"DESCRIPTION": "Ë®×å¡£º£Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "¹íÇàÍÜ",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£º£Áú×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚æµ·é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "é¬¼é’è›™",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚æµ·é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:SharkStickers": {
-		"DESCRIPTION": "Ë®×å¡£º£Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ½ð±Ò¡£",
-		"NAME": "Õ³öèÓ¡Óã",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£º£Áú×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ½ð±Ò¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚æµ·é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! é‡‘å¸ã€‚",
+		"NAME": "ç²˜é²¨å°é±¼",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚æµ·é¾™æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! é‡‘å¸ã€‚"
 	},
 	"theDuelist:RageDeepSea": {
-		"DESCRIPTION": "Ë®×å¡£º£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! ¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦£¬´ÎÊýµÈÍ¬ÓÚÒÑÕÙ»½µÄË®×å¹ÖÊÞÊýÁ¿¡£",
-		"NAME": "Éîº£Ö®Å­",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£º£Áú×å¡£¼ÀÆ·Êý !duelist:TRIB! ÕÙ»½Êý !duelist:SUMM! ¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦£¬´ÎÊýµÈÍ¬ÓÚÒÑÕÙ»½µÄË®×å¹ÖÊÞÊýÁ¿¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚æµ·é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œæ¬¡æ•°ç­‰åŒäºŽå·²å¬å”¤çš„æ°´æ—æ€ªå…½æ•°é‡ã€‚",
+		"NAME": "æ·±æµ·ä¹‹æ€’",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚æµ·é¾™æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¬å”¤æ•° !duelist:SUMM! å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œæ¬¡æ•°ç­‰åŒäºŽå·²å¬å”¤çš„æ°´æ—æ€ªå…½æ•°é‡ã€‚"
 	},
 	"theDuelist:TripodFish": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿ÕÙ»½1Ö»Ë®×å¹ÖÊÞ£¬½« !M! ÕÅËæ»úË®×å¹ÖÊÞÔö¼Óµ½ÏûºÄÅÆ¶Ñ¡£",
-		"NAME": "Éîº£¹·Ä¸Óã",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿ÕÙ»½1Ö»Ë®×å¹ÖÊÞ£¬½« !M! ÕÅËæ»úË®×å¹ÖÊÞÔö¼Óµ½ÏûºÄÅÆ¶Ñ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å¬å”¤1åªæ°´æ—æ€ªå…½ï¼Œå°† !M! å¼ éšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ¶ˆè€—ç‰Œå †ã€‚",
+		"NAME": "æ·±æµ·ç‹—æ¯é±¼",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯å¬å”¤1åªæ°´æ—æ€ªå…½ï¼Œå°† !M! å¼ éšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ¶ˆè€—ç‰Œå †ã€‚"
 	},
 	"theDuelist:Tradetoad": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬ÏûºÄ1ÕÅÅÆ²¢³é !M! ÕÅÅÆ¡£Õâ¸öÐ§¹ûÃ¿ÏûºÄ1ÕÅË®×å¹ÖÊÞ£¬¶îÍâ³é1ÕÅÅÆ¡£",
-		"NAME": "Ìæ»»ÍÜ",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬ÏûºÄ1ÕÅÅÆ²¢³é !M! ÕÅÅÆ¡£Õâ¸öÐ§¹ûÃ¿ÏûºÄ1ÕÅË®×å¹ÖÊÞ£¬¶îÍâ³é1ÕÅÅÆ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œæ¶ˆè€—1å¼ ç‰Œå¹¶æŠ½ !M! å¼ ç‰Œã€‚è¿™ä¸ªæ•ˆæžœæ¯æ¶ˆè€—1å¼ æ°´æ—æ€ªå…½ï¼Œé¢å¤–æŠ½1å¼ ç‰Œã€‚",
+		"NAME": "æ›¿æ¢è›™",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œæ¶ˆè€—1å¼ ç‰Œå¹¶æŠ½ !M! å¼ ç‰Œã€‚è¿™ä¸ªæ•ˆæžœæ¯æ¶ˆè€—1å¼ æ°´æ—æ€ªå…½ï¼Œé¢å¤–æŠ½1å¼ ç‰Œã€‚"
 	},
 	"theDuelist:Uminotaurus": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¿µ !M! -ÕÙ»½1Ö»Ëæ»úË®×å¹ÖÊÞ¡£",
-		"NAME": "º£Å£Í·ÈË",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¿µ !M! -ÕÙ»½1Ö»Ëæ»úË®×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL åº· !M! -å¬å”¤1åªéšæœºæ°´æ—æ€ªå…½ã€‚",
+		"NAME": "æµ·ç‰›å¤´äºº",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL åº· !M! -å¬å”¤1åªéšæœºæ°´æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:FrillerRabca": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£ NL ¿µ !M! ¨C Ñ¡Ôñ²¢»ñµÃ»ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£",
-		"NAME": "É±ÈËÖåÈúöè",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ÏûºÄ¡£ NL ¿µ !M! -Ñ¡Ôñ²¢»ñµÃ»ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚ NL åº· !M! â€“ é€‰æ‹©å¹¶èŽ·å¾—èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚",
+		"NAME": "æ€äººçš±é³ƒé²¨",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚æ¶ˆè€—ã€‚ NL åº· !M! -é€‰æ‹©å¹¶èŽ·å¾—èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚"
 	},
 	"theDuelist:GraydleSlimeJr": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ³éÈ¡ !M! Ö»Ë®×å¡£",
-		"NAME": "Ð¡»ÒÀºÊ·À³Ä·",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL ³éÈ¡ !M! Ö»Ë®×å¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½å– !M! åªæ°´æ—ã€‚",
+		"NAME": "å°ç°ç¯®å²èŽ±å§†",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½å– !M! åªæ°´æ—ã€‚"
 	},
 	"theDuelist:AtlanteanAttackSquad": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ1¸öµÐÈË£¬·¢ÏÖ²¢ÌØÊâÕÙ»½ !M! Ö»Ëæ»ú¾ßÓÐÉËº¦µÄË®×å¹ÖÊÞ¡£",
-		"NAME": "º£»ÊµÄÍ»»÷±ø",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ1¸öµÐÈË£¬·¢ÏÖ²¢ÌØÊâÕÙ»½ !M! Ö»Ëæ»ú¾ßÓÐÉËº¦µÄË®×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©1ä¸ªæ•Œäººï¼Œå‘çŽ°å¹¶ç‰¹æ®Šå¬å”¤ !M! åªéšæœºå…·æœ‰ä¼¤å®³çš„æ°´æ—æ€ªå…½ã€‚",
+		"NAME": "æµ·çš‡çš„çªå‡»å…µ",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©1ä¸ªæ•Œäººï¼Œå‘çŽ°å¹¶ç‰¹æ®Šå¬å”¤ !M! åªéšæœºå…·æœ‰ä¼¤å®³çš„æ°´æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:DoubleShark": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Whenever you NL Ã¿µ±ÕÙ»½1Ö»Ë®×å¹ÖÊÞ£¬ÏÂ !M! ¸ö»ØºÏ£¬¶ÔËæ»úµÐÈËÔì³É !M! µãÉËº¦Á½´Î¡£",
-		"NAME": "Ë«Í·öè",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ã¿µ±ÕÙ»½1Ö»Ë®×å¹ÖÊÞ£¬ÏÂ !M! ¸ö»ØºÏ£¬¶ÔËæ»úµÐÈËÔì³É !M! µãÉËº¦Á½´Î¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! Whenever you NL æ¯å½“å¬å”¤1åªæ°´æ—æ€ªå…½ï¼Œä¸‹ !M! ä¸ªå›žåˆï¼Œå¯¹éšæœºæ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ä¸¤æ¬¡ã€‚",
+		"NAME": "åŒå¤´é²¨",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æ¯å½“å¬å”¤1åªæ°´æ—æ€ªå…½ï¼Œä¸‹ !M! ä¸ªå›žåˆï¼Œå¯¹éšæœºæ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ä¸¤æ¬¡ã€‚"
 	},
 	"theDuelist:SpearfishSoldier": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£»ñµÃ !B! µã¸ñµ²¡£ NL Èç¹ûÓÐÄçË®Ð§¹û£¬ÒÆ³ýËü¡£",
-		"NAME": "ÆìÓãÕ½Ê¿",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£»ñµÃ !B! µã¸ñµ²¡£ NL Èç¹ûÓÐÄçË®Ð§¹û£¬ÒÆ³ýËü¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœæœ‰æººæ°´æ•ˆæžœï¼Œç§»é™¤å®ƒã€‚",
+		"NAME": "æ——é±¼æˆ˜å£«",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¦‚æžœæœ‰æººæ°´æ•ˆæžœï¼Œç§»é™¤å®ƒã€‚"
 	},
 	"theDuelist:HydraViper": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÈýÍ·¶¾Éß",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ä¸‰å¤´æ¯’è›‡",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:AquaJet": {
-		"DESCRIPTION": "Ë®×å¹ÖÊÞ¶îÍâÔì³É1 µãÉËº¦¡£ NL Ë®×å¹ÖÊÞÔì³É1´Î¹¥»÷£¬¶îÍâÌáÉý1µãÉËº¦¡£³ÖÐø !M! ¸ö»ØºÏ¡£",
-		"NAME": "ÅçË®ÒýÇæ",
-		"UPGRADE_DESCRIPTION": "Ë®×å¹ÖÊÞ¶îÍâÔì³É1 µãÉËº¦¡£ NL Ë®×å¹ÖÊÞÔì³É1´Î¹¥»÷£¬¶îÍâÌáÉý1µãÉËº¦¡£³ÖÐø !M! ¸ö»ØºÏ¡£"
+		"DESCRIPTION": "æ°´æ—æ€ªå…½é¢å¤–é€ æˆ1 ç‚¹ä¼¤å®³ã€‚ NL æ°´æ—æ€ªå…½é€ æˆ1æ¬¡æ”»å‡»ï¼Œé¢å¤–æå‡1ç‚¹ä¼¤å®³ã€‚æŒç»­ !M! ä¸ªå›žåˆã€‚",
+		"NAME": "å–·æ°´å¼•æ“Ž",
+		"UPGRADE_DESCRIPTION": "æ°´æ—æ€ªå…½é¢å¤–é€ æˆ1 ç‚¹ä¼¤å®³ã€‚ NL æ°´æ—æ€ªå…½é€ æˆ1æ¬¡æ”»å‡»ï¼Œé¢å¤–æå‡1ç‚¹ä¼¤å®³ã€‚æŒç»­ !M! ä¸ªå›žåˆã€‚"
 	},
 	"theDuelist:FishRain": {
-		"DESCRIPTION": "Ëæ»ú´´Ôì²¢ÌØÊâÕÙ»½ !M! Ö»Ë®×å¹ÖÊÞ¡£",
-		"NAME": "ÓãÓê",
-		"UPGRADE_DESCRIPTION": "Ëæ»ú´´Ôì²¢ÌØÊâÕÙ»½ !M! Ö»Ë®×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "éšæœºåˆ›é€ å¹¶ç‰¹æ®Šå¬å”¤ !M! åªæ°´æ—æ€ªå…½ã€‚",
+		"NAME": "é±¼é›¨",
+		"UPGRADE_DESCRIPTION": "éšæœºåˆ›é€ å¹¶ç‰¹æ®Šå¬å”¤ !M! åªæ°´æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:FishKicks": {
-		"DESCRIPTION": "Éú³É1¸öÏ¼Îí³äÄÜÇò¡£Èç¹ûÏûºÄÅÆ¶ÑÓÐ !M! Ö»ÒÔÉÏµÄË®×å¹ÖÊÞ£¬ ¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "ÓãºÍÌß³ö",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÏ¼Îí³äÄÜÇò¡£Èç¹ûÏûºÄÅÆ¶ÑÓÐ !M! Ö»ÒÔÉÏµÄË®×å¹ÖÊÞ£¬ ¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªéœžé›¾å……èƒ½çƒã€‚å¦‚æžœæ¶ˆè€—ç‰Œå †æœ‰ !M! åªä»¥ä¸Šçš„æ°´æ—æ€ªå…½ï¼Œ å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é±¼å’Œè¸¢å‡º",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªéœžé›¾å……èƒ½çƒã€‚å¦‚æžœæ¶ˆè€—ç‰Œå †æœ‰ !M! åªä»¥ä¸Šçš„æ°´æ—æ€ªå…½ï¼Œ å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:FishSwaps": {
-		"DESCRIPTION": "ÏûºÄÊÖÅÆÖÐËùÓÐË®×å¹ÖÊÞ£¬Ã¿ÏûºÄ1ÕÅÅÆ£¬´Ó³éÅÆ¶ÑÀï³é1ÕÅËæ»úË®×å¹ÖÊÞ¡£",
-		"NAME": "ÓãºÍ·µ»¹",
-		"UPGRADE_DESCRIPTION": "ÏûºÄÊÖÅÆÖÐËùÓÐË®×å¹ÖÊÞ£¬Ã¿ÏûºÄ1ÕÅÅÆ£¬´Ó³éÅÆ¶ÑÀï³é1ÕÅËæ»úË®×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "æ¶ˆè€—æ‰‹ç‰Œä¸­æ‰€æœ‰æ°´æ—æ€ªå…½ï¼Œæ¯æ¶ˆè€—1å¼ ç‰Œï¼Œä»ŽæŠ½ç‰Œå †é‡ŒæŠ½1å¼ éšæœºæ°´æ—æ€ªå…½ã€‚",
+		"NAME": "é±¼å’Œè¿”è¿˜",
+		"UPGRADE_DESCRIPTION": "æ¶ˆè€—æ‰‹ç‰Œä¸­æ‰€æœ‰æ°´æ—æ€ªå…½ï¼Œæ¯æ¶ˆè€—1å¼ ç‰Œï¼Œä»ŽæŠ½ç‰Œå †é‡ŒæŠ½1å¼ éšæœºæ°´æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:ForgottenTemple": {
-		"DESCRIPTION": "Ã¿µ±1Ö»Ë®×å¹ÖÊÞ×÷Îª¼ÀÆ·£¬ÌáÉý³éÅÆ¶ÑÀïµÄË®×å¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£",
-		"NAME": "ÍüÈ´µÄº£µ×Éñµî",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±1Ö»Ë®×å¹ÖÊÞ×÷Îª¼ÀÆ·£¬ÌáÉý³éÅÆ¶ÑÀïµÄË®×å¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£"
+		"DESCRIPTION": "æ¯å½“1åªæ°´æ—æ€ªå…½ä½œä¸ºç¥­å“ï¼Œæå‡æŠ½ç‰Œå †é‡Œçš„æ°´æ—æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚",
+		"NAME": "å¿˜å´çš„æµ·åº•ç¥žæ®¿",
+		"UPGRADE_DESCRIPTION": "æ¯å½“1åªæ°´æ—æ€ªå…½ä½œä¸ºç¥­å“ï¼Œæå‡æŠ½ç‰Œå †é‡Œçš„æ°´æ—æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚"
 	},
 	"theDuelist:PoseidonWave": {
-		"DESCRIPTION": "Ã¿µ±ÊÜµ½ÉËº¦Ê±£¬Èç¹ûÕÙ»½Ë®×å¹ÖÊÞÔÚ³¡£¬½«ËüÃÇ¼ÀÆ·²¢×èÖ¹´Ë´ÎÉúÃüËðÉË¡£",
-		"NAME": "²¨Èû¶¬Ö®ÀË",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±ÊÜµ½ÉËº¦Ê±£¬Èç¹ûÕÙ»½Ë®×å¹ÖÊÞÔÚ³¡£¬½«ËüÃÇ¼ÀÆ·²¢×èÖ¹´Ë´ÎÉúÃüËðÉË¡£"
+		"DESCRIPTION": "æ¯å½“å—åˆ°ä¼¤å®³æ—¶ï¼Œå¦‚æžœå¬å”¤æ°´æ—æ€ªå…½åœ¨åœºï¼Œå°†å®ƒä»¬ç¥­å“å¹¶é˜»æ­¢æ­¤æ¬¡ç”Ÿå‘½æŸä¼¤ã€‚",
+		"NAME": "æ³¢å¡žå†¬ä¹‹æµª",
+		"UPGRADE_DESCRIPTION": "æ¯å½“å—åˆ°ä¼¤å®³æ—¶ï¼Œå¦‚æžœå¬å”¤æ°´æ—æ€ªå…½åœ¨åœºï¼Œå°†å®ƒä»¬ç¥­å“å¹¶é˜»æ­¢æ­¤æ¬¡ç”Ÿå‘½æŸä¼¤ã€‚"
 	},
 	"theDuelist:Surface": {
-		"DESCRIPTION": "´Ó³éÅÆ¶ÑÖÐÌØÊâÕÙ»½1Ö»Ë®×å¹ÖÊÞ¡£",
-		"NAME": "¸¡ÉÏ",
-		"UPGRADE_DESCRIPTION": "´Ó³éÅÆ¶ÑÖÐÌØÊâÕÙ»½1Ö»Ë®×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "ä»ŽæŠ½ç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1åªæ°´æ—æ€ªå…½ã€‚",
+		"NAME": "æµ®ä¸Š",
+		"UPGRADE_DESCRIPTION": "ä»ŽæŠ½ç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤1åªæ°´æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:UnderworldEggClutch": {
-		"DESCRIPTION": "³éÅÆ¶ÑÖÐÃ¿ÓÐ1Ö»Ë®×å¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "Ä§ÖÆ²úÂÑ´²",
-		"UPGRADE_DESCRIPTION": "³éÅÆ¶ÑÖÐÃ¿ÓÐ1Ö»Ë®×å¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æŠ½ç‰Œå †ä¸­æ¯æœ‰1åªæ°´æ—æ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é­”åˆ¶äº§åµåºŠ",
+		"UPGRADE_DESCRIPTION": "æŠ½ç‰Œå †ä¸­æ¯æœ‰1åªæ°´æ—æ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Wetlands": {
-		"DESCRIPTION": "ËùÓÐ²»ÐèÒª¼ÀÆ·µÄË®×å¹ÖÊÞÔì³É¶îÍâ !M! µãÉËº¦£¬¶îÍâ»ñµÃ !M! µã¸ñµ²¡£",
-		"NAME": "ÊªµØ²ÝÔ­",
-		"UPGRADE_DESCRIPTION": "ËùÓÐ²»ÐèÒª¼ÀÆ·µÄË®×å¹ÖÊÞÔì³É¶îÍâ !M! µãÉËº¦£¬¶îÍâ»ñµÃ !M! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ‰€æœ‰ä¸éœ€è¦ç¥­å“çš„æ°´æ—æ€ªå…½é€ æˆé¢å¤– !M! ç‚¹ä¼¤å®³ï¼Œé¢å¤–èŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "æ¹¿åœ°è‰åŽŸ",
+		"UPGRADE_DESCRIPTION": "æ‰€æœ‰ä¸éœ€è¦ç¥­å“çš„æ°´æ—æ€ªå…½é€ æˆé¢å¤– !M! ç‚¹ä¼¤å®³ï¼Œé¢å¤–èŽ·å¾— !M! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:AbyssWarrior": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÉîÔ¨Õ½Ê¿",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ·±æ¸Šæˆ˜å£«",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:AmphibiousBugroth": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ²ã¶à²ã»¤¼×¡£",
-		"NAME": "Ë®Â½Á½ÓÃÕ½¶·Í§",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL »ñµÃ !M! ²ã¶à²ã»¤¼×¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! å±‚å¤šå±‚æŠ¤ç”²ã€‚",
+		"NAME": "æ°´é™†ä¸¤ç”¨æˆ˜æ–—è‰‡",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL èŽ·å¾— !M! å±‚å¤šå±‚æŠ¤ç”²ã€‚"
 	},
 	"theDuelist:BlizzardDefender": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ã¿µ±ÕâÖ»¹ÖÊÞ×÷Îª¼ÀÆ·£¬³é1ÕÅÅÆ¡£",
-		"NAME": "±ù½á½çµÄ·¬ÈË ±ù·ï",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ã¿µ±ÕâÖ»¹ÖÊÞ×÷Îª¼ÀÆ·£¬³é1ÕÅÅÆ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯å½“è¿™åªæ€ªå…½ä½œä¸ºç¥­å“ï¼ŒæŠ½1å¼ ç‰Œã€‚",
+		"NAME": "å†°ç»“ç•Œçš„ç•ªäºº å†°å‡¤",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯å½“è¿™åªæ€ªå…½ä½œä¸ºç¥­å“ï¼ŒæŠ½1å¼ ç‰Œã€‚"
 	},
 	"theDuelist:Boneheimer": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "¹Çº£Âí",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "éª¨æµ·é©¬",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:CannonballSpearShellfish": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ±¾³¡Õ½¶·ÌáÉýÊÖÅÆÖÐË®×å¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£ÏûºÄ¡£",
-		"NAME": "ÅÚµ¯Ç¹±´",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ±¾³¡Õ½¶·ÌáÉýÊÖÅÆÖÐË®×å¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æœ¬åœºæˆ˜æ–—æå‡æ‰‹ç‰Œä¸­æ°´æ—æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç‚®å¼¹æžªè´",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æœ¬åœºæˆ˜æ–—æå‡æ‰‹ç‰Œä¸­æ°´æ—æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:CenterFrog": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬Èç¹ûÕâÖ»¹ÖÊÞÔÚÕÙ»½¹ÖÊÞÇøµÄÕýÖÐ¼ä£¬¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "ÇÞÇàÍÜ",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ØºÏ¿ªÊ¼Ê±£¬Èç¹ûÕâÖ»¹ÖÊÞÔÚÕÙ»½¹ÖÊÞÇøµÄÕýÖÐ¼ä£¬¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œå¦‚æžœè¿™åªæ€ªå…½åœ¨å¬å”¤æ€ªå…½åŒºçš„æ­£ä¸­é—´ï¼Œå¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "å¯é’è›™",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å›žåˆå¼€å§‹æ—¶ï¼Œå¦‚æžœè¿™åªæ€ªå…½åœ¨å¬å”¤æ€ªå…½åŒºçš„æ­£ä¸­é—´ï¼Œå¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:CrystalEmeraldTortoise": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ !M! ¡£»ñµÃ !B! µã¸ñµ²¡£ NL ½«1Ö»Ëæ»úË®×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "±¦ÓñÊÞ ´äÓñ¹ê",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! ÔöÖ³ !M! ¡£»ñµÃ !B! µã¸ñµ²¡£ NL ½«1Ö»Ëæ»úË®×åÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å¢žæ®– !M! ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†1åªéšæœºæ°´æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "å®çŽ‰å…½ ç¿ çŽ‰é¾Ÿ",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! å¢žæ®– !M! ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å°†1åªéšæœºæ°´æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:BigDesFrog": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ³éÅÆ¶ÑÖÐÃ¿ÓÐ1Ö»Ë®×å¹ÖÊÞ£¬Ôì³É !D! µãÉËº¦£¬Ã¿ÕÙ»½¹ý1Ö»Ë®×å¹ÖÊÞ£¬Ôì³É !M! µãÉËº¦¡£",
-		"NAME": "ÈýËÀÇàÍÜ",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ³éÅÆ¶ÑÖÐÃ¿ÓÐ1Ö»Ë®×å¹ÖÊÞ£¬Ôì³É !D! µãÉËº¦£¬Ã¿ÕÙ»½¹ý1Ö»Ë®×å¹ÖÊÞ£¬Ôì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æŠ½ç‰Œå †ä¸­æ¯æœ‰1åªæ°´æ—æ€ªå…½ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œæ¯å¬å”¤è¿‡1åªæ°´æ—æ€ªå…½ï¼Œé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ä¸‰æ­»é’è›™",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æŠ½ç‰Œå †ä¸­æ¯æœ‰1åªæ°´æ—æ€ªå…½ï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ï¼Œæ¯å¬å”¤è¿‡1åªæ°´æ—æ€ªå…½ï¼Œé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:DeepDiver": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ñ¡Ôñ1Ö»Ëæ»úË®×å¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£ NL Ôö¼Ó !M! ÕÅ¸´ÖÆÆ·µ½ÏûºÄÅÆ¶ÑÖÐ¡£",
-		"NAME": "Éîº£Ç±Ë®Ô±",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ñ¡Ôñ1Ö»Ëæ»úË®×å¹ÖÊÞÔö¼Óµ½ÊÖÅÆÖÐ¡£ NL Ôö¼Ó !M! ÕÅ¸´ÖÆÆ·µ½ÏûºÄÅÆ¶ÑÖÐ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€‰æ‹©1åªéšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚ NL å¢žåŠ  !M! å¼ å¤åˆ¶å“åˆ°æ¶ˆè€—ç‰Œå †ä¸­ã€‚",
+		"NAME": "æ·±æµ·æ½œæ°´å‘˜",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€‰æ‹©1åªéšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚ NL å¢žåŠ  !M! å¼ å¤åˆ¶å“åˆ°æ¶ˆè€—ç‰Œå †ä¸­ã€‚"
 	},
 	"theDuelist:DrillBarnacle": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿³éµ½1Ö»Ë®×å¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£",
-		"NAME": "×êÍ·ÌÙºø",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿³éµ½1Ö»Ë®×å¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !M! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯æŠ½åˆ°1åªæ°´æ—æ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é’»å¤´è—¤å£¶",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯æŠ½åˆ°1åªæ°´æ—æ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !M! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:SplashCapture": {
-		"DESCRIPTION": "½« !M! Ö»Ëæ»úË®×å¹ÖÊÞÔö¼Óµ½ÊÖÅÆºÍÏûºÄÅÆ¶ÑÖÐ¡£",
-		"NAME": "·É½¦²¶»ñ",
-		"UPGRADE_DESCRIPTION": "½« !M! Ö»Ëæ»úË®×å¹ÖÊÞÔö¼Óµ½ÊÖÅÆºÍÏûºÄÅÆ¶ÑÖÐ¡£"
+		"DESCRIPTION": "å°† !M! åªéšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œå’Œæ¶ˆè€—ç‰Œå †ä¸­ã€‚",
+		"NAME": "é£žæº…æ•èŽ·",
+		"UPGRADE_DESCRIPTION": "å°† !M! åªéšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ‰‹ç‰Œå’Œæ¶ˆè€—ç‰Œå †ä¸­ã€‚"
 	},
 	"theDuelist:CallAtlanteans": {
-		"DESCRIPTION": "Éú³É1¸öÏ¼Îí³äÄÜÇò¡£ NL Ñ¡Ôñ !M! Ö»Ëæ»úË®×å¹ÖÊÞÔö¼Óµ½ÏûºÄÅÆ¶ÑÖÐ¡£ÏûºÄ¡£",
-		"NAME": "º£»ÊµÄÅØÏø",
-		"UPGRADE_DESCRIPTION": "Éú³É1¸öÏ¼Îí³äÄÜÇò¡£ NL Ñ¡Ôñ !M! Ö»Ëæ»úË®×å¹ÖÊÞÔö¼Óµ½ÏûºÄÅÆ¶ÑÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç”Ÿæˆ1ä¸ªéœžé›¾å……èƒ½çƒã€‚ NL é€‰æ‹© !M! åªéšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ¶ˆè€—ç‰Œå †ä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æµ·çš‡çš„å’†å“®",
+		"UPGRADE_DESCRIPTION": "ç”Ÿæˆ1ä¸ªéœžé›¾å……èƒ½çƒã€‚ NL é€‰æ‹© !M! åªéšæœºæ°´æ—æ€ªå…½å¢žåŠ åˆ°æ¶ˆè€—ç‰Œå †ä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:WhitefishSalvage": {
-		"DESCRIPTION": "´ÓÏûºÄÅÆ¶ÑÖÐÌØÊâÕÙ»½ËùÓÐË®×å¹ÖÊÞ¡£ÏûºÄ¡£",
-		"NAME": "°×Ö®¾È¼Ã",
-		"UPGRADE_DESCRIPTION": "´ÓÏûºÄÅÆ¶ÑÖÐÌØÊâÕÙ»½ËùÓÐË®×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "ä»Žæ¶ˆè€—ç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤æ‰€æœ‰æ°´æ—æ€ªå…½ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "ç™½ä¹‹æ•‘æµŽ",
+		"UPGRADE_DESCRIPTION": "ä»Žæ¶ˆè€—ç‰Œå †ä¸­ç‰¹æ®Šå¬å”¤æ‰€æœ‰æ°´æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:DiamondDust": {
-		"DESCRIPTION": "¼ÀÆ·ËùÓÐË®×å¹ÖÊÞ¡£ NL Ã¿ÓÐ1Ö»¼ÀÆ·£¬ÕÙ»½1Ö»Ëæ»ú¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "×ê³¾Ðý·ç",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·ËùÓÐË®×å¹ÖÊÞ¡£ NL Ã¿ÓÐ1Ö»¼ÀÆ·£¬ÕÙ»½1Ö»Ëæ»ú¹ÖÊÞ£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç¥­å“æ‰€æœ‰æ°´æ—æ€ªå…½ã€‚ NL æ¯æœ‰1åªç¥­å“ï¼Œå¬å”¤1åªéšæœºæ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é’»å°˜æ—‹é£Ž",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ‰€æœ‰æ°´æ—æ€ªå…½ã€‚ NL æ¯æœ‰1åªç¥­å“ï¼Œå¬å”¤1åªéšæœºæ€ªå…½ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:BigWaveSmallWave": {
-		"DESCRIPTION": "¼ÀÆ·ËùÓÐË®×å¹ÖÊÞ£¬Ëæ»úÌØÊâÕÙ»½1Ö»¼ÀÆ·ÏûºÄµÈÍ¬ÓÚ´Ë´Î¼ÀÆ·ÊýµÄ¹ÖÊÞ¡£",
-		"NAME": "´ó²¨Ð¡²¨",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·ËùÓÐË®×å¹ÖÊÞ£¬Ëæ»úÌØÊâÕÙ»½1Ö»¼ÀÆ·ÏûºÄµÈÍ¬ÓÚ´Ë´Î¼ÀÆ·ÊýµÄÉý¼¶¹ýµÄ¹ÖÊÞ¡£"
+		"DESCRIPTION": "ç¥­å“æ‰€æœ‰æ°´æ—æ€ªå…½ï¼Œéšæœºç‰¹æ®Šå¬å”¤1åªç¥­å“æ¶ˆè€—ç­‰åŒäºŽæ­¤æ¬¡ç¥­å“æ•°çš„æ€ªå…½ã€‚",
+		"NAME": "å¤§æ³¢å°æ³¢",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ‰€æœ‰æ°´æ—æ€ªå…½ï¼Œéšæœºç‰¹æ®Šå¬å”¤1åªç¥­å“æ¶ˆè€—ç­‰åŒäºŽæ­¤æ¬¡ç¥­å“æ•°çš„å‡çº§è¿‡çš„æ€ªå…½ã€‚"
 	},
 	"theDuelist:CatShark": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£»ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Ã¨öè",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£»ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "çŒ«é²¨",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:BigWhale": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "¾Þ¾¨",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å·¨é²¸",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:BlizzardThunderbird": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³ÉËæ»ú (5-9) µãÉËº¦¡£ NL Éú³É1¸ö±ùËªºÍ1¸öÉÁµç³äÄÜÇò¡£",
-		"NAME": "Ñ©±©À×Äñ",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³ÉËæ»ú (7-12)µãÉËº¦¡£ NL Éú³É1¸ö±ùËªºÍ1¸öÉÁµç³äÄÜÇò¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆéšæœº (5-9) ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå’Œ1ä¸ªé—ªç”µå……èƒ½çƒã€‚",
+		"NAME": "é›ªæš´é›·é¸Ÿ",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆéšæœº (7-12) ç‚¹ä¼¤å®³ã€‚ NL ç”Ÿæˆ1ä¸ªå†°éœœå’Œ1ä¸ªé—ªç”µå……èƒ½çƒã€‚"
 	},
 	"theDuelist:DarklordSuperbia": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ1¸öËæ»úÔöÒæÐ§¹û¡£!M! ¸ö»ØºÏÄÚ£¬¿ÉÒÔ»ñµÃ3¸ö¿ÉÑ¡ÔöÒæÐ§¹û¡£",
-		"NAME": "¶éÌìÊ¹ ËÕ²´±ÈÑÇ",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ1¸öËæ»úÔöÒæÐ§¹û¡£!M! ¸ö»ØºÏÄÚ£¬¿ÉÒÔ»ñµÃ3¸ö¿ÉÑ¡ÔöÒæÐ§¹û¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚!M! ä¸ªå›žåˆå†…ï¼Œå¯ä»¥èŽ·å¾—3ä¸ªå¯é€‰å¢žç›Šæ•ˆæžœã€‚",
+		"NAME": "å •å¤©ä½¿ è‹æ³Šæ¯”äºš",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚!M! ä¸ªå›žåˆå†…ï¼Œå¯ä»¥èŽ·å¾—3ä¸ªå¯é€‰å¢žç›Šæ•ˆæžœã€‚"
 	},
 	"theDuelist:GrandSpellbookTower": {
-		"DESCRIPTION": "½«Ëæ»ú1±¾Ä§µ¼ÊéÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "Ä§µ¼ÊéÔº À­ÂõËÉ",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ1±¾Ä§µ¼ÊéÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°†éšæœº1æœ¬é­”å¯¼ä¹¦å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "é­”å¯¼ä¹¦é™¢ æ‹‰è¿ˆæ¾",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©1æœ¬é­”å¯¼ä¹¦å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:SpellbookPower": {
-		"DESCRIPTION": "Ã¿µ±½«1Ö»Ä§·¨Ê¦×å×÷ÎªÄ§·¨Ê¦×å¼ÀÆ·Ê±£¬½«1Ö»Ëæ»úÄ§·¨Ê¦×åÔö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "Ë®²·Ö®Ä§µ¼Êé",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±½«1Ö»Ä§·¨Ê¦×å×÷ÎªÄ§·¨Ê¦×å¼ÀÆ·Ê±£¬½«1Ö»Ëæ»úÄ§·¨Ê¦×åÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "æ¯å½“å°†1åªé­”æ³•å¸ˆæ—ä½œä¸ºé­”æ³•å¸ˆæ—ç¥­å“æ—¶ï¼Œå°†1åªéšæœºé­”æ³•å¸ˆæ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "æ°´åœä¹‹é­”å¯¼ä¹¦",
+		"UPGRADE_DESCRIPTION": "æ¯å½“å°†1åªé­”æ³•å¸ˆæ—ä½œä¸ºé­”æ³•å¸ˆæ—ç¥­å“æ—¶ï¼Œå°†1åªéšæœºé­”æ³•å¸ˆæ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:SpellbookMiracle": {
-		"DESCRIPTION": "Ã¿µ±½«1Ö»Ä§·¨Ê¦×å×÷ÎªÄ§·¨Ê¦×å¼ÀÆ·Ê±£¬ÖØÖÃÏÂ¸ö³äÄÜÇò¡£",
-		"NAME": "Ä§µ¼ÊéµÄÆæ¼£",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±½«1Ö»Ä§·¨Ê¦×å×÷ÎªÄ§·¨Ê¦×å¼ÀÆ·Ê±£¬ÖØÖÃÏÂ¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "æ¯å½“å°†1åªé­”æ³•å¸ˆæ—ä½œä¸ºé­”æ³•å¸ˆæ—ç¥­å“æ—¶ï¼Œé‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "é­”å¯¼ä¹¦çš„å¥‡è¿¹",
+		"UPGRADE_DESCRIPTION": "æ¯å½“å°†1åªé­”æ³•å¸ˆæ—ä½œä¸ºé­”æ³•å¸ˆæ—ç¥­å“æ—¶ï¼Œé‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:SpellbookKnowledge": {
-		"DESCRIPTION": "Ã¿µ±½«1Ö»Ä§·¨Ê¦×å×÷ÎªÄ§·¨Ê¦×å¼ÀÆ·Ê±£¬ »ñµÃ !M! µã¼¯ÖÐ¡£",
-		"NAME": "±ù»ðÖ®Ä§µ¼Êé",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±½«1Ö»Ä§·¨Ê¦×å×÷ÎªÄ§·¨Ê¦×å¼ÀÆ·Ê±£¬ »ñµÃ !M! µã¼¯ÖÐ¡£"
+		"DESCRIPTION": "æ¯å½“å°†1åªé­”æ³•å¸ˆæ—ä½œä¸ºé­”æ³•å¸ˆæ—ç¥­å“æ—¶ï¼Œ èŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚",
+		"NAME": "å†°ç«ä¹‹é­”å¯¼ä¹¦",
+		"UPGRADE_DESCRIPTION": "æ¯å½“å°†1åªé­”æ³•å¸ˆæ—ä½œä¸ºé­”æ³•å¸ˆæ—ç¥­å“æ—¶ï¼Œ èŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚"
 	},
 	"theDuelist:MagiciansLeftHand": {
-		"DESCRIPTION": "Ã¿µ±ÖØÖÃ³äÄÜÇòÊ±£¬»ñµÃ !M! µã¼¯ÖÐ¡£",
-		"NAME": "Ä§ÊõÊ¦µÄ×óÊÖ",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±ÖØÖÃ³äÄÜÇòÊ±£¬»ñµÃ !M! µã¼¯ÖÐ¡£"
+		"DESCRIPTION": "æ¯å½“é‡ç½®å……èƒ½çƒæ—¶ï¼ŒèŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚",
+		"NAME": "é­”æœ¯å¸ˆçš„å·¦æ‰‹",
+		"UPGRADE_DESCRIPTION": "æ¯å½“é‡ç½®å……èƒ½çƒæ—¶ï¼ŒèŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚"
 	},
 	"theDuelist:Empowerment": {
-		"DESCRIPTION": "Ã¿µ±ÓÐ1¸ö³äÄÜÇòÉú³É1¸öµ½×îºóµÄ³äÄÜÇòÀ¸Î»£¬»ñµÃ !M! µã¼¯ÖÐ¡£",
-		"NAME": "ÕÙÄ§×°×Å",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±ÓÐ1¸ö³äÄÜÇòÉú³É1¸öµ½×îºóµÄ³äÄÜÇòÀ¸Î»£¬»ñµÃ !M! µã¼¯ÖÐ¡£"
+		"DESCRIPTION": "æ¯å½“æœ‰1ä¸ªå……èƒ½çƒç”Ÿæˆ1ä¸ªåˆ°æœ€åŽçš„å……èƒ½çƒæ ä½ï¼ŒèŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚",
+		"NAME": "å¬é­”è£…ç€",
+		"UPGRADE_DESCRIPTION": "æ¯å½“æœ‰1ä¸ªå……èƒ½çƒç”Ÿæˆ1ä¸ªåˆ°æœ€åŽçš„å……èƒ½çƒæ ä½ï¼ŒèŽ·å¾— !M! ç‚¹é›†ä¸­ã€‚"
 	},
 	"theDuelist:DiffusionWaveMotion": {
-		"DESCRIPTION": "»ØºÏ½áÊøÊ±£¬ÓÐ¼¸ÂÊÖØÖÃÏÂ¸ö³äÄÜÇò¡£",
-		"NAME": "À©É¢µÄ²¨¶¯",
-		"UPGRADE_DESCRIPTION": "»ØºÏ½áÊøÊ±£¬ÓÐ¼¸ÂÊÖØÖÃÏÂ¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "å›žåˆç»“æŸæ—¶ï¼Œæœ‰å‡ çŽ‡é‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "æ‰©æ•£çš„æ³¢åŠ¨",
+		"UPGRADE_DESCRIPTION": "å›žåˆç»“æŸæ—¶ï¼Œæœ‰å‡ çŽ‡é‡ç½®ä¸‹ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:Enlightenment": {
-		"DESCRIPTION": "Ã¿µ±¼ÀÆ·Ê±£¬ÓÐÐ¡¼¸ÂÊÉú³É1¸öËæ»úµÄ³äÄÜÇò¡£",
-		"NAME": "Î´À´ÍõµÄÔ¤ÑÔ",
-		"UPGRADE_DESCRIPTION": "Ã¿µ±¼ÀÆ·Ê±£¬ÓÐ¼¸ÂÊÉú³É1¸öËæ»úµÄ³äÄÜÇò¡£"
+		"DESCRIPTION": "æ¯å½“ç¥­å“æ—¶ï¼Œæœ‰å°å‡ çŽ‡ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚",
+		"NAME": "æœªæ¥çŽ‹çš„é¢„è¨€",
+		"UPGRADE_DESCRIPTION": "æ¯å½“ç¥­å“æ—¶ï¼Œæœ‰å‡ çŽ‡ç”Ÿæˆ1ä¸ªéšæœºçš„å……èƒ½çƒã€‚"
 	},
 	"theDuelist:ReadyForIntercepting": {
-		"DESCRIPTION": "»ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£",
-		"NAME": "Ó­»÷×¼±¸",
-		"UPGRADE_DESCRIPTION": "»ñµÃ !M! µãÃô½Ý¡£ÏûºÄ¡£"
+		"DESCRIPTION": "èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è¿Žå‡»å‡†å¤‡",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾— !M! ç‚¹æ•æ·ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:CreatorIncarnate": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ²¢½«1ÕÅ¶¨ÖÆ¿¨Ôö¼Óµ½ÊÖÅÆÖÐ¡£",
-		"NAME": "´´ÊÀÕßµÄ»¯Éí",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ñ¡Ôñ²¢½«¸÷1ÕÅ¶¨ÖÆ¿¨Ôö¼Óµ½ÊÖÅÆ£¬³éÅÆ¶ÑºÍÏûºÄÅÆ¶ÑÖÐ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©å¹¶å°†1å¼ å®šåˆ¶å¡å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚",
+		"NAME": "åˆ›ä¸–è€…çš„åŒ–èº«",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€‰æ‹©å¹¶å°†å„1å¼ å®šåˆ¶å¡å¢žåŠ åˆ°æ‰‹ç‰Œï¼ŒæŠ½ç‰Œå †å’Œæ¶ˆè€—ç‰Œå †ä¸­ã€‚"
 	},
 	"theDuelist:BigEye": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Õâ¸ö¹ÖÊÞÕÙ»½ÔÚ³¡ºó£¬¿ÉÒÔ¹Û¿´³éÅÆ¶ÑË³Ðò¡£",
-		"NAME": "ÑÛÇò´óÍõ",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Õâ¸ö¹ÖÊÞÕÙ»½ÔÚ³¡ºó£¬¿ÉÒÔ¹Û¿´³éÅÆ¶ÑË³Ðò¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! è¿™ä¸ªæ€ªå…½å¬å”¤åœ¨åœºåŽï¼Œå¯ä»¥è§‚çœ‹æŠ½ç‰Œå †é¡ºåºã€‚",
+		"NAME": "çœ¼çƒå¤§çŽ‹",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! è¿™ä¸ªæ€ªå…½å¬å”¤åœ¨åœºåŽï¼Œå¯ä»¥è§‚çœ‹æŠ½ç‰Œå †é¡ºåºã€‚"
 	},
 	"theDuelist:AquaTypeCard": {
-		"DESCRIPTION": "Ë®×å",
-		"NAME": "Ë®×å",
-		"UPGRADE_DESCRIPTION": "Ë®×å"
+		"DESCRIPTION": "æ°´æ—",
+		"NAME": "æ°´æ—",
+		"UPGRADE_DESCRIPTION": "æ°´æ—"
 	},
 	"theDuelist:DragonTypeCard": {
-		"DESCRIPTION": "Áú×å",
-		"NAME": "Áú×å",
-		"UPGRADE_DESCRIPTION": "Áú×å"
+		"DESCRIPTION": "é¾™æ—",
+		"NAME": "é¾™æ—",
+		"UPGRADE_DESCRIPTION": "é¾™æ—"
 	},
 	"theDuelist:FiendTypeCard": {
-		"DESCRIPTION": "¶ñÄ§×å",
-		"NAME": "¶ñÄ§×å",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å"
+		"DESCRIPTION": "æ¶é­”æ—",
+		"NAME": "æ¶é­”æ—",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—"
 	},
 	"theDuelist:InsectTypeCard": {
-		"DESCRIPTION": "À¥³æ×å",
-		"NAME": "À¥³æ×å",
-		"UPGRADE_DESCRIPTION": "À¥³æ×å"
+		"DESCRIPTION": "æ˜†è™«æ—",
+		"NAME": "æ˜†è™«æ—",
+		"UPGRADE_DESCRIPTION": "æ˜†è™«æ—"
 	},
 	"theDuelist:MachineTypeCard": {
-		"DESCRIPTION": "»úÐµ×å",
-		"NAME": "»úÐµ×å",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å"
+		"DESCRIPTION": "æœºæ¢°æ—",
+		"NAME": "æœºæ¢°æ—",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—"
 	},
 	"theDuelist:NaturiaTypeCard": {
-		"DESCRIPTION": "×ÔÈ»",
-		"NAME": "×ÔÈ»",
-		"UPGRADE_DESCRIPTION": "×ÔÈ»"
+		"DESCRIPTION": "è‡ªç„¶",
+		"NAME": "è‡ªç„¶",
+		"UPGRADE_DESCRIPTION": "è‡ªç„¶"
 	},
 	"theDuelist:PlantTypeCard": {
-		"DESCRIPTION": "Ö²Îï×å",
-		"NAME": "Ö²Îï×å",
-		"UPGRADE_DESCRIPTION": "Ö²Îï×å"
+		"DESCRIPTION": "æ¤ç‰©æ—",
+		"NAME": "æ¤ç‰©æ—",
+		"UPGRADE_DESCRIPTION": "æ¤ç‰©æ—"
 	},
 	"theDuelist:PredaplantTypeCard": {
-		"DESCRIPTION": "²¶Ê³Ö²Îï",
-		"NAME": "²¶Ê³Ö²Îï",
-		"UPGRADE_DESCRIPTION": "²¶Ê³Ö²Îï"
+		"DESCRIPTION": "æ•é£Ÿæ¤ç‰©",
+		"NAME": "æ•é£Ÿæ¤ç‰©",
+		"UPGRADE_DESCRIPTION": "æ•é£Ÿæ¤ç‰©"
 	},
 	"theDuelist:SpellcasterTypeCard": {
-		"DESCRIPTION": "Ä§·¨Ê¦×å",
-		"NAME": "Ä§·¨Ê¦×å",
-		"UPGRADE_DESCRIPTION": "Ä§·¨Ê¦×å"
+		"DESCRIPTION": "é­”æ³•å¸ˆæ—",
+		"NAME": "é­”æ³•å¸ˆæ—",
+		"UPGRADE_DESCRIPTION": "é­”æ³•å¸ˆæ—"
 	},
 	"theDuelist:SuperheavyTypeCard": {
-		"DESCRIPTION": "³¬ÖØ",
-		"NAME": "³¬ÖØ",
-		"UPGRADE_DESCRIPTION": "³¬ÖØ"
+		"DESCRIPTION": "è¶…é‡",
+		"NAME": "è¶…é‡",
+		"UPGRADE_DESCRIPTION": "è¶…é‡"
 	},
 	"theDuelist:ToonTypeCard": {
-		"DESCRIPTION": "¿¨Í¨",
-		"NAME": "¿¨Í¨",
-		"UPGRADE_DESCRIPTION": "¿¨Í¨"
+		"DESCRIPTION": "å¡é€š",
+		"NAME": "å¡é€š",
+		"UPGRADE_DESCRIPTION": "å¡é€š"
 	},
 	"theDuelist:ZombieTypeCard": {
-		"DESCRIPTION": "²»ËÀ×å",
-		"NAME": "²»ËÀ×å",
-		"UPGRADE_DESCRIPTION": "²»ËÀ×å"
+		"DESCRIPTION": "ä¸æ­»æ—",
+		"NAME": "ä¸æ­»æ—",
+		"UPGRADE_DESCRIPTION": "ä¸æ­»æ—"
 	},
 	"theDuelist:LostBlueBreaker": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ëæ»ú´´Ôì²¢ÌØÊâÕÙ»½ !M! Ö»Ë®×å¹ÖÊÞ¡£¹ÌÊØ",
-		"NAME": "Ê§ÂäÖ®À¶ÆÆ»µÕß",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý!duelist:TRIB! Ëæ»ú´´Ôì²¢ÌØÊâÕÙ»½ !M! Ö»Ë®×å¹ÖÊÞ¡£¹ÌÊØ"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! éšæœºåˆ›é€ å¹¶ç‰¹æ®Šå¬å”¤ !M! åªæ°´æ—æ€ªå…½ã€‚å›ºå®ˆ",
+		"NAME": "å¤±è½ä¹‹è“ç ´åè€…",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•°!duelist:TRIB! éšæœºåˆ›é€ å¹¶ç‰¹æ®Šå¬å”¤ !M! åªæ°´æ—æ€ªå…½ã€‚å›ºå®ˆ"
 	},
 	"theDuelist:Wingedtortoise": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ÔöÖ³ !M!¡£»ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "Òí¹ê",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ÔöÖ³ !M!¡£»ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¢žæ®– !M!ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "ç¿¼é¾Ÿ",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¢žæ®– !M!ã€‚èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:GemKnightAmethyst": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ÔöÖ³ !M!¡£Ôì³É !D! µãÉËº¦¡£ NL ³é2ÕÅ¿¨¡£",
-		"NAME": "±¦Ê¯ÆïÊ¿ ×Ï¾§",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ÔöÖ³ !M!¡£Ôì³É !D! µãÉËº¦¡£ NL ³é2ÕÅ¿¨¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¢žæ®– !M!ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½2å¼ å¡ã€‚",
+		"NAME": "å®çŸ³éª‘å£« ç´«æ™¶",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å¢žæ®– !M!ã€‚é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½2å¼ å¡ã€‚"
 	},
 	"theDuelist:ToadallyAwesome": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ´Ó³éÅÆ¶ÑÑ¡Ôñ !M! Ö»Ë®×å¹ÖÊÞ¼ÓÈëÊÖÅÆ¡£",
-		"NAME": "±ýÍÜ",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! ´Ó³éÅÆ¶ÑÑ¡Ôñ !M! Ö»Ë®×å¹ÖÊÞ¼ÓÈëÊÖÅÆ¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ä»ŽæŠ½ç‰Œå †é€‰æ‹© !M! åªæ°´æ—æ€ªå…½åŠ å…¥æ‰‹ç‰Œã€‚",
+		"NAME": "é¥¼è›™",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! ä»ŽæŠ½ç‰Œå †é€‰æ‹© !M! åªæ°´æ—æ€ªå…½åŠ å…¥æ‰‹ç‰Œã€‚"
 	},
 	"theDuelist:DarknessNeosphere": {
-		"DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! »ØºÏ½áÊøÊ±£¬³éÅÆ¶ÑÖÐµÄ¹ÖÊÞ¼ÀÆ·ÏûºÄÌáÉý1µã£¬Í¬Ê±ËùÓÐµÐÈËÊ§È¥ !M! µãÁ¦Á¿¡£",
-		"NAME": "°µÚ¤ÌìÄ§ Äá°ÂË¹·ÆÑÇ",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£¼ÀÆ·Êý !duelist:TRIB! »ØºÏ½áÊøÊ±£¬³éÅÆ¶ÑÖÐµÄ¹ÖÊÞ¼ÀÆ·ÏûºÄÌáÉý1µã£¬Í¬Ê±ËùÓÐµÐÈËÊ§È¥ !M! µãÁ¦Á¿¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å›žåˆç»“æŸæ—¶ï¼ŒæŠ½ç‰Œå †ä¸­çš„æ€ªå…½ç¥­å“æ¶ˆè€—æå‡1ç‚¹ï¼ŒåŒæ—¶æ‰€æœ‰æ•Œäººå¤±åŽ» !M! ç‚¹åŠ›é‡ã€‚",
+		"NAME": "æš—å†¥å¤©é­” å°¼å¥¥æ–¯è²äºš",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚ç¥­å“æ•° !duelist:TRIB! å›žåˆç»“æŸæ—¶ï¼ŒæŠ½ç‰Œå †ä¸­çš„æ€ªå…½ç¥­å“æ¶ˆè€—æå‡1ç‚¹ï¼ŒåŒæ—¶æ‰€æœ‰æ•Œäººå¤±åŽ» !M! ç‚¹åŠ›é‡ã€‚"
 	},
 	"theDuelist:WingedKuribohLv9": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢³é !M! ÕÅ¸ÃÖÖ×å¹ÖÊÞ¡£",
-		"NAME": "ÓðÒíÀõ×ÓÇò µÈ¼¶9",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢³é !M! ÕÅ¸ÃÖÖ×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶æŠ½ !M! å¼ è¯¥ç§æ—æ€ªå…½ã€‚",
+		"NAME": "ç¾½ç¿¼æ —å­çƒ ç­‰çº§9",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶æŠ½ !M! å¼ è¯¥ç§æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:WingedKuribohLv10": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢³é !M! ÕÅ¸ÃÖÖ×å¹ÖÊÞ¡£",
-		"NAME": "ÓðÒíÀõ×ÓÇò µÈ¼¶10",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢³é !M! ÕÅ¸ÃÖÖ×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶æŠ½ !M! å¼ è¯¥ç§æ—æ€ªå…½ã€‚",
+		"NAME": "ç¾½ç¿¼æ —å­çƒ ç­‰çº§10",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶æŠ½ !M! å¼ è¯¥ç§æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:AncientGearBox": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! ³éÈ¡ !M! ÕÅº±¼ûÅÆ¡£",
-		"NAME": "¹Å´úµÄ»úÐµÏä",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! ³éÈ¡ !M! ÕÅº±¼ûÅÆ¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æŠ½å– !M! å¼ ç½•è§ç‰Œã€‚",
+		"NAME": "å¤ä»£çš„æœºæ¢°ç®±",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æŠ½å– !M! å¼ ç½•è§ç‰Œã€‚"
 	},
 	"theDuelist:Deskbot001": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! Ã¿Ö»»úÐµ×åÕÙ»½ÔÚ³¡£¬Ôì³É !D! µãÉËº¦¡£",
-		"NAME": "ÎÄ¾ßµç×ÓÈË001",
-		"UPGRADE_DESCRIPTION": "Machine ÕÙ»½Êý !duelist:SUMM! Ã¿Ö»»úÐµ×åÕÙ»½ÔÚ³¡£¬Ôì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! æ¯åªæœºæ¢°æ—å¬å”¤åœ¨åœºï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "æ–‡å…·ç”µå­äºº001",
+		"UPGRADE_DESCRIPTION": "Machine å¬å”¤æ•° !duelist:SUMM! æ¯åªæœºæ¢°æ—å¬å”¤åœ¨åœºï¼Œé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:Deskbot002": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ³éÈ¡ !M! ÕÅ»úÐµ×å¡£",
-		"NAME": "ÎÄ¾ßµç×ÓÈË002",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ³éÈ¡ !M! ÕÅ»úÐµ×å¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æŠ½å– !M! å¼ æœºæ¢°æ—ã€‚",
+		"NAME": "æ–‡å…·ç”µå­äºº002",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æŠ½å– !M! å¼ æœºæ¢°æ—ã€‚"
 	},
 	"theDuelist:Deskbot009": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ³éÈ¡»úÐµ×åÖ±µ½ÂúÊÖÅÆÎªÖ¹¡£",
-		"NAME": "ÎÄ¾ßµç×ÓÈË009",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ³éÈ¡»úÐµ×åÖ±µ½ÂúÊÖÅÆÎªÖ¹¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æŠ½å–æœºæ¢°æ—ç›´åˆ°æ»¡æ‰‹ç‰Œä¸ºæ­¢ã€‚",
+		"NAME": "æ–‡å…·ç”µå­äºº009",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æŠ½å–æœºæ¢°æ—ç›´åˆ°æ»¡æ‰‹ç‰Œä¸ºæ­¢ã€‚"
 	},
 	"theDuelist:FlyingPegasus": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ³éÈ¡1ÕÅ»úÐµ×å£¬È»ºóÆúµôËùÓÐ³éÅÆ¶ÑÖÐµÄ¹ÖÊÞÅÆ¡£Ã¿¶ªÆú1Ö»¹ÖÊÞ£¬¶Ô1¸öµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "±¬×ß¹ìµÀ ³åÌì·ÉÂí",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! ³éÈ¡1ÕÅ»úÐµ×å£¬È»ºóÆúµôËùÓÐ³éÅÆ¶ÑÖÐµÄ¹ÖÊÞÅÆ¡£Ã¿¶ªÆú1Ö»¹ÖÊÞ£¬¶Ô1¸öµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æŠ½å–1å¼ æœºæ¢°æ—ï¼Œç„¶åŽå¼ƒæŽ‰æ‰€æœ‰æŠ½ç‰Œå †ä¸­çš„æ€ªå…½ç‰Œã€‚æ¯ä¸¢å¼ƒ1åªæ€ªå…½ï¼Œå¯¹1ä¸ªæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "çˆ†èµ°è½¨é“ å†²å¤©é£žé©¬",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! æŠ½å–1å¼ æœºæ¢°æ—ï¼Œç„¶åŽå¼ƒæŽ‰æ‰€æœ‰æŠ½ç‰Œå †ä¸­çš„æ€ªå…½ç‰Œã€‚æ¯ä¸¢å¼ƒ1åªæ€ªå…½ï¼Œå¯¹1ä¸ªæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:CyberneticFusion": {
-		"DESCRIPTION": "³éÈ¡ !M! ÕÅ»úÐµ×å¡£¶Ô1¸öËæ»úµÐÈË´ÓÊÖÅÆÌØÊâÕÙ»½1¸öËæ»ú»úÐµ×å¡£",
-		"NAME": "µç×ÓÈÚºÏÖ§Ô®",
-		"UPGRADE_DESCRIPTION": "³éÈ¡ !M! ÕÅ»úÐµ×å¡£¶Ô1¸öËæ»úµÐÈË´ÓÊÖÅÆÌØÊâÕÙ»½1¸öËæ»ú»úÐµ×å¡£"
+		"DESCRIPTION": "æŠ½å– !M! å¼ æœºæ¢°æ—ã€‚å¯¹1ä¸ªéšæœºæ•Œäººä»Žæ‰‹ç‰Œç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæœºæ¢°æ—ã€‚",
+		"NAME": "ç”µå­èžåˆæ”¯æ´",
+		"UPGRADE_DESCRIPTION": "æŠ½å– !M! å¼ æœºæ¢°æ—ã€‚å¯¹1ä¸ªéšæœºæ•Œäººä»Žæ‰‹ç‰Œç‰¹æ®Šå¬å”¤1ä¸ªéšæœºæœºæ¢°æ—ã€‚"
 	},
 	"theDuelist:GravityBlaster": {
-		"DESCRIPTION": "¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£ NL Ñ£ÔÎËùÓÐµÐÈË¡£ÏûºÄ¡£",
-		"NAME": "ÖØÁ¦ÅÚ",
-		"UPGRADE_DESCRIPTION": "¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦¡£ NL Ñ£ÔÎËùÓÐµÐÈË¡£"
+		"DESCRIPTION": "å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL çœ©æ™•æ‰€æœ‰æ•Œäººã€‚æ¶ˆè€—ã€‚",
+		"NAME": "é‡åŠ›ç‚®",
+		"UPGRADE_DESCRIPTION": "å¯¹éšæœºæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL çœ©æ™•æ‰€æœ‰æ•Œäººã€‚"
 	},
 	"theDuelist:IronDraw": {
-		"DESCRIPTION": "³é!M! ÕÅ»úÐµ×åºÍ !M! ÕÅÏ¡ÓÐÅÆ¡£",
-		"NAME": "¸ÖÌú³é¿¨",
-		"UPGRADE_DESCRIPTION": "³é!M! ÕÅ»úÐµ×åºÍ !M! ÕÅÏ¡ÓÐÅÆ¡£"
+		"DESCRIPTION": "æŠ½!M! å¼ æœºæ¢°æ—å’Œ !M! å¼ ç¨€æœ‰ç‰Œã€‚",
+		"NAME": "é’¢é“æŠ½å¡",
+		"UPGRADE_DESCRIPTION": "æŠ½!M! å¼ æœºæ¢°æ—å’Œ !M! å¼ ç¨€æœ‰ç‰Œã€‚"
 	},
 	"theDuelist:IronCall": {
-		"DESCRIPTION": "½« !M! ÕÅËæ»ú»úÐµ×åÔö¼Óµ½ÊÖÅÆÖÐ¡£»ñµÃ1²ãÈË¹¤ÖÆÆ·¡£ÏûºÄ¡£",
-		"NAME": "¸ÖÌúºô»½",
-		"UPGRADE_DESCRIPTION": "½« !M! ÕÅËæ»ú»úÐµ×åÔö¼Óµ½ÊÖÅÆÖÐ¡£»ñµÃ1²ãÈË¹¤ÖÆÆ·¡£ÏûºÄ¡£"
+		"DESCRIPTION": "å°† !M! å¼ éšæœºæœºæ¢°æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚èŽ·å¾—1å±‚äººå·¥åˆ¶å“ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "é’¢é“å‘¼å”¤",
+		"UPGRADE_DESCRIPTION": "å°† !M! å¼ éšæœºæœºæ¢°æ—å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚èŽ·å¾—1å±‚äººå·¥åˆ¶å“ã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:LimiterRemoval": {
-		"DESCRIPTION": "ÒÆ³ý×ÔÉíËùÓÐÈË¹¤ÖÆÆ·£¬Ã¿ÒÆ³ý1²ã£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "ÏÞÖÆ½â³ý",
-		"UPGRADE_DESCRIPTION": "ÒÆ³ý×ÔÉíËùÓÐÈË¹¤ÖÆÆ·£¬Ã¿ÒÆ³ý1²ã£¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "ç§»é™¤è‡ªèº«æ‰€æœ‰äººå·¥åˆ¶å“ï¼Œæ¯ç§»é™¤1å±‚ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é™åˆ¶è§£é™¤",
+		"UPGRADE_DESCRIPTION": "ç§»é™¤è‡ªèº«æ‰€æœ‰äººå·¥åˆ¶å“ï¼Œæ¯ç§»é™¤1å±‚ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:MachineDuplication": {
-		"DESCRIPTION": "¸´ÖÆÊÖÅÆÖÐËùÓÐ»úÐµ×å¡£",
-		"NAME": "»úÐµ¸´ÖÆÊõ",
-		"UPGRADE_DESCRIPTION": "¸´ÖÆÊÖÅÆÖÐËùÓÐ»úÐµ×å¡£"
+		"DESCRIPTION": "å¤åˆ¶æ‰‹ç‰Œä¸­æ‰€æœ‰æœºæ¢°æ—ã€‚",
+		"NAME": "æœºæ¢°å¤åˆ¶æœ¯",
+		"UPGRADE_DESCRIPTION": "å¤åˆ¶æ‰‹ç‰Œä¸­æ‰€æœ‰æœºæ¢°æ—ã€‚"
 	},
 	"theDuelist:MagicalStone": {
-		"DESCRIPTION": "³éÈ¡ !M! ÕÅÄ§·¨¿¨¡£ÏûºÄ¡£",
-		"NAME": "Ä§·¨Ê¯²É¾ò",
-		"UPGRADE_DESCRIPTION": "³éÈ¡ !M! ÕÅÄ§·¨¿¨¡£"
+		"DESCRIPTION": "æŠ½å– !M! å¼ é­”æ³•å¡ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "é­”æ³•çŸ³é‡‡æŽ˜",
+		"UPGRADE_DESCRIPTION": "æŠ½å– !M! å¼ é­”æ³•å¡ã€‚"
 	},
 	"theDuelist:CastleToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ³éÈ¡ !M! ÕÅ¶ñÄ§×å¡£",
-		"NAME": "³Ç±¤ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ³éÈ¡ !M! ÕÅ¶ñÄ§×å¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: æŠ½å– !M! å¼ æ¶é­”æ—ã€‚",
+		"NAME": "åŸŽå ¡è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: æŠ½å– !M! å¼ æ¶é­”æ—ã€‚"
 	},
 	"theDuelist:StormToken": {
-		"DESCRIPTION": "½«1ÕÅËæ»úÄÜÁ¦ÅÆ¼ÓÈëµ½ÊÖÅÆÖÐ£¬±¾»ØºÏºÄÄÜÎª0¡£",
-		"NAME": "±©·çÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "½«1ÕÅËæ»úÄÜÁ¦ÅÆ¼ÓÈëµ½ÊÖÅÆÖÐ£¬±¾»ØºÏºÄÄÜÎª0¡£"
+		"DESCRIPTION": "å°†1å¼ éšæœºèƒ½åŠ›ç‰ŒåŠ å…¥åˆ°æ‰‹ç‰Œä¸­ï¼Œæœ¬å›žåˆè€—èƒ½ä¸º0ã€‚",
+		"NAME": "æš´é£Žè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å°†1å¼ éšæœºèƒ½åŠ›ç‰ŒåŠ å…¥åˆ°æ‰‹ç‰Œä¸­ï¼Œæœ¬å›žåˆè€—èƒ½ä¸º0ã€‚"
 	},
 	"theDuelist:RelicToken": {
-		"DESCRIPTION": "ÂÖÅÌ: ÁÙÊ±»ñµÃ1¸öËæ»úÆÕÍ¨ÒÅÎï¡£",
-		"NAME": "ÒÅÎïÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÂÖÅÌ: ÁÙÊ±»ñµÃ1¸öËæ»úÆÕÍ¨ÒÅÎï¡£"
+		"DESCRIPTION": "è½®ç›˜: ä¸´æ—¶èŽ·å¾—1ä¸ªéšæœºæ™®é€šé—ç‰©ã€‚",
+		"NAME": "é—ç‰©è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "è½®ç›˜: ä¸´æ—¶èŽ·å¾—1ä¸ªéšæœºæ™®é€šé—ç‰©ã€‚"
 	},
 	"theDuelist:PuzzleToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 »ñµÃ !B! µã¸ñµ²¡£ NL ³éÈ¡ !M! ÕÅ¹ÖÊÞ¡£",
-		"NAME": "»ýÄ¾ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 »ñµÃ !B! µã¸ñµ²¡£ NL ³éÈ¡ !M! ÕÅ¹ÖÊÞ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æŠ½å– !M! å¼ æ€ªå…½ã€‚",
+		"NAME": "ç§¯æœ¨è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æŠ½å– !M! å¼ æ€ªå…½ã€‚"
 	},
 	"theDuelist:BonanzaToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: »ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£",
-		"NAME": "»úÓöÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: »ñµÃ1¸öËæ»úÔöÒæÐ§¹û¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚",
+		"NAME": "æœºé‡è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: èŽ·å¾—1ä¸ªéšæœºå¢žç›Šæ•ˆæžœã€‚"
 	},
 	"theDuelist:OrbToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: Ñ¡ÔñÉú³É1¸ö³äÄÜÇò¡£",
-		"NAME": "³äÄÜÇòÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: Ñ¡ÔñÉú³É1¸ö³äÄÜÇò¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: é€‰æ‹©ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚",
+		"NAME": "å……èƒ½çƒè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: é€‰æ‹©ç”Ÿæˆ1ä¸ªå……èƒ½çƒã€‚"
 	},
 	"theDuelist:UnderdogToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ³éÈ¡ !M! ÕÅ¹ÖÊÞ¡£",
-		"NAME": "·²ÈËÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ³éÈ¡ !M! ÕÅ¹ÖÊÞ¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: æŠ½å– !M! å¼ æ€ªå…½ã€‚",
+		"NAME": "å‡¡äººè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: æŠ½å– !M! å¼ æ€ªå…½ã€‚"
 	},
 	"theDuelist:TributeToken": {
-		"DESCRIPTION": "Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢¼ÀÆ·1¸ö¸ÃÖÖ×å¹ÖÊÞ¡£",
-		"NAME": "¼ÀÆ·ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢¼ÀÆ·1¸ö¸ÃÖÖ×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶ç¥­å“1ä¸ªè¯¥ç§æ—æ€ªå…½ã€‚",
+		"NAME": "ç¥­å“è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶ç¥­å“1ä¸ªè¯¥ç§æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:SummonToken": {
-		"DESCRIPTION": "Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢ÕÙ»½1¸ö¸ÃÖÖ×å¹ÖÊÞ¡£",
-		"NAME": "ÕÙ»½ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "Ñ¡Ôñ1¸ö¹ÖÊÞÖÖ×å²¢ÕÙ»½1¸ö¸ÃÖÖ×å¹ÖÊÞ¡£"
+		"DESCRIPTION": "é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶å¬å”¤1ä¸ªè¯¥ç§æ—æ€ªå…½ã€‚",
+		"NAME": "å¬å”¤è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "é€‰æ‹©1ä¸ªæ€ªå…½ç§æ—å¹¶å¬å”¤1ä¸ªè¯¥ç§æ—æ€ªå…½ã€‚"
 	},
 	"theDuelist:GoldToken": {
-		"DESCRIPTION": "»ñµÃ !M! ½ð±Ò¡£",
-		"NAME": "½ð±ÒÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "»ñµÃ !M! ½ð±Ò¡£"
+		"DESCRIPTION": "èŽ·å¾— !M! é‡‘å¸ã€‚",
+		"NAME": "é‡‘å¸è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "èŽ·å¾— !M! é‡‘å¸ã€‚"
 	},
 	"theDuelist:MagnetToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: »ñµÃ1¸öËæ»ú´ÅÌúÐ§¹û¡£",
-		"NAME": "´ÅÌúÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: »ñµÃ1¸öËæ»ú´ÅÌúÐ§¹û¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: èŽ·å¾—1ä¸ªéšæœºç£é“æ•ˆæžœã€‚",
+		"NAME": "ç£é“è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: èŽ·å¾—1ä¸ªéšæœºç£é“æ•ˆæžœã€‚"
 	},
 	"theDuelist:CocoonToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: »ñµÃ½ø»¯Ö®¼ë¡£",
-		"NAME": "¼ëÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: »ñµÃ½ø»¯Ö®¼ë¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: èŽ·å¾—è¿›åŒ–ä¹‹èŒ§ã€‚",
+		"NAME": "èŒ§è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: èŽ·å¾—è¿›åŒ–ä¹‹èŒ§ã€‚"
 	},
 	"theDuelist:GodToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ÌØÊâÕÙ»½1¸öËæ»úÉñÖ®¿¨¡£",
-		"NAME": "ÉñÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ÌØÊâÕÙ»½1¸öËæ»úÉñÖ®¿¨¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºç¥žä¹‹å¡ã€‚",
+		"NAME": "ç¥žè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: ç‰¹æ®Šå¬å”¤1ä¸ªéšæœºç¥žä¹‹å¡ã€‚"
 	},
 	"theDuelist:PotionToken": {
-		"DESCRIPTION": "ÂÖÅÌ: ÁÙÊ±»ñµÃ1¸öËæ»úÒ©Ë®¡£",
-		"NAME": "Ò©Ë®ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÂÖÅÌ: ÁÙÊ±»ñµÃ1¸öËæ»úÒ©Ë®¡£"
+		"DESCRIPTION": "è½®ç›˜: ä¸´æ—¶èŽ·å¾—1ä¸ªéšæœºè¯æ°´ã€‚",
+		"NAME": "è¯æ°´è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "è½®ç›˜: ä¸´æ—¶èŽ·å¾—1ä¸ªéšæœºè¯æ°´ã€‚"
 	},
 	"theDuelist:GlitchToken": {
-		"DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý 1 NL ´¥·¢1¸öËæ»úÐ§¹û¡£",
-		"NAME": "¹ÊÕÏÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£ÕÙ»½Êý 1 NL ´¥·¢1¸öËæ»úÐ§¹û¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° 1 NL è§¦å‘1ä¸ªéšæœºæ•ˆæžœã€‚",
+		"NAME": "æ•…éšœè¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚å¬å”¤æ•° 1 NL è§¦å‘1ä¸ªéšæœºæ•ˆæžœã€‚"
 	},
 	"theDuelist:AnubisToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL Ã¿ÓµÓÐ1¸öÒÅÎï£¬¶Ô1¸öµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "°¢Å¬±ÈË¹ÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL Ã¿ÓµÓÐ1¸öÒÅÎï£¬¶Ô1¸öµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL æ¯æ‹¥æœ‰1ä¸ªé—ç‰©ï¼Œå¯¹1ä¸ªæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "é˜¿åŠªæ¯”æ–¯è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL æ¯æ‹¥æœ‰1ä¸ªé—ç‰©ï¼Œå¯¹1ä¸ªæ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:PotToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ³é1ÕÅÄ§·¨¿¨¡£",
-		"NAME": "ºøÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ³é1ÕÅÄ§·¨¿¨¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL æŠ½1å¼ é­”æ³•å¡ã€‚",
+		"NAME": "å£¶è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL æŠ½1å¼ é­”æ³•å¡ã€‚"
 	},
 	"theDuelist:BloodToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 ÔöÖ³ 1 NL Ê§È¥1ÉúÃü¡£",
-		"NAME": "ÑªÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 ÔöÖ³ 1 NL Ê§È¥1ÉúÃü¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 å¢žæ®– 1 NL å¤±åŽ»1ç”Ÿå‘½ã€‚",
+		"NAME": "è¡€è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 å¢žæ®– 1 NL å¤±åŽ»1ç”Ÿå‘½ã€‚"
 	},
 	"theDuelist:HaneToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 »ñµÃ !B! µã¸ñµ²¡£",
-		"NAME": "¹þÄáÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 »ñµÃ !B! µã¸ñµ²¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚",
+		"NAME": "å“ˆå°¼è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚"
 	},
 	"theDuelist:StimToken": {
-		"DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ±¾»ØºÏ»ñµÃ1µãÁ¦Á¿¡£",
-		"NAME": "ÐË·ÜÑÜÉúÎï",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý 1 NL ÂÖÅÌ: ±¾»ØºÏ»ñµÃ1µãÁ¦Á¿¡£"
+		"DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: æœ¬å›žåˆèŽ·å¾—1ç‚¹åŠ›é‡ã€‚",
+		"NAME": "å…´å¥‹è¡ç”Ÿç‰©",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° 1 NL è½®ç›˜: æœ¬å›žåˆèŽ·å¾—1ç‚¹åŠ›é‡ã€‚"
 	},
 	"theDuelist:DropOff": {
-		"DESCRIPTION": "»ùÓÚÕÙ»½µÄÉÏÒ»¸ö¹ÖÊÞµÄÖÖ×å£¬»ñµÃ1²ãÔöÒæÐ§¹û¡£ÏûºÄ¡£",
-		"NAME": "´òÂä",
-		"UPGRADE_DESCRIPTION": "»ùÓÚÕÙ»½µÄÉÏÒ»¸ö¹ÖÊÞµÄÖÖ×å£¬»ñµÃ1²ãÔöÒæÐ§¹û¡£ÏûºÄ¡£"
+		"DESCRIPTION": "åŸºäºŽå¬å”¤çš„ä¸Šä¸€ä¸ªæ€ªå…½çš„ç§æ—ï¼ŒèŽ·å¾—1å±‚å¢žç›Šæ•ˆæžœã€‚æ¶ˆè€—ã€‚",
+		"NAME": "æ‰“è½",
+		"UPGRADE_DESCRIPTION": "åŸºäºŽå¬å”¤çš„ä¸Šä¸€ä¸ªæ€ªå…½çš„ç§æ—ï¼ŒèŽ·å¾—1å±‚å¢žç›Šæ•ˆæžœã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:RainbowBridge": {
-		"DESCRIPTION": "½«ËùÓÐÕÙ»½ÔÚ³¡µÄ¹ÖÊÞ¸´ÖÆÔö¼Óµ½ÊÖÅÆÖÐ¡£ÏûºÄ¡£",
-		"NAME": "ºçÖ®ÇÅÁº",
-		"UPGRADE_DESCRIPTION": "½«ËùÓÐÕÙ»½ÔÚ³¡µÄ¹ÖÊÞ¸´ÖÆÔö¼Óµ½ÊÖÅÆÖÐ¡£"
+		"DESCRIPTION": "å°†æ‰€æœ‰å¬å”¤åœ¨åœºçš„æ€ªå…½å¤åˆ¶å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è™¹ä¹‹æ¡¥æ¢",
+		"UPGRADE_DESCRIPTION": "å°†æ‰€æœ‰å¬å”¤åœ¨åœºçš„æ€ªå…½å¤åˆ¶å¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚"
 	},
 	"theDuelist:RainbowLife": {
-		"DESCRIPTION": "Ã¿Ê£Óà !M! HP£¬ÌØÊâÕÙ»½1Ö»Ëæ»úÖÖ×åµÄ¹ÖÊÞ¡£",
-		"NAME": "ºçÖ®ÉúÃü",
-		"UPGRADE_DESCRIPTION": "Ã¿Ê£Óà !M! HP£¬ÌØÊâÕÙ»½1Ö»Ëæ»úÖÖ×åµÄ¹ÖÊÞ¡£"
+		"DESCRIPTION": "æ¯å‰©ä½™ !M! HPï¼Œç‰¹æ®Šå¬å”¤1åªéšæœºç§æ—çš„æ€ªå…½ã€‚",
+		"NAME": "è™¹ä¹‹ç”Ÿå‘½",
+		"UPGRADE_DESCRIPTION": "æ¯å‰©ä½™ !M! HPï¼Œç‰¹æ®Šå¬å”¤1åªéšæœºç§æ—çš„æ€ªå…½ã€‚"
 	},
 	"theDuelist:WeatherPainterRainbow": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ôö¼ÓËæ»úµÄÑÜÉúÎïÖÁÊÖÅÆÉÏÏÞ¡£Éý¼¶³éÅÆ¶ÑÖÐËùÓÐµÄÅÆ¡£ÏûºÄ¡£",
-		"NAME": "ºçÌìÆø ²Êºç",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ôö¼ÓËæ»úµÄÑÜÉúÎïÖÁÊÖÅÆÉÏÏÞ¡£Éý¼¶³éÅÆ¶ÑÖÐËùÓÐµÄÅÆ¡£ÏûºÄ¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¢žåŠ éšæœºçš„è¡ç”Ÿç‰©è‡³æ‰‹ç‰Œä¸Šé™ã€‚å‡çº§æŠ½ç‰Œå †ä¸­æ‰€æœ‰çš„ç‰Œã€‚æ¶ˆè€—ã€‚",
+		"NAME": "è™¹å¤©æ°” å½©è™¹",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL å¢žåŠ éšæœºçš„è¡ç”Ÿç‰©è‡³æ‰‹ç‰Œä¸Šé™ã€‚å‡çº§æŠ½ç‰Œå †ä¸­æ‰€æœ‰çš„ç‰Œã€‚æ¶ˆè€—ã€‚"
 	},
 	"theDuelist:GiantRex": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î´ò³ö1Ö»¹ÖÊÞ£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "¾ÞÍõ¼¬Áú",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î´ò³ö1Ö»¹ÖÊÞ£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡æ‰“å‡º1åªæ€ªå…½ï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "å·¨çŽ‹æ£˜é¾™",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡æ‰“å‡º1åªæ€ªå…½ï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:IronhammerGiant": {
-		"DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î¼ÀÆ·¹ÖÊÞ£¬¼õÉÙ¸Ã¹ÖÊÞµÄºÄÄÜ !M! µã¡£",
-		"NAME": "Ìú¾ÞÈË ´óÌú´¸",
-		"UPGRADE_DESCRIPTION": "ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î¼ÀÆ·¹ÖÊÞ£¬¼õÉÙ¸Ã¹ÖÊÞµÄºÄÄÜ !M! µã¡£"
+		"DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡ç¥­å“æ€ªå…½ï¼Œå‡å°‘è¯¥æ€ªå…½çš„è€—èƒ½ !M! ç‚¹ã€‚",
+		"NAME": "é“å·¨äºº å¤§é“é”¤",
+		"UPGRADE_DESCRIPTION": "å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡ç¥­å“æ€ªå…½ï¼Œå‡å°‘è¯¥æ€ªå…½çš„è€—èƒ½ !M! ç‚¹ã€‚"
 	},
 	"theDuelist:GiantOrc": {
-		"DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î´ò³ö1ÕÅ¹¥»÷ÅÆ£¬¼õÉÙ¸Ã¹ÖÊÞµÄºÄÄÜ !M! µã¡£",
-		"NAME": "¾Þ´óÊÞÈË",
-		"UPGRADE_DESCRIPTION": "¶ñÄ§×å¡£ÕÙ»½Êý !duelist:SUMM! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î´ò³ö1ÕÅ¹¥»÷ÅÆ£¬¼õÉÙ¸Ã¹ÖÊÞµÄºÄÄÜ !M! µã¡£"
+		"DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡æ‰“å‡º1å¼ æ”»å‡»ç‰Œï¼Œå‡å°‘è¯¥æ€ªå…½çš„è€—èƒ½ !M! ç‚¹ã€‚",
+		"NAME": "å·¨å¤§å…½äºº",
+		"UPGRADE_DESCRIPTION": "æ¶é­”æ—ã€‚å¬å”¤æ•° !duelist:SUMM! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡æ‰“å‡º1å¼ æ”»å‡»ç‰Œï¼Œå‡å°‘è¯¥æ€ªå…½çš„è€—èƒ½ !M! ç‚¹ã€‚"
 	},
 	"theDuelist:PowerGiant": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´ÎÕÙ»½1Ö»¹ÖÊÞ£¬Ôö¼Ó¸Ã¹ÖÊÞÔì³ÉµÄÉËº¦ !M! µã¡£",
-		"NAME": "Ç¿Á¦¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´ÎÕÙ»½1Ö»¹ÖÊÞ£¬Ôö¼Ó¸Ã¹ÖÊÞÔì³ÉµÄÉËº¦ !M! µã¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡å¬å”¤1åªæ€ªå…½ï¼Œå¢žåŠ è¯¥æ€ªå…½é€ æˆçš„ä¼¤å®³ !M! ç‚¹ã€‚",
+		"NAME": "å¼ºåŠ›å·¨äºº",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡å¬å”¤1åªæ€ªå…½ï¼Œå¢žåŠ è¯¥æ€ªå…½é€ æˆçš„ä¼¤å®³ !M! ç‚¹ã€‚"
 	},
 	"theDuelist:JunkGiant": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ³éµ½ÕâÖ»¹ÖÊÞÊ±£¬Ã¿ÓÐ1²ãÈË¹¤ÖÆÆ·£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "·ÏÆ·¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ³éµ½ÕâÖ»¹ÖÊÞÊ±£¬Ã¿ÓÐ1²ãÈË¹¤ÖÆÆ·£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½åˆ°è¿™åªæ€ªå…½æ—¶ï¼Œæ¯æœ‰1å±‚äººå·¥åˆ¶å“ï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "åºŸå“å·¨äºº",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½åˆ°è¿™åªæ€ªå…½æ—¶ï¼Œæ¯æœ‰1å±‚äººå·¥åˆ¶å“ï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:GiantPairfish": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ³éµ½ÕâÖ»¹ÖÊÞÊ±£¬Ã¿ÓÐ1Ö»Ë®×åÕÙ»½ÔÚ³¡£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "Áú¹¬µÄË«Ê¹Õß",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL ³éµ½ÕâÖ»¹ÖÊÞÊ±£¬Ã¿ÓÐ1Ö»Ë®×åÕÙ»½ÔÚ³¡£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½åˆ°è¿™åªæ€ªå…½æ—¶ï¼Œæ¯æœ‰1åªæ°´æ—å¬å”¤åœ¨åœºï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "é¾™å®«çš„åŒä½¿è€…",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æŠ½åˆ°è¿™åªæ€ªå…½æ—¶ï¼Œæ¯æœ‰1åªæ°´æ—å¬å”¤åœ¨åœºï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:ChaosAncientGearGiant": {
-		"DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î´ò³ö1ÕÅ»úÐµ×å£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "¹Å´úµÄ»úÐµ»ìãç¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "»úÐµ×å¡£¼ÀÆ·Êý !duelist:TRIB! Ôì³É !D! µãÉËº¦¡£ NL Ã¿´Î´ò³ö1ÕÅ»úÐµ×å£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡æ‰“å‡º1å¼ æœºæ¢°æ—ï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "å¤ä»£çš„æœºæ¢°æ··æ²Œå·¨äºº",
+		"UPGRADE_DESCRIPTION": "æœºæ¢°æ—ã€‚ç¥­å“æ•° !duelist:TRIB! é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL æ¯æ¬¡æ‰“å‡º1å¼ æœºæ¢°æ—ï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:EarthGiant": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ã¿´Î´ò³ö1ÕÅ¼¼ÄÜÅÆ£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "µØÇò¾ÞÈË",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ NL Ã¿´Î´ò³ö1ÕÅ¼¼ÄÜÅÆ£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æ¯æ¬¡æ‰“å‡º1å¼ æŠ€èƒ½ç‰Œï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "åœ°çƒå·¨äºº",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL æ¯æ¬¡æ‰“å‡º1å¼ æŠ€èƒ½ç‰Œï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:SleepingGiant": {
-		"DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£ NL Ñ£ÔÎËùÓÐµÐÈË¡£Ã¿´ÎÏûºÄ1ÕÅÅÆ£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£",
-		"NAME": "Ë¯¾ÞÈË ¹¾ßË",
-		"UPGRADE_DESCRIPTION": "¼ÀÆ·Êý !duelist:TRIB! ¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£ NL Ñ£ÔÎËùÓÐµÐÈË¡£Ã¿´ÎÏûºÄ1ÕÅÅÆ£¬¼õÉÙ¸Ã¹ÖÊÞµÄ¼ÀÆ·ÏûºÄ !M! µã¡£"
+		"DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL çœ©æ™•æ‰€æœ‰æ•Œäººã€‚æ¯æ¬¡æ¶ˆè€—1å¼ ç‰Œï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚",
+		"NAME": "ç¡å·¨äºº å’•å’š",
+		"UPGRADE_DESCRIPTION": "ç¥­å“æ•° !duelist:TRIB! å¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL çœ©æ™•æ‰€æœ‰æ•Œäººã€‚æ¯æ¬¡æ¶ˆè€—1å¼ ç‰Œï¼Œå‡å°‘è¯¥æ€ªå…½çš„ç¥­å“æ¶ˆè€— !M! ç‚¹ã€‚"
 	},
 	"theDuelist:GiantTrapHole": {
-		"DESCRIPTION": "½« !M! ÕÅËæ»ú¾ÞÈËÔö¼Óµ½ÊÖÅÆÖÐ¡£Ã¿´Î´ò³ö1ÕÅÄÜÁ¦ÅÆ£¬¼õÉÙ¸ÃÅÆµÄºÄÄÜ !M! µã¡£",
-		"NAME": "´óÂäÑ¨",
-		"UPGRADE_DESCRIPTION": "½« !M! ÕÅËæ»ú¾ÞÈËÔö¼Óµ½ÊÖÅÆÖÐ¡£Ã¿´Î´ò³ö1ÕÅÄÜÁ¦ÅÆ£¬¼õÉÙ¸ÃÅÆµÄºÄÄÜ !M! µã¡£"
+		"DESCRIPTION": "å°† !M! å¼ éšæœºå·¨äººå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¯æ¬¡æ‰“å‡º1å¼ èƒ½åŠ›ç‰Œï¼Œå‡å°‘è¯¥ç‰Œçš„è€—èƒ½ !M! ç‚¹ã€‚",
+		"NAME": "å¤§è½ç©´",
+		"UPGRADE_DESCRIPTION": "å°† !M! å¼ éšæœºå·¨äººå¢žåŠ åˆ°æ‰‹ç‰Œä¸­ã€‚æ¯æ¬¡æ‰“å‡º1å¼ èƒ½åŠ›ç‰Œï¼Œå‡å°‘è¯¥ç‰Œçš„è€—èƒ½ !M! ç‚¹ã€‚"
 	},
 	"theDuelist:DarkFusion": {
-		"DESCRIPTION": "±¾»ØºÏÔö¼ÓÊÖÅÆËùÓÐ¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£",
-		"NAME": "°µºÚÈÚºÏ",
-		"UPGRADE_DESCRIPTION": "±¾»ØºÏÔö¼ÓÊÖÅÆËùÓÐ¹ÖÊÞµÄÕÙ»½Êý !M! µã¡£"
+		"DESCRIPTION": "æœ¬å›žåˆå¢žåŠ æ‰‹ç‰Œæ‰€æœ‰æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚",
+		"NAME": "æš—é»‘èžåˆ",
+		"UPGRADE_DESCRIPTION": "æœ¬å›žåˆå¢žåŠ æ‰‹ç‰Œæ‰€æœ‰æ€ªå…½çš„å¬å”¤æ•° !M! ç‚¹ã€‚"
 	},
 	"theDuelist:GoldenFlyingFish": {
-		"DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ Ôì³É !D! µãÉËº¦¡£ NL ¿µ !M! - ÕÙ»½ !duelist:SUMM! Ö»Ë®×åÑÜÉúÎï¡£",
-		"NAME": "¹âÁÛ·ÉÓã",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£¼ÀÆ·Êý !duelist:TRIB! »ñµÃ !B! µã¸ñµ²¡£ Ôì³É !D! µãÉËº¦¡£ NL ¿µ !M! - ÕÙ»½ !duelist:SUMM! Ö»Ë®×åÑÜÉúÎï¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL åº· !M! - å¬å”¤ !duelist:SUMM! åªæ°´æ—è¡ç”Ÿç‰©ã€‚",
+		"NAME": "å…‰é³žé£žé±¼",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚ç¥­å“æ•° !duelist:TRIB! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ é€ æˆ !D! ç‚¹ä¼¤å®³ã€‚ NL åº· !M! - å¬å”¤ !duelist:SUMM! åªæ°´æ—è¡ç”Ÿç‰©ã€‚"
 	},
 	"theDuelist:Monokeros": {
-		"DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¿µ !M! - ¼ÀÆ·Êý !duelist:TRIB! £¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£",
-		"NAME": "°×¶·ÆøÒ»½Ç",
-		"UPGRADE_DESCRIPTION": "Ë®×å¡£ÕÙ»½Êý !duelist:SUMM! »ñµÃ !B! µã¸ñµ²¡£ NL ¿µ !M! - ¼ÀÆ·Êý !duelist:TRIB! £¬¶ÔËùÓÐµÐÈËÔì³É !D! µãÉËº¦¡£"
+		"DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL åº· !M! - ç¥­å“æ•° !duelist:TRIB! ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚",
+		"NAME": "ç™½æ–—æ°”ä¸€è§’",
+		"UPGRADE_DESCRIPTION": "æ°´æ—ã€‚å¬å”¤æ•° !duelist:SUMM! èŽ·å¾— !B! ç‚¹æ ¼æŒ¡ã€‚ NL åº· !M! - ç¥­å“æ•° !duelist:TRIB! ï¼Œå¯¹æ‰€æœ‰æ•Œäººé€ æˆ !D! ç‚¹ä¼¤å®³ã€‚"
 	},
 	"theDuelist:WorldTree": {
-		"DESCRIPTION": "Èç¹û½öÕÙ»½Ö²Îï×åÔÚ³¡£¬Ã¿´ò³ö1ÕÅ¼¼ÄÜÅÆ£¬»ñµÃ !M! µãÁÙÊ±HP¡£",
-		"NAME": "ÊÀ½çÊ÷",
-		"UPGRADE_DESCRIPTION": "¹ÌÓÐ¡£Èç¹û½öÕÙ»½Ö²Îï×åÔÚ³¡£¬Ã¿´ò³ö1ÕÅ¼¼ÄÜÅÆ£¬»ñµÃ !M! µãÁÙÊ±HP¡£"
+		"DESCRIPTION": "å¦‚æžœä»…å¬å”¤æ¤ç‰©æ—åœ¨åœºï¼Œæ¯æ‰“å‡º1å¼ æŠ€èƒ½ç‰Œï¼ŒèŽ·å¾— !M! ç‚¹ä¸´æ—¶HPã€‚",
+		"NAME": "ä¸–ç•Œæ ‘",
+		"UPGRADE_DESCRIPTION": "å›ºæœ‰ã€‚å¦‚æžœä»…å¬å”¤æ¤ç‰©æ—åœ¨åœºï¼Œæ¯æ‰“å‡º1å¼ æŠ€èƒ½ç‰Œï¼ŒèŽ·å¾— !M! ç‚¹ä¸´æ—¶HPã€‚"
 	},
 	"theDuelist:TyrantWing": {
-		"DESCRIPTION": "ÏÂ !M! Ö»Áú×åÔì³É¶îÍâ !M! µãÉËº¦¡£ Ã¿½«1Ö»Áú×å×÷ÎªÁú×å¼ÀÆ·Ê±£¬¶îÍâ²¹³ä¼ÆÊý¡£",
-		"NAME": "±©¾ýÒí",
-		"UPGRADE_DESCRIPTION": "ÏÂ !M! Ö»Áú×åÔì³É¶îÍâ !M! µãÉËº¦¡£ Ã¿½«1Ö»Áú×å×÷ÎªÁú×å¼ÀÆ·Ê±£¬¶îÍâ²¹³ä¼ÆÊý¡£"
+		"DESCRIPTION": "ä¸‹ !M! åªé¾™æ—é€ æˆé¢å¤– !M! ç‚¹ä¼¤å®³ã€‚ æ¯å°†1åªé¾™æ—ä½œä¸ºé¾™æ—ç¥­å“æ—¶ï¼Œé¢å¤–è¡¥å……è®¡æ•°ã€‚",
+		"NAME": "æš´å›ç¿¼",
+		"UPGRADE_DESCRIPTION": "ä¸‹ !M! åªé¾™æ—é€ æˆé¢å¤– !M! ç‚¹ä¼¤å®³ã€‚ æ¯å°†1åªé¾™æ—ä½œä¸ºé¾™æ—ç¥­å“æ—¶ï¼Œé¢å¤–è¡¥å……è®¡æ•°ã€‚"
+	},
+	"theDuelist:ZombieMaster": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random Zombie and Resummon it on the target enemy. Exempt.",
+		"NAME": "Zombie Master",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random upgraded Zombie and Resummon it on the target enemy. Exempt."
+	},
+	"theDuelist:ImperialTomb": {
+		"DESCRIPTION": "Purge half of your exhaust pile randomly. NL Shuffle the remaining cards back into your draw pile. NL Exhaust.",
+		"NAME": "Imperial Tomb",
+		"UPGRADE_DESCRIPTION": "Purge half of your exhaust pile randomly. NL Shuffle the remaining cards back into your draw pile. NL Exhaust."
+	},
+	"theDuelist:SpellbookLife": {
+		"DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP.",
+		"NAME": "Spellbook of Life",
+		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP."
 	}
 }

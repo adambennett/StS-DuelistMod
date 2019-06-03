@@ -22,9 +22,9 @@ public class Localization {
 			//	return "rus";
 			case ENG:
 				return "eng";
-			/*case ZHS:
+			case ZHS:
 				return "zhs";
-			case ZHT:
+			/*case ZHT:
 				return "zht";
 			case KOR:
 				return "kor";

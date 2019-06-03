@@ -827,25 +827,34 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		String loc = Localization.localize();
 		
 		// Card Strings
-		BaseMod.loadCustomStringsFile(CardStrings.class,"duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json");
+		//String cardStrings = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+		BaseMod.loadCustomStringsFile(CardStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json");
 
 		// UI Strings
+		//String uiStrings = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
 		BaseMod.loadCustomStringsFile(UIStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-UI-Strings.json");
 		
 		// Power Strings
+		//String powerStrings = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
 		BaseMod.loadCustomStringsFile(PowerStrings.class,"duelistModResources/localization/" + loc + "/DuelistMod-Power-Strings.json");
 
 		// Relic Strings
+		//String relicStrings = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
 		BaseMod.loadCustomStringsFile(RelicStrings.class,"duelistModResources/localization/" + loc + "/DuelistMod-Relic-Strings.json");
 
 		// Potion Strings
+		//String potionStrings = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
 		BaseMod.loadCustomStringsFile(PotionStrings.class,"duelistModResources/localization/" + loc + "/DuelistMod-Potion-Strings.json");
 
 		// Orb Strings
+		//String orbStrings = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
 		BaseMod.loadCustomStringsFile(OrbStrings.class,"duelistModResources/localization/" + loc + "/DuelistMod-Orb-Strings.json");
 		
 		// Character Strings
+		//String charStrings = Gdx.files.internal("duelistModResources/localization/" + loc + "/DuelistMod-Card-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
 		BaseMod.loadCustomStringsFile(CharacterStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Character-Strings.json");
+		
+		
 
 		logger.info("Done editing strings");
 	}
