@@ -35,6 +35,7 @@ public class DamageToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.baseDamage = this.damage = 1;
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public DamageToken(String tokenName) 
     { 
@@ -42,6 +43,7 @@ public class DamageToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.baseDamage = this.damage = 1;
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

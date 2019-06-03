@@ -636,9 +636,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply 3 Vulnerable."
 	},
 	"theDuelist:FiendToken": {
-		"DESCRIPTION": "Fiend NL Summon 1 NL Set the cost of a random card in your discard pile to 0.",
+		"DESCRIPTION": "Fiend NL Summon 1 NL Reduce the cost of a random card in your discard pile by !M!.",
 		"NAME": "Fiend Token",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1 NL Set the cost of a random card in your discard pile to 0."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1 NL Reduce the cost of a random card in your discard pile by !M!"
 	},
 	"theDuelist:FiendishChain": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Increase the Tributes of all monsters in your hand by !M!.",
@@ -2676,9 +2676,9 @@
 		"UPGRADE_DESCRIPTION": "Draw !M! Machines and !M! Rares."
 	},
 	"theDuelist:IronCall": {
-		"DESCRIPTION": "Add !M! Randomized Machines to your hand. Gain 1 Artifact. Exhaust.",
+		"DESCRIPTION": "Add !M! Randomized Machines to your hand. NL Gain 1 Artifact. NL Exhaust.",
 		"NAME": "Iron Call",
-		"UPGRADE_DESCRIPTION": "Add !M! Randomized Machines to your hand. Gain 2 Artifacts. Exhaust."
+		"UPGRADE_DESCRIPTION": "Add !M! Randomized Machines to your hand. NL Gain 2 Artifacts. NL Exhaust."
 	},
 	"theDuelist:LimiterRemoval": {
 		"DESCRIPTION": "Remove all your Artifacts and deal !D! damage to ALL enemies for each.",

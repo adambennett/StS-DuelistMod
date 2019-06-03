@@ -35,12 +35,14 @@ public class GoldToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     	this.magicNumber = this.baseMagicNumber = 15;
+    	this.isEthereal = true;
     }
     public GoldToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     	this.magicNumber = this.baseMagicNumber = 15;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

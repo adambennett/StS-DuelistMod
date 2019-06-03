@@ -38,6 +38,7 @@ public class ExodiaToken extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     	
     }
     public ExodiaToken(String tokenName) 
@@ -45,6 +46,7 @@ public class ExodiaToken extends DuelistCard
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     	
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

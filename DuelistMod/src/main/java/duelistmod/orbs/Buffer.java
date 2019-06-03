@@ -113,7 +113,7 @@ public class Buffer extends DuelistOrb
 			{				
 				for (AbstractPower buff : buffs)
 				{
-					if (buff.name.equals("Summons") || buff.name.equals("Focus"))
+					if (buff.name.equals("Summons") || buff.name.equals("Focus") || buff.name.equals("Swords of Revealing Light"))
 					{
 						//DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
 						//if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }

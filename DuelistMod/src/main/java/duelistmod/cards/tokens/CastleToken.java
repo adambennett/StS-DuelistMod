@@ -36,6 +36,7 @@ public class CastleToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     public CastleToken(String tokenName) 
     { 
@@ -43,6 +44,7 @@ public class CastleToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);  
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

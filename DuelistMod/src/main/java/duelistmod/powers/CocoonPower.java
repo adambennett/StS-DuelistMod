@@ -103,6 +103,7 @@ public class CocoonPower extends AbstractPower
     	else if (turnCounter >= triggerTurn && addedMoth)
     	{
     		DuelistCard.removePower(this, this.owner);
+    		addedMoth = false;
     	}
     	if (this.amount != turnCounter) { this.amount = turnCounter; }
     	updateDescription();
@@ -121,6 +122,7 @@ public class CocoonPower extends AbstractPower
     	else if (turnCounter >= triggerTurn && addedMoth)
     	{
     		DuelistCard.removePower(this, this.owner);
+    		addedMoth = false;
     	}
     	else if (triggerTurn - turnCounter == 1) { this.description = DESCRIPTIONS[0] + (triggerTurn - turnCounter) + DESCRIPTIONS[1]; }
     	else { this.description = DESCRIPTIONS[0] + (triggerTurn - turnCounter) + DESCRIPTIONS[2]; }

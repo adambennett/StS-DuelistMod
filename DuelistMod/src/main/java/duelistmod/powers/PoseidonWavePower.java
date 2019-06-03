@@ -1,4 +1,4 @@
-package duelistmod.powers.incomplete;
+package duelistmod.powers;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import duelistmod.*;
 import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
-import duelistmod.powers.SummonPower;
 
 
 @SuppressWarnings("unused")

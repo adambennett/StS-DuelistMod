@@ -37,6 +37,7 @@ public class ZombieToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public ZombieToken(String tokenName) 
     { 
@@ -44,6 +45,7 @@ public class ZombieToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

@@ -39,6 +39,7 @@ public class MachineToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.MACHINE); 
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public MachineToken(String tokenName) 
     { 
@@ -46,6 +47,7 @@ public class MachineToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.MACHINE); 
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

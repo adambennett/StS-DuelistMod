@@ -38,6 +38,7 @@ public class InsectToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.INSECT); 
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     
     public InsectToken(String tokenName) 
@@ -46,6 +47,7 @@ public class InsectToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.INSECT);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

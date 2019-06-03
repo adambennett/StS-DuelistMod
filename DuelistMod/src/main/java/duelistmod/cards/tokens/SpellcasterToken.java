@@ -36,6 +36,7 @@ public class SpellcasterToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.SPELLCASTER); 
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     
     public SpellcasterToken(String tokenName) 
@@ -44,6 +45,7 @@ public class SpellcasterToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.SPELLCASTER);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

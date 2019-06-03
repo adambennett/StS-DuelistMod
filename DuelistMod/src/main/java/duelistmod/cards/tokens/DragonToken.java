@@ -43,6 +43,7 @@ public class DragonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.DRAGON);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public DragonToken(String tokenName) 
     { 
@@ -50,6 +51,7 @@ public class DragonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.DRAGON);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
@@ -57,7 +59,7 @@ public class DragonToken extends DuelistCard
     	ArrayList<AbstractCard> handDrags = new ArrayList<AbstractCard>();
     	for (AbstractCard c : player().hand.group)
     	{
-    		if (!c.uuid.equals(this.uuid) && c instanceof DuelistCard)
+    		if (!c.uuid.equals(this.uuid) && c instanceof DuelistCard && c.hasTag(Tags.MONSTER))
     		{
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.tributes > 0) { handDrags.add(c); }

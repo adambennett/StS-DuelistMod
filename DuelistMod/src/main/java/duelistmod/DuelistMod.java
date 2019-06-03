@@ -40,7 +40,6 @@ import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.EarthGiant;
 import duelistmod.characters.TheDuelist;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
@@ -1236,7 +1235,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			}
 		}
 		
-		if (arg0.hasTag(Tags.SPELL))
+		if (arg0.hasTag(Tags.SPELL) && arg0 instanceof DuelistCard)
 		{
 			spellCombatCount++;
 			spellRunCount++;
@@ -1248,7 +1247,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			logger.info("added " + arg0.originalName + " to spellsThisCombat, spellsThisRun");
 		}
 		
-		if (arg0.hasTag(Tags.MONSTER))
+		if (arg0.hasTag(Tags.MONSTER) && arg0 instanceof DuelistCard)
 		{
 			//summonCombatCount++;
 			//summonRunCount++;
@@ -1307,7 +1306,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			}
 		}
 		
-		if (arg0.hasTag(Tags.TRAP))
+		if (arg0.hasTag(Tags.TRAP) && arg0 instanceof DuelistCard)
 		{
 			trapCombatCount++;
 			trapRunCount++;

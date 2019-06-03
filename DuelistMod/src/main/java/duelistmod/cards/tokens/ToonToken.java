@@ -36,6 +36,7 @@ public class ToonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     	this.magicNumber = this.baseMagicNumber = 1;
     }
     public ToonToken(String tokenName) 
@@ -44,6 +45,7 @@ public class ToonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     	this.magicNumber = this.baseMagicNumber = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

@@ -568,6 +568,10 @@ public class StarterDeckSetup {
 		machineCards.add(new StimPack());
 		machineCards.add(new IronhammerGiant());
 		machineCards.add(new ChaosAncientGearGiant());
+		machineCards.add(new AncientGearBox());
+		machineCards.add(new Deskbot001());
+		machineCards.add(new Deskbot002());
+		machineCards.add(new Deskbot009());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());

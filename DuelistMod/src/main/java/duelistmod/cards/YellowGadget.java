@@ -82,7 +82,7 @@ public class YellowGadget extends DuelistCard
 	@Override
 	public void upgrade() 
 	{
-		if (canUpgrade()) 
+		if (!upgraded) 
 		{
 			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
@@ -93,19 +93,6 @@ public class YellowGadget extends DuelistCard
 		}
 	}
 	
-	@Override
-	public boolean canUpgrade()
-	{
-		if (this.magicNumber < 11)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-		
-	}
 	
     // Checking for Monster Zones if the challenge is enabled
     @Override

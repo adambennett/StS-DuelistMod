@@ -35,6 +35,7 @@ public class HaneToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.baseBlock = this.block = 3;
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public HaneToken(String tokenName) 
     { 
@@ -42,6 +43,7 @@ public class HaneToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.baseBlock = this.block = 3;
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

@@ -469,6 +469,10 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new FishRain());
 		DuelistMod.myCards.add(new PoseidonWave());
 		DuelistMod.myCards.add(new SuperheavyBlueBrawlerBasic());
+		DuelistMod.myCards.add(new AncientGearBox());
+		DuelistMod.myCards.add(new Deskbot001());
+		DuelistMod.myCards.add(new Deskbot002());
+		DuelistMod.myCards.add(new Deskbot009());
 
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)

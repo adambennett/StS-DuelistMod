@@ -1,4 +1,4 @@
-package duelistmod.cards.incomplete;
+package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

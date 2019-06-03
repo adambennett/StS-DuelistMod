@@ -39,6 +39,7 @@ public class PredaplantToken extends DuelistCard
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     
     public PredaplantToken(String tokenName) 
@@ -48,6 +49,7 @@ public class PredaplantToken extends DuelistCard
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

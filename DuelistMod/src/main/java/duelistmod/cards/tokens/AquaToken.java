@@ -40,6 +40,7 @@ public class AquaToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public AquaToken(String tokenName) 
     { 
@@ -47,6 +48,7 @@ public class AquaToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

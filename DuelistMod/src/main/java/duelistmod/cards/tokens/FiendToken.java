@@ -37,19 +37,23 @@ public class FiendToken extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.FIEND);
+    	this.magicNumber = this.baseMagicNumber = 1;
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public FiendToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.FIEND);
+    	this.magicNumber = this.baseMagicNumber = 1;
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
-    	if (p.discardPile.group.size() > 0) { p.discardPile.group.get(AbstractDungeon.cardRandomRng.random(p.discardPile.group.size() - 1)).modifyCostForTurn(-1); }
+    	if (p.discardPile.group.size() > 0) { p.discardPile.group.get(AbstractDungeon.cardRandomRng.random(p.discardPile.group.size() - 1)).modifyCostForCombat(-this.magicNumber); }
     }
     @Override public AbstractCard makeCopy() { return new FiendToken(); }
 
@@ -75,7 +79,6 @@ public class FiendToken extends DuelistCard
 	{
 		if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

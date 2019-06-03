@@ -91,7 +91,7 @@ public class RedGadget extends DuelistCard
 		{
 			this.upgradeName();
 			this.upgradeMagicNumber(1);
-			this.upgradeDamage(3);
+			//this.upgradeDamage(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

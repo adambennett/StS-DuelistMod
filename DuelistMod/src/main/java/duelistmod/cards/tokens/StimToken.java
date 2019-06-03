@@ -37,6 +37,7 @@ public class StimToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     public StimToken(String tokenName) 
     { 
@@ -44,6 +45,7 @@ public class StimToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);  
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

@@ -37,6 +37,7 @@ public class GlitchToken extends DuelistCard
     	this.tags.add(Tags.MACHINE);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     public GlitchToken(String tokenName) 
     { 
@@ -45,6 +46,7 @@ public class GlitchToken extends DuelistCard
     	this.tags.add(Tags.MACHINE);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

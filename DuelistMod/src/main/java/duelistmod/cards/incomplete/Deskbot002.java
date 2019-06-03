@@ -3,64 +3,58 @@ package duelistmod.cards.incomplete;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 
-public class RainbowKuriboh extends DuelistCard 
+public class Deskbot002 extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("RainbowKuriboh");
+    public static final String ID = DuelistMod.makeID("Deskbot002");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("RainbowKuriboh.png");
+    public static final String IMG = DuelistMod.makeCardPath("Deskbot002.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public RainbowKuriboh() 
-    {
+    public Deskbot002() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseBlock = this.block = 6;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.MACHINE);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
     	summon();
-    	incMaxSummons(p, this.magicNumber);
-    	CardTags randomTypeSelection = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-    		DuelistCard randTypeMon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(randomTypeSelection);
-    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randTypeMon, true));
-    	}
+    	block(this.block);
+    	drawTag(this.magicNumber, Tags.MACHINE);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new RainbowKuriboh();
+        return new Deskbot002();
     }
 
     // Upgraded stats.
@@ -72,18 +66,19 @@ public class RainbowKuriboh extends DuelistCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(1);
-        	this.upgradeSummons(1);
+        	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeSummons(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-  
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
 	}
 	
     // Checking for Monster Zones if the challenge is enabled
@@ -127,8 +122,7 @@ public class RainbowKuriboh extends DuelistCard
     		return true;
     	}
     }
-
-
+	
 	@Override
 	public void onResummon(int summons) {
 		// TODO Auto-generated method stub

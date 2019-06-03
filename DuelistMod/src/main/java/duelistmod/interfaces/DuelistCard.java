@@ -434,9 +434,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 
 	public void addPlayCount() {
-		for (AbstractCard c : GetAllInBattleInstances.get(this.uuid)) {
-			DuelistCard nc = (DuelistCard) c;
-			nc.playCount++;
+		for (AbstractCard c : GetAllInBattleInstances.get(this.uuid)) 
+		{
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard nc = (DuelistCard) c;
+				nc.playCount++;
+			}
 		}
 	}
 	// END UNUSED

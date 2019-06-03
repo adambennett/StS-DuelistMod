@@ -37,6 +37,7 @@ public class JamToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     public JamToken(String tokenName) 
     { 
@@ -44,6 +45,7 @@ public class JamToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

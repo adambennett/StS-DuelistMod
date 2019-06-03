@@ -36,6 +36,7 @@ public class PuzzleToken extends DuelistCard
     	this.purgeOnUse = true;
     	this.baseBlock = this.block = 1;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     public PuzzleToken(String tokenName) 
     { 
@@ -44,6 +45,7 @@ public class PuzzleToken extends DuelistCard
     	this.purgeOnUse = true;
     	this.baseBlock = this.block = 1;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
