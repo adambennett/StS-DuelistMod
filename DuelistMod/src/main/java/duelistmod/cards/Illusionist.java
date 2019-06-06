@@ -104,9 +104,9 @@ public class Illusionist extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		spellcasterSynTrib(tributingCard);
 	}
 
 	

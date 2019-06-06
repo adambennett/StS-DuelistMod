@@ -76,7 +76,7 @@ public class InvitationDarkSleep extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		spellcasterSynTrib(tributingCard);
 	}
 
 

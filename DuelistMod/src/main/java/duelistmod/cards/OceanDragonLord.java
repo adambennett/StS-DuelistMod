@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
@@ -120,45 +120,8 @@ public class OceanDragonLord extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
-		}
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && AbstractDungeon.player.hasRelic(DragonRelicB.ID))
-		{
-			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
-			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
-		}
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
-		{
-			TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
-			power.amount2++;
-			power.updateDescription();
-		}
-		
-		// Aqua Tribute
-		if (tributingCard.hasTag(Tags.AQUA))
-		{
-			for (AbstractCard c : player().hand.group)
-			{
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.baseSummons > 0)
-					{
-						dC.modifySummonsForTurn(DuelistMod.aquaInc);
-					}
-					
-					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
-					{
-						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
-					}
-				}
-			}
-		}
+		dragonSynTrib(tributingCard);
+		aquaSynTrib(tributingCard);
 	}
 
 	@Override

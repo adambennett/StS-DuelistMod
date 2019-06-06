@@ -246,6 +246,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean playedSpellThisTurn = false;
 	public static boolean kuribohrnFlipper = false;
 	public static boolean hasUpgradeBuffRelic = false;
+	public static boolean hasShopBuffRelic = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 
@@ -713,6 +714,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		BaseMod.addRelicToCustomPool(new ZombieRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new DragonRelicB(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new UpgradeBuffRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new ShopRelicRarityRelic(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new RandomTributeMonsterRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST); }
@@ -747,6 +749,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		UnlockTracker.markRelicAsSeen(ZombieRelic.ID);
 		UnlockTracker.markRelicAsSeen(DragonRelicB.ID);
 		UnlockTracker.markRelicAsSeen(UpgradeBuffRelic.ID);
+		UnlockTracker.markRelicAsSeen(ShopRelicRarityRelic.ID);
 		//UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
 		
 
@@ -1166,6 +1169,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		defaultMaxSummons = 5;
 		lastMaxSummons = 5;
 		swordsPlayed = 0;
+		hasUpgradeBuffRelic = false;
+		hasShopBuffRelic = false;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -1370,7 +1375,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	}
 	
 	@Override
-	public void receivePostDraw(AbstractCard arg0) 
+	public void receivePostDraw(AbstractCard drawnCard) 
 	{
 		boolean hasSmokeOrb = false;
 		boolean hasSplashOrb = false;
@@ -1412,31 +1417,37 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			}
 		}
 	
-		if (arg0.hasTag(Tags.MONSTER))
+		if (drawnCard.hasTag(Tags.MONSTER))
 		{
-			if (hasSmokeOrb) { smoke.triggerPassiveEffect((DuelistCard)arg0); }
-			if (hasSplashOrb) { splash.triggerPassiveEffect((DuelistCard)arg0); }
-			if (hasLavaOrb) { lava.triggerPassiveEffect((DuelistCard)arg0); }
-			if (hasFireOrb) { fire.triggerPassiveEffect((DuelistCard)arg0); }
-		}
-		
-		// Underdog - Draw monster = draw 1 card
-		if (AbstractDungeon.player.hasPower(HeartUnderdogPower.POWER_ID))
-		{
-			int handSize = AbstractDungeon.player.hand.group.size();
-			if (arg0.hasTag(Tags.MONSTER) && handSize < BaseMod.MAX_HAND_SIZE)
+			if (hasSmokeOrb) { smoke.triggerPassiveEffect((DuelistCard)drawnCard); }
+			if (hasSplashOrb) { splash.triggerPassiveEffect((DuelistCard)drawnCard); }
+			if (hasLavaOrb) { lava.triggerPassiveEffect((DuelistCard)drawnCard); }
+			if (hasFireOrb) { fire.triggerPassiveEffect((DuelistCard)drawnCard); }
+			
+			// Underdog - Draw monster = draw 1 card
+			if (AbstractDungeon.player.hasPower(HeartUnderdogPower.POWER_ID))
 			{
-				DuelistCard.draw(1);
+				int handSize = AbstractDungeon.player.hand.group.size();
+				if (handSize < BaseMod.MAX_HAND_SIZE)
+				{
+					DuelistCard.draw(1);
+				}
+			}
+			
+			if (AbstractDungeon.player.hasPower(DrillBarnaclePower.POWER_ID) && drawnCard.hasTag(Tags.AQUA))
+			{
+				DuelistCard.damageAllEnemiesThornsNormal(AbstractDungeon.player.getPower(DrillBarnaclePower.POWER_ID).amount);
 			}
 		}
 		
+
 		// Underspell - Draw spell = copy it
 		if (AbstractDungeon.player.hasPower(HeartUnderspellPower.POWER_ID))
 		{
 			int handSize = AbstractDungeon.player.hand.size();
-			if (arg0.hasTag(Tags.SPELL) && handSize < 10)
+			if (drawnCard.hasTag(Tags.SPELL) && handSize < 10)
 			{
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(arg0.makeStatEquivalentCopy(), arg0.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(drawnCard.makeStatEquivalentCopy(), drawnCard.upgraded, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
 			}
 		}
 		
@@ -1444,7 +1455,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		if (AbstractDungeon.player.hasPower(HeartUndertrapPower.POWER_ID))
 		{
 			int handSize = AbstractDungeon.player.hand.size();
-			if (arg0.hasTag(Tags.TRAP))
+			if (drawnCard.hasTag(Tags.TRAP))
 			{
 				DuelistCard.heal(AbstractDungeon.player, 3);
 			}
@@ -1454,9 +1465,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		if (AbstractDungeon.player.hasPower(HeartUndertributePower.POWER_ID))
 		{
 			int handSize = AbstractDungeon.player.hand.size();
-			if (arg0 instanceof DuelistCard)
+			if (drawnCard instanceof DuelistCard && drawnCard.hasTag(Tags.MONSTER))
 			{
-				DuelistCard ref = (DuelistCard) arg0;
+				DuelistCard ref = (DuelistCard) drawnCard;
 				if (ref.tributes > 0)
 				{
 					DuelistCard.powerSummon(AbstractDungeon.player, 1, "Underdog Token", false);
@@ -1604,6 +1615,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			naturiaDmg = 1;
 			AbstractPlayer.customMods = new ArrayList<String>();
 			swordsPlayed = 0;
+			hasUpgradeBuffRelic = false;
+			hasShopBuffRelic = false;
 			CardCrawlGame.dungeon.initializeCardPools();
 		}
 		else if (!shouldFill)

@@ -564,6 +564,7 @@ public class Strings
 	public static final String REINFORCEMENTS_POWER = "powers/ReinforcementsPower.png";
 	public static final String LEVIA_POWER = "powers/LeviaPower.png";
 	public static final String BLIZZARD_DRAGON_POWER = "powers/BlizzardDragonPower.png";
+	public static final String SPELLBOOK_POWER = "powers/SpellbookPower.png";
 	// =============== /POWER IMAGES/ =======================================================================================================================================================
 
 	// =============== CONFIG STRINGS =========================================================================================================================================================

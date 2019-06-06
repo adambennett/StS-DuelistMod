@@ -419,6 +419,10 @@
         "NAME": "Tyrant Wing",
         "DESCRIPTIONS": ["Your #yDragons deal an additional #b", " damage. Gain extra charges by tributing #yDragons for other #yDragons. NL #yCharges: " ]
 },
+"theDuelist:SpellbookLifePower": {
+        "NAME": "Spellbook of Life",
+        "DESCRIPTIONS": ["Whenever you #yTribute a #ySpellcaster for another, gain #b", " #ytemporary #yHP."  ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

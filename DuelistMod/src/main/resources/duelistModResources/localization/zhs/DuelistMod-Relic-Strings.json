@@ -261,6 +261,13 @@
 			"Upgrading Duelist cards will grant extra bonuses."
 		]
 	},
+	"theDuelist:ShopRelicRarityRelic": {
+		"NAME": "Shop Token",
+		"FLAVOR": "A weird looking rug shaped token.",
+		"DESCRIPTIONS": [
+			"You will encounter rarer relics in the shop more often."
+		]
+	},
 	"theDuelist:PlaceholderRelic2": {
 		"NAME": "占位符 2",
 		"FLAVOR": "你被强化了。",

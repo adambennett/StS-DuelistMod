@@ -119,30 +119,8 @@ public class FiendSkull extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
-		}		
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && AbstractDungeon.player.hasRelic(DragonRelicB.ID))
-		{
-			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
-			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
-		}
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
-		{
-			TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
-			power.amount2++;
-			power.updateDescription();
-		}
-		
-		// Fiend Tribute
-		AbstractPlayer p = AbstractDungeon.player;
-		if (p.hasPower(DoomdogPower.POWER_ID) && tributingCard.hasTag(Tags.FIEND)) { int dmgAmount = p.getPower(DoomdogPower.POWER_ID).amount; damageAllEnemiesThornsNormal(dmgAmount); }
-		if (p.hasPower(RedMirrorPower.POWER_ID) && tributingCard.hasTag(Tags.FIEND)) { for (AbstractCard c : p.discardPile.group) { if (c.cost > 0)	{ c.modifyCostForTurn(-p.getPower(RedMirrorPower.POWER_ID).amount);	c.isCostModifiedForTurn = true;	}}}
-		if (tributingCard.hasTag(Tags.FIEND)) { AbstractDungeon.actionManager.addToBottom(new FetchAction(p.discardPile, DuelistMod.fiendDraw)); }
+		dragonSynTrib(tributingCard);		
+		fiendSynTrib(tributingCard);
 	}
 
 

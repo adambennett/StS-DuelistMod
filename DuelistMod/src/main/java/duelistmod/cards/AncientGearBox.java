@@ -1,4 +1,4 @@
-package duelistmod.cards.incomplete;
+package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,36 +7,36 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
-import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 
-public class Deskbot009 extends DuelistCard 
+public class AncientGearBox extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Deskbot009");
+    public static final String ID = DuelistMod.makeID("AncientGearBox");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("Deskbot009.png");
+    public static final String IMG = DuelistMod.makeCardPath("AncientGearBox.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public Deskbot009() {
+    public AncientGearBox() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 3;
-        this.misc = 0;
+        this.baseMagicNumber = this.magicNumber = 1;
+        this.summons = this.baseSummons = 1;
+        this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
     }
@@ -45,17 +45,14 @@ public class Deskbot009 extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	if (BaseMod.MAX_HAND_SIZE - p.hand.group.size() > 0)
-    	{
-    		drawTag(BaseMod.MAX_HAND_SIZE - p.hand.group.size(), Tags.MACHINE);
-    	}
+    	summon();
+    	DuelistCard.drawRare(this.magicNumber, CardRarity.UNCOMMON);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Deskbot009();
+        return new AncientGearBox();
     }
 
     // Upgraded stats.
@@ -65,9 +62,8 @@ public class Deskbot009 extends DuelistCard
         if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }        	
-        	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeTributes(-2); }
-        	else { this.upgradeTributes(-1); }
+	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -82,41 +78,48 @@ public class Deskbot009 extends DuelistCard
 		}
 	}
 	
-    // If player doesn't have enough summons, can't play card
-  	@Override
-  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-  	{
-  		// Check super canUse()
-  		boolean canUse = super.canUse(p, m); 
-  		if (!canUse) { return false; }
-  		
-  		// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-  		
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
-			}
-		}
+    // Checking for Monster Zones if the challenge is enabled
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
 
-  		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
-
-  		// Player doesn't have something required at this point
-  		this.cantUseMessage = this.tribString;
-  		return false;
-  	}
-
-
+    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	{
+    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+    		if (p.hasPower(SummonPower.POWER_ID))
+    		{
+    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+    			if (sums + this.summons <= max) 
+    			{ 
+    				return true; 
+    			}
+    			else 
+    			{ 
+    				if (sums < max) 
+    				{ 
+    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    					
+    				}
+    				else { this.cantUseMessage = "No monster zones remaining"; }
+    				return false; 
+    			}
+    		}
+    		else
+    		{
+    			return true;
+    		}
+    	}
+    	
+    	else
+    	{
+    		return true;
+    	}
+    }
+	
 	@Override
 	public void onResummon(int summons) {
 		// TODO Auto-generated method stub

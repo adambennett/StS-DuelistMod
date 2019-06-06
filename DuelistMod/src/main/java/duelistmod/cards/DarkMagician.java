@@ -121,7 +121,7 @@ public class DarkMagician extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		spellcasterSynTrib(tributingCard);
 	}
 
 

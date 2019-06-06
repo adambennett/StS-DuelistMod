@@ -122,7 +122,7 @@ public class SpiritHarp extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		spellcasterSynTrib(tributingCard);
 	}
 
 	@Override

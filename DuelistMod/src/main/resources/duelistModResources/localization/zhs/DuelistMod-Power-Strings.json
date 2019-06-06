@@ -422,5 +422,9 @@
 "theDuelist:TyrantWingPower": {
         "NAME": "暴君翼",
         "DESCRIPTIONS": [" #y龙族 造成额外#b", " 点伤害。每将1只#y龙族 作为#y龙族 祭品时，额外补充计数。 NL #y充能数: " ]
+},
+"theDuelist:SpellbookLifePower": {
+        "NAME": "Spellbook of Life",
+        "DESCRIPTIONS": ["Whenever you #yTribute a #ySpellcaster for another, gain #b", " #ytemporary #yHP."  ]
 }
 }

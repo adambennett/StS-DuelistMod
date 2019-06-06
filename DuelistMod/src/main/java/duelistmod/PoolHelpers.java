@@ -35,6 +35,14 @@ public class PoolHelpers
 			DuelistMod.logger.info("theDuelist:Debug:printNonBasicSetCards() ---> found a non-basic, non-archetype card [" + i + "]: " + toPrint.get(i).originalName);
 		}
 	}
+	
+	public static void newFillColoredCards()
+	{
+		boolean archetypeDeck = (DuelistMod.deckIndex < DuelistMod.deckArchetypePoolCheck && DuelistMod.deckIndex != 0);
+		DuelistMod.coloredCards = new ArrayList<AbstractCard>();
+		
+		
+	}
 
 	public static void fillColoredCards()
 	{

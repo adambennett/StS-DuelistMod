@@ -112,7 +112,7 @@ public class BlueDragonSummoner extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard)
 	{
-		
+		spellcasterSynTrib(tributingCard);
 	}
 
 	@Override

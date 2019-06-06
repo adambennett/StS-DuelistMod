@@ -1,21 +1,17 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
 
 public class ToonBarrelDragon extends DuelistCard 
 {
@@ -149,34 +145,9 @@ public class ToonBarrelDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Dragon
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
-		}
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && AbstractDungeon.player.hasRelic(DragonRelicB.ID))
-		{
-			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
-			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
-		}
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
-		{
-			TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
-			power.amount2++;
-			power.updateDescription();
-		}
-		
-		// Toon
-		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }
-		
-		// Machine
-		if (tributingCard.hasTag(Tags.MACHINE))
-		{
-			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
-		}
+		dragonSynTrib(tributingCard);
+		toonSynTrib(tributingCard);
+		machineSynTrib(tributingCard);
 	}
 
 

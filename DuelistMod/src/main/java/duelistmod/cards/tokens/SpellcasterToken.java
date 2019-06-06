@@ -57,7 +57,7 @@ public class SpellcasterToken extends DuelistCard
     @Override public AbstractCard makeCopy() { return new SpellcasterToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		spellcasterSynTrib(tributingCard);
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }

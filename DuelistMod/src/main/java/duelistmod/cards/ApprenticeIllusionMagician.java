@@ -115,7 +115,7 @@ public class ApprenticeIllusionMagician extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard)
 	{
-		
+		spellcasterSynTrib(tributingCard);
 	}
 
 	@Override

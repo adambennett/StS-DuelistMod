@@ -5,6 +5,8 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -54,6 +56,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	 * Misc Action Functions			// Functions that perform various other actions
 	 * Summon Monster Functions			// Functions that run when playing monsters that Summon
 	 * Tribute Monster Functions		// Functions that run when playing monsters that Tribute
+	 * Tribute Synergy Functions		// Functions that run when tributing monsters for the same type of monster (eg strength gain on dragon for dragon tributes)
 	 * Increment Functions				// Functions that run when playing cards that Increment
 	 * Resummon Functions				// Functions that run when playing cards that Resummon
 	 * Summon Modification Functions	// For modifying the number of summons on cards
@@ -686,6 +689,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(target, player(), power, power.amount));
 		}
 	}
+	
+	public static void removePowerAction(AbstractCreature target, AbstractPower power)
+	{
+		AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, power));
+	}
+	
+	public static void removePowerAction(AbstractCreature target, String powerName)
+	{
+		AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, powerName));
+	}
 
 	public static void reducePower(AbstractPower power, AbstractCreature target, int reduction) {
 
@@ -1040,6 +1053,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, false));
 		}
 	}
+	
+	public static void gainTempHP(int amount)
+	{
+		AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, amount));
+	}
+	
 	// =============== /MISC ACTION FUNCTIONS/ =======================================================================================================================================================
 	
 	
@@ -3216,6 +3235,132 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 	// =============== /TRIBUTE MONSTER FUNCTIONS/ =======================================================================================================================================================
 	
+	// =============== TRIBUTE SYNERGY FUNCTIONS =========================================================================================================================================================
+	public static void dragonSynTrib(DuelistCard tributingCard)
+	{
+		if (tributingCard.hasTag(Tags.DRAGON))
+		{
+			if (!AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
+			{ 
+				if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) 
+				{ 
+					applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); 
+					//applyPowerToSelf(new LoseStrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); 
+				}
+				else 
+				{ 
+					applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); 
+					//applyPowerToSelf(new LoseStrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); 
+				}
+			}
+			
+			if (AbstractDungeon.player.hasRelic(DragonRelicB.ID))
+			{
+				if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
+				DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
+			}
+			
+			if (player().hasPower(TyrantWingPower.POWER_ID))
+			{
+				TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
+				power.amount2++;
+				power.updateDescription();
+			}
+		}
+	}
+	
+	public static void machineSynTrib(DuelistCard tributingCard)
+	{
+		if (tributingCard.hasTag(Tags.MACHINE))
+		{
+			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+		}
+	}
+	
+	public static void toonSynTrib(DuelistCard tributingCard)
+	{
+		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }
+	}
+	
+	public static void fiendSynTrib(DuelistCard tributingCard)
+	{
+		if (tributingCard.hasTag(Tags.FIEND))
+		{
+			AbstractPlayer p = AbstractDungeon.player;
+			if (p.hasPower(DoomdogPower.POWER_ID)) 
+			{ 
+				int dmgAmount = p.getPower(DoomdogPower.POWER_ID).amount; 
+				damageAllEnemiesThornsNormal(dmgAmount); 
+			}
+			if (p.hasPower(RedMirrorPower.POWER_ID)) 
+			{ 
+				for (AbstractCard c : p.discardPile.group) 
+				{ 
+					if (c.cost > 0)	
+					{
+						c.modifyCostForTurn(-p.getPower(RedMirrorPower.POWER_ID).amount);	
+						c.isCostModifiedForTurn = true;	
+					}
+				}
+			}
+			AbstractDungeon.actionManager.addToBottom(new FetchAction(p.discardPile, DuelistMod.fiendDraw)); 
+		}
+	}
+	
+	public static void aquaSynTrib(DuelistCard tributingCard)
+	{
+		if (tributingCard.hasTag(Tags.AQUA))
+		{
+			for (AbstractCard c : player().hand.group)
+			{
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.baseSummons > 0)
+					{
+						dC.modifySummonsForTurn(DuelistMod.aquaInc);
+					}
+					
+					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
+					{
+						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
+					}
+				}
+			}
+		}
+	}
+	
+	public static void spellcasterSynTrib(DuelistCard tributingCard)
+	{
+		if (tributingCard.hasTag(Tags.SPELLCASTER))
+		{
+			AbstractPlayer p = AbstractDungeon.player;
+			if (p.hasPower(SpellbookKnowledgePower.POWER_ID))
+			{
+				applyPowerToSelf(new FocusPower(p, p.getPower(SpellbookKnowledgePower.POWER_ID).amount));
+			}
+			
+			if (p.hasPower(SpellbookMiraclePower.POWER_ID))
+			{
+				invert(1);
+			}
+			
+			if (p.hasPower(SpellbookPowerPower.POWER_ID))
+			{
+				for (int i = 0; i < p.getPower(SpellbookPowerPower.POWER_ID).amount; i++)
+				{
+					DuelistCard randSpellcaster = (DuelistCard)DuelistCard.returnTrulyRandomFromSets(Tags.MONSTER, Tags.SPELLCASTER);
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randSpellcaster, true));
+				}
+			}
+			
+			if (p.hasPower(SpellbookLifePower.POWER_ID))
+			{
+				gainTempHP(p.getPower(SpellbookLifePower.POWER_ID).amount);
+			}
+		}
+	}
+	// =============== /TRIBUTE SYNERGY FUNCTIONS/ =======================================================================================================================================================
 	
 	
 	// =============== INCREMENT FUNCTIONS =========================================================================================================================================================

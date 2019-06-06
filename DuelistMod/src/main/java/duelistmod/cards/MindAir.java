@@ -67,8 +67,7 @@ public class MindAir extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
+		spellcasterSynTrib(tributingCard);
 	}
 
 

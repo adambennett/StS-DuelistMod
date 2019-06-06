@@ -472,7 +472,14 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new AncientGearBox());
 		DuelistMod.myCards.add(new Deskbot001());
 		DuelistMod.myCards.add(new Deskbot002());
-		DuelistMod.myCards.add(new Deskbot009());
+		DuelistMod.myCards.add(new Deskbot009());		
+		DuelistMod.myCards.add(new GrandSpellbookTower());
+		DuelistMod.myCards.add(new SpellbookPower());
+		DuelistMod.myCards.add(new SpellbookLife());
+		DuelistMod.myCards.add(new SpellbookMiracle());
+		DuelistMod.myCards.add(new SpellbookKnowledge());
+		DuelistMod.myCards.add(new DrillBarnacle());
+		DuelistMod.myCards.add(new ImperialTomb());
 
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)

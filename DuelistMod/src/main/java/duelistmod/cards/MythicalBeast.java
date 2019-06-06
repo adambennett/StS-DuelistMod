@@ -69,7 +69,7 @@ public class MythicalBeast extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		spellcasterSynTrib(tributingCard);
 	}
 	
 	// If player doesn't have enough summons, can't play card

@@ -29,11 +29,19 @@ public class CharacterSelectScreenPatch
     public static Hitbox startingCardsSelectedHb;
     public static Hitbox startingCardsLeftHb;
     public static Hitbox startingCardsRightHb;
+    
+    /*public static Hitbox bonusCardsLabelHb;
+    public static Hitbox bonusCardsSelectedHb;
+    public static Hitbox bonusCardsLeftHb;
+    public static Hitbox bonusCardsRightHb;*/
 
     public static CharacterOption selectedOption;
+   // public static CharacterOption selectedBonusOption;
 
     public static float POS_Y;
     public static float POS_X;
+    //public static float POS_Y_BON;
+   // public static float POS_X_BON;
 
     public static void Initialize(CharacterSelectScreen selectScreen)
     {
@@ -42,21 +50,36 @@ public class CharacterSelectScreenPatch
 
         float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "Starting Deck: ", 9999.0F, 0.0F); // Ascension
         float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "###############", 9999.0F, 0.0F); // Level 22
+        
+       // float bonusLeftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "Bonus Cards: ", 9999.0F, 0.0F); // Ascension
+       // float bonusRightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "###############", 9999.0F, 0.0F); // Level 22
 
         POS_X = 180f * Settings.scale;
+       // POS_X_BON = 180f * Settings.scale;
         //POS_Y = ((float) Settings.HEIGHT / 2.0F) + (20 * Settings.scale);
         POS_Y = ((float) Settings.HEIGHT / 3.25F);
+      //  POS_Y_BON = ((float) Settings.HEIGHT / 3.25F) - (40 * Settings.scale);
         //POS_Y = ((float) Settings.HEIGHT / 2.0F) - (40 * Settings.scale);
 
         startingCardsLabelHb = new Hitbox(leftTextWidth, 50.0F * Settings.scale);
         startingCardsSelectedHb = new Hitbox(rightTextWidth, 50f * Settings.scale);
         startingCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
         startingCardsRightHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
+        
+       /* bonusCardsLabelHb = new Hitbox(bonusLeftTextWidth, 50.0F * Settings.scale);
+        bonusCardsSelectedHb = new Hitbox(bonusRightTextWidth, 50f * Settings.scale);
+        bonusCardsLeftHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);
+        bonusCardsRightHb = new Hitbox(70.0F * Settings.scale, 50.0F * Settings.scale);*/
 
         startingCardsLabelHb.move(POS_X + (leftTextWidth / 2f), POS_Y);
         startingCardsLeftHb.move(startingCardsLabelHb.x + startingCardsLabelHb.width + (20 * Settings.scale), POS_Y - (10 * Settings.scale));
         startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
+       
+        /*bonusCardsLabelHb.move(POS_X + (bonusLeftTextWidth / 2f), POS_Y);
+        bonusCardsLeftHb.move(bonusCardsLabelHb.x + bonusCardsLabelHb.width + (20 * Settings.scale), POS_Y - (10 * Settings.scale));
+        bonusCardsSelectedHb.move(bonusCardsLeftHb.x + bonusCardsLeftHb.width + (bonusRightTextWidth / 2f), POS_Y);
+        bonusCardsRightHb.move(bonusCardsSelectedHb.x + bonusCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));*/
 
         selectedOption = null;
     }
@@ -72,6 +95,10 @@ public class CharacterSelectScreenPatch
         startingCardsLabelHb.update();
         startingCardsRightHb.update();
         startingCardsLeftHb.update();
+        
+        /*bonusCardsLabelHb.update();
+        bonusCardsRightHb.update();
+        bonusCardsLeftHb.update();*/
 
         if (InputHelper.justClickedLeft)
         {
@@ -87,6 +114,19 @@ public class CharacterSelectScreenPatch
             {
                 startingCardsLeftHb.clickStarted = true;
             }
+            
+            /*else if (bonusCardsLabelHb.hovered)
+            {
+                bonusCardsLabelHb.clickStarted = true;
+            }
+            else if (bonusCardsRightHb.hovered)
+            {
+                bonusCardsRightHb.clickStarted = true;
+            }
+            else if (bonusCardsLeftHb.hovered)
+            {
+                bonusCardsLeftHb.clickStarted = true;
+            }*/
         }
 
         if (startingCardsLeftHb.clicked)
@@ -106,6 +146,18 @@ public class CharacterSelectScreenPatch
             DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
             RefreshLoadout(selectScreen, selectedOption);
         }
+        
+     /*   if (bonusCardsLeftHb.clicked)
+        {
+            bonusCardsLeftHb.clicked = false;
+            // left arrow on bonus cards click logic
+        }
+
+        if (bonusCardsRightHb.clicked)
+        {
+            bonusCardsRightHb.clicked = false;
+            // right arrow on bonus cards click logic
+        }*/
     }
 
     public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
@@ -137,6 +189,12 @@ public class CharacterSelectScreenPatch
         FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, "Starting Deck: ", startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
         FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, info.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
 
+      /*  FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, "(?? cards)", bonusCardsSelectedHb.x, bonusCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
+        //FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, bonusCardsSelectedHb.x, bonusCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
+        FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, "Bonus Cards: ", bonusCardsLabelHb.x, bonusCardsLabelHb.cY, Settings.GOLD_COLOR);
+        FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, "placeholder", bonusCardsSelectedHb.x, bonusCardsSelectedHb.cY, Settings.CREAM_COLOR); */
+
+        
         if (!startingCardsLeftHb.hovered)
         {
             sb.setColor(Color.LIGHT_GRAY);
@@ -147,6 +205,17 @@ public class CharacterSelectScreenPatch
         }
         sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24.0F, startingCardsLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
+       /* if (!bonusCardsLeftHb.hovered)
+        {
+            sb.setColor(Color.LIGHT_GRAY);
+        }
+        else
+        {
+            sb.setColor(Color.WHITE);
+        }
+        sb.draw(ImageMaster.CF_LEFT_ARROW, bonusCardsLeftHb.cX - 24.0F, bonusCardsLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+*/
+        
         if (!startingCardsRightHb.hovered)
         {
             sb.setColor(Color.LIGHT_GRAY);
@@ -157,9 +226,23 @@ public class CharacterSelectScreenPatch
         }
         sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
+        
+       /* if (!bonusCardsRightHb.hovered)
+        {
+            sb.setColor(Color.LIGHT_GRAY);
+        }
+        else
+        {
+            sb.setColor(Color.WHITE);
+        }
+        sb.draw(ImageMaster.CF_RIGHT_ARROW, bonusCardsRightHb.cX - 24.0F, bonusCardsRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+*/
         startingCardsLabelHb.render(sb);
         startingCardsLeftHb.render(sb);
         startingCardsRightHb.render(sb);
+        /*bonusCardsLabelHb.render(sb);
+        bonusCardsLeftHb.render(sb);
+        bonusCardsRightHb.render(sb);*/
     }
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)

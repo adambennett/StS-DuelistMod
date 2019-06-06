@@ -104,8 +104,9 @@ public class IceQueen extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		spellcasterSynTrib(tributingCard);
 	}
 
 

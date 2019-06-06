@@ -161,8 +161,8 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }
-		//if (tributingCard != null && tributingCard.hasTag(DefaultMod.DRAGON)) { damageSelf(2); }
+		toonSynTrib(tributingCard);
+		spellcasterSynTrib(tributingCard);
 	}
 
 

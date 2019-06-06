@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,13 +8,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
 
 public class BarrelDragon extends DuelistCard 
 {
@@ -35,7 +33,7 @@ public class BarrelDragon extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 10;
+    private static final int DAMAGE = 8;
     private static int MIN_TURNS_ROLL = 2;
     private static int MAX_TURNS_ROLL = 6;
     private static final int RANDOM_ENEMIES = 3;
@@ -52,7 +50,7 @@ public class BarrelDragon extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 4;
     }
 
     
@@ -155,29 +153,8 @@ public class BarrelDragon extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); }
-		}
-		
-		if (tributingCard.hasTag(Tags.MACHINE))
-		{
-			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
-		}
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && AbstractDungeon.player.hasRelic(DragonRelicB.ID))
-		{
-			if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
-			DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
-		}
-		
-		if (tributingCard.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID))
-		{
-			TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
-			power.amount2++;
-			power.updateDescription();
-		}
+		machineSynTrib(tributingCard);
+		dragonSynTrib(tributingCard);
 	}
 
 	@Override

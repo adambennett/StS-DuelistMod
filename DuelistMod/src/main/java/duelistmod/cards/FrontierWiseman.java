@@ -75,7 +75,7 @@ public class FrontierWiseman extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		spellcasterSynTrib(tributingCard);
 	}
 
     // Checking for Monster Zones if the challenge is enabled

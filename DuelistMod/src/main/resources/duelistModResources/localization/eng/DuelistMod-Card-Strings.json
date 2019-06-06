@@ -197,9 +197,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Black Orb."
 	},
 	"theDuelist:BlacklandFireDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a Fire.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Fire.",
 		"NAME": "Blackland Fire Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a Fire."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Fire."
 	},
 	"theDuelist:BlastJuggler": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Tribute all of your Explosive Tokens, dealing damage to random enemies instead of you.",
@@ -2576,9 +2576,9 @@
 		"UPGRADE_DESCRIPTION": "Choose a Spellbook to add to your hand. NL Exhaust."
 	},
 	"theDuelist:SpellbookPower": {
-		"DESCRIPTION": "Whenever you Tribute a Spellcaster for another, add a Randomized Spellcaster to your hand.",
+		"DESCRIPTION": "Whenever you Tribute a Spellcaster for another, add !M! Randomized Spellcaster to your hand.",
 		"NAME": "Spellbook of Power",
-		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Spellcaster for another, add a Randomized Spellcaster to your hand."
+		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Spellcaster for another, add !M! Randomized Spellcaster to your hand."
 	},
 	"theDuelist:SpellbookMiracle": {
 		"DESCRIPTION": "Whenever you Tribute a Spellcaster for another, Invert your next orb.",
