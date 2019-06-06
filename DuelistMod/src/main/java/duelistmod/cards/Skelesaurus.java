@@ -77,7 +77,7 @@ public class Skelesaurus extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		zombieSynTrib(tributingCard);
 	}
 
 	@Override

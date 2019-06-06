@@ -40,6 +40,7 @@ import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
+import duelistmod.cards.incomplete.GiantTrapHole;
 import duelistmod.characters.TheDuelist;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
@@ -247,6 +248,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static boolean kuribohrnFlipper = false;
 	public static boolean hasUpgradeBuffRelic = false;
 	public static boolean hasShopBuffRelic = false;
+	public static boolean hadFrozenEye = false;
+	public static boolean gotFrozenEyeFromBigEye = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 
@@ -1171,6 +1174,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		swordsPlayed = 0;
 		hasUpgradeBuffRelic = false;
 		hasShopBuffRelic = false;
+		hadFrozenEye = false;
+		gotFrozenEyeFromBigEye = false;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -1236,6 +1241,27 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 					{
 						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
 					}
+				}
+			}
+		}
+		
+		if (arg0.type.equals(CardType.POWER))
+		{
+			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+			{				
+				if (c instanceof GiantTrapHole)
+				{					
+					c.modifyCostForCombat(-c.magicNumber);
+					c.isCostModified = true;
+				}
+			}
+			
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+			{				
+				if (c instanceof GiantTrapHole)
+				{					
+					c.modifyCostForCombat(-c.magicNumber);
+					c.isCostModified = true;
 				}
 			}
 		}
@@ -1617,6 +1643,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			swordsPlayed = 0;
 			hasUpgradeBuffRelic = false;
 			hasShopBuffRelic = false;
+			hadFrozenEye = false;
+			gotFrozenEyeFromBigEye = false;
 			CardCrawlGame.dungeon.initializeCardPools();
 		}
 		else if (!shouldFill)

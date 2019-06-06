@@ -76,7 +76,7 @@ public class MoltenZombie extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		zombieSynTrib(tributingCard);
 	}
 
 

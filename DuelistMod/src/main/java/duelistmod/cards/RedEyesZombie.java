@@ -111,6 +111,7 @@ public class RedEyesZombie extends DuelistCard
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		dragonSynTrib(tributingCard);
+		zombieSynTrib(tributingCard);
 	}
 
 

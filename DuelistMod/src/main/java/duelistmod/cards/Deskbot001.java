@@ -81,10 +81,7 @@ public class Deskbot001 extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.MACHINE))
-		{
-			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
-		}		
+		machineSynTrib(tributingCard);
 	}
 	
     // Checking for Monster Zones if the challenge is enabled

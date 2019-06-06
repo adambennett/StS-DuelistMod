@@ -81,7 +81,7 @@ public class ArmoredZombie extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		zombieSynTrib(tributingCard);
 	}
 
 

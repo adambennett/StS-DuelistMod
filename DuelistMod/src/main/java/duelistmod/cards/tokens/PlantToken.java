@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.powers.ConstrictedPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.VioletCrystalPower;
+import duelistmod.patches.AbstractCardEnum;
 
 public class PlantToken extends DuelistCard 
 {
@@ -58,9 +57,7 @@ public class PlantToken extends DuelistCard
     @Override public AbstractCard makeCopy() { return new PlantToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for plant
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
-		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
+		plantSynTrib(tributingCard);
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

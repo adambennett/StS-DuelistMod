@@ -123,7 +123,7 @@ public class RyuKokki extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		zombieSynTrib(tributingCard);
 	}
 
 

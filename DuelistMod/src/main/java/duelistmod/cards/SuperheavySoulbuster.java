@@ -74,10 +74,7 @@ public class SuperheavySoulbuster extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.SUPERHEAVY))
-		{
-			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, DuelistMod.superheavyDex));
-		}		
+		superSynTrib(tributingCard);		
 	}
 
     // Checking for Monster Zones if the challenge is enabled

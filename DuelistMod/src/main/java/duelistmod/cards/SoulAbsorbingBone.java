@@ -118,7 +118,7 @@ public class SoulAbsorbingBone extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+		zombieSynTrib(tributingCard);
 		
 	}
 

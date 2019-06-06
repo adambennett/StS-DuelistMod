@@ -111,7 +111,7 @@ public class NaturiaCliff extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		naturiaSynTrib(tributingCard);
 	}
 
 

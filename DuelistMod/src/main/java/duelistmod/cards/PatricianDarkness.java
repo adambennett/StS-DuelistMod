@@ -103,7 +103,7 @@ public class PatricianDarkness extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		zombieSynTrib(tributingCard);
 	}
 
 

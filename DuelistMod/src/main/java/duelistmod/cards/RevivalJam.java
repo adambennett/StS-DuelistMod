@@ -44,7 +44,6 @@ public class RevivalJam extends DuelistCard
 		this.setupStartingCopies();
         this.originalName = this.name;
         this.isSummon = true;
-        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     // Actions the card should do.
@@ -65,7 +64,7 @@ public class RevivalJam extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -74,28 +73,8 @@ public class RevivalJam extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		summon(player(), this.magicNumber, new JamToken());
-		
-		// Aqua Tribute
-		if (tributingCard.hasTag(Tags.AQUA))
-		{
-			for (AbstractCard c : player().hand.group)
-			{
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.baseSummons > 0)
-					{
-						dC.modifySummonsForTurn(DuelistMod.aquaInc);
-					}
-					
-					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
-					{
-						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
-					}
-				}
-			}
-		}
+		summon(player(), 2, new JamToken());		
+		aquaSynTrib(tributingCard);
 	}
 
 	@Override

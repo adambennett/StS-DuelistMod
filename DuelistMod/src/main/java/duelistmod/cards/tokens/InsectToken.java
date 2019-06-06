@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.VioletCrystalPower;
+import duelistmod.patches.AbstractCardEnum;
 
 public class InsectToken extends DuelistCard 
 {
@@ -59,9 +58,7 @@ public class InsectToken extends DuelistCard
     @Override public AbstractCard makeCopy() { return new InsectToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for insect
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		insectSynTrib(tributingCard);
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

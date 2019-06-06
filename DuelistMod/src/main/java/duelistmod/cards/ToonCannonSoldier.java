@@ -37,6 +37,7 @@ public class ToonCannonSoldier extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);
+        this.tags.add(Tags.MACHINE);
 		this.originalName = this.name;
         this.isSummon = true;
     }
@@ -126,10 +127,8 @@ public class ToonCannonSoldier extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.TOON))
-		{
-			damageAllEnemiesThornsFire(5);
-		}
+		toonSynTrib(tributingCard);
+		machineSynTrib(tributingCard);
 	}
 
 

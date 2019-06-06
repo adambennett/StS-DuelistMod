@@ -132,10 +132,7 @@ public class ToonGoblinAttack extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.TOON))
-		{
-			damageAllEnemiesThornsFire(5);
-		}
+		toonSynTrib(tributingCard);
 	}
 
 

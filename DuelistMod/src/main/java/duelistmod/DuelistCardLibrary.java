@@ -480,6 +480,13 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new SpellbookKnowledge());
 		DuelistMod.myCards.add(new DrillBarnacle());
 		DuelistMod.myCards.add(new ImperialTomb());
+		DuelistMod.myCards.add(new ZombieMaster());
+		DuelistMod.myCards.add(new GiantTrapHole());
+		DuelistMod.myCards.add(new GravityBlaster());
+		DuelistMod.myCards.add(new FlyingPegasus());
+		DuelistMod.myCards.add(new CyberneticFusion());
+		DuelistMod.myCards.add(new ReadyForIntercepting());
+		DuelistMod.myCards.add(new BigEye());
 
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)

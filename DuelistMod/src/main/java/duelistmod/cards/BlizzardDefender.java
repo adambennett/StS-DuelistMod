@@ -68,29 +68,8 @@ public class BlizzardDefender extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Card Effect
 		draw(1);
-		
-		// Aqua Tribute
-		if (tributingCard.hasTag(Tags.AQUA))
-		{
-			for (AbstractCard c : player().hand.group)
-			{
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.baseSummons > 0)
-					{
-						dC.modifySummonsForTurn(DuelistMod.aquaInc);
-					}
-					
-					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
-					{
-						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
-					}
-				}
-			}
-		}
+		aquaSynTrib(tributingCard);
 	}
 	
 	@Override

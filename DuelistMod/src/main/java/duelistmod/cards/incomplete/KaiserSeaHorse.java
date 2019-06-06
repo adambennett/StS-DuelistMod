@@ -74,32 +74,7 @@ public class KaiserSeaHorse extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.DRAGON) && !AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-		{ 
-			if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 1)); }
-			else { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, 2)); }
-		}
-		
-		// Aqua Tribute
-		if (tributingCard.hasTag(Tags.AQUA))
-		{
-			for (AbstractCard c : player().hand.group)
-			{
-				if (c instanceof DuelistCard)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (dC.baseSummons > 0)
-					{
-						dC.modifySummonsForTurn(DuelistMod.aquaInc);
-					}
-					
-					if (player().hasRelic(AquaRelicB.ID) && dC.baseTributes > 0)
-					{
-						dC.modifyTributesForTurn(-DuelistMod.aquaInc);
-					}
-				}
-			}
-		}
+		aquaSynTrib(tributingCard);
 	}
 
 	@Override

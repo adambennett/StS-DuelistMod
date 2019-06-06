@@ -69,7 +69,7 @@ public class RegenMummy extends DuelistCard
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
-		// TODO Auto-generated method stub
+		zombieSynTrib(tributingCard);
 		
 	}
 

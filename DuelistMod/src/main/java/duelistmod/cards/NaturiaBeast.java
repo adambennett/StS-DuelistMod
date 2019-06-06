@@ -74,7 +74,7 @@ public class NaturiaBeast extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		naturiaSynTrib(tributingCard);
 	}
 
 

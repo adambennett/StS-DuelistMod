@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -27,12 +28,12 @@ public class IceQueen extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public IceQueen() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
         this.misc = 0;
@@ -44,13 +45,17 @@ public class IceQueen extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	boolean hadNoOrbs = (p.filledOrbCount() == 0);
     	tribute(p, this.tributes, false, this);
     	invertIceQueen(2, this.magicNumber);
-    	//for (int i = 0; i < this.magicNumber; i++)
-    	//{
-	   // 	AbstractOrb frost = new Frost();
-	    //	channel(frost);
-    	//}
+    	if (hadNoOrbs)
+    	{
+    		for (int i = 0; i < this.magicNumber; i++)
+        	{
+    	    	AbstractOrb frost = new Frost();
+    	    	channel(frost);
+        	}
+    	}
     }
 
     // Which card to return when making a copy of this card.

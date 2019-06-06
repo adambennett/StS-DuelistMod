@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.FrozenEye;
 
 import duelistmod.*;
 import duelistmod.cards.tokens.Token;
@@ -321,6 +322,13 @@ public class SummonPower extends AbstractPower
 			summonList = new ArrayList<String>();
 			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
 		} 
+		
+		// Check for Big Eyes
+		boolean foundBigEye = isMonsterSummoned("Big Eye");
+		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye)
+		{
+			AbstractDungeon.player.loseRelic(FrozenEye.ID);
+		}
 	}
 
 	public void updateCount(int amount)

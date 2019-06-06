@@ -641,6 +641,10 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new RainbowKuriboh());
 		DuelistMod.basicCards.add(new ClearKuriboh());
 		DuelistMod.basicCards.add(new Linkuriboh());
+		DuelistMod.basicCards.add(new GiantTrapHole());
+		DuelistMod.basicCards.add(new BigEye());
+		
+		// temporary - since v2.426.0
 		DuelistMod.basicCards.add(new ImperialTomb());
 		
 		
@@ -950,6 +954,7 @@ public class StarterDeckSetup {
 		zombieCards.add(new MonsterEgg());
 		zombieCards.add(new Zombyra());
 		zombieCards.add(new ImperialTomb());
+		zombieCards.add(new ZombieMaster());
 		zombieDeck.fillPoolCards(DuelistMod.basicCards);
 		zombieDeck.fillPoolCards(zombieCards);		
 		zombieDeck.fillArchetypeCards(zombieCards);
@@ -1105,6 +1110,9 @@ public class StarterDeckSetup {
 		machineCards.add(new Deskbot001());
 		machineCards.add(new Deskbot002());
 		machineCards.add(new Deskbot009());
+		machineCards.add(new GravityBlaster());
+		machineCards.add(new FlyingPegasus());
+		machineCards.add(new CyberneticFusion());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());
@@ -1140,6 +1148,7 @@ public class StarterDeckSetup {
 		magnetCards.add(new SuperheavySoulshield());
 		magnetCards.add(new SwordsConcealing());
 		magnetCards.add(new HeartUnderdog());
+		magnetCards.add(new ReadyForIntercepting());
 		for (int i = 0; i < DuelistMod.magnetSlider; i++)
 		{
 			magnetCards.add(new AlphaMagnet());

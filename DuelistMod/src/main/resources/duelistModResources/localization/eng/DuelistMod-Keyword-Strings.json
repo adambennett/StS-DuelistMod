@@ -399,6 +399,16 @@
     "DESCRIPTION": "When played, the power of one random effect of this card is increased by #b1."
   },
   {
+    "PROPER_NAME": "Spellbook",
+    "NAMES": [
+      "Spellbook",
+	  "spellbook",
+	  "spellbooks",
+	  "Spellbooks"
+    ],   
+    "DESCRIPTION": "Power cards that enable #ySpellcaster synergy #yTribute effects. You can only have one #ySpellbook active at a time."
+  },
+  {
     "PROPER_NAME": "Gate",
     "NAMES": [
       "gate"

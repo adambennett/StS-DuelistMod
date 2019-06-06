@@ -6,13 +6,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.FetchFromEitherTag;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 
 public class PredaplantChlamydosundew extends DuelistCard 
 {
@@ -44,7 +43,6 @@ public class PredaplantChlamydosundew extends DuelistCard
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.magicNumber = this.baseMagicNumber = 1;
-		//this.baseBlock = this.block = 5;
     }
 
     // Actions the card should do.
@@ -52,7 +50,6 @@ public class PredaplantChlamydosundew extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	//block(this.block);
     	AbstractDungeon.actionManager.addToTop(new FetchFromEitherTag(this.magicNumber, p.drawPile, Tags.PLANT, Tags.INSECT));
     }
 
@@ -76,12 +73,7 @@ public class PredaplantChlamydosundew extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for plant
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
-		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
-		
-		// Check for Predaplant
-		if (tributingCard.hasTag(Tags.PREDAPLANT)) { applyPowerToSelf(new ThornsPower(player(), DuelistMod.predaplantThorns)); }
+		predaplantSynTrib(tributingCard);
 	}
 
 

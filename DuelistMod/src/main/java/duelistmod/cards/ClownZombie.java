@@ -115,7 +115,7 @@ public class ClownZombie extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		zombieSynTrib(tributingCard);
 	}
 
 	@Override

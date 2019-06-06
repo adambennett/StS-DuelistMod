@@ -1683,9 +1683,9 @@
 		"NAME": "Resummon"
 	},
 	"theDuelist:RevivalJam": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When you Tribute this monster, Summon !M! Jam Tokens.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When you Tribute this monster, Summon 2 Jam Tokens.",
 		"NAME": "Revival Jam",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When you Tribute this monster, Summon !M! Jam Tokens."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL When you Tribute this monster, Summon 2 Jam Tokens."
 	},
 	"theDuelist:RyuKokki": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Resummon a random monster from your discard pile. If you Tribute a Zombie, Resummon it. Exempt.",
@@ -2621,9 +2621,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Design and add a custom card to your hand. NL Add a copy into your draw, discard and exhaust piles."
 	},
 	"theDuelist:BigEye": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Your draw pile is viewed in order while this monster is summoned.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Your draw pile is viewed in order while this monster is summoned. NL Exhaust.",
 		"NAME": "Big Eye",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Your draw pile is viewed in order while this monster is summoned."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Your draw pile is viewed in order while this monster is summoned. NL Exhaust."
 	},
 	"theDuelist:WingedKuribohLv9": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of monster and then draw !M! monster of that type.",
@@ -2681,9 +2681,9 @@
 		"UPGRADE_DESCRIPTION": "Add !M! Randomized Machines to your hand. NL Gain 2 Artifacts. NL Exhaust."
 	},
 	"theDuelist:LimiterRemoval": {
-		"DESCRIPTION": "Remove all your Artifacts and deal !D! damage to ALL enemies for each.",
+		"DESCRIPTION": "Remove all of your Artifacts and deal !D! damage to ALL enemies for each.",
 		"NAME": "Limiter Removal",
-		"UPGRADE_DESCRIPTION": "Remove all your Artifacts and deal !D! damage to ALL enemies for each."
+		"UPGRADE_DESCRIPTION": "Remove all of your Artifacts and deal !D! damage to ALL enemies for each."
 	},
 	"theDuelist:MachineDuplication": {
 		"DESCRIPTION": "Copy all Machines in your hand.",
@@ -2921,9 +2921,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card."
 	},
 	"theDuelist:GiantTrapHole": {
-		"DESCRIPTION": "Add !M! Randomized Giant to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power.",
+		"DESCRIPTION": "Add !M! Giant to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power.",
 		"NAME": "Giant Trap Hole",
-		"UPGRADE_DESCRIPTION": "Add !M! Randomized Giants to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power."
+		"UPGRADE_DESCRIPTION": "Add !M! Giants to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power."
 	},
 	"theDuelist:DarkFusion": {
 		"DESCRIPTION": "Increase the Summons of all monsters in your hand by !M! for this turn.",

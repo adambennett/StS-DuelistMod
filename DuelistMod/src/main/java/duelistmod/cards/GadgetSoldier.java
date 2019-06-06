@@ -77,10 +77,7 @@ public class GadgetSoldier extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.MACHINE))
-		{
-			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
-		}
+		machineSynTrib(tributingCard);
 	}
 
 	@Override

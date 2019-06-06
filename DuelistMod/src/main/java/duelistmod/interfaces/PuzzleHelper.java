@@ -187,7 +187,7 @@ public class PuzzleHelper
 			// Machine Deck
 			case 8:		
 				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Machine Token", false);
-				DuelistCard.applyPowerToSelf(new ArtifactPower(p, 1));
+				//DuelistCard.applyPowerToSelf(new ArtifactPower(p, 1));
 				break;
 				
 			// Superheavy Deck

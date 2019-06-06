@@ -102,11 +102,9 @@ public class Jinzo extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		if (tributingCard.hasTag(Tags.MACHINE))
-		{
-			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
-		}
+	public void onTribute(DuelistCard tributingCard) 
+	{
+		machineSynTrib(tributingCard);
 	}
 
 

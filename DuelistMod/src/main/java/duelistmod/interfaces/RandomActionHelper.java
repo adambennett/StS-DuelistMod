@@ -7,11 +7,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.tokens.Token;
+import duelistmod.orbs.Glitch;
 
 public class RandomActionHelper
 {
@@ -132,6 +134,11 @@ public class RandomActionHelper
 				break;
 			case "#yChannel #b1 random orb":
 				DuelistCard.channelRandom();
+				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				break;
+			case "Channel a Glitch":
+				AbstractOrb glitch = new Glitch();
+				DuelistCard.channel(glitch);
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Add #b1 random #ySpell to hand":

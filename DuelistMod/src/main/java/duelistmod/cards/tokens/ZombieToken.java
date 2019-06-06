@@ -63,7 +63,7 @@ public class ZombieToken extends DuelistCard
     
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		zombieSynTrib(tributingCard);
 	}
 	
 	@Override public void onResummon(int summons) 

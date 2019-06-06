@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.VioletCrystalPower;
 
 public class PredaplantToken extends DuelistCard 
 {
@@ -60,12 +59,7 @@ public class PredaplantToken extends DuelistCard
     @Override public AbstractCard makeCopy() { return new PredaplantToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		// Check for plant
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
-		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
-		
-		// Check for Predaplant
-		if (tributingCard.hasTag(Tags.PREDAPLANT)) { applyPowerToSelf(new ThornsPower(player(), DuelistMod.predaplantThorns)); }
+		predaplantSynTrib(tributingCard);
 	}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }

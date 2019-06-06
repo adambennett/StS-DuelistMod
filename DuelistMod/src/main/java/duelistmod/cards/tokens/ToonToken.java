@@ -73,7 +73,7 @@ public class ToonToken extends DuelistCard
     
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.TOON)) { damageAllEnemiesThornsFire(5); }
+		toonSynTrib(tributingCard);
 	}
 	
 	@Override public void onResummon(int summons) 

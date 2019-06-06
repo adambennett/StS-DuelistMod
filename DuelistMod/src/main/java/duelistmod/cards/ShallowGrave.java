@@ -37,9 +37,11 @@ public class ShallowGrave extends DuelistCard
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.RESUMMON_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
         this.startingOPRDeckCopies = 1;
         this.resummonDeckCopies = 1;
+        this.zombieDeckCopies = 1;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
 		this.setupStartingCopies();

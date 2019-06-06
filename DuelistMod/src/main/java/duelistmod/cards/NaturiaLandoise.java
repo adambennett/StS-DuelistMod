@@ -75,7 +75,7 @@ public class NaturiaLandoise extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
+		naturiaSynTrib(tributingCard);
 	}
 
 

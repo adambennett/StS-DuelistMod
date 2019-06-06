@@ -491,7 +491,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
 	}
 	
-	protected void attackFast(AbstractMonster m, AttackEffect effect, int damageAmount)
+	public void attackFast(AbstractMonster m, AttackEffect effect, int damageAmount)
 	{
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
 		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
@@ -3330,6 +3330,37 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static void naturiaSynTrib(DuelistCard tributingCard)
+	{
+		
+	}
+	
+	public static void plantSynTrib(DuelistCard tributingCard)
+	{
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
+		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
+	}
+	
+	public static void predaplantSynTrib(DuelistCard tributingCard)
+	{
+		plantSynTrib(tributingCard);
+		if (tributingCard.hasTag(Tags.PREDAPLANT)) { applyPowerToSelf(new ThornsPower(player(), DuelistMod.predaplantThorns)); }
+	}
+	
+	public static void insectSynTrib(DuelistCard tributingCard)
+	{
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
+		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+	}
+	
+	public static void superSynTrib(DuelistCard tributingCard)
+	{
+		if (tributingCard.hasTag(Tags.SUPERHEAVY))
+		{
+			applyPowerToSelf(new DexterityPower(AbstractDungeon.player, DuelistMod.superheavyDex));
+		}
+	}
+	
 	public static void spellcasterSynTrib(DuelistCard tributingCard)
 	{
 		if (tributingCard.hasTag(Tags.SPELLCASTER))
@@ -3359,6 +3390,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				gainTempHP(p.getPower(SpellbookLifePower.POWER_ID).amount);
 			}
 		}
+	}
+	
+	public static void zombieSynTrib(DuelistCard tributingCard)
+	{
+		
 	}
 	// =============== /TRIBUTE SYNERGY FUNCTIONS/ =======================================================================================================================================================
 	
