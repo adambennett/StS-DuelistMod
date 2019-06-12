@@ -37,7 +37,7 @@ public class MillenniumShield extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LIMITED);
         this.misc = 0;
-        this.dex = 4;
+        this.magicNumber = this.baseMagicNumber = 4;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
     }
@@ -47,7 +47,7 @@ public class MillenniumShield extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	applyPower(new DexterityPower(p, this.dex), p);
+    	applyPower(new DexterityPower(p, this.magicNumber), p);
     }
 
     // Which card to return when making a copy of this card.

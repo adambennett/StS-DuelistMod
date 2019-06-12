@@ -613,7 +613,26 @@ public class Strings
 	public static String configOjamania = "";
 	public static String configChannel = "";
 	public static String configLose1HP = "";
-	public static String configSummonsIconText = "";
+	public static String configSummonsIconText = "";	
+	public static String configMonsterTagText = "";
+	public static String configTrapTagText = "";
+	public static String configSpellTagText = "";
+	public static String configTokenTagText = "";
+	public static String configTypeTagText = "";
+	public static String configOrbTagText = "";
+	public static String configFailedIncActionText = "";
+	public static String configFailedSummonActionText = "";
+	public static String configFailedTribActionText = "";
+	public static String configGain1MAXHPText = "";
+	public static String configGreedShardA = "";
+	public static String configGreedShardB = "";
+	public static String configGreedShardC = "";
+	public static String configRainbowJarA = "";
+	public static String configRainbowJarB = "";
+	public static String configWingedTextA = "";
+	public static String configWingedTextB = "";
+	public static String configYamiFormA = "";
+	public static String configYamiFormB = "";
 	// =============== /CONFIG STRINGS/ =======================================================================================================================================================
 
 }

@@ -99,6 +99,7 @@ public class Glitch extends DuelistOrb
 		passiveActions.add("#yIncrement #b1");									translationMap.put("#yIncrement #b1", Strings.configIncrement);
 		passiveActions.add("#yIncrement #b2");									translationMap.put("#yIncrement #b2", Strings.configIncrement2);
 		passiveActions.add("Gain [E] "); 										translationMap.put("Gain [E] ", Strings.configGainEnergy);
+		passiveActions.add("Gain #b1 Max HP"); 									translationMap.put("Gain #b1 Max HP", Strings.configGain1MAXHPText);
 		passiveActionSize = passiveActions.size();
 		
 		// Setup evoke action list
@@ -393,6 +394,10 @@ public class Glitch extends DuelistOrb
 			case "Add #b1 random #yEthereal Duelist card to hand":
 				AbstractDungeon.actionManager.addToTop(new RandomEtherealDuelistCardToHandAction());
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
+				break;
+			case "Gain #b1 Max HP":
+				AbstractDungeon.player.maxHealth += 1;
+				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			default:
 				String randomAction = evokeActions.get(AbstractDungeon.cardRandomRng.random(evokeActions.size() - 1));

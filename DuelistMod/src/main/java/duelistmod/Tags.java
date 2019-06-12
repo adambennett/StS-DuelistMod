@@ -21,6 +21,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags EXEMPT;
 	@SpireEnum public static AbstractCard.CardTags EXODIA;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_DECK;
+	@SpireEnum public static AbstractCard.CardTags EXPLODING_TOKEN;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
 	@SpireEnum public static AbstractCard.CardTags FIEND;
 	@SpireEnum public static AbstractCard.CardTags FIEND_DECK;
@@ -80,6 +81,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
 	@SpireEnum public static AbstractCard.CardTags STANDARD_DECK;
 	@SpireEnum public static AbstractCard.CardTags SUPERHEAVY;
+	@SpireEnum public static AbstractCard.CardTags SUPER_EXPLODING_TOKEN;
 	@SpireEnum public static AbstractCard.CardTags TOKEN;
 	@SpireEnum public static AbstractCard.CardTags TOON;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;

@@ -36,6 +36,7 @@ public class FiendDrawTypeCard extends DuelistCard
     	this.tags.add(Tags.FIEND);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new FiendDrawTypeCard(this.magicNumber); }   

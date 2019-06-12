@@ -15,9 +15,17 @@
         "NAME": "Small Pack",
         "DESCRIPTIONS": ["Open a booster pack containing cards from #yPharaoh's #yServant and #yMetal #yRaiders. Add #b3 #yrandomized cards from either of these sets to your hand."]
 },
+"theDuelist:SealedPackC": {
+        "NAME": "Themed Booster",
+        "DESCRIPTIONS": ["Open a booster pack containing cards of the last type that you #ySummoned. NL Add #b3 #yrandomized cards from this type to your hand."]
+},
 "theDuelist:OrbBottle": {
         "NAME": "Foggy Bottle",
         "DESCRIPTIONS": ["Channel a random Orb.", "Channel #b", " random Orbs."]
+},
+"theDuelist:BigOrbBottle": {
+        "NAME": "Paladin Bottle",
+        "DESCRIPTIONS": ["Choose an Orb to Channel.", "Choose #b", " Orbs to Channel."]
 },
 "theDuelist:AirBottle": {
         "NAME": "Bottled Wind",

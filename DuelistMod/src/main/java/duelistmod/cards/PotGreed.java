@@ -25,7 +25,6 @@ public class PotGreed extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
-    private static final int DRAW = 2;
     // /STAT DECLARATION/
 
     public PotGreed() 
@@ -38,11 +37,12 @@ public class PotGreed extends DuelistCard
     	this.tags.add(Tags.EXODIA_DECK);
         this.exodiaDeckCopies = 1;
 		this.originalName = this.name;
+		this.baseMagicNumber = this.magicNumber = 2;
 		this.setupStartingCopies();
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) { draw(DRAW); }
+    public void use(AbstractPlayer p, AbstractMonster m) { draw(this.magicNumber); }
 
     @Override
     public AbstractCard makeCopy() { return new PotGreed(); }

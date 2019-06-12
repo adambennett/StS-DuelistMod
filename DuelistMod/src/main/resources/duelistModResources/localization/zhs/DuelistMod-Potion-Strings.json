@@ -15,9 +15,17 @@
         "NAME": "小补充剂",
         "DESCRIPTIONS": ["打开1个#y钢铁袭击者和#y法老仆人补充包。从中#y随机 将#b3 张卡增加到手牌中。"]
 },
+"theDuelist:SealedPackC": {
+        "NAME": "Themed Booster",
+        "DESCRIPTIONS": ["Open a booster pack containing cards of the last type that you #ySummoned. Add #b3 #yrandomized cards from this type to your hand."]
+},
 "theDuelist:OrbBottle": {
         "NAME": "瓶装雾霭",
         "DESCRIPTIONS": ["生成1个随机充能球。", "生成 #b", " 个随机充能球。"]
+},
+"theDuelist:BigOrbBottle": {
+        "NAME": "Paladin Bottle",
+        "DESCRIPTIONS": ["Choose an Orb to Channel.", "Choose #b", " Orbs to Channel."]
 },
 "theDuelist:AirBottle": {
         "NAME": "瓶装风卷",

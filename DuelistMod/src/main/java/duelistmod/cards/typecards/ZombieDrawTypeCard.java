@@ -36,6 +36,7 @@ public class ZombieDrawTypeCard extends DuelistCard
     	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new ZombieDrawTypeCard(this.magicNumber); }   

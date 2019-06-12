@@ -36,6 +36,7 @@ public class InsectTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.INSECT);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     public InsectTypeCard(String tokenName) 
     { 
@@ -43,6 +44,7 @@ public class InsectTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.INSECT);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new InsectTypeCard(); }   

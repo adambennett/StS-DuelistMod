@@ -36,6 +36,7 @@ public class ToonTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     public ToonTypeCard(String tokenName) 
     { 
@@ -43,6 +44,7 @@ public class ToonTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new ToonTypeCard(); }   

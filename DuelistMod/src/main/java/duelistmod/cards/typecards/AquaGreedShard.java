@@ -37,6 +37,7 @@ public class AquaGreedShard extends DuelistCard
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.dontTriggerOnUseCard = true;
     }
     public AquaGreedShard(String tokenName) 
     { 
@@ -45,6 +46,7 @@ public class AquaGreedShard extends DuelistCard
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new AquaGreedShard(1); }   

@@ -28,7 +28,6 @@ public class PotAvarice extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
-    private static final int U_SUMMONS = 3;
     // /STAT DECLARATION/
 
     public PotAvarice() 
@@ -41,6 +40,7 @@ public class PotAvarice extends DuelistCard
         this.tags.add(Tags.REDUCED);
         this.misc = 0;
 		this.originalName = this.name;
+		this.baseMagicNumber = this.magicNumber = 3;
     }
 
     // Actions the card should do.
@@ -48,7 +48,7 @@ public class PotAvarice extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		int playerSummons = getSummons(p);
-		if (upgraded) { playerSummons += U_SUMMONS; }
+		if (upgraded) { playerSummons += this.magicNumber; }
 		incMaxSummons(p, playerSummons);
     	tribute(p, 0, true, this);
     }
@@ -64,7 +64,6 @@ public class PotAvarice extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

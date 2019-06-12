@@ -620,7 +620,6 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new WormBarses());
 		DuelistMod.basicCards.add(new WormWarlord());
 		DuelistMod.basicCards.add(new WormKing());
-		//DuelistMod.basicCards.add(new ArmorBreaker());
 		DuelistMod.basicCards.add(new GauntletWarrior());		
 		DuelistMod.basicCards.add(new GaiaMidnight());		
 		DuelistMod.basicCards.add(new GilfordLegend());
@@ -643,11 +642,7 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new Linkuriboh());
 		DuelistMod.basicCards.add(new GiantTrapHole());
 		DuelistMod.basicCards.add(new BigEye());
-		
-		// temporary - since v2.426.0
-		DuelistMod.basicCards.add(new ImperialTomb());
-		
-		
+		DuelistMod.basicCards.add(new YamiForm());
 		DuelistMod.archetypeCards.addAll(DuelistMod.basicCards);
 		
 		// Dragon Deck && Old Dragon
@@ -932,8 +927,8 @@ public class StarterDeckSetup {
 		//zombieCards.add(new Relinkuriboh());
 		zombieCards.add(new RyuKokki());
 		zombieCards.add(new SoulAbsorbingBone());
-		//zombieCards.add(new VampireGenesis());
-		//zombieCards.add(new VampireLord());
+		zombieCards.add(new VampireGenesis());
+		zombieCards.add(new VampireLord());
 		zombieCards.add(new Skelesaurus());
 		zombieCards.add(new GatesDarkWorld());
 		zombieCards.add(new CallGrave());
@@ -955,6 +950,10 @@ public class StarterDeckSetup {
 		zombieCards.add(new Zombyra());
 		zombieCards.add(new ImperialTomb());
 		zombieCards.add(new ZombieMaster());
+		zombieCards.add(new VampireGrace());
+		zombieCards.add(new VampireFraulein());
+		zombieCards.add(new ShadowVampire());
+		zombieCards.add(new IlBlud());
 		zombieDeck.fillPoolCards(DuelistMod.basicCards);
 		zombieDeck.fillPoolCards(zombieCards);		
 		zombieDeck.fillArchetypeCards(zombieCards);
@@ -1113,6 +1112,14 @@ public class StarterDeckSetup {
 		machineCards.add(new GravityBlaster());
 		machineCards.add(new FlyingPegasus());
 		machineCards.add(new CyberneticFusion());
+		machineCards.add(new IronCall());
+		machineCards.add(new IronDraw());
+		machineCards.add(new LimiterRemoval());
+		machineCards.add(new MachineDuplication());
+		machineCards.add(new Oilman());
+		machineCards.add(new Mixeroid());
+		machineCards.add(new OutriggerExtension());
+		machineCards.add(new JumboDrill());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());
@@ -1149,6 +1156,7 @@ public class StarterDeckSetup {
 		magnetCards.add(new SwordsConcealing());
 		magnetCards.add(new HeartUnderdog());
 		magnetCards.add(new ReadyForIntercepting());
+		magnetCards.add(new ArmorBreaker());
 		for (int i = 0; i < DuelistMod.magnetSlider; i++)
 		{
 			magnetCards.add(new AlphaMagnet());

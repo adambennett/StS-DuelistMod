@@ -258,6 +258,10 @@ public class RandomActionHelper
 				DuelistCard.applyPowerToSelf(artC);
 				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
 				break;
+			case "Gain #b1 Max HP":
+				AbstractDungeon.player.maxHealth += 1;
+				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				break;
 			default:
 				String randomAction = actions.get(AbstractDungeon.cardRandomRng.random(actions.size() - 1));
 				runAction(randomAction, upgradeCards);
@@ -284,6 +288,7 @@ public class RandomActionHelper
 			actions.add("#yIncrement #b2");
 			actions.add("Lose #b1 HP");
 			actions.add("Gain #b1 Artifact");
+			actions.add("Gain #b1 Max HP");
 		}
 		else
 		{
@@ -333,6 +338,7 @@ public class RandomActionHelper
 		translationMap.put("Add #b1 random #yMonster to hand", Strings.configAddRandomMonster);
 		translationMap.put("Gain #b10 #yBlock", Strings.configGain10Block);
 		translationMap.put("Gain #b5 #yBlock",Strings.configGain5Block);
+		translationMap.put("Gain #b1 Max HP",Strings.configGain1MAXHPText);
 	}
 
 }

@@ -36,6 +36,7 @@ public class NaturiaTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.NATURIA);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     public NaturiaTypeCard(String tokenName) 
     { 
@@ -43,6 +44,7 @@ public class NaturiaTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.NATURIA);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new NaturiaTypeCard(); }   

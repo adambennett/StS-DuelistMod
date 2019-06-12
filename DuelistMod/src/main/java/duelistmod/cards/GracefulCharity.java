@@ -35,6 +35,7 @@ public class GracefulCharity extends DuelistCard
         this.tags.add(Tags.EXODIA_DECK);
         this.exodiaDeckCopies = 1;
         this.originalName = this.name;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.setupStartingCopies();
 
     }
@@ -43,7 +44,7 @@ public class GracefulCharity extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-       draw(3);
+       draw(this.magicNumber);
        if (!upgraded) { discard(2, false); }
        else { discard(1, false); }
     }
@@ -59,7 +60,6 @@ public class GracefulCharity extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-           // this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

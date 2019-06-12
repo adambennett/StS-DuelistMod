@@ -25,14 +25,14 @@ public class PuzzleHelper
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
-			if (DuelistMod.fullDebug) { if (AbstractPlayer.customMods.size() < 1 && !DuelistMod.challengeMode) { runSpecialEffect(summons, 35 + extra); } else if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, 35, "Puzzle Token", false); } else { DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token")); }}
+			if (DuelistMod.fullDebug) { if (AbstractPlayer.customMods.size() < 1 && !DuelistMod.challengeMode) { runSpecialEffect(summons, 35 + extra); } else if (!DuelistMod.challengeMode) { DuelistCard.puzzleSummon(AbstractDungeon.player, 35, "Puzzle Token", false); } else { DuelistCard.summon(AbstractDungeon.player, 2, new ExplosiveToken("Exploding Token")); }}
 			else
 			{
 				// Normal Runs
 				if (AbstractPlayer.customMods.size() < 1 && !DuelistMod.challengeMode) { runSpecialEffect(summons, extra); }
 				
 				// Custom Runs & No Challenge Mode
-				else if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, summons + extra, "Puzzle Token", false); }
+				else if (!DuelistMod.challengeMode) { DuelistCard.puzzleSummon(AbstractDungeon.player, summons + extra, "Puzzle Token", false); }
 				
 				// Challenge Mode (anywhere)
 				else { DuelistCard.summon(AbstractDungeon.player, summons - 1 + extra, new ExplosiveToken("Exploding Token")); }
@@ -89,7 +89,7 @@ public class PuzzleHelper
 		{
 			// Standard Deck
 			case 0:
-				DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 2 + extra, "Puzzle Token", false);
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 1));
 				DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 10));
 				break;
@@ -98,7 +98,7 @@ public class PuzzleHelper
 			case 1:
 				int floor = AbstractDungeon.actNum;
 				AbstractMonster randy = AbstractDungeon.getRandomMonster();			
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
 				int roll = AbstractDungeon.cardRandomRng.random(1, 2);
 				if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
 				else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
@@ -112,27 +112,27 @@ public class PuzzleHelper
 	
 			// Spellcaster Deck
 			case 3:
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Spellcaster Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Spellcaster Token", false);
 				int rollSp = AbstractDungeon.cardRandomRng.random(1, 4);				
 				if (rollSp == 1) { DuelistCard.channelRandom(); }
 				break;
 				
 			// Toon Deck
 			case 4:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Toon Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, SUMMONS + extra, "Toon Token", false);
 				PuzzleHelper.toonDeckAction(p, extra);
 				break;
 				
 			// Zombie Deck
 			case 5:		
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Zombie Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, SUMMONS + extra, "Zombie Token", false);
 				DuelistCard randZomb = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(Tags.ZOMBIE);
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randZomb, true));
 				break;
 				
 			// Aqua Deck
 			case 6:		
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false);
 				int rollAq = AbstractDungeon.cardRandomRng.random(1, 3);
 				if (rollAq == 1) { DuelistCard.draw(AbstractDungeon.actNum); }
 				break;
@@ -140,7 +140,7 @@ public class PuzzleHelper
 			// Fiend Deck
 			case 7:		
 				// Summon Fiend Token
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Fiend Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Fiend Token", false);
 				
 				// Keep track of total numbers of tributes in deck
 				int totalTribs = 0;
@@ -186,13 +186,13 @@ public class PuzzleHelper
 
 			// Machine Deck
 			case 8:		
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Machine Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Machine Token", false);
 				//DuelistCard.applyPowerToSelf(new ArtifactPower(p, 1));
 				break;
 				
 			// Superheavy Deck
 			case 9:		
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Superheavy Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Superheavy Token", false);
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
 				DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 5));
 				break;
@@ -206,7 +206,7 @@ public class PuzzleHelper
 			case 11:
 				int floorD = AbstractDungeon.actNum;
 				int rngTurnNum = AbstractDungeon.cardRandomRng.random(1, floorD + 1);
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Bonanza Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Bonanza Token", false);
 				DuelistCard.applyRandomBuffPlayer(p, rngTurnNum, false); 
 				break;
 	
@@ -219,12 +219,12 @@ public class PuzzleHelper
 					DuelistCard randomDragon = (DuelistCard) DuelistCard.returnTrulyRandomDuelistCard();
 					AbstractDungeon.actionManager.addToTop(new TheCreatorAction(p, p, randomDragon, 1, true, false));
 				}
-				DuelistCard.powerSummon(AbstractDungeon.player, 5 + extra, "Bonanza Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 5 + extra, "Bonanza Token", false);
 				break;	
 				
 			// Orb Deck
 			case 13:
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Orb Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Orb Token", false);
 				if (DuelistMod.orbCards.size() > 3)
 				{
 					ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
@@ -241,19 +241,19 @@ public class PuzzleHelper
 			
 			// Resummon Deck
 			case 14:				
-				DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Zombie Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 2 + extra, "Zombie Token", false);
 				break;
 					
 			// Increment Deck
 			case 15:
 				int floorG = AbstractDungeon.actNum;
 				DuelistCard.incMaxSummons(p, floorG);
-				DuelistCard.powerSummon(AbstractDungeon.player, extra + floorG, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, extra + floorG, "Puzzle Token", false);
 				break;
 				
 			// Exodia Deck
 			case 16:
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Exodia Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Exodia Token", false);
 				DuelistCard.draw(2);
 				break;	
 			
@@ -262,25 +262,25 @@ public class PuzzleHelper
 				int floorF = AbstractDungeon.actNum;
 				int rng = AbstractDungeon.cardRandomRng.random(3, floorF + 4);
 				DuelistCard.applyPowerToSelf(new OrbHealerPower(p, rng));
-				DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
 				break;	
 
 			// Random (Small) Deck
 			case 18:
 				// whenever you play a new card this run, gain 15 block
 				int summonRollA = AbstractDungeon.cardRandomRng.random(2, 5);
-				DuelistCard.powerSummon(AbstractDungeon.player, summonRollA + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, summonRollA + extra, "Puzzle Token", false);
 				break;
 	
 			// Random (Big) Deck
 			case 19:
 				int summonRollB = AbstractDungeon.cardRandomRng.random(2, 4);
-				DuelistCard.powerSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
 				break;
 
 			// Generic
 			default:
-				DuelistCard.powerSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);
 				break;
 		}
 	}
@@ -291,25 +291,25 @@ public class PuzzleHelper
     	switch (rollN)
     	{
 	    	case 1:
-	    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Plant Token", false);
+	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Plant Token", false);
 	    		break;
 	    	case 2:
-	    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
+	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
 	    		break;
 	    	case 3:
-	    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Predaplant Token", false);
+	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Predaplant Token", false);
 	    		break;
 	    	case 4:
-	    		DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Plant Token", false);
+	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 2 + extra, "Plant Token", false);
 	    		break;
 	    	case 5:
-	    		DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Insect Token", false);
+	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 2 + extra, "Insect Token", false);
 	    		break;
 	    	case 6:
-	    		DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Predaplant Token", false);			    		
+	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 2 + extra, "Predaplant Token", false);			    		
 	    		break;
 	    	default:
-	    		DuelistCard.powerSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
+	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
 	    		break;
     	
 		}
@@ -426,6 +426,6 @@ public class PuzzleHelper
 			
 			// whenever you play an Ethereal card, gain 5 Gold and 2 HP
 		}
-		DuelistCard.powerSummon(AbstractDungeon.player, 2 + extra, "Puzzle Token", false);
+		DuelistCard.puzzleSummon(AbstractDungeon.player, 2 + extra, "Puzzle Token", false);
 	}
 }

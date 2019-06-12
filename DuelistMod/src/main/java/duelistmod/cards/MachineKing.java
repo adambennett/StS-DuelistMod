@@ -6,12 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.Glitch;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class MachineKing extends DuelistCard 
@@ -40,6 +39,7 @@ public class MachineKing extends DuelistCard
 		this.tags.add(Tags.ALL);
 		this.tags.add(Tags.MACHINE);
 		this.tributes = this.baseTributes = 1;
+		this.baseMagicNumber = this.magicNumber = 1;
 		this.originalName = this.name;
 
 	}
@@ -48,10 +48,12 @@ public class MachineKing extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		tribute(p, this.tributes, false, this);
-		AbstractOrb dark = new Glitch();
-		//attack(m, AFX, this.damage);
-		channel(dark);
+		tribute();
+		for (int i = 0; i < this.magicNumber; i++)
+		{
+			AbstractOrb glitch = new Glitch();
+			channel(glitch);
+		}
 	}
 
 	// Which card to return when making a copy of this card.
@@ -65,7 +67,7 @@ public class MachineKing extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeTributes(-1);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

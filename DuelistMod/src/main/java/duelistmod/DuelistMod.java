@@ -40,13 +40,13 @@ import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.GiantTrapHole;
 import duelistmod.characters.TheDuelist;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.potions.*;
 import duelistmod.powers.*;
+import duelistmod.powers.incomplete.OutriggerExtensionPower;
 import duelistmod.relics.*;
 import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
@@ -84,6 +84,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	static int randomDeckSmallSize = 10;
 	static int randomDeckBigSize = 15;
 	private static int saver = 0;
+	private static ArrayList<IncrementDiscardSubscriber> incrementDiscardSubscribers;
 	
 	
 	// Global Fields
@@ -197,9 +198,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static HashMap<String, AbstractPower> buffMap = new HashMap<String, AbstractPower>();
 	public static HashMap<String, AbstractOrb> invertStringMap = new HashMap<String, AbstractOrb>();
 	public static HashMap<String, StarterDeck> starterDeckNamesMap = new HashMap<String, StarterDeck>();
+	public static HashMap<CardTags, String> typeCardMap_ID = new HashMap<CardTags, String>();
+	public static HashMap<CardTags, String> typeCardMap_IMG = new HashMap<CardTags, String>();
+	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<CardTags, String>();
+	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<CardTags, String>();
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<String, DuelistCard>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> curses = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> monstersThisCombat = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> monstersThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> spellsThisCombat = new ArrayList<DuelistCard>();
@@ -359,7 +365,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = false;			// print statements only, used in mod option panel
 	public static boolean debugMsg = false;			// for secret msg
-	public static final boolean addTokens = false;	// adds debug tokens to library
+	public static final boolean addTokens = true;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -497,18 +503,19 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		duelistDefaults.setProperty(PROP_ALWAYS_UPGRADE, "FALSE");
 		duelistDefaults.setProperty(PROP_NEVER_UPGRADE, "FALSE");
 		
-		monsterTypes.add(Tags.AQUA);			// Spiked Gillman
-		monsterTypes.add(Tags.DRAGON);			// Strength
-		monsterTypes.add(Tags.FIEND);			// Doomdog
-		monsterTypes.add(Tags.INSECT);			// Cocoon
-		monsterTypes.add(Tags.MACHINE);			// Artifact
-		monsterTypes.add(Tags.NATURIA);			// Naturia
-		monsterTypes.add(Tags.PLANT);			// Constriction
-		monsterTypes.add(Tags.PREDAPLANT);		// Thorns
-		monsterTypes.add(Tags.SPELLCASTER);		// Focus
-		monsterTypes.add(Tags.SUPERHEAVY);		// Dexterity
-		monsterTypes.add(Tags.TOON);			// Retain
-		monsterTypes.add(Tags.ZOMBIE);			// Trap Hole
+		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
+		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
+		monsterTypes.add(Tags.FIEND);		typeCardMap_ID.put(Tags.FIEND, makeID("FiendTypeCard"));				typeCardMap_IMG.put(Tags.FIEND, makeCardPath("GrossGhost.png"));	
+		monsterTypes.add(Tags.INSECT);		typeCardMap_ID.put(Tags.INSECT, makeID("InsectTypeCard"));				typeCardMap_IMG.put(Tags.INSECT, makePath(Strings.BASIC_INSECT));	
+		monsterTypes.add(Tags.MACHINE);		typeCardMap_ID.put(Tags.MACHINE, makeID("MachineTypeCard"));			typeCardMap_IMG.put(Tags.MACHINE, makeCardPath("YellowGadget.png"));	
+		monsterTypes.add(Tags.NATURIA);		typeCardMap_ID.put(Tags.NATURIA, makeID("NaturiaTypeCard"));			typeCardMap_IMG.put(Tags.NATURIA, makePath(Strings.NATURIA_HORNEEDLE));
+		monsterTypes.add(Tags.PLANT);		typeCardMap_ID.put(Tags.PLANT, makeID("PlantTypeCard"));				typeCardMap_IMG.put(Tags.PLANT, makePath(Strings.FIREGRASS));	
+		monsterTypes.add(Tags.PREDAPLANT);	typeCardMap_ID.put(Tags.PREDAPLANT, makeID("PredaplantTypeCard"));		typeCardMap_IMG.put(Tags.PREDAPLANT, makePath(Strings.PREDA_TOKEN));	
+		monsterTypes.add(Tags.SPELLCASTER);	typeCardMap_ID.put(Tags.SPELLCASTER, makeID("SpellcasterTypeCard"));	typeCardMap_IMG.put(Tags.SPELLCASTER, makeCardPath("SpellcasterToken.png"));	
+		monsterTypes.add(Tags.SUPERHEAVY);	typeCardMap_ID.put(Tags.SUPERHEAVY, makeID("SuperheavyTypeCard"));		typeCardMap_IMG.put(Tags.SUPERHEAVY, makePath(Strings.SUPERHEAVY_SCALES));	
+		monsterTypes.add(Tags.TOON);		typeCardMap_ID.put(Tags.TOON, makeID("ToonTypeCard"));					typeCardMap_IMG.put(Tags.TOON, makePath(Strings.TOON_GOBLIN_ATTACK));	
+		monsterTypes.add(Tags.ZOMBIE);		typeCardMap_ID.put(Tags.ZOMBIE, makeID("ZombieTypeCard"));				typeCardMap_IMG.put(Tags.ZOMBIE, makePath(Strings.ARMORED_ZOMBIE));	
+
 
 		cardSets.add("Standard"); 
 		cardSets.add("Basic + Deck Archetype");
@@ -594,6 +601,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static void initialize() {
 		logger.info("Initializing Duelist Mod");
 		DuelistMod defaultmod = new DuelistMod();
+		incrementDiscardSubscribers = new ArrayList<>();
 		logger.info("Duelist Mod Initialized");
 	}
 
@@ -667,6 +675,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		pots.add(new ExtraOrbsBottle());
 		pots.add(new TributeBottle());
 		pots.add(new BigTributeBottle());
+		pots.add(new SealedPackC());
+		pots.add(new BigOrbBottle());
 		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, p.ID, TheDuelistEnum.THE_DUELIST); }
 		
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
@@ -957,28 +967,51 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		else { return -1; }
 	}
 	
+	private static <T> void subscribeIfInstance(ArrayList<T> list, ISubscriber sub, Class<T> clazz) {
+		if (clazz.isInstance(sub)) {
+			list.add(clazz.cast(sub));
+		}
+	}
+
+	public static void subscribe(ISubscriber sub) {
+		subscribeIfInstance(incrementDiscardSubscribers, sub, IncrementDiscardSubscriber.class);
+	}
+
+	private static <T> void unsubscribeIfInstance(ArrayList<T> list, ISubscriber sub, Class<T> clazz) {
+		if (clazz.isInstance(sub)) {
+			list.remove(clazz.cast(sub));
+		}
+	}
+
+	public static void unsubscribe(ISubscriber sub) {
+		unsubscribeIfInstance(incrementDiscardSubscribers, sub, IncrementDiscardSubscriber.class);
+	}
+    
 	// HOOKS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static void incrementDiscardHook(boolean endOfTurn) {
+		if (endOfTurn) {
+			return;
+		}
+
+		boolean bNullExist = false;
+		for (IncrementDiscardSubscriber sub : incrementDiscardSubscribers) {
+			if (sub != null) {
+				sub.receiveIncrementDiscard();
+			} else {
+				bNullExist = true;
+			}
+		}
+
+		// Powers don't have an universal hook for when they are destroyed, so we have to clean our list
+		if (bNullExist) {
+			incrementDiscardSubscribers.removeAll(Collections.singleton(null));
+		}
+	}
+	
 	@Override
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
-		if (StarterDeckSetup.getCurrentDeck().getIndex() != normalSelectDeck && normalSelectDeck > -1)
-		{
-			deckIndex = normalSelectDeck;
-			if (debug) { logger.info("reset selected deck to: " + StarterDeckSetup.getCurrentDeck().getSimpleName()); }
-			if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID))
-			{
-				MillenniumPuzzle mp = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
-				mp.getDeckDesc();
-			}
-			
-			if (AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID))
-			{
-				MillenniumPuzzleShared mp = (MillenniumPuzzleShared) AbstractDungeon.player.getRelic(MillenniumPuzzleShared.ID);
-				mp.getDeckDesc();
-			}
-		}
-		
-		if (!AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) { naturiaDmg = 1; }
+		//if (!AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) { naturiaDmg = 1; }
 		
 		if (gotFirePot)
 		{
@@ -1464,6 +1497,25 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			{
 				DuelistCard.damageAllEnemiesThornsNormal(AbstractDungeon.player.getPower(DrillBarnaclePower.POWER_ID).amount);
 			}
+		}
+		
+		if (AbstractDungeon.player.hasPower(OutriggerExtensionPower.POWER_ID) && drawnCard.hasTag(Tags.MACHINE))
+		{
+			int magicBuffAmt = AbstractDungeon.player.getPower(OutriggerExtensionPower.POWER_ID).amount;
+			ArrayList<AbstractCard> handSkills = new ArrayList<AbstractCard>();
+			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+	    	{
+	    		if (c.type.equals(CardType.SKILL) && c.magicNumber > 0)
+	    		{
+	    			handSkills.add(c);
+	    			if (debug) { logger.info("Outrigger Extension added " + c.originalName + " to handSkills array"); }
+	    		}
+	    	}
+	    	if (handSkills.size() > 0) 
+	    	{ 
+	    		AbstractCard buffedCard = handSkills.get(AbstractDungeon.cardRandomRng.random(handSkills.size() - 1)); 
+	    		AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(buffedCard, magicBuffAmt)); 
+	    	}	    	
 		}
 		
 
@@ -2189,7 +2241,20 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		Strings.configOjamania = Config_UI_String.TEXT[115];
 		Strings.configChannel = Config_UI_String.TEXT[116];
 		Strings.configLose1HP = Config_UI_String.TEXT[117];
-		Strings.configSummonsIconText = Config_UI_String.TEXT[118];
+		Strings.configSummonsIconText = Config_UI_String.TEXT[118];		
+		Strings.configFailedIncActionText = Config_UI_String.TEXT[119];
+		Strings.configFailedSummonActionText = Config_UI_String.TEXT[120];
+		Strings.configFailedTribActionText = Config_UI_String.TEXT[121];
+		Strings.configGain1MAXHPText = Config_UI_String.TEXT[122];
+		Strings.configGreedShardA = Config_UI_String.TEXT[123];
+		Strings.configGreedShardB = Config_UI_String.TEXT[124];		
+		Strings.configWingedTextB = Config_UI_String.TEXT[125];
+		Strings.configRainbowJarA = Config_UI_String.TEXT[126];
+		Strings.configRainbowJarB = Config_UI_String.TEXT[127];
+		Strings.configWingedTextA = Config_UI_String.TEXT[128];
+		Strings.configGreedShardC = Config_UI_String.TEXT[129];	
+		Strings.configYamiFormA = Config_UI_String.TEXT[130];	
+		Strings.configYamiFormB = Config_UI_String.TEXT[131];	
 	}
 	
 	private void addRandomized(String property1, String property2, boolean btnBool1, boolean btnBool2)

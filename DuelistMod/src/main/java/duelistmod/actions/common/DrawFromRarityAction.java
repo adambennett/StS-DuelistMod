@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.PlayerTurnEffect;
 
+import basemod.BaseMod;
+
 public class DrawFromRarityAction extends com.megacrit.cardcrawl.actions.AbstractGameAction
 {
 	private boolean shuffleCheck = false;
@@ -39,7 +41,7 @@ public class DrawFromRarityAction extends com.megacrit.cardcrawl.actions.Abstrac
 	public DrawFromRarityAction(AbstractCreature source, int amount, CardRarity tag) {
 		this(source, amount, false, tag);
 	}
-	
+
 	public void drawTag(int numCards, CardRarity tag)
 	{
 		ArrayList<AbstractCard> typedCardsFromDeck = new ArrayList<AbstractCard>();
@@ -50,7 +52,7 @@ public class DrawFromRarityAction extends com.megacrit.cardcrawl.actions.Abstrac
 				typedCardsFromDeck.add(c);
 			}
 		}
-		
+
 		if (typedCardsFromDeck.size() > 0)
 		{
 			for (int i = 0; i < numCards; i++) 
@@ -74,26 +76,26 @@ public class DrawFromRarityAction extends com.megacrit.cardcrawl.actions.Abstrac
 						c.isCostModified = true;
 					}
 				}
-				
+
 				c.triggerWhenDrawn();
-	
-				 AbstractDungeon.player.hand.addToHand(c);
-				 AbstractDungeon.player.drawPile.removeCard(c);
-	
+				BaseMod.publishPostDraw(c);
+				AbstractDungeon.player.hand.addToHand(c);
+				AbstractDungeon.player.drawPile.removeCard(c);
+
 				if ((AbstractDungeon.player.hasPower("Corruption")) && (c.type == AbstractCard.CardType.SKILL)) 
 				{
 					c.setCostForTurn(-9);
 				}
-	
+
 				for (AbstractRelic r : AbstractDungeon.player.relics) 
 				{
 					r.onCardDraw(c);
 				}
-				
+
 			}
 		}
 	}
-	
+
 	public void drawTag(CardRarity tag)
 	{
 		if (AbstractDungeon.player.hand.size() == 10) {
@@ -183,9 +185,9 @@ public class DrawFromRarityAction extends com.megacrit.cardcrawl.actions.Abstrac
 			{
 				this.duration = Settings.ACTION_DUR_FASTER;
 			}
-			
+
 			this.amount -= 1;
-			
+
 			if (!AbstractDungeon.player.drawPile.isEmpty()) 
 			{
 				drawTag(tagToDraw);
@@ -195,7 +197,7 @@ public class DrawFromRarityAction extends com.megacrit.cardcrawl.actions.Abstrac
 			{
 				this.isDone = true;
 			}
-			
+
 			if (this.amount == 0) 
 			{
 				this.isDone = true;

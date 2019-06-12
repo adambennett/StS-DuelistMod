@@ -51,6 +51,12 @@ public class PoolHelpers
 		// if save exists, fill colored cards with saved cards
 		// if the save does not exist, fill colored cards like below
 		
+		// this if block makes sure the pool is filled with the deck you actually selected
+		if (StarterDeckSetup.getCurrentDeck().getIndex() != DuelistMod.normalSelectDeck && DuelistMod.normalSelectDeck > -1)
+		{
+			DuelistMod.deckIndex = DuelistMod.normalSelectDeck;
+		}
+		
 		DuelistMod.coloredCards = new ArrayList<AbstractCard>();
 		
 		// Standard Pool Fill - Basic Cards, Deck archetype, 1 random archetype

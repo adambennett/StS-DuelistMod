@@ -56,9 +56,6 @@ public class FlameSwordsman extends DuelistCard
     		int roll = AbstractDungeon.cardRandomRng.random(1, 100);
     		if (roll <= this.magicNumber) { DuelistMod.gotFirePot = true; }
     	}
-    	
-    	//AbstractOrb fire = new HellFireOrb();
-    	//channel(fire);
     }
 
     // Which card to return when making a copy of this card.

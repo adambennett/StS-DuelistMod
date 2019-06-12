@@ -392,6 +392,16 @@
     "DESCRIPTION": "打出时，这张卡的随机1个效果提升 #b1点数值。"
   },
   {
+    "PROPER_NAME": "魔导书",
+    "NAMES": [
+      "魔导书",
+	  "spellbook",
+	  "spellbooks",
+	  "Spellbooks"
+    ],   
+    "DESCRIPTION": "能让#y魔法师族 额外触发#y祭品 效果的能力牌。一次最多同时触发一个#y魔导书 效果。"
+  },
+  {
     "PROPERNAME": "门",
     "NAMES": [
       "门"

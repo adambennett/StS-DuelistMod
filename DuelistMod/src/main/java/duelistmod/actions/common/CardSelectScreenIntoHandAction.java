@@ -36,6 +36,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	private int highTributeRoll = 0;
 	private boolean sendExtraToDiscard = false;
 	private boolean damageBlockRandomize = false;
+	private boolean dontTrig = false;
   
 	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
 	{
@@ -135,6 +136,34 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.tributeChangeCombatCheck = combat;
 		this.costChangeCombatCheck = combat;
 		this.sendExtraToDiscard = sendExtraToDiscard;
+	}
+	
+	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, boolean dontTrig)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, 1);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = upgraded;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = true;
+		this.exhaustCheck = exhaust;
+		this.etherealCheck = ethereal;
+		this.costChangeCheck = costChange;
+		this.summonCheck = summonCheck;
+		this.tributeCheck = tributeCheck;
+		this.lowCostRoll = lowCost;
+		this.highCostRoll = highCost;
+		this.lowSummonRoll = lowSummon;
+		this.highSummonRoll = highSummon;
+		this.lowTributeRoll = lowTrib;
+		this.highTributeRoll = highTrib;
+		this.summonChangeCombatCheck = combat;
+		this.tributeChangeCombatCheck = combat;
+		this.costChangeCombatCheck = combat;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.dontTrig = dontTrig;
 	}
 	
 	public CardSelectScreenIntoHandAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
@@ -259,6 +288,11 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    				AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(gridCard.uuid, roll));
 		    				gridCard.isBlockModified = true;
 		    			}
+		    		}
+		    		
+		    		if (dontTrig)
+		    		{
+		    			gridCard.dontTriggerOnUseCard = false;
 		    		}
 		    		
 		            gridCard.initializeDescription();

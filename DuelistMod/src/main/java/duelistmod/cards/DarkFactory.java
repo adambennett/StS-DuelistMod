@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class DarkFactory extends DuelistCard 
@@ -29,15 +29,12 @@ public class DarkFactory extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 0;
-	private static final int ENERGY = 3;
-	private static final int U_ENERGY = 1;
 	// /STAT DECLARATION/
 
 	public DarkFactory() 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = ENERGY;
-		this.energyOnUse = ENERGY;
+		this.energyOnUse = 3;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.REDUCED);
 		this.tags.add(Tags.MACHINE);
@@ -51,7 +48,7 @@ public class DarkFactory extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		gainEnergy(this.magicNumber);
+		gainEnergy(3);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -65,7 +62,7 @@ public class DarkFactory extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(U_ENERGY);
+			this.upgradeTributes(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

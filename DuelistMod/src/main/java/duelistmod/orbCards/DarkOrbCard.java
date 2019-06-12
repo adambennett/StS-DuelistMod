@@ -34,6 +34,7 @@ public class DarkOrbCard extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.ORB_CARD);
         this.originalName = this.name;
+        this.dontTriggerOnUseCard = true;
     }
 
     // Actions the card should do.

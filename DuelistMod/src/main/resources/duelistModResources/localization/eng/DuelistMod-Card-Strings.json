@@ -412,7 +412,7 @@
 	"theDuelist:DarkFactory": {
 		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain [G] [G] [G].",
 		"NAME": "Dark Factory",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain [G] [G] [G] [G]."
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain [G] [G] [G]."
 	},
 	"theDuelist:DarkHole": {
 		"DESCRIPTION": "Steal all Block from ALL enemies. NL Remove all of your debuffs.",
@@ -500,9 +500,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:DragonCaptureJar": {
-		"DESCRIPTION": "Whenever you play a Dragon, add it back to your hand at the start of next turn.",
+		"DESCRIPTION": "Whenever you play a Dragon, add it back into your hand at the start of next turn.",
 		"NAME": "Dragon Capture Jar",
-		"UPGRADE_DESCRIPTION": "Whenever you play a Dragon, add it back to your hand at the start of next turn."
+		"UPGRADE_DESCRIPTION": "Whenever you play a Dragon, add it back into your hand at the start of next turn."
 	},
 	"theDuelist:DragonMaster": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random Dragon and Resummon it on the target enemy. Exempt.",
@@ -834,9 +834,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL For each monster you Summon this turn, reduce the cost of this card by 1 for this turn."
 	},
 	"theDuelist:GracefulCharity": {
-		"DESCRIPTION": "Draw 3 cards. NL Discard 2 cards.",
+		"DESCRIPTION": "Draw !M! cards. NL Discard 2 cards.",
 		"NAME": "Graceful Charity",
-		"UPGRADE_DESCRIPTION": "Draw 3 cards. NL Discard a card."
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard a card."
 	},
 	"theDuelist:Grasschopper": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect you Tribute to play this.",
@@ -1115,9 +1115,9 @@
 		"UPGRADE_DESCRIPTION": "Evoke all your Orbs. Channel a Glitch for each Orb evoked. NL Exhaust."
 	},
 	"theDuelist:MachineKing": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel a Glitch.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel !M! Glitch.",
 		"NAME": "Machine King",
-		"UPGRADE_DESCRIPTION": "Channel a Glitch."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel !M! Glitches."
 	},
 	"theDuelist:MachineToken": {
 		"DESCRIPTION": "Machine NL Summon 1 NL Roulette: Channel a Metal.",
@@ -1173,9 +1173,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a MillenniumOrb."
 	},
 	"theDuelist:MillenniumShield": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain 4 Dexterity. NL Exhaust.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Dexterity. NL Exhaust.",
 		"NAME": "Millennium Shield",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain 4 Dexterity. Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Dexterity. Exhaust."
 	},
 	"theDuelist:MindAir": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Your Air orbs always Channel an orb.",
@@ -1419,9 +1419,9 @@
 		"UPGRADE_DESCRIPTION": "Shuffle a random amount (1-4) of upgraded Red Medicine cards into your draw pile. Exhaust."
 	},
 	"theDuelist:Ojamassimilation": {
-		"DESCRIPTION": "Exhaust all Spells everywhere. For each Spell exhausted, add a Randomized Ojama to your draw pile and have a small chance to gain a random buff.",
+		"DESCRIPTION": "Exhaust all Spells everywhere. For each Spell exhausted, add a Randomized Spell to your draw pile and have a small chance to gain a random buff.",
 		"NAME": "Ojamassimilation",
-		"UPGRADE_DESCRIPTION": "Exhaust all Spells everywhere. For each Spell exhausted, add a Randomized, upgraded Ojama to your draw pile and have a small chance to gain a random buff."
+		"UPGRADE_DESCRIPTION": "Exhaust all Spells everywhere. For each Spell exhausted, add a Randomized, upgraded Spell to your draw pile and have a small chance to gain a random buff."
 	},
 	"theDuelist:Ojamatch": {
 		"DESCRIPTION": "Invert your next orb X times. NL Exhaust.",
@@ -1487,9 +1487,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the Tributes of a random card in your hand by 2 for this turn. Exhaust."
 	},
 	"theDuelist:PotAvarice": {
-		"DESCRIPTION": "Tribute ALL Summons. NL Increment (the amount tributed). NL Exhaust.",
+		"DESCRIPTION": "Tribute ALL Summons. NL Increment the amount tributed. NL Exhaust.",
 		"NAME": "Pot of Avarice",
-		"UPGRADE_DESCRIPTION": "Tribute ALL Summons. NL Increment (the amount tributed + 3). NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute ALL Summons. NL Increment the amount tributed + !M!. NL Exhaust."
 	},
 	"theDuelist:PotDichotomy": {
 		"DESCRIPTION": "Summon X + !duelist:SUMM!",
@@ -1512,9 +1512,9 @@
 		"UPGRADE_DESCRIPTION": "For !M! turns, each time you Summon gain [G]."
 	},
 	"theDuelist:PotGreed": {
-		"DESCRIPTION": "Draw 2 cards. NL Exhaust.",
+		"DESCRIPTION": "Draw !M! cards. NL Exhaust.",
 		"NAME": "Pot of Greed",
-		"UPGRADE_DESCRIPTION": "Innate NL Draw 2 cards. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Innate NL Draw !M! cards. NL Exhaust."
 	},
 	"theDuelist:PotsArchetype": {
 		"DESCRIPTION": "Add Pot cards to your card pool.",
@@ -1725,7 +1725,7 @@
 	"theDuelist:ScrapFactory": {
 		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain [G] [G].",
 		"NAME": "Scrap Factory",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain [G] [G] [G]."
+		"UPGRADE_DESCRIPTION": "Machine NL Gain [G] [G]."
 	},
 	"theDuelist:SevenColoredFish": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -1753,9 +1753,9 @@
 		"UPGRADE_DESCRIPTION": "Resummon !M! monsters randomly from your discard pile."
 	},
 	"theDuelist:ShardGreed": {
-		"DESCRIPTION": "Choose a monster type. At the start of turn, draw a monster of that type.",
+		"DESCRIPTION": "Choose a monster type. At the start of turn, draw !M! monster of that type.",
 		"NAME": "Shard of Greed",
-		"UPGRADE_DESCRIPTION": "Innate NL Choose a monster type. At the start of turn, draw a monster of that type."
+		"UPGRADE_DESCRIPTION": "Innate NL Choose a monster type. At the start of turn, draw !M! monster of that type."
 	},
 	"theDuelist:Skelesaurus": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! Shadow Token NL Deal !D! damage.",
@@ -2072,9 +2072,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Machine Dragon NL Tribute !duelist:TRIB! NL Deal a random amount of damage (30-45) to each enemy (through Block)."
 	},
 	"theDuelist:ToonBriefcase": {
-		"DESCRIPTION": "Whenever you play a Toon card, add it back to your hand at the start of next turn.",
+		"DESCRIPTION": "Whenever you play a Toon card, add it back into your hand at the start of next turn.",
 		"NAME": "Toon Briefcase",
-		"UPGRADE_DESCRIPTION": "Whenever you play a Toon card, add it back to your hand at the start of next turn."
+		"UPGRADE_DESCRIPTION": "Whenever you play a Toon card, add it back into your hand at the start of next turn."
 	},
 	"theDuelist:ToonCannonSoldier": {
 		"DESCRIPTION": "Toon Machine NL Summon !duelist:SUMM! NL Whenever you Summon a Toon, deal 5 damage to all enemies.",
@@ -2336,9 +2336,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL At the end of turn, ALL enemies lose !M! Strength and all monsters in your draw pile gain 1 Tribute."
 	},
 	"theDuelist:RainbowJar": {
-		"DESCRIPTION": "Choose a monster type. For the rest of combat, whenever you play a monster of that type, add it back to your hand at the start of next turn.",
+		"DESCRIPTION": "Choose a monster type. For the rest of combat, whenever you play a monster of that type, add it back into your hand at the start of next turn.",
 		"NAME": "Rainbow Capture Jar",
-		"UPGRADE_DESCRIPTION": "Choose a monster type. For the rest of combat, whenever you play a monster of that type, add it back to your hand at the start of next turn."
+		"UPGRADE_DESCRIPTION": "Choose a monster type. For the rest of combat, whenever you play a monster of that type, add it back into your hand at the start of next turn."
 	},
 	"theDuelist:ExplosiveMagician": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL For 3 turns, lose !M! HP at the start of turn. NL After 3 turns, heal !M! HP at the start of turn for 6 turns.",
@@ -2378,12 +2378,12 @@
 	"theDuelist:SharkStickers": {
 		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Gold.",
 		"NAME": "Shark Stickers",
-		"UPGRADE_DESCRIPTION": "Tidal Aqua NL NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Gold."
+		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Gold."
 	},
 	"theDuelist:RageDeepSea": {
 		"DESCRIPTION": "Tidal Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned.",
 		"NAME": "Rage of the Deep",
-		"UPGRADE_DESCRIPTION": "Tidal Aqua NL NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned."
+		"UPGRADE_DESCRIPTION": "Tidal Aqua NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies for each Aqua monster currently summoned."
 	},
 	"theDuelist:TripodFish": {
 		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Each time you Summon an Aqua monster, add !M! Randomized Aqua monster into your exhaust pile.",
@@ -2671,19 +2671,19 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Stun ALL enemies."
 	},
 	"theDuelist:IronDraw": {
-		"DESCRIPTION": "Draw !M! Machine and !M! Rare.",
+		"DESCRIPTION": "Draw !M! Machines. NL Draw !M! Rares.",
 		"NAME": "Iron Draw",
-		"UPGRADE_DESCRIPTION": "Draw !M! Machines and !M! Rares."
+		"UPGRADE_DESCRIPTION": "Draw !M! Machines. NL Draw !M! Rares."
 	},
 	"theDuelist:IronCall": {
-		"DESCRIPTION": "Add !M! Randomized Machines to your hand. NL Gain 1 Artifact. NL Exhaust.",
+		"DESCRIPTION": "Add !M! Randomized Machines to your hand. Obtain a Steroid Potion. NL Exhaust.",
 		"NAME": "Iron Call",
-		"UPGRADE_DESCRIPTION": "Add !M! Randomized Machines to your hand. NL Gain 2 Artifacts. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Add !M! Randomized Machines to your hand. Obtain a Steroid Potion. NL Exhaust."
 	},
 	"theDuelist:LimiterRemoval": {
-		"DESCRIPTION": "Remove all of your Artifacts and deal !D! damage to ALL enemies for each.",
+		"DESCRIPTION": "Remove all of your Artifacts and deal !M! damage to ALL enemies for each.",
 		"NAME": "Limiter Removal",
-		"UPGRADE_DESCRIPTION": "Remove all of your Artifacts and deal !D! damage to ALL enemies for each."
+		"UPGRADE_DESCRIPTION": "Remove all of your Artifacts and deal !M! damage to ALL enemies for each."
 	},
 	"theDuelist:MachineDuplication": {
 		"DESCRIPTION": "Copy all Machines in your hand.",
@@ -2921,9 +2921,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card."
 	},
 	"theDuelist:GiantTrapHole": {
-		"DESCRIPTION": "Add !M! Giant to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power.",
+		"DESCRIPTION": "Add !M! Giant to your hand. Decrease the energy cost of this card by !M! each time you play a Power.",
 		"NAME": "Giant Trap Hole",
-		"UPGRADE_DESCRIPTION": "Add !M! Giants to your hand. NL Decrease the energy cost of this card by !M! each time you play a Power."
+		"UPGRADE_DESCRIPTION": "Add !M! Giants to your hand. Decrease the energy cost of this card by !M! each time you play a Power."
 	},
 	"theDuelist:DarkFusion": {
 		"DESCRIPTION": "Increase the Summons of all monsters in your hand by !M! for this turn.",
@@ -2964,5 +2964,125 @@
 		"DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP.",
 		"NAME": "Spellbook of Life",
 		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP."
+	},
+	"theDuelist:CurseAging": {
+		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, lose !M! HP for each turn that has passed this combat.",
+		"NAME": "Curse of Aging",
+		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, lose !M! HP for each turn that has passed this combat."
+	},
+	"theDuelist:CurseAnubis": {
+		"DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your summons.",
+		"NAME": "Curse of Anubis",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your summons."
+	},
+	"theDuelist:CurseArmaments": {
+		"DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your powers.",
+		"NAME": "Curse of Armaments",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! HP for each of your powers."
+	},
+	"theDuelist:CurseDarkness": {
+		"DESCRIPTION": "Unplayable NL While this Curse is in your draw pile you cannot see enemy intents.",
+		"NAME": "Curse of Darkness",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your draw pile you cannot see enemy intents."
+	},
+	"theDuelist:CursedBill": {
+		"DESCRIPTION": "Unplayable NL While this Curse is in your draw pile, each time you Summon you lose !M! Gold.",
+		"NAME": "Cursed Bill",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your draw pile, each time you Summon you lose !M! Gold."
+	},
+	"theDuelist:CurseFiend": {
+		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, replace all 1-cost cards in your draw pile with copies of Summoned Skull.",
+		"NAME": "Curse of Fiend",
+		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, replace all 1-cost cards in your draw pile with copies of Summoned Skull."
+	},
+	"theDuelist:CurseRoyal": {
+		"DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! max HP.",
+		"NAME": "Curse Royal",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your deck, whenever you gain Gold you lose !M! max HP."
+	},
+	"theDuelist:GravekeeperCurse": {
+		"DESCRIPTION": "Unplayable NL When drawn, Exhaust all cards in your discard pile.",
+		"NAME": "Gravekeeper Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, Exhaust all cards in your discard pile."
+	},
+	"theDuelist:PsiCurse": {
+		"DESCRIPTION": "Unplayable NL While this Curse is in your draw or discard pile, you have a 50% chance to fail Increment actions.",
+		"NAME": "Psi-Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your draw or discard pile, you have a 50% chance to fail Increment actions."
+	},
+	"theDuelist:SummoningCurse": {
+		"DESCRIPTION": "Unplayable NL While this Curse is in your hand you cannot Summon.",
+		"NAME": "Summoning Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this Curse is in your hand you cannot Summon."
+	},
+	"theDuelist:TikiCurse": {
+		"DESCRIPTION": "Unplayable NL When drawn, lose !M! max HP.",
+		"NAME": "Tiki Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose !M! max HP."
+	},
+	"theDuelist:VampireCurse": {
+		"DESCRIPTION": "Unplayable NL When drawn, all cards in your draw pile become Ethereal.",
+		"NAME": "Vampire Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, all cards in your draw pile become Ethereal."
+	},
+	"theDuelist:VampireLord": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards.",
+		"NAME": "Vampire Lord",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards."
+	},
+	"theDuelist:VampireGenesis": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard your hand.",
+		"NAME": "Vampire Genesis",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard your hand."
+	},
+	"theDuelist:VampireGrace": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! cards.",
+		"NAME": "Vampire Grace",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! cards."
+	},
+	"theDuelist:VampireFraulein": {
+		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards.",
+		"NAME": "Vampire Fraulein",
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards."
+	},
+	"theDuelist:ShadowVampire": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand.",
+		"NAME": "Shadow Vampire",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand."
+	},
+	"theDuelist:IlBlud": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Whenever you discard a card, deal !M! damage to ALL enemies.",
+		"NAME": "Il Blud",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Whenever you discard a card, deal !M! damage to ALL enemies."
+	},
+	"theDuelist:OutriggerExtension": {
+		"DESCRIPTION": "Machine NL Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by !M! for this combat.",
+		"NAME": "Outrigger Extension",
+		"UPGRADE_DESCRIPTION": "Machine NL Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by !M! for this combat."
+	},
+	"theDuelist:Oilman": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a random Skill in your hand by !M! for this combat.",
+		"NAME": "Oilman",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a random Skill in your hand by !M! for this combat."
+	},
+	"theDuelist:Mixeroid": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the magic number of a random Skill in your hand by !M! for this combat.",
+		"NAME": "Mixeroid",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the magic number of a random Skill in your hand by !M! for this combat."
+	},
+	"theDuelist:SuperExplodingToken": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Lose (2-6) HP when Tributed.",
+		"NAME": "S. Exploding Token",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Lose (2-6) HP when Tributed."
+	},
+	"theDuelist:JumboDrill": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever you attack, choose 1 of 3 Randomized Machines to add to your hand.",
+		"NAME": "JumboDrill",
+		"UPGRADE_DESCRIPTION": "Machine NL Whenever you attack, choose 1 of 3 Randomized Machines to add to your hand."
+	},
+	"theDuelist:YamiForm": {
+		"DESCRIPTION": "At the start of turn, choose 1 of !M! random monster types. Resummon a random monster of that type on a random enemy.",
+		"NAME": "Yami Form",
+		"UPGRADE_DESCRIPTION": "At the start of turn, choose 1 of !M! random monster types. Resummon a random monster of that type on a random enemy."
 	}
 }

@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.cards.typecards.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 
@@ -44,19 +43,7 @@ public class RainbowJar extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> types = new ArrayList<DuelistCard>();
-    	types.add(new AquaTypeCard());
-    	types.add(new DragonTypeCard());
-    	types.add(new FiendTypeCard());
-    	types.add(new InsectTypeCard());
-    	types.add(new MachineTypeCard());
-    	types.add(new NaturiaTypeCard());
-    	types.add(new PlantTypeCard());
-    	types.add(new PredaplantTypeCard());
-    	types.add(new SpellcasterTypeCard());
-    	types.add(new SuperheavyTypeCard());
-    	types.add(new ToonTypeCard());
-    	types.add(new ZombieTypeCard());
+    	ArrayList<DuelistCard> types = generateTypeCards(0, true);    	
     	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
     }
 

@@ -36,6 +36,7 @@ public class PlantDrawTypeCard extends DuelistCard
     	this.tags.add(Tags.PLANT);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new PlantDrawTypeCard(this.magicNumber); }   

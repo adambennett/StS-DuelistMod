@@ -36,6 +36,7 @@ public class ZombieTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     public ZombieTypeCard(String tokenName) 
     { 
@@ -43,6 +44,7 @@ public class ZombieTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new ZombieTypeCard(); }   

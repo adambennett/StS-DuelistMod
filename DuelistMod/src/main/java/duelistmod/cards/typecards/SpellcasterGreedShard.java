@@ -37,6 +37,7 @@ public class SpellcasterGreedShard extends DuelistCard
     	this.tags.add(Tags.SPELLCASTER);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.dontTriggerOnUseCard = true;
     }
 
     @Override public String getID() { return ID; }

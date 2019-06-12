@@ -51,7 +51,7 @@ public class MangaRyuRan extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
+    	tribute();
     	damageThroughBlock(m, p, this.damage, AFX);
     }
 

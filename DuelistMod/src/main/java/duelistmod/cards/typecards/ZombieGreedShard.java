@@ -37,6 +37,7 @@ public class ZombieGreedShard extends DuelistCard
     	this.tags.add(Tags.ZOMBIE);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.dontTriggerOnUseCard = true;
     }
 
     @Override public String getID() { return ID; }

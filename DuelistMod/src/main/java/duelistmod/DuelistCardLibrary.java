@@ -1,14 +1,19 @@
 package duelistmod;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
 import duelistmod.cards.*;
+import duelistmod.cards.curses.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.DuelistCard;
@@ -31,6 +36,11 @@ public class DuelistCardLibrary {
 				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); DuelistMod.summonMap.put(c.originalName, c); 
 			}
 			else { if (!c.rarity.equals(CardRarity.SPECIAL)) { UnlockTracker.unlockCard(c.getID()); }}
+		}
+		
+		for (DuelistCard c : DuelistMod.curses)
+		{
+			BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); 
 		}
 
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
@@ -487,6 +497,39 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new CyberneticFusion());
 		DuelistMod.myCards.add(new ReadyForIntercepting());
 		DuelistMod.myCards.add(new BigEye());
+		DuelistMod.myCards.add(new IronCall());
+		DuelistMod.myCards.add(new IronDraw());
+		DuelistMod.myCards.add(new LimiterRemoval());
+		DuelistMod.myCards.add(new MachineDuplication());		
+		DuelistMod.myCards.add(new VampireLord());
+		DuelistMod.myCards.add(new VampireGenesis());
+		DuelistMod.myCards.add(new VampireGrace());
+		DuelistMod.myCards.add(new VampireFraulein());
+		DuelistMod.myCards.add(new ShadowVampire());
+		DuelistMod.myCards.add(new Mixeroid());
+		DuelistMod.myCards.add(new Oilman());
+		DuelistMod.myCards.add(new IlBlud());
+		DuelistMod.myCards.add(new OutriggerExtension());
+		DuelistMod.myCards.add(new JumboDrill());
+		DuelistMod.myCards.add(new YamiForm());
+		
+		DuelistMod.curses.add(new GravekeeperCurse());
+		DuelistMod.curses.add(new CurseAnubis());
+		DuelistMod.curses.add(new CurseArmaments());
+		DuelistMod.curses.add(new CursedBill());
+		DuelistMod.curses.add(new CurseAging());
+		DuelistMod.curses.add(new SummoningCurse());
+		DuelistMod.curses.add(new VampireCurse());
+		DuelistMod.curses.add(new PsiCurse());
+		//DuelistMod.curses.add(new CurseRoyal());
+		
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			String ID = DuelistMod.typeCardMap_ID.get(t);
+			CardStrings localCardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+			DuelistMod.typeCardMap_NAME.put(t, localCardStrings.NAME);
+			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
+		}
 
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)
@@ -634,6 +677,7 @@ public class DuelistCardLibrary {
 		DuelistMod.summonMap.put("Blood Token", new BloodToken());
 		DuelistMod.summonMap.put("Hane Token", new HaneToken());
 		DuelistMod.summonMap.put("Stim Token", new StimToken());
+		DuelistMod.summonMap.put("S. Exploding Token", new SuperExplodingToken());
 	}
 	
 	public static ArrayList<DuelistCard> getTokens()
@@ -676,7 +720,32 @@ public class DuelistCardLibrary {
 		tokens.add(new BloodToken());
 		tokens.add(new HaneToken());
 		tokens.add(new StimToken());
+		tokens.add(new SuperExplodingToken());
 		return tokens;
+	}
+	
+	public static AbstractCard getRandomDuelistCurseUnseeded()
+	{
+		if (DuelistMod.curses.size() > 0)
+		{
+			return DuelistMod.curses.get(ThreadLocalRandom.current().nextInt(0, DuelistMod.curses.size()));
+		}
+		else
+		{
+			return new CurseAging();
+		}
+	}
+	
+	public static AbstractCard getRandomDuelistCurse()
+	{
+		if (DuelistMod.curses.size() > 0)
+		{
+			return DuelistMod.curses.get(AbstractDungeon.cardRandomRng.random(DuelistMod.curses.size() - 1));
+		}
+		else
+		{
+			return new CurseAging();
+		}
 	}
 
 }

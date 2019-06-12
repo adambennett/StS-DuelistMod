@@ -67,6 +67,11 @@ public class MillenniumPuzzle extends CustomRelic {
 	{
 		this.flash();
 		getDeckDesc();
+		if (StarterDeckSetup.getCurrentDeck().getIndex() != DuelistMod.normalSelectDeck && DuelistMod.normalSelectDeck > -1)
+		{
+			DuelistMod.deckIndex = DuelistMod.normalSelectDeck;
+			getDeckDesc();
+		}
 		PuzzleHelper.atBattleStartHelper(summons, extra);
 	}
 
@@ -114,7 +119,7 @@ public class MillenniumPuzzle extends CustomRelic {
 	public void getDeckDesc()
 	{
 		String localdesc = "empty";
-		int deck = StarterDeckSetup.getCurrentDeck().getIndex();
+		int deck = DuelistMod.deckIndex;
 		if (DuelistMod.challengeMode)
 		{
 			localdesc = DESCRIPTIONS[1];

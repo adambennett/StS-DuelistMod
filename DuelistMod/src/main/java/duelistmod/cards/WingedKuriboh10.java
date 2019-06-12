@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
-import duelistmod.cards.typecards.*;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -50,19 +49,7 @@ public class WingedKuriboh10 extends DuelistCard
     {
     	tribute();
     	block(this.block);
-    	ArrayList<DuelistCard> types = new ArrayList<DuelistCard>();
-    	types.add(new AquaDrawTypeCard(this.magicNumber));
-    	types.add(new DragonDrawTypeCard(this.magicNumber));
-    	types.add(new FiendDrawTypeCard(this.magicNumber));
-    	types.add(new InsectDrawTypeCard(this.magicNumber));
-    	types.add(new MachineDrawTypeCard(this.magicNumber));
-    	types.add(new NaturiaDrawTypeCard(this.magicNumber));
-    	types.add(new PlantDrawTypeCard(this.magicNumber));
-    	types.add(new PredaplantDrawTypeCard(this.magicNumber));
-    	types.add(new SpellcasterDrawTypeCard(this.magicNumber));
-    	types.add(new SuperheavyDrawTypeCard(this.magicNumber));
-    	types.add(new ToonDrawTypeCard(this.magicNumber));
-    	types.add(new ZombieDrawTypeCard(this.magicNumber));
+    	ArrayList<DuelistCard> types = generateTypeCards(this.magicNumber, true);
     	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
     }
 

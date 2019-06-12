@@ -426,5 +426,17 @@
 "theDuelist:SpellbookLifePower": {
         "NAME": "Spellbook of Life",
         "DESCRIPTIONS": ["Whenever you #yTribute a #ySpellcaster for another, gain #b", " #ytemporary #yHP."  ]
+},
+"theDuelist:IlBludPower": {
+        "NAME": "Il Blud",
+        "DESCRIPTIONS": ["Whenever you discard a card, deal #b", " damage to ALL enemies."  ]
+},
+"theDuelist:OutriggerExtensionPower": {
+        "NAME": "Outrigger Extension",
+        "DESCRIPTIONS": ["Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by #b", " for this combat."  ]
+},
+"theDuelist:JumboDrillPower": {
+        "NAME": "Jumbo Drill",
+        "DESCRIPTIONS": ["Whenever you attack, choose 1 of 3 #yRandomized #yMachines to add to your hand." ]
 }
 }

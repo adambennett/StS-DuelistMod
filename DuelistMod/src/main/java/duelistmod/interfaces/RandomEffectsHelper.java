@@ -2,13 +2,12 @@ package duelistmod.interfaces;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.powers.*;
 
 public class RandomEffectsHelper 
@@ -21,12 +20,14 @@ public class RandomEffectsHelper
 		AbstractPower poison = new PoisonPower(targetMonster, p, turnNum);
 		AbstractPower weak = new WeakPower(targetMonster, turnNum, false);
 		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
+		AbstractPower strDown = new LoseStrengthPower(targetMonster, turnNum);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		debuffs.add(slow);
 		debuffs.add(vulnerable);
 		debuffs.add(poison);
 		debuffs.add(weak);
 		debuffs.add(constricted);
+		debuffs.add(strDown);
 		
 
 		// Get randomized debuff
@@ -74,6 +75,8 @@ public class RandomEffectsHelper
 		//AbstractPower choked = new ChokePower(p, turnNum);
 		AbstractPower confusion = new ConfusionPower(p);
 		AbstractPower corruption = new CorruptionPower(p);
+		AbstractPower strDown = new LoseStrengthPower(p, turnNum);
+		AbstractPower dexDown = new LoseDexterityPower(p, turnNum);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		
 		debuffs.add(slow);
@@ -89,6 +92,8 @@ public class RandomEffectsHelper
 		//debuffs.add(beatOfDeath);
 		debuffs.add(confusion);
 		debuffs.add(corruption);
+		debuffs.add(strDown);
+		debuffs.add(dexDown);
 	
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
@@ -97,11 +102,4 @@ public class RandomEffectsHelper
 		return randomDebuff;
 
 	}
-	
-	public static void addFromRandomSetToHand()
-	{
-		AbstractCard randomSetCard = DuelistCard.returnTrulyRandomFromSet(Tags.RANDOMONLY);
-		DuelistCard.addCardToHand(randomSetCard);
-	}
-
 }

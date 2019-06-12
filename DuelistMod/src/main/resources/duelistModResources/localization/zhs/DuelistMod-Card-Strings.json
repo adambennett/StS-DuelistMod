@@ -244,9 +244,9 @@
 		"UPGRADE_DESCRIPTION": "龙族。祭品数 !duelist:TRIB! 造成 !D! 点伤害。"
 	},
 	"theDuelist:BookSecret": {
-		"DESCRIPTION": "将 !M! 张随机的魔法师族增加到手牌中。生成1个随机的充能球。消耗。",
+		"DESCRIPTION": "将 !M! 张 随机 的魔法师族 增加到手牌中 。 生成 1 个 随机 的 充能球 。 消耗 ",
 		"NAME": "秘术之书",
-		"UPGRADE_DESCRIPTION": "将 !M! 张随机升级过的魔法师族增加到手牌中。生成2个随机的充能球。消耗。"
+		"UPGRADE_DESCRIPTION": "将 ! M! 张 随机 升级过的魔法师族 增加到手牌中 。 生成 ! M! 个 随机 的 充能球 。 消耗"
 	},
 	"theDuelist:BottomlessTrapHole": {
 		"DESCRIPTION": "丢弃抽牌堆中的所有怪兽。每丢弃1个怪兽，造成 !D! 点伤害。消耗。",
@@ -407,9 +407,9 @@
 		"UPGRADE_DESCRIPTION": "机械族。祭品数 !duelist:TRIB! 获得 [G] [G] [G] [G] "
 	},
 	"theDuelist:DarkHole": {
-		"DESCRIPTION": "偷走所有敌人的所有格挡。",
+		"DESCRIPTION": "偷走所有敌人的所有格挡 。 NL  移除自己所有的负面效果 ",
 		"NAME": "黑洞",
-		"UPGRADE_DESCRIPTION": "偷走所有敌人的所有格挡。 NL 移除所有敌人的所有增益效果。"
+		"UPGRADE_DESCRIPTION": "偷走所有敌人的所有格挡 。 NL  移除自己所有的负面效果 。 NL  移除所有敌人的所有增益效果 "
 	},
 	"theDuelist:DarkHorizon": {
 		"DESCRIPTION": "祭品数 !duelist:TRIB! 激发下个充能球 !M! 次。",
@@ -462,9 +462,9 @@
 		"UPGRADE_DESCRIPTION": "龙族。祭品数 !duelist:TRIB! 造成 !D! 点伤害。 NL 本回合手牌中龙族怪兽的耗能减少2点。"
 	},
 	"theDuelist:DarklordMarie": {
-		"DESCRIPTION": "魔法师族。召唤数 !duelist:SUMM! 造成 !D! 点伤害。 NL 手坑 !M! - 获得 3 生命。",
+		"DESCRIPTION": "恶魔族 。 召唤 数 !duelist:SUMM! 造成 !D! 点伤害 。 NL  手坑 !M! - 获得 3 生命 ",
 		"NAME": "堕—魔法师 玛丽",
-		"UPGRADE_DESCRIPTION": "魔法师族。召唤数 !duelist:SUMM! 造成 !D! 点伤害。 NL 手坑 !M! - 获得 4 生命。"
+		"UPGRADE_DESCRIPTION": "恶魔族 。 召唤 数 !duelist:SUMM! 造成 !D! 点伤害 。 NL  手坑 !M! - 获得 4 生命 "
 	},
 	"theDuelist:DarkstormDragon": {
 		"DESCRIPTION": "龙族。祭品数 !duelist:TRIB! 造成 !D! 点伤害。 NL 本回合手牌中的随机龙族怪兽的祭品消耗减少 !M! 点。",
@@ -1165,9 +1165,9 @@
 		"UPGRADE_DESCRIPTION": "生成1个千年充能球。"
 	},
 	"theDuelist:MillenniumShield": {
-		"DESCRIPTION": "祭品数 !duelist:TRIB! 获得4点敏捷。消耗。",
+		"DESCRIPTION": "祭品数 !duelist:TRIB! 获得 !M! 点敏捷。消耗。",
 		"NAME": "千年盾",
-		"UPGRADE_DESCRIPTION": " 祭品数 !duelist:TRIB! 获得4点敏捷。消耗。"
+		"UPGRADE_DESCRIPTION": " 祭品数 !duelist:TRIB! 获得 !M! 点敏捷。消耗。"
 	},
 	"theDuelist:MindAir": {
 		"DESCRIPTION": "魔法师族。召唤数 !duelist:SUMM! 空气充能球总能生成1个充能球。",
@@ -1826,9 +1826,9 @@
 		"NAME": "魔法"
 	},
 	"theDuelist:SphereKuriboh": {
-		"DESCRIPTION": "每当增殖时，将1张随机牌增加到手牌中。",
+		"DESCRIPTION": "召唤 数 !duelist:SUMM! NL  每当增殖 时 ， 将 1 张 随机 牌增加到手牌中 ",
 		"NAME": "球形栗子球",
-		"UPGRADE_DESCRIPTION": "固有。每当增殖时，将1张随机牌增加到手牌中。"
+		"UPGRADE_DESCRIPTION": "召唤 数 !duelist:SUMM! NL  固有 。 每当增殖 时 ， 将 1 张 随机 牌增加到手牌中 "
 	},
 	"theDuelist:SpiritHarp": {
 		"DESCRIPTION": "魔法师族。召唤数 !duelist:SUMM! 获得 !B! 点格挡。",
@@ -1989,9 +1989,9 @@
 		"UPGRADE_DESCRIPTION": "本回合获得5点力量。将 !M! 张这张牌的复制品增加到抽牌堆，本场战斗每打出过1张执念之剑，额外增加 !M! 个复制品。消耗。"
 	},
 	"theDuelist:SwordsBurning": {
-		"DESCRIPTION": "每次激发充能球，生成1个熔岩充能球。",
+		"DESCRIPTION": "每次激发 充能球 ， 生成 1 个 熔岩 充能球 ",
 		"NAME": "炎之护封剑",
-		"UPGRADE_DESCRIPTION": "每次激发充能球，生成1个熔岩充能球。"
+		"UPGRADE_DESCRIPTION": "每次激发 充能球 ， 生成 1 个 熔岩 充能球 "
 	},
 	"theDuelist:SwordsConcealing": {
 		"DESCRIPTION": "每打出1张牌，获得 !M! 点格挡。 NL 获得的格挡受敏捷影响。",
@@ -2948,18 +2948,133 @@
 		"UPGRADE_DESCRIPTION": "下 !M! 只龙族造成额外 !M! 点伤害。 每将1只龙族作为龙族祭品时，额外补充计数。"
 	},
 	"theDuelist:ZombieMaster": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random Zombie and Resummon it on the target enemy. Exempt.",
-		"NAME": "Zombie Master",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Create !M! random upgraded Zombie and Resummon it on the target enemy. Exempt."
+		"DESCRIPTION": "不死族 。 祭品 数 !duelist:TRIB! 造成 !D! 点伤害 。 NL 随机 创造 !M! 只 不死族 并对目标敌人特殊召唤 。 固守 ",
+		"NAME": "僵尸之主",
+		"UPGRADE_DESCRIPTION": "不死族 。 祭品 数 !duelist:TRIB! 造成 !D! 点伤害 。 NL 随机 创造 !M! 只 不死族 并对目标敌人特殊召唤 。 固守 "
 	},
 	"theDuelist:ImperialTomb": {
-		"DESCRIPTION": "Purge half of your exhaust pile randomly. NL Shuffle the remaining cards back into your draw pile. NL Exhaust.",
-		"NAME": "Imperial Tomb",
-		"UPGRADE_DESCRIPTION": "Purge half of your exhaust pile randomly. NL Shuffle the remaining cards back into your draw pile. NL Exhaust."
+		"DESCRIPTION": " 随机 将消耗 牌堆中一半的牌除外 。 NL  将剩余一半的牌洗牌并放入抽牌堆中 。 消耗 ",
+		"NAME": "王墓的陷阱",
+		"UPGRADE_DESCRIPTION": " 随机 将消耗 牌堆中一半的牌除外 。 NL  将剩余一半的牌洗牌并放入抽牌堆中 。 消耗 "
 	},
 	"theDuelist:SpellbookLife": {
-		"DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP.",
-		"NAME": "Spellbook of Life",
-		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Spellcaster for another, gain !M! temporary HP."
+		"DESCRIPTION": "每当将 1 只 魔法师族 作为魔法师族 祭品 时 ， 获得 !M! 点临时HP ",
+		"NAME": "死灵之魔导书",
+		"UPGRADE_DESCRIPTION": "每当将 1 只 魔法师族 作为魔法师族 祭品 时 ， 获得 !M! 点临时HP "
+	},
+	"theDuelist:CurseAging": {
+		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, lose 6 max HP and gain 200 Gold.",
+		"NAME": "Curse of Aging",
+		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, lose 6 max HP and gain 200 Gold."
+	},
+	"theDuelist:CurseAnubis": {
+		"DESCRIPTION": "Unplayable NL When drawn, lose 1 HP for each of your summons.",
+		"NAME": "Curse of Anubis",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose 1 HP for each of your summons."
+	},
+	"theDuelist:CurseArmaments": {
+		"DESCRIPTION": "Unplayable NL When drawn, lose 1 HP for each of your powers.",
+		"NAME": "Curse of Armaments",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose 1 HP for each of your powers."
+	},
+	"theDuelist:CurseDarkness": {
+		"DESCRIPTION": "Unplayable NL While this card is in your hand you cannot see enemy intents.",
+		"NAME": "Curse of Darkness",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this card is in your hand you cannot see enemy intents."
+	},
+	"theDuelist:CursedBill": {
+		"DESCRIPTION": "Unplayable NL While this card is in your draw pile, it costs 10 Gold to Summon.",
+		"NAME": "Cursed Bill",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this card is in your draw pile, it costs 10 Gold to Summon."
+	},
+	"theDuelist:CurseFiend": {
+		"DESCRIPTION": "Unplayable NL Ethereal NL When drawn, replace all 1-cost cards in your draw pile with copies of Terra the Terrible and Summoned Skull.",
+		"NAME": "Curse of Fiend",
+		"UPGRADE_DESCRIPTION": "Unplayable NL Ethereal NL When drawn, replace all 1-cost cards in your draw pile with copies of Terra the Terrible and Summoned Skull."
+	},
+	"theDuelist:CurseRoyal": {
+		"DESCRIPTION": "Unplayable NL Whenever you gain Gold during combat, lose 2 max HP.",
+		"NAME": "Curse Royal",
+		"UPGRADE_DESCRIPTION": "Unplayable NL Whenever you gain Gold during combat, lose 2 max HP."
+	},
+	"theDuelist:GravekeeperCurse": {
+		"DESCRIPTION": "Unplayable NL When drawn, Exhaust all cards in your discard pile.",
+		"NAME": "Gravekeeper Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, Exhaust all cards in your discard pile."
+	},
+	"theDuelist:PsiCurse": {
+		"DESCRIPTION": "Unplayable NL While this card is in your draw or discard pile, you have a 50% chance to fail Increment actions.",
+		"NAME": "Psi-Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this card is in your draw or discard pile, you have a 50% chance to fail Increment actions."
+	},
+	"theDuelist:SummoningCurse": {
+		"DESCRIPTION": "Unplayable NL While this card is in your hand you cannot Summon.",
+		"NAME": "Summoning Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL While this card is in your hand you cannot Summon."
+	},
+	"theDuelist:TikiCurse": {
+		"DESCRIPTION": "Unplayable NL When drawn, lose 2 max HP.",
+		"NAME": "Tiki Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, lose 2 max HP."
+	},
+	"theDuelist:VampireCurse": {
+		"DESCRIPTION": "Unplayable NL When drawn, all cards in your draw pile become Ethereal.",
+		"NAME": "Vampire Curse",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When drawn, all cards in your draw pile become Ethereal."
+	},
+	"theDuelist:VampireLord": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards.",
+		"NAME": "Vampire Lord",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard !M! cards."
+	},
+	"theDuelist:VampireGenesis": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard your hand.",
+		"NAME": "Vampire Genesis",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Discard your hand."
+	},
+	"theDuelist:VampireGrace": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! cards.",
+		"NAME": "Vampire Grace",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Exhaust !M! cards."
+	},
+	"theDuelist:VampireFraulein": {
+		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards.",
+		"NAME": "Vampire Fraulein",
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards."
+	},
+	"theDuelist:ShadowVampire": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand.",
+		"NAME": "Shadow Vampire",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand."
+	},
+	"theDuelist:IlBlud": {
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Whenever you discard a card, deal !M! damage to ALL enemies.",
+		"NAME": "Il Blud",
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Whenever you discard a card, deal !M! damage to ALL enemies."
+	},
+	"theDuelist:OutriggerExtension": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by !M! for this combat.",
+		"NAME": "Outrigger Extension",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by !M! for this combat."
+	},
+	"theDuelist:Oilman": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a random Skill in your hand by !M! for this combat.",
+		"NAME": "Oilman",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a random Skill in your hand by !M! for this combat."
+	},
+	"theDuelist:Mixeroid": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the magic number of a random Skill in your hand by !M! for this combat.",
+		"NAME": "Mixeroid",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the magic number of a random Skill in your hand by !M! for this combat."
+	},
+	"theDuelist:SuperExplodingToken": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Lose (2-6) HP when Tributed.",
+		"NAME": "S. Exploding Token",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Lose (2-6) HP when Tributed."
+	},
+	"theDuelist:JumboDrill": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever you attack, choose 1 of 3 Randomized Machines to add to your hand.",
+		"NAME": "JumboDrill",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever you attack, choose 1 of 3 Randomized Machines to add to your hand."
 	}
 }

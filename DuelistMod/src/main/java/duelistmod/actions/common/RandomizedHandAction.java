@@ -23,6 +23,7 @@ public class RandomizedHandAction extends AbstractGameAction
 	private boolean tributeCheck = false;
 	private boolean summonChangeCombatCheck = false;
 	private boolean tributeChangeCombatCheck = false;
+	private boolean dontTrigFromFairyBox = false;
 	private int lowCostRoll = 1;
 	private int highCostRoll = 3;
 	private int lowSummonRoll = 1;
@@ -270,6 +271,34 @@ public class RandomizedHandAction extends AbstractGameAction
 		checkFlags();
     }
     
+    public RandomizedHandAction(AbstractCard c, boolean upgrade, boolean ethereal, boolean exhaust,	boolean costChange, boolean tributeChange, boolean summonChange, boolean tribChangeCombat, boolean summonChangeCombat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, boolean dontTrig) 
+    {
+        this.actionType = ActionType.CARD_MANIPULATION;
+        this.duration = Settings.ACTION_DUR_FAST;
+        this.cardRef = c;
+        this.lowCostRoll = lowCost;
+        this.highCostRoll = highCost;
+        this.lowSummonRoll = lowSummon;
+        this.highSummonRoll = highSummon;
+        this.lowTributeRoll = lowTrib;
+        this.highTributeRoll = highTrib;
+        this.tributeChangeCombatCheck = tribChangeCombat;
+        this.summonChangeCombatCheck = summonChangeCombat;
+        if (dontTrig) { this.dontTrigFromFairyBox = true; }
+        if (upgrade) { this.upgradeCheck = true; }
+		if (ethereal) { this.etherealCheck = true; }
+		if (exhaust) { this.exhaustCheck = true; }
+		if (costChange && !DuelistMod.noCostChanges)	{ this.costChangeCheck = true; }
+		if (tributeChange) { this.tributeCheck = true; }
+		if (summonChange) { this.summonCheck = true; }
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+		}
+		checkFlags();
+    }
+    
     private void checkFlags()
     {
     	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
@@ -380,11 +409,16 @@ public class RandomizedHandAction extends AbstractGameAction
     			}
     		}
     		
+    		if (dontTrigFromFairyBox)
+    		{
+    			c.dontTriggerOnUseCard = false;
+    		}
+    		
             c.initializeDescription();
             
             if (AbstractDungeon.player.hand.size() < BaseMod.MAX_HAND_SIZE)
             {
-            	AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c));
+            	AbstractDungeon.actionManager.addToBottom(new MakeStatEquivalentLocal(c, dontTrigFromFairyBox));
             }
             else
             {
@@ -401,11 +435,11 @@ public class RandomizedHandAction extends AbstractGameAction
     public class MakeStatEquivalentLocal extends AbstractGameAction {
         private AbstractCard c;
 
-        public MakeStatEquivalentLocal(AbstractCard c) {
+        public MakeStatEquivalentLocal(AbstractCard c, boolean dontTrig) {
             this.actionType = ActionType.CARD_MANIPULATION;
             this.duration = Settings.ACTION_DUR_FAST;
             this.c = c;
-
+            if (dontTrig) { this.c.dontTriggerOnUseCard = false; } 
         }
 
         public void update() {

@@ -119,7 +119,20 @@
 			"#y扰乱狂",
 			"生成1个故障充能球",
 			"失去 #b1 生命",
-            "召唤"
+            "召唤",
+			"Increment action failed!",
+			"Summon action failed!",
+			"Tribute action failed!",
+			"Gain #b1 Max HP",
+			"At the start of turn, draw a ",
+			" monster.",
+			" monsters.",
+			"Whenever you play a ",
+			" monster, add it back into your hand at the start of your next turn.",
+			"Draw ",
+			"At the start of turn, draw ",
+			"Resummon a random ",
+			" monster on a random enemy."
 		]
 	}
 }

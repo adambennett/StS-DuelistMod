@@ -36,6 +36,7 @@ public class FiendTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.FIEND);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     public FiendTypeCard(String tokenName) 
     { 
@@ -43,6 +44,7 @@ public class FiendTypeCard extends DuelistCard
     	this.tags.add(Tags.ARCHETYPE);
     	this.tags.add(Tags.FIEND);
     	this.purgeOnUse = true;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new FiendTypeCard(); }   

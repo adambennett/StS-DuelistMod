@@ -37,6 +37,7 @@ public class DragonGreedShard extends DuelistCard
     	this.tags.add(Tags.DRAGON);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.dontTriggerOnUseCard = true;
     }
     @Override public String getID() { return ID; }
     @Override public AbstractCard makeCopy() { return new DragonGreedShard(1); }   

@@ -78,7 +78,7 @@ public class Ojamassimilation extends DuelistCard
 		int topRoll = 6;
 		for (int i = 0; i < spellsExhausted; i++)
 		{
-			DuelistCard ojama = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.OJAMA);
+			DuelistCard ojama = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.SPELL);
 			AbstractDungeon.actionManager.addToBottom(new RandomizedDrawPileAction(ojama, this.upgraded, true, false, false));
 			int buffRoll = AbstractDungeon.cardRandomRng.random(1, topRoll);
 			if (buffRoll == 1)

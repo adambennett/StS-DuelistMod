@@ -30,7 +30,7 @@ public class BattleguardKing extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 3;
-    private static final int DAMAGE = 22;
+    private static final int DAMAGE = 19;
     private static final int UPGRADE_PLUS_DMG = 8;
     private static final int SUMMONS = 3;
     // /STAT DECLARATION/

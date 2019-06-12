@@ -8,12 +8,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 
 public class BlastJuggler extends DuelistCard 
@@ -58,36 +57,53 @@ public class BlastJuggler extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		attack(m, this.baseAFX, this.damage);
-		int tokens = 0;
-    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    	ArrayList<String> summonsList = summonsInstance.summonList;
-    	ArrayList<String> newSummonList = new ArrayList<String>();
-    	for (String s : summonsList)
-    	{
-    		if ((s.equals("Explosive Token") || (s.equals("Exploding Token"))))
-    		{
-    			tokens++;
-    			//if (DuelistMod.debug) { System.out.println("Blast juggler found an explosive token that monster: " + s + " :::: tokens so far: " + tokens); }
-    		}
-    		else
-    		{
-    			newSummonList.add(s);
-    			//if (DuelistMod.debug) { System.out.println("Blast juggler added a non-explosive token to the new summons list. that monster: " + s); }
-    		}
-    	}
-    	
-    	tributeChecker(player(), tokens, this, false);
-    	summonsInstance.summonList = newSummonList;
-    	summonsInstance.amount -= tokens;
-    	//summonsInstance.updateDescription();
-    	for (int i = 0; i < tokens; i++)
-    	{
-    		AbstractMonster randomM = getRandomMonster();
-    		int roll = AbstractDungeon.cardRandomRng.random(1, 3);
-    		attack(randomM, this.baseAFX, roll);
-    	}
-    	
-    	summon(player(), 0, new Token());
+		if (p.hasPower(SummonPower.POWER_ID))
+		{
+			int tokens = 0;
+			int allTokens = 0;
+			int sTokens = 0;
+	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+	    	ArrayList<String> summonsList = summonsInstance.summonList;
+	    	ArrayList<String> newSummonList = new ArrayList<String>();
+	    	for (String s : summonsList)
+	    	{
+	    		if (DuelistMod.summonMap.get(s).hasTag(Tags.EXPLODING_TOKEN))
+	    		{
+	    			tokens++;
+	    			allTokens++;
+	    			//if (DuelistMod.debug) { System.out.println("Blast juggler found an explosive token that monster: " + s + " :::: tokens so far: " + tokens); }
+	    		}
+	    		else if (DuelistMod.summonMap.get(s).hasTag(Tags.SUPER_EXPLODING_TOKEN))
+	    		{
+	    			sTokens++;
+	    			allTokens++;
+	    		}
+	    		else
+	    		{
+	    			newSummonList.add(s);
+	    			//if (DuelistMod.debug) { System.out.println("Blast juggler added a non-explosive token to the new summons list. that monster: " + s); }
+	    		}
+	    	}
+	    	
+	    	tributeChecker(player(), allTokens, this, false);
+	    	summonsInstance.summonList = newSummonList;
+	    	summonsInstance.amount -= allTokens;
+	    	//summonsInstance.updateDescription();
+	    	for (int i = 0; i < tokens; i++)
+	    	{
+	    		AbstractMonster randomM = getRandomMonster();
+	    		int roll = AbstractDungeon.cardRandomRng.random(1, 3);
+	    		attack(randomM, this.baseAFX, roll);
+	    	}
+	    	for (int i = 0; i < sTokens; i++)
+	    	{
+	    		AbstractMonster randomM = getRandomMonster();
+	    		int roll = AbstractDungeon.cardRandomRng.random(2, 6);
+	    		attack(randomM, this.baseAFX, roll);
+	    	}
+	    	
+	    	summon(player(), 0, new Token());
+		}
 	}
 
 	// Which card to return when making a copy of this card.
