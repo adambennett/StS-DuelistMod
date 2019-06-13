@@ -530,7 +530,7 @@ public class DuelistCardLibrary {
 		//DuelistMod.myCards.add(new WightLady());
 		//DuelistMod.myCards.add(new ZombieMammoth());
 		//DuelistMod.myCards.add(new ZombieWarrior());
-		//DuelistMod.myCards.add(new BlueBloodedOni());
+		DuelistMod.myCards.add(new BlueBloodedOni());
 		//DuelistMod.myCards.add(new DesLacooda());
 		//DuelistMod.myCards.add(new DespairFromDark());
 		//DuelistMod.myCards.add(new DragonZombie());

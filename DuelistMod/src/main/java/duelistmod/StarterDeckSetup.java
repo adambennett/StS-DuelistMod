@@ -699,12 +699,12 @@ public class StarterDeckSetup {
 		dragonCards.add(new CheerfulCoffin());
 		dragonCards.add(new SuperancientDinobeast());
 		
-		//zombieCards.add(new BeserkDragon());		
-		//zombieCards.add(new DoomkaiserDragon());		
-		//zombieCards.add(new RedHeadedOni());	
-		//zombieCards.add(new BlueBloodedOni());	
-		//zombieCards.add(new DragonZombie());
-		//zombieCards.add(new YellowBelliedOni());
+		//dragonCards.add(new BeserkDragon());		
+		//dragonCards.add(new DoomkaiserDragon());		
+		dragonCards.add(new RedHeadedOni());	
+		dragonCards.add(new BlueBloodedOni());	
+		dragonCards.add(new DragonZombie());
+		//dragonCards.add(new YellowBelliedOni());
 
 		if (!DuelistMod.toonBtnBool)
 		{
@@ -975,12 +975,12 @@ public class StarterDeckSetup {
 		//zombieCards.add(new Gozuki());
 		//zombieCards.add(new Kasha());
 		//zombieCards.add(new OniTankT34());
-		//zombieCards.add(new RedHeadedOni());
+		zombieCards.add(new RedHeadedOni());
 		//zombieCards.add(new UnderworldCannon());
 		//zombieCards.add(new WightLady());
 		//zombieCards.add(new ZombieMammoth());
 		//zombieCards.add(new ZombieWarrior());
-		//zombieCards.add(new BlueBloodedOni());
+		zombieCards.add(new BlueBloodedOni());
 		//zombieCards.add(new DesLacooda());
 		//zombieCards.add(new DespairFromDark());
 		//zombieCards.add(new DragonZombie());
@@ -990,7 +990,7 @@ public class StarterDeckSetup {
 		//zombieCards.add(new OniGamiCombo());
 		//zombieCards.add(new PainPainter());
 		//zombieCards.add(new PlaguespreaderZombie());
-		//zombieCards.add(new YellowBelliedOni());
+		zombieCards.add(new YellowBelliedOni());
 		//zombieCards.add(new ZombieWorld());
 		
 		zombieDeck.fillPoolCards(DuelistMod.basicCards);
