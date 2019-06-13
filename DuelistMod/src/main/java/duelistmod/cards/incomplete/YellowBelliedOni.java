@@ -131,7 +131,7 @@ public class YellowBelliedOni extends DuelistCard
 	@Override
 	public void onResummon(int summons) 
 	{
-		fetch(player().exhaustPile, true);
+		fetch(player().exhaustPile, false);
 	}
 
 	@Override
