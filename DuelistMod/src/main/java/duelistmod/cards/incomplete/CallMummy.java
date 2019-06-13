@@ -51,8 +51,8 @@ public class CallMummy extends DuelistCard
 		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
 		if (handCards.size() > 0)
 		{
-			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, handCards.size(), false, false)); }
-			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, this.magicNumber, false, false)); }    		
+			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, handCards.size(), false, false, m)); }
+			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, this.magicNumber, false, false, m)); }    		
 		}    	
     }
 
