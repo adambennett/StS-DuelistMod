@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
@@ -47,30 +47,13 @@ public class CallMummy extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	if (upgraded)
-    	{
-    		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER)) { handCards.add(a.makeStatEquivalentCopy()); }}
-    		if (handCards.size() > 0)
-    		{
-    			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, true, handCards.size(), handCards)); }
-    			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, true, this.magicNumber, handCards)); }    		
-    		}
-    	}
-    	else
-    	{
-    		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER)) { handCards.add(a); }}
-    		if (handCards.size() > 0)
-        	{			
-        		AbstractCard cardCopy = returnRandomFromArrayAbstract(handCards).makeStatEquivalentCopy();
-    			if (cardCopy != null)
-    			{
-    				if (cardCopy.upgraded) { cardCopy.upgrade(); }
-    				cardCopy.applyPowers();
-    				fullResummon((DuelistCard)cardCopy, false, m, false);
-    			}			
-        	}
-    	}
+    	ArrayList<DuelistCard> handCards = new ArrayList<DuelistCard>();
+		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
+		if (handCards.size() > 0)
+		{
+			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, handCards.size(), false, false)); }
+			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, this.magicNumber, false, false)); }    		
+		}    	
     }
 
     // Which card to return when making a copy of this card.

@@ -87,6 +87,10 @@
         "NAME": "魔术师瓶",
         "DESCRIPTIONS": ["本场战斗减少手牌中所有怪兽的#y祭品 消耗#b", "点。"]
 },
+"theDuelist:DestructPotionPot": {
+        "NAME": "Destruct Potion",
+        "DESCRIPTIONS": ["#yTribute all of your summons and gain #b", " #ymax #yHP for each."]
+},
 "theDuelist:JoeyJuice": {
         "NAME": "城之橙汁",
         "DESCRIPTIONS": ["给予2个随机#y负面效果。"]

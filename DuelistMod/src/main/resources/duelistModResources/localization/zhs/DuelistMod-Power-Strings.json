@@ -438,5 +438,13 @@
 "theDuelist:JumboDrillPower": {
         "NAME": "Jumbo Drill",
         "DESCRIPTIONS": ["Whenever you attack, choose 1 of 3 #yRandomized #yMachines to add to your hand." ]
+},
+"theDuelist:YamiFormPower": {
+        "NAME": "Yami Form",
+        "DESCRIPTIONS": ["At the start of turn, choose 1 of #b", " random monster type. Resummon a random monster of that type on a random enemy.", " random monster types. Resummon a random monster of that type on a random enemy." ]
+},
+"theDuelist:JumboDrillPower": {
+        "NAME": "Jumbo Drill",
+        "DESCRIPTIONS": ["Whenever you attack, choose 1 of 3 #yRandomized #yMachines to add to your hand." ]
 }
 }

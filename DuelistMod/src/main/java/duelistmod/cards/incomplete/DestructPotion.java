@@ -46,7 +46,7 @@ public class DestructPotion extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> list = tribute(true);
-    	if (list.size() > 0) { p.maxHealth += list.size(); }
+    	if (list.size() > 0) { p.maxHealth += list.size() * this.magicNumber; }
     }
 
     // Which card to return when making a copy of this card.
