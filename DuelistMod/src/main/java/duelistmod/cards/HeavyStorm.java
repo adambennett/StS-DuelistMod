@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 
 public class HeavyStorm extends DuelistCard 
 {
@@ -26,11 +25,11 @@ public class HeavyStorm extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public HeavyStorm() {
@@ -46,28 +45,12 @@ public class HeavyStorm extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Remove player powers
-    	for (AbstractPower powerToRemove : p.powers)
+    	if (p.hasPower(SummonPower.POWER_ID))
     	{
-    		removePower(powerToRemove, p);
-    	}
-    	
-    	// Remove enemy powers
-    	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
-    	for (AbstractMonster g : monsters)
-    	{
-    		for (AbstractPower powerToRemove : g.powers)
-        	{
-    			if (g.name.equals("Eviscerating Totem") || g.name.equals("Encouraging Totem") || g.name.equals("Debilitating Totem") || g.name.equals("Totem Speaker"))
-    			{
-    				if (DuelistMod.debug) { System.out.println("bad power"); }
-    			}
-    			else
-    			{
-    				removePower(powerToRemove, g);
-    				if (DuelistMod.debug) { System.out.println("Heavy Storm removed power: " + g.name); }
-    			}        		
-        	}
+	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+	    	summonsInstance.summonList = new ArrayList<String>();
+	    	summonsInstance.amount -= summonsInstance.amount;
+	    	summonsInstance.updateDescription();
     	}
     }
 
@@ -79,13 +62,20 @@ public class HeavyStorm extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBaseCost(0);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
+    public void upgrade() 
+    {
+        //if (!this.upgraded) {
+           // this.upgradeName();
+            //this.upgradeBaseCost(0);
+           // this.rawDescription = UPGRADE_DESCRIPTION;
+           // this.initializeDescription();
+       // }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	return false;
     }
 
 	@Override

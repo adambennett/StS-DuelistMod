@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.Tags;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.YamiForm;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;

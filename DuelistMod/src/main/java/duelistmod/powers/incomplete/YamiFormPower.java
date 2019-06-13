@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.cards.incomplete.YamiForm;
+import duelistmod.cards.YamiForm;
 import duelistmod.interfaces.*;
 
 

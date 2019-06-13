@@ -87,6 +87,10 @@
         "NAME": "Magician's Bottle",
         "DESCRIPTIONS": ["Reduce the #yTribute cost of all monsters in your hand by #b", " for the rest of combat."]
 },
+"theDuelist:DestructPotionPot": {
+        "NAME": "Destruct Potion",
+        "DESCRIPTIONS": ["#yTribute all of your summons and gain #b", " #ymax #yHP for each."]
+},
 "theDuelist:JoeyJuice": {
         "NAME": "Joey Juice",
         "DESCRIPTIONS": ["Apply 2 random #ydebuffs."]

@@ -41,7 +41,7 @@ public class SuperExplodingToken extends DuelistCard
     	this.tags.add(Tags.SUPER_EXPLODING_TOKEN);
     	this.purgeOnUse = true; 
     	this.isEthereal = true;
-    	this.summons = this.baseSummons = 2;
+    	this.summons = this.baseSummons = 1;
     	this.isSummon = true;
     }
     public SuperExplodingToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); this.tags.add(Tags.SUPER_EXPLODING_TOKEN); this.purgeOnUse = true; this.isEthereal = true; this.summons = this.baseSummons = 2; this.isSummon = true;}

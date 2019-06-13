@@ -145,7 +145,7 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new BlastJuggler());
 		DuelistMod.myCards.add(new MachineKing());
 		DuelistMod.myCards.add(new BookSecret());
-		//DuelistMod.myCards.add(new HeavyStorm());
+		DuelistMod.myCards.add(new HeavyStorm());
 		DuelistMod.myCards.add(new FogKing());
 		DuelistMod.myCards.add(new Lajinn());
 		DuelistMod.myCards.add(new KingYami());
@@ -414,7 +414,7 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new WormBarses());
 		DuelistMod.myCards.add(new WormWarlord());
 		DuelistMod.myCards.add(new WormKing());
-		//DuelistMod.myCards.add(new ArmorBreaker());
+		DuelistMod.myCards.add(new ArmorBreaker());
 		DuelistMod.myCards.add(new GauntletWarrior());
 		DuelistMod.myCards.add(new CommandKnight());
 		DuelistMod.myCards.add(new GaiaMidnight());
@@ -512,6 +512,36 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new OutriggerExtension());
 		DuelistMod.myCards.add(new JumboDrill());
 		DuelistMod.myCards.add(new YamiForm());
+		DuelistMod.myCards.add(new DestructPotion());		
+		DuelistMod.myCards.add(new CallMummy());
+		
+		DuelistMod.myCards.add(new ArchfiendZombieSkull());
+		//DuelistMod.myCards.add(new BeserkDragon());
+		DuelistMod.myCards.add(new CorrodingShark());
+		//DuelistMod.myCards.add(new DoomkaiserDragon());
+		//DuelistMod.myCards.add(new FlameGhost());
+		//DuelistMod.myCards.add(new Gernia());
+		//DuelistMod.myCards.add(new GoblinZombie());
+		//DuelistMod.myCards.add(new Gozuki());
+		//DuelistMod.myCards.add(new Kasha());
+		//DuelistMod.myCards.add(new OniTankT34());
+		//DuelistMod.myCards.add(new RedHeadedOni());
+		//DuelistMod.myCards.add(new UnderworldCannon());
+		//DuelistMod.myCards.add(new WightLady());
+		//DuelistMod.myCards.add(new ZombieMammoth());
+		//DuelistMod.myCards.add(new ZombieWarrior());
+		//DuelistMod.myCards.add(new BlueBloodedOni());
+		//DuelistMod.myCards.add(new DesLacooda());
+		//DuelistMod.myCards.add(new DespairFromDark());
+		//DuelistMod.myCards.add(new DragonZombie());
+		//DuelistMod.myCards.add(new EndlessDecay());
+		//DuelistMod.myCards.add(new FearFromDark());
+		//DuelistMod.myCards.add(new HauntedShrine());
+		//DuelistMod.myCards.add(new OniGamiCombo());
+		//DuelistMod.myCards.add(new PainPainter());
+		//DuelistMod.myCards.add(new PlaguespreaderZombie());
+		//DuelistMod.myCards.add(new YellowBelliedOni());
+		//DuelistMod.myCards.add(new ZombieWorld());
 		
 		DuelistMod.curses.add(new GravekeeperCurse());
 		DuelistMod.curses.add(new CurseAnubis());

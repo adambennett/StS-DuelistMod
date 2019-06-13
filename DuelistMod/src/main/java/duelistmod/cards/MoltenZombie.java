@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 
 public class MoltenZombie extends DuelistCard 
@@ -38,10 +37,10 @@ public class MoltenZombie extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.METAL_RAIDERS);
-        this.tags.add(Tags.REDUCED);
         this.tags.add(Tags.ZOMBIE);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 15;
         this.isSummon = true;
         this.damage = this.baseDamage = 8;
     }
@@ -67,7 +66,7 @@ public class MoltenZombie extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeMagicNumber(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -83,22 +82,18 @@ public class MoltenZombie extends DuelistCard
 	@Override
 	public void onResummon(int summons)
 	{
-		if (!upgraded) { damageAllEnemiesFire(15); }
-		else { damageAllEnemiesFire(20); }
+		 damageAllEnemiesFire(this.magicNumber);
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
 		
 	}
 

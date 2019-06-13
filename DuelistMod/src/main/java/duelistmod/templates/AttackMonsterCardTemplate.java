@@ -66,7 +66,7 @@ public class AttackMonsterCardTemplate extends DuelistCard
     {
     	summon();
     	tribute();
-    	applyPowerToSelf(new PowerTemplate(p, p, 1));
+    	//applyPowerToSelf(new PowerTemplate(p, p, 1));
     	attack(m);
     }
 

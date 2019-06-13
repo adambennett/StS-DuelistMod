@@ -50,33 +50,35 @@ public class ComicHand extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int tokens = 0;
-    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    	ArrayList<String> summonsList = summonsInstance.summonList;
-    	ArrayList<String> newSummonList = new ArrayList<String>();
-    	for (String s : summonsList)
+    	if (p.hasPower(SummonPower.POWER_ID))
     	{
-    		if (DuelistMod.summonMap.get(s).hasTag(Tags.TOON))
-    		{
-    			tokens++;
-    		}
-    		else
-    		{
-    			newSummonList.add(s);
-    		}
+	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+	    	ArrayList<String> summonsList = summonsInstance.summonList;
+	    	ArrayList<String> newSummonList = new ArrayList<String>();
+	    	for (String s : summonsList)
+	    	{
+	    		if (DuelistMod.summonMap.get(s).hasTag(Tags.TOON))
+	    		{
+	    			tokens++;
+	    		}
+	    		else
+	    		{
+	    			newSummonList.add(s);
+	    		}
+	    	}
+	    	
+	    	tributeChecker(player(), tokens, this, false);
+	    	summonsInstance.summonList = newSummonList;
+	    	summonsInstance.amount -= tokens;
+	    	//summonsInstance.updateDescription();
+	    	for (int i = 0; i < tokens; i++)
+	    	{
+	    		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
+	    		summon(player(), 1, tempCard);
+	    		AbstractMonster randomM = getRandomMonster();
+	    		attack(randomM, AFX, this.damage);
+	    	}
     	}
-    	
-    	tributeChecker(player(), tokens, this, false);
-    	summonsInstance.summonList = newSummonList;
-    	summonsInstance.amount -= tokens;
-    	//summonsInstance.updateDescription();
-    	for (int i = 0; i < tokens; i++)
-    	{
-    		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
-    		summon(player(), 1, tempCard);
-    		AbstractMonster randomM = getRandomMonster();
-    		attack(randomM, AFX, this.damage);
-    	}
-    	
     	
 
     }

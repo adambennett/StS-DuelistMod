@@ -7,6 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -36,7 +37,6 @@ import duelistmod.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
-import duelistmod.cards.incomplete.YamiForm;
 import duelistmod.cards.tokens.Token;
 import duelistmod.cards.typecards.DynamicTypeCard;
 import duelistmod.characters.FakePlayer;
@@ -908,6 +908,23 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== MISC ACTION FUNCTIONS =========================================================================================================================================================
+	public void makeFleeting()
+	{
+		FleetingField.fleeting.set(this, true);
+	}
+	
+	public void fetch(CardGroup group, boolean top)
+	{
+		if (top) { AbstractDungeon.actionManager.addToTop(new FetchAction(group)); }
+		else { AbstractDungeon.actionManager.addToBottom(new FetchAction(group)); }
+	}
+	
+	public void fetch(int amount, CardGroup group, boolean top)
+	{
+		if (top) { AbstractDungeon.actionManager.addToTop(new FetchAction(group, amount)); }
+		else { AbstractDungeon.actionManager.addToBottom(new FetchAction(group, amount)); }
+	}
+	
 	public AbstractCard makeFullCopy()
 	{
 		AbstractCard c = super.makeStatEquivalentCopy();
@@ -3066,6 +3083,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return tribute(AbstractDungeon.player, this.tributes, false, this);
 	}
 	
+	public ArrayList<DuelistCard> tribute(boolean tributeAll)
+	{
+		return tribute(AbstractDungeon.player, 0, tributeAll, this);
+	}
+	
 	public static ArrayList<DuelistCard> tribute(AbstractPlayer p, int tributes, boolean tributeAll, DuelistCard card)
 	{		
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
@@ -4338,7 +4360,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== RESUMMON FUNCTIONS =========================================================================================================================================================
 	public void checkResummon()
 	{
-		if (this.hasTag(Tags.ZOMBIE)) { block(10); }
+		if (this.hasTag(Tags.ZOMBIE)) { block(10); DuelistMod.zombiesResummonedThisCombat++; DuelistMod.zombiesResummonedThisRun++; }
 		if (AbstractDungeon.player.hasPower(CardSafePower.POWER_ID)) { drawTag(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount, Tags.ZOMBIE); }
 	}
 	

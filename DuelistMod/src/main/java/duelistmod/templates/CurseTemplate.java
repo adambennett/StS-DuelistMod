@@ -3,6 +3,7 @@ package duelistmod.templates;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -63,10 +64,20 @@ public class CurseTemplate extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
-    	tribute();
-    	applyPowerToSelf(new PowerTemplate(p, p, 1));
-    	attack(m);
+    	if (p.hasRelic("Blue Candle")) 
+    	{
+    		useBlueCandle(p);
+    	}
+    	else
+    	{
+    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.utility.UseCardAction(this));
+    	}
+    }
+    
+    @Override
+    public void triggerWhenDrawn() 
+    {
+    	
     }
 
     // Which card to return when making a copy of this card.

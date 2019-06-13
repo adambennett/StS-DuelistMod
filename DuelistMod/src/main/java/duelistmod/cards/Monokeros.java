@@ -12,7 +12,6 @@ import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.relics.AquaRelicB;
 
 public class Monokeros extends DuelistCard 
 {

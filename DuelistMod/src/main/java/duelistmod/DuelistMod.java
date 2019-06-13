@@ -304,6 +304,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int archRoll2 = -1;
 	public static int gravAxeStr = -99;
 	public static int poisonAppliedThisCombat = 0;
+	public static int zombiesResummonedThisCombat = 0;
+	public static int zombiesResummonedThisRun = 0;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -365,7 +367,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = false;			// print statements only, used in mod option panel
 	public static boolean debugMsg = false;			// for secret msg
-	public static final boolean addTokens = true;	// adds debug tokens to library
+	public static final boolean addTokens = false;	// adds debug tokens to library
 	public static final boolean fullDebug = false;	// actually modifies char stats, cards in compendium, starting max summons, etc
 
 	// =============== INPUT TEXTURE LOCATION =================
@@ -677,6 +679,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		pots.add(new BigTributeBottle());
 		pots.add(new SealedPackC());
 		pots.add(new BigOrbBottle());
+		pots.add(new DestructPotionPot());
 		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, p.ID, TheDuelistEnum.THE_DUELIST); }
 		
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
@@ -1059,6 +1062,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		summonCombatCount = 0;
 		swordsPlayed = 0;
 		poisonAppliedThisCombat = 0;
+		zombiesResummonedThisCombat = 0;
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -1198,6 +1202,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		spellRunCount = 0;
 		trapRunCount = 0;
 		summonRunCount = 0;
+		zombiesResummonedThisRun = 0;
 		dragonStr = 1;
 		insectPoisonDmg = baseInsectPoison;
 		naturiaDmg = 1;
@@ -1691,6 +1696,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			dragonStr = 1;
 			insectPoisonDmg = baseInsectPoison;
 			naturiaDmg = 1;
+			zombiesResummonedThisRun = 0;
 			AbstractPlayer.customMods = new ArrayList<String>();
 			swordsPlayed = 0;
 			hasUpgradeBuffRelic = false;

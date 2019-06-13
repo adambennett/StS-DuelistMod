@@ -567,7 +567,7 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new HammerShot());
 		DuelistMod.basicCards.add(new HaneHane());
 		DuelistMod.basicCards.add(new HarpieFeather());
-		//DuelistMod.basicCards.add(new HeavyStorm());
+		DuelistMod.basicCards.add(new HeavyStorm());
 		DuelistMod.basicCards.add(new Hinotama());
 		DuelistMod.basicCards.add(new ImperialOrder());
 		DuelistMod.basicCards.add(new JudgeMan());
@@ -698,6 +698,14 @@ public class StarterDeckSetup {
 		dragonCards.add(new AncientGearGadjiltron());
 		dragonCards.add(new CheerfulCoffin());
 		dragonCards.add(new SuperancientDinobeast());
+		
+		//zombieCards.add(new BeserkDragon());		
+		//zombieCards.add(new DoomkaiserDragon());		
+		//zombieCards.add(new RedHeadedOni());	
+		//zombieCards.add(new BlueBloodedOni());	
+		//zombieCards.add(new DragonZombie());
+		//zombieCards.add(new YellowBelliedOni());
+
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());
@@ -954,6 +962,37 @@ public class StarterDeckSetup {
 		zombieCards.add(new VampireFraulein());
 		zombieCards.add(new ShadowVampire());
 		zombieCards.add(new IlBlud());
+		zombieCards.add(new DestructPotion());
+		zombieCards.add(new CallMummy());
+		
+		zombieCards.add(new ArchfiendZombieSkull());
+		//zombieCards.add(new BeserkDragon());
+		zombieCards.add(new CorrodingShark());
+		//zombieCards.add(new DoomkaiserDragon());
+		//zombieCards.add(new FlameGhost());
+		//zombieCards.add(new Gernia());
+		//zombieCards.add(new GoblinZombie());
+		//zombieCards.add(new Gozuki());
+		//zombieCards.add(new Kasha());
+		//zombieCards.add(new OniTankT34());
+		//zombieCards.add(new RedHeadedOni());
+		//zombieCards.add(new UnderworldCannon());
+		//zombieCards.add(new WightLady());
+		//zombieCards.add(new ZombieMammoth());
+		//zombieCards.add(new ZombieWarrior());
+		//zombieCards.add(new BlueBloodedOni());
+		//zombieCards.add(new DesLacooda());
+		//zombieCards.add(new DespairFromDark());
+		//zombieCards.add(new DragonZombie());
+		//zombieCards.add(new EndlessDecay());
+		//zombieCards.add(new FearFromDark());
+		//zombieCards.add(new HauntedShrine());
+		//zombieCards.add(new OniGamiCombo());
+		//zombieCards.add(new PainPainter());
+		//zombieCards.add(new PlaguespreaderZombie());
+		//zombieCards.add(new YellowBelliedOni());
+		//zombieCards.add(new ZombieWorld());
+		
 		zombieDeck.fillPoolCards(DuelistMod.basicCards);
 		zombieDeck.fillPoolCards(zombieCards);		
 		zombieDeck.fillArchetypeCards(zombieCards);
@@ -1017,6 +1056,7 @@ public class StarterDeckSetup {
 		aquaCards.add(new FishRain());
 		aquaCards.add(new PoseidonWave());
 		aquaCards.add(new DrillBarnacle());
+		aquaCards.add(new CorrodingShark());
 		aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
