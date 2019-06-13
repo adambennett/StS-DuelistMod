@@ -525,7 +525,7 @@ public class DuelistCardLibrary {
 		//DuelistMod.myCards.add(new Gozuki());
 		//DuelistMod.myCards.add(new Kasha());
 		//DuelistMod.myCards.add(new OniTankT34());
-		//DuelistMod.myCards.add(new RedHeadedOni());
+		DuelistMod.myCards.add(new RedHeadedOni());
 		//DuelistMod.myCards.add(new UnderworldCannon());
 		//DuelistMod.myCards.add(new WightLady());
 		//DuelistMod.myCards.add(new ZombieMammoth());
@@ -540,7 +540,7 @@ public class DuelistCardLibrary {
 		//DuelistMod.myCards.add(new OniGamiCombo());
 		//DuelistMod.myCards.add(new PainPainter());
 		//DuelistMod.myCards.add(new PlaguespreaderZombie());
-		//DuelistMod.myCards.add(new YellowBelliedOni());
+		DuelistMod.myCards.add(new YellowBelliedOni());
 		//DuelistMod.myCards.add(new ZombieWorld());
 		
 		DuelistMod.curses.add(new GravekeeperCurse());
