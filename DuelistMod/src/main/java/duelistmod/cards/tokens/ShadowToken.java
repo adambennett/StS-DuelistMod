@@ -3,6 +3,7 @@ package duelistmod.cards.tokens;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,11 +12,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.orbs.Shadow;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
-public class ShadowToken extends DuelistCard 
+public class ShadowToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("ShadowToken");
@@ -38,6 +39,21 @@ public class ShadowToken extends DuelistCard
     public ShadowToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.GOOD_TRIB); this.tags.add(Tags.TOKEN); this.purgeOnUse = true; this.isEthereal = true;}
     @Override public void use(AbstractPlayer p, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
     @Override public AbstractCard makeCopy() { return new ShadowToken(); }
+    
+    @Override 
+    public void customOnTribute(DuelistCard tc)
+    {
+    	ArrayList<AbstractOrb> orbList = AbstractDungeon.player.orbs;
+		for (AbstractOrb o : orbList)
+		{
+			if (o instanceof Shadow)
+			{
+				Shadow shadowRef = (Shadow)o;
+				shadowRef.tribShadowToken();
+			}
+		}
+    }
+    
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
 		ArrayList<AbstractOrb> orbList = AbstractDungeon.player.orbs;

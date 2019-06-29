@@ -10,7 +10,6 @@ import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.relics.AquaRelicB;
 
 public class BlizzardDefender extends DuelistCard 
 {
@@ -64,6 +63,11 @@ public class BlizzardDefender extends DuelistCard
         }
     }
 
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	draw(1);
+    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

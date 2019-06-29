@@ -120,7 +120,7 @@ public class Shadow extends DuelistOrb
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isOnlyTypeSummoned(Tags.ZOMBIE))
+			if (instance.isEveryMonsterCheck(Tags.ZOMBIE, false))
 			{
 				rollCheck += 4;
 			}

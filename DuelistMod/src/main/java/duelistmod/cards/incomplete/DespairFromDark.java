@@ -3,6 +3,7 @@ package duelistmod.cards.incomplete;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -23,51 +24,29 @@ public class DespairFromDark extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 100;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public DespairFromDark() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 10;
-        this.baseBlock = this.block = 10;
-        this.baseMagicNumber = this.magicNumber = 10;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        
-        // Tribute
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
         this.misc = 0;
-       
-        // Card Type
-        this.tags.add(Tags.MONSTER);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
+        this.tags.add(Tags.MONSTER);   
+        this.tags.add(Tags.ZOMBIE);
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
     	tribute();
-    	//applyPowerToSelf(new PowerTemplate(p, p, 1));
-    	attack(m);
+    	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.MONSTER)) { fullResummon((DuelistCard) c.makeStatEquivalentCopy(), false, AbstractDungeon.getRandomMonster(), false); }}
     }
 
     // Which card to return when making a copy of this card.
@@ -80,19 +59,22 @@ public class DespairFromDark extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	if (DuelistMod.hasUpgradeBuffRelic)
+        	{
+        		this.upgradeBaseCost(1);
+        		this.exhaust = false;
+        	}
+        	else
+        	{
+        		this.exhaust = false;
+        	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
     }
 
 	@Override

@@ -3,6 +3,7 @@ package duelistmod.cards.tokens;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,12 +11,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.relics.AquaRelicB;
+import duelistmod.actions.common.ModifySummonAction;
+import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 
-public class AquaToken extends DuelistCard 
+public class AquaToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("AquaToken");
@@ -40,7 +40,7 @@ public class AquaToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	
     }
     public AquaToken(String tokenName) 
     { 
@@ -48,7 +48,7 @@ public class AquaToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.AQUA);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

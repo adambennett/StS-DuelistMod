@@ -28,13 +28,11 @@ public class Fissure extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 1;
-	private static final int DAMAGE = 3;
-	private static final int U_DMG = 1;
 	// /STAT DECLARATION/
 
 	public Fissure() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = DAMAGE;
+		this.baseDamage = this.damage = 3;
 		this.isMultiDamage = true;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.LEGEND_BLUE_EYES);
@@ -66,7 +64,7 @@ public class Fissure extends DuelistCard
 		int newDamage = this.damage * playerSummons;
 		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure: damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
 		this.applyPowers();
-		attack(selected, this.baseAFX, newDamage);
+		attack(selected);
 		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure (after applyPowers function and attacking): damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
 	}
 
@@ -81,7 +79,7 @@ public class Fissure extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(U_DMG);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

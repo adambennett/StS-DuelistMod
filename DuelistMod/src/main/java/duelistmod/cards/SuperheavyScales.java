@@ -42,7 +42,7 @@ public class SuperheavyScales extends DuelistCard
 		this.tags.add(Tags.SUPERHEAVY);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 3;
+		this.superheavyDeckCopies = 2;
 		this.setupStartingCopies();
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;

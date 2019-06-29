@@ -60,11 +60,11 @@ public class YamiForm extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	if (DuelistMod.hasUpgradeBuffRelic)
         	{
-        		this.upgradeBaseCost(1);
+        		this.upgradeBaseCost(2);
         	}
         	else
         	{
-        		this.upgradeBaseCost(2);
+        		this.upgradeBaseCost(3);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -94,7 +94,7 @@ public class Lava extends DuelistOrb
 		if (c.hasTag(Tags.ZOMBIE))
 		{
 			DuelistCard dragC = (DuelistCard)c;
-			dragC.changeSummonsInBattle(this.passiveAmount, true);
+			dragC.changeTributesInBattle(-this.passiveAmount, true);
 		}
 	}
 

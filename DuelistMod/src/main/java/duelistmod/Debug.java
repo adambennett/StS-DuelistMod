@@ -13,6 +13,353 @@ import duelistmod.interfaces.*;
 
 public class Debug 
 {
+	public static void printTypedRarityInfo()
+	{
+		ArrayList<ArrayList<DuelistCard>> returned = setupRarityInfo();
+		int listCounter = 0;
+		
+		System.out.println("Common Monsters\n----------------------");
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			ArrayList<DuelistCard> monstersOfType = new ArrayList<DuelistCard>();
+			for (DuelistCard c : returned.get(listCounter))
+			{
+				if (c.hasTag(t)) { monstersOfType.add((DuelistCard) c.makeCopy()); }
+			}
+			
+			int counter = 1;
+			System.out.println("----------------------\n" + DuelistMod.typeCardMap_NAME.get(t) + "\n----------------------\n");
+			for (DuelistCard c : monstersOfType)
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+			System.out.println(counter - 1 + " total common " + DuelistMod.typeCardMap_NAME.get(t) + "s.");
+		}
+		System.out.println("End Common Monsters\n----------------------");
+		listCounter+=3;
+		
+		System.out.println("Uncommon Monsters\n----------------------");
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			ArrayList<DuelistCard> monstersOfType = new ArrayList<DuelistCard>();
+			for (DuelistCard c : returned.get(listCounter))
+			{
+				if (c.hasTag(t)) { monstersOfType.add((DuelistCard) c.makeCopy()); }
+			}
+			
+			int counter = 1;
+			System.out.println("----------------------\n" + DuelistMod.typeCardMap_NAME.get(t) + "\n----------------------\n");
+			for (DuelistCard c : monstersOfType)
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+			System.out.println(counter - 1 + " total uncommon " + DuelistMod.typeCardMap_NAME.get(t) + "s.");
+		}
+		System.out.println("End Uncommon Monsters\n----------------------");
+		listCounter+=3;
+		
+		System.out.println("Rare Monsters\n----------------------");
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			ArrayList<DuelistCard> monstersOfType = new ArrayList<DuelistCard>();
+			for (DuelistCard c : returned.get(listCounter))
+			{
+				if (c.hasTag(t)) { monstersOfType.add((DuelistCard) c.makeCopy()); }
+			}
+			
+			int counter = 1;
+			System.out.println("----------------------\n" + DuelistMod.typeCardMap_NAME.get(t) + "\n----------------------\n");
+			for (DuelistCard c : monstersOfType)
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+			System.out.println(counter - 1 + " total rare " + DuelistMod.typeCardMap_NAME.get(t) + "s.");
+		}
+		System.out.println("End Rare Monsters\n----------------------");
+	}
+	
+	public static void printRarityInfo()
+	{
+		ArrayList<ArrayList<DuelistCard>> returned = setupRarityInfo();
+		int listCounter = 0;
+		System.out.println("Common Monsters\n----------------------");
+		int counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total common monsters.");
+		listCounter++;
+		
+		System.out.println("Common Spells\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total common spells.");
+		listCounter++;
+		
+		System.out.println("Common Traps\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total common traps.");
+		listCounter++;
+		
+		System.out.println("Uncommon Monsters\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total uncommon monsters.");
+		listCounter++;
+		
+		System.out.println("Uncommon Spells\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total uncommon spells.");
+		listCounter++;
+		
+		System.out.println("Uncommon Traps\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total uncommon traps.");
+		listCounter++;
+		
+		System.out.println("Rare Monsters\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total rare monsters.");
+		listCounter++;
+		
+		System.out.println("Rare Spells\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total rare spells.");
+		listCounter++;
+		
+		System.out.println("Rare Traps\n----------------------");
+		counter = 1;
+		for (DuelistCard c : returned.get(listCounter))
+		{
+			System.out.println(counter + ": " + c.originalName);
+			counter++;
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total rare traps.");
+		listCounter++;
+		
+		System.out.println("Common Basic Cards\n----------------------");
+		counter = 1;
+		for (DuelistCard c : DuelistMod.basicCards)
+		{
+			if (c.rarity.equals(CardRarity.COMMON))
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total common basic cards.");
+		listCounter++;
+		
+		System.out.println("Uncommon Basic Cards\n----------------------");
+		counter = 1;
+		for (DuelistCard c : DuelistMod.basicCards)
+		{
+			if (c.rarity.equals(CardRarity.UNCOMMON))
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total uncommon basic cards.");
+		listCounter++;
+		
+		System.out.println("Rare Basic Cards\n----------------------");
+		counter = 1;
+		for (DuelistCard c : DuelistMod.basicCards)
+		{
+			if (c.rarity.equals(CardRarity.RARE))
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total rare basic cards.");
+		listCounter++;
+		
+		System.out.println("Common Ojama Cards\n----------------------");
+		counter = 1;
+		for (DuelistCard c : DuelistMod.myCards)
+		{
+			if (c.hasTag(Tags.OJAMA) && c.rarity.equals(CardRarity.COMMON))
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total common Ojama cards.");
+		listCounter++;
+		
+		System.out.println("Uncommon Ojama Cards\n----------------------");
+		counter = 1;
+		for (DuelistCard c : DuelistMod.myCards)
+		{
+			if (c.rarity.equals(CardRarity.UNCOMMON) && c.hasTag(Tags.OJAMA))
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total uncommon Ojama cards.");
+		listCounter++;
+		
+		System.out.println("Rare Ojama Cards\n----------------------");
+		counter = 1;
+		for (DuelistCard c : DuelistMod.myCards)
+		{
+			if (c.rarity.equals(CardRarity.RARE) && c.hasTag(Tags.OJAMA))
+			{
+				System.out.println(counter + ": " + c.originalName);
+				counter++;
+			}
+		}
+		System.out.println("----------------------");
+		System.out.println(counter - 1 + " total rare Ojama cards.");
+		listCounter++;
+	}
+	
+	private static ArrayList<ArrayList<DuelistCard>> setupRarityInfo()
+	{
+		ArrayList<ArrayList<DuelistCard>> holder = new ArrayList<ArrayList<DuelistCard>>();
+		// 0  - common monsters
+		// 1  - common spells
+		// 2  - common traps
+		// 3  - uncommon monsters
+		// 4  - uncommon spells
+		// 5  - uncommon traps
+		// 6  - rare monsters
+		// 7  - rare spells
+		// 8  - rare traps
+		// 9  - common other
+		// 10 - uncommon other
+		// 11 - rare other
+		
+		for (int i = 0; i < 12; i++) { holder.add(new ArrayList<DuelistCard>()); }
+		
+		int counter = 0;
+		for (DuelistCard c : DuelistMod.myCards)
+		{
+			if (c.rarity.equals(CardRarity.COMMON))
+			{
+				if (c.hasTag(Tags.MONSTER))
+				{
+					holder.get(0).add((DuelistCard) c.makeCopy()); 
+				}
+				else if (c.hasTag(Tags.SPELL))
+				{					
+					holder.get(1).add((DuelistCard) c.makeCopy()); 
+				}
+				
+				else if (c.hasTag(Tags.TRAP))
+				{					
+					holder.get(2).add((DuelistCard) c.makeCopy()); 
+				}
+			}
+			else if (c.rarity.equals(CardRarity.UNCOMMON))
+			{
+				if (c.hasTag(Tags.MONSTER))
+				{					
+					holder.get(3).add((DuelistCard) c.makeCopy()); 
+				}
+				else if (c.hasTag(Tags.SPELL))
+				{					
+					holder.get(4).add((DuelistCard) c.makeCopy()); 
+				}
+				
+				else if (c.hasTag(Tags.TRAP))
+				{					
+					holder.get(5).add((DuelistCard) c.makeCopy()); 
+				}
+			}
+			else if (c.rarity.equals(CardRarity.RARE))
+			{
+				if (c.hasTag(Tags.MONSTER))
+				{					
+					holder.get(6).add((DuelistCard) c.makeCopy()); 
+				}
+				else if (c.hasTag(Tags.SPELL))
+				{					
+					holder.get(7).add((DuelistCard) c.makeCopy()); 
+				}
+				
+				else if (c.hasTag(Tags.TRAP))
+				{					
+					holder.get(8).add((DuelistCard) c.makeCopy()); 
+				}
+			}
+			else if (c.rarity.equals(CardRarity.SPECIAL) || c.rarity.equals(CardRarity.BASIC))
+			{
+				if (c.hasTag(Tags.MONSTER))
+				{					
+					holder.get(9).add((DuelistCard) c.makeCopy()); 
+				}
+				
+				else if (c.hasTag(Tags.SPELL))
+				{					
+					holder.get(10).add((DuelistCard) c.makeCopy()); 
+				}
+				
+				else if (c.hasTag(Tags.TRAP))
+				{					
+					holder.get(11).add((DuelistCard) c.makeCopy()); 
+				}
+			}
+		}
+		
+		return holder;
+	}
+	
 	
 	public static void printTributeInfo()
 	{

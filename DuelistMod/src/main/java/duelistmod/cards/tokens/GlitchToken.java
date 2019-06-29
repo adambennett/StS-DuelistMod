@@ -10,7 +10,7 @@ import duelistmod.*;
 import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 
-public class GlitchToken extends DuelistCard 
+public class GlitchToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GlitchToken");
@@ -36,7 +36,6 @@ public class GlitchToken extends DuelistCard
     	this.tags.add(Tags.MACHINE);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
-    	this.isEthereal = true;
     }
     public GlitchToken(String tokenName) 
     { 
@@ -45,7 +44,6 @@ public class GlitchToken extends DuelistCard
     	this.tags.add(Tags.MACHINE);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
-    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

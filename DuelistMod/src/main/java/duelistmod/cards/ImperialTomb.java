@@ -38,6 +38,7 @@ public class ImperialTomb extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.TRAP);
         this.exhaust = true;
+        this.makeGrave();
     }
 
     // Actions the card should do.

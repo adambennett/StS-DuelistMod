@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.ModifyTributeAction;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 
-public class DragonToken extends DuelistCard 
+public class DragonToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DragonToken");
@@ -39,7 +39,6 @@ public class DragonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.DRAGON);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
     }
     public DragonToken(String tokenName) 
     { 
@@ -47,7 +46,6 @@ public class DragonToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.DRAGON);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

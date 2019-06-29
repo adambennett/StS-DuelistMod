@@ -27,6 +27,7 @@ public class SummonPower extends AbstractPower
 	public int MAX_SUMMONS = DuelistMod.defaultMaxSummons;
 	public ArrayList<String> summonList = new ArrayList<String>();
 	public ArrayList<String> coloredSummonList = new ArrayList<String>();
+	public ArrayList<DuelistCard> actualCardSummonList = new ArrayList<DuelistCard>();
 
 	// Constructor for summon() in DuelistCard
 	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc, DuelistCard c) 
@@ -49,8 +50,9 @@ public class SummonPower extends AbstractPower
 		// Force max summons of 5 when player has Millennium Key
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
 		
-		// Add the new summon(s) to the list
+		// Add the new summon(s) to the lists
 		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); }}
+		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { actualCardSummonList.add(c); }}
 
 		// Update the description properly
 		updateCount(this.amount);
@@ -80,6 +82,7 @@ public class SummonPower extends AbstractPower
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
 		
 		for (int i = 0; i < newAmount; i++) { if (i < MAX_SUMMONS) { summonList.add(newSummon);  }}
+		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { actualCardSummonList.add(DuelistMod.summonMap.get(newSummon)); }}
 		updateCount(this.amount);
 		updateStringColors();
 		updateDescription();
@@ -105,15 +108,48 @@ public class SummonPower extends AbstractPower
 		updateDescription();
 	}
 	
+	public boolean isEveryMonsterCheck(CardTags tag, boolean tokensAreChecked)
+	{
+		if (getNumberOfTypeSummoned(tag) == this.amount && this.amount > 0)
+		{
+			return true;
+		}
+		
+		else if (getNumberOfTypeSummoned(tag) - getNumberOfTokens() == this.amount && this.amount > 0)
+		{
+			if (DuelistMod.debug) { DuelistMod.logger.info("Found something other than " + DuelistMod.typeCardMap_NAME.get(tag) + "s, but they were just tokens"); }
+			if (tokensAreChecked) { return false; }
+			else { return true; }
+		}
+		
+		else
+		{
+			if (DuelistMod.debug) { DuelistMod.logger.info("Found something other than " + DuelistMod.typeCardMap_NAME.get(tag) + "s."); }
+			return false;
+		}
+	}
+	
+	public int getNumberOfTokens() 
+	{
+		int tokens = 0;
+		for (DuelistCard c : actualCardSummonList)
+		{
+			if (c.hasTag(Tags.TOKEN))
+			{
+				tokens++;
+			}
+		}
+		return tokens;
+	}
+	
 	public int getNumberOfTypeSummoned(CardTags type)
 	{
 		int numberFound = 0;
-		if (summonList.size() > 0)
+		if (actualCardSummonList.size() > 0)
 		{
-			for (String s : summonList)
+			for (DuelistCard s : actualCardSummonList)
 			{
-				DuelistCard ref = DuelistMod.summonMap.get(s);
-				if (ref.hasTag(type))
+				if (s.hasTag(type))
 				{
 					numberFound++;
 				}
@@ -125,12 +161,11 @@ public class SummonPower extends AbstractPower
 	public int getNumberOfTypeSummonedFromEither(CardTags type, CardTags typeB)
 	{
 		int numberFound = 0;
-		if (summonList.size() > 0)
+		if (actualCardSummonList.size() > 0)
 		{
-			for (String s : summonList)
+			for (DuelistCard s : actualCardSummonList)
 			{
-				DuelistCard ref = DuelistMod.summonMap.get(s);
-				if (ref.hasTag(type) || ref.hasTag(typeB))
+				if (s.hasTag(type) || s.hasTag(typeB))
 				{
 					numberFound++;
 				}
@@ -142,15 +177,14 @@ public class SummonPower extends AbstractPower
 	public boolean isOnlyTypeSummoned(CardTags type)
 	{
 		boolean foundOnlyType = true;
-		if (summonList.size() > 0)
+		if (actualCardSummonList.size() > 0)
 		{
-			for (String s : summonList)
+			for (DuelistCard s : actualCardSummonList)
 			{
-				DuelistCard ref = DuelistMod.summonMap.get(s);
 				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:isOnlyTypeSummoned() ---> ref string: " + s); }
-				if (ref != null)
+				if (s != null)
 				{
-					if (!ref.hasTag(type))
+					if (!s.hasTag(type))
 					{
 						foundOnlyType = false;
 					}
@@ -197,12 +231,11 @@ public class SummonPower extends AbstractPower
 	{
 		int numberFound = 0;
 		int numberLooking = this.MAX_SUMMONS;
-		if (summonList.size() > 0)
+		if (actualCardSummonList.size() > 0)
 		{
-			for (String s : summonList)
+			for (DuelistCard s : actualCardSummonList)
 			{
-				DuelistCard ref = DuelistMod.summonMap.get(s);
-				if (ref.hasTag(type))
+				if (s.hasTag(type))
 				{
 					numberFound++;
 				}
@@ -262,38 +295,43 @@ public class SummonPower extends AbstractPower
 		goodTags.add(Tags.PLANT);
 		goodTags.add(Tags.TOON);
 		coloredSummonList = new ArrayList<String>();
-		for (String s : summonList)
+		for (DuelistCard s : actualCardSummonList)
 		{
-			DuelistCard ref = DuelistMod.summonMap.get(s);
-			if (ref == null) { ref = new Token(); }
+			if (s == null) { s = new Token(); }
 			String coloredString = "";
-			if (ref.hasTag(Tags.NATURIA))
+			if (s.hasTag(Tags.MEGATYPED))
 			{
-				coloredString = "[#008000]" + s;
+				coloredString = "[#BD61FF]" + s.originalName;
+				coloredString = coloredString.replaceAll("\\s", " [#BD61FF]");
+				coloredSummonList.add(coloredString);
+			}
+			else if (s.hasTag(Tags.NATURIA))
+			{
+				coloredString = "[#008000]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#008000]");
 				coloredSummonList.add(coloredString);
 			}
-			else if (ref.hasTag(Tags.BAD_TRIB))
+			else if (s.hasTag(Tags.BAD_TRIB))
 			{
-				coloredString = "[#FF5252]" + s;
+				coloredString = "[#FF5252]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#FF5252]");
 				coloredSummonList.add(coloredString);
 			}
-			else if (ref.hasTag(Tags.TOKEN))
+			else if (s.hasTag(Tags.TOKEN))
 			{
-				coloredString = "[#C0B0C0]" + s;
+				coloredString = "[#C0B0C0]" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " [#C0B0C0]");
 				coloredSummonList.add(coloredString);
 			}
-			else if ((ref.hasTag(Tags.GOOD_TRIB)) || (StarterDeckSetup.hasTags(ref, goodTags))) 
+			else if ((s.hasTag(Tags.GOOD_TRIB)) || (StarterDeckSetup.hasTags(s, goodTags))) 
 			{
-				coloredString = "#b" + s;
+				coloredString = "#b" + s.originalName;
 				coloredString = coloredString.replaceAll("\\s", " #b"); 
 				coloredSummonList.add(coloredString);
 			}
 			else
 			{
-				coloredString = s;
+				coloredString = s.originalName;
 				coloredSummonList.add(coloredString);
 			}
 		}
@@ -328,6 +366,11 @@ public class SummonPower extends AbstractPower
 		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye)
 		{
 			AbstractDungeon.player.loseRelic(FrozenEye.ID);
+		}
+		
+		if (summonList.size() != actualCardSummonList.size() && DuelistMod.debug)
+		{
+			DuelistMod.logger.info("String summon list and card summon list sizes did NOT MATCH!! BAD THING");
 		}
 	}
 

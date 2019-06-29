@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 
-public class OrbToken extends DuelistCard 
+public class OrbToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("OrbToken");

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
@@ -53,6 +52,7 @@ public class YellowGadget extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
+		// Base version - random tokens
 		if (!upgraded)
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
@@ -62,12 +62,16 @@ public class YellowGadget extends DuelistCard
 				addCardToHand((DuelistCard)tk.makeCopy());
 			}
 		}
+		
+		// Upgraded - choose tokens
 		else
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
 			ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
+			int iterations = this.magicNumber;
 			abTokens.addAll(tokens);
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, this.magicNumber, abTokens));
+			if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
 		}
 	}
 

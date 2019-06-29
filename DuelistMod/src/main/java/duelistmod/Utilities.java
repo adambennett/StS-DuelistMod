@@ -1,14 +1,17 @@
 package duelistmod;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.ModHelper;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.ArrayList;
 import java.util.function.Predicate;
+
+import org.apache.logging.log4j.*;
+
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ModHelper;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+
+import duelistmod.relics.*;
 
 public class Utilities
 {
@@ -88,5 +91,47 @@ public class Utilities
 	
 	    return converted.toString();
 	}
+	
+	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
+	{
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(new MillenniumCoin().name);
+		items.add(new MillenniumRing().name);
+		items.add(new MillenniumRod().name);
+		items.add(new MillenniumKey().name);
+		items.add(new MillenniumEye().name);
+		items.add(new ResummonBranch().name);
+		items.add(new MillenniumScale().name);
+		if (includePuzzle) { items.add(new MillenniumPuzzle().name); }
+		if (items.contains(r.name)) { return true; }
+		else { return false; }		
+	}
+	
+	public static ArrayList<AbstractRelic> getAllMillenniumItems(boolean includePuzzle)
+	{
+		ArrayList<AbstractRelic> items = new ArrayList<AbstractRelic>();
+		items.add(new MillenniumCoin());
+		items.add(new MillenniumRing());
+		items.add(new MillenniumRod());
+		items.add(new MillenniumKey());
+		items.add(new MillenniumEye());
+		items.add(new ResummonBranch());
+		items.add(new MillenniumScale());
+		if (includePuzzle) { items.add(new MillenniumPuzzle()); }
+		return items;
+	}
 
+	public static AbstractRelic getRandomMillenniumItem()
+	{
+		ArrayList<AbstractRelic> items = new ArrayList<AbstractRelic>();
+		items.add(new MillenniumCoin());
+		items.add(new MillenniumRing());
+		items.add(new MillenniumRod());
+		items.add(new MillenniumKey());
+		items.add(new MillenniumEye());
+		items.add(new ResummonBranch());
+		items.add(new MillenniumScale());
+		return items.get(AbstractDungeon.relicRng.random(items.size() - 1));
+	}
+	
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -73,7 +74,7 @@ public class Buffer extends DuelistOrb
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isOnlyTypeSummoned(Tags.SPELLCASTER))
+			if (instance.isEveryMonsterCheck(Tags.SPELLCASTER, false))
 			{
 				rollCheck += 4;
 			}
@@ -82,6 +83,8 @@ public class Buffer extends DuelistOrb
 		{
 			this.triggerPassiveEffect();
 		}
+		
+		else if (DuelistMod.debug) { DuelistMod.logger.info("Buffer orb missed the roll"); }
 
 	}
 
@@ -100,10 +103,15 @@ public class Buffer extends DuelistOrb
 		
 		for (AbstractPower a : playerPowers)
 		{
-			if (!a.name.equals("Player Statistics") && !a.type.equals(PowerType.DEBUFF))
+			if (!a.ID.equals("animator_PlayerStatistics") && !a.type.equals(PowerType.DEBUFF) && !(a instanceof InvisiblePower))
 			{
 				buffs.add(a);
 				if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > added buff to array of buffs: " + a.name); }
+			}
+			
+			else if (DuelistMod.debug)
+			{
+				DuelistMod.logger.info("theDuelist:Buffer --- > SKIPPED adding this buff: " + a.name);
 			}
 		}
 		
@@ -113,26 +121,34 @@ public class Buffer extends DuelistOrb
 			{				
 				for (AbstractPower buff : buffs)
 				{
-					if (buff.name.equals("Summons") || buff.name.equals("Focus") || buff.name.equals("Swords of Revealing Light"))
+					// This does nothing for these powers in a weird way, the logic was left this way to possibly re-enable summoning buffer tokens when this is triggered
+					if (buff.ID.equals("theDuelist:SummonPower") || buff.ID.equals("Focus") || buff.ID.equals("theDuelist:SwordsRevealPower")) 
 					{
 						//DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
 						//if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
 					}
-					else if (buff.name.equals("Jam Breeding Machine"))
+					
+					// hardcode exception for Jam Breeding Machine to enable a more random buff type for that power
+					// this chooses randomly to buff one of the following: summons per turn, damage per turn, number of enemies targeted by damaged
+					else if (buff.ID.equals("theDuelist:TwoJamPower"))
 					{
 						TwoJamPower jamBreed = (TwoJamPower) buff;
-						String buffIndex = "Enemies Damaged (Amount #1)";
+						String buffIndex = "Enemies Damaged (Amount #1)";	// string is only for debug
 						int roll = AbstractDungeon.cardRandomRng.random(1, 3);
 						if (roll == 2) { buffIndex = "Summons/turn (Amount #2)"; jamBreed.amount2++; jamBreed.updateDescription(); }						
 						else if (roll == 3) { buffIndex = "Damage (turnDmg)"; jamBreed.turnDmg++; jamBreed.updateDescription(); }
 						else { jamBreed.amount++; jamBreed.updateDescription(); }
 						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Buffed Jam Breeding Machine! Which amount did we buff: " + buffIndex); }
 					}
+					
+					// all other powers get buffed normally
 					else
 					{
 						buff.amount += 1; buff.updateDescription(); 
 						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Buffed " + buff.name + " on passive trigger. New amount: " + buff.amount); }
 					}
+					
+					
 				}
 			}
 		}

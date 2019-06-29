@@ -49,30 +49,37 @@ public class Linkuriboh extends DuelistCard
     {
     	summon();
     	int tokens = 0;
-    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    	ArrayList<String> summonsList = summonsInstance.summonList;
-    	ArrayList<String> newSummonList = new ArrayList<String>();
-    	for (String s : summonsList)
+    	if (player().hasPower(SummonPower.POWER_ID))
     	{
-    		if (s.contains("Token") || s.contains("token"))
-    		{
-    			tokens++;
-    		}
-    		else
-    		{
-    			newSummonList.add(s);
-    		}
+	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
+	    	ArrayList<String> newSummonList = new ArrayList<String>();
+	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
+	    	for (DuelistCard s : aSummonsList)
+	    	{
+	    		if (s.hasTag(Tags.TOKEN))
+	    		{
+	    			tokens++;
+	    		}
+	    		else
+	    		{
+	    			newSummonList.add(s.originalName);
+	    			aNewSummonList.add(s);
+	    		}
+	    	}
+	    	
+	    	tributeChecker(player(), tokens, this, true);
+	    	summonsInstance.summonList = newSummonList;
+	    	summonsInstance.actualCardSummonList = aNewSummonList;
+	    	summonsInstance.amount -= tokens;
+	    	summonsInstance.updateStringColors();
+	    	summonsInstance.updateDescription();
+	    	for (int i = 0; i < tokens; i++)
+	    	{
+	    		DuelistCard randToken = (DuelistCard) DuelistCardLibrary.getTokens().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokens().size() - 1)).makeCopy();
+	    		fullResummon(randToken, false, AbstractDungeon.getRandomMonster(), false);
+	    	}
     	}
-    	
-    	tributeChecker(player(), tokens, this, true);
-    	summonsInstance.summonList = newSummonList;
-    	summonsInstance.amount -= tokens;
-    	for (int i = 0; i < tokens; i++)
-    	{
-    		DuelistCard randToken = (DuelistCard) DuelistCardLibrary.getTokens().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokens().size() - 1)).makeCopy();
-    		fullResummon(randToken, false, AbstractDungeon.getRandomMonster(), false);
-    	}
-
     }
 
     // Which card to return when making a copy of this card.

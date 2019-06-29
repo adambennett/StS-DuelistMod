@@ -1,12 +1,16 @@
 package duelistmod.cards.typecards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.Tags;
+import duelistmod.actions.common.AddCardTagsToListAction;
 import duelistmod.cards.*;
+import duelistmod.cards.incomplete.RainbowGravity;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -68,6 +72,57 @@ public class DynamicTypeCard extends DuelistCard
     		DuelistCard randResu = (DuelistCard) returnTrulyRandomFromSet(tagSave);
     		while (randResu.hasTag(Tags.EXEMPT)) { randResu = (DuelistCard) returnTrulyRandomFromSet(tagSave); }
     		DuelistCard.fullResummon(randResu, false, AbstractDungeon.getRandomMonster(), false);
+    	}
+    	
+    	if (this.callCard instanceof RainbowGravity)
+    	{
+    		ArrayList<AbstractCard> monstersToModify = new ArrayList<AbstractCard>();
+    		
+    		if (this.callCard.upgraded)
+    		{
+	    		for (AbstractCard c : player().drawPile.group)
+	    		{
+	    			if (c.hasTag(Tags.MONSTER))
+	    			{
+	    				monstersToModify.add(c);
+	    			}
+	    		}
+    		}
+    		
+    		/*for (AbstractCard c : player().discardPile.group)
+    		{
+    			if (c.hasTag(Tags.MONSTER))
+    			{    				
+    				monstersToModify.add(c);
+    			}
+    		}
+    		
+    		for (AbstractCard c : player().exhaustPile.group)
+    		{
+    			if (c.hasTag(Tags.MONSTER))
+    			{
+    				monstersToModify.add(c);
+    			}
+    		}*/
+    		
+    		for (AbstractCard c : player().hand.group)
+    		{
+    			if (c.hasTag(Tags.MONSTER))
+    			{
+    				monstersToModify.add(c);
+    			}
+    		}    	
+    		
+    		if (player().hasPower(SummonPower.POWER_ID))
+    		{
+    			SummonPower summonsInstance = (SummonPower)player().getPower(SummonPower.POWER_ID);
+    			for (AbstractCard c : summonsInstance.actualCardSummonList)
+    			{
+    				if (c.hasTag(Tags.MONSTER)) { monstersToModify.add(c); }    				
+    			}
+    		}
+    		
+    		AbstractDungeon.actionManager.addToTop(new AddCardTagsToListAction(monstersToModify, tagSave));
     	}
     }   
 	@Override public void onTribute(DuelistCard tributingCard)  {}	

@@ -1,6 +1,7 @@
 package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,10 +10,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 
-public class KuribohToken extends DuelistCard 
+public class KuribohToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("KuribohToken");
@@ -40,6 +41,13 @@ public class KuribohToken extends DuelistCard
     }
     
     @Override public AbstractCard makeCopy() { return new KuribohToken(); }
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	if (!tc.hasTag(Tags.DRAGON)) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, 1));}
+    }
+    
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
 		if (!tributingCard.hasTag(Tags.DRAGON)) { applyPowerToSelf(new IntangiblePlayerPower(AbstractDungeon.player, 1));}

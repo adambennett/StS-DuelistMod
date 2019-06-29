@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.FleetingField;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -17,6 +17,8 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -37,6 +39,7 @@ import duelistmod.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
+import duelistmod.cards.incomplete.RainbowGravity;
 import duelistmod.cards.tokens.Token;
 import duelistmod.cards.typecards.DynamicTypeCard;
 import duelistmod.characters.FakePlayer;
@@ -124,6 +127,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int playCount;
 	public int decSummons;
 	public int dex;
+	public int dmgHolder = -1;
 	public int damageA;
 	public int damageB;
 	public int damageC;
@@ -147,6 +151,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int machineDeckCopies = 1;
 	public int zombieDeckCopies = 1;
 	public int fiendDeckCopies = 1;
+	public double dynDmg = 0;
 	
 	public int startingOriginalDeckCopies = 1;
 	public int startingOPDragDeckCopies = 1;
@@ -176,7 +181,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	// =============== ABSTRACT METHODS =========================================================================================================================================================
 	public abstract String getID();
-	public abstract void onTribute(DuelistCard tributingCard);
+	public abstract void onTribute(DuelistCard tributingCard);		/* DEPRECATED - Implement customOnTribute() to run special tributing functions on cards, monster types are handled automatically */
 	public abstract void onResummon(int summons);
 	public abstract void summonThis(int summons, DuelistCard c, int var);
 	public abstract void summonThis(int summons, DuelistCard c, int var, AbstractMonster m);
@@ -207,9 +212,23 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
 	
-	
-	
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
+	@Override
+	public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
+	{
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.5);  }
+		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  tmp = (int) Math.floor(tmp * 1.5);   }
+		if ((this.hasTag(Tags.INSECT) || this.hasTag(Tags.PLANT)) && player().hasPower(VioletCrystalPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.5);  }
+		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) {  tmp = (int) Math.floor(tmp * 1.5);   }
+		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) {  tmp = (int) Math.floor(tmp * 1.5);   }
+		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
+		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 2);  }}
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { tmp += player().getPower(TyrantWingPower.POWER_ID).amount;  }
+		
+		//if (DuelistMod.debug) { DuelistMod.logger.info("Updated damage for " + this.originalName + " based on power effects. New damage should read as: " + tmp);}
+		return tmp;
+	}
+	
 	@Override
 	public AbstractCard makeStatEquivalentCopy()
 	{
@@ -229,6 +248,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			dCard.isSummonModPerm = this.isSummonModPerm;
 			dCard.isTribModPerm = this.isTribModPerm;
 			dCard.exhaust = this.exhaust;
+			ArrayList<CardTags> monsterTags = getAllMonsterTypes(this);
+			dCard.tags.addAll(monsterTags);
 		}
 		return card;
 	}
@@ -353,8 +374,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.startCopies.add(this.healDeckCopies); 			// 17 - Heal Copies
 	}
 	
-	
-	
+	public void customOnTribute(DuelistCard tc)
+	{
+		
+	}
+
 	public void startBattleReset()
 	{
 		if (this.isTribModPerm )
@@ -399,6 +423,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				DuelistMod.logger.info("Triggered it, damage value on card: " + this.damage + ", and old value: " + this.originalDamage + ", card name: " + this.originalName);
 			}
 		}
+		
+		if (this.dmgHolder != -1) { this.dmgHolder = -1; }
 	}
 	
 	public void postTurnReset()
@@ -464,29 +490,50 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		attack(m, this.baseAFX, this.damage);
 	}
 	
-	protected void attack(AbstractMonster m, AttackEffect effect, int damageAmount) 
+	public void thornAttack(AbstractMonster m)
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 1.5); }
-		else if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 1.5); }
-		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { damageAmount += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
+		thornAttack(m, this.baseAFX, this.damage);
+	}
+	
+	public void thornAttack(AbstractMonster m, int dmg)
+	{
+		thornAttack(m, this.baseAFX, dmg);
+	}
+	
+	protected void thornAttack(AbstractMonster m, AttackEffect effect, int damageAmount) 
+	{		
 		if (player().hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) player().getPower(SummonPower.POWER_ID);
-			boolean isOnlySpellcasters = instance.isOnlyTypeSummoned(Tags.SPELLCASTER);
+			boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
 			if (isOnlySpellcasters)
 			{
 				block(5);
 			}
 		}
-		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 2); }}
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
+		{  
+			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);			
+			power.amount2--;
+			power.updateDescription();
+		}
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
+	}
+	
+	protected void attack(AbstractMonster m, AttackEffect effect, int damageAmount) 
+	{
+		if (player().hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower instance = (SummonPower) player().getPower(SummonPower.POWER_ID);
+			boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
+			if (isOnlySpellcasters)
+			{
+				block(5);
+			}
+		}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
 		{  
 			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);
-			damageAmount += power.amount;
 			power.amount2--;
 			power.updateDescription();
 		}
@@ -500,27 +547,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void attackFast(AbstractMonster m, AttackEffect effect, int damageAmount)
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 1.5); }
-		else if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 1.5); }
-		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) {  damageAmount = (int) Math.floor(damageAmount * 1.5);  }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { damageAmount += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
 		if (player().hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) player().getPower(SummonPower.POWER_ID);
-			boolean isOnlySpellcasters = instance.isOnlyTypeSummoned(Tags.SPELLCASTER);
+			boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
 			if (isOnlySpellcasters)
 			{
 				block(5);
 			}
 		}
-		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { damageAmount = (int) Math.floor(damageAmount * 2); }}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
 		{  
 			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);
-			damageAmount += power.amount;
 			power.amount2--;
 			power.updateDescription();
 		}
@@ -529,27 +567,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	protected void attackAllEnemies(AttackEffect effect, int[] damageAmounts) 
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (int) Math.floor(damageAmounts[i] * 1.5); }}
-		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID))  { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (int) Math.floor(damageAmounts[i] * 1.5); }}
-		if (this.hasTag(Tags.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID))  { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (int) Math.floor(damageAmounts[i] * 1.5); }}
-		else if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID))  { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (int) Math.floor(damageAmounts[i] * 1.5); }}
-		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (int) Math.floor(damageAmounts[i] * 1.5); }}
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (int) Math.floor(damageAmounts[i] * 1.5); }}
-		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] += player().getPower(SpikedGillmanPower.POWER_ID).amount; }}
 		if (player().hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) player().getPower(SummonPower.POWER_ID);
-			boolean isOnlySpellcasters = instance.isOnlyTypeSummoned(Tags.SPELLCASTER);
+			boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
 			if (isOnlySpellcasters)
 			{
 				block(5);
 			}
 		}
-		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (int) Math.floor(damageAmounts[i] * 2); }}}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
 		{  
 			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);
-			for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] += power.amount; }
 			power.amount2--;
 			power.updateDescription();
 		}
@@ -575,27 +604,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public void damageThroughBlock(AbstractCreature m, AbstractPlayer p, int damage, AttackEffect effect)
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
-		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
-		if (this.hasTag(Tags.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
-		else if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
-		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { damage = (int) Math.floor(damage * 1.5); }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { damage += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
 		if (player().hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) player().getPower(SummonPower.POWER_ID);
-			boolean isOnlySpellcasters = instance.isOnlyTypeSummoned(Tags.SPELLCASTER);
+			boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
 			if (isOnlySpellcasters)
 			{
 				block(5);
 			}
 		}
-		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { damage = (int) Math.floor(damage * 2); }}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
 		{  
 			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);
-			damage += power.amount;
 			power.amount2--;
 			power.updateDescription();
 		}
@@ -646,7 +666,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== DEFEND FUNCTIONS =========================================================================================================================================================
 	protected void block() 
 	{
-		block(block);
+		block(this.block);
 	}
 
 	public void block(int amount) 
@@ -887,7 +907,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	}
 	
-	public static void contrictAllEnemies(AbstractPlayer p, int amount)
+	public static void constrictAllEnemies(AbstractPlayer p, int amount)
 	{
 		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
 		{
@@ -911,6 +931,27 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void makeFleeting()
 	{
 		FleetingField.fleeting.set(this, true);
+	}
+	
+	public void makeFleeting(boolean set)
+	{
+		FleetingField.fleeting.set(this, set);
+	}
+	
+	public void makeGrave()
+	{
+		GraveField.grave.set(this, true);
+	}
+	
+	public void makeGrave(boolean set)
+	{
+		GraveField.grave.set(this, set);
+	}
+	
+	public void makeMegatyped()
+	{
+		for (CardTags t : DuelistMod.monsterTypes) { this.tags.add(t); }
+		this.tags.add(Tags.MEGATYPED);
 	}
 	
 	public void fetch(CardGroup group, boolean top)
@@ -1116,6 +1157,34 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (actionManagerBottom) { AbstractDungeon.actionManager.addToBottom(new DrawFromRarityAction(player(), cards, tag));		}
 		else { AbstractDungeon.actionManager.addToTop(new DrawFromRarityAction(player(), cards, tag)); }
 		
+	}
+	
+	public static void drawRandomType(int cards, boolean actionManagerBottom, int seed)
+	{
+		switch (seed)
+    	{
+    		case 1: drawTag(cards, Tags.DRAGON, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yDragons", 1.0F, 2.0F)); break;
+    		case 2: drawTag(cards, Tags.MONSTER, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yMonsters", 1.0F, 2.0F)); break;
+    		case 3: drawTag(cards, Tags.SPELL, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #ySpells", 1.0F, 2.0F)); break;
+    		case 4: drawTag(cards, Tags.TRAP, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yTraps", 1.0F, 2.0F)); break;
+    		case 5: 
+    			CardTags randomChoice = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
+    			drawTag(cards, randomChoice, actionManagerBottom); 
+    			AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #y" + DuelistMod.typeCardMap_NAME.get(randomChoice) + "s", 1.0F, 2.0F)); 
+    			break;
+    		case 6: 
+    			CardTags randomChoiceB = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
+    			drawTag(cards, randomChoiceB, actionManagerBottom); 
+    			AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #y" + DuelistMod.typeCardMap_NAME.get(randomChoiceB) + "s", 1.0F, 2.0F)); 
+    			break;
+    		case 7: drawTag(cards, Tags.SPELL, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #ySpells", 1.0F, 2.0F)); break;
+    		case 8: drawRare(cards, CardRarity.COMMON, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yCommons", 1.0F, 2.0F)); break;
+    		case 9: drawRare(cards, CardRarity.UNCOMMON, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yUncommons", 1.0F, 2.0F)); break;
+    		case 10: drawRare(cards, CardRarity.RARE, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yRares", 1.0F, 2.0F)); break;
+    		case 11: drawTag(cards, Tags.MONSTER, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yMonsters", 1.0F, 2.0F)); break;
+    		case 12: drawTag(cards, Tags.TRAP, actionManagerBottom); AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Drawing: #yTraps", 1.0F, 2.0F)); break;
+    		default: break;
+    	}
 	}
 	
 	public void drawBottom(int cards) {
@@ -1347,6 +1416,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					for (int i = 0; i < potSummons; i++) 
 					{ 
 						summonsInstance.summonList.add(c.originalName);
+						summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());
 					} 
 				}
 
@@ -1711,6 +1781,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					for (int i = 0; i < potSummons; i++) 
 					{ 
 						summonsInstance.summonList.add(c.originalName);
+						summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());
 					} 
 				}
 
@@ -2023,7 +2094,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				// Add SUMMONS
 				summonsInstance.amount += potSummons;
 
-				if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); } }
+				if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());} }
 
 				// Check for Pot of Generosity
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
@@ -2385,6 +2456,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				for (int i = 0; i < potSummons; i++) 
 				{ 
 					summonsInstance.summonList.add(c.originalName);
+					summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());
 				} 
 			}
 
@@ -2656,6 +2728,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				for (int i = 0; i < potSummons; i++) 
 				{ 
 					summonsInstance.summonList.add(c.originalName);
+					summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());
 				} 
 			}
 
@@ -2887,7 +2960,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				// Add SUMMONS
 				summonsInstance.amount += potSummons;
 
-				if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); } }
+				if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy()); } }
 
 				// Check for Pot of Generosity
 				if (p.hasPower(PotGenerosityPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
@@ -3091,6 +3164,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static ArrayList<DuelistCard> tribute(AbstractPlayer p, int tributes, boolean tributeAll, DuelistCard card)
 	{		
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> cardTribList = new ArrayList<DuelistCard>();
 		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
@@ -3217,16 +3291,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 									//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 									summonsInstance.summonList.remove(endIndex);
 								}
+								
+								if (summonsInstance.actualCardSummonList.size() > 0)
+								{
+									int endIndex = summonsInstance.actualCardSummonList.size() - 1;
+									DuelistCard temp = summonsInstance.actualCardSummonList.get(endIndex);
+									if (temp != null) { cardTribList.add(temp); }
+									//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+									summonsInstance.actualCardSummonList.remove(endIndex);
+								}
 							}
+							
+							DuelistMod.tribCombatCount += tributes;
+							DuelistMod.tribRunCount += tributes;
+							DuelistMod.tribTurnCount += tributes;
 						}
 
 
 						summonsInstance.updateCount(summonsInstance.amount);
 						summonsInstance.updateStringColors();
 						summonsInstance.updateDescription();
-						for (DuelistCard c : tributeList) 
+						for (DuelistCard c : cardTribList) 
 						{
-							c.onTribute(card); 
+							//c.onTribute(card); 
+							c.customOnTribute(card);
+							c.runTributeSynergyFunctions(card);
 							if (c.hasTag(Tags.AQUA))
 							{
 								// Check for Levia Dragon
@@ -3245,10 +3334,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 									}
 								}
 							}
-							if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
+							if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 						}
 						if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
-						return tributeList;
+						return cardTribList;
 					}
 					else
 					{
@@ -3337,16 +3426,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(endIndex);								
 							}
+							
+							if (summonsInstance.actualCardSummonList.size() > 0)
+							{
+								int endIndex = summonsInstance.actualCardSummonList.size() - 1;
+								DuelistCard temp = summonsInstance.actualCardSummonList.get(endIndex);
+								if (temp != null) { cardTribList.add(temp); }
+								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.actualCardSummonList.remove(endIndex);
+							}
 						}
+						
+						DuelistMod.tribCombatCount += tributes;
+						DuelistMod.tribRunCount += tributes;
+						DuelistMod.tribTurnCount += tributes;
 					}
 
 
 					summonsInstance.updateCount(summonsInstance.amount);
 					summonsInstance.updateStringColors();
 					summonsInstance.updateDescription();
-					for (DuelistCard c : tributeList) 
+					for (DuelistCard c : cardTribList) 
 					{
-						c.onTribute(card); 
+						//c.onTribute(card); 
+						c.customOnTribute(card);
+						c.runTributeSynergyFunctions(card);
 						if (c.hasTag(Tags.AQUA))
 						{
 							// Check for Levia Dragon
@@ -3365,10 +3469,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								}
 							}
 						}
-						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
+						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tribute():2 ---> Called " + c.originalName + "'s customOnTribute()"); }
 					}
 					if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
-					return tributeList;
+					return cardTribList;
 				}
 			}
 		}
@@ -3383,6 +3487,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public static int powerTribute(AbstractPlayer p, int tributes, boolean tributeAll)
 	{
+		ArrayList<DuelistCard> cardTribList = new ArrayList<DuelistCard>();
 		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
@@ -3499,16 +3604,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(endIndex);
 							}
+							
+							if (summonsInstance.actualCardSummonList.size() > 0)
+							{
+								int endIndex = summonsInstance.actualCardSummonList.size() - 1;
+								DuelistCard temp = summonsInstance.actualCardSummonList.get(endIndex);
+								if (temp != null) { cardTribList.add(temp); }
+								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.actualCardSummonList.remove(endIndex);
+							}
 						}
+						
+						DuelistMod.tribCombatCount += tributes;
+						DuelistMod.tribRunCount += tributes;
+						DuelistMod.tribTurnCount += tributes;
 					}
 
 
 					summonsInstance.updateCount(summonsInstance.amount);
 					summonsInstance.updateStringColors();
 					summonsInstance.updateDescription();
-					for (DuelistCard c : tributeList)
+					for (DuelistCard c : cardTribList)
 					{ 
-						c.onTribute(new Token());
+						//c.onTribute(new Token());
+						c.customOnTribute(new Token());
+						c.runTributeSynergyFunctions(new Token());
 						if (c.hasTag(Tags.AQUA))
 						{
 							// Check for Levia Dragon
@@ -3527,7 +3647,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								}
 							}
 						}
-						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
+						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 					}
 					return tributes;
 				}
@@ -3609,16 +3729,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 							summonsInstance.summonList.remove(endIndex);
 						}
+						
+						if (summonsInstance.actualCardSummonList.size() > 0)
+						{
+							int endIndex = summonsInstance.actualCardSummonList.size() - 1;
+							DuelistCard temp = summonsInstance.actualCardSummonList.get(endIndex);
+							if (temp != null) { cardTribList.add(temp); }
+							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+							summonsInstance.actualCardSummonList.remove(endIndex);
+						}
 					}
+					
+					DuelistMod.tribCombatCount += tributes;
+					DuelistMod.tribRunCount += tributes;
+					DuelistMod.tribTurnCount += tributes;
 				}
 
 
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
-				for (DuelistCard c : tributeList) 
+				for (DuelistCard c : cardTribList) 
 				{
-					c.onTribute(new Token()); 					
+					//c.onTribute(new Token()); 	
+					c.customOnTribute(new Token());
+					c.runTributeSynergyFunctions(new Token());
 					if (c.hasTag(Tags.AQUA))
 					{
 						// Check for Levia Dragon
@@ -3637,7 +3772,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							}
 						}
 					}
-					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
+					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s customOnTribute()"); }
 				}
 				return tributes;
 			}
@@ -3646,6 +3781,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static ArrayList<DuelistCard> listReturnPowerTribute(AbstractPlayer p, int tributes, boolean tributeAll)
 	{
+		ArrayList<DuelistCard> cardTribList = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
 		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
@@ -3765,16 +3901,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(endIndex);
 							}
+							
+							if (summonsInstance.actualCardSummonList.size() > 0)
+							{
+								int endIndex = summonsInstance.actualCardSummonList.size() - 1;
+								DuelistCard temp = summonsInstance.actualCardSummonList.get(endIndex);
+								if (temp != null) { cardTribList.add(temp); }
+								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+								summonsInstance.actualCardSummonList.remove(endIndex);
+							}
 						}
+						
+						DuelistMod.tribCombatCount += tributes;
+						DuelistMod.tribRunCount += tributes;
+						DuelistMod.tribTurnCount += tributes;
 					}
 
 
 					summonsInstance.updateCount(summonsInstance.amount);
 					summonsInstance.updateStringColors();
 					summonsInstance.updateDescription();
-					for (DuelistCard c : tributeList)
+					for (DuelistCard c : cardTribList)
 					{ 
-						c.onTribute(new Token());
+						//c.onTribute(new Token());
+						c.customOnTribute(new Token());
+						c.runTributeSynergyFunctions(new Token());
 						if (c.hasTag(Tags.AQUA))
 						{
 							// Check for Levia Dragon
@@ -3793,9 +3944,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								}
 							}
 						}
-						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s onTribute()"); }
+						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 					}
-					return tributeList;
+					return cardTribList;
 				}
 				else
 				{
@@ -3875,16 +4026,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 							summonsInstance.summonList.remove(endIndex);
 						}
+						
+						if (summonsInstance.actualCardSummonList.size() > 0)
+						{
+							int endIndex = summonsInstance.actualCardSummonList.size() - 1;
+							DuelistCard temp = summonsInstance.actualCardSummonList.get(endIndex);
+							if (temp != null) { cardTribList.add(temp); }
+							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
+							summonsInstance.actualCardSummonList.remove(endIndex);
+						}
 					}
+					
+					DuelistMod.tribCombatCount += tributes;
+					DuelistMod.tribRunCount += tributes;
+					DuelistMod.tribTurnCount += tributes;
 				}
 
 
 				summonsInstance.updateCount(summonsInstance.amount);
 				summonsInstance.updateStringColors();
 				summonsInstance.updateDescription();
-				for (DuelistCard c : tributeList) 
+				for (DuelistCard c : cardTribList) 
 				{
-					c.onTribute(new Token()); 
+					//c.onTribute(new Token()); 
+					c.customOnTribute(new Token());
+					c.runTributeSynergyFunctions(new Token());
 					if (c.hasTag(Tags.AQUA))
 					{
 						// Check for Levia Dragon
@@ -3903,9 +4069,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							}
 						}
 					}
-					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s onTribute()"); }
+					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s customOnTribute()"); }
 				}
-				return tributeList;
+				return cardTribList;
 			}
 		}
 	}
@@ -3951,6 +4117,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> cardTribList = new ArrayList<DuelistCard>();
 		
 		// Check for Obelisk after tributing
 		if (p.hasPower(ObeliskPower.POWER_ID))
@@ -4016,14 +4183,27 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
 						if (temp != null) { tributeList.add(temp); }
 					}
+					
+					if (summonsInstance.actualCardSummonList.size() > 0)
+					{
+						int endIndex = summonsInstance.actualCardSummonList.size() - 1;
+						DuelistCard temp = summonsInstance.actualCardSummonList.get(endIndex);
+						if (temp != null) { cardTribList.add(temp); }
+					}
 				}
+				
+				DuelistMod.tribCombatCount += tributes;
+				DuelistMod.tribRunCount += tributes;
+				DuelistMod.tribTurnCount += tributes;
 			}
 			
 			if (callOnTribute)
 			{
-				for (DuelistCard c : tributeList) 
+				for (DuelistCard c : cardTribList) 
 				{
-					c.onTribute(tributingCard); 
+					//c.onTribute(tributingCard);
+					c.customOnTribute(tributingCard);
+					c.runTributeSynergyFunctions(tributingCard);
 					if (c.hasTag(Tags.AQUA))
 					{
 						// Check for Levia Dragon
@@ -4042,17 +4222,139 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							}
 						}
 					}
-					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tributeChecker() ---> Called " + c.originalName + "'s onTribute()"); }
+					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:tributeChecker() ---> Called " + c.originalName + "'s customOnTribute()"); }
 				}
 			}
 		}
-		
-		
-		
 	}
 	// =============== /TRIBUTE MONSTER FUNCTIONS/ =======================================================================================================================================================
 	
 	// =============== TRIBUTE SYNERGY FUNCTIONS =========================================================================================================================================================
+	
+	// This function is called anytime a tribute happens
+	// It automatically determines if a tribute synergy effect needs to trigger, and then triggers the appropriate one(s)
+	// Also it checks for global effects that trigger whenever ANY synergy tribute occurs
+	public void runTributeSynergyFunctions(DuelistCard tc)
+	{
+		// Special function to handle megatyped monsters, plus single check of global synergy effects
+		if (this.hasTag(Tags.MEGATYPED))
+		{
+			megatypeTrib(tc);
+			synergyTributeOneTimeChecks(tc, this);
+		}
+		
+		// For any non-megatyped monster tributes, just loop through the monster types that the tributed card has to see if any match the tributing card
+		else
+		{
+			ArrayList<CardTags> cardTypes = getAllMonsterTypes(this);				
+			for (CardTags t : cardTypes)
+			{
+				// Map determines which function to run based on card tag currently iterating over
+				// If tributed card has any given type from the map, we run the function that checks the tributing card for matching type
+				// The functions that check matching type on the tributing cards also handle triggering the appropriate synergy effects
+				switch (DuelistMod.monsterTypeTributeSynergyFunctionMap.get(t))
+				{
+					case 0: 
+						aquaSynTrib(tc); 						
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran aqua syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 1: 
+						dragonSynTrib(tc);						
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran dragon syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 2: 
+						fiendSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran fiend syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 3: 
+						insectSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran insect syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 4: 
+						machineSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran machine syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 5: 
+						naturiaSynTrib(tc);
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran naturia syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 6: 
+						plantSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran plant syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 7: 
+						predaplantSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran predaplant syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 8: 
+						spellcasterSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran spellcaster syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 9: 
+						superSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran superheavy syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 10: 
+						toonSynTrib(tc);
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran toon syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					case 11: 
+						zombieSynTrib(tc); 
+						if (DuelistMod.debug) { DuelistMod.logger.info("ran zombie syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+						break;
+					default: break;
+				}
+			}
+			
+			// And finally for non-megatyped cards we still need to run one-time checks for global type-agnostic synergy effects
+			synergyTributeOneTimeChecks(tc, this);
+		}
+	}
+	
+	// things to check for only one time when a synergy tribute happens
+	// only runs once for megatyped situations and other weirdness that may occur with type modifications
+	public static void synergyTributeOneTimeChecks(DuelistCard tributingCard, DuelistCard tributedCard)
+	{
+		ArrayList<CardTags> tributingCardMonsterTypes = getAllMonsterTypes(tributingCard);
+		ArrayList<CardTags> tributedCardMonsterTypes = getAllMonsterTypes(tributedCard);
+		boolean oneMatchingType = false;
+		for (CardTags t : tributingCardMonsterTypes)
+		{
+			if (tributedCardMonsterTypes.contains(t))
+			{
+				oneMatchingType = true;
+				break;
+			}
+		}
+		
+		// Successful synergy tribute for at least one type that matches between the two cards involved in this tribute
+		// Call any effects that trigger on any given synergy tribute in this block
+		if (oneMatchingType)
+		{
+			if (AbstractDungeon.player.hasRelic(MillenniumScale.ID))
+			{
+				gainEnergy(1);
+			}
+		}
+	}
+	
+	public static void megatypeTrib(DuelistCard tc)
+	{
+		dragonSynTrib(tc);
+		machineSynTrib(tc);
+		toonSynTrib(tc);
+		fiendSynTrib(tc);
+		aquaSynTrib(tc);
+		naturiaSynTrib(tc);
+		plantSynTrib(tc);
+		predaplantSynTrib(tc);
+		insectSynTrib(tc);
+		superSynTrib(tc);
+		spellcasterSynTrib(tc);
+		zombieSynTrib(tc);
+		if (DuelistMod.debug) { DuelistMod.logger.info("Ran megatype tribute function, tributing card: " + tc.originalName); }
+	}
+	
 	public static void dragonSynTrib(DuelistCard tributingCard)
 	{
 		if (tributingCard.hasTag(Tags.DRAGON))
@@ -4090,7 +4392,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.MACHINE))
 		{
-			applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt));
+			if (!DuelistMod.machineArtifactFlipper) { applyPowerToSelf(new ArtifactPower(player(), DuelistMod.machineArt)); }
+			DuelistMod.machineArtifactFlipper = !DuelistMod.machineArtifactFlipper;
 		}
 	}
 	
@@ -4154,8 +4457,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void plantSynTrib(DuelistCard tributingCard)
 	{
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
-		else if (tributingCard.hasTag(Tags.PLANT)) { contrictAllEnemies(player(), DuelistMod.plantConstricted); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { constrictAllEnemies(player(), DuelistMod.plantConstricted + 1); }
+		else if (tributingCard.hasTag(Tags.PLANT)) { constrictAllEnemies(player(), DuelistMod.plantConstricted); }
 	}
 	
 	public static void predaplantSynTrib(DuelistCard tributingCard)
@@ -5383,6 +5686,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this instanceof YamiForm)
 		{
 			 res = Strings.configYamiFormA + tagString + Strings.configYamiFormB;
+		}
+		
+		if (this instanceof RainbowGravity)
+		{
+			res = "All your monsters gain " + tagString + " type until the end of combat.";
 		}
 		
 		return res;

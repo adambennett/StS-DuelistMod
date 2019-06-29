@@ -55,7 +55,7 @@ public class WorldTreePower extends AbstractPower
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower power = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (card.type.equals(CardType.SKILL) && power.isOnlyTypeSummoned(Tags.PLANT))
+			if (card.type.equals(CardType.SKILL) && power.isEveryMonsterCheck(Tags.PLANT, false))
 			{
 				AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, this.amount));
 			}

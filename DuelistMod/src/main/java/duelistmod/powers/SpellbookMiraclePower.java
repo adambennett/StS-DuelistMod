@@ -54,20 +54,23 @@ public class SpellbookMiraclePower extends AbstractPower
 		AbstractPlayer p = AbstractDungeon.player;
 		for (AbstractPower pow : p.powers)
 		{
-			if (pow.name.equals("Spellbook of Power"))
+			if (pow.ID != null)
 			{
-				DuelistCard.removePower(pow, p);
-			}
-			
-			else if (pow.name.equals("Spellbook of Knowledge"))
-			{
-				DuelistCard.removePower(pow, p);
-			}
+				if (pow.ID.equals("theDuelist:SpellbookPowerPower"))
+				{
+					DuelistCard.removePower(pow, p);
+				}
+				
+				else if (pow.ID.equals("theDuelist:SpellbookKnowledgePower"))
+				{
+					DuelistCard.removePower(pow, p);
+				}
 
-			else if (pow.name.equals("Spellbook of Life"))
-			{
-				DuelistCard.removePower(pow, p);
-			}
+				else if (pow.ID.equals("theDuelist:SpellbookLifePower"))
+				{
+					DuelistCard.removePower(pow, p);
+				}
+			}			
 		}
 	}
 }

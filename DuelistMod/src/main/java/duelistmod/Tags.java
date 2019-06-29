@@ -45,6 +45,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER;
 	@SpireEnum public static AbstractCard.CardTags MAGNETWARRIOR;
 	@SpireEnum public static AbstractCard.CardTags MAGNET_DECK;
+	@SpireEnum public static AbstractCard.CardTags MEGATYPED;
 	@SpireEnum public static AbstractCard.CardTags METAL_RAIDERS;
 	@SpireEnum public static AbstractCard.CardTags MONSTER;
 	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;

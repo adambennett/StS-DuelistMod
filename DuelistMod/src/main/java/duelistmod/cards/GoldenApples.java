@@ -3,8 +3,10 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -28,6 +30,7 @@ public class GoldenApples extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
+    private double dynamicBlock = 0;
     // /STAT DECLARATION/
     
     public GoldenApples() 
@@ -38,8 +41,21 @@ public class GoldenApples extends DuelistCard
     	this.incrementDeckCopies = 2;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;
+		this.baseBlock = this.block = 0;
 		this.setupStartingCopies();
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			this.dynamicBlock = this.magicNumber * DuelistMod.summonCombatCount;
+			this.baseBlock = (int)this.dynamicBlock;
+			this.applyPowers();
+		}
+	}
 
     // Actions the card should do.
     @Override

@@ -1,6 +1,7 @@
 package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,10 +11,10 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 
-public class RelicToken extends DuelistCard 
+public class RelicToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("RelicToken");

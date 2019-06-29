@@ -182,7 +182,7 @@ public class Glitch extends DuelistOrb
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID) && !lastAction.equals("Lose #b5 HP"))
 			{
 				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (instance.isOnlyTypeSummoned(Tags.MACHINE))
+				if (instance.isEveryMonsterCheck(Tags.MACHINE, false))
 				{
 					runAction(lastAction);
 					lastTurnActions.add(translationMap.get(lastAction));

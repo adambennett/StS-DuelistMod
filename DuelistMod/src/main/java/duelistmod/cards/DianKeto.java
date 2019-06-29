@@ -24,21 +24,19 @@ public class DianKeto extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR =AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    private static final int HEAL = 4;
-    private static final int U_HEAL = 2;
     // /STAT DECLARATION/
 
     public DianKeto() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-       	this.magicNumber = this.baseMagicNumber = HEAL;
-       	this.exhaust = true;
+       	this.magicNumber = this.baseMagicNumber = 8;
         this.tags.add(Tags.SPELL);
         this.originalName = this.name;
+        this.makeFleeting();
     }
 
     // Actions the card should do.
@@ -57,12 +55,19 @@ public class DianKeto extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeMagicNumber(U_HEAL);
+        if (canUpgrade()) {
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	return true;
     }
 
 	@Override

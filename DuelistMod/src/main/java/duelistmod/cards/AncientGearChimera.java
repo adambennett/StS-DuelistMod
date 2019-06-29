@@ -40,14 +40,11 @@ public class AncientGearChimera extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MACHINE);
-		this.tags.add(Tags.MACHINE_DECK);
-		this.machineDeckCopies = 1;		
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 1;
-		this.isSummon = true;
+		this.misc = 0;
 		this.baseDamage = this.damage = 10;
 		this.magicNumber = this.baseMagicNumber = 2;
-		this.setupStartingCopies();
 	}
 
 

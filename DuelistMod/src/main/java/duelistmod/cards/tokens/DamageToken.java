@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 
-public class DamageToken extends DuelistCard 
+public class DamageToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DamageToken");
@@ -35,7 +35,6 @@ public class DamageToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.baseDamage = this.damage = 1;
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
     }
     public DamageToken(String tokenName) 
     { 
@@ -43,7 +42,6 @@ public class DamageToken extends DuelistCard
     	this.tags.add(Tags.TOKEN); 
     	this.baseDamage = this.damage = 1;
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

@@ -409,11 +409,11 @@
 },
 "theDuelist:PlantTypePower": {
         "NAME": "Constriction",
-        "DESCRIPTIONS": ["At the end of turn, have a chance to apply #b", " #yConstricted to ALL enemies. You have a higher chance if the only monsters you have summoned are #yPlants."  ]
+        "DESCRIPTIONS": ["At the end of turn, have a chance to apply #b", " #yConstricted to ALL enemies. You have a higher chance if all monsters summoned are #yPlants."  ]
 },
 "theDuelist:WorldTreePower": {
         "NAME": "World Tree",
-        "DESCRIPTIONS": ["Whenever you play a #ySkill and have only #yPlants summoned, gain #b", " #ytemporary #yHP." ]
+        "DESCRIPTIONS": ["Whenever you play a #ySkill and all monsters summoned are #yPlants, gain #b", " #ytemporary #yHP." ]
 },
 "theDuelist:TyrantWingPower": {
         "NAME": "Tyrant Wing",
@@ -433,7 +433,7 @@
 },
 "theDuelist:JumboDrillPower": {
         "NAME": "Jumbo Drill",
-        "DESCRIPTIONS": ["Whenever you attack, choose 1 of 3 #yRandomized #yMachines to add to your hand." ]
+        "DESCRIPTIONS": ["Whenever you play an Attack that costs [E] [E] or more NL choose 1 of 3 #yRandomized #yMachines to add to your hand." ]
 },
 "theDuelist:YamiFormPower": {
         "NAME": "Yami Form",

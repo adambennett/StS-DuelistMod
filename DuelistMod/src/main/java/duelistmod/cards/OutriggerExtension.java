@@ -33,7 +33,7 @@ public class OutriggerExtension extends DuelistCard
     public OutriggerExtension() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);   
         this.tags.add(Tags.MACHINE);
 

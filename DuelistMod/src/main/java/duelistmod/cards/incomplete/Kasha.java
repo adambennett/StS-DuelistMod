@@ -23,48 +23,27 @@ public class Kasha extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 100;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public Kasha() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 6000;
-        this.baseBlock = this.block = 6000;
-        this.baseMagicNumber = this.magicNumber = 6000;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        
-        // Tribute
+        this.baseDamage = this.damage = 16;
         this.tributes = this.baseTributes = 1;
         this.misc = 0;
-       
-        // Card Type
         this.tags.add(Tags.MONSTER);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
+        this.tags.add(Tags.ZOMBIE);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
     	tribute();
     	attack(m);
     }
@@ -78,6 +57,14 @@ public class Kasha extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	if (DuelistMod.hasUpgradeBuffRelic)
+        	{
+        		this.upgradeDamage(2);
+        	}
+        	else
+        	{
+        		this.upgradeDamage(1);
+        	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -92,8 +79,7 @@ public class Kasha extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
-		
+		zombieSynTrib(tributingCard);		
 	}
 	
     // If player doesn't have enough summons, can't play card

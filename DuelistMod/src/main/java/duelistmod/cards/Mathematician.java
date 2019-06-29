@@ -40,7 +40,7 @@ public class Mathematician extends DuelistCard
         this.isSummon = true;
         this.exhaust = true;
     }
-
+    
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

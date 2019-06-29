@@ -30,8 +30,15 @@ public class MillenniumPuzzle extends CustomRelic {
 	}
 	
 	@Override
+	public void onUnequip()
+	{
+		DuelistMod.hasPuzzle = false;
+	}
+	
+	@Override
 	public void onEquip()
 	{
+		DuelistMod.hasPuzzle = true;
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
 			getDeckDesc();

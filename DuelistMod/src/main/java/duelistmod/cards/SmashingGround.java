@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -29,12 +30,12 @@ public class SmashingGround extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 2;
-	private static final int DAMAGE = 4;
+	private double dynamicDmg = 0;
 	// /STAT DECLARATION/
 
 	public SmashingGround() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = DAMAGE;
+		this.baseMagicNumber = this.magicNumber = 4;
 		this.isMultiDamage = true;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ALL);
@@ -46,14 +47,26 @@ public class SmashingGround extends DuelistCard
 		this.setupStartingCopies();
 	}
 
+	@Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			this.dynamicDmg = this.magicNumber * DuelistMod.summonCombatCount;
+			this.baseDamage = (int)this.dynamicDmg;
+			this.applyPowers();
+		}
+	}
+	
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		m = AbstractDungeon.getRandomMonster();
-		int playerSummons = DuelistMod.summonCombatCount;
-		int newDamage = this.damage * playerSummons;
-		attack(m, this.baseAFX, newDamage);
+		//int playerSummons = DuelistMod.summonCombatCount;
+		//int newDamage = this.damage * playerSummons;
+		attack(m);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -67,7 +80,7 @@ public class SmashingGround extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(2);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

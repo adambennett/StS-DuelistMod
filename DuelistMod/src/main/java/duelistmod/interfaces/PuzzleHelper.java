@@ -126,8 +126,12 @@ public class PuzzleHelper
 			// Zombie Deck
 			case 5:		
 				DuelistCard.puzzleSummon(AbstractDungeon.player, SUMMONS + extra, "Zombie Token", false);
-				DuelistCard randZomb = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(Tags.ZOMBIE);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randZomb, true));
+				int rollZ = AbstractDungeon.cardRandomRng.random(1, 5);
+				if (rollZ == 1)
+				{
+					ArrayList<DuelistCard> types = DuelistCard.generateTypeCards(0, true, new YamiForm(), 3, true);
+					AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+				}
 				break;
 				
 			// Aqua Deck

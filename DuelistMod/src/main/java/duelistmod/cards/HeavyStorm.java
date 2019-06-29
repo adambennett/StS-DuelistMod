@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -39,6 +40,7 @@ public class HeavyStorm extends DuelistCard
        	this.tags.add(Tags.ALL);
        	this.tags.add(Tags.METAL_RAIDERS);
 		this.originalName = this.name;
+		this.baseMagicNumber = this.magicNumber = 3;
     }
 
     // Actions the card should do.
@@ -47,35 +49,46 @@ public class HeavyStorm extends DuelistCard
     {
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
+    		int summonsRemoved = 0;
 	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
 	    	summonsInstance.summonList = new ArrayList<String>();
+	    	summonsInstance.actualCardSummonList = new ArrayList<DuelistCard>();
+	    	summonsRemoved = summonsInstance.amount;
 	    	summonsInstance.amount -= summonsInstance.amount;
 	    	summonsInstance.updateDescription();
+	    	
+	    	for (int i = 0; i < summonsRemoved; i++)
+	    	{
+	    		int playerOrMonsterRoll = AbstractDungeon.cardRandomRng.random(1, 4);
+	    		if (playerOrMonsterRoll == 1) { damageSelfNotHP(this.magicNumber); }
+	    		else { thornAttack(AbstractDungeon.getRandomMonster(), this.magicNumber); }
+	    	}
     	}
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new HeavyStorm();
+    	return new HeavyStorm();
     }
 
     // Upgraded stats.
     @Override
     public void upgrade() 
     {
-        //if (!this.upgraded) {
-           // this.upgradeName();
-            //this.upgradeBaseCost(0);
-           // this.rawDescription = UPGRADE_DESCRIPTION;
-           // this.initializeDescription();
-       // }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return false;
+    	if (!this.upgraded) {
+    		this.upgradeName();
+    		if (DuelistMod.hasUpgradeBuffRelic)
+    		{
+    			this.upgradeMagicNumber(2);
+    		}
+    		else
+    		{
+    			this.upgradeMagicNumber(1);
+    		}    		
+    		this.rawDescription = UPGRADE_DESCRIPTION;
+    		this.initializeDescription();
+    	}
     }
 
 	@Override

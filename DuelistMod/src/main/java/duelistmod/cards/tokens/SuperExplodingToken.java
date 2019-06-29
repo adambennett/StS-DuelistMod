@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MachineToken;
 
-public class SuperExplodingToken extends DuelistCard 
+public class SuperExplodingToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("SuperExplodingToken");
@@ -50,6 +50,24 @@ public class SuperExplodingToken extends DuelistCard
     	summon(AbstractDungeon.player, this.summons, this); 
     }
     @Override public AbstractCard makeCopy() { return new SuperExplodingToken(); }
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	if (AbstractDungeon.player.hasRelic(MachineToken.ID))
+		{
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 3);
+			AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.getRandomMonster(), new DamageInfo(player(), damageRoll, damageTypeForTurn), AttackEffect.FIRE));
+		}
+		else
+		{
+			
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 3);
+			damageSelf(damageRoll); 
+			
+		}
+    }
+    
 	@Override public void onTribute(DuelistCard tributingCard) 
 	{
 		machineSynTrib(tributingCard);

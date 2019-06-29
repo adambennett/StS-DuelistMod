@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
@@ -41,14 +40,11 @@ public class RedGadget extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MACHINE);
-		this.tags.add(Tags.MACHINE_DECK);
-		this.machineDeckCopies = 2;		
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.baseDamage = this.damage = 5;
 		this.magicNumber = this.baseMagicNumber = 2;
-		this.setupStartingCopies();
 	}
 
 
@@ -58,6 +54,8 @@ public class RedGadget extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		attack(m, this.baseAFX, this.damage);
+		
+		// Base version - random tokens
 		if (!upgraded)
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
@@ -67,12 +65,16 @@ public class RedGadget extends DuelistCard
 				addCardToHand((DuelistCard)tk.makeCopy());
 			}
 		}
+		
+		// Upgraded - choose tokens
 		else
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
 			ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
+			int iterations = this.magicNumber;
 			abTokens.addAll(tokens);
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, this.magicNumber, abTokens));
+			if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
 		}
 	}
 
@@ -90,8 +92,8 @@ public class RedGadget extends DuelistCard
 		if (!this.upgraded) 
 		{
 			this.upgradeName();
-			this.upgradeMagicNumber(1);
-			//this.upgradeDamage(3);
+			//this.upgradeMagicNumber(1);
+			this.upgradeDamage(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

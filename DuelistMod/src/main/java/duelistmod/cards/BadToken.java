@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,7 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 
@@ -25,19 +27,35 @@ public class BadToken extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public BadToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
-    public BadToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); }
+    public BadToken() 
+    { 
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
+    	this.damage = this.baseDamage = 1;
+    	makeMegatyped();
+    }
+    public BadToken(String tokenName) 
+    { 
+    	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
+    	this.damage = this.baseDamage = 1; 
+    	makeMegatyped();
+    }
     
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	Debug.printTributeInfo();
+    	attack(m);
+    	if (DuelistMod.debug)
+    	{
+    		Debug.printTributeInfo();
+        	Debug.printRarityInfo();
+        	Debug.printTypedRarityInfo();
+    	}
     }
    
 

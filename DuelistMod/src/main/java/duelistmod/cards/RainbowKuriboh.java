@@ -25,7 +25,7 @@ public class RainbowKuriboh extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -40,6 +40,7 @@ public class RainbowKuriboh extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.makeMegatyped();
     }
 
     // Actions the card should do.
@@ -82,8 +83,7 @@ public class RainbowKuriboh extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
+		megatypeTrib(tributingCard);
 	}
 	
     // Checking for Monster Zones if the challenge is enabled

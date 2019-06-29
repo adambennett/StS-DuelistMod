@@ -1,16 +1,17 @@
 package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 
-public class Token extends DuelistCard 
+public class Token extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Token");

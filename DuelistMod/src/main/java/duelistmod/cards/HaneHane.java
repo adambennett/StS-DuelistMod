@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
@@ -128,6 +128,13 @@ public class HaneHane extends DuelistCard
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+		summon(player(), 1, new HaneToken());
+	    block(this.block);
     }
 
 	@Override

@@ -46,9 +46,9 @@ public class RainbowBridge extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		for (String s : pow.summonList)
+    		for (DuelistCard s : pow.actualCardSummonList)
     		{
-    			if (p.hand.size() < BaseMod.MAX_HAND_SIZE) { for (int i = 0; i < this.magicNumber; i++) { addCardToHand(DuelistMod.summonMap.get(s)); }}
+    			if (p.hand.size() < BaseMod.MAX_HAND_SIZE) { for (int i = 0; i < this.magicNumber; i++) { addCardToHand(s.makeStatEquivalentCopy()); }}
     		}
     	}
     }

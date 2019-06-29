@@ -55,7 +55,7 @@ public class ShadowToon extends DuelistCard
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isOnlyTypeSummoned(Tags.TOON)) { heal(p, this.magicNumber); }
+			if (instance.isEveryMonsterCheck(Tags.TOON, false)) { heal(p, this.magicNumber); }
 		}
     }
 

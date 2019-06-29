@@ -62,22 +62,25 @@ public class PoseidonWavePower extends AbstractPower
     			{
     				int tokens = 0;
     		    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    		    	ArrayList<String> summonsList = summonsInstance.summonList;
+    		    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
     		    	ArrayList<String> newSummonList = new ArrayList<String>();
-    		    	for (String s : summonsList)
+    		    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
+    		    	for (DuelistCard s : aSummonsList)
     		    	{
-    		    		if (DuelistMod.summonMap.get(s).hasTag(Tags.AQUA))
+    		    		if (s.hasTag(Tags.AQUA))
     		    		{
     		    			tokens++;
     		    		}
     		    		else
     		    		{
-    		    			newSummonList.add(s);
+    		    			newSummonList.add(s.originalName);
+    		    			aNewSummonList.add(s);
     		    		}
     		    	}
     		    	
     		    	DuelistCard.tributeChecker(p, tokens, new Token(), true);
     		    	summonsInstance.summonList = newSummonList;
+    		    	summonsInstance.actualCardSummonList = aNewSummonList;
     		    	summonsInstance.amount -= tokens;
     		    	summonsInstance.updateDescription();
     		    	return 0;

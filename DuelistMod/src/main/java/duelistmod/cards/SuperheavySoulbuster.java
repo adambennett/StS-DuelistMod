@@ -3,14 +3,12 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 
 public class SuperheavySoulbuster extends DuelistCard 
@@ -39,7 +37,7 @@ public class SuperheavySoulbuster extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 4;
+		this.superheavyDeckCopies = 1;
 		this.setupStartingCopies();
         this.misc = 0;
 		this.originalName = this.name;

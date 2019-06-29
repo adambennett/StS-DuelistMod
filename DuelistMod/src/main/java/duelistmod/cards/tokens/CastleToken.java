@@ -1,6 +1,7 @@
 package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,10 +9,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 
-public class CastleToken extends DuelistCard 
+public class CastleToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("CastleToken");
@@ -36,7 +37,6 @@ public class CastleToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
-    	this.isEthereal = true;
     }
     public CastleToken(String tokenName) 
     { 
@@ -44,7 +44,6 @@ public class CastleToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);  
     	this.purgeOnUse = true;
     	this.baseMagicNumber = this.magicNumber = 1;
-    	this.isEthereal = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

@@ -1,15 +1,18 @@
 package duelistmod.cards.incomplete;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 
 public class HauntedShrine extends DuelistCard 
 {
@@ -23,51 +26,84 @@ public class HauntedShrine extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 100;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HauntedShrine() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 6000;
-        this.baseBlock = this.block = 6000;
-        this.baseMagicNumber = this.magicNumber = 6000;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        
-        // Tribute
-        this.tributes = this.baseTributes = 1;
-        this.misc = 0;
-       
-        // Card Type
         this.tags.add(Tags.TRAP);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
-    	tribute();
-    	//applyPowerToSelf(new PowerTemplate(p, p, 1));
-    	attack(m);
+    	
+    	// exhaust -> draw
+    	// draw -> discard
+    	// discard -> exhaust
+    	// hand -> random pile
+    	// randomly from any pile -> hand, copy them and make them cost 0 this turn
+    	ArrayList<AbstractCard> draw = new ArrayList<AbstractCard>();
+    	ArrayList<AbstractCard> discard = new ArrayList<AbstractCard>();
+    	ArrayList<AbstractCard> hand = new ArrayList<AbstractCard>();
+    	ArrayList<AbstractCard> exhaust = new ArrayList<AbstractCard>();
+    	
+    	// init pile arrays with copies of cards from each pile, then clear each pile
+    	for (AbstractCard c : p.exhaustPile.group) { exhaust.add(c.makeStatEquivalentCopy()); }
+    	for (AbstractCard c : p.drawPile.group) { draw.add(c.makeStatEquivalentCopy()); }
+    	for (AbstractCard c : p.discardPile.group) { discard.add(c.makeStatEquivalentCopy()); }
+    	for (AbstractCard c : p.hand.group) { hand.add(c.makeStatEquivalentCopy()); }
+    	p.drawPile.clear(); p.exhaustPile.clear(); p.discardPile.clear(); p.hand.clear();
+    	
+    	// now add copies of the cards from each pile to the new pile 
+    	for (AbstractCard c : exhaust) { p.drawPile.group.add(c.makeStatEquivalentCopy()); }
+    	for (AbstractCard c : draw) { p.discardPile.group.add(c.makeStatEquivalentCopy()); }
+    	for (AbstractCard c : discard) { p.exhaustPile.group.add(c.makeStatEquivalentCopy()); }
+    	
+    	// Roll 1-3 for each card from your hand to place into a random other pile (draw, discard, exhaust)
+    	for (AbstractCard c : hand) 
+    	{ 
+    		int pileRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+    		if (pileRoll == 1) { p.discardPile.group.add(c.makeStatEquivalentCopy()); }
+    		else if (pileRoll == 2) { p.drawPile.group.add(c.makeStatEquivalentCopy()); }    		
+    		else if (pileRoll == 3) { p.exhaustPile.group.add(c.makeStatEquivalentCopy()); }    	
+    	}
+    	
+    	// Fill the players hand with cards from random piles
+    	for (int i = 0; i < BaseMod.MAX_HAND_SIZE; i++)
+    	{
+    		int pileRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+    		if (pileRoll == 1) 
+    		{ 
+    			AbstractCard c = draw.get(AbstractDungeon.cardRandomRng.random(draw.size() - 1)).makeStatEquivalentCopy(); 
+    			c.modifyCostForTurn(-c.cost);
+    			c.isCostModifiedForTurn = true;
+    			p.hand.group.add(c);
+    			//addCardToHand(c);
+    		}
+    		else if (pileRoll == 2) 
+    		{ 
+    			AbstractCard c = discard.get(AbstractDungeon.cardRandomRng.random(discard.size() - 1)).makeStatEquivalentCopy(); 
+    			c.modifyCostForTurn(-c.cost);
+    			c.isCostModifiedForTurn = true;
+    			p.hand.group.add(c); 
+    			//addCardToHand(c);
+    		}    		
+    		else if (pileRoll == 3) 
+    		{ 
+    			AbstractCard c = exhaust.get(AbstractDungeon.cardRandomRng.random(exhaust.size() - 1)).makeStatEquivalentCopy(); 
+    			c.modifyCostForTurn(-c.cost);
+    			c.isCostModifiedForTurn = true;
+    			p.hand.group.add(c); 
+    			//addCardToHand(c);
+    		}  
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -80,62 +116,23 @@ public class HauntedShrine extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
     
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
-    }
-
+    
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		// TODO Auto-generated method stub
 		
 	}
-	
-    // If player doesn't have enough summons, can't play card
-  	@Override
-  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-  	{
-  		// Check super canUse()
-  		boolean canUse = super.canUse(p, m); 
-  		if (!canUse) { return false; }
-  		
-  		// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-  		
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
-			}
-		}
-
-  		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
-
-  		// Player doesn't have something required at this point
-  		this.cantUseMessage = this.tribString;
-  		return false;
-  	}
-
 
 	@Override
 	public void onResummon(int summons) {

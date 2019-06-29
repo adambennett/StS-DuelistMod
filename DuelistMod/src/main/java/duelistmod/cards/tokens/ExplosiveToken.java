@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MachineToken;
 
-public class ExplosiveToken extends DuelistCard 
+public class ExplosiveToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("ExplosiveToken");
@@ -33,34 +33,30 @@ public class ExplosiveToken extends DuelistCard
     private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public ExplosiveToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); this.tags.add(Tags.EXPLODING_TOKEN); this.purgeOnUse = true; this.isEthereal = true;}
-    public ExplosiveToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); this.tags.add(Tags.EXPLODING_TOKEN); this.purgeOnUse = true; this.isEthereal = true;}
+    public ExplosiveToken() { super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); this.tags.add(Tags.EXPLODING_TOKEN); this.purgeOnUse = true; }
+    public ExplosiveToken(String tokenName) { super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); this.tags.add(Tags.BAD_TRIB); this.tags.add(Tags.TOKEN); this.tags.add(Tags.EXPLODING_TOKEN); this.purgeOnUse = true; }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(AbstractDungeon.player, 1, this); 
     }
     @Override public AbstractCard makeCopy() { return new ExplosiveToken(); }
-	@Override public void onTribute(DuelistCard tributingCard) 
-	{
-		if (AbstractDungeon.player.hasRelic(MachineToken.ID))
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	if (AbstractDungeon.player.hasRelic(MachineToken.ID))
 		{
-			int damageRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh);
 			AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.getRandomMonster(), new DamageInfo(player(), damageRoll, damageTypeForTurn), AttackEffect.FIRE));
 		}
 		else
-		{
-			if (DuelistMod.challengeMode) 
-			{ 
-				int damageRoll = AbstractDungeon.cardRandomRng.random(1, 6);
-				damageSelf(damageRoll); 
-			}
-			else 
-			{ 
-				int damageRoll = AbstractDungeon.cardRandomRng.random(1, 3);
-				damageSelf(damageRoll); 
-			}
+		{			
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh);
+			damageSelf(damageRoll); 			
 		}
-	}
+    }
+    
+	@Override public void onTribute(DuelistCard tributingCard) {}
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }

@@ -116,7 +116,7 @@
       "NAMES": [
         "spellcaster"
       ],      
-      "DESCRIPTION": "When you attack, if the only monsters you currently have summoned are #ySpellcasters, gain #b5 Block. You need to have summoned at least #b1 #ySpellcaster to trigger this effect."
+      "DESCRIPTION": "When you attack, if all the monsters you currently have summoned are #ySpellcasters, gain #b5 Block. You need to have at least #b1 #ySpellcaster summoned to trigger this effect."
     },
      {
 	  "PROPER_NAME": "Insect",
@@ -312,7 +312,7 @@
       "Smoke",
 	  "smoke"
     ],   
-    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase the #yTribute cost by #b2 and increase the damage by #b6 for this turn. NL #yEvoke: #yIncrement #b3."
+    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase the #yTribute cost by #b1 and increase the damage by #b4 for this turn. NL #yEvoke: #yIncrement #b3."
   },
   {
     "PROPER_NAME": "Storm",
@@ -356,7 +356,7 @@
 	  "machine",
 	  "machines"
     ],   
-    "DESCRIPTION": "When you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
+    "DESCRIPTION": "Every other time you #yTribute a #yMachine for another #yMachine, gain #b1 #yArtifact."
   },
   {
     "PROPER_NAME": "Black",
@@ -407,6 +407,22 @@
 	  "Spellbooks"
     ],   
     "DESCRIPTION": "Power cards that enable #ySpellcaster synergy #yTribute effects. You can only have one #ySpellbook active at a time."
+  },
+  {
+    "PROPER_NAME": "Megatyped",
+    "NAMES": [
+      "Megatyped",
+	  "megatyped"
+    ],   
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Spellcaster, Superheavy, Toon, and Zombie)."
+  },
+  {
+    "PROPER_NAME": "Exodia",
+    "NAMES": [
+      "Exodia",
+	  "exodia"
+    ],   
+    "DESCRIPTION": "Playing unique pieces of #yExodia will add #b1 to your #yExodia power."
   },
   {
     "PROPER_NAME": "Gate",

@@ -111,18 +111,22 @@ public class ManEaterBug extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
     
-
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	if (tc.hasTag(Tags.INSECT)) { DuelistCard.damageAllEnemiesThornsNormal(this.magicNumber); }
+    }
+    
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		insectSynTrib(tributingCard);
-		if (tributingCard.hasTag(Tags.INSECT)) { DuelistCard.damageAllEnemiesThornsNormal(7); }
+		
 	}
 
 

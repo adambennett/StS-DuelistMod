@@ -63,30 +63,33 @@ public class BlastJuggler extends DuelistCard
 			int allTokens = 0;
 			int sTokens = 0;
 	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	ArrayList<String> summonsList = summonsInstance.summonList;
+	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
 	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	for (String s : summonsList)
+	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
+	    	for (DuelistCard s : aSummonsList)
 	    	{
-	    		if (DuelistMod.summonMap.get(s).hasTag(Tags.EXPLODING_TOKEN))
+	    		if (s.hasTag(Tags.EXPLODING_TOKEN))
 	    		{
 	    			tokens++;
 	    			allTokens++;
 	    			//if (DuelistMod.debug) { System.out.println("Blast juggler found an explosive token that monster: " + s + " :::: tokens so far: " + tokens); }
 	    		}
-	    		else if (DuelistMod.summonMap.get(s).hasTag(Tags.SUPER_EXPLODING_TOKEN))
+	    		else if (s.hasTag(Tags.SUPER_EXPLODING_TOKEN))
 	    		{
 	    			sTokens++;
 	    			allTokens++;
 	    		}
 	    		else
 	    		{
-	    			newSummonList.add(s);
+	    			newSummonList.add(s.originalName);
+	    			aNewSummonList.add(s);
 	    			//if (DuelistMod.debug) { System.out.println("Blast juggler added a non-explosive token to the new summons list. that monster: " + s); }
 	    		}
 	    	}
 	    	
 	    	tributeChecker(player(), allTokens, this, false);
 	    	summonsInstance.summonList = newSummonList;
+	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= allTokens;
 	    	//summonsInstance.updateDescription();
 	    	for (int i = 0; i < tokens; i++)

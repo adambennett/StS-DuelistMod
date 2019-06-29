@@ -19,7 +19,7 @@ public class CardColorsPoolPatch
 	@SpireInsertPatch(rloc=0)
 	public static void insert(CustomPlayer __instance, @ByRef ArrayList<AbstractCard> tmpPool) 
 	{
-		if (__instance.name.equals("the Duelist"))
+		if (__instance.name.equals(DuelistMod.duelistChar.name))
 		{
 			if (DuelistMod.shouldFill)
 			{ 

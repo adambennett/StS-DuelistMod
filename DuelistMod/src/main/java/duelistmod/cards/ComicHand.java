@@ -52,25 +52,29 @@ public class ComicHand extends DuelistCard
     	int tokens = 0;
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
-	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	ArrayList<String> summonsList = summonsInstance.summonList;
+    		SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
 	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	for (String s : summonsList)
+	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
+	    	for (DuelistCard s : aSummonsList)
 	    	{
-	    		if (DuelistMod.summonMap.get(s).hasTag(Tags.TOON))
+	    		if (s.hasTag(Tags.TOON))
 	    		{
 	    			tokens++;
 	    		}
 	    		else
 	    		{
-	    			newSummonList.add(s);
+	    			newSummonList.add(s.originalName);
+	    			aNewSummonList.add(s);
 	    		}
 	    	}
 	    	
-	    	tributeChecker(player(), tokens, this, false);
+	    	tributeChecker(player(), tokens, this, true);
 	    	summonsInstance.summonList = newSummonList;
+	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
-	    	//summonsInstance.updateDescription();
+	    	summonsInstance.updateStringColors();
+	    	summonsInstance.updateDescription();
 	    	for (int i = 0; i < tokens; i++)
 	    	{
 	    		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);

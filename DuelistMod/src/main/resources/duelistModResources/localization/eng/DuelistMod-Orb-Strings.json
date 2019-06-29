@@ -8,7 +8,7 @@
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", ". You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b", " turns."
+      "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", ". You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b", " turns."
     ]
   },
   "theDuelist:MonsterOrb": {
@@ -44,13 +44,13 @@
   "theDuelist:Air": {
     "NAME": "Air",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if the only monsters you currently have summoned are #yDragons.", " NL #yEvoke: Gain #b", " #yOrb slot. NL Air is unaffected by #yFocus.", " #yOrb slots. NL Air is unaffected by #yFocus."
+      "#yPassive: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if all monsters summoned are #yDragons.", " NL #yEvoke: Gain #b", " #yOrb slot. NL Air is unaffected by #yFocus.", " #yOrb slots. NL Air is unaffected by #yFocus."
     ]
   },
   "theDuelist:Black": {
     "NAME": "Black",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to apply a random debuff with #b", " stack to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand.", " stacks to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand."
+      "#yPassive: At the start of turn, have a chance to apply a random debuff with #b", " stack to a random enemy. You have a higher chance if all monsters summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand.", " stacks to a random enemy. You have a higher chance if all monsters summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand."
     ]
   },
   "theDuelist:FireOrb": {
@@ -62,13 +62,13 @@
   "theDuelist:Glitch": {
     "NAME": "Glitch",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, trigger #b", " random effects. NL #yEvoke: Trigger #b", " random effect. If the only monsters you currently have summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ", " random effects. If the only monsters you currently have summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL "
+      "#yPassive: At the start of turn, trigger #b", " random effects. NL #yEvoke: Trigger #b", " random effect. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ", " random effects. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL "
     ]
   },
   "theDuelist:Shadow": {
     "NAME": "Shadow",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #ySummon #b", " [#FF5252]Shadow [#FF5252]Token. You have a higher chance if the only monsters you currently have summoned are #yZombies. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies.", " [#FF5252]Shadow [#FF5252]Tokens. You have a higher chance if the only monsters you currently have summoned are #yZombies. NL #yEvoke: #yResummon #b"
+      "#yPassive: At the start of turn, have a chance to #ySummon #b", " [#FF5252]Shadow [#FF5252]Token. You have a higher chance if all monsters summoned are #yZombies. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies.", " [#FF5252]Shadow [#FF5252]Tokens. You have a higher chance if all monsters summoned are #yZombies. NL #yEvoke: #yResummon #b"
     ]
   },
   "theDuelist:Splash": {
@@ -80,7 +80,7 @@
   "theDuelist:Blaze": {
     "NAME": "Blaze",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, have a chance to heal #b", " HP for each monster summoned this combat. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Heal #b", " HP for each monster summoned this combat."
+	  "#yPassive: At the start of turn, have a chance to heal #b", " HP for each monster summoned this combat. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Heal #b", " HP for each monster summoned this combat."
     ]
   },
   "theDuelist:Consumer": {

@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -85,9 +86,9 @@ public class DarkHole extends DuelistCard
     			{
     				if (a.type.equals(PowerType.BUFF))
     				{
-    					if (a.name.equals("Eviscerating Totem") || a.name.equals("Encouraging Totem") || a.name.equals("Debilitating Totem") || a.name.equals("Totem Speaker"))
+    					if (a.name.equals("Eviscerating Totem") || a.name.equals("Encouraging Totem") || a.name.equals("Debilitating Totem") || a.name.equals("Totem Speaker") || a instanceof InvisiblePower)
     		    		{
-    	    				if (DuelistMod.debug) { System.out.println("bad power"); }
+    	    				if (DuelistMod.debug && a.ID != null) { System.out.println("Dark Hole decided to not remove this power: ID=" + a.ID); }
     	    			}
     	    			else
     	    			{
@@ -102,7 +103,7 @@ public class DarkHole extends DuelistCard
     		
     		for (AbstractPower pow : p.powers)
     		{
-    			if (pow.type.equals(PowerType.DEBUFF))
+    			if (pow.type.equals(PowerType.DEBUFF) && !(pow instanceof InvisiblePower))
     			{
     				removePower(pow, pow.owner);
     			}

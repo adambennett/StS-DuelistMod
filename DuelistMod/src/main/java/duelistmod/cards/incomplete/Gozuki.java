@@ -23,49 +23,28 @@ public class Gozuki extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 100;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public Gozuki() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 6000;
-        this.baseBlock = this.block = 6000;
-        this.baseMagicNumber = this.magicNumber = 6000;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
+        this.baseDamage = this.damage = 9;
+        this.summons = this.baseSummons = 2;
         this.isSummon = true;
-        
-        // Tribute
-        this.tributes = this.baseTributes = 1;
-        this.misc = 0;
-       
-        // Card Type
         this.tags.add(Tags.MONSTER);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
+        this.tags.add(Tags.ZOMBIE);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	tribute();
     	attack(m);
     }
 
@@ -74,61 +53,71 @@ public class Gozuki extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	if (DuelistMod.hasUpgradeBuffRelic)
+        	{
+        		this.upgradeBaseCost(1);
+        		this.upgradeDamage(6);
+        	}
+        	else
+        	{
+        		this.upgradeBaseCost(1);
+        	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
     }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
-		
+		zombieSynTrib(tributingCard);		
 	}
 	
-    // If player doesn't have enough summons, can't play card
-  	@Override
-  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-  	{
-  		// Check super canUse()
-  		boolean canUse = super.canUse(p, m); 
-  		if (!canUse) { return false; }
-  		
-  		// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-  		
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
-			}
-		}
+    // Checking for Monster Zones if the challenge is enabled
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
 
-  		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
-
-  		// Player doesn't have something required at this point
-  		this.cantUseMessage = this.tribString;
-  		return false;
-  	}
+    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	{
+    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
+    		if (p.hasPower(SummonPower.POWER_ID))
+    		{
+    			int sums = DuelistCard.getSummons(p); int max = DuelistCard.getMaxSummons(p);
+    			if (sums + this.summons <= max) 
+    			{ 
+    				return true; 
+    			}
+    			else 
+    			{ 
+    				if (sums < max) 
+    				{ 
+    					if (max - sums > 1) { this.cantUseMessage = "You only have " + (max - sums) + " monster zones"; }
+    					else { this.cantUseMessage = "You only have " + (max - sums) + " monster zone"; }
+    					
+    				}
+    				else { this.cantUseMessage = "No monster zones remaining"; }
+    				return false; 
+    			}
+    		}
+    		else
+    		{
+    			return true;
+    		}
+    	}
+    	
+    	else
+    	{
+    		return true;
+    	}
+    }
 
 
 	@Override

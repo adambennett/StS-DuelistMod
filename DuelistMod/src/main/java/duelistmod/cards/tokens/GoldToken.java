@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 
-public class GoldToken extends DuelistCard 
+public class GoldToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GoldToken");
@@ -35,14 +35,12 @@ public class GoldToken extends DuelistCard
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     	this.magicNumber = this.baseMagicNumber = 15;
-    	this.isEthereal = true;
     }
     public GoldToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
     	this.magicNumber = this.baseMagicNumber = 15;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

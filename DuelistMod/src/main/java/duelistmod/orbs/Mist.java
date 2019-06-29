@@ -64,27 +64,31 @@ public class Mist extends DuelistOrb
 		applyFocus();
 		int tokens = 0;
 		AbstractPlayer p = AbstractDungeon.player;
-		if (p.hasPower(SummonPower.POWER_ID))
-		{
-			SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-			ArrayList<String> summonsList = summonsInstance.summonList;
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+    	{
+	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
 	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	for (String s : summonsList)
+	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
+	    	for (DuelistCard s : aSummonsList)
 	    	{
-	    		if (DuelistMod.summonMap.get(s).hasTag(Tags.AQUA))
+	    		if (s.hasTag(Tags.AQUA))
 	    		{
 	    			tokens++;
 	    		}
 	    		else
 	    		{
-	    			newSummonList.add(s);
+	    			newSummonList.add(s.originalName);
+	    			aNewSummonList.add(s);
 	    		}
 	    	}
 	    	
-	    	DuelistCard.tributeChecker(p, tokens, new Token(), false);
+	    	DuelistCard.tributeChecker(AbstractDungeon.player, tokens, new Token(), false);
 	    	summonsInstance.summonList = newSummonList;
+	    	summonsInstance.actualCardSummonList = aNewSummonList;
 	    	summonsInstance.amount -= tokens;
-	    	//summonsInstance.updateDescription();
+	    	summonsInstance.updateStringColors();
+	    	summonsInstance.updateDescription();
 	    	DuelistCard.applyRandomBuffPlayer(p, tokens, false);
 	    	for (int i = 0; i < tokens; i++)
 	    	{

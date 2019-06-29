@@ -34,7 +34,7 @@ public class VampireGrace extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 24;
+        this.baseDamage = this.damage = 34;
         this.tributes = this.baseTributes = 6;
         this.magicNumber = this.baseMagicNumber = 3;
         this.misc = 0;

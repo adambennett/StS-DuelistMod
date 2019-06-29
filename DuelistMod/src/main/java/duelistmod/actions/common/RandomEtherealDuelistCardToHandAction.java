@@ -21,7 +21,7 @@ public class RandomEtherealDuelistCardToHandAction extends AbstractGameAction
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) 
         {
-            AbstractCard c = DuelistCard.returnTrulyRandomDuelistCard().makeStatEquivalentCopy();
+            AbstractCard c = DuelistCard.returnTrulyRandomDuelistCardInCombat().makeStatEquivalentCopy();
             if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) 
             {
                 c.isEthereal = true;

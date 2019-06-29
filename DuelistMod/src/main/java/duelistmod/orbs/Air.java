@@ -84,7 +84,7 @@ public class Air extends DuelistOrb
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 			{
 				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (instance.isOnlyTypeSummoned(Tags.DRAGON))
+				if (instance.isEveryMonsterCheck(Tags.DRAGON, false))
 				{
 					rollCheck += 4;
 				}

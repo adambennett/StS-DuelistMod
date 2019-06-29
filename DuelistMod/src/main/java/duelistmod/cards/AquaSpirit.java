@@ -55,7 +55,7 @@ public class AquaSpirit extends DuelistCard
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower instance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		boolean dealExtra = instance.isOnlyTypeSummoned(Tags.AQUA);
+    		boolean dealExtra = instance.isEveryMonsterCheck(Tags.AQUA, false);
     		if (dealExtra) { int dmg = this.damage + this.magicNumber; attack(m, AFX, dmg); }
     		else { attack(m, AFX, this.damage); }
     	}

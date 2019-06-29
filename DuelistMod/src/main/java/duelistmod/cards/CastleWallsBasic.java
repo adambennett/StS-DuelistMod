@@ -50,6 +50,8 @@ public class CastleWallsBasic extends DuelistCard
         this.tags.add(Tags.ZOMBIE_DECK);
         this.tags.add(Tags.FIEND_DECK);
         this.tags.add(Tags.AQUA_DECK);
+        this.tags.add(Tags.MAGNET_DECK);
+        this.superheavyDeckCopies = 2;
         this.zombieDeckCopies = 3;
         this.fiendDeckCopies = 3;
         this.zombieDeckCopies = 2;

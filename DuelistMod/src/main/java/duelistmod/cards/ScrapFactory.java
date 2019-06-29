@@ -38,10 +38,8 @@ public class ScrapFactory extends DuelistCard
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ORIGINAL_DECK);  
 		this.tags.add(Tags.MACHINE);
-		this.tags.add(Tags.MACHINE_DECK);
 		this.tags.add(Tags.STANDARD_DECK);
 		this.standardDeckCopies = 1;
-        this.machineDeckCopies = 1;
         this.startingOriginalDeckCopies = 1;
 		this.misc = 0;
 		this.tributes = this.baseTributes = 1;

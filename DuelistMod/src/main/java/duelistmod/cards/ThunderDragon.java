@@ -75,6 +75,16 @@ public class ThunderDragon extends DuelistCard
             this.initializeDescription();
         }
     }
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	if (tc.hasTag(Tags.DRAGON)) 
+		{		
+			AbstractOrb orb = new Lightning();
+			channel(orb);
+		}
+    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

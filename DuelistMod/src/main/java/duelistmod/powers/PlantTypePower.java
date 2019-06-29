@@ -51,7 +51,7 @@ public class PlantTypePower extends AbstractPower
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 			{
 				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (instance.isOnlyTypeSummoned(Tags.PLANT))
+				if (instance.isEveryMonsterCheck(Tags.PLANT, false))
 				{
 					rollCheck += 4;
 				}

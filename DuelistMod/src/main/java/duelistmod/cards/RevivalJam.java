@@ -69,6 +69,12 @@ public class RevivalJam extends DuelistCard
             this.initializeDescription();
         }
     }
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	summon(player(), 2, new JamToken());	
+    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

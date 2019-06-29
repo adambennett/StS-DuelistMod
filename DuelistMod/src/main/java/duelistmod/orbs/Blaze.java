@@ -75,7 +75,7 @@ public class Blaze extends DuelistOrb
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isOnlyTypeSummoned(Tags.SPELLCASTER))
+			if (instance.isEveryMonsterCheck(Tags.SPELLCASTER, false))
 			{
 				rollCheck += 4;
 			}

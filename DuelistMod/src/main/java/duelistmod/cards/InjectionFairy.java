@@ -59,7 +59,7 @@ public class InjectionFairy extends DuelistCard
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower power = (SummonPower) p.getPower(SummonPower.POWER_ID);
-			if (power.isOnlyTypeSummoned(Tags.SPELLCASTER))
+			if (power.isEveryMonsterCheck(Tags.SPELLCASTER, false))
 			{
 				heal(p, this.heal);
 			}
