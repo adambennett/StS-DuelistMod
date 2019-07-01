@@ -114,17 +114,17 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();      
 	            		boolean hasEveryDuelistRelic = true;
-	            		for (AbstractRelic t : DuelistMod.duelistRelics) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryDuelistRelic = false; }}
+	            		for (AbstractRelic t : DuelistMod.duelistRelicsForTombEvent) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryDuelistRelic = false; break; }}
 	            		if (!hasEveryDuelistRelic) 
 	            		{
-	            			AbstractRelic r = DuelistMod.duelistRelics.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelics.size() - 1));
-	            			while (AbstractDungeon.player.hasRelic(r.relicId)) { r = DuelistMod.duelistRelics.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelics.size() - 1)); }
+	            			AbstractRelic r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1));
+	            			while (AbstractDungeon.player.hasRelic(r.relicId) || !r.canSpawn()) { r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1)); }
 	            			AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
 	            			AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS));
 	            		}
 	            		else if (DuelistMod.debug)
 	            		{
-	            			DuelistMod.logger.info("Triggered hasEveryDuelistRelic boolean, so do you have them all? DuelistMod.duelistRelics.size() == " + DuelistMod.duelistRelics.size());
+	            			DuelistMod.logger.info("Triggered hasEveryDuelistRelic boolean, so do you have them all? DuelistMod.duelistRelics.size() == " + DuelistMod.duelistRelicsForTombEvent.size());
 	            		}
 	            		screenNum = 1;
 	            		break;

@@ -89,7 +89,7 @@ public class DespairPower extends AbstractPower
 			{
 				if (this.amount > 0)
 				{
-					int tribs = AxeDespair.powerTribute(AbstractDungeon.player, TRIBUTES, false);
+					int tribs = DuelistCard.powerTribute(AbstractDungeon.player, TRIBUTES, false);
 					if (tribs < TRIBUTES) { triggeredDamage = true; }
 			
 					// Lose Strength

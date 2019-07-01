@@ -1,16 +1,13 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 
@@ -55,6 +52,14 @@ public class BadToken extends DuelistCard
     		Debug.printTributeInfo();
         	Debug.printRarityInfo();
         	Debug.printTypedRarityInfo();
+    	}
+    	
+    	for (AbstractPower pow : p.powers)
+    	{
+    		if (pow.name != null)
+    		{
+    			DuelistMod.logger.info("Power: " + pow.name);
+    		}
     	}
     }
    

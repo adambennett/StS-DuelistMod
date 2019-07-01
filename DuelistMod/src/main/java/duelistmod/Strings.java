@@ -633,6 +633,8 @@ public class Strings
 	public static String configWingedTextB = "";
 	public static String configYamiFormA = "";
 	public static String configYamiFormB = "";
+	public static String configRainbow = "";
+	public static String configRainbowB = "";
 	// =============== /CONFIG STRINGS/ =======================================================================================================================================================
 
 }

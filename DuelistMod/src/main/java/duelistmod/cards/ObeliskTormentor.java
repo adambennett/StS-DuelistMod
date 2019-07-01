@@ -14,7 +14,7 @@ import duelistmod.powers.*;
 public class ObeliskTormentor extends DuelistCard 
 {
     // TEXT DECLARATION 
-    public static final String ID = duelistmod.DuelistMod.makeID("ObeliskTormentor");
+    public static final String ID = DuelistMod.makeID("ObeliskTormentor");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.OBELISK_TORMENTOR);
     public static final String NAME = cardStrings.NAME;
@@ -39,7 +39,7 @@ public class ObeliskTormentor extends DuelistCard
         this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
-		this.baseMagicNumber = this.magicNumber = 8;
+		this.baseMagicNumber = this.magicNumber = 4;
     }
 
 
@@ -63,8 +63,15 @@ public class ObeliskTormentor extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
-            this.upgradeMagicNumber(2);
+            if (DuelistMod.hasUpgradeBuffRelic)
+            {
+            	this.upgradeBaseCost(1);
+                this.upgradeMagicNumber(1);
+            }
+            else
+            {
+                this.upgradeMagicNumber(1);
+            }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

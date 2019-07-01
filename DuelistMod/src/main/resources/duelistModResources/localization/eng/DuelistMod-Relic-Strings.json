@@ -76,7 +76,7 @@
 		"NAME": "Millennium Scale",
 		"FLAVOR": "Also known as the Scales of Truth, The Scale was originally owned by Karim.",
 		"DESCRIPTIONS": [
-			"Whenever you #yTribute with matching monster types, gain [E]"
+			"Whenever you #yTribute with matching monster types, NL gain [E]"
 		]
 	},
 	"theDuelist:MillenniumNecklace": {
@@ -184,6 +184,27 @@
 			"Whenever you win combat, have a #b33% chance to receive #b2 extra card rewards."
 		]
 	},
+	"theDuelist:CardRewardRelicF": {
+		"NAME": "Spellstone",
+		"FLAVOR": "A green, glowing stone.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Spell to add to your deck."
+		]
+	},
+	"theDuelist:CardRewardRelicG": {
+		"NAME": "Trickstone",
+		"FLAVOR": "A purple, glowing stone.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Trap to add to your deck."
+		]
+	},
+	"theDuelist:CardRewardRelicH": {
+		"NAME": "Battlestone",
+		"FLAVOR": "A yellow, glowing stone.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Monster to add to your deck."
+		]
+	},
 	"theDuelist:InversionRelic": {
 		"NAME": "Inversion Stone",
 		"FLAVOR": "A strange looking stone.",
@@ -219,7 +240,7 @@
 			"#yExplosive #yTokens deal damage randomly to enemies instead of damaging you."
 		]
 	},
-	"theDuelist:MachineToken": {
+	"theDuelist:MachineTokenB": {
 		"NAME": "Machine Orb",
 		"FLAVOR": "A mechanical orb that seems to be ticking?",
 		"DESCRIPTIONS": [
@@ -244,7 +265,7 @@
 		"NAME": "Spellcaster Token",
 		"FLAVOR": "A glowing purple token that seems to hold a mysterious power.",
 		"DESCRIPTIONS": [
-			"Whenever you #yChannel an orb you also #yChannel a random orb."
+			"Whenever you #yChannel an orb #yChannel an additional random orb."
 		]
 	},
 	"theDuelist:SpellcasterOrb": {
@@ -279,7 +300,7 @@
 		"NAME": "Tribute Egg",
 		"FLAVOR": "A glowing red egg shaped object. It holds mysterious power.",
 		"DESCRIPTIONS": [
-			"Add a random #yTribute monster to your deck. Set the monsters #yTribute cost to #b1."
+			"Add a random #yTribute monster to your deck. Its #yTribute cost is set to #b1."
 		]
 	},
 	"theDuelist:FiendRelic": {
@@ -328,7 +349,7 @@
 		"NAME": "Yugi's Mirror",
 		"FLAVOR": "I look funny in this.",
 		"DESCRIPTIONS": [
-			"Upon pickup, duplicate a random Tribute monster in your deck. The duplicated copy costs 0."
+			"Upon pickup, duplicate a random #yTribute card in your deck. The duplicated copy costs #b0."
 		]
 	},
 	"theDuelist:StoneKulElna": {
@@ -342,7 +363,7 @@
 		"NAME": "Blessing of Aknadin",
 		"FLAVOR": "",
 		"DESCRIPTIONS": [
-			"Hallway fights have small chance to drop Common and Uncommon relics."
+			"All combats have a small chance to drop an additional Common or Uncommon relic."
 		]
 	},
 	"theDuelist:HasanPendant": {

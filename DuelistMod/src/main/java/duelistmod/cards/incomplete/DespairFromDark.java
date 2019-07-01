@@ -34,11 +34,12 @@ public class DespairFromDark extends DuelistCard
     public DespairFromDark() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 4;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);   
         this.tags.add(Tags.ZOMBIE);
-        this.exhaust = true;
+       // this.tags.add(Tags.EXEMPT);
+        this.exhaust = true;        
     }
 
     // Actions the card should do.
@@ -46,7 +47,7 @@ public class DespairFromDark extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.MONSTER)) { fullResummon((DuelistCard) c.makeStatEquivalentCopy(), false, AbstractDungeon.getRandomMonster(), false); }}
+    	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.MONSTER) && !c.originalName.equals(this.originalName)) { fullResummon((DuelistCard) c.makeStatEquivalentCopy(), false, AbstractDungeon.getRandomMonster(), false); }}
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +66,7 @@ public class DespairFromDark extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	if (DuelistMod.hasUpgradeBuffRelic)
         	{
-        		this.upgradeBaseCost(1);
+        		this.upgradeTributes(-1);
         		this.exhaust = false;
         	}
         	else

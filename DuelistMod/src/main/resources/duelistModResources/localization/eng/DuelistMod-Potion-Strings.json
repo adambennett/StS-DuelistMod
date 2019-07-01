@@ -91,6 +91,10 @@
         "NAME": "Destruct Potion",
         "DESCRIPTIONS": ["#yTribute all of your summons and gain #b", " #ymax #yHP for each."]
 },
+"theDuelist:DestructPotionPotB": {
+        "NAME": "Destruction Potion",
+        "DESCRIPTIONS": ["#yTribute all of your summons. Obtain a random relic. #yTributing more monsters will increase your chances of receiving a rarer relic."]
+},
 "theDuelist:JoeyJuice": {
         "NAME": "Joey Juice",
         "DESCRIPTIONS": ["Apply 2 random #ydebuffs."]

@@ -24,7 +24,7 @@ public class HundredFootedHorror extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -36,7 +36,7 @@ public class HundredFootedHorror extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
-        this.baseMagicNumber = this.magicNumber = 11;
+        this.baseMagicNumber = this.magicNumber = 9;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
     }
@@ -60,7 +60,7 @@ public class HundredFootedHorror extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(4);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

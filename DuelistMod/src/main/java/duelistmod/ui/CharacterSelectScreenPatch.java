@@ -48,8 +48,8 @@ public class CharacterSelectScreenPatch
         //float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, UIStrings.TEXT[0], 9999.0F, 0.0F); // Ascension
         //float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, UIStrings.TEXT[1], 9999.0F, 0.0F); // Level 22
 
-        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "Starting Deck: ", 9999.0F, 0.0F); // Ascension
-        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "###############", 9999.0F, 0.0F); // Level 22
+        float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Starting Deck: ", 9999.0F, 0.0F); // Ascension
+        float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "###############", 9999.0F, 0.0F); // Level 22
         
        // float bonusLeftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "Bonus Cards: ", 9999.0F, 0.0F); // Ascension
        // float bonusRightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont_N, "###############", 9999.0F, 0.0F); // Level 22
@@ -174,20 +174,20 @@ public class CharacterSelectScreenPatch
         {
            // float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
            // FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.6f);
-            FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
+            FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
            // FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
         }
         else if (description != null && info.Locked)
         {
         	 //float originalScale = FontHelper.cardTitleFont_small_N.getData().scaleX;
              //FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * 0.6f);
-             FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
+             FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, description, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);
             // FontHelper.cardTitleFont_small_N.getData().setScale(Settings.scale * originalScale);
         }
 
        // FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, UIStrings.TEXT[0], startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, "Starting Deck: ", startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont_N, info.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
+        FontHelper.renderFont(sb, FontHelper.cardTitleFont, "Starting Deck: ", startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
+        FontHelper.renderFont(sb, FontHelper.cardTitleFont, info.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);
 
       /*  FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, "(?? cards)", bonusCardsSelectedHb.x, bonusCardsSelectedHb.cY + (20 * Settings.scale), Settings.GREEN_TEXT_COLOR);
         //FontHelper.renderFont(sb, FontHelper.cardTitleFont_small_N, description, bonusCardsSelectedHb.x, bonusCardsSelectedHb.cY + (20 * Settings.scale), Settings.RED_TEXT_COLOR);

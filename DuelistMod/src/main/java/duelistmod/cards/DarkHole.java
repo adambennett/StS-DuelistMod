@@ -1,10 +1,11 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
-import com.megacrit.cardcrawl.actions.common.*;
+import java.util.ArrayList;
+
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -18,7 +19,7 @@ import duelistmod.patches.AbstractCardEnum;
 public class DarkHole extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("DarkHole");
+    public static final String ID = DuelistMod.makeID("DarkHole");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.DARK_HOLE);
     public static final String NAME = cardStrings.NAME;
@@ -43,72 +44,41 @@ public class DarkHole extends DuelistCard
         this.tags.add(Tags.LIMITED);
         this.originalName = this.name;
         this.baseBlock = this.block = 0;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	// Get target block and remove all of it
-    	if (!upgraded)
-    	{
-    		blockTotal = 0;
-    		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
-    		{    			
-    			if (mon.currentBlock > 0) 
-    			{
-    				blockTotal += mon.currentBlock;
-    				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
-    			}
-    		}
-    		block(blockTotal);
-    		
-    		for (AbstractPower pow : p.powers)
-    		{
-    			if (pow.type.equals(PowerType.DEBUFF))
-    			{
-    				removePower(pow, pow.owner);
-    			}
-    		}
-	    }
-    	else
-    	{
-    		blockTotal = 0;
-    		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
-    		{    			
-    			if (mon.currentBlock > 0) 
-    			{
-    				blockTotal += mon.currentBlock;
-    				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
-    			}
-
-    			for (AbstractPower a : mon.powers)
-    			{
-    				if (a.type.equals(PowerType.BUFF))
-    				{
-    					if (a.name.equals("Eviscerating Totem") || a.name.equals("Encouraging Totem") || a.name.equals("Debilitating Totem") || a.name.equals("Totem Speaker") || a instanceof InvisiblePower)
-    		    		{
-    	    				if (DuelistMod.debug && a.ID != null) { System.out.println("Dark Hole decided to not remove this power: ID=" + a.ID); }
-    	    			}
-    	    			else
-    	    			{
-    	    				removePower(a, mon);
-    	    				if (DuelistMod.debug) { System.out.println("Dark Hole removed power: " + a.name); }
-    	    			}        	
-    					
-    				}
-    			}
-    		}
-    		block(blockTotal);
-    		
-    		for (AbstractPower pow : p.powers)
-    		{
-    			if (pow.type.equals(PowerType.DEBUFF) && !(pow instanceof InvisiblePower))
-    			{
-    				removePower(pow, pow.owner);
-    			}
-    		}
-    	}
+    {    	
+		// Steal all enemy block
+		blockTotal = 0;
+		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
+		{    			
+			if (mon.currentBlock > 0) 
+			{
+				blockTotal += mon.currentBlock;
+				AbstractDungeon.actionManager.addToTop(new RemoveAllBlockAction(mon, mon));
+			}
+		}
+		block(blockTotal);
+		
+		// Remove random debuff from yourself
+		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
+		for (AbstractPower pow : p.powers)
+		{
+			if (pow.type.equals(PowerType.DEBUFF))
+			{
+				debuffs.add(pow);
+			}
+		}
+		
+		if (debuffs.size() > 0) 
+		{
+			AbstractPower pow = debuffs.get(AbstractDungeon.cardRandomRng.random(debuffs.size() - 1));
+			AbstractCreature own = pow.owner;
+			removePower(pow, own);
+		}	    
     }
     
     // Which card to return when making a copy of this card.
@@ -119,9 +89,12 @@ public class DarkHole extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
+    public void upgrade() 
+    {
+        if (!this.upgraded) 
+        {
             this.upgradeName();
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

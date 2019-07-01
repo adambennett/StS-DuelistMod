@@ -28,13 +28,12 @@ public class InsectQueen extends DuelistCard
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 2;
-	private static final int POISON_MULT = 3;
 	// /STAT DECLARATION/
 
 	public InsectQueen() 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = POISON_MULT;
+		this.magicNumber = this.baseMagicNumber = 3;
 		this.decSummons = 1;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.TRIBUTE);
@@ -52,7 +51,7 @@ public class InsectQueen extends DuelistCard
 		int playerSummons = tribute(p, 0, true, this).size();
 
 		// Apply poison to all enemies
-		poisonAllEnemies(p, playerSummons * POISON_MULT);
+		poisonAllEnemies(p, playerSummons * this.magicNumber);
 		
 		// If unupgraded, reduce max summons by 1.
 		if (!upgraded) { decMaxSummons(p, this.decSummons); }

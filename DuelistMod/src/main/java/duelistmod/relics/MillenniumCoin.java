@@ -32,7 +32,21 @@ public class MillenniumCoin extends CustomRelic
 			}
 		}
 	}
-
+	
+	/* 	Enable this block of code if you want to put this relic back into the tomb event pool
+	@Override
+	public void obtain()
+	{
+		for (AbstractRelic r : AbstractDungeon.player.relics)
+		{
+			if (Utilities.isMillenniumItem(r, true) && !r.name.equals(this.name))
+			{
+				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+			}
+		}
+	}
+	*/
+	
 	// Description
 	@Override
 	public String getUpdatedDescription() {

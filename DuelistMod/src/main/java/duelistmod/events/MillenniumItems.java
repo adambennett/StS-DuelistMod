@@ -1,14 +1,20 @@
 package duelistmod.events;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
+import duelistmod.cards.incomplete.MillenniumSpellbook;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.potions.MillenniumElixir;
 
 public class MillenniumItems extends AbstractImageEvent {
 
@@ -43,16 +49,64 @@ public class MillenniumItems extends AbstractImageEvent {
                         for (AbstractRelic t : Utilities.getAllMillenniumItems(false)) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryMillenniumItem = false; }}
                         if (!hasEveryMillenniumItem) 
                         {
-                        	AbstractRelic r = Utilities.getRandomMillenniumItem();
-                            while (AbstractDungeon.player.hasRelic(r.relicId)) { r = Utilities.getRandomMillenniumItem(); }
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
+                        	ArrayList<Object> mills = new ArrayList<Object>();
+                        	for (AbstractRelic r : Utilities.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
+                        	mills.add(new MillenniumElixir());    
+                        	//mills.add(new MillenniumSpellbook());
+                        	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
+                        	if (randMill instanceof AbstractRelic)
+                        	{
+                        		 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), (AbstractRelic) randMill);
+                        	}
+                        	
+                        	else if (randMill instanceof AbstractPotion)
+                        	{
+                        		AbstractDungeon.player.obtainPotion((AbstractPotion) randMill);
+                        	}
+                        	
+                        	else if (randMill instanceof DuelistCard)
+                        	{
+                        		 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard)randMill, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                        	}
+                        	
+                        	else if (DuelistMod.debug && randMill != null)
+                        	{
+                        		DuelistMod.logger.info("Millennium Items event generated a random object from the object array that wasn't a potion, relic or card? Hmm. How did that happen? The object: " + randMill.toString());
+                        	}
+                        	
                             AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
                         }
-                        else if (DuelistMod.debug)
+                        else
                         {
-                        	DuelistMod.logger.info("Triggered hasEveryMillenniumItem boolean, so do you have them all? Coin, Rod, Key, Eye, Ring");
+                        	if (DuelistMod.debug)
+                            {
+                            	DuelistMod.logger.info("Triggered hasEveryMillenniumItem boolean, so do you have them all? Coin, Rod, Key, Eye, Ring, Necklace, Scale, Token");
+                            }
+                        	
+                        	ArrayList<Object> mills = new ArrayList<Object>();
+                        	mills.add(new MillenniumElixir());    
+                        	mills.add(new MillenniumSpellbook());
+                        	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
+                        	if (randMill instanceof AbstractPotion)
+                        	{
+                        		AbstractDungeon.player.obtainPotion((AbstractPotion) randMill);
+                        	}
+                        	
+                        	else if (randMill instanceof DuelistCard)
+                        	{
+                        		 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard)randMill, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                        	}
+                        	
+                        	else if (DuelistMod.debug && randMill != null)
+                        	{
+                        		DuelistMod.logger.info("Millennium Items event generated a random object from the object array that wasn't a potion, relic or card? Hmm. How did that happen? The object: " + randMill.toString());
+                        	}
+                        	
+                            AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
                         }
+                        
                         screenNum = 1;
                         break;
                     case 1:

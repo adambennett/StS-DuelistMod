@@ -36,6 +36,7 @@ public class GiantTrapHole extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
 		this.originalName = this.name;
+		this.exhaust = true;
     }
 
     

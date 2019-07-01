@@ -56,13 +56,13 @@ public class SuperExplodingToken extends TokenCard
     {
     	if (AbstractDungeon.player.hasRelic(MachineToken.ID))
 		{
-			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 3);
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2);
 			AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.getRandomMonster(), new DamageInfo(player(), damageRoll, damageTypeForTurn), AttackEffect.FIRE));
 		}
 		else
 		{
 			
-			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 3);
+			int damageRoll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2);
 			damageSelf(damageRoll); 
 			
 		}

@@ -53,7 +53,7 @@ public class Graverobber extends DuelistCard
 		drawPowers = new ArrayList<AbstractCard>();
 		drawPowerNames = new ArrayList<String>();
 		for (DuelistCard c : DuelistMod.spellsThisRun) { if (!drawPowerNames.contains(c.originalName)) { drawPowers.add(c.makeStatEquivalentCopy()); drawPowerNames.add(c.originalName); }}
-		for (DuelistCard c : DuelistMod.trapsThisRun)  { if (!drawPowerNames.contains(c.originalName)) { drawPowers.add(c.makeStatEquivalentCopy()); drawPowerNames.add(c.originalName); }}
+		for (DuelistCard c : DuelistMod.trapsThisRun)  { if (!drawPowerNames.contains(c.originalName) && !c.originalName.equals(this.originalName)) { drawPowers.add(c.makeStatEquivalentCopy()); drawPowerNames.add(c.originalName); }}
 
 		if (drawPowers.size() >= 0)
 		{
@@ -61,7 +61,7 @@ public class Graverobber extends DuelistCard
 				int highRoll = 3;
 				if (upgraded) { lowRoll = 0; highRoll = 0; }
 				if (DuelistMod.debug) { System.out.println("graverobber found choose cards to be > 0"); }
-				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(drawPowers, false, this.magicNumber, false, false, false, true, false, false, false, lowRoll, highRoll, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(drawPowers, false, 1, false, false, false, true, false, false, false, lowRoll, highRoll, 0, 0, 0, 0));
 		}
 		else { if (DuelistMod.debug) { System.out.println("graverobber found draw powers size was 0"); }}
     }

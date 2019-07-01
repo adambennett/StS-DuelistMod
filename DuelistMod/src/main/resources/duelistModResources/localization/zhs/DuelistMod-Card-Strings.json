@@ -61,7 +61,10 @@
 	"theDuelist:ApprenticeIllusionMagician": {
 		"DESCRIPTION": "魔法师族。祭品数 !duelist:TRIB! 获得 !M! 点集中。造成 !D! 点伤害。",
 		"NAME": "幻想之见习魔导师",
-		"UPGRADE_DESCRIPTION": "魔法师族。祭品数 !duelist:TRIB! 获得 !M! 点集中。造成 !D! 点伤害。"
+		"UPGRADE_DESCRIPTION": "魔法师族。祭品数 !duelist:TRIB! 获得 !M! 点集中。造成 !D! 点伤害。",
+		"EXTENDED_DESCRIPTION": [
+			"魔法师族。祭品数 !duelist:TRIB! 获得 !M! 点集中。造成 !D! 点伤害。"
+		]
 	},
 	"theDuelist:AquaSpirit": {
 		"DESCRIPTION": "水族。祭品数 !duelist:TRIB! 造成 !D! 点伤害。 NL 如果召唤过水族怪兽，额外造成 !M! 点伤害。",
@@ -3231,5 +3234,95 @@
 		"DESCRIPTION": "Aqua Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this kills an enemy, increase the Summons of all monsters in your hand by !M!.",
 		"NAME": "Corroding Shark",
 		"UPGRADE_DESCRIPTION": "Aqua Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this kills an enemy, increase the Summons of all monsters in your hand by !M!."
-	}
+	},
+	"theDuelist:Biofalcon": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Biofalcon",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:Deskbot004": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Deskbot004",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:Deskbot005": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Deskbot005",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:Hayate": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Hayate",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:Spore": {
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Increment X.",
+		"NAME": "Spore",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Increment X."
+	},
+	"theDuelist:RagingMadPlants": {
+		"DESCRIPTION": "Increment !M! for each Plant in your draw pile. NL Gain !B! Block for each Plant in your discard pile.",
+		"NAME": "Raging Plants",
+		"UPGRADE_DESCRIPTION": "Increment !M! for each Plant in your draw pile. NL Gain !B! Block for each Plant in your discard pile."
+	},
+	"theDuelist:ThornMalice": {
+		"DESCRIPTION": "Double your Thorns. NL Exhaust.",
+		"NAME": "Thorn of Malice",
+		"UPGRADE_DESCRIPTION": "Triple your Thorns. NL Exhaust."
+	},
+	"theDuelist:ArsenalBug": {
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!.",
+		"NAME": "Arsenal Bug",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!."
+	},
+	"theDuelist:CrossSwordBeetle": {
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage.",
+		"NAME": "Cross Sword Beetle",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Deal !D! damage."
+	},
+	"theDuelist:MultiplicationOfAnts": {
+		"DESCRIPTION": "Double your max Summons. NL Exhaust.",
+		"NAME": "Multiplication of Ants",
+		"UPGRADE_DESCRIPTION": "Triple your max Summons. NL Exhaust."
+	},
+	"theDuelist:DarkSpider": {
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Channel a Dark.",
+		"NAME": "Dark Spider",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Channel a Dark."
+	},
+	"theDuelist:CocoonUltraEvolution": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after 3 more turns.",
+		"NAME": "Ultra Cocoon",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after 2 more turns."
+	},
+	"theDuelist:PinchHopper": {
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage to a random enemy for each Insect you currently have summoned.",
+		"NAME": "Pinch Hopper",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage to a random enemy for each Insect you currently have summoned."
+	},
+	"theDuelist:UndergroundArachnid": {
+		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage to a random enemy. NL Gain !B! Block.",
+		"NAME": "Underground Arachnid",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage to a random enemy. NL Gain !B! Block."
+	},
+	"theDuelist:RainbowOverdragon": {
+		"DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! cards of a random type.",
+		"NAME": "Rainbow Overdragon",
+		"UPGRADE_DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! cards of a random type."
+	},
+	"theDuelist:RainbowGravity": {
+		"DESCRIPTION": "Choose a monster type. All monsters currently summoned and in your hand gain that type until the end of combat. NL Exhaust.",
+		"NAME": "Rainbow Gravity",
+		"UPGRADE_DESCRIPTION": "Choose a monster type. All monsters currently summoned, in your hand, and in your draw pile gain that type until the end of combat. NL Exhaust."
+	},
+	"theDuelist:RainbowPath": {
+		"DESCRIPTION": "The next monster you play becomes Megatyped for the rest of combat. NL Exhaust.",
+		"NAME": "Rainbow Path",
+		"UPGRADE_DESCRIPTION": "The next monster you play becomes Megatyped for the rest of combat. NL Exhaust."
+	},
+	"theDuelist:MillenniumSpellbook": {
+		"DESCRIPTION": "Fleeting NL Choose a monster in your deck. That monster permanently becomes Megatyped.",
+		"NAME": "Millennium Spellbook",
+		"UPGRADE_DESCRIPTION": "Fleeting NL Choose a monster in your deck. That monster permanently becomes Megatyped."
+	}	
 }

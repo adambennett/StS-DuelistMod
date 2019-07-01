@@ -199,6 +199,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static HashMap<CardTags, String> typeCardMap_ID = new HashMap<CardTags, String>();
 	public static HashMap<CardTags, String> typeCardMap_IMG = new HashMap<CardTags, String>();
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<CardTags, String>();
+	public static HashMap<String, CardTags> typeCardMap_NameToString = new HashMap<String, CardTags>();
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<CardTags, String>();
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<CardTags, Integer>();
 	public static final HashMap<Integer, Texture> characterPortraits = new HashMap<>();
@@ -227,7 +228,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static ArrayList<DuelistCard> archetypeCards = new ArrayList<DuelistCard>();
 	public static ArrayList<CardTags> monsterTypes = new ArrayList<CardTags>();
 	public static ArrayList<CardTags> summonedTypesThisTurn = new ArrayList<CardTags>();
-	public static ArrayList<AbstractRelic> duelistRelics = new ArrayList<AbstractRelic>();
+	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<AbstractRelic>();
 	
 	// Global Flags
 	public static boolean machineArtifactFlipper = false;
@@ -313,6 +314,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 	public static int zombiesResummonedThisRun = 0;
 	public static int explosiveDmgLow = 1;
 	public static int explosiveDmgHigh = 3;
+	public static int spellcasterBlockOnAttack = 5;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -701,6 +703,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		pots.add(new SealedPackC());
 		pots.add(new BigOrbBottle());
 		pots.add(new DestructPotionPot());
+		pots.add(new DestructPotionPotB());
 		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, p.ID, TheDuelistEnum.THE_DUELIST); }
 		
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
@@ -753,7 +756,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		BaseMod.addRelicToCustomPool(new UpgradeBuffRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ShopRelicRarityRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumScale(), AbstractCardEnum.DUELIST);
-		//BaseMod.addRelicToCustomPool(new RandomTributeMonsterRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MachineTokenB(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MillenniumNecklace(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MillenniumToken(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new DragonRelicC(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new RandomTributeMonsterRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new YugiMirror(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardRewardRelicF(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardRewardRelicG(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardRewardRelicH(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
 		if (!exodiaBtnBool) { BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST); }
 		BaseMod.addRelicToCustomPool(new GiftAnubis(), AbstractCardEnum.DUELIST);
@@ -789,37 +800,54 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		UnlockTracker.markRelicAsSeen(UpgradeBuffRelic.ID);
 		UnlockTracker.markRelicAsSeen(ShopRelicRarityRelic.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumScale.ID);
-		//UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
+		UnlockTracker.markRelicAsSeen(MachineTokenB.ID);
+		UnlockTracker.markRelicAsSeen(MillenniumNecklace.ID);
+		UnlockTracker.markRelicAsSeen(MillenniumToken.ID);
+		UnlockTracker.markRelicAsSeen(DragonRelicC.ID);
+		UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
+		UnlockTracker.markRelicAsSeen(YugiMirror.ID);
+		UnlockTracker.markRelicAsSeen(CardRewardRelicF.ID);
+		UnlockTracker.markRelicAsSeen(CardRewardRelicG.ID);
+		UnlockTracker.markRelicAsSeen(CardRewardRelicH.ID);
 		
 		
-		duelistRelics.add(new MillenniumEye());
-		duelistRelics.add(new MillenniumRing());
-		duelistRelics.add(new MillenniumKey());
-		duelistRelics.add(new MillenniumRod());
-		duelistRelics.add(new MillenniumCoin());
-		duelistRelics.add(new ResummonBranch());
-		duelistRelics.add(new AeroRelic());
-		duelistRelics.add(new CardRewardRelicA());
-		duelistRelics.add(new CardRewardRelicB());
-		duelistRelics.add(new CardRewardRelicC());
-		duelistRelics.add(new CardRewardRelicD());
-		duelistRelics.add(new CardRewardRelicE());
-		duelistRelics.add(new InversionRelic());
-		duelistRelics.add(new InversionEvokeRelic());
-		duelistRelics.add(new InsectRelic());
-		duelistRelics.add(new NaturiaRelic());
-		duelistRelics.add(new MachineToken());
-		duelistRelics.add(new DragonRelic());
-		duelistRelics.add(new SummonAnchor());
-		duelistRelics.add(new SpellcasterToken());
-		duelistRelics.add(new SpellcasterOrb());
-		duelistRelics.add(new AquaRelic());
-		duelistRelics.add(new AquaRelicB());
-		duelistRelics.add(new NatureRelic());
-		duelistRelics.add(new ZombieRelic());
-		duelistRelics.add(new DragonRelicB());
-		duelistRelics.add(new ShopRelicRarityRelic());
-		duelistRelics.add(new MillenniumScale());
+		//duelistRelicsForTombEvent.add(new MillenniumEye());
+		//duelistRelicsForTombEvent.add(new MillenniumRing());
+		//duelistRelicsForTombEvent.add(new MillenniumKey());
+		//duelistRelicsForTombEvent.add(new MillenniumRod());
+		//duelistRelicsForTombEvent.add(new MillenniumCoin());
+		//duelistRelicsForTombEvent.add(new ResummonBranch());
+		duelistRelicsForTombEvent.add(new AeroRelic());
+		duelistRelicsForTombEvent.add(new CardRewardRelicA());
+		duelistRelicsForTombEvent.add(new CardRewardRelicB());
+		duelistRelicsForTombEvent.add(new CardRewardRelicC());
+		duelistRelicsForTombEvent.add(new CardRewardRelicD());
+		duelistRelicsForTombEvent.add(new CardRewardRelicE());
+		duelistRelicsForTombEvent.add(new InversionRelic());
+		duelistRelicsForTombEvent.add(new InversionEvokeRelic());
+		duelistRelicsForTombEvent.add(new InsectRelic());
+		duelistRelicsForTombEvent.add(new NaturiaRelic());
+		duelistRelicsForTombEvent.add(new MachineToken());
+		duelistRelicsForTombEvent.add(new DragonRelic());
+		duelistRelicsForTombEvent.add(new SummonAnchor());
+		duelistRelicsForTombEvent.add(new SpellcasterToken());
+		duelistRelicsForTombEvent.add(new SpellcasterOrb());
+		duelistRelicsForTombEvent.add(new AquaRelic());
+		duelistRelicsForTombEvent.add(new AquaRelicB());
+		duelistRelicsForTombEvent.add(new NatureRelic());
+		duelistRelicsForTombEvent.add(new ZombieRelic());
+		duelistRelicsForTombEvent.add(new DragonRelicB());
+		duelistRelicsForTombEvent.add(new ShopRelicRarityRelic());
+		//duelistRelicsForTombEvent.add(new MillenniumScale());
+		duelistRelicsForTombEvent.add(new MachineTokenB());		
+		//duelistRelicsForTombEvent.add(new MillenniumToken());
+		duelistRelicsForTombEvent.add(new DragonRelicC());
+		duelistRelicsForTombEvent.add(new RandomTributeMonsterRelic());
+		duelistRelicsForTombEvent.add(new YugiMirror());
+		duelistRelicsForTombEvent.add(new CardRewardRelicF());
+		duelistRelicsForTombEvent.add(new CardRewardRelicG());
+		duelistRelicsForTombEvent.add(new CardRewardRelicH());
+		//duelistRelics.add(new MillenniumNecklace()); // Millennium Item event only relic
 
 		// This adds a relic to the Shared pool. Every character can find this relic.
 		BaseMod.addRelic(new MillenniumPuzzleShared(), RelicType.SHARED);
@@ -1255,6 +1283,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		tribCombatCount = 0;
 		zombiesResummonedThisRun = 0;
 		dragonStr = 1;
+		spellcasterBlockOnAttack = 5;
 		explosiveDmgLow = 1;
 		explosiveDmgHigh = 3;
 		insectPoisonDmg = baseInsectPoison;
@@ -1284,6 +1313,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		logger.info("Card Used: " + arg0.name);
 		if (arg0.type.equals(CardType.ATTACK))
 		{
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{
+				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
+				if (isOnlySpellcasters)
+				{
+					DuelistCard.staticBlock(spellcasterBlockOnAttack);
+				}
+			}
+			
 			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 			{
 				if (c instanceof GiantOrc)
@@ -1751,6 +1790,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 			tribCombatCount = 0;
 			summonRunCount = 0;
 			dragonStr = 1;
+			spellcasterBlockOnAttack = 5;
 			explosiveDmgLow = 1;
 			explosiveDmgHigh = 3;
 			insectPoisonDmg = baseInsectPoison;
@@ -2320,6 +2360,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber
 		Strings.configGreedShardC = Config_UI_String.TEXT[129];	
 		Strings.configYamiFormA = Config_UI_String.TEXT[130];	
 		Strings.configYamiFormB = Config_UI_String.TEXT[131];	
+		Strings.configRainbow = Config_UI_String.TEXT[132];	
+		Strings.configRainbowB = Config_UI_String.TEXT[133];	
 	}
 	
 	private void addRandomized(String property1, String property2, boolean btnBool1, boolean btnBool2)

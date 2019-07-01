@@ -59,9 +59,12 @@
 		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:ApprenticeIllusionMagician": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage. NL Exhaust.",
 		"NAME": "A. Illusion Magician",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage. NL Exhaust.",
+		"EXTENDED_DESCRIPTION": [
+			"Spellcaster NL Tribute !duelist:TRIB! NL Gain !M! Focus. NL Deal !D! damage. "
+		]
 	},
 	"theDuelist:AquaSpirit": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage if every monster you have summoned is Aqua type.",
@@ -415,9 +418,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Gain [G] [G] [G]."
 	},
 	"theDuelist:DarkHole": {
-		"DESCRIPTION": "Steal all Block from ALL enemies. NL Remove all of your debuffs.",
+		"DESCRIPTION": "Steal all Block from ALL enemies. NL Remove a random Debuff from yourself. NL Exhaust.",
 		"NAME": "Dark Hole",
-		"UPGRADE_DESCRIPTION": "Steal all Block from ALL enemies. NL Remove all of your debuffs. NL Remove all Buffs from ALL enemies."
+		"UPGRADE_DESCRIPTION": "Steal all Block from ALL enemies. NL Remove a random Debuff from yourself."
 	},
 	"theDuelist:DarkHorizon": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Evoke your next Orb !M! times.",
@@ -844,9 +847,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies for each Insect you Tribute to play this."
 	},
 	"theDuelist:Graverobber": {
-		"DESCRIPTION": "Choose !M! Randomized Spell or Trap you have played this run and add it to your hand. NL Exhaust.",
+		"DESCRIPTION": "Choose a Randomized Spell or Trap you have played this run and add it to your hand. NL Exhaust.",
 		"NAME": "Graverobber",
-		"UPGRADE_DESCRIPTION": "Choose !M! Spells or Traps you have played this run and add them to your hand. They cost 0 this turn. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Choose a Spell or Trap you have played this run and add it to your hand. The chosen card costs 0 this turn. NL Exhaust."
 	},
 	"theDuelist:GravityAxe": {
 		"DESCRIPTION": "Gain !M! Strength. NL You cannot gain or lose Strength for the rest of combat.",
@@ -2351,9 +2354,9 @@
 		"UPGRADE_DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !M! Randomized monsters (of a random type) to your hand."
 	},
 	"theDuelist:Kuribohrn": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Whenver you Summon 2 different types of monsters in the same turn, randomly Resummon a random Zombie.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Create and Resummon a random monster of the last type you played on an enemy.",
 		"NAME": "Kuribohrn",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Whenver you Summon 2 different types of monsters in the same turn, randomly Resummon a random Zombie."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Create and Resummon a random monster of the last type you played on an enemy."
 	},
 	"theDuelist:ClearKuriboh": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Add a Randomized monster (of the last type you played) to your hand.",
@@ -2668,7 +2671,7 @@
 	"theDuelist:GravityBlaster": {
 		"DESCRIPTION": "Deal !D! damage to a random enemy. NL Stun ALL enemies. NL Exhaust.",
 		"NAME": "Gravity Blaster",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Stun ALL enemies."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Stun ALL enemies. NL Exhaust."
 	},
 	"theDuelist:IronDraw": {
 		"DESCRIPTION": "Draw !M! Machines. NL Draw !M! Rares.",
@@ -2921,9 +2924,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Stun ALL enemies. NL Deal !D! damage to ALL enemies. NL Decrease the Tribute cost of this monster by !M! each time you Exhaust a card."
 	},
 	"theDuelist:GiantTrapHole": {
-		"DESCRIPTION": "Add !M! Giant to your hand. Decrease the energy cost of this card by !M! each time you play a Power.",
+		"DESCRIPTION": "Add !M! Giant to your hand. Decrease the energy cost of this card by !M! each time you play a Power. NL Exhaust.",
 		"NAME": "Giant Trap Hole",
-		"UPGRADE_DESCRIPTION": "Add !M! Giants to your hand. Decrease the energy cost of this card by !M! each time you play a Power."
+		"UPGRADE_DESCRIPTION": "Add !M! Giants to your hand. Decrease the energy cost of this card by !M! each time you play a Power. NL Exhaust."
 	},
 	"theDuelist:DarkFusion": {
 		"DESCRIPTION": "Increase the Summons of all monsters in your hand by !M! for this turn.",
@@ -3319,5 +3322,10 @@
 		"DESCRIPTION": "The next monster you play becomes Megatyped for the rest of combat. NL Exhaust.",
 		"NAME": "Rainbow Path",
 		"UPGRADE_DESCRIPTION": "The next monster you play becomes Megatyped for the rest of combat. NL Exhaust."
+	},
+	"theDuelist:MillenniumSpellbook": {
+		"DESCRIPTION": "Fleeting NL Choose a monster in your deck. That monster becomes permanently Megatyped.",
+		"NAME": "Millennium Spellbook",
+		"UPGRADE_DESCRIPTION": "Fleeting NL Choose a monster in your deck. That monster becomes permanently Megatyped."
 	}
 }

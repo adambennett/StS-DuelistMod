@@ -347,6 +347,7 @@ public class StarterDeckSetup {
 		natureCards.add(new BottomlessTrapHole());
 		natureCards.add(new CheerfulCoffin());
 		natureCards.add(new WorldTree());
+		natureCards.add(new Spore());		
 		//natureCards.add(new Predaplanet());
 		
 		natureDeck.fillPoolCards(DuelistMod.basicCards);
@@ -451,7 +452,7 @@ public class StarterDeckSetup {
 		zombieCards.add(new BlueBloodedOni());
 		zombieCards.add(new DesLacooda());
 		zombieCards.add(new EndlessDecay());		
-		zombieCards.add(new HauntedShrine());
+		//zombieCards.add(new HauntedShrine());
 		zombieCards.add(new OniGamiCombo());
 		zombieCards.add(new PlaguespreaderZombie());
 		zombieCards.add(new YellowBelliedOni());

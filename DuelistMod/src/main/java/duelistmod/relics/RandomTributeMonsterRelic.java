@@ -1,8 +1,10 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
@@ -17,9 +19,11 @@ public class RandomTributeMonsterRelic extends CustomRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("RandomTributeMonsterRelic");
-	public static final String IMG = DuelistMod.makePath(Strings.TRIBUTE_EGG_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TRIBUTE_EGG_RELIC_OUTLINE);
+	public static final String ID = DuelistMod.makeID("RandomTributeMonsterRelic");
+	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
+	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	//public boolean cardSelected = false;
+	//public DuelistCard cardToAdd = null;
 
 	public RandomTributeMonsterRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
@@ -30,9 +34,24 @@ public class RandomTributeMonsterRelic extends CustomRelic {
 	{
 		DuelistCard deckUpgradedTribs = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
 		while (deckUpgradedTribs.baseTributes < 1) { deckUpgradedTribs = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER); }
-    	deckUpgradedTribs.modifyTributesPerm(-deckUpgradedTribs.baseTributes + 1);
-    	AbstractDungeon.player.masterDeck.addToRandomSpot(deckUpgradedTribs);   	
+    	if (deckUpgradedTribs.baseTributes > 1) { deckUpgradedTribs.modifyTributesPerm(-deckUpgradedTribs.baseTributes + 1); }
+    	AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(deckUpgradedTribs, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
+    	//cardSelected = true;
+    	//cardToAdd = deckUpgradedTribs;
+    	//AbstractDungeon.player.masterDeck.addToRandomSpot(deckUpgradedTribs);   	
 	}
+	
+	/*
+	@Override
+	public void update() 
+	{
+		super.update();
+		if (cardSelected && cardToAdd != null) 
+		{
+			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(cardToAdd, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
+		}
+	}
+	*/
 
 	// Description
 	@Override

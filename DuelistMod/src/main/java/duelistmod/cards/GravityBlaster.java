@@ -70,7 +70,7 @@ public class GravityBlaster extends DuelistCard
             }
             else
             {
-            	this.exhaust = false;
+            	 this.upgradeDamage(5);
             }
            
             this.rawDescription = UPGRADE_DESCRIPTION;

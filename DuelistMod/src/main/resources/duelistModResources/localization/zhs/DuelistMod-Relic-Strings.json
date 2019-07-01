@@ -72,11 +72,54 @@
 			"每回合开始时，将1张 #y随机 #y魔法卡 增加到手牌中。"
 		]
 	},
+	
+	"theDuelist:MillenniumScale": {
+		"NAME": "Millennium Scale",
+		"FLAVOR": "Also known as the Scales of Truth, The Scale was originally owned by Karim.",
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute with matching monster types, NL gain [E]"
+		]
+	},
+	"theDuelist:MillenniumNecklace": {
+		"NAME": "Millennium Necklace",
+		"FLAVOR": "The Millennium Necklace was originally owned by an unnamed high priestess under Aknamkanon, later by Isis under Atem, in Ancient Egypt.",
+		"DESCRIPTIONS": [
+			"Receive an extra potion reward after every combat."
+		]
+	},
+	"theDuelist:MillenniumToken": {
+		"NAME": "Millennium Token",
+		"FLAVOR": "A very powerful token.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Duelist card to add to your deck. Your Tokens always cost 0."
+		]
+	},
+	"theDuelist:MillenniumCard": {
+		"NAME": "Millennium Membership Card",
+		"FLAVOR": "Bonus membership offer for my most powerful Pharoah!",
+		"DESCRIPTIONS": [
+			"#yUpgrade a random #yTribute monster in your deck whenever you enter a shop."
+		]
+	},
+	"theDuelist:MillenniumHammer": {
+		"NAME": "Millennium Hammer",
+		"FLAVOR": "A hammer which once belonged to Aknamkanon himself.",
+		"DESCRIPTIONS": [
+			"#yUpgrade a random card in your deck each time you Smith and consume #b1 charge. Starts with #b3 charges. Each time you pickup a #yMillennium #yItem, gain #b2 charges."
+		]
+	},
+	"theDuelist:MillenniumStone": {
+		"NAME": "Millennium Stone",
+		"FLAVOR": "A curious stone with seemingly limitless power!",
+		"DESCRIPTIONS": [
+			"Upon pickup, upgrade as many cards in your deck as you want. Lose #b3 max HP for each upgrade."
+		]
+	},
 	"theDuelist:MillenniumCoin": {
 		"NAME": "千年硬币",
 		"FLAVOR": "一个精美的硬币。",
 		"DESCRIPTIONS": [
-			"每次 #y激发 充能球，有几率获得 #b", " 金币。 NL 每次打败精英或Boss，增加该效果可获得的 #b10 金币，并有 #b30% 的几率提升激发触发 #b10% 概率。"
+			"Upon pickup, gain #b100 #yGold for each other #yMillennium #yItem you have."
 		]
 	},
 	"theDuelist:StoneExxod": {
@@ -140,6 +183,27 @@
 		"FLAVOR": "一块奇怪的石头。",
 		"DESCRIPTIONS": [
 			"每胜利1场战斗， 有 #b33% 的几率获得 #b2 个额外卡牌奖励。"
+		]
+	},
+	"theDuelist:CardRewardRelicF": {
+		"NAME": "Spellstone",
+		"FLAVOR": "A green, glowing stone.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Spell to add to your deck."
+		]
+	},
+	"theDuelist:CardRewardRelicG": {
+		"NAME": "Trickstone",
+		"FLAVOR": "A purple, glowing stone.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Trap to add to your deck."
+		]
+	},
+	"theDuelist:CardRewardRelicH": {
+		"NAME": "Battlestone",
+		"FLAVOR": "A yellow, glowing stone.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Monster to add to your deck."
 		]
 	},
 	"theDuelist:InversionRelic": {
@@ -266,6 +330,69 @@
 		"FLAVOR": "A weird looking rug shaped token.",
 		"DESCRIPTIONS": [
 			"You will encounter rarer relics in the shop more often."
+		]
+	},
+	"theDuelist:PyramidLight": {
+		"NAME": "Pyramid of Light",
+		"FLAVOR": "A beautiful small prism.",
+		"DESCRIPTIONS": [
+			"You can upgrade #yCurses and they become Colorless cards."
+		]
+	},
+	"theDuelist:YugiMirror": {
+		"NAME": "Yugi's Mirror",
+		"FLAVOR": "I look funny in this.",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate a random Tribute monster in your deck. The duplicated copy costs 0."
+		]
+	},
+	"theDuelist:StoneKulElna": {
+		"NAME": "Stone of Kul Elna",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"Spells cost #b0. Start each combat [#FF5252]Hexxed."
+		]
+	},
+	"theDuelist:BlessingAknadin": {
+		"NAME": "Blessing of Aknadin",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"Hallway fights have small chance to drop Common and Uncommon relics."
+		]
+	},
+	"theDuelist:HasanPendant": {
+		"NAME": "Hasan's Pendant",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"Discarded cards are instead sent to your draw pile."
+		]
+	},
+	"theDuelist:MarikToken": {
+		"NAME": "Marik's Token",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"Whenever you play a Trap that costs [E] [E] or less, multiply your #yStrength by the cost of the Trap multiplied by #b-1."
+		]
+	},
+	"theDuelist:ZombieRelicB": {
+		"NAME": "Zombie Token",
+		"FLAVOR": "This token looks disgusting!",
+		"DESCRIPTIONS": [
+			"At the start of each turn, if your health is full, copy a random card from your #yExhaust pile into your hand."
+		]
+	},
+	"theDuelist:DragonRelicC": {
+		"NAME": "Dragon Orb",
+		"FLAVOR": "A small red orb.",
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute a #yDragon for another, have a #b20% chance to gain [E]"
+		]
+	},
+	"theDuelist:MachineTokenB": {
+		"NAME": "Machine Orb",
+		"FLAVOR": "A mechanical orb that seems to be ticking?",
+		"DESCRIPTIONS": [
+			"All #yExplosive #yTokens deal extra damage."
 		]
 	},
 	"theDuelist:PlaceholderRelic2": {

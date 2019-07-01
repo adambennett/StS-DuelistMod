@@ -22,6 +22,7 @@ public class ApprenticeIllusionMagician extends DuelistCard
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+	public static final String[] EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
@@ -31,13 +32,13 @@ public class ApprenticeIllusionMagician extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 1;
-	private static final int DAMAGE = 8;
+	private boolean upgradeAvail = true;
 	// /STAT DECLARATION/
 
 	public ApprenticeIllusionMagician() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = DAMAGE;
-		this.tributes = this.baseTributes = 1;
+		this.baseDamage = this.damage = 11;
+		this.tributes = this.baseTributes = 3;
 		this.magicNumber = this.baseMagicNumber = 1;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ORB_DECK);
@@ -46,6 +47,7 @@ public class ApprenticeIllusionMagician extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
+		this.exhaust = true;
 	}
 
 	// Actions the card should do.
@@ -66,13 +68,48 @@ public class ApprenticeIllusionMagician extends DuelistCard
 	// Upgraded stats.
 	@Override
 	public void upgrade() {
-		if (!this.upgraded) {
-			this.upgradeName();
-			this.upgradeMagicNumber(2);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
-			this.rawDescription = UPGRADE_DESCRIPTION;
+		if (canUpgrade()) 
+		{
+			// Name
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			
+			// Upgrade Effects
+			if (DuelistMod.hasUpgradeBuffRelic)
+			{
+				if      (timesUpgraded == 1) 	{ this.upgradeMagicNumber(1); 						}
+				else if (timesUpgraded == 2) 	{ this.upgradeTributes(-2); 						}
+				else if (timesUpgraded == 3) 	{ this.upgradeDamage(6); 							}
+				else if (timesUpgraded == 4) 	{ this.upgradeMagicNumber(1); 						}
+				else if (timesUpgraded == 5) 	{ this.exhaust = false;								}
+			}
+			
+			else
+			{
+				if      (timesUpgraded == 1) 	{ this.upgradeMagicNumber(1); 						}
+				else if (timesUpgraded == 2) 	{ this.upgradeTributes(-1); 						}
+				else if (timesUpgraded == 3) 	{ this.upgradeDamage(4); 							}
+				else if (timesUpgraded == 4) 	{ this.upgradeTributes(-1);							}
+				else if (timesUpgraded == 5) 	{ this.exhaust = false; 							}
+			}
+
+			// Description
+        	if (timesUpgraded == 5) { this.rawDescription = EXTENDED_DESCRIPTION[0]; }
+        	else { this.rawDescription = UPGRADE_DESCRIPTION; }
 			this.initializeDescription();
+			
+			if (timesUpgraded == 5)
+			{
+				this.upgradeAvail = false;
+			}
 		}
+	}
+	
+	@Override
+	public boolean canUpgrade()
+	{
+		if (upgradeAvail) { return true; }
+		else { return false; }
 	}
 
 	// If player doesn't have enough summons, can't play card

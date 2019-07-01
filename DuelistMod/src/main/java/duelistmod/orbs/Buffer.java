@@ -122,7 +122,7 @@ public class Buffer extends DuelistOrb
 				for (AbstractPower buff : buffs)
 				{
 					// This does nothing for these powers in a weird way, the logic was left this way to possibly re-enable summoning buffer tokens when this is triggered
-					if (buff.ID.equals("theDuelist:SummonPower") || buff.ID.equals("Focus") || buff.ID.equals("theDuelist:SwordsRevealPower")) 
+					if (buff.ID.equals("theDuelist:SummonPower") || buff.ID.equals("Focus") || buff.ID.equals("theDuelist:SwordsRevealPower") || buff.ID.equals("MimicSurprisePower")) 
 					{
 						//DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
 						//if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }

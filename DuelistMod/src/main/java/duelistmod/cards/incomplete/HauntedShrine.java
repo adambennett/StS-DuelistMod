@@ -70,39 +70,64 @@ public class HauntedShrine extends DuelistCard
     	for (AbstractCard c : hand) 
     	{ 
     		int pileRoll = AbstractDungeon.cardRandomRng.random(1, 3);
-    		if (pileRoll == 1) { p.discardPile.group.add(c.makeStatEquivalentCopy()); }
-    		else if (pileRoll == 2) { p.drawPile.group.add(c.makeStatEquivalentCopy()); }    		
-    		else if (pileRoll == 3) { p.exhaustPile.group.add(c.makeStatEquivalentCopy()); }    	
-    	}
-    	
-    	// Fill the players hand with cards from random piles
-    	for (int i = 0; i < BaseMod.MAX_HAND_SIZE; i++)
-    	{
-    		int pileRoll = AbstractDungeon.cardRandomRng.random(1, 3);
     		if (pileRoll == 1) 
     		{ 
-    			AbstractCard c = draw.get(AbstractDungeon.cardRandomRng.random(draw.size() - 1)).makeStatEquivalentCopy(); 
-    			c.modifyCostForTurn(-c.cost);
-    			c.isCostModifiedForTurn = true;
-    			p.hand.group.add(c);
-    			//addCardToHand(c);
+    			p.discardPile.group.add(c.makeStatEquivalentCopy());
+    			if (DuelistMod.debug) { DuelistMod.logger.info("Sent " + c.originalName + " to discard pile from your hand"); }
     		}
     		else if (pileRoll == 2) 
     		{ 
-    			AbstractCard c = discard.get(AbstractDungeon.cardRandomRng.random(discard.size() - 1)).makeStatEquivalentCopy(); 
-    			c.modifyCostForTurn(-c.cost);
-    			c.isCostModifiedForTurn = true;
-    			p.hand.group.add(c); 
-    			//addCardToHand(c);
+    			p.drawPile.group.add(c.makeStatEquivalentCopy());
+    			if (DuelistMod.debug) { DuelistMod.logger.info("Sent " + c.originalName + " to draw pile from your hand"); }
     		}    		
     		else if (pileRoll == 3) 
     		{ 
-    			AbstractCard c = exhaust.get(AbstractDungeon.cardRandomRng.random(exhaust.size() - 1)).makeStatEquivalentCopy(); 
-    			c.modifyCostForTurn(-c.cost);
-    			c.isCostModifiedForTurn = true;
-    			p.hand.group.add(c); 
-    			//addCardToHand(c);
-    		}  
+    			p.exhaustPile.group.add(c.makeStatEquivalentCopy()); 
+    			if (DuelistMod.debug) { DuelistMod.logger.info("Sent " + c.originalName + " to exhaust from your hand"); }
+    		}    	
+    	}
+    	
+    	// Fill the players hand with cards from random piles
+    	if (!(draw.size() < 0 && discard.size() < 0 && exhaust.size() < 0))
+    	{
+    		for (int i = 0; i < BaseMod.MAX_HAND_SIZE; i++)
+        	{
+        		boolean sentACard = false;
+        		while (!sentACard && (draw.size() > 0 || discard.size() > 0 || exhaust.size() > 0))
+        		{
+        			int pileRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+            		if (pileRoll == 1 && draw.size() > 0) 
+            		{ 
+            			AbstractCard c = draw.get(AbstractDungeon.cardRandomRng.random(draw.size() - 1)).makeStatEquivalentCopy(); 
+            			c.modifyCostForTurn(-c.cost);
+            			c.isCostModifiedForTurn = true;
+            			p.hand.group.add(c);
+            			if (DuelistMod.debug) { DuelistMod.logger.info("Sent " + c.originalName + " to hand from your old draw pile"); }
+            			sentACard = true;
+            			//addCardToHand(c);
+            		}
+            		else if (pileRoll == 2 && discard.size() > 0) 
+            		{ 
+            			AbstractCard c = discard.get(AbstractDungeon.cardRandomRng.random(discard.size() - 1)).makeStatEquivalentCopy(); 
+            			c.modifyCostForTurn(-c.cost);
+            			c.isCostModifiedForTurn = true;
+            			p.hand.group.add(c);
+            			if (DuelistMod.debug) { DuelistMod.logger.info("Sent " + c.originalName + " to hand from your old discard pile"); }
+            			sentACard = true;
+            			//addCardToHand(c);
+            		}    		
+            		else if (pileRoll == 3 && exhaust.size() > 0) 
+            		{ 
+            			AbstractCard c = exhaust.get(AbstractDungeon.cardRandomRng.random(exhaust.size() - 1)).makeStatEquivalentCopy(); 
+            			c.modifyCostForTurn(-c.cost);
+            			c.isCostModifiedForTurn = true;
+            			p.hand.group.add(c); 
+            			if (DuelistMod.debug) { DuelistMod.logger.info("Sent " + c.originalName + " to hand from your old exhaust pile"); }
+            			sentACard = true;
+            			//addCardToHand(c);
+            		}  
+        		}
+        	}
     	}
     }
 

@@ -102,6 +102,8 @@ public class Utilities
 		items.add(new MillenniumEye().name);
 		items.add(new ResummonBranch().name);
 		items.add(new MillenniumScale().name);
+		items.add(new MillenniumNecklace().name);
+		items.add(new MillenniumToken().name);
 		if (includePuzzle) { items.add(new MillenniumPuzzle().name); }
 		if (items.contains(r.name)) { return true; }
 		else { return false; }		
@@ -117,6 +119,8 @@ public class Utilities
 		items.add(new MillenniumEye());
 		items.add(new ResummonBranch());
 		items.add(new MillenniumScale());
+		items.add(new MillenniumNecklace());
+		items.add(new MillenniumToken());
 		if (includePuzzle) { items.add(new MillenniumPuzzle()); }
 		return items;
 	}
@@ -131,6 +135,8 @@ public class Utilities
 		items.add(new MillenniumEye());
 		items.add(new ResummonBranch());
 		items.add(new MillenniumScale());
+		items.add(new MillenniumNecklace());
+		items.add(new MillenniumToken());
 		return items.get(AbstractDungeon.relicRng.random(items.size() - 1));
 	}
 	

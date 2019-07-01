@@ -3,8 +3,10 @@ package duelistmod.interfaces;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import duelistmod.actions.unique.PurgeSpecificCard;
+import duelistmod.relics.MillenniumToken;
 
 public class TokenCard extends DuelistCard
 {
@@ -16,7 +18,19 @@ public class TokenCard extends DuelistCard
 	@Override
 	public void triggerOnEndOfPlayerTurn()
 	{
+		AbstractDungeon.effectList.add(new ExhaustCardEffect(this));
 		AbstractDungeon.actionManager.addToTop(new PurgeSpecificCard(this, AbstractDungeon.player.hand));
+	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumToken.ID) && this.cost > 0)
+		{
+			this.modifyCostForTurn(-this.cost);
+			this.isCostModifiedForTurn = true;
+		}
 	}
 	
 	@Override

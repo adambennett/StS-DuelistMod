@@ -1,10 +1,15 @@
 package duelistmod.actions.common;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
+import duelistmod.powers.SummonPower;
 
 public class AddCardTagsAction extends AbstractGameAction 
 {
@@ -22,9 +27,35 @@ public class AddCardTagsAction extends AbstractGameAction
 	@Override
 	public void update() 
 	{
-		this.cardToModify.tags.add(tagSave);
-		this.cardToModify.rawDescription =  this.cardToModify.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(tagSave);
-		this.cardToModify.initializeDescription();
+		if (!cardToModify.hasTag(tagSave))
+		{
+			this.cardToModify.tags.add(tagSave);
+			String newDesc = this.cardToModify.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(tagSave);
+			this.cardToModify.rawDescription = newDesc;
+			if (cardToModify instanceof DuelistCard)
+			{
+				DuelistCard cm = (DuelistCard)cardToModify;			
+				cm.originalDescription = newDesc;
+				cm.isTypeAddedPerm = true;
+				ArrayList<String> types = new ArrayList<String>();
+				for (String s : cm.savedTypeMods) { if (!(s.equals("default"))) { types.add(s); }}
+				cm.savedTypeMods = types;
+				cm.savedTypeMods.add(DuelistMod.typeCardMap_NAME.get(tagSave));
+			}
+			if (tagSave.equals(Tags.MEGATYPED) && cardToModify instanceof DuelistCard)
+			{
+				DuelistCard cm = (DuelistCard)cardToModify;
+				cm.makeMegatyped();
+			}
+			this.cardToModify.initializeDescription();
+			
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{
+				SummonPower summonsInstance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);    			
+				summonsInstance.updateStringColors();
+				summonsInstance.updateDescription();    
+			}
+		}
 		this.isDone = true;
 	}	
 }

@@ -517,38 +517,40 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new Deskbot004());
 		DuelistMod.myCards.add(new Deskbot005());
 		DuelistMod.myCards.add(new Hayate());
+		DuelistMod.myCards.add(new Spore());
+		DuelistMod.myCards.add(new RainbowOverdragon());
+		DuelistMod.myCards.add(new RainbowGravity());
+		DuelistMod.myCards.add(new RainbowLife());
+		//DuelistMod.myCards.add(new MillenniumSpellbook());
 		
-		DuelistMod.myCards.add(new ArchfiendZombieSkull());
-		//DuelistMod.myCards.add(new BeserkDragon());
-		DuelistMod.myCards.add(new CorrodingShark());
-		//DuelistMod.myCards.add(new DoomkaiserDragon());
+		DuelistMod.myCards.add(new ArchfiendZombieSkull());		
+		DuelistMod.myCards.add(new CorrodingShark());		
 		DuelistMod.myCards.add(new FlameGhost());
 		DuelistMod.myCards.add(new Gernia());
 		DuelistMod.myCards.add(new GoblinZombie());
 		DuelistMod.myCards.add(new Gozuki());
 		DuelistMod.myCards.add(new Kasha());
 		DuelistMod.myCards.add(new OniTankT34());
-		DuelistMod.myCards.add(new RedHeadedOni());
-		//DuelistMod.myCards.add(new UnderworldCannon());
-		//DuelistMod.myCards.add(new WightLady());
-		//DuelistMod.myCards.add(new ZombieMammoth());
+		DuelistMod.myCards.add(new RedHeadedOni());		
 		DuelistMod.myCards.add(new ZombieWarrior());
 		DuelistMod.myCards.add(new BlueBloodedOni());
 		DuelistMod.myCards.add(new DesLacooda());
-		DuelistMod.myCards.add(new DespairFromDark());
-		//DuelistMod.myCards.add(new DragonZombie());
-		DuelistMod.myCards.add(new EndlessDecay());
-		//DuelistMod.myCards.add(new FearFromDark());
-		DuelistMod.myCards.add(new HauntedShrine());
-		DuelistMod.myCards.add(new OniGamiCombo());
-		//DuelistMod.myCards.add(new PainPainter());
+		DuelistMod.myCards.add(new DespairFromDark());		
+		DuelistMod.myCards.add(new EndlessDecay());		
+		//DuelistMod.myCards.add(new HauntedShrine());
+		DuelistMod.myCards.add(new OniGamiCombo());		
 		DuelistMod.myCards.add(new PlaguespreaderZombie());
 		DuelistMod.myCards.add(new YellowBelliedOni());
 		DuelistMod.myCards.add(new ZombieWorld());
 		
-		DuelistMod.myCards.add(new RainbowOverdragon());
-		DuelistMod.myCards.add(new RainbowGravity());
-		DuelistMod.myCards.add(new RainbowLife());
+		//DuelistMod.myCards.add(new BeserkDragon());
+		//DuelistMod.myCards.add(new DoomkaiserDragon());
+		//DuelistMod.myCards.add(new UnderworldCannon());
+		//DuelistMod.myCards.add(new WightLady());
+		//DuelistMod.myCards.add(new ZombieMammoth());
+		//DuelistMod.myCards.add(new DragonZombie());
+		//DuelistMod.myCards.add(new FearFromDark());
+		//DuelistMod.myCards.add(new PainPainter());
 		
 		DuelistMod.curses.add(new GravekeeperCurse());
 		DuelistMod.curses.add(new CurseAnubis());
@@ -565,8 +567,12 @@ public class DuelistCardLibrary {
 			String ID = DuelistMod.typeCardMap_ID.get(t);
 			CardStrings localCardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 			DuelistMod.typeCardMap_NAME.put(t, localCardStrings.NAME);
+			DuelistMod.typeCardMap_NameToString.put(localCardStrings.NAME, t);
 			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
 		}
+		
+		DuelistMod.typeCardMap_NAME.put(Tags.MEGATYPED, "Megatyped");
+		DuelistMod.typeCardMap_NameToString.put("Megatyped", Tags.MEGATYPED);
 
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)

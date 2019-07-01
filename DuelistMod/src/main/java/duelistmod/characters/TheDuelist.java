@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
@@ -146,6 +147,29 @@ public class TheDuelist extends CustomPlayer {
 
 		return retVal;
 	}
+
+	/*
+	// Card Pool Patch 
+	@Override
+	public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool)
+	{
+		//tmpPool = super.getCardPool(tmpPool);
+		if (DuelistMod.shouldFill)
+		{ 
+			PoolHelpers.fillColoredCards(); 
+			DuelistMod.shouldFill = false;
+		}
+		else { PoolHelpers.coloredCardsHadCards(); }
+		for (AbstractCard c : DuelistMod.coloredCards)
+		{
+			if (!c.rarity.equals(CardRarity.SPECIAL))
+			{
+				tmpPool.add(c);
+			}				
+		}
+		return tmpPool;
+	}
+	*/
 
 	// Starting Relics	
 	@Override

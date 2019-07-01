@@ -95,13 +95,13 @@ public class BlastJuggler extends DuelistCard
 	    	for (int i = 0; i < tokens; i++)
 	    	{
 	    		AbstractMonster randomM = getRandomMonster();
-	    		int roll = AbstractDungeon.cardRandomRng.random(1, 3);
+	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh);
 	    		attack(randomM, this.baseAFX, roll);
 	    	}
 	    	for (int i = 0; i < sTokens; i++)
 	    	{
 	    		AbstractMonster randomM = getRandomMonster();
-	    		int roll = AbstractDungeon.cardRandomRng.random(2, 6);
+	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2);
 	    		attack(randomM, this.baseAFX, roll);
 	    	}
 	    	

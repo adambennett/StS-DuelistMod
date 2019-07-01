@@ -132,7 +132,9 @@
 			"Draw ",
 			"At the start of turn, draw ",
 			"Resummon a random ",
-			" monster on a random enemy."
+			" monster on a random enemy.",
+			"All your monsters gain ",
+			" type until the end of combat."
 		]
 	}
 }

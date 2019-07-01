@@ -3,10 +3,12 @@ package duelistmod.cards.tokens;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.unique.RelicBallAction;
 import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 
@@ -46,7 +48,8 @@ public class AnubisToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
-    	attack(m, this.baseAFX, p.relics.size() * this.damage);
+    	AbstractDungeon.actionManager.addToBottom(new RelicBallAction(m, false));
+    	attack(m, this.baseAFX, p.relics.size() * this.damage);    	
     }
     @Override public AbstractCard makeCopy() { return new AnubisToken(); }
 
