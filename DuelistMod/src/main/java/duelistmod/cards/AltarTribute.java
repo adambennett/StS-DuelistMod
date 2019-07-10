@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class AltarTribute extends DuelistCard 
@@ -37,10 +39,55 @@ public class AltarTribute extends DuelistCard
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.TRAP);
+		this.tags.add(Tags.NEVER_GENERATE);
 		this.misc = 0;
 		this.tributes = this.baseTributes = 2;
+		this.secondMagic = this.baseSecondMagic = 0;
 		this.originalName = this.name;
+		this.exhaust = true;
 		this.setupStartingCopies();
+	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			int dmg = 0;
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{				
+				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (pow.actualCardSummonList.size() >= this.tributes)
+				{
+					int endIndex = pow.actualCardSummonList.size() - 1;
+					for (int i = endIndex; i > endIndex - this.tributes; i--)
+					{
+						if (pow.actualCardSummonList.get(i).block > 0)
+						{
+							dmg += pow.actualCardSummonList.get(i).block;
+						}
+					}
+					
+					if (dmg > 0)
+					{
+						this.secondMagic = this.baseSecondMagic = dmg;
+					}
+				}	
+				else
+				{
+					this.secondMagic = this.baseSecondMagic =  0;
+				}
+			}
+			else
+			{
+				this.secondMagic = this.baseSecondMagic =  0;
+			}
+		}
+		else
+		{
+			this.secondMagic = this.baseSecondMagic =  0;
+		}
 	}
 
 	// Actions the card should do.
@@ -53,7 +100,7 @@ public class AltarTribute extends DuelistCard
 		{
 			for (DuelistCard c : tributeList)
 			{
-				if (c.baseDamage > 0) 	{ healTotal += c.baseDamage; 	}
+				//if (c.baseDamage > 0) 	{ healTotal += c.baseDamage; 	}
 				if (c.baseBlock  > 0) 	{ healTotal += c.baseBlock; 	}
 			}
 		}

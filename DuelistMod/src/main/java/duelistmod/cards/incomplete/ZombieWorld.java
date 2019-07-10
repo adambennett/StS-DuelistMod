@@ -3,8 +3,10 @@ package duelistmod.cards.incomplete;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -32,8 +34,23 @@ public class ZombieWorld extends DuelistCard
     public ZombieWorld() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
+        this.secondMagic = this.baseSecondMagic = 0;
         this.tags.add(Tags.SPELL);
         this.purgeOnUse = true;
+    }
+    
+    @Override
+    public void update()
+    {
+    	super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			this.secondMagic = this.baseSecondMagic = DuelistMod.zombiesResummonedThisCombat;
+		}
+		else
+		{
+			this.secondMagic = this.baseSecondMagic = 0;
+		}
     }
 
     // Actions the card should do.

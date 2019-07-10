@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -36,7 +38,7 @@ public class GuardianAngel extends DuelistCard
 
     public GuardianAngel() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 3;
+        this.baseDamage = this.damage = 5;
         this.magicNumber = this.baseMagicNumber = 3;
         this.tributes = this.baseTributes = 2;
         this.misc = 0;
@@ -48,6 +50,48 @@ public class GuardianAngel extends DuelistCard
         this.originalName = this.name;
         this.setupStartingCopies();
     }
+    
+    @Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			int dmg = 0;
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{				
+				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (pow.actualCardSummonList.size() >= this.tributes)
+				{
+					int endIndex = pow.actualCardSummonList.size() - 1;
+					for (int i = endIndex; i > endIndex - this.tributes; i--)
+					{
+						if (pow.actualCardSummonList.get(i).hasTag(Tags.SPELLCASTER))
+						{
+							dmg += this.magicNumber;
+						}
+					}
+					
+					if (dmg > 0)
+					{
+						this.secondMagic = this.baseSecondMagic = dmg + this.damage;
+					}
+				}	
+				else
+				{
+					this.secondMagic = this.baseSecondMagic =  0;
+				}
+			}
+			else
+			{
+				this.secondMagic = this.baseSecondMagic =  0;
+			}
+		}
+		else
+		{
+			this.secondMagic = this.baseSecondMagic =  0;
+		}
+	}
 
     // Actions the card should do.
     @Override
@@ -84,8 +128,7 @@ public class GuardianAngel extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeMagicNumber(1);
-            this.upgradeBaseCost(1);
+	        this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

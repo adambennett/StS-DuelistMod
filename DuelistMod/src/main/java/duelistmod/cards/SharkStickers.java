@@ -13,7 +13,6 @@ import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.relics.AquaRelicB;
 
 public class SharkStickers extends DuelistCard 
 {
@@ -43,6 +42,7 @@ public class SharkStickers extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+        this.exhaust = true;
     }
 
     // Actions the card should do.

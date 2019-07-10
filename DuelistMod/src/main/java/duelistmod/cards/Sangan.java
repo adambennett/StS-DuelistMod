@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
@@ -38,6 +39,7 @@ public class Sangan extends DuelistCard
         this.baseDamage = this.damage = 4;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.METAL_RAIDERS);
         this.originalName = this.name;
         this.isSummon = true;
     }
@@ -48,15 +50,15 @@ public class Sangan extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	if (DuelistMod.spellsThisCombat.size() > 0)
+    	if (DuelistMod.uniqueSpellsThisCombat.size() > 0)
     	{
-	    	DuelistCard randomSpell = (DuelistCard) DuelistMod.spellsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.spellsThisCombat.size() - 1)).makeStatEquivalentCopy();
-	    	if (this.upgraded && randomSpell.cost > 0)
+	    	DuelistCard randomSpell = (DuelistCard) DuelistMod.uniqueSpellsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.uniqueSpellsThisCombat.size() - 1)).makeStatEquivalentCopy();
+	    	if (this.upgraded && randomSpell.cost > -1 && randomSpell.cost != 1)
 	    	{
-		    	randomSpell.modifyCostForCombat(-randomSpell.cost);
+		    	randomSpell.modifyCostForCombat(-randomSpell.cost + 1);
 		    	randomSpell.isCostModified = true;
 	    	}
-	    	addCardToHand(randomSpell);
+	    	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpell, false, false, true, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
     	}
     }
 
@@ -72,7 +74,7 @@ public class Sangan extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeBaseCost(0);
-            this.upgradeDamage(1);
+            //this.upgradeDamage(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

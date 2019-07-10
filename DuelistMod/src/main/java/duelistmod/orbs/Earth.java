@@ -8,9 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
+import duelistmod.actions.unique.DragonOrbEvokeAction;
 import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")
@@ -31,7 +33,7 @@ public class Earth extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Earth2.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 1;
 		if (DuelistMod.challengeMode)
 		{
@@ -43,7 +45,7 @@ public class Earth extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -66,28 +68,37 @@ public class Earth extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		for (int i = 0; i < this.evokeAmount; i++)
+		if (this.evokeAmount > 0)
 		{
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, true, true, true, false, false, false, false, false, 1, 2, 0, 0, 0, 0));
-			if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
+			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, Tags.SPELL, 1));
+			if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > triggered evoke!"); }			
 		}
-		if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > triggered evoke!"); }
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		if (this.passiveAmount > 0) { this.triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()
 	{
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
-			if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
+			if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Ojama Deck") || !DuelistMod.ojamaBtnBool)
+			{
+				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
+			}
+			else
+			{
+				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
+				while (randomMonster.hasTag(Tags.OJAMA)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL); }
+				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 1, 3, 0, 0, 0, 0));
+				if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > Added: " + randomMonster.name + " to player hand."); }
+			}
+			
 		}
 	}
 
@@ -133,6 +144,47 @@ public class Earth extends DuelistOrb
 	{
 		// Render passive amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
+	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 	
 	

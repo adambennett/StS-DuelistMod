@@ -3,24 +3,22 @@ package duelistmod.powers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.*;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import basemod.BaseMod;
 import duelistmod.*;
-import duelistmod.interfaces.*;
+import duelistmod.interfaces.DuelistCard;
 
 
 @SuppressWarnings("unused")
-public class RainbowCapturePower extends AbstractPower
+public class RainbowCapturePower extends TwoAmountPower
 {
 	public AbstractCreature source;
 	public static final String POWER_ID = DuelistMod.makeID("RainbowCapturePower");
@@ -33,7 +31,7 @@ public class RainbowCapturePower extends AbstractPower
 	private String typeString;
 	public ArrayList<AbstractCard> pieces = new ArrayList<AbstractCard>();
 	
-	public RainbowCapturePower(final AbstractCreature owner, final AbstractCreature source, CardTags type) 
+	public RainbowCapturePower(final AbstractCreature owner, final AbstractCreature source, CardTags type, int turns) 
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -43,6 +41,7 @@ public class RainbowCapturePower extends AbstractPower
 		this.img = new Texture(IMG);
 		this.source = source;
 		this.amount = 0;
+		this.amount2 = turns;
 		this.chosenType = type;
 		this.typeString = chosenType.toString().toLowerCase();
 		String temp = this.typeString.substring(0, 1).toUpperCase();
@@ -56,7 +55,7 @@ public class RainbowCapturePower extends AbstractPower
 		 if (this.amount != pieces.size()) { this.amount = pieces.size(); }
 			if (pieces.size() == 0) 
 			{ 
-				this.description = DESCRIPTIONS[0] + this.typeString + DESCRIPTIONS[1] + this.typeString + DESCRIPTIONS[2] + "None."; 
+				this.description = DESCRIPTIONS[0] + this.typeString + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[2] + this.typeString + DESCRIPTIONS[3] + "None."; 
 			}
 			
 			else
@@ -73,6 +72,7 @@ public class RainbowCapturePower extends AbstractPower
 	public void atEndOfTurn(boolean isPlayer) 
 	{
 		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
+		if (this.amount2 > 0) { this.amount2--; }
 		updateDescription();		
 	}
 	
@@ -84,11 +84,14 @@ public class RainbowCapturePower extends AbstractPower
 			if (AbstractDungeon.player.hand.group.size() < BaseMod.MAX_HAND_SIZE) {	DuelistCard.addCardToHand(c); }
 		}
 		
-		//DuelistCard.removePower(this, this.owner);
-		pieces = new ArrayList<AbstractCard>();
-		this.amount = 0;
-		if (this.amount != pieces.size()) { this.amount = pieces.size(); }
-		updateDescription();		
+		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
+		else
+		{
+			pieces = new ArrayList<AbstractCard>();
+			this.amount = 0;
+			if (this.amount != pieces.size()) { this.amount = pieces.size(); }
+			updateDescription();	
+		}	
 	}
 	
 	@Override

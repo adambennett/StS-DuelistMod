@@ -35,6 +35,7 @@ public class ThousandEyesRestrict extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
+		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tributes = this.baseTributes = 4;
 		this.originalName = this.name;
 
@@ -65,7 +66,7 @@ public class ThousandEyesRestrict extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeTributes(-1);
+			this.upgradeBaseCost(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

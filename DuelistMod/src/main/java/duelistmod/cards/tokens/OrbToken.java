@@ -64,7 +64,7 @@ public class OrbToken extends TokenCard
     				orbs.add((DuelistCard)random.makeCopy());
     				orbNames.add(random.name);
     			}
-    			AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false));
+    			AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false, false));
     		}
     	}
     }

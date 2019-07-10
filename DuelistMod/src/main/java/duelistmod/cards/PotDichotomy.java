@@ -3,10 +3,12 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
@@ -34,12 +36,31 @@ public class PotDichotomy extends DuelistCard
     public PotDichotomy() 
     {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
-    	this.summons = this.baseSummons = 1;
-    	this.upgradeSummons = 1;
+    	this.summons = this.baseSummons = 1;			// X + this variable = summons
+    	this.magicNumber = this.baseMagicNumber = 3;	// overflows
+    	this.secondMagic = this.baseSecondMagic = 1;	// X + this variable = increments
     	this.tags.add(Tags.SPELL);
     	this.tags.add(Tags.POT);
     	this.tags.add(Tags.REDUCED);
 		this.originalName = this.name;
+    }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Increment X + secondMagic
+            incMaxSummons(getXEffect() + this.secondMagic);
+            useXEnergy();
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
     }
 
     // Actions the card should do.
@@ -59,7 +80,8 @@ public class PotDichotomy extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeSummons(2);
+            this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

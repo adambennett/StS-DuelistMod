@@ -77,8 +77,8 @@ public class ApprenticeIllusionMagician extends DuelistCard
 			// Upgrade Effects
 			if (DuelistMod.hasUpgradeBuffRelic)
 			{
-				if      (timesUpgraded == 1) 	{ this.upgradeMagicNumber(1); 						}
-				else if (timesUpgraded == 2) 	{ this.upgradeTributes(-2); 						}
+				if      (timesUpgraded == 1) 	{ this.upgradeDamage(5);							}
+				else if (timesUpgraded == 2) 	{ this.upgradeMagicNumber(1); 						}
 				else if (timesUpgraded == 3) 	{ this.upgradeDamage(6); 							}
 				else if (timesUpgraded == 4) 	{ this.upgradeMagicNumber(1); 						}
 				else if (timesUpgraded == 5) 	{ this.exhaust = false;								}
@@ -86,8 +86,8 @@ public class ApprenticeIllusionMagician extends DuelistCard
 			
 			else
 			{
-				if      (timesUpgraded == 1) 	{ this.upgradeMagicNumber(1); 						}
-				else if (timesUpgraded == 2) 	{ this.upgradeTributes(-1); 						}
+				if      (timesUpgraded == 1) 	{ this.upgradeDamage(3);							}
+				else if (timesUpgraded == 2) 	{ this.upgradeMagicNumber(1); 						}
 				else if (timesUpgraded == 3) 	{ this.upgradeDamage(4); 							}
 				else if (timesUpgraded == 4) 	{ this.upgradeTributes(-1);							}
 				else if (timesUpgraded == 5) 	{ this.exhaust = false; 							}

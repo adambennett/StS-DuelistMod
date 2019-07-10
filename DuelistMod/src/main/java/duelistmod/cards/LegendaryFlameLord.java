@@ -47,7 +47,7 @@ public class LegendaryFlameLord extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m);
-    	AbstractOrb lava = new Lava();
+    	AbstractOrb lava = new Lava(7);
     	channel(lava);
     }
 
@@ -62,7 +62,7 @@ public class LegendaryFlameLord extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

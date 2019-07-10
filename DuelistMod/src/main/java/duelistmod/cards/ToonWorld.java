@@ -23,11 +23,11 @@ public class ToonWorld extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION 	
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public ToonWorld() {
@@ -45,14 +45,21 @@ public class ToonWorld extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!upgraded && !p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 3, true)); }
-    	else if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 2, true)); }
-    	else if (p.hasPower(ToonWorldPower.POWER_ID) && DuelistMod.toonWorldTemp)
+    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 3)); }
+    	else if (p.hasPower(ToonWorldPower.POWER_ID))
     	{
-    		DuelistMod.toonWorldTemp = false;
     		ToonWorldPower toon = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
-    		if (!upgraded) {  toon.TOON_DMG = 3;}
-    		else { toon.TOON_DMG = 2; }
+    		if (toon.lowend > 0)
+    		{
+    			toon.lowend = 0;
+        		toon.updateDescription();
+    		}    		
+    		else
+    		{
+    			toon.amount -= 2;
+    			if (toon.amount < 0) { toon.amount = 0; }
+    			toon.updateDescription();
+    		}
     	}
     }
 
@@ -67,7 +74,7 @@ public class ToonWorld extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.isInnate = true;
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

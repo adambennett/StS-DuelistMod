@@ -35,9 +35,10 @@ public class DestructPotion extends DuelistCard
     public DestructPotion() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 5;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.TRAP); 
+        this.tags.add(Tags.NEVER_GENERATE);
         makeFleeting();
     }
 
@@ -46,7 +47,7 @@ public class DestructPotion extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> list = tribute(true);
-    	if (list.size() > 0) { p.maxHealth += list.size() * this.magicNumber; }
+    	if (list.size() > 0) { p.increaseMaxHp(list.size() * this.magicNumber, true);  }
     }
 
     // Which card to return when making a copy of this card.
@@ -72,7 +73,8 @@ public class DestructPotion extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.magicNumber < 10) { return true; }
+    	else { return false; }
     }
 
 	@Override

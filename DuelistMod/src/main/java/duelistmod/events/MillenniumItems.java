@@ -32,7 +32,8 @@ public class MillenniumItems extends AbstractImageEvent {
     public MillenniumItems() {
         super(NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-        imageEventText.setDialogOption(OPTIONS[0]);
+        if (AbstractDungeon.ascensionLevel < 15) { imageEventText.setDialogOption(OPTIONS[0]); }
+        else { imageEventText.setDialogOption(OPTIONS[2]); }
         imageEventText.setDialogOption(OPTIONS[1]);
     }
 
@@ -52,7 +53,7 @@ public class MillenniumItems extends AbstractImageEvent {
                         	ArrayList<Object> mills = new ArrayList<Object>();
                         	for (AbstractRelic r : Utilities.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
                         	mills.add(new MillenniumElixir());    
-                        	//mills.add(new MillenniumSpellbook());
+                        	mills.add(new MillenniumSpellbook());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
                         	if (randMill instanceof AbstractRelic)
                         	{
@@ -76,6 +77,13 @@ public class MillenniumItems extends AbstractImageEvent {
                         	
                             AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                            AbstractCard b2 = DuelistCardLibrary.getRandomDuelistCurse();
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b2, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                            if (AbstractDungeon.ascensionLevel >= 15)
+                            {
+                            	  AbstractCard b3 = DuelistCardLibrary.getRandomDuelistCurse();
+                                  AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b3, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                            }
                         }
                         else
                         {

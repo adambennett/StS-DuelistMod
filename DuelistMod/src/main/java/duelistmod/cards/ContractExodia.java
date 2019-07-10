@@ -39,13 +39,14 @@ public class ContractExodia extends DuelistCard
         this.tags.add(Tags.ALL);
         this.exhaust = true;
         this.originalName = this.name;
+        this.magicNumber = this.baseMagicNumber = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	for (int i = 0; i < 3; i++)
+    	for (int i = 0; i < this.magicNumber; i++)
     	{
     		DuelistCard exodia = (DuelistCard) returnTrulyRandomFromSet(Tags.EXODIA);
     		while (exodia.originalName.equals(this.originalName)) { exodia = (DuelistCard) returnTrulyRandomFromSet(Tags.EXODIA); }

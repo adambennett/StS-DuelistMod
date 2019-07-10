@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
@@ -34,7 +35,7 @@ public class PreventRat extends DuelistCard
 
     public PreventRat() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.ORB_DECK);
@@ -42,9 +43,28 @@ public class PreventRat extends DuelistCard
     	this.startingOPODeckCopies = 2;
         this.orbDeckCopies = 2;
         this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 2;	// overflows
+        this.secondMagic = this.baseSecondMagic = 3;	// block on overflow
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();
+    }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Block
+            block(this.secondMagic);
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
     }
 
     // Actions the card should do.
@@ -66,7 +86,7 @@ public class PreventRat extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
+            this.upgradeSecondMagic(1);
             this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

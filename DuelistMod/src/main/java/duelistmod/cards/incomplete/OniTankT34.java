@@ -40,6 +40,7 @@ public class OniTankT34 extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.PHARAOH_SERVANT);
     }
 
     @Override

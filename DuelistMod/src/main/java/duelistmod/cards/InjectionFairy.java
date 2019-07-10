@@ -36,8 +36,8 @@ public class InjectionFairy extends DuelistCard
 	public InjectionFairy() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.summons = 1;
-		this.heal = this.baseMagicNumber = this.magicNumber = 4;
-		this.baseDamage = this.damage = 3;
+		this.baseMagicNumber = this.magicNumber = 4;
+		this.baseDamage = this.damage = 6;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.LEGACY_DARKNESS);
 		this.tags.add(Tags.SPELLCASTER);
@@ -61,7 +61,7 @@ public class InjectionFairy extends DuelistCard
 			SummonPower power = (SummonPower) p.getPower(SummonPower.POWER_ID);
 			if (power.isEveryMonsterCheck(Tags.SPELLCASTER, false))
 			{
-				heal(p, this.heal);
+				heal(p, this.magicNumber);
 			}
 		}
 		attack(m, AFX, this.damage); 
@@ -79,6 +79,7 @@ public class InjectionFairy extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeDamage(3);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

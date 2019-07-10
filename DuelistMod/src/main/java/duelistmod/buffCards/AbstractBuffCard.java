@@ -15,7 +15,7 @@ public class AbstractBuffCard extends BuffCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("AbstractBuffCard");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
+    public static final String IMG = DuelistMod.makePath(Strings.RED_MEDICINE);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     // /TEXT DECLARATION/
@@ -24,7 +24,7 @@ public class AbstractBuffCard extends BuffCard
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPECIAL;
     private static final int COST = 0;
     // /STAT DECLARATION/
 

@@ -4,10 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
@@ -24,7 +26,7 @@ public class BattleOx extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -32,13 +34,33 @@ public class BattleOx extends DuelistCard
     private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public BattleOx() {
+    public BattleOx() 
+    {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 8;
         this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 4;
         this.tags.add(Tags.MONSTER);
         this.originalName = this.name;
         this.isSummon = true;
+    }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Damage random enemy
+            attack(AbstractDungeon.getRandomMonster(), this.baseAFX, this.secondMagic);
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
     }
 
     // Actions the card should do.
@@ -60,8 +82,8 @@ public class BattleOx extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
+            this.upgradeMagicNumber(1);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

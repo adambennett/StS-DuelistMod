@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
@@ -47,7 +47,7 @@ public class Buffer extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -60,9 +60,18 @@ public class Buffer extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		BuffHelper.resetRandomBuffs(this.evokeAmount);
-		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
-		if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
+		if (!hasNegativeFocus())
+		{
+			BuffHelper.resetRandomBuffs(this.evokeAmount);
+			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
+			if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
+		}
+		else if (this.evokeAmount + getCurrentFocus() > 0)
+		{
+			BuffHelper.resetRandomBuffs(this.evokeAmount);
+			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
+			if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
+		}		
 	}
 
 	@Override
@@ -81,7 +90,18 @@ public class Buffer extends DuelistOrb
 		}
 		if (roll < rollCheck)
 		{
-			this.triggerPassiveEffect();
+			if (!hasNegativeFocus())
+			{
+				this.triggerPassiveEffect();
+			}
+			else if (this.passiveAmount > 0)
+			{
+				this.triggerPassiveEffect();
+			}
+			else if (DuelistMod.debug)
+			{
+				DuelistMod.logger.info("Buffer orb missed the roll -- forced miss due to negative focus");
+			}
 		}
 		
 		else if (DuelistMod.debug) { DuelistMod.logger.info("Buffer orb missed the roll"); }
@@ -139,6 +159,29 @@ public class Buffer extends DuelistOrb
 						else if (roll == 3) { buffIndex = "Damage (turnDmg)"; jamBreed.turnDmg++; jamBreed.updateDescription(); }
 						else { jamBreed.amount++; jamBreed.updateDescription(); }
 						if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Buffed Jam Breeding Machine! Which amount did we buff: " + buffIndex); }
+					}
+					
+					// hardcode exceptions for Toon World and Toon Kingdom
+					else if (buff.ID.equals("theDuelist:ToonWorldPower") || buff.ID.equals("theDuelist:ToonKingdomPower"))
+					{
+						if (buff instanceof ToonWorldPower)
+						{
+							ToonWorldPower tw = (ToonWorldPower)buff;
+							if (tw.amount > 0)
+							{
+								tw.amount--;
+								tw.updateDescription();
+							}
+						}
+						else if (buff instanceof ToonKingdomPower)
+						{
+							ToonKingdomPower tw = (ToonKingdomPower)buff;
+							if (tw.amount > 0)
+							{
+								tw.amount--;
+								tw.updateDescription();
+							}
+						}
 					}
 					
 					// all other powers get buffed normally
@@ -214,6 +257,47 @@ public class Buffer extends DuelistOrb
 	{
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
+	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 }
 

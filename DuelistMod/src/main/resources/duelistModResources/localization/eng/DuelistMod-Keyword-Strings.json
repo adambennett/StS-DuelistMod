@@ -13,7 +13,7 @@
 		  "MonsterOrb",
 		  "monsterorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized monster cards to your hand. #yEvoke also adds #yrandomized monsters to your hand."
+		"DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yRandomized monster to your hand. NL #yEvoke: Set the cost of #b1 random monster in your hand to 1."
 	},
     {
 	  "PROPER_NAME": "Resummon",
@@ -45,7 +45,7 @@
         "buffer",
 		"Buffer"
       ],     
-      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b2 turns."
+      "DESCRIPTION": "#yOrb: At the start of turn, have a chance to increase all of your buffs by #b1. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b2 turns."
     },
     {
 	  "PROPER_NAME": "Summoner",
@@ -53,7 +53,7 @@
         "summoner",
 		"Summoner"
       ],      
-      "DESCRIPTION": "#yOrb: #ySummon #ySpellcater Tokens at the end of turn. #yEvoke increases your max #ySummons."
+      "DESCRIPTION": "#yOrb: #ySummon #b1 #ySpellcaster #yToken at the end of turn. NL #yEvoke: #yIncrement #b2."
     },
     {
 	  "PROPER_NAME": "Reducer",
@@ -61,7 +61,7 @@
         "reducer",
 		"Reducer"
       ],      
-      "DESCRIPTION": "#yOrb: At the start of turn, increase the cards reduced when this is evoked. #yEvoke sets the cost of random card(s) in your hand to 0."
+      "DESCRIPTION": "#yOrb: Sets the cost #b1 random card in your hand to 0 when #yEvoked. At the start of each turn, increase the number of cards that will be reduced."
     },
 	{
 		"PROPER_NAME": "DragonOrb",
@@ -69,7 +69,7 @@
 		  "DragonOrb",
 		  "dragonorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized #yDragon cards to your hand. #yEvoke sets the cost of random #yDragons in your hand to 0."
+		"DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yRandomized #yDragon to your hand. NL #yEvoke: Set the cost of #b1 random #yDragon in your hand to 1. NL #yUpgraded #yDragonOrbs add #yUpgraded #yDragons to your hand, and set the cost of #yDragons in hand to 0."
 	},
     {
 	  "PROPER_NAME": "Overflow",
@@ -85,7 +85,7 @@
         "toon",
 		"toons"
       ],      
-      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. If you Tribute a Toon monster using another Toon, deal #b5 damage to all enemies."
+      "DESCRIPTION": "Can only be played if #yToon #yWorld is active. If you Tribute a Toon monster using another Toon, apply #b1 #yVulnerable to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Magnet",
@@ -101,7 +101,7 @@
         "ojamania",
 		"Ojamania"
       ],      
-      "DESCRIPTION": "Add #b2 #yrandomized cards to your hand, they cost #b0 this turn. Apply #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
+      "DESCRIPTION": "Add #b2 #yRandomized cards to your hand, they cost #b0 this turn. Gain #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
     },
      {
 	  "PROPER_NAME": "Dragon",
@@ -132,7 +132,7 @@
         "plant",
 		"plants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b1 #yConstricted to ALL enemies."
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b4 #yConstricted to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Predaplant",
@@ -140,7 +140,7 @@
         "predaplant",
 		"predaplants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for a #yPlant, apply #b1 #yConstricted to ALL enemies. NL When you #yTribute a #yPredaplant for another #yPredaplant, apply #b1 #yConstricted to ALL enemies and gain #b1 #yThorns. NL #yPredaplant monsters are treated as #yPlants. "
+      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for a #yPlant, apply #b4 #yConstricted to ALL enemies. NL When you #yTribute a #yPredaplant for another #yPredaplant, apply #b1 #yConstricted to ALL enemies and gain #b1 #yThorns. NL #yPredaplant monsters are treated as #yPlants. "
     },
   {
    "PROPER_NAME": "Earth",
@@ -148,7 +148,7 @@
       "Earth",
 	  "earth"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, adds #yrandomized #ySpell cards to your hand. #yEvoke also adds #yrandomized #ySpells to your hand."
+    "DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yRandomized #ySpell to your hand. NL #yEvoke: Set the cost of #b1 random #ySpell in your hand to 1."
   },
   {
    "PROPER_NAME": "Air",
@@ -156,7 +156,7 @@
       "Air",
 	  "air"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if the only monsters you currently have summoned are #yDragons. #yEvoke increases your #yOrb slots by #b1."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
   },
   {
     "PROPER_NAME": "Fire",
@@ -164,15 +164,17 @@
       "Fire",
 	  "fire"
     ],   
-    "DESCRIPTION": "#yOrb: When you draw #yDragons, reduces their #yTribute cost for that turn. When #yEvoked, reduces the #yTribute cost of #yDragons (everywhere) for the rest of combat."
+    "DESCRIPTION": "#yOrb: When you draw #yDragons, reduce their #yTribute cost by #b1 for that turn. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b1 for the rest of combat."
   },
   {
    "PROPER_NAME": "Glitch",
     "NAMES": [
       "Glitch",
-	  "glitch"
+	  "glitch",
+	  "Glitches",
+	  "glitches"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, triggers a random action. If the only monsters you currently have summoned are #yMachines, trigger the effect twice. #yEvoke also triggers random actions."
+    "DESCRIPTION": "#yOrb: At the start of turn, trigger #b1 random effect. If all monsters summoned are #yMachines, trigger the effect twice. NL #yEvoke: Trigger #b2 random effects."
   },
   {
    "PROPER_NAME": "Shadow",
@@ -180,7 +182,7 @@
       "Shadow",
 	  "shadow"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #ySummon a [#FF5252]Shadow [#FF5252]Token. You have a higher chance if the only monsters you currently have summoned are #yZombies. #yEvoke: #yResummon monsters from your discard pile on random enemies."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #ySummon a [#FF5252]Shadow [#FF5252]Token. You have a higher chance if all monsters summoned are #yZombies. NL #yEvoke: #yResummon #b2 random monsters from your discard pile on random enemies."
   },
   {
     "PROPER_NAME": "Splash",
@@ -188,7 +190,7 @@
       "Splash",
 	  "splash"
     ],   
-    "DESCRIPTION": "#yOrb: When you draw #yAquas, reduces their #yTribute cost for that turn. When #yEvoked, increases the number of #ySummons of ALL #yAqua monsters for the rest of combat."
+    "DESCRIPTION": "#yOrb: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b4 damage to ALL enemies and apply #yWeak to a random enemy. NL #yEvoke: Increase the #ySummons of monsters (everywhere) by #b1 for this combat."
   },
   {
     "PROPER_NAME": "Zombie",
@@ -198,7 +200,7 @@
 	  "zombie",
 	  "zombies"
     ],   
-    "DESCRIPTION": "When you #yResummon a #yZombie, gain #b10 Block."
+    "DESCRIPTION": "When you #yResummon a #yZombie, gain #b5 Block."
   },
   {
     "PROPER_NAME": "Fiend",
@@ -240,7 +242,7 @@
       "Blaze",
 	  "blaze"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to heal #b1 HP for each monster summoned this combat. You have a higher chance if the only monsters you currently have summoned are #ySpellcasters. NL #yEvoke: Heal #b3 HP for each monster summoned this combat."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to heal #b1 HP for each monster summoned this combat. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Heal #b3 HP for each monster #ySummoned this combat."
   },
   {
     "PROPER_NAME": "Consumer",
@@ -248,7 +250,7 @@
       "Consumer",
 	  "consumer"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, #yTribute #b2 and gain temporary HP equal to the total energy cost of all tributes multiplied by the number of tributes. NL #yEvoke: #yTribute ALL summons, gain a random #yBuff equal to the amount tributed."
+    "DESCRIPTION": "#yOrb: At the start of turn, #yTribute #b2 and gain #yTemporary #yHP equal to the total energy cost of all tributes multiplied by the number of tributes. NL #yEvoke: #yTribute ALL summons and gain a random #yBuff equal to the amount tributed."
   },
   {
     "PROPER_NAME": "Gadget",
@@ -256,7 +258,7 @@
       "Gadget",
 	  "gadget"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, add a #yRandomized #yTrap to your hand. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
   },
   {
     "PROPER_NAME": "Lava",
@@ -264,7 +266,7 @@
       "Lava",
 	  "lava"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you draw a #yZombie, reduce the #yTribute cost by #b1 for this combat. NL #yEvoke: Deal a random amount of damage to a random enemy. Deals more damage with a higher evoke amount."
+    "DESCRIPTION": "#yOrb: Deals damage to a random enemy when #yEvoked. Damage amount changes to a random number between #b1-15 at the end of each turn. Each time you #yTribute a #yZombie, the damage potential is increased."
   },
   {
 		"PROPER_NAME": "MillenniumOrb",
@@ -272,7 +274,7 @@
 		  "MillenniumOrb",
 		  "millenniumorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add X #yrandomized cards from your deck pool into your hand."
+		"DESCRIPTION": "#yOrb: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #bX #yRandomized cards from the card reward pool into your hand."
 	},
   {
     "PROPER_NAME": "Metal",
@@ -280,7 +282,7 @@
       "Metal",
 	  "metal"
     ],   
-    "DESCRIPTION": "#yOrb: At the end of turn, gain #yBlock equal to the number of #ySpells played this combat plus #b1. NL #yEvoke: Gain #yMetallicize #b2."
+    "DESCRIPTION": "#yOrb: At the end of turn, gain #yBlock equal to half the number of #ySpells played this combat plus #b1. NL #yEvoke: Gain #yMetallicize #b4."
   },
   {
     "PROPER_NAME": "Mud",
@@ -288,7 +290,7 @@
       "Mud",
 	  "mud"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, add a #yRandomized #yPlant or #yInsect to your hand. NL #yEvoke: Increase the summons of all #yInsect and #yPlant monsters (everywhere) by 1 for this combat."
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b2 #yPoison to a random enemy. Apply double #yPoison if all monsters summoned are #yInsects. NL #yEvoke: Gain #b3 #yThorns."
   },
   {
     "PROPER_NAME": "Mist",
@@ -296,7 +298,7 @@
       "Mist",
 	  "mist"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, add a #yRandomized #yAqua monster to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters #yTributed."
+    "DESCRIPTION": "#yOrb: At the start of turn, #yIncrement #b3. NL #yEvoke: Reduce your #ymax #ySummons by #b4 and gain twice that much #yBlock."
   },
   {
     "PROPER_NAME": "Sand",
@@ -304,7 +306,7 @@
       "Sand",
 	  "sand"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, apply #b1 #ySlow to a random enemy. NL #yEvoke: Apply #b4 #ySlow to ALL enemies."
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b2 #ySlow to a random enemy. NL #yEvoke: Apply #b5 #ySlow to ALL enemies."
   },
   {
     "PROPER_NAME": "Smoke",
@@ -312,7 +314,7 @@
       "Smoke",
 	  "smoke"
     ],   
-    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase the #yTribute cost by #b1 and increase the damage by #b4 for this turn. NL #yEvoke: #yIncrement #b3."
+    "DESCRIPTION": "#yOrb: Whenver you draw a monster, increase the #yTribute cost by #b1 and increase the damage by #b4 for this turn. NL #yEvoke: Sum up the total #yTribute cost of all monsters in your hand. Deal damage to ALL enemies equal to this sum."
   },
   {
     "PROPER_NAME": "Storm",
@@ -320,7 +322,7 @@
       "Storm",
 	  "storm"
     ],   
-    "DESCRIPTION": "#yOrb: Adds #yRandomized Power cards to your hand at the start of turn. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b1. "
+    "DESCRIPTION": "#yOrb: Add a #yRandomized Power card to your hand at the start of turn. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b1. "
   },
   {
     "PROPER_NAME": "Invert",
@@ -364,7 +366,7 @@
       "Black",
 	  "black"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to apply a random debuff with #b1 stack to a random enemy. You have a higher chance if the only monsters you currently have summoned are #yFiends. NL #yEvoke: Add a #yrandomized #yFiend to your hand."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to apply a random debuff with #b1 stack to a random enemy. You have a higher chance if all monsters summoned are #yFiends. NL #yEvoke: Add #b1 #yRandomized #yFiend to your hand."
   },
   {
     "PROPER_NAME": "Immortal",
@@ -425,10 +427,18 @@
     "DESCRIPTION": "Playing unique pieces of #yExodia will add #b1 to your #yExodia power."
   },
   {
+    "PROPER_NAME": "Arcane",
+    "NAMES": [
+      "Arcane",
+	  "arcane"
+    ],   
+    "DESCRIPTION": "Can be #yUpgraded more than one time."
+  },
+  {
     "PROPER_NAME": "Gate",
     "NAMES": [
       "gate"
     ],   
-    "DESCRIPTION": "#yOrb: Deal damage to ALL enemies, gain #yEnergy and #yBlock. NL #yEvoke: Summon random Guardians. NL #yGate is unaffected by #yFocus."
+    "DESCRIPTION": "#yOrb: At the start of turn, deal #b4 damage to ALL enemies, gain #b1 #yEnergy and #b5 #yBlock. NL #yEvoke: Choose a random #yGate effect at the end of each turn, but with twice the power."
   }
 ]

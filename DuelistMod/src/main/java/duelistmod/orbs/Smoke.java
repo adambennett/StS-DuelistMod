@@ -1,15 +1,20 @@
 package duelistmod.orbs;
 
+import java.util.*;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
+import com.megacrit.cardcrawl.actions.defect.LightningOrbPassiveAction;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
@@ -28,39 +33,63 @@ public class Smoke extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
+	private int currentEvokeDmg = 0;
+	private ArrayList<UUID> savedhand = new ArrayList<UUID>();
 	
 	public Smoke()
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Smoke.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 4;
+		this.baseEvokeAmount = this.evokeAmount = 0;
 		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(true);
 	}
 
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + (this.passiveAmount * 3) + DESC[2] + this.evokeAmount + DESC[3];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + (this.passiveAmount * 4) + DESC[2];
+	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			int current = 0;
+			for (AbstractCard c : AbstractDungeon.player.hand.group)
+			{
+				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER))
+				{
+					DuelistCard dc = (DuelistCard)c;
+					if (dc.tributes > 0) { current += dc.tributes; }
+				}
+			}
+			currentEvokeDmg = current;
+		}
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		DuelistCard.incMaxSummons(AbstractDungeon.player, this.evokeAmount);
+		if (currentEvokeDmg > 0)
+		{
+			AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, currentEvokeDmg, DamageInfo.DamageType.THORNS), this, true));
+		}
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(true);
 	}
 
 	@Override
@@ -75,7 +104,7 @@ public class Smoke extends DuelistOrb
 		{
 			DuelistCard dragC = (DuelistCard)c;
 			dragC.changeTributesInBattle(this.passiveAmount, false);
-			AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(dragC.uuid, this.passiveAmount * 3));
+			if (this.passiveAmount * 3 > 0) { AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(dragC.uuid, this.passiveAmount * 4)); }
 		}
 	}
 
@@ -130,11 +159,11 @@ public class Smoke extends DuelistOrb
 	protected void renderText(SpriteBatch sb)
 	{	
 		// Render evoke amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.currentEvokeDmg), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
-	
+
 	@Override
 	public void applyFocus() 
 	{

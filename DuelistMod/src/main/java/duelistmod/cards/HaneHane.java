@@ -30,7 +30,7 @@ public class HaneHane extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int BLOCK = 3;
+    private static final int BLOCK = 5;
     private static final int SUMMONS = 1;
     private static boolean resummoned = false;
     // /STAT DECLARATION/
@@ -124,6 +124,7 @@ public class HaneHane extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSummons(1);
+            this.upgradeBlock(1);
             //this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

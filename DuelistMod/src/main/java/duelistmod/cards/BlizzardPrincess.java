@@ -35,9 +35,9 @@ public class BlizzardPrincess extends DuelistCard
 
     public BlizzardPrincess() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 9;
         this.upgradeDmg = 3;
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.ALL);
@@ -68,8 +68,7 @@ public class BlizzardPrincess extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(this.upgradeDmg);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

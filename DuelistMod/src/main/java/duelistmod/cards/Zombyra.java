@@ -24,7 +24,7 @@ public class Zombyra extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -39,7 +39,7 @@ public class Zombyra extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.originalName = this.name;
         this.isSummon = true;
-        this.magicNumber = this.baseMagicNumber = 8;
+        this.magicNumber = this.baseMagicNumber = 4;
     }
 
     // Actions the card should do.
@@ -62,7 +62,7 @@ public class Zombyra extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(-3);
+            this.upgradeMagicNumber(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

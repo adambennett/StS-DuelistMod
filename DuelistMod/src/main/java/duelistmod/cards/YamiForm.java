@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.helpers.BaseModCardTags;
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
@@ -34,6 +35,7 @@ public class YamiForm extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;      
         this.tags.add(Tags.SPELL);   
+        this.tags.add(BaseModCardTags.FORM);
         this.magicNumber = this.baseMagicNumber = 3;
     }
 

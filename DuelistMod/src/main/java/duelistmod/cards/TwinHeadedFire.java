@@ -36,6 +36,7 @@ public class TwinHeadedFire extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.PHARAOH_SERVANT);
         this.tributes = this.baseTributes = 2;
         this.originalName = this.name;
     }

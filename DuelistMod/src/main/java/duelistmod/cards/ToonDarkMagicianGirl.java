@@ -47,7 +47,8 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
-		this.block = this.baseBlock = 10;
+		this.block = this.baseBlock = 18;
+		this.magicNumber = this.baseMagicNumber = 2;
 	}
 
 	// Actions the card should do.
@@ -56,8 +57,11 @@ public class ToonDarkMagicianGirl extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		block(this.block);
-		AbstractOrb air = new Air();
-		channel(air);
+		for (int i = 0; i < this.magicNumber; i++)
+		{
+			AbstractOrb air = new Air();
+			channel(air);
+		}		
 	}
 
 	@Override

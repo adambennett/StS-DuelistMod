@@ -43,7 +43,7 @@ public class ImperialOrder extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!p.hasPower(ImperialPower.POWER_ID)) { applyPowerToSelf(new ImperialPower(p, this.magicNumber)); }
+    	applyPowerToSelf(new ImperialPower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

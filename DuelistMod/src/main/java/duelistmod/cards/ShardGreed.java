@@ -51,7 +51,7 @@ public class ShardGreed extends DuelistCard
     	if (!p.hasPower(GreedShardPower.POWER_ID))
     	{
 	    	ArrayList<DuelistCard> types = generateTypeCards(this.magicNumber, true);
-	    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+	    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     	}
     	
     	else

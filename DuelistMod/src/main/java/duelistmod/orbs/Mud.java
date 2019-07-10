@@ -4,18 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.interfaces.*;
+import duelistmod.powers.SummonPower;
 
 @SuppressWarnings("unused")
 public class Mud extends DuelistOrb
@@ -35,83 +34,60 @@ public class Mud extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Mud.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.evokeAmount + DESC[1];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
-		{
-			if (c.hasTag(Tags.INSECT) || c.hasTag(Tags.PLANT))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeSummonsInBattle(this.evokeAmount, true);
-			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-		{
-			if (c.hasTag(Tags.INSECT) || c.hasTag(Tags.PLANT))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeSummonsInBattle(this.evokeAmount, true);
-			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-		{
-			if (c.hasTag(Tags.INSECT) || c.hasTag(Tags.PLANT))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeSummonsInBattle(this.evokeAmount, true);
-			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
-		{
-			if (c.hasTag(Tags.INSECT) || c.hasTag(Tags.PLANT))
-			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeSummonsInBattle(this.evokeAmount, true);
-			}
-		}
+		if (this.evokeAmount > 0) { DuelistCard.applyPowerToSelf(new ThornsPower(AbstractDungeon.player, this.evokeAmount)); }
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		applyFocus();
+		if (this.passiveAmount > 0)
+		{
+			int extra = 0;
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{
+				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (instance.isEveryMonsterCheck(Tags.INSECT, false))
+				{
+					extra += this.passiveAmount;
+				}
+			}
+			
+			this.triggerPassiveEffect(extra);
+		}
 	}
 
-	public void triggerPassiveEffect()
+	public void triggerPassiveEffect(int poisonExtra)
 	{
-		DuelistCard randomNature = (DuelistCard) DuelistCard.returnTrulyRandomFromEitherSet(Tags.PLANT, Tags.INSECT);
-		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 3);
-		boolean flippy = false;
-		if (upgradeRoll == 1) { flippy = true; }
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomNature, flippy, true, true, true, randomNature.baseTributes > 0, randomNature.baseSummons > 0, false, true, 1, 3, 0, 1, 0, 1));
+		AbstractCreature randomMonster = AbstractDungeon.getRandomMonster();
+		DuelistCard.applyPower(new PoisonPower(randomMonster, AbstractDungeon.player, this.passiveAmount + poisonExtra), randomMonster);
 	}
 
 	@Override
@@ -169,18 +145,40 @@ public class Mud extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus()
+	public void checkFocus(boolean allowNegativeFocus) 
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
-			this.baseEvokeAmount = 1 + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
 		}
-		else 
+		else
 		{
-			this.baseEvokeAmount = 1;
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
 		}
 		if (DuelistMod.debug)
 		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
 			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
 		}
 		applyFocus();

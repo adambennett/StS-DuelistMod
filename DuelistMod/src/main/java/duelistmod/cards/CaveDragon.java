@@ -34,7 +34,7 @@ public class CaveDragon extends DuelistCard
 
     public CaveDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 7;
+        this.baseBlock = this.block = 8;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.LEGACY_DARKNESS);
@@ -63,7 +63,8 @@ public class CaveDragon extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
+    public void upgrade() 
+    {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(3);

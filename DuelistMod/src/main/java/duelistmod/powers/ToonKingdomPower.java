@@ -3,6 +3,7 @@ package duelistmod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -20,9 +21,9 @@ public class ToonKingdomPower extends AbstractPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.TOON_WORLD_POWER);
-    public static int TOON_DMG = 6;
+    public int lowend = 1;
     
-    public ToonKingdomPower(final AbstractCreature owner, final AbstractCreature source, int toonDmg) 
+    public ToonKingdomPower(final AbstractCreature owner, final AbstractCreature source, int amt) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -31,60 +32,52 @@ public class ToonKingdomPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-        TOON_DMG = toonDmg;
-        this.amount = TOON_DMG;
-        if (DuelistMod.challengeMode)
-        {
-        	this.amount += 2;
-        	TOON_DMG += 2;
-        }
+        this.amount = amt;
+        if (DuelistMod.challengeMode) { this.amount += 2; }
         this.updateDescription();
     }
     
-    @Override
-    public void onDrawOrDiscard() 
-    {
-    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
-    }
-    
-    @Override
-    public void atStartOfTurn() 
-    {
-    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
-    }
-    
+   
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
+    	if (this.amount > 5) { this.amount = 5; updateDescription(); }
     	if (c.hasTag(Tags.TOON) && !c.originalName.equals("Toon Kingdom") && !c.originalName.equals("Toon World")) 
     	{ 
-    		if (TOON_DMG > 0) { DuelistCard.damageSelfNotHP(TOON_DMG); }
-    		if (TOON_DMG > 0) { TOON_DMG--; } 
-    		//AbstractCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TOON);
-    		//AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(randomToon, 1, true, false));
+    		if (this.amount > 0) { DuelistCard.damageSelfNotHP(this.amount); }
     	}
-    	
-    	this.amount = TOON_DMG;
     	updateDescription();
     }
     
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (TOON_DMG > 0) 
-    	{
-    		TOON_DMG--;
-    		this.amount = TOON_DMG;
-    	}
-    	if (this.amount != TOON_DMG) { this.amount = TOON_DMG; }
-    	updateDescription();
+    	if (this.amount > 5) { this.amount = 5; updateDescription(); }
+    	if (this.amount == 5)
+		{
+			int dmgRoll = AbstractDungeon.cardRandomRng.random(lowend, 5);
+    		this.amount = dmgRoll;
+		}
+		
+		else if (this.amount > 0)
+		{
+			int dmgRoll = AbstractDungeon.cardRandomRng.random(lowend, this.amount + 1);
+    		this.amount = dmgRoll;
+		}
+		else
+		{
+			int dmgRoll = AbstractDungeon.cardRandomRng.random(0, 1);
+    		this.amount = dmgRoll;
+		}    		
+		updateDescription();
 	}
 
     @Override
 	public void updateDescription() 
     {
-        if (TOON_DMG < 1) { this.description = DESCRIPTIONS[2]; }
-    	else { this.description = DESCRIPTIONS[0] + TOON_DMG + DESCRIPTIONS[1]; }
+    	if (this.amount > 5) { this.amount = 5; }
+    	if (this.amount == 5) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + lowend + DESCRIPTIONS[2] + 5 + DESCRIPTIONS[4]; }
+    	else if (this.amount < 1) { this.description = DESCRIPTIONS[3]; }
+    	else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + lowend + DESCRIPTIONS[2] + (this.amount + 1) + DESCRIPTIONS[4]; }
     }
 }

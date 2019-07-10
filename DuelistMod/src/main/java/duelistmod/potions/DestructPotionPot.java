@@ -20,7 +20,7 @@ public class DestructPotionPot extends AbstractPotion {
 
     public DestructPotionPot() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.M, PotionColor.SMOKE);
+        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.GHOST, PotionColor.SMOKE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -41,7 +41,7 @@ public class DestructPotionPot extends AbstractPotion {
     {
     	target = AbstractDungeon.player;
     	int list = DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
-    	if (list > 0) { AbstractDungeon.player.maxHealth += list * this.potency; }
+    	if (list > 0) { AbstractDungeon.player.increaseMaxHp(list * this.potency, true); }
     }
     
     @Override

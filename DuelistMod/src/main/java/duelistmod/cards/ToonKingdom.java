@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class ToonKingdom extends DuelistCard 
@@ -36,6 +36,7 @@ public class ToonKingdom extends DuelistCard
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
+		this.isInnate = true;
     }
 
 
@@ -43,12 +44,27 @@ public class ToonKingdom extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!upgraded && !p.hasPower(ToonKingdomPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 2)); }
-    	else if (!p.hasPower(ToonKingdomPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 1)); }
-    	
-    	if (p.hasPower(ToonWorldPower.POWER_ID))
-    	{
+    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 3)); }
+    	else if (!p.hasPower(ToonKingdomPower.POWER_ID) && p.hasPower(ToonWorldPower.POWER_ID)) 
+    	{ 
+    		int worldAmt = p.getPower(ToonWorldPower.POWER_ID).amount;
+    		applyPowerToSelf(new ToonKingdomPower(p, p, worldAmt));
     		removePower(p.getPower(ToonWorldPower.POWER_ID), p);
+    	}
+    	else if (p.hasPower(ToonKingdomPower.POWER_ID))
+    	{ 
+    		ToonKingdomPower king = (ToonKingdomPower) p.getPower(ToonKingdomPower.POWER_ID);  
+    		if (king.lowend > 0)
+    		{
+    			king.lowend = 0;
+    			king.updateDescription();
+    		}
+    		else
+    		{
+    			king.amount -= 2;
+    			if (king.amount < 0) { king.amount = 0; }
+    			king.updateDescription();
+    		}
     	}
     }
 

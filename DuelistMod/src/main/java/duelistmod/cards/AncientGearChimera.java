@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -54,7 +53,7 @@ public class AncientGearChimera extends DuelistCard
 	{
 		tribute();
 		attack(m, this.baseAFX, this.damage);	
-		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
+		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			DuelistCard tk = tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));

@@ -38,7 +38,7 @@ public class TwinBarrelDragon extends DuelistCard
 
     public TwinBarrelDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 3;
+        this.baseBlock = this.block = 2;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -73,7 +73,7 @@ public class TwinBarrelDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

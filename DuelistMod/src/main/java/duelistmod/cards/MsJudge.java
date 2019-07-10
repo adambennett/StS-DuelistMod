@@ -1,17 +1,17 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 
 public class MsJudge extends DuelistCard 
 {
@@ -52,6 +52,17 @@ public class MsJudge extends DuelistCard
 		summon(p, this.summons, this);
 		block(this.block);
 		if (DuelistMod.trapCombatCount > 0) { block(this.magicNumber * DuelistMod.trapCombatCount); }
+	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			this.applyPowers();
+			this.secondMagic = this.baseSecondMagic = (this.block + (this.magicNumber * DuelistMod.trapCombatCount));
+		}
 	}
 
 	// Which card to return when making a copy of this card.

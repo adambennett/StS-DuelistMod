@@ -61,7 +61,7 @@ public class GreenGadget extends DuelistCard
 		// Base version - random tokens
 		if (!upgraded)
 		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
+			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 			for (int i = 0; i < this.magicNumber; i++)
 			{
 				DuelistCard tk = tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
@@ -72,7 +72,7 @@ public class GreenGadget extends DuelistCard
 		// Upgraded - choose tokens
 		else
 		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokens();
+			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 			ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
 			int iterations = this.magicNumber;
 			abTokens.addAll(tokens);

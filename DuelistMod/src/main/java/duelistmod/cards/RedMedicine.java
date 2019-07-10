@@ -18,7 +18,7 @@ public class RedMedicine extends DuelistCard
 {
     // TEXT DECLARATION
 
-    public static final String ID = duelistmod.DuelistMod.makeID("RedMedicine");
+    public static final String ID = DuelistMod.makeID("RedMedicine");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.RED_MEDICINE);
     public static final String NAME = cardStrings.NAME;
@@ -36,11 +36,12 @@ public class RedMedicine extends DuelistCard
 
     public RedMedicine() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 4;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.REDUCED);
         this.tags.add(Tags.GENERATION_DECK);
+        this.tags.add(Tags.NEVER_GENERATE);
 		this.generationDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;
@@ -59,10 +60,9 @@ public class RedMedicine extends DuelistCard
 		}
 		else
 		{
-			int amountroll = AbstractDungeon.cardRandomRng.random(1, 2);
 			int lowRoll = AbstractDungeon.cardRandomRng.random(1, 2);
 			int highRoll = AbstractDungeon.cardRandomRng.random(3, 6);
-			AbstractDungeon.actionManager.addToTop(new RedMedicineAction(amountroll, m, this.magicNumber, lowRoll, highRoll));
+			AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, this.magicNumber, lowRoll, highRoll));
 		}
     }
 
@@ -90,7 +90,8 @@ public class RedMedicine extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.magicNumber < 10) { return true; }
+    	else { return false; }
     }
 
 	@Override

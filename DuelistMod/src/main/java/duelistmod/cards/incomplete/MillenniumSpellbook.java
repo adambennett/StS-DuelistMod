@@ -1,18 +1,16 @@
 package duelistmod.cards.incomplete;
 
-import java.util.ArrayList;
-
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.unique.MillenniumSpellbookAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.incomplete.MillenniumSpellbookPower;
 
 public class MillenniumSpellbook extends DuelistCard 
 {
@@ -28,7 +26,7 @@ public class MillenniumSpellbook extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -45,18 +43,13 @@ public class MillenniumSpellbook extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> monstersInDeck = new ArrayList<DuelistCard>();
-    	for (AbstractCard c : p.masterDeck.group)
+    	if (!p.hasPower(MillenniumSpellbookPower.POWER_ID)) { applyPowerToSelf(new MillenniumSpellbookPower(p, p, 99, 7)); }
+    	else 
     	{
-    		if (c.hasTag(Tags.MONSTER))
-    		{
-    			monstersInDeck.add((DuelistCard) c);
-    		}
+    		TwoAmountPower tap = (TwoAmountPower)p.getPower(MillenniumSpellbookPower.POWER_ID);
+    		tap.amount2++;
+    		tap.updateDescription();
     	}
-    	if (monstersInDeck.size() > 0)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new MillenniumSpellbookAction(monstersInDeck, 1));
-    	}    	
     }
 
     // Which card to return when making a copy of this card.
@@ -69,13 +62,13 @@ public class MillenniumSpellbook extends DuelistCard
     @Override
     public void upgrade() 
     {
-        
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return false;
+    	 if (!this.upgraded) 
+    	 {
+             this.upgradeName();
+             this.makeFleeting(false);
+             this.rawDescription = UPGRADE_DESCRIPTION;
+             this.initializeDescription();
+         }
     }
 
 	@Override

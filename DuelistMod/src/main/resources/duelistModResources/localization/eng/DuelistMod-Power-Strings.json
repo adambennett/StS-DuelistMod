@@ -13,7 +13,7 @@
 },
 "theDuelist:ToonWorldPower": {
         "NAME": "Toon World",
-        "DESCRIPTIONS": ["#yToons can be played. NL Lose #b", " HP each time you play a #yToon card.", "#yToons can be played." ]
+        "DESCRIPTIONS": ["#yToons can be played. NL Lose #b", " HP each time you play a #yToon card. Damage amount changes to a random number between #b", " and #b", "#yToons can be played.",	" at the end of each turn." ]
 },
 "theDuelist:ObeliskPower": {
         "NAME": "Obelisk, the Tormentor",
@@ -69,7 +69,7 @@
 },
 "theDuelist:CastlePower": {
         "NAME": "Castle of Dark Illusions",
-        "DESCRIPTIONS": ["Whenever you shuffle your deck,", " #ySummon #b", " #yIncrement #b", "." ]
+        "DESCRIPTIONS": ["Whenever you shuffle your deck, #ySummon #b", "." ]
 },
 "theDuelist:EmperorPower": {
         "NAME": "Mausoleum of the Emperor",
@@ -169,8 +169,8 @@
 },
 "theDuelist:ToonKingdomPower": {
         "NAME": "Toon Kingdom",
-        "DESCRIPTIONS": ["#yToons can be played. NL Take #b", " damage each time you play a #yToon card, and shuffle a random #yToon card into your draw pile.", "#yToons can be played. Each time you play a #yToon card, shuffle a random #yToon card into your draw pile." ]
-},
+        "DESCRIPTIONS": ["#yToons can be played. NL Take #b", " damage each time you play a #yToon card. Damage amount changes to a random number between #b", " and #b", "#yToons can be played.",	" at the end of each turn."  ]
+},						 
 "theDuelist:ReducerPower": {
         "NAME": "Reductionist",
         "DESCRIPTIONS": ["At the start of turn, reduce the cost of #b", " card in your hand by 1.", " cards in your hand by 1." ]
@@ -249,7 +249,7 @@
 },
 "theDuelist:SphereKuribohPower": {
         "NAME": "Sphere Kuriboh",
-        "DESCRIPTIONS": ["Whenever you #yIncrement, add a #yrandomized card to your hand." ]
+        "DESCRIPTIONS": ["Whenever you #yIncrement, gain #b", " #yTemporary #yHP." ]
 },
 "theDuelist:CallGravePower": {
         "NAME": "Call of Grave",
@@ -257,7 +257,7 @@
 },
 "theDuelist:GoblinRemedyPower": {
         "NAME": "Goblin's Secret Remedy",
-        "DESCRIPTIONS": ["Whenever you #ySummon, heal #b", " HP.", " HP." ]
+        "DESCRIPTIONS": ["Whenever you #ySummon, gain #b", " #yTemporary #yHP.", " #yTemporary #yHP." ]
 },
 "theDuelist:ExodiaRenewalPower": {
         "NAME": "EXODIARENEWALPLACEHOLDER",
@@ -309,7 +309,7 @@
 },
 "theDuelist:LeviaDragonPower": {
         "NAME": "Levia Dragon",
-        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies and add #b", " #yrandomized #yAqua monsters to your draw pile." ]
+        "DESCRIPTIONS": ["Whenever you #yTribute an #yAqua monster, deal #b", " damage to ALL enemies." ]
 },
 "theDuelist:BlizzardDragonPower": {
         "NAME": "Blizzard Dragon",
@@ -321,11 +321,11 @@
 },
 "theDuelist:DarknessNeospherePower": {
         "NAME": "Darkness Neosphere",
-        "DESCRIPTIONS": ["At the end of turn, ALL enemies lose #b", " #yStrength and all monsters in your draw pile gain #b", " #yTribute.", " #yTributes."]
+        "DESCRIPTIONS": ["For the next #b", " turns, at the end of turn, ALL enemies lose #b1 #yStrength. NL For the next #b", " turns, at the end of turn, all tribute monsters in your draw pile gain #b1 #yTribute.", " turn, at the end of turn, ALL enemies lose #b1 #yStrength. For the next #b", " turn, at the end of turn, all tribute monsters in your draw pile gain #b1 #yTribute."]
 },
 "theDuelist:RainbowCapturePower": {
         "NAME": "Rainbow Capture Jar",
-        "DESCRIPTIONS": ["#y", " monsters played this turn are added back to your hand at the start of your next turn. #y", "s: "]
+        "DESCRIPTIONS": ["#y", " monsters played this turn are added back to your hand at the start of your next turn. #b", " turns remaining. #y", "s: "]
 },
 "theDuelist:ExplosiveMagicianPower": {
         "NAME": "Explosive Magician",
@@ -438,6 +438,10 @@
 "theDuelist:YamiFormPower": {
         "NAME": "Yami Form",
         "DESCRIPTIONS": ["At the start of turn, choose 1 of #b", " random monster type. Resummon a random monster of that type on a random enemy.", " random monster types. Resummon a random monster of that type on a random enemy." ]
+},
+"theDuelist:MillenniumSpellbookPower": {
+        "NAME": "Millennium Spellbook",
+        "DESCRIPTIONS": ["Keeps track of unblocked damage dealt by playing #yAttack cards. If after #b", " more turn you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", " more turns you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b" ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

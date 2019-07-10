@@ -64,7 +64,7 @@ public class Fissure extends DuelistCard
 		int newDamage = this.damage * playerSummons;
 		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure: damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
 		this.applyPowers();
-		attack(selected);
+		attack(selected, this.baseAFX, newDamage);
 		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure (after applyPowers function and attacking): damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
 	}
 

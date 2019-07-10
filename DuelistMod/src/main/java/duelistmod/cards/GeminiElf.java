@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,8 +10,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.orbCards.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 
 public class GeminiElf extends DuelistCard 
@@ -29,8 +33,6 @@ public class GeminiElf extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int SUMMONS = 2;
-    //private static final int UPGRADE_SUMMONS = 1;
     // /STAT DECLARATION/
 
     public GeminiElf() 
@@ -43,8 +45,9 @@ public class GeminiElf extends DuelistCard
         this.tags.add(Tags.ORIGINAL_HEAL_DECK);
         this.startingOPHDeckCopies = 1;
         this.startingOPSPDeckCopies = 1;
-        this.originalName = this.name;
-        this.summons = this.baseSummons = SUMMONS;
+        this.magicNumber = this.baseMagicNumber = 1;
+        this.summons = this.baseSummons = 2;
+        this.originalName = this.name;    
         this.isSummon = true;
         this.setupStartingCopies();
     }
@@ -54,6 +57,11 @@ public class GeminiElf extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
+    	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+    	orbs.add(new LavaOrbCard());
+    	orbs.add(new LightningOrbCard());
+    	orbs.add(new DarkOrbCard());
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, false));
     }
  
     // Which card to return when making a copy of this card.
@@ -83,21 +91,18 @@ public class GeminiElf extends DuelistCard
 	@Override
 	public void onResummon(int summons)
 	{
-		heal(AbstractDungeon.player, 15);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
 		
 	}
 	

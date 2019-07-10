@@ -55,7 +55,7 @@ public class ZombieMaster extends DuelistCard
         	while (extraDragA.hasTag(Tags.EXEMPT)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.ZOMBIE, Tags.TOON); }
         	String cardNameA = extraDragA.originalName;
         	if (DuelistMod.debug) { System.out.println("theDuelist:ZombieMaster --- > Generated: " + cardNameA); }
-        	fullResummon(extraDragA, this.upgraded, m, false);
+        	fullResummon(extraDragA, false, m, false);
     	}
     }
 
@@ -70,7 +70,8 @@ public class ZombieMaster extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); this.upgradeDamage(4); }
+            else { this.upgradeDamage(4); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -8,11 +8,10 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
-import duelistmod.actions.common.ShowCardAndAddToExhaustPileEffect;
 import duelistmod.interfaces.DuelistCard;
 
 public class DeepDiverAction extends AbstractGameAction
@@ -37,9 +36,8 @@ public class DeepDiverAction extends AbstractGameAction
 	private int highTributeRoll = 0;
 	private boolean sendExtraToDiscard = false;
 	private boolean damageBlockRandomize = false;
-	private int amountToExhaust = 1;
-  
-	public DeepDiverAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, int amount2)
+
+	public DeepDiverAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
 	{
 		this.p = AbstractDungeon.player;
 		setValues(this.p, AbstractDungeon.player, 1);
@@ -47,112 +45,6 @@ public class DeepDiverAction extends AbstractGameAction
 		this.duration = Settings.ACTION_DUR_MED;
 		this.upgrade = upgraded;
 		this.amount = amount;
-		this.amountToExhaust = amount2;
-		this.cards = cardsToChooseFrom;
-		this.randomize = false;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
-	public DeepDiverAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, boolean randomize, boolean combat, int amount2)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.amountToExhaust = amount2;
-		this.cards = cardsToChooseFrom;
-		this.randomize = randomize;
-		this.exhaustCheck = true;
-		this.etherealCheck = true;
-		this.costChangeCheck = true;
-		this.summonCheck = true;
-		this.tributeCheck = true;
-		this.lowCostRoll = 1;
-		this.highCostRoll = 5;
-		this.lowSummonRoll = 0;
-		this.highSummonRoll = 2;
-		this.lowTributeRoll = 0;
-		this.highTributeRoll = 1;
-		this.summonChangeCombatCheck = combat;
-		this.tributeChangeCombatCheck = combat;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
-	public DeepDiverAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, int amount2)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.amountToExhaust = amount2;
-		this.cards = cardsToChooseFrom;
-		this.randomize = true;
-		this.exhaustCheck = exhaust;
-		this.etherealCheck = ethereal;
-		this.costChangeCheck = costChange;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
-	public DeepDiverAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, int amount2)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.amountToExhaust = amount2;
-		this.cards = cardsToChooseFrom;
-		this.randomize = true;
-		this.exhaustCheck = exhaust;
-		this.etherealCheck = ethereal;
-		this.costChangeCheck = costChange;
-		this.summonCheck = summonCheck;
-		this.tributeCheck = tributeCheck;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
-	public DeepDiverAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, int amount2)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.amountToExhaust = amount2;
-		this.cards = cardsToChooseFrom;
-		this.randomize = true;
-		this.exhaustCheck = exhaust;
-		this.etherealCheck = ethereal;
-		this.costChangeCheck = costChange;
-		this.summonCheck = summonCheck;
-		this.tributeCheck = tributeCheck;
-		this.lowCostRoll = lowCost;
-		this.highCostRoll = highCost;
-		this.lowSummonRoll = lowSummon;
-		this.highSummonRoll = highSummon;
-		this.lowTributeRoll = lowTrib;
-		this.highTributeRoll = highTrib;
-		this.summonChangeCombatCheck = combat;
-		this.tributeChangeCombatCheck = combat;
-		this.costChangeCombatCheck = combat;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
-	public DeepDiverAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, int amount2)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.amountToExhaust = amount2;
 		this.cards = cardsToChooseFrom;
 		this.randomize = true;
 		this.exhaustCheck = exhaust;
@@ -292,7 +184,6 @@ public class DeepDiverAction extends AbstractGameAction
 					{
 						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(cardCopy(c)));
 					}
-					for (int i = 0; i < this.amountToExhaust; i++) { AbstractDungeon.effectList.add(new ShowCardAndAddToExhaustPileEffect(cardCopy(c), true, false)); }
 					this.p.hand.refreshHandLayout();
 					this.p.hand.applyPowers();
 				}
@@ -325,7 +216,6 @@ public class DeepDiverAction extends AbstractGameAction
 				{
 					AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(cardCopy(c)));
 				}
-				for (int i = 0; i < this.amountToExhaust; i++) { AbstractDungeon.effectList.add(new ShowCardAndAddToExhaustPileEffect(cardCopy(c), true, false)); }
 				this.p.hand.refreshHandLayout();
 				this.p.hand.applyPowers();
 			}

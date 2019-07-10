@@ -39,7 +39,7 @@ public class MillenniumShield extends DuelistCard
         this.misc = 0;
         this.magicNumber = this.baseMagicNumber = 4;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.

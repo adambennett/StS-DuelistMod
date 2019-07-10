@@ -10,7 +10,6 @@ import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.relics.AquaRelicB;
 
 public class CatShark extends DuelistCard 
 {
@@ -59,11 +58,25 @@ public class CatShark extends DuelistCard
         if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(1);
+	    	else { this.upgradeName(NAME + "+"); this.upgradeBaseCost(1); }
+        	if (this.timesUpgraded == 2) { this.upgradeBlock(3); }
+        	if (this.timesUpgraded == 3) { this.upgradeDamage(3); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.timesUpgraded < 3)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
 
 

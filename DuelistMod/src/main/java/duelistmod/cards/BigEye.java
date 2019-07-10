@@ -38,6 +38,7 @@ public class BigEye extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.METAL_RAIDERS);
         this.exhaust = true;
     }
 

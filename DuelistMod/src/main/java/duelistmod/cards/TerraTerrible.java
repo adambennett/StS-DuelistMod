@@ -42,6 +42,7 @@ public class TerraTerrible extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.FIEND);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.startingOPRDeckCopies = 1;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;

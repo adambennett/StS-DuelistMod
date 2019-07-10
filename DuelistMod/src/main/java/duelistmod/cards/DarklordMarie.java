@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,8 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 
 
 public class DarklordMarie extends DuelistCard 
@@ -35,7 +34,6 @@ public class DarklordMarie extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int SUMMONS = 1;
     private static final int COST = 1;
-    private static final int HEAL = 3;
     private static final int DAMAGE = 6;
 
     public DarklordMarie() {
@@ -51,6 +49,7 @@ public class DarklordMarie extends DuelistCard
         this.healDeckCopies = 2;
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
+        this.secondMagic = this.baseSecondMagic = 3;
         this.setupStartingCopies();
     }
 
@@ -64,7 +63,10 @@ public class DarklordMarie extends DuelistCard
             AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
             // Heal
-            heal(player(), HEAL);
+            heal(player(), this.secondMagic);
+            
+            // Check Splash Orbs
+            checkSplash();
         }
     }
 

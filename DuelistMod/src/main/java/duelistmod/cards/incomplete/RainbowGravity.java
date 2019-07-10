@@ -45,7 +45,7 @@ public class RainbowGravity extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> types = generateTypeCards(0, true);    	
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     }
 
     // Which card to return when making a copy of this card.

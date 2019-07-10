@@ -28,12 +28,12 @@ public class GaiaMidnight extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public GaiaMidnight() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
+        this.baseDamage = this.damage = 13;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;

@@ -3,10 +3,13 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -33,11 +36,31 @@ public class GilfordLegend extends DuelistCard
 
     public GilfordLegend() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 2;
+        this.baseDamage = this.damage = 4;
         this.tags.add(Tags.MONSTER);
-        this.summons = this.baseSummons = 3;
+        this.summons = this.baseSummons = 4;
+        this.magicNumber = this.baseMagicNumber = 4;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.originalName = this.name;
     }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Summon token(s)
+            summon(AbstractDungeon.player, this.secondMagic, new Token());
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
+    }
+
 
     // Actions the card should do.
     @Override
@@ -58,7 +81,7 @@ public class GilfordLegend extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

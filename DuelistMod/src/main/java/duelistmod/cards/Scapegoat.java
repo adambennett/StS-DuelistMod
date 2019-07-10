@@ -14,8 +14,7 @@ import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.cards.tokens.KuribohToken;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.SummonPower;
+import duelistmod.patches.AbstractCardEnum;
 
 public class Scapegoat extends DuelistCard 
 {
@@ -34,15 +33,14 @@ public class Scapegoat extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
-    private static final int INC_SUMMONS = 4;
+    private static final int COST = 4;
     private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public Scapegoat() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.magicNumber = this.baseMagicNumber = INC_SUMMONS;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.SPELL);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 4;
@@ -69,7 +67,7 @@ public class Scapegoat extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

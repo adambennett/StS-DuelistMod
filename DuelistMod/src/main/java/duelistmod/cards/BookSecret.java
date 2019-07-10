@@ -64,18 +64,11 @@ public class BookSecret extends DuelistCard
 		
 		for (DuelistCard randomMonster : randomCards)
 		{
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, this.upgraded, true, false, false, false, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, false, true, false, randomMonster.baseSummons > 0, false, false, 1, 3, 0, 0, 0, 1));
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 		
-		if (upgraded) 
-		{ 
-			for (int i = 0; i < this.magicNumber; i++) { channelRandom(); } 
-		}
-		else
-		{
-			channelRandom();
-		}
+		channelRandom();
     }
 
     // Which card to return when making a copy of this card.
@@ -90,6 +83,7 @@ public class BookSecret extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(2); }
+            else { this.upgradeMagicNumber(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

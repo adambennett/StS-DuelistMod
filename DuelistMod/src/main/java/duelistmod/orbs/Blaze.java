@@ -43,7 +43,7 @@ public class Blaze extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -57,13 +57,25 @@ public class Blaze extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		DuelistCard.heal(AbstractDungeon.player, this.evokeAmount * DuelistMod.summonCombatCount);
+		if (!hasNegativeFocus())
+		{
+			DuelistCard.heal(AbstractDungeon.player, this.evokeAmount * DuelistMod.summonCombatCount);
+		}
+		else
+		{
+			int focus = getCurrentFocus();
+			if (this.evokeAmount * DuelistMod.summonCombatCount > 0)
+			{
+				DuelistCard.heal(AbstractDungeon.player, this.evokeAmount * DuelistMod.summonCombatCount);
+			}
+		}
+		
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -88,7 +100,14 @@ public class Blaze extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
-		DuelistCard.heal(AbstractDungeon.player, this.passiveAmount * DuelistMod.summonCombatCount);
+		if (!hasNegativeFocus())
+		{
+			DuelistCard.heal(AbstractDungeon.player, this.passiveAmount * DuelistMod.summonCombatCount);
+		}
+		else if (this.passiveAmount * DuelistMod.summonCombatCount > 0)
+		{
+			DuelistCard.heal(AbstractDungeon.player, this.passiveAmount * DuelistMod.summonCombatCount);
+		}		
 	}
 
 	@Override
@@ -136,6 +155,47 @@ public class Blaze extends DuelistOrb
 	public AbstractOrb makeCopy()
 	{
 		return new Blaze();
+	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 	
 	@Override

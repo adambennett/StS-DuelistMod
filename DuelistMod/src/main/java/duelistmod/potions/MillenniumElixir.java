@@ -20,13 +20,13 @@ public class MillenniumElixir extends AbstractPotion {
 
     public MillenniumElixir() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.SMOKE);
+        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionColor.SMOKE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0];
+        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = false;

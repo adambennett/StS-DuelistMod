@@ -43,6 +43,7 @@ public class JiraiGumo extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.METAL_RAIDERS);
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
@@ -68,7 +69,7 @@ public class JiraiGumo extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -40,6 +40,7 @@ public class NaturiaPumpkin extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);
+        this.tags.add(Tags.EXEMPT);
         this.originalName = this.name;
         this.isSummon = true;
     }

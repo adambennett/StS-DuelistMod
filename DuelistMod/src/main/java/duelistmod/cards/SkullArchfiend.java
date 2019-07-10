@@ -32,14 +32,14 @@ public class SkullArchfiend extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 2;
-	private static final int DAMAGE = 20;
 	// /STAT DECLARATION/
 
 	public SkullArchfiend() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = DAMAGE;
+		this.baseDamage = this.damage = 24;
 		this.tributes = this.baseTributes = 3;
 		this.magicNumber = this.baseMagicNumber = 1;
+		this.secondMagic = this.baseSecondMagic = 10;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
 		this.misc = 0;
@@ -59,7 +59,7 @@ public class SkullArchfiend extends DuelistCard
 				DuelistCard dC = (DuelistCard)c;
 				if (dC.tributes > 0) { dC.modifyTributes(this.magicNumber); }
 			}
-			AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(c.uuid, this.magicNumber * 6));
+			AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(c.uuid, this.secondMagic));
 		}
 	}
 
@@ -74,8 +74,8 @@ public class SkullArchfiend extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			//this.tributes = this.magicNumber = this.baseMagicNumber = 0;
 			this.upgradeMagicNumber(1);
+			this.upgradeSecondMagic(6);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

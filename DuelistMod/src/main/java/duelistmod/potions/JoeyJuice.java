@@ -1,20 +1,20 @@
 package duelistmod.potions;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.*;
+import duelistmod.interfaces.DuelistCard;
 
 public class JoeyJuice extends AbstractPotion {
 
 
-    public static final String POTION_ID = duelistmod.DuelistMod.makeID("JoeyJuice");
+    public static final String POTION_ID = DuelistMod.makeID("JoeyJuice");
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     
     public static final String NAME = potionStrings.NAME;
@@ -22,16 +22,16 @@ public class JoeyJuice extends AbstractPotion {
 
     public JoeyJuice() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.M, PotionColor.SMOKE);
+        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOLT, PotionColor.SMOKE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0];
+        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         
        // Do you throw this potion at an enemy or do you just consume it.
-        this.isThrown = true;
+        this.isThrown = false;
         
         // Initialize the on-hover name + description
         this.tips.add(new PowerTip(this.name, this.description));
@@ -41,12 +41,18 @@ public class JoeyJuice extends AbstractPotion {
     @Override
     public void use(AbstractCreature target) 
     {
-    	AbstractMonster monster = (AbstractMonster) target;
-    	for (int i = 0; i < this.potency; i++)
+    	target = AbstractDungeon.player;
+    	AbstractPlayer p = AbstractDungeon.player;
+    	for (AbstractCard c : p.hand.group)
     	{
-	        int randomTurnNum = AbstractDungeon.cardRandomRng.random(2, 4);
-			AbstractPower randomDebuff = RandomEffectsHelper.getRandomDebuffPotion(AbstractDungeon.player, monster, randomTurnNum + this.potency);
-			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, AbstractDungeon.player, randomDebuff, randomTurnNum + this.potency));
+    		if (c.hasTag(Tags.MONSTER))
+    		{
+    			DuelistCard dC = (DuelistCard)c;
+    			if (dC.tributes > 0)
+    			{
+    				dC.changeTributesInBattle(this.potency, false);
+    			}
+    		}
     	}
     }
     

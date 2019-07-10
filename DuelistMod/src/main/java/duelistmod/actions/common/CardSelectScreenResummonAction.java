@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.cards.typecards.CancelCard;
 import duelistmod.interfaces.DuelistCard;
 
 public class CardSelectScreenResummonAction extends AbstractGameAction
@@ -22,19 +23,12 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 	private boolean randomTarget = true;
 	private AbstractMonster target;
 	private boolean resummon = true;
+	private boolean canCancel = false;
   
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage)
-	{
-		this.p = AbstractDungeon.player;
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
-		this.damageBlockRandomize = randomizeBlockDamage;
-	}
-	
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, boolean resummon)
+	// Cards: 	Dark Paladin, Gemini Elf, Rainbow Jar, Shard of Greed, Toon Masked Sorcerer, Winged Kuriboh Lv 9 & Lv10, Rainbow Gravity, Orb Token
+	// Relics: 	Millennium Puzzle orb deck effect
+	// Potions: Big Orb Bottle
+	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, boolean resummon, boolean canCancel)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -44,9 +38,11 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.cards = cardsToChooseFrom;
 		this.damageBlockRandomize = randomizeBlockDamage;
 		this.resummon = resummon;
+		this.canCancel = canCancel;
 	}
 	
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m)
+	// Invigoration, Polymerization, Mini Poly, Call Mummy
+	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m, boolean canCancel)
 	{
 		this.p = AbstractDungeon.player;
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -57,22 +53,9 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.damageBlockRandomize = randomizeBlockDamage;
 		this.target = m;
 		this.randomTarget = false;
+		this.canCancel = canCancel;
 	}
-	
-	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, boolean upgraded, boolean randomizeBlockDamage, AbstractMonster m, boolean resummon)
-	{
-		this.p = AbstractDungeon.player;
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
-		this.damageBlockRandomize = randomizeBlockDamage;
-		this.target = m;
-		this.randomTarget = false;
-		this.resummon = resummon;
-	}
-	
+
 	public void update()
 	{
 		CardGroup tmp;
@@ -110,6 +93,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
+			if (this.canCancel) { tmp.addToBottom(new CancelCard()); }
 			if (this.randomTarget && this.resummon)
 			{
 				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false); }
@@ -145,13 +129,16 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
-				if (c instanceof DuelistCard && this.resummon)
+				if (!(c instanceof CancelCard))
 				{
-					DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
-				}
-				else if (c instanceof DuelistCard && !this.resummon)
-				{
-					DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
+					if (c instanceof DuelistCard && this.resummon)
+					{
+						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
+					}
+					else if (c instanceof DuelistCard && !this.resummon)
+					{
+						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
+					}
 				}
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();

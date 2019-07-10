@@ -2,6 +2,7 @@ package duelistmod.actions.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
@@ -324,7 +325,7 @@ public class RandomizedHandAction extends AbstractGameAction
                 c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
     		}
     		
-    		if (!c.exhaust && exhaustCheck && !c.hasTag(Tags.NEVER_EXHAUST)) {
+    		if (!c.exhaust && exhaustCheck && !c.hasTag(Tags.NEVER_EXHAUST) && !c.type.equals(CardType.POWER)) {
                 c.exhaust = true;
                 c.rawDescription = c.rawDescription + DuelistMod.exhaustForCardText;
     		}
@@ -338,6 +339,7 @@ public class RandomizedHandAction extends AbstractGameAction
     				{
     					c.costForTurn = randomNum;
     	    			c.isCostModifiedForTurn = true;
+    	    			if (DuelistMod.debug) { DuelistMod.logger.info("Only cost decreases allowed for randomized cards"); }
     				}
     			}
     			else

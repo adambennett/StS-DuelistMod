@@ -1,24 +1,23 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class BarrelDragon extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("BarrelDragon");
+    public static final String ID = DuelistMod.makeID("BarrelDragon");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.BARREL_DRAGON);
     public static final String NAME = cardStrings.NAME;
@@ -27,22 +26,18 @@ public class BarrelDragon extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 8;
-    private static int MIN_TURNS_ROLL = 2;
-    private static int MAX_TURNS_ROLL = 6;
-    private static final int RANDOM_ENEMIES = 3;
     // /STAT DECLARATION/
 
     public BarrelDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
-        this.magicNumber = this.baseMagicNumber = RANDOM_ENEMIES;
+        this.baseDamage = this.damage = 11;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.DRAGON);
@@ -60,41 +55,8 @@ public class BarrelDragon extends DuelistCard
     {
 		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
-    
-		// Get number of enemies
-		//int monsters = AbstractDungeon.getMonsters().monsters.size();
-		
-		int temp = 0;
-		for (AbstractMonster a : AbstractDungeon.getMonsters().monsters)
-		{
-			if (!a.isDeadOrEscaped())
-			{
-				temp++;
-			}
-		}
-		
-		// If number of enemies < debuff targets, set debuff targets # to number of enemies
-		if (temp > this.magicNumber) { temp = this.magicNumber; }
-		
-		// 3-4 times, apply 1 or 2 random debuffs to a random enemy
-		for (int i = 0; i < temp; i++)
-		{
-			// Get random number of turns for debuff to apply for (1-10)
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			int randomTurnNumB = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			
-			// Get random monster target
-			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-
-			// Get two random debuffs
-			AbstractPower randomDebuffA = RandomEffectsHelper.getRandomDebuff(p, targetMonster, randomTurnNum);
-			AbstractPower randomDebuffB = RandomEffectsHelper.getRandomDebuff(p, targetMonster, randomTurnNumB);
-	    
-			// Apply random debuff(s)
-			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, p, randomDebuffA));
-			if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, p, randomDebuffB)); }
-		}
-    
+		AbstractCreature rand = AbstractDungeon.getRandomMonster();
+		applyPower(new WeakPower(rand, this.magicNumber, false), rand);
     }
 
     // Which card to return when making a copy of this card.
@@ -108,8 +70,8 @@ public class BarrelDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(5); }
+            this.upgradeMagicNumber(2);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

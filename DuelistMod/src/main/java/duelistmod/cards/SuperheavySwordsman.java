@@ -17,7 +17,7 @@ import duelistmod.powers.SummonPower;
 public class SuperheavySwordsman extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = duelistmod.DuelistMod.makeID("SuperheavySwordsman");
+	public static final String ID = DuelistMod.makeID("SuperheavySwordsman");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.SUPERHEAVY_SWORDSMAN);
 	public static final String NAME = cardStrings.NAME;
@@ -27,7 +27,7 @@ public class SuperheavySwordsman extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
@@ -36,9 +36,8 @@ public class SuperheavySwordsman extends DuelistCard
 
 	public SuperheavySwordsman() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseDamage = this.damage = 3;
+		this.baseDamage = this.damage = 5;
 		this.summons = this.baseSummons = 1;
-		this.dex = 1;
 		//this.exhaust = true;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SUPERHEAVY);
@@ -51,8 +50,14 @@ public class SuperheavySwordsman extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		if (upgraded) { attack(m, AFX, this.damage); }
-		applyPowerToSelf(new DexterityPower(p, this.dex));
+		attack(m, AFX, this.damage);
+		if (p.hasPower(DexterityPower.POWER_ID))
+		{
+			if (p.getPower(DexterityPower.POWER_ID).amount > 0)
+			{
+				attackAllEnemies(p.getPower(DexterityPower.POWER_ID).amount);
+			}
+		}
 	}
 
 	// Which card to return when making a copy of this card.
@@ -66,8 +71,7 @@ public class SuperheavySwordsman extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.target = CardTarget.ENEMY;
-			//this.upgradeDamage(3);
+			this.upgradeDamage(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

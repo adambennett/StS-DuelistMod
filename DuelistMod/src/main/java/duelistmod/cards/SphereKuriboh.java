@@ -38,6 +38,7 @@ public class SphereKuriboh extends DuelistCard
         this.standardDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
+		this.baseMagicNumber = this.magicNumber = 2;
 		this.setupStartingCopies();
     }
 
@@ -47,7 +48,7 @@ public class SphereKuriboh extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	applyPowerToSelf(new SphereKuribohPower(p, p));
+    	applyPowerToSelf(new SphereKuribohPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -59,12 +60,21 @@ public class SphereKuriboh extends DuelistCard
     //Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.isInnate = true;
+        if (canUpgrade()) 
+        {
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber < 8) { return true; }
+    	else { return false; }
     }
     
     // Checking for Monster Zones if the challenge is enabled

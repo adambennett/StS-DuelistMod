@@ -68,6 +68,9 @@ public class Monokeros extends DuelistCard
                 AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             	tribute();
                 DuelistCard.damageAllEnemiesThornsFire(this.damage); 
+                
+                // Check Splash Orbs
+                checkSplash();
             }               
         }
     }

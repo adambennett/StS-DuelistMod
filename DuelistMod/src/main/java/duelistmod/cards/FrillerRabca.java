@@ -13,7 +13,6 @@ import duelistmod.actions.unique.RedMedicineAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 
 public class FrillerRabca extends DuelistCard 
 {
@@ -65,6 +64,9 @@ public class FrillerRabca extends DuelistCard
             
             // Choose and gain a random buff
 			AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, AbstractDungeon.getRandomMonster(), 3, 1, this.magicNumber + 3));
+			
+            // Check Splash Orbs
+            checkSplash();
         }
     }
 
@@ -78,25 +80,17 @@ public class FrillerRabca extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeMagicNumber(1);
-        	if (this.cost > 0) { this.upgradeBaseCost(0); }
-        	else { this.upgradeBlock(3); }
+        	this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
     
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (this.timesUpgraded < 3) { return true; }
-    	else { return false; }
-    }
-
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{

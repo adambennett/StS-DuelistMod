@@ -3,6 +3,7 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -24,17 +25,17 @@ public class FishKicks extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public FishKicks() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 10;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.damage = this.baseDamage = 15;
         this.tags.add(Tags.SPELL);
     }
@@ -45,9 +46,8 @@ public class FishKicks extends DuelistCard
     {
     	AbstractOrb mist = new Mist();
     	channel(mist);
-    	int aquasInExhaust = 0;
-    	for (AbstractCard c : p.exhaustPile.group) { if (c.hasTag(Tags.AQUA)) { aquasInExhaust++; }}
-    	if (aquasInExhaust >= this.magicNumber) { attackAllEnemies(this.damage); }
+    	incMaxSummons(p, this.magicNumber);
+    	attack(AbstractDungeon.getRandomMonster());
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +64,7 @@ public class FishKicks extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(-3);
+        	this.upgradeMagicNumber(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

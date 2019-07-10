@@ -32,7 +32,6 @@ public class CelticGuardian extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
     private static final int DAMAGE = 3;
-    private static final int UPGRADE_PLUS_DMG = 3;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
@@ -69,7 +68,7 @@ public class CelticGuardian extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -40,6 +40,7 @@ public class DarkFactory extends DuelistCard
 		this.tags.add(Tags.MACHINE);
 		this.misc = 0;
 		this.tributes = this.baseTributes = 3;
+		this.secondMagic = this.baseSecondMagic = 3;
 		this.originalName = this.name;
 	}
 
@@ -48,7 +49,7 @@ public class DarkFactory extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		gainEnergy(3);
+		gainEnergy(this.secondMagic);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -62,7 +63,8 @@ public class DarkFactory extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeTributes(-1);
+			this.upgradeTributes(1);
+			this.upgradeSecondMagic(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

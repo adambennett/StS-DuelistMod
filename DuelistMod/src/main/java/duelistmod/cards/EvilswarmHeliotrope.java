@@ -33,7 +33,7 @@ public class EvilswarmHeliotrope extends DuelistCard
 
     public EvilswarmHeliotrope() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 7;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
@@ -58,7 +58,7 @@ public class EvilswarmHeliotrope extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

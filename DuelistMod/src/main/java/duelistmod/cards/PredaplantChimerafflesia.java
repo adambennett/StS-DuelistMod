@@ -35,7 +35,7 @@ public class PredaplantChimerafflesia extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.POISON;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
@@ -48,7 +48,7 @@ public class PredaplantChimerafflesia extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tributes = this.baseTributes = 3;
 		this.originalName = this.name;
-		this.baseDamage = this.damage = 15;
+		this.baseDamage = this.damage = 18;
 		this.misc = 0;
 	    tooltips = new ArrayList<>();
 		tooltips.add(new Polymerization());
@@ -96,7 +96,7 @@ public class PredaplantChimerafflesia extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

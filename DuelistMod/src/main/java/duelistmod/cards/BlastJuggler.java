@@ -94,15 +94,15 @@ public class BlastJuggler extends DuelistCard
 	    	//summonsInstance.updateDescription();
 	    	for (int i = 0; i < tokens; i++)
 	    	{
-	    		AbstractMonster randomM = getRandomMonster();
+	    		//AbstractMonster randomM = getRandomMonster();
 	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh);
-	    		attack(randomM, this.baseAFX, roll);
+	    		attack(m, this.baseAFX, roll);
 	    	}
 	    	for (int i = 0; i < sTokens; i++)
 	    	{
-	    		AbstractMonster randomM = getRandomMonster();
+	    		//AbstractMonster randomM = getRandomMonster();
 	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2);
-	    		attack(randomM, this.baseAFX, roll);
+	    		attack(m, this.baseAFX, roll);
 	    	}
 	    	
 	    	summon(player(), 0, new Token());
@@ -165,8 +165,8 @@ public class BlastJuggler extends DuelistCard
 		if (!this.upgraded) 
 		{
 			this.upgradeName();
-			this.upgradeBaseCost(0);
-			if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(5); }
+			this.upgradeDamage(4);
+			if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

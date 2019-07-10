@@ -39,14 +39,7 @@ public class VampireCurse extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasRelic("Blue Candle")) 
-    	{
-    		useBlueCandle(p);
-    	}
-    	else
-    	{
-    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.utility.UseCardAction(this));
-    	}
+    	
     }
     
     @Override

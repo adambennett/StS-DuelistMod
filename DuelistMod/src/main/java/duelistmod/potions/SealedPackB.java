@@ -21,13 +21,13 @@ public class SealedPackB extends AbstractPotion {
 
 	public SealedPackB() {
 		// The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-		super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.M, PotionColor.SMOKE);
+		super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.CARD, PotionColor.SMOKE);
 
 		// Potency is the damage/magic number equivalent of potions.
 		this.potency = this.getPotency();
 
 		// Initialize the Description
-		this.description = DESCRIPTIONS[0];
+		this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
 
 		// Do you throw this potion at an enemy or do you just consume it.
 		this.isThrown = false;
@@ -43,7 +43,7 @@ public class SealedPackB extends AbstractPotion {
 		for (int i = 0; i < this.potency; i++)
 		{
 			DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromEitherSet(Tags.METAL_RAIDERS, Tags.PHARAOH_SERVANT);
-			int roll = AbstractDungeon.cardRandomRng.random(1, 5);
+			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
 			if (roll == 1)
 			{
 				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, true, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));

@@ -67,6 +67,9 @@ public class GoldenFlyingFish extends DuelistCard
             
             // Summon 2 Tokens
             summon(player(), this.summons, new AquaToken());
+            
+            // Check Splash Orbs
+            checkSplash();
         }
     }
     

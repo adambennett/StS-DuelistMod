@@ -1,17 +1,13 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.cards.CastleDarkIllusions;
-import duelistmod.interfaces.IShufflePower;
+import duelistmod.interfaces.*;
 
 // 
 
@@ -19,7 +15,7 @@ public class CastlePower extends AbstractPower implements IShufflePower
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = duelistmod.DuelistMod.makeID("CastlePower");
+    public static final String POWER_ID = DuelistMod.makeID("CastlePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -29,7 +25,7 @@ public class CastlePower extends AbstractPower implements IShufflePower
     public static int SUMMONS = 5;
     public static int INC_SUMMONS = 5;
 
-    public CastlePower(final AbstractCreature owner, final AbstractCreature source, boolean upgrade) 
+    public CastlePower(final AbstractCreature owner, final AbstractCreature source, int amount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -38,61 +34,19 @@ public class CastlePower extends AbstractPower implements IShufflePower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-        if (upgrade) { UPGRADE = true; }
+        this.amount = amount;
         this.updateDescription();
     }
-    
-    @Override
-    public void onDrawOrDiscard() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void atStartOfTurn() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m) 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{
-    	if (this.amount > 0) { this.amount = 0; }
-	}
-    
+
     @Override
     public void onShuffle() 
     {
-    	AbstractPlayer p = AbstractDungeon.player;
-        if (UPGRADE) 
-        { 
-        	CastleDarkIllusions.incMaxSummons(p, INC_SUMMONS);
-        	//CastleDarkIllusions.powerSummon(p, SUMMONS, "Castle Token", false);
-        	if (DuelistMod.debug)
-        	{
-        		System.out.println("theDuelist:CastleDarkPower:onShuffle() ---> ran upgrade block");
-        	}
-        }
-        else 
-        {
-        	CastleDarkIllusions.powerSummon(p, SUMMONS, "Castle Token", false);
-        	if (DuelistMod.debug)
-        	{
-        		System.out.println("theDuelist:CastleDarkPower:onShuffle() ---> ran non-upgrade block");
-        	}
-        }
+    	DuelistCard.powerSummon(AbstractDungeon.player, this.amount, "Castle Token", false);
     }
 
     @Override
 	public void updateDescription() 
     {
-    	if (UPGRADE) { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + INC_SUMMONS + DESCRIPTIONS[3]; }
-    	else { this.description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + SUMMONS + DESCRIPTIONS[3];} 
+    	this.description = DESCRIPTIONS[0] + SUMMONS + DESCRIPTIONS[1]; 
     }
 }

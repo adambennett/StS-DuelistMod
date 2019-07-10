@@ -28,7 +28,7 @@ public class AncientElf extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public AncientElf() {
@@ -37,6 +37,7 @@ public class AncientElf extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.ORB_DECK);
+		this.tags.add(Tags.METAL_RAIDERS);
         this.orbDeckCopies = 1;
 		this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
@@ -49,6 +50,7 @@ public class AncientElf extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
+		block(this.block);
 		block(this.block);
 		evoke(1);
 	}
@@ -64,7 +66,7 @@ public class AncientElf extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(7); }
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(4); }
             else { this.upgradeBlock(2); }
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();

@@ -3,7 +3,6 @@ package duelistmod.cards.curses;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -39,14 +38,7 @@ public class CurseRoyal extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasRelic("Blue Candle")) 
-    	{
-    		useBlueCandle(p);
-    	}
-    	else
-    	{
-    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.utility.UseCardAction(this));
-    	}
+    	
     }
     
     // Which card to return when making a copy of this card.

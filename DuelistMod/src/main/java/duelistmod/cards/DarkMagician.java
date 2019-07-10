@@ -27,13 +27,13 @@ public class DarkMagician extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 16;
+    private static final int DAMAGE = 14;
     // /STAT DECLARATION/
 
     public DarkMagician() {
@@ -76,6 +76,7 @@ public class DarkMagician extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeDamage(3);
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

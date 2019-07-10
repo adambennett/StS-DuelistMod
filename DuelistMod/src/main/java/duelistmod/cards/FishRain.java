@@ -62,7 +62,7 @@ public class FishRain extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(2);
+        	this.upgradeMagicNumber(1);
         	if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(2); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
@@ -72,7 +72,8 @@ public class FishRain extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.magicNumber < 6) { return true; }
+    	else { return false; }
     }
 
 	@Override

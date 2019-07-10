@@ -19,21 +19,21 @@ public class OjamaPajamaAction extends AbstractGameAction
 	{		
 		for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + magicOfPajamaCard);
+			int roll = AbstractDungeon.cardRandomRng.random(1, magicOfPajamaCard);
 			c.baseMagicNumber += roll;			
 			c.magicNumber = c.baseMagicNumber;
 		}
 		
 		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + magicOfPajamaCard);
+			int roll = AbstractDungeon.cardRandomRng.random(1, magicOfPajamaCard);
 			c.baseMagicNumber += roll;			
 			c.magicNumber = c.baseMagicNumber;
 		}
 		
 		for (AbstractCard c : AbstractDungeon.player.hand.group)
 		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, c.magicNumber + magicOfPajamaCard);
+			int roll = AbstractDungeon.cardRandomRng.random(1, magicOfPajamaCard);
 			c.baseMagicNumber += roll;			
 			c.magicNumber = c.baseMagicNumber;
 		}		

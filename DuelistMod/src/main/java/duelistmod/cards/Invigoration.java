@@ -75,7 +75,7 @@ public class Invigoration extends DuelistCard
     			natureMonsters.add(nature);
     		}
     		
-    		AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(natureMonsters, 1, false, false, m));
+    		AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(natureMonsters, 1, false, false, m, true));
     	}
     }
 

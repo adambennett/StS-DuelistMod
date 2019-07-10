@@ -10,7 +10,6 @@ import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.relics.AquaRelicB;
 
 public class CrystalEmeraldTortoise extends DuelistCard 
 {
@@ -35,9 +34,9 @@ public class CrystalEmeraldTortoise extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 4;
         this.summons = this.baseSummons = 2;
-        this.block = this.baseBlock = 8;
+        this.block = this.baseBlock = 10;
         this.isSummon = true;       
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
@@ -63,9 +62,8 @@ public class CrystalEmeraldTortoise extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBlock(2);
-        	this.upgradeMagicNumber(1);
-        	this.upgradeSummons(1);
+        	//this.upgradeBlock(4);
+        	this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

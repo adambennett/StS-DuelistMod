@@ -343,17 +343,27 @@ public class SummonPower extends AbstractPower
 	{
 		if (this.amount > 0)
 		{
-			if (this.amount != summonList.size()) { this.amount = summonList.size(); System.out.println("A bad thing happened! Your summons list had a different size than the amount of this power! If you are seeing this message, please go comment on workshop and tell me what happened!"); }
-			String summonsString = "";
-			for (String s : coloredSummonList) 
-			{ 
-				summonsString += s + ", "; 
-				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> string in coloredSummonList: " + s + " :: Summons = " + this.amount); }
+			if (this.amount != summonList.size()) { this.amount = summonList.size(); this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone."; System.out.println("A bad thing happened! Your summons list had a different size than the amount of this power! If you are seeing this message, please go comment on workshop and tell me what happened!"); }
+			else
+			{
+				String summonsString = "";
+				for (String s : coloredSummonList) 
+				{ 
+					summonsString += s + ", "; 
+					if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> string in coloredSummonList: " + s + " :: Summons = " + this.amount); }
+				}
+				if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> done looping over colored summons list!"); }
+				int endingIndex = summonsString.lastIndexOf(",");
+				if (endingIndex > -1)
+				{
+					String finalSummonsString = summonsString.substring(0, endingIndex) + ".";
+					this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + finalSummonsString;
+				}
+				else
+				{
+					this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
+				}
 			}
-			if (DuelistMod.debug) { System.out.println("theDuelist:SummonPower:updateDescription() ---> done looping over colored summons list!"); }
-			int endingIndex = summonsString.lastIndexOf(",");
-	        String finalSummonsString = summonsString.substring(0, endingIndex) + ".";
-			this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + finalSummonsString;
 		}
 		else
 		{

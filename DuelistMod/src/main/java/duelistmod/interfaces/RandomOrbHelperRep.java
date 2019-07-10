@@ -37,7 +37,7 @@ public class RandomOrbHelperRep
 			orbs.add(new Blaze());
 			orbs.add(new Consumer());
 			orbs.add(new Gadget());
-			orbs.add(new Lava());
+			orbs.add(new Lava(2));
 			orbs.add(new Metal());
 			//orbs.add(new MillenniumOrb());
 			orbs.add(new Mist());
@@ -61,7 +61,7 @@ public class RandomOrbHelperRep
 			orbs.add(new MonsterOrb());
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
-			orbs.add(new ReplayLightOrb());
+			//orbs.add(new ReplayLightOrb());
 			orbs.add(new Air());
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
@@ -104,7 +104,7 @@ public class RandomOrbHelperRep
 			orbs.add(new Blaze());
 			orbs.add(new Consumer());
 			orbs.add(new Gadget());
-			orbs.add(new Lava());
+			orbs.add(new Lava(2));
 			orbs.add(new Metal());
 			//orbs.add(new MillenniumOrb());
 			orbs.add(new Mist());
@@ -127,7 +127,7 @@ public class RandomOrbHelperRep
 			orbs.add(new MonsterOrb());
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
-			orbs.add(new ReplayLightOrb());
+			//orbs.add(new ReplayLightOrb());
 			orbs.add(new Air());
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
@@ -171,7 +171,7 @@ public class RandomOrbHelperRep
 			returnOrbs.add(new Blaze());
 			returnOrbs.add(new Consumer());
 			returnOrbs.add(new Gadget());
-			returnOrbs.add(new Lava());
+			returnOrbs.add(new Lava(2));
 			returnOrbs.add(new Metal());
 			//returnOrbs.add(new MillenniumOrb());
 			returnOrbs.add(new Mist());
@@ -195,7 +195,7 @@ public class RandomOrbHelperRep
 			returnOrbs.add(new MonsterOrb());
 			returnOrbs.add(new DragonOrb());
 			returnOrbs.add(new ReducerOrb()); 
-			returnOrbs.add(new ReplayLightOrb());
+			//returnOrbs.add(new ReplayLightOrb());
 			returnOrbs.add(new Air());
 			returnOrbs.add(new Earth());
 			returnOrbs.add(new FireOrb());

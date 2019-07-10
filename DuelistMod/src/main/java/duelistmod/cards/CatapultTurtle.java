@@ -1,16 +1,14 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class CatapultTurtle extends DuelistCard 
@@ -30,17 +28,18 @@ public class CatapultTurtle extends DuelistCard
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
-    private static final int DAMAGE = 4;
     // /STAT DECLARATION/
 
     public CatapultTurtle() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.METAL_RAIDERS);
+        this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 4;
     }
 
 
@@ -48,8 +47,8 @@ public class CatapultTurtle extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CatapultPower(p)));
+    	tribute();
+    	applyPowerToSelf(new CatapultPower(p, p, this.magicNumber));
     }
 
 
@@ -64,7 +63,7 @@ public class CatapultTurtle extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

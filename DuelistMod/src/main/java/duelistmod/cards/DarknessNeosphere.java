@@ -1,11 +1,9 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -30,7 +28,7 @@ public class DarknessNeosphere extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public DarknessNeosphere() {
@@ -38,8 +36,9 @@ public class DarknessNeosphere extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
-		this.magicNumber = this.baseMagicNumber = 1;
+		this.tributes = this.baseTributes = 3;
+		this.magicNumber = this.baseMagicNumber = 4;
+		this.secondMagic = this.baseSecondMagic = 3;
     }
 
 
@@ -50,14 +49,14 @@ public class DarknessNeosphere extends DuelistCard
     	tribute();
     	if (player().hasPower(DarknessNeospherePower.POWER_ID))
     	{
-    		applyPowerToSelf(new DarknessNeospherePower(p, p, this.magicNumber, 1));
+    		applyPowerToSelf(new DarknessNeospherePower(p, p, this.magicNumber, this.secondMagic));
     		TwoAmountPower pow = (TwoAmountPower)player().getPower(DarknessNeospherePower.POWER_ID);
     		pow.amount2++;
     		pow.updateDescription();
     	}
     	else
     	{
-    		applyPowerToSelf(new DarknessNeospherePower(p, p, this.magicNumber, 1));
+    		applyPowerToSelf(new DarknessNeospherePower(p, p, this.magicNumber, this.secondMagic));
     	}
     }
 
@@ -73,6 +72,7 @@ public class DarknessNeosphere extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

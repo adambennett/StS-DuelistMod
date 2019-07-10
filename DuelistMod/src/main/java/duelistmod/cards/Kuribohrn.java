@@ -24,7 +24,7 @@ public class Kuribohrn extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -34,6 +34,8 @@ public class Kuribohrn extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
+        this.baseBlock = this.block = 8;
+        this.magicNumber = this.baseMagicNumber = 4;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
     }
@@ -43,8 +45,8 @@ public class Kuribohrn extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(DuelistMod.lastTagSummoned);
-    	fullResummon(randomMonster, false, m, false);
+    	incMaxSummons(p, this.magicNumber);
+    	block();
     }
 
     // Which card to return when making a copy of this card.
@@ -63,12 +65,14 @@ public class Kuribohrn extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	if (DuelistMod.hasUpgradeBuffRelic)
         	{
+        		this.upgradeBlock(4);
         		this.upgradeSummons(1);
         		this.upgradeBaseCost(1);
         	}
         	else
         	{
-        		this.upgradeBaseCost(1);
+        		this.upgradeBlock(4);
+        		this.upgradeSummons(1);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -2,7 +2,6 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -32,7 +31,6 @@ public class CyberDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 12;
     // /STAT DECLARATION/
@@ -63,7 +61,7 @@ public class CyberDragon extends DuelistCard
     			if (c.hasTag(Tags.DRAGON)) { dragons++; }
     		}
     	}
-    	damageThroughBlock(m, p, this.damage, AFX);
+    	attack(m);
     	if (dragons > 0) { AbstractOrb glitch = new Glitch(); channel(glitch); }
     }
 
@@ -78,8 +76,7 @@ public class CyberDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(1);
-            this.upgradeDamage(3);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

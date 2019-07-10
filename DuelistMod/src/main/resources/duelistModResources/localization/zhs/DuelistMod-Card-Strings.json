@@ -761,9 +761,9 @@
 		"UPGRADE_DESCRIPTION": "魔法师族。召唤数 !duelist:SUMM! 特殊召唤：获得15生命。"
 	},
 	"theDuelist:GiantSoldier": {
-		"DESCRIPTION": "召唤数 !duelist:SUMM! 获得 !B! 点格挡。",
+		"DESCRIPTION": " 召唤数 !duelist:SUMM! 获得 !B! 点格挡。",
 		"NAME": "岩石巨兵",
-		"UPGRADE_DESCRIPTION": "召唤数 !duelist:SUMM! 获得 !B! 点格挡。"
+		"UPGRADE_DESCRIPTION": " 召唤数 !duelist:SUMM! 获得 !B! 点格挡。"
 	},
 	"theDuelist:GiantSoldierSteel": {
 		"DESCRIPTION": "召唤数 !duelist:SUMM! 获得 !B! 点格挡。",

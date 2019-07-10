@@ -33,18 +33,16 @@ public class Kuriboh extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 2;
-	private static final int INC_SUMMONS = 1;
-	 private ArrayList<AbstractCard> tooltips;
+	private static final int COST = 1;
+	private ArrayList<AbstractCard> tooltips;
 	// private static final int U_INC_SUMMONS = 1;
 	// /STAT DECLARATION/
 
 	public Kuriboh() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = INC_SUMMONS;
+		this.magicNumber = this.baseMagicNumber = 1;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.METAL_RAIDERS);
-		this.tags.add(Tags.GOOD_TRIB);
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
@@ -57,7 +55,7 @@ public class Kuriboh extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		incMaxSummons(p, this.magicNumber);
+		if (upgraded) { incMaxSummons(p, this.magicNumber); }
 		summon(p, this.summons, new KuribohToken());
 	}
 
@@ -72,7 +70,6 @@ public class Kuriboh extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

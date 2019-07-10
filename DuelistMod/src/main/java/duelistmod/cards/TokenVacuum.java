@@ -27,7 +27,7 @@ public class TokenVacuum extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
@@ -78,8 +78,7 @@ public class TokenVacuum extends DuelistCard
 	    	{
 	    		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
 	    		summon(player(), 1, tempCard);
-	    		AbstractMonster randomM = getRandomMonster();
-	    		attack(randomM, AFX, this.damage);
+	    		attack(m, AFX, this.damage);
 	    	}
     	}
 

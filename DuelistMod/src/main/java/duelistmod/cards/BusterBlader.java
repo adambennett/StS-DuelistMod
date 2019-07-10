@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
@@ -18,7 +20,7 @@ public class BusterBlader extends DuelistCard
 {
     // TEXT DECLARATION
 
-    public static final String ID = duelistmod.DuelistMod.makeID("BusterBlader");
+    public static final String ID = DuelistMod.makeID("BusterBlader");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.BUSTER_BLADER);
     public static final String NAME = cardStrings.NAME;
@@ -72,6 +74,48 @@ public class BusterBlader extends DuelistCard
     	int newDamage = this.damage + (this.magicNumber * dragons);
     	attack(m, AFX, newDamage);
     }
+    
+    @Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			int dmg = 0;
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{				
+				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (pow.actualCardSummonList.size() >= this.tributes)
+				{
+					int endIndex = pow.actualCardSummonList.size() - 1;
+					for (int i = endIndex; i > endIndex - this.tributes; i--)
+					{
+						if (pow.actualCardSummonList.get(i).hasTag(Tags.DRAGON))
+						{
+							dmg += this.magicNumber;
+						}
+					}
+					
+					if (dmg > 0)
+					{
+						this.secondMagic = this.baseSecondMagic = dmg + this.damage;
+					}
+				}	
+				else
+				{
+					this.secondMagic = this.baseSecondMagic =  0;
+				}
+			}
+			else
+			{
+				this.secondMagic = this.baseSecondMagic =  0;
+			}
+		}
+		else
+		{
+			this.secondMagic = this.baseSecondMagic =  0;
+		}
+	}
 
     // Which card to return when making a copy of this card.
     @Override

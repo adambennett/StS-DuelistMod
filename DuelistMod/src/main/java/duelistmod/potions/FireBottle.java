@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.orbs.FireOrb;
+import duelistmod.orbs.*;
 
 public class FireBottle extends AbstractPotion {
 
@@ -22,7 +22,7 @@ public class FireBottle extends AbstractPotion {
 
     public FireBottle() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.M, PotionColor.SMOKE);
+        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOTTLE, PotionColor.SMOKE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -44,7 +44,7 @@ public class FireBottle extends AbstractPotion {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
     	{
-	       AbstractOrb air = new FireOrb();
+	       AbstractOrb air = new Lava();
 	       DuelistCard.channel(air);
     	}
     }

@@ -41,7 +41,7 @@ public class ToonAncientGear extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.TOON_DECK);
-        this.toonDeckCopies = 2;
+        this.toonDeckCopies = 1;
 		this.originalName = this.name;
         this.isSummon = true;
         this.setupStartingCopies();

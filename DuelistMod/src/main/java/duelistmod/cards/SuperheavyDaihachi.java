@@ -3,20 +3,18 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class SuperheavyDaihachi extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("SuperheavyDaihachi");
+    public static final String ID = DuelistMod.makeID("SuperheavyDaihachi");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.SUPERHEAVY_DAIHACHI);
     public static final String NAME = cardStrings.NAME;
@@ -34,14 +32,13 @@ public class SuperheavyDaihachi extends DuelistCard
 
     public SuperheavyDaihachi() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 4;
-        this.dex = 4;
+        this.tributes = this.baseTributes = 3;
         this.exhaust = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.REDUCED);
-        this.baseMagicNumber = this.magicNumber = this.dex;
-        this.baseBlock = this.block = 15;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseBlock = this.block = 11;
 		this.originalName = this.name;
     }
 
@@ -50,8 +47,7 @@ public class SuperheavyDaihachi extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	applyPowerToSelf(new DexterityPower(p, this.magicNumber));
-    	block(this.block);
+    	for (int i = 0; i < this.magicNumber; i++) { block(this.block); }
     }
 
     // Which card to return when making a copy of this card.
@@ -63,12 +59,26 @@ public class SuperheavyDaihachi extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
+        if (canUpgrade()) {
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (timesUpgraded < 2)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
     
  // If player doesn't have enough summons, can't play card

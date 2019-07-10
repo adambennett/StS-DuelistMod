@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
+import duelistmod.actions.unique.YamiFormAction;
 import duelistmod.cards.YamiForm;
 import duelistmod.interfaces.*;
 
@@ -55,6 +56,7 @@ public class YamiFormPower extends AbstractPower
 	public void atStartOfTurnPostDraw()
 	{
 		ArrayList<DuelistCard> types = DuelistCard.generateTypeCards(0, true, new YamiForm(), this.amount, true);
-		AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+		//AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+		AbstractDungeon.actionManager.addToTop(new YamiFormAction(types, 1, false, false, false));
 	}
 }

@@ -37,6 +37,7 @@ public class RainbowKuriboh extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 2;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
@@ -51,7 +52,7 @@ public class RainbowKuriboh extends DuelistCard
     	summon();
     	incMaxSummons(p, this.magicNumber);
     	CardTags randomTypeSelection = DuelistMod.monsterTypes.get(AbstractDungeon.cardRandomRng.random(DuelistMod.monsterTypes.size() - 1));
-    	for (int i = 0; i < this.magicNumber; i++)
+    	for (int i = 0; i < this.secondMagic; i++)
     	{
     		DuelistCard randTypeMon = (DuelistCard) DuelistCard.returnTrulyRandomFromSets(randomTypeSelection, Tags.MONSTER);
     		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randTypeMon, true));
@@ -72,7 +73,7 @@ public class RainbowKuriboh extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeMagicNumber(2);
         	this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

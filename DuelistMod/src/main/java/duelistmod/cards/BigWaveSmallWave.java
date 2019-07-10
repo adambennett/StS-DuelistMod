@@ -84,7 +84,7 @@ public class BigWaveSmallWave extends DuelistCard
 		    	for (DuelistCard c : DuelistMod.myCards)
 		    	{
 		    		// Only look at monsters
-		    		if (c.hasTag(Tags.MONSTER))
+		    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED))
 		    		{
 		    			// Only look at monsters with tribute costs
 		    			if (c.baseTributes > 0)

@@ -33,8 +33,9 @@ public class DianKeto extends DuelistCard
 
     public DianKeto() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-       	this.magicNumber = this.baseMagicNumber = 8;
+       	this.magicNumber = this.baseMagicNumber = 11;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.originalName = this.name;
         this.makeFleeting();
     }
@@ -67,7 +68,8 @@ public class DianKeto extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.magicNumber < 25) { return true; }
+    	else { return false; }
     }
 
 	@Override

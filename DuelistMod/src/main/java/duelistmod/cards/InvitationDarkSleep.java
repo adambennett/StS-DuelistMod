@@ -37,6 +37,7 @@ public class InvitationDarkSleep extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.ALL);
+		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;

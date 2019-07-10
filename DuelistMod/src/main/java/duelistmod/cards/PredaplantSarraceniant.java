@@ -41,7 +41,7 @@ public class PredaplantSarraceniant extends DuelistCard
         this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
-		this.magicNumber = this.baseMagicNumber = 2;
+		this.magicNumber = this.baseMagicNumber = 3;
     }
 
     // Actions the card should do.

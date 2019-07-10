@@ -91,7 +91,7 @@ public class DarkMagicianGirl extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			//this.upgradeMagicNumber(U_OVERFLOW);
-			this.upgradeBlock(4);
+			this.upgradeBlock(5);
 			this.upgradeSummons(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();

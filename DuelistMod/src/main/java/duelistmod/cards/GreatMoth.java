@@ -34,19 +34,20 @@ public class GreatMoth extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+    private static final AttackEffect AFX = AttackEffect.POISON;
     private static final int COST = 2;
     private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public GreatMoth() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 15;
-        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 50;
-        this.tributes = this.baseTributes = 2;
+        this.baseDamage = this.damage = 30;
+        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 30;
+        this.tributes = this.baseTributes = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
         this.tags.add(Tags.NOT_ADDED);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.GOOD_TRIB);
         this.originalName = this.name;
@@ -59,10 +60,9 @@ public class GreatMoth extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
+    	tribute();
     	attack(m, AFX, this.damage);
     	applyPower(new PoisonPower(m, p, this.poisonAmt), m);
-    	addCardToHand(new PetitMoth());
     }
 
     // Which card to return when making a copy of this card.
@@ -76,7 +76,8 @@ public class GreatMoth extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(10);
+            this.upgradeMagicNumber(5);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

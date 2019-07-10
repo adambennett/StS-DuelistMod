@@ -1,20 +1,16 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
 
 public class BlizzardDragon extends DuelistCard 
 {
@@ -39,7 +35,6 @@ public class BlizzardDragon extends DuelistCard
     public BlizzardDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 13;
-        this.upgradeDmg = 3;
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -68,7 +63,7 @@ public class BlizzardDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(this.upgradeDmg);
+            this.upgradeDamage(4);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

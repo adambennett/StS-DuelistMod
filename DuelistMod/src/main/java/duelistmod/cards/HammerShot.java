@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class HammerShot extends DuelistCard 
 {
@@ -27,15 +26,12 @@ public class HammerShot extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
-    private static final int DAMAGE = 2;
-    private static final int U_DMG = 1;
     // /STAT DECLARATION/
 
     public HammerShot() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.baseDamage = this.damage = 2;
         this.isMultiDamage = true;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ALL);
@@ -53,10 +49,7 @@ public class HammerShot extends DuelistCard
     {
        int playerSummons = getMaxSummons(p);
        int newDamage = this.damage * playerSummons;
-       //this.initializeDescription();
-       int[] damageArray = new int[] { newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage, newDamage };
-       this.applyPowers();
-       attackAllEnemies(AFX, damageArray);
+       attackAllEnemies(newDamage);
     }
 
     // Which card to return when making a copy of this card.
@@ -70,7 +63,7 @@ public class HammerShot extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(U_DMG);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

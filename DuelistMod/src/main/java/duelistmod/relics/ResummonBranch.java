@@ -46,7 +46,7 @@ public class ResummonBranch extends CustomRelic
     public void atTurnStartPostDraw() 
     {
     	int count = this.counter;
-    	if (DuelistMod.monstersThisRun.size() > 0)
+    	if (DuelistMod.uniqueMonstersThisRun.size() > 0)
     	{
 			ArrayList<String> notAllowedCards = new ArrayList<String>();
 			notAllowedCards.add("The Creator");
@@ -55,7 +55,7 @@ public class ResummonBranch extends CustomRelic
 			notAllowedCards.add("Steam Train King");
 			ArrayList<DuelistCard> modMonsters = new ArrayList<DuelistCard>();
 			
-			for (DuelistCard c : DuelistMod.monstersThisRun)
+			for (DuelistCard c : DuelistMod.uniqueMonstersThisRun)
 			{
 				if (!notAllowedCards.contains(c.originalName) && !c.hasTag(Tags.EXEMPT))
 				{

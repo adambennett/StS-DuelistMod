@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.actions.unique.ExhaustSpecificCardSuperFastAction;
 import duelistmod.interfaces.DuelistCard;
 
@@ -39,14 +39,7 @@ public class GravekeeperCurse extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasRelic("Blue Candle")) 
-    	{
-    		useBlueCandle(p);
-    	}
-    	else
-    	{
-    		AbstractDungeon.actionManager.addToTop(new com.megacrit.cardcrawl.actions.utility.UseCardAction(this));
-    	}
+    		
     }
     
     @Override

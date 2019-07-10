@@ -17,4 +17,7 @@ public class AbstractCardEnum {
     @SpireEnum
     public static AbstractCard.CardColor DUELIST;
     
+    @SpireEnum
+    public static AbstractCard.CardColor DUELIST_SPECIAL;
+    
 }

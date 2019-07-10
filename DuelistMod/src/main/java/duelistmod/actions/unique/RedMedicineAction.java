@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.buffCards.AbstractBuffCard;
+import duelistmod.cards.typecards.CancelCard;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 
@@ -52,9 +53,9 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new BlurPower(p, turnNum));
 			toReturn.add(new OrbHealerPower(p, turnNum));
 			toReturn.add(new TombLooterPower(p, turnNum));
-			toReturn.add(new OrbEvokerPower(p, turnNum));
+			//toReturn.add(new OrbEvokerPower(p, turnNum));
 			toReturn.add(new HealGoldPower(p, turnNum));
-			toReturn.add(new FocusPower(p, turnNum));
+			toReturn.add(new FocusPower(p, 1));
 			toReturn.add(new ReducerPower(p, turnNum));
 			toReturn.add(new EnvenomPower(p, turnNum));
 			toReturn.add(new AngerPower(p, 1));
@@ -75,9 +76,10 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new BlurPower(p, turnNum));
 			toReturn.add(new OrbHealerPower(p, turnNum));
 			toReturn.add(new TombLooterPower(p, turnNum));
-			toReturn.add(new OrbEvokerPower(p, turnNum));
+			//toReturn.add(new OrbEvokerPower(p, turnNum));
 			toReturn.add(new HealGoldPower(p, turnNum));
-			toReturn.add(new FocusPower(p, turnNum));
+			toReturn.add(new FocusPower(p, 1));
+			toReturn.add(new FocusPower(p, 2));
 			toReturn.add(new ReducerPower(p, turnNum));
 			toReturn.add(new EnvenomPower(p, turnNum));
 			toReturn.add(new AngerPower(p, 1));
@@ -91,7 +93,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new EnergizedPower(p, 1));
 			toReturn.add(new BarricadePower(p));
 			toReturn.add(new BurstPower(p, turnNum));
-			toReturn.add(new CreativeAIPower(p, 1)); //probably too good
+			//toReturn.add(new CreativeAIPower(p, 1)); //probably too good
 			toReturn.add(new DoubleTapPower(p, turnNum));
 			toReturn.add(new EquilibriumPower(p, 2));
 			toReturn.add(new FeelNoPainPower(p, turnNum));
@@ -137,7 +139,7 @@ public class RedMedicineAction extends AbstractGameAction
 				powerCard.powerToApply = power;
 				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> powerCard.powerToApply was set to: " + power.name + ", with amount: " + power.amount); }
 				if (power.amount > 0) { powerCard.rawDescription = DuelistMod.powerGainCardText + power.name + "."; }
-				else { powerCard.rawDescription = DuelistMod.powerGainCardText + power.name + ".";  }
+				else { powerCard.rawDescription = Strings.powerGain0Text + power.name + ".";  }
 				powerCard.name = power.name;
 				powerCard.initializeDescription();
 				buffs.add(powerCard);
@@ -152,6 +154,7 @@ public class RedMedicineAction extends AbstractGameAction
 				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> added " + card.originalName + " into grid selection pool"); }
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
+			tmp.addToBottom(new CancelCard());
 			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainString, false); }
 			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainPluralString, false); }
 			tickDuration();
@@ -163,19 +166,26 @@ public class RedMedicineAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
-				BuffCard bC = (BuffCard)c;
-				bC.baseMagicNumber += powerMap.get(bC.uuid).amount;
-				if (bC.baseMagicNumber < 0) { bC.baseMagicNumber = 0; }
-				bC.magicNumber = bC.baseMagicNumber;
-				bC.powerToApply = powerMap.get(bC.uuid);
-				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> bC.powerToApply was set to: " + powerMap.get(bC.uuid).name + ", with amount: " + powerMap.get(bC.uuid).amount); }
-				bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";
-				if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + "."; }
-				else { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";  }
-				bC.name = powerMap.get(bC.uuid).name;
-				bC.initializeDescription();
-				if (bC.powerToApply != null) { DuelistCard.playNoResummon(bC, false, this.m, false); }
-				else if (DuelistMod.debug) { System.out.println("red medicine action got null power for " + c.name); }
+				if (c instanceof BuffCard)
+				{
+					BuffCard bC = (BuffCard)c;
+					bC.baseMagicNumber += powerMap.get(bC.uuid).amount;
+					if (bC.baseMagicNumber < 0) { bC.baseMagicNumber = 0; }
+					bC.magicNumber = bC.baseMagicNumber;
+					bC.powerToApply = powerMap.get(bC.uuid);
+					if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> bC.powerToApply was set to: " + powerMap.get(bC.uuid).name + ", with amount: " + powerMap.get(bC.uuid).amount); }
+					bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + ".";
+					if (powerMap.get(bC.uuid).amount > 0) { bC.rawDescription = DuelistMod.powerGainCardText + powerMap.get(bC.uuid).name + "."; }
+					else { bC.rawDescription = Strings.powerGain0Text + powerMap.get(bC.uuid).name + ".";  }
+					bC.name = powerMap.get(bC.uuid).name;
+					bC.initializeDescription();
+					if (bC.powerToApply != null) { DuelistCard.playNoResummon(bC, false, this.m, false); }
+					else if (DuelistMod.debug) { DuelistMod.logger.info("red medicine action got null power for " + c.name); }
+				}
+				else if (DuelistMod.debug)
+				{
+					DuelistMod.logger.info("red medicine action was cancelled by player");
+				}
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();

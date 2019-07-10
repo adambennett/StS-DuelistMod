@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
@@ -41,6 +43,7 @@ public class Polymerization extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
+        this.exhaust = true;
         this.setupStartingCopies();
     }
 
@@ -48,24 +51,14 @@ public class Polymerization extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	boolean hitCreator = false;
-    	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	if (!upgraded) { for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add(a); }}}    	
-    	else { for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER)) { handCards.add(a); }}}    
-    	if (handCards.size() > 0)
-    	{
-			for (int i = 0; i < this.magicNumber; i++)
-			{
-	    		AbstractCard summon = returnRandomFromArrayAbstract(handCards);
-	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
-	    		if (cardCopy != null && !hitCreator)
-				{
-	    			if (!this.upgraded) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
-	    			else { DuelistCard.polyResummon(cardCopy, summon.upgraded, m, false); }
-				}
-	    		if (summon.originalName.equals("The Creator")) { hitCreator = true; if (DuelistMod.debug) { System.out.println("theDuelist:Polymerization:use() ---> hitCreator triggered and set to true"); } }
-			}
-    	}
+    	ArrayList<DuelistCard> handCards = new ArrayList<DuelistCard>();
+		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
+		if (handCards.size() > 0)
+		{
+			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, handCards.size(), false, false, m, false)); }
+			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, this.magicNumber, false, false, m, false)); }    		
+		}    
+    	
     }
 
     // Which card to return when making a copy of this card.
@@ -80,7 +73,7 @@ public class Polymerization extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-           // this.upgradeMagicNumber(1);
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

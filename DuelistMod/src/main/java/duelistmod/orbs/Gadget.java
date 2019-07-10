@@ -4,16 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.QueueCardSuperFastAction;
 import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")
@@ -35,27 +35,27 @@ public class Gadget extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gadget.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0];
+		this.description = DESC[0] + this.passiveAmount + DESC[1];
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		if (DuelistMod.trapsThisRun.size() > 0)
+		if (DuelistMod.trapsThisRun.size() > 0 && !hasNegativeFocus())
 		{
 			DuelistCard randomTrap = DuelistMod.trapsThisRun.get(AbstractDungeon.cardRandomRng.random(DuelistMod.trapsThisRun.size() - 1));
 			if (!randomTrap.tags.contains(Tags.TRIBUTE)) { randomTrap.misc = 52; }
@@ -69,19 +69,19 @@ public class Gadget extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		triggerPassiveEffect();
+		if (this.passiveAmount > 0) { triggerPassiveEffect(); }
 	}
 
 	public void triggerPassiveEffect()
 	{
-		DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.TRAP);
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomTrap, false, true, true, true, false, false, false, false, 0, 2, 0, 0, 0, 0));
+		DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, this.passiveAmount));
+		DuelistCard.applyPowerToSelf(new LoseDexterityPower(AbstractDungeon.player, this.passiveAmount));
 	}
 
 	@Override
@@ -129,15 +129,6 @@ public class Gadget extends DuelistOrb
 	public AbstractOrb makeCopy()
 	{
 		return new Gadget();
-	}
-	
-	@Override
-	protected void renderText(SpriteBatch sb)
-	{
-		// Render evoke amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
-		// Render passive amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

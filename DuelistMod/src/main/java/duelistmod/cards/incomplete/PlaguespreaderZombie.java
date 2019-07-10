@@ -1,18 +1,19 @@
 package duelistmod.cards.incomplete;
 
+import java.util.ArrayList;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import basemod.ReflectionHacks;
 import duelistmod.*;
-import duelistmod.actions.unique.PlayRandomFromDiscardAction;
-import duelistmod.interfaces.*;
-import duelistmod.orbs.Shadow;
+import duelistmod.cards.tokens.*;
+import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
@@ -30,63 +31,31 @@ public class PlaguespreaderZombie extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
+    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public PlaguespreaderZombie() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 1;
-        this.baseBlock = this.block = 1;
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.summons = this.baseSummons = 1;
+        this.baseDamage = this.damage = 13;
+        this.summons = this.baseSummons = 2;
         this.isSummon = true;
-        this.tributes = this.baseTributes = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        tooltips = new ArrayList<>();
+		tooltips.add(new PlagueToken());
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Tribute
-    	tribute();
-    	
-    	// Summon
-    	summon();
-    	
-    	// Block
-    	block();
-    	
-    	// Attack
+    	summon(p, this.summons, new PlagueToken());
     	attack(m);
-    	
-    	// Lose HP
-    	damageSelf(this.magicNumber);
-    	
-    	// Draw zombies
-    	drawTag(this.magicNumber, Tags.ZOMBIE);
-    	
-    	// Channel shadow
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-	    	AbstractOrb shadow = new Shadow();
-	    	channel(shadow);
-	    	
-	    	// Random buff
-	    	applyRandomBuffPlayer(p, AbstractDungeon.cardRandomRng.random(1, 3), false);
-	    	
-	    	// Random debuff
-	    	AbstractPower debuff = RandomEffectsHelper.getRandomDebuff(p, m, AbstractDungeon.cardRandomRng.random(1, 4));
-	    	applyPower(debuff, m);
-    	}
-    	
-    	// Resummon random monster from discard
-    	AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(this.magicNumber, false, m, this.uuid));
     }
 
     // Which card to return when making a copy of this card.
@@ -99,32 +68,23 @@ public class PlaguespreaderZombie extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	if (DuelistMod.hasUpgradeBuffRelic)
         	{
-        		this.upgradeSummons(3);
-        		this.upgradeDamage(5);
-        		this.upgradeBlock(5);
-        		this.upgradeMagicNumber(1);        		
+        		this.upgradeDamage(7);
+        		this.upgradeSummons(1);     		
         	}
         	else
         	{
+        		this.upgradeDamage(5);
         		this.upgradeSummons(1);
-        		this.upgradeDamage(2);
-        		this.upgradeBlock(3);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
     }
 
 	@Override
@@ -283,6 +243,37 @@ public class PlaguespreaderZombie extends DuelistCard
 	    	return false;
     	}
     }
+    
+	@Override
+	public void renderCardTip(SpriteBatch sb) 
+	{
+		super.renderCardTip(sb);
+		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
+
+		int count = 0;
+		if (!Settings.hideCards && renderTip) {
+			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
+				return;
+			}
+			for (AbstractCard c : tooltips) {
+				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
+				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
+				if (current_x > Settings.WIDTH * 0.75f) {
+					c.current_x = current_x + dx;
+				} else {
+					c.current_x = current_x - dx;
+				}
+				if (count == 0) {
+					c.current_y = current_y + dy;
+				} else {
+					c.current_y = current_y - dy;
+				}
+				c.drawScale = drawScale * 0.8f;
+				c.render(sb);
+				count++;
+			}
+		}
+	}
 
 
 	@Override

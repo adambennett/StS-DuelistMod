@@ -5,10 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.orbs.Lava;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class ToonGeminiElf extends DuelistCard 
@@ -33,7 +35,7 @@ public class ToonGeminiElf extends DuelistCard
     public ToonGeminiElf() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 10;
+        this.summons = this.baseSummons = 2;
         this.toon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);
@@ -48,6 +50,12 @@ public class ToonGeminiElf extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
+    	AbstractOrb l = new Lightning();
+    	AbstractOrb d = new Dark();
+    	AbstractOrb la = new Lava();
+    	channel(l);
+    	channel(d);
+    	channel(la);
     }
 
     // Which card to return when making a copy of this card.

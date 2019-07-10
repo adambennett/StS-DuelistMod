@@ -73,7 +73,8 @@ public class Kasha extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.damage < 35) { return true; }
+    	else { return false; }
     }
 
 	@Override

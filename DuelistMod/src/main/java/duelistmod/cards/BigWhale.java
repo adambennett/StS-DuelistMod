@@ -3,14 +3,15 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 
 public class BigWhale extends DuelistCard 
 {
@@ -24,29 +25,44 @@ public class BigWhale extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
+    private double dynamicBlock = 0;
     // /STAT DECLARATION/
 
     public BigWhale() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 16;
-        this.tributes = this.baseTributes = 2;
+        this.baseBlock = this.block = 0;
+        this.baseMagicNumber = this.magicNumber = 10;
+        this.secondMagic = this.baseSecondMagic = 5;
+        this.tributes = this.baseTributes = 4;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
     }
+    
+    @Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			this.dynamicBlock = this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
+			this.baseBlock = (int)this.dynamicBlock;
+			this.applyPowers();
+		}
+	}
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	block(this.block);
+    	block();
     }
 
     
@@ -58,8 +74,7 @@ public class BigWhale extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeTributes(-1);
-        	this.upgradeBlock(2);
+        	this.upgradeSecondMagic(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

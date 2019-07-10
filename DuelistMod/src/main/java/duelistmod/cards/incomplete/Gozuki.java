@@ -64,7 +64,7 @@ public class Gozuki extends DuelistCard
         	}
         	else
         	{
-        		this.upgradeBaseCost(1);
+        		this.upgradeDamage(6);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

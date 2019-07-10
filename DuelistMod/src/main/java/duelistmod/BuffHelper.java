@@ -81,7 +81,8 @@ public class BuffHelper {
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
-		AbstractPower focus = new FocusPower(p, turnNum);
+		AbstractPower focus = new FocusPower(p, 1);
+		AbstractPower focusB = new FocusPower(p, 2);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
 		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
 		AbstractPower mayhem = new MayhemPower(p, 1);
@@ -119,7 +120,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed
+					naturia, jambreed, focusB
 			};
 		}
 		for (AbstractPower a : buffs)
@@ -160,7 +161,8 @@ public class BuffHelper {
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
 		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
-		AbstractPower focus = new FocusPower(p, turnNum);
+		AbstractPower focus = new FocusPower(p, 1);
+		AbstractPower focusB = new FocusPower(p, 2);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
 		AbstractPower timeWizard = new TimeWizardPower(p, p, 1);
 		AbstractPower mayhem = new MayhemPower(p, 1);
@@ -196,7 +198,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed
+					naturia, jambreed, focusB
 			};
 		}
 		for (AbstractPower a : buffs)

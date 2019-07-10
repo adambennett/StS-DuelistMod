@@ -36,6 +36,7 @@ public class SwordsRevealing extends DuelistCard
 		this.tags.add(Tags.LEGEND_BLUE_EYES);
 		this.tags.add(Tags.FULL);
 		this.tags.add(Tags.EXODIA_DECK);
+		this.tags.add(Tags.NEVER_GENERATE);
         this.exodiaDeckCopies = 1;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;

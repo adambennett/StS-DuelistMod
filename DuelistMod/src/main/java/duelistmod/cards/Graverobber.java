@@ -2,7 +2,7 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.actions.unique.GraverobberAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class Graverobber extends DuelistCard 
 {
@@ -30,7 +30,6 @@ public class Graverobber extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static ArrayList<AbstractCard> drawPowers = new ArrayList<AbstractCard>();
     private static ArrayList<String> drawPowerNames = new ArrayList<String>();
@@ -40,6 +39,7 @@ public class Graverobber extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.PHARAOH_SERVANT);
         this.misc = 0;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
@@ -57,11 +57,8 @@ public class Graverobber extends DuelistCard
 
 		if (drawPowers.size() >= 0)
 		{
-				int lowRoll = 1;
-				int highRoll = 3;
-				if (upgraded) { lowRoll = 0; highRoll = 0; }
 				if (DuelistMod.debug) { System.out.println("graverobber found choose cards to be > 0"); }
-				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(drawPowers, false, 1, false, false, false, true, false, false, false, lowRoll, highRoll, 0, 0, 0, 0));
+				AbstractDungeon.actionManager.addToTop(new GraverobberAction(this.magicNumber, drawPowers));
 		}
 		else { if (DuelistMod.debug) { System.out.println("graverobber found draw powers size was 0"); }}
     }
@@ -77,7 +74,7 @@ public class Graverobber extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

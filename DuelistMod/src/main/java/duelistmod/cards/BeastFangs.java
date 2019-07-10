@@ -3,12 +3,15 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class BeastFangs extends DuelistCard 
 {
@@ -32,25 +35,32 @@ public class BeastFangs extends DuelistCard
     public BeastFangs() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.misc = 0;
         this.originalName = this.name;
         this.purgeOnUse = true;
+        this.magicNumber = this.baseMagicNumber = 0;
+    }
+    
+    @Override
+    public void update()
+    {
+    	super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			this.magicNumber = this.baseMagicNumber = (int)Math.floor(DuelistMod.summonCombatCount/2);
+		}
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!DuelistMod.gotBeastStr)
+    	if (this.magicNumber != (int)Math.floor(DuelistMod.summonCombatCount/2))
     	{
-    		DuelistMod.gotBeastStr = true; 
-    		DuelistMod.beastStrSummons = (int)Math.floor(DuelistMod.summonCombatCount/2);
-    		if (DuelistMod.debug)
-    		{
-    			System.out.println("theDuelist:BeastFangs:use() ---> set beastStrSummons to: " + (int)Math.floor(DuelistMod.summonCombatCount/2));
-    			System.out.println("theDuelist:BeastFangs:use() ---> summons this combat so far is: " + DuelistMod.summonCombatCount);
-    		}
+    		this.magicNumber = this.baseMagicNumber = (int)Math.floor(DuelistMod.summonCombatCount/2);
     	}
+    	applyPowerToSelf(new StrengthPower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -63,36 +73,16 @@ public class BeastFangs extends DuelistCard
     @Override
     public void upgrade() 
     {        
-    	if (this.canUpgrade())
+    	if (!upgraded)
     	{
     		if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-    		if (timesUpgraded == 1) 
-    		{
-    			this.upgradeBaseCost(1); 
-    		}
-    		else if (timesUpgraded == 2) 
-    		{ 
-    			this.upgradeBaseCost(0);
-    		}
+    		this.upgradeBaseCost(1);
 	        this.rawDescription = UPGRADE_DESCRIPTION;
 	        this.initializeDescription();       
     	}
     }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (this.cost > 0)
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
-    }
-    
+  
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
 		// TODO Auto-generated method stub

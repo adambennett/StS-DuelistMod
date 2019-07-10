@@ -51,7 +51,7 @@ public class CommandKnight extends DuelistCard
     	block(this.block);
     	for (AbstractCard c : p.hand.group)
     	{
-    		if (c instanceof DuelistCard)
+    		if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.TOKEN))
     		{
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.baseSummons > 0)

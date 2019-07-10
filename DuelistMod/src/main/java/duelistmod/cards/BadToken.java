@@ -34,13 +34,15 @@ public class BadToken extends DuelistCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.damage = this.baseDamage = 1;
-    	makeMegatyped();
+    	this.tags.add(Tags.NEVER_GENERATE);
+    	//makeMegatyped();
     }
     public BadToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.damage = this.baseDamage = 1; 
-    	makeMegatyped();
+    	this.tags.add(Tags.NEVER_GENERATE);
+    	//makeMegatyped();
     }
     
     

@@ -50,7 +50,7 @@ public class Shadow extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 		this.updateDescription();
 	}
 
@@ -79,55 +79,51 @@ public class Shadow extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		
-		ArrayList<AbstractCard> discards = AbstractDungeon.player.discardPile.group;
-    	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : discards) { if (c.tags.contains(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT)) { toChooseFrom.add(c); } }
-    	if (toChooseFrom.size() > 0)
-    	{
-    		for (int i = 0; i < this.evokeAmount; i++)
-    		{
-    			AbstractMonster m = AbstractDungeon.getRandomMonster();
-	    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
-	    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
-	    		String cardName = chosen.originalName;
-	    		if (DuelistMod.debug) { System.out.println("theDuelist:Shadow --- > Found: " + cardName); }
-    			DuelistCard cardCopy = DuelistCard.newCopyOfMonster(cardName);
-    			if (cardCopy != null)
-    			{
-    				DuelistCard.fullResummon(cardCopy, chosen.upgraded, m, false);
-    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
-    				cardCopy.freeToPlayOnce = true;
-    				cardCopy.applyPowers();
-    				cardCopy.purgeOnUse = true;
-    				if (chosen.upgraded) { cardCopy.upgrade(); }
-    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
-    				cardCopy.onResummon(1);
-    				cardCopy.checkResummon();*/
-    				//cardCopy.summonThis(cardCopy.summons, cardCopy, 0, m);
-    			}
-    		
-    		}
-    	}
+		if (this.evokeAmount > 0)
+		{
+			ArrayList<AbstractCard> discards = AbstractDungeon.player.discardPile.group;
+	    	ArrayList<AbstractCard> toChooseFrom = new ArrayList<AbstractCard>();
+	    	for (AbstractCard c : discards) { if (c.tags.contains(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT)) { toChooseFrom.add(c); } }
+	    	if (toChooseFrom.size() > 0)
+	    	{
+	    		for (int i = 0; i < this.evokeAmount; i++)
+	    		{
+	    			AbstractMonster m = AbstractDungeon.getRandomMonster();
+		    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
+		    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
+		    		String cardName = chosen.originalName;
+		    		if (DuelistMod.debug) { System.out.println("theDuelist:Shadow --- > Found: " + cardName); }
+	    			DuelistCard cardCopy = DuelistCard.newCopyOfMonster(cardName);
+	    			if (cardCopy != null)
+	    			{
+	    				DuelistCard.fullResummon(cardCopy, chosen.upgraded, m, false);
+	    			}
+	    		
+	    		}
+	    	}
+		}
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
 		applyFocus();
-		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		if (this.passiveAmount > 0)
 		{
-			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isEveryMonsterCheck(Tags.ZOMBIE, false))
+			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+			int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 			{
-				rollCheck += 4;
+				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (instance.isEveryMonsterCheck(Tags.ZOMBIE, false))
+				{
+					rollCheck += 4;
+				}
 			}
-		}
-		if (roll < rollCheck)
-		{
-			this.triggerPassiveEffect();
+			if (roll < rollCheck)
+			{
+				this.triggerPassiveEffect();
+			}
 		}
 	}
 

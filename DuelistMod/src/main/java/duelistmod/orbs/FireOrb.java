@@ -39,7 +39,7 @@ public class FireOrb extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 		this.updateDescription();
 	}
 
@@ -53,33 +53,36 @@ public class FireOrb extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		for (AbstractCard c : AbstractDungeon.player.hand.group)
+		if (this.evokeAmount > 0)
 		{
-			if (c.hasTag(Tags.DRAGON))
+			for (AbstractCard c : AbstractDungeon.player.hand.group)
 			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeTributesInBattle(-this.evokeAmount, true);
+				if (c.hasTag(Tags.DRAGON))
+				{
+					DuelistCard dragC = (DuelistCard)c;
+					dragC.changeTributesInBattle(-this.evokeAmount, true);
+				}
 			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-		{
-			if (c.hasTag(Tags.DRAGON))
+			
+			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeTributesInBattle(-this.evokeAmount, true);
+				if (c.hasTag(Tags.DRAGON))
+				{
+					DuelistCard dragC = (DuelistCard)c;
+					dragC.changeTributesInBattle(-this.evokeAmount, true);
+				}
 			}
-		}
-		
-		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
-		{
-			if (c.hasTag(Tags.DRAGON))
+			
+			for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
 			{
-				DuelistCard dragC = (DuelistCard)c;
-				dragC.changeTributesInBattle(-this.evokeAmount, true);
+				if (c.hasTag(Tags.DRAGON))
+				{
+					DuelistCard dragC = (DuelistCard)c;
+					dragC.changeTributesInBattle(-this.evokeAmount, true);
+				}
 			}
+			if (DuelistMod.debug) { System.out.println("theDuelist:Fire --- > triggered evoke!"); }
 		}
-		if (DuelistMod.debug) { System.out.println("theDuelist:Fire --- > triggered evoke!"); }
 	}
 
 	@Override
@@ -90,7 +93,7 @@ public class FireOrb extends DuelistOrb
 
 	public void triggerPassiveEffect(DuelistCard c)
 	{		
-		if (c.hasTag(Tags.DRAGON))
+		if (c.hasTag(Tags.DRAGON) && this.passiveAmount > 0)
 		{
 			DuelistCard dragC = (DuelistCard)c;
 			dragC.changeTributesInBattle(-this.passiveAmount, false);
@@ -140,6 +143,47 @@ public class FireOrb extends DuelistOrb
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 	
 	@Override

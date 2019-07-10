@@ -3,11 +3,13 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
+import duelistmod.actions.common.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
@@ -29,7 +31,7 @@ public class FrontierWiseman extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public FrontierWiseman() {
@@ -39,8 +41,26 @@ public class FrontierWiseman extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 2;
+		this.magicNumber = this.baseMagicNumber = 2;
 		this.isSummon = true;
 	}
+	
+	@Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Invert next orb
+            invert(1);
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
+    }
 
 	// Actions the card should do.
 	@Override
@@ -64,7 +84,7 @@ public class FrontierWiseman extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeSummons(1);
+			this.upgradeMagicNumber(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

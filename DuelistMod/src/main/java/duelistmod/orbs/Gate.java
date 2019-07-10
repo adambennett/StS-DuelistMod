@@ -1,6 +1,7 @@
 package duelistmod.orbs;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,9 +12,10 @@ import com.megacrit.cardcrawl.actions.defect.LightningOrbPassiveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
@@ -33,20 +35,20 @@ public class Gate extends DuelistOrb
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
 	private static ArrayList<DuelistCard> guardians = new ArrayList<DuelistCard>();
-	private int DAMAGE = 4;
-	private int BLOCK = 5;
-	private int SUMMONS = 2;
 	private int MANA = 1;
+	private int evokeIndex = 0;
+	private ArrayList<String> evokeDescriptions = new ArrayList<String>();
 	
 	public Gate()
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gate.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 4;
-		this.basePassiveAmount = this.passiveAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 4;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		this.evokeIndex = ThreadLocalRandom.current().nextInt(0, 3);
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		DuelistCard thunder = new SangaThunder();
@@ -55,38 +57,79 @@ public class Gate extends DuelistOrb
 		guardians.add(thunder); 
 		guardians.add(earth);
 		guardians.add(water);
+		checkFocus(false);
+		updateEvokeValues();
 	}
 
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + DAMAGE + DESC[1] + BLOCK + DESC[2] + SUMMONS + DESC[3];
+		updateEvokeValues();
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + (this.passiveAmount + 1) + DESC[2] + evokeDescriptions.get(evokeIndex);
+	}
+	
+	public void updateEvokeValues()
+	{
+		int block = (this.passiveAmount + 1) * 2;
+		int dmg = this.passiveAmount * 2;
+		evokeDescriptions = new ArrayList<String>();
+		evokeDescriptions.add(DESC[3]);
+		evokeDescriptions.add(DESC[4] + block + DESC[5]);
+		evokeDescriptions.add(DESC[6] + dmg + DESC[7]);
 	}
 
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard firstRandom = guardians.get(AbstractDungeon.cardRandomRng.random(guardians.size() - 1));
-		DuelistCard secondRandom = guardians.get(AbstractDungeon.cardRandomRng.random(guardians.size() - 1));
-		DuelistCard.summon(AbstractDungeon.player, 1, firstRandom);
-		DuelistCard.summon(AbstractDungeon.player, 1, secondRandom);
+		if (this.evokeAmount > 0)
+		{
+			switch (evokeIndex)
+			{
+				// Gain energy
+				case 0:
+					DuelistCard.gainEnergy(2);
+					break;
+				case 1:
+					DuelistCard.staticBlock((this.passiveAmount + 1) * 2);
+					break;
+				case 2:
+					AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, this.passiveAmount * 2, DamageInfo.DamageType.THORNS), this, true));
+					break;
+			}
+		}
 	}
 
 	@Override
 	public void onEndOfTurn()
 	{
-		
+		evokeIndex = AbstractDungeon.cardRandomRng.random(0, 2);
+		checkFocus(false);
+		updateDescription();
 	}
 	
 	@Override
 	public void onStartOfTurn()
 	{
-		AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS), this, true));
-		AbstractDungeon.actionManager.addToTop(new GainEnergyAction(this.MANA));
-		AbstractDungeon.actionManager.addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK, true));
+		if (!hasNegativeFocus())
+		{
+			AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), this, true));
+			DuelistCard.gainEnergy(this.MANA);
+			DuelistCard.staticBlock(this.passiveAmount + 1);
+		}
+		else if (this.passiveAmount > 0)
+		{
+			AbstractDungeon.actionManager.addToTop(new LightningOrbPassiveAction(new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), this, true));
+			DuelistCard.staticBlock(this.passiveAmount + 1);
+		}
+		else if (this.passiveAmount + 1 > 0)
+		{
+			DuelistCard.staticBlock(this.passiveAmount + 1);
+		}
+		
 	}
 
+	/*
 	private void triggerPassiveEffect(DamageInfo info, boolean hitAll)
 	{
 		float speedTime;
@@ -113,6 +156,7 @@ public class Gate extends DuelistOrb
 			
 		}
 	}
+	*/
 
 	@Override
 	public void triggerEvokeAnimation()
@@ -158,13 +202,7 @@ public class Gate extends DuelistOrb
 		// Render passive amount text
 		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
-	
-	@Override
-	public void checkFocus()
-	{
-
-	}
-	
+		
 	@Override
 	public AbstractOrb makeCopy()
 	{

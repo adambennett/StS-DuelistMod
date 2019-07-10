@@ -106,8 +106,7 @@ public class AcidTrapHole extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.isInnate = true;
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeMagicNumber(5); }
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

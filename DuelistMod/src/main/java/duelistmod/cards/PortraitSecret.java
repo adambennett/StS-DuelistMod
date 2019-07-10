@@ -68,7 +68,7 @@ public class PortraitSecret extends DuelistCard
 		if (handTribs.size() > 0)
 		{
 			DuelistCard pick = handTribs.get(AbstractDungeon.cardRandomRng.random(handTribs.size() - 1));
-			AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(pick, this.magicNumber, false));
+			AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(pick, this.magicNumber, true));
 		}
 		
 		applyPowerToSelf(new StrengthPower(p, this.magicNumber));

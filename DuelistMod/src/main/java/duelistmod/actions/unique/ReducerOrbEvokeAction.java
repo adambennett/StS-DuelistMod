@@ -53,11 +53,8 @@ public class ReducerOrbEvokeAction extends AbstractGameAction
     	ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
     	
     	// Add all spells and traps from hand to list
-    	for (AbstractCard c : AbstractDungeon.player.hand.group) { modCards.add(c); }
-    	
-    	// Remove all 0 cost spells and traps from list
-    	if (modCards.size() > 0) { for (int i = 0; i < modCards.size(); i++) { if (modCards.get(i).cost == 0) { modCards.remove(i); } } }
-    	
+    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if (c.cost > 0 && c.costForTurn > 0) { modCards.add(c); }}
+
     	// For the amount of times equal to power stacks, grab a random card from the remaining list and set cost to 0
     	// Do this until no cards remain in list, or iterations = power stacks
     	for (int i = 0; i < amount; i++)

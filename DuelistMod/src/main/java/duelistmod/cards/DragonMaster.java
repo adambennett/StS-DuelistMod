@@ -1,21 +1,16 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
 
 public class DragonMaster extends DuelistCard 
 {
@@ -64,7 +59,7 @@ public class DragonMaster extends DuelistCard
         	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA.originalName.equals("Gandora")) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON); }
         	String cardNameA = extraDragA.originalName;
         	if (DuelistMod.debug) { System.out.println("theDuelist:DragonMaster --- > Generated: " + cardNameA); }
-        	fullResummon(extraDragA, this.upgraded, m, false);
+        	fullResummon(extraDragA, false, m, false);
     	}
     }
 
@@ -79,7 +74,7 @@ public class DragonMaster extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(2);
+            this.upgradeTributes(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

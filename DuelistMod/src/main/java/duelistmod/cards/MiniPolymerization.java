@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
@@ -24,11 +26,11 @@ public class MiniPolymerization extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public MiniPolymerization() {
@@ -47,24 +49,13 @@ public class MiniPolymerization extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	boolean hitCreator = false;
-    	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	if (!upgraded) { for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add(a); }}}    	
-    	else { for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER)) { handCards.add(a); }}}
-    	if (handCards.size() > 0)
-    	{
-			for (int i = 0; i < this.magicNumber; i++)
-			{
-	    		AbstractCard summon = returnRandomFromArrayAbstract(handCards);
-	    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
-				if (cardCopy != null && !hitCreator)
-				{
-					if (!this.upgraded) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
-	    			else { DuelistCard.polyResummon(cardCopy, summon.upgraded, m, false); }
-				}
-				if (summon.originalName.equals("The Creator")) { hitCreator = true; if (DuelistMod.debug) { System.out.println("theDuelist:MiniPolymerization:use() ---> hitCreator triggered and set to true"); } }
-			}
-    	}
+    	ArrayList<DuelistCard> handCards = new ArrayList<DuelistCard>();
+		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
+		if (handCards.size() > 0)
+		{
+			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, handCards.size(), false, false, m, false)); }
+			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, this.magicNumber, false, false, m, false)); }    		
+		}  
     }
 
     // Which card to return when making a copy of this card.
@@ -79,7 +70,7 @@ public class MiniPolymerization extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -16,7 +16,7 @@ import duelistmod.powers.*;
 public class CastleDarkIllusions extends DuelistCard 
 {
     // TEXT DECLARATION 
-    public static final String ID = duelistmod.DuelistMod.makeID("CastleDarkIllusions");
+    public static final String ID = DuelistMod.makeID("CastleDarkIllusions");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.CASTLE_DARK);
     public static final String NAME = cardStrings.NAME;
@@ -40,6 +40,7 @@ public class CastleDarkIllusions extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.isCastle = true;
     }
 
@@ -49,11 +50,9 @@ public class CastleDarkIllusions extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, true))); }
-    	else {  AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, false))); }
+    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, this.magicNumber)));
     }
-
-
+    
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -65,7 +64,7 @@ public class CastleDarkIllusions extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(3);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -130,20 +129,13 @@ public class CastleDarkIllusions extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, true))); }
-    	else {  AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, false))); }
+		
 	}
 
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	if (this.upgraded) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, true))); }
-    	else {  AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CastlePower(p, p, false))); }
 		
 	}
 

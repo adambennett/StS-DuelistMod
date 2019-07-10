@@ -25,7 +25,7 @@ public class GiftAnubis extends CustomRelic implements ClickableRelic
     @Override
     public void onEquip()
     {
-    	this.counter = 2;
+    	this.counter = 1;
     }
     
     @Override
@@ -34,7 +34,7 @@ public class GiftAnubis extends CustomRelic implements ClickableRelic
         if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) 
         {
             flash();
-            setCounter(counter + 3);
+            setCounter(counter + 2);
         }
     }
     

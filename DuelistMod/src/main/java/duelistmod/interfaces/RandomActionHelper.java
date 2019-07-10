@@ -196,11 +196,13 @@ public class RandomActionHelper
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#ySummon #b1":
-				DuelistCard.summon(AbstractDungeon.player, 1, new Token("Glitch Token"));
+				DuelistCard randomToken = (DuelistCard) DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeCopy();
+				DuelistCard.summon(AbstractDungeon.player, 1, randomToken);
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#ySummon #b2":
-				DuelistCard.summon(AbstractDungeon.player, 2, new Token("Glitch Token"));
+				DuelistCard randomTokenB = (DuelistCard) DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeCopy();
+				DuelistCard.summon(AbstractDungeon.player, 2, randomTokenB);
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#yIncrement #b1":
@@ -259,7 +261,7 @@ public class RandomActionHelper
 				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
 				break;
 			case "Gain #b1 Max HP":
-				AbstractDungeon.player.maxHealth += 1;
+				AbstractDungeon.player.increaseMaxHp(1, true);
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			default:

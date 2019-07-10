@@ -10,7 +10,6 @@ import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 
 public class GemKnightAmethyst extends DuelistCard 
 {
@@ -29,7 +28,7 @@ public class GemKnightAmethyst extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
+	private static final int COST = 2;
 	// /STAT DECLARATION/
 
 	public GemKnightAmethyst() {
@@ -65,7 +64,7 @@ public class GemKnightAmethyst extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeTributes(-1);
+			this.upgradeTributes(-2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

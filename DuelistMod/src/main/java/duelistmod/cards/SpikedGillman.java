@@ -10,7 +10,6 @@ import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 
 public class SpikedGillman extends DuelistCard 
 {
@@ -72,7 +71,8 @@ public class SpikedGillman extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.magicNumber < 10) { return true; }
+    	else { return false; }
     }
 
 	@Override

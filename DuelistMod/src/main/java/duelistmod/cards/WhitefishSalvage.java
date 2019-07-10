@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -26,16 +25,17 @@ public class WhitefishSalvage extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public WhitefishSalvage() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
+        this.magicNumber = this.baseMagicNumber = 3;
         this.exhaust = true;
     }
 
@@ -44,19 +44,18 @@ public class WhitefishSalvage extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> aquas = new ArrayList<DuelistCard>();
-    	for (AbstractCard c : p.exhaustPile.group)
+    	for (int i = 0; i < (getMaxSummons(p)/this.magicNumber); i++)
     	{
-    		if (c.hasTag(Tags.AQUA) && c.hasTag(Tags.MONSTER))
-    		{
-    			aquas.add((DuelistCard)c);
-    		}
+    		DuelistCard randAqua = (DuelistCard)returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER);
+    		while (randAqua.hasTag(Tags.EXEMPT) || randAqua.hasTag(Tags.NEVER_GENERATE)) { randAqua = (DuelistCard)returnTrulyRandomFromSets(Tags.AQUA, Tags.MONSTER); }
+    		aquas.add(randAqua);
     	}
     	
     	if (aquas.size() > 0)
     	{
     		for (DuelistCard c : aquas)
     		{
-    			fullResummon((DuelistCard)c.makeStatEquivalentCopy(), false, AbstractDungeon.getRandomMonster(), false);
+    			fullResummon((DuelistCard)c.makeStatEquivalentCopy(), false, m, false);
     		}
     	}
     }

@@ -29,13 +29,13 @@ public class ToonDefense extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ToonDefense() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 18;
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 3;
         this.toon = true;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.TOON);
@@ -83,7 +83,8 @@ public class ToonDefense extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.block < 30) { return true; }
+    	else { return false; }
     }
 
 	// If player doesn't have enough summons, can't play card

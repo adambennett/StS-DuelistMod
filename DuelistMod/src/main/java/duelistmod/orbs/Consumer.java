@@ -44,7 +44,7 @@ public class Consumer extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -58,22 +58,25 @@ public class Consumer extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		int tribs = DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
-		BuffHelper.resetRandomBuffs(tribs);
-		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, tribs, false);
+		if (!hasNegativeFocus())
+		{
+			int tribs = DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
+			BuffHelper.resetRandomBuffs(tribs);
+			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, tribs, false);
+		}		
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
 		AbstractPlayer p = AbstractDungeon.player;		
-		if (DuelistCard.getSummons(p) >= this.passiveAmount)
+		if (DuelistCard.getSummons(p) >= this.passiveAmount && this.passiveAmount > 0)
 		{
 			this.triggerPassiveEffect();
 		}		

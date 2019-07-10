@@ -34,6 +34,7 @@ public class ThousandEyesIdol extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
+		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tributes = this.baseTributes = 1;
 		this.originalName = this.name;
 

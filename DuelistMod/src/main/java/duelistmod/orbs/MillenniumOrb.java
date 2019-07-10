@@ -55,7 +55,7 @@ public class MillenniumOrb extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class MillenniumOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (StarterDeckSetup.isDeckArchetype())
+		if (StarterDeckSetup.isDeckArchetype() && !hasNegativeFocus())
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
 			ArrayList<String> deckCardNames = new ArrayList<String>();
@@ -89,7 +89,7 @@ public class MillenniumOrb extends DuelistOrb
 			//int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
 			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 3, 0, 2, 0, 1));
 		}
-		else
+		else if (!hasNegativeFocus())
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
 			ArrayList<String> deckCardNames = new ArrayList<String>();
@@ -114,13 +114,13 @@ public class MillenniumOrb extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		triggerPassiveEffect();
+		if (this.passiveAmount > 0) { triggerPassiveEffect(); }
 	}
 
 	public void triggerPassiveEffect()
@@ -129,11 +129,18 @@ public class MillenniumOrb extends DuelistOrb
 	}
 	
 	@Override
-	public void checkFocus()
+	public void checkFocus(boolean allowNegativeFocus)
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
-			this.baseEvokeAmount = setEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			if (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0 || AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + setEvoke > 0)
+			{
+				this.baseEvokeAmount = setEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
 		}
 		else 
 		{

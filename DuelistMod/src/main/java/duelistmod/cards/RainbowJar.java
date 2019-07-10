@@ -37,14 +37,15 @@ public class RainbowJar extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.TRAP);
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> types = generateTypeCards(0, true);    	
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false));
+    	ArrayList<DuelistCard> types = generateTypeCards(this.magicNumber, true);    	
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     }
 
     // Which card to return when making a copy of this card.
@@ -58,7 +59,7 @@ public class RainbowJar extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

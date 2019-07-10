@@ -2,9 +2,10 @@ package duelistmod.interfaces;
 
 import java.util.*;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 
-import duelistmod.*;
+import duelistmod.Tags;
 
 public class StarterDeck 
 {
@@ -14,8 +15,8 @@ public class StarterDeck
 	private String name;
 	private String simpleName;
 	private ArrayList<DuelistCard> deck = new ArrayList<DuelistCard>();
-	private ArrayList<DuelistCard> poolCards = new ArrayList<DuelistCard>();
-	private ArrayList<DuelistCard> archetypeCards = new ArrayList<DuelistCard>();
+	private ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
+	private ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
 	private static Map<CardTags, Integer> deckCopiesMap = new HashMap<CardTags, Integer>();
 	private int index;
 	private boolean fullPool = false;
@@ -151,28 +152,28 @@ public class StarterDeck
 		this.fullPool = fullPool;
 	}
 
-	public ArrayList<DuelistCard> getPoolCards() {
+	public ArrayList<AbstractCard> getPoolCards() {
 		return poolCards;
 	}
 
-	public void setPoolCards(ArrayList<DuelistCard> poolCards) {
+	public void setPoolCards(ArrayList<AbstractCard> poolCards) {
 		this.poolCards = poolCards;
 	}
 	
-	public void fillPoolCards(ArrayList<DuelistCard> poolCards)
+	public void fillPoolCards(ArrayList<AbstractCard> poolCards)
 	{
 		this.poolCards.addAll(poolCards);
 	}
 
-	public ArrayList<DuelistCard> getArchetypeCards() {
+	public ArrayList<AbstractCard> getArchetypeCards() {
 		return archetypeCards;
 	}
 
-	public void setArchetypeCards(ArrayList<DuelistCard> archetypeCards) {
+	public void setArchetypeCards(ArrayList<AbstractCard> archetypeCards) {
 		this.archetypeCards = archetypeCards;
 	}
 	
-	public void fillArchetypeCards(ArrayList<DuelistCard> archetypeCards)
+	public void fillArchetypeCards(ArrayList<AbstractCard> archetypeCards)
 	{
 		this.archetypeCards.addAll(archetypeCards);
 	}

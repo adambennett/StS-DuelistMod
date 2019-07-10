@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
+import duelistmod.actions.unique.CallMummyAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
@@ -48,12 +49,25 @@ public class CallMummy extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	ArrayList<DuelistCard> handCards = new ArrayList<DuelistCard>();
-		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
-		if (handCards.size() > 0)
-		{
-			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, handCards.size(), false, false, m)); }
-			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, this.magicNumber, false, false, m)); }    		
-		}    	
+    	if (upgraded)
+    	{
+    		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
+    		if (handCards.size() > 0)
+    		{			
+    			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CallMummyAction(handCards, handCards.size(), false, false, m, false)); }
+    			else { AbstractDungeon.actionManager.addToTop(new CallMummyAction(handCards, this.magicNumber, false, false, m, false)); }    			
+    		}  
+    	}
+    	else
+    	{
+    		for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.MONSTER) && !a.hasTag(Tags.EXEMPT)) { handCards.add((DuelistCard) a.makeStatEquivalentCopy()); }}
+    		if (handCards.size() > 0)
+    		{			
+    			if (handCards.size() < this.magicNumber) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, handCards.size(), false, false, m, false)); }
+    			else { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(handCards, this.magicNumber, false, false, m, false)); }    			
+    		}  
+    	}
+		  	
     }
 
     // Which card to return when making a copy of this card.
@@ -70,8 +84,6 @@ public class CallMummy extends DuelistCard
         	// Name
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic) { this.exhaust = false; this.upgradeBaseCost(1); }
-        	else { this.exhaust = false; }
         	this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }        

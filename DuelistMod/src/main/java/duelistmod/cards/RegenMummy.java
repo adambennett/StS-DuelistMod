@@ -36,6 +36,7 @@ public class RegenMummy extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.EXEMPT);
+        this.tags.add(Tags.NEVER_EXHAUST);
         this.magicNumber = this.baseMagicNumber = 2;
         this.baseTributes = this.tributes = 1;
         this.originalName = this.name;

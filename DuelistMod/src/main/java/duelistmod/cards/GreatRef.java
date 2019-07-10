@@ -1,16 +1,14 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 
 public class GreatRef extends DuelistCard 
 {
@@ -28,15 +26,14 @@ public class GreatRef extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public GreatRef() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 15;
-        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 50;
-        this.tributes = this.baseTributes = 2;
+        this.baseDamage = this.damage = 30;
+        this.poisonAmt = this.baseMagicNumber = this.magicNumber = 30;
+        this.tributes = this.baseTributes = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NOT_ADDED);
         this.originalName = this.name;
@@ -47,10 +44,7 @@ public class GreatRef extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
-    	applyPower(new PoisonPower(m, p, this.poisonAmt), m);
-    	if (upgraded) { addCardToHand(new PetitMoth()); }
+    	
     }
 
     // Which card to return when making a copy of this card.
@@ -64,6 +58,8 @@ public class GreatRef extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(5);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

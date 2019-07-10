@@ -2,7 +2,6 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,7 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -98,7 +97,7 @@ public class GrossGhost extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(-1);
+			//this.upgradeMagicNumber(-1);
 			this.upgradeBaseCost(0);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();

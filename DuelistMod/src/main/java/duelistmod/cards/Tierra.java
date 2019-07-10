@@ -32,14 +32,14 @@ public class Tierra extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public Tierra() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tributes = this.baseTributes = 2;
 		this.magicNumber = this.baseMagicNumber = 2;
-		this.damage = this.baseDamage = 30;
+		this.damage = this.baseDamage = 32;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
 		this.misc = 0;
@@ -128,7 +128,7 @@ public class Tierra extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeMagicNumber(-1);
-			this.upgradeDamage(5);
+			this.upgradeDamage(6);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

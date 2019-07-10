@@ -80,6 +80,7 @@ public class MillenniumPuzzle extends CustomRelic {
 			getDeckDesc();
 		}
 		PuzzleHelper.atBattleStartHelper(summons, extra);
+		getDeckDesc();
 	}
 
 	@Override
@@ -142,98 +143,99 @@ public class MillenniumPuzzle extends CustomRelic {
 				break;
 			// Dragon Deck
 			case 1:
-				localdesc = DESCRIPTIONS[3] + AbstractDungeon.actNum + DESCRIPTIONS[4];
+				if (AbstractDungeon.actNum == 0) { localdesc = DESCRIPTIONS[3] + 1 + DESCRIPTIONS[4]; }
+				else { localdesc = DESCRIPTIONS[3] + AbstractDungeon.actNum + DESCRIPTIONS[4];}
 				break;
 	
 			// Nature Deck
-			case 2:				
-				localdesc = DESCRIPTIONS[5];
+			case 2:			
+				if (AbstractDungeon.actNum == 0) { localdesc = DESCRIPTIONS[5] + 1 + DESCRIPTIONS[6]; }
+				else { localdesc = DESCRIPTIONS[5] + AbstractDungeon.actNum + DESCRIPTIONS[6]; }
 				break;
 	
 			// Spellcaster Deck
 			case 3:
-				localdesc = DESCRIPTIONS[6];
+				localdesc = DESCRIPTIONS[7] + DuelistMod.currentSpellcasterOrbChance + DESCRIPTIONS[8];
 				break;
 				
 			// Toon Deck
 			case 4:		
-				localdesc = DESCRIPTIONS[7];
+				localdesc = DESCRIPTIONS[9];
 				break;
 				
 			// Zombie Deck
 			case 5:		
-				localdesc = DESCRIPTIONS[8];
+				localdesc = DESCRIPTIONS[10];
 				break;
 				
 			// Aqua Deck
 			case 6:		
-				if (AbstractDungeon.actNum < 2) { localdesc = DESCRIPTIONS[9] + AbstractDungeon.actNum + DESCRIPTIONS[10]; }
-				else { localdesc = DESCRIPTIONS[9] + AbstractDungeon.actNum + DESCRIPTIONS[11]; }
+				localdesc = DESCRIPTIONS[11];
 				break;
 	
 			// Fiend Deck
 			case 7:		
-				localdesc = DESCRIPTIONS[12];
+				localdesc = DESCRIPTIONS[14];
 				break;
 	
 			// Machine Deck
 			case 8:		
-				localdesc = DESCRIPTIONS[13];
+				localdesc = DESCRIPTIONS[15];
 				break;
 				
 			// Superheavy Deck
 			case 9:		
-				localdesc = DESCRIPTIONS[14];
+				localdesc = DESCRIPTIONS[16];
 				break;
 				
 			// Creator Deck
 			case 10:
-				localdesc = DESCRIPTIONS[15];
+				localdesc = DESCRIPTIONS[17];
 				break;
 			
 			// Ojama Deck
 			case 11:
-				localdesc = DESCRIPTIONS[16];
+				localdesc = DESCRIPTIONS[18];
 				break;
 	
 			// Generation Deck
 			case 12:
-				localdesc = DESCRIPTIONS[17];
+				localdesc = DESCRIPTIONS[19];
 				break;	
 				
 			// Orb Deck
 			case 13:
-				localdesc = DESCRIPTIONS[18];
+				localdesc = DESCRIPTIONS[20];
 				break;
 			
 			// Resummon Deck
 			case 14:				
-				localdesc = DESCRIPTIONS[19];
+				localdesc = DESCRIPTIONS[21];
 				break;
 					
 			// Increment Deck
 			case 15:
-				localdesc = DESCRIPTIONS[20];
+				localdesc = DESCRIPTIONS[22];
 				break;
 				
 			// Exodia Deck
 			case 16:
-				localdesc = DESCRIPTIONS[21];
+				localdesc = DESCRIPTIONS[23];
 				break;	
 			
 			// Heal Deck
 			case 17:
-				localdesc = DESCRIPTIONS[22];
+				localdesc = DESCRIPTIONS[24];
 				break;	
 	
 			// Random (Small) Deck
 			case 18:
-				localdesc = DESCRIPTIONS[23];
+				localdesc = DESCRIPTIONS[25];
 				break;
 	
 			// Random (Big) Deck
 			case 19:
-				localdesc = DESCRIPTIONS[24];
+				localdesc = DESCRIPTIONS[26];
 				break;
 	
 			// Generic

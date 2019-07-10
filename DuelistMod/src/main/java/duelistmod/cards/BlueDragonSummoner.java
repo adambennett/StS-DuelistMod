@@ -61,7 +61,7 @@ public class BlueDragonSummoner extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeBaseCost(0);
-			if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeSummons(1); }
+			this.upgradeSummons(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

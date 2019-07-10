@@ -37,8 +37,9 @@ public class DarkEnergy extends DuelistCard
     public DarkEnergy() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.baseDamage = this.damage = 6;
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();

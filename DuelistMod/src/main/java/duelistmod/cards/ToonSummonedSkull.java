@@ -35,7 +35,6 @@ public class ToonSummonedSkull extends DuelistCard
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 2;
 	private static final int DAMAGE = 20;
-	private static final int U_DMG = 5;
 	// /STAT DECLARATION/
 
 	public ToonSummonedSkull() {
@@ -50,7 +49,7 @@ public class ToonSummonedSkull extends DuelistCard
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
-		this.tributes = this.baseTributes = 1;
+		this.tributes = this.baseTributes = 2;
 		this.baseMagicNumber = this.magicNumber = 2;
 	}
 
@@ -74,8 +73,7 @@ public class ToonSummonedSkull extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeDamage(U_DMG);
-			this.upgradeMagicNumber(1);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

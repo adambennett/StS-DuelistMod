@@ -29,7 +29,7 @@ public class MillenniumToken extends CustomRelic {
 	public boolean cardSelected = false;
 
 	public MillenniumToken() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SPECIAL, LandingSound.MAGICAL);
 	}
 	
 	@Override

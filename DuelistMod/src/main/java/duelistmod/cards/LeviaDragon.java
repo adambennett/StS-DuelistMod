@@ -51,7 +51,7 @@ public class LeviaDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	applyPowerToSelf(new LeviaDragonPower(p, p, this.magicNumber, 2));
+    	applyPowerToSelf(new LeviaDragonPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -82,7 +82,8 @@ public class LeviaDragon extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.magicNumber < 6) { return true; }
+    	else { return false; }
     }
     
     // If player doesn't have enough summons, can't play card

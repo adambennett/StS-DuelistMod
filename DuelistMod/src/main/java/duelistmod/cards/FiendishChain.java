@@ -49,7 +49,7 @@ public class FiendishChain extends DuelistCard
 		block(this.block);
 		for (AbstractCard c : p.hand.group)
 		{
-			if (c instanceof DuelistCard && !c.uuid.equals(this.uuid))
+			if (c instanceof DuelistCard && !c.uuid.equals(this.uuid) && c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.TOKEN))
 			{
 				DuelistCard dC = (DuelistCard)c;
 				if (dC.tributes > 0)

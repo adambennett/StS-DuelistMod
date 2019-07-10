@@ -4,12 +4,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 
@@ -50,6 +52,20 @@ public class MythicalBeast extends DuelistCard
     	int damageExtra = DuelistMod.spellCombatCount * this.magicNumber;
     	attack(m, AFX, this.damage + damageExtra); 
     }
+    
+    @Override
+	public void update()
+	{
+		super.update();
+		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		{
+			this.secondMagic = this.baseSecondMagic = (DuelistMod.spellCombatCount * this.magicNumber) + this.damage;	
+		}
+		else
+		{
+			this.secondMagic = 0;
+		}			
+	}
 
     @Override
     public AbstractCard makeCopy() {

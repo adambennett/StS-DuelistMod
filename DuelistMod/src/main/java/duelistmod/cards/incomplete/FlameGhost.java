@@ -41,6 +41,7 @@ public class FlameGhost extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
     }
 
     @Override

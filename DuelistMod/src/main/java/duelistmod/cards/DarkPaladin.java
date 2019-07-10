@@ -32,7 +32,7 @@ public class DarkPaladin extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_DIAGONAL;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int DAMAGE = 24;
     // /STAT DECLARATION/
 
@@ -53,7 +53,7 @@ public class DarkPaladin extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, this.magicNumber, false, false, false));
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, this.magicNumber, false, false, false, false));
     	
     	/*
     	if (DuelistMod.orbCards.size() > 5)

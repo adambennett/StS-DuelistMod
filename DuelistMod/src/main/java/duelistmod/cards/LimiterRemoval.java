@@ -35,6 +35,7 @@ public class LimiterRemoval extends DuelistCard
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.PHARAOH_SERVANT);
     }
 
     // Actions the card should do.

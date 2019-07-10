@@ -38,6 +38,7 @@ public class Pumprincess extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.REDUCED);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
+        this.tags.add(Tags.ZOMBIE);
         this.startingOPRDeckCopies = 1;
         this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
@@ -50,7 +51,7 @@ public class Pumprincess extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, this.upgraded, m, this.uuid));
+    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m, this.uuid));
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +65,7 @@ public class Pumprincess extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

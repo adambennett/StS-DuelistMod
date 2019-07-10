@@ -7,10 +7,11 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
+import duelistmod.cards.typecards.CancelCard;
 import duelistmod.interfaces.DuelistCard;
 
 public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
@@ -190,6 +191,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 				tmp.addToTop(gridCard);
 			}
 			
+			tmp.addToBottom(new CancelCard());
 			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
 			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
 			tickDuration();

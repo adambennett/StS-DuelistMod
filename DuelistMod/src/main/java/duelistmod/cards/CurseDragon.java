@@ -33,7 +33,6 @@ public class CurseDragon extends DuelistCard
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     private static final int DAMAGE = 14;
-    private static final int UPGRADE_PLUS_DMG = 6;
     // /STAT DECLARATION/
 
     public CurseDragon() {
@@ -53,6 +52,7 @@ public class CurseDragon extends DuelistCard
         this.originalName = this.name;
         this.setupStartingCopies();
         this.tributes = this.baseTributes = 1;
+        this.magicNumber = this.baseMagicNumber = 5;
     }
 
     // Actions the card should do.
@@ -69,7 +69,7 @@ public class CurseDragon extends DuelistCard
     		}
     	}
     	attack(m, AFX, this.damage);
-    	if (dragons > 0) { heal(p, dragons * 5); }
+    	if (dragons > 0) { heal(p, dragons * this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.
@@ -83,7 +83,7 @@ public class CurseDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

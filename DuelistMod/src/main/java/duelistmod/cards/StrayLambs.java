@@ -40,8 +40,8 @@ public class StrayLambs extends DuelistCard
     public StrayLambs() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.summons = this.baseSummons = 1;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.summons = this.baseSummons = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.INVASION_CHAOS);
         this.tags.add(Tags.ALL);
@@ -69,7 +69,7 @@ public class StrayLambs extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

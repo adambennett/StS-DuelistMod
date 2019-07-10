@@ -41,17 +41,22 @@ public class DarknessNeospherePower extends TwoAmountPower
 
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
-	{
-    	if (isPlayer)
-    	{
+	{    	
+    	// If strength down turns remaining, remove 1 strength from all alive enemies
+		if (amount > 0)
+		{
 	    	for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 			{
 	    		if (!m.isDeadOrEscaped() && !m.isDying)
 	    		{
-	    			DuelistCard.applyPower(new StrengthPower(m, -2), m);
+	    			DuelistCard.applyPower(new StrengthPower(m, -1), m);
 	    		}
 			}
-	    	
+		}
+    	
+		// If tribute up turns remaining, increase all tribute monsters in draw pile tribute cost by 1
+		if (amount2 > 0)
+		{
 	    	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 	    	{
 	    		if (c instanceof DuelistCard)
@@ -59,24 +64,75 @@ public class DarknessNeospherePower extends TwoAmountPower
 	    			DuelistCard dC = (DuelistCard)c;
 	    			if (dC.baseTributes > 0)
 	    			{
-	    				AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, this.amount2, true));
+	    				AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, 1, true));
 	    			}
 	    		}
 	    	}
+		}
+		
+		// Decrement either amount if it is positive
+    	if (this.amount > 0) 	{ this.amount--; 	}
+    	if (this.amount2 > 0) 	{ this.amount2--; 	}
+    	
+    	// If both effects turns have ended, remove this power
+    	if (this.amount < 1 && this.amount2 < 1)
+    	{
+    		DuelistCard.removePower(this, this.owner);
     	}
     
+    	this.updateDescription();
     }
     
     @Override
 	public void updateDescription() 
     {
-    	if (this.amount2 == 1)
+    	String pluralStr = DESCRIPTIONS[1];
+    	String pluralTrib = DESCRIPTIONS[2];
+    	String singStr = DESCRIPTIONS[3];
+    	String singTrib = DESCRIPTIONS[4];
+    	
+    	// Both plural
+    	if (this.amount2 > 1 && this.amount > 1)
     	{
-    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[2];
+    		this.description = DESCRIPTIONS[0] + this.amount + pluralStr + this.amount2 + pluralTrib;
     	}
+    	
+    	// Tribute turns remaining is singular, strength down turns is plural
+    	else if (this.amount2 == 1 && this.amount > 1)
+    	{
+    		this.description = DESCRIPTIONS[0] + this.amount + pluralStr + this.amount2 + singTrib;
+    	}
+    	
+    	// Tribute turns remaining is plural, strength down turns remaining is singular
+    	else if (this.amount2 > 1 && this.amount == 1)
+    	{
+    		this.description = DESCRIPTIONS[0] + this.amount + singStr + this.amount2 + pluralTrib;
+    	}
+    	
+    	else if (this.amount2 == 0 && this.amount > 1)
+    	{
+    		this.description = DESCRIPTIONS[0] + this.amount + pluralStr;
+    	}
+    	
+    	else if (this.amount == 0 && this.amount2 > 1)
+    	{
+    		this.description = DESCRIPTIONS[0] + this.amount2 + pluralTrib;
+    	}
+    	
+    	else if (this.amount2 == 0 && this.amount == 1)
+    	{
+    		this.description = DESCRIPTIONS[0] + this.amount + singStr;
+    	}
+    	
+    	else if (this.amount == 0 && this.amount2 == 1)
+    	{
+    		this.description = DESCRIPTIONS[0] + this.amount2 + singTrib;
+    	}
+    	
+    	// Both singular
     	else
     	{
-    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[3];
+    		this.description = DESCRIPTIONS[0] + this.amount + singStr + this.amount2 + singTrib;
     	}
     }
 }

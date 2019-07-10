@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.unique.PlayFromDiscardAction;
+import duelistmod.actions.unique.ResummonFromDiscardAction;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 
@@ -47,7 +47,7 @@ public class MonsterReborn extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		AbstractDungeon.actionManager.addToTop(new PlayFromDiscardAction(this.magicNumber, this.upgraded, m));
+		AbstractDungeon.actionManager.addToTop(new ResummonFromDiscardAction(this.magicNumber, this.upgraded, m));
 	}
 
 	// Which card to return when making a copy of this card.

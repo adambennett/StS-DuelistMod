@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
@@ -43,7 +44,7 @@ public class Air extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 	
 	@Override
@@ -58,15 +59,17 @@ public class Air extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		//AbstractDungeon.player.increaseMaxOrbSlots(this.evokeAmount, true);
-		AbstractDungeon.actionManager.addToTop(new IncreaseMaxOrbAction(this.evokeAmount));
-		if (DuelistMod.debug) { System.out.println("air orb evoked, gained orb slot. orb slots: " + AbstractDungeon.player.maxOrbs); }
+		if (!hasNegativeFocus())
+		{
+			AbstractDungeon.actionManager.addToTop(new IncreaseMaxOrbAction(this.evokeAmount));
+			if (DuelistMod.debug) { System.out.println("air orb evoked, gained orb slot. orb slots: " + AbstractDungeon.player.maxOrbs); }
+		}
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -76,7 +79,7 @@ public class Air extends DuelistOrb
 		{
 			this.triggerPassiveEffect();
 		}
-		else
+		else if (!hasNegativeFocus())
 		{
 			applyFocus();
 			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
@@ -138,27 +141,28 @@ public class Air extends DuelistOrb
 	{
 		
 	}
-
+	
 	@Override
-	public AbstractOrb makeCopy()
+	public void checkFocus(boolean a)
 	{
-		return new Air();
+		
 	}
 	
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{
 		// Render evoke amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		// Render passive amount text
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
-	
+
 	@Override
-	public void checkFocus()
+	public AbstractOrb makeCopy()
 	{
-		applyFocus();
-		updateDescription();
+		return new Air();
 	}
-	
+
 	@Override
 	public void applyFocus() 
 	{

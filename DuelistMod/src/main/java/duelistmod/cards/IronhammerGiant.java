@@ -72,7 +72,7 @@ public class IronhammerGiant extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeDamage(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

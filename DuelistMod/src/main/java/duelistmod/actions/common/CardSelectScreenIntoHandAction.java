@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
+import duelistmod.cards.typecards.CancelCard;
 import duelistmod.interfaces.DuelistCard;
 
 public class CardSelectScreenIntoHandAction extends AbstractGameAction
@@ -37,7 +38,9 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	private boolean sendExtraToDiscard = false;
 	private boolean damageBlockRandomize = false;
 	private boolean dontTrig = false;
+	private boolean canCancel = false;
   
+	// Cloning, Wiretap, Red/Yellow/Green Gadgets, Grand Spellbook Tower
 	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
 	{
 		this.p = AbstractDungeon.player;
@@ -49,68 +52,10 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.cards = cardsToChooseFrom;
 		this.randomize = false;
 		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.canCancel = true;
 	}
 	
-	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, boolean randomize, boolean combat)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
-		this.randomize = randomize;
-		this.exhaustCheck = true;
-		this.etherealCheck = true;
-		this.costChangeCheck = true;
-		this.summonCheck = true;
-		this.tributeCheck = true;
-		this.lowCostRoll = 1;
-		this.highCostRoll = 5;
-		this.lowSummonRoll = 0;
-		this.highSummonRoll = 2;
-		this.lowTributeRoll = 0;
-		this.highTributeRoll = 1;
-		this.summonChangeCombatCheck = combat;
-		this.tributeChangeCombatCheck = combat;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
-	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
-		this.randomize = true;
-		this.exhaustCheck = exhaust;
-		this.etherealCheck = ethereal;
-		this.costChangeCheck = costChange;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
-	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck)
-	{
-		this.p = AbstractDungeon.player;
-		setValues(this.p, AbstractDungeon.player, 1);
-		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
-		this.duration = Settings.ACTION_DUR_MED;
-		this.upgrade = upgraded;
-		this.amount = amount;
-		this.cards = cardsToChooseFrom;
-		this.randomize = true;
-		this.exhaustCheck = exhaust;
-		this.etherealCheck = ethereal;
-		this.costChangeCheck = costChange;
-		this.summonCheck = summonCheck;
-		this.tributeCheck = tributeCheck;
-		this.sendExtraToDiscard = sendExtraToDiscard;
-	}
-	
+	// Pot of the Forbidden
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
 	{
 		this.p = AbstractDungeon.player;
@@ -136,8 +81,10 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.tributeChangeCombatCheck = combat;
 		this.costChangeCombatCheck = combat;
 		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.canCancel = true;
 	}
 	
+	// Fairy Box
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon, boolean dontTrig)
 	{
 		this.p = AbstractDungeon.player;
@@ -164,8 +111,10 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.costChangeCombatCheck = combat;
 		this.sendExtraToDiscard = sendExtraToDiscard;
 		this.dontTrig = dontTrig;
+		this.canCancel = true;
 	}
 	
+	// Millennium orb evoke
 	public CardSelectScreenIntoHandAction(boolean randomizeDamageAndBlock, ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
 	{
 		this.p = AbstractDungeon.player;
@@ -192,6 +141,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.costChangeCombatCheck = combat;
 		this.sendExtraToDiscard = sendExtraToDiscard;
 		this.damageBlockRandomize = randomizeDamageAndBlock;
+		this.canCancel = false;
 	}
   
 	public void update()
@@ -297,14 +247,15 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    		
 		            gridCard.initializeDescription();
 				}
-				tmp.addToTop(gridCard);
+				tmp.addToBottom(gridCard);
 				if (DuelistMod.debug)
 				{
 					System.out.println("theDuelist:CreatorIncarnateAction:update() ---> added " + gridCard.originalName + " into grid selection pool");
 				}
 			}
-			
+	
 			Collections.sort(tmp.group, GridSort.getComparator());
+			if (this.canCancel) { tmp.addToBottom(new CancelCard()); }
 			if (this.amount >= tmp.group.size())
 			{
 				for (AbstractCard c : tmp.group)

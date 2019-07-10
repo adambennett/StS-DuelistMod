@@ -1,8 +1,6 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,9 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.actions.unique.PlayRandomFromDiscardAction;
+import duelistmod.actions.unique.PumpkingAction;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 
 public class Pumpking extends DuelistCard 
@@ -37,9 +35,11 @@ public class Pumpking extends DuelistCard
     public Pumpking() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 1;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.METAL_RAIDERS);
+        this.tags.add(Tags.ZOMBIE);
         this.misc = 0;
 		this.originalName = this.name;
     }
@@ -48,12 +48,8 @@ public class Pumpking extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	// Tribute and check for Castle of Dark Illusions
-    	int castleDarkMod = 0;
-    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	if (tributeList.size() > 0) { for (DuelistCard c : tributeList) { if (c.isCastle) { castleDarkMod += 3; }}}
-    	if (!upgraded) { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1 + castleDarkMod, true, m, this.uuid)); }
-    	else { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(2 + castleDarkMod, true, m, this.uuid)); }
+    	tribute(p, this.tributes, false, this);
+    	AbstractDungeon.actionManager.addToTop(new PumpkingAction(this.magicNumber, true, m, this.uuid));
     }
 
     // Which card to return when making a copy of this card.
@@ -67,7 +63,7 @@ public class Pumpking extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

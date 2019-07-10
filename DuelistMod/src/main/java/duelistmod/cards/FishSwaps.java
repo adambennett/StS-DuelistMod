@@ -1,6 +1,6 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -47,7 +47,7 @@ public class FishSwaps extends DuelistCard
     		if (c.hasTag(Tags.AQUA))
     		{
     			aquasExhausted++;
-    			AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.hand, true));
+    			AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(c, p.hand));
     		}
     	}
     	

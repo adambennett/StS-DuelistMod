@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
@@ -40,84 +41,58 @@ public class Mist extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Mist.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 4;
+		this.basePassiveAmount = this.passiveAmount = 3;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(true);
 	}
 
 	@Override
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.passiveAmount > 1) { this.description = DESC[0] + this.passiveAmount + DESC[2]; }
-		else { this.description = DESC[0] + this.passiveAmount + DESC[1]; }
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		int tokens = 0;
-		AbstractPlayer p = AbstractDungeon.player;
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-    	{
-	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
-	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-	    	for (DuelistCard s : aSummonsList)
-	    	{
-	    		if (s.hasTag(Tags.AQUA))
-	    		{
-	    			tokens++;
-	    		}
-	    		else
-	    		{
-	    			newSummonList.add(s.originalName);
-	    			aNewSummonList.add(s);
-	    		}
-	    	}
-	    	
-	    	DuelistCard.tributeChecker(AbstractDungeon.player, tokens, new Token(), false);
-	    	summonsInstance.summonList = newSummonList;
-	    	summonsInstance.actualCardSummonList = aNewSummonList;
-	    	summonsInstance.amount -= tokens;
-	    	summonsInstance.updateStringColors();
-	    	summonsInstance.updateDescription();
-	    	DuelistCard.applyRandomBuffPlayer(p, tokens, false);
-	    	for (int i = 0; i < tokens; i++)
-	    	{
-	    		DuelistCard tempCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.MONSTER);
-	    		DuelistCard.powerSummon(p, 1, tempCard.originalName, false);
-	    	}
+		if (this.evokeAmount > 0)
+		{
+			DuelistCard.decMaxSummons(AbstractDungeon.player, this.evokeAmount);
+		}
+		else if (this.evokeAmount < 0)
+		{
+			DuelistCard.incMaxSummons(AbstractDungeon.player, -this.evokeAmount);
 		}
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
-		checkFocus();
+		checkFocus(true);
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		triggerPassiveEffect();
+		triggerPassiveEffect(); 
 	}
 
 	private void triggerPassiveEffect()
 	{
-		for (int i = 0; i < this.passiveAmount; i++)
+		if (this.passiveAmount > 0)
 		{
-			DuelistCard randomAquaHand = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
-			DuelistCard randomAquaExhaust = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.AQUA);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomAquaHand, false, true, false, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
-			AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randomAquaExhaust, false, true, true, false, false, false, false, false, 0, 0, 0, 0, 0, 0));
+			DuelistCard.incMaxSummons(AbstractDungeon.player, this.passiveAmount);
+		}
+		else if (this.passiveAmount < 0)
+		{
+			DuelistCard.decMaxSummons(AbstractDungeon.player, -this.passiveAmount);
 		}
 	}
 
@@ -158,6 +133,28 @@ public class Mist extends DuelistOrb
 	{
 		
 	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;		
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
+	}
 
 	@Override
 	public AbstractOrb makeCopy()
@@ -169,7 +166,7 @@ public class Mist extends DuelistOrb
 	protected void renderText(SpriteBatch sb)
 	{	
 		// Render evoke amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
 	}

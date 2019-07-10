@@ -35,7 +35,7 @@ public class WhiteMagicalHat extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.METAL_RAIDERS);
-		this.summons = this.baseSummons = 1;
+		this.summons = this.baseSummons = 2;
 		this.originalName = this.name;
 
 	}

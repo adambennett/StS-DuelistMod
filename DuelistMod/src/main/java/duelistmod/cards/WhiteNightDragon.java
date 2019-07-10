@@ -31,7 +31,7 @@ public class WhiteNightDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int DAMAGE = 25;
     // /STAT DECLARATION/
 
@@ -43,7 +43,7 @@ public class WhiteNightDragon extends DuelistCard
         this.tags.add(Tags.DRAGON);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.

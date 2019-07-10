@@ -49,36 +49,22 @@ public class IcyCrevasse extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	boolean foundFrost = false;
-    	int noOfFrost = 0;
     	for (AbstractOrb o : player().orbs)
     	{
     		if (o instanceof Frost)
     		{
     			foundFrost = true;   
-    			noOfFrost++;
     		}
     	}
-    	if (!this.upgraded)
+    	if (!this.upgraded && foundFrost)
     	{
-	    	if (foundFrost)
-	    	{
-	    		int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-	    		if (roll == 1)
-	    		{
-	    			applyPowerToSelf(new FocusPower(p, 2));
-	    		}
-	    		else
-	    		{
-	    			applyPowerToSelf(new FocusPower(p, 1));
-	    		}
-	    	}
+    		int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+    		applyPowerToSelf(new FocusPower(p, roll));	    	
     	}
-    	else
+    	else if (foundFrost)
     	{
-    		if (foundFrost)
-	    	{
-	    		applyPowerToSelf(new FocusPower(p, noOfFrost));
-	    	}
+	    	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
+	    	applyPowerToSelf(new FocusPower(p, roll));
     	}
     }
 

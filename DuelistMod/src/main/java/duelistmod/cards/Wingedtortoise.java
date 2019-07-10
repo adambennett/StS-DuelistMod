@@ -39,7 +39,7 @@ public class Wingedtortoise extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 4;
 		this.block = this.baseBlock = 20;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 4;
+		this.tributes = this.baseTributes = 3;
 		this.isSummon = true;
 		this.setupStartingCopies();
 		
@@ -66,6 +66,7 @@ public class Wingedtortoise extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeBaseCost(0);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

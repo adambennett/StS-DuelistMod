@@ -1,18 +1,16 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 
 public class DarkBlade extends DuelistCard 
 {
@@ -40,8 +38,8 @@ public class DarkBlade extends DuelistCard
         this.tags.add(Tags.FIEND);
         this.originalName = this.name;
         this.isSummon = true;
-        this.baseDamage = this.damage = 8;
-        this.magicNumber = this.baseMagicNumber = 6;
+        this.baseDamage = this.damage = 10;
+        this.magicNumber = this.baseMagicNumber = 4;
     }
 
     // Actions the card should do.
@@ -66,8 +64,7 @@ public class DarkBlade extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
-            this.upgradeMagicNumber(-1);
+            this.upgradeMagicNumber(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

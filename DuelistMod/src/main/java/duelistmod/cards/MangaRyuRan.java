@@ -66,7 +66,7 @@ public class MangaRyuRan extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
+            this.upgradeDamage(6);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

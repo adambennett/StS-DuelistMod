@@ -186,7 +186,7 @@ public class Debug
 		
 		System.out.println("Common Basic Cards\n----------------------");
 		counter = 1;
-		for (DuelistCard c : DuelistMod.basicCards)
+		for (AbstractCard c : DuelistMod.basicCards)
 		{
 			if (c.rarity.equals(CardRarity.COMMON))
 			{
@@ -200,7 +200,7 @@ public class Debug
 		
 		System.out.println("Uncommon Basic Cards\n----------------------");
 		counter = 1;
-		for (DuelistCard c : DuelistMod.basicCards)
+		for (AbstractCard c : DuelistMod.basicCards)
 		{
 			if (c.rarity.equals(CardRarity.UNCOMMON))
 			{
@@ -214,7 +214,7 @@ public class Debug
 		
 		System.out.println("Rare Basic Cards\n----------------------");
 		counter = 1;
-		for (DuelistCard c : DuelistMod.basicCards)
+		for (AbstractCard c : DuelistMod.basicCards)
 		{
 			if (c.rarity.equals(CardRarity.RARE))
 			{
@@ -407,7 +407,7 @@ public class Debug
 	
 	public static void printNonBasicSetCards(ArrayList<DuelistCard> checkCards)
 	{
-		ArrayList<DuelistCard> archetypeCards = new ArrayList<DuelistCard>();
+		ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
 		ArrayList<DuelistCard> toPrint = new ArrayList<DuelistCard>();
 		for (StarterDeck s : DuelistMod.starterDeckList)
 		{

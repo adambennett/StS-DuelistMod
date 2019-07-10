@@ -69,7 +69,7 @@ public class JudgeMan extends DuelistCard
 	{
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeSummons(1);
+			this.upgradeDamage(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

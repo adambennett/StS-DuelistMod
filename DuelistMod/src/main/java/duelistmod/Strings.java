@@ -78,6 +78,19 @@ public class Strings
 	public static final String SKILL_DEFAULT_BLUE_PORTRAIT = "1024/bg_skill_default_blue.png";
 	// =============== /BLUE CARD BG/ =======================================================================================================================================================
 	
+	// =============== BLUE CARD BG =========================================================================================================================================================
+	public static final String ATTACK_DEFAULT_RED = "512/bg_attack_default_red.png";
+	public static final String POWER_DEFAULT_RED = "512/bg_power_default_red.png";
+	public static final String ENERGY_ORB_DEFAULT_RED = "512/card_default_red_orb.png";
+	public static final String CARD_ENERGY_ORB_RED = "512/card_small_orb_red.png";
+	public static final String ATTACK_DEFAULT_RED_PORTRAIT = "1024/bg_attack_default_red.png";
+	public static final String POWER_DEFAULT_RED_PORTRAIT = "1024/bg_power_default_red.png";
+	public static final String ENERGY_ORB_DEFAULT_RED_PORTRAIT = "1024/card_default_red_orb.png";
+	public static final String SKILL_DEFAULT_RED = "512/bg_skill_default_red.png";
+	public static final String SKILL_DEFAULT_RED_PORTRAIT = "1024/bg_skill_default_red.png";
+	// =============== /BLUE CARD BG/ =======================================================================================================================================================
+	
+	
 	// =============== CARD IMAGES =========================================================================================================================================================
 	public static final String ACID_TRAP = "cards/Acid_Trap_Hole.png";
 	public static final String ALPHA_MAGNET = "cards/Alpha_Magnet.png";
@@ -635,6 +648,9 @@ public class Strings
 	public static String configYamiFormB = "";
 	public static String configRainbow = "";
 	public static String configRainbowB = "";
+	public static String powerGain0Text = "";
+	public static String allowBaseGameCards = "";
+	public static String exodiaSoulbound = "";
 	// =============== /CONFIG STRINGS/ =======================================================================================================================================================
 
 }

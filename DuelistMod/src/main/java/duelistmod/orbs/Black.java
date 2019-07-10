@@ -41,7 +41,7 @@ public class Black extends DuelistOrb
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		checkFocus();
+		checkFocus(false);
 	}
 
 	@Override
@@ -61,27 +61,33 @@ public class Black extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		DuelistCard randomFiend = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.FIEND);
-		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomFiend, false, true, false, false, randomFiend.baseTributes > 0, randomFiend.baseSummons > 0, false, true, 0, 0, 0, this.evokeAmount, 0, this.evokeAmount));
+		if (!hasNegativeFocus())
+		{
+			DuelistCard randomFiend = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.FIEND);
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomFiend, false, true, false, false, randomFiend.baseTributes > 0, randomFiend.baseSummons > 0, false, true, 0, 0, 0, this.evokeAmount, 0, this.evokeAmount));
+		}
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
 		applyFocus();
-		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		if (!hasNegativeFocus())
 		{
-			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isEveryMonsterCheck(Tags.FIEND, false))
+			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
+			int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 			{
-				rollCheck += 4;
+				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (instance.isEveryMonsterCheck(Tags.FIEND, false))
+				{
+					rollCheck += 4;
+				}
 			}
-		}
-		if (roll < rollCheck)
-		{
-			this.triggerPassiveEffect();
+			if (roll < rollCheck)
+			{
+				this.triggerPassiveEffect();
+			}
 		}
 	}
 

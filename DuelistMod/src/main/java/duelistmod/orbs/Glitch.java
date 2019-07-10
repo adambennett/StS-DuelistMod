@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
 import duelistmod.actions.common.*;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
 
@@ -71,7 +71,7 @@ public class Glitch extends DuelistOrb
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		lastTurnActions.add("None");
-		checkFocus();
+		checkFocus(false);
 		this.updateDescription();
 		
 		// Setup passive action list
@@ -153,13 +153,15 @@ public class Glitch extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{
-		int randomActionNum = 0;
-		for (int i = 0; i < this.evokeAmount; i++)
+		if (this.evokeAmount > 0)
 		{
-			randomActionNum = AbstractDungeon.cardRandomRng.random(evokeActions.size() - 1);
-			lastAction = runAction(evokeActions.get(randomActionNum));
-		}
-		
+			int randomActionNum = 0;
+			for (int i = 0; i < this.evokeAmount; i++)
+			{
+				randomActionNum = AbstractDungeon.cardRandomRng.random(evokeActions.size() - 1);
+				lastAction = runAction(evokeActions.get(randomActionNum));
+			}
+		}	
 		applyFocus();
 		updateDescription();
 	}
@@ -167,7 +169,7 @@ public class Glitch extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		this.triggerPassiveEffect();
+		if (this.passiveAmount > 0) { this.triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()
@@ -303,11 +305,11 @@ public class Glitch extends DuelistOrb
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#ySummon #b1":
-				DuelistCard.summon(AbstractDungeon.player, 1, new Token("Glitch Token"));
+				DuelistCard.summon(AbstractDungeon.player, 1, new GlitchToken());
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#ySummon #b2":
-				DuelistCard.summon(AbstractDungeon.player, 2, new Token("Glitch Token"));
+				DuelistCard.summon(AbstractDungeon.player, 2, new GlitchToken());
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#yIncrement #b1":
@@ -396,7 +398,7 @@ public class Glitch extends DuelistOrb
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Gain #b1 Max HP":
-				AbstractDungeon.player.maxHealth += 1;
+				AbstractDungeon.player.increaseMaxHp(1, true);
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			default:
@@ -476,6 +478,47 @@ public class Glitch extends DuelistOrb
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 	
 	@Override

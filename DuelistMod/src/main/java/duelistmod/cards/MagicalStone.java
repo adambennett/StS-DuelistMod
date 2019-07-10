@@ -52,24 +52,13 @@ public class MagicalStone extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
+    public void upgrade() 
+    {
         if (canUpgrade()) 
         {
-        	if (this.timesUpgraded > 1) 
-        	{ 
-        		this.upgradeName(NAME + "+" + this.timesUpgraded); 
-        		this.upgradeMagicNumber(1); 
-        	}
-        	else if (this.timesUpgraded == 1)
-        	{
-        		this.upgradeName(NAME + "+" + this.timesUpgraded); 
-        		this.upgradeBaseCost(0);
-        	}
-	    	else
-	    	{ 
-	    		this.upgradeName(NAME + "+"); 
-	    		this.exhaust = false;
-	    	}
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -78,7 +67,8 @@ public class MagicalStone extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	return true;
+    	if (this.magicNumber < 6) { return true; }
+    	else { return false; }
     }
 
 	@Override

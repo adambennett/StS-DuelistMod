@@ -31,7 +31,7 @@ public class FairyBox extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
 
     // /STAT DECLARATION/
 
@@ -90,9 +90,10 @@ public class FairyBox extends DuelistCard
 		if (!upgraded) 
 		{
 			this.upgradeName();
-			if (this.magicNumber < 5) { this.upgradeMagicNumber(1); }
+			if (this.magicNumber < 5 && timesUpgraded > 1) { this.upgradeMagicNumber(1); }
 			else { this.upgraded = true; }
-			this.rawDescription = UPGRADE_DESCRIPTION;
+			if (timesUpgraded == 0 || this.magicNumber == 5) { this.rawDescription = DESCRIPTION; }
+			else { this.rawDescription = UPGRADE_DESCRIPTION; }			
 			this.initializeDescription();
 		}
 	}

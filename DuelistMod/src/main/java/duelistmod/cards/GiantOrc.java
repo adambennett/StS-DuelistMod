@@ -29,7 +29,7 @@ public class GiantOrc extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 10;
+    private static final int COST = 11;
     // /STAT DECLARATION/
 
     public GiantOrc() 
@@ -73,7 +73,7 @@ public class GiantOrc extends DuelistCard
     {
     	if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

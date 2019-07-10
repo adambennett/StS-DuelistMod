@@ -1,7 +1,7 @@
 {
 "theDuelist:MillenniumElixir": {
         "NAME": "Millennium Elixir",
-        "DESCRIPTIONS": ["Gain 2 random #ybuffs."]
+        "DESCRIPTIONS": ["Gain #b", " random #ybuffs."]
 },
 "theDuelist:ExtraOrbsBottle": {
         "NAME": "Fairy Bottle",
@@ -9,15 +9,23 @@
 },
 "theDuelist:SealedPack": {
         "NAME": "Small Booster",
-        "DESCRIPTIONS": ["Open a #yLegend #yof #yBlue #yEyes booster pack. Add #b3 #yrandomized cards from this set to your hand."]
+        "DESCRIPTIONS": ["Open a #yLegend #yof #yBlue #yEyes booster pack. Add #b", " #yRandomized cards from this set to your hand."]
 },
 "theDuelist:SealedPackB": {
         "NAME": "Small Pack",
-        "DESCRIPTIONS": ["Open a booster pack containing cards from #yPharaoh's #yServant and #yMetal #yRaiders. Add #b3 #yrandomized cards from either of these sets to your hand."]
+        "DESCRIPTIONS": ["Open a booster pack containing cards from #yPharaoh's #yServant and #yMetal #yRaiders. Add #b", " #yRandomized cards from either of these sets to your hand."]
 },
 "theDuelist:SealedPackC": {
         "NAME": "Themed Booster",
-        "DESCRIPTIONS": ["Open a booster pack containing cards of the last type that you #ySummoned. NL Add #b3 #yrandomized cards from this type to your hand."]
+        "DESCRIPTIONS": ["Open a booster pack containing cards of the last type that you #ySummoned. NL Add #b", " #yRandomized cards from this type to your hand."]
+},
+"theDuelist:SealedPackD": {
+        "NAME": "Large Booster",
+        "DESCRIPTIONS": ["Open a #b", " card booster pack. Cards are #yRandomized. Guaranteed to receive at least one #yRare card."]
+},
+"theDuelist:SealedPackE": {
+        "NAME": "Upgraded Booster",
+        "DESCRIPTIONS": ["Open a #b", " card booster pack. Cards are #yRandomized and #yUpgraded. Guaranteed to receive one #yRare card."]
 },
 "theDuelist:OrbBottle": {
         "NAME": "Foggy Bottle",
@@ -48,8 +56,8 @@
         "DESCRIPTIONS": ["Channel an #yEarth.", "Channel #b", " #yEarth Orbs."]
 },
 "theDuelist:FireBottle": {
-        "NAME": "Bottled Fire",
-        "DESCRIPTIONS": ["Channel a #yFire.", "Channel #b", " #yFire Orbs."]
+        "NAME": "Bottled Lava",
+        "DESCRIPTIONS": ["Channel a #yLava.", "Channel #b", " #yLava Orbs."]
 },
 "theDuelist:GadgetBottle": {
         "NAME": "Amazon Package",
@@ -79,6 +87,18 @@
         "NAME": "Bottled Summoner",
         "DESCRIPTIONS": ["Channel a #ySummoner.", "Channel #b", " #ySummoner Orbs."]
 },
+"theDuelist:SteamBottle": {
+        "NAME": "Bottled Steam",
+        "DESCRIPTIONS": ["Channel a #yMist.", "Channel #b", " #yMist Orbs."]
+},
+"theDuelist:MudBottle": {
+        "NAME": "Goopbottle",
+        "DESCRIPTIONS": ["Channel a #yMud.", "Channel #b", " #yMud Orbs."]
+},
+"theDuelist:BufferBottle": {
+        "NAME": "Ojama Bottle",
+        "DESCRIPTIONS": ["Channel a #yBuffer.", "Channel #b", " #yBuffer Orbs."]
+},
 "theDuelist:TributeBottle": {
         "NAME": "Magic Bottle",
         "DESCRIPTIONS": ["Reduce the #yTribute cost of all monsters in your hand by #b", " for this turn."]
@@ -97,6 +117,6 @@
 },
 "theDuelist:JoeyJuice": {
         "NAME": "Joey Juice",
-        "DESCRIPTIONS": ["Apply 2 random #ydebuffs."]
+        "DESCRIPTIONS": ["Increase the #yTribute cost of all monsters in your hand by #b", " for this turn."]
 }
 }

@@ -32,10 +32,10 @@ public class ToonBarrelDragon extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 2;
 	private static final int DAMAGE = 0;
-	private static int MIN_DMG = 25;
-	private static int MAX_DMG = 40;
-	private static int MIN_DMG_U = 30;
-	private static int MAX_DMG_U = 45;
+	private static int MIN_DMG = 10;
+	private static int MAX_DMG = 20;
+	private static int MIN_DMG_U = 14;
+	private static int MAX_DMG_U = 24;
 	// /STAT DECLARATION/
 
 	public ToonBarrelDragon() {

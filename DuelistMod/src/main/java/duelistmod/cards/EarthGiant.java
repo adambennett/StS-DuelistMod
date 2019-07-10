@@ -36,7 +36,7 @@ public class EarthGiant extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 60;
+        this.baseBlock = this.block = 50;
         this.tributes = this.baseTributes = 7;
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;

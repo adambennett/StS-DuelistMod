@@ -1,10 +1,12 @@
 package duelistmod;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 import duelistmod.interfaces.*;
 
@@ -17,7 +19,7 @@ public class PoolHelpers
 		ArrayList<DuelistCard> toPrint = new ArrayList<DuelistCard>();
 		ArrayList<String> archetypeCardNames = new ArrayList<String>();
 		
-		for (DuelistCard c : DuelistMod.archetypeCards)
+		for (AbstractCard c : DuelistMod.archetypeCards)
 		{
 			archetypeCardNames.add(c.originalName);
 		}
@@ -46,6 +48,8 @@ public class PoolHelpers
 
 	public static void fillColoredCards()
 	{
+		// refresh all the cards in all pools to match any "remove all of.." options the player may have selected since startup
+		StarterDeckSetup.refreshPoolOptions();
 		
 		// try to load saved array for colored cards
 		// if save exists, fill colored cards with saved cards
@@ -101,7 +105,7 @@ public class PoolHelpers
 			if (DuelistMod.deckIndex < DuelistMod.deckArchetypePoolCheck && DuelistMod.deckIndex != 0)
 			{
 				// Add all basic cards + deck archetype cards
-				for (AbstractCard c : StarterDeckSetup.findDeck(DuelistMod.deckIndex).getPoolCards()) { if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.coloredCards.add(c); }}
+				for (AbstractCard c : StarterDeckSetup.findDeck(DuelistMod.deckIndex).getPoolCards()) { if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.coloredCards.add(c);}}
 				if (DuelistMod.debug) { DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredPools() ---> setIndex was 1, only basic + deck archetype. deck: " + StarterDeckSetup.getCurrentDeck().getSimpleName());  }
 			}
 			
@@ -243,6 +247,11 @@ public class PoolHelpers
 				DuelistMod.coloredCards.add(c);
 				DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredCards() ---> added " + c.originalName + " to coloredCards");
 			}
+		}
+		
+		if (DuelistMod.baseGameCards)
+		{
+			 DuelistMod.coloredCards.addAll(BaseGameCards.getAllBaseGameCards());
 		}
 	}
 	

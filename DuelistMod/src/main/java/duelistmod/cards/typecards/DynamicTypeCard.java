@@ -7,10 +7,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.Tags;
+import duelistmod.*;
 import duelistmod.actions.common.AddCardTagsToListAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.RainbowGravity;
+import duelistmod.cards.tokens.*;
 import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -49,7 +50,7 @@ public class DynamicTypeCard extends DuelistCard
     {
     	if (this.callCard instanceof RainbowJar)
     	{
-    		applyPowerToSelf(new RainbowCapturePower(p, p, this.tagSave));
+    		applyPowerToSelf(new RainbowCapturePower(p, p, this.tagSave, this.magicNumber));
     	}
     	
     	if (this.callCard instanceof ShardGreed)
@@ -74,6 +75,20 @@ public class DynamicTypeCard extends DuelistCard
     		DuelistCard.fullResummon(randResu, false, AbstractDungeon.getRandomMonster(), false);
     	}
     	
+    	if (this.callCard instanceof SummonToken)
+    	{
+    		DuelistCard randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave);
+    		summon(p, 1, randMon);
+    	}
+    	
+    	if (this.callCard instanceof TributeToken)
+    	{
+    		DuelistCard randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave);
+    		while (getAllMonsterTypes(randMon).size() != 1 || !getAllMonsterTypes(randMon).contains(tagSave)) { randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave); }
+    		tribute(p, 1, false, randMon);
+    		if (DuelistMod.debug) { DuelistMod.logger.info("Tribute Token just called tribute with this randomly generated monster: " + randMon.originalName + " :: and tagSave was: " + tagSave.toString()); }
+    	}
+    	
     	if (this.callCard instanceof RainbowGravity)
     	{
     		ArrayList<AbstractCard> monstersToModify = new ArrayList<AbstractCard>();
@@ -88,22 +103,6 @@ public class DynamicTypeCard extends DuelistCard
 	    			}
 	    		}
     		}
-    		
-    		/*for (AbstractCard c : player().discardPile.group)
-    		{
-    			if (c.hasTag(Tags.MONSTER))
-    			{    				
-    				monstersToModify.add(c);
-    			}
-    		}
-    		
-    		for (AbstractCard c : player().exhaustPile.group)
-    		{
-    			if (c.hasTag(Tags.MONSTER))
-    			{
-    				monstersToModify.add(c);
-    			}
-    		}*/
     		
     		for (AbstractCard c : player().hand.group)
     		{

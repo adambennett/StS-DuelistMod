@@ -22,7 +22,7 @@ public class DestructPotionPotB extends AbstractPotion {
 
     public DestructPotionPotB() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.M, PotionColor.SMOKE);
+        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.GHOST, PotionColor.SMOKE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

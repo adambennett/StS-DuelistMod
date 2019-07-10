@@ -2,7 +2,12 @@
   "theDuelist:Gate": {
     "NAME": "Gate",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, deal #b", " damage to ALL enemies, gain #b", " block, and gain [E] . NL #yEvoke: #ySummon #b", " random #yGuardians. NL Gate is unaffected by #yFocus."
+      "#yPassive: At the start of turn: Deal #b",
+	  " damage to ALL enemies NL Gain #b",
+	  " #yBlock NL Gain [R] NL #yEvoke: ", 
+	  "Gain [R] [R] NL Evoke effect switches to a random Gate effect at the end of each turn.", 
+	  "Gain #b", " #yBlock. NL Evoke effect switches to a random Gate effect at the end of each turn.", 
+	  "Deal #b", " damage to ALL enemies. NL Evoke effect switches to a random Gate effect at the end of each turn."
     ]
   },
   "theDuelist:Buffer": {
@@ -14,31 +19,31 @@
   "theDuelist:MonsterOrb": {
     "NAME": "MonsterOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized monster to your hand. NL #yEvoke: Add #b", " #yRandomized monsters to your hand.", " #yRandomized monsters to your hand. NL #yEvoke: Add #b"
+      "#yPassive: At the start of turn, add #b", " #yRandomized monster to your hand. NL #yEvoke: Change the cost of #b", " random monster in your hand to 1 for this turn.", " #yRandomized monsters to your hand. NL #yEvoke: Change the cost of #b", " random monsters in your hand to 1 for this turn."
     ]
   },
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
+      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 1 for this turn."
     ]
   },
    "theDuelist:DragonPlusOrb": {
     "NAME": "DragonOrb+",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0."
+      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn."
     ]
   },
   "theDuelist:ReducerOrb": {
     "NAME": "Reducer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase this Orb's evoke amount by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
+      "#yPassive: At the start of turn, increase this orb's evoke amount by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
     ]
   },
   "theDuelist:Earth": {
     "NAME": "Earth",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #ySpells to your hand. NL #yEvoke: Add #b", " #yRandomized #ySpell to your hand.", " #yRandomized #ySpells to your hand.", " #yRandomized #ySpell to your hand. NL #yEvoke: Add #b"
+      "#yPassive: At the start of turn, add #b", " #yRandomized #ySpells to your hand. NL #yEvoke: Change the cost of #b", " random #ySpell in your hand to 1 for this turn.", " random #ySpells in your hand to 1 for this turn.", " #yRandomized #ySpell to your hand. NL #yEvoke: Change the cost of #b"
     ]
   },
   "theDuelist:Air": {
@@ -56,7 +61,7 @@
   "theDuelist:FireOrb": {
     "NAME": "Fire",
     "DESCRIPTION": [
-      "#yPassive: Whenever you draw a #yDragon, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Reduce the #yTribute cost of #yDragons in your hand, discard, and exhaust by #b", " for this combat."
+      "#yPassive: Whenever you draw a #yDragon, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b", " for this combat."
     ]
   },
   "theDuelist:Glitch": {
@@ -74,7 +79,7 @@
   "theDuelist:Splash": {
     "NAME": "Splash",
     "DESCRIPTION": [
-	  "#yPassive: Whenever you draw an #yAqua, reduce the #yTribute cost by #b", " for this turn. NL #yEvoke: Increase the summons of #yAqua monsters (everywhere) by #b", " for this combat."
+	  "#yPassive: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b", " damage to ALL enemies and apply #yWeak to a random enemy. NL #yEvoke: Increase the summons of monsters (everywhere) by #b", " for this combat."
     ]
   },
   "theDuelist:Blaze": {
@@ -92,13 +97,13 @@
   "theDuelist:Gadget": {
     "NAME": "Gadget",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized #yTrap to your hand. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
+	  "#yPassive: At the start of turn, gain #b", " #yDexterity until the end of turn. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
     ]
   },
   "theDuelist:Lava": {
     "NAME": "Lava",
     "DESCRIPTION": [
-	  "#yPassive: Whenever you draw a #yZombie, reduce the #yTribute cost by #b" , " for this combat. NL #yEvoke: Deal a random amount of damage to a random enemy. Deals more damage with a higher evoke amount."
+	  "#yPassive: Whenever you #yTribute a #yZombie, increase this orb's evoke amount by #b", ". NL #yEvoke: Deal ", " damage to a random enemy. Damage changes to a random number NL ( 1 - #b", " ) at the end of each turn."
     ]
   },
   "theDuelist:MillenniumOrb": {
@@ -110,19 +115,19 @@
   "theDuelist:Metal": {
     "NAME": "Metal",
     "DESCRIPTION": [
-	  "#yPassive: At the end of turn, gain #yBlock equal to the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", "."
+	  "#yPassive: At the end of turn, gain #yBlock equal to half the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", "."
     ]
   },
   "theDuelist:Mud": {
     "NAME": "Mud",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized #yPlant or #yInsect to your hand. NL #yEvoke: Increase the summons of all #yInsect and #yPlant monsters (everywhere) by #b", " for this combat."
+	  "#yPassive: At the start of turn, apply #b", " #yPoison to a random enemy. Applies double #yPoison if all monsters summoned are #yInsects. NL #yEvoke: Gain #b", " #yThorns."
     ]
   },
   "theDuelist:Mist": {
     "NAME": "Mist",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add #b", " #yRandomized #yAqua monster to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters tributed.", " #yRandomized #yAqua monsters to your hand and exhaust pile. NL #yEvoke: #yTribute all #yAqua monsters and #ySummon a random monster for each. Gain a random #yBuff equal to the amount of #yAqua monsters tributed."
+	  "#yPassive: At the start of turn, #yIncrement #b", ". NL #yEvoke: Reduce your max summons by #b", " and gain twice that much #yBlock."
     ]
   },
   "theDuelist:Sand": {
@@ -134,19 +139,19 @@
   "theDuelist:Smoke": {
     "NAME": "Smoke",
     "DESCRIPTION": [
-	  "#yPassive: Whenver you draw a monster, increase the #yTribute cost by #b", " and increase the damage by #b", " for this turn. NL #yEvoke: #yIncrement #b", "."
+	  "#yPassive: Whenver you draw a monster, increase the #yTribute cost by #b", " and increase the damage by #b", " for this turn. NL #yEvoke: Sum up the total #yTribute cost of all monsters in your hand. Deal damage to ALL enemies equal to this sum."
     ]
   },
   "theDuelist:Storm": {
     "NAME": "Storm",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add #b1 #yRandomized Power card to your hand. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", "."
+	  "#yPassive: At the start of turn, add a #yRandomized Power card to your hand. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", "."
     ]
   },
   "theDuelist:Summoner": {
     "NAME": "Summoner",
     "DESCRIPTION": [
-      "#yPassive: At the end of turn, #ySummon #b", " Spellcaster Token. NL #yEvoke: #yIncrement #b", ".", " Spellcaster Tokens. NL #yEvoke: #yIncrement #b"
+      "#yPassive: At the end of turn, #ySummon #b", " #ySpellcaster #yToken. NL #yEvoke: #yIncrement #b", ".", " #ySpellcaster #yTokens. NL #yEvoke: #yIncrement #b"
     ]
   }
 }

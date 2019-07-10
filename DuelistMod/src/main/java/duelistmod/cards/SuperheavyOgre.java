@@ -4,20 +4,19 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 
 public class SuperheavyOgre extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("SuperheavyOgre");
+    public static final String ID = DuelistMod.makeID("SuperheavyOgre");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.SUPERHEAVY_OGRE);
     public static final String NAME = cardStrings.NAME;
@@ -27,7 +26,7 @@ public class SuperheavyOgre extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
@@ -38,13 +37,11 @@ public class SuperheavyOgre extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 6;
         this.summons = this.baseSummons = 2;
-        this.dex = 1;
-        this.exhaust = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.REDUCED);
-        this.magicNumber = this.baseMagicNumber = this.dex;
+        this.magicNumber = this.baseMagicNumber = 5;
 		this.originalName = this.name;
 		this.isSummon = true;
     }
@@ -54,8 +51,14 @@ public class SuperheavyOgre extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	if (upgraded) { attack(m, AFX, this.damage); }
-    	applyPowerToSelf(new DexterityPower(p, this.dex));
+    	attack(m, AFX, this.damage);
+    	if (p.hasPower(DexterityPower.POWER_ID))
+    	{
+    		if (p.getPower(DexterityPower.POWER_ID).amount >= this.magicNumber)
+    		{
+    			DuelistCard.drawRare(1, CardRarity.RARE);
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -69,8 +72,8 @@ public class SuperheavyOgre extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.target = CardTarget.ENEMY;
-            //this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(-2);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -91,20 +94,13 @@ public class SuperheavyOgre extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	if (upgraded) { attack(m, AFX, this.damage); }
-    	applyPowerToSelf(new DexterityPower(p, this.dex));
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	if (upgraded) { attack(m, AFX, this.damage); }
-    	applyPowerToSelf(new DexterityPower(p, this.dex));
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
+	{
+		
 	}
 
 	@Override

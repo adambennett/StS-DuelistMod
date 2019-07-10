@@ -38,7 +38,7 @@ public class DeepDiver extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
@@ -52,9 +52,9 @@ public class DeepDiver extends DuelistCard
     	ArrayList<AbstractCard> aquaList = new ArrayList<AbstractCard>();
     	for (DuelistCard c : DuelistMod.myCards)
     	{
-    		if (c.hasTag(Tags.AQUA) && !c.hasTag(Tags.TOKEN)) { aquaList.add(c.makeStatEquivalentCopy()); }
+    		if (c.hasTag(Tags.AQUA) && !c.hasTag(Tags.TOKEN) && !c.hasTag(Tags.NEVER_GENERATE)) { aquaList.add(c.makeStatEquivalentCopy()); }
     	}
-    	AbstractDungeon.actionManager.addToTop(new DeepDiverAction(true, aquaList, false, 1, false, false, false, true, true, true, true, 0, 3, 0, 1, 0, 2, this.magicNumber));
+    	AbstractDungeon.actionManager.addToTop(new DeepDiverAction(true, aquaList, false, this.magicNumber, false, false, false, true, true, true, true, 0, 3, 0, 1, 0, 2));
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +71,8 @@ public class DeepDiver extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(2);
+        	this.upgradeMagicNumber(1);
+        	this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

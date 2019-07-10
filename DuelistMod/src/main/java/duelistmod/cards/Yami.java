@@ -34,6 +34,7 @@ public class Yami extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
+        this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.OP_SPELLCASTER_DECK);
         this.startingOPSPDeckCopies = 1;
         this.originalName = this.name;

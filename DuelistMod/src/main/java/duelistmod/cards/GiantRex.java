@@ -74,14 +74,16 @@ public class GiantRex extends DuelistCard
     @Override
     public void upgrade() 
     {
-        
+    	if (!upgraded) 
+    	{
+    		if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+    		else { this.upgradeName(NAME + "+"); }
+    		this.upgradeDamage(10);
+    		this.rawDescription = UPGRADE_DESCRIPTION;
+    		this.initializeDescription();
+    	}
     }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return false;
-    }
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

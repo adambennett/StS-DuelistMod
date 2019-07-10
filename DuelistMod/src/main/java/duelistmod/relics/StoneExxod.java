@@ -17,6 +17,26 @@ public class StoneExxod extends CustomRelic
 	public StoneExxod() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		boolean allowSpawn = false;
+    	if (DuelistMod.exodiaBtnBool) 
+    	{ 
+    		if (deck.equals("Exodia Deck")) { allowSpawn = true; }
+    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
+    	}
+    	else
+    	{
+    		if (deck.equals("Spellcaster Deck")) { allowSpawn = true; }
+    		if (deck.equals("Exodia Deck")) { allowSpawn = true; }
+    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
+    		if (DuelistMod.archRoll1 == 3 || DuelistMod.archRoll2 == 3) { allowSpawn = true; }
+    	}
+		return allowSpawn;
+	}
 
 	@Override
 	public void onShuffle() 
