@@ -16,7 +16,9 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")

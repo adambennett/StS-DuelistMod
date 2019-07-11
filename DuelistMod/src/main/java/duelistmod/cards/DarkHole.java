@@ -13,8 +13,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class DarkHole extends DuelistCard 
 {

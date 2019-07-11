@@ -11,8 +11,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.*;
 
 
 public class ToonRollbackPower extends AbstractPower 

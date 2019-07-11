@@ -12,8 +12,10 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class FireOrb extends DuelistOrb

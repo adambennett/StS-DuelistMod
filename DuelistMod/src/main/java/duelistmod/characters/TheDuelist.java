@@ -20,10 +20,11 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.*;
-import duelistmod.Colors;
 import duelistmod.cards.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MillenniumPuzzle;
+import duelistmod.variables.Colors;
+import duelistmod.variables.Strings;
 
 
 public class TheDuelist extends CustomPlayer {

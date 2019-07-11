@@ -10,8 +10,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.typecards.TokenCard;
 import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class PredaplantToken extends TokenCard 
 {

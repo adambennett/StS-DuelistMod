@@ -7,9 +7,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class ToonWorld extends DuelistCard 
 {
@@ -37,6 +38,7 @@ public class ToonWorld extends DuelistCard
         this.tags.add(Tags.TOON_DECK);
         this.toonDeckCopies = 1;
 		this.originalName = this.name;
+		this.isInnate = true;
 		this.setupStartingCopies();
     }
 
@@ -45,19 +47,13 @@ public class ToonWorld extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 3)); }
+    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonWorldPower(p, p, 2)); }
     	else if (p.hasPower(ToonWorldPower.POWER_ID))
     	{
     		ToonWorldPower toon = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
-    		if (toon.lowend > 0)
+    		if (toon.maxDmg > 0)
     		{
-    			toon.lowend = 0;
-        		toon.updateDescription();
-    		}    		
-    		else
-    		{
-    			toon.amount -= 2;
-    			if (toon.amount < 0) { toon.amount = 0; }
+    			toon.maxDmg--;
     			toon.updateDescription();
     		}
     	}

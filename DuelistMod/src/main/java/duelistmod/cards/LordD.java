@@ -8,20 +8,22 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class LordD extends DuelistCard 
 {
 	// TEXT DECLARATION
-	public static final String ID = duelistmod.DuelistMod.makeID("LordD");
+	public static final String ID = DuelistMod.makeID("LordD");
 	private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 	public static final String IMG = DuelistMod.makePath(Strings.LORD_D);
 	public static final String NAME = cardStrings.NAME;
 	public static final String DESCRIPTION = cardStrings.DESCRIPTION;
 	public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+	public static final String[] EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
@@ -29,7 +31,7 @@ public class LordD extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public LordD() {
@@ -37,8 +39,9 @@ public class LordD extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tributes = this.baseTributes = 2;
+		this.secondMagic = this.baseSecondMagic = 0;
 		this.originalName = this.name;
-
+		this.exhaust = true;
 	}
 
 	// Actions the card should do.
@@ -61,12 +64,23 @@ public class LordD extends DuelistCard
 	// Upgraded stats.
 	@Override
 	public void upgrade() {
-		if (!this.upgraded) {
-			this.upgradeName();
-			//this.tributes = 1;
-			this.rawDescription = UPGRADE_DESCRIPTION;
-			this.initializeDescription();
+		if (canUpgrade()) 
+		{
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			if (timesUpgraded == 3) { this.upgradeSecondMagic(1); this.upgradeBaseCost(0); }
+			if (timesUpgraded == 2) { this.exhaust = false; }
+			if (timesUpgraded == 1) { this.rawDescription = UPGRADE_DESCRIPTION; }
+        	else { this.rawDescription = EXTENDED_DESCRIPTION[0]; }
+            this.initializeDescription();
 		}
+	}
+	
+	@Override
+	public boolean canUpgrade()
+	{
+		if (this.secondMagic < 1) { return true; }
+		else { return false; }
 	}
 
 	// If player doesn't have enough summons, can't play card

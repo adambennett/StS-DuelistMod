@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 
 import basemod.abstracts.DynamicVariable;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 
 public class TributeMagicNumber extends DynamicVariable {
 

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.cards.JamBreeding;
+import duelistmod.variables.Strings;
 
 
 public class TwoJamPower extends TwoAmountPower 

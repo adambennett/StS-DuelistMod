@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.PlayerTurnEffect;
 
-import duelistmod.Tags;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ShuffleOnlyTaggedAction;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.Tags;
 
 public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGameAction
 {

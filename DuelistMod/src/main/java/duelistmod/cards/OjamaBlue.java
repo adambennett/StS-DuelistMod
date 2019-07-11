@@ -9,10 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.RandomEffectsHelper;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 public class OjamaBlue extends DuelistCard 
 {

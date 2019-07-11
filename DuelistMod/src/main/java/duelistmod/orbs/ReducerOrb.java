@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.actions.unique.ReducerOrbEvokeAction;
-import duelistmod.interfaces.DuelistOrb;
 
 @SuppressWarnings("unused")
 public class ReducerOrb extends DuelistOrb

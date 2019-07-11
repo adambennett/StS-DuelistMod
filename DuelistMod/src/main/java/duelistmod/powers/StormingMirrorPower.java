@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.StormingMirrorForce;
+import duelistmod.variables.Strings;
 
 public class StormingMirrorPower extends AbstractPower 
 {

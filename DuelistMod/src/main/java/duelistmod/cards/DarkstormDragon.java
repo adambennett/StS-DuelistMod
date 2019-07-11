@@ -14,11 +14,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifyTributeAction;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.relics.DragonRelicB;
+import duelistmod.variables.Tags;
 
 public class DarkstormDragon extends DuelistCard 
 {

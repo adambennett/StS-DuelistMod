@@ -18,7 +18,9 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Smoke extends DuelistOrb

@@ -12,7 +12,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.BaseMod;
 import basemod.abstracts.DynamicVariable;
 import basemod.helpers.TooltipInfo;
-import duelistmod.Tags;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Tags;
 
 public class DuelistModalChoice
 {

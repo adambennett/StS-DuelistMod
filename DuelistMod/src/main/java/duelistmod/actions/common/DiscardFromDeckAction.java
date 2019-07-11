@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
 
 import basemod.helpers.CardTags;
-import duelistmod.Tags;
+import duelistmod.variables.Tags;
 
 public class DiscardFromDeckAction extends AbstractGameAction {
 

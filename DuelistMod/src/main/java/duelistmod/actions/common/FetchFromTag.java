@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import duelistmod.Strings;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Strings;
 
 public class FetchFromTag extends AbstractGameAction
 {

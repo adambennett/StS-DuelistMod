@@ -12,8 +12,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.incomplete.MillenniumSpellbook;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.potions.MillenniumElixir;
 
 public class MillenniumItems extends AbstractImageEvent {

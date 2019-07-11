@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 
 public class CurseArmaments extends DuelistCard 
 {

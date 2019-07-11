@@ -8,10 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.tokens.DamageToken;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 public class GadgetSoldier extends DuelistCard 
 {

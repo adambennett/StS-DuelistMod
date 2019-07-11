@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.PlayerTurnEffect;
 
-import duelistmod.Tags;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ShuffleOnlyTaggedAction;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.Tags;
 
 public class FlyingPegasusAction extends com.megacrit.cardcrawl.actions.AbstractGameAction
 {

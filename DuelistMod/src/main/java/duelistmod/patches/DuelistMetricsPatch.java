@@ -17,6 +17,8 @@ import java.lang.reflect.Method;
 /* Copied from The Mystic Mod:
    https://github.com/JohnnyDevo/The-Mystic-Project/blob/master/src/main/java/mysticmod/patches/MysticMetricsPatch.java
  */
+
+/*
 public class DuelistMetricsPatch {
 
     private static final Logger logger = LogManager.getLogger(DuelistMetricsPatch.class);
@@ -82,3 +84,4 @@ public class DuelistMetricsPatch {
 
     }
 }
+*/

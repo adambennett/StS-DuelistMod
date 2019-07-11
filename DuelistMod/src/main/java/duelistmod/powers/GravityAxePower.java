@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Strings;
 
 public class GravityAxePower extends AbstractPower 
 {

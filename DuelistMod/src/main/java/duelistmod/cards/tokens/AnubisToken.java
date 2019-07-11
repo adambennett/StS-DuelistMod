@@ -8,9 +8,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.RelicBallAction;
+import duelistmod.cards.typecards.TokenCard;
 import duelistmod.interfaces.*;
 import duelistmod.patches.*;
+import duelistmod.variables.Tags;
 
 public class AnubisToken extends TokenCard 
 {

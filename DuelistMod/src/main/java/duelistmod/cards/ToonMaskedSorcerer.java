@@ -8,10 +8,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.helpers.Utilities;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 public class ToonMaskedSorcerer extends DuelistCard 
 {
@@ -51,7 +53,7 @@ public class ToonMaskedSorcerer extends DuelistCard
     {
     	summon();
     	damageThroughBlock(m, p, this.damage, this.baseAFX);
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false, false));
+    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false, true));
     }
 
     // Which card to return when making a copy of this card.
@@ -65,7 +67,7 @@ public class ToonMaskedSorcerer extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(7);
+            this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

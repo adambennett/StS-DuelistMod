@@ -3324,5 +3324,50 @@
 		"DESCRIPTION": "Fleeting NL Choose a monster in your deck. That monster permanently becomes Megatyped.",
 		"NAME": "Millennium Spellbook",
 		"UPGRADE_DESCRIPTION": "Fleeting NL Choose a monster in your deck. That monster permanently becomes Megatyped."
+	},
+	"theDuelist:PlagueToken": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Lose 3 max HP when Tributed for any non-Zombie monster.",
+		"NAME": "Plague Token",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Lose 3 max HP when Tributed for any non-Zombie monster."
+	},
+	"theDuelist:LightningVortex": {
+		"DESCRIPTION": "Deal !D! damage. NL Tribute ALL monsters and Resummon a random monster that costs that many tributes.",
+		"NAME": "Lightning Vortex",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Tribute ALL monsters and Resummon a random monster that costs that many tributes."
+	},
+	"theDuelist:HauntAttacks": {
+		"DESCRIPTION": "Haunt Attacks NL Attack cards will cost 0 for the rest of combat, but playing Attacks will trigger random negative effects.",
+		"NAME": "Attack",
+		"UPGRADE_DESCRIPTION": "Haunt Attacks NL Attack cards will cost 0 for the rest of combat, but playing Attacks will trigger random negative effects."
+	},
+	"theDuelist:HauntSpells": {
+		"DESCRIPTION": "Haunt Spells NL Spell cards will cost 0 for the rest of combat, but playing Spells will trigger random negative effects.",
+		"NAME": "Spell",
+		"UPGRADE_DESCRIPTION": "Haunt Spells NL Spell cards will cost 0 for the rest of combat, but playing Spells will trigger random negative effects."
+	},
+	"theDuelist:HauntPowers": {
+		"DESCRIPTION": "Haunt Powers NL Power cards will cost 0 for the rest of combat, but playing Powers will trigger random negative effects.",
+		"NAME": "Power",
+		"UPGRADE_DESCRIPTION": "Haunt Powers NL Power cards will cost 0 for the rest of combat, but playing Powers will trigger random negative effects."
+	},
+	"theDuelist:HauntSkills": {
+		"DESCRIPTION": "Haunt Skills NL Skill cards will cost 0 for the rest of combat, but playing Skills will trigger random negative effects.",
+		"NAME": "Skill",
+		"UPGRADE_DESCRIPTION": "Haunt Skills NL Skill cards will cost 0 for the rest of combat, but playing Skills will trigger random negative effects."
+	},
+	"theDuelist:HauntTraps": {
+		"DESCRIPTION": "Haunt Traps NL Trap cards will cost 0 for the rest of combat, but playing Traps will trigger random negative effects.",
+		"NAME": "Traps",
+		"UPGRADE_DESCRIPTION": "Haunt Traps NL Trap cards will cost 0 for the rest of combat, but playing Traps will trigger random negative effects."
+	},
+	"theDuelist:HauntMonsters": {
+		"DESCRIPTION": "Haunt Monsters NL Monster cards will cost 0 for the rest of combat, but playing Monsters will trigger random negative effects.",
+		"NAME": "Monster",
+		"UPGRADE_DESCRIPTION": "Haunt Monsters NL Monster cards will cost 0 for the rest of combat, but playing Monsters will trigger random negative effects."
+	},
+	"theDuelist:Cancel": {
+		"DESCRIPTION": "None",
+		"NAME": "Cancel",
+		"UPGRADE_DESCRIPTION": "None"
 	}	
 }

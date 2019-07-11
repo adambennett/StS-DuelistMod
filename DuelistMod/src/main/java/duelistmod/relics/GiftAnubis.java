@@ -8,8 +8,9 @@ import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.tokens.Token;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.Strings;
 
 public class GiftAnubis extends CustomRelic implements ClickableRelic 
 {

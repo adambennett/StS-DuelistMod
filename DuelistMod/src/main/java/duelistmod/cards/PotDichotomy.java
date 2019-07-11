@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.cards.tokens.Token;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.*;
 
 public class PotDichotomy extends DuelistCard 
 {
@@ -37,7 +39,7 @@ public class PotDichotomy extends DuelistCard
     {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.summons = this.baseSummons = 1;			// X + this variable = summons
-    	this.magicNumber = this.baseMagicNumber = 3;	// overflows
+    	this.magicNumber = this.baseMagicNumber = 2;	// overflows
     	this.secondMagic = this.baseSecondMagic = 1;	// X + this variable = increments
     	this.tags.add(Tags.SPELL);
     	this.tags.add(Tags.POT);
@@ -81,7 +83,7 @@ public class PotDichotomy extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeSummons(2);
-            this.upgradeSecondMagic(2);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

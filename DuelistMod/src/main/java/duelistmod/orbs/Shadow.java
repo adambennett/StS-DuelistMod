@@ -16,9 +16,11 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Shadow extends DuelistOrb

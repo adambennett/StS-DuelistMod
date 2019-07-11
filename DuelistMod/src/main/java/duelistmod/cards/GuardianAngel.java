@@ -12,9 +12,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class GuardianAngel extends DuelistCard 
 {
@@ -128,7 +129,7 @@ public class GuardianAngel extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-	        this.upgradeDamage(4);
+	        this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

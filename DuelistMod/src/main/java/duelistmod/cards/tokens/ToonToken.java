@@ -8,9 +8,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.typecards.TokenCard;
 import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class ToonToken extends TokenCard 
 {

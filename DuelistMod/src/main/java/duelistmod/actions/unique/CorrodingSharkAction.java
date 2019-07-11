@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 
 public class CorrodingSharkAction extends AbstractGameAction
 {

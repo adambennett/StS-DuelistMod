@@ -10,10 +10,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedDrawPileAction;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class SwordDeepSeated extends DuelistCard 
 {

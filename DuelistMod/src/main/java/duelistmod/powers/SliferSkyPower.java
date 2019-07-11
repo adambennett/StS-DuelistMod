@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.variables.Strings;
 
 public class SliferSkyPower extends AbstractPower 
 {

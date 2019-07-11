@@ -8,8 +8,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Debug;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class BadToken extends DuelistCard 
 {

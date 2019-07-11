@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
-import duelistmod.interfaces.DuelistCard;
 
 public class SealedPackC extends AbstractPotion {
 

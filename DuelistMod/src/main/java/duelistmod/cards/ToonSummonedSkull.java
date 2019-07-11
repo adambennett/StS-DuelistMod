@@ -1,19 +1,18 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class ToonSummonedSkull extends DuelistCard 
 {
@@ -34,7 +33,7 @@ public class ToonSummonedSkull extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
 	private static final int COST = 2;
-	private static final int DAMAGE = 20;
+	private static final int DAMAGE = 15;
 	// /STAT DECLARATION/
 
 	public ToonSummonedSkull() {

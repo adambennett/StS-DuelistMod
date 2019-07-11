@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.helpers.BaseModCardTags;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.YamiFormPower;
+import duelistmod.variables.Tags;
 
 public class YamiForm extends DuelistCard 
 {

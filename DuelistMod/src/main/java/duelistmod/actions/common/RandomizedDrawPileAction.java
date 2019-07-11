@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.*;
 
 public class RandomizedDrawPileAction extends AbstractGameAction {
 
@@ -217,7 +218,7 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
             
             if (!c.isEthereal && etherealCheck && !c.hasTag(Tags.NEVER_ETHEREAL)) {
                 c.isEthereal = true;
-                c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
+                c.rawDescription = Strings.etherealForCardText + c.rawDescription;
     		}
     		
     		if (!c.exhaust && exhaustCheck && !c.hasTag(Tags.NEVER_EXHAUST) && !c.type.equals(CardType.POWER)) {

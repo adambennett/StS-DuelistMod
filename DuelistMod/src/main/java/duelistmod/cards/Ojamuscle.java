@@ -13,8 +13,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.variables.*;
 
 public class Ojamuscle extends DuelistCard 
 {

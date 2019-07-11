@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
 import duelistmod.relics.*;
+import duelistmod.variables.Tags;
 
 public class AknamkanonTomb extends AbstractImageEvent {
 

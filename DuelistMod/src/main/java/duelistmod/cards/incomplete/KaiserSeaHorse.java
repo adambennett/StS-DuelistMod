@@ -9,10 +9,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.relics.AquaRelicB;
+import duelistmod.variables.*;
 
 public class KaiserSeaHorse extends DuelistCard 
 {

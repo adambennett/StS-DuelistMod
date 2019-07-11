@@ -8,9 +8,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.*;
 
 public class ArmoredZombie extends DuelistCard 
 {
@@ -47,6 +49,7 @@ public class ArmoredZombie extends DuelistCard
         this.originalName = this.name;
         this.isSummon = true;
         this.block = this.baseBlock = 5;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.setupStartingCopies();
     }
 
@@ -71,8 +74,7 @@ public class ArmoredZombie extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeSummons(1);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(5); }
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -89,7 +91,7 @@ public class ArmoredZombie extends DuelistCard
 	public void onResummon(int summons)
 	{
 		//heal(AbstractDungeon.player, 10)
-		block(10);
+		block(this.magicNumber);
 	}
 	
     // Checking for Monster Zones if the challenge is enabled

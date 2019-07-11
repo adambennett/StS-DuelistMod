@@ -6,8 +6,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.*;
 
 public class MillenniumRod extends CustomRelic {
 

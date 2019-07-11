@@ -1,19 +1,20 @@
 package duelistmod.cards;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.PotionSlot;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
-import duelistmod.interfaces.*;
-import duelistmod.patches.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
-public class Wiseman extends DuelistCard implements OnObtainEffect
+public class Wiseman extends DuelistCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Wiseman");
@@ -38,6 +39,7 @@ public class Wiseman extends DuelistCard implements OnObtainEffect
         this.tags.add(Tags.NEVER_GENERATE);
         this.originalName = this.name;
         this.purgeOnUse = true;
+        this.makeFleeting();
     }
 
     // Actions the card should do.
@@ -49,17 +51,16 @@ public class Wiseman extends DuelistCard implements OnObtainEffect
     	{
     		player().potionSlots += 1;
         	AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));	
+        	DuelistMod.gotWisemanHaunted = true;
+        	try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
+				config.setBool(DuelistMod.PROP_WISEMAN, DuelistMod.gotWisemanHaunted);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
     	}
-        purgeCard(this);
     }
     
-    @Override
-	public void onObtain() 
-    {
-    	 AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
-         AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));	
-	}
-
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

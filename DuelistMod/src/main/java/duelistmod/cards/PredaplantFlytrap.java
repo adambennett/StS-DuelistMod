@@ -13,10 +13,12 @@ import com.megacrit.cardcrawl.powers.*;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.tokens.PredaplantToken;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class PredaplantFlytrap extends DuelistCard 
 {

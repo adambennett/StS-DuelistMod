@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 
 import basemod.abstracts.CustomPlayer;
 import duelistmod.*;
+import duelistmod.helpers.PoolHelpers;
 
 
 @SpirePatch(

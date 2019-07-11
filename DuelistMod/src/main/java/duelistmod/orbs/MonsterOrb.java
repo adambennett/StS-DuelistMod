@@ -13,9 +13,11 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class MonsterOrb extends DuelistOrb

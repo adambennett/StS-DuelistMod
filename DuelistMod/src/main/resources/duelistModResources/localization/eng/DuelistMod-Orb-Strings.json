@@ -79,7 +79,7 @@
   "theDuelist:Splash": {
     "NAME": "Splash",
     "DESCRIPTION": [
-	  "#yPassive: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b", " damage to ALL enemies and apply #yWeak to a random enemy. NL #yEvoke: Increase the summons of monsters (everywhere) by #b", " for this combat."
+	  "#yPassive: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b", " damage and apply #yWeak to ALL enemies. NL #yEvoke: Increase the #ySummons of monsters (everywhere) by #b", " for this combat."
     ]
   },
   "theDuelist:Blaze": {
@@ -127,7 +127,7 @@
   "theDuelist:Mist": {
     "NAME": "Mist",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, #yIncrement #b", ". NL #yEvoke: Reduce your max summons by #b", " and gain twice that much #yBlock."
+	  "#yPassive: At the start of turn, #yIncrement #b", ". NL #yEvoke: Deal #b", " damage to a random enemy for each of your max summons."
     ]
   },
   "theDuelist:Sand": {

@@ -9,9 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class SuperSolarNutrient extends DuelistCard 
 {

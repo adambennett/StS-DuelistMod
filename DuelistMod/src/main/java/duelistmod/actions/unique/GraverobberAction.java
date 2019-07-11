@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
+import duelistmod.helpers.GridSort;
+import duelistmod.variables.Strings;
 
 public class GraverobberAction extends AbstractGameAction
 {
@@ -90,8 +92,8 @@ public class GraverobberAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
-				c.costForTurn += (-c.cost + costToChangeTo);
-				c.isCostModifiedForTurn = true;
+				//c.costForTurn += (-c.cost + costToChangeTo);
+				//c.isCostModifiedForTurn = true;
 				if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
 				{
 					this.p.createHandIsFullDialog();

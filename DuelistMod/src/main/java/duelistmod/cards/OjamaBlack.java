@@ -9,10 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.Black;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.*;
 
 public class OjamaBlack extends DuelistCard 
 {

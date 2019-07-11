@@ -6,11 +6,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.*;
+import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.*;
 
 public class Zombyra extends DuelistCard 
 {
@@ -34,7 +38,7 @@ public class Zombyra extends DuelistCard
 
     public Zombyra() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
+        this.baseDamage = this.damage = 11;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.originalName = this.name;
@@ -48,7 +52,8 @@ public class Zombyra extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	DuelistCard.damageSelf(this.magicNumber);
+    	AbstractPower randomDebuff = RandomEffectsHelper.getRandomPlayerDebuff(p, this.magicNumber);
+		DuelistCard.applyPowerToSelf(randomDebuff);
     }
 
     // Which card to return when making a copy of this card.

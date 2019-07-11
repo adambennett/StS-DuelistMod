@@ -13,8 +13,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class Raigeki extends DuelistCard 
 {
@@ -51,7 +52,7 @@ public class Raigeki extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, new Color(0.1F, 0.0F, 0.2F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
-        AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
+    	AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.05F));
     	attackAllEnemies(this.damage);
     	for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
     	{

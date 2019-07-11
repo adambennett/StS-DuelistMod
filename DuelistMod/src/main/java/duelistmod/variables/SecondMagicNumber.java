@@ -3,7 +3,7 @@ package duelistmod.variables;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.DynamicVariable;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 
 public class SecondMagicNumber extends DynamicVariable {
 

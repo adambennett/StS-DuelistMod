@@ -14,7 +14,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import basemod.BaseMod;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Strings;
 
 
 @SuppressWarnings("unused")
@@ -43,6 +44,8 @@ public class RainbowCapturePower extends TwoAmountPower
 		this.amount = 0;
 		this.amount2 = turns;
 		this.chosenType = type;
+		this.canGoNegative = true;
+		this.canGoNegative2 = false;
 		this.typeString = chosenType.toString().toLowerCase();
 		String temp = this.typeString.substring(0, 1).toUpperCase();
 		this.typeString = temp + this.typeString.substring(1);
@@ -64,7 +67,7 @@ public class RainbowCapturePower extends TwoAmountPower
 				for (AbstractCard c : pieces) { pieceString += c.name + ", "; }
 				int endingIndex = pieceString.lastIndexOf(",");
 		        String finalPiece = pieceString.substring(0, endingIndex) + ".";
-				this.description = DESCRIPTIONS[0] + this.typeString + DESCRIPTIONS[1] + this.typeString + DESCRIPTIONS[2] + finalPiece;
+		        this.description = DESCRIPTIONS[0] + this.typeString + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[2] + this.typeString + DESCRIPTIONS[3] + finalPiece;
 			}
 	}
 	
@@ -83,8 +86,8 @@ public class RainbowCapturePower extends TwoAmountPower
 		{
 			if (AbstractDungeon.player.hand.group.size() < BaseMod.MAX_HAND_SIZE) {	DuelistCard.addCardToHand(c); }
 		}
-		
-		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
+
+		if (this.amount2 < 1) { DuelistCard.removePower(this, this.owner); }
 		else
 		{
 			pieces = new ArrayList<AbstractCard>();

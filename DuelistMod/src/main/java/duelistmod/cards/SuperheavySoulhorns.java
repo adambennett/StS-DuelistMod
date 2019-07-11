@@ -9,9 +9,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 public class SuperheavySoulhorns extends DuelistCard 
 {

@@ -7,9 +7,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class ToonKingdom extends DuelistCard 
 {
@@ -44,25 +45,22 @@ public class ToonKingdom extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 3)); }
+    	if (!p.hasPower(ToonKingdomPower.POWER_ID) && !p.hasPower(ToonWorldPower.POWER_ID)) { applyPowerToSelf(new ToonKingdomPower(p, p, 2)); }
     	else if (!p.hasPower(ToonKingdomPower.POWER_ID) && p.hasPower(ToonWorldPower.POWER_ID)) 
     	{ 
-    		int worldAmt = p.getPower(ToonWorldPower.POWER_ID).amount;
-    		applyPowerToSelf(new ToonKingdomPower(p, p, worldAmt));
+    		ToonWorldPower pow = (ToonWorldPower) p.getPower(ToonWorldPower.POWER_ID);
+    		int lowend = pow.lowend;
+    		int maxdmg = pow.maxDmg;
+    		int amount = pow.amount;
+    		applyPowerToSelf(new ToonKingdomPower(p, p, amount, lowend, maxdmg));
     		removePower(p.getPower(ToonWorldPower.POWER_ID), p);
     	}
     	else if (p.hasPower(ToonKingdomPower.POWER_ID))
     	{ 
     		ToonKingdomPower king = (ToonKingdomPower) p.getPower(ToonKingdomPower.POWER_ID);  
-    		if (king.lowend > 0)
+    		if (king.maxDmg > 0)
     		{
-    			king.lowend = 0;
-    			king.updateDescription();
-    		}
-    		else
-    		{
-    			king.amount -= 2;
-    			if (king.amount < 0) { king.amount = 0; }
+    			king.maxDmg--;
     			king.updateDescription();
     		}
     	}

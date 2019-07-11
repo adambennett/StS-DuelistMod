@@ -14,9 +14,11 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.AeroRelic;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Air extends DuelistOrb

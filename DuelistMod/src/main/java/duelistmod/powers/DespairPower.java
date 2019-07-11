@@ -11,9 +11,10 @@ import com.megacrit.cardcrawl.powers.*;
 
 import basemod.abstracts.CustomCard;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.SpecificCardDiscardToDeckAction;
 import duelistmod.cards.AxeDespair;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.Strings;
 
 /* 	
  * Lose 10 strength at the end of turn and

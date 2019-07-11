@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
+import duelistmod.variables.Strings;
 
 public class CardRewardRelicB extends CustomRelic
 {

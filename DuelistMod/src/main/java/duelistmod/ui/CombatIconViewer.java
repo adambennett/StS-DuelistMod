@@ -10,8 +10,9 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Strings;
 
 public class CombatIconViewer 
 {

@@ -9,11 +9,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifySummonAction;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.relics.AquaRelicB;
+import duelistmod.variables.Tags;
 
 public class SwampFrog extends DuelistCard 
 {

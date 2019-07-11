@@ -3,7 +3,7 @@ package duelistmod.actions.common;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-import duelistmod.DuelistMod;
+import duelistmod.variables.Strings;
 
 public class ModifyEtherealAction extends AbstractGameAction {
 	AbstractCard cardToModify;
@@ -20,7 +20,7 @@ public class ModifyEtherealAction extends AbstractGameAction {
 		if (!this.cardToModify.isEthereal) 
 		{
 			this.cardToModify.isEthereal = true;
-			this.cardToModify.rawDescription = DuelistMod.etherealForCardText + this.cardToModify.rawDescription;
+			this.cardToModify.rawDescription = Strings.etherealForCardText + this.cardToModify.rawDescription;
 			this.cardToModify.initializeDescription();
 		}
 		this.isDone = true;

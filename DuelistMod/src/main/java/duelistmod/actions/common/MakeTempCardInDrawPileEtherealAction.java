@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 
-import duelistmod.DuelistMod;
+import duelistmod.variables.Strings;
 
 public class MakeTempCardInDrawPileEtherealAction extends com.megacrit.cardcrawl.actions.AbstractGameAction {
 	private AbstractCard cardToMake;
@@ -31,7 +31,7 @@ public class MakeTempCardInDrawPileEtherealAction extends com.megacrit.cardcrawl
 					AbstractCard c = this.cardToMake.makeStatEquivalentCopy();
 					if (!c.isEthereal) {
 			            c.isEthereal = true;
-			            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
+			            c.rawDescription = Strings.etherealForCardText + c.rawDescription;
 			            c.initializeDescription();
 					}
 					AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(c, Settings.WIDTH / 2.0F,
@@ -45,7 +45,7 @@ public class MakeTempCardInDrawPileEtherealAction extends com.megacrit.cardcrawl
 					AbstractCard c = this.cardToMake.makeStatEquivalentCopy();
 					if (!c.isEthereal) {
 			            c.isEthereal = true;
-			            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
+			            c.rawDescription = Strings.etherealForCardText + c.rawDescription;
 			            c.initializeDescription();
 					}
 					AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(c, this.randomSpot,false));

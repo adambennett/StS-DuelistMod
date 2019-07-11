@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.GridSort;
+import duelistmod.variables.Tags;
 
 public class MillenniumSpellbookAction extends AbstractGameAction
 {

@@ -10,9 +10,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.GraverobberAction;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class Graverobber extends DuelistCard 
 {

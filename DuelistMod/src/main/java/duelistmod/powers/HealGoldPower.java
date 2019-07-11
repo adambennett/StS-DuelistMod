@@ -11,7 +11,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.BloodyIdol;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Strings;
 
 @SuppressWarnings("unused")
 public class HealGoldPower extends AbstractPower 

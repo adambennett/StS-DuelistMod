@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Strings;
 
 
 @SuppressWarnings("unused")

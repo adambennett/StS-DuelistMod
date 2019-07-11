@@ -17,9 +17,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
-import duelistmod.cards.tokens.Token;
+import duelistmod.abstracts.*;
+import duelistmod.helpers.BuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
+import duelistmod.powers.incomplete.*;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Buffer extends DuelistOrb
@@ -142,7 +145,7 @@ public class Buffer extends DuelistOrb
 				for (AbstractPower buff : buffs)
 				{
 					// This does nothing for these powers in a weird way, the logic was left this way to possibly re-enable summoning buffer tokens when this is triggered
-					if (buff.ID.equals("theDuelist:SummonPower") || buff.ID.equals("Focus") || buff.ID.equals("theDuelist:SwordsRevealPower") || buff.ID.equals("MimicSurprisePower")) 
+					if (buff.ID.equals("theDuelist:SummonPower") || buff.ID.equals("Focus") || buff.ID.equals("theDuelist:SwordsRevealPower") || buff.ID.equals("MimicSurprisePower") || buff.ID.equals("infinitespire:VenomPower")) 
 					{
 						//DuelistCard.summon(AbstractDungeon.player, 1, new Token("Buffer Token")); 
 						//if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > Summoned token on passive trigger"); }
@@ -164,7 +167,7 @@ public class Buffer extends DuelistOrb
 					// hardcode exceptions for Toon World and Toon Kingdom
 					else if (buff.ID.equals("theDuelist:ToonWorldPower") || buff.ID.equals("theDuelist:ToonKingdomPower"))
 					{
-						if (buff instanceof ToonWorldPower)
+						/*if (buff instanceof ToonWorldPower)
 						{
 							ToonWorldPower tw = (ToonWorldPower)buff;
 							if (tw.amount > 0)
@@ -181,7 +184,13 @@ public class Buffer extends DuelistOrb
 								tw.amount--;
 								tw.updateDescription();
 							}
-						}
+						}*/
+					}
+					
+					// hardcode exception for Haunted
+					else if (buff instanceof HauntedPower || buff instanceof HauntedDebuff)
+					{
+						
 					}
 					
 					// all other powers get buffed normally

@@ -12,9 +12,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.tokens.Token;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.relics.*;
+import duelistmod.variables.*;
 
 public class SummonPower extends AbstractPower
 {
@@ -32,8 +34,10 @@ public class SummonPower extends AbstractPower
 	// Constructor for summon() in DuelistCard
 	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc, DuelistCard c) 
 	{
-		if (summonList.size() > 0) { System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS > 0");}
-		else if (DuelistMod.debug) {  System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS < 0"); }
+		// Debug logs
+		if (summonList.size() > 0 && DuelistMod.debug) { System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS > 0");}
+		else if (DuelistMod.debug) {  System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS < 0"); }
+		
 		// Set power fields
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -51,8 +55,7 @@ public class SummonPower extends AbstractPower
 		if (AbstractDungeon.player.hasRelic(MillenniumKey.ID)) { MAX_SUMMONS = 5; }
 		
 		// Add the new summon(s) to the lists
-		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); }}
-		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { actualCardSummonList.add(c); }}
+		for (int i = 0; i < newAmount; i++) {if (i < MAX_SUMMONS) { summonList.add(newSummon); actualCardSummonList.add(c); }}
 
 		// Update the description properly
 		updateCount(this.amount);
@@ -64,8 +67,11 @@ public class SummonPower extends AbstractPower
 	// Constructor for powerSummon() in DuelistCard
 	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc) 
 	{
-		if (summonList.size() > 0) { System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS > 0");}
-		else if (DuelistMod.debug) {  System.out.println("DUELIST: SUMMON POWER : SUMMONS LIST SIZE WAS < 0"); }
+		// Debug logs
+		if (summonList.size() > 0 && DuelistMod.debug) { System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS > 0");}
+		else if (DuelistMod.debug) {  System.out.println("SummonPower() -- SUMMONS LIST SIZE WAS < 0"); }
+		
+		// Set power fields
 		this.name = NAME;
 		this.ID = POWER_ID;
 		this.owner = owner;
@@ -386,7 +392,15 @@ public class SummonPower extends AbstractPower
 
 	public void updateCount(int amount)
 	{
-		if (this.amount > MAX_SUMMONS) { this.amount = MAX_SUMMONS; }
-		if (this.amount < 0) { this.amount = 0; }
+		if (this.amount > MAX_SUMMONS) 
+		{ 
+			DuelistCard.powerTribute(AbstractDungeon.player, this.amount - MAX_SUMMONS, false);
+			this.amount = MAX_SUMMONS; 
+		}
+		if (this.amount < 0) 
+		{ 
+			DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
+			this.amount = 0; 
+		}
 	}
 }

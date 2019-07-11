@@ -16,6 +16,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
+import duelistmod.helpers.BuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
 

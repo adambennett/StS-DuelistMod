@@ -11,9 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.SteroidPotion;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.Tags;
 
 public class IronCall extends DuelistCard 
 {

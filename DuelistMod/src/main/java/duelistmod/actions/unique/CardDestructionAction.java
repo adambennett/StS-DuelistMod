@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.*;
 
 public class CardDestructionAction extends AbstractGameAction 
 {
@@ -47,7 +48,7 @@ public class CardDestructionAction extends AbstractGameAction
             if (!c.isEthereal && upgrade && !c.hasTag(Tags.NEVER_ETHEREAL))
             {
             	c.isEthereal = true;
-            	c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
+            	c.rawDescription = Strings.etherealForCardText + c.rawDescription;
             }
             if (c.cost > 0)
 			{

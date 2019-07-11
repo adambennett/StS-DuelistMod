@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.MakeCardGroupEthereal;
-import duelistmod.interfaces.DuelistCard;
 
 public class VampireCurse extends DuelistCard 
 {

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
+import duelistmod.variables.Strings;
 
 public class CardRewardRelicD extends CustomRelic
 {

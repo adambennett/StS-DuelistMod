@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 
 import duelistmod.DuelistMod;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 
 public class DestructPotionPotB extends AbstractPotion {
 

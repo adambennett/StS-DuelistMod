@@ -8,8 +8,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 public class AddCardTagsAction extends AbstractGameAction 
 {

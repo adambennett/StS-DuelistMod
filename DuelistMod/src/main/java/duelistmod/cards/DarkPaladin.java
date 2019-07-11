@@ -9,10 +9,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 public class DarkPaladin extends DuelistCard 
 {
@@ -51,25 +52,9 @@ public class DarkPaladin extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
+    	tribute();
     	attack(m, AFX, this.damage);
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, this.magicNumber, false, false, false, false));
-    	
-    	/*
-    	if (DuelistMod.orbCards.size() > 5)
-		{
-			ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
-			ArrayList<String> orbNames = new ArrayList<String>();
-			for (int i = 0; i < 5; i++)
-			{
-				DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-				while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
-				orbs.add((DuelistCard)random.makeCopy());
-				orbNames.add(random.name);
-			}
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false));
-		}
-		*/
+    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(DuelistMod.orbCards, this.magicNumber, false, false, false, true));
     }
 
     // Which card to return when making a copy of this card.

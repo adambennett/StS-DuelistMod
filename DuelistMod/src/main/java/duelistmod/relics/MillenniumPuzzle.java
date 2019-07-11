@@ -7,8 +7,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
-import duelistmod.interfaces.PuzzleHelper;
+import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
+import duelistmod.variables.Strings;
 
 public class MillenniumPuzzle extends CustomRelic {
 

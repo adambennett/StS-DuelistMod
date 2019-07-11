@@ -12,12 +12,14 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.orbCards.*;
 import duelistmod.cards.tokens.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.orbCards.*;
+import duelistmod.helpers.Debug;
+import duelistmod.variables.Tags;
 
 public class DuelistCardLibrary {
 
@@ -137,7 +139,7 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new NeoMagic());
 		DuelistMod.myCards.add(new GoldenApples());
 		DuelistMod.myCards.add(new SphereKuriboh());
-		//DuelistMod.myCards.add(new Wiseman());
+		DuelistMod.myCards.add(new Wiseman());
 		DuelistMod.myCards.add(new Sparks());
 		DuelistMod.myCards.add(new CastleWallsBasic());
 		DuelistMod.myCards.add(new Sangan());
@@ -545,7 +547,7 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new DesLacooda());
 		DuelistMod.myCards.add(new DespairFromDark());		
 		DuelistMod.myCards.add(new EndlessDecay());		
-		//DuelistMod.myCards.add(new HauntedShrine());
+		DuelistMod.myCards.add(new HauntedShrine());
 		DuelistMod.myCards.add(new OniGamiCombo());		
 		DuelistMod.myCards.add(new PlaguespreaderZombie());
 		DuelistMod.myCards.add(new YellowBelliedOni());

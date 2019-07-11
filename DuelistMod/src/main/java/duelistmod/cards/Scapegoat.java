@@ -12,9 +12,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.tokens.KuribohToken;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class Scapegoat extends DuelistCard 
 {

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Strings;
 
 
 @SuppressWarnings("unused")

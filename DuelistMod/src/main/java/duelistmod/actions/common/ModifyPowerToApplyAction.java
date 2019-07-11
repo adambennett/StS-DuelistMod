@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
-import duelistmod.interfaces.BuffCard;
+import duelistmod.cards.typecards.BuffCard;
 
 public class ModifyPowerToApplyAction extends AbstractGameAction {
 	private BuffCard cardToModify;

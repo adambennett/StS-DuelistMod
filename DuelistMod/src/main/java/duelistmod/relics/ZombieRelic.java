@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
+import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.variables.Strings;
 
 public class ZombieRelic extends CustomRelic {
 

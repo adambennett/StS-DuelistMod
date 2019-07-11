@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.orbs.Storm;
 
 public class StormBottle extends AbstractPotion {

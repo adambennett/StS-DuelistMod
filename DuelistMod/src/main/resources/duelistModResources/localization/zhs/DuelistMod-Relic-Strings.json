@@ -395,11 +395,26 @@
 			"All #yExplosive #yTokens deal extra damage."
 		]
 	},
-	"theDuelist:PlaceholderRelic2": {
-		"NAME": "占位符 2",
-		"FLAVOR": "你被强化了。",
+	"theDuelist:ZombieResummonBuffRelic": {
+		"NAME": "Zombie Statue",
+		"FLAVOR": "A small statue shaped like a zombie.",
 		"DESCRIPTIONS": [
-			"每场战斗开始时， 额外获得 1 点力量。"
+			"When you gain #yBlock from #yResummoning a #yZombie, gain #b5 extra #yBlock."
+		]
+	},
+	"theDuelist:HauntedRelic": {
+		"NAME": "Haunted Pendant",
+		"FLAVOR": "A small grey necklace shaped like a ghost. Creepy!",
+		"DESCRIPTIONS": [
+			"Gain [E] at the start of each turn. Start each combat #yHaunted.",
+			"Chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
+		]
+	},
+	"theDuelist:ToonRelic": {
+		"NAME": "Cartoon Statue",
+		"FLAVOR": "A small colorful statue!",
+		"DESCRIPTIONS": [
+			"When you apply #yVulnerable from #yTributing a #yToon, apply #b1 extra #yVulnerable."
 		]
 	}
 }

@@ -6,7 +6,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,7 +20,9 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
+import duelistmod.actions.unique.MistEvokeAction;
 import duelistmod.cards.tokens.Token;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
@@ -41,8 +46,8 @@ public class Mist extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Mist.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 4;
-		this.basePassiveAmount = this.passiveAmount = 3;
+		this.baseEvokeAmount = this.evokeAmount = 3;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -62,14 +67,7 @@ public class Mist extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (this.evokeAmount > 0)
-		{
-			DuelistCard.decMaxSummons(AbstractDungeon.player, this.evokeAmount);
-		}
-		else if (this.evokeAmount < 0)
-		{
-			DuelistCard.incMaxSummons(AbstractDungeon.player, -this.evokeAmount);
-		}
+		AbstractDungeon.actionManager.addToBottom(new MistEvokeAction(new DamageInfo(AbstractDungeon.player, this.evokeAmount * DuelistCard.getMaxSummons(AbstractDungeon.player), DamageType.THORNS)));
 	}
 	
 	@Override
@@ -140,7 +138,15 @@ public class Mist extends DuelistOrb
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
 			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;		
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}	
 		}
 		else
 		{

@@ -10,10 +10,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.tokens.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.*;
 
 public class BlastJuggler extends DuelistCard 
 {

@@ -8,10 +8,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
+import duelistmod.helpers.RandomEffectsHelper;
 import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 public class OjamaEmperor extends DuelistCard 
 {

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.actions.unique.*;
+import duelistmod.variables.Strings;
 
 
 public class JinzoPower extends AbstractPower 

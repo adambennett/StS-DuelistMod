@@ -12,7 +12,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.Parasite;
-import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.variables.Strings;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 

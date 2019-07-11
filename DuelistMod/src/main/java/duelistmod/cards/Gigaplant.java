@@ -9,10 +9,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class Gigaplant extends DuelistCard 
 {

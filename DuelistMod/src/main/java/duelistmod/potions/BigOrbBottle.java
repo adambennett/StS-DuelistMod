@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.interfaces.DuelistCard;
 
 public class BigOrbBottle extends AbstractPotion {
 

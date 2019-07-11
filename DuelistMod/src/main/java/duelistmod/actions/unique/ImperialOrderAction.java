@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 
-import duelistmod.Tags;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class ImperialOrderAction extends AbstractGameAction

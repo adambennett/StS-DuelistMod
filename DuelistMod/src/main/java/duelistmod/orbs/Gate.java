@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.interfaces.*;
 

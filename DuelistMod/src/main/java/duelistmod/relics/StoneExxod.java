@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.variables.*;
 
 public class StoneExxod extends CustomRelic 
 {

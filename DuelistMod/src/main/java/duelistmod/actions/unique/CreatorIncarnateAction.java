@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.GridSort;
+import duelistmod.variables.Strings;
 
 public class CreatorIncarnateAction extends AbstractGameAction
 {
@@ -179,7 +181,7 @@ public class CreatorIncarnateAction extends AbstractGameAction
 					if (!gridCard.isEthereal && etherealCheck) 
 					{
 		                gridCard.isEthereal = true;
-		                gridCard.rawDescription = DuelistMod.etherealForCardText + gridCard.rawDescription;
+		                gridCard.rawDescription = Strings.etherealForCardText + gridCard.rawDescription;
 		    		}
 		    		
 		    		if (!gridCard.exhaust && exhaustCheck) 

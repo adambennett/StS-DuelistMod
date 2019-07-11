@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")

@@ -11,8 +11,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.CancelCard;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.GridSort;
+import duelistmod.variables.Strings;
 
 public class CardSelectScreenResummonAction extends AbstractGameAction
 {
@@ -93,7 +95,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { tmp.addToBottom(new CancelCard()); }
+			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.randomTarget && this.resummon)
 			{
 				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false); }

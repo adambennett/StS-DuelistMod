@@ -9,9 +9,10 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import basemod.BaseMod;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 public class Deskbot009 extends DuelistCard 
 {

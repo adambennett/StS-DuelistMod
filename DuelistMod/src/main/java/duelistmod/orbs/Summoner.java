@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 
 @SuppressWarnings("unused")

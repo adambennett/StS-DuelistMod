@@ -9,8 +9,9 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.Tags;
 
 public class SealedPackD extends AbstractPotion {
 

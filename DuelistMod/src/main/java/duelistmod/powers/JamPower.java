@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.JamBreeding;
+import duelistmod.variables.Strings;
 
 /* 	
  * Lose 10 strength at the end of turn and

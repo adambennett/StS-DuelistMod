@@ -441,7 +441,19 @@
 },
 "theDuelist:MillenniumSpellbookPower": {
         "NAME": "Millennium Spellbook",
-        "DESCRIPTIONS": ["Keeps track of unblocked damage dealt by playing #yAttack cards. If after #b", " more turn you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", " more turns you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b" ]
+        "DESCRIPTIONS": ["Keeps track of unblocked damage dealt. If after #b", " more turn you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", " more turns you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", "After #b", " more turn, deal #b150 damage to ALL enemies.", " more turns, deal #b150 damage to ALL enemies." ]
+},
+"theDuelist:HauntedPower": {
+        "NAME": "Haunted",
+        "DESCRIPTIONS": ["s cost 0. ", "Whenever you play a ", "Whenever you play an ", " trigger #b", " random negative effect. NL #yLast #yEffect: ", " random negative effects. NL #yLast #yEffect: " ]
+},
+"theDuelist:HauntedDebuff": {
+        "NAME": "Haunted",
+        "DESCRIPTIONS": ["s cost 0. ", "Whenever you play a ", "Whenever you play an ", " trigger #b", " random negative effect, and have a small chance to stack this debuff. NL #yLast #yEffect: ", " random negative effects, and have a small chance to stack this debuff. NL #yLast #yEffect: " ]
+},
+"theDuelist:MortalityPower": {
+        "NAME": "Mortality",
+        "DESCRIPTIONS": ["You cannot #yResummon. NL #yCharges: " ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

@@ -9,12 +9,15 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Splash extends DuelistOrb
@@ -37,7 +40,7 @@ public class Splash extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 4;
+		this.basePassiveAmount = this.passiveAmount = 7;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -114,8 +117,13 @@ public class Splash extends DuelistOrb
 	public void triggerPassiveEffect()
 	{
 		DuelistCard.damageAllEnemiesThornsNormal(this.passiveAmount);
-		AbstractCreature cr = AbstractDungeon.getRandomMonster();
-		DuelistCard.applyPower(new WeakPower(cr, 1, false), cr);
+		for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
+		{
+			if (!m.isDead && !m.isDying && !m.isEscaping && !m.isDeadOrEscaped() && m.currentHealth > 0)
+			{
+				DuelistCard.applyPower(new WeakPower(m, 1, false), m);
+			}
+		}
 	}
 
 	@Override
@@ -170,8 +178,27 @@ public class Splash extends DuelistOrb
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
-			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;		
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
 		}
 		else
 		{
@@ -193,7 +220,7 @@ public class Splash extends DuelistOrb
 		// Render evoke amount text
 		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + - 4.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

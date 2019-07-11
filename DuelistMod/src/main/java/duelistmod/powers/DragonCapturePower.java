@@ -12,7 +12,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.BaseMod;
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.*;
 
 
 public class DragonCapturePower extends AbstractPower 

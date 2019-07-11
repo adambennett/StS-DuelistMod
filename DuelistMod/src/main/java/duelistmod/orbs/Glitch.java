@@ -18,10 +18,13 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.tokens.*;
+import duelistmod.helpers.RandomEffectsHelper;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.*;
 
 @SuppressWarnings("unused")
 public class Glitch extends DuelistOrb
@@ -402,7 +405,7 @@ public class Glitch extends DuelistOrb
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			default:
-				String randomAction = evokeActions.get(AbstractDungeon.cardRandomRng.random(evokeActions.size() - 1));
+				string = evokeActions.get(AbstractDungeon.cardRandomRng.random(evokeActions.size() - 1));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 		}

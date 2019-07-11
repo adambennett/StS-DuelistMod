@@ -10,7 +10,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.RandomActionHelper;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Strings;
 
 public class TimeWizardPower extends AbstractPower 
 {

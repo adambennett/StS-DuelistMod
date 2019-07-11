@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.ZombieRelic;

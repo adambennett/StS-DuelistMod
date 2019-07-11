@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.Mausoleum;
+import duelistmod.variables.Strings;
 
 
 public class EmperorPower extends AbstractPower 

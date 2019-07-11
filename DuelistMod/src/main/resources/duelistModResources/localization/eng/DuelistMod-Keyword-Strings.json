@@ -116,7 +116,7 @@
       "NAMES": [
         "spellcaster"
       ],      
-      "DESCRIPTION": "When you attack, if all the monsters you currently have summoned are #ySpellcasters, gain #b5 Block. You need to have at least #b1 #ySpellcaster summoned to trigger this effect."
+      "DESCRIPTION": "When you attack, if all the monsters you currently have summoned are #ySpellcasters, gain #b4 Block. You need to have at least #b1 #ySpellcaster summoned to trigger this effect."
     },
      {
 	  "PROPER_NAME": "Insect",
@@ -190,7 +190,7 @@
       "Splash",
 	  "splash"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b4 damage to ALL enemies and apply #yWeak to a random enemy. NL #yEvoke: Increase the #ySummons of monsters (everywhere) by #b1 for this combat."
+    "DESCRIPTION": "#yOrb: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b7 damage and apply #yWeak to ALL enemies. NL #yEvoke: Increase the #ySummons of monsters (everywhere) by #b1 for this combat."
   },
   {
     "PROPER_NAME": "Zombie",
@@ -200,7 +200,7 @@
 	  "zombie",
 	  "zombies"
     ],   
-    "DESCRIPTION": "When you #yResummon a #yZombie, gain #b5 Block."
+    "DESCRIPTION": "When you #yResummon a #yZombie, gain #b6 Block."
   },
   {
     "PROPER_NAME": "Fiend",
@@ -266,7 +266,7 @@
       "Lava",
 	  "lava"
     ],   
-    "DESCRIPTION": "#yOrb: Deals damage to a random enemy when #yEvoked. Damage amount changes to a random number between #b1-15 at the end of each turn. Each time you #yTribute a #yZombie, the damage potential is increased."
+    "DESCRIPTION": "#yOrb: Deals damage to ALL enemies when #yEvoked. Damage amount changes to a random number between #b1-15 at the end of each turn. Each time you #yTribute a #yZombie, the damage potential is increased."
   },
   {
 		"PROPER_NAME": "MillenniumOrb",
@@ -298,7 +298,7 @@
       "Mist",
 	  "mist"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, #yIncrement #b3. NL #yEvoke: Reduce your #ymax #ySummons by #b4 and gain twice that much #yBlock."
+    "DESCRIPTION": "#yOrb: At the start of turn, #yIncrement #b2. NL #yEvoke: Deal #b3 damage to a random enemy for each of your max summons."
   },
   {
     "PROPER_NAME": "Sand",
@@ -433,6 +433,14 @@
 	  "arcane"
     ],   
     "DESCRIPTION": "Can be #yUpgraded more than one time."
+  },
+  {
+    "PROPER_NAME": "Haunted",
+    "NAMES": [
+      "Haunted",
+	  "haunted"
+    ],   
+    "DESCRIPTION": "Debuff that chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
   },
   {
     "PROPER_NAME": "Gate",

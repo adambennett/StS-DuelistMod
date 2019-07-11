@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Utilities;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class ToonAncientGear extends DuelistCard 
 {
@@ -66,7 +67,7 @@ public class ToonAncientGear extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(8);
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

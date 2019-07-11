@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.AddCardTagsToListAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.RainbowGravity;
 import duelistmod.cards.tokens.*;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 public class DynamicTypeCard extends DuelistCard 
 {
@@ -97,7 +98,7 @@ public class DynamicTypeCard extends DuelistCard
     		{
 	    		for (AbstractCard c : player().drawPile.group)
 	    		{
-	    			if (c.hasTag(Tags.MONSTER))
+	    			if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.MEGATYPED) && !c.hasTag(tagSave))
 	    			{
 	    				monstersToModify.add(c);
 	    			}
@@ -106,7 +107,7 @@ public class DynamicTypeCard extends DuelistCard
     		
     		for (AbstractCard c : player().hand.group)
     		{
-    			if (c.hasTag(Tags.MONSTER))
+    			if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.MEGATYPED) && !c.hasTag(tagSave))
     			{
     				monstersToModify.add(c);
     			}
@@ -117,7 +118,7 @@ public class DynamicTypeCard extends DuelistCard
     			SummonPower summonsInstance = (SummonPower)player().getPower(SummonPower.POWER_ID);
     			for (AbstractCard c : summonsInstance.actualCardSummonList)
     			{
-    				if (c.hasTag(Tags.MONSTER)) { monstersToModify.add(c); }    				
+    				if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.MEGATYPED) && !c.hasTag(tagSave)) { monstersToModify.add(c); }    				
     			}
     		}
     		

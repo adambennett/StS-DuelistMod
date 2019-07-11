@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.DarkMirrorForce;
-import duelistmod.interfaces.RandomEffectsHelper;
+import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.variables.Strings;
 
 
 public class DarkMirrorPower extends AbstractPower 

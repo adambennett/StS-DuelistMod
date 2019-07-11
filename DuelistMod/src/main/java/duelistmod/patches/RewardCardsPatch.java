@@ -6,9 +6,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
-import duelistmod.interfaces.DuelistCard;
 import duelistmod.relics.TributeEggRelic;
+import duelistmod.variables.Tags;
 
 
 @SpirePatch(

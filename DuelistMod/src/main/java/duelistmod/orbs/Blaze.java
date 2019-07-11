@@ -15,8 +15,10 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Blaze extends DuelistOrb

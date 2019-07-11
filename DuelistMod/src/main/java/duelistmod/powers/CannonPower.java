@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.CannonSoldier;
+import duelistmod.variables.Strings;
 
 
 public class CannonPower extends AbstractPower 

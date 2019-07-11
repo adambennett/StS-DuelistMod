@@ -10,10 +10,11 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.orbs.Sand;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.Tags;
 
 public class SuperheavySoulpiercer extends DuelistCard 
 {

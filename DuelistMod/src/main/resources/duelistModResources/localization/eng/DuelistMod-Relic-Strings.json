@@ -8,7 +8,7 @@
 			"At the start of combat, #ySummon #b1 #yPuzzle #yToken, gain a random amount (0-10) of #yBlock and gain #b1 #yBlur.",
 			"At the start of combat, #ySummon #b1 #yDragon #yToken, and apply #b", " #yWeak or #yVulnerable to a random enemy.",
 			"At the start of combat, apply #b", " #yPoison or #yConstricted to a random enemy.",
-			"At the start of combat, have a #b", "% chance to #yChannel a random Orb.",
+			"At the start of next combat, have a #b", "% chance to #yChannel a random Orb.",
 			"At the start of combat, gain #yToon #yWorld.",
 			"At the start of combat, #yChannel a #yLava Orb.",
 			"At the start of combat, increase the #yBlock of a random Duelist card in your draw pile by the number of monsters you #ySummoned in the previous combat, and give that card #yExhaust.", " extra card.", " extra cards.",
@@ -396,6 +396,14 @@
 		"FLAVOR": "A small statue shaped like a zombie.",
 		"DESCRIPTIONS": [
 			"When you gain #yBlock from #yResummoning a #yZombie, gain #b5 extra #yBlock."
+		]
+	},
+	"theDuelist:HauntedRelic": {
+		"NAME": "Haunted Pendant",
+		"FLAVOR": "A small grey necklace shaped like a ghost. Creepy!",
+		"DESCRIPTIONS": [
+			"Gain [E] at the start of each turn. Start each combat #yHaunted.",
+			"Chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
 		]
 	},
 	"theDuelist:ToonRelic": {

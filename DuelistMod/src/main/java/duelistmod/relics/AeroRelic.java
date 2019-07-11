@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
+import duelistmod.variables.Strings;
 
 public class AeroRelic extends CustomRelic {
 

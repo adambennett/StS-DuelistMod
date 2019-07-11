@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 public class AddCardTagsToListAction extends AbstractGameAction 
 {
@@ -28,10 +29,13 @@ public class AddCardTagsToListAction extends AbstractGameAction
 	{
 		for (AbstractCard c : this.cardsToModify)
 		{
-			c.tags.add(tagSave);
-			c.rawDescription =  c.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(tagSave);
-			c.initializeDescription();
-			if (DuelistMod.debug) { DuelistMod.logger.info("Gave " + DuelistMod.typeCardMap_NAME.get(tagSave) + " type to " + c.originalName); }
+			if (!c.hasTag(Tags.MEGATYPED) && !c.hasTag(tagSave))
+			{
+				c.tags.add(tagSave);
+				c.rawDescription =  c.rawDescription + " NL " + DuelistMod.typeCardMap_NAME.get(tagSave);
+				c.initializeDescription();
+				if (DuelistMod.debug) { DuelistMod.logger.info("Gave " + DuelistMod.typeCardMap_NAME.get(tagSave) + " type to " + c.originalName); }
+			}			
 		}		
 		
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))

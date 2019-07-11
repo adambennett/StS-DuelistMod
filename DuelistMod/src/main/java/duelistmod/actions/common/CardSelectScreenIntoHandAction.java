@@ -12,8 +12,10 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.CancelCard;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.GridSort;
+import duelistmod.variables.Strings;
 
 public class CardSelectScreenIntoHandAction extends AbstractGameAction
 {
@@ -158,7 +160,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 					if (!gridCard.isEthereal && etherealCheck) 
 					{
 		                gridCard.isEthereal = true;
-		                gridCard.rawDescription = DuelistMod.etherealForCardText + gridCard.rawDescription;
+		                gridCard.rawDescription = Strings.etherealForCardText + gridCard.rawDescription;
 		    		}
 		    		
 		    		if (!gridCard.exhaust && exhaustCheck) 
@@ -255,22 +257,25 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 			}
 	
 			Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { tmp.addToBottom(new CancelCard()); }
+			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount >= tmp.group.size())
 			{
 				for (AbstractCard c : tmp.group)
 				{
-					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
+					if (!(c instanceof CancelCard))
 					{
-						this.p.createHandIsFullDialog();
-						if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
-					}
-					else
-					{
-						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-					}
-					this.p.hand.refreshHandLayout();
-					this.p.hand.applyPowers();
+						if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
+						{
+							this.p.createHandIsFullDialog();
+							if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
+						}
+						else
+						{
+							AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
+						}
+						this.p.hand.refreshHandLayout();
+						this.p.hand.applyPowers();
+					}					
 				}
 				
 				AbstractDungeon.gridSelectScreen.selectedCards.clear();
@@ -292,17 +297,20 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
-				if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
+				if (!(c instanceof CancelCard))
 				{
-					this.p.createHandIsFullDialog();
-					if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
-				}
-				else
-				{
-					AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
-				}
-				this.p.hand.refreshHandLayout();
-				this.p.hand.applyPowers();
+					if (this.p.hand.size() == BaseMod.MAX_HAND_SIZE)
+					{
+						this.p.createHandIsFullDialog();
+						if (sendExtraToDiscard) { this.p.discardPile.addToTop(c); }
+					}
+					else
+					{
+						AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(c));
+					}
+					this.p.hand.refreshHandLayout();
+					this.p.hand.applyPowers();
+				}				
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();

@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifyTributeAction;
-import duelistmod.interfaces.DuelistCard;
 
 
 public class DarknessNeospherePower extends TwoAmountPower 

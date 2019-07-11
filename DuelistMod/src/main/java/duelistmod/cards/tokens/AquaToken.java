@@ -11,9 +11,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifySummonAction;
+import duelistmod.cards.typecards.TokenCard;
 import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.variables.*;
 
 public class AquaToken extends TokenCard 
 {

@@ -11,8 +11,9 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 
 import basemod.BaseMod;
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.CancelCard;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.Strings;
 
 public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 {
@@ -142,7 +143,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 					if (!gridCard.isEthereal && etherealCheck) 
 					{
 		                gridCard.isEthereal = true;
-		                gridCard.rawDescription = DuelistMod.etherealForCardText + gridCard.rawDescription;
+		                gridCard.rawDescription = Strings.etherealForCardText + gridCard.rawDescription;
 		    		}
 		    		
 		    		if (!gridCard.exhaust && exhaustCheck) 
@@ -191,7 +192,7 @@ public class CardSelectScreenIntoDiscardAction extends AbstractGameAction
 				tmp.addToTop(gridCard);
 			}
 			
-			tmp.addToBottom(new CancelCard());
+			for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }
 			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
 			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configAddCardHandString, false); }
 			tickDuration();

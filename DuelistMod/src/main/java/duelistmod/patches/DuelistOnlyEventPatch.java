@@ -31,6 +31,7 @@ public class DuelistOnlyEventPatch {
 			{
 				AbstractDungeon.specialOneTimeEventList.add(MillenniumItems.ID);
 				AbstractDungeon.specialOneTimeEventList.add(AknamkanonTomb.ID);
+				
 			}
 		}
 	}

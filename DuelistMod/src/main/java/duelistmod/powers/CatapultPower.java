@@ -7,8 +7,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.CatapultTurtle;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.variables.Strings;
 
 /* 	
  * Lose 10 strength at the end of turn and

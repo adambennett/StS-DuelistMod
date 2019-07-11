@@ -12,9 +12,12 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.helpers.RandomEffectsHelper;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Black extends DuelistOrb
@@ -64,6 +67,7 @@ public class Black extends DuelistOrb
 		if (!hasNegativeFocus())
 		{
 			DuelistCard randomFiend = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.FIEND);
+			while (randomFiend.hasTag(Tags.NEVER_GENERATE) || randomFiend.hasTag(Tags.TOON) || randomFiend.hasTag(Tags.OJAMA)) { randomFiend = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.FIEND); }
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomFiend, false, true, false, false, randomFiend.baseTributes > 0, randomFiend.baseSummons > 0, false, true, 0, 0, 0, this.evokeAmount, 0, this.evokeAmount));
 		}
 	}

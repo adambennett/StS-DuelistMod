@@ -11,10 +11,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
-import duelistmod.buffCards.AbstractBuffCard;
-import duelistmod.cards.typecards.CancelCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.typecards.*;
+import duelistmod.helpers.GridSort;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
+import duelistmod.variables.Strings;
 
 public class RedMedicineAction extends AbstractGameAction
 {
@@ -154,7 +156,7 @@ public class RedMedicineAction extends AbstractGameAction
 				if (DuelistMod.debug) { System.out.println("theDuelist:RedMedicineAction:update() ---> added " + card.originalName + " into grid selection pool"); }
 			}
 			Collections.sort(tmp.group, GridSort.getComparator());
-			tmp.addToBottom(new CancelCard());
+			tmp.addToTop(new CancelCard());
 			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainString, false); }
 			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configBuffToGainPluralString, false); }
 			tickDuration();

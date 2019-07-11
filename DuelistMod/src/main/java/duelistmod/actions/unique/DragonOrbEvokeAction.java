@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import duelistmod.Tags;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class DragonOrbEvokeAction extends AbstractGameAction

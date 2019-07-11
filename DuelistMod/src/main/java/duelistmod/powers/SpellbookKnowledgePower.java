@@ -15,7 +15,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Strings;
 
 
 @SuppressWarnings("unused")

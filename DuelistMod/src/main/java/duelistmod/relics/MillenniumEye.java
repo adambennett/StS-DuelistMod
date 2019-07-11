@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
+import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.powers.ToonWorldPower;
+import duelistmod.variables.Strings;
 
 public class MillenniumEye extends CustomRelic {
     
@@ -51,7 +53,7 @@ public class MillenniumEye extends CustomRelic {
     public void atBattleStart() 
     {
         this.flash();
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 2)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 0)));
     
     }
 

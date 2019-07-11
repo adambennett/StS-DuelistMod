@@ -10,11 +10,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.interfaces.DuelistCard;
-import duelistmod.orbCards.*;
+import duelistmod.cards.orbCards.*;
+import duelistmod.helpers.Utilities;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.*;
 
 public class GeminiElf extends DuelistCard 
 {

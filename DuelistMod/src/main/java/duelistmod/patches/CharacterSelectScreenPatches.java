@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 
-import duelistmod.ui.CharacterSelectScreenPatch;
-
 //Copied from The Animator, then modified
 public class CharacterSelectScreenPatches
 {

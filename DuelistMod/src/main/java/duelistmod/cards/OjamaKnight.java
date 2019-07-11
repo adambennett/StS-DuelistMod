@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.variables.*;
 
 public class OjamaKnight extends DuelistCard 
 {
@@ -50,7 +51,7 @@ public class OjamaKnight extends DuelistCard
     	// Tribute
 		tribute(p, this.tributes, false, this);
 		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL);
-		applyRandomBuffPlayer(p, randomTurnNum, true);
+		applyRandomBuffPlayer(p, randomTurnNum, false);
 		invert(1);
     }
 

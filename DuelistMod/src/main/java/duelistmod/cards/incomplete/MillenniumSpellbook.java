@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.MillenniumSpellbookPower;
+import duelistmod.variables.Tags;
 
 public class MillenniumSpellbook extends DuelistCard 
 {
@@ -28,7 +29,7 @@ public class MillenniumSpellbook extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public MillenniumSpellbook() {
@@ -36,7 +37,6 @@ public class MillenniumSpellbook extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.NEVER_GENERATE);
-        this.makeFleeting();
     }
 
     // Actions the card should do.
@@ -65,7 +65,7 @@ public class MillenniumSpellbook extends DuelistCard
     	 if (!this.upgraded) 
     	 {
              this.upgradeName();
-             this.makeFleeting(false);
+             this.upgradeBaseCost(1);
              this.rawDescription = UPGRADE_DESCRIPTION;
              this.initializeDescription();
          }

@@ -2,14 +2,15 @@ package duelistmod.powers.incomplete;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.Boot;
 
 import duelistmod.*;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Strings;
 
 public class MillenniumSpellbookPower extends TwoAmountPower
 {
@@ -19,6 +20,7 @@ public class MillenniumSpellbookPower extends TwoAmountPower
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePath(Strings.PLACEHOLDER_POWER);
+	private int dmg = 150;
 	
 	public MillenniumSpellbookPower(final AbstractCreature owner, final AbstractCreature source, int damageReq, int turns) 
 	{
@@ -38,9 +40,10 @@ public class MillenniumSpellbookPower extends TwoAmountPower
 	public void updateDescription() 
 	{
 		// Description Layout: Effect, singular, plural
-		if (this.amount2 > 1) { this.description = DESCRIPTIONS[0] + this.amount2 + DESCRIPTIONS[2] + this.amount; }
+		if (this.amount2 > 1 && this.amount < 1) { this.description = DESCRIPTIONS[3] + this.amount2 + DESCRIPTIONS[5]; }
+		else if (this.amount < 1) { this.description = DESCRIPTIONS[3] + this.amount2 + DESCRIPTIONS[4]; }
+		else if (this.amount2 > 1) { this.description = DESCRIPTIONS[0] + this.amount2 + DESCRIPTIONS[2] + this.amount; }
 		else { this.description = DESCRIPTIONS[0] + this.amount2 + DESCRIPTIONS[1] + this.amount; }
-
 	}
 
 	@Override
@@ -74,22 +77,38 @@ public class MillenniumSpellbookPower extends TwoAmountPower
 				DuelistCard.removePower(this, this.owner);
 				triggerEffect();
 			}
-		}		
+		}	
+		
+		updateDescription();
 	}
 	
 	private void triggerEffect()
 	{
-		
+		DuelistCard.damageAllEnemiesThornsFire(dmg);
 	}
 
-	
-	@Override
-	public void onPlayCard(AbstractCard card, AbstractMonster m) 
+	public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) 
 	{
-		if (m.lastDamageTaken > 0 && card.type.equals(CardType.ATTACK) && this.amount > 0)
+		if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
 		{
-			this.amount -= m.lastDamageTaken;
-			if (this.amount < 0) { this.amount = 0; }
+			if (AbstractDungeon.player.hasRelic(Boot.ID) && damageAmount < 5) 
+			{
+				this.flash();
+				this.amount -= 5;
+				if (this.amount < 0) { this.amount = 0; }
+			}
+			else if (damageAmount > target.currentHealth) 
+			{
+				this.flash();
+				this.amount -= target.currentHealth;
+				if (this.amount < 0) { this.amount = 0; }
+			}
+			else 
+			{
+				this.flash();
+				this.amount -= damageAmount;
+				if (this.amount < 0) { this.amount = 0; }
+			}
 		}
 		updateDescription();
 	}

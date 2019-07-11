@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 
 import duelistmod.*;
+import duelistmod.variables.*;
 
 public class TheCreatorAction extends AbstractGameAction {
 	private AbstractCard cardToMake;
@@ -34,7 +35,7 @@ public class TheCreatorAction extends AbstractGameAction {
 				if (!c.isEthereal && !c.hasTag(Tags.NEVER_ETHEREAL)) 
 				{
 		            c.isEthereal = true;
-		            c.rawDescription = DuelistMod.etherealForCardText + c.rawDescription;
+		            c.rawDescription = Strings.etherealForCardText + c.rawDescription;
 		            c.initializeDescription();
 				}
 				if (c.cost > 0)

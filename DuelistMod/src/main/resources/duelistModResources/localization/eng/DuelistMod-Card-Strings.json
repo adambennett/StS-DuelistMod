@@ -92,9 +92,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Deal !D! damage."
 	},
 	"theDuelist:ArmoredZombie": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Resummon: Gain 10 Block.",
+		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Resummon: Gain !M! Block.",
 		"NAME": "Armored Zombie",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Resummon: Gain 10 Block."
+		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Resummon: Gain !M! Block."
 	},
 	"theDuelist:AxeDespair": {
 		"DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or take 30 damage). NL Place this card on top of your draw pile.",
@@ -1113,9 +1113,12 @@
 		"UPGRADE_DESCRIPTION": "Channel a Lightning Orb."
 	},
 	"theDuelist:LordD": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Channel a DragonOrb.",
+		"DESCRIPTION": "Arcane NL Spellcaster NL Tribute !duelist:TRIB! NL Channel a DragonOrb. NL Exhaust.",
 		"NAME": "Lord of D.",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Channel an upgraded DragonOrb."
+		"UPGRADE_DESCRIPTION": "Arcane NL Spellcaster NL Tribute !duelist:TRIB! NL Channel an upgraded DragonOrb. NL Exhaust.",
+		"EXTENDED_DESCRIPTION": [
+			"Arcane NL Spellcaster NL Tribute !duelist:TRIB! NL Channel an upgraded DragonOrb."
+		]
 	},
 	"theDuelist:MachineFactory": {
 		"DESCRIPTION": "Replace all of your Orbs with Glitch orbs. NL Exhaust.",
@@ -2274,9 +2277,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Choose !M! card in your hand to copy."
 	},
 	"theDuelist:Wiseman": {
-		"DESCRIPTION": "Fleeting NL Gain 1 Potion slot.",
+		"DESCRIPTION": "Fleeting NL Gain 1 Potion slot. NL At the start of each combat you will have a 20% chance to become Haunted.",
 		"NAME": "Wiseman's Chalice",
-		"UPGRADE_DESCRIPTION": "Fleeting NL Gain 1 Potion slot."
+		"UPGRADE_DESCRIPTION": "Fleeting NL Gain 1 Potion slot. NL At the start of each combat you will have a 20% chance to become Haunted."
 	},
 	"theDuelist:WorldCarrot": {
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -2359,9 +2362,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL For 3 turns, lose !M! HP at the start of turn. NL After 3 turns, heal !M! HP at the start of turn for 6 turns."
 	},
 	"theDuelist:RainbowKuriboh": {
-		"DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !M! Randomized monsters (of a random type) to your hand.",
+		"DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !duelist:M! Randomized monsters (of a random type) to your hand.",
 		"NAME": "Rainbow Kuriboh",
-		"UPGRADE_DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !M! Randomized monsters (of a random type) to your hand."
+		"UPGRADE_DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !duelist:M! Randomized monsters (of a random type) to your hand."
 	},
 	"theDuelist:Kuribohrn": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Increment !M!. NL Gain !B! Block.",
@@ -2704,9 +2707,9 @@
 		"UPGRADE_DESCRIPTION": "Copy all Machines in your hand."
 	},
 	"theDuelist:Zombyra": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Lose !M! HP.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns.",
 		"NAME": "Zombyra",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Lose !M! HP."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns."
 	},
 	"theDuelist:MagicalStone": {
 		"DESCRIPTION": "Arcane NL Draw !M! Spells. NL Exhaust.",
@@ -3184,9 +3187,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Increase the Tribute cost and damage of all monsters in your Exhaust pile by !M! and 12, respectively."
 	},
 	"theDuelist:HauntedShrine": {
-		"DESCRIPTION": "Simultaneously: move all cards from Exhaust to draw, move all cards from discard to Exhaust, move all cards from draw to discard, and move all cards from hand to a random other pile. Then, fill your hand with cards from random piles. Your entire hand then costs 0 this turn.",
+		"DESCRIPTION": "Choose a card type. For the rest of combat, cards of that type will cost 0 and trigger !M! random negative effects when played.",
 		"NAME": "Haunted Shrine",
-		"UPGRADE_DESCRIPTION": "Simultaneously: move all cards from Exhaust to draw, move all cards from discard to Exhaust, move all cards from draw to discard, and move all cards from hand to a random other pile. Then, fill your hand with cards from random piles. Your entire hand then costs 0 this turn."
+		"UPGRADE_DESCRIPTION": "Choose a card type. For the rest of combat, cards of that type will cost 0 and trigger !M! random negative effect when played."
 	},
 	"theDuelist:EndlessDecay": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Swap your draw and Exhaust piles. NL Lose !M! HP. NL Exhaust. Exempt.",
@@ -3334,9 +3337,9 @@
 		"UPGRADE_DESCRIPTION": "The next monster you play becomes Megatyped for the rest of combat. NL Exhaust."
 	},
 	"theDuelist:MillenniumSpellbook": {
-		"DESCRIPTION": "Fleeting NL After 7 turns, if you have dealt at least 99 unblocked damage by playing Attack cards, deal 150 damage to ALL enemies.",
+		"DESCRIPTION": "After 7 turns, if you have dealt at least 99 unblocked damage, deal 150 damage to ALL enemies.",
 		"NAME": "Millennium Spellbook",
-		"UPGRADE_DESCRIPTION": "After 7 turns, if you have dealt at least 99 unblocked damage by playing Attack cards, deal 150 damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "After 7 turns, if you have dealt at least 99 unblocked damage, deal 150 damage to ALL enemies."
 	},
 	"theDuelist:PlagueToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Lose 3 max HP when Tributed for any non-Zombie monster.",
@@ -3347,6 +3350,36 @@
 		"DESCRIPTION": "Deal !D! damage. NL Tribute ALL monsters and Resummon a random monster that costs that many tributes.",
 		"NAME": "Lightning Vortex",
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Tribute ALL monsters and Resummon a random monster that costs that many tributes."
+	},
+	"theDuelist:HauntAttacks": {
+		"DESCRIPTION": "Haunt Attacks NL Attack cards will cost 0 for the rest of combat, but playing Attacks will trigger random negative effects.",
+		"NAME": "Attack",
+		"UPGRADE_DESCRIPTION": "Haunt Attacks NL Attack cards will cost 0 for the rest of combat, but playing Attacks will trigger random negative effects."
+	},
+	"theDuelist:HauntSpells": {
+		"DESCRIPTION": "Haunt Spells NL Spell cards will cost 0 for the rest of combat, but playing Spells will trigger random negative effects.",
+		"NAME": "Spell",
+		"UPGRADE_DESCRIPTION": "Haunt Spells NL Spell cards will cost 0 for the rest of combat, but playing Spells will trigger random negative effects."
+	},
+	"theDuelist:HauntPowers": {
+		"DESCRIPTION": "Haunt Powers NL Power cards will cost 0 for the rest of combat, but playing Powers will trigger random negative effects.",
+		"NAME": "Power",
+		"UPGRADE_DESCRIPTION": "Haunt Powers NL Power cards will cost 0 for the rest of combat, but playing Powers will trigger random negative effects."
+	},
+	"theDuelist:HauntSkills": {
+		"DESCRIPTION": "Haunt Skills NL Skill cards will cost 0 for the rest of combat, but playing Skills will trigger random negative effects.",
+		"NAME": "Skill",
+		"UPGRADE_DESCRIPTION": "Haunt Skills NL Skill cards will cost 0 for the rest of combat, but playing Skills will trigger random negative effects."
+	},
+	"theDuelist:HauntTraps": {
+		"DESCRIPTION": "Haunt Traps NL Trap cards will cost 0 for the rest of combat, but playing Traps will trigger random negative effects.",
+		"NAME": "Traps",
+		"UPGRADE_DESCRIPTION": "Haunt Traps NL Trap cards will cost 0 for the rest of combat, but playing Traps will trigger random negative effects."
+	},
+	"theDuelist:HauntMonsters": {
+		"DESCRIPTION": "Haunt Monsters NL Monster cards will cost 0 for the rest of combat, but playing Monsters will trigger random negative effects.",
+		"NAME": "Monster",
+		"UPGRADE_DESCRIPTION": "Haunt Monsters NL Monster cards will cost 0 for the rest of combat, but playing Monsters will trigger random negative effects."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

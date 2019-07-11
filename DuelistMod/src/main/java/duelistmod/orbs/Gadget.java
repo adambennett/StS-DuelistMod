@@ -13,8 +13,10 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.QueueCardSuperFastAction;
 import duelistmod.interfaces.*;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Gadget extends DuelistOrb

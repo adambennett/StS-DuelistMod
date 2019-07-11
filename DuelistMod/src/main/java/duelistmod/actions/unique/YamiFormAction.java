@@ -11,8 +11,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.CancelCard;
-import duelistmod.interfaces.DuelistCard;
+import duelistmod.helpers.GridSort;
 
 public class YamiFormAction extends AbstractGameAction
 {
@@ -111,7 +112,7 @@ public class YamiFormAction extends AbstractGameAction
 			}
 			
 			Collections.sort(tmp.group, GridSort.getComparator());
-			tmp.addToBottom(new CancelCard());
+			tmp.addToTop(new CancelCard());
 			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card for Yami Form", false); }
 			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose a card for Yami Form", false); }
 			tickDuration();
