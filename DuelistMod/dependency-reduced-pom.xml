@@ -104,11 +104,11 @@
     <StSLib.version>1.17.1</StSLib.version>
     <Hubris.version>0.23.0</Hubris.version>
     <ModTheSpire.version>3.11.0</ModTheSpire.version>
-    <BaseMod.version>5.15.0</BaseMod.version>
+    <BaseMod.version>5.15.1</BaseMod.version>
     <ReplayTheSpireMod.version>1.4.7</ReplayTheSpireMod.version>
     <Conspire.version>1.6.2</Conspire.version>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <SlayTheSpire.version>7-05-2019</SlayTheSpire.version>
+    <SlayTheSpire.version>7-17-2019</SlayTheSpire.version>
   </properties>
 </project>
 
