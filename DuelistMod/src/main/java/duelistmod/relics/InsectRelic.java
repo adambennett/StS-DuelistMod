@@ -21,8 +21,8 @@ public class InsectRelic extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("InsectRelic");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("NatureRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("NatureRelic.png");
 	private static int cautiousChecker = 1;
 	
 	public InsectRelic() {

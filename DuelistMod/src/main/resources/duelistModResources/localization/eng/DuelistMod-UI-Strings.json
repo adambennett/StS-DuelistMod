@@ -138,8 +138,10 @@
 			"Gain ",
 			"Add Red/Blue/Green Cards",
 			"Soulbound NL ",
-			"Force Millennium Puzzle Summons"
-			
+			"Bonus Millennium Puzzle Summons",
+			"Allow Boosters",
+			"Always Boosters",
+			"Remove Card Rewards"
 		]
 	}
 }

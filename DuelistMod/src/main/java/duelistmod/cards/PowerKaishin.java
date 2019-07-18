@@ -6,9 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.incomplete.ManaPower;
 import duelistmod.variables.*;
 
 public class PowerKaishin extends DuelistCard
@@ -37,6 +38,7 @@ public class PowerKaishin extends DuelistCard
         this.orbDeckCopies = 2;
         this.originalName = this.name;
         this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.setupStartingCopies();
     }
 
@@ -45,6 +47,7 @@ public class PowerKaishin extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	channelRandomNoGlassOrGate();
+    	applyPowerToSelf(new ManaPower(p, p, 2));
     }
 
     // Which card to return when making a copy of this card.

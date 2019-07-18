@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -62,7 +63,7 @@ public class CyberDragon extends DuelistCard
     			if (c.hasTag(Tags.DRAGON)) { dragons++; }
     		}
     	}
-    	attack(m);
+    	damageThroughBlock(m, p, this.damage, AttackEffect.FIRE);
     	if (dragons > 0) { AbstractOrb glitch = new Glitch(); channel(glitch); }
     }
 

@@ -14,6 +14,7 @@ public class StarterDeck
 	private CardTags cardTag;
 	private String name;
 	private String simpleName;
+	public ArrayList<CardTags> tagsThatMatchCards = new ArrayList<CardTags>();
 	private ArrayList<DuelistCard> deck = new ArrayList<DuelistCard>();
 	private ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
 	private ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();

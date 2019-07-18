@@ -1,11 +1,14 @@
 package duelistmod.relics;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.variables.Strings;
 
 public class CardRewardRelicA extends CustomRelic
@@ -16,7 +19,7 @@ public class CardRewardRelicA extends CustomRelic
     public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
     // /FIELDS
 
-    public CardRewardRelicA() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL); }
+    public CardRewardRelicA() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL); }
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
     @Override
@@ -30,7 +33,7 @@ public class CardRewardRelicA extends CustomRelic
     @Override
     public void onEquip()
     {
-    	this.counter = 2;
+    	this.counter = 0;
         DuelistMod.hasCardRewardRelic = true;        
     }
     

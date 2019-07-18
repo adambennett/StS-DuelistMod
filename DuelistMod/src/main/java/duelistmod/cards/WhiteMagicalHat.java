@@ -5,12 +5,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
-import duelistmod.patches.*;
+import duelistmod.helpers.Util;
+import duelistmod.orbs.WhiteOrb;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.powers.incomplete.ManaPower;
 import duelistmod.variables.*;
 
 public class WhiteMagicalHat extends DuelistCard 
@@ -38,6 +41,7 @@ public class WhiteMagicalHat extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.METAL_RAIDERS);
 		this.summons = this.baseSummons = 2;
+		this.magicNumber = this.baseMagicNumber = 3;
 		this.originalName = this.name;
 
 	}
@@ -47,8 +51,8 @@ public class WhiteMagicalHat extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		if (p.filledOrbCount() > 0) { invert(1); }
-		else { channelRandom(); }
+		AbstractOrb white = new WhiteOrb(); channel(white);
+		applyPowerToSelf(new ManaPower(p, p, this.magicNumber));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -76,7 +80,7 @@ public class WhiteMagicalHat extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

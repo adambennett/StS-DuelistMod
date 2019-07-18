@@ -19,8 +19,8 @@ public class DragonRelicC extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("DragonRelicC");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("DragonRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("DragonRelic.png");
 	
 	public DragonRelicC() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

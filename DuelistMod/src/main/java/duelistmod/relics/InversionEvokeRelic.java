@@ -18,11 +18,11 @@ public class InversionEvokeRelic extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("InversionEvokeRelic");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("InvertRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("InvertRelic.png");
 
 	public InversionEvokeRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 	
 	@Override

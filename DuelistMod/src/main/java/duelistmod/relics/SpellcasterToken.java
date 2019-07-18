@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.variables.Strings;
 
 public class SpellcasterToken extends CustomRelic implements OnChannelRelic {
 
@@ -24,8 +23,8 @@ public class SpellcasterToken extends CustomRelic implements OnChannelRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("SpellcasterToken");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("SpellcasterRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("SpellcasterRelic.png");
 
 	private boolean finished = false;
 	
@@ -39,7 +38,7 @@ public class SpellcasterToken extends CustomRelic implements OnChannelRelic {
 	{
 		if (!finished)
 		{
-			DuelistCard.channelRandom();
+			DuelistCard.spellcasterPuzzleChannel();
 		}
 		finished = true;
 	}

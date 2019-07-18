@@ -3,15 +3,14 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.FocusPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class IcyCrevasse extends DuelistCard 
@@ -26,12 +25,12 @@ public class IcyCrevasse extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public IcyCrevasse() {
@@ -42,6 +41,9 @@ public class IcyCrevasse extends DuelistCard
     	this.startingOPODeckCopies = 1;
         this.misc = 0;
 		this.originalName = this.name;
+		this.baseMagicNumber = this.magicNumber = 3;		// Focus
+		this.baseSecondMagic = this.secondMagic = 3;		// Max summon reduction
+		this.baseThirdMagic = this.thirdMagic = 2;			// Frost Channeled
 		this.setupStartingCopies();
     }
 
@@ -49,24 +51,9 @@ public class IcyCrevasse extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	boolean foundFrost = false;
-    	for (AbstractOrb o : player().orbs)
-    	{
-    		if (o instanceof Frost)
-    		{
-    			foundFrost = true;   
-    		}
-    	}
-    	if (!this.upgraded && foundFrost)
-    	{
-    		int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-    		applyPowerToSelf(new FocusPower(p, roll));	    	
-    	}
-    	else if (foundFrost)
-    	{
-	    	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
-	    	applyPowerToSelf(new FocusPower(p, roll));
-    	}
+    	applyPowerToSelf(new FocusPower(p, this.magicNumber));
+    	decMaxSummons(p, this.secondMagic);
+    	for (int i = 0; i < this.thirdMagic; i++) { AbstractOrb f = new Frost(); channel(f); }
     }
 
     // Which card to return when making a copy of this card.
@@ -80,6 +67,7 @@ public class IcyCrevasse extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -57,8 +57,7 @@ public class Sparks extends DuelistCard
         this.superheavyDeckCopies = 2;
         this.aquaDeckCopies = 2;
         this.fiendDeckCopies = 2;
-        this.zombieDeckCopies = 2;
-        this.zombieDeckCopies = 2;
+        this.zombieDeckCopies = 3;
         this.machineDeckCopies = 2;
         this.standardDeckCopies = 4;
         this.dragonDeckCopies = 3;

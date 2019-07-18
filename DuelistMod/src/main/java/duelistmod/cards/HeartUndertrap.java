@@ -15,7 +15,7 @@ import duelistmod.variables.*;
 public class HeartUndertrap extends DuelistCard 
 {
     // TEXT DECLARATION 
-    public static final String ID = duelistmod.DuelistMod.makeID("HeartUndertrap");
+    public static final String ID = DuelistMod.makeID("HeartUndertrap");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.HEART_UNDERTRAP);
     public static final String NAME = cardStrings.NAME;
@@ -36,6 +36,7 @@ public class HeartUndertrap extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ALL);
 		this.originalName = this.name;
+		this.baseMagicNumber = this.magicNumber = 4;
     }
 
 
@@ -43,7 +44,7 @@ public class HeartUndertrap extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new HeartUndertrapPower(p, p));
+    	applyPowerToSelf(new HeartUndertrapPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -58,6 +59,7 @@ public class HeartUndertrap extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.isInnate = true;
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

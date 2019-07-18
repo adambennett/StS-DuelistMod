@@ -38,12 +38,9 @@ public class SilverApples extends DuelistCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TRAP);
-    	this.tags.add(Tags.INCREMENT_DECK);
-    	this.incrementDeckCopies = 2;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 4;
 		this.baseBlock = this.block = 0;
-		this.setupStartingCopies();
     }
     
 	@Override

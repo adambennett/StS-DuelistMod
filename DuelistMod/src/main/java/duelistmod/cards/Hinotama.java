@@ -31,10 +31,6 @@ public class Hinotama extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static int MIN_TIMES = 2;
-    private static int MAX_TIMES = 3;
-    private static int MIN_TIMES_U = 2;
-    private static int MAX_TIMES_U = 4;
     // /STAT DECLARATION/
 
     public Hinotama() {
@@ -45,6 +41,8 @@ public class Hinotama extends DuelistCard
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.GENERATION_DECK);
 		this.generationDeckCopies = 1;
+		this.magicNumber = this.baseMagicNumber = 3;
+		this.secondMagic = this.baseSecondMagic = 2;
 		this.setupStartingCopies();
     }
 
@@ -52,16 +50,8 @@ public class Hinotama extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.upgraded)
-    	{
-    		int randomTimes = AbstractDungeon.cardRandomRng.random(MIN_TIMES_U, MAX_TIMES_U);
-    		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
-    	}
-    	else
-    	{
-    		int randomTimes = AbstractDungeon.cardRandomRng.random(MIN_TIMES, MAX_TIMES );
-	        for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
-    	}	
+    	int randomTimes = AbstractDungeon.cardRandomRng.random(this.secondMagic, this.magicNumber);
+		for (int i = 0; i < randomTimes; i++) { attack(m, AFX, this.damage); }
     }
 
     // Which card to return when making a copy of this card.
@@ -72,14 +62,32 @@ public class Hinotama extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) 
+    public void upgrade() 
+    {
+        if (canUpgrade()) 
         {
-            this.upgradeName();
-            //this.upgradeDamage(2);
+        	// Name
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+        	if (this.timesUpgraded == 1) { this.upgradeMagicNumber(1); }
+        	else if (this.timesUpgraded%2 == 1) { this.upgradeMagicNumber(1); }
+        	else { this.upgradeDamage(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber < 6)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
 
 	@Override

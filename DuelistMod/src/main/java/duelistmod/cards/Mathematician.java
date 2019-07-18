@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -49,7 +49,7 @@ public class Mathematician extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	int x = getXEffect();
-    	int newDamage = Utilities.factorial(x);
+    	int newDamage = Util.factorial(x);
     	attack(m, AFX, newDamage);
     	useXEnergy();
     }

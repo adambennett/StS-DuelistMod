@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.orbs.*;
+import duelistmod.orbs.FireOrb;
 
 public class FireBottle extends AbstractPotion {
 
@@ -35,6 +35,7 @@ public class FireBottle extends AbstractPotion {
         
         // Initialize the on-hover name + description
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Fire", DESCRIPTIONS[3]));
         
     }
 
@@ -44,7 +45,7 @@ public class FireBottle extends AbstractPotion {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
     	{
-	       AbstractOrb air = new Lava();
+	       AbstractOrb air = new FireOrb();
 	       DuelistCard.channel(air);
     	}
     }
@@ -69,5 +70,6 @@ public class FireBottle extends AbstractPotion {
       }
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Fire", DESCRIPTIONS[3]));
     }
 }

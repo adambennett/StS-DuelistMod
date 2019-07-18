@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Debug;
+import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -56,6 +56,7 @@ public class BadToken extends DuelistCard
     		Debug.printTributeInfo();
         	Debug.printRarityInfo();
         	Debug.printTypedRarityInfo();
+        	BoosterPackHelper.debugCheckLists();
     	}
     	
     	for (AbstractPower pow : p.powers)

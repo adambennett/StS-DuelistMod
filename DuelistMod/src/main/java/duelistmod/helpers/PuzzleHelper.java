@@ -84,10 +84,41 @@ public class PuzzleHelper
 			}
 		}
 	}
+	
+	public static void spellcasterChannelAction()
+	{
+		if (StarterDeckSetup.getCurrentDeck().getIndex() == 3)
+		{
+			int rollSp = AbstractDungeon.cardRandomRng.random(DuelistMod.spellcasterRandomOrbsChanneled, 3);				
+			if (rollSp == 3) 
+			{ 
+				DuelistCard.spellcasterPuzzleChannel();
+				DuelistMod.currentSpellcasterOrbChance = 25;
+				DuelistMod.spellcasterDidChannel = true;
+			}
+			else 
+			{
+				DuelistMod.spellcasterDidChannel = false;
+				int check = DuelistMod.spellcasterRandomOrbsChanneled;
+				if (check == 0) 		{ DuelistMod.currentSpellcasterOrbChance = 33;	}
+				else if (check == 1) 	{ DuelistMod.currentSpellcasterOrbChance = 50;  }
+				else if (check == 2) 	{ DuelistMod.currentSpellcasterOrbChance = 100; }
+			}
+		}
+	}
+	
+	public static void zombieChannel()
+	{
+		if (StarterDeckSetup.getCurrentDeck().getIndex() == 5)
+		{
+			DuelistCard.zombieLavaChannel();
+		}
+	}
 
 	public static void runSpecialEffect(int SUMMONS, int extra)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
+		if (DuelistMod.forcePuzzleSummons) { extra += 1; }
 		switch (StarterDeckSetup.getCurrentDeck().getIndex())
 		{
 			// Standard Deck
@@ -120,40 +151,24 @@ public class PuzzleHelper
 	
 			// Spellcaster Deck
 			case 3:
-				if (DuelistMod.forcePuzzleSummons) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Spellcaster Token", false); }
-				int rollSp = AbstractDungeon.cardRandomRng.random(DuelistMod.spellcasterRandomOrbsChanneled, 3);				
-				if (rollSp == 3) 
-				{ 
-					DuelistCard.channelRandomNoGlassOrGate();
-					DuelistMod.currentSpellcasterOrbChance = 25;
-					DuelistMod.spellcasterDidChannel = true;
-				}
-				else 
-				{
-					DuelistMod.spellcasterDidChannel = false;
-					int check = DuelistMod.spellcasterRandomOrbsChanneled;
-					if (check == 0) 		{ DuelistMod.currentSpellcasterOrbChance = 33;	}
-					else if (check == 1) 	{ DuelistMod.currentSpellcasterOrbChance = 50;  }
-					else if (check == 2) 	{ DuelistMod.currentSpellcasterOrbChance = 100; }
-				}
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Spellcaster Token", false);
 				break;
 				
 			// Toon Deck
 			case 4:		
-				if (DuelistMod.forcePuzzleSummons) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Toon Token", false); }
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Toon Token", false);
 				//PuzzleHelper.toonDeckAction(p, extra);
 				if (!AbstractDungeon.player.hasRelic(MillenniumEye.ID)) { DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, 1)); }
 				break;
 				
 			// Zombie Deck
 			case 5:		
-				if (DuelistMod.forcePuzzleSummons) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Zombie Token", false); }
-				DuelistCard.zombieLavaChannel();
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Zombie Token", false);
 				break;
 				
 			// Aqua Deck
 			case 6:		
-				if (DuelistMod.forcePuzzleSummons) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false); }
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Aqua Token", false);
 				//DuelistCard.draw(AbstractDungeon.actNum); 
 				
 				
@@ -172,14 +187,14 @@ public class PuzzleHelper
 					dC.fiendDeckDmgMod = true;
 					dC.originalBlock = dC.block;
 					AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(randomDmg.uuid, DuelistMod.summonLastCombatCount));
-					AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
+					//AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
 				}
 				break;
 
 			// Fiend Deck
 			case 7:		
 				// Summon Fiend Token
-				if (DuelistMod.forcePuzzleSummons) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Fiend Token", false); }
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Fiend Token", false);
 				
 				// Keep track of total numbers of tributes in deck
 				int totalTribs = 0;
@@ -217,13 +232,13 @@ public class PuzzleHelper
 					dC.fiendDeckDmgMod = true;
 					dC.originalDamage = dC.damage;
 					AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomDmg.uuid, totalTribs));
-					AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
+					//AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
 				}
 				break;
 
 			// Machine Deck
 			case 8:		
-				if (DuelistMod.forcePuzzleSummons) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Machine Token", false); }
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Machine Token", false);
 				//DuelistCard.applyPowerToSelf(new ArtifactPower(p, 1));
 				DuelistCard randomToken = (DuelistCard) DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeStatEquivalentCopy();
 				DuelistCard.addCardToHand(randomToken);
@@ -231,7 +246,7 @@ public class PuzzleHelper
 				
 			// Superheavy Deck
 			case 9:		
-				if (DuelistMod.forcePuzzleSummons) { DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Superheavy Token", false); }
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Superheavy Token", false);
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
 				DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 5));
 				break;

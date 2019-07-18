@@ -19,8 +19,8 @@ public class FiendRelic extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("FiendRelic");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("FiendRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("FiendRelic.png");
 	
 	public FiendRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

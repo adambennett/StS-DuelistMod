@@ -35,7 +35,7 @@ public class SteamBottle extends AbstractPotion {
         
         // Initialize the on-hover name + description
         this.tips.add(new PowerTip(this.name, this.description));
-        
+        this.tips.add(new PowerTip("Mist", DESCRIPTIONS[3]));
     }
 
     @Override
@@ -69,5 +69,6 @@ public class SteamBottle extends AbstractPotion {
       }
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Mist", DESCRIPTIONS[3]));
     }
 }

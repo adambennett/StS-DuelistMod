@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -37,7 +37,7 @@ public class FlameGhost extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 8;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 8;
         this.isSummon = true;
@@ -70,7 +70,7 @@ public class FlameGhost extends DuelistCard
         	}
         	else
         	{
-        		this.upgradeMagicNumber(4);
+        		this.upgradeDamage(4);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
@@ -91,7 +91,7 @@ public class FlameGhost extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

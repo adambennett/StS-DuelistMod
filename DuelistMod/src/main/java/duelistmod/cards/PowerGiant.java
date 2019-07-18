@@ -38,6 +38,7 @@ public class PowerGiant extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 20;
+        this.secondMagic = this.baseSecondMagic = 20;
         this.baseMagicNumber = this.magicNumber = 5;
         this.tributes = this.baseTributes = 6;
         this.misc = 0;
@@ -50,9 +51,9 @@ public class PowerGiant extends DuelistCard
     {
     	tribute();   
     	attack(m);
-    	if (this.damage != 20)
+    	if (this.damage != this.secondMagic)
     	{
-    		AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(this.uuid, -this.damage + 20));
+    		AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(this.uuid, -this.damage + this.secondMagic));
     	}
     }
     
@@ -70,6 +71,7 @@ public class PowerGiant extends DuelistCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeDamage(15);
+        	this.upgradeSecondMagic(15);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

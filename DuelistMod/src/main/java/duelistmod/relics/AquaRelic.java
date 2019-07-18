@@ -5,9 +5,8 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.variables.Strings;
 
 public class AquaRelic extends CustomRelic {
 
@@ -19,8 +18,8 @@ public class AquaRelic extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("AquaRelic");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("AquaRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("AquaRelic.png");
 	
 	public AquaRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

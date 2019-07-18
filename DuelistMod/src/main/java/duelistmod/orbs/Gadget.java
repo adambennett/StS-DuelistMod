@@ -4,13 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
@@ -57,9 +59,9 @@ public class Gadget extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (DuelistMod.trapsThisRun.size() > 0 && !hasNegativeFocus())
+		if (DuelistMod.uniqueSkillsThisCombat.size() > 0 && !hasNegativeFocus())
 		{
-			DuelistCard randomTrap = DuelistMod.trapsThisRun.get(AbstractDungeon.cardRandomRng.random(DuelistMod.trapsThisRun.size() - 1));
+			AbstractCard randomTrap = DuelistMod.uniqueSkillsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.uniqueSkillsThisCombat.size() - 1));
 			if (!randomTrap.tags.contains(Tags.TRIBUTE)) { randomTrap.misc = 52; }
 			randomTrap.freeToPlayOnce = true;
 			randomTrap.applyPowers();
@@ -82,6 +84,7 @@ public class Gadget extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 		DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, this.passiveAmount));
 		DuelistCard.applyPowerToSelf(new LoseDexterityPower(AbstractDungeon.player, this.passiveAmount));
 	}

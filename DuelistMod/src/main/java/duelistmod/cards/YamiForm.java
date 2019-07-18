@@ -29,7 +29,7 @@ public class YamiForm extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 4;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public YamiForm() {
@@ -64,10 +64,11 @@ public class YamiForm extends DuelistCard
         	if (DuelistMod.hasUpgradeBuffRelic)
         	{
         		this.upgradeBaseCost(2);
+        		this.upgradeMagicNumber(3);
         	}
         	else
         	{
-        		this.upgradeBaseCost(3);
+        		this.upgradeMagicNumber(3);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
@@ -48,7 +48,7 @@ public class ArmoredZombie extends DuelistCard
         this.resummonDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
-        this.block = this.baseBlock = 5;
+        this.block = this.baseBlock = 7;
         this.magicNumber = this.baseMagicNumber = 2;
         this.setupStartingCopies();
     }
@@ -74,7 +74,7 @@ public class ArmoredZombie extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -102,7 +102,7 @@ public class ArmoredZombie extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

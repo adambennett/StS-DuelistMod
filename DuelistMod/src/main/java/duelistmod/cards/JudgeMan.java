@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -82,7 +82,7 @@ public class JudgeMan extends DuelistCard
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
     	// Check for monster zones challenge
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		// Check for energy and other normal game checks

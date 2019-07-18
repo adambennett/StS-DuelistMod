@@ -29,33 +29,34 @@ public class GuardianAngel extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public GuardianAngel() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 5;
-        this.magicNumber = this.baseMagicNumber = 3;
-        this.tributes = this.baseTributes = 2;
-        this.misc = 0;
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ALL);
-        this.tags.add(Tags.INVASION_CHAOS);
-        this.tags.add(Tags.ORIGINAL_HEAL_DECK);
-        this.startingOPHDeckCopies = 1;
-        this.originalName = this.name;
-        this.setupStartingCopies();
+    public GuardianAngel() 
+    {
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    	this.baseDamage = this.damage = 0;
+    	this.tags.add(Tags.MONSTER);
+    	this.tags.add(Tags.SPELLCASTER);
+    	this.tags.add(Tags.INVASION_CHAOS);
+    	this.tags.add(Tags.ORIGINAL_HEAL_DECK);
+    	this.misc = 0;
+    	this.originalName = this.name;
+    	this.tributes = this.baseTributes = 3;
+    	this.magicNumber = this.baseMagicNumber = 0;       
+    	this.startingOPHDeckCopies = 1;
+    	this.setupStartingCopies();
     }
     
     @Override
 	public void update()
 	{
-		super.update();
+    	super.update();
 		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
 		{
 			int dmg = 0;
@@ -67,30 +68,31 @@ public class GuardianAngel extends DuelistCard
 					int endIndex = pow.actualCardSummonList.size() - 1;
 					for (int i = endIndex; i > endIndex - this.tributes; i--)
 					{
-						if (pow.actualCardSummonList.get(i).hasTag(Tags.SPELLCASTER))
-						{
-							dmg += this.magicNumber;
-						}
+						dmg += pow.actualCardSummonList.get(i).block;
 					}
 					
-					if (dmg > 0)
+					if (upgraded)
 					{
-						this.secondMagic = this.baseSecondMagic = dmg + this.damage;
+						this.magicNumber = this.baseMagicNumber = dmg + 9;						
+					}
+					else if (dmg > 0)
+					{
+						this.magicNumber = this.baseMagicNumber = dmg;						
 					}
 				}	
 				else
 				{
-					this.secondMagic = this.baseSecondMagic =  0;
+					this.magicNumber = this.baseMagicNumber = 0;
 				}
 			}
 			else
 			{
-				this.secondMagic = this.baseSecondMagic =  0;
+				this.magicNumber = this.baseMagicNumber = 0;
 			}
 		}
 		else
 		{
-			this.secondMagic = this.baseSecondMagic =  0;
+			this.magicNumber = this.baseMagicNumber = 0;
 		}
 	}
 
@@ -98,24 +100,27 @@ public class GuardianAngel extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int damageTotal = 0;
+    	int damageIncrease = 0;
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	if (tributeList.size() > 0)
+    	if (upgraded && tributeList.size() > 0) 
+    	{ 
+    		for (DuelistCard c : tributeList) 
+	    	{ 
+	    		damageIncrease += c.baseBlock + 3; 
+	    		if (DuelistMod.debug) { System.out.println("theDuelist:GuardianAngel:use() ---> card damage: " + c.baseDamage); }
+	    	}
+    	}
+    	else if (!upgraded && tributeList.size() > 0) 
     	{
     		for (DuelistCard c : tributeList)
-    		{
-    			if (c.hasTag(Tags.SPELLCASTER))
-    			{
-    				damageTotal += this.magicNumber;
-    			}
-    		}
+	    	{ 
+	    		damageIncrease += c.baseBlock; 
+	    		if (DuelistMod.debug) { System.out.println("theDuelist:GuardianAngel:use() ---> card damage: " + c.baseDamage); }
+	    	}
     	}
-    	
-    	
-    	
-    	this.baseDamage = this.damage = 3 + damageTotal;
+    	this.baseDamage = this.damage += damageIncrease;
+    	if (DuelistMod.debug) { System.out.println("theDuelist:GuardianAngel:use() ---> damageIncrease: " + damageIncrease); }
     	attack(m, AFX, this.damage);
-    	heal(p, damageTotal + 3);
     }
 
     // Which card to return when making a copy of this card.
@@ -129,7 +134,6 @@ public class GuardianAngel extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-	        this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

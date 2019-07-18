@@ -29,75 +29,79 @@
 },
 "theDuelist:OrbBottle": {
         "NAME": "Foggy Bottle",
-        "DESCRIPTIONS": ["Channel a random Orb.", "Channel #b", " random Orbs."]
+        "DESCRIPTIONS": ["#yChannel a random Orb.", "#yChannel #b", " random Orbs."]
 },
 "theDuelist:BigOrbBottle": {
         "NAME": "Paladin Bottle",
-        "DESCRIPTIONS": ["Choose an Orb to Channel.", "Choose #b", " Orbs to Channel."]
+        "DESCRIPTIONS": ["Choose an Orb to #yChannel.", "Choose #b", " Orbs to #yChannel."]
 },
 "theDuelist:AirBottle": {
         "NAME": "Bottled Wind",
-        "DESCRIPTIONS": ["Channel an #yAir.", "Channel #b", " #yAir Orbs."]
+        "DESCRIPTIONS": ["#yChannel an #yAir.", "#yChannel #b", " #yAir Orbs.", "Potentially #yChannels random offensive orbs at the start of turn, and gives orb slots when #yEvoked."]
 },
 "theDuelist:BlackBottle": {
         "NAME": "Bottled Darkness",
-        "DESCRIPTIONS": ["Channel a #yBlack.", "Channel #b", " #yBlack Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yBlack.", "#yChannel #b", " #yBlack Orbs.", "Potentitally applies random debuffs at the start of turn, and adds #yFiends to hand when #yEvoked."]
 },
 "theDuelist:DragonOrbBottle": {
         "NAME": "Dragon Potion",
-        "DESCRIPTIONS": ["Channel a #yDragonOrb.", "Channel #b", " #yDragonOrbs."]
+        "DESCRIPTIONS": ["#yChannel a #yDragonOrb.", "#yChannel #b", " #yDragonOrbs.", "Adds #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b1 when #yEvoked."]
 },
 "theDuelist:DragonOrbPlusBottle": {
         "NAME": "Super Dragon Potion",
-        "DESCRIPTIONS": ["Channel an #yupgraded #yDragonOrb.", "Channel #b", " #yupgraded #yDragonOrbs."]
+        "DESCRIPTIONS": ["#yChannel an #yupgraded #yDragonOrb.", "#yChannel #b", " #yupgraded #yDragonOrbs.", "Adds #yUpgraded #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked."]
 },
 "theDuelist:EarthBottle": {
         "NAME": "Spell Bottle",
-        "DESCRIPTIONS": ["Channel an #yEarth.", "Channel #b", " #yEarth Orbs."]
+        "DESCRIPTIONS": ["#yChannel an #yEarth.", "#yChannel #b", " #yEarth Orbs.", "Adds #ySpells to your hand at the start of turn, and sets the cost of #ySpells in your hand to #b1 when #yEvoked."]
 },
 "theDuelist:FireBottle": {
+        "NAME": "Fire Bottle",
+        "DESCRIPTIONS": ["#yChannel a #yFire.", "#yChannel #b", " #yFire Orbs.", "Deals damage to random enemies whenever you play cards. Reduces the #yTribute cost of #yDragons when #yEvoked."]
+},
+"theDuelist:LavaBottle": {
         "NAME": "Bottled Lava",
-        "DESCRIPTIONS": ["Channel a #yLava.", "Channel #b", " #yLava Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yLava.", "#yChannel #b", " #yLava Orbs.", "Deals damage when #yEvoked. Damage number changes at the end of each turn to a random number."]
 },
 "theDuelist:GadgetBottle": {
         "NAME": "Amazon Package",
-        "DESCRIPTIONS": ["Channel a #yGadget.", "Channel #b", " #yGadget Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yGadget.", "#yChannel #b", " #yGadget Orbs.", "Gives #yDexterity for the turn at the start of each turn, and plays random #ySkills when #yEvoked."]
 },
 "theDuelist:GlitchBottle": {
         "NAME": "Broken Bottle",
-        "DESCRIPTIONS": ["Channel a #yGlitch.", "Channel #b", " #yGlitch Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yGlitch.", "#yChannel #b", " #yGlitch Orbs.", "Triggers random actions at the start of turn and when #yEvoked."]
 },
 "theDuelist:MetalBottle": {
         "NAME": "Liquid Metal",
-        "DESCRIPTIONS": ["Channel a #yMetal.", "Channel #b", " #yMetal Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yMetal.", "#yChannel #b", " #yMetal Orbs.", "Gives #yBlock at the end of turn based on number of #ySpells played, and gives #yMetallicize when #yEvoked."]
 },
 "theDuelist:MonsterOrbBottle": {
         "NAME": "Bottled MonsterOrb",
-        "DESCRIPTIONS": ["Channel a #yMonsterOrb.", "Channel #b", " #yMonsterOrbs."]
+        "DESCRIPTIONS": ["#yChannel a #yMonsterOrb.", "#yChannel #b", " #yMonsterOrbs.", "Adds #yMonsters to your hand at the start of turn, and sets the cost of #yMonsters in your hand to #b1 when #yEvoked."]
 },
 "theDuelist:SandBottle": {
         "NAME": "Hourglass",
-        "DESCRIPTIONS": ["Channel a #ySand.", "Channel #b", " #ySand Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #ySand.", "#yChannel #b", " #ySand Orbs.", "#ySlows random enemies at the start of turn and when #yEvoked."]
 },
 "theDuelist:StormBottle": {
         "NAME": "Bottled Storm",
-        "DESCRIPTIONS": ["Channel a #yStorm.", "Channel #b", " #yStorm Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yStorm.", "#yChannel #b", " #yStorm Orbs.", "Adds #yPowers to your hand at the start of turn, and consumes orb slots to reduce #yTribute costs #yEvoked."]
 },
 "theDuelist:SummonerBottle": {
         "NAME": "Bottled Summoner",
-        "DESCRIPTIONS": ["Channel a #ySummoner.", "Channel #b", " #ySummoner Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #ySummoner.", "#yChannel #b", " #ySummoner Orbs.", "Summons #ySpellcaster Tokens at the end of turn, and #yIncrements when #yEvoked."]
 },
 "theDuelist:SteamBottle": {
         "NAME": "Bottled Steam",
-        "DESCRIPTIONS": ["Channel a #yMist.", "Channel #b", " #yMist Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yMist.", "#yChannel #b", " #yMist Orbs.", "#yIncrements at the start of each turn, and then deals damage that scales with max summons when #yEvoked."]
 },
 "theDuelist:MudBottle": {
         "NAME": "Goopbottle",
-        "DESCRIPTIONS": ["Channel a #yMud.", "Channel #b", " #yMud Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yMud.", "#yChannel #b", " #yMud Orbs.", "Applies #yPoison to random enemies at the start of turn, and gives the player #yThorns when #yEvoked."]
 },
 "theDuelist:BufferBottle": {
         "NAME": "Ojama Bottle",
-        "DESCRIPTIONS": ["Channel a #yBuffer.", "Channel #b", " #yBuffer Orbs."]
+        "DESCRIPTIONS": ["#yChannel a #yBuffer.", "#yChannel #b", " #yBuffer Orbs.", "Potentially increases all your current #yBuffs at the start of turn, and gives random #yBuffs when #yEvoked."]
 },
 "theDuelist:TributeBottle": {
         "NAME": "Magic Bottle",
@@ -118,5 +122,33 @@
 "theDuelist:JoeyJuice": {
         "NAME": "Joey Juice",
         "DESCRIPTIONS": ["Increase the #yTribute cost of all monsters in your hand by #b", " for this turn."]
+},
+"theDuelist:WaterBottle": {
+        "NAME": "Water Bottle",
+        "DESCRIPTIONS": ["#yChannel a #yWater.", "#yChannel #b", " #yWater Orbs.", "Draws cards at the start of turn and when #yEvoked."]
+},
+"theDuelist:CoolBottle": {
+        "NAME": "Cold Bottle",
+        "DESCRIPTIONS": ["#yChannel a random defensive orb.", "#yChannel #b", " random defensive orbs."]
+},
+"theDuelist:HarpPotion": {
+        "NAME": "Bottled Harp",
+        "DESCRIPTIONS": ["#yResummon #b", " Spirits of the Harp."]
+},
+"theDuelist:BabyPotion": {
+        "NAME": "Bottled Dragons",
+        "DESCRIPTIONS": ["#yResummon #b", " Baby Dragons."]
+},
+"theDuelist:TokenPotion": {
+        "NAME": "Bottled Tokens",
+        "DESCRIPTIONS": ["#yResummon #b", " Block Tokens."]
+},
+"theDuelist:TokenPotionB": {
+        "NAME": "Bottled Summons",
+        "DESCRIPTIONS": ["#ySummon #b", " Tokens."]
+},
+"theDuelist:FlamingBottle": {
+        "NAME": "Flaming Bottle",
+        "DESCRIPTIONS": ["#yChannel a random offensive orb.", "#yChannel #b", " random offensive orbs."]
 }
 }

@@ -54,6 +54,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags NEVER_EXHAUST;
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
 	@SpireEnum public static AbstractCard.CardTags NO_CREATOR;
+	@SpireEnum public static AbstractCard.CardTags NO_MANA_RESET;
 	@SpireEnum public static AbstractCard.CardTags NEVER_GENERATE;
 	@SpireEnum public static AbstractCard.CardTags OJAMA;
 	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;

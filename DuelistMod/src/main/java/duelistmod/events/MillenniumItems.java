@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.incomplete.MillenniumSpellbook;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.potions.MillenniumElixir;
 
 public class MillenniumItems extends AbstractImageEvent {
@@ -33,8 +33,13 @@ public class MillenniumItems extends AbstractImageEvent {
     public MillenniumItems() {
         super(NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-        if (AbstractDungeon.ascensionLevel < 15) { imageEventText.setDialogOption(OPTIONS[0]); }
-        else { imageEventText.setDialogOption(OPTIONS[2]); }
+       // if (AbstractDungeon.ascensionLevel < 15) { 
+        imageEventText.setDialogOption(OPTIONS[0]);
+        //}
+       // else 
+       // { 
+        //	imageEventText.setDialogOption(OPTIONS[2]);
+       // }
         imageEventText.setDialogOption(OPTIONS[1]);
     }
 
@@ -48,11 +53,11 @@ public class MillenniumItems extends AbstractImageEvent {
                         this.imageEventText.updateDialogOption(0, OPTIONS[1]);
                         this.imageEventText.clearRemainingOptions();
                         boolean hasEveryMillenniumItem = true;
-                        for (AbstractRelic t : Utilities.getAllMillenniumItems(false)) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryMillenniumItem = false; }}
+                        for (AbstractRelic t : Util.getAllMillenniumItems(false)) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryMillenniumItem = false; }}
                         if (!hasEveryMillenniumItem) 
                         {
                         	ArrayList<Object> mills = new ArrayList<Object>();
-                        	for (AbstractRelic r : Utilities.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
+                        	for (AbstractRelic r : Util.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
                         	mills.add(new MillenniumElixir());    
                         	mills.add(new MillenniumSpellbook());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
@@ -80,11 +85,11 @@ public class MillenniumItems extends AbstractImageEvent {
                             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
                             AbstractCard b2 = DuelistCardLibrary.getRandomDuelistCurse();
                             AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b2, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-                            if (AbstractDungeon.ascensionLevel >= 15)
+                            /*if (AbstractDungeon.ascensionLevel >= 15)
                             {
                             	  AbstractCard b3 = DuelistCardLibrary.getRandomDuelistCurse();
                                   AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b3, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-                            }
+                            }*/
                         }
                         else
                         {

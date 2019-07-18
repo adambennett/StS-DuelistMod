@@ -1,14 +1,11 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Strings;
 
@@ -24,7 +21,7 @@ public class HeartUndertrapPower extends AbstractPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.HEART_UNDERDOG_POWER);
 
-    public HeartUndertrapPower(final AbstractCreature owner, final AbstractCreature source) 
+    public HeartUndertrapPower(final AbstractCreature owner, final AbstractCreature source, int amount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -34,37 +31,24 @@ public class HeartUndertrapPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
         this.updateDescription();
+        this.amount = amount;
+        this.canGoNegative = false;
         //if (owner.hasPower(HeartUnderdogPower.POWER_ID)) { DuelistCard.removePower(owner.getPower(HeartUnderdogPower.POWER_ID), owner); }
         //if (owner.hasPower(HeartUnderspellPower.POWER_ID)) { DuelistCard.removePower(owner.getPower(HeartUnderspellPower.POWER_ID), owner); }
        // if (owner.hasPower(HeartUndertributePower.POWER_ID)) { DuelistCard.removePower(owner.getPower(HeartUndertributePower.POWER_ID), owner); }
     }
     
     @Override
-    public void onDrawOrDiscard() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void atStartOfTurn() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
-    public void onPlayCard(AbstractCard c, AbstractMonster m) 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
-    
-    @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	if (this.amount > 0) { this.amount = 0; }
+    	if (this.amount > 0) { this.amount--; updateDescription(); if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }  }
 	}
 
     @Override
-	public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
+	public void updateDescription() 
+    {
+    	if (this.amount != 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
+    	else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
+        
     }
 }

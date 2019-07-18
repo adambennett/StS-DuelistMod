@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
@@ -15,7 +16,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
@@ -80,12 +81,12 @@ public class Glitch extends DuelistOrb
 		// Setup passive action list
 		passiveActions.add("Draw #b1 card");									translationMap.put("Draw #b1 card", Strings.configDraw1Card);
 		passiveActions.add("Draw #b1 card");									
-		passiveActions.add("Gain #b10 HP");										translationMap.put("Gain #b10 HP", Strings.configGain10HP);
-		passiveActions.add("Gain #b5 HP");										translationMap.put("Gain #b5 HP", Strings.configGain5HP);
-		passiveActions.add("Gain #b5 HP");										
-		passiveActions.add("Lose #b5 HP");										translationMap.put("Lose #b5 HP", Strings.configLose5HP);
-		passiveActions.add("Lose #b5 HP");
-		passiveActions.add("Lose #b5 HP");
+		//passiveActions.add("Gain #b10 HP");										translationMap.put("Gain #b10 HP", Strings.configGain10HP);
+		//passiveActions.add("Gain #b5 HP");										translationMap.put("Gain #b5 HP", Strings.configGain5HP);
+		//passiveActions.add("Gain #b5 HP");										
+		//passiveActions.add("Lose #b5 HP");										translationMap.put("Lose #b5 HP", Strings.configLose5HP);
+		//passiveActions.add("Lose #b5 HP");
+		//passiveActions.add("Lose #b5 HP");
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");		translationMap.put("Apply #b1 random #ydebuff to random enemy", Strings.configApply1RandomDebuff);
 		passiveActions.add("Apply #b1 random #ydebuff to random enemy");
 		passiveActions.add("Add #b1 random #yTrap to hand");					translationMap.put("Add #b1 random #yTrap to hand", Strings.configAddRandomTrap);
@@ -102,7 +103,7 @@ public class Glitch extends DuelistOrb
 		passiveActions.add("#yIncrement #b1");									translationMap.put("#yIncrement #b1", Strings.configIncrement);
 		passiveActions.add("#yIncrement #b2");									translationMap.put("#yIncrement #b2", Strings.configIncrement2);
 		passiveActions.add("Gain [E] "); 										translationMap.put("Gain [E] ", Strings.configGainEnergy);
-		passiveActions.add("Gain #b1 Max HP"); 									translationMap.put("Gain #b1 Max HP", Strings.configGain1MAXHPText);
+		//passiveActions.add("Gain #b1 Max HP"); 									translationMap.put("Gain #b1 Max HP", Strings.configGain1MAXHPText);
 		passiveActionSize = passiveActions.size();
 		
 		// Setup evoke action list
@@ -110,7 +111,7 @@ public class Glitch extends DuelistOrb
 		evokeActions.add("Draw #b1 card");	
 		evokeActions.add("Draw #b1 card");	
 		evokeActions.add("Draw #b2 cards");										translationMap.put("Draw #b2 cards", Strings.configDraw2Cards);
-		evokeActions.add("Gain a random amount of gold (5-200)");				translationMap.put("Gain a random amount of gold (5-200)", Strings.configGainGoldB);
+		//evokeActions.add("Gain a random amount of gold (5-200)");				translationMap.put("Gain a random amount of gold (5-200)", Strings.configGainGoldB);
 		evokeActions.add("Apply #b1 random #ydebuff to random enemy");
 		evokeActions.add("Add #b1 random #yTrap to hand");		
 		evokeActions.add("Add #b1 random #ySpellcaster to hand");				translationMap.put("Add #b1 random #ySpellcaster to hand", Strings.configAddRandomSpellcaster);
@@ -118,7 +119,7 @@ public class Glitch extends DuelistOrb
 		evokeActions.add("Gain #b15 #yBlock");				
 		evokeActions.add("#ySummon #b2");
 		evokeActions.add("#yIncrement #b2");
-		evokeActions.add("#yOjamania");											translationMap.put("#yOjamania", Strings.configOjamania);
+		//evokeActions.add("#yOjamania");											translationMap.put("#yOjamania", Strings.configOjamania);
 		if (!DuelistMod.challengeMode) { evokeActions.add("Gain [E] [E] "); }	translationMap.put("Gain [E] [E] ", Strings.configGain2Energies);
 		evokeActions.add("Channel a Glitch");									translationMap.put("Channel a Glitch", Strings.configChannel);
 		evokeActionSize = evokeActions.size();
@@ -177,6 +178,7 @@ public class Glitch extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 		lastTurnActions = new ArrayList<String>();
 		int randomActionNum = 0;
 		for (int i = 0; i < this.passiveAmount; i++)

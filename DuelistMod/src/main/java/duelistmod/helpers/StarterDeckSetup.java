@@ -80,7 +80,6 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new StormingMirrorForce());
 		DuelistMod.basicCards.add(new StrayLambs());
 		DuelistMod.basicCards.add(new Terraforming());
-		DuelistMod.basicCards.add(new TokenVacuum());
 		DuelistMod.basicCards.add(new BigFire());
 		DuelistMod.basicCards.add(new UltimateOffering());
 		DuelistMod.basicCards.add(new ValkMagnet());
@@ -131,7 +130,8 @@ public class StarterDeckSetup {
 		DuelistMod.basicCards.add(new RainbowLife());
 		DuelistMod.basicCards.add(new SilverApples());
 		DuelistMod.basicCards.add(new DarklordSuperbia());	
-		DuelistMod.basicCards.add(new LightningVortex());	
+		DuelistMod.basicCards.add(new LightningVortex());
+		DuelistMod.basicCards.add(new BlackPendant());	
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }
@@ -215,6 +215,16 @@ public class StarterDeckSetup {
 		dragonCards.add(new AncientGearGadjiltron());
 		dragonCards.add(new CheerfulCoffin());
 		dragonCards.add(new SuperancientDinobeast());
+		dragonCards.add(new ArmageddonDragonEmp());
+		dragonCards.add(new BackgroundDragon());
+		dragonCards.add(new BoosterDragon());
+		dragonCards.add(new Carboneddon());
+		dragonCards.add(new BusterBladerDDS());
+		dragonCards.add(new SilverDragon());
+		dragonCards.add(new AmuletDragon());
+		dragonCards.add(new EyeTimaeus());
+		dragonCards.add(new DragonShield());
+		
 		
 		//dragonCards.add(new BeserkDragon());		
 		//dragonCards.add(new DoomkaiserDragon());		
@@ -355,9 +365,10 @@ public class StarterDeckSetup {
 		spellcasterCards.add(new WhiteMagicalHat());
 		spellcasterCards.add(new LegendaryFlameLord());
 		spellcasterCards.add(new BlizzardWarrior());
-		//spellcasterCards.add(new DianKeto());
 		spellcasterCards.add(new SwordsRevealing());
 		spellcasterCards.add(new GrandSpellbookTower());
+		spellcasterCards.add(new CallAtlanteans());
+		spellcasterCards.add(new DoomShaman());
 		if (!DuelistMod.exodiaBtnBool)
 		{
 			spellcasterCards.add(new ExodiaHead());
@@ -674,6 +685,8 @@ public class StarterDeckSetup {
 		zombieCards.add(new YellowBelliedOni());
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new DespairFromDark());
+		zombieCards.add(new SpiritPharaoh());
+		zombieCards.add(new DarkAssailant());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 6)
 		{
@@ -776,6 +789,7 @@ public class StarterDeckSetup {
 		aquaCards.add(new BigDesFrog());
 		aquaCards.add(new AtlanteanAttackSquad());
 		aquaCards.add(new CatapultTurtle());
+		aquaCards.add(new CallAtlanteans());
 		aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
@@ -882,6 +896,7 @@ public class StarterDeckSetup {
 		machineCards.add(new Deskbot005());
 		machineCards.add(new OniTankT34());
 		machineCards.add(new CatapultTurtle());
+		machineCards.add(new TokenVacuum());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());

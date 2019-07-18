@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -35,12 +35,12 @@ public class ClownZombie extends DuelistCard
 
     public ClownZombie() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 7;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.RESUMMON_DECK);
         this.tags.add(Tags.ZOMBIE_DECK);
-        this.zombieDeckCopies = 3;
+        this.zombieDeckCopies = 2;
         this.resummonDeckCopies = 2;
         this.summons = this.baseSummons = 1;
         this.originalName = this.name;
@@ -80,7 +80,7 @@ public class ClownZombie extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

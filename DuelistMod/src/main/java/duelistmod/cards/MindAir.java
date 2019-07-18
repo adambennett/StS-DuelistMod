@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
+import duelistmod.orbs.Air;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -38,6 +39,7 @@ public class MindAir extends DuelistCard
         this.tags.add(Tags.SPELLCASTER);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.setupStartingCopies();
     }
 
@@ -47,6 +49,7 @@ public class MindAir extends DuelistCard
     {
     	summon(p, this.summons, this);
     	applyPowerToSelf(new AerodynamicsPower(p, p));
+    	channel(new Air(), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -60,7 +63,7 @@ public class MindAir extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -104,7 +107,7 @@ public class MindAir extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

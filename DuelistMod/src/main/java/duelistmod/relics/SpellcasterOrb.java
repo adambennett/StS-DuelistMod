@@ -22,8 +22,8 @@ public class SpellcasterOrb extends CustomRelic implements OnChannelRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("SpellcasterOrb");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("SpellcasterRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("SpellcasterRelic.png");
 
 	
 	public SpellcasterOrb() {

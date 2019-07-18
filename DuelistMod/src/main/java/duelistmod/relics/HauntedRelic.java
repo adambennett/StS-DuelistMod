@@ -15,8 +15,8 @@ public class HauntedRelic extends CustomRelic
 {
     // ID, images, text.
     public static final String ID = DuelistMod.makeID("HauntedRelic");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("HauntedRelic.png");
+    public static final String OUTLINE = DuelistMod.makeRelicPath("HauntedRelic.png");
 
     public HauntedRelic() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);

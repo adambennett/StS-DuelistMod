@@ -61,7 +61,7 @@ public class FairyBox extends DuelistCard
 				
 				for (DuelistCard c : orbs)
 				{
-					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c, false, true, true, true, false, false, false, false, 1, 1, 0, 0, 0, 0, true));
+					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c, false, true, true, true, false, false, false, false, 0, 0, 0, 0, 0, 0, true));
 					if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 				}
 			}		
@@ -71,13 +71,15 @@ public class FairyBox extends DuelistCard
 			if (DuelistMod.orbCards.size() > this.magicNumber)
 			{
 				ArrayList<AbstractCard> orbs = new ArrayList<AbstractCard>();
+		    	ArrayList<String> orbNames = new ArrayList<String>();
 				for (int i = 0; i < 5; i++)
 				{
 					DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-					while (orbs.contains(random)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
-					orbs.add(random.makeCopy());
+					while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+					orbs.add((DuelistCard) random.makeCopy());
+					orbNames.add(random.name);
 				}
-				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(orbs, false, this.magicNumber, false, true, true, true, false, false, true, 1, 1, 0, 0, 0, 0, true));
+				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(orbs, false, this.magicNumber, false, true, true, true, false, false, true, 0, 0, 0, 0, 0, 0, true));
 			}
 		}
 	}

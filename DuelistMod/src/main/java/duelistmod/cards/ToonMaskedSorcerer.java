@@ -1,5 +1,7 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -53,7 +55,16 @@ public class ToonMaskedSorcerer extends DuelistCard
     {
     	summon();
     	damageThroughBlock(m, p, this.damage, this.baseAFX);
-    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false, true));
+    	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+    	ArrayList<String> orbNames = new ArrayList<String>();
+		for (int i = 0; i < 5; i++)
+		{
+			DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
+			while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+			orbs.add((DuelistCard) random.makeCopy());
+			orbNames.add(random.name);
+		}
+    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true));
     }
 
     // Which card to return when making a copy of this card.
@@ -81,7 +92,7 @@ public class ToonMaskedSorcerer extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

@@ -13,6 +13,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
+import com.megacrit.cardcrawl.audio.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
@@ -27,6 +28,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.*;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
@@ -48,6 +50,7 @@ import duelistmod.potions.*;
 import duelistmod.powers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
+import duelistmod.rewards.BoosterReward;
 import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
 
@@ -111,6 +114,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String PROP_BASE_GAME_CARDS = "baseGameCards";
 	public static final String PROP_WISEMAN = "gotWisemanHaunted";
 	public static final String PROP_FORCE_PUZZLE = "forcePuzzleSummons";
+	public static final String PROP_ALLOW_BOOSTERS = "allowBoosters";
+	public static final String PROP_ALWAYS_BOOSTERS = "alwaysBoosters";
+	public static final String PROP_REMOVE_CARD_REWARDS = "removeCardRewards";
 	public static String seenString = "";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String defaultChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
@@ -137,6 +143,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean baseGameCards = false;
 	public static boolean gotWisemanHaunted = false;
 	public static boolean forcePuzzleSummons = false;
+	public static boolean allowBoosters = false;
+	public static boolean alwaysBoosters = false;
+	public static boolean removeCardRewards = false;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
 	public static String exhaustForCardText = "";
@@ -221,6 +230,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<AbstractCard> uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> basicCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> tinFluteCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
@@ -228,6 +238,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<AbstractRelic>();
+	public static ArrayList<String> skillsPlayedCombatNames = new ArrayList<String>();
 	public static ArrayList<String> spellsPlayedCombatNames = new ArrayList<String>();
 	public static ArrayList<String> spellsPlayedRunNames = new ArrayList<String>();
 	public static ArrayList<String> trapsPlayedCombatNames = new ArrayList<String>();
@@ -262,6 +273,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean ultimateOfferingTrig = false;
 	public static boolean playedOneCardThisCombat = false;
 	public static boolean hasCardRewardRelic = false;
+	public static boolean hasBoosterRewardRelic = false;
 	public static boolean shouldFill = true;
 	public static boolean dragonRelicBFlipper = false;
 	public static boolean playedSpellThisTurn = false;
@@ -383,6 +395,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ModLabeledToggleButton debugBtn;
 	public static ModLabeledToggleButton allowBaseGameCardsBtn;
 	public static ModLabeledToggleButton forcePuzzleBtn;
+	public static ModLabeledToggleButton allowBoostersBtn;
+	public static ModLabeledToggleButton alwaysBoostersBtn;
+	public static ModLabeledToggleButton removeCardRewardsBtn;
 	public static ModLabel setSelectLabelTxt;
 	public static ModLabel setSelectColorTxt;
 	public static ModButton setSelectLeftBtn;
@@ -444,6 +459,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
     public static String makeIconPath(String resourcePath) {
         return makePath("icons/" + resourcePath);
     }
+    
+    public static String makeCharAudioPath(String resourcePath)
+    {
+    	return makeAudioPath("char/" + resourcePath);
+    }
+    
+    public static String makeOrbAudioPath(String resourcePath)
+    {
+    	return makeAudioPath("orbs/" + resourcePath);
+    }
 
     // =============== /MAKE IMAGE PATHS/ =================
 
@@ -457,6 +482,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	 */
 	public static final String makePath(String resource) {
 		return Strings.DEFAULT_MOD_ASSETS_FOLDER + "/" + resource;
+	}
+	
+	public static final String makeAudioPath(String resource)
+	{
+		return Strings.DEFAULT_MOD_AUDIO_FOLDER + "/" + resource;
 	}
 
 	// =============== /IMAGE PATHS/ =================
@@ -554,6 +584,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty(PROP_BASE_GAME_CARDS, "FALSE");
 		duelistDefaults.setProperty(PROP_WISEMAN, "FALSE");
 		duelistDefaults.setProperty(PROP_FORCE_PUZZLE, "FALSE");
+		duelistDefaults.setProperty(PROP_ALLOW_BOOSTERS, "TRUE");
+		duelistDefaults.setProperty(PROP_ALWAYS_BOOSTERS, "FALSE");
+		duelistDefaults.setProperty(PROP_REMOVE_CARD_REWARDS, "FALSE");
 		
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
@@ -606,6 +639,53 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		StarterDeck ran2Deck = new StarterDeck(Tags.RANDOM_DECK_BIG, "Random Deck (15 cards)", save, "Random Deck (Big)", true); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		
 		for (StarterDeck d : starterDeckList) { startingDecks.add(d.getName()); starterDeckNamesMap.put(d.getSimpleName(), d); }
+		for (int i = 0; i < starterDeckList.size(); i++)
+		{
+			if (i > 0 && i < 10)
+			{
+				switch (i)
+				{
+				case 1:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.DRAGON);
+					break;
+				case 2:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.INSECT);
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.PLANT);
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.PREDAPLANT);
+					break;
+				case 3:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.SPELLCASTER);
+					break;
+				case 4:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.TOON);
+					break;
+				case 5:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.ZOMBIE);
+					break;
+				case 6:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.AQUA);
+					break;
+				case 7:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.FIEND);
+					break;
+				case 8:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.MACHINE);
+					break;
+				case 9:
+					starterDeckList.get(i).tagsThatMatchCards = new ArrayList<CardTags>();
+					starterDeckList.get(i).tagsThatMatchCards.add(Tags.SUPERHEAVY);
+					break;
+				}
+			}
+		}
 		DECKS = starterDeckList.size();
 		currentDeck = regularDeck;
 		try 
@@ -641,6 +721,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
             baseGameCards = config.getBool(PROP_BASE_GAME_CARDS);
             gotWisemanHaunted = config.getBool(PROP_WISEMAN);
             forcePuzzleSummons = config.getBool(PROP_FORCE_PUZZLE);
+            allowBoosters = config.getBool(PROP_ALLOW_BOOSTERS);
+            alwaysBoosters = config.getBool(PROP_ALWAYS_BOOSTERS);
+            removeCardRewards = config.getBool(PROP_REMOVE_CARD_REWARDS);
         } catch (Exception e) { e.printStackTrace(); }
 		
 		if (fullDebug)
@@ -702,6 +785,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		configPanelSetup();
 		BaseMod.registerModBadge(badgeTexture, modName, modAuthor, modDescription, settingsPanel);
 		combatIconViewer = new CombatIconViewer();
+		receiveEditSounds();
 		
 		// Events
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.Exordium.ID);  	// Act 1
@@ -711,6 +795,24 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class);													// Any
 		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
 		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
+		
+		// Register Booster Pack Rewards
+		BaseMod.registerCustomReward
+		(
+				RewardItemTypeEnumPatch.DUELIST_PACK,  
+				(rewardSave) -> 
+				{ 
+					// this handles what to do when this quest type is loaded.
+	                return new BoosterReward(BoosterPackHelper.uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster");
+	            }, 
+	            (customReward) -> 
+	            { 
+	            	// this handles what to do when this quest type is saved.
+	                return new RewardSave(customReward.type.toString(), null);
+	            }
+	    );
+		// END Register Booster Pack Rewards
+		
 		
 		if (printSQL)
 		{
@@ -757,10 +859,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		pots.add(new BigOrbBottle());
 		pots.add(new DestructPotionPot());
 		pots.add(new DestructPotionPotB());
-		pots.add(new JoeyJuice());
+		//pots.add(new JoeyJuice());
 		pots.add(new MudBottle());
 		pots.add(new SteamBottle());
 		pots.add(new BufferBottle());
+		pots.add(new WaterBottle());
+		pots.add(new CoolBottle());
+		pots.add(new FlamingBottle());
+		pots.add(new LavaBottle());
+		pots.add(new BabyPotion());
+		pots.add(new HarpPotion());
+		pots.add(new TokenPotion());
+		pots.add(new TokenPotionB());
 		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, p.ID, TheDuelistEnum.THE_DUELIST); }
 		
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
@@ -828,6 +938,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new GiftAnubis(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ToonRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new HauntedRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new SpellcasterStone(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new OrbCardRelic(), AbstractCardEnum.DUELIST);		
+		BaseMod.addRelicToCustomPool(new BoosterAlwaysBonusRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new BoosterAlwaysSillyRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new BoosterBetterBoostersRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new BoosterExtraAllRaresRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new BoosterBonusPackIncreaseRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new BoosterPackEggRelic(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -852,7 +970,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new Tingsha(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ToughBandages(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new HoveringKite(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new WristBlade(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new WristBlade(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new TwistedFunnel(), AbstractCardEnum.DUELIST);
 		
 		//AbstractDungeon.shopRelicPool.remove(PrismaticShard.ID);
@@ -900,6 +1018,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(ZombieResummonBuffRelic.ID);
 		UnlockTracker.markRelicAsSeen(ToonRelic.ID);
 		UnlockTracker.markRelicAsSeen(HauntedRelic.ID);
+		UnlockTracker.markRelicAsSeen(SpellcasterStone.ID);
+		UnlockTracker.markRelicAsSeen(OrbCardRelic.ID);		
+		UnlockTracker.markRelicAsSeen(BoosterAlwaysBonusRelic.ID);
+		UnlockTracker.markRelicAsSeen(BoosterAlwaysSillyRelic.ID);
+		UnlockTracker.markRelicAsSeen(BoosterBetterBoostersRelic.ID);
+		UnlockTracker.markRelicAsSeen(BoosterExtraAllRaresRelic.ID);
+		UnlockTracker.markRelicAsSeen(BoosterBonusPackIncreaseRelic.ID);
+		UnlockTracker.markRelicAsSeen(BoosterPackEggRelic.ID);
 		
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
@@ -942,6 +1068,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//duelistRelicsForTombEvent.add(new TributeEggRelic());
 		duelistRelicsForTombEvent.add(new ZombieResummonBuffRelic());
 		duelistRelicsForTombEvent.add(new ToonRelic());
+		duelistRelicsForTombEvent.add(new SpellcasterStone());
+		duelistRelicsForTombEvent.add(new OrbCardRelic());
+		duelistRelicsForTombEvent.add(new BoosterAlwaysBonusRelic());
+		duelistRelicsForTombEvent.add(new BoosterAlwaysSillyRelic());
+		duelistRelicsForTombEvent.add(new BoosterBetterBoostersRelic());
+		duelistRelicsForTombEvent.add(new BoosterExtraAllRaresRelic());
+		duelistRelicsForTombEvent.add(new BoosterBonusPackIncreaseRelic());
+		duelistRelicsForTombEvent.add(new BoosterPackEggRelic());
 		//duelistRelics.add(new MillenniumNecklace()); // Millennium Item event only relic
 
 		// This adds a relic to the Shared pool. Every character can find this relic.
@@ -962,6 +1096,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addDynamicVariable(new TributeMagicNumber());
 		BaseMod.addDynamicVariable(new SummonMagicNumber());
 		BaseMod.addDynamicVariable(new SecondMagicNumber());
+		BaseMod.addDynamicVariable(new ThirdMagicNumber());
 		logger.info("done adding variables");
 
 		// ================ ORB CARDS ===================
@@ -1002,6 +1137,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// ================ COLORED CARDS ===================
 		logger.info("filling colored cards array to use for reward pool");
 		PoolHelpers.fillColoredCards();
+		BoosterPackHelper.setupPoolsForPacks();
 		logger.info("done filling colored cards");
 		logger.info("done receiveEditCards()");
 	}
@@ -1041,7 +1177,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 		// Event Strings
 		BaseMod.loadCustomStringsFile(EventStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Event-Strings.json");
-		
 
 		logger.info("Done editing strings");
 	}
@@ -1070,6 +1205,17 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	}
 
 	// ================ /LOAD THE KEYWORDS/ ===================    
+	
+	public void receiveEditSounds() 
+	{
+        addSound("theDuelist:TimeToDuel", DuelistMod.makeCharAudioPath("CharSelect.ogg"));
+    }
+
+    private static void addSound(String id, String path) {
+        @SuppressWarnings("unchecked")
+        HashMap<String,Sfx> map = (HashMap<String,Sfx>) ReflectionHacks.getPrivate(CardCrawlGame.sound, SoundMaster.class, "map");
+        map.put(id, new Sfx(path, false));
+    }
 
 	// this adds "ModName:" before the ID of any card/relic/power etc.
 	// in order to avoid conflicts if any other mod uses the same ID.
@@ -1119,7 +1265,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	
 	public static boolean playingChallengeSpire()
 	{
-		if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty") || Utilities.isCustomModActive("challengethespire:Silver Difficulty") || Utilities.isCustomModActive("challengethespire:Gold Difficulty") || Utilities.isCustomModActive("challengethespire:Platinum Difficulty") )
+		if (Util.isCustomModActive("challengethespire:Bronze Difficulty") || Util.isCustomModActive("challengethespire:Silver Difficulty") || Util.isCustomModActive("challengethespire:Gold Difficulty") || Util.isCustomModActive("challengethespire:Platinum Difficulty") )
 		{
 			return true;
 		}
@@ -1132,10 +1278,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	
 	public static int getChallengeDiffIndex()
 	{
-		if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty")) { return 1; }		
-		else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty")) { return 2; }		
-		else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty")) { return 3; }	
-		else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty")) { return 4; }
+		if (Util.isCustomModActive("challengethespire:Bronze Difficulty")) { return 1; }		
+		else if (Util.isCustomModActive("challengethespire:Silver Difficulty")) { return 2; }		
+		else if (Util.isCustomModActive("challengethespire:Gold Difficulty")) { return 3; }	
+		else if (Util.isCustomModActive("challengethespire:Platinum Difficulty")) { return 4; }
 		else { return -1; }
 	}
 	
@@ -1184,7 +1330,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
 		//if (!AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) { naturiaDmg = 1; }
-		
+		BoosterPackHelper.setupPoolsForPacks();
 		if (gotWisemanHaunted)
 		{
 			int hauntRoll = AbstractDungeon.cardRandomRng.random(1, 5);
@@ -1280,8 +1426,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		spellsThisCombat = new ArrayList<DuelistCard>();
 		trapsThisCombat = new ArrayList<DuelistCard>();
 		spellsPlayedCombatNames = new ArrayList<String>();
+		skillsPlayedCombatNames = new ArrayList<String>();
 		monstersPlayedCombatNames = new ArrayList<String>();
 		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
+		uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 		uniqueMonstersThisCombat = new ArrayList<DuelistCard>();
 		if (UnlockTracker.getUnlockLevel(TheDuelistEnum.THE_DUELIST) > 0) 
 		{ 
@@ -1404,9 +1552,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
 		uniqueTrapsThisRun = new ArrayList<DuelistCard>();
 		uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
+		uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 		spellsPlayedCombatNames = new ArrayList<String>();
+		skillsPlayedCombatNames = new ArrayList<String>();
 		monstersPlayedCombatNames = new ArrayList<String>();
 		monstersPlayedRunNames = new ArrayList<String>();
+		BoosterPackHelper.resetPackSizes();
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
@@ -1422,7 +1573,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		toonVuln = 1;
 		machineArt = 1;
 		zombieResummonBlock = 5;
-		spellcasterBlockOnAttack = 5;
+		spellcasterBlockOnAttack = 4;
 		explosiveDmgLow = 1;
 		explosiveDmgHigh = 3;
 		insectPoisonDmg = baseInsectPoison;
@@ -1476,6 +1627,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			if (debug ) { logger.info("Triggered Haunted Debuff check code"); }
 		}
 		
+		// Fire Orb Check
+		if (AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof FireOrb) { ((FireOrb) o).triggerPassiveEffect(); }}}
+		
 		playedOneCardThisCombat = true;
 		logger.info("Card Used: " + arg0.name);
 		if (arg0.type.equals(CardType.ATTACK))
@@ -1484,9 +1638,19 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			{
 				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
 				boolean isOnlySpellcasters = instance.isEveryMonsterCheck(Tags.SPELLCASTER, false);
+				int extra = 0;
 				if (isOnlySpellcasters)
 				{
-					DuelistCard.staticBlock(spellcasterBlockOnAttack);
+					if (AbstractDungeon.player.hasPower(ManaPower.POWER_ID)) 
+					{ 
+						extra = AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount; 
+						if (!arg0.hasTag(Tags.NO_MANA_RESET))
+						{
+							AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount = 0;
+							AbstractDungeon.player.getPower(ManaPower.POWER_ID).updateDescription();
+						}						
+					}
+					if (spellcasterBlockOnAttack + extra > 0) { DuelistCard.staticBlock(spellcasterBlockOnAttack + extra); }
 				}
 			}
 			
@@ -1517,6 +1681,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 		if (arg0.type.equals(CardType.SKILL))
 		{
+			if (!skillsPlayedCombatNames.contains(arg0.originalName))
+			{
+				skillsPlayedCombatNames.add(arg0.originalName);
+				uniqueSkillsThisCombat.add(arg0);
+			}
 			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 			{				
 				if (c instanceof EarthGiant)
@@ -1629,6 +1798,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
 					}
 				}
+				
+				if ((c instanceof ArmageddonDragonEmp) && arg0.hasTag(Tags.DRAGON))
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
+					}
+				}
 			}
 			
 			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
@@ -1643,6 +1821,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				}
 				
 				if ((c instanceof ChaosAncientGearGiant) && arg0.hasTag(Tags.MACHINE))
+				{
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(dC, -dC.magicNumber, true));
+					}
+				}
+				
+				if ((c instanceof ArmageddonDragonEmp) && arg0.hasTag(Tags.DRAGON))
 				{
 					DuelistCard dC = (DuelistCard)c;
 					if (dC.tributes > 0)
@@ -1740,11 +1927,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		boolean hasSmokeOrb = false;
 		boolean hasSplashOrb = false;
 		boolean hasLavaOrb = false;
-		boolean hasFireOrb = false;
+		boolean hasWhiteOrb = false;
 		Smoke smoke = new Smoke();
 		//Lava lava = new Lava(1);
 		//Splash splash = new Splash();
-		FireOrb fire = new FireOrb();
+		
+		WhiteOrb white = new WhiteOrb();
 		
 		for (AbstractOrb orb : AbstractDungeon.player.orbs)
 		{
@@ -1762,19 +1950,26 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				if (debug) { logger.info("found a Lava orb, set flag");  }
 			}*/
 			
-			if (orb.name.equals(fire.name) && orb instanceof DuelistOrb)
+			/*if (orb.name.equals(fire.name) && orb instanceof DuelistOrb)
 			{
 				hasFireOrb = true;
 				fire = (FireOrb) orb;
 				if (debug) { logger.info("found a Fire orb, set flag");  }
-			}
+			}*/
 			
 			/*if (orb.name.equals(splash.name) && orb instanceof DuelistOrb)
 			{
 				hasSplashOrb = true;
 				splash = (Splash) orb;
 				if (debug) { logger.info("found a Splash orb, set flag");  }
-			}*/			
+			}*/		
+			
+			if (orb.name.equals(white.name) && orb instanceof WhiteOrb)
+			{
+				hasWhiteOrb = true;
+				white = (WhiteOrb)orb;
+				if (debug) { logger.info("found a White orb, set flag"); }
+			}
 		}
 	
 		if (drawnCard.hasTag(Tags.MONSTER))
@@ -1782,7 +1977,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			if (hasSmokeOrb) { smoke.triggerPassiveEffect((DuelistCard)drawnCard); }
 			//if (hasSplashOrb) { splash.triggerPassiveEffect((DuelistCard)drawnCard); }
 			//if (hasLavaOrb) { lava.triggerPassiveEffect((DuelistCard)drawnCard); }
-			if (hasFireOrb) { fire.triggerPassiveEffect((DuelistCard)drawnCard); }
+			//if (hasFireOrb) { fire.triggerPassiveEffect((DuelistCard)drawnCard); }
 			
 			// Underdog - Draw monster = draw 1 card
 			if (AbstractDungeon.player.hasPower(HeartUnderdogPower.POWER_ID))
@@ -1797,6 +1992,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			if (AbstractDungeon.player.hasPower(DrillBarnaclePower.POWER_ID) && drawnCard.hasTag(Tags.AQUA))
 			{
 				DuelistCard.damageAllEnemiesThornsNormal(AbstractDungeon.player.getPower(DrillBarnaclePower.POWER_ID).amount);
+			}
+		}
+		
+		if (drawnCard.hasTag(Tags.SPELL))
+		{
+			if (hasWhiteOrb)
+			{
+				white.triggerPassiveEffect(drawnCard);
+			}
+		}
+		
+		if (drawnCard.hasTag(Tags.TRAP))
+		{
+			if (hasWhiteOrb)
+			{
+				white.triggerPassiveEffect(drawnCard);
 			}
 		}
 		
@@ -1833,10 +2044,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Undertrap - Draw trap = gain 3 HP
 		if (AbstractDungeon.player.hasPower(HeartUndertrapPower.POWER_ID))
 		{
-			int handSize = AbstractDungeon.player.hand.size();
-			if (drawnCard.hasTag(Tags.TRAP))
+			if (AbstractDungeon.player.getPower(HeartUndertrapPower.POWER_ID).amount > 0)
 			{
-				DuelistCard.heal(AbstractDungeon.player, 3);
+				int handSize = AbstractDungeon.player.hand.size();
+				if (drawnCard.hasTag(Tags.TRAP))
+				{
+					DuelistCard.heal(AbstractDungeon.player, 3);
+				}
 			}
 		}
 		
@@ -1984,9 +2198,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			uniqueSpellsThisCombat = new ArrayList<DuelistCard>();
 			uniqueTrapsThisRun = new ArrayList<DuelistCard>();
 			uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
+			uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 			spellsPlayedCombatNames = new ArrayList<String>();
+			skillsPlayedCombatNames = new ArrayList<String>();
 			monstersPlayedCombatNames = new ArrayList<String>();
 			monstersPlayedRunNames = new ArrayList<String>();
+			BoosterPackHelper.resetPackSizes();
 			spellCombatCount = 0;
 			trapCombatCount = 0;
 			summonCombatCount = 0;
@@ -2001,7 +2218,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			toonVuln = 1;
 			machineArt = 1;
 			zombieResummonBlock = 5;
-			spellcasterBlockOnAttack = 5;
+			spellcasterBlockOnAttack = 4;
 			explosiveDmgLow = 1;
 			explosiveDmgHigh = 3;
 			insectPoisonDmg = baseInsectPoison;
@@ -2016,6 +2233,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			gotFrozenEyeFromBigEye = false;
 			spellcasterRandomOrbsChanneled = 0;
 			currentSpellcasterOrbChance = 25;
+			hasCardRewardRelic = false;
+			hasBoosterRewardRelic = false;
 			CardCrawlGame.dungeon.initializeCardPools();
 		}
 		else if (!shouldFill)
@@ -2073,7 +2292,31 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 
 		// Card Count Label
 		cardLabelTxt = new ModLabel(cardsString + cardCount, xLabPos - 10, yPos,settingsPanel,(me)->{});
-		//settingsPanel.addUIElement(cardLabelTxt);
+		
+		allowBoostersBtn = new ModLabeledToggleButton(Strings.configAllowBoosters,xLabPos + xSecondCol, yPos - 20, Settings.CREAM_COLOR, FontHelper.charDescFont, allowBoosters, settingsPanel, (label) -> {}, (button) -> 
+		{
+			allowBoosters = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_ALLOW_BOOSTERS, allowBoosters);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		});
+		
+		alwaysBoostersBtn = new ModLabeledToggleButton(Strings.configAlwaysBoosters,xLabPos + xSecondCol + xSecondCol - 100, yPos - 20, Settings.CREAM_COLOR, FontHelper.charDescFont, alwaysBoosters, settingsPanel, (label) -> {}, (button) -> 
+		{
+			alwaysBoosters = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_ALWAYS_BOOSTERS, alwaysBoosters);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		});
+		
 		genericLB(50.0f);
 		// END Card Count Label
 
@@ -2462,6 +2705,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Starting Deck Selector
 		
 		settingsPanel.addUIElement(cardLabelTxt);
+		settingsPanel.addUIElement(allowBoostersBtn);
+		settingsPanel.addUIElement(alwaysBoostersBtn);
 		settingsPanel.addUIElement(toonBtn);
 		settingsPanel.addUIElement(creatorBtn);
 		settingsPanel.addUIElement(exodiaBtn);
@@ -2611,6 +2856,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		Strings.allowBaseGameCards = Config_UI_String.TEXT[135];
 		Strings.exodiaSoulbound = Config_UI_String.TEXT[136];
 		Strings.forcePuzzleText = Config_UI_String.TEXT[137];
+		Strings.configAllowBoosters = Config_UI_String.TEXT[138];
+		Strings.configAlwaysBoosters = Config_UI_String.TEXT[139];
+		Strings.configRemoveCards = Config_UI_String.TEXT[140];
 	}
 	
 	private void addRandomized(String property1, String property2, boolean btnBool1, boolean btnBool2)

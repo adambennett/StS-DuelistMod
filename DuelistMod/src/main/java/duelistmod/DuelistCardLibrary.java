@@ -18,7 +18,7 @@ import duelistmod.cards.curses.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.orbCards.*;
 import duelistmod.cards.tokens.*;
-import duelistmod.helpers.Debug;
+import duelistmod.helpers.*;
 import duelistmod.variables.Tags;
 
 public class DuelistCardLibrary {
@@ -532,6 +532,20 @@ public class DuelistCardLibrary {
 		DuelistMod.myCards.add(new ToonMaskedSorcerer());
 		DuelistMod.myCards.add(new MillenniumSpellbook());
 		DuelistMod.myCards.add(new LightningVortex());
+		DuelistMod.myCards.add(new ArmageddonDragonEmp());
+		DuelistMod.myCards.add(new BackgroundDragon());
+		DuelistMod.myCards.add(new BoosterDragon());
+		DuelistMod.myCards.add(new Carboneddon());
+		DuelistMod.myCards.add(new BusterBladerDDS());
+		DuelistMod.myCards.add(new SilverDragon());
+		DuelistMod.myCards.add(new AmuletDragon());
+		DuelistMod.myCards.add(new EyeTimaeus());
+		DuelistMod.myCards.add(new DragonShield());
+		DuelistMod.myCards.add(new SpiritPharaoh());
+		DuelistMod.myCards.add(new DarkAssailant());
+		DuelistMod.myCards.add(new CallAtlanteans());
+		DuelistMod.myCards.add(new DoomShaman());
+		DuelistMod.myCards.add(new BlackPendant());
 		
 		DuelistMod.myCards.add(new ArchfiendZombieSkull());		
 		DuelistMod.myCards.add(new CorrodingShark());		
@@ -658,13 +672,11 @@ public class DuelistCardLibrary {
 
 	public static void setupOrbCards()
 	{
-		if (DuelistMod.isReplay)
-		{
-			DuelistMod.orbCards.add(new CrystalOrbCard());
-			DuelistMod.orbCards.add(new GlassOrbCard());
-			DuelistMod.orbCards.add(new HellfireOrbCard());
-			DuelistMod.orbCards.add(new LightOrbCard());
-		}
+
+		DuelistMod.orbCards.add(new CrystalOrbCard());
+		DuelistMod.orbCards.add(new GlassOrbCard());
+		DuelistMod.orbCards.add(new HellfireOrbCard());
+		DuelistMod.orbCards.add(new LightOrbCard());	
 		DuelistMod.orbCards.add(new AirOrbCard());
 		DuelistMod.orbCards.add(new BufferOrbCard());
 		DuelistMod.orbCards.add(new DarkOrbCard());
@@ -693,9 +705,19 @@ public class DuelistCardLibrary {
 		DuelistMod.orbCards.add(new SandOrbCard());
 		DuelistMod.orbCards.add(new SmokeOrbCard());
 		DuelistMod.orbCards.add(new StormOrbCard());
+		DuelistMod.orbCards.add(new WaterOrbCard()); 
+		DuelistMod.orbCards.add(new TokenOrbCard()); 
+		DuelistMod.orbCards.add(new VoidOrbCard()); 
+		DuelistMod.orbCards.add(new WhiteOrbCard()); 
+		DuelistMod.orbCards.add(new SurgeOrbCard()); 
+		DuelistMod.orbCards.add(new AnticrystalOrbCard()); 
 		
-		if (DuelistMod.isConspire) { DuelistMod.orbCards.add(new WaterOrbCard()); }
-		for (DuelistCard o : DuelistMod.orbCards) { DuelistMod.orbCardMap.put(o.name, o); DuelistMod.invertableOrbNames.add(o.name); }
+		for (DuelistCard o : DuelistMod.orbCards) 
+		{ 
+			DuelistMod.orbCardMap.put(o.name, o); 
+			DuelistMod.invertableOrbNames.add(o.name); 
+			Util.log("Added " + o.name + " to invertableOrbNames and the OrbCardMap");
+		}
 		//DuelistCard.resetInvertMap();
 	}
 
@@ -843,6 +865,12 @@ public class DuelistCardLibrary {
 		return tokens;
 	}
 	
+	public static DuelistCard getRandomTokenForCombat()
+	{
+		ArrayList<DuelistCard> tokens = getTokensForCombat();
+		return tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
+	}
+	
 	public static AbstractCard getRandomDuelistCurseUnseeded()
 	{
 		if (DuelistMod.curses.size() > 0)
@@ -865,6 +893,17 @@ public class DuelistCardLibrary {
 		{
 			return new CurseAging();
 		}
+	}
+	
+	
+	public static ArrayList<AbstractCard> getRareBoosterPack()
+	{
+		ArrayList<AbstractCard> test = new ArrayList<AbstractCard>();
+		for (int i = 0; i < 5; i++)
+		{
+			test.add(new BlueEyes());
+		}
+		return test;
 	}
 
 }

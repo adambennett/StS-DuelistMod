@@ -14,9 +14,22 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.relics.*;
 
-public class Utilities
+public class Util
 {
-    public static final Logger Logger = LogManager.getLogger(Utilities.class.getName());
+    public static final Logger Logger = LogManager.getLogger(Util.class.getName());
+    
+    public static void log()
+    {
+    	log("Generic Debug Statement");
+    }
+    
+    public static void log(String s)
+    {
+    	if (DuelistMod.debug)
+    	{
+    		DuelistMod.logger.info(s);
+    	}
+    }
     
     public static boolean isCustomModActive(String ID) {
         return (CardCrawlGame.trial != null && CardCrawlGame.trial.dailyModIDs().contains(ID)) || ModHelper.isModEnabled(ID);

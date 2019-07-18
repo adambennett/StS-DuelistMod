@@ -3,12 +3,14 @@ package duelistmod.orbs;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
@@ -86,6 +88,7 @@ public class Earth extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
 			if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Ojama Deck") || !DuelistMod.ojamaBtnBool)

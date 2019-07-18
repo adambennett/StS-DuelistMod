@@ -19,8 +19,8 @@ public class SummonAnchor extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("SummonAnchor");
-	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("AnchorRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicPath("AnchorRelic.png");
 
 	public SummonAnchor() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

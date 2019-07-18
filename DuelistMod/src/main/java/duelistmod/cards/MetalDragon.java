@@ -76,8 +76,8 @@ public class MetalDragon extends DuelistCard
     {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(upgradeDmg);
-            this.upgradeMagicNumber(2);
+            //this.upgradeDamage(upgradeDmg);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

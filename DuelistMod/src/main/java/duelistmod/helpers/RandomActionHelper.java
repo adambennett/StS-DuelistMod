@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.powers.*;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
-import duelistmod.cards.tokens.Token;
 import duelistmod.orbs.Glitch;
 import duelistmod.variables.*;
 
@@ -279,35 +278,18 @@ public class RandomActionHelper
 	private static void initList()
 	{
 		actions = new ArrayList<String>();
-		if (!DuelistMod.challengeMode) 
-		{ 
-			actions.add("Gain a random amount of gold (1-50)");
-			actions.add("Draw #b2 cards");	
-			actions.add("Gain #b5 HP");
-			actions.add("Gain #b10 HP");
-			actions.add("#ySummon #b2");
-			actions.add("#yOjamania");	
-			actions.add("Gain [E] "); 
-			actions.add("Channel a Glitch");
-			actions.add("#yIncrement #b2");
-			actions.add("Lose #b1 HP");
-			actions.add("Gain #b1 Artifact");
-			actions.add("Gain #b1 Max HP");
-		}
-		else
-		{
-			actions.add("Add #b1 random #yEthereal Duelist card to hand");
-			actions.add("Gain #b5 HP");
-			actions.add("#ySummon #b1");
-			actions.add("#yIncrement #b1");
-			actions.add("Lose #b5 HP");
-			actions.add("Lose #b5 HP");
-		}
+		actions.add("Draw #b2 cards");	
+		actions.add("#ySummon #b2");
+		actions.add("#yOjamania");	
+		actions.add("Gain [E] "); 
+		actions.add("Channel a Glitch");
+		actions.add("#yIncrement #b2");
+		actions.add("Gain #b1 Artifact");
+		actions.add("Add #b1 random #yEthereal Duelist card to hand");
+		actions.add("#ySummon #b1");
+		actions.add("#yIncrement #b1");
 		actions.add("Draw #b1 card");	
 		actions.add("Draw #b1 card");	
-		actions.add("Gain #b5 HP");
-		//actions.add("#yExhaust #b1 random card in hand");
-		//actions.add("#yExhaust #b1 random card in hand");	
 		actions.add("Apply #b2 random #ydebuffs to random enemy");	
 		actions.add("Apply #b1 random #ydebuff to random enemy");
 		actions.add("Add #b1 random #yTrap to hand");

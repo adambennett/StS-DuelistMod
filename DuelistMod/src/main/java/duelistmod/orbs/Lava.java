@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -79,6 +80,7 @@ public class Lava extends DuelistOrb
 		
 	public void zombieTributeTrigger()
 	{
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		if (this.baseEvokeAmount + this.passiveAmount > 0 && originalEvoke + this.passiveAmount > -1)
 		{
 			this.baseEvokeAmount += this.passiveAmount;
@@ -92,8 +94,14 @@ public class Lava extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (AbstractDungeon.player.hasRelic(ZombieRelic.ID)) { DuelistCard.staticAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.currentDamage + 5); }
-		else if (this.currentDamage > 0) { DuelistCard.staticAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.currentDamage); }
+		if (AbstractDungeon.player.hasRelic(ZombieRelic.ID)) 
+		{ 
+			DuelistCard.damageAllEnemiesThornsFire(this.currentDamage + 5);
+		}
+		else if (this.currentDamage > 0) 
+		{ 
+			DuelistCard.damageAllEnemiesThornsFire(this.currentDamage);
+		}
 	}
 	
 	@Override
@@ -102,6 +110,7 @@ public class Lava extends DuelistOrb
 		checkFocus(false);
 		if (this.evokeAmount > 0)
 		{
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 			this.currentDamage = AbstractDungeon.cardRandomRng.random(1, this.evokeAmount);
 		}
 		updateDescription();

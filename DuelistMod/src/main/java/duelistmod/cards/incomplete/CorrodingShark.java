@@ -38,7 +38,7 @@ public class CorrodingShark extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 12;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 0;
         this.tributes = this.baseTributes = 2;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -65,14 +65,14 @@ public class CorrodingShark extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	if (DuelistMod.hasUpgradeBuffRelic)
         	{
-        		this.upgradeSummons(1);
+        		this.upgradeTributes(-1);
         		this.upgradeMagicNumber(1);
-        		this.upgradeDamage(2);
+        		this.upgradeDamage(4);
         	}
         	else
         	{
         		this.upgradeMagicNumber(1);
-        		this.upgradeDamage(2);
+        		this.upgradeDamage(4);
         	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

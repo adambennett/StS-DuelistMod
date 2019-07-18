@@ -3,6 +3,7 @@ package duelistmod.orbs;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
@@ -36,7 +38,7 @@ public class FireOrb extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/FireOrb.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -93,13 +95,9 @@ public class FireOrb extends DuelistOrb
 		
 	}
 
-	public void triggerPassiveEffect(DuelistCard c)
+	public void triggerPassiveEffect()
 	{		
-		if (c.hasTag(Tags.DRAGON) && this.passiveAmount > 0)
-		{
-			DuelistCard dragC = (DuelistCard)c;
-			dragC.changeTributesInBattle(-this.passiveAmount, false);
-		}		
+		if (this.passiveAmount > 0) { DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount); }
 	}
 
 	@Override
@@ -142,9 +140,9 @@ public class FireOrb extends DuelistOrb
 	protected void renderText(SpriteBatch sb)
 	{
 		// Render evoke amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

@@ -56,7 +56,7 @@ public class LightningVortex extends DuelistCard
 	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
 	    	for (DuelistCard s : aSummonsList)
 	    	{
-	    		if (s.hasTag(Tags.MONSTER))
+	    		if (s.hasTag(Tags.MONSTER) || s.hasTag(Tags.TOKEN))
 	    		{
 	    			tokens++;
 	    		}

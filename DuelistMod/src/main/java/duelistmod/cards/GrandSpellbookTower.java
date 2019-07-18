@@ -31,7 +31,7 @@ public class GrandSpellbookTower extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-	private static final int COST = 2;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public GrandSpellbookTower() 

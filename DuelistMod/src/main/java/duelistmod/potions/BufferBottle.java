@@ -35,6 +35,7 @@ public class BufferBottle extends AbstractPotion {
         
         // Initialize the on-hover name + description
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Buffer", DESCRIPTIONS[3]));
         
     }
 
@@ -69,5 +70,6 @@ public class BufferBottle extends AbstractPotion {
       }
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Buffer", DESCRIPTIONS[3]));
     }
 }

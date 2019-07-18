@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 
 import basemod.abstracts.CustomPlayer;
 import duelistmod.*;
-import duelistmod.helpers.PoolHelpers;
+import duelistmod.helpers.*;
 
 
 @SpirePatch(
@@ -25,6 +25,7 @@ public class CardColorsPoolPatch
 			if (DuelistMod.shouldFill)
 			{ 
 				PoolHelpers.fillColoredCards(); 
+				BoosterPackHelper.setupPoolsForPacks();
 				DuelistMod.shouldFill = false;
 			}
 			else { PoolHelpers.coloredCardsHadCards(); }

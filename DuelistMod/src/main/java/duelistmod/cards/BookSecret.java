@@ -8,10 +8,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.orbs.Surge;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -69,7 +71,8 @@ public class BookSecret extends DuelistCard
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 		
-		channelRandom();
+		AbstractOrb surge = new Surge();
+		channel(surge);
     }
 
     // Which card to return when making a copy of this card.

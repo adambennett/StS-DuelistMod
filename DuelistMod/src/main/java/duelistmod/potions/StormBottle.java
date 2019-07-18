@@ -35,7 +35,7 @@ public class StormBottle extends AbstractPotion {
         
         // Initialize the on-hover name + description
         this.tips.add(new PowerTip(this.name, this.description));
-        
+        this.tips.add(new PowerTip("Storm", DESCRIPTIONS[3]));
     }
 
     @Override
@@ -69,5 +69,6 @@ public class StormBottle extends AbstractPotion {
       }
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Storm", DESCRIPTIONS[3]));
     }
 }

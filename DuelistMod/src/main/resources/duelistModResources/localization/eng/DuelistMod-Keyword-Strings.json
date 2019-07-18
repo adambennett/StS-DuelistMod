@@ -156,7 +156,7 @@
       "Air",
 	  "air"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #yChannel a random #yOrb. You have a higher chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
+    "DESCRIPTION": "#yOrb: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons. NL #yEvoke: Increase your #yOrb slots by #b1."
   },
   {
     "PROPER_NAME": "Fire",
@@ -164,7 +164,7 @@
       "Fire",
 	  "fire"
     ],   
-    "DESCRIPTION": "#yOrb: When you draw #yDragons, reduce their #yTribute cost by #b1 for that turn. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b1 for the rest of combat."
+    "DESCRIPTION": "#yOrb: Whenever you play a card, deal #b2 damage to a random enemy. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b1 for the rest of combat."
   },
   {
    "PROPER_NAME": "Glitch",
@@ -258,7 +258,7 @@
       "Gadget",
 	  "gadget"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Play a random #yTrap you have played this run on a random enemy."
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Play a random #ySkill you have played this combat on a random enemy."
   },
   {
     "PROPER_NAME": "Lava",
@@ -441,6 +441,54 @@
 	  "haunted"
     ],   
     "DESCRIPTION": "Debuff that chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
+  },
+  {
+    "PROPER_NAME": "Water",
+    "NAMES": [
+      "Water",
+	  "water"
+    ],   
+    "DESCRIPTION": "#yOrb: At the start of turn, draw #b1 card. NL #yEvoke: Draw #b2 cards. NL Water is unaffected by #yFocus."
+  },
+  {
+    "PROPER_NAME": "Glass",
+    "NAMES": [
+      "Glass",
+	  "glass"
+    ],   
+    "DESCRIPTION": "#yOrb: No passive effect. NL #yEvoke: Copy and gain a random enemy buff. NL Glass is unaffected by #yFocus."
+  },
+  {
+    "PROPER_NAME": "Hellfire",
+    "NAMES": [
+      "Hellfire",
+	  "hellfire"
+    ],   
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yStrength until end of turn. NL #yEvoke: Apply #yVulnerable to a random enemy #b1 time(s)."
+  },
+  {
+    "PROPER_NAME": "Giant",
+    "NAMES": [
+      "Giant",
+	  "giant"
+    ],   
+    "DESCRIPTION": "Giants are powerful monsters with high costs and unique cost reduction effects that trigger from any pile in combat. When played, these cost reductions are reset."
+  },
+  {
+    "PROPER_NAME": "Void",
+    "NAMES": [
+      "Void",
+	  "void"
+    ],   
+    "DESCRIPTION": "#yOrb: At the start of turn, siphon #b2 HP from a random enemy. NL #yEvoke: Take damage. Damage increases as you siphon."
+  },
+   {
+    "PROPER_NAME": "Mana",
+    "NAMES": [
+      "Mana",
+	  "mana"
+    ],   
+    "DESCRIPTION": "When you gain #yBlock via the #ySpellcaster effect, you gain additional #yBlock based on how much #yMana you currently have. #yMana resets to #b0 when you trigger it, and at the end of the turn is set to the number of #ySpellcasters you currently have summoned."
   },
   {
     "PROPER_NAME": "Gate",

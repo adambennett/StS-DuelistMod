@@ -98,9 +98,12 @@ public class HauntedPower extends AbstractPower
 	// Prevents that card from having the summons/tributes modified after you've already played it
 	public void triggerHaunt(AbstractCard triggerCard)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new GhostIgniteEffect(p.hb.cX, p.hb.cY), 1.0F));
-		lastAction = HauntedHelper.triggerRandomAction(this.amount, triggerCard, false);
+		if (this.amount > 0)
+		{
+			AbstractPlayer p = AbstractDungeon.player;
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new GhostIgniteEffect(p.hb.cX, p.hb.cY), 1.0F));
+			lastAction = HauntedHelper.triggerRandomAction(this.amount, triggerCard, false);
+		}
 		updateDescription();
 	}
 	
@@ -168,6 +171,11 @@ public class HauntedPower extends AbstractPower
 		{
 			AbstractDungeon.actionManager.addToTop(new HauntedRemovedAction(1, this.hauntedCardType));
 		}    
+    	
+		else if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Haunted power was removed, but both card types were equal to their init values (Curse/Dragon)");
+		}
     }
     
     @Override

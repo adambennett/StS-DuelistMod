@@ -4,6 +4,7 @@ public class Strings
 {
 	// =============== ASSETS FOLDER =========================================================================================================================================================
 	public static final String DEFAULT_MOD_ASSETS_FOLDER = "duelistModResources/images";
+	public static final String DEFAULT_MOD_AUDIO_FOLDER = "duelistModResources/audio";
 	// =============== /ASSETS FOLDER/ =======================================================================================================================================================
 	
 	// =============== MOD BADGE =========================================================================================================================================================
@@ -653,6 +654,9 @@ public class Strings
 	public static String exodiaSoulbound = "";
 	public static String forcePuzzleText = "";
 	public static String etherealForCardText = "";
+	public static String configAllowBoosters = "";
+	public static String configAlwaysBoosters = "";
+	public static String configRemoveCards = "";
 	
 	// =============== /CONFIG STRINGS/ =======================================================================================================================================================
 

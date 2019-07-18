@@ -21,7 +21,7 @@ public class ResummonBranch extends CustomRelic
     private static int counterLimit = 30;
     // /FIELDS
 
-    public ResummonBranch() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL); }
+    public ResummonBranch() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL); }
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
     @Override

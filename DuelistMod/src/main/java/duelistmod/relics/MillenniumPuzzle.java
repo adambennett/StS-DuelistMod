@@ -4,9 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.Strings;
@@ -25,9 +26,19 @@ public class MillenniumPuzzle extends CustomRelic {
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_PUZZLE_RELIC_OUTLINE);
 	private static int summons = 2;
 	public int extra = 0;
+	private int lastPackRoll = 0;
 	
 	public MillenniumPuzzle() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
+	}
+	
+	
+	
+	@Override
+	public void atPreBattle()
+	{
+		PuzzleHelper.spellcasterChannelAction();
+		PuzzleHelper.zombieChannel();
 	}
 	
 	@Override
@@ -93,6 +104,10 @@ public class MillenniumPuzzle extends CustomRelic {
 	@Override
 	public void onVictory() 
 	{
+		boolean eliteVictory = false;
+		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { eliteVictory = true; }
+		if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 10) { BoosterPackHelper.generateBoosterOnVictory(lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
+		else { BoosterPackHelper.generateBoosterOnVictory(lastPackRoll, eliteVictory, null); }
 	}
 
 	// Description

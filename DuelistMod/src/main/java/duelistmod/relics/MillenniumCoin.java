@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
 public class MillenniumCoin extends CustomRelic 
@@ -28,7 +28,7 @@ public class MillenniumCoin extends CustomRelic
 	{
 		for (AbstractRelic r : AbstractDungeon.player.relics)
 		{
-			if (Utilities.isMillenniumItem(r, true) && !r.name.equals(this.name))
+			if (Util.isMillenniumItem(r, true) && !r.name.equals(this.name))
 			{
 				DuelistCard.gainGold(100, AbstractDungeon.player, true);
 			}

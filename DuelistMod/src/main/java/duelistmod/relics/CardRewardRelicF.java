@@ -18,8 +18,8 @@ public class CardRewardRelicF extends CustomRelic
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("CardRewardRelicF");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("SpellstoneRelic.png");
+    public static final String OUTLINE = DuelistMod.makeRelicPath("SpellstoneRelic.png");
     public boolean cardSelected = false;
     // /FIELDS
 

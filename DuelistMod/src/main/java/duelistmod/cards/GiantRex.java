@@ -39,6 +39,7 @@ public class GiantRex extends DuelistCard
         this.originalName = this.name;
         this.baseDamage = this.damage = 40;
         this.tributes = this.baseTributes = 8;
+        this.secondMagic = this.baseSecondMagic = 8;
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -52,13 +53,13 @@ public class GiantRex extends DuelistCard
     	attack(m);
     	if (this.tributes == 0)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 8 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, this.secondMagic - this.tributes, true));
     		this.rawDescription = this.originalDescription;
     		this.initializeDescription();    		
     	}
-    	else if (this.tributes != 8)
+    	else if (this.tributes != this.secondMagic)
     	{
-    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, 8 - this.tributes, true));
+    		AbstractDungeon.actionManager.addToBottom(new ModifyTributeAction(this, this.secondMagic - this.tributes, true));
     	}
     }
 

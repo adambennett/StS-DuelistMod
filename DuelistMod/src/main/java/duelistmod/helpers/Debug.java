@@ -723,7 +723,7 @@ public class Debug
 		int i = 0;
 		for (AbstractCard c : cards) {
 			i++;
-			cardstring = String.format("(%d,'%s',1,0,0,'%s','%s','%d','%s',NULL,'0000-00-00 00:00:00',0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'','',''),", i, c.cardID, Utilities.titleCase(c.rarity.name()), Utilities.titleCase(c.type.name()), c.cost, c.rawDescription.replace("'","\'"));
+			cardstring = String.format("(%d,'%s',1,0,0,'%s','%s','%d','%s',NULL,'0000-00-00 00:00:00',0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'','',''),", i, c.cardID, Util.titleCase(c.rarity.name()), Util.titleCase(c.type.name()), c.cost, c.rawDescription.replace("'","\'"));
 			System.out.println(cardstring);
 		}
 

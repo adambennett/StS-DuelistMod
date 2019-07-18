@@ -4,13 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistOrb;
@@ -43,6 +44,21 @@ public class ReducerOrb extends DuelistOrb
 		originalPassive = this.basePassiveAmount;
 		checkFocus(true);
 	}
+	
+	public ReducerOrb(int startingPassive)
+	{
+		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Reducer.png"));
+		this.name = orbString.NAME;
+		this.baseEvokeAmount = this.evokeAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = startingPassive;
+		this.updateDescription();
+		this.angle = MathUtils.random(360.0F);
+		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus(true);
+	}
+
 
 	@Override
 	public void updateDescription()
@@ -71,6 +87,7 @@ public class ReducerOrb extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		this.baseEvokeAmount += this.passiveAmount;
 		this.evokeAmount += this.passiveAmount;
 		if (this.baseEvokeAmount > 10 || this.evokeAmount > 10)

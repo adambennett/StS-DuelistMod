@@ -4,13 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.mod.replay.orbs.GlassOrb;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.orbs.DuelistGlass;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class GlassOrbCard extends DuelistCard 
@@ -18,7 +18,7 @@ public class GlassOrbCard extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("GlassOrbCard");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GLASS_ORB_CARD);
+    public static final String IMG = DuelistMod.makeCardPath("GenericOrbCard.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -43,7 +43,7 @@ public class GlassOrbCard extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractOrb orb = new GlassOrb();
+    	AbstractOrb orb = new DuelistGlass();
     	channel(orb);
     }
 

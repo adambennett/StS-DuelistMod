@@ -46,7 +46,7 @@ public class BarrelDragon extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
     }
 
     
@@ -72,6 +72,7 @@ public class BarrelDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(2);
+            this.upgradeDamage(3);
             this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

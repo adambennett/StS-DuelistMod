@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -87,7 +87,7 @@ public class ValkMagnet extends DuelistCard
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode) 
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode) 
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		// Check super canUse()

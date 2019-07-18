@@ -46,6 +46,7 @@ import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.variables.*;
 
@@ -112,7 +113,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean isSummonModPerm = false;
 	public boolean isTypeAddedPerm = false;
 	public boolean isSecondMagicModified = false;
+	public boolean isThirdMagicModified = false;
 	public boolean upgradedSecondMagic = false;
+	public boolean upgradedThirdMagic = false;
 	public boolean upgradedTributes = false;
 	public boolean upgradedSummons = false;
 	public boolean inDuelistBottle = false;
@@ -120,6 +123,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean fiendDeckDmgMod = false;
 	public int secondMagic = 0;
 	public int baseSecondMagic = 0;
+	public int thirdMagic = 0;
+	public int baseThirdMagic = 0;
 	public int summons = 0;
 	public int tributes = 0;
 	public int baseSummons = 0;
@@ -1108,7 +1113,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		powerTypeMap.put(Tags.NATURIA, new NaturiaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.PLANT, new PlantTypePower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.SPELLCASTER, new FocusPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(Tags.SPELLCASTER, new ManaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.TOON, new RetainCardPower(AbstractDungeon.player, 1));
 		powerTypeMap.put(Tags.ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
@@ -1312,10 +1317,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void summon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:SummonRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -1323,7 +1328,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -1331,7 +1336,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -1339,7 +1344,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -1375,7 +1380,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				} 
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
 				
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -1396,6 +1401,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb())
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							s.triggerPassiveEffect();
+						}
 					}
 				}
 				
@@ -1509,7 +1527,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
 
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -1531,6 +1549,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb() && potSummons > 0)
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
+						}
 					}
 				}
 				
@@ -1681,10 +1712,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void spellSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:SummonRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -1692,7 +1723,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -1700,7 +1731,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -1708,7 +1739,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -1745,7 +1776,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
 				
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -1767,6 +1798,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb())
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							s.triggerPassiveEffect();
+						}
 					}
 				}
 				
@@ -1880,7 +1924,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
 
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -1902,6 +1946,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb() && potSummons > 0)
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
+						}
 					}
 				}
 				
@@ -2003,10 +2060,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void powerSummon(AbstractPlayer p, int SUMMONS, String cardName, boolean fromUO)
 	{
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:SummonRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -2014,7 +2071,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -2022,7 +2079,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -2030,7 +2087,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -2070,7 +2127,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) {gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount); }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) {gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons); }
 				
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -2091,6 +2148,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb())
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							s.triggerPassiveEffect();
+						}
 					}
 				}
 				
@@ -2197,7 +2267,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) {gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount); }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) {gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons); }
 
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -2219,6 +2289,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb() && potSummons > 0)
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
+						}
 					}
 				}
 				
@@ -2372,10 +2455,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void trapHoleSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{		
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:SummonRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -2383,7 +2466,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -2391,7 +2474,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -2399,7 +2482,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -2433,7 +2516,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			
 			
 			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
 			
 			// Check for Blizzard Dragon
 			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -2454,6 +2537,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{						
 					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+				}
+			}
+			
+			// Check for Surge orbs
+			if (p.hasOrb())
+			{
+				for (AbstractOrb o : p.orbs)
+				{
+					if (o instanceof Surge)
+					{
+						Surge s = (Surge)o;
+						s.triggerPassiveEffect();
+					}
 				}
 			}
 			
@@ -2566,7 +2662,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			} 
 			
 			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
 
 			// Check for Blizzard Dragon
 			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -2588,6 +2684,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{						
 					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+				}
+			}
+			
+			// Check for Surge orbs
+			if (p.hasOrb() && potSummons > 0)
+			{
+				for (AbstractOrb o : p.orbs)
+				{
+					if (o instanceof Surge)
+					{
+						Surge s = (Surge)o;
+						for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
+					}
 				}
 			}
 			
@@ -2690,10 +2799,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void uoSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
 	{		
 		if (hasSummoningCurse()) { return; }
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:SummonRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:SummonRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -2701,7 +2810,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -2709,7 +2818,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -2717,7 +2826,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -2750,7 +2859,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			} 
 			
 			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
 			
 			// Check for Blizzard Dragon
 			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) { AbstractOrb frost = new Frost(); channel(frost); }
@@ -2769,6 +2878,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{						
 					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+				}
+			}
+			
+			// Check for Surge orbs
+			if (p.hasOrb())
+			{
+				for (AbstractOrb o : p.orbs)
+				{
+					if (o instanceof Surge)
+					{
+						Surge s = (Surge)o;
+						s.triggerPassiveEffect();
+					}
 				}
 			}
 			
@@ -2842,7 +2964,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			
 			
 			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
 
 			// Check for Blizzard Dragon
 			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -2864,6 +2986,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{						
 					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+				}
+			}
+			
+			// Check for Surge orbs
+			if (p.hasOrb() && potSummons > 0)
+			{
+				for (AbstractOrb o : p.orbs)
+				{
+					if (o instanceof Surge)
+					{
+						Surge s = (Surge)o;
+						for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
+					}
 				}
 			}
 			
@@ -2948,7 +3083,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
 				
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -2969,6 +3104,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb())
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							s.triggerPassiveEffect();
+						}
 					}
 				}
 				
@@ -3075,7 +3223,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				
 				
 				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount);  }
+				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
 
 				// Check for Blizzard Dragon
 				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
@@ -3097,6 +3245,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{						
 						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
 						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
+					}
+				}
+				
+				// Check for Surge orbs
+				if (p.hasOrb() && potSummons > 0)
+				{
+					for (AbstractOrb o : p.orbs)
+					{
+						if (o instanceof Surge)
+						{
+							Surge s = (Surge)o;
+							for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
+						}
 					}
 				}
 				
@@ -3265,10 +3426,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{		
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> cardTribList = new ArrayList<DuelistCard>();
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:TributeRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -3276,7 +3437,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return tributeList;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -3284,7 +3445,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return tributeList;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -3292,7 +3453,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return tributeList;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -3569,10 +3730,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static int powerTribute(AbstractPlayer p, int tributes, boolean tributeAll)
 	{
 		ArrayList<DuelistCard> cardTribList = new ArrayList<DuelistCard>();
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:TributeRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -3580,7 +3741,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return 0;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -3588,7 +3749,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return 0;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -3596,7 +3757,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return 0;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -3850,10 +4011,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		ArrayList<DuelistCard> cardTribList = new ArrayList<DuelistCard>();
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:TributeRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -3861,7 +4022,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return tributeList;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -3869,7 +4030,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return tributeList;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -3877,7 +4038,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return tributeList;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -4133,10 +4294,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public static void tributeChecker(AbstractPlayer p, int tributes, DuelistCard tributingCard, boolean callOnTribute)
 	{
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:TributeRandomizer"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:TributeRandomizer"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -4144,7 +4305,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -4152,7 +4313,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -4160,7 +4321,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return;
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -4287,80 +4448,83 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// Also it checks for global effects that trigger whenever ANY synergy tribute occurs
 	public void runTributeSynergyFunctions(DuelistCard tc)
 	{
-		// Special function to handle megatyped monsters, plus single check of global synergy effects
-		if (this.hasTag(Tags.MEGATYPED))
+		if (!AbstractDungeon.player.hasPower(DepoweredPower.POWER_ID))
 		{
-			megatypeTrib(tc);
-			synergyTributeOneTimeChecks(tc, this);
-		}
-		
-		// For any non-megatyped monster tributes, just loop through the monster types that the tributed card has to see if any match the tributing card
-		else
-		{
-			ArrayList<CardTags> cardTypes = getAllMonsterTypes(this);				
-			for (CardTags t : cardTypes)
+			// Special function to handle megatyped monsters, plus single check of global synergy effects
+			if (this.hasTag(Tags.MEGATYPED))
 			{
-				// Map determines which function to run based on card tag currently iterating over
-				// If tributed card has any given type from the map, we run the function that checks the tributing card for matching type
-				// The functions that check matching type on the tributing cards also handle triggering the appropriate synergy effects
-				switch (DuelistMod.monsterTypeTributeSynergyFunctionMap.get(t))
-				{
-					case 0: 
-						aquaSynTrib(tc); 						
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran aqua syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 1: 
-						dragonSynTrib(tc);						
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran dragon syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 2: 
-						fiendSynTrib(tc); 
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran fiend syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 3: 
-						insectSynTrib(tc); 
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran insect syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 4: 
-						machineSynTrib(tc); 
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran machine syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 5: 
-						naturiaSynTrib(tc);
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran naturia syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 6: 
-						plantSynTrib(tc); 
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran plant syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 7: 
-						predaplantSynTrib(tc); 
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran predaplant syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 8: 
-						spellcasterSynTrib(tc); 
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran spellcaster syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 9: 
-						superSynTrib(tc); 
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran superheavy syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 10: 
-						toonSynTrib(tc);
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran toon syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					case 11: 
-						zombieSynTrib(tc); 
-						lavaZombieEffectHandler();	// increase lava orbs evoke amounts by their passive amounts, this happens every time we tribute any zombie
-						if (DuelistMod.debug) { DuelistMod.logger.info("ran zombie syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
-						break;
-					default: break;
-				}
+				megatypeTrib(tc);
+				synergyTributeOneTimeChecks(tc, this);
 			}
 			
-			// And finally for non-megatyped cards we still need to run one-time checks for global type-agnostic synergy effects
-			synergyTributeOneTimeChecks(tc, this);
-		}
+			// For any non-megatyped monster tributes, just loop through the monster types that the tributed card has to see if any match the tributing card
+			else
+			{
+				ArrayList<CardTags> cardTypes = getAllMonsterTypes(this);				
+				for (CardTags t : cardTypes)
+				{
+					// Map determines which function to run based on card tag currently iterating over
+					// If tributed card has any given type from the map, we run the function that checks the tributing card for matching type
+					// The functions that check matching type on the tributing cards also handle triggering the appropriate synergy effects
+					switch (DuelistMod.monsterTypeTributeSynergyFunctionMap.get(t))
+					{
+						case 0: 
+							aquaSynTrib(tc); 						
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran aqua syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 1: 
+							dragonSynTrib(tc);						
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran dragon syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 2: 
+							fiendSynTrib(tc); 
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran fiend syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 3: 
+							insectSynTrib(tc); 
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran insect syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 4: 
+							machineSynTrib(tc); 
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran machine syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 5: 
+							naturiaSynTrib(tc);
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran naturia syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 6: 
+							plantSynTrib(tc); 
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran plant syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 7: 
+							predaplantSynTrib(tc); 
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran predaplant syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 8: 
+							spellcasterSynTrib(tc); 
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran spellcaster syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 9: 
+							superSynTrib(tc); 
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran superheavy syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 10: 
+							toonSynTrib(tc);
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran toon syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						case 11: 
+							zombieSynTrib(tc); 
+							lavaZombieEffectHandler();	// increase lava orbs evoke amounts by their passive amounts, this happens every time we tribute any zombie
+							if (DuelistMod.debug) { DuelistMod.logger.info("ran zombie syn trib automatically from tributing " + this.originalName + " for " + tc.originalName); }
+							break;
+						default: break;
+					}
+				}
+				
+				// And finally for non-megatyped cards we still need to run one-time checks for global type-agnostic synergy effects
+				synergyTributeOneTimeChecks(tc, this);
+			}
+		}		
 	}
 	
 	// things to check for only one time when a synergy tribute happens
@@ -4438,6 +4602,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				power.updateDescription();
 			}
 			
+			if (player().hasPower(BoosterDragonPower.POWER_ID))
+			{
+				AbstractPower pow = player().getPower(BoosterDragonPower.POWER_ID);
+				if (pow.amount > 0) { staticBlock(pow.amount); }
+			}
+			
 			if (player().hasRelic(DragonRelicC.ID))
 			{
 				AbstractRelic relic = player().getRelic(DragonRelicC.ID);
@@ -4495,7 +4665,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				}
 			}
-			AbstractDungeon.actionManager.addToBottom(new FetchAction(p.discardPile, DuelistMod.fiendDraw)); 
+			AbstractDungeon.actionManager.addToBottom(new FiendFetchAction(p.discardPile, DuelistMod.fiendDraw)); 
 		}
 	}
 	
@@ -4642,10 +4812,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void incMaxSummons(AbstractPlayer p, int amount)
 	{
 		boolean curseFailure = isPsiCurseActive();
-		boolean challengeFailure = (Utilities.isCustomModActive("theDuelist:MaxSummonChallenge"));
+		boolean challengeFailure = (Util.isCustomModActive("theDuelist:MaxSummonChallenge"));
 		if (challengeFailure)
 		{
-			if (Utilities.isCustomModActive("challengethespire:Bronze Difficulty"))
+			if (Util.isCustomModActive("challengethespire:Bronze Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) == 1) 
 				{ 
@@ -4653,7 +4823,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Silver Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Silver Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 				{ 
@@ -4661,7 +4831,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Gold Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Gold Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 3) != 1) 
 				{ 
@@ -4669,7 +4839,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					return; 
 				}
 			}
-			else if (Utilities.isCustomModActive("challengethespire:Platinum Difficulty"))
+			else if (Util.isCustomModActive("challengethespire:Platinum Difficulty"))
 			{
 				if (AbstractDungeon.cardRandomRng.random(1, 4) != 1) 
 				{ 
@@ -5019,6 +5189,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.upgradedSecondMagic = true;
 	}
 	
+	public void upgradeThirdMagic(int add)
+	{
+		this.thirdMagic = this.baseThirdMagic += add;
+		this.upgradedThirdMagic = true;
+	}
+	
 	// =============== TRIBUTE MODIFICATION FUNCTIONS =========================================================================================================================================================
 	public void changeTributesInBattle(int addAmount, boolean combat)
 	{
@@ -5189,6 +5365,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orb));
 	}
+	
+	public static void channel(AbstractOrb orb, int amount)
+	{
+		for (int i = 0; i < amount; i++) 
+		{ 
+			AbstractOrb copy = orb.makeCopy();
+			AbstractDungeon.actionManager.addToTop(new ChannelAction(copy));
+		}
+	}
 
 	public static void channelBottom(AbstractOrb orb)
 	{
@@ -5223,6 +5408,30 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOrbNoGlassOrGate(); }
 		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOrbNoGlassOrGate(); }
 		else { RandomOrbHelper.channelRandomOrbNoGlassOrGate(); }
+	}
+	
+	public static void spellcasterPuzzleChannel()
+	{
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.spellcasterPuzzleChannel(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.spellcasterPuzzleChannel(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.spellcasterPuzzleChannel(); }
+		else { RandomOrbHelper.spellcasterPuzzleChannel(); }
+	}
+	
+	public static void channelRandomOffensive()
+	{
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomOffense(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomOffense(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomOffense(); }
+		else { RandomOrbHelper.channelRandomOffense(); }
+	}
+	
+	public static void channelRandomDefensive()
+	{
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.channelRandomDefense(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.channelRandomDefense(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.channelRandomDefense(); }
+		else { RandomOrbHelper.channelRandomDefense(); }
 	}
 	
 	public static ArrayList<AbstractOrb> returnRandomOrbList()
@@ -5384,7 +5593,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 				else
 				{
-					if (DuelistMod.debug) { System.out.println("Skipped inverting " + orbToInvert + " because we did not find an entry in the allowed invertable orbs names list"); }
+					Util.log("Skipped inverting " + orbToInvert + " because we did not find an entry in the allowed invertable orbs names list");
+					if (DuelistMod.debug)
+					{ 
+						int counter = 0;
+						for (String s : DuelistMod.invertableOrbNames)
+						{
+							Util.log("Invert Names[" + counter + "]: " + s + " ||| vs. ||| " + orbToInvert);
+						}
+					}
 				}
 			}
 		}

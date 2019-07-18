@@ -35,6 +35,7 @@ public class BlackBottle extends AbstractPotion {
         
         // Initialize the on-hover name + description
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Black", DESCRIPTIONS[3]));
         
     }
 
@@ -69,5 +70,6 @@ public class BlackBottle extends AbstractPotion {
       }
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("Black", DESCRIPTIONS[3]));
     }
 }

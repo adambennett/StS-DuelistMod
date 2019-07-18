@@ -45,8 +45,11 @@ public class GraverobberAction extends AbstractGameAction
 			for (AbstractCard gridCard : cards)
 			{
 				if (this.upgrade) { gridCard.upgrade(); }
-				gridCard.costForTurn += (-gridCard.cost + costToChangeTo);
-				if (gridCard.costForTurn != gridCard.cost) { gridCard.isCostModifiedForTurn = true; }
+				if (gridCard.costForTurn != costToChangeTo && gridCard.costForTurn > -1)
+				{
+					gridCard.costForTurn += (-gridCard.cost + costToChangeTo);
+					if (gridCard.costForTurn != gridCard.cost) { gridCard.isCostModifiedForTurn = true; }
+				}				
 				tmp.addToTop(gridCard);
 				if (DuelistMod.debug)
 				{

@@ -237,7 +237,7 @@
 },
 "theDuelist:HeartUndertrap": {
         "NAME": "Trap the Underdog",
-        "DESCRIPTIONS": ["Whenever you draw a Trap, gain #b3 HP." ]
+        "DESCRIPTIONS": ["Whenever you draw a Trap, gain #b3 HP. Lasts #b", " more turn.", " more turns." ]
 },
 "theDuelist:HeartUndertribute": {
         "NAME": "Tribute the Underdog",
@@ -454,6 +454,22 @@
 "theDuelist:MortalityPower": {
         "NAME": "Mortality",
         "DESCRIPTIONS": ["You cannot #yResummon. NL #yCharges: " ]
+},
+"theDuelist:BoosterDragonPower": {
+        "NAME": "Booster Dragon",
+        "DESCRIPTIONS": ["Whenever you #yTribute a #yDragon for another, gain #b", " Block." ]
+},
+"theDuelist:ManaPower": {
+        "NAME": "Mana",
+        "DESCRIPTIONS": ["The next time you trigger the #ySpellcaster block-on-attack effect, gain #b", " extra #yBlock. At the end of each turn, your mana is set to the number of #ySpellcasters you currently have summoned.", " less #yBlock. At the end of each turn, your mana is set to the number of #ySpellcasters you currently have summoned." ]
+},
+"theDuelist:DepoweredPower": {
+        "NAME": "Powerless",
+        "DESCRIPTIONS": ["Monster type synergy effects are disabled for #b", " more turn.", " more turns." ]
+},
+"theDuelist:BlackPendantPower": {
+        "NAME": "Black Pendant",
+        "DESCRIPTIONS": ["If Black Pendant is in your discard pile at the start of turn, return it to your hand. NL #yPendants: #b" ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

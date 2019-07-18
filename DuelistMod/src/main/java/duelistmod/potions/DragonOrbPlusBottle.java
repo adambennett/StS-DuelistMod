@@ -35,6 +35,7 @@ public class DragonOrbPlusBottle extends AbstractPotion {
         
         // Initialize the on-hover name + description
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("DragonOrb+", DESCRIPTIONS[3]));
         
     }
 
@@ -69,5 +70,6 @@ public class DragonOrbPlusBottle extends AbstractPotion {
       }
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
+      this.tips.add(new PowerTip("DragonOrb+", DESCRIPTIONS[3]));
     }
 }

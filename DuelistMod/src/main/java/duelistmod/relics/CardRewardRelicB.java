@@ -16,7 +16,7 @@ public class CardRewardRelicB extends CustomRelic
     public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
     // /FIELDS
 
-    public CardRewardRelicB() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL); }
+    public CardRewardRelicB() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL); }
     @Override public String getUpdatedDescription() { return this.DESCRIPTIONS[0]; }
 
     @Override
@@ -30,7 +30,7 @@ public class CardRewardRelicB extends CustomRelic
     @Override
     public void onEquip()
     {
-    	this.counter = 2;
+    	this.counter = 1;
         DuelistMod.hasCardRewardRelic = true;        
     }
     

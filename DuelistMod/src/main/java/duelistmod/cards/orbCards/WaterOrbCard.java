@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import conspire.orbs.Water;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.orbs.WaterOrb;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class WaterOrbCard extends DuelistCard 
@@ -18,7 +18,7 @@ public class WaterOrbCard extends DuelistCard
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("WaterOrbCard");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.WATER_ORB_CARD);
+    public static final String IMG = DuelistMod.makeCardPath("GenericOrbCard.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -43,7 +43,7 @@ public class WaterOrbCard extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractOrb orb = new Water();
+    	AbstractOrb orb = new WaterOrb();
     	channel(orb);
     }
     

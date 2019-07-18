@@ -337,10 +337,10 @@ public class HauntedHelper
 		actions.add("Lose #b1 HP");													//
 		actions.add("Lose #b1 HP");													//
 		actions.add("Lose #b1 HP for each card in your hand");						//
-		actions.add("Tribute ALL Summons");											//
+		//actions.add("Tribute ALL Summons");											//
 		actions.add("Tribute #b1");													//
 		actions.add("Tribute #b1");													//
-		actions.add("Tribute #b2");													//
+		//actions.add("Tribute #b2");													//
 		actions.add("Increase the Tribute cost of a card in hand by #b1");			//
 		actions.add("Increase the Tribute cost of a card in hand by #b1");			//
 		actions.add("Increase the Tribute cost of a card in hand by #b1");			//
@@ -352,7 +352,7 @@ public class HauntedHelper
 		actions.add("Lose [E] "); 													//
 		actions.add("Lose [E] "); 													//
 		actions.add("Reduce your Max Summons by #b1");								//
-		actions.add("Lose #b1 Max HP");												//
+		//actions.add("Lose #b1 Max HP");												//
 		actions.add("Gain #b2 random debuffs");										//
 		actions.add("Gain #b1 random debuff");						
 		actions.add("Gain #b1 random debuff");
@@ -368,11 +368,11 @@ public class HauntedHelper
 		actions.add("Apply #b3 Thorns to a random enemy");
 		actions.add("Apply #b4 Thorns to a random enemy");
 		actions.add("Apply #b2 Thorns to ALL enemies");
-		actions.add("Summon #b3 Plague Tokens");
-		actions.add("Summon #b2 Plague Tokens");
-		actions.add("Summon #b1 Plague Token");
-		actions.add("Summon #b1 Plague Token");
-		actions.add("Summon #b1 Plague Token");
+		//actions.add("Summon #b3 Plague Tokens");
+		//actions.add("Summon #b2 Plague Tokens");
+		//actions.add("Summon #b1 Plague Token");
+		//actions.add("Summon #b1 Plague Token");
+		//actions.add("Summon #b1 Plague Token");
 		actions.add("Restrict Resummons");
 		actions.add("Restrict Resummons");
 		actions.add("Add #b2 Burns to your discard pile");
@@ -389,12 +389,12 @@ public class HauntedHelper
 		actions.add("Add #b1 Wound to your draw pile");
 		actions.add("ALL enemies gain #b10 Block");
 		actions.add("ALL enemies gain #b5 Block");
-		actions.add("Add a random Duelist Curse to your draw pile");
+		//actions.add("Add a random Duelist Curse to your draw pile");
 		
 		if (isDebuff) 
 		{ 
-			actions.add("Increase Haunted stacks by #b1"); 
-			actions.add("Increase Haunted stacks by #b2"); 
+			//actions.add("Increase Haunted stacks by #b1"); 
+			//actions.add("Increase Haunted stacks by #b2"); 
 		}
 	}
 	

@@ -7,11 +7,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
-import duelistmod.helpers.Utilities;
+import duelistmod.helpers.Util;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;
@@ -56,8 +57,8 @@ public class FrontierWiseman extends DuelistCard
         	// Remove 1 overflow
             AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
-            // Invert next orb
-            invert(1);
+            // Next turn gain 1 Energy
+            applyPowerToSelf(new EnergizedBluePower(AbstractDungeon.player, 1));
             
             // Check Splash Orbs
             checkSplash();
@@ -86,7 +87,7 @@ public class FrontierWiseman extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(3);
+			this.upgradeMagicNumber(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}
@@ -108,7 +109,7 @@ public class FrontierWiseman extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Utilities.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

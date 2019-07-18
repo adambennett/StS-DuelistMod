@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
@@ -19,7 +18,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MillenniumPuzzle;
@@ -185,7 +184,7 @@ public class TheDuelist extends CustomPlayer {
 	// Character Select screen effect
 	@Override
 	public void doCharSelectScreenSelectEffect() {
-		CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
+		CardCrawlGame.sound.playA("theDuelist:TimeToDuel", 0); // Sound Effect
 		CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT, false); // Screen Effect
 	}
 
@@ -200,8 +199,8 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public int getAscensionMaxHPLoss() 
 	{
-		if (DuelistMod.challengeMode) { return 30; }
-		else { return 20; }
+		if (DuelistMod.challengeMode) { return 20; }
+		else { return 15; }
 	}
 
 	// Should return the card color enum to be associated with your character.
@@ -233,7 +232,7 @@ public class TheDuelist extends CustomPlayer {
 	//Which card should be obtainable from the Match and Keep event?
 	@Override
 	public AbstractCard getStartCardForEvent() {
-		return new SevenColoredFish();
+		return new GiantSoldier();
 	}
 
 	// The class name as it appears next to your player name in-game

@@ -1,21 +1,16 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
 import duelistmod.variables.*;
 
 public class FiveHeaded extends DuelistCard 
@@ -36,8 +31,7 @@ public class FiveHeaded extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 4;
-    private static final int DAMAGE = 55;
-    private static final int UPGRADE_PLUS_DMG = 45;
+    private static final int DAMAGE = 11;
     // /STAT DECLARATION/
 
     public FiveHeaded() {
@@ -73,8 +67,7 @@ public class FiveHeaded extends DuelistCard
     {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
-            this.upgradeTributes(1);
+            this.upgradeDamage(6);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

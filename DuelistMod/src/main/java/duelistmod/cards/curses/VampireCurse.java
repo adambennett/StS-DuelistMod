@@ -33,6 +33,7 @@ public class VampireCurse extends DuelistCard
     public VampireCurse() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
+        this.isEthereal = true;
     }
 
     // Actions the card should do.

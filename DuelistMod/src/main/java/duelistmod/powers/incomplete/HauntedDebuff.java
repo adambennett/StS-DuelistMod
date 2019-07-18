@@ -98,13 +98,16 @@ public class HauntedDebuff extends AbstractPower
 	// Prevents that card from having the summons/tributes modified after you've already played it
 	public void triggerHaunt(AbstractCard triggerCard)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new GhostIgniteEffect(p.hb.cX, p.hb.cY), 1.0F));
-		lastAction = HauntedHelper.triggerRandomAction(this.amount, triggerCard, true);
-		int buffRoll = AbstractDungeon.cardRandomRng.random(1, 15);
-		if (buffRoll == 1 && DuelistMod.debug) { this.amount++;  DuelistMod.logger.info("Haunted Debuff stacked additional stacks by playing " + triggerCard.name + ", since we rolled a " + buffRoll); }
-		else if (buffRoll == 1) { this.amount++;  }
-		else if (DuelistMod.debug) { DuelistMod.logger.info("Haunted Debuff did not stack additional stacks by playing " + triggerCard.name + ", since we rolled a " + buffRoll + " and we needed a 1."); }
+		if (this.amount > 0)
+		{
+			AbstractPlayer p = AbstractDungeon.player;
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new GhostIgniteEffect(p.hb.cX, p.hb.cY), 1.0F));
+			lastAction = HauntedHelper.triggerRandomAction(this.amount, triggerCard, true);
+			int buffRoll = AbstractDungeon.cardRandomRng.random(1, 15);
+			if (buffRoll == 1 && DuelistMod.debug) { this.amount++;  DuelistMod.logger.info("Haunted Debuff stacked additional stacks by playing " + triggerCard.name + ", since we rolled a " + buffRoll); }
+			else if (buffRoll == 1) { this.amount++;  }
+			else if (DuelistMod.debug) { DuelistMod.logger.info("Haunted Debuff did not stack additional stacks by playing " + triggerCard.name + ", since we rolled a " + buffRoll + " and we needed a 1."); }
+		}
 		updateDescription();
 	}
 	
@@ -172,6 +175,11 @@ public class HauntedDebuff extends AbstractPower
 		{
 			AbstractDungeon.actionManager.addToTop(new HauntedRemovedAction(1, this.hauntedCardType));
 		}    
+    	
+		else if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Haunted debuff was removed, but both card types were equal to their init values (Curse/Dragon)");
+		}
     }
     
     @Override

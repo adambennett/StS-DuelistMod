@@ -35,15 +35,14 @@ public class FogKing extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 0;
     // /STAT DECLARATION/
 
-    public FogKing() {
+    public FogKing() 
+    {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.baseDamage = this.damage = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
-        this.tags.add(Tags.ALL);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;

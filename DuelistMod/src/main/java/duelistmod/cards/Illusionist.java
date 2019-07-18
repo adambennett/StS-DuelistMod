@@ -6,10 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.incomplete.ManaPower;
 import duelistmod.variables.*;
 
 public class Illusionist extends DuelistCard 
@@ -43,6 +44,7 @@ public class Illusionist extends DuelistCard
         this.tags.add(Tags.ALL);
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.setupStartingCopies();
     }
 
@@ -52,6 +54,7 @@ public class Illusionist extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	block(this.block);
+    	applyPowerToSelf(new ManaPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -66,6 +69,7 @@ public class Illusionist extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(4);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
