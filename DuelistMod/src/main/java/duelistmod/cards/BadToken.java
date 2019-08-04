@@ -1,16 +1,22 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.*;
+import duelistmod.cards.incomplete.DoomDonuts;
+import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.*;
+import duelistmod.powers.incomplete.*;
 import duelistmod.variables.*;
 
 public class BadToken extends DuelistCard 
@@ -48,23 +54,19 @@ public class BadToken extends DuelistCard
     }
     
     
-    @Override public void use(AbstractPlayer p, AbstractMonster m) 
+    @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
-    	attack(m);
+    	
+    	applyPowerToSelf(new ResummonBonusPower(p, p, 3));
+    	applyPowerToSelf(new YamiFormPower(p, p, 3));
+    	applyPowerToSelf(new FlameTigerPower(p, p));
+    	
     	if (DuelistMod.debug)
     	{
-    		Debug.printTributeInfo();
-        	Debug.printRarityInfo();
-        	Debug.printTypedRarityInfo();
-        	BoosterPackHelper.debugCheckLists();
-    	}
-    	
-    	for (AbstractPower pow : p.powers)
-    	{
-    		if (pow.name != null)
-    		{
-    			DuelistMod.logger.info("Power: " + pow.name);
-    		}
+    		//Debug.printTributeInfo();
+        	//Debug.printRarityInfo();
+        	//Debug.printTypedRarityInfo();
+        	//BoosterPackHelper.debugCheckLists();
     	}
     }
    

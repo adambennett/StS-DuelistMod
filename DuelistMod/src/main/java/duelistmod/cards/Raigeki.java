@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -31,7 +32,7 @@ public class Raigeki extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
     // /STAT DECLARATION/
@@ -45,6 +46,7 @@ public class Raigeki extends DuelistCard
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 10;
 		this.magicNumber = this.baseMagicNumber = 5;
+		this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -53,7 +55,7 @@ public class Raigeki extends DuelistCard
     {
     	AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, new Color(0.1F, 0.0F, 0.2F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 0.3F));
     	AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP", 0.05F));
-    	attackAllEnemies(this.damage);
+    	attackAllEnemies(AttackEffect.SLASH_DIAGONAL);
     	for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
     	{
     		int roll = AbstractDungeon.cardRandomRng.random(1, 11);

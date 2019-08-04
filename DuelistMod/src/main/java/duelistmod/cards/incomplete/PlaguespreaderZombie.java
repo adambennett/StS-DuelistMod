@@ -44,6 +44,7 @@ public class PlaguespreaderZombie extends DuelistCard
         this.originalName = this.name;
         this.baseDamage = this.damage = 13;
         this.summons = this.baseSummons = 2;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.isSummon = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -58,6 +59,7 @@ public class PlaguespreaderZombie extends DuelistCard
     {
     	summon(p, this.summons, new PlagueToken());
     	attack(m);
+    	DuelistCard.poisonAllEnemies(p, this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

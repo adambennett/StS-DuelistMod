@@ -116,7 +116,7 @@ public class RandomActionHelper
 			case "Apply #b1 random #ydebuff to random enemy":
 				int randomTurnNumD = AbstractDungeon.cardRandomRng.random(1, 3);
 				AbstractMonster m = DuelistCard.getRandomMonster();
-				AbstractPower debuff = RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
+				AbstractPower debuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
 				DuelistCard.applyPower(debuff, (AbstractCreature)m);
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
@@ -124,11 +124,11 @@ public class RandomActionHelper
 				
 				int randomTurnNumDe = AbstractDungeon.cardRandomRng.random(1, 3);
 				AbstractMonster ma = DuelistCard.getRandomMonster();
-				AbstractPower debuffB = RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
+				AbstractPower debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
 				DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
 				
 				randomTurnNumDe = AbstractDungeon.cardRandomRng.random(1, 3);
-				debuffB = RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
+				debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
 				DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
 				
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
@@ -234,7 +234,7 @@ public class RandomActionHelper
 				for (int i = 0; i < RAND_DEBUFFS; i++)
 				{
 					int randomTurnNumO2 = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-					DuelistCard.applyPower(RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
+					DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
 				}
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;

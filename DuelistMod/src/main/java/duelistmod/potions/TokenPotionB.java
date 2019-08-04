@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.tokens.*;
 
 public class TokenPotionB extends AbstractPotion {
 
@@ -43,7 +43,7 @@ public class TokenPotionB extends AbstractPotion {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
     	{
-    		DuelistCard.summon(AbstractDungeon.player, this.potency, new Token());
+    		DuelistCard.summon(AbstractDungeon.player, this.potency, new PotionToken());
     	}
     }
 

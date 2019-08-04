@@ -57,8 +57,8 @@ public class MillenniumItems extends AbstractImageEvent {
                         if (!hasEveryMillenniumItem) 
                         {
                         	ArrayList<Object> mills = new ArrayList<Object>();
-                        	for (AbstractRelic r : Util.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
-                        	mills.add(new MillenniumElixir());    
+                        	//for (AbstractRelic r : Util.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
+                        	//mills.add(new MillenniumElixir());    
                         	mills.add(new MillenniumSpellbook());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
                         	if (randMill instanceof AbstractRelic)
@@ -73,7 +73,7 @@ public class MillenniumItems extends AbstractImageEvent {
                         	
                         	else if (randMill instanceof DuelistCard)
                         	{
-                        		 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard)randMill, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                        		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         	}
                         	
                         	else if (DuelistMod.debug && randMill != null)
@@ -82,9 +82,9 @@ public class MillenniumItems extends AbstractImageEvent {
                         	}
                         	
                             AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                             AbstractCard b2 = DuelistCardLibrary.getRandomDuelistCurse();
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b2, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                             /*if (AbstractDungeon.ascensionLevel >= 15)
                             {
                             	  AbstractCard b3 = DuelistCardLibrary.getRandomDuelistCurse();
@@ -109,7 +109,7 @@ public class MillenniumItems extends AbstractImageEvent {
                         	
                         	else if (randMill instanceof DuelistCard)
                         	{
-                        		 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard)randMill, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                        		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         	}
                         	
                         	else if (DuelistMod.debug && randMill != null)
@@ -118,7 +118,7 @@ public class MillenniumItems extends AbstractImageEvent {
                         	}
                         	
                             AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         }
                         
                         screenNum = 1;

@@ -21,7 +21,7 @@ public class BoosterPackEggRelic extends CustomRelic {
 	    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 
 	public BoosterPackEggRelic() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
 	}
 	
 	@Override

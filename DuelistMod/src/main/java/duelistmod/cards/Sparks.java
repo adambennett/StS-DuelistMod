@@ -54,12 +54,22 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.FIEND_DECK);
         this.tags.add(Tags.AQUA_DECK);
         this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.ASCENDED_ONE_DECK);
+        this.tags.add(Tags.ASCENDED_TWO_DECK);
+        this.tags.add(Tags.ASCENDED_THREE_DECK);
+        this.tags.add(Tags.MEGATYPE_DECK);
+        this.tags.add(Tags.INCREMENT_DECK);
+        this.incrementDeckCopies = 2;
+        this.megatypeDeckCopies = 2;
+        this.a1DeckCopies = 2;
+        this.a2DeckCopies = 2;
+        this.a3DeckCopies = 2;
         this.superheavyDeckCopies = 2;
         this.aquaDeckCopies = 2;
         this.fiendDeckCopies = 2;
-        this.zombieDeckCopies = 3;
+        this.zombieDeckCopies = 2;
         this.machineDeckCopies = 2;
-        this.standardDeckCopies = 4;
+        this.standardDeckCopies = 2;
         this.dragonDeckCopies = 3;
         this.spellcasterDeckCopies = 3;
         this.natureDeckCopies = 3;
@@ -67,7 +77,7 @@ public class Sparks extends DuelistCard
         this.creatorDeckCopies = 3;
         this.orbDeckCopies = 3;
         this.resummonDeckCopies = 2;
-        this.healDeckCopies = 3;        
+        this.healDeckCopies = 3;  
         this.originalName = this.name;
         this.setupStartingCopies();
     }

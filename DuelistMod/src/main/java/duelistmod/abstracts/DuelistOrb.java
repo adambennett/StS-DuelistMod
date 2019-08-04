@@ -11,6 +11,7 @@ public class DuelistOrb extends AbstractOrb {
 
 	protected int originalPassive = 0;
 	protected int originalEvoke = 0;
+	public boolean triggersOnSpellcasterPuzzle = false;
 	
 	public boolean hasNegativeFocus()
 	{

@@ -43,8 +43,8 @@ public class Smoke extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Smoke.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 4;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -57,7 +57,7 @@ public class Smoke extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + (this.passiveAmount * 4) + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 	
 	@Override
@@ -74,8 +74,10 @@ public class Smoke extends DuelistOrb
 					DuelistCard dc = (DuelistCard)c;
 					if (dc.tributes > 0) { current += dc.tributes; }
 				}
+				
+				if (c.costForTurn > 0) { current += c.costForTurn; }
 			}
-			currentEvokeDmg = current;
+			currentEvokeDmg = current * this.evokeAmount;
 		}
 	}
 
@@ -103,12 +105,10 @@ public class Smoke extends DuelistOrb
 
 	public void triggerPassiveEffect(DuelistCard c)
 	{
-		if (c.hasTag(Tags.MONSTER) && c.tributes > 0)
+		if (c.hasTag(Tags.MONSTER))
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-			DuelistCard dragC = (DuelistCard)c;
-			dragC.changeTributesInBattle(this.passiveAmount, false);
-			if (this.passiveAmount * 3 > 0) { AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(dragC.uuid, this.passiveAmount * 4)); }
+			if (this.passiveAmount > 0) { AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(c.uuid, this.passiveAmount)); }
 		}
 	}
 
@@ -165,7 +165,7 @@ public class Smoke extends DuelistOrb
 		// Render evoke amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.currentEvokeDmg), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 
 	@Override

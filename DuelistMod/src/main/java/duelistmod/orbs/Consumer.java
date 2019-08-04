@@ -8,19 +8,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.cards.tokens.Token;
 import duelistmod.helpers.BuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
 public class Consumer extends DuelistOrb
@@ -41,7 +45,7 @@ public class Consumer extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Consumer.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 6;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -54,19 +58,24 @@ public class Consumer extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1];
+		if (this.evokeAmount > -1) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[2] + this.evokeAmount + DESC[3]; }
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		if (!hasNegativeFocus())
+		if (this.evokeAmount > 0)
 		{
-			int tribs = DuelistCard.powerTribute(AbstractDungeon.player, 0, true);
-			BuffHelper.resetRandomBuffs(tribs);
-			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, tribs, false);
-		}		
+			AbstractDungeon.player.loseEnergy(this.evokeAmount);
+			DuelistCard.evokeAll();
+		}
+		else if (this.evokeAmount < 0)
+		{
+			DuelistCard.gainEnergy(-this.evokeAmount);
+			DuelistCard.evokeAll();
+		}
 	}
 	
 	@Override
@@ -78,20 +87,32 @@ public class Consumer extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		AbstractPlayer p = AbstractDungeon.player;		
-		if (DuelistCard.getSummons(p) >= this.passiveAmount && this.passiveAmount > 0)
+		AbstractPlayer p = AbstractDungeon.player;	
+		if (DuelistCard.getSummons(p) > 0 && this.passiveAmount > 0)
 		{
-			this.triggerPassiveEffect();
+			SummonPower pow = (SummonPower) p.getPower(SummonPower.POWER_ID);
+			DuelistCard card = pow.actualCardSummonList.get(pow.actualCardSummonList.size() - 1);
+			if (card.hasTag(Tags.TOKEN)) { triggerPassiveEffect(card, pow); }
 		}		
 	}
 
-	private void triggerPassiveEffect()
+	private void triggerPassiveEffect(DuelistCard c, SummonPower pow)
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-		ArrayList<DuelistCard> tribList = DuelistCard.listReturnPowerTribute(AbstractDungeon.player, this.passiveAmount, false);
-		int totalCost = 0;
-		if (tribList.size() > 0) { for (DuelistCard c : tribList) { totalCost += (c.cost); }}
-		AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, totalCost * this.passiveAmount));
+		ArrayList<DuelistCard> aSummonsList = pow.actualCardSummonList;
+    	ArrayList<String> newSummonList = new ArrayList<String>();
+    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
+    	for (int i = 0; i < aSummonsList.size() - 1; i++)
+    	{    		
+    		newSummonList.add(aSummonsList.get(i).originalName);
+    		aNewSummonList.add(aSummonsList.get(i));    		
+    	}
+    	DuelistCard.tributeChecker(AbstractDungeon.player, 1, new Token(), true);
+    	pow.summonList = newSummonList;
+    	pow.actualCardSummonList = aNewSummonList;
+    	pow.amount--;
+    	pow.updateDescription();
+		DuelistCard.damageAllEnemiesThornsNormal(this.passiveAmount);
 	}
 
 	@Override
@@ -139,6 +160,36 @@ public class Consumer extends DuelistOrb
 	public AbstractOrb makeCopy()
 	{
 		return new Consumer();
+	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 	
 	@Override

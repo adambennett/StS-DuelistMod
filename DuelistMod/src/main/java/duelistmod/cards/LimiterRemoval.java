@@ -1,13 +1,16 @@
 package duelistmod.cards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
@@ -26,7 +29,7 @@ public class LimiterRemoval extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -37,19 +40,50 @@ public class LimiterRemoval extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.PHARAOH_SERVANT);
+        this.isMultiDamage = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int art = 0;
-    	if (p.hasPower(ArtifactPower.POWER_ID))
+    	this.damage = this.baseDamage;
+    	if (p.hasPower(ArtifactPower.POWER_ID) && this.damage > 0)
     	{
-    		art += p.getPower(ArtifactPower.POWER_ID).amount;
-    		DuelistCard.removePower(p.getPower(ArtifactPower.POWER_ID), p);
-    		if (art > 0) { applyPowers(); DuelistCard.attackAllEnemies(art * this.magicNumber); }
+    		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
     	}
+    }
+
+    @Override
+    public void applyPowers() 
+    {
+        super.applyPowers();
+        if (AbstractDungeon.player.hasPower(ArtifactPower.POWER_ID))
+        {
+        	this.damage = this.baseDamage = AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount * this.magicNumber;
+        	this.initializeDescription();
+        }
+        else
+        {
+        	this.baseDamage = this.damage = 0;
+        	this.initializeDescription();
+        }
+    }
+    
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) 
+    {
+        super.calculateCardDamage(mo);
+        if (AbstractDungeon.player.hasPower(ArtifactPower.POWER_ID))
+        {
+        	this.damage = this.baseDamage = AbstractDungeon.player.getPower(ArtifactPower.POWER_ID).amount * this.magicNumber;
+        	this.initializeDescription();
+        }
+        else
+        {
+        	this.baseDamage = this.damage = 0;
+        	this.initializeDescription();
+        }
     }
 
     // Which card to return when making a copy of this card.

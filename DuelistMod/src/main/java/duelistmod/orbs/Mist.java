@@ -52,6 +52,7 @@ public class Mist extends DuelistOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		this.triggersOnSpellcasterPuzzle = true;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		checkFocus(true);

@@ -35,7 +35,7 @@ public class Metal extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Metal.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 3;
 		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -62,7 +62,9 @@ public class Metal extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		this.triggerPassiveEffect();
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
+		int spells = (DuelistMod.spellCombatCount / 2) + this.passiveAmount;
+		if (spells > 0) { DuelistCard.staticBlock(spells); }
 	}
 
 	@Override
@@ -73,9 +75,7 @@ public class Metal extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
-		int spells = (DuelistMod.spellCombatCount / 2) + this.passiveAmount;
-		if (spells > 0) { DuelistCard.staticBlock(spells); }
+		
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
@@ -50,7 +50,7 @@ public class Predaplanet extends DuelistCard
     	AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(m, p,  ArtifactPower.POWER_ID));
     	applyPower(new PoisonPower(m, p, this.magicNumber), m);
     	int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 3);
-    	AbstractPower randomDebuff = RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum);
+    	AbstractPower randomDebuff = DebuffHelper.getRandomDebuff(p, m, randomTurnNum);
     	applyPower(randomDebuff, m);
     }
 

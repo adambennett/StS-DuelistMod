@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -47,19 +48,20 @@ public class FairyBox extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
+		ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
 		if (!upgraded)
 		{
-			if (DuelistMod.orbCards.size() > this.magicNumber)
+			if (orbsToChooseFrom.size() > this.magicNumber)
 			{
-				ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+				ArrayList<AbstractCard> orbs = new ArrayList<AbstractCard>();
 				for (int i = 0; i < this.magicNumber; i++)
 				{
-					DuelistCard orbCard = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-					while (orbs.contains(orbCard)) { orbCard = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+					AbstractCard orbCard = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
+					while (orbs.contains(orbCard)) { orbCard = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
 					orbs.add(orbCard);
 				}
 				
-				for (DuelistCard c : orbs)
+				for (AbstractCard c : orbs)
 				{
 					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(c, false, true, true, true, false, false, false, false, 0, 0, 0, 0, 0, 0, true));
 					if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
@@ -68,16 +70,17 @@ public class FairyBox extends DuelistCard
 		}
 		else
 		{
-			if (DuelistMod.orbCards.size() > this.magicNumber)
+			if (orbsToChooseFrom.size() > this.magicNumber)
 			{
 				ArrayList<AbstractCard> orbs = new ArrayList<AbstractCard>();
 		    	ArrayList<String> orbNames = new ArrayList<String>();
 				for (int i = 0; i < 5; i++)
 				{
-					DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-					while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+					AbstractCard random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
+					while (orbNames.contains(random.name)) { random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
 					orbs.add((DuelistCard) random.makeCopy());
 					orbNames.add(random.name);
+					Util.log("Fairy Box generated an orb card for " + random.name);
 				}
 				AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(orbs, false, this.magicNumber, false, true, true, true, false, false, true, 0, 0, 0, 0, 0, 0, true));
 			}

@@ -86,16 +86,15 @@ public class Air extends DuelistOrb
 		{
 			applyFocus();
 			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-			int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
 			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 			{
 				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
 				if (instance.isEveryMonsterCheck(Tags.DRAGON, false))
 				{
-					rollCheck += 4;
+					roll += 2;
 				}
 			}
-			if (roll < rollCheck)
+			if (roll > 5)
 			{
 				this.triggerPassiveEffect();
 			}

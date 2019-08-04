@@ -45,12 +45,12 @@ public class ReducerOrb extends DuelistOrb
 		checkFocus(true);
 	}
 	
-	public ReducerOrb(int startingPassive)
+	public ReducerOrb(int startingEvoke)
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Reducer.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = startingPassive;
+		this.baseEvokeAmount = this.evokeAmount = startingEvoke;
+		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;

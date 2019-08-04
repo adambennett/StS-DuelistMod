@@ -13,7 +13,6 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.typecards.TokenCard;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -56,19 +55,19 @@ public class OrbToken extends TokenCard
     	int roll = AbstractDungeon.cardRandomRng.random(1,2);
     	if (roll == 1)
     	{
-    		if (DuelistMod.orbCards.size() > 5)
+    		ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
+        	ArrayList<String> orbNames = new ArrayList<String>();
+        	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
+    		for (int i = 0; i < 3; i++)
     		{
-    			ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
-    			ArrayList<String> orbNames = new ArrayList<String>();
-    			for (int i = 0; i < 5; i++)
-    			{
-    				DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-    				while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
-    				orbs.add((DuelistCard)random.makeCopy());
-    				orbNames.add(random.name);
-    			}
-    			AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, 1, false, false, false, false));
+    			AbstractCard random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
+    			while (orbNames.contains(random.name)) { random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
+    			orbs.add((DuelistCard) random.makeCopy());
+    			orbNames.add(random.name);
     		}
+        	//AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true));
+    		if (DuelistMod.addTokens) { orbs.clear(); for (AbstractCard c : DuelistCardLibrary.orbCardsForGeneration()) { orbs.add((DuelistCard) c.makeCopy()); }AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true)); }
+    		else { AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true)); }
     	}
     }
     @Override public AbstractCard makeCopy() { return new OrbToken(); }

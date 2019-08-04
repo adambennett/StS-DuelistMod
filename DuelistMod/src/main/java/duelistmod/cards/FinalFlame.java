@@ -32,12 +32,11 @@ public class FinalFlame extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int DAMAGE = 8;
     // /STAT DECLARATION/
 
     public FinalFlame() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = DAMAGE;
+    	this.baseDamage = this.damage = 10;
     	this.tags.add(Tags.SPELL);
     	this.tags.add(Tags.STANDARD_DECK);
     	this.tags.add(Tags.LEGEND_BLUE_EYES);

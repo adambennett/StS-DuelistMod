@@ -38,6 +38,7 @@ public class ExodiaLL extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXODIA);
+        this.tags.add(Tags.EXODIA_PIECE);
         this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.LIMITED);

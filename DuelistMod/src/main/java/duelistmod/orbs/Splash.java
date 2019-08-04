@@ -41,7 +41,7 @@ public class Splash extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 7;
+		this.basePassiveAmount = this.passiveAmount = 9;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;

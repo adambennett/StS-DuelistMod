@@ -35,7 +35,7 @@ public class Carboneddon extends DuelistCard
 
     public Carboneddon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 1;
+        this.baseBlock = this.block = 2;
         this.tags.add(Tags.MONSTER);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;

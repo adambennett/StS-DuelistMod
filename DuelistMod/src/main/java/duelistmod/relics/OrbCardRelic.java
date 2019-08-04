@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.helpers.StarterDeckSetup;
 
 public class OrbCardRelic extends CustomRelic
@@ -38,10 +38,11 @@ public class OrbCardRelic extends CustomRelic
     	CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     	ArrayList<AbstractCard> randomOrbs = new ArrayList<AbstractCard>();
     	ArrayList<String> randomOrbNames = new ArrayList<String>();
+    	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
     	for (int i = 0; i < 4; i++)
     	{
-    		AbstractCard randOrb = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)).makeCopy();
-    		while (randomOrbNames.contains(randOrb.name)) { randOrb = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+    		AbstractCard randOrb = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)).makeCopy();
+    		while (randomOrbNames.contains(randOrb.name)) { randOrb = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
     		randomOrbs.add(randOrb.makeCopy()); randomOrbNames.add(randOrb.name);
     	}
 		for (AbstractCard c : randomOrbs) { group.addToBottom(c.makeCopy()); }

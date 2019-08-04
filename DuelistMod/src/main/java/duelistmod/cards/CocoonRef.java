@@ -36,6 +36,7 @@ public class CocoonRef extends DuelistCard
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NOT_ADDED);
+        this.tags.add(Tags.INSECT);
         this.originalName = this.name;
         this.misc = 0;
         

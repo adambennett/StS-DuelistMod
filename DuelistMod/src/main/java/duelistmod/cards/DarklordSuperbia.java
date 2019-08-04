@@ -57,12 +57,15 @@ public class DarklordSuperbia extends DuelistCard
    	public void update()
    	{
    		super.update();
-   		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
-   		{
-   			this.dynamicBlock = this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
-   			this.baseDamage = (int)this.dynamicBlock;
-   			this.applyPowers();
-   		}
+   		if (AbstractDungeon.currMapNode != null)
+		{
+	   		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+	   		{
+	   			this.dynamicBlock = this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
+	   			this.baseDamage = (int)this.dynamicBlock;
+	   			this.applyPowers();
+	   		}
+		}
    	}
 
     // Which card to return when making a copy of this card.

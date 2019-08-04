@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class Surge extends DuelistOrb
@@ -37,8 +38,8 @@ public class Surge extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Surge.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 4;
+		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -57,10 +58,10 @@ public class Surge extends DuelistOrb
 	@Override
 	public void onEvoke()
 	{		
-		for (int i = 0; i < this.evokeAmount; i++)
+		if (this.evokeAmount > 0)
 		{
-			AbstractOrb l = new Lightning();
-			DuelistCard.channel(l);
+			DuelistCard.draw(this.evokeAmount);
+			DuelistCard.discard(this.evokeAmount, false);
 		}
 	}
 
@@ -76,6 +77,7 @@ public class Surge extends DuelistOrb
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 			DuelistCard.staticBlock(this.passiveAmount);
+			Util.log("Triggered Surge passive block action");
 		}		
 	}
 

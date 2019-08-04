@@ -17,7 +17,7 @@ public class AeroRelic extends CustomRelic {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("AeroRelic");
 	public static final String IMG =  DuelistMod.makeRelicPath("AeroRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicPath("AeroRelic.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("AeroRelic_Outline.png");
 
 	public AeroRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);

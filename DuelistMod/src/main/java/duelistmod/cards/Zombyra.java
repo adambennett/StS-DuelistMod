@@ -52,7 +52,7 @@ public class Zombyra extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	AbstractPower randomDebuff = RandomEffectsHelper.getRandomPlayerDebuff(p, this.magicNumber);
+    	AbstractPower randomDebuff = DebuffHelper.getRandomPlayerDebuff(p, this.magicNumber);
 		DuelistCard.applyPowerToSelf(randomDebuff);
     }
 

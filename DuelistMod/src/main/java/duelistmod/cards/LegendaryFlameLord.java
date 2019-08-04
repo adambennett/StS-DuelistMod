@@ -38,10 +38,14 @@ public class LegendaryFlameLord extends DuelistCard
     public LegendaryFlameLord() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 12;
+        this.baseMagicNumber = this.magicNumber = 10;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
     }
+    
+    @Override
+    public int lavaEvokeEffect() { damageAllEnemiesThornsFire(this.magicNumber); return 0; }
 
     // Actions the card should do.
     @Override

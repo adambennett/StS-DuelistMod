@@ -44,6 +44,7 @@ public class FiveHeaded extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.tributes = this.baseTributes = 4;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.originalName = this.name;
     }
 
@@ -52,7 +53,7 @@ public class FiveHeaded extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
+    	for (int i = 0; i < this.magicNumber; i++) { attack(m, AFX, this.damage); }
     }
 
     // Which card to return when making a copy of this card.

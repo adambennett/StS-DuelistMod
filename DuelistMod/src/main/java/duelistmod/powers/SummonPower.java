@@ -11,11 +11,12 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.FrozenEye;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.BigEye;
 import duelistmod.cards.tokens.Token;
-import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.relics.*;
+import duelistmod.helpers.*;
+import duelistmod.relics.MillenniumKey;
 import duelistmod.variables.*;
 
 public class SummonPower extends AbstractPower
@@ -30,6 +31,8 @@ public class SummonPower extends AbstractPower
 	public ArrayList<String> summonList = new ArrayList<String>();
 	public ArrayList<String> coloredSummonList = new ArrayList<String>();
 	public ArrayList<DuelistCard> actualCardSummonList = new ArrayList<DuelistCard>();
+	private BigEye be; 
+	//private FlameTiger ft;
 
 	// Constructor for summon() in DuelistCard
 	public SummonPower(AbstractCreature owner, int newAmount, String newSummon, String desc, DuelistCard c) 
@@ -47,6 +50,8 @@ public class SummonPower extends AbstractPower
 		this.description = desc;
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
+		this.be = new BigEye();
+		//this.ft = new FlameTiger();
 
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
 		if (DuelistMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DuelistMod.lastMaxSummons; }
@@ -80,6 +85,8 @@ public class SummonPower extends AbstractPower
 		this.description = desc;
 		this.canGoNegative = false;
 		this.type = PowerType.BUFF;
+		this.be = new BigEye();
+		//this.ft = new FlameTiger();
 		
 		// Check the last max summon value in case the player lost the summon power somehow during battle after changing their max summons
 		if (DuelistMod.lastMaxSummons != MAX_SUMMONS) { MAX_SUMMONS = DuelistMod.lastMaxSummons; }
@@ -112,6 +119,19 @@ public class SummonPower extends AbstractPower
 		updateCount(this.amount);
 		updateStringColors();
 		updateDescription();
+	}
+	
+	public boolean hasExplosiveTokens()
+	{
+		int tokens = 0;
+		for (DuelistCard c : actualCardSummonList)
+		{
+			if (c.hasTag(Tags.EXPLODING_TOKEN) || c.hasTag(Tags.SUPER_EXPLODING_TOKEN))
+			{
+				tokens++;
+			}
+		}
+		return tokens > 0;
 	}
 	
 	public boolean isEveryMonsterCheck(CardTags tag, boolean tokensAreChecked)
@@ -377,17 +397,26 @@ public class SummonPower extends AbstractPower
 			this.description = DESCRIPTIONS[0] + "0" + DESCRIPTIONS[1] + MAX_SUMMONS + DESCRIPTIONS[2] + "#bNone.";
 		} 
 		
-		// Check for Big Eyes
-		boolean foundBigEye = isMonsterSummoned("Big Eye");
+		// Check for Big Eyes & Flame Tigers
+		boolean foundBigEye = isMonsterSummoned("Big Eye") || isMonsterSummoned(be.originalName);
+		//boolean foundFlameTiger = isMonsterSummoned("Flame Tiger") || isMonsterSummoned(ft.originalName);
 		if (!foundBigEye && DuelistMod.gotFrozenEyeFromBigEye)
 		{
 			AbstractDungeon.player.loseRelic(FrozenEye.ID);
 		}
 		
-		if (summonList.size() != actualCardSummonList.size() && DuelistMod.debug)
+		/*if (!foundFlameTiger && AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
 		{
-			DuelistMod.logger.info("String summon list and card summon list sizes did NOT MATCH!! BAD THING");
+			AbstractPower ftPow = AbstractDungeon.player.getPower(FlameTigerPower.POWER_ID);
+			DuelistCard.removePower(ftPow, ftPow.owner);
 		}
+		else if (foundFlameTiger && !AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
+		{
+			DuelistCard.applyPowerToSelf(new FlameTigerPower(AbstractDungeon.player, AbstractDungeon.player));
+		}*/
+		
+		// Debug
+		if (summonList.size() != actualCardSummonList.size()) { Util.log("String summon list and card summon list sizes did NOT MATCH!! BAD THING"); }
 	}
 
 	public void updateCount(int amount)

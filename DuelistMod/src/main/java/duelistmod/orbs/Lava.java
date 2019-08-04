@@ -39,18 +39,16 @@ public class Lava extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
-	private int currentDamage = 0;
 	
 	public Lava()
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 15;
+		this.baseEvokeAmount = this.evokeAmount = 4;
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
-		this.currentDamage = ThreadLocalRandom.current().nextInt(1, 11);
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		checkFocus(false);
@@ -65,7 +63,6 @@ public class Lava extends DuelistOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
-		this.currentDamage = startingDamage;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		checkFocus(false);
@@ -75,7 +72,7 @@ public class Lava extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.currentDamage + DESC[2] + this.evokeAmount + DESC[3];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 		
 	public void zombieTributeTrigger()
@@ -94,13 +91,18 @@ public class Lava extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (AbstractDungeon.player.hasRelic(ZombieRelic.ID)) 
-		{ 
-			DuelistCard.damageAllEnemiesThornsFire(this.currentDamage + 5);
-		}
-		else if (this.currentDamage > 0) 
-		{ 
-			DuelistCard.damageAllEnemiesThornsFire(this.currentDamage);
+		if (this.evokeAmount > 0 && AbstractDungeon.player.hand.group.size() > 0) 
+		{
+			for (AbstractCard c : AbstractDungeon.player.hand.group)
+			{
+				int extra = 0;
+				if (c instanceof DuelistCard)
+				{
+					DuelistCard dc = (DuelistCard)c;
+					extra += dc.lavaEvokeEffect();
+				}
+				DuelistCard.staticThornAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.evokeAmount + extra);
+			}
 		}
 	}
 	
@@ -108,23 +110,21 @@ public class Lava extends DuelistOrb
 	public void onEndOfTurn()
 	{
 		checkFocus(false);
-		if (this.evokeAmount > 0)
-		{
-			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-			this.currentDamage = AbstractDungeon.cardRandomRng.random(1, this.evokeAmount);
-		}
-		updateDescription();
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{
-		// called from receivePostDraw()
+		
 	}
 
-	public void triggerPassiveEffect(DuelistCard c)
+	public void triggerPassiveEffect()
 	{
-		
+		if (this.passiveAmount > 0) 
+		{ 
+			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+			DuelistCard.attackAllEnemiesFireThorns(this.passiveAmount);
+		}
 	}
 
 	@Override
@@ -175,9 +175,9 @@ public class Lava extends DuelistOrb
 	protected void renderText(SpriteBatch sb)
 	{	
 		// Render evoke amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.currentDamage), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount * AbstractDungeon.player.hand.group.size()), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
 	}
 	
 	@Override

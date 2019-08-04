@@ -3,6 +3,7 @@ package duelistmod.cards.incomplete;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -24,50 +25,39 @@ public class DoomkaiserDragon extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 100;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public DoomkaiserDragon() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 10;
-        this.baseBlock = this.block = 10;
-        this.baseMagicNumber = this.magicNumber = 10;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        
-        // Tribute
-        this.tributes = this.baseTributes = 1;
+        this.baseDamage = this.damage = 20;
+        this.baseMagicNumber = this.magicNumber = 1;		// Str Loss turns
+        this.secondMagic = this.baseSecondMagic = 3;		// Str Loss amount
+        this.tributes = this.baseTributes = 3;
         this.misc = 0;
-       
-        // Card Type
         this.tags.add(Tags.MONSTER);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
+        this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.DRAGON);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
     	tribute();
-    	attack(m);
+    	attackAllEnemies(this.damage);
+    	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+    	{
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		{
+    			applyPower(new StrengthDownPower(mon, mon, this.magicNumber, this.secondMagic), mon);
+    		}
+    	}
     }
 
     
@@ -75,26 +65,22 @@ public class DoomkaiserDragon extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeMagicNumber(1);
+        	this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
     }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		
-		
+		zombieSynTrib(tributingCard);
+		dragonSynTrib(tributingCard);		
 	}
 	
     // If player doesn't have enough summons, can't play card

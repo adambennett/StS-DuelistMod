@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
@@ -55,7 +55,7 @@ public class NutrientZ extends DuelistCard
     	   heal(p, this.magicNumber);
     	   for (int i = 0; i < debuffs; i++)
     	   {
-    		   AbstractPower randomDebuff = RandomEffectsHelper.getRandomPlayerDebuff(p, 3);
+    		   AbstractPower randomDebuff = DebuffHelper.getRandomPlayerDebuff(p, 3);
     		   applyPowerToSelf(randomDebuff);
     	   }
        }

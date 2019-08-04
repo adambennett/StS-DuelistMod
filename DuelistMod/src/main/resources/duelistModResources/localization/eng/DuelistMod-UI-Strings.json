@@ -48,7 +48,7 @@
 			"Heal Deck",
 			"Increment Deck",
 			"Machine Deck",
-			"Magnet Deck",
+			"Warrior Deck",
 			"Nature Deck",
 			"Ojama Deck",
 			"Orb Deck",
@@ -141,7 +141,20 @@
 			"Bonus Millennium Puzzle Summons",
 			"Allow Boosters",
 			"Always Boosters",
-			"Remove Card Rewards"
+			"Remove Card Rewards",
+			"Giant Deck",
+			"Insect Deck",
+			"Plant Deck",
+			"Predaplant Deck",
+			"Megatype Deck",
+			"Ascended I",
+			"Ascended II",
+			"Ascended III",
+			"Pharaoh I",
+			"Pharaoh II",
+			"Pharaoh III",
+			"Pharaoh IV",
+			"Pharaoh V"
 		]
 	}
 }

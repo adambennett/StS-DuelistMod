@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Tags;
 
@@ -53,7 +52,7 @@ public class PredapruningAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : this.p.discardPile.group) 
 			{
-				if (c.hasTag(Tags.PLANT))
+				if (c.hasTag(Tags.PLANT) && !c.hasTag(Tags.EXEMPT))
 				{
 					tmp.addToRandomSpot(c);
 				}

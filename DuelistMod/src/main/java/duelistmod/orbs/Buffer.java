@@ -44,7 +44,7 @@ public class Buffer extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Earth.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 1;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -58,7 +58,7 @@ public class Buffer extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1];
 	}
 
 	@Override
@@ -66,14 +66,12 @@ public class Buffer extends DuelistOrb
 	{
 		if (!hasNegativeFocus())
 		{
-			BuffHelper.resetRandomBuffs(this.evokeAmount);
-			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
+			DuelistCard.applyPowerToSelf(new BufferPower(AbstractDungeon.player, this.evokeAmount));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
 		}
 		else if (this.evokeAmount + getCurrentFocus() > 0)
 		{
-			BuffHelper.resetRandomBuffs(this.evokeAmount);
-			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, this.evokeAmount, false);
+			DuelistCard.applyPowerToSelf(new BufferPower(AbstractDungeon.player, this.evokeAmount));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Buffer --- > triggered evoke!"); }
 		}		
 	}
@@ -268,47 +266,6 @@ public class Buffer extends DuelistOrb
 	{
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
-	}
-	
-	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
-	{
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
-		{
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
-			{
-				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
-				this.basePassiveAmount = 0;
-			}
-			
-			
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
-			{
-				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
-				this.baseEvokeAmount = 0;
-			}
-			
-		}
-		else
-		{
-			this.basePassiveAmount = this.originalPassive;
-			this.baseEvokeAmount = this.originalEvoke;
-		}
-		if (DuelistMod.debug)
-		{
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
-		}
-		applyFocus();
-		updateDescription();
 	}
 }
 

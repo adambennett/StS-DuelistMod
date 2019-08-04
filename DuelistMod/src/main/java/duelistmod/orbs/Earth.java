@@ -40,6 +40,7 @@ public class Earth extends DuelistOrb
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 1;
+		this.triggersOnSpellcasterPuzzle = false;
 		if (DuelistMod.challengeMode)
 		{
 			this.baseEvokeAmount = this.evokeAmount = 1;
@@ -75,7 +76,7 @@ public class Earth extends DuelistOrb
 	{
 		if (this.evokeAmount > 0)
 		{
-			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, Tags.SPELL, 1));
+			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, Tags.SPELL, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Earth --- > triggered evoke!"); }			
 		}
 	}

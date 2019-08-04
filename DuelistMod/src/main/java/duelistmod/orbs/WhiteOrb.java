@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistOrb;
+import duelistmod.abstracts.*;
 
 @SuppressWarnings("unused")
 public class WhiteOrb extends DuelistOrb
@@ -62,6 +62,12 @@ public class WhiteOrb extends DuelistOrb
 			{
 				c.upgrade();
 			}
+			
+			if (c instanceof DuelistCard)
+			{
+				DuelistCard dc = (DuelistCard)c;
+				dc.whiteOrbEvokeTrigger();
+			}
 		}
 	}
 	
@@ -83,6 +89,12 @@ public class WhiteOrb extends DuelistOrb
 		{ 
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 			c.upgrade(); 
+		}
+		
+		if (c instanceof DuelistCard)
+		{
+			DuelistCard dc = (DuelistCard)c;
+			dc.whiteOrbPassiveTrigger();
 		}
 	}
 

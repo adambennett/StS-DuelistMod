@@ -46,8 +46,12 @@ public class BigFire extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
        	this.tags.add(Tags.SPELL);
        	this.tags.add(Tags.METAL_RAIDERS);
+       	this.secondMagic = this.baseSecondMagic = 15;
        	this.originalName = this.name;
     }
+    
+    @Override
+    public int lavaEvokeEffect() { damageAllEnemiesThornsFire(this.secondMagic); return 0; }
 
     // Actions the card should do.
     @Override

@@ -49,28 +49,18 @@ public class BottomlessTrapHole extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.baseDamage = this.damage = 3;
-    	if (upgraded) { this.baseDamage = this.damage = 4; }
     	ArrayList<AbstractCard> drawPile = player().drawPile.group;
     	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
-    	//int damageTotal = 0;
     	int monsters = 0;
     	for (AbstractCard c : drawPile)
     	{
     		if (c.hasTag(Tags.MONSTER))
 			{
-				//damageTotal += c.baseDamage;
-    			//damageTotal += this.damage;
 				toDiscard.add(c);
 				monsters++;
 			}
     	}
-    	for (AbstractCard c : toDiscard)
-    	{
-    		AbstractDungeon.player.drawPile.moveToDiscardPile(c);
-    	}
-    	//this.baseDamage = this.damage = damageTotal;
-    	applyPowers();
+    	for (AbstractCard c : toDiscard) { AbstractDungeon.player.drawPile.moveToDiscardPile(c); }
     	for (int i = 0; i < monsters; i++)
     	{
     		attackFast(m, AFX, this.damage);
@@ -88,8 +78,7 @@ public class BottomlessTrapHole extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(1);
-            this.isInnate = true;
+            this.upgradeDamage(2);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

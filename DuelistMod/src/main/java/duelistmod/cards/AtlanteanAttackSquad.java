@@ -49,20 +49,23 @@ public class AtlanteanAttackSquad extends DuelistCard
     public void update() 
     {
     	super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+    	if (AbstractDungeon.currMapNode != null)
 		{
-			int dmg = 0;
-			for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
 			{
-				if (c.hasTag(Tags.AQUA))
+				int dmg = 0;
+				for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
 				{
-					dmg++;
+					if (c.hasTag(Tags.AQUA))
+					{
+						dmg++;
+					}
 				}
+				
+				this.dynamicDmg = dmg;
+				this.baseDamage = (int)this.dynamicDmg;
+				this.applyPowers();
 			}
-			
-			this.dynamicDmg = dmg;
-			this.baseDamage = (int)this.dynamicDmg;
-			this.applyPowers();
 		}
     }
 

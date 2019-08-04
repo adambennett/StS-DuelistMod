@@ -129,7 +129,7 @@ public class FlameGhost extends DuelistCard
 	@Override
 	public void onResummon(int summons) 
 	{
-		DuelistCard.staticAttack(AbstractDungeon.getRandomMonster(), this.baseAFX, this.magicNumber);
+		thornAttack(AbstractDungeon.getRandomMonster(), this.baseAFX, this.magicNumber);
 	}
 
 	@Override

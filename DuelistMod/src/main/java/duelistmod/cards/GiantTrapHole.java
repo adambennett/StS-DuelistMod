@@ -35,6 +35,7 @@ public class GiantTrapHole extends DuelistCard
     public GiantTrapHole() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 1;
+        this.secondMagic = this.baseSecondMagic = 3;
         this.tags.add(Tags.SPELL);
 		this.originalName = this.name;
 		this.exhaust = true;
@@ -59,9 +60,9 @@ public class GiantTrapHole extends DuelistCard
 			addCardToHand(randomMonster);
 		}
 		
-		if (this.cost != 3)
+		if (this.cost != this.magicNumber)
     	{
-    		this.modifyCostForCombat(-this.cost + 3);
+    		this.modifyCostForCombat(-this.cost + this.magicNumber);
     		this.isCostModified = false;
     	}
     }
@@ -87,8 +88,8 @@ public class GiantTrapHole extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1);  }
-            else { this.upgradeBaseCost(2); }
+            this.upgradeBaseCost(2);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

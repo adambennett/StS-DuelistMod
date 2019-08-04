@@ -39,7 +39,7 @@ public class MindAir extends DuelistCard
         this.tags.add(Tags.SPELLCASTER);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.setupStartingCopies();
     }
 

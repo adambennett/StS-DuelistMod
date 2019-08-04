@@ -1,12 +1,16 @@
 package duelistmod.cards.incomplete;
 
+import java.util.*;
+
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -24,71 +28,59 @@ public class ZombieMammoth extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 100;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public ZombieMammoth() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 6000;
-        this.baseBlock = this.block = 6000;
-        this.baseMagicNumber = this.magicNumber = 6000;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        
-        // Tribute
-        this.tributes = this.baseTributes = 1;
-        this.misc = 0;
-       
-        // Card Type
+        this.baseDamage = this.damage = 45;
+        this.baseMagicNumber = this.magicNumber = 6;
+        this.tributes = this.baseTributes = 2;
+        this.misc = 0;      
         this.tags.add(Tags.MONSTER);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
+        this.tags.add(Tags.ZOMBIE);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
     	tribute();
     	attack(m);
+    	ArrayList<AbstractCard> drawCards = new ArrayList<AbstractCard>();
+    	ArrayList<UUID> exhausted = new ArrayList<UUID>();
+    	for (AbstractCard c : p.drawPile.group) { drawCards.add(c); }
+    	if (drawCards.size() > this.magicNumber)
+    	{
+    		for (int i = 0; i < this.magicNumber; i++)
+    		{
+    			AbstractCard c = drawCards.get(AbstractDungeon.cardRandomRng.random(drawCards.size() - 1));
+    			while (exhausted.contains(c.uuid)) { c = drawCards.get(AbstractDungeon.cardRandomRng.random(drawCards.size() - 1)); }
+    			AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile)); exhausted.add(c.uuid);
+    		}
+    	}
+    	else if (drawCards.size() > 0) { for (AbstractCard c : drawCards) {  AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile)); }}
     }
 
-    
     // Upgraded stats.
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeMagicNumber(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
-    }
+
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 

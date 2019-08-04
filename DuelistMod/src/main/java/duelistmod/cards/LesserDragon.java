@@ -40,7 +40,7 @@ public class LesserDragon extends DuelistCard
 
     public LesserDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 4;
+        this.baseDamage = this.damage = 5;
         this.upgradeDmg = 3;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
@@ -49,6 +49,8 @@ public class LesserDragon extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.OP_DRAGON_DECK);
         this.tags.add(Tags.DRAGON_DECK);
+        this.tags.add(Tags.ASCENDED_ONE_DECK);
+        this.a1DeckCopies = 1;
         this.startingOPDragDeckCopies = 2;
         this.dragonDeckCopies = 2;
         this.misc = 0;

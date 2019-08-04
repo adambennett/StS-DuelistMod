@@ -36,11 +36,13 @@ public class Hayate extends DuelistCard
     	this.baseDamage = this.damage = 11;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.MAGNET_DECK);
+    	this.tags.add(Tags.MEGATYPE_DECK);
+    	this.megatypeDeckCopies = 1;
     	this.superheavyDeckCopies = 1;
     	this.misc = 0;
-		this.originalName = this.name;
-		this.tributes = this.baseTributes = 1;
-		this.setupStartingCopies();
+    	this.originalName = this.name;
+    	this.tributes = this.baseTributes = 1;
+    	this.setupStartingCopies();
     }
 
     // Actions the card should do.

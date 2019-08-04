@@ -47,9 +47,12 @@ public class BeastFangs extends DuelistCard
     public void update()
     {
     	super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+    	if (AbstractDungeon.currMapNode != null)
 		{
-			this.magicNumber = this.baseMagicNumber = (int)Math.floor(DuelistMod.summonCombatCount/2);
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.magicNumber = this.baseMagicNumber = (int)Math.floor(DuelistMod.summonCombatCount/2);
+			}
 		}
     }
 

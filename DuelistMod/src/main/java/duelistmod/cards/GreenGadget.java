@@ -60,8 +60,8 @@ public class GreenGadget extends DuelistCard
 		summon(p, this.summons, this);
 		block(this.block);
 		
-		// Base version - random tokens
-		if (!upgraded)
+		// Upgraded version - random tokens
+		if (upgraded)
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 			for (int i = 0; i < this.magicNumber; i++)
@@ -71,7 +71,7 @@ public class GreenGadget extends DuelistCard
 			}
 		}
 		
-		// Upgraded - choose tokens
+		// Base version - choose tokens
 		else
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();

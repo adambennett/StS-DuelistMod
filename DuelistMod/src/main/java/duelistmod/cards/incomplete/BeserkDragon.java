@@ -35,8 +35,9 @@ public class BeserkDragon extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 6;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseDamage = this.damage = 15;
+        this.baseMagicNumber = this.magicNumber = 3;		// Str Loss turns
+        this.secondMagic = this.baseSecondMagic = 4;		// Str Loss amount
         this.tributes = this.baseTributes = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -49,6 +50,7 @@ public class BeserkDragon extends DuelistCard
     {
     	tribute();
     	attack(m);
+    	applyPower(new StrengthDownPower(m, m, this.magicNumber, this.secondMagic), m);
     }
 
     
@@ -60,15 +62,8 @@ public class BeserkDragon extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic)
-        	{
-        		this.upgradeBaseCost(0);
-        		this.upgradeDamage(4);
-        	}
-        	else
-        	{
-        		this.upgradeDamage(4);
-        	}
+        	this.upgradeSecondMagic(2);
+        	this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

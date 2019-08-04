@@ -26,7 +26,7 @@ public class BeaverWarrior extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -36,12 +36,15 @@ public class BeaverWarrior extends DuelistCard
 
     public BeaverWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 5;
+        this.baseDamage = this.damage = 6;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.STANDARD_DECK);
+        this.standardDeckCopies = 2;
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.originalName = this.name;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -9,7 +9,7 @@ public class IncrementDeck extends DuelistCustomLoadout
 {
     public IncrementDeck()
     {
-        this.ID = 15;
+        this.ID = 14;
         this.Name = DuelistMod.incDeckString;
         this.cardCount = "14 Cards";
     }

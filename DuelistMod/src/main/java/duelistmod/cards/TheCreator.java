@@ -9,10 +9,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.*;
-import duelistmod.patches.*;
+import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -46,7 +47,6 @@ public class TheCreator extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.exodiaDeckCopies = 1;
         this.originalName = this.name;
-        //this.purgeOnUse = true;
         this.standardDeckCopies = 1;
         this.setupStartingCopies();
     }
@@ -56,30 +56,32 @@ public class TheCreator extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	// Tribute
-    	tribute(p, this.tributes, false, this);
+    	tribute();
     	
     	// Exhaust all cards in draw pile
-    	ArrayList<AbstractCard> drawPile = p.drawPile.group;
-    	for (AbstractCard c : drawPile)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.drawPile, true));
-    	}
-    	
+    	if (p.drawPile.group.size() < 500) { AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardListSuperFastAction(p.drawPile.group, p.drawPile, true)); }
+    	else { p.exhaustPile.group.addAll(p.drawPile.group);	p.drawPile.group.clear(); }
+    
     	// Exhaust all cards in discard pile
-    	ArrayList<AbstractCard> discardPile = p.discardPile.group;
-    	for (AbstractCard c : discardPile)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.discardPile, true));
-    	}
+    	if (p.discardPile.group.size() < 500) { AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardListSuperFastAction(p.discardPile.group, p.discardPile, true)); }
+    	else { p.exhaustPile.group.addAll(p.discardPile.group);	p.discardPile.group.clear(); }
     	
-    	// Add a 1 cost for combat, ethereal copy of EVERY Duelist Card in pool to draw pile
-		for (AbstractCard card : DuelistMod.coloredCards)
-		{
-			if (card instanceof DuelistCard && !card.hasTag(Tags.NO_CREATOR) && !card.hasTag(Tags.TOKEN) && !card.rarity.equals(CardRarity.SPECIAL)) 
-			{
-				AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, card, 1, true, false));
-			}
-		}
+    	// Add a 1 cost for combat, ethereal copy of EVERY Card in pool to draw pile
+    	// Hardcoded different pool for Creator Deck - since that pool sucks that sort of ruins the card which is the entire basis of the deck
+    	if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Creator Deck")) 
+    	{  
+	    	ArrayList<AbstractCard> creatorDeckUniquePool = new ArrayList<AbstractCard>();
+	    	for (AbstractCard c : DuelistMod.myCards)
+	    	{
+	    		if (!c.hasTag(Tags.NO_CREATOR) && !c.hasTag(Tags.NEVER_GENERATE) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC))
+	    		{
+	    			creatorDeckUniquePool.add(c.makeCopy());
+	    		}
+	    	}
+	    	AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, creatorDeckUniquePool, 1, true, false)); 
+    	}
+    	else { AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, DuelistMod.coloredCards, 1, true, false)); }
+		
     }
 
     // Which card to return when making a copy of this card.
@@ -93,7 +95,7 @@ public class TheCreator extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

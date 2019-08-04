@@ -61,6 +61,7 @@ public class GilfordLegend extends DuelistCard
             // Check Splash Orbs
             checkSplash();
         }
+        super.triggerOnEndOfPlayerTurn();
     }
 
 

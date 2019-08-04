@@ -63,6 +63,7 @@ public class PotDichotomy extends DuelistCard
             // Check Splash Orbs
             checkSplash();
         }
+        super.triggerOnEndOfPlayerTurn();
     }
 
     // Actions the card should do.

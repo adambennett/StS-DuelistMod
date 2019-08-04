@@ -47,11 +47,14 @@ public class SilverApples extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.dynamicBlock = this.magicNumber * DuelistMod.tribCombatCount;
-			this.baseBlock = (int)this.dynamicBlock;
-			this.applyPowers();
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.dynamicBlock = this.magicNumber * DuelistMod.tribCombatCount;
+				this.baseBlock = (int)this.dynamicBlock;
+				this.applyPowers();
+			}
 		}
 	}
 
@@ -59,7 +62,7 @@ public class SilverApples extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	block(DuelistMod.tribCombatCount * this.magicNumber);
+    	block();
     }
 
 

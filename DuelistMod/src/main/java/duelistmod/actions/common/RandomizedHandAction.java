@@ -56,6 +56,25 @@ public class RandomizedHandAction extends AbstractGameAction
 		checkFlags();
 	}
 	
+	// Only Oni cards - for making Red/Blue/Green cards 0 cost
+	public RandomizedHandAction(AbstractCard c, int cost)
+	{
+		this.actionType = ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_FAST;
+		this.cardRef = c;
+		this.lowCostRoll = cost;
+		this.highCostRoll = cost;
+		this.costChangeCheck = true;
+		if (DuelistMod.debug)
+		{
+			DuelistMod.logger.info("Stack trace indicating caller of this action [1]: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [2]: " + Thread.currentThread().getStackTrace()[2].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [3]: " + Thread.currentThread().getStackTrace()[3].getMethodName());
+			DuelistMod.logger.info("Stack trace indicating caller of this action [4]: " + Thread.currentThread().getStackTrace()[4].getMethodName());
+		}
+		checkFlags();
+	}
+	
 	public RandomizedHandAction(AbstractCard c, boolean extras)
 	{
 		this.actionType = ActionType.CARD_MANIPULATION;

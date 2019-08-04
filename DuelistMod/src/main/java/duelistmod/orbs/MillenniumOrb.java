@@ -35,8 +35,21 @@ public class MillenniumOrb extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
-	private static int setEvoke = 2;
 	private int counter = 3;
+	
+	public MillenniumOrb()
+	{
+		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
+		this.name = orbString.NAME;		
+		this.baseEvokeAmount = this.evokeAmount = 2;		
+		this.basePassiveAmount = this.passiveAmount = 2;
+		this.updateDescription();
+		this.angle = MathUtils.random(360.0F);
+		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus(false);
+	}
 	
 	public MillenniumOrb(int evoke)
 	{
@@ -45,12 +58,10 @@ public class MillenniumOrb extends DuelistOrb
 		if (evoke > 0)
 		{
 			this.baseEvokeAmount = this.evokeAmount = evoke;
-			setEvoke = evoke;
 		}
 		else 
 		{
 			this.baseEvokeAmount = this.evokeAmount = 1;
-			setEvoke = 1;
 		}
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
@@ -90,7 +101,7 @@ public class MillenniumOrb extends DuelistOrb
 				deckCardNames.add(c.name);
 			}
 			//int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, 3, 0, 2, 0, 1));
+			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, true, this.evokeAmount, false, false, false, true, true, true, true, 0, 3, 0, 2, 0, 1));
 		}
 		else if (!hasNegativeFocus())
 		{
@@ -137,9 +148,9 @@ public class MillenniumOrb extends DuelistOrb
 	{
 		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
 		{
-			if (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0 || AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + setEvoke > 0)
+			if (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0 || AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + originalEvoke > 0)
 			{
-				this.baseEvokeAmount = setEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+				this.baseEvokeAmount = originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
 			}
 			else
 			{
@@ -148,7 +159,7 @@ public class MillenniumOrb extends DuelistOrb
 		}
 		else 
 		{
-			this.baseEvokeAmount = setEvoke;
+			this.baseEvokeAmount = originalEvoke;
 		}
 		if (DuelistMod.debug)
 		{

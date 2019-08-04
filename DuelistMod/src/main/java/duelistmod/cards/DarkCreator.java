@@ -70,7 +70,9 @@ public class DarkCreator extends DuelistCard
 			randomCreatedCards.add(card);
 			randomCreatedCardNames.add(card.originalName);
 		}
-		for (DuelistCard c : randomCreatedCards) { AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, c, 1, true, false)); }
+    	ArrayList<AbstractCard> finalCards = new ArrayList<AbstractCard>();
+    	finalCards.addAll(randomCreatedCards);
+		AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, finalCards, 1, true, false));
     }
 
     // Which card to return when making a copy of this card.

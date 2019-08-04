@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
@@ -57,7 +57,7 @@ public class OjamaBlue extends DuelistCard
 		for (int i = 0; i < this.magicNumber; i++)
 		{
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum), m);
+			applyPower(DebuffHelper.getRandomDebuff(p, m, randomTurnNum), m);
 		}
 		AbstractOrb earth = new Buffer();
 		channel(earth);

@@ -60,10 +60,13 @@ public class MsJudge extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.applyPowers();
-			this.secondMagic = this.baseSecondMagic = (this.block + (this.magicNumber * DuelistMod.trapCombatCount));
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.applyPowers();
+				this.secondMagic = this.baseSecondMagic = (this.block + (this.magicNumber * DuelistMod.trapCombatCount));
+			}
 		}
 	}
 

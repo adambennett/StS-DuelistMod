@@ -5,27 +5,28 @@
       "#yPassive: At the start of turn: Deal #b",
 	  " damage to ALL enemies NL Gain #b",
 	  " #yBlock NL Gain [R] NL #yEvoke: ", 
-	  "Gain [R] [R] NL Evoke effect switches to a random Gate effect at the end of each turn.", 
-	  "Gain #b", " #yBlock. NL Evoke effect switches to a random Gate effect at the end of each turn.", 
-	  "Deal #b", " damage to ALL enemies. NL Evoke effect switches to a random Gate effect at the end of each turn."
+	  "Gain [R] [R] NL Evoke effect cycles to the next Gate effect at the end of each turn.", 
+	  "Gain #b", " #yBlock. NL Evoke effect cycles to the next Gate effect at the end of each turn.", 
+	  "Deal #b", " damage to ALL enemies. NL Evoke effect cycles to the next Gate effect at the end of each turn."
     ]
   },
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", ". You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain a random #ybuff that lasts for #b", " turns."
+      "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", 
+	  ". You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain 1 Buffer."
     ]
   },
   "theDuelist:MonsterOrb": {
     "NAME": "MonsterOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized monster to your hand. NL #yEvoke: Change the cost of #b", " random monster in your hand to 1 for this turn.", " #yRandomized monsters to your hand. NL #yEvoke: Change the cost of #b", " random monsters in your hand to 1 for this turn."
+      "#yPassive: At the start of turn, add #b", " #yRandomized monster to your hand. NL #yEvoke: Change the cost of #b", " random monster in your hand to 0 for this turn.", " #yRandomized monsters to your hand. NL #yEvoke: Change the cost of #b", " random monsters in your hand to 1 for this turn."
     ]
   },
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 1 for this turn."
+      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn."
     ]
   },
    "theDuelist:DragonPlusOrb": {
@@ -43,7 +44,7 @@
   "theDuelist:Earth": {
     "NAME": "Earth",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #ySpells to your hand. NL #yEvoke: Change the cost of #b", " random #ySpell in your hand to 1 for this turn.", " random #ySpells in your hand to 1 for this turn.", " #yRandomized #ySpell to your hand. NL #yEvoke: Change the cost of #b"
+      "#yPassive: At the start of turn, add #b", " #yRandomized #ySpells to your hand. NL #yEvoke: Change the cost of #b", " random #ySpell in your hand to 0 for this turn.", " random #ySpells in your hand to 1 for this turn.", " #yRandomized #ySpell to your hand. NL #yEvoke: Change the cost of #b"
     ]
   },
   "theDuelist:Air": {
@@ -55,7 +56,10 @@
   "theDuelist:Black": {
     "NAME": "Black",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to apply a random debuff with #b", " stack to a random enemy. You have a higher chance if all monsters summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand.", " stacks to a random enemy. You have a higher chance if all monsters summoned are #yFiends. NL #yEvoke: Add a #yRandomized #yFiend to your hand."
+      "#yPassive: At the start of turn, discard #b", 
+	  " random card from your draw pile. NL #yEvoke: Deal #b", 
+	  " random cards from your draw pile. NL #yEvoke: Deal #b",
+	  " damage to ALL enemies for each card in your discard pile."
     ]
   },
   "theDuelist:FireOrb": {
@@ -73,7 +77,10 @@
   "theDuelist:Shadow": {
     "NAME": "Shadow",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #ySummon #b", " [#FF5252]Shadow [#FF5252]Token. You have a higher chance if all monsters summoned are #yZombies. NL #yEvoke: #yResummon #b", " random monster from your discard pile on a random enemy.", " random monsters from your discard pile on random enemies.", " [#FF5252]Shadow [#FF5252]Tokens. You have a higher chance if all monsters summoned are #yZombies. NL #yEvoke: #yResummon #b"
+      "#yPassive: Whenever you #yResummon, deal #b",
+	  " damage to ALL enemies. NL #yEvoke: #yResummon #b",
+	  " random monster from your discard pile on a random enemy.",
+	  " random monsters from your discard pile on random enemies."
     ]
   },
   "theDuelist:Splash": {
@@ -85,25 +92,30 @@
   "theDuelist:Blaze": {
     "NAME": "Blaze",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, have a chance to heal #b", " HP for each monster summoned this combat. You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Heal #b", " HP for each monster summoned this combat."
+	 "#yPassive: Whenever you #yTribute, deal #b", " damage to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled."
     ]
   },
   "theDuelist:Consumer": {
     "NAME": "Consumer",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, #yTribute #b", " and gain temporary HP equal to the total energy cost of all tributes multiplied by the number of monsters tributed. NL #yEvoke: #yTribute all summons, gain a random #yBuff equal to the amount tributed."
+	  "#yPassive: At the start of turn, if the most recent summon in your summoning zone is a token, #yTribute it and deal #b",
+	  " damage to ALL enemies. NL #yEvoke: Lose #b",
+	  " damage to ALL enemies. NL #yEvoke: Gain #b",
+	  " Energy and #yEvoke all of your orbs."
     ]
   },
   "theDuelist:Gadget": {
     "NAME": "Gadget",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, gain #b", " #yDexterity until the end of turn. NL #yEvoke: Play a random #ySkill you have played this combat on a random enemy."
+	  "#yPassive: At the start of turn, gain #b", " #yDexterity until the end of turn. NL #yEvoke: Play #b",
+	  " random #ySkill you have played this combat on a random enemy.",
+	  " random #ySkills you have played this combat on a random enemy."
     ]
   },
   "theDuelist:Lava": {
     "NAME": "Lava",
     "DESCRIPTION": [
-	  "#yPassive: Whenever you #yTribute a #yZombie, increase this orb's evoke amount by #b", ". NL #yEvoke: Deal ", " damage to ALL enemies. Damage changes to a random number NL ( 1 - #b", " ) at the end of each turn."
+	  "#yPassive: Whenever you #yIncrement, deal #b", " damage to ALL enemies. NL #yEvoke: Deal #b", " damage to a random enemy for each card in your hand."
     ]
   },
   "theDuelist:MillenniumOrb": {
@@ -121,7 +133,7 @@
   "theDuelist:Mud": {
     "NAME": "Mud",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, apply #b", " #yPoison to a random enemy. Applies double #yPoison if all monsters summoned are #yInsects. NL #yEvoke: Gain #b", " #yThorns."
+	  "#yPassive: At the start of turn, apply #b", " #yPoison to ALL enemies. NL #yEvoke: Gain #b", " #yThorns."
     ]
   },
   "theDuelist:Mist": {
@@ -139,13 +151,15 @@
   "theDuelist:Smoke": {
     "NAME": "Smoke",
     "DESCRIPTION": [
-	  "#yPassive: Whenver you draw a monster, increase the #yTribute cost by #b", " and increase the damage by #b", " for this turn. NL #yEvoke: Sum up the total #yTribute cost of all monsters in your hand. Deal damage to ALL enemies equal to this sum."
+	  "#yPassive: Whenver you draw a monster, increase its damage by #b",
+	  ". NL #yEvoke: Sum the energy and tribute cost of all cards in your hand. Deal damage to ALL enemies equal to #b",
+	  "x this sum."
     ]
   },
   "theDuelist:Storm": {
     "NAME": "Storm",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized Power card to your hand. NL #yEvoke: If you have any empty Orb slots, consume one and reduce the #yTribute cost of all monsters in your draw pile by #b", "."
+	  "#yPassive: At the start of turn, add a #yRandomized Power card to your hand. NL #yEvoke: Gain #b", " of the Storm buff."
     ]
   },
   "theDuelist:Summoner": {
@@ -156,8 +170,7 @@
   },
   "theDuelist:LightOrb": {
     "DESCRIPTION": [
-      "#yPassive: At the end of every other turn, heal #b", ". NL #yEvoke: Gain #b", " #yRegen.",
-	  "#yPassive: At the end of every other turn, lose #b", " HP. NL #yEvoke: Gain #b"
+      "#yPassive: Whenever you draw a #ySpell, have a 25% chance to duplicate it #b", " times. NL #yEvoke: Duplicate all #ySpells in your hand."
     ],
     "NAME": "Light"
   },
@@ -196,8 +209,9 @@
    "theDuelist:VoidOrb": {
     "DESCRIPTION": [
       "#yPassive: At the start of turn, siphon #b",
-      " HP from a random enemy. NL #yEvoke: Take #b", 
-	  " damage. Damage increases each time you siphon."	  
+      " #yTemporary #yHP from a random enemy. NL #yEvoke: Add #b",
+	  " [#FF5252]Void to your hand.",
+	  " [#FF5252]Voids to your hand."
     ],
     "NAME": "Void"
   },
@@ -206,24 +220,59 @@
      "#yPassive: At the start of turn: Draw #b",
 	  " card NL Gain #b",
 	  " #yTemp #yHP NL Add a #yRandomized #ySpell to your hand. NL #yEvoke: ", 
-	  "Add #b2 #yRandomized #ySpells to your hand. NL Evoke effect switches to a random Anticrystal effect at the end of each turn.", 
-	  "Draw #b", " cards. NL Evoke effect switches to a random Anticrystal effect at the end of each turn.", 
-	  "Gain #b", " #yTemp #yHP. NL Evoke effect switches to a random Anticrystal effect at the end of each turn."
+	  "Add #b2 #yRandomized #ySpells to your hand. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn.", 
+	  "Draw #b", " cards. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn.", 
+	  "Gain #b", " #yTemp #yHP. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn."
     ],
     "NAME": "Anticrystal"
   },
    "theDuelist:Surge": {
     "DESCRIPTION": [
-      "#yPassive: Whenever you #ySummon, gain #b", " Block. NL #yEvoke: Channel #b", " #yLightning."
+      "#yPassive: Whenever you #ySummon, gain #b", " Block. NL #yEvoke: Draw and discard #b", " cards."
     ],
     "NAME": "Surge"
   },
    "theDuelist:DarkMillennium": {
     "DESCRIPTION": [
-      "#yPassive: At the start of each turn, if you are #yHaunted, reduce your #yHaunted debuff by #b", ". NL #yEvoke: Become #yHaunted.",
-	  "#yPassive: At the start of each turn, if you are #yHaunted, increase your #yHaunted debuff by #b"
+      "#yPassive: At the start of each turn, apply a random debuff with #b", 
+	  " turns to ALL enemies. NL #yEvoke: Become #yHaunted.",
+	  " turn to ALL enemies. NL #yEvoke: Become #yHaunted."
     ],
     "NAME": "Dark Millennium Orb"
+  },
+   "theDuelist:LightMillennium": {
+    "DESCRIPTION": [
+      "#yPassive: At the start of each turn, choose and gain a random buff with #b",
+	  " turns. NL #yEvoke: If you are #yHaunted, remove it.",
+	  " turn. NL #yEvoke: If you are #yHaunted, remove it."
+    ],
+    "NAME": "Light Millennium Orb"
+  },
+	"theDuelist:Blood": {
+	"DESCRIPTION": [
+	  "#yPassive: Whenever you take damage, gain #b", "x that much #yTemporary #yHP. NL #yEvoke: Lose all #yTemporary #yHP and deal damage to ALL enemies equal to the amount lost."
+	],
+	"NAME": "Blood"
+	},
+	"theDuelist:Alien": {
+    "DESCRIPTION": [
+      "#yPassive: Whenever you play a card, draw #b", 
+	  " card and discard a random card. NL #yEvoke: Discard your hand and draw a card for each card discarded.",
+	  " cards and discard a random card. NL #yEvoke: Discard your hand and draw a card for each card discarded."
+    ],
+    "NAME": "Alien"
+  },
+	"theDuelist:Moon": {
+    "DESCRIPTION": [
+      "#yPassive: Whenever you draw a #yTribute monster, #yUpgrade it. NL #yEvoke: Gain #b", " #yBlock."
+    ],
+    "NAME": "Moon"
+  },
+  "theDuelist:Sun": {
+    "DESCRIPTION": [
+      "#yPassive: Whenever you draw a #ySummon monster, #yUpgrade it. NL #yEvoke: Deal #b", " damage to ALL enemies."
+    ],
+    "NAME": "Sun"
   },
   "theDuelist:WaterOrb": {
     "NAME": "Water",

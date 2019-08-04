@@ -40,6 +40,7 @@ public class MonsterOrb extends DuelistOrb
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
+		this.triggersOnSpellcasterPuzzle = false;
 		if (DuelistMod.challengeMode)
 		{
 			this.baseEvokeAmount = this.evokeAmount = 1;
@@ -88,7 +89,7 @@ public class MonsterOrb extends DuelistOrb
 	{
 		if (this.evokeAmount > 0)
 		{
-			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, Tags.MONSTER, 1));
+			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, Tags.MONSTER, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:MonsterOrb --- > triggered evoke!"); }
 		}
 	}

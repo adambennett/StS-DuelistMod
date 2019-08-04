@@ -1,21 +1,16 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.orbs.MillenniumOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
 import duelistmod.variables.*;
 
 public class WingedDragonRa extends DuelistCard 
@@ -54,15 +49,13 @@ public class WingedDragonRa extends DuelistCard
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
-    {
-    	tribute();
-    	//attack(m, AFX, this.damage);
-    	if (getXEffect() > 0)
-    	{
-    		AbstractOrb mo = new MillenniumOrb(getXEffect());
-    		channel(mo);
-    	}
-    	useXEnergy();
+    {    	
+    	if (getXEffect() > 0) 
+    	{ 
+    		tribute();
+    		channel(new MillenniumOrb(), getXEffect()); 
+    		useXEnergy();
+    	}    	
     }
 
     // Which card to return when making a copy of this card.
@@ -77,7 +70,6 @@ public class WingedDragonRa extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeTributes(-1);
-            //this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

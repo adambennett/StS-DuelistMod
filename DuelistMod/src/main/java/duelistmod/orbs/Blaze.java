@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -39,8 +40,8 @@ public class Blaze extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Blaze.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 3;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 4;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -53,66 +54,50 @@ public class Blaze extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + (this.passiveAmount) + DESC[1] + (this.evokeAmount) + DESC[2];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		if (!hasNegativeFocus())
+		if (this.evokeAmount > 0)
 		{
-			DuelistCard.heal(AbstractDungeon.player, this.evokeAmount * DuelistMod.summonCombatCount);
+			DuelistCard.damageAllEnemiesThornsFire(this.evokeAmount);
 		}
-		else
-		{
-			int focus = getCurrentFocus();
-			if (this.evokeAmount * DuelistMod.summonCombatCount > 0)
-			{
-				DuelistCard.heal(AbstractDungeon.player, this.evokeAmount * DuelistMod.summonCombatCount);
-			}
-		}
-		
 	}
 	
 	@Override
 	public void onEndOfTurn()
 	{
 		checkFocus(false);
+		if (!hasWaterOrbs())
+		{
+			this.evokeAmount += 3 + this.getCurrentFocus();
+			this.baseEvokeAmount += 3 + this.getCurrentFocus();
+			this.originalEvoke += 3 + this.getCurrentFocus();
+			updateDescription();
+		}
 	}
 
 	@Override
 	public void onStartOfTurn()
 	{		
 		applyFocus();
-		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-		int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-		{
-			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (instance.isEveryMonsterCheck(Tags.SPELLCASTER, false))
-			{
-				rollCheck += 4;
-			}
-		}
-		if (roll < rollCheck)
-		{
-			this.triggerPassiveEffect();
-		}
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
-		if (!hasNegativeFocus())
-		{
-			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-			DuelistCard.heal(AbstractDungeon.player, this.passiveAmount * DuelistMod.summonCombatCount);
+		if (this.passiveAmount > 0) 
+		{ 
+			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+			DuelistCard.staticThornAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.passiveAmount); 
 		}
-		else if (this.passiveAmount * DuelistMod.summonCombatCount > 0)
-		{
-			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-			DuelistCard.heal(AbstractDungeon.player, this.passiveAmount * DuelistMod.summonCombatCount);
-		}		
+	}
+	
+	private boolean hasWaterOrbs()
+	{
+		return DuelistCard.checkForWater();
 	}
 
 	@Override

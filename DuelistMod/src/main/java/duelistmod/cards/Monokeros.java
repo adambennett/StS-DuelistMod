@@ -75,6 +75,7 @@ public class Monokeros extends DuelistCard
                 checkSplash();
             }               
         }
+        super.triggerOnEndOfPlayerTurn();
     }
     
     // Upgraded stats.

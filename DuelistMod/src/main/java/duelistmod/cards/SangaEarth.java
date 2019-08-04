@@ -47,6 +47,7 @@ public class SangaEarth extends DuelistCard
     	this.tags.add(Tags.GUARDIAN);
     	this.tags.add(Tags.METAL_RAIDERS);
     	this.tags.add(Tags.GOOD_TRIB);
+    	this.tags.add(Tags.SPELLCASTER);
     	this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;

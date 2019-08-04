@@ -40,6 +40,8 @@ public class ShallowGrave extends DuelistCard
         this.tags.add(Tags.RESUMMON_DECK);
         this.tags.add(Tags.ZOMBIE_DECK);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
+		this.tags.add(Tags.ASCENDED_TWO_DECK);
+        this.a2DeckCopies = 1;
         this.startingOPRDeckCopies = 1;
         this.resummonDeckCopies = 1;
         this.zombieDeckCopies = 1;

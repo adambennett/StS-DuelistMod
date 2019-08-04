@@ -51,11 +51,14 @@ public class BigWhale extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.dynamicBlock = this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
-			this.baseBlock = (int)this.dynamicBlock;
-			this.applyPowers();
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.dynamicBlock = this.magicNumber * (getMaxSummons(AbstractDungeon.player) / this.secondMagic);
+				this.baseBlock = (int)this.dynamicBlock;
+				this.applyPowers();
+			}
 		}
 	}
 

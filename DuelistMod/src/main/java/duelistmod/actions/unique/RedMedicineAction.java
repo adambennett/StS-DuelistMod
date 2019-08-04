@@ -10,12 +10,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.*;
 import duelistmod.helpers.GridSort;
-import duelistmod.interfaces.*;
 import duelistmod.powers.*;
+import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Strings;
 
 public class RedMedicineAction extends AbstractGameAction
@@ -55,7 +55,6 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new BlurPower(p, turnNum));
 			toReturn.add(new OrbHealerPower(p, turnNum));
 			toReturn.add(new TombLooterPower(p, turnNum));
-			//toReturn.add(new OrbEvokerPower(p, turnNum));
 			toReturn.add(new HealGoldPower(p, turnNum));
 			toReturn.add(new FocusPower(p, 1));
 			toReturn.add(new ReducerPower(p, turnNum));
@@ -67,6 +66,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new AerodynamicsPower(p, p));
 			toReturn.add(new NaturiaPower(p, p, turnNum));
 			toReturn.add(new TwoJamPower(p, 1, turnNum, 2));
+			toReturn.add(new HelloPower(p, turnNum));
 		}
 		else
 		{
@@ -85,7 +85,6 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new ReducerPower(p, turnNum));
 			toReturn.add(new EnvenomPower(p, turnNum));
 			toReturn.add(new AngerPower(p, 1));
-			toReturn.add(new AngryPower(p, 1));
 			toReturn.add(new ConservePower(p, 1));
 			toReturn.add(new CuriosityPower(p, 1));
 			toReturn.add(new AerodynamicsPower(p, p));
@@ -95,7 +94,6 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new EnergizedPower(p, 1));
 			toReturn.add(new BarricadePower(p));
 			toReturn.add(new BurstPower(p, turnNum));
-			//toReturn.add(new CreativeAIPower(p, 1)); //probably too good
 			toReturn.add(new DoubleTapPower(p, turnNum));
 			toReturn.add(new EquilibriumPower(p, 2));
 			toReturn.add(new FeelNoPainPower(p, turnNum));
@@ -111,7 +109,10 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new MayhemPower(p, 1));
 			toReturn.add(new AmplifyPower(p, 1));
 			toReturn.add(new BufferPower(p, 1));
-			toReturn.add(new TwoJamPower(p, 1, turnNum, 4));			
+			toReturn.add(new TwoJamPower(p, 1, turnNum, 4));	
+			toReturn.add(new HelloPower(p, turnNum));
+			toReturn.add(new FlameTigerPower(p, p));
+			toReturn.add(new ResummonBonusPower(p, p, turnNum));
 		}
 		return toReturn;
 	}

@@ -45,8 +45,8 @@ public class CallAtlanteans extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractOrb mi = new Mist();
-    	AbstractOrb co = new Consumer();
+    	AbstractOrb mi = new WaterOrb();
+    	AbstractOrb co = new Black();
     	channel(mi);
     	channel(co);
     }

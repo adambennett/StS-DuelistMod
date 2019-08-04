@@ -44,7 +44,7 @@ public class OjamaDeltaHurricane extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		AbstractOrb black = new Black();
+		AbstractOrb black = new FireOrb();
 		AbstractOrb earth = new Earth();
 		AbstractOrb mud = new Mud();
 		channel(black);

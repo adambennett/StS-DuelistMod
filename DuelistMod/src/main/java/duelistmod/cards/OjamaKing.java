@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
-import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
@@ -78,7 +78,7 @@ public class OjamaKing extends DuelistCard
 		for (int i = 0; i < RAND_DEBUFFS; i++)
 		{
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(p, m, randomTurnNum), m);
+			applyPower(DebuffHelper.getRandomDebuff(p, m, randomTurnNum), m);
 		}
 		
 		// Give 3 Spell Counters to enemy

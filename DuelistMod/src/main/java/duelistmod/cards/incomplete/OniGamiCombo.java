@@ -15,6 +15,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.orbs.Shadow;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.relics.ZombieRelic;
 import duelistmod.variables.Tags;
 
 public class OniGamiCombo extends DuelistCard 
@@ -62,7 +63,7 @@ public class OniGamiCombo extends DuelistCard
 			if (DuelistMod.debug) { DuelistMod.logger.info("Calling RandomizedAction from: " + this.originalName); }
 		}
 		
-		AbstractOrb shadow = new Shadow();
+		AbstractOrb shadow = new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID));
 		channel(shadow);
     }
 

@@ -3,6 +3,7 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -12,6 +13,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.orbs.Shadow;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.relics.ZombieRelic;
 import duelistmod.variables.Tags;
 
 public class ShadowVampire extends DuelistCard 
@@ -50,7 +52,7 @@ public class ShadowVampire extends DuelistCard
     	tribute();
     	for (int i = 0; i < this.magicNumber; i++)
     	{
-    		AbstractOrb shadow = new Shadow();
+    		AbstractOrb shadow = new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID));
     		channel(shadow);
     	}
     	discard(p.hand.group.size(), false);

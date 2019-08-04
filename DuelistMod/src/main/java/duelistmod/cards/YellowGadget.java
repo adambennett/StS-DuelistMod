@@ -54,8 +54,8 @@ public class YellowGadget extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		// Base version - random tokens
-		if (!upgraded)
+		// Upgraded version - random tokens
+		if (upgraded)
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 			for (int i = 0; i < this.magicNumber; i++)
@@ -65,7 +65,7 @@ public class YellowGadget extends DuelistCard
 			}
 		}
 		
-		// Upgraded - choose tokens
+		// Base version - choose tokens
 		else
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();

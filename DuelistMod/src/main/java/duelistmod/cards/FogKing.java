@@ -3,7 +3,7 @@ package duelistmod.cards;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -53,29 +53,36 @@ public class FogKing extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			int dmg = 0;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{				
-				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (pow.actualCardSummonList.size() >= this.tributes)
-				{
-					int endIndex = pow.actualCardSummonList.size() - 1;
-					for (int i = endIndex; i > endIndex - this.tributes; i--)
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				int dmg = 0;
+				if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+				{				
+					SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+					if (pow.actualCardSummonList.size() >= this.tributes)
 					{
-						dmg += pow.actualCardSummonList.get(i).damage;
-					}
-					
-					if (upgraded)
+						int endIndex = pow.actualCardSummonList.size() - 1;
+						for (int i = endIndex; i > endIndex - this.tributes; i--)
+						{
+							dmg += pow.actualCardSummonList.get(i).damage;
+						}
+						
+						if (upgraded)
+						{
+							this.magicNumber = this.baseMagicNumber = dmg + 9;
+						}
+						else if (dmg > 0)
+						{
+							this.magicNumber = this.baseMagicNumber = dmg;		
+						}
+					}	
+					else
 					{
-						this.magicNumber = this.baseMagicNumber = dmg + 9;						
+						this.magicNumber = this.baseMagicNumber = 0;
 					}
-					else if (dmg > 0)
-					{
-						this.magicNumber = this.baseMagicNumber = dmg;						
-					}
-				}	
+				}
 				else
 				{
 					this.magicNumber = this.baseMagicNumber = 0;
@@ -85,10 +92,6 @@ public class FogKing extends DuelistCard
 			{
 				this.magicNumber = this.baseMagicNumber = 0;
 			}
-		}
-		else
-		{
-			this.magicNumber = this.baseMagicNumber = 0;
 		}
 	}
 
@@ -114,9 +117,7 @@ public class FogKing extends DuelistCard
 	    		if (DuelistMod.debug) { System.out.println("theDuelist:FogKing:use() ---> card damage: " + c.baseDamage); }
 	    	}
     	}
-    	this.baseDamage = this.damage += damageIncrease;
-    	if (DuelistMod.debug) { System.out.println("theDuelist:FogKing:use() ---> damageIncrease: " + damageIncrease); }
-    	attack(m, AFX, this.damage);
+    	specialAttack(m, AFX, damageIncrease);
     }
 
     // Which card to return when making a copy of this card.

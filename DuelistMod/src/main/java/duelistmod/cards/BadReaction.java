@@ -12,25 +12,25 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
-import duelistmod.variables.Tags;
+import duelistmod.variables.*;
 
 public class BadReaction extends DuelistCard 
 {
     // TEXT DECLARATION 
     public static final String ID = duelistmod.DuelistMod.makeID("BadReaction");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("Bad_Reaction_Basic.png");
+    public static final String IMG = DuelistMod.makePath(Strings.BAD_REACTION);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION 	
-    private static final CardRarity RARITY = CardRarity.BASIC;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int DAMAGE = 1;
     private static final int HEAL = 1;
     private static final int U_HEAL = 1;
@@ -42,9 +42,10 @@ public class BadReaction extends DuelistCard
         this.baseDamage = this.damage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = HEAL;
         this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.HEAL_DECK);
-        this.healDeckCopies = 1;
-        this.originalName = this.name;
+        this.tags.add(Tags.LIMITED);
+        this.tags.add(Tags.ORIGINAL_HEAL_DECK);
+        this.startingOPHDeckCopies = 1;
+        this.originalName = this.name; 
         this.setupStartingCopies();
     }
 
@@ -52,16 +53,14 @@ public class BadReaction extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!p.hasPower(SpecialBadReactionPower.POWER_ID))
+    	if (p.hasPower(BadReactionPower.POWER_ID)) { removePower(p.getPower(BadReactionPower.POWER_ID), p); }
+    	if (this.upgraded)
     	{
-	    	if (this.upgraded)
-	    	{
-	    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BadReactionPower(p, p, true, U_DMG, U_HEAL)));
-	    	}
-	    	else
-	    	{
-	    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BadReactionPower(p, p, false, 0, 0)));
-	    	}
+    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SpecialBadReactionPower(p, p, true, U_DMG, U_HEAL)));
+    	}
+    	else
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new SpecialBadReactionPower(p, p, false, 0, 0)));
     	}
     }
 
@@ -79,7 +78,7 @@ public class BadReaction extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(U_DMG);
             this.upgradeMagicNumber(U_HEAL);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
+            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

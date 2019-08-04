@@ -46,6 +46,8 @@ public class SummonedSkull extends DuelistCard
 		this.tags.add(Tags.EXODIA_DECK);
 		this.tags.add(Tags.ORIGINAL_DECK);    
 		this.tags.add(Tags.FIEND_DECK);
+		this.tags.add(Tags.ASCENDED_TWO_DECK);
+        this.a2DeckCopies = 1;
         this.zombieDeckCopies = 1;
         this.startingOriginalDeckCopies = 1;
         this.exodiaDeckCopies = 2;

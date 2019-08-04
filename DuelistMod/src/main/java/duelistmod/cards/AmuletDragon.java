@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
+import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class AmuletDragon extends DuelistCard 
@@ -51,10 +52,13 @@ public class AmuletDragon extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.dynamicBlock = this.magicNumber * DuelistMod.tribCombatCount;
-			this.secondMagic = this.baseSecondMagic = (int)this.dynamicBlock;
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.dynamicBlock = this.magicNumber * DuelistMod.tribCombatCount;
+				this.secondMagic = this.baseSecondMagic = (int)this.dynamicBlock;
+			}
 		}
 	}
 
@@ -82,6 +86,40 @@ public class AmuletDragon extends DuelistCard
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    // If player doesn't have enough summons, can't play card
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	// Check super canUse()
+    	boolean canUse = super.canUse(p, m); 
+    	if (!canUse) { return false; }
+    	
+    	// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+    	
+    	// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+			
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
+			}
+		}
+    	
+    	// Check for # of summons >= tributes
+    	else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } } }
+    	
+    	// Player doesn't have something required at this point
+    	this.cantUseMessage = this.tribString;
+    	return false;
     }
 
 	@Override

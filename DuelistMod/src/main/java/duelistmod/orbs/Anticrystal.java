@@ -3,27 +3,22 @@ package duelistmod.orbs;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.defect.LightningOrbPassiveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.cards.*;
-import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
@@ -110,7 +105,9 @@ public class Anticrystal extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		evokeIndex = AbstractDungeon.cardRandomRng.random(0, 2);
+		evokeIndex++;
+		if (evokeIndex > 2) { evokeIndex = 0; }
+		//evokeIndex = AbstractDungeon.cardRandomRng.random(0, 2);
 		checkFocus(false);
 		updateDescription();
 	}
@@ -150,7 +147,18 @@ public class Anticrystal extends DuelistOrb
 	@Override
 	public void updateAnimation()
 	{
+		applyFocus();
 		super.updateAnimation();
+		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
+		this.vfxTimer -= Gdx.graphics.getDeltaTime();
+		if (this.vfxTimer < 0.0F) 
+		{
+			AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
+			if (MathUtils.randomBoolean()) {
+				AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(this.cX, this.cY));
+			}
+			this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
+		}
 	}
 
 	@Override

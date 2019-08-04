@@ -1,0 +1,20 @@
+Water <~~~~~~~~~~~~> Fire
+Splash <-----------> Hellfire
+Buffer <~~~~~~~~~~~> Reducer
+Blaze <------------> Mist
+Lava <~~~~~~~~~~~~~> Frost
+Shadow <-----------> Light
+Glass <~~~~~~~~~~~~> Sand
+Summoner <---------> Consumer
+Glitch <~~~~~~~~~~~> Gadget
+Plasma <-----------> Dark
+Smoke <~~~~~~~~~~~~> Air
+Earth <------------> Mud
+Storm <~~~~~~~~~~~~> Lightning
+MonsterOrb <-------> TokenOrb
+DragonOrb <~~~~~~~~> DragonOrb+
+Gate <-------------> Void
+Crystal <~~~~~~~~~~> Anticrystal
+MillenniumOrb <----> Dark MillenniumOrb
+Black <~~~~~~~~~~~~> White
+Metal <------------> Surge

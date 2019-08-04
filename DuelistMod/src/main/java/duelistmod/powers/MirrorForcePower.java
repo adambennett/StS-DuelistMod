@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.MirrorForce;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
 /* 	
@@ -82,13 +84,9 @@ public class MirrorForcePower extends AbstractPower
     		//PLAYER_BLOCK = AbstractDungeon.player.currentBlock;
         	if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner && this.amount > 0) 
         	{
-    	    	int[] damageAmounts = new int[] {damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount, damageAmount};
-    	    	for (int i = 0; i < damageAmounts.length; i++) { damageAmounts[i] = (damageAmount + PLAYER_BLOCK) * MULT; }
-    	    	if (DuelistMod.debug)
-    	    	{
-    	    		System.out.println("theDuelist:MirrorForcePower:onAttacked() ---> PlayerBlock: " + PLAYER_BLOCK + " :: damageAmount: " + damageAmount + " :: MULT: " + MULT + " :: damangeAmounts[0]: " + damageAmounts[0]);
-    	    	}
-    	    	MirrorForce.attackAll(AFX, damageAmounts, DamageType.THORNS);
+        		int dmg = (damageAmount + PLAYER_BLOCK) * MULT;
+        		Util.log("Mirror Force Power: " + dmg);
+        		DuelistCard.damageAllEnemiesThornsNormal(dmg);
     	    	AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, this, 1));
     	    	if (this.amount < 1)
     	    	{

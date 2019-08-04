@@ -1,25 +1,24 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.powers.incomplete.VoidVanishmentPower;
 
 @SuppressWarnings("unused")
 public class VoidOrb extends DuelistOrb
@@ -27,22 +26,20 @@ public class VoidOrb extends DuelistOrb
 	public static final String ID = DuelistMod.makeID("VoidOrb");
 	private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ID);
 	public static final String[] DESC = orbString.DESCRIPTION;
-	private float vfxTimer = 1.0F; 
-	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;	
+	private float vfxTimer = 0.5F; 	
+	protected static final float VFX_INTERVAL_TIME = 0.25F;
 	private static final float PI_DIV_16 = 0.19634955F;
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
-	
 	private static final int evokeCardsToAdd = 5;
 	
 	public VoidOrb()
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Void.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
-		this.basePassiveAmount = this.passiveAmount = 4;
+		this.baseEvokeAmount = this.evokeAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = 2;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -55,7 +52,7 @@ public class VoidOrb extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Void.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = startingPassive;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -69,13 +66,20 @@ public class VoidOrb extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];		
+		if (this.evokeAmount == 1) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }		
 	}
 
 	@Override
 	public void onEvoke()
 	{		
-		if (this.evokeAmount > 0) { DuelistCard.damageSelfNotHP(this.evokeAmount); }
+		if (this.evokeAmount > 0)
+		{
+			for (int i = 0; i < this.evokeAmount; i++)
+			{
+				DuelistCard.addCardToHand(new VoidCard());
+			}
+		}
 	}
 
 	@Override
@@ -86,36 +90,29 @@ public class VoidOrb extends DuelistOrb
 			triggerPassiveEffect();
 		}
 	}
-	
-	public void incrementEvoke(int add)
-	{
-		this.baseEvokeAmount += add;
-		this.evokeAmount += add;
-		this.originalEvoke += add;
-		this.basePassiveAmount += add;
-		this.passiveAmount += add;
-		this.originalPassive += add;
-		if (baseEvokeAmount < 0)
-		{
-			this.baseEvokeAmount = this.evokeAmount = this.originalEvoke = 0;
-		}
-		if (basePassiveAmount < 0)
-		{
-			this.basePassiveAmount = this.passiveAmount = this.originalPassive = 0;
-		}
-		updateDescription();
-	}
 
 	public void triggerPassiveEffect()
 	{
 		AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
-		DuelistCard.gainTempHP(this.passiveAmount);
-		if (this.passiveAmount > 1)
+		if (AbstractDungeon.player.hasPower(VoidVanishmentPower.POWER_ID))
 		{
-			int increaseLoss = AbstractDungeon.cardRandomRng.random(1, this.passiveAmount - 1);
-			incrementEvoke(increaseLoss);
+			for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped())
+				{
+					DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
+					DuelistCard.gainTempHP(this.passiveAmount);
+				}				
+			}		
+		}
+		else
+		{
+			AbstractMonster m = AbstractDungeon.getRandomMonster();
+			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped())
+			{
+				DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
+				DuelistCard.gainTempHP(this.passiveAmount);
+			}			
 		}		
 	}
 
@@ -140,18 +137,15 @@ public class VoidOrb extends DuelistOrb
 	@Override
 	public void updateAnimation()
 	{
-		applyFocus();			
+		applyFocus();
 		super.updateAnimation();
-		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
+		this.angle += Gdx.graphics.getDeltaTime() * 120.0F;
 		this.vfxTimer -= Gdx.graphics.getDeltaTime();
 		if (this.vfxTimer < 0.0F) 
 		{
-			AbstractDungeon.effectList.add(new FrostOrbPassiveEffect(this.cX, this.cY));
-			if (MathUtils.randomBoolean()) {
-				AbstractDungeon.effectList.add(new FrostOrbPassiveEffect(this.cX, this.cY));
-			}
-			this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
-		}
+			AbstractDungeon.effectList.add(new DarkOrbPassiveEffect(this.cX, this.cY));
+			this.vfxTimer = 0.25F;
+		}	
 	}
 
 	@Override
@@ -182,7 +176,7 @@ public class VoidOrb extends DuelistOrb
 			}
 			
 			
-			/*if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
 			{
 				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
 			}
@@ -190,7 +184,7 @@ public class VoidOrb extends DuelistOrb
 			else
 			{
 				this.baseEvokeAmount = 0;
-			}*/
+			}
 			
 		}
 		else
@@ -211,7 +205,7 @@ public class VoidOrb extends DuelistOrb
 	protected void renderText(SpriteBatch sb)
 	{	
 		// Render evoke amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
 		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + - 4.0F * Settings.scale, this.c, this.fontScale);
 	}

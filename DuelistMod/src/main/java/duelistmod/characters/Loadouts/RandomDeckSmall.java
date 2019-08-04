@@ -9,7 +9,7 @@ public class RandomDeckSmall extends DuelistCustomLoadout
 {
     public RandomDeckSmall()
     {
-        this.ID = 18;
+        this.ID = 27;
         this.Name = DuelistMod.randomSmallDeckString;
     }
 

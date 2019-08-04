@@ -38,7 +38,7 @@ public class HaneHane extends DuelistCard
 
     public HaneHane() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 5;
         this.summons = this.baseSummons = SUMMONS;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
@@ -51,7 +51,7 @@ public class HaneHane extends DuelistCard
     
     public HaneHane(boolean resummon) {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 5;
         this.summons = this.baseSummons = SUMMONS;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);

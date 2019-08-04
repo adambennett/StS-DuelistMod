@@ -18,20 +18,27 @@ public class DuelistCustomLoadout
 	public String cardCount;
 	public int StartingGold;
 	public boolean Locked;
+	public boolean permaLocked = false;
 	private static int index;
 	protected String lockedDescription;
 	protected String description;
+	protected String permaLockMessage = "Locked";
 	protected int unlockLevel;
 
 	public void Refresh(int currentLevel, CharacterSelectScreen selectScreen, CharacterOption option)
 	{
 		DuelistMod.deckIndex = index;
 		DuelistMod.normalSelectDeck = index;
-		Locked = unlockLevel > currentLevel;
+		Locked = unlockLevel > currentLevel || permaLocked;
 		
 		if (Locked)
 		{
 			lockedDescription = DuelistMod.deckUnlockString + unlockLevel +  DuelistMod.deckUnlockStringB + currentLevel +  ")";
+		}
+		
+		if (permaLocked && Locked)
+		{
+			lockedDescription = permaLockMessage;			
 		}
 		
 		try {
@@ -73,36 +80,6 @@ public class DuelistCustomLoadout
 		
 		// Superheavy
 		else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
-		
-		// Creator
-		else if (DuelistMod.deckIndex == 10) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Ojama
-		else if (DuelistMod.deckIndex == 11) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Generation
-		else if (DuelistMod.deckIndex == 12) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Orb
-		else if (DuelistMod.deckIndex == 13) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Resummon
-		else if (DuelistMod.deckIndex == 14) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Increment
-		else if (DuelistMod.deckIndex == 15) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Exodia
-		else if (DuelistMod.deckIndex == 16) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Heal
-		else if (DuelistMod.deckIndex == 17) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Random (Small)
-		else if (DuelistMod.deckIndex == 18) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
-		
-		// Random (Big)
-		else if (DuelistMod.deckIndex == 19) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
 		
 		else { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
 	}

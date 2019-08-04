@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
@@ -32,19 +33,21 @@ public class FlameSwordsman extends DuelistCard
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
     private static final int COST = 1;
-    private static final int DAMAGE = 10;
     // /STAT DECLARATION/
 
     public FlameSwordsman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.baseDamage = this.damage = 15;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
-        this.baseMagicNumber = this.magicNumber = 10;
+        this.baseMagicNumber = this.magicNumber = 5;
     }
+    
+    @Override
+    public int lavaEvokeEffect() { applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.magicNumber)); return 0; }
 
     // Actions the card should do.
     @Override
@@ -52,11 +55,6 @@ public class FlameSwordsman extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	if (!DuelistMod.gotFirePot)
-    	{
-    		int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-    		if (roll <= this.magicNumber) { DuelistMod.gotFirePot = true; }
-    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -69,40 +67,16 @@ public class FlameSwordsman extends DuelistCard
     @Override
     public void upgrade() 
     {        
-    	if (this.canUpgrade())
+    	if (!upgraded)
     	{
 	    	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-	        if (this.baseMagicNumber < 100)
-	        {
-	            if (this.baseMagicNumber + 5 <= 100)
-	            {
-	            	this.upgradeMagicNumber(5);
-	            }
-	            else
-	            {
-	            	int difference = 100 - this.baseMagicNumber;
-	            	this.upgradeMagicNumber(difference);
-	            }
-	        }
+	        this.upgradeDamage(5);
 	        this.rawDescription = UPGRADE_DESCRIPTION;
 	        this.initializeDescription();       
     	}
     }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (this.baseMagicNumber <= 99)
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
-    }
-    
+       
     // If player doesn't have enough summons, can't play card
   	@Override
   	public boolean canUse(AbstractPlayer p, AbstractMonster m)

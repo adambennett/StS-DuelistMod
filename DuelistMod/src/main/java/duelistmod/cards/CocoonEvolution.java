@@ -44,6 +44,7 @@ public class CocoonEvolution extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.COCOON);
+        this.tags.add(Tags.INSECT);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.OP_NATURE_DECK);
         this.startingOPNDeckCopies = 1;

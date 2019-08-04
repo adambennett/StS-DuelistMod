@@ -2,7 +2,8 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -32,7 +33,6 @@ public class SteamTrainKing extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
@@ -46,6 +46,7 @@ public class SteamTrainKing extends DuelistCard
         this.originalName = this.name;
         this.exhaust = true;
         this.tributes = this.baseTributes = 3;
+        this.isMultiDamage = true;
     }
 
     // Actions the card should do.
@@ -53,25 +54,56 @@ public class SteamTrainKing extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	ArrayList<AbstractCard> drawPile = player().drawPile.group;
     	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
-    	int damageTotal = 0;
-    	for (AbstractCard c : drawPile)
+    	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
     	{
     		if (c.hasTag(Tags.MONSTER))
 			{
-				//damageTotal += c.baseDamage;
-    			damageTotal += c.baseDamage;
-				toDiscard.add(c);
+    			toDiscard.add(c);
 			}
     	}
     	for (AbstractCard c : toDiscard)
     	{
     		AbstractDungeon.player.drawPile.moveToExhaustPile(c);
     	}
-    	this.baseDamage = this.damage = damageTotal;
-    	this.multiDamage = new int[] { damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal, damageTotal };
-    	attackAllEnemies(AFX, this.multiDamage);
+    	
+    	this.damage = this.baseDamage;
+    	if (this.damage > 0)
+    	{
+    		 AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY));
+    	}
+    }
+    
+    @Override
+    public void applyPowers() 
+    {
+        super.applyPowers();
+        int damageTotal = 0;
+    	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+    	{
+    		if (c.hasTag(Tags.MONSTER))
+			{
+    			damageTotal += c.baseDamage;
+			}
+    	}
+	    this.baseDamage = this.damage = damageTotal;
+        this.initializeDescription();
+    }
+    
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) 
+    {
+        super.calculateCardDamage(mo);
+        int damageTotal = 0;
+    	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+    	{
+    		if (c.hasTag(Tags.MONSTER))
+			{
+    			damageTotal += c.baseDamage;
+			}
+    	}
+	    this.baseDamage = this.damage = damageTotal;
+        this.initializeDescription();
     }
 
     // Which card to return when making a copy of this card.
@@ -118,7 +150,7 @@ public class SteamTrainKing extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

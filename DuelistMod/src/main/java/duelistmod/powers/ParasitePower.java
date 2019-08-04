@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.cards.Parasite;
-import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.variables.Strings;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
@@ -72,7 +72,7 @@ public class ParasitePower extends AbstractPower
     		for (int i = 0; i < enemiesToDebuff; i++)
     		{
     			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-    			AbstractPower randomDebuff = RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, randomTurnNum);
+    			AbstractPower randomDebuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, randomTurnNum);
     			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, AbstractDungeon.player, randomDebuff));
     		}
     	}

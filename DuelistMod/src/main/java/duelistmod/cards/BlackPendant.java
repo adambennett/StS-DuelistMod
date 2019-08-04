@@ -64,6 +64,7 @@ public class BlackPendant extends DuelistCard
             // Check Splash Orbs
             checkSplash();
         }
+        super.triggerOnEndOfPlayerTurn();
     }
 
 

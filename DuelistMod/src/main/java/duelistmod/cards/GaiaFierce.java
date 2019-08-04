@@ -1,15 +1,15 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -26,13 +26,11 @@ public class GaiaFierce extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 14;
-    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int DAMAGE = 12;
     // /STAT DECLARATION/
 
     public GaiaFierce() {
@@ -42,15 +40,16 @@ public class GaiaFierce extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 2;
+        this.magicNumber = this.baseMagicNumber = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
+    	tribute();
+    	attackMultipleRandom(this.magicNumber, this.baseAFX, DamageType.NORMAL);
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +63,7 @@ public class GaiaFierce extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

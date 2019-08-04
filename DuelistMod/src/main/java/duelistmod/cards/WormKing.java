@@ -1,6 +1,8 @@
 package duelistmod.cards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -35,7 +37,8 @@ public class WormKing extends DuelistCard
 
     public WormKing() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 20;
+        this.baseDamage = this.damage = 16;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
@@ -45,8 +48,8 @@ public class WormKing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	attack(m);
+    	summon();
+    	attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_HEAVY, DamageType.NORMAL);
     }
 
     // Which card to return when making a copy of this card.

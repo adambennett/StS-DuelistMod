@@ -656,7 +656,20 @@ public class Strings
 	public static String etherealForCardText = "";
 	public static String configAllowBoosters = "";
 	public static String configAlwaysBoosters = "";
-	public static String configRemoveCards = "";
+	public static String configRemoveCards = "";	
+	public static String configGiantDeck = "";
+	public static String configInsectDeck = "";
+	public static String configPlantDeck = "";
+	public static String configPredaplantDeck = "";
+	public static String configMegatypeDeck = "";
+	public static String configAscended1 = "";
+	public static String configAscended2 = "";
+	public static String configAscended3 = "";
+	public static String configPharaoh1 = "";
+	public static String configPharaoh2 = "";
+	public static String configPharaoh3 = "";
+	public static String configPharaoh4 = "";
+	public static String configPharaoh5 = "";
 	
 	// =============== /CONFIG STRINGS/ =======================================================================================================================================================
 

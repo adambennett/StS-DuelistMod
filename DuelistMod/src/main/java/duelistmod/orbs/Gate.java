@@ -106,7 +106,8 @@ public class Gate extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		evokeIndex = AbstractDungeon.cardRandomRng.random(0, 2);
+		evokeIndex++;
+		if (evokeIndex > 2) { evokeIndex = 0; }
 		checkFocus(false);
 		updateDescription();
 	}

@@ -26,7 +26,7 @@ public class Mathematician extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -36,7 +36,7 @@ public class Mathematician extends DuelistCard
 
     public Mathematician() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 7;
         this.tags.add(Tags.MONSTER);
         this.originalName = this.name;
         this.isSummon = true;
@@ -50,7 +50,7 @@ public class Mathematician extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	int x = getXEffect();
     	int newDamage = Util.factorial(x);
-    	attack(m, AFX, newDamage);
+    	specialAttack(m, AFX, newDamage);
     	useXEnergy();
     }
     

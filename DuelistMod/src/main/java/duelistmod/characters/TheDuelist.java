@@ -1,6 +1,7 @@
 package duelistmod.characters;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.logging.log4j.*;
 
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -20,6 +22,7 @@ import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
+import duelistmod.orbs.Black;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.variables.Colors;
@@ -38,6 +41,7 @@ public class TheDuelist extends CustomPlayer {
 	public static final int ORB_SLOTS = DuelistMod.orbSlots;
 	public static final int numberOfArchetypes = 17;
 	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+	public CardGroup resummonPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	private static final CharacterStrings charStrings;
 	public static final String NAME;
 	public static final String[] DESCRIPTIONS;
@@ -116,6 +120,25 @@ public class TheDuelist extends CustomPlayer {
 
 	// =============== /CHARACTER CLASS END/ =================
 
+	
+	@Override
+	public void applyStartOfTurnPostDrawPowers()
+	{
+		super.applyStartOfTurnPostDrawPowers();
+		if (this.hasOrb())
+		{
+			for (AbstractOrb o : this.orbs)
+			{
+				if (o instanceof Black)
+				{
+					Black b = (Black)o;
+					if (b.passiveAmount > 0) { b.triggerPassiveEffect(); }
+				}
+			}
+		}
+	}
+	
+	
 
 	// Starting description and loadout
 	@Override
@@ -183,8 +206,13 @@ public class TheDuelist extends CustomPlayer {
 
 	// Character Select screen effect
 	@Override
-	public void doCharSelectScreenSelectEffect() {
-		CardCrawlGame.sound.playA("theDuelist:TimeToDuel", 0); // Sound Effect
+	public void doCharSelectScreenSelectEffect() 
+	{
+		int roll = ThreadLocalRandom.current().nextInt(1, 5);
+		if (roll == 1) 		{ CardCrawlGame.sound.playV("theDuelist:TimeToDuelB", 0.5F);	}
+		else if (roll == 2) { CardCrawlGame.sound.playV("theDuelist:TimeToDuel", 0.5F); 	}
+		else if (roll == 3) { CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); 			}
+		else 				{ CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); 			}
 		CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT, false); // Screen Effect
 	}
 

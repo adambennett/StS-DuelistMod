@@ -24,51 +24,40 @@ public class UnderworldCannon extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 100;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public UnderworldCannon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 6000;
-        this.baseBlock = this.block = 6000;
-        this.baseMagicNumber = this.magicNumber = 6000;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        
-        // Tribute
-        this.tributes = this.baseTributes = 1;
+        this.baseDamage = this.damage = 30;
+        this.tributes = this.baseTributes = 2;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.misc = 0;
-       
-        // Card Type
         this.tags.add(Tags.SPELL);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
     	tribute();
-    	//applyPowerToSelf(new PowerTemplate(p, p, 1));
     	attack(m);
+    	for (AbstractCard c : p.drawPile.group)
+    	{
+    		if (c instanceof DuelistCard)
+    		{
+    			DuelistCard dc = (DuelistCard)c;
+    			if (dc.summons > 0)
+    			{
+    				dc.modifySummons(-this.magicNumber);
+    			}
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -81,19 +70,14 @@ public class UnderworldCannon extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
     }
 
 	@Override

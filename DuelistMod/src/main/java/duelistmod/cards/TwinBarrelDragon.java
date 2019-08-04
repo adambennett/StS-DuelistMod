@@ -1,21 +1,17 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class TwinBarrelDragon extends DuelistCard 
@@ -76,6 +72,7 @@ public class TwinBarrelDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

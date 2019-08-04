@@ -89,6 +89,7 @@ public class DarkMimicLv1 extends DuelistCard
            
             AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(this, player().discardPile));          
         }
+        super.triggerOnEndOfPlayerTurn();
     }
 
     // Actions the card should do.

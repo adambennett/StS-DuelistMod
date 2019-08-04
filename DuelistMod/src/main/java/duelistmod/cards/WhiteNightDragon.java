@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.orbs.Air;
+import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -32,7 +32,7 @@ public class WhiteNightDragon extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int DAMAGE = 25;
     // /STAT DECLARATION/
 
@@ -53,7 +53,7 @@ public class WhiteNightDragon extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb fire = new Air();
+    	AbstractOrb fire = new WhiteOrb();
     	channel(fire);
     }
 

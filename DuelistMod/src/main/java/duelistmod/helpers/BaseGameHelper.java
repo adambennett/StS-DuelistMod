@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.green.*;
 import com.megacrit.cardcrawl.cards.red.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class BaseGameHelper 
 {
@@ -16,6 +17,30 @@ public class BaseGameHelper
 		toFill.addAll(getAllSilentCards());
 		toFill.addAll(getAllDefectCards());
 		return toFill;
+	}
+	
+	public static AbstractCard getRedCard()
+	{
+		ArrayList<AbstractCard> reds = new ArrayList<AbstractCard>();
+		for (AbstractCard c : getAllIroncladCards()){ reds.add(c); }		
+		AbstractCard card = reds.get(AbstractDungeon.cardRandomRng.random(reds.size() - 1));
+		return card;
+	}
+	
+	public static AbstractCard getBlueCard()
+	{
+		ArrayList<AbstractCard> blues = new ArrayList<AbstractCard>();
+		for (AbstractCard c : getAllDefectCards()){ blues.add(c); }		
+		AbstractCard card = blues.get(AbstractDungeon.cardRandomRng.random(blues.size() - 1));
+		return card;
+	}
+	
+	public static AbstractCard getGreenCard()
+	{
+		ArrayList<AbstractCard> greens = new ArrayList<AbstractCard>();
+		for (AbstractCard c : getAllSilentCards()){ greens.add(c); }		
+		AbstractCard card = greens.get(AbstractDungeon.cardRandomRng.random(greens.size() - 1));
+		return card;
 	}
 	
 	public static ArrayList<AbstractCard> getAllIroncladCards()

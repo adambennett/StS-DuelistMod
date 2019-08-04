@@ -49,11 +49,14 @@ public class SilverDragon extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.dynamicBlock = this.magicNumber * DuelistMod.tribCombatCount;
-			this.baseBlock = (int)this.dynamicBlock;
-			this.applyPowers();
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.dynamicBlock = this.magicNumber * DuelistMod.tribCombatCount;
+				this.baseBlock = (int)this.dynamicBlock;
+				this.applyPowers();
+			}
 		}
 	}
 
@@ -62,7 +65,7 @@ public class SilverDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	block(DuelistMod.tribCombatCount * this.magicNumber);
+    	block();
     }
 
 

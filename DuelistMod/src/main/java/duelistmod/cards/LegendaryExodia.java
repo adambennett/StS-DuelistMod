@@ -40,11 +40,10 @@ public class LegendaryExodia extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXODIA);
-        this.tags.add(Tags.FULL);
-        this.damage = this.baseDamage = 20;
-        this.exhaust = true;
+        this.damage = this.baseDamage = 15;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
+        this.magicNumber = this.baseMagicNumber = 10;
     }
 
     // Actions the card should do.
@@ -52,23 +51,26 @@ public class LegendaryExodia extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m)
     {
     	boolean foundExxod = false;
+    	if (p.hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+    		int exoi = pow.getNumberOfTypeSummoned(Tags.EXODIA_PIECE);
+    		if (exoi > 0) { foundExxod = true; }
+    	}
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
+    	int dmg = 0;
     	if (tributeList.size() > 0)
     	{
 	    	for (DuelistCard c : tributeList)
 	    	{
-	    		if (c.hasTag(Tags.EXODIA))
+	    		if (c.hasTag(Tags.EXODIA_PIECE))
 	    		{
-	    			foundExxod = true;
-	    			this.baseDamage += 10;
+	    			dmg += this.magicNumber;
 	    		}
-	    	}
-	    	
-	    	if (foundExxod) 
-	    	{
-	    		attack(m, AFX, this.damage);
-	    	}
+	    	}  	
     	}
+    	if (foundExxod) { attack(m); }
+    	if (dmg > 0) { specialAttack(m, AFX, dmg); }
     }
 
     // Which card to return when making a copy of this card.
@@ -82,7 +84,8 @@ public class LegendaryExodia extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(10);
+            this.upgradeDamage(5);
+            this.upgradeMagicNumber(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

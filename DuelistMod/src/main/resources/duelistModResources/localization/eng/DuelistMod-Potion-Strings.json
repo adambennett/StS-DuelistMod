@@ -41,11 +41,11 @@
 },
 "theDuelist:BlackBottle": {
         "NAME": "Bottled Darkness",
-        "DESCRIPTIONS": ["#yChannel a #yBlack.", "#yChannel #b", " #yBlack Orbs.", "Potentitally applies random debuffs at the start of turn, and adds #yFiends to hand when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yBlack.", "#yChannel #b", " #yBlack Orbs.", "Draws and discards cards at the start of each turn, and deals damage to all enemies based on the number of cards in your discard pile when #yEvoked."]
 },
 "theDuelist:DragonOrbBottle": {
         "NAME": "Dragon Potion",
-        "DESCRIPTIONS": ["#yChannel a #yDragonOrb.", "#yChannel #b", " #yDragonOrbs.", "Adds #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b1 when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yDragonOrb.", "#yChannel #b", " #yDragonOrbs.", "Adds #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked."]
 },
 "theDuelist:DragonOrbPlusBottle": {
         "NAME": "Super Dragon Potion",
@@ -61,7 +61,7 @@
 },
 "theDuelist:LavaBottle": {
         "NAME": "Bottled Lava",
-        "DESCRIPTIONS": ["#yChannel a #yLava.", "#yChannel #b", " #yLava Orbs.", "Deals damage when #yEvoked. Damage number changes at the end of each turn to a random number."]
+        "DESCRIPTIONS": ["#yChannel a #yLava.", "#yChannel #b", " #yLava Orbs.", "Deals damage to random enemies when you #yIncrement. When #yEvoked, deals damage to a random enemy based on the number of cards in your hand."]
 },
 "theDuelist:GadgetBottle": {
         "NAME": "Amazon Package",
@@ -77,7 +77,7 @@
 },
 "theDuelist:MonsterOrbBottle": {
         "NAME": "Bottled MonsterOrb",
-        "DESCRIPTIONS": ["#yChannel a #yMonsterOrb.", "#yChannel #b", " #yMonsterOrbs.", "Adds #yMonsters to your hand at the start of turn, and sets the cost of #yMonsters in your hand to #b1 when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yMonsterOrb.", "#yChannel #b", " #yMonsterOrbs.", "Adds #yMonsters to your hand at the start of turn, and sets the cost of #yMonsters in your hand to #b0 when #yEvoked."]
 },
 "theDuelist:SandBottle": {
         "NAME": "Hourglass",
@@ -85,7 +85,7 @@
 },
 "theDuelist:StormBottle": {
         "NAME": "Bottled Storm",
-        "DESCRIPTIONS": ["#yChannel a #yStorm.", "#yChannel #b", " #yStorm Orbs.", "Adds #yPowers to your hand at the start of turn, and consumes orb slots to reduce #yTribute costs #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yStorm.", "#yChannel #b", " #yStorm Orbs.", "Adds #yPowers to your hand at the start of turn, and #yChannels #yLightning when #yEvoked."]
 },
 "theDuelist:SummonerBottle": {
         "NAME": "Bottled Summoner",
@@ -97,11 +97,11 @@
 },
 "theDuelist:MudBottle": {
         "NAME": "Goopbottle",
-        "DESCRIPTIONS": ["#yChannel a #yMud.", "#yChannel #b", " #yMud Orbs.", "Applies #yPoison to random enemies at the start of turn, and gives the player #yThorns when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yMud.", "#yChannel #b", " #yMud Orbs.", "Applies #yPoison to ALL enemies at the start of turn, and gives the player #yThorns when #yEvoked."]
 },
 "theDuelist:BufferBottle": {
         "NAME": "Ojama Bottle",
-        "DESCRIPTIONS": ["#yChannel a #yBuffer.", "#yChannel #b", " #yBuffer Orbs.", "Potentially increases all your current #yBuffs at the start of turn, and gives random #yBuffs when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yBuffer.", "#yChannel #b", " #yBuffer Orbs.", "Potentially increases all your current #yBuffs at the start of turn, and gives #yBuffer when #yEvoked."]
 },
 "theDuelist:TributeBottle": {
         "NAME": "Magic Bottle",
@@ -145,7 +145,63 @@
 },
 "theDuelist:TokenPotionB": {
         "NAME": "Bottled Summons",
-        "DESCRIPTIONS": ["#ySummon #b", " Tokens."]
+        "DESCRIPTIONS": ["#ySummon #b", " Potion Tokens."]
+},
+"theDuelist:DragonSoulPotion": {
+        "NAME": "Dragon Souls",
+        "DESCRIPTIONS": ["#yResummon #b", " random #yDragons on random enemies."]
+},
+"theDuelist:BottledKuriboh": {
+        "NAME": "Bottled Kuriboh",
+        "DESCRIPTIONS": ["#yIncrement #b", "."]
+},
+"theDuelist:SummonFuryPotion": {
+        "NAME": "Summoner's Fury",
+        "DESCRIPTIONS": ["Gain #b", " #yStrength and #yDexterity. Reduce your #yMax #ySummons by #b", "."]
+},
+"theDuelist:SummonArmorPotion": {
+        "NAME": "Summoner's Armor",
+        "DESCRIPTIONS": ["Gain #b", " #yBlock. Reduce your #yMax #ySummons by #b", ". Affected by #yDexterity."]
+},
+"theDuelist:DebuffFuryPotion": {
+        "NAME": "Debuff Fury",
+        "DESCRIPTIONS": ["Gain #b", " #yStrength and #yDexterity. Gain a #b", " turn random debuff."]
+},
+"theDuelist:DebuffArmorPotion": {
+        "NAME": "Debuff Armor",
+        "DESCRIPTIONS": ["Gain #b", " #yBlock. Gain a #b", " turn random debuff."]
+},
+"theDuelist:DuelistPosionPotion": {
+        "NAME": "Summoner's Vial",
+        "DESCRIPTIONS": ["Apply #b", " #yPoison to ALL enemies. Reduce your #yMax #ySummons by #b", "."]
+},
+"theDuelist:DebuffPosionPotion": {
+        "NAME": "Debuff Vial",
+        "DESCRIPTIONS": ["Apply #b", " #yPoison to ALL enemies. Gain a #b", " turn random debuff."]
+},
+"theDuelist:ReducerPotion": {
+        "NAME": "Imperial Potion",
+        "DESCRIPTIONS": ["Gain #b", " #yReductionist. Reduce your #yMax #ySummons by #b", "."]
+},
+"theDuelist:BarricadePotion": {
+        "NAME": "Barricade Potion",
+        "DESCRIPTIONS": ["Gain #yBarricade. Reduce your #yMax #ySummons by #b", "."]
+},
+"theDuelist:MayhemPotion": {
+        "NAME": "Mayhem Potion",
+        "DESCRIPTIONS": ["Gain #b", " #yMayhem. Reduce your #yMax #ySummons by #b", "."]
+},
+"theDuelist:MetallicizePotion": {
+        "NAME": "Metallicize Potion",
+        "DESCRIPTIONS": ["Gain #b", " #yMetallicize. Reduce your #yMax #ySummons by #b", "."]
+},
+"theDuelist:GiftPotion": {
+        "NAME": "Fairy's Gift",
+        "DESCRIPTIONS": ["Gain #b", " #yRegen. Heal #b", " HP."]
+},
+"theDuelist:WhiteBottle": {
+        "NAME": "White Potion",
+        "DESCRIPTIONS": ["#yChannel a #yWhite.", "#yChannel #b", " #yWhite Orbs.", "#yUpgrades Spells and Traps when you draw them, and all cards in your hand when #yEvoked."]
 },
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",

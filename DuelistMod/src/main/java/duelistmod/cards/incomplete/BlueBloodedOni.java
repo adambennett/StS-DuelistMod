@@ -3,12 +3,14 @@ package duelistmod.cards.incomplete;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -49,6 +51,7 @@ public class BlueBloodedOni extends DuelistCard
     {
     	summon();
     	block(this.block);
+    	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(BaseGameHelper.getBlueCard(), 0));
     }
 
     // Which card to return when making a copy of this card.

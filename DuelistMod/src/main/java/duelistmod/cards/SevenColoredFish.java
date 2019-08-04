@@ -8,12 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.relics.AquaRelicB;
 import duelistmod.variables.*;
 
 public class SevenColoredFish extends DuelistCard 
@@ -89,12 +88,17 @@ public class SevenColoredFish extends DuelistCard
             this.initializeDescription();
         }
     }
+    
+    @Override
+    public void customOnTribute(DuelistCard tc)
+    {
+    	if (tc instanceof LegendaryFisherman) { drawTag(2, Tags.AQUA); }
+    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.originalName.equals("Legendary Fisherman")) { drawTag(2, Tags.AQUA); }
-		aquaSynTrib(tributingCard);
+		
 	}
 	
     // Checking for Monster Zones if the challenge is enabled

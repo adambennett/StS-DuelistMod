@@ -59,7 +59,7 @@ public class ExploderDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, new ExplosiveToken("Exploding Token"));
+    	summon(p, this.summons, new ExplosiveToken());
     	attack(m, this.baseAFX, this.damage);
     }
 

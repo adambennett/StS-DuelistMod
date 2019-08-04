@@ -1,18 +1,17 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.actions.unique.AcidTrapHoleAction;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class AcidTrapHole extends DuelistCard 
@@ -31,7 +30,6 @@ public class AcidTrapHole extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
@@ -48,54 +46,10 @@ public class AcidTrapHole extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    
-    	int monstersToPull = this.magicNumber;
-    	ArrayList<AbstractCard> drawPile = player().drawPile.group;
-    	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
-    	ArrayList<AbstractCard> randomMonsters = new ArrayList<AbstractCard>();
-    	ArrayList<DuelistCard> drawPileMonsters = new ArrayList<DuelistCard>();
-    	int damageTotal = 0;
-    	
-    	for (AbstractCard c : drawPile)
-    	{
-    		if (c.hasTag(Tags.MONSTER))
-    		{
-    			drawPileMonsters.add((DuelistCard)c);
-    			if (DuelistMod.debug) { System.out.println("theDuelist:AcidTrapHole:use() ---> added " + c.originalName + " to drawPileMonsters"); }
-    		}
-    	}
-    	
-    	if (!(drawPileMonsters.size() > this.magicNumber))
-    	{
-    		monstersToPull = drawPileMonsters.size();
-    		if (DuelistMod.debug) { System.out.println("theDuelist:AcidTrapHole:use() ---> monstersToPull set to drawPileMonsters.size()"); }
-    	}
-    	
-    	for (int i = 0; i < monstersToPull; i++)
-    	{
-    		DuelistCard random = returnRandomFromArray(drawPileMonsters);
-    		while (randomMonsters.contains(random)) { random = returnRandomFromArray(drawPileMonsters); }
-    		randomMonsters.add(random);
-    		if (DuelistMod.debug) { System.out.println("theDuelist:AcidTrapHole:use() ---> added " + random.originalName + " to randomMonsters"); }
-    	}
-    	
-    	for (int i = 0; i < randomMonsters.size(); i++)
-    	{
-    		damageTotal += randomMonsters.get(i).baseDamage;
-			toDiscard.add(randomMonsters.get(i)); 
-			if (DuelistMod.debug) { System.out.println("theDuelist:AcidTrapHole:use() ---> added " + randomMonsters.get(i).originalName + " to toDiscard :: damageTotal increased by: " + randomMonsters.get(i).baseDamage); }
-    	}
-
-    	for (AbstractCard c : toDiscard)
-    	{
-    		AbstractDungeon.player.drawPile.moveToDiscardPile(c);
-    		if (DuelistMod.debug) { System.out.println("theDuelist:AcidTrapHole:use() ---> moved " + c.originalName + " to discard pile"); }
-        	   		
-    	}
-    	this.baseDamage = this.damage = damageTotal;
-    	if (this.damage > 0) { attack(m, AFX, this.damage); }
+    	AbstractDungeon.actionManager.addToTop(new AcidTrapHoleAction(m, new DamageInfo(player(), 0, damageTypeForTurn), AttackEffect.SLASH_DIAGONAL, this.magicNumber));
     }
-
+    
+    
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

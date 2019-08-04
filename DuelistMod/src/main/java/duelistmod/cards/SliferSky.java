@@ -42,7 +42,7 @@ public class SliferSky extends DuelistCard
         this.tags.add(Tags.GOD);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 5;
         this.misc = 0;
         this.baseMagicNumber = this.magicNumber = 2;
 		this.originalName = this.name;
@@ -67,7 +67,8 @@ public class SliferSky extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(1);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

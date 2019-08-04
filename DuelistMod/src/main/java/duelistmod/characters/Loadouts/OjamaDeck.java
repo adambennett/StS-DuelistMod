@@ -9,7 +9,7 @@ public class OjamaDeck extends DuelistCustomLoadout
 {
     public OjamaDeck()
     {
-        this.ID = 11;
+        this.ID = 16;
         this.Name = DuelistMod.ojamaDeckString;
     }
 

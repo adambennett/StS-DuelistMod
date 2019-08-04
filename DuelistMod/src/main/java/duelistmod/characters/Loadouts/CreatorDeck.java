@@ -9,7 +9,7 @@ public class CreatorDeck extends DuelistCustomLoadout
 {
     public CreatorDeck()
     {
-        this.ID = 10;
+        this.ID = 15;
         this.Name = DuelistMod.creatorDeckString;
         this.cardCount = "10 Cards";
     }

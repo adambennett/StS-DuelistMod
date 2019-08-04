@@ -58,14 +58,17 @@ public class MythicalBeast extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.secondMagic = this.baseSecondMagic = (DuelistMod.spellCombatCount * this.magicNumber) + this.damage;	
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.secondMagic = this.baseSecondMagic = (DuelistMod.spellCombatCount * this.magicNumber);	
+			}
+			else
+			{
+				this.secondMagic = 0;
+			}			
 		}
-		else
-		{
-			this.secondMagic = 0;
-		}			
 	}
 
     @Override

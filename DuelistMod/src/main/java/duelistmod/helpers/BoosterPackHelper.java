@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.DestructPotion;
@@ -27,11 +28,14 @@ public class BoosterPackHelper
 	public static ArrayList<AbstractCard> nonCommon = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> orbs = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> spells = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> rareSpells = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> traps = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> rareTraps = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> monsters = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> powers = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> attacks = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> skills = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> rareSpellcasters = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> commonSkills = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> commonAttacks = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> commonPowers = new ArrayList<AbstractCard>();
@@ -44,6 +48,8 @@ public class BoosterPackHelper
 	public static ArrayList<AbstractCard> rarePowers = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> summons = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> deckTyped = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> rareSummons = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> rareDeckTyped = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> dragons = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> rareDragons = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> exodia = new ArrayList<AbstractCard>();
@@ -51,6 +57,7 @@ public class BoosterPackHelper
 	public static ArrayList<AbstractCard> rareAttacks = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> special = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> fullPool = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> fullPoolNonCommon = new ArrayList<AbstractCard>();
 	private static ArrayList<ArrayList<AbstractCard>> lists = new ArrayList<ArrayList<AbstractCard>>();
 	
 	public static void resetPackSizes()
@@ -94,493 +101,291 @@ public class BoosterPackHelper
 		lists.add(rareAttacks);		//
 		lists.add(special);			//
 		lists.add(fullPool);		//
+		lists.add(fullPoolNonCommon);
+		lists.add(rareSpellcasters);
+		lists.add(rareDeckTyped);
+		lists.add(rareSummons);
+	}
+	
+	public static ArrayList<AbstractCard> getRandomCards(ArrayList<AbstractCard> fillFrom, int amountToPull)
+	{
+		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		toReturn.addAll(fillFrom);
+		if (amountToPull < 0) { amountToPull = 0; }
+		while (toReturn.size() > amountToPull) { toReturn.remove(AbstractDungeon.cardRandomRng.random(toReturn.size() - 1)); }
+		return toReturn;
+	}
+	
+	public static ArrayList<AbstractCard> findNonMatching(ArrayList<AbstractCard> pool, ArrayList<AbstractCard> filledSoFar)
+	{
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		for (AbstractCard c : filledSoFar)
+		{
+			names.add(c.name);
+		}
+		for (AbstractCard c : pool)
+		{
+			if (!names.contains(c.name)) { toReturn.add(c); }
+		}
+		
+		return toReturn;
 	}
 	
 	public static ArrayList<AbstractCard> skillBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = commonSkills;
-		for (int i = 0; i < normalPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
-		
-		int randIndex = AbstractDungeon.cardRandomRng.random(nonCommonSkills.size() - 1);
-		AbstractCard randCard = nonCommonSkills.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(nonCommonSkills.size() - 1); randCard = nonCommonSkills.get(randIndex); }
-		picked.add(randCard.name); toReturn.add(randCard);
+		Util.log("Skill Booster Pack -- commonSkills.size()==" + commonSkills.size() + ", nonCommonSkills.size()==" + nonCommonSkills.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(commonSkills, normalPackSize - 1);		
+		toReturn.addAll(getRandomCards(nonCommonSkills, 1));
 		return toReturn;
 	}
 	
 	public static ArrayList<AbstractCard> attackBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = commonAttacks;
-		for (int i = 0; i < normalPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
-		
-		int randIndex = AbstractDungeon.cardRandomRng.random(nonCommonAttacks.size() - 1);
-		AbstractCard randCard = nonCommonAttacks.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(nonCommonAttacks.size() - 1); randCard = nonCommonAttacks.get(randIndex); }
-		picked.add(randCard.name); toReturn.add(randCard);
+		Util.log("Attack Booster Pack -- commonAttacks.size()==" + commonAttacks.size() + ", nonCommonAttacks.size()==" + nonCommonAttacks.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(commonAttacks, normalPackSize - 1);		
+		toReturn.addAll(getRandomCards(nonCommonAttacks, 1));
 		return toReturn;
 	}
 	
 	public static ArrayList<AbstractCard> rareSkillBoosterPack()
 	{
+		Util.log("Rare Skill Booster Pack -- nonRareSkills.size()==" + nonRareSkills.size() + ", rareSkills.size()==" + rareSkills.size());
 		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = nonRareSkills;
-		for (int i = 0; i < normalPackSize - 2; i++)
+		if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
 		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
+			toReturn.addAll(getRandomCards(nonRareSkills, normalPackSize - 3));		
+			toReturn.addAll(getRandomCards(rareSkills, 3));
 		}
-		
-		int randIndex = AbstractDungeon.cardRandomRng.random(rareSkills.size() - 1);
-		AbstractCard randCard = rareSkills.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(rareSkills.size() - 1); randCard = rareSkills.get(randIndex); }
-		picked.add(randCard.name); toReturn.add(randCard);
-		
-		randIndex = AbstractDungeon.cardRandomRng.random(rareSkills.size() - 1);
-		randCard = rareSkills.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(rareSkills.size() - 1); randCard = rareSkills.get(randIndex); }
-		picked.add(randCard.name); toReturn.add(randCard);
+		else
+		{
+			toReturn.addAll(getRandomCards(nonRareSkills, normalPackSize - 2));		
+			toReturn.addAll(getRandomCards(rareSkills, 2));
+		}
 		return toReturn;
 	}
 	
 	public static ArrayList<AbstractCard> rareAttackBoosterPack()
 	{
+		Util.log("Rare Attack Booster Pack -- nonRareAttacks.size()==" + nonRareAttacks.size() + ", rareAttacks.size()==" + rareAttacks.size());
 		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = nonRareAttacks;
-		for (int i = 0; i < normalPackSize - 2; i++)
+		if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
 		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
+			toReturn.addAll(getRandomCards(nonRareAttacks, normalPackSize - 3));		
+			toReturn.addAll(getRandomCards(rareAttacks, 3));
 		}
-		
-		int randIndex = AbstractDungeon.cardRandomRng.random(rareAttacks.size() - 1);
-		AbstractCard randCard = rareAttacks.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(rareAttacks.size() - 1); randCard = rareAttacks.get(randIndex); }
-		picked.add(randCard.name); toReturn.add(randCard);
-		
-		randIndex = AbstractDungeon.cardRandomRng.random(rareAttacks.size() - 1);
-		randCard = rareAttacks.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(rareAttacks.size() - 1); randCard = rareAttacks.get(randIndex); }
-		picked.add(randCard.name); toReturn.add(randCard);
+		else
+		{
+			toReturn.addAll(getRandomCards(nonRareAttacks, normalPackSize - 2));		
+			toReturn.addAll(getRandomCards(rareAttacks, 2));
+		}
 		return toReturn;
 	}
 	
 	public static ArrayList<AbstractCard> commonBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = commons;
-		for (int i = 0; i < normalPackSize; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
+		Util.log("Common Booster Pack -- commons.size()==" + commons.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(commons, normalPackSize);
 		return toReturn;
 	}
 	
 
 	public static ArrayList<AbstractCard> orbBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom;
+		Util.log("Orb/Exodia Booster Pack -- exodia.size()==" + exodia.size() + ", orbs.size()==" + orbs.size());
 		int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-		if (roll == 1 || !DuelistMod.exodiaBtnBool) { pullFrom = exodia; }
-		else { pullFrom = orbs; }
-		for (int i = 0; i < normalPackSize; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
+		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		if (roll == 1 && !DuelistMod.exodiaBtnBool) { toReturn = getRandomCards(exodia, normalPackSize); }
+		else { toReturn = getRandomCards(orbs, normalPackSize); }
 		return toReturn;
 	}
 	
 
 	public static ArrayList<AbstractCard> uncommonBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = commons;
-		
-		// Commons - 4
-		for (int i = 0; i < 4; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
-		
-		// Uncommon - 1
-		int randIndex = AbstractDungeon.cardRandomRng.random(uncommons.size() - 1);
-		AbstractCard randCard = uncommons.get(randIndex);
-		toReturn.add(randCard); picked.add(randCard.name);
-
+		Util.log("Uncommon Booster Pack -- commons.size()==" + commons.size() + ", uncommons.size()==" + uncommons.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(commons, normalPackSize - 1);		
+		toReturn.addAll(getRandomCards(uncommons, 1));
 		return toReturn;
 	}
 	
+	public static ArrayList<AbstractCard> uncommonBoosterPackB()
+	{
+		Util.log("Debug uncommon pack..");
+		return new ArrayList<AbstractCard>();
+	}
 	
 	public static ArrayList<AbstractCard> allUncommonBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = uncommons;
-		for (int i = 0; i < normalPackSize; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-			Util.log("Added " + randCard.name + " to all uncommons booster");
-		}
+		Util.log("All Uncommon Booster Pack -- uncommons.size()==" + uncommons.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(uncommons, normalPackSize);
 		return toReturn;
 	}
 	
 
 	public static ArrayList<AbstractCard> multitypeBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		
-		// Monsters - 2
-		int randIndex = AbstractDungeon.cardRandomRng.random(monsters.size() - 1);
-		AbstractCard randCard = monsters.get(randIndex);
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		randIndex = AbstractDungeon.cardRandomRng.random(monsters.size() - 1);
-		randCard = monsters.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(monsters.size() - 1); randCard = monsters.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		// Spells - 2
-		randIndex = AbstractDungeon.cardRandomRng.random(spells.size() - 1);
-		randCard = spells.get(randIndex);
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		randIndex = AbstractDungeon.cardRandomRng.random(spells.size() - 1);
-		randCard = spells.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(spells.size() - 1); randCard = spells.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		// Trap - 1
-		randIndex = AbstractDungeon.cardRandomRng.random(traps.size() - 1);
-		randCard = traps.get(randIndex);
-		toReturn.add(randCard); picked.add(randCard.name);
-		
+		Util.log("Multitype Booster Pack -- monsters.size()==" + monsters.size() + ", spells.size()==" + spells.size() + ", traps.size()==" + traps.size());
+		int extra = normalPackSize - 5;
+		if (extra < 1) { extra = 0; }
+ 		ArrayList<AbstractCard> toReturn = getRandomCards(monsters, 2 + extra);	// 2 monsters + any extra cards that got added to the pack size
+		toReturn.addAll(getRandomCards(spells, 2));								// 2 spells
+		toReturn.addAll(getRandomCards(traps, 1));								// 1 trap
 		return toReturn;
 	}
 	
 
 	public static ArrayList<AbstractCard> rareBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = commons;
-		
-		// Common - 3
-		for (int i = 0; i < 3; i++)
+		Util.log("Rare Booster Pack -- commons.size()==" + commons.size() + ", rares.size()==" + rares.size() + ", nonCommon.size()==" + nonCommon.size());
+		int extra = normalPackSize - 5;
+		if (extra < 1) { extra = 0; }
+		if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
 		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
+			ArrayList<AbstractCard> toReturn = getRandomCards(commons, 1 + extra);	// 1 common + any extra cards that got added to the pack size
+			toReturn.addAll(getRandomCards(nonCommon, 3));							// 2 uncommon/rare
+			ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+			toReturn.addAll(getRandomCards(newRares, 1));							// 1 rare (making sure to elimate possible crossover between non-common and rares to give 1 unique rare for sure)
+			return toReturn;
 		}
-		
-		// Rare - 1
-		int randIndex = AbstractDungeon.cardRandomRng.random(rares.size() - 1);
-		AbstractCard randCard = rares.get(randIndex);
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		// Uncommon/Rare - 1
-		randIndex = AbstractDungeon.cardRandomRng.random(nonCommon.size() - 1);
-		randCard = nonCommon.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(nonCommon.size() - 1); randCard = nonCommon.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		return toReturn;
+		else
+		{
+	 		ArrayList<AbstractCard> toReturn = getRandomCards(commons, 3 + extra);	// 3 commons + any extra cards that got added to the pack size
+			toReturn.addAll(getRandomCards(nonCommon, 1));							// 1 uncommon/rare
+			ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+			toReturn.addAll(getRandomCards(newRares, 1));							// 1 rare (making sure to elimate possible crossover between non-common and rares to give 1 unique rare for sure)
+			return toReturn;
+		}
 	}
 	
 	
 	public static ArrayList<AbstractCard> powerBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = powers;
-		for (int i = 0; i < normalPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
-		
-		// 1 Rare Power
-		int randIndex = AbstractDungeon.cardRandomRng.random(rarePowers.size() - 1);
-		AbstractCard randCard = rarePowers.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(rarePowers.size() - 1); randCard = rarePowers.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		
+		Util.log("Power Booster Pack -- powers.size()==" + powers.size() + ", rarePowers.size()==" + rarePowers.size());
+ 		ArrayList<AbstractCard> toReturn = getRandomCards(powers, normalPackSize);							
 		return toReturn;
 	}
 	
-
 	public static ArrayList<AbstractCard> rarePowerBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = rarePowers;
-		for (int i = 0; i < normalPackSize; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
+		Util.log("Rare Power Booster Pack -- rarePowers.size()==" + rarePowers.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(rarePowers, normalPackSize);		
 		return toReturn;
 	}
 	
-
 	public static ArrayList<AbstractCard> sillyBoosterPack()
 	{
+		Util.log("Silly Booster Pack -- fullPool.size()==" + fullPool.size());
 		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
 		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = fullPool;
-		
-		// 5 Totally Random
-		for (int i = 0; i < normalPackSize; i++)
+
+		// No commons appear with N'loth's Gift
+		if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
 		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
+			ArrayList<AbstractCard> pullFrom = fullPoolNonCommon;
+			// 5 Totally Random
+			for (int i = 0; i < normalPackSize; i++)
+			{
+				int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
+				AbstractCard randCard = pullFrom.get(randIndex);
+				while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
+				picked.add(randCard.name); toReturn.add(randCard);
+			}
+			return toReturn;
+		}
+		else
+		{
+			ArrayList<AbstractCard> pullFrom = fullPool;
+			// 5 Totally Random
+			for (int i = 0; i < normalPackSize; i++)
+			{
+				int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
+				AbstractCard randCard = pullFrom.get(randIndex);
+				while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
+				picked.add(randCard.name); toReturn.add(randCard);
+			}
+			
+			return toReturn;
 		}
 		
-		return toReturn;
 	}
 	
 
 	public static ArrayList<AbstractCard> allRaresBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = rares;
-		for (int i = 0; i < normalPackSize; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
+		Util.log("All Rares Booster Pack -- rares.size()==" + rares.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(rares, normalPackSize);		
 		return toReturn;
 	}
 
-	
-	public static ArrayList<AbstractCard> fatUncommonBoosterPack()
-	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = nonRares;
-		for (int i = 0; i < fatPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
-		int randIndex = AbstractDungeon.cardRandomRng.random(uncommons.size() - 1);
-		AbstractCard randCard = uncommons.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(uncommons.size() - 1); randCard = uncommons.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		return toReturn;
-	}
-	
-
-	public static ArrayList<AbstractCard> fatRareBoosterPack()
-	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		ArrayList<AbstractCard> pullFrom = nonRares;
-		
-		// Uncommon/Common - 3
-		for (int i = 0; i < 3; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			AbstractCard randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
-		
-		// Uncommon - 1
-		int randIndex = AbstractDungeon.cardRandomRng.random(uncommons.size() - 1);
-		AbstractCard randCard = uncommons.get(randIndex);
-		while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(uncommons.size() - 1); randCard = uncommons.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		// Rare - 1
-		randIndex = AbstractDungeon.cardRandomRng.random(rares.size() - 1);
-		randCard = rares.get(randIndex);
-		toReturn.add(randCard); picked.add(randCard.name);
-		
-		// Uncommon/Rare - 2
-		pullFrom = nonCommon;
-		for (int i = 0; i < 2; i++)
-		{
-			randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1);
-			randCard = pullFrom.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(pullFrom.size() - 1); randCard = pullFrom.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-		}
-		
-		return toReturn;
-	}
 	
 	// Bonus
 	public static ArrayList<AbstractCard> spellsBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		for (int i = 0; i < bonusPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(spells.size() - 1);
-			AbstractCard randCard = spells.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(spells.size() - 1); randCard = spells.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-			Util.log("Added " + randCard.name + " to spells booster in loop");
-		}
-		
-		// 1 Rare Spell
-		int randIndex = AbstractDungeon.cardRandomRng.random(spells.size() - 1);
-		AbstractCard randCard = spells.get(randIndex);
-		while (picked.contains(randCard.name) || !randCard.rarity.equals(CardRarity.RARE)) { randIndex = AbstractDungeon.cardRandomRng.random(spells.size() - 1); randCard = spells.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		Util.log("Added " + randCard.name + " to spells booster");
-		
+		Util.log("Spells Bonus Booster Pack -- spells.size()==" + spells.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(spells, bonusPackSize - 1);	
+		ArrayList<AbstractCard> newRares = findNonMatching(rareSpells, toReturn);
+		toReturn.addAll(getRandomCards(newRares, 1));							
 		return toReturn;
 	}
 	
 	// Bonus
 	public static ArrayList<AbstractCard> trapsBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		for (int i = 0; i < bonusPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(traps.size() - 1);
-			AbstractCard randCard = traps.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(traps.size() - 1); randCard = traps.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-			Util.log("Added " + randCard.name + " to traps booster in loop");
-		}
-		
-		// 1 Rare Trap
-		int randIndex = AbstractDungeon.cardRandomRng.random(traps.size() - 1);
-		AbstractCard randCard = traps.get(randIndex);
-		while (picked.contains(randCard.name) || !randCard.rarity.equals(CardRarity.RARE)) { randIndex = AbstractDungeon.cardRandomRng.random(traps.size() - 1); randCard = traps.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		Util.log("Added " + randCard.name + " to traps booster");
-		
+		Util.log("Traps Bonus Booster Pack -- traps.size()==" + traps.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(traps, bonusPackSize - 1);	
+		ArrayList<AbstractCard> newRares = findNonMatching(rareTraps, toReturn);
+		toReturn.addAll(getRandomCards(newRares, 1));							
 		return toReturn;
 	}
 	
 	// Bonus
 	public static ArrayList<AbstractCard> summonsBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		for (int i = 0; i < bonusPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(summons.size() - 1);
-			AbstractCard randCard = summons.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(summons.size() - 1); randCard = summons.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-			Util.log("Added " + randCard.name + " to summons booster");
-		}
-		
-		// 1 Rare Summons Card
-		int randIndex = AbstractDungeon.cardRandomRng.random(summons.size() - 1);
-		AbstractCard randCard = summons.get(randIndex);
-		while (picked.contains(randCard.name) || !randCard.rarity.equals(CardRarity.RARE)) { randIndex = AbstractDungeon.cardRandomRng.random(summons.size() - 1); randCard = summons.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		Util.log("Added " + randCard.name + " to summons booster");
-		
+		Util.log("Summons Bonus Booster Pack -- summons.size()==" + summons.size() + ", rareSummons.size()==" + rareSummons.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(summons, bonusPackSize - 1);	
+		ArrayList<AbstractCard> newRares = findNonMatching(rareSummons, toReturn);
+		toReturn.addAll(getRandomCards(newRares, 1));							
 		return toReturn;
 	}
 	
 	// Bonus
 	public static ArrayList<AbstractCard> dragonsBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		for (int i = 0; i < bonusPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(dragons.size() - 1);
-			AbstractCard randCard = dragons.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(dragons.size() - 1); randCard = dragons.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-			Util.log("Added " + randCard.name + " to dragons booster");
-		}
-		
-		// 1 Rare Dragon
-		int randIndex = AbstractDungeon.cardRandomRng.random(dragons.size() - 1);
-		AbstractCard randCard = dragons.get(randIndex);
-		while (picked.contains(randCard.name) || !randCard.rarity.equals(CardRarity.RARE)) { randIndex = AbstractDungeon.cardRandomRng.random(dragons.size() - 1); randCard = dragons.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		Util.log("Added " + randCard.name + " to dragons booster");
-		
+		Util.log("Dragons Bonus Booster Pack -- dragons.size()==" + dragons.size() + ", rareDragons.size()==" + rareDragons.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(dragons, bonusPackSize - 1);	
+		ArrayList<AbstractCard> newRares = findNonMatching(rareDragons, toReturn);
+		toReturn.addAll(getRandomCards(newRares, 1));							
 		return toReturn;
 	}
 
 	// Bonus
 	public static ArrayList<AbstractCard> rareDragonsBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		for (int i = 0; i < bonusPackSize; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(rareDragons.size() - 1);
-			AbstractCard randCard = rareDragons.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(rareDragons.size() - 1); randCard = rareDragons.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-			Util.log("Added " + randCard.name + " to rare dragons booster");
-		}
+		Util.log("Rare Dragon Booster Pack -- rareDragons.size()==" + rareDragons.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(rareDragons, bonusPackSize);		
+		return toReturn;
+	}
+	
+	// Bonus
+	public static ArrayList<AbstractCard> rareSpellcasterBoosterPack()
+	{
+		Util.log("Rare Spellcaster Booster Pack -- rareSpellcasters.size()==" + rareSpellcasters.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(rareSpellcasters, bonusPackSize);		
 		return toReturn;
 	}
 	
 	// Bonus
 	public static ArrayList<AbstractCard> specialBoosterPack()
 	{
+		int loops = 10;
 		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
 		ArrayList<String> picked = new ArrayList<String>();
 		for (int i = 0; i < bonusPackSize; i++)
 		{
 			int randIndex = AbstractDungeon.cardRandomRng.random(special.size() - 1);
 			AbstractCard randCard = special.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(special.size() - 1); randCard = special.get(randIndex); }
+			while (picked.contains(randCard.name) && loops > 0) { loops--; randIndex = AbstractDungeon.cardRandomRng.random(special.size() - 1); randCard = special.get(randIndex); }
 			picked.add(randCard.name); toReturn.add(randCard);
 			Util.log("Added " + randCard.name + " to special booster");
 		}
@@ -590,31 +395,17 @@ public class BoosterPackHelper
 	// Bonus
 	public static ArrayList<AbstractCard> deckBoosterPack()
 	{
-		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
-		ArrayList<String> picked = new ArrayList<String>();
-		for (int i = 0; i < bonusPackSize - 1; i++)
-		{
-			int randIndex = AbstractDungeon.cardRandomRng.random(deckTyped.size() - 1);
-			AbstractCard randCard = deckTyped.get(randIndex);
-			while (picked.contains(randCard.name)) { randIndex = AbstractDungeon.cardRandomRng.random(deckTyped.size() - 1); randCard = deckTyped.get(randIndex); }
-			picked.add(randCard.name); toReturn.add(randCard);
-			Util.log("Added " + randCard.name + " to deck booster");
-		}
-		
-		// 1 Rare Deck Type Card
-		int randIndex = AbstractDungeon.cardRandomRng.random(deckTyped.size() - 1);
-		AbstractCard randCard = deckTyped.get(randIndex);
-		while (picked.contains(randCard.name) || !randCard.rarity.equals(CardRarity.RARE)) { randIndex = AbstractDungeon.cardRandomRng.random(deckTyped.size() - 1); randCard = traps.get(randIndex); }
-		toReturn.add(randCard); picked.add(randCard.name);
-		Util.log("Added " + randCard.name + " to deck booster");
-		
+		Util.log("Deck Bonus Booster Pack -- deckTyped.size()==" + deckTyped.size() + ", rareDeckTyped.size()==" + rareDeckTyped.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(deckTyped, bonusPackSize - 1);	
+		ArrayList<AbstractCard> newRares = findNonMatching(rareDeckTyped, toReturn);
+		toReturn.addAll(getRandomCards(newRares, 1));							
 		return toReturn;
 	}
 
 	private static void setupOrbsPack()
 	{
-		orbs = new ArrayList<AbstractCard>();
-		for (AbstractCard c : DuelistMod.orbCards) { orbs.add(c.makeCopy()); }
+		orbs.clear();
+		orbs.addAll(DuelistCardLibrary.orbCardsForGeneration());
 	}
 	
 	private static void clearLists()
@@ -647,6 +438,11 @@ public class BoosterPackHelper
 		commonPowers = new ArrayList<AbstractCard>();
 		commonSkills = new ArrayList<AbstractCard>();
 		commonAttacks = new ArrayList<AbstractCard>();
+		rareSpellcasters = new ArrayList<AbstractCard>();
+		rareDeckTyped = new ArrayList<AbstractCard>();
+		rareSummons = new ArrayList<AbstractCard>();
+		fullPool = new ArrayList<AbstractCard>();
+		fullPoolNonCommon = new ArrayList<AbstractCard>();
 	}
 	
 	private static void setupSpecialList()
@@ -698,6 +494,8 @@ public class BoosterPackHelper
 				{
 					deckTyped.add(c.makeStatEquivalentCopy());
 					added.add(c.name);
+					if (c.rarity.equals(CardRarity.RARE)) { rareDeckTyped.add(c.makeStatEquivalentCopy()); Util.log("Added " + c.name + " to Rare Deck Booster");}
+					Util.log("Added " + c.name + " to Deck Booster");
 				}
 			}
 		}
@@ -725,19 +523,24 @@ public class BoosterPackHelper
 					}
 				}
 				
+				if (c.hasTag(Tags.SPELLCASTER) && c.rarity.equals(CardRarity.RARE))
+				{
+					rareSpellcasters.add(c.makeStatEquivalentCopy());
+				}
+				
 				if (c.hasTag(Tags.EXODIA))
 				{
 					exodia.add(c.makeStatEquivalentCopy());
 				}
 				
 				fullPool.add(c.makeStatEquivalentCopy()); 
+				if (!c.rarity.equals(CardRarity.COMMON)) { fullPoolNonCommon.add(c.makeStatEquivalentCopy());  }
 			}
 		}
 		
 		for (AbstractCard c : DuelistMod.coloredCards)
 		{
 			boolean okToAdd = true;
-			int counter = 1;
 			if (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL)) { okToAdd = false; }
 			if (okToAdd)
 			{
@@ -763,11 +566,31 @@ public class BoosterPackHelper
 						nonRareAttacks.add(c.makeStatEquivalentCopy());						
 						commonAttacks.add(c.makeStatEquivalentCopy());						
 					}
+					
+					if (c.hasTag(Tags.SPELL))
+					{
+						spells.add(c.makeStatEquivalentCopy());
+					}
+					
+					if (c.hasTag(Tags.TRAP))
+					{
+						traps.add(c.makeStatEquivalentCopy());
+					}
+					
+					if (c.hasTag(Tags.MONSTER))
+					{
+						monsters.add(c.makeStatEquivalentCopy());
+						DuelistCard dc = (DuelistCard)c;
+						if (dc.summons > 0)
+						{
+							summons.add(c.makeStatEquivalentCopy());
+						}
+					}
 				}
 				
 				if (c.rarity.equals(CardRarity.UNCOMMON))
 				{
-					uncommons.add(c.makeStatEquivalentCopy()); Util.log("Added [" + counter + "]: " + c.name + " to uncommons"); counter++;
+					uncommons.add(c.makeStatEquivalentCopy());
 					nonCommon.add(c.makeStatEquivalentCopy());
 					nonRares.add(c.makeStatEquivalentCopy());
 					if (c.type.equals(CardType.POWER))
@@ -786,8 +609,27 @@ public class BoosterPackHelper
 					{
 						attacks.add(c.makeStatEquivalentCopy());						
 						nonRareAttacks.add(c.makeStatEquivalentCopy());						
-						nonCommonAttacks.add(c.makeStatEquivalentCopy());						
-						commonAttacks.add(c.makeStatEquivalentCopy());						
+						nonCommonAttacks.add(c.makeStatEquivalentCopy());											
+					}
+					
+					if (c.hasTag(Tags.SPELL))
+					{
+						spells.add(c.makeStatEquivalentCopy());
+					}
+					
+					if (c.hasTag(Tags.TRAP))
+					{
+						traps.add(c.makeStatEquivalentCopy());
+					}
+					
+					if (c.hasTag(Tags.MONSTER))
+					{
+						monsters.add(c.makeStatEquivalentCopy());
+						DuelistCard dc = (DuelistCard)c;
+						if (dc.summons > 0)
+						{
+							summons.add(c.makeStatEquivalentCopy());
+						}
 					}
 				}
 				
@@ -813,92 +655,110 @@ public class BoosterPackHelper
 						rareAttacks.add(c.makeStatEquivalentCopy());						
 						nonCommonAttacks.add(c.makeStatEquivalentCopy());						
 					}
-				}
-				
-				if (c.hasTag(Tags.SPELL))
-				{
-					spells.add(c.makeStatEquivalentCopy());
-				}
-				
-				if (c.hasTag(Tags.TRAP))
-				{
-					traps.add(c.makeStatEquivalentCopy());
-				}
-				
-				if (c.hasTag(Tags.MONSTER))
-				{
-					monsters.add(c.makeStatEquivalentCopy());
-					DuelistCard dc = (DuelistCard)c;
-					if (dc.summons > 0)
+					
+					if (c.hasTag(Tags.SPELL))
 					{
-						summons.add(c.makeStatEquivalentCopy());
+						spells.add(c.makeStatEquivalentCopy());
+						rareSpells.add(c.makeStatEquivalentCopy());
+					}
+					
+					if (c.hasTag(Tags.TRAP))
+					{
+						traps.add(c.makeStatEquivalentCopy());
+						rareTraps.add(c.makeStatEquivalentCopy());
+					}
+					
+					if (c.hasTag(Tags.MONSTER))
+					{
+						monsters.add(c.makeStatEquivalentCopy());
+						DuelistCard dc = (DuelistCard)c;
+						if (dc.summons > 0)
+						{
+							summons.add(c.makeStatEquivalentCopy());
+							rareSummons.add(c.makeStatEquivalentCopy());
+						}
 					}
 				}
 			}
 		}
 	}
 	
+	public static RewardItem getBonusBoosterDebug(boolean archetypeDeck)
+	{
+		RewardItem toReturn = new BoosterReward(deckBoosterPack(), "DeckBooster", "Archetype Booster", 6000);
+		if (toReturn.cards.size() < bonusPackSize) { return getBonusBooster(false, archetypeDeck); }
+		return toReturn;
+	}
 	
 	public static RewardItem getBonusBooster(boolean special, boolean archetypeDeck)
 	{
-		RewardItem toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster");
 		int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-		if (!archetypeDeck && roll > 80) { roll = AbstractDungeon.cardRandomRng.random(1, 80); }
+		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll);
 		if (special) { roll = 101; }
-		if (roll <= 15)
+		if (!archetypeDeck)
 		{
-			toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster");
-			for (AbstractCard c : spells)
+			if (roll <= 25)
 			{
-				Util.log("Rolled Spells, printing spells: " + c.name);
+				toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster", roll + 200);
 			}
-		}
-		else if (roll <= 28)
-		{
-			toReturn = new BoosterReward(trapsBoosterPack(), "TrapBooster", "Trap Booster");
-			for (AbstractCard c : traps)
+			else if (roll <= 44)
 			{
-				Util.log("Rolled Traps, printing traps: " + c.name);
+				toReturn = new BoosterReward(trapsBoosterPack(), "TrapBooster", "Trap Booster", roll + 200);
 			}
-		}
-		else if (roll <= 48)
-		{
-			toReturn = new BoosterReward(summonsBoosterPack(), "SummonBooster", "Summons Booster");
-			for (AbstractCard c : summons)
+			else if (roll <= 72)
 			{
-				Util.log("Rolled Summons, printing summons: " + c.name);
+				toReturn = new BoosterReward(summonsBoosterPack(), "SummonBooster", "Summons Booster", roll + 200);
 			}
-		}
-		else if (roll <= 58)
-		{
-			toReturn = new BoosterReward(rareDragonsBoosterPack(), "RareDragons", "Rare Dragon Booster");
-			for (AbstractCard c : rareDragons)
+			else if (roll <= 79)
 			{
-				Util.log("Rolled Rare Dragons, printing rareDragons: " + c.name);
+				toReturn = new BoosterReward(rareDragonsBoosterPack(), "RareDragons", "Rare Dragon Booster", roll + 200);
 			}
-		}
-		else if (roll <= 80)
-		{
-			toReturn = new BoosterReward(dragonsBoosterPack(), "DragonBooster", "Dragon Booster");
-			for (AbstractCard c : dragons)
+			else if (roll <= 86)
 			{
-				Util.log("Rolled Dragons, printing dragons: " + c.name);
+				toReturn = new BoosterReward(rareSpellcasterBoosterPack(), "RareDragons", "Rare Spellcaster Booster", roll + 200);
 			}
-		}
-		else if (roll <= 100)
-		{
-			toReturn = new BoosterReward(deckBoosterPack(), "DeckBooster", "Archetype Booster");
-			for (AbstractCard c : deckTyped)
+			else if (roll <= 100)
 			{
-				Util.log("Rolled Deck, printing deck: " + c.name);
+				toReturn = new BoosterReward(dragonsBoosterPack(), "DragonBooster", "Dragon Booster", roll + 200);
+			}
+			else
+			{
+				toReturn = new BoosterReward(specialBoosterPack(), "SpecialBooster", "Special Booster", roll + 200);
 			}
 		}
 		else
 		{
-			toReturn = new BoosterReward(specialBoosterPack(), "SpecialBooster", "Special Booster");
-			for (AbstractCard c : BoosterPackHelper.special)
+			if (roll <= 21)
 			{
-				Util.log("Rolled Special, printing special: " + c.name);
+				toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster", roll + 200);
+			}
+			else if (roll <= 36)
+			{
+				toReturn = new BoosterReward(trapsBoosterPack(), "TrapBooster", "Trap Booster", roll + 200);
+			}
+			else if (roll <= 60)
+			{
+				toReturn = new BoosterReward(summonsBoosterPack(), "SummonBooster", "Summons Booster", roll + 200);
+			}
+			else if (roll <= 65)
+			{
+				toReturn = new BoosterReward(rareDragonsBoosterPack(), "RareDragons", "Rare Dragon Booster", roll + 200);
+			}
+			else if (roll <= 70)
+			{
+				toReturn = new BoosterReward(rareSpellcasterBoosterPack(), "RareDragons", "Rare Spellcaster Booster", roll + 200);
+			}
+			else if (roll <= 80)
+			{
+				toReturn = new BoosterReward(dragonsBoosterPack(), "DragonBooster", "Dragon Booster", roll + 200);
+			}
+			else if (roll <= 100)
+			{
+				toReturn = new BoosterReward(deckBoosterPack(), "DeckBooster", "Archetype Booster", roll + 200);
+			}
+			else
+			{
+				toReturn = new BoosterReward(specialBoosterPack(), "SpecialBooster", "Special Booster", roll + 200);
 			}
 		}
 		
@@ -910,92 +770,97 @@ public class BoosterPackHelper
 	
 	public static RewardItem getRandomBooster(boolean spellcasterDeck, int roll)
 	{
-		RewardItem toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster");
+		setupPoolsForPacks();
+		if (AbstractDungeon.player.hasRelic(NlothsGift.ID)) { roll+= 36; }
+		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll);
 		if (spellcasterDeck)
 		{
 			// Common - 3%
 			if (roll <= 3)
 			{
-				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster");
+				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster", roll);
 			}
 			
 			// Orb/Exodia - 3%
 			else if (roll <= 6)
 			{
-				toReturn = new BoosterReward(orbBoosterPack(), "OrbBooster", "Orb Booster");
+				toReturn = new BoosterReward(orbBoosterPack(), "OrbBooster", "Orb Booster", roll);
+				boolean exodia = false;
+				for (AbstractCard c : toReturn.cards) { if (c.hasTag(Tags.EXODIA)) { exodia = true; }}
+				if (exodia) { toReturn = new BoosterReward(toReturn.cards, "OrbBooster", "Exodia Booster", roll); }
 			}
 			
 			// Uncommon - 30%
 			else if (roll <= 36)
 			{
-				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster");
+				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster", roll);
 			}
 			
-			// Skill - 13%
-			else if (roll <= 49)
+			// Skill - 10%
+			else if (roll <= 46)
 			{
-				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster");
+				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster", roll);
 			}
 			
-			// Attack - 13%
+			// Attack - 16%
 			else if (roll <= 62)
 			{
-				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster");
+				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster", roll);
 			}
 			
 			// All Uncommon - 10%
 			else if (roll <= 72)
 			{
-				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster");
+				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster", roll);
 			}
 			
 			// Rare - 8%
 			else if (roll <= 80)
 			{
-				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster");
+				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster", roll);
 				
 			}
 			
 			// Multi-Type - 7%
 			else if (roll <= 87)
 			{
-				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster");
+				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster", roll);
 			}
 			
 			// Power - 4%
 			else if (roll <= 91)
 			{
-				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster");
+				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster", roll);
 			}
 			
 			// Rare Skill - 2%
 			else if (roll <= 93)
 			{
-				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster");
+				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster", roll);
 			}
 			
 			// Rare Attack - 2%
 			else if (roll <= 95)
 			{
-				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster");
+				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster", roll);
 			}
 			
 			// Rare Power - 2%
 			else if (roll <= 97)
 			{
-				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster");
+				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster", roll);
 			}
 			
 			// Silly Pack - 2%
 			else if (roll <= 99)
 			{
-				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster");
+				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster", roll);
 			}
 			
 			// All Rares - 1%
 			else if (roll >= 100)
 			{
-				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster");
+				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster", roll);
 			}
 		}
 		else
@@ -1003,80 +868,80 @@ public class BoosterPackHelper
 			// Common - 4%
 			if (roll <= 4)
 			{
-				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster");
+				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster", roll);
 			}
 			
 			// Uncommon - 32%
 			else if (roll <= 32)
 			{
-				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster");
+				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster", roll);
 			}
 			
-			// Skill - 13%
-			else if (roll <= 49)
+			// Skill - 10%
+			else if (roll <= 46)
 			{
-				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster");
+				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster", roll);
 			}
 			
-			// Attack - 13%
+			// Attack - 16%
 			else if (roll <= 62)
 			{
-				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster");
+				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster", roll);
 			}
 			
 			// All Uncommon - 10%
 			else if (roll <= 72)
 			{
-				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster");
+				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster", roll);
 			}
 			
 			// Rare - 8%
 			else if (roll <= 80)
 			{
-				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster");
+				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster", roll);
 				
 			}
 			
 			// Multi-Type - 7%
 			else if (roll <= 87)
 			{
-				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster");
+				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster", roll);
 			}
 			
 			// Power - 4%
 			else if (roll <= 91)
 			{
-				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster");
+				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster", roll);
 			}
 			
 			// Rare Skill - 2%
 			else if (roll <= 93)
 			{
-				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster");
+				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster", roll);
 			}
 			
 			// Rare Attack - 2%
 			else if (roll <= 95)
 			{
-				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster");
+				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster", roll);
 			}
 			
 			// Rare Power - 2%
 			else if (roll <= 97)
 			{
-				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster");
+				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster", roll);
 			}
 			
 			// Silly Pack - 2%
 			else if (roll <= 99)
 			{
-				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster");
+				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster", roll);
 			}
 			
 			// All Rares - 1%
 			else if (roll >= 100)
 			{
-				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster");
+				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster", roll);
 			}
 		}
 		
@@ -1101,8 +966,8 @@ public class BoosterPackHelper
 		boolean archetypeDeck = deckType != null;
 		if (archetypeDeck) { setupDeckPool(deckType); }
 		
-		// If player allows booster packs or always wants them to appear
-		if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
+		// If player allows booster packs or always wants them to appear, but doesn't have card rewards removed
+		if ((DuelistMod.allowBoosters || DuelistMod.alwaysBoosters) && !DuelistMod.removeCardRewards)
 		{
 			// If always appearing, force the roll
 			if (DuelistMod.alwaysBoosters) { lastPackRoll = 7; }
@@ -1165,8 +1030,14 @@ public class BoosterPackHelper
 					// Receive random booster based on deck type and our roll
 					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
 					
+					// Add a 2nd Booster for Prayer Wheel
+					if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) 
+					{
+						AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
+					}
+					
 					// Reset roll chances for next combat
-					lastPackRoll = 0;
+					DuelistMod.lastPackRoll = 0;
 					
 					// Debug log
 					Util.log("Rolled and added a booster pack reward");
@@ -1177,23 +1048,24 @@ public class BoosterPackHelper
 				else
 				{
 					int incRoll = AbstractDungeon.cardRandomRng.random(1, 2);
-					if (incRoll == 1 || eliteVictory) { lastPackRoll++; }
+					if (incRoll == 1 || eliteVictory) { DuelistMod.lastPackRoll++; }
 				}
 				
 				// Receive bonus Spell/Trap pack if we got one
-				if (bonusPackRoll == 1)
+				if ((bonusPackRoll == 1 || eliteVictory) && packRoll != 6)
 				{
-					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getBonusBooster(false, false));
+					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getBonusBooster(false, archetypeDeck));
 					Util.log("Rolled and added a BONUS booster pack reward!");
 				}
 			}
 			
 			// Forced booster roll - same as above just in a different order and doesn't roll to see if we get a booster, always gives one
+			// Bonus Booster chance is decreased
 			else
 			{
 				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-				int bonusPackRoll = AbstractDungeon.cardRandomRng.random(1, 25);
-				if (AbstractDungeon.player.hasRelic(BoosterAlwaysBonusRelic.ID) || eliteVictory) { bonusPackRoll = 1; }
+				int bonusPackRoll = AbstractDungeon.cardRandomRng.random(1, 50);
+				if (AbstractDungeon.player.hasRelic(BoosterAlwaysBonusRelic.ID) && !eliteVictory) { bonusPackRoll = 1; }
 				if (AbstractDungeon.player.hasRelic(BoosterExtraAllRaresRelic.ID)) 
 				{
 					BoosterExtraAllRaresRelic rel = (BoosterExtraAllRaresRelic) AbstractDungeon.player.getRelic(BoosterExtraAllRaresRelic.ID);
@@ -1224,15 +1096,544 @@ public class BoosterPackHelper
 				}
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
 				AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
-				lastPackRoll = 0;
+				if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
 				Util.log("Rolled and added a booster pack reward");
-				
-				if (bonusPackRoll == 1)
+				DuelistMod.lastPackRoll = 0;
+				if (bonusPackRoll == 1 && !eliteVictory)
 				{
-					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getBonusBooster(false, false));
+					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getBonusBooster(false, archetypeDeck));
 					Util.log("Rolled and added a BONUS booster pack reward!");
 				}
 			}
 		}
+		
+		// Player has removed card rewards, so we just need to do a Bonus Booster roll
+		if (DuelistMod.removeCardRewards)
+		{
+			if (DuelistMod.alwaysBoosters)
+			{
+				int bonusPackRoll = AbstractDungeon.cardRandomRng.random(1, 50);
+				if (AbstractDungeon.player.hasRelic(BoosterAlwaysBonusRelic.ID) && !eliteVictory) { bonusPackRoll = 1; }
+				if (bonusPackRoll == 1 && !eliteVictory)
+				{
+					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getBonusBooster(false, archetypeDeck));
+					Util.log("Rolled and added a BONUS booster pack reward!");
+				}
+			}
+			else if (DuelistMod.allowBoosters)
+			{
+				int bonusPackRoll = AbstractDungeon.cardRandomRng.random(1, 25);
+				if (AbstractDungeon.player.hasRelic(BoosterAlwaysBonusRelic.ID) && !eliteVictory) { bonusPackRoll = 1; }
+				if ((bonusPackRoll == 1 || eliteVictory) && DuelistMod.lastPackRoll != 6)
+				{
+					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getBonusBooster(false, archetypeDeck));
+					Util.log("Rolled and added a BONUS booster pack reward!");
+				}
+			}
+			
+			// Check for Prayer Wheel if removed card rewards
+			if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) 
+			{ 
+				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
+				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+				AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); 
+			}			
+		}
+	}
+	
+	public static RewardItem replaceCardReward(int lastPackRoll, boolean eliteVictory, ArrayList<CardTags> deckType)
+	{
+		if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
+		{
+			boolean archetypeDeck = deckType != null;
+			if (archetypeDeck) { setupDeckPool(deckType); }
+			
+			// If always appearing, force the roll
+			if (DuelistMod.alwaysBoosters) { lastPackRoll = 7; }
+			
+			// Rolling to see if we receive a booster pack this combat
+			if (lastPackRoll <= 6)
+			{
+				int packRoll = AbstractDungeon.cardRandomRng.random(lastPackRoll, 6);
+			
+				// We rolled a booster reward
+				if (packRoll == 6)
+				{
+					// Roll to see which booster pack we will receive
+					int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+					
+					// Manipulate roll if we have extra percent chance at All Rares Boosters
+					if (AbstractDungeon.player.hasRelic(BoosterExtraAllRaresRelic.ID)) 
+					{
+						BoosterExtraAllRaresRelic rel = (BoosterExtraAllRaresRelic) AbstractDungeon.player.getRelic(BoosterExtraAllRaresRelic.ID);
+						int secondRoll = AbstractDungeon.cardRandomRng.random(1,2);
+						if (secondRoll == 1) { roll = 101; rel.flash(); }
+						
+						// If we miss the guarantee All Rares booster, check for other relics that may change roll
+						else
+						{
+							if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
+							if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+						}
+					}
+					
+					// Manipulate roll if we have better boosters or always silly boosters
+					else
+					{
+						if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
+						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+					}
+					
+					// Manipulate booster roll if elite victory
+					// 50% chance to roll over Rare Booster, or otherwise no Common Boosters
+					if (roll < 80 && eliteVictory) 
+					{ 
+						int eliteRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+						if (eliteRoll == 1)
+						{
+							roll = AbstractDungeon.cardRandomRng.random(80, 100);
+						}
+						else if (roll < 4)
+						{
+							roll = AbstractDungeon.cardRandomRng.random(10, 100);
+						}
+					}
+					
+					// Check if we are playing Spellcasters, if so we can roll Orb Boosters
+					boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
+					
+					// Reset roll chances for next combat
+					DuelistMod.lastPackRoll = 0;
+					
+					// Debug log
+					Util.log("Rolled and added a booster pack reward");
+					
+					// Receive random booster based on deck type and our roll
+					return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll);
+				}
+				else
+				{
+					int incRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+					if (incRoll == 1 || eliteVictory) { DuelistMod.lastPackRoll++; }
+					RewardItem empty = new RewardItem();
+					empty.cards = new ArrayList<AbstractCard>();
+					return empty;
+				}
+			}
+			
+			// Forced booster roll - same as above just in a different order and doesn't roll to see if we get a booster, always gives one
+			// Bonus Booster chance is decreased
+			else
+			{
+				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
+				if (AbstractDungeon.player.hasRelic(BoosterExtraAllRaresRelic.ID)) 
+				{
+					BoosterExtraAllRaresRelic rel = (BoosterExtraAllRaresRelic) AbstractDungeon.player.getRelic(BoosterExtraAllRaresRelic.ID);
+					int secondRoll = AbstractDungeon.cardRandomRng.random(1,2);
+					if (secondRoll == 1) { roll = 101; rel.flash(); }
+					else
+					{
+						if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
+						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+					}
+				}
+				else
+				{
+					if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
+					if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+				}
+				if (roll < 80 && eliteVictory) 
+				{ 
+					int eliteRoll = AbstractDungeon.cardRandomRng.random(1, 2);
+					if (eliteRoll == 1)
+					{
+						roll = AbstractDungeon.cardRandomRng.random(80, 100);
+					}
+					else
+					{
+						roll = AbstractDungeon.cardRandomRng.random(10, 100);
+					}
+				}
+				DuelistMod.lastPackRoll = 0;
+				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
+				return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll);
+			}
+		}
+		else
+		{
+			RewardItem empty = new RewardItem();
+			empty.cards = new ArrayList<AbstractCard>();
+			return empty;
+		}
+	}
+	
+	public static String getPackName(int id, boolean bonus)
+	{
+		String toReturn = "";
+		if (bonus)
+		{
+			id -= 200;
+			if (id <= 15)
+			{
+				toReturn = "Spell Booster";
+			}
+			else if (id <= 28)
+			{
+				toReturn = "Trap Booster";
+			}
+			else if (id <= 48)
+			{
+				toReturn = "Summons Booster";
+			}
+			else if (id <= 53)
+			{
+				toReturn = "Rare Dragon Booster";
+			}
+			else if (id <= 58)
+			{
+				toReturn = "Rare Spellcaster Booster";
+			}
+			else if (id <= 80)
+			{
+				toReturn = "Dragon Booster";
+			}
+			else if (id <= 100)
+			{
+				toReturn = "Archetype Booster";
+			}
+			else
+			{
+				toReturn = "Special Booster";
+			}
+		}
+		else
+		{
+			// Common - 4%
+			if (id <= 4)
+			{
+				toReturn = "Common Booster";
+			}
+			
+			// Uncommon - 32%
+			else if (id <= 32)
+			{
+				toReturn = "Uncommon Booster";
+			}
+			
+			// Skill - 10%
+			else if (id <= 46)
+			{
+				toReturn = "Skill Booster";
+			}
+			
+			// Attack - 16%
+			else if (id <= 62)
+			{
+				toReturn = "Attack Booster";
+			}
+			
+			// All Uncommon - 10%
+			else if (id <= 72)
+			{
+				toReturn = "All Uncommon Booster";
+			}
+			
+			// Rare - 8%
+			else if (id <= 80)
+			{
+				toReturn = "Rare Booster";
+				
+			}
+			
+			// Multi-Type - 7%
+			else if (id <= 87)
+			{
+				toReturn = "Multi-Type Booster";
+			}
+			
+			// Power - 4%
+			else if (id <= 91)
+			{
+				toReturn = "Power Booster";
+			}
+			
+			// Rare Skill - 2%
+			else if (id <= 93)
+			{
+				toReturn = "Rare Skill Booster";
+			}
+			
+			// Rare Attack - 2%
+			else if (id <= 95)
+			{
+				toReturn = "Rare Attack Booster";
+			}
+			
+			// Rare Power - 2%
+			else if (id <= 97)
+			{
+				toReturn = "Rare Power Booster";
+			}
+			
+			// Silly Pack - 2%
+			else if (id <= 99)
+			{
+				toReturn = "Bonanza Booster";
+			}
+			
+			// All Rares - 1%
+			else if (id >= 100)
+			{
+				toReturn = "All Rare Booster";
+			}
+		}
+		return toReturn;
+	}
+	
+	public static String getIMG(int id, boolean bonus)
+	{
+		String toReturn = "";
+		if (bonus)
+		{
+			id -= 200;
+			if (id <= 15)
+			{
+				toReturn = "SpellBooster";
+			}
+			else if (id <= 28)
+			{
+				toReturn = "TrapBooster";
+			}
+			else if (id <= 48)
+			{
+				toReturn = "SummonBooster";
+			}
+			else if (id <= 53)
+			{
+				toReturn = "RareDragons";
+			}
+			else if (id <= 58)
+			{
+				toReturn = "RareDragons";
+			}
+			else if (id <= 80)
+			{
+				toReturn = "DragonBooster";
+			}
+			else if (id <= 100)
+			{
+				toReturn = "DeckBooster";
+			}
+			else
+			{
+				toReturn = "SpecialBooster";
+			}
+		}
+		else
+		{
+			// Common - 4%
+			if (id <= 4)
+			{
+				toReturn = "CommonBooster";
+			}
+			
+			// Uncommon - 32%
+			else if (id <= 32)
+			{
+				toReturn = "UncommonBooster";
+			}
+			
+			// Skill - 10%
+			else if (id <= 46)
+			{
+				toReturn = "SkillBooster";
+			}
+			
+			// Attack - 16%
+			else if (id <= 62)
+			{
+				toReturn = "AttackBooster";
+			}
+			
+			// All Uncommon - 10%
+			else if (id <= 72)
+			{
+				toReturn = "AllUncommonBooster";
+			}
+			
+			// Rare - 8%
+			else if (id <= 80)
+			{
+				toReturn = "RareBooster";
+				
+			}
+			
+			// Multi-Type - 7%
+			else if (id <= 87)
+			{
+				toReturn = "MultiTypeBooster";
+			}
+			
+			// Power - 4%
+			else if (id <= 91)
+			{
+				toReturn = "PowerBooster";
+			}
+			
+			// Rare Skill - 2%
+			else if (id <= 93)
+			{
+				toReturn = "RareSkills";
+			}
+			
+			// Rare Attack - 2%
+			else if (id <= 95)
+			{
+				toReturn = "RareAttacks";
+			}
+			
+			// Rare Power - 2%
+			else if (id <= 97)
+			{
+				toReturn = "RarePowerBooster";
+			}
+			
+			// Silly Pack - 2%
+			else if (id <= 99)
+			{
+				toReturn = "SillyPack";
+			}
+			
+			// All Rares - 1%
+			else if (id >= 100)
+			{
+				toReturn = "AllRaresBooster";
+			}
+		}
+		return toReturn;
+	}
+
+	public static ArrayList<AbstractCard> getBoosterCardsFromID(int id, boolean bonus) 
+	{
+		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		Util.log("Loaded a new booster from ID: " + id + ", bonus=" + bonus);
+		if (bonus)
+		{
+			id -= 200;
+			if (id <= 15)
+			{
+				toReturn = spellsBoosterPack();
+			}
+			else if (id <= 28)
+			{
+				toReturn = trapsBoosterPack();
+			}
+			else if (id <= 48)
+			{
+				toReturn = summonsBoosterPack();
+			}
+			else if (id <= 53)
+			{
+				toReturn = rareDragonsBoosterPack();
+			}
+			else if (id <= 58)
+			{
+				toReturn = rareSpellcasterBoosterPack();
+			}
+			else if (id <= 80)
+			{
+				toReturn = dragonsBoosterPack();
+			}
+			else if (id <= 100)
+			{
+				toReturn = deckBoosterPack();
+			}
+			else
+			{
+				toReturn = specialBoosterPack();
+			}
+		}
+		else
+		{
+			// Common - 4%
+			if (id <= 4)
+			{
+				toReturn = commonBoosterPack();
+			}
+			
+			// Uncommon - 32%
+			else if (id <= 32)
+			{
+				toReturn = uncommonBoosterPack();
+			}
+			
+			// Skill - 10%
+			else if (id <= 46)
+			{
+				toReturn = skillBoosterPack();
+			}
+			
+			// Attack - 16%
+			else if (id <= 62)
+			{
+				toReturn = attackBoosterPack();
+			}
+			
+			// All Uncommon - 10%
+			else if (id <= 72)
+			{
+				toReturn = allUncommonBoosterPack();
+			}
+			
+			// Rare - 8%
+			else if (id <= 80)
+			{
+				toReturn = rareBoosterPack();
+				
+			}
+			
+			// Multi-Type - 7%
+			else if (id <= 87)
+			{
+				toReturn = multitypeBoosterPack();
+			}
+			
+			// Power - 4%
+			else if (id <= 91)
+			{
+				toReturn = powerBoosterPack();
+			}
+			
+			// Rare Skill - 2%
+			else if (id <= 93)
+			{
+				toReturn = rareSkillBoosterPack();
+			}
+			
+			// Rare Attack - 2%
+			else if (id <= 95)
+			{
+				toReturn = rareAttackBoosterPack();
+			}
+			
+			// Rare Power - 2%
+			else if (id <= 97)
+			{
+				toReturn = rarePowerBoosterPack();
+			}
+			
+			// Silly Pack - 2%
+			else if (id <= 99)
+			{
+				toReturn = sillyBoosterPack();
+			}
+			
+			// All Rares - 1%
+			else if (id >= 100)
+			{
+				toReturn = allRaresBoosterPack();
+			}
+		}
+		return toReturn;
 	}
 }

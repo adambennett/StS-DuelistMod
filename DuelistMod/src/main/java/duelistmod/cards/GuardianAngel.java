@@ -57,29 +57,36 @@ public class GuardianAngel extends DuelistCard
 	public void update()
 	{
     	super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+    	if (AbstractDungeon.currMapNode != null)
 		{
-			int dmg = 0;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{				
-				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (pow.actualCardSummonList.size() >= this.tributes)
-				{
-					int endIndex = pow.actualCardSummonList.size() - 1;
-					for (int i = endIndex; i > endIndex - this.tributes; i--)
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				int dmg = 0;
+				if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+				{				
+					SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+					if (pow.actualCardSummonList.size() >= this.tributes)
 					{
-						dmg += pow.actualCardSummonList.get(i).block;
-					}
-					
-					if (upgraded)
+						int endIndex = pow.actualCardSummonList.size() - 1;
+						for (int i = endIndex; i > endIndex - this.tributes; i--)
+						{
+							dmg += pow.actualCardSummonList.get(i).block;
+						}
+						
+						if (upgraded)
+						{
+							this.magicNumber = this.baseMagicNumber = dmg + 9;						
+						}
+						else if (dmg > 0)
+						{
+							this.magicNumber = this.baseMagicNumber = dmg;						
+						}
+					}	
+					else
 					{
-						this.magicNumber = this.baseMagicNumber = dmg + 9;						
+						this.magicNumber = this.baseMagicNumber = 0;
 					}
-					else if (dmg > 0)
-					{
-						this.magicNumber = this.baseMagicNumber = dmg;						
-					}
-				}	
+				}
 				else
 				{
 					this.magicNumber = this.baseMagicNumber = 0;
@@ -89,10 +96,6 @@ public class GuardianAngel extends DuelistCard
 			{
 				this.magicNumber = this.baseMagicNumber = 0;
 			}
-		}
-		else
-		{
-			this.magicNumber = this.baseMagicNumber = 0;
 		}
 	}
 
@@ -118,9 +121,7 @@ public class GuardianAngel extends DuelistCard
 	    		if (DuelistMod.debug) { System.out.println("theDuelist:GuardianAngel:use() ---> card damage: " + c.baseDamage); }
 	    	}
     	}
-    	this.baseDamage = this.damage += damageIncrease;
-    	if (DuelistMod.debug) { System.out.println("theDuelist:GuardianAngel:use() ---> damageIncrease: " + damageIncrease); }
-    	attack(m, AFX, this.damage);
+    	specialAttack(m, AFX, damageIncrease);
     }
 
     // Which card to return when making a copy of this card.

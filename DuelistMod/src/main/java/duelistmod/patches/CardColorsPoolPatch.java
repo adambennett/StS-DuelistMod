@@ -24,7 +24,7 @@ public class CardColorsPoolPatch
 		{
 			if (DuelistMod.shouldFill)
 			{ 
-				PoolHelpers.fillColoredCards(); 
+				PoolHelpers.newFillColored();
 				BoosterPackHelper.setupPoolsForPacks();
 				DuelistMod.shouldFill = false;
 			}

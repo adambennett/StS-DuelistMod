@@ -12,7 +12,7 @@ public class MillenniumNecklace extends CustomRelic
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("MillenniumNecklace");
     public static final String IMG = DuelistMod.makeRelicPath("NecklaceRelic.png");
-    public static final String OUTLINE = DuelistMod.makeRelicPath("NecklaceRelic.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Necklace_Outline.png");
     // /FIELDS
 
     public MillenniumNecklace() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SPECIAL, LandingSound.MAGICAL); }

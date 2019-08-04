@@ -28,7 +28,7 @@ public class SmashingGround extends DuelistCard
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.RARE;
 	private static final CardTarget TARGET = CardTarget.NONE;
-	private static final CardType TYPE = CardType.SKILL;
+	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 2;
 	private double dynamicDmg = 0;
@@ -52,11 +52,14 @@ public class SmashingGround extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.dynamicDmg = this.magicNumber * DuelistMod.summonCombatCount;
-			this.baseDamage = (int)this.dynamicDmg;
-			this.applyPowers();
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.dynamicDmg = this.magicNumber * DuelistMod.summonCombatCount;
+				this.baseDamage = (int)this.dynamicDmg;
+				this.applyPowers();
+			}
 		}
 	}
 	
@@ -65,8 +68,6 @@ public class SmashingGround extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		m = AbstractDungeon.getRandomMonster();
-		//int playerSummons = DuelistMod.summonCombatCount;
-		//int newDamage = this.damage * playerSummons;
 		attack(m);
 	}
 

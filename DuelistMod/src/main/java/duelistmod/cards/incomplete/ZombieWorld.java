@@ -44,13 +44,16 @@ public class ZombieWorld extends DuelistCard
     public void update()
     {
     	super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+    	if (AbstractDungeon.currMapNode != null)
 		{
-			this.secondMagic = this.baseSecondMagic = DuelistMod.zombiesResummonedThisCombat;
-		}
-		else
-		{
-			this.secondMagic = this.baseSecondMagic = 0;
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.secondMagic = this.baseSecondMagic = DuelistMod.zombiesResummonedThisCombat;
+			}
+			else
+			{
+				this.secondMagic = this.baseSecondMagic = 0;
+			}
 		}
     }
 

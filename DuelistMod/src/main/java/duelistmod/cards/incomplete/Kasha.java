@@ -54,28 +54,14 @@ public class Kasha extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic)
-        	{
-        		this.upgradeDamage(2);
-        	}
-        	else
-        	{
-        		this.upgradeDamage(1);
-        	}
+        	this.upgradeDamage(5);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (this.damage < 35) { return true; }
-    	else { return false; }
     }
 
 	@Override

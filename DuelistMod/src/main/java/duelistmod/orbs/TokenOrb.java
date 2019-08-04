@@ -40,6 +40,7 @@ public class TokenOrb extends DuelistOrb
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
+		this.triggersOnSpellcasterPuzzle = false;
 		if (DuelistMod.challengeMode)
 		{
 			this.baseEvokeAmount = this.evokeAmount = 1;

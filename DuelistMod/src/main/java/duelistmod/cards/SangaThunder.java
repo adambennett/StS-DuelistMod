@@ -54,6 +54,7 @@ public class SangaThunder extends DuelistCard
 		this.tributes = this.baseTributes = 3;
 		this.isSummon = true;
 		this.summons = this.baseSummons = 1;
+		this.baseMagicNumber = this.magicNumber = 2;
 		this.setupStartingCopies();
     }
 
@@ -64,8 +65,11 @@ public class SangaThunder extends DuelistCard
     	tribute(p, this.tributes, false, this);
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Lightning();
-    	channel(orb);
+    	for (int i = 0; i < this.magicNumber; i++)
+    	{
+        	AbstractOrb orb = new Lightning();
+        	channel(orb);
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -81,6 +85,7 @@ public class SangaThunder extends DuelistCard
             this.upgradeName();
             //this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.upgradeTributes(-1);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

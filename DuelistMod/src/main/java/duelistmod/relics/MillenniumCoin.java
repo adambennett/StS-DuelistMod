@@ -1,14 +1,18 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.incomplete.MillenniumSpellbook;
 import duelistmod.helpers.Util;
+import duelistmod.potions.MillenniumElixir;
 import duelistmod.variables.Strings;
 
 public class MillenniumCoin extends CustomRelic 
@@ -31,6 +35,25 @@ public class MillenniumCoin extends CustomRelic
 			if (Util.isMillenniumItem(r, true) && !r.name.equals(this.name))
 			{
 				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				Util.log("Relic that triggered gold gain: " + r.name);
+			}
+		}
+		
+		for (AbstractPotion p : AbstractDungeon.player.potions)
+		{
+			if (p instanceof MillenniumElixir)
+			{
+				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				Util.log("Millennium Elixir triggered Millennium Coin");
+			}
+		}
+		
+		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+		{
+			if (c instanceof MillenniumSpellbook)
+			{
+				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				Util.log("Millennium Spellbook triggered Millennium Coin");
 			}
 		}
 	}

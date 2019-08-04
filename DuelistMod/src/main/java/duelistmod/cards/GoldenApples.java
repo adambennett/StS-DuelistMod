@@ -38,8 +38,6 @@ public class GoldenApples extends DuelistCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.tags.add(Tags.TRAP);
-    	this.tags.add(Tags.INCREMENT_DECK);
-    	this.incrementDeckCopies = 2;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.baseBlock = this.block = 0;
@@ -50,11 +48,14 @@ public class GoldenApples extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			this.dynamicBlock = this.magicNumber * DuelistMod.summonCombatCount;
-			this.baseBlock = (int)this.dynamicBlock;
-			this.applyPowers();
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				this.dynamicBlock = this.magicNumber * DuelistMod.summonCombatCount;
+				this.baseBlock = (int)this.dynamicBlock;
+				this.applyPowers();
+			}
 		}
 	}
 
@@ -62,7 +63,7 @@ public class GoldenApples extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	block(DuelistMod.summonCombatCount * this.magicNumber);
+    	block();
     }
 
 

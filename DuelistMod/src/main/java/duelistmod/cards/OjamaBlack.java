@@ -110,7 +110,7 @@ public class OjamaBlack extends DuelistCard
 		for (int i = 0; i < primary; i++)
 		{
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
+			applyPower(DebuffHelper.getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
 		}
 	}
 	
@@ -170,7 +170,7 @@ public class OjamaBlack extends DuelistCard
 		for (int i = 0; i < primary; i++)
 		{
 			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			applyPower(RandomEffectsHelper.getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
+			applyPower(DebuffHelper.getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
 		}
 		
 	}

@@ -68,17 +68,14 @@ public class Summoner extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		if (this.passiveAmount > 0) { this.triggerPassiveEffect(); }
-	}
-	
-	private void triggerPassiveEffect()
-	{
-		AbstractPlayer p = AbstractDungeon.player;
-		if (DuelistCard.getSummons(p) < DuelistCard.getMaxSummons(p)) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f)); }
-		if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Spellcaster Token", false); }
-		else { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token", false); }
-	}
-	
+		if (this.passiveAmount > 0) 
+		{
+			AbstractPlayer p = AbstractDungeon.player;
+			if (DuelistCard.getSummons(p) < DuelistCard.getMaxSummons(p)) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f)); }
+			if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Spellcaster Token", false); }
+			else { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token", false); }
+		}
+	}	
 
 	@Override
 	public void render(SpriteBatch sb) 

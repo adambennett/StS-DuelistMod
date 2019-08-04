@@ -32,13 +32,12 @@ public class GiantSoldier extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int BLOCK = 5;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public GiantSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = BLOCK;
+        this.baseBlock = this.block = 6;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.EXODIA_DECK);

@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.RelicBallAction;
 import duelistmod.cards.typecards.TokenCard;
-import duelistmod.interfaces.*;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 public class AnubisToken extends TokenCard 
@@ -29,7 +28,7 @@ public class AnubisToken extends TokenCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -52,7 +51,8 @@ public class AnubisToken extends TokenCard
     {
     	summon(p, 1, this);
     	AbstractDungeon.actionManager.addToBottom(new RelicBallAction(m, false));
-    	attack(m, this.baseAFX, p.relics.size() * this.damage);    	
+    	int newDmg = p.relics.size() * this.damage;
+    	attack(m, this.baseAFX, newDmg);    	
     }
     @Override public AbstractCard makeCopy() { return new AnubisToken(); }
 

@@ -5,6 +5,7 @@ import java.util.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class StarterDeck 
@@ -18,6 +19,7 @@ public class StarterDeck
 	private ArrayList<DuelistCard> deck = new ArrayList<DuelistCard>();
 	private ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
 	private ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
+	private ArrayList<String> poolNames = new ArrayList<String>();
 	private static Map<CardTags, Integer> deckCopiesMap = new HashMap<CardTags, Integer>();
 	private int index;
 	private boolean fullPool = false;
@@ -70,14 +72,23 @@ public class StarterDeck
 		deckCopiesMap.put(Tags.FIEND_DECK, 7);
 		deckCopiesMap.put(Tags.MACHINE_DECK, 8);
 		deckCopiesMap.put(Tags.MAGNET_DECK, 9);
-		deckCopiesMap.put(Tags.CREATOR_DECK, 10);
-		deckCopiesMap.put(Tags.OJAMA_DECK, 11);
-		deckCopiesMap.put(Tags.GENERATION_DECK, 12);
-		deckCopiesMap.put(Tags.ORB_DECK, 13);
-		deckCopiesMap.put(Tags.RESUMMON_DECK, 14);
-		deckCopiesMap.put(Tags.INCREMENT_DECK, 15);
-		deckCopiesMap.put(Tags.EXODIA_DECK, 16);
-		deckCopiesMap.put(Tags.HEAL_DECK, 17);
+		deckCopiesMap.put(Tags.INSECT_DECK, 10);
+		deckCopiesMap.put(Tags.PLANT_DECK, 11);
+		deckCopiesMap.put(Tags.PREDAPLANT_DECK, 12);
+		deckCopiesMap.put(Tags.MEGATYPE_DECK, 13);
+		deckCopiesMap.put(Tags.INCREMENT_DECK, 14);
+		deckCopiesMap.put(Tags.CREATOR_DECK, 15);
+		deckCopiesMap.put(Tags.OJAMA_DECK, 16);		
+		deckCopiesMap.put(Tags.EXODIA_DECK, 17);
+		deckCopiesMap.put(Tags.GIANT_DECK, 18);
+		deckCopiesMap.put(Tags.ASCENDED_ONE_DECK, 19);
+		deckCopiesMap.put(Tags.ASCENDED_TWO_DECK, 20);
+		deckCopiesMap.put(Tags.ASCENDED_THREE_DECK, 21);
+		deckCopiesMap.put(Tags.PHARAOH_ONE_DECK, 22);
+		deckCopiesMap.put(Tags.PHARAOH_TWO_DECK, 23);
+		deckCopiesMap.put(Tags.PHARAOH_THREE_DECK, 24);
+		deckCopiesMap.put(Tags.PHARAOH_FOUR_DECK, 25);
+		deckCopiesMap.put(Tags.PHARAOH_FIVE_DECK, 26);
 	}
 
 	public CardTags getDeckTag() {
@@ -157,12 +168,17 @@ public class StarterDeck
 		return poolCards;
 	}
 
-	public void setPoolCards(ArrayList<AbstractCard> poolCards) {
-		this.poolCards = poolCards;
-	}
-	
 	public void fillPoolCards(ArrayList<AbstractCard> poolCards)
 	{
+		/*for (AbstractCard c : poolCards)
+		{
+			if (!this.poolNames.contains(c.name))
+			{
+				this.poolCards.add(c);
+				this.poolNames.add(c.name);
+			}
+		}*/
+		
 		this.poolCards.addAll(poolCards);
 	}
 

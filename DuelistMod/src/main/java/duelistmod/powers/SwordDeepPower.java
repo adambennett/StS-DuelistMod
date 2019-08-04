@@ -72,8 +72,6 @@ public class SwordDeepPower extends AbstractPower
 		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
 		else if (AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
 		{
-			GravityAxePower power = (GravityAxePower) AbstractDungeon.player.getPower(GravityAxePower.POWER_ID);
-			power.onSpecificTrigger();
 			DuelistCard.removePower(this, this.owner);
 		}
 		else

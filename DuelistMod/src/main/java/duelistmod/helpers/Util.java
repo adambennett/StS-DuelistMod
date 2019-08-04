@@ -129,7 +129,7 @@ public class Util
 		items.add(new MillenniumCoin());
 		items.add(new MillenniumRing());
 		items.add(new MillenniumRod());
-		items.add(new MillenniumKey());
+		//items.add(new MillenniumKey());
 		items.add(new MillenniumEye());
 		items.add(new ResummonBranch());
 		items.add(new MillenniumScale());
@@ -145,7 +145,7 @@ public class Util
 		items.add(new MillenniumCoin());
 		items.add(new MillenniumRing());
 		items.add(new MillenniumRod());
-		items.add(new MillenniumKey());
+		//items.add(new MillenniumKey());
 		items.add(new MillenniumEye());
 		items.add(new ResummonBranch());
 		items.add(new MillenniumScale());

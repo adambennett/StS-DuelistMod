@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.powers.FocusLossPower;
 
 @SuppressWarnings("unused")
 public class DuelistCrystal extends DuelistOrb
@@ -40,7 +41,7 @@ public class DuelistCrystal extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Crystal.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 4;
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -78,7 +79,7 @@ public class DuelistCrystal extends DuelistOrb
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 		DuelistCard.applyPower(new FocusPower(AbstractDungeon.player, this.passiveAmount), AbstractDungeon.player);
-		DuelistCard.applyPower(new BiasPower(AbstractDungeon.player, this.passiveAmount), AbstractDungeon.player);
+		DuelistCard.applyPower(new FocusLossPower(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount), AbstractDungeon.player);
 	}
 
 	@Override

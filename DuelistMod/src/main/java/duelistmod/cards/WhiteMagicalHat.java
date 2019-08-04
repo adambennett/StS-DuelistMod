@@ -32,7 +32,7 @@ public class WhiteMagicalHat extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
+	private static final int COST = 1;
 	// /STAT DECLARATION/
 
 	public WhiteMagicalHat() {
@@ -40,7 +40,7 @@ public class WhiteMagicalHat extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.METAL_RAIDERS);
-		this.summons = this.baseSummons = 2;
+		this.summons = this.baseSummons = 1;
 		this.magicNumber = this.baseMagicNumber = 3;
 		this.originalName = this.name;
 

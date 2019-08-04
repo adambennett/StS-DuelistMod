@@ -53,28 +53,35 @@ public class AltarTribute extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			int dmg = 0;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{				
-				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (pow.actualCardSummonList.size() >= this.tributes)
-				{
-					int endIndex = pow.actualCardSummonList.size() - 1;
-					for (int i = endIndex; i > endIndex - this.tributes; i--)
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				int dmg = 0;
+				if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+				{				
+					SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+					if (pow.actualCardSummonList.size() >= this.tributes)
 					{
-						if (pow.actualCardSummonList.get(i).block > 0)
+						int endIndex = pow.actualCardSummonList.size() - 1;
+						for (int i = endIndex; i > endIndex - this.tributes; i--)
 						{
-							dmg += pow.actualCardSummonList.get(i).block;
+							if (pow.actualCardSummonList.get(i).block > 0)
+							{
+								dmg += pow.actualCardSummonList.get(i).block;
+							}
 						}
-					}
-					
-					if (dmg > 0)
+						
+						if (dmg > 0)
+						{
+							this.secondMagic = this.baseSecondMagic = dmg;
+						}
+					}	
+					else
 					{
-						this.secondMagic = this.baseSecondMagic = dmg;
+						this.secondMagic = this.baseSecondMagic =  0;
 					}
-				}	
+				}
 				else
 				{
 					this.secondMagic = this.baseSecondMagic =  0;
@@ -84,10 +91,6 @@ public class AltarTribute extends DuelistCard
 			{
 				this.secondMagic = this.baseSecondMagic =  0;
 			}
-		}
-		else
-		{
-			this.secondMagic = this.baseSecondMagic =  0;
 		}
 	}
 

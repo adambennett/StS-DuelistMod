@@ -43,12 +43,14 @@ public class ArmoredZombie extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
         this.tags.add(Tags.ZOMBIE_DECK);
+		this.tags.add(Tags.ASCENDED_TWO_DECK);
+        this.a2DeckCopies = 1;
         this.zombieDeckCopies = 2;
         this.startingOPRDeckCopies = 2;
         this.resummonDeckCopies = 2;
         this.originalName = this.name;
         this.isSummon = true;
-        this.block = this.baseBlock = 7;
+        this.block = this.baseBlock = 5;
         this.magicNumber = this.baseMagicNumber = 2;
         this.setupStartingCopies();
     }
@@ -74,7 +76,8 @@ public class ArmoredZombie extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeMagicNumber(3);
+            this.upgradeMagicNumber(2);
+            this.upgradeBlock(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -74,28 +74,35 @@ public class BusterBladerDDS extends DuelistCard
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			int dmg = 0;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{				
-				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (pow.actualCardSummonList.size() >= this.tributes)
-				{
-					int endIndex = pow.actualCardSummonList.size() - 1;
-					for (int i = endIndex; i > endIndex - this.tributes; i--)
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				int dmg = 0;
+				if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+				{				
+					SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+					if (pow.actualCardSummonList.size() >= this.tributes)
 					{
-						if (pow.actualCardSummonList.get(i).hasTag(Tags.DRAGON))
+						int endIndex = pow.actualCardSummonList.size() - 1;
+						for (int i = endIndex; i > endIndex - this.tributes; i--)
 						{
-							dmg += this.magicNumber;
+							if (pow.actualCardSummonList.get(i).hasTag(Tags.DRAGON))
+							{
+								dmg += this.magicNumber;
+							}
 						}
-					}
-					
-					if (dmg > 0)
+						
+						if (dmg > 0)
+						{
+							this.secondMagic = this.baseSecondMagic = dmg;
+						}
+					}	
+					else
 					{
-						this.secondMagic = this.baseSecondMagic = dmg + this.damage;
+						this.secondMagic = this.baseSecondMagic =  0;
 					}
-				}	
+				}
 				else
 				{
 					this.secondMagic = this.baseSecondMagic =  0;
@@ -105,10 +112,6 @@ public class BusterBladerDDS extends DuelistCard
 			{
 				this.secondMagic = this.baseSecondMagic =  0;
 			}
-		}
-		else
-		{
-			this.secondMagic = this.baseSecondMagic =  0;
 		}
 	}
 

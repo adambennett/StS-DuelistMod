@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.*;
+import duelistmod.powers.incomplete.FlameTigerPower;
 
 public class BuffHelper {
 
@@ -98,7 +99,9 @@ public class BuffHelper {
 		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
 		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
 		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
-		/* LOOK UP BUFFS DOC IN NOTEPAD */
+		AbstractPower hello = new HelloPower(p, turnNum);
+		AbstractPower flameTiger = new FlameTigerPower(p, p);
+		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
@@ -109,7 +112,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC
+					naturia, jambreedC, hello
 			};
 		}
 		else
@@ -121,7 +124,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB
+					naturia, jambreed, focusB, hello, flameTiger, zombieLord
 			};
 		}
 		for (AbstractPower a : buffs)
@@ -178,6 +181,9 @@ public class BuffHelper {
 		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
 		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
 		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
+		AbstractPower hello = new HelloPower(p, turnNum);
+		AbstractPower flameTiger = new FlameTigerPower(p, p);
+		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
 		{
@@ -187,7 +193,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC
+					naturia, jambreedC, hello
 			};
 		}
 		else
@@ -199,7 +205,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB
+					naturia, jambreed, focusB, hello, flameTiger, zombieLord
 			};
 		}
 		for (AbstractPower a : buffs)

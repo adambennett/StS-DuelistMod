@@ -28,7 +28,7 @@ public class DuelistMetricsPatch {
 
         public static void Prefix(Metrics metrics, @ByRef String[] url, String fileName) {
             if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
-                url[0] = "http://softwaredev.site/Metrics/upload";
+                url[0] = "http://softwaredev.site/Metrics/";
             }
         }
 

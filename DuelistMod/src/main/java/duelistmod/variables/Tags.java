@@ -6,6 +6,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public class Tags {
 
 	@SpireEnum public static AbstractCard.CardTags ALL;
+	@SpireEnum public static AbstractCard.CardTags ASCENDED_ONE_DECK;
+	@SpireEnum public static AbstractCard.CardTags ASCENDED_TWO_DECK;
+	@SpireEnum public static AbstractCard.CardTags ASCENDED_THREE_DECK;
+	@SpireEnum public static AbstractCard.CardTags PHARAOH_ONE_DECK;
+	@SpireEnum public static AbstractCard.CardTags PHARAOH_TWO_DECK;
+	@SpireEnum public static AbstractCard.CardTags PHARAOH_THREE_DECK;
+	@SpireEnum public static AbstractCard.CardTags PHARAOH_FOUR_DECK;
+	@SpireEnum public static AbstractCard.CardTags PHARAOH_FIVE_DECK;
 	@SpireEnum public static AbstractCard.CardTags AQUA;
 	@SpireEnum public static AbstractCard.CardTags AQUA_DECK;
 	@SpireEnum public static AbstractCard.CardTags ARCHETYPE;
@@ -21,6 +29,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags EXEMPT;
 	@SpireEnum public static AbstractCard.CardTags EXODIA;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_DECK;
+	@SpireEnum public static AbstractCard.CardTags EXODIA_PIECE;
 	@SpireEnum public static AbstractCard.CardTags EXPLODING_TOKEN;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
 	@SpireEnum public static AbstractCard.CardTags FIEND;
@@ -28,12 +37,14 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags FULL;
 	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
 	@SpireEnum public static AbstractCard.CardTags GIANTS;
+	@SpireEnum public static AbstractCard.CardTags GIANT_DECK;
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags GUARDIAN;
 	@SpireEnum public static AbstractCard.CardTags HEAL_DECK;
 	@SpireEnum public static AbstractCard.CardTags INCREMENT_DECK;
 	@SpireEnum public static AbstractCard.CardTags INSECT;
+	@SpireEnum public static AbstractCard.CardTags INSECT_DECK;
 	@SpireEnum public static AbstractCard.CardTags INVASION_CHAOS;
 	@SpireEnum public static AbstractCard.CardTags LABYRINTH_NIGHTMARE;
 	@SpireEnum public static AbstractCard.CardTags LEGACY_DARKNESS;
@@ -46,6 +57,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MAGNETWARRIOR;
 	@SpireEnum public static AbstractCard.CardTags MAGNET_DECK;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPED;
+	@SpireEnum public static AbstractCard.CardTags MEGATYPE_DECK;
 	@SpireEnum public static AbstractCard.CardTags METAL_RAIDERS;
 	@SpireEnum public static AbstractCard.CardTags MONSTER;
 	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
@@ -70,8 +82,10 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags PETIT;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_SERVANT;
 	@SpireEnum public static AbstractCard.CardTags PLANT;
+	@SpireEnum public static AbstractCard.CardTags PLANT_DECK;
 	@SpireEnum public static AbstractCard.CardTags POT;
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT;
+	@SpireEnum public static AbstractCard.CardTags PREDAPLANT_DECK;
 	@SpireEnum public static AbstractCard.CardTags RANDOMONLY;
 	@SpireEnum public static AbstractCard.CardTags RANDOMONLY_NOCREATOR;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;

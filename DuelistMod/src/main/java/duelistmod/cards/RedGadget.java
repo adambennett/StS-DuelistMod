@@ -57,8 +57,8 @@ public class RedGadget extends DuelistCard
 		summon(p, this.summons, this);
 		attack(m, this.baseAFX, this.damage);
 		
-		// Base version - random tokens
-		if (!upgraded)
+		// Upgraded version - random tokens
+		if (upgraded)
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
 			for (int i = 0; i < this.magicNumber; i++)
@@ -68,7 +68,7 @@ public class RedGadget extends DuelistCard
 			}
 		}
 		
-		// Upgraded - choose tokens
+		// Base version - choose tokens
 		else
 		{
 			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();

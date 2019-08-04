@@ -174,12 +174,12 @@ public class HauntedHelper
 				}				
 				break;
 			case "Gain #b1 random debuff":
-				AbstractPower randomDebuff = RandomEffectsHelper.getRandomPlayerDebuffForHaunt(p, 2);
+				AbstractPower randomDebuff = DebuffHelper.getRandomPlayerDebuffForHaunt(p, 2);
 				DuelistCard.applyPowerToSelf(randomDebuff);
 				break;
 			case "Gain #b2 random debuffs":
-				AbstractPower randomDebuffB = RandomEffectsHelper.getRandomPlayerDebuffForHaunt(p, 2);
-				AbstractPower randomDebuffC = RandomEffectsHelper.getRandomPlayerDebuffForHaunt(p, 2);
+				AbstractPower randomDebuffB = DebuffHelper.getRandomPlayerDebuffForHaunt(p, 2);
+				AbstractPower randomDebuffC = DebuffHelper.getRandomPlayerDebuffForHaunt(p, 2);
 				DuelistCard.applyPowerToSelf(randomDebuffB);
 				DuelistCard.applyPowerToSelf(randomDebuffC);
 				break;
@@ -325,15 +325,15 @@ public class HauntedHelper
 	private static void initList(boolean isDebuff)
 	{
 		actions = new ArrayList<String>();		 
-		actions.add("Lose a random amount of gold (1-50)");							//
-		actions.add("Lose a random amount of gold (1-50)");							//
+		//actions.add("Lose a random amount of gold (1-50)");							//
+		//actions.add("Lose a random amount of gold (1-50)");							//
 		actions.add("Discard #b2 cards");											//
 		actions.add("Discard #b1 card");											//
 		actions.add("Discard #b1 card");											//
 		actions.add("Discard #b1 card");											//
 		actions.add("Discard #b1 card randomly");									//
 		actions.add("Discard #b1 card randomly");									//
-		actions.add("Lose #b2 HP");													//
+		//actions.add("Lose #b2 HP");													//
 		actions.add("Lose #b1 HP");													//
 		actions.add("Lose #b1 HP");													//
 		actions.add("Lose #b1 HP for each card in your hand");						//
@@ -351,22 +351,22 @@ public class HauntedHelper
 		actions.add("Reduce the Summons of a monster in hand by #b2");				//
 		actions.add("Lose [E] "); 													//
 		actions.add("Lose [E] "); 													//
-		actions.add("Reduce your Max Summons by #b1");								//
+		//actions.add("Reduce your Max Summons by #b1");								//
 		//actions.add("Lose #b1 Max HP");												//
-		actions.add("Gain #b2 random debuffs");										//
+		//actions.add("Gain #b2 random debuffs");										//
 		actions.add("Gain #b1 random debuff");						
 		actions.add("Gain #b1 random debuff");
 		actions.add("Apply #b1 Strength to a random enemy");
 		actions.add("Apply #b1 Strength to a random enemy");
 		actions.add("Apply #b1 Strength to a random enemy");
 		actions.add("Apply #b1 Strength to ALL enemies");
-		actions.add("Apply #b2 Strength to ALL enemies");
+		//actions.add("Apply #b2 Strength to ALL enemies");
 		actions.add("Apply #b1 Thorns to a random enemy");
 		actions.add("Apply #b1 Thorns to a random enemy");
 		actions.add("Apply #b2 Thorns to a random enemy");
 		actions.add("Apply #b2 Thorns to a random enemy");
-		actions.add("Apply #b3 Thorns to a random enemy");
-		actions.add("Apply #b4 Thorns to a random enemy");
+		//actions.add("Apply #b3 Thorns to a random enemy");
+		//actions.add("Apply #b4 Thorns to a random enemy");
 		actions.add("Apply #b2 Thorns to ALL enemies");
 		//actions.add("Summon #b3 Plague Tokens");
 		//actions.add("Summon #b2 Plague Tokens");

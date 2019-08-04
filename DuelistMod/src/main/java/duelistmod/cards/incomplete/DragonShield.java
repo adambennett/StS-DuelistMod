@@ -43,8 +43,8 @@ public class DragonShield extends DuelistCard
     {
     	if (p.hasPower(StrengthPower.POWER_ID))
     	{
-    		if (!upgraded) { block(p.getPower(StrengthPower.POWER_ID).amount); }
-    		else { block(p.getPower(StrengthPower.POWER_ID).amount * 2);  }
+    		if (!upgraded) { block(p.getPower(StrengthPower.POWER_ID).amount * 2); }
+    		else { block(p.getPower(StrengthPower.POWER_ID).amount * 3);  }
     	}
     }
 

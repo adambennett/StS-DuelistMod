@@ -37,8 +37,8 @@ public class Sand extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Sand.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 5;
-		this.basePassiveAmount = this.passiveAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 8;
+		this.basePassiveAmount = this.passiveAmount = 4;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;

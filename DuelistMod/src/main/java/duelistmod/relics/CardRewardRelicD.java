@@ -22,7 +22,7 @@ public class CardRewardRelicD extends CustomRelic
 	public boolean canSpawn()
 	{
 		// Only spawn for non-Duelist characters
-		if (DuelistMod.hasCardRewardRelic) { return false; }
+    	if (DuelistMod.hasCardRewardRelic || DuelistMod.removeCardRewards) { return false; }
 		else { return true; }
 	}
     

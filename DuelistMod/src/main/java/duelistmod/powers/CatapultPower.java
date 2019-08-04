@@ -48,7 +48,7 @@ public class CatapultPower extends AbstractPower
 		{
 			// Get # of summons and tribute all
 			int playerSummons = CatapultTurtle.powerTribute(AbstractDungeon.player, 0, true);
-			if (playerSummons > 0) { DuelistCard.attackAllEnemies(this.amount * playerSummons); }
+			if (playerSummons > 0) { DuelistCard.attackAllEnemiesThorns(this.amount * playerSummons); }
         }   	
     }
     

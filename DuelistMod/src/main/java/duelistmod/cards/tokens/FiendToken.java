@@ -1,17 +1,17 @@
 package duelistmod.cards.tokens;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.TokenCard;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -53,7 +53,17 @@ public class FiendToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
-    	if (p.discardPile.group.size() > 0) { p.discardPile.group.get(AbstractDungeon.cardRandomRng.random(p.discardPile.group.size() - 1)).modifyCostForCombat(-this.magicNumber); }
+    	ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+    	for (AbstractCard c : p.discardPile.group)
+    	{
+    		if (c.cost > 0)
+    		{
+    			cards.add(c);
+    		}
+    	}
+    	
+    	AbstractCard random = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+    	random.modifyCostForCombat(-this.magicNumber);
     }
     @Override public AbstractCard makeCopy() { return new FiendToken(); }
 

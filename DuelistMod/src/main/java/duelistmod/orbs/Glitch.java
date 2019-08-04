@@ -22,7 +22,7 @@ import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.tokens.*;
-import duelistmod.helpers.RandomEffectsHelper;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
@@ -257,7 +257,7 @@ public class Glitch extends DuelistOrb
 			case "Apply #b1 random #ydebuff to random enemy":
 				int randomTurnNumD = AbstractDungeon.cardRandomRng.random(1, 3);
 				AbstractMonster m = DuelistCard.getRandomMonster();
-				AbstractPower debuff = RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
+				AbstractPower debuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
 				DuelistCard.applyPower(debuff, (AbstractCreature)m);
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
@@ -345,7 +345,7 @@ public class Glitch extends DuelistOrb
 				for (int i = 0; i < RAND_DEBUFFS; i++)
 				{
 					int randomTurnNumO2 = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-					DuelistCard.applyPower(RandomEffectsHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
+					DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
 				}
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;

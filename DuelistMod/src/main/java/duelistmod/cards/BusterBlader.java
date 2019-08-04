@@ -3,7 +3,7 @@ package duelistmod.cards;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.DuelistDamageAction;
+import duelistmod.actions.unique.AcidTrapHoleAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -73,35 +75,42 @@ public class BusterBlader extends DuelistCard
     	}
     	
     	int newDamage = this.damage + (this.magicNumber * dragons);
-    	attack(m, AFX, newDamage);
+    	attack(m, AttackEffect.BLUNT_LIGHT, newDamage);
     }
     
     @Override
 	public void update()
 	{
 		super.update();
-		if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+		if (AbstractDungeon.currMapNode != null)
 		{
-			int dmg = 0;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{				
-				SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (pow.actualCardSummonList.size() >= this.tributes)
-				{
-					int endIndex = pow.actualCardSummonList.size() - 1;
-					for (int i = endIndex; i > endIndex - this.tributes; i--)
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				int dmg = 0;
+				if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+				{				
+					SummonPower pow = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+					if (pow.actualCardSummonList.size() >= this.tributes)
 					{
-						if (pow.actualCardSummonList.get(i).hasTag(Tags.DRAGON))
+						int endIndex = pow.actualCardSummonList.size() - 1;
+						for (int i = endIndex; i > endIndex - this.tributes; i--)
 						{
-							dmg += this.magicNumber;
+							if (pow.actualCardSummonList.get(i).hasTag(Tags.DRAGON))
+							{
+								dmg += this.magicNumber;
+							}
 						}
-					}
-					
-					if (dmg > 0)
+						
+						if (dmg > 0)
+						{
+							this.secondMagic = this.baseSecondMagic = dmg;
+						}
+					}	
+					else
 					{
-						this.secondMagic = this.baseSecondMagic = dmg + this.damage;
+						this.secondMagic = this.baseSecondMagic =  0;
 					}
-				}	
+				}
 				else
 				{
 					this.secondMagic = this.baseSecondMagic =  0;
@@ -111,10 +120,6 @@ public class BusterBlader extends DuelistCard
 			{
 				this.secondMagic = this.baseSecondMagic =  0;
 			}
-		}
-		else
-		{
-			this.secondMagic = this.baseSecondMagic =  0;
 		}
 	}
 

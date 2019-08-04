@@ -39,7 +39,6 @@ public class FluteKuriboh extends DuelistCard
 		this.incrementDeckCopies = 2;
 		this.originalName = this.name;
 		this.baseBlock = 8;
-		this.exhaust = true;
 		this.setupStartingCopies();
 	}
 

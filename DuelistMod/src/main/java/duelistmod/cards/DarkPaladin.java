@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.patches.AbstractCardEnum;
@@ -58,10 +58,11 @@ public class DarkPaladin extends DuelistCard
     	attack(m, AFX, this.damage);
     	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
     	ArrayList<String> orbNames = new ArrayList<String>();
+    	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
 		for (int i = 0; i < 5; i++)
 		{
-			DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-			while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+			AbstractCard random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
+			while (orbNames.contains(random.name)) { random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
 			orbs.add((DuelistCard) random.makeCopy());
 			orbNames.add(random.name);
 		}

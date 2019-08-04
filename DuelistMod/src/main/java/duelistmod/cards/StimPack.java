@@ -55,13 +55,7 @@ public class StimPack extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (!upgraded) { summon(p, this.summons, new ExplosiveToken("Exploding Token")); }
-    	else 
-    	{ 
-    		summon(p, this.summons, new ExplosiveToken("Exploding Token"));
-    		summon(p, this.magicNumber, new Token("Stim Token"));
-    	}
-    	
+    	summon(p, this.summons, new ExplosiveToken()); 
     }
 
     // Which card to return when making a copy of this card.
@@ -75,7 +69,7 @@ public class StimPack extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(-2);
+            this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

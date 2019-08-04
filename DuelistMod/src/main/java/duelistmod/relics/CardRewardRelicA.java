@@ -1,10 +1,7 @@
 package duelistmod.relics;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
@@ -25,8 +22,7 @@ public class CardRewardRelicA extends CustomRelic
     @Override
 	public boolean canSpawn()
 	{
-		// Only spawn for non-Duelist characters
-		if (DuelistMod.hasCardRewardRelic) { return false; }
+		if (DuelistMod.hasCardRewardRelic || DuelistMod.removeCardRewards) { return false; }
 		else { return true; }
 	}
     

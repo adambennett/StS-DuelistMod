@@ -70,6 +70,7 @@ public class DarklordMarie extends DuelistCard
             // Check Splash Orbs
             checkSplash();
         }
+        super.triggerOnEndOfPlayerTurn();
     }
 
   

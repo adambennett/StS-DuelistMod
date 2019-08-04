@@ -31,7 +31,8 @@ public class CursedBill extends DuelistCard
     public CursedBill() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 15;
+        this.baseMagicNumber = this.magicNumber = 5;
+        this.isEthereal = true;
     }
 
     // Actions the card should do.

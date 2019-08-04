@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 
 import basemod.abstracts.CustomReward;
+import duelistmod.helpers.BoosterPackHelper;
 import duelistmod.patches.RewardItemTypeEnumPatch;
 import duelistmod.relics.BoosterPackEggRelic;
 
@@ -15,13 +16,52 @@ public class BoosterReward extends CustomReward
 {
 	public String packName;
 	public ArrayList<AbstractCard> booster;
-
-	public BoosterReward(ArrayList<AbstractCard> cards, String imgPath, String packName) 
+	public int boosterID;
+	
+	// if id-200 > 0 then we had a bonus booster
+	public BoosterReward(int id)
+	{
+		super(new Texture("duelistModResources/images/ui/rewards/" + BoosterPackHelper.getIMG(id, id-200>0) + ".png"), BoosterPackHelper.getPackName(id, id-200>0), RewardItemTypeEnumPatch.DUELIST_PACK);
+		this.cards = BoosterPackHelper.getBoosterCardsFromID(id, id-200 > 0);
+		this.booster = cards;
+		this.packName = BoosterPackHelper.getPackName(id, id-200>0);
+		this.boosterID = id;
+		for (AbstractCard c : this.cards) 
+		{
+			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 
+			{
+				c.upgrade();
+			} 
+			
+			else if ((c.type == AbstractCard.CardType.SKILL) && (AbstractDungeon.player.hasRelic(ToxicEgg2.ID)))
+			{
+				c.upgrade();
+			} 
+			
+			else if ((c.type == AbstractCard.CardType.POWER) && (AbstractDungeon.player.hasRelic(FrozenEgg2.ID))) 
+			{
+				c.upgrade();
+			}
+			
+			else if ((AbstractDungeon.player.hasRelic(BoosterPackEggRelic.ID))) 
+			{
+				c.upgrade();
+			}
+			
+			else if (upgradeCheck())
+			{
+				c.upgrade();
+			}
+		}
+	}
+	
+	public BoosterReward(ArrayList<AbstractCard> cards, String imgPath, String packName, int id) 
 	{
 		super(new Texture("duelistModResources/images/ui/rewards/" + imgPath + ".png"), packName, RewardItemTypeEnumPatch.DUELIST_PACK);
 		this.cards = cards;
 		this.booster = cards;
 		this.packName = packName;
+		this.boosterID = id;
 
 		for (AbstractCard c : this.cards) 
 		{
@@ -44,6 +84,11 @@ public class BoosterReward extends CustomReward
 			{
 				c.upgrade();
 			}
+			
+			else if (upgradeCheck())
+			{
+				c.upgrade();
+			}
 		}
 	}
 
@@ -56,5 +101,52 @@ public class BoosterReward extends CustomReward
 			AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
 		}
 		return false;
+	}
+	
+	private boolean upgradeCheck()
+	{
+		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 100);
+		if (AbstractDungeon.ascensionLevel > 11) 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						if (upgradeRoll <= 8) { return true; }
+						else { return false; }
+					case 3:
+						if (upgradeRoll <= 16) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }
+		}
+		else 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						if (upgradeRoll <= 16) { return true; }
+						else { return false; }
+					case 3:
+						if (upgradeRoll <= 32) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }			
+		}
 	}
 }

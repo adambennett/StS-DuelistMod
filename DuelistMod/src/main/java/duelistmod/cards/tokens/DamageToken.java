@@ -6,19 +6,18 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.TokenCard;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.variables.*;
+import duelistmod.variables.Tags;
 
 public class DamageToken extends TokenCard 
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("DamageToken");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.GENERIC_TOKEN);
+    public static final String IMG = DuelistMod.makeCardPath("DamageToken.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -27,7 +26,7 @@ public class DamageToken extends TokenCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
     // /STAT DECLARATION/

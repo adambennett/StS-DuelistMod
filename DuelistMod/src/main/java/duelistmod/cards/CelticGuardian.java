@@ -1,17 +1,16 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -28,26 +27,22 @@ public class CelticGuardian extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 0;
-    private static final int DAMAGE = 3;
-    private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
     public CelticGuardian() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.baseDamage = this.damage = 4;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.INCREMENT_DECK);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.EXODIA_DECK);
         this.exodiaDeckCopies = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
-        this.summons = this.baseSummons = SUMMONS;
-        this.incrementDeckCopies = 2;
+        this.summons = this.baseSummons = 1;
         this.setupStartingCopies();
     }
 
@@ -56,7 +51,7 @@ public class CelticGuardian extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	attack(m, AFX, this.damage);
+    	attackMultipleRandom(this.magicNumber, this.baseAFX, DamageType.NORMAL);
     }
 
     // Which card to return when making a copy of this card.
@@ -135,18 +130,13 @@ public class CelticGuardian extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
+		
 		
 	}
 

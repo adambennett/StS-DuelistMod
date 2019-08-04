@@ -43,6 +43,7 @@ public class DragonOrb extends DuelistOrb
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
+		this.triggersOnSpellcasterPuzzle = false;
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
 		checkFocus(false);
@@ -60,7 +61,7 @@ public class DragonOrb extends DuelistOrb
 	{
 		if (this.evokeAmount > 0)
 		{
-			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, Tags.DRAGON, 1));
+			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, Tags.DRAGON, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:DragonOrb --- > triggered evoke!"); }
 		}		
 	}

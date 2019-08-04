@@ -26,7 +26,7 @@ public class TyrantWingPower extends TwoAmountPower
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-	public static final String IMG = DuelistMod.makePath(Strings.PLACEHOLDER_POWER);
+	public static final String IMG = DuelistMod.makePowerPath("TyrantWingPower.png");
 	
 	public TyrantWingPower(final AbstractCreature owner, final AbstractCreature source, int amount, int amount2) 
 	{

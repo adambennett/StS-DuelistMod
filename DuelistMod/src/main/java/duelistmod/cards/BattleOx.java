@@ -58,11 +58,12 @@ public class BattleOx extends DuelistCard
             AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
             // Damage random enemy
-            attack(AbstractDungeon.getRandomMonster(), this.baseAFX, this.secondMagic);
+            thornAttack(AbstractDungeon.getRandomMonster(), this.secondMagic);
             
             // Check Splash Orbs
             checkSplash();
         }
+        super.triggerOnEndOfPlayerTurn();
     }
 
     // Actions the card should do.

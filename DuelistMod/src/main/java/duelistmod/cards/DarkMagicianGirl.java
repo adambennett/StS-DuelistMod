@@ -60,27 +60,6 @@ public class DarkMagicianGirl extends DuelistCard
 		channel(buffer);
 	}
 
-	@Override
-	public void triggerOnEndOfPlayerTurn() 
-	{
-		/*
-		// If overflows remaining
-		if (this.magicNumber > 0) 
-		{
-			// Get player reference
-			AbstractPlayer p = AbstractDungeon.player;
-
-			// Remove 1 overflow
-			AbstractDungeon.actionManager.addToBottom(new ModifyMagicNumberAction(this, -1));
-
-			// Get random number of turns for buff to apply for
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-
-			applyRandomBuffPlayer(p, randomTurnNum, true);
-		}
-		*/
-	}
-
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {

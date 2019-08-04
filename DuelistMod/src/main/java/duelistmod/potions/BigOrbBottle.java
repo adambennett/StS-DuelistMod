@@ -2,13 +2,14 @@ package duelistmod.potions;
 
 import java.util.ArrayList;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
-import duelistmod.DuelistMod;
+import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 
@@ -46,13 +47,16 @@ public class BigOrbBottle extends AbstractPotion {
     	ArrayList<DuelistCard> tempOrbCards = new ArrayList<DuelistCard>();
     	ArrayList<String> added = new ArrayList<String>();
     	int iterations = this.potency * 3;
-    	if (iterations > DuelistMod.orbCards.size()) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(DuelistMod.orbCards, this.potency, false, false, false, false)); }
+    	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
+    	ArrayList<DuelistCard> fullOrbs = new ArrayList<DuelistCard>();
+    	for (AbstractCard c : orbsToChooseFrom) { if (c instanceof DuelistCard) { fullOrbs.add((DuelistCard) c); }}
+    	if (iterations > orbsToChooseFrom.size()) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(fullOrbs, this.potency, false, false, false, false)); }
     	else
     	{
 	    	for (int i = 0; i < this.potency * 3; i++)
 	    	{
-	    		DuelistCard orb = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-	    		while (added.contains(orb.name)) { orb = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+	    		AbstractCard orb = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
+	    		while (added.contains(orb.name)) { orb = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
 	    		added.add(orb.name); tempOrbCards.add((DuelistCard) orb.makeStatEquivalentCopy());
 	    	}
 	    	

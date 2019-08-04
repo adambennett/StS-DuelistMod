@@ -120,15 +120,15 @@ public class HauntedPower extends AbstractPower
 			{
 				String cardTypeString = this.hauntedCardBaseType.toString().toLowerCase();
 				cardTypeString = cardTypeString.substring(0, 1).toUpperCase() + cardTypeString.substring(1);
-				if (this.amount > 1) { this.description = cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[2] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[5] + lastAction; }
-				else { this.description = cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[2] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + lastAction; }
+				if (this.amount > 1) { this.description = "#y" + cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[2] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[5] + lastAction; }
+				else { this.description = "#y" + cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[2] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + lastAction; }
 			}
 			else
 			{
 				String cardTypeString = this.hauntedCardBaseType.toString().toLowerCase();
 				cardTypeString = cardTypeString.substring(0, 1).toUpperCase() + cardTypeString.substring(1);
-				if (this.amount > 1) { this.description = cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[5] + lastAction; }
-				else { this.description = cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + lastAction; }
+				if (this.amount > 1) { this.description = "#y" + cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[5] + lastAction; }
+				else { this.description = "#y" + cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + lastAction; }
 			}
 		}
 		
@@ -137,8 +137,8 @@ public class HauntedPower extends AbstractPower
 		{ 		
 			String cardTypeString = this.hauntedCardType.toString().toLowerCase();
 			cardTypeString = cardTypeString.substring(0, 1).toUpperCase() + cardTypeString.substring(1);
-			if (this.amount > 1) { this.description = cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[5] + lastAction; }
-			else { this.description = cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + lastAction; }
+			if (this.amount > 1) { this.description = "#y" + cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[5] + lastAction; }
+			else { this.description = "#y" + cardTypeString + DESCRIPTIONS[0] + DESCRIPTIONS[1] + cardTypeString + DESCRIPTIONS[3] + this.amount + DESCRIPTIONS[4] + lastAction; }
 		}	
 	}
 	

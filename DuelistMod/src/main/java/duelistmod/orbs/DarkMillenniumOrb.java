@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.DebuffHelper;
 import duelistmod.powers.incomplete.*;
 
 @SuppressWarnings("unused")
@@ -39,7 +40,7 @@ public class DarkMillenniumOrb extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/DarkMillenniumOrb.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 0;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.basePassiveAmount = this.passiveAmount = 6;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -52,7 +53,7 @@ public class DarkMillenniumOrb extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.passiveAmount >= 0) { this.description = DESC[0] + this.passiveAmount + DESC[1]; }
+		if (this.passiveAmount != 1) { this.description = DESC[0] + this.passiveAmount + DESC[1]; }
 		else { this.description = DESC[0] + this.passiveAmount + DESC[2]; }		
 	}
 
@@ -77,53 +78,19 @@ public class DarkMillenniumOrb extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
-		if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID) || AbstractDungeon.player.hasPower(HauntedDebuff.POWER_ID))
+		if (this.passiveAmount > 0)
 		{
-			triggerPassiveEffect(); 
-		}		
+			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+			for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, this.passiveAmount), m);
+			}
+		}
 	}
 
 	private void triggerPassiveEffect()
 	{
-		// Positive passive - reduce stacks on either type of Haunted
-		if (this.passiveAmount > 0)
-		{
-			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-			if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID))
-			{
-				HauntedPower pow = (HauntedPower)AbstractDungeon.player.getPower(HauntedPower.POWER_ID);
-				pow.amount -= this.passiveAmount;
-				if (pow.amount < 0) { pow.amount = 0; }
-				pow.updateDescription();
-			}
-			else if (AbstractDungeon.player.hasPower(HauntedDebuff.POWER_ID))
-			{
-				HauntedDebuff pow = (HauntedDebuff)AbstractDungeon.player.getPower(HauntedDebuff.POWER_ID);
-				pow.amount -= this.passiveAmount;
-				if (pow.amount < 0) { pow.amount = 0; }
-				pow.updateDescription();
-			}
-		}
 		
-		// Negative passive - increase stacks on either type of Haunted
-		else if (this.passiveAmount < 0)
-		{
-			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-			if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID))
-			{
-				HauntedPower pow = (HauntedPower)AbstractDungeon.player.getPower(HauntedPower.POWER_ID);
-				pow.amount += -this.passiveAmount;
-				if (pow.amount < 0) { pow.amount = 0; }
-				pow.updateDescription();
-			}
-			else if (AbstractDungeon.player.hasPower(HauntedDebuff.POWER_ID))
-			{
-				HauntedDebuff pow = (HauntedDebuff)AbstractDungeon.player.getPower(HauntedDebuff.POWER_ID);
-				pow.amount += -this.passiveAmount;
-				if (pow.amount < 0) { pow.amount = 0; }
-				pow.updateDescription();
-			}
-		}			
 	}
 
 	@Override
@@ -164,36 +131,6 @@ public class DarkMillenniumOrb extends DuelistOrb
 		
 	}
 	
-	@Override
-	public void checkFocus(boolean allowNegativeFocus) 
-	{
-		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
-		{
-			this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
-			{
-				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
-			}
-			
-			else
-			{
-				this.baseEvokeAmount = 0;
-			}	
-		}
-		else
-		{
-			this.basePassiveAmount = this.originalPassive;
-			this.baseEvokeAmount = this.originalEvoke;
-		}
-		if (DuelistMod.debug)
-		{
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
-			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
-		}
-		applyFocus();
-		updateDescription();
-	}
-
 	@Override
 	public AbstractOrb makeCopy()
 	{

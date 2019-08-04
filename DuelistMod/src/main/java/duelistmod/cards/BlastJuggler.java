@@ -2,6 +2,7 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -98,13 +99,13 @@ public class BlastJuggler extends DuelistCard
 	    	{
 	    		//AbstractMonster randomM = getRandomMonster();
 	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh);
-	    		attack(m, this.baseAFX, roll);
+	    		attack(m, AttackEffect.FIRE, roll);
 	    	}
 	    	for (int i = 0; i < sTokens; i++)
 	    	{
 	    		//AbstractMonster randomM = getRandomMonster();
 	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2);
-	    		attack(m, this.baseAFX, roll);
+	    		attack(m, AttackEffect.FIRE, roll);
 	    	}
 	    	
 	    	summon(player(), 0, new Token());
@@ -194,7 +195,7 @@ public class BlastJuggler extends DuelistCard
 	{
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
-		summon(p, 1, new ExplosiveToken("Exploding Token"));
+		summon(p, 1, new ExplosiveToken());
 	}
 
 
@@ -202,7 +203,7 @@ public class BlastJuggler extends DuelistCard
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
 		AbstractPlayer p = AbstractDungeon.player;
 		summon(p, summons, this);
-		summon(p, 1, new ExplosiveToken("Exploding Token"));
+		summon(p, 1, new ExplosiveToken());
 	}
 	
 	/*

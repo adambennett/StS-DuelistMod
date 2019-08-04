@@ -1,13 +1,17 @@
 package duelistmod.cards.incomplete;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -24,51 +28,64 @@ public class FearFromDark extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 100;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public FearFromDark() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        
-        // Dmg / Blk / Magic
-        this.baseDamage = this.damage = 6000;
-        this.baseBlock = this.block = 6000;
-        this.baseMagicNumber = this.magicNumber = 6000;
-        
-        // Summons
-        this.summons = this.baseSummons = 1;
-        this.isSummon = true;
-        
-        // Tribute
-        this.tributes = this.baseTributes = 1;
+        this.tributes = this.baseTributes = 4;
         this.misc = 0;
-       
-        // Card Type
         this.tags.add(Tags.MONSTER);
-        
-        // Attribute
-        this.tags.add(Tags.AQUA);
-
-        // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
-
+        this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.EXEMPT);
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
     	tribute();
-    	//applyPowerToSelf(new PowerTemplate(p, p, 1));
-    	attack(m);
+    	DuelistCard randDrawPile = null;
+    	DuelistCard randDiscardPile = null;
+    	boolean foundDraw = false; boolean foundDiscard = false;
+    	ArrayList<DuelistCard> drawCards = new ArrayList<DuelistCard>();
+    	ArrayList<DuelistCard> discardCards = new ArrayList<DuelistCard>();
+    	for (AbstractCard c : p.drawPile.group)
+    	{
+    		if (c instanceof DuelistCard && !c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.MONSTER))
+    		{
+    			drawCards.add((DuelistCard) c);
+    		}
+    	}
+    	for (AbstractCard c : p.discardPile.group)
+    	{
+    		if (c instanceof DuelistCard && !c.hasTag(Tags.EXEMPT) && c.hasTag(Tags.MONSTER))
+    		{
+    			discardCards.add((DuelistCard) c);
+    		}
+    	}
+    	if (drawCards.size() > 0) 
+    	{ 
+    		randDrawPile = drawCards.get(AbstractDungeon.cardRandomRng.random(drawCards.size() - 1));
+    		foundDraw = true;
+    		Util.log("Fear From Dark: draw pile size was > 0, card: " + randDrawPile.name);
+    	}
+    	if (discardCards.size() > 0) 
+    	{ 
+    		randDiscardPile = discardCards.get(AbstractDungeon.cardRandomRng.random(discardCards.size() - 1));
+    		foundDiscard = true;
+    		Util.log("Fear From Dark: discard pile size was > 0, card: " + randDiscardPile.name);
+    	}
+    	
+    	if (foundDraw && randDrawPile != null) { fullResummon(randDrawPile, false, m, false); }
+    	else { Util.log("Fear From Dark got a null or no found card from the draw pile"); }
+    	if (foundDiscard && randDiscardPile != null) { fullResummon(randDiscardPile, false, m, false); }
+    	else { Util.log("Fear From Dark got a null or no found card from the discard pile"); }
     }
 
     // Which card to return when making a copy of this card.
@@ -81,19 +98,14 @@ public class FearFromDark extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (canUpgrade()) 
+        if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	return true;
     }
 
 	@Override

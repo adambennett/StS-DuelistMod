@@ -2,16 +2,15 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -31,7 +30,6 @@ public class Grasschopper extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
@@ -63,11 +61,9 @@ public class Grasschopper extends DuelistCard
     			}
     		}
     	}
-    	
-    	this.multiDamage = new int[] { this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage, this.damage};
     	for (int i = 0; i < insects; i++)
     	{
-    		attackAllEnemies(AFX, this.multiDamage);
+    		attackAllEnemies(this.damage);
     	}
     	
     }

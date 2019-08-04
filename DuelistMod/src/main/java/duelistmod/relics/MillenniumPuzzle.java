@@ -26,7 +26,6 @@ public class MillenniumPuzzle extends CustomRelic {
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_PUZZLE_RELIC_OUTLINE);
 	private static int summons = 2;
 	public int extra = 0;
-	private int lastPackRoll = 0;
 	
 	public MillenniumPuzzle() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
@@ -37,6 +36,14 @@ public class MillenniumPuzzle extends CustomRelic {
 	@Override
 	public void atPreBattle()
 	{
+		getDeckDesc();
+		if (StarterDeckSetup.getCurrentDeck().getIndex() != DuelistMod.normalSelectDeck && DuelistMod.normalSelectDeck > -1)
+		{
+			DuelistMod.deckIndex = DuelistMod.normalSelectDeck;
+			getDeckDesc();
+		}
+		PuzzleHelper.atBattleStartHelper(summons, extra);
+		getDeckDesc();
 		PuzzleHelper.spellcasterChannelAction();
 		PuzzleHelper.zombieChannel();
 	}
@@ -85,6 +92,7 @@ public class MillenniumPuzzle extends CustomRelic {
 	public void atBattleStart() 
 	{
 		this.flash();
+		/*
 		getDeckDesc();
 		if (StarterDeckSetup.getCurrentDeck().getIndex() != DuelistMod.normalSelectDeck && DuelistMod.normalSelectDeck > -1)
 		{
@@ -93,6 +101,7 @@ public class MillenniumPuzzle extends CustomRelic {
 		}
 		PuzzleHelper.atBattleStartHelper(summons, extra);
 		getDeckDesc();
+		*/
 	}
 
 	@Override
@@ -106,8 +115,8 @@ public class MillenniumPuzzle extends CustomRelic {
 	{
 		boolean eliteVictory = false;
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { eliteVictory = true; }
-		if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 10) { BoosterPackHelper.generateBoosterOnVictory(lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
-		else { BoosterPackHelper.generateBoosterOnVictory(lastPackRoll, eliteVictory, null); }
+		if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
+		else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }
 	}
 
 	// Description
@@ -191,67 +200,112 @@ public class MillenniumPuzzle extends CustomRelic {
 	
 			// Fiend Deck
 			case 7:		
-				localdesc = DESCRIPTIONS[14];
+				localdesc = DESCRIPTIONS[12];
 				break;
 	
 			// Machine Deck
 			case 8:		
+				localdesc = DESCRIPTIONS[13];
+				break;
+				
+			// Warrior Deck
+			case 9:		
+				localdesc = DESCRIPTIONS[14];
+				break;
+				
+			// Insect Deck
+			case 10:
 				localdesc = DESCRIPTIONS[15];
 				break;
-				
-			// Superheavy Deck
-			case 9:		
+			
+			// Plant Deck
+			case 11:
 				localdesc = DESCRIPTIONS[16];
 				break;
-				
-			// Creator Deck
-			case 10:
+	
+			// Predaplant Deck
+			case 12:
 				localdesc = DESCRIPTIONS[17];
-				break;
-			
-			// Ojama Deck
-			case 11:
+				break;	
+				
+			// Megatype Deck
+			case 13:
 				localdesc = DESCRIPTIONS[18];
 				break;
-	
-			// Generation Deck
-			case 12:
-				localdesc = DESCRIPTIONS[19];
-				break;	
-				
-			// Orb Deck
-			case 13:
-				localdesc = DESCRIPTIONS[20];
-				break;
 			
-			// Resummon Deck
+			// Increment Deck
 			case 14:				
-				localdesc = DESCRIPTIONS[21];
+				localdesc = DESCRIPTIONS[19];
 				break;
 					
-			// Increment Deck
+			// Creator Deck
 			case 15:
-				localdesc = DESCRIPTIONS[22];
+				localdesc = DESCRIPTIONS[20];
 				break;
 				
-			// Exodia Deck
+			// Ojama Deck
 			case 16:
-				localdesc = DESCRIPTIONS[23];
+				localdesc = DESCRIPTIONS[21];
 				break;	
 			
-			// Heal Deck
+			// Exodia Deck
 			case 17:
-				localdesc = DESCRIPTIONS[24];
+				localdesc = DESCRIPTIONS[22];
 				break;	
 	
-			// Random (Small) Deck
+			// Giants Deck
 			case 18:
-				localdesc = DESCRIPTIONS[25];
+				localdesc = DESCRIPTIONS[23];
 				break;
 	
-			// Random (Big) Deck
+			// A1 Deck
 			case 19:
+				localdesc = DESCRIPTIONS[24];
+				break;
+				
+			// A2 Deck	
+			case 20:
+				localdesc = DESCRIPTIONS[25];
+				break;
+				
+			// A3 Deck	
+			case 21:
 				localdesc = DESCRIPTIONS[26];
+				break;
+				
+			// P1 Deck
+			case 22:
+				localdesc = DESCRIPTIONS[27];
+				break;
+			
+			// P2 Deck
+			case 23:
+				localdesc = DESCRIPTIONS[28];
+				break;
+				
+			// P3 Deck
+			case 24:
+				localdesc = DESCRIPTIONS[29];
+				break;
+				
+			// P4 Deck
+			case 25:
+				localdesc = DESCRIPTIONS[30];
+				break;
+				
+			// P5 Deck
+			case 26:
+				localdesc = DESCRIPTIONS[31];
+				break;
+				
+			// Random (Small) Deck
+			case 27:
+				localdesc = DESCRIPTIONS[26];
+				break;
+			
+			// Random (Big) Deck
+			case 28:
+				localdesc = DESCRIPTIONS[32];
 				break;
 	
 			// Generic

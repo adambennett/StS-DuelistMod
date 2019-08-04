@@ -37,18 +37,29 @@ public class Shadow extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
+	private boolean wasSpawnedWithRelic = false;
 	
 	public Shadow()
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
-		this.basePassiveAmount = this.passiveAmount = 1;
-		if (DuelistMod.challengeMode)
-		{
-			this.baseEvokeAmount = this.evokeAmount = 1;
-			this.basePassiveAmount = this.passiveAmount = 1;
-		}
+		this.basePassiveAmount = this.passiveAmount = 3;
+		this.angle = MathUtils.random(360.0F);
+		this.channelAnimTimer = 0.5F;
+		originalEvoke = this.baseEvokeAmount;
+		originalPassive = this.basePassiveAmount;
+		checkFocus(false);
+		this.updateDescription();
+	}
+	
+	public Shadow(boolean hasZombieRelic)
+	{
+		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
+		this.name = orbString.NAME;
+		this.baseEvokeAmount = this.evokeAmount = 2;
+		if (hasZombieRelic) { this.basePassiveAmount = this.passiveAmount = 5; this.wasSpawnedWithRelic = true; }
+		else { this.basePassiveAmount = this.passiveAmount = 3; }
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -61,22 +72,8 @@ public class Shadow extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.evokeAmount < 2 && this.passiveAmount < 2)
-		{
-			this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
-		}
-		else if (this.evokeAmount < 2 && this.passiveAmount >= 2)
-		{
-			this.description = DESC[0] + this.passiveAmount + DESC[4] + this.evokeAmount + DESC[2];
-		}
-		else if (this.evokeAmount >= 2 && this.passiveAmount < 2)
-		{
-			this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; 
-		}
-		else
-		{
-			this.description = DESC[0] + this.passiveAmount + DESC[4] + this.evokeAmount + DESC[3]; 
-		}
+		if (this.evokeAmount == 1) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
+		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
 	}
 
 	@Override
@@ -111,38 +108,23 @@ public class Shadow extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		applyFocus();
-		if (this.passiveAmount > 0)
-		{
-			int roll = AbstractDungeon.cardRandomRng.random(1, 10);
-			int rollCheck = AbstractDungeon.cardRandomRng.random(1, 3);
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{
-				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (instance.isEveryMonsterCheck(Tags.ZOMBIE, false))
-				{
-					rollCheck += 4;
-				}
-			}
-			if (roll < rollCheck)
-			{
-				this.triggerPassiveEffect();
-			}
-		}
 	}
 
-	private void triggerPassiveEffect()
+	public void triggerPassiveEffect()
 	{
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-		DuelistCard.summon(AbstractDungeon.player, this.passiveAmount, new Token("Shadow Token"));
+		if (this.passiveAmount > 0) 
+		{
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+			DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount);
+		}
 	}
 	
 	public void tribShadowToken()
 	{
-		this.baseEvokeAmount = this.evokeAmount += 1;
-		this.basePassiveAmount = this.passiveAmount += 1;
-		originalEvoke = this.baseEvokeAmount;
-		originalPassive = this.basePassiveAmount;
-		applyFocus();
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+		this.basePassiveAmount++;
+		this.passiveAmount++;
+		this.originalPassive++;
 		updateDescription();
 	}
 
@@ -182,9 +164,9 @@ public class Shadow extends DuelistOrb
 	protected void renderText(SpriteBatch sb)
 	{	
 		// Render evoke amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
 	}
 
 	@Override
@@ -196,7 +178,7 @@ public class Shadow extends DuelistOrb
 	@Override
 	public AbstractOrb makeCopy()
 	{
-		return new Shadow();
+		return new Shadow(this.wasSpawnedWithRelic);
 	}
 	
 	@Override

@@ -84,7 +84,7 @@ public class MoltenZombie extends DuelistCard
 	@Override
 	public void onResummon(int summons)
 	{
-		 damageAllEnemiesFire(this.magicNumber);
+		 attackAllEnemiesFireThorns(this.magicNumber);
 	}
 
 	@Override

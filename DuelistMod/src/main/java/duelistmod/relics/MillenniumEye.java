@@ -6,10 +6,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.powers.ToonWorldPower;
-import duelistmod.variables.Strings;
 
 public class MillenniumEye extends CustomRelic {
     
@@ -21,8 +20,8 @@ public class MillenniumEye extends CustomRelic {
 
     // ID, images, text.
     public static final String ID = DuelistMod.makeID("MillenniumEye");
-    public static final String IMG = DuelistMod.makePath(Strings.M_EYE_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.M_EYE_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("MillenniumEyeRelic.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MillenniumEye_Outline.png");
 
     public MillenniumEye() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
@@ -35,14 +34,14 @@ public class MillenniumEye extends CustomRelic {
     	boolean allowSpawn = false;
     	if (DuelistMod.toonBtnBool) 
     	{ 
-    		if (deck.equals("Toon Deck")) { allowSpawn = true; }
+    		if (deck.equals("Toon Deck")) { allowSpawn = false; }
     		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
     	}
     	else
     	{
     		if (deck.equals("Machine Deck")) { allowSpawn = true; }
     		if (deck.equals("Dragon Deck")) { allowSpawn = true; }
-    		if (deck.equals("Toon Deck")) { allowSpawn = true; }
+    		if (deck.equals("Toon Deck")) { allowSpawn = false; }
     		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
     	}
 		return allowSpawn;

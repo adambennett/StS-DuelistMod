@@ -9,7 +9,7 @@ public class ExodiaDeck extends DuelistCustomLoadout
 {
     public ExodiaDeck()
     {
-        this.ID = 16;
+        this.ID = 17;
         this.Name = DuelistMod.exodiaDeckString;
         this.cardCount = "60 Cards";
     }

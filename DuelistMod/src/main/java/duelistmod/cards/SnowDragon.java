@@ -39,7 +39,6 @@ public class SnowDragon extends DuelistCard
     public SnowDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 4;
-        this.upgradeDmg = 2;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
@@ -75,8 +74,7 @@ public class SnowDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(this.upgradeDmg);
-            //this.upgradeBaseCost(1);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

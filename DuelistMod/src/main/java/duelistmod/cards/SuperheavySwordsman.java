@@ -1,6 +1,8 @@
 package duelistmod.cards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,10 +11,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -45,6 +47,7 @@ public class SuperheavySwordsman extends DuelistCard
 		this.tags.add(Tags.SUPERHEAVY);
 		this.originalName = this.name;
 		this.isSummon = true;
+		this.isMultiDamage = true;
 	}
 
 	// Actions the card should do.
@@ -53,14 +56,48 @@ public class SuperheavySwordsman extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		attack(m, AFX, this.damage);
-		if (p.hasPower(DexterityPower.POWER_ID))
+		this.damage = this.baseDamage;
+		if (p.hasPower(DexterityPower.POWER_ID) && this.damage > 0)
 		{
-			if (p.getPower(DexterityPower.POWER_ID).amount > 0)
-			{
-				attackAllEnemies(p.getPower(DexterityPower.POWER_ID).amount);
-			}
+			AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
 		}
 	}
+
+    @Override
+    public void applyPowers() 
+    {
+        super.applyPowers();
+        if (AbstractDungeon.player.hasPower(DexterityPower.POWER_ID))
+		{
+        	 this.baseDamage = AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
+             this.damage = this.baseDamage;
+             this.initializeDescription();
+		}
+        else
+        {
+        	 this.baseDamage = 0;
+             this.damage = this.baseDamage;
+             this.initializeDescription();
+        }	   
+    }
+    
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) 
+    {
+        super.calculateCardDamage(mo);
+        if (AbstractDungeon.player.hasPower(DexterityPower.POWER_ID))
+		{
+        	 this.baseDamage = AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
+             this.damage = this.baseDamage;
+             this.initializeDescription();
+		}
+        else
+        {
+        	 this.baseDamage = 0;
+             this.damage = this.baseDamage;
+             this.initializeDescription();
+        }	
+    }
 
 	// Which card to return when making a copy of this card.
 	@Override

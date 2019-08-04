@@ -51,24 +51,7 @@ public class ExodiaNecross extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	boolean foundExxod = false;
-    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	if (tributeList.size() > 0)
-    	{
-	    	for (DuelistCard c : tributeList)
-	    	{
-	    		if (c.hasTag(Tags.EXODIA))
-	    		{
-	    			foundExxod = true;
-	    			this.baseDamage += 10;
-	    		}
-	    	}
-	    	
-	    	if (foundExxod) 
-	    	{
-	    		attack(m, AFX, this.damage);
-	    	}
-    	}
+    	
     }
 
     // Which card to return when making a copy of this card.

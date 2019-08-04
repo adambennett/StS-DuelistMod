@@ -57,10 +57,11 @@ public class ToonMaskedSorcerer extends DuelistCard
     	damageThroughBlock(m, p, this.damage, this.baseAFX);
     	ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
     	ArrayList<String> orbNames = new ArrayList<String>();
+    	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
 		for (int i = 0; i < 5; i++)
 		{
-			DuelistCard random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1));
-			while (orbNames.contains(random.name)) { random = DuelistMod.orbCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.orbCards.size() - 1)); }
+			AbstractCard random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
+			while (orbNames.contains(random.name)) { random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
 			orbs.add((DuelistCard) random.makeCopy());
 			orbNames.add(random.name);
 		}

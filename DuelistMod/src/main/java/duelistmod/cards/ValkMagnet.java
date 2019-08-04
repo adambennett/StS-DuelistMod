@@ -55,7 +55,7 @@ public class ValkMagnet extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	DuelistCard.attackAllEnemies(this.damage);
+    	attackAllEnemies(this.damage);
     	
     	// Remove magnets
     	if (!this.upgraded)

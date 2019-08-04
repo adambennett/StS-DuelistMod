@@ -34,35 +34,33 @@ public class AknamkanonTomb extends AbstractImageEvent {
         {
         	if (AbstractDungeon.ascensionLevel >= 15)
         	{
-        		if (AbstractDungeon.player.potionSlots < 9) { imageEventText.setDialogOption(OPTIONS[8]); }
-            	else { imageEventText.setDialogOption(OPTIONS[7], true); }
+        		if (AbstractDungeon.player.potionSlots < 9) { imageEventText.setDialogOption(OPTIONS[7]); }
+            	else { imageEventText.setDialogOption(OPTIONS[6], true); }
         		imageEventText.setDialogOption(OPTIONS[8]);
                 imageEventText.setDialogOption(OPTIONS[9]);
                 imageEventText.setDialogOption(OPTIONS[10]);
-                imageEventText.setDialogOption(OPTIONS[11]);
-                imageEventText.setDialogOption(OPTIONS[12]);
+                imageEventText.setDialogOption(OPTIONS[4]);
         		
         	}
         	else
         	{
         		if (AbstractDungeon.player.potionSlots < 9) { imageEventText.setDialogOption(OPTIONS[0]); }
-            	else { imageEventText.setDialogOption(OPTIONS[7], true); }
+            	else { imageEventText.setDialogOption(OPTIONS[6], true); }
                 
             	imageEventText.setDialogOption(OPTIONS[1]);
                 imageEventText.setDialogOption(OPTIONS[2]);
                 imageEventText.setDialogOption(OPTIONS[3]);
                 imageEventText.setDialogOption(OPTIONS[4]);
-                imageEventText.setDialogOption(OPTIONS[5]);
         	}
         }
         else
         {
-        	imageEventText.setDialogOption(OPTIONS[6], true);
-        	imageEventText.setDialogOption(OPTIONS[6], true);
-        	imageEventText.setDialogOption(OPTIONS[6], true);
-        	imageEventText.setDialogOption(OPTIONS[6], true);
-        	imageEventText.setDialogOption(OPTIONS[6], true);
-            imageEventText.setDialogOption(OPTIONS[5]);
+        	imageEventText.setDialogOption(OPTIONS[5], true);
+        	imageEventText.setDialogOption(OPTIONS[5], true);
+        	imageEventText.setDialogOption(OPTIONS[5], true);
+        	imageEventText.setDialogOption(OPTIONS[5], true);
+        	imageEventText.setDialogOption(OPTIONS[5], true);
+            imageEventText.setDialogOption(OPTIONS[4]);
         }
     }
 
@@ -75,108 +73,53 @@ public class AknamkanonTomb extends AbstractImageEvent {
             case 0:
             	switch (i) 
             	{
-	            	// Brew - 2x potion slots - 2x random Duelist curse
-            		// 3 random on A15+
+	            	// Brew - 2x potion slots - Lose 4(7) max hp
 	            	case 0:
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();
 	            		int initSlots = AbstractDungeon.player.potionSlots;
 	            		AbstractDungeon.player.potionSlots = AbstractDungeon.player.potionSlots * 2;
 	            		for (int j = 0; j < initSlots; j++) { AbstractDungeon.player.potions.add(new PotionSlot(initSlots + j)); }
-	            		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();	
-	            		AbstractCard b2 = DuelistCardLibrary.getRandomDuelistCurse();
-	            		while (b2.name.equals(b.name)) { b2 = DuelistCardLibrary.getRandomDuelistCurse(); }
-	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-	            		if (a15) 
-	            		{
-	            			AbstractCard b3 = DuelistCardLibrary.getRandomDuelistCurse();	 
-	            			while (b3.name.equals(b.name) || b3.name.equals(b2.name)) { b3 = CardLibrary.getCurse(); }
-	            			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b3, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-	            		}
+	            		if (a15) { AbstractDungeon.player.decreaseMaxHealth(7); }
+	            		else { AbstractDungeon.player.decreaseMaxHealth(4); }
 	            		screenNum = 1;
 	            		break;
 	
-	            	// Enrich - 2x Gold - 2x random curse
-	            	// 3 random on A15+
+	            	// Enrich - 2x Gold - get 2(3) random duelist curses
 	            	case 1:
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();
 	            		AbstractDungeon.player.gainGold(AbstractDungeon.player.gold);
-	            		AbstractCard c = CardLibrary.getCurse();	
-	            		AbstractCard c2 = CardLibrary.getCurse();
-	            		while (c2.name.equals(c.name)) { c2 = CardLibrary.getCurse(); }
-	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c2, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+	            		AbstractCard c = DuelistCardLibrary.getRandomDuelistCurse();	
+	            		AbstractCard c2 = DuelistCardLibrary.getRandomDuelistCurse();
+	            		while (c2.name.equals(c.name)) { c2 = DuelistCardLibrary.getRandomDuelistCurse(); }
+	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		if (a15) 
 	            		{
-	            			AbstractCard c3 = CardLibrary.getCurse(); 
-	            			while (c3.name.equals(c.name) || c3.name.equals(c2.name)) { c3 = CardLibrary.getCurse(); }
-	            			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c3, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
+	            			AbstractCard c3 = DuelistCardLibrary.getRandomDuelistCurse(); 
+	            			while (c3.name.equals(c.name) || c3.name.equals(c2.name)) { c3 = DuelistCardLibrary.getRandomDuelistCurse(); }
+	            			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c3, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		}
 	            		screenNum = 1;
 	            		break;
 	
-	            	// Intellect - dupe all spells - lose 8 max hp
-	            	// 11 MaxHP on A15+
+	            	// Intellect - dupe all spells - get 2 random curses
 	            	case 2:
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();                        
 	            		for (AbstractCard card : AbstractDungeon.player.masterDeck.group)  { if (card.hasTag(Tags.SPELL)) { AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(card.makeStatEquivalentCopy(), (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2))); }}
-	            		if (a15)
-	            		{
-	            			if (AbstractDungeon.player.maxHealth > 11) 
-		            		{ 
-		            			AbstractDungeon.player.maxHealth -= 11; 
-		            			if (AbstractDungeon.player.currentHealth > AbstractDungeon.player.maxHealth)
-		            			{
-		            				AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth; 
-		            			}
-		            		}
-		            		else { AbstractDungeon.player.maxHealth = 1; AbstractDungeon.player.currentHealth = 1;}
-	            		}
-	            		else
-	            		{
-	            			if (AbstractDungeon.player.maxHealth > 8) 
-		            		{ 
-		            			AbstractDungeon.player.maxHealth -= 8; 
-		            			if (AbstractDungeon.player.currentHealth > AbstractDungeon.player.maxHealth)
-		            			{
-		            				AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth; 
-		            			}
-		            		}
-		            		else { AbstractDungeon.player.maxHealth = 1; AbstractDungeon.player.currentHealth = 1;}
-	            		}
-	            		
+	            		AbstractCard ca = CardLibrary.getCurse();	
+	            		AbstractCard ca2 = CardLibrary.getCurse();
+	            		while (ca2.name.equals(ca.name)) { ca2 = CardLibrary.getCurse(); }
+	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(ca, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(ca2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		screenNum = 1;
 	            		break;
 	
-	            	// Reduce - all cards in deck cost 1 - 3 random curses (1 duelist, 2 totally random)
-	            	// 4 random (2 duelist, 2 totally random) on A15+
+	            		// Dig - random Duelist relic - lose 6(8) HP
 	            	case 3:
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
-	            		this.imageEventText.clearRemainingOptions();                        
-	            		for (AbstractCard card : AbstractDungeon.player.masterDeck.group) { if (card.cost != 1) { card.updateCost(-card.cost + 1); card.isCostModified = true; }}
-	            		AbstractCard d = CardLibrary.getCurse(); 
-	            		AbstractCard d2 = DuelistCardLibrary.getRandomDuelistCurse();
-	            		AbstractCard d3 = CardLibrary.getCurse();
-	            		while (d3.name.equals(d2.name)) { d3 = CardLibrary.getCurse(); }
-	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(d, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));                       
-	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(d2, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(d3, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-	            		if (a15)
-	            		{
-	            			AbstractCard d4 = CardLibrary.getCurse(); 
-	            			while (d4.name.equals(d.name)) { d4 = CardLibrary.getCurse(); }
-	            			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(d4, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));   
-	            		}
-	            		screenNum = 1;
-	            		break;
-
-	            	// Dig - random Duelist relic - lose 6 HP
-	            	// -8 HP on A15+
-	            	case 4:
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();      
 	            		boolean hasEveryDuelistRelic = true;
 	            		for (AbstractRelic t : DuelistMod.duelistRelicsForTombEvent) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryDuelistRelic = false; break; }}
@@ -195,10 +138,11 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            		screenNum = 1;
 	            		break;
 
+	            	
 	            	// Leave
-	            	case 5:
+	            	case 4:
 	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
+	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();
 	            		screenNum = 1;
 	            		break;

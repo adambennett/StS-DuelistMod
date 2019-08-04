@@ -39,13 +39,10 @@ public class JunkKuriboh extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.MACHINE);
-		this.tags.add(Tags.INCREMENT_DECK);
-		this.incrementDeckCopies = 1;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.exhaust = true;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

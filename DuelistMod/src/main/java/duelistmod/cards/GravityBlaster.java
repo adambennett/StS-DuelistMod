@@ -27,7 +27,7 @@ public class GravityBlaster extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 3;
     // /STAT DECLARATION/
@@ -36,6 +36,7 @@ public class GravityBlaster extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.MACHINE);
         this.isMultiDamage = true;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 10;

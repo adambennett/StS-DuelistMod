@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.orbs.*;
 
 import conspire.orbs.Water;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.orbs.*;
+import duelistmod.relics.ZombieRelic;
 
 public class RandomOrbHelperCon 
 {
@@ -16,6 +18,73 @@ public class RandomOrbHelperCon
 	{
 		AbstractOrb water = new Water();
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(water));
+	}
+	
+	public static boolean checkWater()
+	{
+		for (AbstractOrb o : AbstractDungeon.player.orbs)
+		{
+			if (o instanceof WaterOrb)
+			{
+				return true;
+			}
+			
+			if (o instanceof Splash)
+			{
+				return true;
+			}
+			
+			if (o instanceof Mist)
+			{
+				return true;
+			}
+			
+			if (o instanceof Storm)
+			{
+				return true;
+			}
+			
+			if (o instanceof Water)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static ArrayList<AbstractOrb> channelStatue()
+	{
+		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
+		orbs.add(new WaterOrb());
+		orbs.add(new Lightning());
+		orbs.add(new Plasma());
+		orbs.add(new Dark());
+		orbs.add(new Frost());
+		orbs.add(new Summoner(1));
+		orbs.add(new MonsterOrb());
+		orbs.add(new DragonOrb());
+		orbs.add(new ReducerOrb()); 
+		orbs.add(new Air());
+		orbs.add(new Earth());
+		orbs.add(new FireOrb());
+		orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));	
+		orbs.add(new Black());
+		orbs.add(new Gadget());
+		orbs.add(new Metal());
+		orbs.add(new Mist());
+		orbs.add(new Mud());
+		orbs.add(new Sand());
+		orbs.add(new Storm());
+		orbs.add(new DuelistHellfire());
+		orbs.add(new DuelistCrystal());
+		orbs.add(new TokenOrb());
+		orbs.add(new WhiteOrb());
+		orbs.add(new VoidOrb());
+		orbs.add(new Surge());
+		orbs.add(new Alien());
+		orbs.add(new Moon());
+		orbs.add(new Sun());
+		return orbs;
 	}
 	
 	public static void channelRandomOrb()
@@ -46,7 +115,9 @@ public class RandomOrbHelperCon
 			orbs.add(new WhiteOrb());
 			orbs.add(new VoidOrb());
 			orbs.add(new Surge());
-			orbs.add(new Anticrystal());
+			orbs.add(new Alien());
+			orbs.add(new Moon());
+			orbs.add(new Sun());
 		}
 		else
 		{
@@ -55,7 +126,6 @@ public class RandomOrbHelperCon
 			orbs.add(new Plasma());
 			orbs.add(new Dark());
 			orbs.add(new Frost());
-			orbs.add(new Gate()); 
 			orbs.add(new Buffer());
 			orbs.add(new Summoner(1));
 			orbs.add(new MonsterOrb());
@@ -65,7 +135,7 @@ public class RandomOrbHelperCon
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
-			orbs.add(new Shadow());
+			orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));
 			orbs.add(new Splash());
 			orbs.add(new Black());
 			orbs.add(new Blaze());
@@ -86,7 +156,9 @@ public class RandomOrbHelperCon
 			orbs.add(new WhiteOrb());
 			orbs.add(new VoidOrb());
 			orbs.add(new Surge());
-			orbs.add(new Anticrystal());
+			orbs.add(new Alien());
+			orbs.add(new Moon());
+			orbs.add(new Sun());
 		}
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
@@ -119,6 +191,9 @@ public class RandomOrbHelperCon
 			orbs.add(new WhiteOrb());
 			orbs.add(new VoidOrb());
 			orbs.add(new Surge());
+			orbs.add(new Alien());
+			orbs.add(new Moon());
+			orbs.add(new Sun());
 		}
 		else
 		{
@@ -136,7 +211,7 @@ public class RandomOrbHelperCon
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
-			orbs.add(new Shadow());
+			orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));
 			orbs.add(new Splash());
 			orbs.add(new Black());
 			orbs.add(new Blaze());
@@ -156,6 +231,9 @@ public class RandomOrbHelperCon
 			orbs.add(new WhiteOrb());
 			orbs.add(new VoidOrb());
 			orbs.add(new Surge());
+			orbs.add(new Alien());
+			orbs.add(new Moon());
+			orbs.add(new Sun());
 		}
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
@@ -164,30 +242,37 @@ public class RandomOrbHelperCon
 	public static void spellcasterPuzzleChannel()
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
-		orbs.add(new Water());		// conspire only
-		//orbs.add(new WaterOrb()); // non-conspire
+		orbs.add(new WaterOrb());
 		orbs.add(new Lightning());
 		orbs.add(new Plasma());
 		orbs.add(new Dark());
 		orbs.add(new DuelistHellfire());
 		orbs.add(new Frost());
-		orbs.add(new Summoner(2));
 		orbs.add(new DragonOrb());
-		orbs.add(new ReducerOrb(-1)); 
+		orbs.add(new ReducerOrb()); 
 		orbs.add(new Earth());
 		orbs.add(new Gadget());
-		orbs.add(new Lava(AbstractDungeon.cardRandomRng.random(1, 10)));
-		orbs.add(new Metal());
-		orbs.add(new Mist());
 		orbs.add(new Mud());
 		orbs.add(new Sand());
 		orbs.add(new Storm());
 		orbs.add(new WhiteOrb());
-		orbs.add(new VoidOrb());
 		orbs.add(new Surge());		
+		orbs.add(new Moon());
+		orbs.add(new Sun());
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
-		AbstractDungeon.player.channelOrb(orbs.get(randomOrb));
-		orbs.get(randomOrb).onStartOfTurn();
+		AbstractOrb orb = orbs.get(randomOrb);
+		AbstractDungeon.player.channelOrb(orb);
+		if (orb instanceof DuelistOrb)
+		{
+			DuelistOrb duelOrb = (DuelistOrb)orb;
+			if (duelOrb.triggersOnSpellcasterPuzzle) { orb.onStartOfTurn(); }
+			else { Util.log("Did not trigger onStartOfTurn() for " + orb.name); }
+		}
+		else if (orb instanceof Lightning || orb instanceof Dark || orb instanceof Frost)
+		{
+			orb.onEndOfTurn();
+			Util.log("Trigger onEndOfTurn() for " + orb.name);
+		}
 	}
 	
 	public static void channelRandomOffense()
@@ -261,6 +346,11 @@ public class RandomOrbHelperCon
 		returnOrbs.add(new VoidOrb());
 		returnOrbs.add(new Surge());
 		returnOrbs.add(new Anticrystal());
+		returnOrbs.add(new Alien());
+		//returnOrbs.add(new Blood());
+		returnOrbs.add(new Moon());
+		returnOrbs.add(new Sun());
+		returnOrbs.add(new LightMillenniumOrb());
 		return returnOrbs;
 	}
 	
@@ -298,12 +388,16 @@ public class RandomOrbHelperCon
 		DuelistMod.invertStringMap.put(new TokenOrb().name, new MonsterOrb());
 		DuelistMod.invertStringMap.put(new DragonOrb().name, new DragonPlusOrb());
 		DuelistMod.invertStringMap.put(new DragonPlusOrb().name, new DragonOrb());
-		DuelistMod.invertStringMap.put(new Gate().name, new VoidOrb());
-		DuelistMod.invertStringMap.put(new VoidOrb().name, new Gate());
+		DuelistMod.invertStringMap.put(new Gate().name, new MillenniumOrb(2));
 		DuelistMod.invertStringMap.put(new DuelistCrystal().name, new Anticrystal());
 		DuelistMod.invertStringMap.put(new Anticrystal().name, new DuelistCrystal());
 		DuelistMod.invertStringMap.put(new MillenniumOrb(2).name, new DarkMillenniumOrb());
-		DuelistMod.invertStringMap.put(new DarkMillenniumOrb().name, new MillenniumOrb(2));
+		DuelistMod.invertStringMap.put(new DarkMillenniumOrb().name, new LightMillenniumOrb());
+		DuelistMod.invertStringMap.put(new LightMillenniumOrb().name, new DarkMillenniumOrb());
+		DuelistMod.invertStringMap.put(new Alien().name, new VoidOrb());
+		DuelistMod.invertStringMap.put(new VoidOrb().name, new Alien());
+		DuelistMod.invertStringMap.put(new Sun().name, new Moon());
+		DuelistMod.invertStringMap.put(new Moon().name, new Sun());
 		DuelistMod.invertStringMap.put(new Black().name, new WhiteOrb());
 		DuelistMod.invertStringMap.put(new WhiteOrb().name, new Black());
 		DuelistMod.invertStringMap.put(new Metal().name, new Surge());

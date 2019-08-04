@@ -3,6 +3,7 @@ package duelistmod.orbs;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
@@ -17,6 +18,7 @@ import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.interfaces.*;
+import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
@@ -97,7 +99,17 @@ public class FireOrb extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{		
-		if (this.passiveAmount > 0) { DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount); }
+		if (AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
+		{
+			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+			if (this.passiveAmount > 0) { DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount); }
+		}
+		else
+		{
+			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+			if (this.passiveAmount > 0) { DuelistCard.staticThornAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.passiveAmount); }
+		}
+		
 	}
 
 	@Override

@@ -90,8 +90,7 @@ public class Mud extends DuelistOrb
 	public void triggerPassiveEffect(int poisonExtra)
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-		AbstractCreature randomMonster = AbstractDungeon.getRandomMonster();
-		DuelistCard.applyPower(new PoisonPower(randomMonster, AbstractDungeon.player, this.passiveAmount + poisonExtra), randomMonster);
+		DuelistCard.poisonAllEnemies(AbstractDungeon.player, this.passiveAmount + poisonExtra);
 	}
 
 	@Override

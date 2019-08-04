@@ -46,6 +46,7 @@ public class ClearKuriboh extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
+    	this.applyPowers();
     	attackAllEnemies(this.damage);
     	DuelistCard randMon = (DuelistCard) returnTrulyRandomFromSet(DuelistMod.lastTagSummoned);
     	addCardToHand(randMon);

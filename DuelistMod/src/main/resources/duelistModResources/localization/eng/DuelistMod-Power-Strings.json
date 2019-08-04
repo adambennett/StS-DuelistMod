@@ -89,7 +89,7 @@
 },
 "theDuelist:SliferSkyPower": {
         "NAME": "Slifer the Sky Dragon",
-        "DESCRIPTIONS": ["Whenever you #ySummon, Gain #b", " #yStrength for the turn." ]
+        "DESCRIPTIONS": ["Whenever you #ySummon, Gain #b", " #yStrength." ]
 },
 "theDuelist:ExodiaPower": {
         "NAME": "The Forbidden One",
@@ -441,15 +441,15 @@
 },
 "theDuelist:MillenniumSpellbookPower": {
         "NAME": "Millennium Spellbook",
-        "DESCRIPTIONS": ["Keeps track of unblocked damage dealt. If after #b", " more turn you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", " more turns you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", "After #b", " more turn, deal #b150 damage to ALL enemies.", " more turns, deal #b150 damage to ALL enemies." ]
+        "DESCRIPTIONS": ["Keeps track of unblocked attack damage dealt. If after #b", " more turn you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", " more turns you have dealt at least 99 damage, deal 150 damage to ALL enemies. NL #yDamage Remaining: #b", "After #b", " more turn, deal #b150 damage to ALL enemies.", " more turns, deal #b150 damage to ALL enemies." ]
 },
 "theDuelist:HauntedPower": {
         "NAME": "Haunted",
-        "DESCRIPTIONS": ["s cost 0. ", "Whenever you play a ", "Whenever you play an ", " trigger #b", " random negative effect. NL #yLast #yEffect: ", " random negative effects. NL #yLast #yEffect: " ]
+        "DESCRIPTIONS": ["s cost 0. ", "Whenever you play a #y", "Whenever you play an #y", " trigger #b", " random negative effect. NL #yLast #yEffect: ", " random negative effects. NL #yLast #yEffect: " ]
 },
 "theDuelist:HauntedDebuff": {
         "NAME": "Haunted",
-        "DESCRIPTIONS": ["s cost 0. ", "Whenever you play a ", "Whenever you play an ", " trigger #b", " random negative effect, and have a small chance to stack this debuff. NL #yLast #yEffect: ", " random negative effects, and have a small chance to stack this debuff. NL #yLast #yEffect: " ]
+        "DESCRIPTIONS": ["s cost 0. ", "Whenever you play a #y", "Whenever you play an #y", " trigger #b", " random negative effect, [#FF5252]and [#FF5252]have [#FF5252]a [#FF5252]small [#FF5252]chance [#FF5252]to [#FF5252]stack [#FF5252]this [#FF5252]debuff. NL #yLast #yEffect: ", " random negative effects, [#FF5252]and [#FF5252]have [#FF5252]a [#FF5252]small [#FF5252]chance [#FF5252]to [#FF5252]stack [#FF5252]this [#FF5252]debuff. NL #yLast #yEffect: " ]
 },
 "theDuelist:MortalityPower": {
         "NAME": "Mortality",
@@ -470,6 +470,82 @@
 "theDuelist:BlackPendantPower": {
         "NAME": "Black Pendant",
         "DESCRIPTIONS": ["If Black Pendant is in your discard pile at the start of turn, return it to your hand. NL #yPendants: #b" ]
+},
+"theDuelist:StrengthDownPower": {
+        "NAME": "Strength Loss",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yStrength is reduced by #b", " turns, #yStrength is reduced by #b", "." ]
+},
+"theDuelist:MiraculousDescentPower": {
+        "NAME": "Miraculous Descent",
+        "DESCRIPTIONS": ["At the end of turn, gain #b", " #yBlock and then randomize the amount of #yBlock gained next turn." ]
+},
+"theDuelist:StatueAnguishPatternPower": {
+        "NAME": "Statue of Anguish Pattern",
+        "DESCRIPTIONS": [ "At the start of turn, #yChannel a ", ". The #yChanneled orb is randomized each time you play a card.", "At the start of turn, #yChannel an " ]
+},
+"theDuelist:VoidExpansionPower": {
+        "NAME": "Void Expansion",
+        "DESCRIPTIONS": ["Whenever you #yChannel a #yVoid, gain #b", " orb slot.", " orb slots." ]
+},
+"theDuelist:VoidVanishmentPower": {
+        "NAME": "Voidynamics",
+        "DESCRIPTIONS": ["Your #yVoid orbs now siphon from ALL enemies." ]
+},
+"theDuelist:FlameTigerPower": {
+        "NAME": "Thermodynamics",
+        "DESCRIPTIONS": ["Your #yFire orbs now damage ALL enemies." ]
+},
+"theDuelist:DoomDonutsPower": {
+        "NAME": "Doom Donuts",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, set the cost of a random card in your discard pile to #b", "." ]
+},
+"theDuelist:MagiciansRodPower": {
+        "NAME": "Magicians Rod",
+        "DESCRIPTIONS": ["Gain #b", " #yMana at the start of each turn." ]
+},
+"theDuelist:MagiciansRobePower": {
+        "NAME": "Magicians Robe",
+        "DESCRIPTIONS": ["Whenever your Mana would reset, lose a charge on this power instead. Gain #b", " charge at the start of each turn. NL #yCharges: #b", " charges at the start of each turn. NL #yCharges: #b" ]
+},
+"theDuelist:WonderWandPower": {
+        "NAME": "Wonder Wand",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, gain #b", " #yMana." ]
+},
+"theDuelist:InariFirePower": {
+        "NAME": "Inari Fire",
+        "DESCRIPTIONS": ["Whenever you #yIncrement, #yChannel #b", " #yFire." ]
+},
+"theDuelist:FutureFusionPower": {
+        "NAME": "Future Fusion",
+        "DESCRIPTIONS": ["#yResummon the next #b", " monster you draw.", " monsters you draw." ]
+},
+"theDuelist:TotemDragonPower": {
+        "NAME": "Totem Dragon",
+        "DESCRIPTIONS": ["At the end of turn, #ySummon #b", " #yDragon Token.", " #yDragon Tokens." ]
+},
+"theDuelist:RainbowRefractionPower": {
+        "NAME": "Rainbow Refraction",
+        "DESCRIPTIONS": ["Whenever you would receive damage: if you have any #yMegatyped monsters summoned, #yTribute all of them and receive no damage."  ]
+},
+"theDuelist:RainbowRuinsPower": {
+        "NAME": "Rainbow Ruins",
+        "DESCRIPTIONS": ["Whenever you play a monster, gain #b", " #yTemporary #yHP for each monster type." ]
+},
+"theDuelist:FocusDownPower": {
+        "NAME": "Focus Down",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yFocus is reduced by #b", " turns, #yFocus is reduced by #b", "." ]
+},
+"theDuelist:FocusLossPower": {
+        "NAME": "Focus Loss",
+        "DESCRIPTIONS": ["At the end of turn, lose #b", " #yFocus.", "At the end of turn, gain #b" ]
+},
+"theDuelist:ResummonBonusPower": {
+        "NAME": "Zombie Lord",
+        "DESCRIPTIONS": ["Whenever you #yResummon, #yResummon #b", " more copy of the same monster.", " more copies of the same monster." ]
+},
+"theDuelist:BlastingFusePower": {
+        "NAME": "Blasting Fuse",
+        "DESCRIPTIONS": ["At the start of even turns, #ySummon #b", " Explosive Tokens. At the start of odd turns, #yTribute all of your Explosive Tokens, dealing damage to ALL enemies instead of you.", " Explosive Token. At the start of odd turns, #yTribute all of your Explosive Tokens, dealing damage to ALL enemies instead of you."		]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
