@@ -310,6 +310,7 @@ public class PuzzleHelper
 				int floorD = AbstractDungeon.actNum;
 				int rngTurnNum = AbstractDungeon.cardRandomRng.random(1, floorD + 1);
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Bonanza Token", false);
+				BuffHelper.resetBuffPool();
 				DuelistCard.applyRandomBuffPlayer(p, rngTurnNum, false); 
 				break;
 				
