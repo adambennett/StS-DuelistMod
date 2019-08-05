@@ -62,7 +62,7 @@ public class Gadget extends DuelistOrb
 		applyFocus();
 		if (DuelistMod.uniqueSkillsThisCombat.size() > 0 && !hasNegativeFocus())
 		{
-			AbstractCard randomTrap = DuelistMod.uniqueSkillsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.uniqueSkillsThisCombat.size() - 1));
+			AbstractCard randomTrap = DuelistMod.uniqueSkillsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.uniqueSkillsThisCombat.size() - 1)).makeStatEquivalentCopy();
 			if (!randomTrap.tags.contains(Tags.TRIBUTE)) { randomTrap.misc = 52; }
 			randomTrap.freeToPlayOnce = true;
 			randomTrap.applyPowers();
