@@ -49,6 +49,8 @@ public class GreatMoth extends DuelistCard
         this.tags.add(Tags.INSECT);
         this.tags.add(Tags.NOT_ADDED);
         this.tags.add(Tags.NEVER_GENERATE);
+        this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
+        this.tags.add(Tags.NO_CREATOR);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.GOOD_TRIB);
         this.originalName = this.name;

@@ -30,7 +30,7 @@ public class DuelistCardLibrary
 	{
 		return null;
 	}
-
+	
 	public static void addCardsToGame()
 	{
 		for (DuelistCard c : DuelistMod.myCards) 
@@ -40,6 +40,8 @@ public class DuelistCardLibrary
 				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); DuelistMod.summonMap.put(c.originalName, c); 
 			}
 			else { if (!c.rarity.equals(CardRarity.SPECIAL)) { UnlockTracker.unlockCard(c.getID()); }}
+			
+			//if (c.type.equals(CardType.POWER) && !c.hasTag(Tags.NO_POWER_FOR_RANDOM_DECK_POOLS)) { DuelistMod.powersForRandomDecks.add(c.makeCopy()); }
 		}
 		
 		for (DuelistCard c : DuelistMod.curses)

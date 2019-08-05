@@ -300,12 +300,12 @@ public class MillenniumPuzzle extends CustomRelic {
 				
 			// Random (Small) Deck
 			case 27:
-				localdesc = DESCRIPTIONS[26];
+				localdesc = DESCRIPTIONS[32];
 				break;
 			
 			// Random (Big) Deck
 			case 28:
-				localdesc = DESCRIPTIONS[32];
+				localdesc = DESCRIPTIONS[33];
 				break;
 	
 			// Generic

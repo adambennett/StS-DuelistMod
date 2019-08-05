@@ -35,6 +35,9 @@ public class SpellbookMiracle extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);   
+        this.tags.add(Tags.NEVER_GENERATE);
+        this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
+        this.tags.add(Tags.NO_CREATOR);
     }
 
     // Actions the card should do.

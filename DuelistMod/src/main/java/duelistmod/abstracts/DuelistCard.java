@@ -1057,11 +1057,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		FleetingField.fleeting.set(this, true);
 		this.tags.add(Tags.NO_CREATOR);
+		this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
 	}
 	
 	public void makeFleeting(boolean set)
 	{
 		FleetingField.fleeting.set(this, set);
+		this.tags.add(Tags.NO_CREATOR);
+		this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
 	}
 	
 	public void makeGrave()
@@ -6308,6 +6311,51 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return returnTrulyRandomFromSet(setToFindFrom);
 		}
 	}
+	
+	public static AbstractCard returnTrulyRandomDuelistCardForRandomDecks() 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (AbstractCard card : DuelistMod.cardsForRandomDecks)
+		{
+			if (card instanceof DuelistCard && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
+	public static AbstractCard returnTrulyRandomDuelistPowerForRandomDecks() 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (AbstractCard card : DuelistMod.powersForRandomDecks)
+		{
+			if (card instanceof DuelistCard && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
 
 	public static AbstractCard returnTrulyRandomDuelistCard() 
 	{

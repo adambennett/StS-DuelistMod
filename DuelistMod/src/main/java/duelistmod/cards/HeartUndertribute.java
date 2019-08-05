@@ -34,7 +34,9 @@ public class HeartUndertribute extends DuelistCard
     public HeartUndertribute() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.ALL);
+        this.tags.add(Tags.NEVER_GENERATE);
+        this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
+        this.tags.add(Tags.NO_CREATOR);
 		this.originalName = this.name;
     }
 

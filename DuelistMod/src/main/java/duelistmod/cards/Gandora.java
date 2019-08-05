@@ -41,6 +41,8 @@ public class Gandora extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
+        this.tags.add(Tags.NO_CREATOR);
         this.tags.add(Tags.FULL);
         this.originalName = this.name;
         this.baseDamage = this.damage = 20;

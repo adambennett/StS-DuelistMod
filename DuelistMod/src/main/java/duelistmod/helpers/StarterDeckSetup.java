@@ -3,11 +3,12 @@ package duelistmod.helpers;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.cards.*;
 import duelistmod.helpers.poolhelpers.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.Tags;
@@ -25,6 +26,60 @@ public class StarterDeckSetup {
 			s.getPoolCards().clear();
 		}
 		initStarterDeckPool();
+	}
+	
+	public static void setupRandomDecks()
+	{
+		ArrayList<AbstractCard> newRandomCardList = new ArrayList<AbstractCard>();
+		for (AbstractCard c : DuelistMod.myCards)
+		{
+			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.rarity.equals(CardRarity.SPECIAL))
+			{
+				boolean toonCard = c.hasTag(Tags.TOON);
+				boolean ojamaCard = c.hasTag(Tags.OJAMA);
+				boolean exodiaCard = c.hasTag(Tags.EXODIA);
+				boolean creatorCard = (c instanceof TheCreator || c instanceof DarkCreator);
+				
+				if (toonCard)
+				{
+					if (!DuelistMod.toonBtnBool)
+					{
+						newRandomCardList.add(c.makeCopy());
+					}
+				}
+				
+				if (ojamaCard)
+				{
+					if (!DuelistMod.ojamaBtnBool)
+					{
+						newRandomCardList.add(c.makeCopy());
+					}
+				}
+				
+				if (exodiaCard)
+				{
+					if (!DuelistMod.exodiaBtnBool)
+					{
+						newRandomCardList.add(c.makeCopy());
+					}
+				}
+				
+				if (creatorCard)
+				{
+					if (!DuelistMod.creatorBtnBool)
+					{
+						newRandomCardList.add(c.makeCopy());
+					}
+				}
+				
+				if (!toonCard && !creatorCard && !ojamaCard && !exodiaCard)
+				{
+					newRandomCardList.add(c.makeCopy());
+				}
+			}
+		}
+		DuelistMod.cardsForRandomDecks.clear();
+		DuelistMod.cardsForRandomDecks.addAll(newRandomCardList);
 	}
 	
 	public static void initStarterDeckPool()
@@ -84,7 +139,7 @@ public class StarterDeckSetup {
 
 	public static CardTags findDeckTag(int deckIndex) 
 	{
-		for (StarterDeck d : DuelistMod.starterDeckList) { if (d.getIndex() == deckIndex) { return d.getDeckTag(); }}
+		for (StarterDeck d : DuelistMod.starterDeckList) { if (d.getIndex() == deckIndex) { Util.log("StarterDeckSetup.findDeckTag(" + deckIndex + ") is about to return " + d.getDeckTag().toString()); return d.getDeckTag(); }}
 		return null;
 	}
 
@@ -131,7 +186,7 @@ public class StarterDeckSetup {
 		for (CardTags t : tags) { if (c.hasTag(t)) { hasAnyTag = true; }}
 		return hasAnyTag;
 	}
-
+	
 	public static void setupStartDecksB()
 	{
 		DuelistMod.chosenDeckTag = findDeckTag(DuelistMod.deckIndex);
@@ -139,21 +194,26 @@ public class StarterDeckSetup {
 		for (StarterDeck d : DuelistMod.starterDeckList) { if (d.getDeckTag().equals(DuelistMod.chosenDeckTag)) { refDeck = d; }}
 		if (refDeck != null)
 		{
+			Util.log("setupStartDecksB set chosenDeckTag to " + DuelistMod.chosenDeckTag.toString());
 			if (DuelistMod.chosenDeckTag.equals(Tags.RANDOM_DECK_SMALL))
 			{
+				setupRandomDecks();
 				DuelistMod.deckToStartWith = new ArrayList<DuelistCard>();
-				for (int i = 0; i < DuelistMod.randomDeckSmallSize; i++) { DuelistMod.deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard());}
+				for (int i = 0; i < DuelistMod.randomDeckSmallSize; i++) { DuelistMod.deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCardForRandomDecks()); }
+				Util.log("Random Deck (Small) initialized");
 			}
 			
 			else if (DuelistMod.chosenDeckTag.equals(Tags.RANDOM_DECK_BIG))
-			{
+			{				
+				setupRandomDecks();
 				DuelistMod.deckToStartWith = new ArrayList<DuelistCard>();
-				for (int i = 0; i < DuelistMod.randomDeckBigSize; i++) { DuelistMod.deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCard()); }
+				for (int i = 0; i < DuelistMod.randomDeckBigSize; i++) { DuelistMod.deckToStartWith.add((DuelistCard)DuelistCard.returnTrulyRandomDuelistCardForRandomDecks()); }
+				Util.log("Random Deck (Big) initialized");
 			}
 			
 			else 
 			{
-				if (DuelistMod.debug) { DuelistMod.logger.info("theDuelist:DuelistMod:setupStartDecksB() ---> " + refDeck.getSimpleName() + " size: " + refDeck.getDeck().size());  }
+				Util.log("theDuelist:DuelistMod:setupStartDecksB() ---> " + refDeck.getSimpleName() + " size: " + refDeck.getDeck().size());
 				DuelistMod.deckToStartWith = new ArrayList<DuelistCard>();
 				DuelistMod.deckToStartWith.addAll(refDeck.getDeck());
 			}
@@ -164,8 +224,16 @@ public class StarterDeckSetup {
 			StarterDeckSetup.initStandardDeck();
 			DuelistMod.deckToStartWith = new ArrayList<DuelistCard>();
 			DuelistMod.deckToStartWith.addAll(DuelistMod.standardDeck);
+			Util.log("Your starting deck was null for some reason so your deck was filled with the Standard Deck starting cards instead of whatever you chose");
 		}
 		
+		if (DuelistMod.deckToStartWith.size() < 1)
+		{
+			StarterDeckSetup.initStandardDeck();
+			DuelistMod.deckToStartWith = new ArrayList<DuelistCard>();
+			DuelistMod.deckToStartWith.addAll(DuelistMod.standardDeck);
+			Util.log("You're playing with a deck that is not setup properly");
+		}
 	}
 
 	public static void initStandardDeck()
@@ -211,6 +279,8 @@ public class StarterDeckSetup {
 		ToonPool.deck();
 		WarriorPool.deck();
 		ZombiePool.deck();
+		RandomSmallPool.deck();
+		RandomBigPool.deck();
 		
 		AquaPool.basic();
 		AscendedOnePool.basic();
@@ -235,6 +305,8 @@ public class StarterDeckSetup {
 		ToonPool.basic();
 		WarriorPool.basic();
 		ZombiePool.basic();
+		RandomSmallPool.basic();
+		RandomBigPool.basic();
 	}
 
 	public static void deckFill()
@@ -262,6 +334,8 @@ public class StarterDeckSetup {
 		ToonPool.deck();
 		WarriorPool.deck();
 		ZombiePool.deck();
+		RandomSmallPool.deck();
+		RandomBigPool.deck();
 	}
 	
 	public static void basicFill()
@@ -289,6 +363,8 @@ public class StarterDeckSetup {
 		ToonPool.basic();
 		WarriorPool.basic();
 		ZombiePool.basic();
+		RandomSmallPool.basic();
+		RandomBigPool.basic();
 	}
 
 	public static void deckBasicOneRandomFill()
@@ -316,6 +392,8 @@ public class StarterDeckSetup {
 		ToonPool.deck();
 		WarriorPool.deck();
 		ZombiePool.deck();
+		RandomSmallPool.deck();
+		RandomBigPool.deck();
 		
 		AquaPool.basic();
 		AscendedOnePool.basic();
@@ -340,6 +418,8 @@ public class StarterDeckSetup {
 		ToonPool.basic();
 		WarriorPool.basic();
 		ZombiePool.basic();
+		RandomSmallPool.basic();
+		RandomBigPool.basic();
 		
 		AquaPool.oneRandom();
 		AscendedOnePool.oneRandom();
@@ -364,6 +444,8 @@ public class StarterDeckSetup {
 		ToonPool.oneRandom();
 		WarriorPool.oneRandom();
 		ZombiePool.oneRandom();
+		RandomSmallPool.oneRandom();
+		RandomBigPool.oneRandom();
 	}
 
 	public static void deckOneRandomFill()
@@ -391,6 +473,8 @@ public class StarterDeckSetup {
 		ToonPool.deck();
 		WarriorPool.deck();
 		ZombiePool.deck();
+		RandomSmallPool.deck();
+		RandomBigPool.deck();
 		AquaPool.oneRandom();
 		AscendedOnePool.oneRandom();
 		AscendedTwoPool.oneRandom();
@@ -414,6 +498,8 @@ public class StarterDeckSetup {
 		ToonPool.oneRandom();
 		WarriorPool.oneRandom();
 		ZombiePool.oneRandom();
+		RandomSmallPool.oneRandom();
+		RandomBigPool.oneRandom();
 	}
 
 	public static void basicOneRandomFill()
@@ -441,6 +527,8 @@ public class StarterDeckSetup {
 		ToonPool.basic();
 		WarriorPool.basic();
 		ZombiePool.basic();
+		RandomSmallPool.basic();
+		RandomBigPool.basic();
 		ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
 		poolCards.addAll(BasicPool.oneRandom());
 		for (StarterDeck s : DuelistMod.starterDeckList)
@@ -474,6 +562,8 @@ public class StarterDeckSetup {
 		ToonPool.basic();
 		WarriorPool.basic();
 		ZombiePool.basic();
+		RandomSmallPool.basic();
+		RandomBigPool.basic();
 		AquaPool.deck();
 		AscendedOnePool.deck();
 		AscendedTwoPool.deck();
@@ -497,6 +587,8 @@ public class StarterDeckSetup {
 		ToonPool.deck();
 		WarriorPool.deck();
 		ZombiePool.deck();
+		RandomSmallPool.deck();
+		RandomBigPool.deck();
 		AscendedOnePool.twoRandom();
 		AscendedTwoPool.twoRandom();
 		AscendedThreePool.twoRandom();
@@ -519,6 +611,8 @@ public class StarterDeckSetup {
 		ToonPool.twoRandom();
 		WarriorPool.twoRandom();
 		ZombiePool.twoRandom();
+		RandomSmallPool.twoRandom();
+		RandomBigPool.twoRandom();
 	}
 	
 	public static void twoRandomFill()
@@ -555,6 +649,8 @@ public class StarterDeckSetup {
 		ToonPool.twoRandom();
 		WarriorPool.twoRandom();
 		ZombiePool.twoRandom();
+		RandomSmallPool.twoRandom();
+		RandomBigPool.twoRandom();
 		AquaPool.deck();
 		AscendedOnePool.deck();
 		AscendedTwoPool.deck();
@@ -571,6 +667,8 @@ public class StarterDeckSetup {
 		NaturePool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
+		RandomSmallPool.deck();
+		RandomBigPool.deck();
 	}
 	
 	

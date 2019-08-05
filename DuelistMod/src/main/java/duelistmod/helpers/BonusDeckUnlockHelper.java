@@ -40,6 +40,7 @@ public class BonusDeckUnlockHelper
 	private int a20_heart_kills_random_small_deck = 0;
 	private int a20_heart_kills_random_big_deck = 0;
 	private ArrayList<Integer> heartKills = new ArrayList<Integer>();
+	private ArrayList<Integer> heartKillsForA1 = new ArrayList<Integer>();
 	private ArrayList<Integer> heartKillsForP5 = new ArrayList<Integer>();
 	
 	private boolean a1_Unlocked = false;
@@ -102,7 +103,7 @@ public class BonusDeckUnlockHelper
 	private void unlockDecks()
 	{
 		// Ascended 1
-		for (Integer i : heartKills) { if (i > 0) { a1_Unlocked = true; break; }}
+		for (Integer i : heartKillsForA1) { if (i > 0) { a1_Unlocked = true; break; }}
 		
 		// Ascended 2
 		if (a20_heart_kills_a1_deck > 0) { a2_Unlocked = true; }
@@ -146,6 +147,7 @@ public class BonusDeckUnlockHelper
 	private void setupNumberLists()
 	{
 		heartKills = new ArrayList<Integer>();
+		heartKillsForA1 = new ArrayList<Integer>();
 		heartKillsForP5 = new ArrayList<Integer>();
 		heartKills.add(a20_heart_kills_standard_deck);
 		heartKills.add(a20_heart_kills_dragon_deck);
@@ -202,6 +204,27 @@ public class BonusDeckUnlockHelper
 		heartKillsForP5.add(a20_heart_kills_p2_deck);
 		heartKillsForP5.add(a20_heart_kills_p3_deck);
 		heartKillsForP5.add(a20_heart_kills_p4_deck);
+		heartKillsForA1.add(a20_heart_kills_standard_deck);
+		heartKillsForA1.add(a20_heart_kills_dragon_deck);
+		heartKillsForA1.add(a20_heart_kills_nature_deck);
+		heartKillsForA1.add(a20_heart_kills_spellcaster_deck);
+		heartKillsForA1.add(a20_heart_kills_toon_deck);
+		heartKillsForA1.add(a20_heart_kills_zombie_deck);
+		heartKillsForA1.add(a20_heart_kills_aqua_deck);
+		heartKillsForA1.add(a20_heart_kills_fiend_deck);
+		heartKillsForA1.add(a20_heart_kills_machine_deck);
+		heartKillsForA1.add(a20_heart_kills_insect_deck);
+		heartKillsForA1.add(a20_heart_kills_plant_deck);
+		heartKillsForA1.add(a20_heart_kills_predaplant_deck);
+		heartKillsForA1.add(a20_heart_kills_warrior_deck);
+		heartKillsForA1.add(a20_heart_kills_megatype_deck);
+		heartKillsForA1.add(a20_heart_kills_increment_deck);
+		heartKillsForA1.add(a20_heart_kills_creator_deck);
+		heartKillsForA1.add(a20_heart_kills_ojama_deck);
+		heartKillsForA1.add(a20_heart_kills_exodia_deck);
+		heartKillsForA1.add(a20_heart_kills_giants_deck);
+		heartKillsForA1.add(a20_heart_kills_random_small_deck);
+		heartKillsForA1.add(a20_heart_kills_random_big_deck);
 	}
 
 	

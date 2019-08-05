@@ -202,6 +202,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static String exodiaRightArmString = "";
 	public static String exodiaLeftLegString = "";
 	public static String exodiaRightLegString = "";	
+	public static String selectedDeck = "";	
 	
 	
 	// Maps and Lists
@@ -241,10 +242,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<AbstractCard> uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> basicCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> powersForRandomDecks = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> cardsForRandomDecks = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> tinFluteCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> rareCardInPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> randomDeckSmallPool = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> randomDeckBigPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<AbstractRelic>();
 	public static ArrayList<String> skillsPlayedCombatNames = new ArrayList<String>();
@@ -1705,6 +1710,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		currentSpellcasterOrbChance = 25;
 		lastCardPlayed = new CancelCard();
 		secondLastCardPlayed = new CancelCard();
+		if (selectedDeck.equals("Random Deck (Big)") || selectedDeck.equals("Random Deck (Small)"))
+		{
+			randomDeckSmallPool.clear();
+			randomDeckBigPool.clear();
+		}
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
@@ -2040,10 +2050,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				if (startingDeck.size() > 0)
 				{
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
+					String cardNames = "";
 					for (AbstractCard c : startingDeck) 
 					{ 
+						cardNames += c.name + ", ";
 						newStartGroup.addToRandomSpot(c); 
 					}
+					Util.log("Duelist is adding " + cardNames + " to starting deck");
 					if (AbstractDungeon.ascensionLevel >= 10) 
 					{
 						newStartGroup.addToRandomSpot(new AscendersBane());
@@ -2053,6 +2066,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.DRAGON; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of DRAGON");}}
+					Util.log("Starter Deck card group.size=" + arg1.group.size());
 					if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
 					{
 						if (debug) { DuelistMod.logger.info("Current Deck on receivePostCreateStartingDeck() was the Exodia Deck. Making cards soulbound..."); }
@@ -2356,6 +2370,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		if (!shouldFill && AbstractDungeon.actNum == 1)
 		{
 			if (debug) { logger.info("Started act and should fill was false. Act #1! So we reset everything!!"); }
+			selectedDeck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 			coloredCards = new ArrayList<AbstractCard>();
 			archRoll1 = -1;
 			archRoll2 = -1;

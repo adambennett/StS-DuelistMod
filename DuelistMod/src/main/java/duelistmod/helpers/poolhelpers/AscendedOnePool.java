@@ -17,7 +17,6 @@ public class AscendedOnePool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
-		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
 		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
@@ -27,7 +26,6 @@ public class AscendedOnePool
 		pools.add(NaturePool.deck());
 		//pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
-		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
@@ -45,7 +43,6 @@ public class AscendedOnePool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
-		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
 		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
@@ -55,7 +52,6 @@ public class AscendedOnePool
 		pools.add(NaturePool.deck());
 		//pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
-		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
