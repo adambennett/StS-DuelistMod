@@ -113,6 +113,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new HelloPower(p, turnNum));
 			toReturn.add(new FlameTigerPower(p, p));
 			toReturn.add(new ResummonBonusPower(p, p, turnNum));
+			toReturn.add(new ExodiaPower());
 		}
 		return toReturn;
 	}

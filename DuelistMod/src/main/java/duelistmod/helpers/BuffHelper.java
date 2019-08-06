@@ -102,6 +102,7 @@ public class BuffHelper {
 		AbstractPower hello = new HelloPower(p, turnNum);
 		AbstractPower flameTiger = new FlameTigerPower(p, p);
 		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
+		AbstractPower exodia = new ExodiaPower();
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
@@ -124,7 +125,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord
+					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia
 			};
 		}
 		for (AbstractPower a : buffs)
@@ -184,6 +185,8 @@ public class BuffHelper {
 		AbstractPower hello = new HelloPower(p, turnNum);
 		AbstractPower flameTiger = new FlameTigerPower(p, p);
 		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
+		AbstractPower exodia = new ExodiaPower();
+		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
 		{
@@ -205,7 +208,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord
+					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia
 			};
 		}
 		for (AbstractPower a : buffs)

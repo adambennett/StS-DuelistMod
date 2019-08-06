@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.*;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
@@ -39,6 +40,25 @@ public class ExodiaPower extends AbstractPower
 		addPiece(piece);
 		this.amount++; 
 		this.updateDescription();		
+	}
+	
+	public ExodiaPower()
+	{
+		this.name = NAME;
+		this.ID = POWER_ID;
+		this.owner = AbstractDungeon.player;
+		this.type = PowerType.BUFF;
+		this.isTurnBased = false;
+		this.img = new Texture(IMG);
+		this.source = AbstractDungeon.player;
+		addPiece(new ExodiaLA());
+		addPiece(new ExodiaLL());
+		addPiece(new ExodiaRA());
+		addPiece(new ExodiaRL());
+		addPiece(new ExodiaHead());
+		this.amount = 5;
+		this.effectDmg = 25;
+		this.updateDescription();	
 	}
 	
 	public void headDamage(int dmg)

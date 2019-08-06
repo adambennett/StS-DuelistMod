@@ -57,9 +57,7 @@ public class BadToken extends DuelistCard
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
     	
-    	applyPowerToSelf(new ResummonBonusPower(p, p, 3));
-    	applyPowerToSelf(new YamiFormPower(p, p, 3));
-    	applyPowerToSelf(new FlameTigerPower(p, p));
+    	applyPowerToSelf(new ExodiaPower());
     	
     	if (DuelistMod.debug)
     	{
