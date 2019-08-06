@@ -33,7 +33,7 @@ public class StarterDeckSetup {
 		ArrayList<AbstractCard> newRandomCardList = new ArrayList<AbstractCard>();
 		for (AbstractCard c : DuelistMod.myCards)
 		{
-			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.rarity.equals(CardRarity.SPECIAL))
+			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS))
 			{
 				boolean toonCard = c.hasTag(Tags.TOON);
 				boolean ojamaCard = c.hasTag(Tags.OJAMA);

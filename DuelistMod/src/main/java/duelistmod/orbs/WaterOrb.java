@@ -112,7 +112,7 @@ public class WaterOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("POTION_1", 20.0F);
 	}
 	
 	@Override

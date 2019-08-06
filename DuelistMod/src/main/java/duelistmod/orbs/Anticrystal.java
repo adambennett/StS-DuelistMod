@@ -181,7 +181,7 @@ public class Anticrystal extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.play("ORB_LIGHTNING_CHANNEL", 0.1F);
+		CardCrawlGame.sound.playV("ORB_FROST_CHANNEL", 10.0F);
 	}
 	
 	

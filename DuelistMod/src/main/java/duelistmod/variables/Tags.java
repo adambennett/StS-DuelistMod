@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public class Tags {
 
 	@SpireEnum public static AbstractCard.CardTags ALL;
+	@SpireEnum public static AbstractCard.CardTags ARCANE;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_ONE_DECK;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_TWO_DECK;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_THREE_DECK;

@@ -116,7 +116,7 @@ public class Metal extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("theDuelist:MetalChannel", 20.0F);
 	}
 
 	@Override

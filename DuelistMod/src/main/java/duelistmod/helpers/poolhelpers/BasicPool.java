@@ -105,6 +105,7 @@ public class BasicPool
 		toReturn.add(new Electrowhip());
 		toReturn.add(new FuryFire());
 		toReturn.add(new CharcoalInpachi());
+		toReturn.add(new MagicCylinder());
 		
 		// megatype pool cards
 		toReturn.add(new KamionTimelord());
@@ -229,6 +230,7 @@ public class BasicPool
 		DuelistMod.basicCards.add(new ElectromagneticShield());
 		DuelistMod.basicCards.add(new Electrowhip());
 		DuelistMod.basicCards.add(new FuryFire());
+		DuelistMod.basicCards.add(new MagicCylinder());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }

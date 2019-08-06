@@ -138,7 +138,7 @@ public class Blaze extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("SPORE_CLOUD_RELEASE", 10.0F);
 	}
 
 	@Override

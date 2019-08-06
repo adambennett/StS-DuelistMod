@@ -3,30 +3,28 @@ package duelistmod.powers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
 
 public class ExodiaPower extends AbstractPower 
 {
 	public AbstractCreature source;
-	public static final String POWER_ID = duelistmod.DuelistMod.makeID("ExodiaPower");
+	public static final String POWER_ID = DuelistMod.makeID("ExodiaPower");
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePath(Strings.EXODIA_POWER);
-	private static int DAMAGE = 300;
+	private int effectDmg = 0;
 	public ArrayList<DuelistCard> pieces = new ArrayList<DuelistCard>();
 	
 	public ExodiaPower(final AbstractCreature owner, final AbstractCreature source, DuelistCard piece) 
@@ -40,11 +38,13 @@ public class ExodiaPower extends AbstractPower
 		this.source = source;
 		addPiece(piece);
 		this.amount++; 
-		this.updateDescription();
-		if (DuelistMod.challengeMode)
-		{
-			DAMAGE = 150;
-		}
+		this.updateDescription();		
+	}
+	
+	public void headDamage(int dmg)
+	{
+		this.effectDmg += dmg;
+		updateDescription();
 	}
 	
 	@Override
@@ -68,42 +68,35 @@ public class ExodiaPower extends AbstractPower
 	@Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-		updateDescription();
+		// If player has all 5 pieces
 		if (checkForAllPieces())
 		{
-			//int playerSummons = 1;
-			//if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
-			//{ 
-				//playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
-				//playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
-			//}
+			// Setup copy of damage
+			int newDmg = this.effectDmg;
+			
+			// Manipulate damage value if player has Obliterate buff, and then remove the buff
 			if (AbstractDungeon.player.hasPower(ObliteratePower.POWER_ID)) 
 			{
-				if (!DuelistMod.challengeMode) { DAMAGE += 200; }
-				else { DAMAGE = DAMAGE * 2; }
+				newDmg = newDmg * 2;
 				DuelistCard.removePower(AbstractDungeon.player.getPower(ObliteratePower.POWER_ID), AbstractDungeon.player);
 			}
-			int[] catapultDmg = new int[] {DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE, DAMAGE};
-			for (int i = 0; i < catapultDmg.length; i++) { catapultDmg[i] = DAMAGE; }
-        	AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(this.owner, catapultDmg, DamageType.THORNS, AbstractGameAction.AttackEffect.SMASH));
-        	if (!AbstractDungeon.player.hasPower(ExodiaRenewalPower.POWER_ID))
-        	{
-	        	amount = 0;
-	        	pieces = new ArrayList<DuelistCard>();
-        	}
-        	else
-        	{
-        		DuelistCard.removePower(AbstractDungeon.player.getPower(ExodiaRenewalPower.POWER_ID), AbstractDungeon.player);        		
-        	}
-        	if (DuelistMod.challengeMode) { DAMAGE = 150; } 
-        	else { DAMAGE = 300; }
+			
+			// Attack all enemies for the damage value, animation/sfx/afx are handled inside attack function
+			DuelistCard.exodiaAttack(newDmg);
+			
+			// Remove either this power or the Exodia Renewal buff if the player has it
+			if (!AbstractDungeon.player.hasPower(ExodiaRenewalPower.POWER_ID)) { DuelistCard.removePower(this, this.owner); }
+        	else { DuelistCard.removePower(AbstractDungeon.player.getPower(ExodiaRenewalPower.POWER_ID), AbstractDungeon.player); }
         	updateDescription();
 		}
+		
+		// Otherwise just update the description
+		else { updateDescription(); }
 	}
 	
 	public void addNewPiece(DuelistCard piece)
 	{
-		if (!addPiece(piece)) { this.amount++; }
+		if (!addPiece(piece)) { this.amount++; Util.log("Exodia Power incremented amount by 1"); }
 		this.updateDescription();
 	}
 	
@@ -113,6 +106,7 @@ public class ExodiaPower extends AbstractPower
 		for (DuelistCard c : pieces) { if (c.exodiaName.equals(piece.exodiaName)) { found = true; } }
 		if (!found) { pieces.add(piece); }
 		updateDescription();
+		Util.log("Exodia Power attempted to add piece. Did we add=" + found + ", addedPiece=" + piece.exodiaName);
 		return found;
 	}
 	
@@ -172,14 +166,7 @@ public class ExodiaPower extends AbstractPower
 		}
 		else if (checkForAllPieces())
 		{
-			//int playerSummons = 1;
-			//if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID)) 
-			//{ 
-			//	playerSummons = DuelistCard.getSummons(AbstractDungeon.player); 
-			//	playerSummons += DuelistCard.getMaxSummons(AbstractDungeon.player); 
-			//}
-			int damageDescr = DAMAGE;
-			this.description = DESCRIPTIONS[2] + damageDescr;
+			this.description = DESCRIPTIONS[2] + this.effectDmg;
 		}
 		else if (checkForLegs() && checkForArms())
 		{

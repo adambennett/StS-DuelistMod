@@ -29,7 +29,7 @@ public class DuelistCrystal extends DuelistOrb
 	public static final String[] DESC = orbString.DESCRIPTION;
 	private float vfxTimer = 1.0F; 
 	private float vfxIntervalMin = 0.15F; 
-	private float vfxIntervalMax = 0.8F;	
+	private float vfxIntervalMax = 0.8F;
 	private static final float PI_DIV_16 = 0.19634955F;
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
@@ -105,7 +105,7 @@ public class DuelistCrystal extends DuelistOrb
 	{
 		applyFocus();			
 		super.updateAnimation();
-		this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
+		//this.angle += Gdx.graphics.getDeltaTime() * 180.0F;
 		this.vfxTimer -= Gdx.graphics.getDeltaTime();
 		if (this.vfxTimer < 0.0F) 
 		{
@@ -120,7 +120,7 @@ public class DuelistCrystal extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("ORB_FROST_CHANNEL", 7.0F);
 	}
 
 	@Override

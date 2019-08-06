@@ -119,7 +119,7 @@ public class DuelistHellfire extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("theDuelist:FireChannel", 35.0F);
 	}
 	
 	@Override

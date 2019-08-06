@@ -170,7 +170,7 @@ public class SpellcasterPool
 			spellcasterCards.add(new LegendaryExodia());
 			spellcasterCards.add(new ContractExodia());
 			//spellcasterCards.add(new LegendExodia());
-			//spellcasterCards.add(new ExodiaNecross());
+			spellcasterCards.add(new ExodiaNecross());
 		}
 		if (!DuelistMod.ojamaBtnBool)
 		{

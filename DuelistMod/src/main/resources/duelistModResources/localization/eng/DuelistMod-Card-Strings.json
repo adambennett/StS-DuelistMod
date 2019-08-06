@@ -368,9 +368,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Consumer."
 	},
 	"theDuelist:ContractExodia": {
-		"DESCRIPTION": "Add 3 Randomized Exodia cards to your hand. Exhaust.",
+		"DESCRIPTION": "Add !M! Randomized Exodia cards to your hand. Exhaust.",
 		"NAME": "Contract with Exodia",
-		"UPGRADE_DESCRIPTION": "Add 3 Randomized Exodia cards to your hand. Exhaust."
+		"UPGRADE_DESCRIPTION": "Add !M! Randomized Exodia cards to your hand. Exhaust."
 	},
 	"theDuelist:CrystalOrbCard": {
 		"DESCRIPTION": "Channel a Crystal Orb.",
@@ -564,9 +564,9 @@
 		"NAME": "Exodia"
 	},
 	"theDuelist:ExodiaHead": {
-		"DESCRIPTION": "Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia. NL Exhaust",
+		"DESCRIPTION": "Arcane NL Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia. NL ( !M! damage )",
 		"NAME": "Exodia Head",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia."
+		"UPGRADE_DESCRIPTION": "Arcane NL Spellcaster NL If you have all 4 other pieces of Exodia, gain 1 Exodia. NL ( !M! damage )"
 	},
 	"theDuelist:ExodiaLA": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain 1 Exodia.",
@@ -1131,9 +1131,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon 1 NL Roulette: Channel a Metal."
 	},
 	"theDuelist:MagicCylinder": {
-		"DESCRIPTION": "Gain 5 Reflection.",
+		"DESCRIPTION": "Arcane NL Whenever you lose HP, draw !M! cards.",
 		"NAME": "Magic Cylinder",
-		"UPGRADE_DESCRIPTION": "Gain 5 Reflection and a random buff."
+		"UPGRADE_DESCRIPTION": "Arcane NL Whenever you lose HP, draw !M! cards."
 	},
 	"theDuelist:MagnetArchetype": {
 		"DESCRIPTION": "Add Magnet Warrior cards to your card pool.",
@@ -4035,6 +4035,16 @@
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Tribute all of your Explosive Tokens, dealing damage to ALL enemies instead of you.",
 		"NAME": "Gold Blast Juggler",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Tribute all of your Explosive Tokens, dealing damage to ALL enemies instead of you."
+	},
+	"theDuelist:Obliterate": {
+		"DESCRIPTION": "The next time you trigger the Exodia damage effect, your Exodia power will not be reset. NL Exhaust.",
+		"NAME": "OBLITERATE!!!",
+		"UPGRADE_DESCRIPTION": "The next time you trigger the Exodia damage effect, your Exodia power will not be reset. NL Exhaust."
+	},
+	"theDuelist:ExodiaNecross": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand.",
+		"NAME": "Exodia Necross",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

@@ -2,11 +2,10 @@ package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Strings;
 
@@ -31,16 +30,16 @@ public class MagicCylinderPower extends AbstractPower
     public int MIN_TURNS = 1;
     public int MAX_TURNS = 3;
 
-    public MagicCylinderPower(AbstractCreature owner, int newAmount, boolean upgrade) 
+    public MagicCylinderPower(AbstractCreature owner, AbstractCreature source, int amount) 
     {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.amount = newAmount;
+        this.amount = amount;
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.BUFF;
-        if (upgrade) { upgraded = true; }
+        this.canGoNegative = false;
         this.updateDescription();
     }
     
@@ -48,28 +47,20 @@ public class MagicCylinderPower extends AbstractPower
     @Override
     public int onLoseHp(int damageAmount)
     {
-    	DuelistCard.applyPowerToSelf(new ReflectionPower(AbstractDungeon.player, 5));
-    	//AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReflectionPower(AbstractDungeon.player, 5), 5));
-    	if (upgraded) 
-    	{
-    		int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS, MAX_TURNS);
-    		DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, true);
-    	}
-    	
-    	DuelistCard.removePower(this, this.owner);
+    	if (this.amount > 0 && damageAmount > 0) { DuelistCard.draw(this.amount); }
     	return damageAmount;
     }
     
     @Override
 	public void updateDescription() 
     {
-    	if (upgraded)
+    	if (this.amount == 1)
     	{
-    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     	}
     	else
     	{
-    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+    		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
     	}
     }
 }

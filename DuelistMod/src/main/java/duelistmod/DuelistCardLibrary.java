@@ -315,7 +315,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ValkMagnet());
 		DuelistMod.myCards.add(new BarrelDragon());
 		DuelistMod.myCards.add(new DarkMirrorForce());
-		//DuelistMod.myCards.add(new MagicCylinder());
+		DuelistMod.myCards.add(new MagicCylinder());
 		DuelistMod.myCards.add(new NutrientZ());
 		DuelistMod.myCards.add(new OjamaBlack());
 		DuelistMod.myCards.add(new OjamaKing());
@@ -680,6 +680,8 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BlastingFuse());
 		DuelistMod.myCards.add(new CemetaryBomb());
 		DuelistMod.myCards.add(new RockBombardment());
+		DuelistMod.myCards.add(new Obliterate());
+		DuelistMod.myCards.add(new ExodiaNecross());
 		
 		//DuelistMod.myCards.add(new WightLady());			
 		
@@ -811,10 +813,10 @@ public class DuelistCardLibrary
 		toReturn.add(new VoidOrbCard()); 
 		toReturn.add(new WhiteOrbCard()); 
 		toReturn.add(new SurgeOrbCard()); 
-		//toReturn.add(new AlienOrbCard()); 
+		toReturn.add(new AlienOrbCard()); 
 		//toReturn.add(new BloodOrbCard()); 
-		//toReturn.add(new MoonOrbCard()); 
-		//toReturn.add(new SunOrbCard()); 
+		toReturn.add(new MoonOrbCard()); 
+		toReturn.add(new SunOrbCard()); 
 		return toReturn;
 	}
 	

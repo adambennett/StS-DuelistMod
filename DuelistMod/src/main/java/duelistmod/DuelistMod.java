@@ -587,9 +587,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		logger.info("Done creating the color");
 		
 		logger.info("Setting up or loading the settings config file");
-		duelistDefaults.setProperty(PROP_TOON_BTN, "FALSE");
+		duelistDefaults.setProperty(PROP_TOON_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_EXODIA_BTN, "FALSE");
-		duelistDefaults.setProperty(PROP_OJAMA_BTN, "FALSE");
+		duelistDefaults.setProperty(PROP_OJAMA_BTN, "TRUE");
 		duelistDefaults.setProperty(PROP_CREATOR_BTN, "FALSE");
 		duelistDefaults.setProperty(PROP_OLD_CHAR, "FALSE");
 		duelistDefaults.setProperty(PROP_SET, "0");
@@ -603,7 +603,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty(PROP_RESET, "FALSE");
 		duelistDefaults.setProperty(PROP_DEBUG, "FALSE");
 		duelistDefaults.setProperty(PROP_NO_CHANGE_COST, "FALSE");
-		duelistDefaults.setProperty(PROP_ONLY_DEC_COST, "FALSE");
+		duelistDefaults.setProperty(PROP_ONLY_DEC_COST, "TRUE");
 		duelistDefaults.setProperty(PROP_NO_CHANGE_TRIB, "FALSE");
 		duelistDefaults.setProperty(PROP_ONLY_DEC_TRIB, "FALSE");
 		duelistDefaults.setProperty(PROP_NO_CHANGE_SUMM, "FALSE");
@@ -616,8 +616,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty(PROP_WISEMAN, "FALSE");
 		duelistDefaults.setProperty(PROP_FORCE_PUZZLE, "FALSE");
 		duelistDefaults.setProperty(PROP_ALLOW_BOOSTERS, "TRUE");
-		duelistDefaults.setProperty(PROP_ALWAYS_BOOSTERS, "FALSE");
-		duelistDefaults.setProperty(PROP_REMOVE_CARD_REWARDS, "FALSE");
+		duelistDefaults.setProperty(PROP_ALWAYS_BOOSTERS, "TRUE");
+		duelistDefaults.setProperty(PROP_REMOVE_CARD_REWARDS, "TRUE");
 		duelistDefaults.setProperty(PROP_SMALL_BASIC, "FALSE");
 		duelistDefaults.setProperty(PROP_POWER_CHECK_CHECK, "0");
 		
@@ -1324,6 +1324,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	{
         addSound("theDuelist:TimeToDuel", DuelistMod.makeCharAudioPath("CharSelect.ogg"));
         addSound("theDuelist:TimeToDuelB", DuelistMod.makeCharAudioPath("CharSelectB.ogg"));
+        addSound("theDuelist:AirChannel", DuelistMod.makeCharAudioPath("AirChannel.ogg"));
+        addSound("theDuelist:GateChannel", DuelistMod.makeCharAudioPath("GateChannel.ogg"));
+        addSound("theDuelist:MudChannel", DuelistMod.makeCharAudioPath("MudChannel.ogg"));
+        addSound("theDuelist:MetalChannel", DuelistMod.makeCharAudioPath("MetalChannel.ogg"));
+        addSound("theDuelist:FireChannel", DuelistMod.makeCharAudioPath("FireChannel.ogg"));
     }
 
     private static void addSound(String id, String path) {
@@ -2355,7 +2360,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		summonTurnCount = 0;
 		tribTurnCount = 0;
 		// Mirror Force Helper
-		if (p.hasPower(MirrorForcePower.POWER_ID) && p.currentBlock > 0)
+		if (p.hasPower(MirrorForcePower.POWER_ID))
 		{
 			MirrorForcePower instance = (MirrorForcePower) AbstractDungeon.player.getPower(MirrorForcePower.POWER_ID);
 			instance.PLAYER_BLOCK = p.currentBlock;

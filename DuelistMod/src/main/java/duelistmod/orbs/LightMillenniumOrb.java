@@ -134,7 +134,7 @@ public class LightMillenniumOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("HEAL_2", 20.0F);
 	}
 
 	@Override

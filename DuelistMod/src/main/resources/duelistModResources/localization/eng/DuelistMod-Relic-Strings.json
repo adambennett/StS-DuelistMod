@@ -441,7 +441,7 @@
 		"NAME": "Booster Bonanza",
 		"FLAVOR": "So you like to gamble?",
 		"DESCRIPTIONS": [
-			"Booster pack rewards are always Bonanza Packs, which give contain #b5 random cards."
+			"Booster pack rewards are always Bonanza Packs, which contain #b5 random cards."
 		]
 	},
 	"theDuelist:BoosterBetterBoostersRelic": {

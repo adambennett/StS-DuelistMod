@@ -244,7 +244,7 @@ public class Buffer extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("POWER_INTANGIBLE", 10.0F);
 	}
 
 	@Override

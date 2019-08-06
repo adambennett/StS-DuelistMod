@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
 import duelistmod.powers.*;
 import duelistmod.relics.AeroRelic;
@@ -142,7 +143,7 @@ public class Air extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("theDuelist:AirChannel", 20.0F);
 	}
 	
 	@Override

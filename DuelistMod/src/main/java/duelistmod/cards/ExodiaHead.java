@@ -40,13 +40,9 @@ public class ExodiaHead extends DuelistCard
         this.tags.add(Tags.EXODIA_PIECE);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.LIMITED);
-        if (!DuelistMod.challengeMode)
-        {
-        	this.tags.add(Tags.EXODIA_DECK);
-        	this.exodiaDeckCopies = 1;
-        }
-        this.exhaust = true;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.tags.add(Tags.EXODIA_DECK);
+        this.exodiaDeckCopies = 1; 
+        this.magicNumber = this.baseMagicNumber = 100;
         this.exodiaName = "Head";
         this.originalName = this.name;
         this.setupStartingCopies();
@@ -62,6 +58,7 @@ public class ExodiaHead extends DuelistCard
     	   if (powerInstance.checkForAllPiecesButHead())
     	   {
     		   powerInstance.addNewPiece(this);
+    		   powerInstance.headDamage(this.magicNumber);
     	   }
        }
     }
@@ -75,12 +72,19 @@ public class ExodiaHead extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
+        if (canUpgrade()) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeMagicNumber(75);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber <= 4925) { return true; }
+    	return false;
     }
 
 	@Override

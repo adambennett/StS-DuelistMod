@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 
 import basemod.abstracts.CustomReward;
-import duelistmod.helpers.BoosterPackHelper;
+import duelistmod.DuelistMod;
+import duelistmod.helpers.*;
 import duelistmod.patches.RewardItemTypeEnumPatch;
 import duelistmod.relics.BoosterPackEggRelic;
 
@@ -88,6 +89,11 @@ public class BoosterReward extends CustomReward
 			else if (upgradeCheck())
 			{
 				c.upgrade();
+				while (c.canUpgrade() && additionalUpgradeCheck())
+				{
+					c.upgrade();
+					Util.log("Upgraded " + c.name + " more than once for a Booster Pack");
+				}
 			}
 		}
 	}
@@ -141,6 +147,51 @@ public class BoosterReward extends CustomReward
 						else { return false; }
 					case 3:
 						if (upgradeRoll <= 32) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }			
+		}
+	}
+	
+	private boolean additionalUpgradeCheck()
+	{
+		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 105);
+		if (AbstractDungeon.ascensionLevel > 11) 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						return false;
+					case 3:
+						if (upgradeRoll <= 10) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }
+		}
+		else 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						return false;
+					case 3:
+						if (upgradeRoll <= 20) { return true; }
 						else { return false; }
 					default:
 						return false;

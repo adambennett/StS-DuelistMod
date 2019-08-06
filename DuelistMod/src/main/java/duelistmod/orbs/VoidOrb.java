@@ -151,7 +151,7 @@ public class VoidOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("DARKLING_REGROW_2", 20.0F);
 	}
 
 	@Override

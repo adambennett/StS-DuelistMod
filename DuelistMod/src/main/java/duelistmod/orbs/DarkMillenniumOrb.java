@@ -67,6 +67,20 @@ public class DarkMillenniumOrb extends DuelistOrb
 		{
 			DuelistCard.applyPowerToSelf(new HauntedDebuff(AbstractDungeon.player, AbstractDungeon.player, 2));
 		}
+		else
+		{
+			if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID))
+			{
+				AbstractPower pow = AbstractDungeon.player.getPower(HauntedPower.POWER_ID);
+				pow.amount++; pow.updateDescription();
+			}
+			
+			if (AbstractDungeon.player.hasPower(HauntedDebuff.POWER_ID))
+			{
+				AbstractPower pow = AbstractDungeon.player.getPower(HauntedDebuff.POWER_ID);
+				pow.amount++; pow.updateDescription();
+			}
+		}
 	}
 	
 	@Override
@@ -128,7 +142,7 @@ public class DarkMillenniumOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("ORB_DARK_CHANNEL", 10.0F);
 	}
 	
 	@Override

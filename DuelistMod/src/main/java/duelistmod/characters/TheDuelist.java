@@ -208,7 +208,7 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void doCharSelectScreenSelectEffect() 
 	{
-		int roll = ThreadLocalRandom.current().nextInt(1, 5);
+		int roll = ThreadLocalRandom.current().nextInt(1, 4);
 		if (roll == 1) 		{ CardCrawlGame.sound.playV("theDuelist:TimeToDuelB", 0.5F);	}
 		else if (roll == 2) { CardCrawlGame.sound.playV("theDuelist:TimeToDuel", 0.5F); 	}
 		else if (roll == 3) { CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); 			}

@@ -21,7 +21,7 @@ public class ExodiaRenewalPower extends AbstractPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePath(Strings.EXODIA_POWER);
+    public static final String IMG =  DuelistMod.makePowerPath("ObliteratePower.png");
 
     public ExodiaRenewalPower(final AbstractCreature owner, final AbstractCreature source) 
     {

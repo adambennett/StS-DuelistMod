@@ -77,7 +77,7 @@
 },
 "theDuelist:MagicCylinderPower": {
         "NAME": "Magic Cylinder",
-        "DESCRIPTIONS": ["The next time you lose HP, gain #b", " #yReflection", ".", ", and a random buff." ]
+        "DESCRIPTIONS": ["Whenever you lose HP, draw #b", " card.", " cards." ]
 },
 "theDuelist:MirrorForcePower": {
         "NAME": "Mirror Force",
@@ -260,7 +260,7 @@
         "DESCRIPTIONS": ["Whenever you #ySummon, gain #b", " #yTemporary #yHP.", " #yTemporary #yHP." ]
 },
 "theDuelist:ExodiaRenewalPower": {
-        "NAME": "EXODIARENEWALPLACEHOLDER",
+        "NAME": "Obliterate!!!",
         "DESCRIPTIONS": ["Whenever you trigger #yExodia, do not reset your collected pieces." ]
 },
 "theDuelist:ObliteratePower": {

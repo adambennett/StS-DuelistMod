@@ -153,7 +153,7 @@ public class Consumer extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("EVENT_PURCHASE", 10.0F);
 	}
 
 	@Override

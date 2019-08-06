@@ -104,7 +104,7 @@ public class Storm extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("ORB_LIGHTNING_EVOKE", 15.0F);
 	}
 
 	@Override

@@ -102,7 +102,7 @@ public class Blood extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		
+		CardCrawlGame.sound.playV("BLOOD_SWISH", 10.0F);
 	}
 
 	@Override
