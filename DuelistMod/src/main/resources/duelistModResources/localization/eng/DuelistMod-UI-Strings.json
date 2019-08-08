@@ -156,5 +156,13 @@
 			"Pharaoh IV",
 			"Pharaoh V"
 		]
-	}
+	},
+	"theDuelist:PlayCardsIntent": {
+    "TEXT": [
+      "High Quality Intent",
+      "This enemy intends to NL do something involving the number #b",
+      " and ",
+      "Stuff."
+    ]
+  }
 }

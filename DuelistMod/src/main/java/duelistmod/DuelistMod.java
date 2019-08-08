@@ -24,7 +24,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.*;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.powers.*;
@@ -47,7 +47,9 @@ import duelistmod.characters.TheDuelist;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.BasicPool;
+import duelistmod.intents.PlayCardsIntent;
 import duelistmod.interfaces.*;
+import duelistmod.monsters.SetoKaiba;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.potions.*;
@@ -57,6 +59,7 @@ import duelistmod.relics.*;
 import duelistmod.rewards.BoosterReward;
 import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
+import razintent.RazIntent;
 
 
 
@@ -128,6 +131,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String defaultChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String oldChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
+	public static final String kaibaModel = "duelistModResources/images/char/enemies/KaibaModel.scml";
 	public static Properties duelistDefaults = new Properties();
 	public static boolean toonBtnBool = false;
 	public static boolean exodiaBtnBool = false;
@@ -450,7 +454,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = false;				// print statements only, used in mod option panel
 	public static boolean debugMsg = false;				// for secret msg
-	public static final boolean addTokens = false;		// adds debug tokens to library
+	public static final boolean addTokens = true;		// adds debug tokens to library
 	public static final boolean printSQL = false;		// toggles SQL db formatted info print
 	public static final boolean fullDebug = false;		// actually modifies char stats, cards in compendium, starting max summons, etc
 	public static boolean allowBonusDeckUnlocks = true;	// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
@@ -836,7 +840,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receivePostInitialize() 
 	{	
-		// MOD OPTIONS PANEL
+		// Mod Options
 		logger.info("Loading badge image and mod options");
 		String loc = Localization.localize();
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
@@ -849,16 +853,24 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
 		receiveEditSounds();
 		
-		// Events
+		// Events													
+		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
+		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.Exordium.ID);  	// Act 1
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheCity.ID); 		// Act 2 
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheBeyond.ID);  	// Act 3
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheEnding.ID); 	// Act 4
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class);													// Any
-		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
-		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
 		
-		// Register Booster Pack Rewards
+		// Monsters
+		BaseMod.addMonster(SetoKaiba.ID, "Seto Kaiba", () -> new SetoKaiba(-5.0F, 15.0F));
+		BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(SetoKaiba.ID, 100.0F)); 	// debug
+		//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(SetoKaiba.ID, 3.5F)); 
+		
+		// Intents
+		//RazIntent.addIntent(new PlayCardsIntent());
+		
+		// Rewards
 		BaseMod.registerCustomReward
 		(
 				RewardItemTypeEnumPatch.DUELIST_PACK,  
@@ -873,9 +885,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	                return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0);
 	            }
 	    );
-		// END Register Boost`er Pack Rewards
 		
-		
+		// Debug
 		if (printSQL)
 		{
 			logger.info("START SQL METRICS PRINT");
@@ -1291,6 +1302,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 		// Event Strings
 		BaseMod.loadCustomStringsFile(EventStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Event-Strings.json");
+		
+		// MonsterStrings
+        BaseMod.loadCustomStringsFile(MonsterStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Monster-Strings.json");
 
 		logger.info("Done editing strings");
 	}

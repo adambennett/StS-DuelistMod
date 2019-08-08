@@ -1,7 +1,6 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
@@ -26,12 +25,11 @@ public class MirrorForcePower extends AbstractPower
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = duelistmod.DuelistMod.makeID("MirrorForcePower");
+    public static final String POWER_ID = DuelistMod.makeID("MirrorForcePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.MIRROR_FORCE_POWER);
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     public static boolean upgraded = false;
     public int MULT = 1;
     public int PLAYER_BLOCK = 0;

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 
 import basemod.abstracts.CustomReward;
-import duelistmod.DuelistMod;
 import duelistmod.helpers.*;
 import duelistmod.patches.RewardItemTypeEnumPatch;
 import duelistmod.relics.BoosterPackEggRelic;

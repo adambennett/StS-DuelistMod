@@ -98,16 +98,24 @@
       <scope>system</scope>
       <systemPath>${basedir}/../lib/Hubris.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>razintent</groupId>
+      <artifactId>razintent</artifactId>
+      <version>${Raz.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/razintent.jar</systemPath>
+    </dependency>
   </dependencies>
   <properties>
+    <Raz.version>1.0.0</Raz.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <StSLib.version>1.17.1</StSLib.version>
     <Hubris.version>0.23.0</Hubris.version>
     <ModTheSpire.version>3.11.0</ModTheSpire.version>
     <BaseMod.version>5.15.1</BaseMod.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
     <ReplayTheSpireMod.version>1.5.0</ReplayTheSpireMod.version>
     <Conspire.version>1.6.2</Conspire.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
     <SlayTheSpire.version>7-17-2019</SlayTheSpire.version>
   </properties>
 </project>

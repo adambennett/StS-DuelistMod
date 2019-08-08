@@ -62,9 +62,11 @@ public class ArchfiendHeiress extends DuelistCard
             // Increase damage of random discard pile monster by secondMagic
             ArrayList<DuelistCard> monsters = new ArrayList<DuelistCard>();
             for (AbstractCard c : AbstractDungeon.player.discardPile.group) { if (c.hasTag(Tags.MONSTER) && c.damage > 0) { monsters.add((DuelistCard) c); }}
-            DuelistCard randomMon = monsters.get(AbstractDungeon.cardRandomRng.random(monsters.size() - 1));
-            AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomMon.uuid, this.secondMagic));
-            
+            if (monsters.size() > 0)
+            {
+	            DuelistCard randomMon = monsters.get(AbstractDungeon.cardRandomRng.random(monsters.size() - 1));
+	            AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomMon.uuid, this.secondMagic));
+            }            
             // Check Splash Orbs
             checkSplash();
         }

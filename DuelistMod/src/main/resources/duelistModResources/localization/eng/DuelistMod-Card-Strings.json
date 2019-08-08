@@ -925,9 +925,9 @@
 		"UPGRADE_DESCRIPTION": "Innate NL Whenever you draw a Tribute monster, Summon 1."
 	},
 	"theDuelist:HeavyStorm": {
-		"DESCRIPTION": "Remove all of your Summons (without tributing). Deal !M! damage to a random character for each Summon removed.",
+		"DESCRIPTION": "Remove all Summons (without tributing). Deal !M! damage to a random enemy for each Summon removed.",
 		"NAME": "Heavy Storm",
-		"UPGRADE_DESCRIPTION": "Remove all of your Summons (without tributing). Deal !M! damage to a random character for each Summon removed."
+		"UPGRADE_DESCRIPTION": "Remove all Summons (without tributing). Deal !M! damage to a random enemy for each Summon removed."
 	},
 	"theDuelist:HellfireOrbCard": {
 		"DESCRIPTION": "Channel a Hellfire Orb.",

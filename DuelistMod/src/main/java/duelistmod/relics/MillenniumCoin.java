@@ -32,7 +32,12 @@ public class MillenniumCoin extends CustomRelic
 	{
 		for (AbstractRelic r : AbstractDungeon.player.relics)
 		{
-			if (Util.isMillenniumItem(r, true) && !r.name.equals(this.name))
+			if (Util.isMillenniumItem(r, false) && !r.name.equals(this.name))
+			{
+				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				Util.log("Relic that triggered gold gain: " + r.name);
+			}
+			else if (r instanceof MillenniumPuzzle)
 			{
 				DuelistCard.gainGold(100, AbstractDungeon.player, true);
 				Util.log("Relic that triggered gold gain: " + r.name);

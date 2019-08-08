@@ -9,10 +9,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.monsters.SetoKaiba;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.powers.enemyPowers.EnemySummonsPower;
 import duelistmod.variables.*;
 
 public class HeavyStorm extends DuelistCard 
@@ -58,11 +60,24 @@ public class HeavyStorm extends DuelistCard
 	    	summonsInstance.amount -= summonsInstance.amount;
 	    	summonsInstance.updateDescription();
 	    	
+	    	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+	    	{
+	    		if (mon.hasPower(EnemySummonsPower.POWER_ID))
+	    		{
+	    			int amt = mon.getPower(EnemySummonsPower.POWER_ID).amount;
+	    			DuelistCard.removePower(mon.getPower(EnemySummonsPower.POWER_ID), mon);
+	    			summonsRemoved += amt;
+	    			if (mon instanceof SetoKaiba)
+	    			{
+	    				SetoKaiba kaiba = (SetoKaiba)mon;
+	    				kaiba.triggerHandReset();
+	    			}
+	    		}
+	    	}
+	    	
 	    	for (int i = 0; i < summonsRemoved; i++)
 	    	{
-	    		int playerOrMonsterRoll = AbstractDungeon.cardRandomRng.random(1, 4);
-	    		if (playerOrMonsterRoll == 1) { damageSelfNotHP(this.magicNumber); }
-	    		else { thornAttack(AbstractDungeon.getRandomMonster(), this.magicNumber); }
+	    		thornAttack(AbstractDungeon.getRandomMonster(), this.magicNumber); 
 	    	}
     	}
     }
