@@ -1,89 +1,69 @@
-package duelistmod.cards.incomplete;
+package duelistmod.cards;
 
-import java.util.ArrayList;
-
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.orbs.Alien;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
+import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
-public class AlienTelepath extends DuelistCard 
+public class GammaElectro extends DuelistCard 
 {
     // TEXT DECLARATION
 
-    public static final String ID = DuelistMod.makeID("AlienTelepath");
+    public static final String ID = duelistmod.DuelistMod.makeID("GammaElectro");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("AlienTelepath.png");
+    public static final String IMG = DuelistMod.makeCardPath("GammaElectro.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public AlienTelepath() {
+    public GammaElectro() 
+    {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.MONSTER);  
-        this.summons = this.baseSummons = 1;	
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.MAGNETWARRIOR);
         this.baseMagicNumber = this.magicNumber = 3;
-        this.secondMagic = this.baseSecondMagic = 1;
         this.originalName = this.name;
+        this.summons = this.baseSummons = 1;
+        this.isSummon = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
-    	if (p.drawPile.group.size() >= this.magicNumber)
-    	{
-	    	ArrayList<AbstractCard> topCards = new ArrayList<AbstractCard>();
-	    	for (int i = 0; i < this.magicNumber; i++)
-	    	{
-	    		AbstractCard c = p.drawPile.getNCardFromTop(i);
-	    		topCards.add(c);
-	    	}
-	    	CardGroup newGroup = new CardGroup(CardGroupType.UNSPECIFIED);
-	    	for (AbstractCard c : topCards) { newGroup.addToTop(c); }
-	    	if (newGroup.group.size() >= this.secondMagic) { AbstractDungeon.actionManager.addToTop(new FetchAction(newGroup, this.secondMagic)); }
+    	summon(p, this.summons, this);
+    	
+    	// Electrify Gamma Magnet
+    	if (p.hasPower(GammaMagPower.POWER_ID)) 
+    	{ 
+    		GammaMagPower pow = (GammaMagPower) p.getPower(GammaMagPower.POWER_ID); 
+    		pow.electrify(2);
     	}
-    	else if (p.drawPile.group.size() > 0)
-    	{
-    		ArrayList<AbstractCard> topCards = new ArrayList<AbstractCard>();
-	    	for (int i = 0; i < p.drawPile.group.size(); i++)
-	    	{
-	    		AbstractCard c = p.drawPile.getNCardFromTop(i);
-	    		topCards.add(c);
-	    	}
-	    	CardGroup newGroup = new CardGroup(CardGroupType.UNSPECIFIED);
-	    	for (AbstractCard c : topCards) { newGroup.addToTop(c); }
-	    	if (newGroup.group.size() >= this.secondMagic) { AbstractDungeon.actionManager.addToTop(new FetchAction(newGroup, this.secondMagic)); }
-    	}
-    	channel(new Alien());
+    	// Draw cards
+    	drawTag(this.magicNumber, Tags.MONSTER);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new AlienTelepath();
+        return new GammaElectro();
     }
 
     // Upgraded stats.
@@ -100,11 +80,15 @@ public class AlienTelepath extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
+		// TODO Auto-generated method stub
 		
 	}
 
+
+
 	@Override
-	public void onResummon(int summons) {
+	public void onResummon(int summons) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
@@ -112,6 +96,12 @@ public class AlienTelepath extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		
 		
 	}
 	
@@ -156,11 +146,6 @@ public class AlienTelepath extends DuelistCard
     		return true;
     	}
     }
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
 
 	@Override
 	public String getID() {

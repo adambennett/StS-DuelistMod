@@ -681,7 +681,13 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new CemetaryBomb());
 		DuelistMod.myCards.add(new RockBombardment());
 		DuelistMod.myCards.add(new Obliterate());
-		DuelistMod.myCards.add(new ExodiaNecross());
+		DuelistMod.myCards.add(new ExodiaNecross());		
+		DuelistMod.myCards.add(new AlphaElectro());
+		DuelistMod.myCards.add(new DeltaMagnet());
+		DuelistMod.myCards.add(new Berserkion());
+		DuelistMod.myCards.add(new BetaElectro());
+		DuelistMod.myCards.add(new GammaElectro());
+		DuelistMod.myCards.add(new MagneticField());
 		
 		//DuelistMod.myCards.add(new WightLady());			
 		

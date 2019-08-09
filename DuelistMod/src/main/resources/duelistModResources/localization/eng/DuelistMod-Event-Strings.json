@@ -61,5 +61,24 @@
       "[Intellect] #gDuplicate #gall #gSpells. #rBecome #rCursed #r- #r(2 #rRandom).",
 	  "[Dig] #gReceive #ga #grandom #gDuelist #grelic. #rLose #r8 #rHP."
     ]
+  },
+  "theDuelist:EgyptVillage": {
+    "NAME": "Egyptian Village",
+    "DESCRIPTIONS": [
+      "You stumble upon an abandoned Egyptian village. What treachery awaits within?",
+	  "The village looks eerie in the distance as you move away from it..."
+    ],
+    "OPTIONS": [
+      "[Alpha] #gReceive #gAlpha #gthe #gElectromagnet #gWarrior.",
+      "[Beta] #gReceive #gBeta #gthe #gElectromagnet #gWarrior.",
+      "[Gamma] #gReceive #gGamma #gthe #gElectromagnet #gWarrior.",
+	  "[Delta] #gReceive #gDelta #gthe #gMagnet #gWarrior.",
+	  "[Valkyrion] #gReceive #gBerserkion #gthe #gElectromagna #gWarrior.",	 
+      "[Leave]",
+	  "[Locked] Requires: Alpha, the Magnet Warrior",
+	  "[Locked] Requires: Beta, the Magnet Warrior",
+	  "[Locked] Requires: Gamma, the Magnet Warrior",
+	  "[Locked] Requires: Valkyrion"
+    ]
   }
 }

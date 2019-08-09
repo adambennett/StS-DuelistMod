@@ -454,7 +454,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	// Turn off for Workshop releases, just prints out stuff and adds debug cards/tokens to game
 	public static boolean debug = false;				// print statements only, used in mod option panel
 	public static boolean debugMsg = false;				// for secret msg
-	public static final boolean addTokens = true;		// adds debug tokens to library
+	public static final boolean addTokens = false;		// adds debug tokens to library
 	public static final boolean printSQL = false;		// toggles SQL db formatted info print
 	public static final boolean fullDebug = false;		// actually modifies char stats, cards in compendium, starting max summons, etc
 	public static boolean allowBonusDeckUnlocks = true;	// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
@@ -856,6 +856,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Events													
 		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
 		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
+		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class, TheBeyond.ID);
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.Exordium.ID);  	// Act 1
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheCity.ID); 		// Act 2 
 		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheBeyond.ID);  	// Act 3
@@ -1137,7 +1138,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new NaturiaRelic());
 		duelistRelicsForTombEvent.add(new MachineToken());
 		duelistRelicsForTombEvent.add(new DragonRelic());
-		duelistRelicsForTombEvent.add(new SummonAnchor());
+		//duelistRelicsForTombEvent.add(new SummonAnchor());
 		duelistRelicsForTombEvent.add(new SpellcasterToken());
 		duelistRelicsForTombEvent.add(new SpellcasterOrb());
 		duelistRelicsForTombEvent.add(new AquaRelic());

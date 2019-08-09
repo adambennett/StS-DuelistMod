@@ -34,12 +34,12 @@ public class MillenniumCoin extends CustomRelic
 		{
 			if (Util.isMillenniumItem(r, false) && !r.name.equals(this.name))
 			{
-				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				AbstractDungeon.player.gainGold(100);
 				Util.log("Relic that triggered gold gain: " + r.name);
 			}
 			else if (r instanceof MillenniumPuzzle)
 			{
-				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				AbstractDungeon.player.gainGold(100);
 				Util.log("Relic that triggered gold gain: " + r.name);
 			}
 		}
@@ -48,7 +48,7 @@ public class MillenniumCoin extends CustomRelic
 		{
 			if (p instanceof MillenniumElixir)
 			{
-				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				AbstractDungeon.player.gainGold(100);
 				Util.log("Millennium Elixir triggered Millennium Coin");
 			}
 		}
@@ -57,7 +57,7 @@ public class MillenniumCoin extends CustomRelic
 		{
 			if (c instanceof MillenniumSpellbook)
 			{
-				DuelistCard.gainGold(100, AbstractDungeon.player, true);
+				AbstractDungeon.player.gainGold(100);
 				Util.log("Millennium Spellbook triggered Millennium Coin");
 			}
 		}

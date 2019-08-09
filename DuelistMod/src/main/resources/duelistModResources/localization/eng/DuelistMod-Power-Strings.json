@@ -21,15 +21,15 @@
 },
 "theDuelist:AlphaMagPower": {
         "NAME": "Alpha Magnet",
-        "DESCRIPTIONS": [""]
+        "DESCRIPTIONS": ["", "Electrified: Whenever you play an Attack, #yChannel a Lightning."]
 },
 "theDuelist:BetaMagPower": {
         "NAME": "Beta Magnet",
-        "DESCRIPTIONS": [""]
+        "DESCRIPTIONS": ["", "Electrified: Whenever you play a Skill, gain #b", " Block."]
 },
 "theDuelist:GammaMagPower": {
         "NAME": "Gamma Magnet",
-        "DESCRIPTIONS": [""]
+        "DESCRIPTIONS": ["", "Electrified: Whenever you play a Power, draw #b", " cards.", " card."]
 },
 "theDuelist:GreedShardPower": {
         "NAME": "Shard of Greed",
@@ -566,6 +566,10 @@
 "theDuelist:EnemyBoosterDragonPower": {
         "NAME": "Booster Dragon",
         "DESCRIPTIONS": ["Whenever you #yTribute a #yDragon for another, gain #b", " Block." ]
+},
+"theDuelist:MagneticFieldPower": {
+        "NAME": "Magnetic Field",
+        "DESCRIPTIONS": ["#yElectrify the next #yMagnet you receive." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

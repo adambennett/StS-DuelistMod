@@ -56,19 +56,20 @@ public class ArchfiendHeiress extends DuelistCard
     	// If overflows remaining
         if (this.magicNumber > 0) 
         {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
-            
-            // Increase damage of random discard pile monster by secondMagic
+        	// Increase damage of random discard pile monster by secondMagic
             ArrayList<DuelistCard> monsters = new ArrayList<DuelistCard>();
             for (AbstractCard c : AbstractDungeon.player.discardPile.group) { if (c.hasTag(Tags.MONSTER) && c.damage > 0) { monsters.add((DuelistCard) c); }}
             if (monsters.size() > 0)
             {
 	            DuelistCard randomMon = monsters.get(AbstractDungeon.cardRandomRng.random(monsters.size() - 1));
 	            AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomMon.uuid, this.secondMagic));
-            }            
-            // Check Splash Orbs
-            checkSplash();
+	            
+	        	// Remove 1 overflow
+	            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+	            
+	            // Check Splash Orbs
+	            checkSplash();
+            }        
         }
         super.triggerOnEndOfPlayerTurn();
     }

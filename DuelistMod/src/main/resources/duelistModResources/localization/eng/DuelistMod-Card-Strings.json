@@ -1279,7 +1279,7 @@
 	"theDuelist:NaturiaGuardian": {
 		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! copies of Naturia Horneedle into your draw pile.",
 		"NAME": "Naturia Guardian",
-		"UPGRADE_DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! copies of Naturia Horneedle into your draw pile."
+		"UPGRADE_DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage. NL Shuffle !M! Upgraded copies of Naturia Horneedle into your draw pile."
 	},
 	"theDuelist:NaturiaHorneedle": {
 		"DESCRIPTION": "Naturia Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -4045,6 +4045,56 @@
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand.",
 		"NAME": "Exodia Necross",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand."
+	},
+	"theDuelist:AlphaElectro": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Electrify your Alpha Magnet.",
+		"NAME": "Alpha Electromagnet",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Electrify your Alpha Magnet."
+	},
+	"theDuelist:BetaElectro": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Electrify your Beta Magnet.",
+		"NAME": "Beta Electromagnet",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Electrify your Beta Magnet."
+	},
+	"theDuelist:GammaElectro": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Draw !M! monsters. NL Electrify your Gamma Magnet.",
+		"NAME": "Gamma Electromagnet",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Draw !M! monsters. NL Electrify your Gamma Magnet."
+	},
+	"theDuelist:DeltaMagnet": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies. NL Draw !duelist:M! Magnet cards.",
+		"NAME": "D. Magnet Warrior",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies. NL Draw !duelist:M! Magnet cards."
+	},
+	"theDuelist:Berserkion": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies for each Magnet you have. NL Add a random Magnet card to your hand.",
+		"NAME": "Berserkion Electromagna",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies for each Magnet you have. NL Add a random Magnet card to your hand."
+	},
+	"theDuelist:MagneticMosquito": {
+		"DESCRIPTION": "Machine Insect NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Add a random Magnet card to your hand.",
+		"NAME": "Magnetic Mosquito",
+		"UPGRADE_DESCRIPTION": "Machine Insect NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Add a random Magnet card to your hand."
+	},
+	"theDuelist:SuperconductiveBattlebot": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust your draw and discard piles and deal !D! damage to ALL enemies for each card Exhausted. NL Refill your draw and discard piles with random Magnet cards.",
+		"NAME": "Superconductive Battlebot",
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust your draw and discard piles and deal !D! damage to ALL enemies for each card Exhausted. NL Refill your draw and discard piles with random Magnet cards."
+	},
+	"theDuelist:MagnetForce": {
+		"DESCRIPTION": "Deal !D! damage to !M! random enemies. NL Gain a random Magnet. NL Exhaust.",
+		"NAME": "Magnet Force",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to !M! random enemies. NL Gain a random Magnet. NL Exhaust."
+	},
+	"theDuelist:MagneticField": {
+		"DESCRIPTION": "Electrify the next Magnet you receive. NL Exhaust.",
+		"NAME": "Magnetic Field",
+		"UPGRADE_DESCRIPTION": "Electrify the next Magnet you receive. NL Exhaust."
+	},
+	"theDuelist:MagnetReverse": {
+		"DESCRIPTION": "Choose any of your Magnet cards to Resummon on an enemy. NL Exhaust.",
+		"NAME": "Magnet Reverse",
+		"UPGRADE_DESCRIPTION": "Choose any of your Magnet cards to Resummon on an enemy. NL Exhaust."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

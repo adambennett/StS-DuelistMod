@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,7 +17,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.*;
+import duelistmod.actions.unique.KaibaDrawHandAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.*;
@@ -55,6 +56,7 @@ public class SetoKaiba extends AbstractMonster {
 	private int tributesThisCombat = 0;
 	private int summonsThisTurn = 0;
 	private int armageddon = 11;
+	private int earthGiant = 7;
 	private int rollingMessage = 0;
 	
 	private ArrayList<ArrayList<String>> possibleHands = new ArrayList<ArrayList<String>>();
@@ -290,6 +292,13 @@ public class SetoKaiba extends AbstractMonster {
 			AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, blk));
 		}
 		
+		if (c instanceof EarthGiant)
+		{
+			tribute(this.earthGiant, false);
+			int blk = localApplyBlkPowers(50);
+			AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, blk));
+		}
+		
 		if (c instanceof BerserkerCrush)
 		{
 			int dmg = localApplyDmgPowers(11);
@@ -387,9 +396,82 @@ public class SetoKaiba extends AbstractMonster {
 			DuelistCard.applyPower(new EnemyBoosterDragonPower(this, this, 6), this);
 		}
 		
+		if (c instanceof PotAvarice)
+		{
+			ArrayList<String> sizeRef = tributeAll(false);
+			if (this.hasPower(EnemySummonsPower.POWER_ID))
+			{
+				EnemySummonsPower pow = (EnemySummonsPower)this.getPower(EnemySummonsPower.POWER_ID);
+				pow.incMaxSummons(sizeRef.size());
+			}
+		}
+		
+		if (c instanceof MiraculousDescent)
+		{
+			DuelistCard.applyPower(new EnemyMiraclePower(this, this, AbstractDungeon.aiRng.random(5, 10)), this);
+		}
+		
+		if (c instanceof LabyrinthWall)
+		{
+			tribute(2, false);
+			int blk = localApplyBlkPowers(20);
+			AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, blk));
+		}
+		
+		if (c instanceof EarthGiant)
+		{
+			tribute(this.earthGiant, false);
+			int blk = localApplyBlkPowers(50);
+			AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, blk));
+		}
+		
+		if (c instanceof RedMedicine)
+		{
+			int roll = AbstractDungeon.aiRng.random(1, 9);
+			int turns = AbstractDungeon.aiRng.random(1, 3);
+			switch (roll)
+			{
+				case 1:
+					DuelistCard.applyPower(new StrengthPower(this, turns), this);
+					break;
+				case 2:
+					DuelistCard.applyPower(new DexterityPower(this, turns), this);
+					break;
+				case 3:
+					DuelistCard.applyPower(new RegenPower(this, turns), this);
+					break;
+				case 4:
+					DuelistCard.applyPower(new IntangiblePower(this, 1), this);
+					break;
+				case 5:
+					DuelistCard.applyPower(new ThornsPower(this, turns), this);
+					break;
+				case 6:
+					DuelistCard.applyPower(new BarricadePower(this), this);
+					break;
+				case 7:
+					DuelistCard.applyPower(new MetallicizePower(this, turns), this);
+					break;
+				case 8:
+					DuelistCard.applyPower(new EnvenomPower(this, turns), this);
+					break;
+				case 9:
+					DuelistCard.applyPower(new AngerPower(this, turns), this);
+					break;
+				default:
+					DuelistCard.applyPower(new StrengthPower(this, turns), this);
+					break;
+			}
+		}
+		
 		if (c.hasTag(Tags.DRAGON) && this.armageddon > 0)
 		{
 			this.armageddon--;
+		}
+		
+		if (c.type.equals(CardType.SKILL) && this.earthGiant > 0)
+		{
+			this.earthGiant--;
 		}
 	}
 
@@ -472,6 +554,29 @@ public class SetoKaiba extends AbstractMonster {
 		}
 		return tribs;
 	}
+	
+	public ArrayList<String> tributeAll(boolean dragon)
+	{
+		ArrayList<String> tribs = new ArrayList<String>();
+		if (this.hasPower(EnemySummonsPower.POWER_ID))
+		{
+			EnemySummonsPower pow = (EnemySummonsPower)this.getPower(EnemySummonsPower.POWER_ID);
+			tribs = pow.tributeAll();
+			this.tributesThisCombat += tribs.size();
+		}
+		if (dragon)
+		{
+			int dragsTributed = dragonsTributed(tribs);
+			if (dragsTributed > 0) { DuelistCard.applyPower(new StrengthPower(this, dragsTributed), this); }
+			if (this.hasPower(EnemyBoosterDragonPower.POWER_ID)) { EnemyBoosterDragonPower pow = (EnemyBoosterDragonPower)this.getPower(EnemyBoosterDragonPower.POWER_ID); for (int i = 0; i < dragsTributed; i++) { pow.trigger(this); }}
+		}
+		else
+		{
+			int dragsTributed = lambsTributed(tribs);
+			if (dragsTributed > 0) { DuelistCard.applyPower(new IntangiblePlayerPower(this, dragsTributed), this); }
+		}
+		return tribs;
+	}
 
 	public void summon(String card)
 	{
@@ -527,7 +632,7 @@ public class SetoKaiba extends AbstractMonster {
 			if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Dragon Deck")) {  AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[1], 0.5F, 2.0F)); }
 			else
 			{
-				AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 0.5F, 2.0F)); // Speak the stuff in DIALOG[0],
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 2.5F, 3.0F)); // Speak the stuff in DIALOG[0],
 				this.firstTurn = false; // Then ensure it's no longer the first turn.
 			}
 		}
@@ -564,6 +669,7 @@ public class SetoKaiba extends AbstractMonster {
 		CardCrawlGame.sound.play("JAW_WORM_DEATH"); // And it croaks too.
 	}
 	
+	@SuppressWarnings("unused")
 	private ArrayList<AbstractCard> getHandMove()
 	{
 		ArrayList<AbstractCard> moveCards = new ArrayList<AbstractCard>();
@@ -593,23 +699,37 @@ public class SetoKaiba extends AbstractMonster {
 					moveCards.add(new ScrapFactory());
 					moveCards.add(new BabyDragon());
 					moveCards.add(new FiveHeaded());
-					overflowCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, 55);
+					this.setMove((byte)2, Intent.ATTACK, 55);
 				}
-				else if (hasLambs)
+				else if (summons > 1)
 				{
 					moveCards.add(new ScrapFactory());
+					AbstractCard mir = new MiraculousDescent();
+					mir.upgrade();
+					moveCards.add(mir);
 					moveCards.add(new BabyDragon());
 					moveCards.add(new Reinforcements());
-					overflowCards.add(new PreventRat());
 					this.setMove((byte)2, Intent.DEFEND_BUFF);
 				}
 				else
 				{
-					moveCards.add(new BabyDragon());
-					moveCards.add(new Reinforcements());
-					moveCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.DEFEND_BUFF);
+					int roll = AbstractDungeon.aiRng.random(1, 2);
+					if (roll == 1)
+					{
+						AbstractCard mir = new MiraculousDescent();
+						mir.upgrade();
+						moveCards.add(mir);
+						moveCards.add(new BabyDragon());
+						this.setMove((byte)2, Intent.DEFEND);
+					}
+					else
+					{
+						AbstractCard mir = new MiraculousDescent();
+						mir.upgrade();
+						moveCards.add(mir);
+						moveCards.add(new Reinforcements());
+						this.setMove((byte)2, Intent.DEFEND_BUFF);
+					}
 				}
 				break;
 			case 1:
@@ -907,6 +1027,7 @@ public class SetoKaiba extends AbstractMonster {
 				{
 					moveCards.add(new BlueEyesUltimate());
 					moveCards.add(new YamataDragon());
+					this.setMove((byte)2, Intent.ATTACK, 56);
 				}
 				else if (summons > 2)
 				{
@@ -1104,7 +1225,7 @@ public class SetoKaiba extends AbstractMonster {
 				
 				else if (summons > 0)
 				{
-					moveCards.add(new BabyDragon());
+					moveCards.add(new CaveDragon());
 					moveCards.add(new StardustDragon());
 					overflowCards.add(new PreventRat());
 					this.setMove((byte)2, Intent.ATTACK_DEFEND, 22);
@@ -1114,7 +1235,7 @@ public class SetoKaiba extends AbstractMonster {
 					int roll = AbstractDungeon.aiRng.random(1, 2);
 					if (roll == 1)
 					{
-						moveCards.add(new BabyDragon());
+						moveCards.add(new CaveDragon());
 						moveCards.add(new GoldenApples());
 						AbstractCard hino = new Hinotama();
 						hino.upgrade();
@@ -1124,7 +1245,7 @@ public class SetoKaiba extends AbstractMonster {
 					}
 					else
 					{
-						moveCards.add(new BabyDragon());
+						moveCards.add(new CaveDragon());
 						moveCards.add(new PreventRat());
 						AbstractCard hino = new Hinotama();
 						hino.upgrade();
@@ -1186,11 +1307,21 @@ public class SetoKaiba extends AbstractMonster {
 				
 				else
 				{
-					moveCards.add(new BabyDragon());
-					moveCards.add(new BabyDragon());
-					moveCards.add(new BusterBlader());
-					overflowCards.add(new BackgroundDragon());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, 31);
+					int roll = AbstractDungeon.aiRng.random(1, 2);
+					if (roll == 1)
+					{
+						moveCards.add(new CaveDragon());
+						moveCards.add(new BabyDragon());
+						moveCards.add(new BusterBlader());
+						overflowCards.add(new BackgroundDragon());
+						this.setMove((byte)2, Intent.ATTACK_DEFEND, 31);
+					}
+					else
+					{
+						moveCards.add(new CaveDragon());
+						moveCards.add(new BackgroundDragon());
+						this.setMove((byte)2, Intent.DEFEND);
+					}					
 				}
 				
 				break;
@@ -1833,6 +1964,62 @@ public class SetoKaiba extends AbstractMonster {
 					}
 				}
 				break;
+			case 21:
+				if (this.hasPower(EnemySummonsPower.POWER_ID))
+				{
+					EnemySummonsPower pow = (EnemySummonsPower)this.getPower(EnemySummonsPower.POWER_ID);
+					summons = pow.handCards.size();
+					if (summons > 1)
+					{
+						for (String s : pow.handCards)
+						{
+							if (s.equals("Kuriboh Token"))
+							{
+								hasLambs = true;
+							}
+						}
+					}
+				}
+				
+				if (summons > this.earthGiant + 2)
+				{
+					moveCards.add(new EarthGiant());
+					moveCards.add(new RedEyes());
+					this.setMove((byte)2, Intent.ATTACK_DEFEND, 14);
+				}
+				else if (summons > this.earthGiant + 1)
+				{
+					moveCards.add(new EarthGiant());
+					moveCards.add(new LabyrinthWall());
+					this.setMove((byte)2, Intent.DEFEND);
+				}
+				
+				else if (summons >= this.earthGiant)
+				{
+					moveCards.add(new EarthGiant());
+					AbstractCard red = new RedMedicine();
+					red.upgrade();
+					moveCards.add(red);
+					this.setMove((byte)2, Intent.DEFEND_BUFF);
+				}
+				
+				else if (summons > 1)
+				{
+					moveCards.add(new CaveDragon());
+					moveCards.add(new RedEyes());
+					this.setMove((byte)2, Intent.ATTACK_DEFEND, 14);
+				}
+				
+				else
+				{
+					moveCards.add(new CaveDragon());
+					AbstractCard red = new RedMedicine();
+					red.upgrade();
+					moveCards.add(red);
+					this.setMove((byte)2, Intent.DEFEND_BUFF);
+				}
+				
+				break;
 			default:
 				switch (moveRoll)
 				{
@@ -1896,11 +2083,12 @@ public class SetoKaiba extends AbstractMonster {
 		ArrayList<String> hand18 = new ArrayList<String>();
 		ArrayList<String> hand19 = new ArrayList<String>();
 		ArrayList<String> hand20 = new ArrayList<String>();
-		hand0.add("Baby Dragon");
+		ArrayList<String> hand21 = new ArrayList<String>();
+		hand0.add("Miraculous Descent+");
 		hand0.add("Reinforcements");
 		hand0.add("Five Headed Dragon");
 		hand0.add("Scrap Factory");
-		hand0.add("Prevent Rat");    	
+		hand0.add("Baby Dragon");    	
 
 		hand1.add("Scrap Factory");
 		hand1.add("Baby Dragon");
@@ -1952,12 +2140,12 @@ public class SetoKaiba extends AbstractMonster {
 
 		hand9.add("Stardust Dragon");
 		hand9.add("Hinotama+"); 	
-		hand9.add("Baby Dragon"); 
+		hand9.add("Cave Dragon"); 
 		hand9.add("Golden Apples");
 		hand9.add("Prevent Rat");
 
 		hand10.add("Stardust Dragon");
-		hand10.add("Baby Dragon"); 	
+		hand10.add("Cave Dragon"); 	
 		hand10.add("Baby Dragon"); 
 		hand10.add("Background Dragon");
 		hand10.add("Buster Blader");
@@ -2021,6 +2209,12 @@ public class SetoKaiba extends AbstractMonster {
 		hand20.add("Baby Dragon");     	
 		hand20.add("Silver Apples"); 
 		hand20.add("Background Dragon");
+		
+		hand21.add("Red Medicine+");
+		hand21.add("Earth Giant");
+		hand21.add("Labyrinth Wall");     	
+		hand21.add("Cave Dragon"); 
+		hand21.add("Red Eyes");
 
 
 		this.possibleHands.add(hand0);
@@ -2044,6 +2238,7 @@ public class SetoKaiba extends AbstractMonster {
 		this.possibleHands.add(hand18);
 		this.possibleHands.add(hand19);
 		this.possibleHands.add(hand20);
+		this.possibleHands.add(hand21);
 	}
 	
 

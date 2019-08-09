@@ -68,8 +68,7 @@ public class GoblinKing extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.upgradeBlock(2);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
