@@ -47,7 +47,6 @@ import duelistmod.characters.TheDuelist;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.BasicPool;
-import duelistmod.intents.PlayCardsIntent;
 import duelistmod.interfaces.*;
 import duelistmod.monsters.SetoKaiba;
 import duelistmod.orbs.*;
@@ -866,10 +865,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Monsters
 		BaseMod.addMonster(SetoKaiba.ID, "Seto Kaiba", () -> new SetoKaiba(-5.0F, 15.0F));
 		//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(SetoKaiba.ID, 100.0F)); 	// debug
-		BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(SetoKaiba.ID, 15.0F)); 
+		BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(SetoKaiba.ID, 5.0F)); 
 		
-		// Intents
-		//RazIntent.addIntent(new PlayCardsIntent());
 		
 		// Rewards
 		BaseMod.registerCustomReward
