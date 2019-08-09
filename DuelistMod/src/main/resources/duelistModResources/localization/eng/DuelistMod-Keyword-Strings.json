@@ -101,7 +101,7 @@
         "ojamania",
 		"Ojamania"
       ],      
-      "DESCRIPTION": "Add #b2 #yRandomized cards to your hand, they cost #b0 this turn. Gain #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
+      "DESCRIPTION": "Add #b2 #yRandomized cards to your hand. Gain #b1 random #ybuff. Apply #b2 random #ydebuffs to an enemy."
     },
      {
 	  "PROPER_NAME": "Dragon",

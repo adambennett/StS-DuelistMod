@@ -571,6 +571,10 @@
         "NAME": "Magnetic Field",
         "DESCRIPTIONS": ["#yElectrify the next #yMagnet you receive." ]
 },
+"theDuelist:EnemyMiraclePower": {
+        "NAME": "Miraculous Descent",
+        "DESCRIPTIONS": ["At the end of turn, gain #b", " #yBlock and then randomize the amount of #yBlock gained next turn." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

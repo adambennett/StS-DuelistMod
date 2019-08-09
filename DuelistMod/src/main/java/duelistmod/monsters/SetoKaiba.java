@@ -487,6 +487,11 @@ public class SetoKaiba extends AbstractMonster {
 
 	public void drawNewHand()
 	{
+		if (this.hasPower(EnemyMiraclePower.POWER_ID))
+		{
+			EnemyMiraclePower pow = (EnemyMiraclePower)this.getPower(EnemyMiraclePower.POWER_ID);
+			pow.trigger(this);
+		}
 		if (this.summonsThisTurn > 1)
 		{
 			int roll = AbstractDungeon.aiRng.random(1, 100);
@@ -524,10 +529,17 @@ public class SetoKaiba extends AbstractMonster {
 	
 	public void playCards(ArrayList<AbstractCard> cards)
 	{	
+		ArrayList<AbstractCard> reversed = new ArrayList<AbstractCard>();
+		for (AbstractCard c : cards) { reversed.add(c); }
+		Collections.reverse(reversed);
+		for (AbstractCard card : reversed)
+		{
+			AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card));
+		}
 		for (AbstractCard card : cards)
 		{
 			Util.log("Kaiba played " + card.name);
-			AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card));
+			//AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card));
 			takeCardAction(card);
 		}	
 	}
@@ -713,7 +725,7 @@ public class SetoKaiba extends AbstractMonster {
 				}
 				else
 				{
-					int roll = AbstractDungeon.aiRng.random(1, 2);
+					int roll = AbstractDungeon.aiRng.random(1, 3);
 					if (roll == 1)
 					{
 						AbstractCard mir = new MiraculousDescent();
@@ -722,12 +734,18 @@ public class SetoKaiba extends AbstractMonster {
 						moveCards.add(new BabyDragon());
 						this.setMove((byte)2, Intent.DEFEND);
 					}
-					else
+					else if (roll == 2)
 					{
 						AbstractCard mir = new MiraculousDescent();
 						mir.upgrade();
 						moveCards.add(mir);
 						moveCards.add(new Reinforcements());
+						this.setMove((byte)2, Intent.DEFEND_BUFF);
+					}
+					else
+					{
+						moveCards.add(new Reinforcements());
+						moveCards.add(new BabyDragon());
 						this.setMove((byte)2, Intent.DEFEND_BUFF);
 					}
 				}
@@ -1223,7 +1241,7 @@ public class SetoKaiba extends AbstractMonster {
 					}
 				}
 				
-				else if (summons > 0)
+				else if (summons > 1)
 				{
 					moveCards.add(new CaveDragon());
 					moveCards.add(new StardustDragon());
