@@ -3577,9 +3577,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL Channel a Dark."
 	},
 	"theDuelist:PutridPudding": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Dark. NL Channel !duelist:M! Void. NL Apply !duelist:O! Vulnerable.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Void. NL Channel !duelist:M! Dark. NL Apply !duelist:O! Vulnerable.",
 		"NAME": "Putrid Pudding",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Dark. NL Channel !duelist:M! Void. NL Apply !duelist:O! Vulnerable."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Void. NL Channel !duelist:M! Dark. NL Apply !duelist:O! Vulnerable."
 	},
 	"theDuelist:DoomsdayHorror": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Vulnerable to a random enemy.",
@@ -4095,6 +4095,11 @@
 		"DESCRIPTION": "Choose any of your Magnet cards to Resummon on an enemy. NL Exhaust.",
 		"NAME": "Magnet Reverse",
 		"UPGRADE_DESCRIPTION": "Choose any of your Magnet cards to Resummon on an enemy. NL Exhaust."
+	},
+	"theDuelist:UmbralHorrorGhoul": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !M! damage for each monster you Tribute.",
+		"NAME": "Umbral Horror Ghoul",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !M! damage for each monster you Tribute."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

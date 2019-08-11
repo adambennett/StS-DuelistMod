@@ -70,7 +70,7 @@ public class PredapruningAction extends AbstractGameAction
 			{
 				AbstractCard card = tmp.getTopCard();
 				// Play card
-				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
+				DuelistCard cardCopy = (DuelistCard)card;
     			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
     			{
     				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
@@ -82,7 +82,7 @@ public class PredapruningAction extends AbstractGameAction
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
     				cardCopy.checkResummon();*/
-    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(DuelistCard.newCopyOfMonster(cardCopy.originalName)); }
+    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
     			}
 				this.isDone = true;
 				return; 
@@ -95,7 +95,7 @@ public class PredapruningAction extends AbstractGameAction
 				{
 					AbstractCard card = tmp.getNCardFromTop(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
 					// Play card
-					DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
+					DuelistCard cardCopy = (DuelistCard)card;
 	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 	    			{
 	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
@@ -107,7 +107,7 @@ public class PredapruningAction extends AbstractGameAction
 	    				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
 	    				cardCopy.onResummon(1);
 	    				cardCopy.checkResummon();*/
-	    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(DuelistCard.newCopyOfMonster(cardCopy.originalName)); }
+	    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
 	    			}
 				}
 				this.isDone = true;
@@ -134,7 +134,7 @@ public class PredapruningAction extends AbstractGameAction
 			{
 				c.unhover();
 				// Play card
-				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
+				DuelistCard cardCopy = (DuelistCard)c;
 				if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
     			{
 					DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
@@ -146,7 +146,7 @@ public class PredapruningAction extends AbstractGameAction
     				AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(cardCopy, m));
     				cardCopy.onResummon(1);
     				cardCopy.checkResummon();*/
-    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(DuelistCard.newCopyOfMonster(cardCopy.originalName)); }
+    				if (cardCopy.hasTag(Tags.PREDAPLANT)) { DuelistCard.addCardToHand(cardCopy.makeStatEquivalentCopy()); }
     			}
 			
 			}

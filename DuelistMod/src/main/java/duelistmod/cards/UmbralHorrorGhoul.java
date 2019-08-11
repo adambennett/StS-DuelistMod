@@ -8,88 +8,57 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.variables.Tags;
 
-public class PredaplantDrosophyllum extends DuelistCard 
+public class UmbralHorrorGhoul extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("PredaplantDrosophyllum");
+
+    public static final String ID = DuelistMod.makeID("UmbralHorrorGhoul");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.PREDAPLANT_DROSOPHYLLUM);
+    public static final String IMG = DuelistMod.makeCardPath("UmbralHorrorGhoul.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-    
+
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.POISON;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public PredaplantDrosophyllum() {
+    public UmbralHorrorGhoul() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseDamage = this.damage = 8;
+        this.magicNumber = this.baseMagicNumber = 7;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.PREDAPLANT);
-        this.tags.add(Tags.ALL);
-        this.tags.add(Tags.PLANT);
-        this.tags.add(Tags.GOOD_TRIB);
-        this.tributes = this.baseTributes = 2;
-		this.originalName = this.name;
-		this.baseDamage = this.damage = 16;
+        this.tags.add(Tags.FIEND);
+        this.misc = 0;
+        this.originalName = this.name;
+        this.tributes = this.baseTributes = 1; 
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
-    	for (AbstractCard a : p.hand.group) { if (a.hasTag(Tags.PLANT) && !a.equals(this) && !a.hasTag(Tags.EXEMPT)) { handCards.add(a); }}  
-    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	attack(m, AFX, this.damage);
-    	if (tributeList.size() > 0 && handCards.size() > 0)
-    	{
-    		for (DuelistCard c : tributeList)
-    		{
-    			if (c.hasTag(Tags.PREDAPLANT))
-    			{
-    				if (!this.upgraded)
-    				{
-	    				DuelistCard summon = (DuelistCard) returnRandomFromArrayAbstract(handCards);  	
-						if (summon != null)
-						{
-							DuelistCard.fullResummon(summon, summon.upgraded, m, false);
-						}
-    				}
-    				else
-    				{
-    					for (AbstractCard plant : handCards)
-    					{
-    						DuelistCard cardCopy = (DuelistCard)plant;
-    						if (cardCopy != null)
-    						{
-    							DuelistCard.fullResummon(cardCopy, plant.upgraded, m, false);
-    						}
-    					}
-    				}
-    			}
-    		}
-    	}
+    	ArrayList<DuelistCard> tributeList = tribute();
+    	attack(m);
+    	attack(m, AttackEffect.SLASH_VERTICAL, this.magicNumber * tributeList.size());
     }
-
+    
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new PredaplantDrosophyllum();
+        return new UmbralHorrorGhoul();
     }
 
     // Upgraded stats.
@@ -97,8 +66,8 @@ public class PredaplantDrosophyllum extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(6);
-            this.upgradeTributes(1);
+            this.upgradeDamage(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -112,10 +81,10 @@ public class PredaplantDrosophyllum extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
     	
-  		// Pumpking & Princess
+    	// Pumpking & Princess
   		else if (this.misc == 52) { return true; }
     	
-  		// Mausoleum check
+    	// Mausoleum check
     	else if (p.hasPower(EmperorPower.POWER_ID))
 		{
 			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
@@ -123,6 +92,7 @@ public class PredaplantDrosophyllum extends DuelistCard
 			{
 				return true;
 			}
+			
 			else
 			{
 				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= this.tributes) { return true; } }
@@ -138,11 +108,12 @@ public class PredaplantDrosophyllum extends DuelistCard
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) 
-	{
-		predaplantSynTrib(tributingCard);
+	public void onTribute(DuelistCard tributingCard) {
+		// TODO Auto-generated method stub
+		
 	}
 
+	
 
 	@Override
 	public void onResummon(int summons) {
@@ -151,15 +122,14 @@ public class PredaplantDrosophyllum extends DuelistCard
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var)
-	{
-	
+	public void summonThis(int summons, DuelistCard c, int var) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m)
-	{
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -96,6 +96,7 @@ public class StandardPool
 		cards.add(new GoldenApples());
 		cards.add(new SilverApples());
 		cards.add(new MiraculousDescent());
+		cards.add(new Reinforcements());
 		
 		// Megatype
 		cards.add(new HourglassLife());

@@ -17,5 +17,62 @@
 	  "You’ll have the rest of your entire life to brood over this defeat",
 	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
     ]
+  },
+    "theDuelist:KaibaA1": {
+    "MOVES": [
+      "Attack and Defend",
+      "Defend Test",
+      "Other Test"
+    ],
+    "NAME": "Seto Kaiba",
+    "DIALOG": [
+	  "Me? Duel you? I’d have more of a challenge playing solitaire...",
+	  "Your deck seems quite powerful...",
+	  "Underestimating my Overflow cards Yugi?",
+	  "You have nothing that can withstand the phenomenal strength of my Blue Eyes Ultimate Dragon!",
+	  "Blue Eyes! Attack with all your might! White lightning!",
+	  "I've put all my fate in my next card. So now let it be revealed!",
+	  "There's no escape! Nothing can save you now",
+	  "You’ll have the rest of your entire life to brood over this defeat",
+	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
+    ]
+  },
+    "theDuelist:KaibaA2": {
+    "MOVES": [
+      "Attack and Defend",
+      "Defend Test",
+      "Other Test"
+    ],
+    "NAME": "Seto Kaiba",
+    "DIALOG": [
+	  "Me? Duel you? I’d have more of a challenge playing solitaire...",
+	  "Your deck seems quite powerful...",
+	  "Underestimating my Overflow cards Yugi?",
+	  "You have nothing that can withstand the phenomenal strength of my Blue Eyes Ultimate Dragon!",
+	  "Blue Eyes! Attack with all your might! White lightning!",
+	  "I've put all my fate in my next card. So now let it be revealed!",
+	  "There's no escape! Nothing can save you now",
+	  "You’ll have the rest of your entire life to brood over this defeat",
+	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
+    ]
+  },
+    "theDuelist:KaibaA3": {
+    "MOVES": [
+      "Attack and Defend",
+      "Defend Test",
+      "Other Test"
+    ],
+    "NAME": "Seto Kaiba",
+    "DIALOG": [
+	  "Me? Duel you? I’d have more of a challenge playing solitaire...",
+	  "Your deck seems quite powerful...",
+	  "Underestimating my Overflow cards Yugi?",
+	  "You have nothing that can withstand the phenomenal strength of my Blue Eyes Ultimate Dragon!",
+	  "Blue Eyes! Attack with all your might! White lightning!",
+	  "I've put all my fate in my next card. So now let it be revealed!",
+	  "There's no escape! Nothing can save you now",
+	  "You’ll have the rest of your entire life to brood over this defeat",
+	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
+    ]
   }
 }

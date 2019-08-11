@@ -93,10 +93,10 @@ public class Shadow extends DuelistOrb
 		    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
 		    		String cardName = chosen.originalName;
 		    		if (DuelistMod.debug) { System.out.println("theDuelist:Shadow --- > Found: " + cardName); }
-	    			DuelistCard cardCopy = DuelistCard.newCopyOfMonster(cardName);
+	    			DuelistCard cardCopy = (DuelistCard)chosen;
 	    			if (cardCopy != null)
 	    			{
-	    				DuelistCard.fullResummon(cardCopy, chosen.upgraded, m, false);
+	    				DuelistCard.fullResummon(cardCopy, false, m, false);
 	    			}
 	    		
 	    		}

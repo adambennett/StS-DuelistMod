@@ -688,6 +688,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BetaElectro());
 		DuelistMod.myCards.add(new GammaElectro());
 		DuelistMod.myCards.add(new MagneticField());
+		DuelistMod.myCards.add(new UmbralHorrorGhoul());
 		
 		//DuelistMod.myCards.add(new WightLady());			
 		

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistMonster;
 import duelistmod.monsters.SetoKaiba;
 
 
@@ -43,5 +44,10 @@ public class EnemyBoosterDragonPower extends AbstractPower
 	public void updateDescription() 
 	{
 		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+	}
+
+	public void trigger(DuelistMonster duelistMonster) 
+	{
+		if (this.amount > 0) { AbstractDungeon.actionManager.addToBottom(new GainBlockAction(duelistMonster, duelistMonster, this.amount)); }
 	}
 }

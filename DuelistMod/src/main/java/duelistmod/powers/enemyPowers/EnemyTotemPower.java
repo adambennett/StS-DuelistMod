@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 import duelistmod.monsters.SetoKaiba;
 import duelistmod.variables.Strings;
@@ -30,6 +30,8 @@ public class EnemyTotemPower extends AbstractPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePowerPath("TotemDragonPower.png");
 	private SetoKaiba seto;
+	private DuelistMonster mon;
+	private boolean isSeto = true;
 	
 	public EnemyTotemPower(final AbstractCreature owner, final AbstractCreature source, int amount, SetoKaiba enemy) 
 	{
@@ -45,6 +47,20 @@ public class EnemyTotemPower extends AbstractPower
 		updateDescription();
 	}
 	
+	public EnemyTotemPower(DuelistMonster owner, DuelistMonster source2, int amount, DuelistMonster duelistMonster) {
+		this.name = NAME;
+		this.ID = POWER_ID;
+		this.owner = owner;
+		this.type = PowerType.BUFF;
+		this.isTurnBased = false;
+		this.img = new Texture(IMG);
+		this.source = source2;
+		this.amount = amount;
+		this.mon = duelistMonster;
+		this.isSeto = false;
+		updateDescription();
+	}
+
 	@Override
 	public void updateDescription() 
 	{
@@ -55,7 +71,8 @@ public class EnemyTotemPower extends AbstractPower
 	@Override
 	public void atEndOfTurn(boolean isPlayer) 
 	{
-		if (this.amount > 0) { this.seto.summon("Dragon Token", this.amount); }
+		if (this.amount > 0 && isSeto) { this.seto.summon("Dragon Token", this.amount); }
+		else if (this.amount > 0) { this.mon.summon("Dragon Token", this.amount); }
 		updateDescription();
 	}
 }

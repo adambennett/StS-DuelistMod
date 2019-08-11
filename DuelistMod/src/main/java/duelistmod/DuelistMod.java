@@ -48,7 +48,7 @@ import duelistmod.events.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.BasicPool;
 import duelistmod.interfaces.*;
-import duelistmod.monsters.SetoKaiba;
+import duelistmod.monsters.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.potions.*;
@@ -377,6 +377,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int tributeLastCombatCount = 0;
 	public static int godsPlayedForBonus = 0;
 	public static int lastPackRoll = 0;
+	public static int lastFiendBonus = 0;
 	
 	
 	// Other
@@ -840,7 +841,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public void receivePostInitialize() 
 	{	
 		// Mod Options
-		logger.info("Loading badge image and mod options");
+		logger.info("Loading badge image and mod options, adding events and monsters, adding combat summons icon, initialize elite deck helper");
 		String loc = Localization.localize();
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
 		Config_UI_String = CardCrawlGame.languagePack.getUIString("theDuelist:ConfigMenuText");
@@ -855,34 +856,24 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Events													
 		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
 		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
-		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class, TheBeyond.ID);
-		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.Exordium.ID);  	// Act 1
-		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheCity.ID); 		// Act 2 
-		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheBeyond.ID);  	// Act 3
-		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class, com.megacrit.cardcrawl.dungeons.TheEnding.ID); 	// Act 4
-		//BaseMod.addEvent(StrangeSmithEvent.ID, StrangeSmithEvent.class);													// Any
+		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class, TheBeyond.ID);												// Any
 		
 		// Monsters
 		BaseMod.addMonster(SetoKaiba.ID, "Seto Kaiba", () -> new SetoKaiba(-5.0F, 15.0F));
-		//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(SetoKaiba.ID, 100.0F)); 	// debug
-		BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(SetoKaiba.ID, 5.0F)); 
+		BaseMod.addMonster(KaibaA1.ID, "Seto Kaiba", () -> new KaibaA1());
+		BaseMod.addMonster(KaibaA2.ID, "Seto Kaiba", () -> new KaibaA2());
+		BaseMod.addMonster(KaibaA3.ID, "Seto Kaiba", () -> new KaibaA3());
 		
+		// Encounters
+		//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
+		BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 3.0F)); 
+		//BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(KaibaA2.ID, 3.0F)); 
+		//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
+		//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 100.0F)); 
 		
+
 		// Rewards
-		BaseMod.registerCustomReward
-		(
-				RewardItemTypeEnumPatch.DUELIST_PACK,  
-				(rewardSave) -> 
-				{ 
-					// this handles what to do when this quest type is loaded.
-	                return new BoosterReward(rewardSave.amount);
-	            }, 
-	            (customReward) -> 
-	            { 
-	            	// this handles what to do when this quest type is saved.
-	                return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0);
-	            }
-	    );
+		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return new BoosterReward(rewardSave.amount);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0); });
 		
 		// Debug
 		if (printSQL)

@@ -21,7 +21,7 @@ public class MillenniumScale extends CustomRelic {
 	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Scales_Outline.png");
 
 	public MillenniumScale() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SPECIAL, LandingSound.MAGICAL);
 	}
 
 	// Description

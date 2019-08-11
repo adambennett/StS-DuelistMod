@@ -70,13 +70,11 @@ public class ResummonFromDiscardAction extends AbstractGameAction
 			if (tmp.size() == 1) 
 			{
 				AbstractCard card = tmp.getTopCard();
-				// Play card
-				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
-    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
-    			{
-    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
-    			}
-				//this.p.discardPile.removeCard(card);
+				if (card instanceof DuelistCard && !card.hasTag(Tags.EXEMPT))
+				{
+					DuelistCard cardCopy = (DuelistCard)card;
+					DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
+				}
 				this.isDone = true;
 				return; 
 			}
@@ -88,7 +86,7 @@ public class ResummonFromDiscardAction extends AbstractGameAction
 				{
 					AbstractCard card = tmp.getNCardFromTop(i);
 					// Play card
-					DuelistCard cardCopy = DuelistCard.newCopyOfMonster(card.originalName);
+					DuelistCard cardCopy = (DuelistCard)card;
 	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
 	    			{
 	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
@@ -120,7 +118,7 @@ public class ResummonFromDiscardAction extends AbstractGameAction
 			{
 				c.unhover();
 				// Play card
-				DuelistCard cardCopy = DuelistCard.newCopyOfMonster(c.originalName);
+				DuelistCard cardCopy = (DuelistCard)c;
     			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
     			{
     				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);

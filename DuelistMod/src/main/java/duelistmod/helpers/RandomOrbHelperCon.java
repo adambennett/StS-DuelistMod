@@ -281,13 +281,11 @@ public class RandomOrbHelperCon
 		orbs.add(new Lightning());
 		orbs.add(new Dark());
 		orbs.add(new DuelistHellfire());
-		orbs.add(new Splash());
 		orbs.add(new Lava());
-		orbs.add(new Mist());
 		orbs.add(new Mud());
-		orbs.add(new Sand());
 		orbs.add(new VoidOrb());
 		orbs.add(new FireOrb());
+		orbs.add(new Blaze());
 		int randomOrb = AbstractDungeon.cardRandomRng.random(orbs.size() - 1);
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
 	}
@@ -296,7 +294,6 @@ public class RandomOrbHelperCon
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();		
 		orbs.add(new Frost());
-		orbs.add(new Consumer());
 		orbs.add(new Gadget());
 		orbs.add(new Metal());
 		orbs.add(new VoidOrb());

@@ -154,6 +154,7 @@ public class FiendPool
 		fiendCards.add(new AlienTelepath());	
 		fiendCards.add(new BlastAsmodian());
 		fiendCards.add(new CemetaryBomb());
+		fiendCards.add(new UmbralHorrorGhoul());
 		fiendDeck.fillPoolCards(fiendCards);		
 		fiendDeck.fillArchetypeCards(fiendCards);
 		DuelistMod.archetypeCards.addAll(fiendCards);

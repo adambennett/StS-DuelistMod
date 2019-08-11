@@ -40,7 +40,7 @@ public class PutridPudding extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);       
-        this.summons = this.baseSummons = 2;			// Summons
+        this.summons = this.baseSummons = 1;			// Summons
         this.baseMagicNumber = this.magicNumber = 2;	// Dark
         this.secondMagic = this.baseSecondMagic = 2;	// Void
         this.thirdMagic = this.baseThirdMagic = 3;		// Vulnerable

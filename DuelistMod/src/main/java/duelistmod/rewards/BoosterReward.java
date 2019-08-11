@@ -24,6 +24,7 @@ public class BoosterReward extends CustomReward
 		super(new Texture("duelistModResources/images/ui/rewards/" + BoosterPackHelper.getIMG(id, id-200>0) + ".png"), BoosterPackHelper.getPackName(id, id-200>0), RewardItemTypeEnumPatch.DUELIST_PACK);
 		this.cards = BoosterPackHelper.getBoosterCardsFromID(id, id-200 > 0);
 		this.booster = cards;
+		this.type = RewardType.CARD;
 		this.packName = BoosterPackHelper.getPackName(id, id-200>0);
 		this.boosterID = id;
 		for (AbstractCard c : this.cards) 
@@ -62,7 +63,7 @@ public class BoosterReward extends CustomReward
 		this.booster = cards;
 		this.packName = packName;
 		this.boosterID = id;
-
+		this.type = RewardType.CARD;
 		for (AbstractCard c : this.cards) 
 		{
 			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 

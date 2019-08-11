@@ -251,6 +251,7 @@ public class PuzzleHelper
 					DuelistCard dC = (DuelistCard)randomDmg;
 					dC.fiendDeckDmgMod = true;					
 					dC.originalDamage = dC.damage;
+					DuelistMod.lastFiendBonus = totalTribs;
 					AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(randomDmg.uuid, totalTribs));
 					//AbstractDungeon.actionManager.addToTop(new ModifyExhaustAction(randomDmg));
 				}

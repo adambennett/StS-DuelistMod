@@ -208,7 +208,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 		    	if (handCards.size() > 0)
 		    	{
 		    		AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
-		    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
+		    		DuelistCard cardCopy = (DuelistCard)summon;
 					if (cardCopy != null)
 					{
 						DuelistCard.fullResummon(cardCopy, summon.upgraded, AbstractDungeon.getRandomMonster(), false);
@@ -224,7 +224,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 		    	if (handCards.size() > 0)
 		    	{
 		    		AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
-		    		DuelistCard cardCopy = DuelistCard.newCopyOfMonster(summon.originalName);
+		    		DuelistCard cardCopy = (DuelistCard)summon;
 					if (cardCopy != null)
 					{
 						DuelistCard.fullResummon(cardCopy, summon.upgraded, AbstractDungeon.getRandomMonster(), false);
