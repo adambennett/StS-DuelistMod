@@ -35,7 +35,7 @@ public class AncientElf extends DuelistCard
 
 	public AncientElf() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.baseBlock = this.block = 3;
+		this.baseMagicNumber = this.magicNumber = 4;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.ORB_DECK);
@@ -52,8 +52,7 @@ public class AncientElf extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		block(this.block);
-		block(this.block);
+		gainTempHP(this.magicNumber);
 		evoke(1);
 	}
 

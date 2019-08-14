@@ -57,7 +57,7 @@ public class CatShark extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (!upgraded) 
+        if (canUpgrade()) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); this.upgradeBaseCost(1); }

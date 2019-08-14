@@ -1,10 +1,8 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -36,7 +34,7 @@ public class BetaElectro extends DuelistCard
 
     public BetaElectro() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 16;
+        this.baseMagicNumber = this.magicNumber = 12;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNETWARRIOR);
         this.originalName = this.name;
@@ -53,10 +51,10 @@ public class BetaElectro extends DuelistCard
     	if (p.hasPower(BetaMagPower.POWER_ID)) 
     	{ 
     		BetaMagPower pow = (BetaMagPower) p.getPower(BetaMagPower.POWER_ID); 
-    		pow.electrify(4);
+    		pow.electrify(4, 3);
     	}
     	// Gain block
-    	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
+    	gainTempHP(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

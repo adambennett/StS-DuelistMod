@@ -38,9 +38,9 @@ public class WingedKuriboh10 extends DuelistCard
     public WingedKuriboh10() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 14;
+        this.baseMagicNumber = this.magicNumber = 11;
         this.tributes = this.baseTributes = 2;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseSecondMagic = this.secondMagic = 2;
         this.tags.add(Tags.MONSTER);
     }
 
@@ -49,7 +49,7 @@ public class WingedKuriboh10 extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	block(this.block);
+    	gainTempHP(this.magicNumber);
     	ArrayList<DuelistCard> types = generateTypeCards(this.magicNumber, true);
     	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     }

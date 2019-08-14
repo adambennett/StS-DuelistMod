@@ -127,6 +127,12 @@ public class IncrementPool
 		incCards.add(new FlameTiger());		
 		incCards.add(new GeminiElf());		
 		incCards.add(new SwordsBurning());		
+		incCards.add(new ArsenalBug());		
+		incCards.add(new CrossSwordBeetle());		
+		incCards.add(new MultiplicationOfAnts());		
+		incCards.add(new DarkSpider());		
+		incCards.add(new UndergroundArachnid());
+		
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

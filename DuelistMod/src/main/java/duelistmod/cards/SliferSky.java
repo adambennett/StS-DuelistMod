@@ -1,20 +1,15 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.DragonRelicB;
 import duelistmod.variables.*;
 
 public class SliferSky extends DuelistCard 
@@ -42,6 +37,7 @@ public class SliferSky extends DuelistCard
         this.tags.add(Tags.GOD);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.EXEMPT);
         this.tributes = this.baseTributes = 5;
         this.misc = 0;
         this.baseMagicNumber = this.magicNumber = 2;

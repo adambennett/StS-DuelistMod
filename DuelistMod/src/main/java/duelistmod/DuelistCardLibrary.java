@@ -426,7 +426,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GilfordLegend());
 		DuelistMod.myCards.add(new ReinforcementsArmy());
 		DuelistMod.myCards.add(new BlockGolem());
-		//DuelistMod.myCards.add(new DokiDoki());
+		DuelistMod.myCards.add(new DokiDoki());
 		DuelistMod.myCards.add(new GiantSoldierSteel());
 		DuelistMod.myCards.add(new Doomdog());
 		DuelistMod.myCards.add(new RedMirror());
@@ -688,7 +688,44 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BetaElectro());
 		DuelistMod.myCards.add(new GammaElectro());
 		DuelistMod.myCards.add(new MagneticField());
-		DuelistMod.myCards.add(new UmbralHorrorGhoul());
+		DuelistMod.myCards.add(new UmbralHorrorGhoul());		
+		DuelistMod.myCards.add(new RagingMadPlants());
+		DuelistMod.myCards.add(new ThornMalice());
+		DuelistMod.myCards.add(new ArsenalBug());
+		DuelistMod.myCards.add(new CrossSwordBeetle());
+		DuelistMod.myCards.add(new MultiplicationOfAnts());
+		DuelistMod.myCards.add(new DarkSpider());
+		DuelistMod.myCards.add(new CocoonUltraEvolution());
+		DuelistMod.myCards.add(new PinchHopper());
+		DuelistMod.myCards.add(new UndergroundArachnid());
+		DuelistMod.myCards.add(new RockSunrise());		
+		DuelistMod.myCards.add(new BlackRoseDragon());
+		DuelistMod.myCards.add(new BlackRoseMoonlight());
+		DuelistMod.myCards.add(new FallenAngelRoses());
+		DuelistMod.myCards.add(new RedRoseDragon());
+		DuelistMod.myCards.add(new RosePaladin());
+		DuelistMod.myCards.add(new TwilightRoseKnight());
+		DuelistMod.myCards.add(new BirdRoses());
+		DuelistMod.myCards.add(new BlockSpider());
+		DuelistMod.myCards.add(new BlueRoseDragon());
+		DuelistMod.myCards.add(new ClearWingDragon());
+		DuelistMod.myCards.add(new CopyPlant());
+		DuelistMod.myCards.add(new CrystalWingDragon());
+		DuelistMod.myCards.add(new FrozenRose());
+		DuelistMod.myCards.add(new MarkRose());
+		DuelistMod.myCards.add(new RevivalRose());
+		DuelistMod.myCards.add(new RoseArcher());
+		DuelistMod.myCards.add(new RoseLover());
+		DuelistMod.myCards.add(new RoseWitch());
+		DuelistMod.myCards.add(new UltraPolymerization());
+		DuelistMod.myCards.add(new WhiteRoseDragon());
+		DuelistMod.myCards.add(new WitchBlackRose());
+		DuelistMod.myCards.add(new BloomingDarkestRose());
+		DuelistMod.myCards.add(new SplendidRose());
+		DuelistMod.myCards.add(new CactusBouncer());
+		DuelistMod.myCards.add(new Inmato());
+		DuelistMod.myCards.add(new PlantFoodChain());
+		
 		
 		//DuelistMod.myCards.add(new WightLady());			
 		
@@ -1040,7 +1077,7 @@ public class DuelistCardLibrary
 	{
 		if (DuelistMod.curses.size() > 0)
 		{
-			return DuelistMod.curses.get(ThreadLocalRandom.current().nextInt(0, DuelistMod.curses.size()));
+			return DuelistMod.curses.get(ThreadLocalRandom.current().nextInt(0, DuelistMod.curses.size())).makeCopy();
 		}
 		else
 		{
@@ -1052,7 +1089,7 @@ public class DuelistCardLibrary
 	{
 		if (DuelistMod.curses.size() > 0)
 		{
-			return DuelistMod.curses.get(AbstractDungeon.cardRandomRng.random(DuelistMod.curses.size() - 1));
+			return DuelistMod.curses.get(AbstractDungeon.cardRandomRng.random(DuelistMod.curses.size() - 1)).makeCopy();
 		}
 		else
 		{

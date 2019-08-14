@@ -159,6 +159,7 @@ public class SpellcasterPool
 		spellcasterCards.add(new AlienTelepath());
 		spellcasterCards.add(new CosmicHorrorGangiel());
 		spellcasterCards.add(new BlastMagician());
+		spellcasterCards.add(new WitchBlackRose());
 		if (!DuelistMod.exodiaBtnBool)
 		{
 			spellcasterCards.add(new ExodiaHead());

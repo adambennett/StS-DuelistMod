@@ -35,7 +35,7 @@ public class BattleFootballer extends DuelistCard
 
     public BattleFootballer() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 8;
+        this.baseMagicNumber = this.magicNumber = 7;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
@@ -46,7 +46,8 @@ public class BattleFootballer extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	block(this.block);
+    	//block(this.block);
+    	gainTempHP(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

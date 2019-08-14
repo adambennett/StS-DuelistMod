@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.CancelCard;
+import duelistmod.cards.typecards.*;
 import duelistmod.helpers.GridSort;
 import duelistmod.variables.Strings;
 
@@ -56,6 +56,35 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.target = m;
 		this.randomTarget = false;
 		this.canCancel = canCancel;
+	}
+	
+	// Twilight Rose Knight
+	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, AbstractMonster m, boolean canCancel, boolean random)
+	{
+		this.p = AbstractDungeon.player;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.damageBlockRandomize = false;
+		this.target = m;
+		this.randomTarget = random;
+		this.canCancel = canCancel;
+	}
+	
+	// Splendid Rose (power)
+	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount)
+	{
+		this.p = AbstractDungeon.player;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.damageBlockRandomize = false;
+		this.randomTarget = true;
+		this.canCancel = false;
 	}
 
 	public void update()
@@ -131,7 +160,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
 			{
 				c.unhover();
-				if (!(c instanceof CancelCard))
+				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
 					if (c instanceof DuelistCard && this.resummon)
 					{

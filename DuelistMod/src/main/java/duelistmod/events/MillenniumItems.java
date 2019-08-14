@@ -33,13 +33,7 @@ public class MillenniumItems extends AbstractImageEvent {
     public MillenniumItems() {
         super(NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
-       // if (AbstractDungeon.ascensionLevel < 15) { 
         imageEventText.setDialogOption(OPTIONS[0]);
-        //}
-       // else 
-       // { 
-        //	imageEventText.setDialogOption(OPTIONS[2]);
-       // }
         imageEventText.setDialogOption(OPTIONS[1]);
     }
 
@@ -57,39 +51,35 @@ public class MillenniumItems extends AbstractImageEvent {
                         if (!hasEveryMillenniumItem) 
                         {
                         	ArrayList<Object> mills = new ArrayList<Object>();
-                        	//for (AbstractRelic r : Util.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
+                        	for (AbstractRelic r : Util.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
                         	//mills.add(new MillenniumElixir());    
                         	mills.add(new MillenniumSpellbook());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
                         	if (randMill instanceof AbstractRelic)
                         	{
+                        		 AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
+                                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), (AbstractRelic) randMill);
                         	}
                         	
                         	else if (randMill instanceof AbstractPotion)
                         	{
+                        		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		AbstractDungeon.player.obtainPotion((AbstractPotion) randMill);
                         	}
                         	
                         	else if (randMill instanceof DuelistCard)
                         	{
-                        		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                        		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH * 0.6F, Settings.HEIGHT / 2.0F));
+                        		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH * 0.3F, Settings.HEIGHT / 2.0F));
                         	}
                         	
                         	else if (DuelistMod.debug && randMill != null)
                         	{
                         		DuelistMod.logger.info("Millennium Items event generated a random object from the object array that wasn't a potion, relic or card? Hmm. How did that happen? The object: " + randMill.toString());
                         	}
-                        	
-                            AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                            AbstractCard b2 = DuelistCardLibrary.getRandomDuelistCurse();
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                            /*if (AbstractDungeon.ascensionLevel >= 15)
-                            {
-                            	  AbstractCard b3 = DuelistCardLibrary.getRandomDuelistCurse();
-                                  AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b3, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-                            }*/
                         }
                         else
                         {
@@ -104,27 +94,27 @@ public class MillenniumItems extends AbstractImageEvent {
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
                         	if (randMill instanceof AbstractPotion)
                         	{
+                        		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		AbstractDungeon.player.obtainPotion((AbstractPotion) randMill);
                         	}
                         	
                         	else if (randMill instanceof DuelistCard)
                         	{
-                        		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                        		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
+                                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH * 0.6F, Settings.HEIGHT / 2.0F));
+                        		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH * 0.3F, Settings.HEIGHT / 2.0F));
                         	}
                         	
                         	else if (DuelistMod.debug && randMill != null)
                         	{
                         		DuelistMod.logger.info("Millennium Items event generated a random object from the object array that wasn't a potion, relic or card? Hmm. How did that happen? The object: " + randMill.toString());
                         	}
-                        	
-                            AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         }
                         
                         screenNum = 1;
                         break;
                     case 1:
-                        //this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
                         this.imageEventText.updateDialogOption(0, OPTIONS[1]);
                         this.imageEventText.clearRemainingOptions();
                         screenNum = 1;

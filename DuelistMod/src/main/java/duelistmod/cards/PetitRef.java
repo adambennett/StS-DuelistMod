@@ -72,10 +72,7 @@ public class PetitRef extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		if (tributingCard.hasTag(Tags.COCOON))
-		{
-			applyPowerToSelf(new CocoonPower(player(), player()));
-		}
+		
 	}
 
 

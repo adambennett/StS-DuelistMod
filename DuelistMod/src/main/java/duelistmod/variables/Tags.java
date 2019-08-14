@@ -70,6 +70,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags NO_MANA_RESET;
 	@SpireEnum public static AbstractCard.CardTags NO_POWER_FOR_RANDOM_DECK_POOLS;
 	@SpireEnum public static AbstractCard.CardTags NO_CARD_FOR_RANDOM_DECK_POOLS;
+	@SpireEnum public static AbstractCard.CardTags NO_MAGIC_MOD;
 	@SpireEnum public static AbstractCard.CardTags NEVER_GENERATE;
 	@SpireEnum public static AbstractCard.CardTags OJAMA;
 	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;
@@ -96,6 +97,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPLAYSPIRE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
+	@SpireEnum public static AbstractCard.CardTags ROSE;
 	@SpireEnum public static AbstractCard.CardTags SPELL;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
@@ -109,5 +111,6 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE_DECK;
+	@SpireEnum public static AbstractCard.CardTags DUMMY_TAG;
 
 }

@@ -273,17 +273,20 @@ public class PuzzleHelper
 				
 			// Insect Deck
 			case 10:
-				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
+				DuelistCard.poisonAllEnemies(p, 2);
 				break;
 				
 			// Plant Deck
 			case 11:
-				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Plant Token", false);
+				DuelistCard.constrictAllEnemies(p, 4);
 				break;
 			
 			// Predaplant Deck
 			case 12:
-				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Predaplant Token", false);
+				DuelistCard.applyPowerToSelf(new ThornsPower(p, 2));
 				break;
 				
 			// Megatype Deck

@@ -1,22 +1,22 @@
 package duelistmod.powers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.powers.incomplete.MagneticFieldPower;
 import duelistmod.variables.Strings;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
-public class BetaMagPower extends AbstractPower 
+public class BetaMagPower extends TwoAmountPower 
 {
     public AbstractCreature source;
 
@@ -37,15 +37,17 @@ public class BetaMagPower extends AbstractPower
         this.img = new Texture(IMG);
         this.source = source;
         this.amount = 0;
-        if (owner.hasPower(MagneticFieldPower.POWER_ID)) { this.electrified = true; DuelistCard.removePower(owner.getPower(MagneticFieldPower.POWER_ID), owner); }
+        this.amount2 = 0;
+        if (owner.hasPower(MagneticFieldPower.POWER_ID)) { this.electrified = true; this.amount = 3; this.amount2 = 4; DuelistCard.removePower(owner.getPower(MagneticFieldPower.POWER_ID), owner); }
         this.updateDescription();
 
     }
     
-    public void electrify(int newAmount)
+    public void electrify(int temphp, int turns)
     {
     	this.electrified = true;
-    	this.amount = newAmount;
+    	this.amount = turns;
+    	this.amount2 = temphp;
     	updateDescription();
     }
     
@@ -66,7 +68,9 @@ public class BetaMagPower extends AbstractPower
     {
     	if (c.type.equals(CardType.SKILL) && this.electrified && this.amount > 0)
     	{
-    		DuelistCard.staticBlock(this.amount);
+    		DuelistCard.gainTempHP(this.amount2);
+    		this.amount--;
+    		updateDescription();
     	}
     }
     
@@ -79,7 +83,12 @@ public class BetaMagPower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	if (this.electrified) { this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2]; }
+    	if (this.amount < 1) { this.electrified = false; this.amount = 0; this.amount2 = 0; }
+    	if (this.electrified) 
+    	{ 
+    		if (this.amount != 1) { this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2] + this.amount2 + DESCRIPTIONS[4]; }
+    		else { this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[3] + this.amount2 + DESCRIPTIONS[4]; }
+    	}
     	else { this.description = DESCRIPTIONS[0]; }
     }
 }

@@ -3,12 +3,10 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -27,7 +25,7 @@ public class MsJudge extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,8 +36,7 @@ public class MsJudge extends DuelistCard
 	public MsJudge() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.summons = this.baseSummons = 1;
-		this.baseBlock = this.block = 6;
-		this.magicNumber = this.baseMagicNumber = 2;
+		this.magicNumber = this.baseMagicNumber = 3;
 		this.isSummon = true;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
@@ -51,25 +48,10 @@ public class MsJudge extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
-		block(this.block);
-		if (DuelistMod.trapCombatCount > 0) { block(this.magicNumber * DuelistMod.trapCombatCount); }
+		gainTempHP(getSummons(p) * this.magicNumber);
+		summon(p, this.summons, this);		
 	}
 	
-	@Override
-	public void update()
-	{
-		super.update();
-		if (AbstractDungeon.currMapNode != null)
-		{
-			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
-			{
-				this.applyPowers();
-				this.secondMagic = this.baseSecondMagic = (this.block + (this.magicNumber * DuelistMod.trapCombatCount));
-			}
-		}
-	}
-
 	// Which card to return when making a copy of this card.
 	@Override
 	public AbstractCard makeCopy() {
@@ -81,7 +63,8 @@ public class MsJudge extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(2);
+			this.upgradeMagicNumber(1);
+			this.upgradeSummons(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

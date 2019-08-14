@@ -54,7 +54,7 @@ public class GammaElectro extends DuelistCard
     	if (p.hasPower(GammaMagPower.POWER_ID)) 
     	{ 
     		GammaMagPower pow = (GammaMagPower) p.getPower(GammaMagPower.POWER_ID); 
-    		pow.electrify(2);
+    		pow.electrify(3, 2);
     	}
     	// Draw cards
     	drawTag(this.magicNumber, Tags.MONSTER);

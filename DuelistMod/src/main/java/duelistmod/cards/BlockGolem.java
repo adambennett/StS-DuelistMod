@@ -35,7 +35,7 @@ public class BlockGolem extends DuelistCard
 
     public BlockGolem() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 3;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 3;
         this.originalName = this.name;
@@ -47,7 +47,7 @@ public class BlockGolem extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	block(this.block);
+    	gainTempHP(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

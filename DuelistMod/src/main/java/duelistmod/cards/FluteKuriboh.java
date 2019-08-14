@@ -33,12 +33,12 @@ public class FluteKuriboh extends DuelistCard
 
 	public FluteKuriboh() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = 1;
+		this.magicNumber = this.baseMagicNumber = 6;
+		this.secondMagic = this.baseSecondMagic = 1;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.INCREMENT_DECK);
 		this.incrementDeckCopies = 2;
 		this.originalName = this.name;
-		this.baseBlock = 8;
 		this.setupStartingCopies();
 	}
 
@@ -46,8 +46,8 @@ public class FluteKuriboh extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		incMaxSummons(p, this.magicNumber);
-		block(this.block);
+		incMaxSummons(p, this.secondMagic);
+		gainTempHP(this.magicNumber);
 	}
 
 	// Which card to return when making a copy of this card.
@@ -61,7 +61,7 @@ public class FluteKuriboh extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBlock(3);
+			this.upgradeMagicNumber(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

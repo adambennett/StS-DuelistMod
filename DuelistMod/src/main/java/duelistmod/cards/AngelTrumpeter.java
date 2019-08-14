@@ -40,10 +40,13 @@ public class AngelTrumpeter extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.PLANT);
+        this.tags.add(Tags.PLANT_DECK);
+        this.plantDeckCopies = 1;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.damage = this.baseDamage = 9;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

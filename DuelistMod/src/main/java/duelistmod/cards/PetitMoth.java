@@ -154,68 +154,11 @@ public class PetitMoth extends DuelistCard
     		return true;
     	}
     }
-    
-    @Override
-    public void customOnTribute(DuelistCard tc)
-    {
-    	// Check for cocoon
-		if (tc.hasTag(Tags.COCOON))
-		{
-			if (tc.upgraded)
-			{
-				if (player().hasPower(CocoonPower.POWER_ID))
-				{
-					CocoonPower power = (CocoonPower) player().getPower(CocoonPower.POWER_ID);
-					power.amount++;
-					power.updateDescription();
-				}
-				else { applyPowerToSelf(new CocoonPower(player(), player(), 0, 2)); }
-			}
-			
-			else
-			{
-				if (player().hasPower(CocoonPower.POWER_ID))
-				{
-					CocoonPower power = (CocoonPower) player().getPower(CocoonPower.POWER_ID);
-					power.amount++;
-					power.updateDescription();
-				}
-				else { applyPowerToSelf(new CocoonPower(player(), player(), 0, 3)); }
-			}
-		}
-    }
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		insectSynTrib(tributingCard);
 		
-		// Check for cocoon
-		if (tributingCard.hasTag(Tags.COCOON))
-		{
-			if (tributingCard.upgraded)
-			{
-				if (player().hasPower(CocoonPower.POWER_ID))
-				{
-					CocoonPower power = (CocoonPower) player().getPower(CocoonPower.POWER_ID);
-					power.amount++;
-					power.updateDescription();
-				}
-				else { applyPowerToSelf(new CocoonPower(player(), player(), 0, 2)); }
-			}
-			
-			else
-			{
-				if (player().hasPower(CocoonPower.POWER_ID))
-				{
-					CocoonPower power = (CocoonPower) player().getPower(CocoonPower.POWER_ID);
-					power.amount++;
-					power.updateDescription();
-				}
-				else { applyPowerToSelf(new CocoonPower(player(), player(), 0, 3)); }
-			}
-			
-		}
 	}
 
 

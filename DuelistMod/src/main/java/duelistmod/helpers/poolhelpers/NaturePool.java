@@ -141,6 +141,35 @@ public class NaturePool
 		natureCards.add(new VenomShot());
 		natureCards.add(new OrbitalBombardment());
 		natureCards.add(new BlossomBombardment());
+		natureCards.add(new RagingMadPlants());
+		natureCards.add(new ThornMalice());
+		natureCards.add(new ArsenalBug());
+		natureCards.add(new CrossSwordBeetle());
+		natureCards.add(new MultiplicationOfAnts());
+		natureCards.add(new DarkSpider());
+		natureCards.add(new CocoonUltraEvolution());
+		natureCards.add(new PinchHopper());
+		natureCards.add(new UndergroundArachnid());		
+		natureCards.add(new BlackRoseDragon());	
+		natureCards.add(new BlackRoseMoonlight());
+		natureCards.add(new FallenAngelRoses());
+		natureCards.add(new RedRoseDragon());
+		natureCards.add(new RosePaladin());
+		natureCards.add(new TwilightRoseKnight());
+		natureCards.add(new BirdRoses());
+		natureCards.add(new BlockSpider());
+		natureCards.add(new BlueRoseDragon());
+		natureCards.add(new CopyPlant());
+		natureCards.add(new FrozenRose());
+		natureCards.add(new MarkRose());
+		natureCards.add(new RevivalRose());
+		natureCards.add(new RoseArcher());
+		natureCards.add(new RoseLover());
+		natureCards.add(new RoseWitch());
+		natureCards.add(new WhiteRoseDragon());
+		natureCards.add(new WitchBlackRose());
+		natureCards.add(new BloomingDarkestRose());
+		natureCards.add(new SplendidRose());
 		//natureCards.add(new Predaplanet());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)

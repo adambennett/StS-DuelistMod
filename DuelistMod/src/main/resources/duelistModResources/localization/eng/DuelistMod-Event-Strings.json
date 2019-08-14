@@ -5,9 +5,8 @@
       "It seems strange that these powerful items would just be available to take..."
     ],
     "OPTIONS": [
-      "[Take] #gObtain #ga #gMillennium #gItem. #rBecome #rCursed #r- #r(2 #rRandom #rDuelist).",
-      "[Leave]",
-	  "[Take] #gObtain #ga #gMillennium #gItem. #rBecome #rCursed #r- #r(3 #rRandom #rDuelist)."
+      "[Take] #gObtain #ga #gMillennium #gItem. #rBecome #rCursed #r- #r(Random #rDuelist).",
+      "[Leave]"
     ]
   },
   "theDuelist:PharoahRoom": {

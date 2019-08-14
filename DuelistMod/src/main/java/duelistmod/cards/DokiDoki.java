@@ -3,11 +3,10 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -18,7 +17,7 @@ public class DokiDoki extends DuelistCard
 {
     // TEXT DECLARATION
 
-    public static final String ID = duelistmod.DuelistMod.makeID("DokiDoki");
+    public static final String ID = DuelistMod.makeID("DokiDoki");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("DokiDoki.png");
     public static final String NAME = cardStrings.NAME;
@@ -37,7 +36,7 @@ public class DokiDoki extends DuelistCard
     public DokiDoki() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 4;
-        this.baseDamage = this.damage = 4;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
@@ -48,8 +47,8 @@ public class DokiDoki extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	if (DuelistMod.playedSpellThisTurn) { block(this.block); }
-    	else { m = AbstractDungeon.getRandomMonster(); attack(m); }    	
+    	if (DuelistMod.playedSpellThisTurn) { gainTempHP(this.magicNumber); }
+    	else { block(); }    	
     }
 
     // Which card to return when making a copy of this card.
@@ -63,7 +62,8 @@ public class DokiDoki extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeMagicNumber(2);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

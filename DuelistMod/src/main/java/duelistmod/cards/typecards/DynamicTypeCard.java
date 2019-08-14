@@ -11,10 +11,11 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.AddCardTagsToListAction;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.RainbowGravity;
+import duelistmod.cards.incomplete.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.incomplete.RockSunrisePower;
 import duelistmod.variables.Tags;
 
 public class DynamicTypeCard extends DuelistCard 
@@ -57,6 +58,12 @@ public class DynamicTypeCard extends DuelistCard
     	if (this.callCard instanceof ShardGreed)
     	{
     		applyPowerToSelf(new GreedShardPower(p, p, this.magicNumber, this.tagSave));
+    	}
+    	
+    	if (this.callCard instanceof RockSunrise)
+    	{
+    		applyPowerToSelf(new RockSunrisePower(p, p, this.tagSave));
+    		DuelistMod.chosenRockSunriseTag = this.tagSave;
     	}
     	
     	if (this.callCard instanceof WingedKuriboh9)

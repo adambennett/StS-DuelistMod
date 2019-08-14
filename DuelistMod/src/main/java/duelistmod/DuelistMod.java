@@ -41,6 +41,7 @@ import basemod.interfaces.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
+import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.tokens.Token;
 import duelistmod.cards.typecards.CancelCard;
 import duelistmod.characters.TheDuelist;
@@ -347,7 +348,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int dragonStr = 1;
 	public static int toonVuln = 1;
 	public static int insectPoisonDmg = 3;
-	public static int plantConstricted = 4;
+	public static int plantConstricted = 2;
 	public static int predaplantThorns = 1;	
 	public static int fiendDraw = 1;
 	public static int aquaLowCostRoll = 1;
@@ -386,8 +387,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static CombatIconViewer combatIconViewer;
 	public static CardTags lastTagSummoned = Tags.DRAGON;
 	public static CardTags chosenDeckTag = Tags.STANDARD_DECK;
+	public static CardTags chosenRockSunriseTag = Tags.DUMMY_TAG;
 	public static AbstractCard lastCardPlayed;
 	public static AbstractCard secondLastCardPlayed;
+	public static AbstractCard lastPlantPlayed;
+	public static AbstractCard secondLastPlantPlayed;
 	public static AbstractCard lastCardDrawn;
 	public static AbstractCard secondLastCardDrawn;
 	
@@ -1193,7 +1197,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		/* Debug Commands (fill game with only cards from specified pool) */
 		//DuelistCardLibrary.setupMyCardsDebug("Standard"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = true;
-		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = true;
+		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Spellcaster"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Toon"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Zombie"); fullPool = false; addBasic = true;
@@ -1218,6 +1222,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		if (fullPool) { DuelistCardLibrary.setupMyCards(); }
 		lastCardPlayed = new CancelCard();
 		secondLastCardPlayed = new CancelCard();
+		lastPlantPlayed = new CancelCard();
+		secondLastPlantPlayed = new CancelCard();
 		lastCardDrawn = new CancelCard();
 		secondLastCardDrawn = new CancelCard();
 		logger.info("done adding all cards to myCards array");
@@ -1718,6 +1724,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		currentSpellcasterOrbChance = 25;
 		lastCardPlayed = new CancelCard();
 		secondLastCardPlayed = new CancelCard();
+		lastPlantPlayed = new CancelCard();
+		secondLastPlantPlayed = new CancelCard();
 		if (selectedDeck.equals("Random Deck (Big)") || selectedDeck.equals("Random Deck (Small)"))
 		{
 			randomDeckSmallPool.clear();
@@ -1920,13 +1928,30 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 		if (arg0.hasTag(Tags.MONSTER) && arg0 instanceof DuelistCard)
 		{
-			
 			// Check for monsters with >2 summons for Splash orbs
 			DuelistCard duelistArg0 = (DuelistCard)arg0;
 			if (duelistArg0.summons > 2) { DuelistCard.checkSplash(); }
 			
+			if (arg0.hasTag(Tags.PLANT)) 
+			{
+				secondLastPlantPlayed = lastPlantPlayed;
+				lastPlantPlayed = arg0;
+				Util.log("New last plant: " + lastPlantPlayed.originalName);
+				if (duelistArg0.tributes > 1)
+				{
+					for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+					{
+						if (c instanceof RevivalRose)
+						{
+							DuelistCard rvrose = (DuelistCard)c;
+							DuelistCard.fullResummon(rvrose, c.upgraded, AbstractDungeon.getRandomMonster(), false);
+						}
+					}
+				}
+			}
+			
 			// Check for Rainbow Ruins
-			if (AbstractDungeon.player.hasPower(RainbowRuinsPower.POWER_ID))
+			if (AbstractDungeon.player.hasPower(RainbowRuinsPower.POWER_ID) && !arg0.hasTag(Tags.MEGATYPED))
 			{
 				AbstractPower pow = AbstractDungeon.player.getPower(RainbowRuinsPower.POWER_ID);
 				if (pow.amount > 0)
@@ -2378,6 +2403,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		if (!shouldFill && AbstractDungeon.actNum == 1)
 		{
 			if (debug) { logger.info("Started act and should fill was false. Act #1! So we reset everything!!"); }
+			chosenRockSunriseTag = Tags.DUMMY_TAG;
 			selectedDeck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 			coloredCards = new ArrayList<AbstractCard>();
 			archRoll1 = -1;

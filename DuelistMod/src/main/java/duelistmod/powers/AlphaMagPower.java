@@ -36,12 +36,14 @@ public class AlphaMagPower extends AbstractPower
         this.isTurnBased = false;
         this.img = new Texture(IMG);
         this.source = source;
-        if (owner.hasPower(MagneticFieldPower.POWER_ID)) { this.electrified = true; DuelistCard.removePower(owner.getPower(MagneticFieldPower.POWER_ID), owner); }
+        this.amount = 0;
+        if (owner.hasPower(MagneticFieldPower.POWER_ID)) { this.electrified = true; this.amount = 3; DuelistCard.removePower(owner.getPower(MagneticFieldPower.POWER_ID), owner); }
         this.updateDescription();
     }
     
-    public void electrify()
+    public void electrify(int amount)
     {
+    	this.amount = amount;
     	this.electrified = true;
     	updateDescription();
     }
@@ -61,9 +63,11 @@ public class AlphaMagPower extends AbstractPower
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	if (this.electrified && c.type.equals(CardType.ATTACK))
+    	if (this.electrified && c.type.equals(CardType.ATTACK) && this.amount > 0)
     	{
     		DuelistCard.channel(new Lightning());
+    		this.amount--;
+    		updateDescription();
     	}
     }
     
@@ -76,7 +80,12 @@ public class AlphaMagPower extends AbstractPower
     @Override
 	public void updateDescription() 
     {
-    	if (this.electrified) { this.description = DESCRIPTIONS[1]; }
+    	if (this.amount < 1) { this.amount = 0; this.electrified = false; }
+    	if (this.electrified) 
+    	{ 
+    		if (this.amount != 1) { this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2]; }
+    		else { this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[3]; }
+    	}
     	else { this.description = DESCRIPTIONS[0]; }
     }
 }

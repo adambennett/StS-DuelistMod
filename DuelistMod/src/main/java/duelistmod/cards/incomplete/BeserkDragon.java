@@ -50,7 +50,7 @@ public class BeserkDragon extends DuelistCard
     {
     	tribute();
     	attack(m);
-    	applyPower(new StrengthDownPower(m, m, this.magicNumber, this.secondMagic), m);
+    	applyPower(new StrengthDownPower(m, p, this.magicNumber, this.secondMagic), m);
     }
 
     

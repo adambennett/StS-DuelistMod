@@ -37,9 +37,10 @@ public class JerryBeansMan extends DuelistCard
     public JerryBeansMan() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ALL);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.PLANT);
+        this.tags.add(Tags.PLANT_DECK);
+        this.plantDeckCopies = 2;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;

@@ -38,7 +38,7 @@ public class FiendishChain extends DuelistCard
 		this.originalName = this.name;
 		this.tags.add(Tags.TRAP);
 		this.tributes = this.baseTributes = 1;
-		this.baseBlock = this.block = 10;
+		this.baseMagicNumber = this.magicNumber = 9;
 		this.baseMagicNumber = this.magicNumber = 2;
 	}
 
@@ -47,7 +47,7 @@ public class FiendishChain extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute();
-		block(this.block);
+		gainTempHP(this.magicNumber);
 		for (AbstractCard c : p.hand.group)
 		{
 			if (c instanceof DuelistCard && !c.uuid.equals(this.uuid) && c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.TOKEN))

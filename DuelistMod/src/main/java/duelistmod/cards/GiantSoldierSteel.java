@@ -38,6 +38,7 @@ public class GiantSoldierSteel extends DuelistCard
         this.baseBlock = this.block = 11;
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.originalName = this.name;
     }
 
@@ -47,6 +48,7 @@ public class GiantSoldierSteel extends DuelistCard
     {
     	summon(p, this.summons, this);
     	block(this.block);
+    	gainTempHP(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

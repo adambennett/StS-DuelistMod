@@ -32,12 +32,11 @@ public class BetaMagnet extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int BLOCK = 6;
     // /STAT DECLARATION/
 
     public BetaMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = BLOCK;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNETWARRIOR);
         this.tags.add(Tags.LIMITED);
@@ -58,7 +57,7 @@ public class BetaMagnet extends DuelistCard
     	if (!p.hasPower(BetaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p))); }
     	
     	// Gain block
-    	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
+    	gainTempHP(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

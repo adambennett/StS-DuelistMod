@@ -173,7 +173,14 @@ public class DragonPool
 		dragonCards.add(new BlastWithChain());
 		dragonCards.add(new OrbitalBombardment());
 		dragonCards.add(new BlasterDragonInfernos());
-		
+		dragonCards.add(new ClearWingDragon());
+		dragonCards.add(new CrystalWingDragon());		
+		dragonCards.add(new BlackRoseDragon());
+		dragonCards.add(new BlackRoseMoonlight());
+		dragonCards.add(new RedRoseDragon());
+		dragonCards.add(new BlueRoseDragon());
+		dragonCards.add(new WhiteRoseDragon());
+
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());

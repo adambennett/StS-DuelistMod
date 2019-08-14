@@ -52,7 +52,7 @@ public class AlphaElectro extends DuelistCard
     	if (p.hasPower(AlphaMagPower.POWER_ID)) 
     	{ 
     		AlphaMagPower pow = (AlphaMagPower) p.getPower(AlphaMagPower.POWER_ID); 
-    		pow.electrify();
+    		pow.electrify(3);
     	}
     	attack(m, AFX, this.damage);
     }

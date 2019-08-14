@@ -37,6 +37,7 @@ public class BerserkerCrush extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.damage = this.baseDamage = 11;
         this.tags.add(Tags.SPELL);
+        this.exhaust = true;
     }
 
     // Actions the card should do.

@@ -60,8 +60,20 @@ public class CocoonEvolution extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(p, this.tributes, false, this);
+    	ArrayList<DuelistCard> tribs = tribute(p, this.tributes, false, this);
     	block(this.block);
+    	boolean foundPetit = false;
+    	for (AbstractCard c : tribs)
+    	{
+    		if (c instanceof PetitMoth) { foundPetit = true; }
+    	}
+    	if (foundPetit && !p.hasPower(CocoonPower.POWER_ID)) { applyPowerToSelf(new CocoonPower(p, p, 3)); }
+    	else if (foundPetit) 
+    	{
+    		CocoonPower power = (CocoonPower) player().getPower(CocoonPower.POWER_ID);
+    		power.amount--;
+			power.updateDescription();
+    	}
     }
 
     // Which card to return when making a copy of this card.

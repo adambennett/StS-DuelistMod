@@ -1,17 +1,15 @@
 package duelistmod.cards.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.TokenCard;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.CocoonPower;
 import duelistmod.variables.*;
@@ -53,7 +51,7 @@ public class CocoonToken extends TokenCard
     	int roll = AbstractDungeon.cardRandomRng.random(1,2);
     	if (roll == 1)
     	{
-    		DuelistCard.applyPowerToSelf(new CocoonPower(p, p));
+    		DuelistCard.applyPowerToSelf(new CocoonPower(p, p, 3));
     	}
     }
     @Override public AbstractCard makeCopy() { return new CocoonToken(); }

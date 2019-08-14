@@ -106,6 +106,8 @@ public class BasicPool
 		toReturn.add(new FuryFire());
 		toReturn.add(new CharcoalInpachi());
 		toReturn.add(new MagicCylinder());
+		toReturn.add(new RockSunrise());
+		toReturn.add(new UltraPolymerization());
 		
 		// megatype pool cards
 		toReturn.add(new KamionTimelord());
@@ -194,7 +196,7 @@ public class BasicPool
 		DuelistMod.basicCards.add(new GilfordLegend());
 		DuelistMod.basicCards.add(new ReinforcementsArmy());
 		DuelistMod.basicCards.add(new BlockGolem());
-		//DuelistMod.basicCards.add(new DokiDoki());
+		DuelistMod.basicCards.add(new DokiDoki());
 		DuelistMod.basicCards.add(new GiantSoldierSteel());
 		DuelistMod.basicCards.add(new RainbowJar());
 		DuelistMod.basicCards.add(new WingedKuriboh9());
@@ -231,6 +233,8 @@ public class BasicPool
 		DuelistMod.basicCards.add(new Electrowhip());
 		DuelistMod.basicCards.add(new FuryFire());
 		DuelistMod.basicCards.add(new MagicCylinder());
+		DuelistMod.basicCards.add(new RockSunrise());
+		DuelistMod.basicCards.add(new UltraPolymerization());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }
@@ -336,7 +340,7 @@ public class BasicPool
 		//DuelistMod.basicCards.add(new GilfordLegend());
 		//DuelistMod.basicCards.add(new ReinforcementsArmy());
 		DuelistMod.basicCards.add(new BlockGolem());
-		//DuelistMod.basicCards.add(new DokiDoki());
+		DuelistMod.basicCards.add(new DokiDoki());
 		DuelistMod.basicCards.add(new GiantSoldierSteel());
 		DuelistMod.basicCards.add(new RainbowJar());
 		DuelistMod.basicCards.add(new WingedKuriboh9());
@@ -372,6 +376,8 @@ public class BasicPool
 		//DuelistMod.basicCards.add(new MudragonSwamp());	
 		//DuelistMod.basicCards.add(new FlameTiger());
 		DuelistMod.basicCards.add(new MiraculousDescent());
+		DuelistMod.basicCards.add(new RockSunrise());
+		DuelistMod.basicCards.add(new UltraPolymerization());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }

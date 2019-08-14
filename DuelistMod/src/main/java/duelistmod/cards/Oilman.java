@@ -1,7 +1,5 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,12 +7,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ModifyMagicNumberAction;
+import duelistmod.actions.common.CardSelectScreenModifyMagicNumberAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class Oilman extends DuelistCard 
@@ -29,7 +27,7 @@ public class Oilman extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -53,15 +51,7 @@ public class Oilman extends DuelistCard
     {
     	summon();
     	attack(m);
-    	ArrayList<AbstractCard> handSkills = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : p.hand.group)
-    	{
-    		if (c.type.equals(CardType.SKILL) && c.magicNumber > 0)
-    		{
-    			handSkills.add(c);
-    		}
-    	}
-    	if (handSkills.size() > 0) { AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(handSkills.get(AbstractDungeon.cardRandomRng.random(handSkills.size() - 1)), this.magicNumber)); }
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberAction(p.hand.group, 1, this.magicNumber, true));
     }
 
     

@@ -36,7 +36,7 @@ public class HappyLover extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 5;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.NEVER_GENERATE);
@@ -49,7 +49,7 @@ public class HappyLover extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {    	
     	summon();
-    	block();
+    	gainTempHP(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -66,7 +66,7 @@ public class HappyLover extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBlock(4);
+        	this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

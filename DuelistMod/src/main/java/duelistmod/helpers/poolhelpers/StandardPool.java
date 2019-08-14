@@ -163,6 +163,7 @@ public class StandardPool
 		cards.add(new ForbiddenLance());
 		cards.add(new MiracleFertilizer());
 		cards.add(new UnderworldCannon());
+		cards.add(new SpiritHarp());
 		
 		if (!DuelistMod.ojamaBtnBool)
 		{

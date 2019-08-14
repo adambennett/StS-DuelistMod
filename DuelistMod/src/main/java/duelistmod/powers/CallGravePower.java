@@ -64,23 +64,26 @@ public class CallGravePower extends AbstractPower
     				System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + c.originalName + " to allowedResummons");
     			}
     		}
-	    	for (int i = 0; i < this.amount; i++)
-	    	{
-	    		DuelistCard randomMon = allowedResummons.get(AbstractDungeon.cardRandomRng.random(allowedResummons.size() - 1));
-	    		while (actualResummons.contains(randomMon) && loopCount < loopMax)
-	    		{
-	    			randomMon = allowedResummons.get(AbstractDungeon.cardRandomRng.random(allowedResummons.size() - 1));
-	    			loopCount++;
-	    		}
-	    		actualResummons.add(randomMon);
-	    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + randomMon.originalName + " to actualResummons");
-	    	}
-	    	
-	    	for (DuelistCard c : actualResummons)
-	    	{
-	    		DuelistCard.fullResummon(c, false, AbstractDungeon.getRandomMonster(), false);
-	    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> called resummon on: " + c.originalName);
-	    	}
+    		if (allowedResummons.size() > 0)
+    		{
+		    	for (int i = 0; i < this.amount; i++)
+		    	{
+		    		DuelistCard randomMon = allowedResummons.get(AbstractDungeon.cardRandomRng.random(allowedResummons.size() - 1));
+		    		while (actualResummons.contains(randomMon) && loopCount < loopMax)
+		    		{
+		    			randomMon = allowedResummons.get(AbstractDungeon.cardRandomRng.random(allowedResummons.size() - 1));
+		    			loopCount++;
+		    		}
+		    		actualResummons.add(randomMon);
+		    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> added " + randomMon.originalName + " to actualResummons");
+		    	}
+		    	
+		    	for (DuelistCard c : actualResummons)
+		    	{
+		    		DuelistCard.fullResummon(c, false, AbstractDungeon.getRandomMonster(), false);
+		    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> called resummon on: " + c.originalName);
+		    	}
+    		}	    	
     	}
     	else
     	{

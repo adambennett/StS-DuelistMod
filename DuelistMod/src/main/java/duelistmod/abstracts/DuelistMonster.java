@@ -882,13 +882,7 @@ public abstract class DuelistMonster extends AbstractMonster
 			DuelistCard.applyPowerToSelf(DebuffHelper.getRandomPlayerDebuff(AbstractDungeon.player, 3));
 		}
 		
-		if (c instanceof EarthGiant)
-		{
-			tribute(this.earthGiant, false, false, false);
-			int blk = localApplyBlkPowers(50);
-			AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, blk));
-			this.earthGiant = new EarthGiant().tributes;
-		}
+
 		
 		if (c instanceof RedMedicine)
 		{

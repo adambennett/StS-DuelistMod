@@ -71,14 +71,6 @@ public class CurseAging extends DuelistCard
 		
 	}
 	
-    // If player doesn't have enough summons, can't play card
-  	@Override
-  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-  	{
-  		return false;
-  	}
-
-
 	@Override
 	public void onResummon(int summons) {
 		// TODO Auto-generated method stub

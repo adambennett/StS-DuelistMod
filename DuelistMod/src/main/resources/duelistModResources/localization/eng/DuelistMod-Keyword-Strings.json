@@ -132,7 +132,7 @@
         "plant",
 		"plants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b4 #yConstricted to ALL enemies."
+      "DESCRIPTION": "When you #yTribute a #yPlant monster for another #yPlant, apply #b2 #yConstricted to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Predaplant",
@@ -140,7 +140,7 @@
         "predaplant",
 		"predaplants"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for a #yPlant, apply #b4 #yConstricted to ALL enemies. NL When you #yTribute a #yPredaplant for another #yPredaplant, apply #b1 #yConstricted to ALL enemies and gain #b1 #yThorns. NL #yPredaplant monsters are treated as #yPlants. "
+      "DESCRIPTION": "When you #yTribute a #yPredaplant monster for a #yPlant, apply #b2 #yConstricted to ALL enemies. NL When you #yTribute a #yPredaplant for another #yPredaplant, apply #b2 #yConstricted to ALL enemies and gain #b1 #yThorns. NL #yPredaplant monsters are treated as #yPlants. "
     },
   {
    "PROPER_NAME": "Earth",

@@ -51,9 +51,21 @@ public class IcyCrevasse extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new FocusPower(p, this.magicNumber));
-    	decMaxSummons(p, this.secondMagic);
-    	for (int i = 0; i < this.thirdMagic; i++) { AbstractOrb f = new Frost(); channel(f); }
+    	if (canDecMaxSummons(this.secondMagic))
+    	{
+    		applyPowerToSelf(new FocusPower(p, this.magicNumber));
+	    	decMaxSummons(p, this.secondMagic);
+	    	for (int i = 0; i < this.thirdMagic; i++) { AbstractOrb f = new Frost(); channel(f); }
+    	}
+    }
+    
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+    	if (!super.canUse(p, m)) { return false; }
+    	else if (canDecMaxSummons(this.secondMagic)) { return true; }
+    	this.cantUseMessage = "Cannot reduce Max Summons further";
+    	return false;
     }
 
     // Which card to return when making a copy of this card.
