@@ -36,6 +36,7 @@ public class CombinationAttack extends DuelistCard
         this.baseBlock = this.block = 6;
         this.damage = this.baseDamage = 10;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

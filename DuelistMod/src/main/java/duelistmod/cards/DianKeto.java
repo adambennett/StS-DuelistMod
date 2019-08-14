@@ -37,6 +37,7 @@ public class DianKeto extends DuelistCard
        	this.magicNumber = this.baseMagicNumber = 11;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.NEVER_GENERATE);
+		this.tags.add(Tags.ARCANE);
         this.originalName = this.name;
         this.makeFleeting();
     }

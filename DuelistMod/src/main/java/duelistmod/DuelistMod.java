@@ -641,7 +641,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		monsterTypes.add(Tags.SUPERHEAVY);	typeCardMap_ID.put(Tags.SUPERHEAVY, makeID("SuperheavyTypeCard"));		typeCardMap_IMG.put(Tags.SUPERHEAVY, makePath(Strings.SUPERHEAVY_SCALES));	
 		monsterTypes.add(Tags.TOON);		typeCardMap_ID.put(Tags.TOON, makeID("ToonTypeCard"));					typeCardMap_IMG.put(Tags.TOON, makePath(Strings.TOON_GOBLIN_ATTACK));	
 		monsterTypes.add(Tags.ZOMBIE);		typeCardMap_ID.put(Tags.ZOMBIE, makeID("ZombieTypeCard"));				typeCardMap_IMG.put(Tags.ZOMBIE, makePath(Strings.ARMORED_ZOMBIE));	
-
+											
+											typeCardMap_ID.put(Tags.ROSE, makeID("RoseTypeCard"));					typeCardMap_IMG.put(Tags.ROSE, makeCardPath("RevivalRose.png"));	
+											typeCardMap_ID.put(Tags.GIANT, makeID("GiantTypeCard"));				typeCardMap_IMG.put(Tags.GIANT, makeCardPath("EarthGiant.png"));	
+											typeCardMap_ID.put(Tags.ARCANE, makeID("ArcaneTypeCard"));				typeCardMap_IMG.put(Tags.ARCANE, makeCardPath("AmuletAmbition.png"));	
+											typeCardMap_ID.put(Tags.MAGNET, makeID("MagnetTypeCard"));		typeCardMap_IMG.put(Tags.MAGNET, makeCardPath("Gamma_Magnet.png"));
+											typeCardMap_ID.put(Tags.MEGATYPED, makeID("MegatypeTypeCard"));			typeCardMap_IMG.put(Tags.MEGATYPED, makeCardPath("Eva.png"));											
+											typeCardMap_ID.put(Tags.MONSTER, makeID("MonsterTypeCard"));			typeCardMap_IMG.put(Tags.MONSTER, makeCardPath("Giant_Soldier.png"));
+											typeCardMap_ID.put(Tags.SPELL, makeID("SpellTypeCard"));				typeCardMap_IMG.put(Tags.SPELL, makeCardPath("Red_Medicine.png"));
+											typeCardMap_ID.put(Tags.TRAP, makeID("TrapTypeCard"));					typeCardMap_IMG.put(Tags.TRAP, makeCardPath("Castle_Walls.png"));
+											typeCardMap_ID.put(Tags.OJAMA, makeID("OjamaTypeCard"));				typeCardMap_IMG.put(Tags.OJAMA, makeCardPath("OjamaEmperor.png"));
 		// Setup map to find which tribute synergy function to run based on a monster card's current tags
 		// Map simply holds each monster type cardtag with an integer value to use with a switch statement
 		// Integer values should be in the same order as monster types are added to the array above, 0-11

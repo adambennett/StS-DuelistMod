@@ -111,7 +111,11 @@ public class WarriorPool
 		magnetCards.add(new ValkMagnet());
 		magnetCards.add(new Mudballman());
 		magnetCards.add(new CombinationAttack());
-		magnetCards.add(new MagneticField());
+		magnetCards.add(new MagneticField());		
+		magnetCards.add(new RoseArcher());
+		//magnetCards.add(new RosePaladin());
+		//magnetCards.add(new TwilightRoseKnight());
+		
 		magnetDeck.fillPoolCards(magnetCards);		
 		magnetDeck.fillArchetypeCards(magnetCards);
 		DuelistMod.archetypeCards.addAll(magnetCards);

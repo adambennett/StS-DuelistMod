@@ -39,6 +39,7 @@ public class LostBlueBreaker extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 10;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+		this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
 		this.originalName = this.name;

@@ -725,6 +725,12 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new CactusBouncer());
 		DuelistMod.myCards.add(new Inmato());
 		DuelistMod.myCards.add(new PlantFoodChain());
+		DuelistMod.myCards.add(new SeedCannon());
+		DuelistMod.myCards.add(new BotanicalLion());
+		DuelistMod.myCards.add(new BotanicalGirl());
+		DuelistMod.myCards.add(new DarkworldThorns());
+		DuelistMod.myCards.add(new LordPoison());
+		DuelistMod.myCards.add(new MillenniumScorpion());
 		
 		
 		//DuelistMod.myCards.add(new WightLady());			
@@ -749,8 +755,25 @@ public class DuelistCardLibrary
 			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
 		}
 		
-		DuelistMod.typeCardMap_NAME.put(Tags.MEGATYPED, "Megatyped");
-		DuelistMod.typeCardMap_NameToString.put("Megatyped", Tags.MEGATYPED);
+		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
+		extraTags.add(Tags.ROSE);
+		extraTags.add(Tags.ARCANE);
+		extraTags.add(Tags.MEGATYPED);
+		extraTags.add(Tags.OJAMA);
+		extraTags.add(Tags.MONSTER);
+		extraTags.add(Tags.SPELL);
+		extraTags.add(Tags.TRAP);
+		extraTags.add(Tags.GIANT);
+		extraTags.add(Tags.MAGNET);
+		
+		for (CardTags t : extraTags)
+		{
+			String ID = DuelistMod.typeCardMap_ID.get(t);
+			CardStrings localCardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+			DuelistMod.typeCardMap_NAME.put(t, localCardStrings.NAME);
+			DuelistMod.typeCardMap_NameToString.put(localCardStrings.NAME, t);
+			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
+		}
 
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)

@@ -43,7 +43,7 @@ public class PowerGiant extends DuelistCard
         this.tributes = this.baseTributes = 6;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.GIANTS);
+        this.tags.add(Tags.GIANT);
     }
 
     @Override

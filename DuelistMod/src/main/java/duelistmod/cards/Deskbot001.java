@@ -42,6 +42,7 @@ public class Deskbot001 extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
+		this.tags.add(Tags.ARCANE);
     }
 
     @Override

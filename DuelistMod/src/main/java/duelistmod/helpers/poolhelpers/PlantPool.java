@@ -153,6 +153,13 @@ public class PlantPool
 		cards.add(new CactusBouncer());
 		cards.add(new Inmato());
 		cards.add(new PlantFoodChain());
+		cards.add(new SeedCannon());
+		cards.add(new BotanicalLion());
+		cards.add(new BotanicalGirl());
+		cards.add(new LordPoison());
+		cards.add(new DarkworldThorns());
+		cards.add(new Mudora());
+		cards.add(new MudGolem());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

@@ -40,7 +40,7 @@ public class GammaMagnet extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.LIMITED);
         this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;

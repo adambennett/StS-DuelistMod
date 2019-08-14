@@ -42,7 +42,7 @@ public class EarthGiant extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.GIANTS);
+        this.tags.add(Tags.GIANT);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
+import duelistmod.cards.incomplete.MillenniumScorpion;
 import duelistmod.helpers.Util;
 
 public class InsectPool 
@@ -82,7 +83,7 @@ public class InsectPool
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
 	
-		//cards.add(new Token());
+		cards.add(new MillenniumScorpion());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

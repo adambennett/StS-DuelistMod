@@ -41,7 +41,7 @@ public class AlphaMagnet extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LIMITED);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.MAGNET_DECK);
 		this.superheavyDeckCopies = 1;
 		this.setupStartingCopies();

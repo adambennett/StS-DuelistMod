@@ -38,13 +38,10 @@ public class RoseWitch extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT);  
-        this.tags.add(Tags.PLANT_DECK);  
-        this.tags.add(Tags.ROSE);
-        this.plantDeckCopies = 1;
+        this.tags.add(Tags.ROSE);      
         this.summons = this.baseSummons = 1;
         this.baseBlock = this.block = 7;	
-        this.originalName = this.name;
-        this.setupStartingCopies();
+        this.originalName = this.name;      
     }
 
     // Actions the card should do.

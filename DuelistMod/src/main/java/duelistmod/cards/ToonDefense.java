@@ -40,6 +40,7 @@ public class ToonDefense extends DuelistCard
         this.toon = true;
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.TOON);
+		this.tags.add(Tags.ARCANE);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
  

@@ -40,6 +40,7 @@ public class RoseArcher extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROSE);
+		this.tags.add(Tags.ARCANE);
         this.summons = this.baseSummons = 2;
         this.magicNumber = this.baseMagicNumber = 6;	// Constricted
         this.secondMagic = this.baseSecondMagic = 3;	// Dexterity

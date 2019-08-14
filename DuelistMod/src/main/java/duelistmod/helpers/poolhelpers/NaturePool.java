@@ -170,6 +170,15 @@ public class NaturePool
 		natureCards.add(new WitchBlackRose());
 		natureCards.add(new BloomingDarkestRose());
 		natureCards.add(new SplendidRose());
+		natureCards.add(new CactusBouncer());
+		natureCards.add(new Inmato());
+		natureCards.add(new PlantFoodChain());
+		natureCards.add(new SeedCannon());
+		natureCards.add(new BotanicalLion());
+		natureCards.add(new BotanicalGirl());
+		natureCards.add(new LordPoison());
+		natureCards.add(new DarkworldThorns());
+		natureCards.add(new MillenniumScorpion());
 		//natureCards.add(new Predaplanet());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)

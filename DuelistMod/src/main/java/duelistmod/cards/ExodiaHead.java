@@ -41,6 +41,7 @@ public class ExodiaHead extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.LIMITED);
         this.tags.add(Tags.EXODIA_DECK);
+		this.tags.add(Tags.ARCANE);
         this.exodiaDeckCopies = 1; 
         this.magicNumber = this.baseMagicNumber = 100;
         this.exodiaName = "Head";

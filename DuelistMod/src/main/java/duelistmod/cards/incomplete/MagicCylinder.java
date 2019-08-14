@@ -36,6 +36,7 @@ public class MagicCylinder extends DuelistCard
 		this.tags.add(Tags.TRAP);
 		this.tags.add(Tags.LABYRINTH_NIGHTMARE);
 		this.tags.add(Tags.EXODIA_DECK);
+		this.tags.add(Tags.ARCANE);
         this.exodiaDeckCopies = 1;
         this.baseMagicNumber = this.magicNumber = 2;
 		this.originalName = this.name;

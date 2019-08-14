@@ -37,6 +37,7 @@ public class InfernoFireBlast extends DuelistCard
         this.damage = this.baseDamage = 8;
         this.magicNumber = this.baseMagicNumber = 1;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

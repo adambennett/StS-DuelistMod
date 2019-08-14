@@ -38,6 +38,7 @@ public class SparkBlaster extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 1;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

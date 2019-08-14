@@ -37,6 +37,7 @@ public class RagingMadPlants extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
         this.exhaust = true;
     }
 

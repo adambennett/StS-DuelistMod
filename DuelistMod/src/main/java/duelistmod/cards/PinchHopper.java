@@ -41,6 +41,7 @@ public class PinchHopper extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
+		this.tags.add(Tags.ARCANE);
     }
 
     @Override

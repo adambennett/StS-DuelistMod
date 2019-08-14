@@ -37,6 +37,7 @@ public class Wildfire extends DuelistCard
         this.damage = this.baseDamage = 12;
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

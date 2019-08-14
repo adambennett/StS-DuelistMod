@@ -37,6 +37,7 @@ public class AncientGearFist extends DuelistCard
         this.damage = this.baseDamage = 6;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

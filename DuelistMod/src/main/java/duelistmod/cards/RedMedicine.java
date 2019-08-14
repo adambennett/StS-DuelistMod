@@ -43,6 +43,7 @@ public class RedMedicine extends DuelistCard
         this.tags.add(Tags.REDUCED);
         this.tags.add(Tags.GENERATION_DECK);
         this.tags.add(Tags.NEVER_GENERATE);
+		this.tags.add(Tags.ARCANE);
 		this.generationDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;

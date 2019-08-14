@@ -39,7 +39,7 @@ public class AlphaElectro extends DuelistCard
         this.baseDamage = this.damage = 16;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.originalName = this.name;
         this.isSummon = true;
     }

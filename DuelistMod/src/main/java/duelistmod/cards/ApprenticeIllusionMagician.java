@@ -44,6 +44,7 @@ public class ApprenticeIllusionMagician extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ORB_DECK);
 		this.tags.add(Tags.SPELLCASTER);
+		this.tags.add(Tags.ARCANE);
 		this.orbDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;

@@ -37,6 +37,7 @@ public class SpiralSpearStrike extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 3;
         this.damage = this.baseDamage = 12;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

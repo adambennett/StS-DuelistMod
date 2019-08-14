@@ -38,7 +38,7 @@ public class BetaMagnet extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.LIMITED);
         this.tags.add(Tags.MAGNET_DECK);
 		this.superheavyDeckCopies = 1;

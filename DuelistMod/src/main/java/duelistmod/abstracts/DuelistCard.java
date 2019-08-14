@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -1544,11 +1545,20 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{ 
 					for (int i = 0; i < startSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
 				}
+				
 				// Check for Toon Cannon Soldier
 				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+				}
+				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += startSummons;
+					seedC.updateDescription();
 				}
 				
 				// Check for Tripod Fish
@@ -1698,6 +1708,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+				}
+				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += potSummons;
+					seedC.updateDescription();
 				}
 				
 				// Check for Tripod Fish
@@ -1949,6 +1967,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += startSummons;
+					seedC.updateDescription();
+				}
+				
 				// Check for Tripod Fish
 				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
 				{
@@ -2096,6 +2122,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+				}
+				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += potSummons;
+					seedC.updateDescription();
 				}
 				
 				// Check for Tripod Fish
@@ -2300,6 +2334,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 				}
 				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += startSummons;
+					seedC.updateDescription();
+				}
+				
 				// Check for Tripod Fish
 				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
 				{
@@ -2440,6 +2482,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+				}
+				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += potSummons;
+					seedC.updateDescription();
 				}
 				
 				// Check for Tripod Fish
@@ -2690,6 +2740,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 			}
 			
+			// Check for Seed Cannon
+			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
+			{
+				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+				seedC.amount += startSummons;
+				seedC.updateDescription();
+			}
+			
 			// Check for Tripod Fish
 			if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
 			{
@@ -2836,6 +2894,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+			}
+			
+			// Check for Seed Cannon
+			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
+			{
+				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+				seedC.amount += potSummons;
+				seedC.updateDescription();
 			}
 			
 			// Check for Tripod Fish
@@ -3032,6 +3098,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
 			}
 			
+			// Check for Seed Cannon
+			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
+			{
+				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+				seedC.amount += startSummons;
+				seedC.updateDescription();
+			}
+			
 			// Check for Tripod Fish
 			if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
 			{
@@ -3139,6 +3213,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+			}
+			
+			// Check for Seed Cannon
+			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
+			{
+				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+				seedC.amount += potSummons;
+				seedC.updateDescription();
 			}
 			
 			// Check for Tripod Fish
@@ -3257,6 +3339,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+				}
+				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += startSummons;
+					seedC.updateDescription();
 				}
 				
 				// Check for Tripod Fish
@@ -3399,6 +3489,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
 					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
+				}
+				
+				// Check for Seed Cannon
+				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
+				{
+					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
+					seedC.amount += potSummons;
+					seedC.updateDescription();
 				}
 				
 				// Check for Tripod Fish
@@ -6538,16 +6636,26 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		String tagString = tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
+		boolean useAN = false;
 		
+		if (tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama")) { useAN = true; }
 		if (this instanceof ShardGreed)
 		{
-			if (magic < 2) { res = Strings.configGreedShardA + tagString + Strings.configGreedShardB; }
-			else { res = Strings.configGreedShardC + magic + " " + tagString + Strings.configWingedTextB; }
+			if (useAN)
+			{
+				if (magic < 2) { res = "At the start of turn, draw an " + tagString + " card."; }
+				else { res = "At the start of turn, draw " + magic + " " + tagString + " cards."; }
+			}
+			else
+			{
+				if (magic < 2) { res = "At the start of turn, draw a " + tagString + " card."; }
+				else { res = "At the start of turn, draw " + magic + " " + tagString + " cards."; }
+			}			
 		}
 		
 		if (this instanceof RockSunrise)
 		{
-			res = tagString + " monsters deal an additional 25% more damage for the rest of combat.";
+			res = tagString + " cards deal an additional 25% damage for the rest of combat.";
 		}
 		
 		if (this instanceof RainbowJar)
@@ -6590,11 +6698,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		String tagString = tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
+		boolean useAN = false;
+		
+		if (tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane")) { useAN = true; }
 		
 		if (callingCard instanceof ShardGreed)
 		{
-			if (magic < 2) { res = Strings.configGreedShardA + tagString + Strings.configGreedShardB; }
-			else { res = Strings.configGreedShardC + magic + " " + tagString + Strings.configWingedTextB; }
+			if (useAN)
+			{
+				if (magic < 2) { res = "At the start of turn, draw an " + tagString + " card."; }
+				else { res = "At the start of turn, draw " + magic + " " + tagString + " cards."; }
+			}
+			else
+			{
+				if (magic < 2) { res = "At the start of turn, draw a " + tagString + " card."; }
+				else { res = "At the start of turn, draw " + magic + " " + tagString + " cards."; }
+			}			
 		}
 		
 		if (callingCard instanceof RainbowJar)
@@ -6628,8 +6747,51 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (customDesc) { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateDynamicTypeCardDesc(magic, t), t, this, magic)); }
 			else { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), DuelistMod.typeCardMap_DESC.get(t), t, this, magic)); }
+		}
+		
+		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
+		extraTags.add(Tags.ROSE);		
+		extraTags.add(Tags.MEGATYPED);
+		extraTags.add(Tags.OJAMA);	
+		extraTags.add(Tags.GIANT);
+		extraTags.add(Tags.MAGNET);
+		for (CardTags t : extraTags)
+		{
+			if (customDesc) { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateDynamicTypeCardDesc(magic, t), t, this, magic)); }
+			else { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), DuelistMod.typeCardMap_DESC.get(t), t, this, magic)); }
 			
 		}
+		return typeCards;
+	}
+	
+	public ArrayList<DuelistCard> generateTypeCardsShard(int magic, boolean customDesc)
+	{
+		ArrayList<DuelistCard> typeCards = new ArrayList<DuelistCard>();
+		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
+		extraTags.add(Tags.ROSE);
+		extraTags.add(Tags.ARCANE);
+		extraTags.add(Tags.MEGATYPED);
+		extraTags.add(Tags.OJAMA);
+		extraTags.add(Tags.MONSTER);
+		extraTags.add(Tags.SPELL);
+		extraTags.add(Tags.TRAP);
+		extraTags.add(Tags.GIANT);
+		extraTags.add(Tags.MAGNET);
+		
+		for (CardTags t : extraTags)
+		{
+			if (customDesc) { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateDynamicTypeCardDesc(magic, t), t, this, magic)); }
+			else { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), DuelistMod.typeCardMap_DESC.get(t), t, this, magic)); }
+			
+		}
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			if (customDesc) { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateDynamicTypeCardDesc(magic, t), t, this, magic)); }
+			else { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), DuelistMod.typeCardMap_DESC.get(t), t, this, magic)); }
+			
+		}
+		
+		
 		return typeCards;
 	}
 	

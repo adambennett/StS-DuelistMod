@@ -50,8 +50,8 @@ public class GiantTrapHole extends DuelistCard
     	ArrayList<DuelistCard> randomCards = new ArrayList<DuelistCard>();
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.GIANTS);
-			while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.GIANTS); }
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.GIANT);
+			while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.GIANT); }
 			randomCards.add(randomMonster);
 		}
 		

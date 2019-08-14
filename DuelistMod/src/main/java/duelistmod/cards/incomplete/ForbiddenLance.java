@@ -37,6 +37,7 @@ public class ForbiddenLance extends DuelistCard
         this.damage = this.baseDamage = 14;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
         this.exhaust = true;
     }
 

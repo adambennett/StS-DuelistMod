@@ -44,7 +44,7 @@ public class GiantOrc extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
-        this.tags.add(Tags.GIANTS);
+        this.tags.add(Tags.GIANT);
     }
 
     @Override

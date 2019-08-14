@@ -39,6 +39,7 @@ public class DestructPotion extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.TRAP); 
+		this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.NEVER_GENERATE);
         makeFleeting();
     }

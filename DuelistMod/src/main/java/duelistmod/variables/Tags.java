@@ -37,7 +37,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags FIEND_DECK;
 	@SpireEnum public static AbstractCard.CardTags FULL;
 	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
-	@SpireEnum public static AbstractCard.CardTags GIANTS;
+	@SpireEnum public static AbstractCard.CardTags GIANT;
 	@SpireEnum public static AbstractCard.CardTags GIANT_DECK;
 	@SpireEnum public static AbstractCard.CardTags GOD;
 	@SpireEnum public static AbstractCard.CardTags GOOD_TRIB;
@@ -55,7 +55,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MACHINE_DECK;
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER;
-	@SpireEnum public static AbstractCard.CardTags MAGNETWARRIOR;
+	@SpireEnum public static AbstractCard.CardTags MAGNET;
 	@SpireEnum public static AbstractCard.CardTags MAGNET_DECK;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPED;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPE_DECK;

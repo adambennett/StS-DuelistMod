@@ -37,7 +37,7 @@ public class GammaElectro extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;

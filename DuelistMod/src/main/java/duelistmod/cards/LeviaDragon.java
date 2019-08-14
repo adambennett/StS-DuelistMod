@@ -40,6 +40,7 @@ public class LeviaDragon extends DuelistCard
     	this.tags.add(Tags.ALL);
     	this.tags.add(Tags.INVASION_CHAOS);
     	this.tags.add(Tags.GOOD_TRIB);
+		this.tags.add(Tags.ARCANE);
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 4;

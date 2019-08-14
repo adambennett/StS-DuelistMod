@@ -41,7 +41,7 @@ public class CrashbugX extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LIMITED);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.originalName = this.name;
         this.isSummon = true;
     }

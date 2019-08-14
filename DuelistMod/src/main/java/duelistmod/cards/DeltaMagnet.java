@@ -41,7 +41,7 @@ public class DeltaMagnet extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 3;
         this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.originalName = this.name;
         this.isSummon = true;
     }
@@ -53,7 +53,7 @@ public class DeltaMagnet extends DuelistCard
     	//summon(p, this.summons, this);
     	summon();
     	attackMultipleRandom(this.damage, this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
-    	drawTag(this.secondMagic, Tags.MAGNETWARRIOR);
+    	drawTag(this.secondMagic, Tags.MAGNET);
     }
 
     // Which card to return when making a copy of this card.

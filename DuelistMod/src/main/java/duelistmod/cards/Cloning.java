@@ -38,7 +38,7 @@ public class Cloning extends DuelistCard
     public Cloning() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.ALL);
+		this.tags.add(Tags.ARCANE);
         this.misc = 0;
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;

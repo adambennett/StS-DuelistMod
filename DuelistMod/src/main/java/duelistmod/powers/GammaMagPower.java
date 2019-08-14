@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -35,7 +34,7 @@ public class GammaMagPower extends TwoAmountPower
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.img = new Texture(IMG);
-        this.source = source;
+        this.source = source;	
         this.amount = 0;
         this.amount2 = 0;
         if (owner.hasPower(MagneticFieldPower.POWER_ID)) { this.electrified = true; this.amount2 = 2; this.amount = 3; DuelistCard.removePower(owner.getPower(MagneticFieldPower.POWER_ID), owner); }

@@ -886,7 +886,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		
 		if (c instanceof RedMedicine)
 		{
-			int roll = AbstractDungeon.aiRng.random(1, 9);
+			int roll = AbstractDungeon.aiRng.random(1, 8);
 			int turns = AbstractDungeon.aiRng.random(1, 3);
 			switch (roll)
 			{
@@ -906,15 +906,12 @@ public abstract class DuelistMonster extends AbstractMonster
 					DuelistCard.applyPower(new ThornsPower(this, turns), this);
 					break;
 				case 6:
-					DuelistCard.applyPower(new BarricadePower(this), this);
-					break;
-				case 7:
 					DuelistCard.applyPower(new MetallicizePower(this, turns), this);
 					break;
-				case 8:
+				case 7:
 					DuelistCard.applyPower(new EnvenomPower(this, turns), this);
 					break;
-				case 9:
+				case 8:
 					DuelistCard.applyPower(new AngerPower(this, turns), this);
 					break;
 				default:

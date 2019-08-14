@@ -36,6 +36,7 @@ public class TyrantWing extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(Tags.TRAP);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

@@ -36,6 +36,7 @@ public class FeatherShot extends DuelistCard
         this.damage = this.baseDamage = 10;
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

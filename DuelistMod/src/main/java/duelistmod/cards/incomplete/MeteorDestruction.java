@@ -35,6 +35,7 @@ public class MeteorDestruction extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 16;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

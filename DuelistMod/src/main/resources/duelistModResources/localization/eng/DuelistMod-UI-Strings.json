@@ -154,7 +154,9 @@
 			"Pharaoh II",
 			"Pharaoh III",
 			"Pharaoh IV",
-			"Pharaoh V"
+			"Pharaoh V",
+			" card.",
+			" cards."
 		]
 	},
 	"theDuelist:PlayCardsIntent": {

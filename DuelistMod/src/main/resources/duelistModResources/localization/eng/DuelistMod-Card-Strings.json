@@ -1759,9 +1759,9 @@
 		"UPGRADE_DESCRIPTION": "Resummon !M! monsters randomly from your discard pile."
 	},
 	"theDuelist:ShardGreed": {
-		"DESCRIPTION": "Choose a monster type. At the start of turn, draw !M! monster of that type.",
+		"DESCRIPTION": "Choose a card type. At the start of turn, draw !M! card of that type.",
 		"NAME": "Shard of Greed",
-		"UPGRADE_DESCRIPTION": "Innate NL Choose a monster type. At the start of turn, draw !M! monster of that type."
+		"UPGRADE_DESCRIPTION": "Innate NL Choose a card type. At the start of turn, draw !M! card of that type."
 	},
 	"theDuelist:Skelesaurus": {
 		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! Shadow Token NL Deal !D! damage.",
@@ -2856,6 +2856,51 @@
 		"NAME": "Zombie",
 		"UPGRADE_DESCRIPTION": "Zombie"
 	},
+	"theDuelist:RoseTypeCard": {
+		"DESCRIPTION": "Rose",
+		"NAME": "Rose",
+		"UPGRADE_DESCRIPTION": "Rose"
+	},
+	"theDuelist:ArcaneTypeCard": {
+		"DESCRIPTION": "Arcane",
+		"NAME": "Arcane",
+		"UPGRADE_DESCRIPTION": "Arcane"
+	},
+	"theDuelist:GiantTypeCard": {
+		"DESCRIPTION": "Giant",
+		"NAME": "Giant",
+		"UPGRADE_DESCRIPTION": "Giant"
+	},
+	"theDuelist:MegatypeTypeCard": {
+		"DESCRIPTION": "Megatyped",
+		"NAME": "Megatyped",
+		"UPGRADE_DESCRIPTION": "Megatyped"
+	},
+	"theDuelist:MagnetTypeCard": {
+		"DESCRIPTION": "Magnet Warrior",
+		"NAME": "Magnet Warrior",
+		"UPGRADE_DESCRIPTION": "Magnet Warrior"
+	},
+	"theDuelist:OjamaTypeCard": {
+		"DESCRIPTION": "Ojama",
+		"NAME": "Ojama",
+		"UPGRADE_DESCRIPTION": "Ojama"
+	},
+	"theDuelist:MonsterTypeCard": {
+		"DESCRIPTION": "Monster",
+		"NAME": "Monster",
+		"UPGRADE_DESCRIPTION": "Monster"
+	},
+	"theDuelist:SpellTypeCard": {
+		"DESCRIPTION": "Spell",
+		"NAME": "Spell",
+		"UPGRADE_DESCRIPTION": "Spell"
+	},
+	"theDuelist:TrapTypeCard": {
+		"DESCRIPTION": "Trap",
+		"NAME": "Trap",
+		"UPGRADE_DESCRIPTION": "Trap"
+	},
 	"theDuelist:DropOff": {
 		"DESCRIPTION": "Gain a buff based on the last type of monster you summoned. NL Exhaust.",
 		"NAME": "Drop Off",
@@ -3307,9 +3352,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage to a random enemy. NL Gain !B! Block."
 	},
 	"theDuelist:RockSunrise": {
-		"DESCRIPTION": "Choose a monster type. Monsters of the chosen type deal an additional 25% damage for the rest of combat.",
+		"DESCRIPTION": "Choose a card type. Cards of the chosen type deal an additional 25% damage for the rest of combat.",
 		"NAME": "Rock Sunrise",
-		"UPGRADE_DESCRIPTION": "Innate NL Choose a monster type. Monsters of the chosen type deal an additional 25% damage for the rest of combat."
+		"UPGRADE_DESCRIPTION": "Innate NL Choose a card type. Cards of the chosen type deal an additional 25% damage for the rest of combat."
 	},
 	"theDuelist:RainbowOverdragon": {
 		"DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! cards of a random type.",
@@ -4191,6 +4236,16 @@
 		"NAME": "Splendid Rose",
 		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL At the start of turn, you can choose to Exhaust a random Plant in your discard pile. If you do, a random enemy loses !M! Strength for the turn."
 	},
+	"theDuelist:SplendidConfirmCard": {
+		"DESCRIPTION": "Exhaust a random Plant in your discard pile. A random enemy loses !M! Strength for this turn.",
+		"NAME": "Exhaust",
+		"UPGRADE_DESCRIPTION": "Exhaust a random Plant in your discard pile. A random enemy loses !M! Strength for this turn."
+	},
+	"theDuelist:SplendidCancel": {
+		"DESCRIPTION": "Skip",
+		"NAME": "Skip",
+		"UPGRADE_DESCRIPTION": "Skip"
+	},
 	"theDuelist:TwilightRoseKnight": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon a Plant from your hand on a random enemy. NL Exempt.",
 		"NAME": "Twilight Rose Knight",
@@ -4236,15 +4291,40 @@
 		"NAME": "Plant Food Chain",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Temporary HP for each Plant you Tributed."
 	},
-	"theDuelist:SplendidConfirmCard": {
-		"DESCRIPTION": "Exhaust a random Plant in your discard pile. A random enemy loses !M! Strength for this turn.",
-		"NAME": "Exhaust",
-		"UPGRADE_DESCRIPTION": "Exhaust a random Plant in your discard pile. A random enemy loses !M! Strength for this turn."
+	"theDuelist:MillenniumScorpion": {
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a MillenniumOrb.",
+		"NAME": "Millennium Scorpion",
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel a MillenniumOrb."
 	},
-	"theDuelist:SplendidCancel": {
-		"DESCRIPTION": "Skip",
-		"NAME": "Skip",
-		"UPGRADE_DESCRIPTION": "Skip"
+	"theDuelist:BotanicalLion": {
+		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a card.",
+		"NAME": "Botanical Lion",
+		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a card."
+	},
+	"theDuelist:BotanicalGirl": {
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster, Fetch a Plant from your draw pile.",
+		"NAME": "Botanical Girl",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL When you Tribute this monster, Fetch a Plant from your draw pile."
+	},
+	"theDuelist:SeedCannon": {
+		"DESCRIPTION": "Each time you Summon a Plant, place a seed counter on your Seed Cannon. At the end of each turn, you can choose to destroy the Seed Cannon and deal !M! damage to ALL enemies for each seed.",
+		"NAME": "Seed Cannon",
+		"UPGRADE_DESCRIPTION": "Each time you Summon a Plant, place a seed counter on your Seed Cannon. At the end of each turn, you can choose to destroy the Seed Cannon and deal !M! damage to ALL enemies for each seed."
+	},
+	"theDuelist:SeedCannonConfirm": {
+		"DESCRIPTION": "Destroy your Seed Cannon and deal !M! damage to ALL enemies.",
+		"NAME": "Destroy",
+		"UPGRADE_DESCRIPTION": "Destroy your Seed Cannon and deal !M! damage to ALL enemies."
+	},
+	"theDuelist:LordPoison": {
+		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !duelist:M! Poison. NL Channel !M! Mud.",
+		"NAME": "Lord Poison",
+		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !duelist:M! Poison. NL Channel !M! Mud."
+	},
+	"theDuelist:DarkworldThorns": {
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns.",
+		"NAME": "Darkworld Thorns",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

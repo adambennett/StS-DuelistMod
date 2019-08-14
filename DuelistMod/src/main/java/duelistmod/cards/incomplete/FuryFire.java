@@ -35,6 +35,7 @@ public class FuryFire extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 15;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
     }
 
     // Actions the card should do.

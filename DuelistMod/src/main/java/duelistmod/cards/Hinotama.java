@@ -40,6 +40,7 @@ public class Hinotama extends DuelistCard
 		this.tags.add(Tags.LEGEND_BLUE_EYES);
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.GENERATION_DECK);
+		this.tags.add(Tags.ARCANE);
 		this.generationDeckCopies = 1;
 		this.magicNumber = this.baseMagicNumber = 3;
 		this.secondMagic = this.baseSecondMagic = 2;

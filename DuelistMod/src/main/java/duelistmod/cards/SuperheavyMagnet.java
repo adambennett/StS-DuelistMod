@@ -57,7 +57,7 @@ public class SuperheavyMagnet extends DuelistCard
     	{
 	    	for (DuelistCard c : tributeList)
 	    	{
-	    		if (c.hasTag(Tags.MAGNETWARRIOR))
+	    		if (c.hasTag(Tags.MAGNET))
 	    		{
 	    			magnets++;
 	    		}

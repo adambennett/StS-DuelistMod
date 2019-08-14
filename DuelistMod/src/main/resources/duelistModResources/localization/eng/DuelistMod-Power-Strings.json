@@ -33,7 +33,7 @@
 },
 "theDuelist:GreedShardPower": {
         "NAME": "Shard of Greed",
-        "DESCRIPTIONS": ["At the start of turn, draw #b", " monster.", " monsters."]
+        "DESCRIPTIONS": ["At the start of turn, draw #b", " card.", " cards."]
 },
 "theDuelist:MirrorPower": {
         "NAME": "Mirror Force",
@@ -577,7 +577,7 @@
 },
 "theDuelist:RockSunrisePower": {
         "NAME": "Rock Sunrise",
-        "DESCRIPTIONS": [" monsters deal an additional #b25% damage." ]
+        "DESCRIPTIONS": [" cards deal an additional #b25% damage." ]
 },
 "theDuelist:BloomingDarkRosePower": {
         "NAME": "Blooming of Dark Rose",
@@ -590,6 +590,10 @@
 "theDuelist:FrozenRosePower": {
         "NAME": "Frozen Rose",
         "DESCRIPTIONS": ["At the start of turn, draw #b2 cards and discard #b1 card." ]
+},
+"theDuelist:SeedCannonPower": {
+        "NAME": "Seed Cannon",
+        "DESCRIPTIONS": ["Add a seed whenever you #ySummon a #yPlant. At the end of each turn, choose to destroy this and deal #b", " damage to ALL enemies. NL #ySeeds: #b" ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

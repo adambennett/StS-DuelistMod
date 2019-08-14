@@ -39,7 +39,7 @@ public class Berserkion extends DuelistCard
         this.tributes = this.baseTributes = 4;
         this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.MAGNETWARRIOR);
+        this.tags.add(Tags.MAGNET);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -54,7 +54,7 @@ public class Berserkion extends DuelistCard
     	if (p.hasPower(BetaMagPower.POWER_ID)) { magnets++; }
     	if (p.hasPower(GammaMagPower.POWER_ID)) { magnets++; }
     	for (int i = 0; i < magnets; i++) { DuelistCard.attackMultipleRandom(this.damage, this.magicNumber, AttackEffect.SMASH, DamageType.NORMAL); }
-    	addCardToHand(DuelistCard.returnTrulyRandomFromSet(Tags.MAGNETWARRIOR));
+    	addCardToHand(DuelistCard.returnTrulyRandomFromSet(Tags.MAGNET));
     }
 
     // Which card to return when making a copy of this card.

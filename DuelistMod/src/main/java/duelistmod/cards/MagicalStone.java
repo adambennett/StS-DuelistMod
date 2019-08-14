@@ -33,6 +33,7 @@ public class MagicalStone extends DuelistCard
     public MagicalStone() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.ARCANE);
         this.magicNumber = this.baseMagicNumber = 2;
         this.originalName = this.name;
         this.exhaust = true;
