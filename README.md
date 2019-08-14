@@ -8,12 +8,11 @@ Discord Server: https://discord.gg/Tcwws6U
 - StSLib
 
 ## CROSSOVER CONTENT FOR
-- Replay the Spire
-- Conspire
 - Googly Eyes
+- Challenge the Spire
 
 # Introduction
-The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 360+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 22 new relics and 20 new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist), with the sole exception of the Millennium Puzzle, which may show up in the shop for all other characters.   
+The Duelist mod adds a new playable character, Yugi Moto. Yugi has an expansive set of 650+ new cards, all adapted from real Yu-Gi-Oh! cards. This mod also adds 30+ new relics and 25+ new potions. None of the content added with this mod should affect the base game, and none of the relics or potions are added to the shared pool (i.e. they are only obtainable when playing as The Duelist), with the sole exception of the Millennium Puzzle, which may show up in the shop for all other characters.   
 
 This is a work in progress, and there will likely be some bugs and minor issues. I will do my best to address any unforeseen problems that arise, and of course I will be doing my own continued playtesting and debugging. Expect periodic updates. My contact information is listed at the end of this description if you would like to reach me directly with issues/feedback/bug reports/suggestions/hate mail. Thanks for playing!
 
@@ -91,61 +90,12 @@ This option, when selected, will change cards to instead be tagged as Attack/Ski
 ## Starting Deck
 This option lets you choose which deck you would like to use for your custom runs.
 
-# Known Issues
-- Downgrading cards does not work properly when cards that have Tribute-based upgrades become Downgraded. However in most cases, this is beneficial and it should never crash the game or cause any other major side effects.  
-- Future Diary relic (Aspiration) sometimes causes issues  
-- Buffer orb has problems with powers that don't stack, needs major overhaul   
-- Many cards with tribute-based upgrades are slightly buggy and can have undefined behavior   
-- Monkei's Paw relic (Halation) causes various issues, beware   
-- Time Maze and Toon Rollback/Toon Magic interaction is buggy   
-- Heavy Storm causes issues sometimes, and may not always remove ALL powers as stated. (Gremlin Nob strength, Thievery is not removed properly when fighting Mugger)   
-- Bottled Mercury relic sometimes gets set on the wrong card after save & quit (Infinite Spire)  
-- Gravity Axe doesn't appear to give you 3 strength right away if you play it with 0 strength   
- 
 # Creator Information
 Thanks for playing the Duelist! Please let me know if you have any feedback or bug reports! 
 
 Email: nyoxidestsmods@gmail.com
 
 Discord: Nyoxide#3464
-  
-#### Toon cards removed by Mod Option  
-B.E. Toon Dragon - *Toons*  
-Red Eyes Toon - *Toons*  
-Toon Barrel Dragon - *Toons*  
-Toon Briefcase - *Toons*  
-Toon Dark Magician - *Toons*  
-Toon Gemini Elf - *Toons*  
-Toon Magic - *Toons*  
-Toon Mask - *Toons*  
-Toon Mermaid - *Toons*  
-Toon Rollback - *Toons*  
-Toon S. Skull - *Toons*  
-Toon World - *Toons*  
-Toon Kingdom - *Toons*  
-Toon D.M. Girl - *Toons*  
-Shadow Toon - *Toons*  
-
-#### Exodia cards removed by Mod Option  
-L. Exodia Incarnate - *Exodia*  
-Exodia Head - *Exodia*  
-Exodia L. Arm - *Exodia*  
-Exodia L. Leg - *Exodia*  
-Exodia R. Arm - *Exodia*  
-Exodia R. Leg - *Exodia*  
-Contract with Exodia - *Exodia*  
-
-## Random Buff Pool (Small)
-Strength 		(random)    
-Dexterity 		always 1)    
-Artifacts 		(random)    
-Plated Armor 	(random)  
-Regen			(random)  
-Energized		(always 1)  
-Thorns			(random)  
-Focus			(random)  
-  
-Magic Cylinder and Ojama Knight are currently the only cards that pull random buffs from this pool.  
   
 ## Random Buff Pool (Full)
 Strength 			(random)     
@@ -180,92 +130,6 @@ Reducer 			(random)
 Time Wizard			(always 1)  
 Mayhem				(always 1)  
 Envenom				(random)  
-
-
-## Random Actions (List)
-
-### Time Wizard
-Draw 1 card  
-Draw 1 card  
-Gain 5 HP  
-Lose 5 HP  
-Lose 5 HP  
-Apply 2 random debuffs to random enemy  	
-Apply 1 random debuff to random enemy  
-Add 1 random Trap to hand  
-Add 1 random Trap to hand  	
-Add 1 random Monster to hand  
-Add 1 random Ethereal Duelist card to hand  
-Gain 10 Block  
-Gain 5 Block  
-Gain 5 Block  
-Summon 1  	
-Summon 1  	
-Increment 1  	
-Gain 1 Artifact  
-
-##### Challenge Mode (OFF)
-Gain a random amount of gold (1-50)   
-Draw 2 cards  	
-Gain 5 HP  
-Gain 10 HP  
-Summon 2  
-Ojamania  	
-Gain 1 Energy   
-Channel a Glitch  
-Increment 2  
-
-##### Challenge Mode (ON)  
-Add 1 random Ethereal Duelist card to hand  
-Gain 5 HP  
-Summon 1  
-Increment 1  
-
-### Glitch Orb (Passive)
-Draw 1 card  	
-Draw 1 card  
-Gain 10 HP  
-Gain 5 HP  
-Gain 5 HP  
-Lose 5 HP  
-Lose 5 HP  
-Lose 5 HP  
-Apply 1 random debuff to random enemy  	
-Apply 1 random debuff to random enemy  
-Add 1 random Trap to hand  
-Add 1 random Trap to hand  
-Add 1 random Monster to hand  
-Add 1 random Ethereal Duelist card to hand  
-Gain 15 Block  	
-Gain 10 Block  
-Gain 5 Block  
-Gain 5 Block  
-Summon 1  	
-Summon 1  	
-Summon 2  
-Increment 1  	
-Increment 2  
-Gain 1 Energy   
-Gain 1 Artifacts  
-Gain 2 Artifacts  
-
-### Glitch Orb (Evoke)
-Orb slots+1  
-Draw 1 card  	
-Draw 1 card  	
-Draw 2 cards  	
-Gain a random amount of gold (5-200)  
-Apply 1 random debuff to random enemy  
-Add 1 random Trap to hand  
-Add 1 random Spellcaster to hand  
-Add 1 random Ethereal Duelist card to hand  
-Gain 15 Block  	
-Summon 2  
-Increment 2  
-Ojamania  	
-Gain 2 Energy (Not in Challenge Mode)
-Channel a Glitch  
-Gain 3 Artifacts  
 
 ## Screenshots
 Some in game screenshots taken of the first steam release build (3-6-19). Everything is absolutely always subject to change.
