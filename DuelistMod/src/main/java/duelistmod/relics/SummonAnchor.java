@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.SummonAnchorAction;
 
 public class SummonAnchor extends CustomRelic {
 
@@ -20,35 +20,25 @@ public class SummonAnchor extends CustomRelic {
 	public static final String ID = duelistmod.DuelistMod.makeID("SummonAnchor");
     public static final String IMG = DuelistMod.makeRelicPath("AnchorRelic.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("AnchorRelic_Outline.png");
+    private int summs = 1;
 
 	public SummonAnchor() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
 	}
 	
 	@Override
-	public void onEquip()
+	public boolean canSpawn()
 	{
-		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID))
-		{
-			MillenniumPuzzle mp = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
-			mp.setExtra(mp.extra + 1);
-		}
+		if (AbstractDungeon.player.hasRelic(SummonAnchorRare.ID)) { return false; }
+		else { return true; }
 	}
-	
-	@Override
-	public void onUnequip()
-	{
-		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID))
-		{
-			MillenniumPuzzle mp = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
-			mp.setExtra(mp.extra - 1);
-		}
-	}
-	
+
+
 	@Override
 	public void atBattleStart() 
 	{
-		if (!AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) { DuelistCard.powerSummon(AbstractDungeon.player, 1, "Relic Token", false); }
+		AbstractDungeon.actionManager.addToBottom(new SummonAnchorAction(summs));
+		this.flash();
 	}
 
 	// Description

@@ -413,7 +413,7 @@
 },
 "theDuelist:WorldTreePower": {
         "NAME": "World Tree",
-        "DESCRIPTIONS": ["Whenever you play a #ySkill and all monsters summoned are #yPlants, gain #b", " #ytemporary #yHP." ]
+        "DESCRIPTIONS": ["Whenever you play a #ySkill and all monsters summoned are #yPlants, gain #b", " #yTemporary #yHP. After gaining #b", " more #yTemporary #yHP, the World Tree will perish." ]
 },
 "theDuelist:TyrantWingPower": {
         "NAME": "Tyrant Wing",

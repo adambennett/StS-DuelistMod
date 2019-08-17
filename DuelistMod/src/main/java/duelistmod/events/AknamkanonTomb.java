@@ -59,7 +59,6 @@ public class AknamkanonTomb extends AbstractImageEvent {
         	imageEventText.setDialogOption(OPTIONS[5], true);
         	imageEventText.setDialogOption(OPTIONS[5], true);
         	imageEventText.setDialogOption(OPTIONS[5], true);
-        	imageEventText.setDialogOption(OPTIONS[5], true);
             imageEventText.setDialogOption(OPTIONS[4]);
         }
     }

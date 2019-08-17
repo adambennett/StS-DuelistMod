@@ -35,6 +35,7 @@ public class WorldTree extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 3;
+        this.secondMagic = this.baseSecondMagic = 24;
         this.tags.add(Tags.SPELL);  
 		this.tags.add(Tags.ARCANE);
     }
@@ -43,7 +44,13 @@ public class WorldTree extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new WorldTreePower(p, p, this.magicNumber));
+    	if (!p.hasPower(WorldTreePower.POWER_ID)) { applyPowerToSelf(new WorldTreePower(p, p, this.magicNumber, this.secondMagic)); }
+    	else
+    	{  
+    		WorldTreePower pow = (WorldTreePower)p.getPower(WorldTreePower.POWER_ID);
+    		pow.amount2 += this.secondMagic;
+    		pow.updateDescription();
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -60,8 +67,7 @@ public class WorldTree extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (timesUpgraded == 1) { this.isInnate = true; }
-        	else { this.upgradeMagicNumber(1); }
+        	this.upgradeMagicNumber(1); this.upgradeSecondMagic(8);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -70,7 +76,7 @@ public class WorldTree extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.magicNumber < 10) { return true; }
+    	if (this.magicNumber < 5) { return true; }
     	else { return false; }
     }
 

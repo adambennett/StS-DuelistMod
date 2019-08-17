@@ -9,11 +9,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.typecards.TokenCard;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 

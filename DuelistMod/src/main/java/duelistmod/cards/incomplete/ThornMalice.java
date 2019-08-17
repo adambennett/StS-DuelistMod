@@ -47,7 +47,7 @@ public class ThornMalice extends DuelistCard
     {
     	int pow = 0;
     	int amt = p.getPower(ThornsPower.POWER_ID).amount;
-    	pow = amt * this.magicNumber;
+    	pow = amt * this.secondMagic;
     	removePower(p.getPower(ThornsPower.POWER_ID), p);
     	applyPowerToSelf(new ThornsPower(p, pow));
     }

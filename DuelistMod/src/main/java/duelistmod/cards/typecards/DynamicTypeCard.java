@@ -68,12 +68,12 @@ public class DynamicTypeCard extends DuelistCard
     	
     	if (this.callCard instanceof WingedKuriboh9)
     	{
-    		drawTags(this.magicNumber, this.tagSave, Tags.MONSTER, false);
+    		drawTag(this.magicNumber, this.tagSave);
     	}
     	
     	if (this.callCard instanceof WingedKuriboh10)
     	{
-    		drawTags(this.magicNumber, this.tagSave, Tags.MONSTER, false);
+    		drawTag(this.magicNumber, this.tagSave);
     	}
     	
     	if (this.callCard instanceof YamiForm)
@@ -91,8 +91,8 @@ public class DynamicTypeCard extends DuelistCard
     	
     	if (this.callCard instanceof TributeToken)
     	{
-    		DuelistCard randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave);
-    		while (getAllMonsterTypes(randMon).size() != 1 || !getAllMonsterTypes(randMon).contains(tagSave)) { randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave); }
+    		DuelistCard randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromOnlyFirstSet(tagSave, Tags.MEGATYPED);
+    		//while (getAllMonsterTypes(randMon).size() != 1 || !getAllMonsterTypes(randMon).contains(tagSave)) { randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave); }
     		tribute(p, 1, false, randMon);
     		if (DuelistMod.debug) { DuelistMod.logger.info("Tribute Token just called tribute with this randomly generated monster: " + randMon.originalName + " :: and tagSave was: " + tagSave.toString()); }
     	}

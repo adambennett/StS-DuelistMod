@@ -35,7 +35,7 @@ public class MudragonSwamp extends DuelistCard
 
     public MudragonSwamp() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 18;
+    	this.baseDamage = this.damage = 14;
     	this.tags.add(Tags.MONSTER);
     	this.misc = 0;
 		this.originalName = this.name;

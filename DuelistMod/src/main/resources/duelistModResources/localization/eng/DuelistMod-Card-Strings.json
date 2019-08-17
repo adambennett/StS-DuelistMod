@@ -1583,7 +1583,7 @@
 	"theDuelist:Predapruning": {
 		"DESCRIPTION": "Choose !M! Plant to Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand.",
 		"NAME": "Predapruning",
-		"UPGRADE_DESCRIPTION": "Choose !M! Plants to Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand."
+		"UPGRADE_DESCRIPTION": "Choose !M! Plant to Upgrade and Resummon from your discard pile. NL If you choose a Predaplant monster, add a copy of it to your hand."
 	},
 	"theDuelist:PreventRat": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Gain !duelist:M! Block.",
@@ -2347,9 +2347,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL For the next !M! end-of-turns, ALL enemies lose 1 Strength. For the next !duelist:M! end-of-turns, all tribute monsters in your draw pile gain 1 Tribute."
 	},
 	"theDuelist:RainbowJar": {
-		"DESCRIPTION": "Choose a monster type. For the next !M! turns, whenever you play a monster of that type, add it back into your hand at the start of next turn.",
+		"DESCRIPTION": "Choose a card type. For the next !M! turns, whenever you play a card of that type, add it back into your hand at the start of next turn.",
 		"NAME": "Rainbow Capture Jar",
-		"UPGRADE_DESCRIPTION": "Choose a monster type. For the next !M! turns, whenever you play a monster of that type, add it back into your hand at the start of next turn."
+		"UPGRADE_DESCRIPTION": "Choose a card type. For the next !M! turns, whenever you play a card of that type, add it back into your hand at the start of next turn."
 	},
 	"theDuelist:RainbowKuriboh": {
 		"DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !duelist:M! Randomized monsters (of a random type) to your hand.",
@@ -2627,14 +2627,14 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Your draw pile is viewed in order while this monster is summoned. NL Exhaust."
 	},
 	"theDuelist:WingedKuribohLv9": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of monster and then draw !M! monster of that type.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of card and then draw !M! card of that type.",
 		"NAME": "Winged Kuriboh Lv9",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of monster and then draw !M! monster of that type."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of card and then draw !M! card of that type."
 	},
 	"theDuelist:WingedKuribohLv10": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Choose a type of monster and then draw !duelist:M! monsters of that type.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Choose a type of card and then draw !duelist:M! cards of that type.",
 		"NAME": "Winged Kuriboh Lv10",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Choose a type of monster and then draw !duelist:M! monsters of that type."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Choose a type of card and then draw !duelist:M! cards of that type."
 	},
 	"theDuelist:AncientGearBox": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Draw !M! Uncommon card.",
@@ -2987,9 +2987,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Gain !B! Block. NL Overflow !M! - Tribute !duelist:TRIB! and deal !D! damage to ALL enemies."
 	},
 	"theDuelist:WorldTree": {
-		"DESCRIPTION": "Arcane NL Whenever you play a Skill and have only Plants summoned, gain !M! Temporary HP.",
+		"DESCRIPTION": "Arcane NL Whenever you play a Skill and have only Plants summoned, gain !M! Temporary HP. NL (Limit !duelist:M! Temp HP)",
 		"NAME": "The World Tree",
-		"UPGRADE_DESCRIPTION": "Innate NL Arcane NL Whenever you play a Skill and have only Plants summoned, gain !M! Temporary HP."
+		"UPGRADE_DESCRIPTION": "Innate NL Arcane NL Whenever you play a Skill and have only Plants summoned, gain !M! Temporary HP. NL (Limit !duelist:M! Temp HP)"
 	},
 	"theDuelist:TyrantWing": {
 		"DESCRIPTION": "Arcane NL The next !M! Dragons you play deal an additional !M! damage. Gain more charges by tributing Dragons for other Dragons.",
@@ -4325,6 +4325,11 @@
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns.",
 		"NAME": "Darkworld Thorns",
 		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns."
+	},
+	"theDuelist:WorldTreeRegrow": {
+		"DESCRIPTION": "Tribute ALL monsters to regrow your World Tree. NL World Tree will be capped by !M! Temporary HP for each Plant you Tribute.",
+		"NAME": "Regrow",
+		"UPGRADE_DESCRIPTION": "Tribute ALL monsters to regrow your World Tree. NL World Tree will be capped by !M! Temporary HP for each Plant you Tribute."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

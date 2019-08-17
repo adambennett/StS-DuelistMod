@@ -38,7 +38,7 @@ public class Mudora extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = 4;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 1;
         this.isSummon = true;
@@ -67,7 +67,7 @@ public class Mudora extends DuelistCard
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
         	//this.upgradeMagicNumber(1);
-        	this.upgradeDamage(4);
+        	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

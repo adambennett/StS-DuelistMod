@@ -480,7 +480,7 @@
       "Void",
 	  "void"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, siphon #b4 #yTemporary #yHP from a random enemy. NL #yEvoke: Add #b1 [#FF5252]Void into your hand."
+    "DESCRIPTION": "#yOrb: At the start of turn, siphon #b2 #yTemporary #yHP from a random enemy. NL #yEvoke: Add #b1 [#FF5252]Void into your hand."
   },
   {
     "PROPER_NAME": "TokenOrb",

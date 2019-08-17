@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -735,16 +736,18 @@ public class DuelistCardLibrary
 		
 		//DuelistMod.myCards.add(new WightLady());			
 		
-		
-		DuelistMod.curses.add(new GravekeeperCurse());
-		DuelistMod.curses.add(new CurseAnubis());
-		DuelistMod.curses.add(new CurseArmaments());
-		DuelistMod.curses.add(new CursedBill());
-		DuelistMod.curses.add(new CurseAging());
-		DuelistMod.curses.add(new SummoningCurse());
-		DuelistMod.curses.add(new VampireCurse());
-		DuelistMod.curses.add(new PsiCurse());
-		//DuelistMod.curses.add(new CurseRoyal());
+		if (DuelistMod.duelistCurses)
+		{
+			DuelistMod.curses.add(new GravekeeperCurse());
+			DuelistMod.curses.add(new CurseAnubis());
+			DuelistMod.curses.add(new CurseArmaments());
+			DuelistMod.curses.add(new CursedBill());
+			DuelistMod.curses.add(new CurseAging());
+			DuelistMod.curses.add(new SummoningCurse());
+			DuelistMod.curses.add(new VampireCurse());
+			DuelistMod.curses.add(new PsiCurse());
+			//DuelistMod.curses.add(new CurseRoyal());
+		}
 		
 		for (CardTags t : DuelistMod.monsterTypes)
 		{
@@ -1104,7 +1107,7 @@ public class DuelistCardLibrary
 		}
 		else
 		{
-			return new CurseAging();
+			return CardLibrary.getCurse();
 		}
 	}
 	
@@ -1116,7 +1119,7 @@ public class DuelistCardLibrary
 		}
 		else
 		{
-			return new CurseAging();
+			return CardLibrary.getCurse();
 		}
 	}
 	

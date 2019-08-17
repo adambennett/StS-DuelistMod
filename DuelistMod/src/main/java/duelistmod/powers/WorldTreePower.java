@@ -1,27 +1,24 @@
 package duelistmod.powers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.*;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
-import duelistmod.*;
-import duelistmod.interfaces.*;
-import duelistmod.variables.*;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.WorldTreeAction;
+import duelistmod.variables.Tags;
 
 
 @SuppressWarnings("unused")
-public class WorldTreePower extends AbstractPower
+public class WorldTreePower extends TwoAmountPower
 {
 	public AbstractCreature source;
 	public static final String POWER_ID = DuelistMod.makeID("WorldTreePower");
@@ -31,7 +28,7 @@ public class WorldTreePower extends AbstractPower
 	public static final String IMG = DuelistMod.makePowerPath("WorldTreePower.png");
 	private boolean finished = false;
 	
-	public WorldTreePower(final AbstractCreature owner, final AbstractCreature source, int amount) 
+	public WorldTreePower(final AbstractCreature owner, final AbstractCreature source, int amount, int maxTempHP) 
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -41,25 +38,55 @@ public class WorldTreePower extends AbstractPower
 		this.img = new Texture(IMG);
 		this.source = source;
 		this.amount = amount;
+		this.amount2 = maxTempHP;
 		updateDescription();
 	}
 	
 	@Override
 	public void updateDescription() 
 	{
-		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[2];
 	}
 
 	@Override
 	public void onPlayCard(AbstractCard card, AbstractMonster m) 
 	{
-		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		int ref = this.amount;
+		if (this.amount2 > 0 && this.amount2 >= this.amount)
 		{
-			SummonPower power = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-			if (card.type.equals(CardType.SKILL) && power.isEveryMonsterCheck(Tags.PLANT, false))
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
 			{
-				AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, this.amount));
+				SummonPower power = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (card.type.equals(CardType.SKILL) && power.isEveryMonsterCheck(Tags.PLANT, false))
+				{
+					AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, this.amount));
+					this.amount2 -= this.amount;
+					updateDescription();
+					if (this.amount2 < 1) 
+					{ 
+						DuelistCard.removePower(this, this.owner); 
+						AbstractDungeon.actionManager.addToBottom(new WorldTreeAction(ref));		
+					}
+				}
 			}
+		}
+		else if (this.amount2 > 0 && this.amount2 < this.amount)
+		{
+			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+			{
+				SummonPower power = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+				if (card.type.equals(CardType.SKILL) && power.isEveryMonsterCheck(Tags.PLANT, false))
+				{
+					AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, this.amount2));
+					DuelistCard.removePower(this, this.owner); 
+					AbstractDungeon.actionManager.addToBottom(new WorldTreeAction(ref));					
+				}
+			}
+		}
+		else
+		{
+			DuelistCard.removePower(this, this.owner);
+			AbstractDungeon.actionManager.addToBottom(new WorldTreeAction(ref));	
 		}
 		
 	}

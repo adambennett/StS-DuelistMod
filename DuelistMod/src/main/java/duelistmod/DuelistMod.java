@@ -127,6 +127,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String PROP_REMOVE_CARD_REWARDS = "removeCardRewards";
 	public static final String PROP_SMALL_BASIC = "smallBasicSet";
 	public static final String PROP_POWER_CHECK_CHECK = "smallBasicSet";
+	public static final String PROP_DUELIST_MONSTERS = "duelistMonsters";
+	public static final String PROP_DUELIST_CURSES = "duelistCurses";
 	public static String seenString = "";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String defaultChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
@@ -158,6 +160,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean alwaysBoosters = false;
 	public static boolean removeCardRewards = false;
 	public static boolean smallBasicSet = false;
+	public static boolean duelistMonsters = true;
+	public static boolean duelistCurses = true;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
 	public static int powerCheckIncCheck = 0;
@@ -305,6 +309,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean spellcasterDidChannel = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
+	public static boolean isHubris = Loader.isModLoaded("hubris");
+	public static boolean isDisciple = Loader.isModLoaded("TheDisciple");
 	public static boolean isAscendedDeckOneUnlocked = false;
 	public static boolean isAscendedDeckTwoUnlocked = false;
 	public static boolean isAscendedDeckThreeUnlocked = false;
@@ -436,6 +442,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ModLabeledToggleButton alwaysBoostersBtn;
 	public static ModLabeledToggleButton removeCardRewardsBtn;
 	public static ModLabeledToggleButton lightBasicBtn;
+	public static ModLabeledToggleButton noDuelistMonstersBtn;
+	public static ModLabeledToggleButton noDuelistCursesBtn;
 	public static ModLabel setSelectLabelTxt;
 	public static ModLabel setSelectColorTxt;
 	public static ModButton setSelectLeftBtn;
@@ -628,6 +636,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty(PROP_REMOVE_CARD_REWARDS, "TRUE");
 		duelistDefaults.setProperty(PROP_SMALL_BASIC, "FALSE");
 		duelistDefaults.setProperty(PROP_POWER_CHECK_CHECK, "0");
+		duelistDefaults.setProperty(PROP_DUELIST_MONSTERS, "TRUE");
+		duelistDefaults.setProperty(PROP_DUELIST_CURSES, "TRUE");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -802,6 +812,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
             removeCardRewards = config.getBool(PROP_REMOVE_CARD_REWARDS);
             smallBasicSet = config.getBool(PROP_SMALL_BASIC);
             powerCheckIncCheck = config.getInt(PROP_POWER_CHECK_CHECK);
+            duelistMonsters = config.getBool(PROP_DUELIST_MONSTERS);
         } catch (Exception e) { e.printStackTrace(); }
 		
 		if (fullDebug)
@@ -878,11 +889,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addMonster(KaibaA3.ID, "Seto Kaiba", () -> new KaibaA3());
 		
 		// Encounters
-		//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
-		BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 3.0F)); 
-		//BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(KaibaA2.ID, 3.0F)); 
-		//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
-		//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 100.0F)); 
+		if (DuelistMod.duelistMonsters)
+		{
+			//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
+			BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 3.0F)); 
+			//BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(KaibaA2.ID, 3.0F)); 
+			//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
+			//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 100.0F)); 
+		}
 		
 
 		// Rewards
@@ -1037,6 +1051,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new BoosterPackEggRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SpellMaxHPRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new WhiteBowlRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new SummonAnchorRare(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1119,6 +1134,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(BoosterPackEggRelic.ID);
 		UnlockTracker.markRelicAsSeen(SpellMaxHPRelic.ID);
 		UnlockTracker.markRelicAsSeen(WhiteBowlRelic.ID);
+		UnlockTracker.markRelicAsSeen(SummonAnchorRare.ID);
 		
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
@@ -1139,7 +1155,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new NaturiaRelic());
 		duelistRelicsForTombEvent.add(new MachineToken());
 		duelistRelicsForTombEvent.add(new DragonRelic());
-		//duelistRelicsForTombEvent.add(new SummonAnchor());
+		duelistRelicsForTombEvent.add(new SummonAnchor());
 		duelistRelicsForTombEvent.add(new SpellcasterToken());
 		duelistRelicsForTombEvent.add(new SpellcasterOrb());
 		duelistRelicsForTombEvent.add(new AquaRelic());
@@ -1171,10 +1187,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new BoosterPackEggRelic());
 		duelistRelicsForTombEvent.add(new SpellMaxHPRelic());
 		duelistRelicsForTombEvent.add(new WhiteBowlRelic());
-		//duelistRelics.add(new MillenniumNecklace()); // Millennium Item event only relic
+		duelistRelicsForTombEvent.add(new SummonAnchorRare());
+		//duelistRelics.add(new MillenniumNecklace());
 
 		// This adds a relic to the Shared pool. Every character can find this relic.
 		BaseMod.addRelic(new MillenniumPuzzleShared(), RelicType.SHARED);
+		
+		// Add some sensible relics from crossover mods that are only added to other character pools
+		if (DuelistMod.isReplay) { ReplayHelper.extraRelics(); }		
+		if (DuelistMod.isHubris) { HubrisHelper.extraRelics(); }		
+		if (DuelistMod.isDisciple) { DiscipleHelper.extraRelics(); }		
+		if (DuelistMod.isConspire) { ConspireHelper.extraRelics(); }
+		Util.log("On receiving relics, we found the following crossover mods. Replay=" + isReplay + ", Conspire=" + isConspire + ", Hubris=" + isHubris + ", and TheDisciple=" + isDisciple);
 
 		logger.info("Done adding relics!");
 	}
@@ -2669,8 +2693,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			} catch (Exception e) { e.printStackTrace(); }
 			resetDuelist();
 		});
-		cbLB();
 		// END Switch to old character model
+		
+		// Toggle Duelist Monsters
+		noDuelistMonstersBtn = new ModLabeledToggleButton("Encounter Duelists (RESTART)", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistMonsters, settingsPanel, (label) -> {}, (button) -> 
+		{
+			duelistMonsters = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_DUELIST_MONSTERS, duelistMonsters);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		});
+		cbLB();	
+		// END Toggle Duelist Monsters
 
 		// Challenge Mode
 		challengeBtn = new ModLabeledToggleButton(challengeString, xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, challengeMode, settingsPanel, (label) -> {}, (button) -> 
@@ -2702,8 +2740,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		});
 		if (flipCardTags) { flipBtn.text.text = Config_UI_String.TEXT[13]; }
 		else { flipBtn.text.text = Config_UI_String.TEXT[9]; }
-		cbLB();
 		// END Flip card tags
+		
+		// Toggle Duelist Curses
+		noDuelistCursesBtn = new ModLabeledToggleButton("Duelist Curses (RESTART)", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistCurses, settingsPanel, (label) -> {}, (button) -> 
+		{
+			duelistCurses = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_DUELIST_CURSES, duelistCurses);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+
+		});
+		cbLB();	
+		// END Toggle Duelist Curses
 
 		// Add 2 randomization buttons
 		noChangeBtnCost = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, noCostChanges, settingsPanel, (label) -> {}, (button) -> 

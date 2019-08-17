@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -6751,7 +6750,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
 		extraTags.add(Tags.ROSE);		
-		extraTags.add(Tags.MEGATYPED);
+		if (!(this instanceof TributeToken)) { extraTags.add(Tags.MEGATYPED); }
 		extraTags.add(Tags.OJAMA);	
 		extraTags.add(Tags.GIANT);
 		extraTags.add(Tags.MAGNET);
@@ -6798,7 +6797,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static ArrayList<DuelistCard> generateTypeCards(int magic, boolean customDesc, DuelistCard callingCard)
 	{
 		ArrayList<DuelistCard> typeCards = new ArrayList<DuelistCard>();
-		for (CardTags t : DuelistMod.monsterTypes)
+		ArrayList<CardTags> types = new ArrayList<CardTags>();
+		types.add(Tags.ROSE);
+		types.add(Tags.MEGATYPED);
+		types.add(Tags.OJAMA);
+		types.add(Tags.GIANT);
+		types.add(Tags.MAGNET);
+		types.addAll(DuelistMod.monsterTypes);
+		for (CardTags t : types)
 		{
 			if (customDesc) { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateDynamicTypeCardDesc(magic, t, callingCard, DuelistMod.monsterTypes.size()), t, callingCard, magic)); }
 			else { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), DuelistMod.typeCardMap_DESC.get(t), t, callingCard, magic)); }
@@ -6811,12 +6817,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		ArrayList<DuelistCard> typeCards = new ArrayList<DuelistCard>();
 		ArrayList<CardTags> types = new ArrayList<CardTags>();
-		if (numberOfRandomTypes > DuelistMod.monsterTypes.size()) { numberOfRandomTypes = DuelistMod.monsterTypes.size(); }
-		if (numberOfRandomTypes == DuelistMod.monsterTypes.size()) { return generateTypeCards(magic, customDesc, callingCard); }
+		types.add(Tags.ROSE);
+		types.add(Tags.MEGATYPED);
+		types.add(Tags.OJAMA);
+		types.add(Tags.GIANT);
+		types.add(Tags.MAGNET);
+		int maxS = DuelistMod.monsterTypes.size() + types.size();
+		if (numberOfRandomTypes > maxS) { numberOfRandomTypes = maxS; }
+		if (numberOfRandomTypes == maxS) { return generateTypeCards(magic, customDesc, callingCard); }
 		else 
 		{
 			types.addAll(DuelistMod.monsterTypes);
-			for (int i = 0; i < DuelistMod.monsterTypes.size() - numberOfRandomTypes; i++)
+			for (int i = 0; i < maxS - numberOfRandomTypes; i++)
 			{
 				if (seeded)
 				{

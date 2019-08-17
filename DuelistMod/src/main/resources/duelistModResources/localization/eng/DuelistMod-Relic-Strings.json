@@ -257,7 +257,7 @@
 		"NAME": "Summoning Anchor",
 		"FLAVOR": "A small red and yellow anchor. What a strange color scheme.",
 		"DESCRIPTIONS": [
-			"#ySummon #b1 Token at the start of each combat."
+			"#ySummon #b1 Relic Token at the start of each combat."
 		]
 	},
 	"theDuelist:SpellcasterToken": {
@@ -484,6 +484,13 @@
 		"FLAVOR": "Get some upgrades!",
 		"DESCRIPTIONS": [
 			"At the start of each combat, #yChannel a #yWhite."
+		]
+	},
+	"theDuelist:SummonAnchorRare": {
+		"NAME": "Magician's Anchor",
+		"FLAVOR": "This strange anchor appears to be imbided with powerful magic...",
+		"DESCRIPTIONS": [
+			"#ySummon #b2 random Tokens at the start of each combat."
 		]
 	},
 	"theDuelist:OrbCardRelic": {
