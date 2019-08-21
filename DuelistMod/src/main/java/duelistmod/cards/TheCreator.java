@@ -42,12 +42,10 @@ public class TheCreator extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.CREATOR_DECK);
-        this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
         this.tags.add(Tags.NO_CREATOR);
         this.tags.add(Tags.EXEMPT);
-        this.exodiaDeckCopies = 1;
         this.originalName = this.name;
         this.standardDeckCopies = 1;
         this.setupStartingCopies();

@@ -49,7 +49,7 @@ public class ClearKuriboh extends DuelistCard
     	summon();
     	this.applyPowers();
     	attackAllEnemies(this.damage);
-    	DuelistCard randMon = (DuelistCard) returnTrulyRandomFromSet(DuelistMod.lastTagSummoned);
+    	DuelistCard randMon = (DuelistCard) returnTrulyRandomFromSet(DuelistMod.lastTagSummoned, false);
     	addCardToHand(randMon);
     }
 

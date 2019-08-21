@@ -82,7 +82,7 @@ public class ExodiaPool
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
 	
-		for (AbstractCard c : DuelistMod.myCards)
+		for (AbstractCard c : BasicPool.fullBasic())
 		{
 			cards.add(c.makeCopy());
 		}

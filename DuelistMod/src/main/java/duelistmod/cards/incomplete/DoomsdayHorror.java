@@ -48,8 +48,8 @@ public class DoomsdayHorror extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attack(m);
+    	tribute();    	
     	AbstractMonster random = AbstractDungeon.getRandomMonster();
     	applyPower(new VulnerablePower(random, this.magicNumber, false), random);
     }

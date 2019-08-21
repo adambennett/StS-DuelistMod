@@ -55,8 +55,8 @@ public class IronCall extends DuelistCard
     	{
 			for (int i = 0; i < this.magicNumber - 1; i++)
 			{
-				DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MACHINE);
-				while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MACHINE); }
+				DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MACHINE, false);
+				while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.MACHINE, false); }
 				randomCards.add(randomMonster);
 			}
     	}

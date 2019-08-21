@@ -39,7 +39,7 @@ public class ChangeHeart extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.METAL_RAIDERS);
-        this.exodiaDeckCopies = 2;
+        this.exodiaDeckCopies = 1;
         this.originalName = this.name;
         this.exhaust = true;
         this.setupStartingCopies();

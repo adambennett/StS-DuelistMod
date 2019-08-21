@@ -37,6 +37,9 @@ public class FeatherShot extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

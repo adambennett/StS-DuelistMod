@@ -46,6 +46,7 @@ public class DarkstormDragon extends DuelistCard
         this.baseDamage = this.damage = 11;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.ARCANE);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;

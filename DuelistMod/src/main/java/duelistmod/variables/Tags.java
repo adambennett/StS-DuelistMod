@@ -30,6 +30,8 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags EXEMPT;
 	@SpireEnum public static AbstractCard.CardTags EXODIA;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_DECK;
+	@SpireEnum public static AbstractCard.CardTags EXODIA_DECK_UPGRADE;
+	@SpireEnum public static AbstractCard.CardTags EXODIA_HEAD;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_PIECE;
 	@SpireEnum public static AbstractCard.CardTags EXPLODING_TOKEN;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
@@ -67,6 +69,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags NEVER_EXHAUST;
 	@SpireEnum public static AbstractCard.CardTags NOT_ADDED;
 	@SpireEnum public static AbstractCard.CardTags NO_CREATOR;
+	@SpireEnum public static AbstractCard.CardTags NO_METRONOME;
 	@SpireEnum public static AbstractCard.CardTags NO_MANA_RESET;
 	@SpireEnum public static AbstractCard.CardTags NO_POWER_FOR_RANDOM_DECK_POOLS;
 	@SpireEnum public static AbstractCard.CardTags NO_CARD_FOR_RANDOM_DECK_POOLS;

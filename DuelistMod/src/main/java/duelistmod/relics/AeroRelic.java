@@ -34,4 +34,12 @@ public class AeroRelic extends CustomRelic {
 	public AbstractRelic makeCopy() {
 		return new AeroRelic();
 	}
+	
+	/*
+	@Override
+	public int getPrice()
+	{
+		return 0;
+	}
+	*/
 }

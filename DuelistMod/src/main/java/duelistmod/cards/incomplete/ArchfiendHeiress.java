@@ -77,8 +77,8 @@ public class ArchfiendHeiress extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attack(m);
+    	tribute();    
     }
 
     

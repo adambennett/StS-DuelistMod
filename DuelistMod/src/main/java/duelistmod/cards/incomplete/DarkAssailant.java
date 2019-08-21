@@ -43,6 +43,7 @@ public class DarkAssailant extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.ARCANE);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class DarkAssailant extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (!upgraded) 
+        if (canUpgrade()) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }

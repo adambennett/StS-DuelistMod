@@ -37,6 +37,9 @@ public class DarkMasterZorc extends DuelistCard
         this.tributes = this.baseTributes = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
         this.originalName = this.name;
         this.baseDamage = this.damage = 20;
     }

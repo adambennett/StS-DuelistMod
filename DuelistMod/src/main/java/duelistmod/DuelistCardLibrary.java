@@ -731,7 +731,16 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BotanicalGirl());
 		DuelistMod.myCards.add(new DarkworldThorns());
 		DuelistMod.myCards.add(new LordPoison());
-		DuelistMod.myCards.add(new MillenniumScorpion());
+		DuelistMod.myCards.add(new MillenniumScorpion());				
+		DuelistMod.myCards.add(new UmbralHorrorGhost());
+		DuelistMod.myCards.add(new UmbralHorrorWilloWisp());
+		DuelistMod.myCards.add(new SkilledDarkMagician());
+		DuelistMod.myCards.add(new UmbralHorrorUniform());
+		DuelistMod.myCards.add(new DarkHunter());
+		DuelistMod.myCards.add(new Slushy());
+		DuelistMod.myCards.add(new PharaohBlessing());
+		DuelistMod.myCards.add(new Metronome());
+		DuelistMod.myCards.add(new OneForOne());
 		
 		
 		//DuelistMod.myCards.add(new WightLady());			
@@ -826,6 +835,7 @@ public class DuelistCardLibrary
 			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
+				if (!c.type.equals(CardType.POWER)) { DuelistMod.rareNonPowers.add((DuelistCard) c.makeStatEquivalentCopy()); }
 			}
 			
 			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
@@ -838,6 +848,11 @@ public class DuelistCardLibrary
 			{
 				DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
+			}
+			
+			if (c.type.equals(CardType.POWER))
+			{
+				DuelistMod.allPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 			}
 		}
 		

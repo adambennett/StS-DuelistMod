@@ -13,7 +13,7 @@
 		  "MonsterOrb",
 		  "monsterorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yRandomized monster to your hand. NL #yEvoke: Set the cost of #b1 random monster in your hand to 0."
+		"DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yMonster #yEgg to your hand. NL #yEvoke: Set the cost of #b1 random monster in your hand to 0."
 	},
     {
 	  "PROPER_NAME": "Resummon",
@@ -250,7 +250,7 @@
       "Consumer",
 	  "consumer"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, if the most recent summon in your summoning zone is a token, #yTribute it and deal #b6 damage to ALL enemies. NL #yEvoke: Lose #b1 Energy and #yEvoke all of your orbs."
+    "DESCRIPTION": "#yOrb: At the end of turn, Evoke another random orb. NL #yEvoke: For each orb Evoked by this orb's passive effect, gain #b2 Energy at the start of the next turn."
   },
   {
     "PROPER_NAME": "Gadget",

@@ -36,10 +36,6 @@ public class GiantTrunade extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.MAGIC_RULER);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.REDUCED);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 2;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

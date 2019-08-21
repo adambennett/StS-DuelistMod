@@ -32,12 +32,15 @@ public class SpiralSpearStrike extends DuelistCard
     // /STAT DECLARATION/
 
     public SpiralSpearStrike() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 3;
-        this.damage = this.baseDamage = 12;
-        this.tags.add(Tags.SPELL);
-		this.tags.add(Tags.ARCANE);
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+    	this.originalName = this.name;
+    	this.baseMagicNumber = this.magicNumber = 3;
+    	this.damage = this.baseDamage = 12;
+    	this.tags.add(Tags.SPELL);
+    	this.tags.add(Tags.ARCANE);
+    	this.tags.add(Tags.EXODIA_DECK);
+    	this.exodiaDeckCopies = 1;
+    	this.setupStartingCopies();
     }
 
     // Actions the card should do.

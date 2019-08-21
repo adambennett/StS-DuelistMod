@@ -38,6 +38,9 @@ public class Wildfire extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
+    	this.tags.add(Tags.EXODIA_DECK);
+    	this.exodiaDeckCopies = 1;
+    	this.setupStartingCopies();
     }
 
     // Actions the card should do.

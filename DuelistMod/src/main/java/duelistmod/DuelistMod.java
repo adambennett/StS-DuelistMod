@@ -42,11 +42,11 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.RevivalRose;
-import duelistmod.cards.tokens.Token;
 import duelistmod.cards.typecards.CancelCard;
 import duelistmod.characters.TheDuelist;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
+import duelistmod.helpers.crossover.*;
 import duelistmod.helpers.poolhelpers.BasicPool;
 import duelistmod.interfaces.*;
 import duelistmod.monsters.*;
@@ -59,7 +59,6 @@ import duelistmod.relics.*;
 import duelistmod.rewards.BoosterReward;
 import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
-import razintent.RazIntent;
 
 
 
@@ -126,9 +125,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String PROP_ALWAYS_BOOSTERS = "alwaysBoosters";
 	public static final String PROP_REMOVE_CARD_REWARDS = "removeCardRewards";
 	public static final String PROP_SMALL_BASIC = "smallBasicSet";
-	public static final String PROP_POWER_CHECK_CHECK = "smallBasicSet";
+	//public static final String PROP_POWER_CHECK_CHECK = "smallBasicSet";
 	public static final String PROP_DUELIST_MONSTERS = "duelistMonsters";
 	public static final String PROP_DUELIST_CURSES = "duelistCurses";
+	public static final String PROP_CARD_REWARD_RELIC = "hasCardRewardRelic";
+	public static final String PROP_BOOSTER_REWARD_RELIC = "hasBoosterRewardRelic";
+	public static final String PROP_SHOP_DUPE_RELIC = "hasShopDupeRelic";
 	public static String seenString = "";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String defaultChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
@@ -151,8 +153,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean onlySummonIncreases = false;
 	public static boolean alwaysUpgrade = false;
 	public static boolean neverUpgrade = false;
-	public static boolean randomizeExhaust = true;
-	public static boolean randomizeEthereal = true;
+	public static boolean randomizeExhaust = false;
+	public static boolean randomizeEthereal = false;
 	public static boolean baseGameCards = false;
 	public static boolean gotWisemanHaunted = false;
 	public static boolean forcePuzzleSummons = false;
@@ -160,8 +162,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean alwaysBoosters = false;
 	public static boolean removeCardRewards = false;
 	public static boolean smallBasicSet = false;
-	public static boolean duelistMonsters = true;
-	public static boolean duelistCurses = true;
+	public static boolean duelistMonsters = false;
+	public static boolean duelistCurses = false;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
 	public static int powerCheckIncCheck = 0;
@@ -232,6 +234,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> rareCards = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> rareNonPowers = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> allPowers = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uncommonCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> commonCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> nonRareCards = new ArrayList<DuelistCard>();
@@ -297,6 +301,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean playedOneCardThisCombat = false;
 	public static boolean hasCardRewardRelic = false;
 	public static boolean hasBoosterRewardRelic = false;
+	public static boolean hasShopDupeRelic = false;
 	public static boolean shouldFill = true;
 	public static boolean dragonRelicBFlipper = false;
 	public static boolean playedSpellThisTurn = false;
@@ -310,7 +315,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
-	public static boolean isDisciple = Loader.isModLoaded("TheDisciple");
+	public static boolean isDisciple = Loader.isModLoaded("chronomuncher");
+	public static boolean isClockwork = Loader.isModLoaded("ClockworkMod");
+	public static boolean isGatherer = Loader.isModLoaded("gatherermod");
+	public static boolean isInfiniteSpire = Loader.isModLoaded("infinitespire");	
+	public static boolean isAnimator = Loader.isModLoaded("eatyourbeetsvg-theanimator");	
+	public static boolean isGifTheSpire = Loader.isModLoaded("GifTheSpireLib");	
 	public static boolean isAscendedDeckOneUnlocked = false;
 	public static boolean isAscendedDeckTwoUnlocked = false;
 	public static boolean isAscendedDeckThreeUnlocked = false;
@@ -453,6 +463,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ModButton setSelectLeftBtnB;
 	public static ModButton setSelectRightBtnB;
 	
+	
+	
 
 	// Global Character Stats
 	public static int energyPerTurn = 3;
@@ -515,6 +527,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
     public static String makeOrbAudioPath(String resourcePath)
     {
     	return makeAudioPath("orbs/" + resourcePath);
+    }
+    
+    public static String makeAnimatedPath(String resourcePath) {
+        return makePath("animated/" + resourcePath);
     }
 
     // =============== /MAKE IMAGE PATHS/ =================
@@ -635,9 +651,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty(PROP_ALWAYS_BOOSTERS, "TRUE");
 		duelistDefaults.setProperty(PROP_REMOVE_CARD_REWARDS, "TRUE");
 		duelistDefaults.setProperty(PROP_SMALL_BASIC, "FALSE");
-		duelistDefaults.setProperty(PROP_POWER_CHECK_CHECK, "0");
+		//duelistDefaults.setProperty(PROP_POWER_CHECK_CHECK, "0");
 		duelistDefaults.setProperty(PROP_DUELIST_MONSTERS, "TRUE");
 		duelistDefaults.setProperty(PROP_DUELIST_CURSES, "TRUE");
+		duelistDefaults.setProperty(PROP_CARD_REWARD_RELIC, "FALSE");
+		duelistDefaults.setProperty(PROP_BOOSTER_REWARD_RELIC, "FALSE");
+		duelistDefaults.setProperty(PROP_SHOP_DUPE_RELIC, "FALSE");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -811,8 +830,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
             alwaysBoosters = config.getBool(PROP_ALWAYS_BOOSTERS);
             removeCardRewards = config.getBool(PROP_REMOVE_CARD_REWARDS);
             smallBasicSet = config.getBool(PROP_SMALL_BASIC);
-            powerCheckIncCheck = config.getInt(PROP_POWER_CHECK_CHECK);
+            //powerCheckIncCheck = config.getInt(PROP_POWER_CHECK_CHECK);
             duelistMonsters = config.getBool(PROP_DUELIST_MONSTERS);
+            duelistCurses = config.getBool(PROP_DUELIST_CURSES);
+            hasCardRewardRelic = config.getBool(PROP_CARD_REWARD_RELIC);
+            hasBoosterRewardRelic = config.getBool(PROP_BOOSTER_REWARD_RELIC);
+            hasShopDupeRelic = config.getBool(PROP_SHOP_DUPE_RELIC);
         } catch (Exception e) { e.printStackTrace(); }
 		
 		if (fullDebug)
@@ -877,6 +900,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		bonusUnlockHelper = new BonusDeckUnlockHelper();
 		receiveEditSounds();
 		
+		// Animated Cards
+		if (isGifTheSpire) { GifSpireHelper gif = new GifSpireHelper(); }
+		
 		// Events													
 		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
 		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
@@ -887,6 +913,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addMonster(KaibaA1.ID, "Seto Kaiba", () -> new KaibaA1());
 		BaseMod.addMonster(KaibaA2.ID, "Seto Kaiba", () -> new KaibaA2());
 		BaseMod.addMonster(KaibaA3.ID, "Seto Kaiba", () -> new KaibaA3());
+		BaseMod.addMonster(DuelistNob.ID, "Duelist Nob", () -> new DuelistNob(0.0f, 0.0f));
 		
 		// Encounters
 		if (DuelistMod.duelistMonsters)
@@ -938,7 +965,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		pots.add(new GadgetBottle());
 		//pots.add(new GlitchBottle());
 		pots.add(new MetalBottle());
-		//pots.add(new MonsterOrbBottle());
+		pots.add(new MonsterOrbBottle());
 		pots.add(new SandBottle());
 		//pots.add(new StormBottle());
 		pots.add(new SummonerBottle());
@@ -1024,7 +1051,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new ZombieRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new DragonRelicB(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new UpgradeBuffRelic(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new ShopRelicRarityRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new ShopToken(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumScale(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MachineTokenB(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumNecklace(), AbstractCardEnum.DUELIST);
@@ -1052,6 +1079,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new SpellMaxHPRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new WhiteBowlRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SummonAnchorRare(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new GamblerChip(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MerchantPendant(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MerchantSword(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MerchantTalisman(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MerchantRugbox(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new Monsterbox(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new Spellbox(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new Trapbox(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new Spellheart(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new TrapVortex(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1109,7 +1146,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(ZombieRelic.ID);
 		UnlockTracker.markRelicAsSeen(DragonRelicB.ID);
 		//UnlockTracker.markRelicAsSeen(UpgradeBuffRelic.ID);
-		UnlockTracker.markRelicAsSeen(ShopRelicRarityRelic.ID);
+		UnlockTracker.markRelicAsSeen(ShopToken.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumScale.ID);
 		UnlockTracker.markRelicAsSeen(MachineTokenB.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumNecklace.ID);
@@ -1135,6 +1172,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(SpellMaxHPRelic.ID);
 		UnlockTracker.markRelicAsSeen(WhiteBowlRelic.ID);
 		UnlockTracker.markRelicAsSeen(SummonAnchorRare.ID);
+		UnlockTracker.markRelicAsSeen(GamblerChip.ID);
+		UnlockTracker.markRelicAsSeen(MerchantPendant.ID);
+		UnlockTracker.markRelicAsSeen(MerchantSword.ID);
+		UnlockTracker.markRelicAsSeen(MerchantTalisman.ID);
+		UnlockTracker.markRelicAsSeen(MerchantRugbox.ID);
+		UnlockTracker.markRelicAsSeen(Monsterbox.ID);
+		UnlockTracker.markRelicAsSeen(Spellbox.ID);
+		UnlockTracker.markRelicAsSeen(Trapbox.ID);
+		UnlockTracker.markRelicAsSeen(Spellheart.ID);
+		UnlockTracker.markRelicAsSeen(TrapVortex.ID);
 		
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
@@ -1163,7 +1210,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new NatureRelic());
 		duelistRelicsForTombEvent.add(new ZombieRelic());
 		duelistRelicsForTombEvent.add(new DragonRelicB());
-		duelistRelicsForTombEvent.add(new ShopRelicRarityRelic());
+		duelistRelicsForTombEvent.add(new ShopToken());
 		duelistRelicsForTombEvent.add(new StoneExxod());
 		//duelistRelicsForTombEvent.add(new MillenniumScale());
 		duelistRelicsForTombEvent.add(new MachineTokenB());		
@@ -1188,18 +1235,21 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new SpellMaxHPRelic());
 		duelistRelicsForTombEvent.add(new WhiteBowlRelic());
 		duelistRelicsForTombEvent.add(new SummonAnchorRare());
+		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
 		// This adds a relic to the Shared pool. Every character can find this relic.
 		BaseMod.addRelic(new MillenniumPuzzleShared(), RelicType.SHARED);
 		
-		// Add some sensible relics from crossover mods that are only added to other character pools
-		if (DuelistMod.isReplay) { ReplayHelper.extraRelics(); }		
-		if (DuelistMod.isHubris) { HubrisHelper.extraRelics(); }		
-		if (DuelistMod.isDisciple) { DiscipleHelper.extraRelics(); }		
-		if (DuelistMod.isConspire) { ConspireHelper.extraRelics(); }
-		Util.log("On receiving relics, we found the following crossover mods. Replay=" + isReplay + ", Conspire=" + isConspire + ", Hubris=" + isHubris + ", and TheDisciple=" + isDisciple);
-
+		// Add some sensible relics from crossover mods that are usually only added to other character pools
+		if (isReplay) { ReplayHelper.extraRelics(); }	
+		if (isHubris) { HubrisHelper.extraRelics(); }	
+		if (isDisciple) { DiscipleHelper.extraRelics(); }		
+		if (isConspire) { ConspireHelper.extraRelics(); } 
+		if (isClockwork) { ClockworkHelper.extraRelics(); }
+		if (isGatherer) { GathererHelper.extraRelics(); } 
+		if (isInfiniteSpire) { InfiniteSpireHelper.extraRelics(); }
+		if (isAnimator) { AnimatorHelper.extraRelics(); }
 		logger.info("Done adding relics!");
 	}
 
@@ -2138,13 +2188,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 						if (debug) { DuelistMod.logger.info("Current Deck on receivePostCreateStartingDeck() was the Exodia Deck. Making cards soulbound..."); }
 						for (AbstractCard c : arg1.group)
 						{
+							if (c.hasTag(Tags.EXODIA_DECK_UPGRADE))
+							{
+								c.upgrade();
+							}
+							
 							if (c instanceof DuelistCard)
 							{
 								DuelistCard dc = (DuelistCard)c;
 								dc.makeSoulbound(true);
 								dc.rawDescription = Strings.exodiaSoulbound + dc.rawDescription;
 								dc.initializeDescription();
-							}
+							}							
 						}
 					}
 				}
@@ -2491,6 +2546,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			currentSpellcasterOrbChance = 25;
 			hasCardRewardRelic = false;
 			hasBoosterRewardRelic = false;
+			hasShopDupeRelic = false;
 			CardCrawlGame.dungeon.initializeCardPools();
 		}
 		else if (!shouldFill)
@@ -2549,7 +2605,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Card Count Label
 		cardLabelTxt = new ModLabel(cardsString + cardCount, xLabPos - 10, yPos,settingsPanel,(me)->{});
 		
-		allowBoostersBtn = new ModLabeledToggleButton(Strings.configAllowBoosters,xLabPos + xSecondCol, yPos - 20, Settings.CREAM_COLOR, FontHelper.charDescFont, allowBoosters, settingsPanel, (label) -> {}, (button) -> 
+		allowBoostersBtn = new ModLabeledToggleButton(Strings.configAllowBoosters,xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, allowBoosters, settingsPanel, (label) -> {}, (button) -> 
 		{
 			allowBoosters = button.enabled;
 			try 
@@ -2561,7 +2617,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 
 		});
 		
-		alwaysBoostersBtn = new ModLabeledToggleButton(Strings.configAlwaysBoosters,xLabPos + xSecondCol + xSecondCol - 100, yPos - 20, Settings.CREAM_COLOR, FontHelper.charDescFont, alwaysBoosters, settingsPanel, (label) -> {}, (button) -> 
+		alwaysBoostersBtn = new ModLabeledToggleButton(Strings.configAlwaysBoosters,xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, alwaysBoosters, settingsPanel, (label) -> {}, (button) -> 
 		{
 			alwaysBoosters = button.enabled;
 			try 
@@ -2573,7 +2629,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 
 		});
 		
-		genericLB(50.0f);
+		cbLB();
 		// END Card Count Label
 
 		// Remove Toons
@@ -2696,7 +2752,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// END Switch to old character model
 		
 		// Toggle Duelist Monsters
-		noDuelistMonstersBtn = new ModLabeledToggleButton("Encounter Duelists (RESTART)", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistMonsters, settingsPanel, (label) -> {}, (button) -> 
+		noDuelistMonstersBtn = new ModLabeledToggleButton("Encounter Duelists", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistMonsters, settingsPanel, (label) -> {}, (button) -> 
 		{
 			duelistMonsters = button.enabled;
 			try 
@@ -2743,7 +2799,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// END Flip card tags
 		
 		// Toggle Duelist Curses
-		noDuelistCursesBtn = new ModLabeledToggleButton("Duelist Curses (RESTART)", xLabPos + xSecondCol + xSecondCol - 100, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistCurses, settingsPanel, (label) -> {}, (button) -> 
+		noDuelistCursesBtn = new ModLabeledToggleButton("Duelist Curses", xLabPos + xSecondCol + xSecondCol - 40, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, duelistCurses, settingsPanel, (label) -> {}, (button) -> 
 		{
 			duelistCurses = button.enabled;
 			try 
@@ -3031,8 +3087,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		settingsPanel.addUIElement(removeCardRewardsBtn);
 		settingsPanel.addUIElement(unlockBtn);
 		settingsPanel.addUIElement(oldCharBtn);
+		settingsPanel.addUIElement(noDuelistMonstersBtn);
 		settingsPanel.addUIElement(challengeBtn);
 		settingsPanel.addUIElement(flipBtn);
+		settingsPanel.addUIElement(noDuelistCursesBtn);
 		settingsPanel.addUIElement(noChangeBtnCost);
 		settingsPanel.addUIElement(onlyDecBtnCost);
 		settingsPanel.addUIElement(noChangeBtnTrib);

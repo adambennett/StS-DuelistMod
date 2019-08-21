@@ -52,8 +52,8 @@ public class OniGamiCombo extends DuelistCard
     	ArrayList<DuelistCard> randomCards = new ArrayList<DuelistCard>();
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-			while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE); }
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE, false);
+			while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE, false); }
 			randomCards.add(randomMonster);
 		}
 		

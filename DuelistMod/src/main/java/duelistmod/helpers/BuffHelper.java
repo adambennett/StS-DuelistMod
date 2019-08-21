@@ -13,6 +13,7 @@ import duelistmod.powers.incomplete.FlameTigerPower;
 
 public class BuffHelper {
 
+	
 	// RANDOM BUFF HELPERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static AbstractPower createRandomBuff()
 	{
@@ -49,7 +50,78 @@ public class BuffHelper {
 		BuffHelper.initBuffMap(AbstractDungeon.player, turnNum);
 		for (int i = 0; i < DuelistMod.randomBuffs.size(); i++) { DuelistMod.randomBuffs.set(i, DuelistMod.buffMap.get(DuelistMod.randomBuffs.get(i).name)); }
 	}
+	
+	public static String trapVortexBuffName(int powerID)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		int traps = 1;
+		if (powerID == 1)
+		{
+			return new StrengthPower(p, traps).name;
+		}
+		else if (powerID == 2)
+		{
+			return new ThornsPower(p, traps).name;
+		}
+		else if (powerID == 3)
+		{
+			return new ArtifactPower(p, traps).name;
+		}
+		else if (powerID == 4)
+		{
+			return new PotGenerosityPower(p, p, traps).name;
+		}
+		else if (powerID == 5)
+		{
+			return new JuggernautPower(p, traps).name;
+		}
+		else if (powerID == 6)
+		{
+			return new TombLooterPower(p, traps).name;
+		}
+		else
+		{
+			return new BlurPower(p, traps).name;
+		}
+	}
 
+	public static AbstractPower trapVortex(int powerID, int traps)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		if (powerID > 7 || powerID < 1) { return new BlurPower(p, traps); }
+		else
+		{
+			if (powerID == 1)
+			{
+				return new StrengthPower(p, traps);
+			}
+			else if (powerID == 2)
+			{
+				return new ThornsPower(p, traps);
+			}
+			else if (powerID == 3)
+			{
+				return new ArtifactPower(p, traps);
+			}
+			else if (powerID == 4)
+			{
+				return new PotGenerosityPower(p, p, traps);
+			}
+			else if (powerID == 5)
+			{
+				return new JuggernautPower(p, traps);
+			}
+			else if (powerID == 6)
+			{
+				return new TombLooterPower(p, traps);
+			}
+			else
+			{
+				return new BlurPower(p, traps);
+			}
+		}
+	}
+	
 	public static void initBuffMap(AbstractPlayer p)
 	{
 		DuelistMod.buffMap = new HashMap<String, AbstractPower>();

@@ -49,8 +49,8 @@ public class OhFish extends DuelistCard
 		ArrayList<DuelistCard> aquas = new ArrayList<DuelistCard>();
 		for (int i = 0; i < this.magicNumber + 2; i++)
 		{
-			DuelistCard random = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);
-			while (aquas.contains(random)) { random = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+			DuelistCard random = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA, false);
+			while (aquas.contains(random)) { random = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA, false); }
 			aquas.add(random);
 		}
 		

@@ -140,7 +140,7 @@ public class MillenniumOrb extends DuelistOrb
 	public void triggerPassiveEffect()
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-		PuzzleHelper.runSpecialEffect(this.passiveAmount, 0);
+		PuzzleHelper.runEffectForMillenniumOrb(this.passiveAmount, 0);
 	}
 	
 	@Override

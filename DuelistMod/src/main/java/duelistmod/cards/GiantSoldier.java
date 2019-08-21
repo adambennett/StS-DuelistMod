@@ -40,13 +40,11 @@ public class GiantSoldier extends DuelistCard
         this.baseBlock = this.block = 6;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
-        this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.STANDARD_DECK);
         this.tags.add(Tags.ORIGINAL_DECK);   
         this.tags.add(Tags.ORIGINAL_HEAL_DECK);
         this.startingOPHDeckCopies = 2;
         this.startingOriginalDeckCopies = 2;
-        this.exodiaDeckCopies = 4;
         this.standardDeckCopies = 2;
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;

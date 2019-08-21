@@ -40,11 +40,7 @@ public class HammerShot extends DuelistCard
     	this.isMultiDamage = true;
     	this.isMultiDamage = true;
     	this.tags.add(Tags.SPELL);
-    	this.tags.add(Tags.ALL);
-    	this.tags.add(Tags.EXODIA_DECK);
-    	this.exodiaDeckCopies = 2;
     	this.originalName = this.name;
-    	this.setupStartingCopies();
     }
 
     // Actions the card should do.

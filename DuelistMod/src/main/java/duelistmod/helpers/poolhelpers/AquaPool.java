@@ -147,6 +147,7 @@ public class AquaPool
 		aquaCards.add(new FlyingSaucer());
 		aquaCards.add(new CosmicHorrorGangiel());
 		aquaCards.add(new AlienTelepath());
+		aquaCards.add(new Slushy());
 		//aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);

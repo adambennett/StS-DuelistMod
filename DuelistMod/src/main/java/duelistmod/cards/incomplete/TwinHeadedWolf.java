@@ -43,10 +43,10 @@ public class TwinHeadedWolf extends DuelistCard
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    {    	
+    	attackAllEnemies(this.damage);
+    	attackAllEnemies(this.damage);
     	tribute();
-    	attackAllEnemies(this.damage);
-    	attackAllEnemies(this.damage);
     }
 
     // Which card to return when making a copy of this card.

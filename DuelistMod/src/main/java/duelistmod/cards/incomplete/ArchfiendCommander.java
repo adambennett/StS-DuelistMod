@@ -50,8 +50,8 @@ public class ArchfiendCommander extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attackAllEnemies(AttackEffect.BLUNT_HEAVY);
+    	tribute();    	
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
     		applyPower(new WeakPower(mon, this.magicNumber, false), mon);

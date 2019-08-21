@@ -42,13 +42,10 @@ public class RedEyes extends DuelistCard
     	this.tags.add(Tags.DRAGON);
     	this.tags.add(Tags.LEGEND_BLUE_EYES);
     	this.tags.add(Tags.GOOD_TRIB);
-    	this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 1;
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
 		this.baseMagicNumber = this.magicNumber = 3;
-		this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -50,7 +50,7 @@ public class SummonedSkull extends DuelistCard
         this.a2DeckCopies = 1;
         this.zombieDeckCopies = 1;
         this.startingOriginalDeckCopies = 1;
-        this.exodiaDeckCopies = 2;
+        this.exodiaDeckCopies = 1;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();

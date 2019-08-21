@@ -43,13 +43,10 @@ public class BlacklandFireDragon extends DuelistCard
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.DRAGON);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
         this.magicNumber = this.baseMagicNumber = 2;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

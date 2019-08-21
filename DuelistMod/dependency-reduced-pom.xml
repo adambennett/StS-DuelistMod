@@ -4,7 +4,7 @@
   <groupId>duelistmod</groupId>
   <artifactId>DuelistMod</artifactId>
   <name>DuelistMod</name>
-  <version>2.662.0</version>
+  <version>2.670.0</version>
   <description>A Slay the Spire adaptation of Yu-Gi-Oh!</description>
   <build>
     <finalName>DuelistMod</finalName>
@@ -112,16 +112,56 @@
       <scope>system</scope>
       <systemPath>${basedir}/../lib/TheDisciple.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>clockworkmod</groupId>
+      <artifactId>clockworkmod</artifactId>
+      <version>${Clockwork.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/ClockworkMod.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>gatherermod</groupId>
+      <artifactId>gatherermod</artifactId>
+      <version>${Clockwork.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/GathererMod.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>InfiniteSpire</groupId>
+      <artifactId>InfiniteSpire</artifactId>
+      <version>${Infinite.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/InfiniteSpire.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>eatyourbeetsvg</groupId>
+      <artifactId>eatyourbeetsvg</artifactId>
+      <version>${Animator.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/TheAnimator.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>GifTheSpireLib</groupId>
+      <artifactId>GifTheSpireLib</artifactId>
+      <version>${GifSpire.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../lib/GifTheSpireLib.jar</systemPath>
+    </dependency>
   </dependencies>
   <properties>
+    <GifSpire.version>1.0.5</GifSpire.version>
+    <Animator.version>2.8.7</Animator.version>
+    <Clockwork.version>1.0.5</Clockwork.version>
     <Raz.version>1.0.0</Raz.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <StSLib.version>1.17.1</StSLib.version>
     <Hubris.version>0.23.0</Hubris.version>
     <ModTheSpire.version>3.11.0</ModTheSpire.version>
+    <Gatherer.version>0.9.1</Gatherer.version>
     <BaseMod.version>5.15.1</BaseMod.version>
+    <Infinite.version>0.20.0</Infinite.version>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <Disciple.version>0.1.4</Disciple.version>
+    <Disciple.version>0.10.11</Disciple.version>
     <ReplayTheSpireMod.version>1.5.0</ReplayTheSpireMod.version>
     <Conspire.version>1.6.2</Conspire.version>
     <SlayTheSpire.version>7-17-2019</SlayTheSpire.version>

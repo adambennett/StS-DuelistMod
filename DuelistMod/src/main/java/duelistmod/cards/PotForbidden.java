@@ -41,16 +41,12 @@ public class PotForbidden extends DuelistCard
     public PotForbidden() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.ALL);
         this.tags.add(Tags.FIEND);
         this.tags.add(Tags.POT);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 1;
         this.misc = 0;
         this.tributes = this.baseTributes = 5;
 		this.originalName = this.name;
 		this.exhaust = true;
-		this.setupStartingCopies();
     }
 
     // Actions the card should do.

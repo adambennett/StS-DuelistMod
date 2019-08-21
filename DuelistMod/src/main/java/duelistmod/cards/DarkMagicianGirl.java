@@ -39,15 +39,11 @@ public class DarkMagicianGirl extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.MAGICIANS_FORCE);
 		this.tags.add(Tags.SPELLCASTER);
-		this.tags.add(Tags.LIMITED);
-		this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 2;
 		this.misc = 0;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.block = this.baseBlock = 10;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

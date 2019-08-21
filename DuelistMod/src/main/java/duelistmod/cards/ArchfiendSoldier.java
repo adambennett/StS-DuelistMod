@@ -42,6 +42,8 @@ public class ArchfiendSoldier extends DuelistCard
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.FIEND_DECK);
         this.tags.add(Tags.ASCENDED_TWO_DECK);
+        this.tags.add(Tags.EXODIA_DECK);
+        this.exodiaDeckCopies = 2;
         this.a2DeckCopies = 1;
 		this.fiendDeckCopies = 3;
 		this.misc = 0;

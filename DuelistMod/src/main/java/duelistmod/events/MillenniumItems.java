@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.incomplete.MillenniumSpellbook;
+import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 import duelistmod.potions.MillenniumElixir;
 
@@ -54,6 +54,7 @@ public class MillenniumItems extends AbstractImageEvent {
                         	for (AbstractRelic r : Util.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
                         	//mills.add(new MillenniumElixir());    
                         	mills.add(new MillenniumSpellbook());
+                        	mills.add(new Metronome());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
                         	if (randMill instanceof AbstractRelic)
                         	{
@@ -91,6 +92,7 @@ public class MillenniumItems extends AbstractImageEvent {
                         	ArrayList<Object> mills = new ArrayList<Object>();
                         	mills.add(new MillenniumElixir());    
                         	mills.add(new MillenniumSpellbook());
+                        	mills.add(new Metronome());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
                         	if (randMill instanceof AbstractPotion)
                         	{

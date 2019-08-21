@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
@@ -35,12 +36,24 @@ public class BoosterPackEggRelic extends CustomRelic {
 	public void onEquip()
 	{
 		DuelistMod.hasBoosterRewardRelic = true;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_BOOSTER_REWARD_RELIC, DuelistMod.hasBoosterRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	@Override
 	public void onUnequip()
 	{
 		DuelistMod.hasBoosterRewardRelic = false;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_BOOSTER_REWARD_RELIC, DuelistMod.hasBoosterRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	// Description

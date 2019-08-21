@@ -68,8 +68,8 @@ public class WanderingKing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attackAllEnemies(this.damage);
+    	tribute();    	
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
     		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())

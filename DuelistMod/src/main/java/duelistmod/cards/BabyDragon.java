@@ -41,13 +41,11 @@ public class BabyDragon extends DuelistCard
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.OP_DRAGON_DECK);
         this.tags.add(Tags.DRAGON_DECK);
         this.tags.add(Tags.ASCENDED_ONE_DECK);
         this.a1DeckCopies = 1;
         this.startingOPDragDeckCopies = 1;
-        this.exodiaDeckCopies = 2;
         this.dragonDeckCopies = 1; 
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;

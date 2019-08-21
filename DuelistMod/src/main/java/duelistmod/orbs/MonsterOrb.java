@@ -17,6 +17,8 @@ import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
+import duelistmod.cards.MonsterEgg;
+import duelistmod.helpers.Util;
 import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
@@ -104,21 +106,10 @@ public class MonsterOrb extends DuelistOrb
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 		for (int i = 0; i < this.passiveAmount; i++)
-		{
-			if (DuelistMod.toonBtnBool)
-			{
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
-				while (randomMonster.hasTag(Tags.TOON)) { randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER); }
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
-				if (DuelistMod.debug) { System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand."); }
-			}
-			else
-			{
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
-				if (DuelistMod.debug) { System.out.println("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand."); }
-			}
-			
+		{			
+			DuelistCard randomMonster = new MonsterEgg();
+			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 0, 0, 0, 0, 0, 0));
+			Util.log("theDuelist:MonsterOrb --- > Added: " + randomMonster.name + " to player hand.");
 		}
 	}
 

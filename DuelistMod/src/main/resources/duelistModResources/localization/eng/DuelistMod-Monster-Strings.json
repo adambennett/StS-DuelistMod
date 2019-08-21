@@ -74,5 +74,15 @@
 	  "You’ll have the rest of your entire life to brood over this defeat",
 	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
     ]
+  },
+  "theDuelist:DuelistNob": {
+    "MOVES": [
+      "Skull Bash",
+      "Bull Rush"
+    ],
+    "NAME": "Duelist Nob",
+    "DIALOG": [
+      "@RRrroohrrRGHHhhh!!@"
+    ]
   }
 }

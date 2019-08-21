@@ -3,6 +3,7 @@ package duelistmod.relics;
 import java.util.*;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
@@ -52,7 +53,28 @@ public class CardRewardRelicH extends CustomRelic
 		}
 		group.sortAlphabetically(true);
 		AbstractDungeon.gridSelectScreen.open(group, 1, "Select a Monster to add to your deck", false);
+		
+        try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
     }
+    
+
+    @Override
+    public void onUnequip()
+    {
+        DuelistMod.hasCardRewardRelic = false;        
+        try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
+    }
+    
     
     @Override
 	public void update() 
@@ -65,5 +87,11 @@ public class CardRewardRelicH extends CustomRelic
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 		}
 	}
+    
+    @Override
+    public int getPrice()
+    {
+    	return 250;
+    }
    
 }

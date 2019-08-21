@@ -1,16 +1,14 @@
 package duelistmod.cards.incomplete;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.orbs.Moon;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -52,10 +50,10 @@ public class BlackRoseMoonlight extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> tribs = tribute();
+    	tribute();
     	attackAll(this.damage);
     	constrictAllEnemies(p, this.magicNumber);
-    	for (DuelistCard c : tribs) { if (c.hasTag(Tags.PLANT)) { applyPowerToSelf(new ThornsPower(p, this.secondMagic)); }}
+    	channel(new Moon(), 2);
     }
 
     

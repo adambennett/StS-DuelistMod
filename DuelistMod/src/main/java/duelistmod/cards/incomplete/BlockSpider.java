@@ -39,9 +39,12 @@ public class BlockSpider extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);  
+        this.tags.add(Tags.EXODIA_DECK);
+        this.exodiaDeckCopies = 2;
         this.summons = this.baseSummons = 1;
         this.baseBlock = this.block = 6;	
         this.originalName = this.name;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

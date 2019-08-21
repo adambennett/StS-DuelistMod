@@ -14,6 +14,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.typecards.TokenCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class TributeToken extends TokenCard 
@@ -77,6 +78,39 @@ public class TributeToken extends TokenCard
             this.initializeDescription();
         }
 	}
+	
+	// Need at least 1 summon to play this token
+  	@Override
+  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
+  	{
+  		// Check super canUse()
+  		boolean canUse = super.canUse(p, m); 
+  		if (!canUse) { return false; }
+  		
+  		// Pumpking & Princess
+  		else if (this.misc == 52) { return true; }
+  		
+  		// Mausoleum check
+    	else if (p.hasPower(EmperorPower.POWER_ID))
+		{
+			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
+			if (!empInstance.flag)
+			{
+				return true;
+			}
+			else
+			{
+				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
+			}
+		}
+
+  		// Check for # of summons >= tributes
+  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
+
+  		// Player doesn't have something required at this point
+  		this.cantUseMessage = DuelistMod.needSummonsString;
+  		return false;
+  	}
 	
 	@Override
 	public String getID() {

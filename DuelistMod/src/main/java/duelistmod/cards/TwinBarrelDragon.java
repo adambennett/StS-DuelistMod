@@ -42,13 +42,10 @@ public class TwinBarrelDragon extends DuelistCard
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.DRAGON_DECK);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 2;
         this.dragonDeckCopies = 1;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.originalName = this.name;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

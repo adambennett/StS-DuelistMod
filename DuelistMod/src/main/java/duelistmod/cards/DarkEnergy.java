@@ -53,8 +53,8 @@ public class DarkEnergy extends DuelistCard
 		ArrayList<DuelistCard> aquas = new ArrayList<DuelistCard>();
 		for (int i = 0; i < this.magicNumber + 2; i++)
 		{
-			DuelistCard random = (DuelistCard) returnTrulyRandomFromSet(Tags.FIEND);
-			while (aquas.contains(random)) { random = (DuelistCard) returnTrulyRandomFromSet(Tags.FIEND); }
+			DuelistCard random = (DuelistCard) returnTrulyRandomFromSet(Tags.FIEND, false);
+			while (aquas.contains(random)) { random = (DuelistCard) returnTrulyRandomFromSet(Tags.FIEND, false); }
 			aquas.add(random);
 		}
 		

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
-import com.megacrit.cardcrawl.powers.FocusPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -39,6 +38,7 @@ public class LightningRodLord extends DuelistCard
         this.baseDamage = this.damage = 12;
         this.tributes = this.baseTributes = 4;
         this.magicNumber = this.baseMagicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.MONSTER);
         this.misc = 0;
         this.originalName = this.name;
@@ -76,7 +76,7 @@ public class LightningRodLord extends DuelistCard
     			}
     		}
     	}
-    	applyPowerToSelf(new FocusPower(p, -this.magicNumber));
+    	applyPowerToSelf(new FocusDownPower(p, p, this.secondMagic, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -87,11 +87,13 @@ public class LightningRodLord extends DuelistCard
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
+    public void upgrade() 
+    {
+        if (!this.upgraded) 
+        {
             this.upgradeName();
-            this.upgradeDamage(4);
             this.upgradeTributes(-1);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

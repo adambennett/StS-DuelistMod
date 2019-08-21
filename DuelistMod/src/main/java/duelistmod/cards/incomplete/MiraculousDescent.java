@@ -35,6 +35,10 @@ public class MiraculousDescent extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.TRAP);
+        this.tags.add(Tags.EXODIA_DECK_UPGRADE);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
     }
 
     // Actions the card should do.

@@ -305,9 +305,9 @@
 		"UPGRADE_DESCRIPTION": "Defend NL Gain !B! Block."
 	},
 	"theDuelist:CatapultTurtle": {
-		"DESCRIPTION": "Aqua Machine NL Tribute !duelist:TRIB! NL At the start of turn, Tribute ALL Summons and deal !M! damage for each to ALL enemies.",
+		"DESCRIPTION": "Aqua Machine NL Tribute !duelist:TRIB! NL At the start of turn, Tribute X and deal !M! damage for each Tribute to ALL enemies.",
 		"NAME": "Catapult Turtle",
-		"UPGRADE_DESCRIPTION": "Aqua Machine NL Tribute !duelist:TRIB! NL At the start of turn, Tribute ALL Summons and deal !M! damage for each to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Aqua Machine NL Tribute !duelist:TRIB! NL At the start of turn, Tribute X and deal !M! damage for each Tribute to ALL enemies."
 	},
 	"theDuelist:CaveDragon": {
 		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -473,9 +473,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. Overflow !M! - gain !duelist:M! HP."
 	},
 	"theDuelist:DarkstormDragon": {
-		"DESCRIPTION": "Dragon NL Arcane NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of a random Dragon in your hand by !M! for this turn.",
+		"DESCRIPTION": "Arcane NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of a random Dragon in your hand by !M! for this turn.",
 		"NAME": "Darkstorm Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Arcane NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of a random Dragon in your hand by !M! for this turn."
+		"UPGRADE_DESCRIPTION": "Arcane NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Reduce the Tribute cost of a random Dragon in your hand by !M! for this turn."
 	},
 	"theDuelist:DianKeto": {
 		"DESCRIPTION": "Fleeting NL Arcane NL Heal !M! HP.",
@@ -639,9 +639,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon 1 NL Reduce the cost of a random card in your discard pile by !M!"
 	},
 	"theDuelist:FiendishChain": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Increase the Tributes of all monsters in your hand by !M!.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !duelist:M! Temporary HP. NL Increase the Tributes of all monsters in your hand by !M!.",
 		"NAME": "Fiendish Chain",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Increase the Tributes of all monsters in your hand by !M!."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !duelist:M! Temporary HP. NL Increase the Tributes of all monsters in your hand by !M!."
 	},
 	"theDuelist:FinalFlame": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Weak.",
@@ -983,9 +983,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:InsectQueen": {
-		"DESCRIPTION": "Insect NL Tribute ALL Summons. Apply !M! times that much poison to ALL enemies. Reduce your max Summons by 1.",
+		"DESCRIPTION": "Insect NL Tribute X NL Apply !M! Poison to ALL enemies for each Tribute. NL Reduce your max Summons by 1.",
 		"NAME": "Insect Queen",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute ALL Summons. Apply !M! times that much poison to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Apply !M! Poison to ALL enemies for each Tribute."
 	},
 	"theDuelist:InsectToken": {
 		"DESCRIPTION": "Insect NL Summon 1 NL Apply 1 Poison.",
@@ -1493,9 +1493,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the Tributes of a random card in your hand by 2 for this combat. Exhaust."
 	},
 	"theDuelist:PotAvarice": {
-		"DESCRIPTION": "Tribute ALL Summons. NL Increment the amount tributed. NL Exhaust.",
+		"DESCRIPTION": "Tribute X NL Increment X NL Exhaust.",
 		"NAME": "Pot of Avarice",
-		"UPGRADE_DESCRIPTION": "Tribute ALL Summons. NL Increment the amount tributed + !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Tribute X NL Increment X + !M! NL Exhaust."
 	},
 	"theDuelist:PotDichotomy": {
 		"DESCRIPTION": "Summon X + !duelist:SUMM! NL Overflow !M! - Increment X + !duelist:M!",
@@ -2347,9 +2347,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL For the next !M! end-of-turns, ALL enemies lose 1 Strength. For the next !duelist:M! end-of-turns, all tribute monsters in your draw pile gain 1 Tribute."
 	},
 	"theDuelist:RainbowJar": {
-		"DESCRIPTION": "Choose a card type. For the next !M! turns, whenever you play a card of that type, add it back into your hand at the start of next turn.",
+		"DESCRIPTION": "Choose a card type. For the next !M! turns, whenever you play a card of that type, add a copy of it into your hand at the start of next turn.",
 		"NAME": "Rainbow Capture Jar",
-		"UPGRADE_DESCRIPTION": "Choose a card type. For the next !M! turns, whenever you play a card of that type, add it back into your hand at the start of next turn."
+		"UPGRADE_DESCRIPTION": "Choose a card type. For the next !M! turns, whenever you play a card of that type, add a copy of it into your hand at the start of next turn."
 	},
 	"theDuelist:RainbowKuriboh": {
 		"DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !duelist:M! Randomized monsters (of a random type) to your hand.",
@@ -2694,7 +2694,7 @@
 	"theDuelist:Zombyra": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns.",
 		"NAME": "Zombyra",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turn."
 	},
 	"theDuelist:MagicalStone": {
 		"DESCRIPTION": "Arcane NL Draw !M! Spells. NL Exhaust.",
@@ -3132,9 +3132,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, choose 1 of !M! random monster types. Resummon a random monster of that type on a random enemy."
 	},
 	"theDuelist:DestructPotion": {
-		"DESCRIPTION": "Fleeting NL Arcane NL Tribute all of your summons and gain !M! max HP for each.",
+		"DESCRIPTION": "Fleeting NL Arcane NL Tribute X NL Gain !M! Max HP for each Tribute.",
 		"NAME": "Destruct Potion",
-		"UPGRADE_DESCRIPTION": "Fleeting NL Arcane NL Tribute all of your summons and gain !M! max HP for each."
+		"UPGRADE_DESCRIPTION": "Fleeting NL Arcane NL Tribute X NL Gain !M! Max HP for each Tribute."
 	},
 	"theDuelist:CallMummy": {
 		"DESCRIPTION": "Choose a monster in your hand to Resummon on an enemy. NL Exhaust.",
@@ -3302,9 +3302,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:Spore": {
-		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Increment X.",
+		"DESCRIPTION": "Plant NL Increment X NL Summon X",
 		"NAME": "Spore",
-		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Increment X."
+		"UPGRADE_DESCRIPTION": "Plant NL Increment X NL Summon X"
 	},
 	"theDuelist:RagingMadPlants": {
 		"DESCRIPTION": "Arcane NL Gain !M! Strength for each Plant you currently have Summoned. NL Exhaust.",
@@ -3342,9 +3342,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after !M! more turns. NL Exhaust."
 	},
 	"theDuelist:PinchHopper": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage to an enemy for each Insect you currently have summoned.",
+		"DESCRIPTION": "Arcane NL Insect NL Summon !duelist:SUMM! NL Deal !D! damage to an enemy for each Insect you currently have summoned.",
 		"NAME": "Pinch Hopper",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage to an enemy for each Insect you currently have summoned."
+		"UPGRADE_DESCRIPTION": "Arcane NL Insect NL Summon !duelist:SUMM! NL Deal !D! damage to an enemy for each Insect you currently have summoned."
 	},
 	"theDuelist:UndergroundArachnid": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage to a random enemy. NL Gain !B! Block.",
@@ -3382,9 +3382,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Lose 3 max HP when Tributed for any non-Zombie monster."
 	},
 	"theDuelist:LightningVortex": {
-		"DESCRIPTION": "Deal !D! damage. NL Tribute ALL summons and Resummon a random monster that costs that many tributes.",
+		"DESCRIPTION": "Tribute X NL Deal !D! damage. NL Resummon a random monster that costs X tributes.",
 		"NAME": "Lightning Vortex",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Tribute ALL summons and Resummon a random monster that costs that many tributes."
+		"UPGRADE_DESCRIPTION": "Tribute X NL Deal !D! damage. NL Resummon a random monster that costs X tributes."
 	},
 	"theDuelist:HauntAttacks": {
 		"DESCRIPTION": "Haunt Attacks NL Attack cards will cost 0 for the rest of combat, but playing Attacks will trigger random negative effects.",
@@ -3537,9 +3537,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! times. NL Evoke your next orb."
 	},
 	"theDuelist:DarkAssailant": {
-		"DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel !M! Dark.",
+		"DESCRIPTION": "Arcane NL Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel !M! Dark.",
 		"NAME": "Dark Assailant",
-		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel !M! Dark."
+		"UPGRADE_DESCRIPTION": "Arcane NL Zombie NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel !M! Dark."
 	},
 	"theDuelist:DoomShaman": {
 		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Channel !M! Void. NL Exhaust.",
@@ -3547,9 +3547,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Channel !M! Void. NL Exhaust."
 	},
 	"theDuelist:LightningRodLord": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel Lightning until all your orb slots are filled, then deal !D! damage to a random enemy for each Lightning Channeled. NL Lose !M! Focus.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel Lightning until all your orb slots are filled, then deal !D! damage to a random enemy for each Lightning Channeled. NL Lose !M! Focus for !duelist:M! turns.",
 		"NAME": "Lightning Rod Lord",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel Lightning until all your orb slots are filled, then deal !D! damage to a random enemy for each Lightning Channeled. NL Lose !M! Focus."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel Lightning until all your orb slots are filled, then deal !D! damage to a random enemy for each Lightning Channeled. NL Lose !M! Focus for !duelist:M! turns."
 	},
 	"theDuelist:MiraculousDescent": {
 		"DESCRIPTION": "At the end of each turn, gain a random amount of Block.",
@@ -3677,9 +3677,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak to a random enemy twice."
 	},
 	"theDuelist:AmbitiousGofer": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Dark. NL Channel !M! Void. NL Gain a !M! turn random debuff.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Dark. NL Channel !M! Void. NL Gain a !M! turn random debuff.",
 		"NAME": "Ambitious Gofer",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Dark. NL Channel !M! Void. NL Gain a !M! turn random debuff."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Dark. NL Channel !M! Void. NL Gain a !M! turn random debuff."
 	},
 	"theDuelist:GoblinKing": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Dark.",
@@ -3872,9 +3872,9 @@
 		"UPGRADE_DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Increment !M!. NL Add !duelist:M! Randomized monsters (of a random type) to your hand."
 	},
 	"theDuelist:ElectromagneticShield": {
-		"DESCRIPTION": "Lightning now hits ALL enemies. NL Channel !M! Lightning.",
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Lightning now hits ALL enemies. NL Channel !M! Lightning. NL Gain !duelist:M! Plated Armor.",
 		"NAME": "Electromagnetic Shield",
-		"UPGRADE_DESCRIPTION": "Lightning now hits ALL enemies. NL Channel !M! Lightning."
+		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Lightning now hits ALL enemies. NL Channel !M! Lightning. NL Gain !duelist:M! Plated Armor."
 	},
 	"theDuelist:Electrowhip": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Lightning now hits ALL enemies. NL Channel !M! Lightning.",
@@ -4157,9 +4157,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Fetch a card from your draw pile."
 	},
 	"theDuelist:BlackRoseMoonlight": {
-		"DESCRIPTION": "Plant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Constricted to ALL enemies. NL Gain !duelist:M! Thorns for each Plant you Tribute.",
+		"DESCRIPTION": "Plant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Constricted to ALL enemies. NL Channel 2 Moon.",
 		"NAME": "B.R. Moonlight Dragon",
-		"UPGRADE_DESCRIPTION": "Plant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Constricted to ALL enemies. NL Gain !duelist:M! Thorns for each Plant you Tribute."
+		"UPGRADE_DESCRIPTION": "Plant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Constricted to ALL enemies. NL Channel 2 Moon."
 	},
 	"theDuelist:BlackRoseDragon": {
 		"DESCRIPTION": "Plant Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Constricted to ALL enemies for each Plant you Tribute.",
@@ -4330,6 +4330,71 @@
 		"DESCRIPTION": "Tribute ALL monsters to regrow your World Tree. NL World Tree will be capped by !M! Temporary HP for each Plant you Tribute.",
 		"NAME": "Regrow",
 		"UPGRADE_DESCRIPTION": "Tribute ALL monsters to regrow your World Tree. NL World Tree will be capped by !M! Temporary HP for each Plant you Tribute."
+	},
+	"theDuelist:UmbralHorrorGhost": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !M! damage for each monster you Tribute.",
+		"NAME": "Umbral Horror Ghost",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deal !M! damage for each monster you Tribute."
+	},
+	"theDuelist:UmbralHorrorUniform": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Block for each monster you Tribute.",
+		"NAME": "Umbral Horror Uniform",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Block for each monster you Tribute."
+	},
+	"theDuelist:UmbralHorrorWilloWisp": {
+		"DESCRIPTION": "Fiend NL Tribute X NL Deal !M! damage for each monster you Tribute. NL Gain !duelist:M! Block for each monster you Tribute.",
+		"NAME": "Umbral Horror Wisp",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute X NL Deal !M! damage for each monster you Tribute. NL Gain !duelist:M! Block for each monster you Tribute."
+	},
+	"theDuelist:MasterkingArchfiend": {
+		"DESCRIPTION": "Fiend NL Tribute X NL The next time you Tribute, deal damage to ALL enemies equal to twice the sum of the Tribute costs you paid for this monster and the next Tribute card.",
+		"NAME": "Masterking Archfiend",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute X NL The next time you Tribute, deal damage to ALL enemies equal to twice the sum of the Tribute costs you paid for this monster and the next Tribute card."
+	},
+	"theDuelist:DarkHunter": {
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel a Dark. NL Evoke a random orb.",
+		"NAME": "Dark Hunter",
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel a Dark. NL Evoke a random orb !M! times."
+	},
+	"theDuelist:EternalSoul": {
+		"DESCRIPTION": "At the start of turn, Evoke a random orb.",
+		"NAME": "Eternal Soul",
+		"UPGRADE_DESCRIPTION": "At the start of turn, Evoke !M! random orbs."
+	},
+	"theDuelist:SkilledDarkMagician": {
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Channel a random orb for each enemy you attack.",
+		"NAME": "Skilled Dark Magician",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Channel a random orb for each enemy you attack."
+	},
+	"theDuelist:Slushy": {
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !duelist:M! NL Gain !M Temporary HP. NL Draw a card. NL Channel a Water. NL Exhaust.",
+		"NAME": "Slushy",
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !duelist:M! NL Gain !M Temporary HP. NL Draw a card. NL Channel a Water. NL Exhaust."
+	},
+	"theDuelist:MobiusFrostMonarch": {
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Frost for each Aqua you Tribute.",
+		"NAME": "Mobius, Frost Monarch",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Frost for each Aqua you Tribute."
+	},
+	"theDuelist:TorrentialTribute": {
+		"DESCRIPTION": "Tribute X NL Deal !M! damage to ALL enemies for each Tribute.",
+		"NAME": "Torrential Tribute",
+		"UPGRADE_DESCRIPTION": "Tribute X NL Deal !M! damage to ALL enemies for each Tribute."
+	},
+	"theDuelist:PharaohBlessing": {
+		"DESCRIPTION": "Activate the Millennium Puzzle. NL Channel a Light MillenniumOrb.",
+		"NAME": "Pharaoh Blessing",
+		"UPGRADE_DESCRIPTION": "Activate the Millennium Puzzle. NL Channel a Light MillenniumOrb."
+	},
+	"theDuelist:Metronome": {
+		"DESCRIPTION": "Resummon a completely random Duelist card.",
+		"NAME": "Millennium Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist card."
+	},
+	"theDuelist:OneForOne": {
+		"DESCRIPTION": "Arcane NL Retain !M! card this turn. NL Exhaust.",
+		"NAME": "One for One",
+		"UPGRADE_DESCRIPTION": "Arcane NL Retain !M! cards this turn. NL Exhaust."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

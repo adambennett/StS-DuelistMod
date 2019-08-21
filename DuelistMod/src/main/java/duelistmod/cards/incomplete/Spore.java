@@ -45,8 +45,8 @@ public class Spore extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();
     	incMaxSummons(p, getXEffect());
+    	summon(p, getXEffect(), this);    	
     	useXEnergy();
     }
 

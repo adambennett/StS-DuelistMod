@@ -78,8 +78,8 @@ public class DynamicTypeCard extends DuelistCard
     	
     	if (this.callCard instanceof YamiForm)
     	{
-    		DuelistCard randResu = (DuelistCard) returnTrulyRandomFromSet(tagSave);
-    		while (randResu.hasTag(Tags.EXEMPT)) { randResu = (DuelistCard) returnTrulyRandomFromSet(tagSave); }
+    		DuelistCard randResu = (DuelistCard) returnTrulyRandomFromSets(tagSave, Tags.MONSTER);
+    		while (randResu.hasTag(Tags.EXEMPT)) { randResu = (DuelistCard) returnTrulyRandomFromSets(tagSave, Tags.MONSTER); }
     		DuelistCard.fullResummon(randResu, false, AbstractDungeon.getRandomMonster(), false);
     	}
     	

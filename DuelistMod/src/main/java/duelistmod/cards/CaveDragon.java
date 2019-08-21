@@ -42,6 +42,8 @@ public class CaveDragon extends DuelistCard
         this.tags.add(Tags.LEGACY_DARKNESS);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.OP_DRAGON_DECK);
+        this.tags.add(Tags.EXODIA_DECK);
+        this.exodiaDeckCopies = 2;
         this.startingOPDragDeckCopies = 2;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;

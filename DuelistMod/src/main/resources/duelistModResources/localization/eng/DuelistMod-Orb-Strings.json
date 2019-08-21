@@ -20,7 +20,7 @@
   "theDuelist:MonsterOrb": {
     "NAME": "MonsterOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized monster to your hand. NL #yEvoke: Change the cost of #b", " random monster in your hand to 0 for this turn.", " #yRandomized monsters to your hand. NL #yEvoke: Change the cost of #b", " random monsters in your hand to 1 for this turn."
+      "#yPassive: At the start of turn, add #b", " #yMonster #yEgg to your hand. NL #yEvoke: Change the cost of #b", " random monster in your hand to 0 for this turn.", " #yMonster #yEggs to your hand. NL #yEvoke: Change the cost of #b", " random monsters in your hand to 0 for this turn."
     ]
   },
   "theDuelist:DragonOrb": {
@@ -98,10 +98,7 @@
   "theDuelist:Consumer": {
     "NAME": "Consumer",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, if the most recent summon in your summoning zone is a token, #yTribute it and deal #b",
-	  " damage to ALL enemies. NL #yEvoke: Lose #b",
-	  " damage to ALL enemies. NL #yEvoke: Gain #b",
-	  " Energy and #yEvoke all of your orbs."
+	  "#yPassive: At the end of turn, Evoke another random orb. NL #yEvoke: For each orb that was Evoked by this orb, gain #b", " Energy at the start of next turn."
     ]
   },
   "theDuelist:Gadget": {

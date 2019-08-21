@@ -4,17 +4,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.variables.Strings;
+import duelistmod.DuelistMod;
 
-public class ShopRelicRarityRelic extends CustomRelic 
+public class ShopToken extends CustomRelic 
 {
 	// ID, images, text.
-	public static final String ID = DuelistMod.makeID("ShopRelicRarityRelic");
+	public static final String ID = DuelistMod.makeID("ShopToken");
 	public static final String IMG = DuelistMod.makeRelicPath("ShopRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("Shop_Outline.png");
 	
-	public ShopRelicRarityRelic() {
+	public ShopToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 	}
 	
@@ -22,6 +21,7 @@ public class ShopRelicRarityRelic extends CustomRelic
 	public void onEquip()
 	{
 		DuelistMod.hasShopBuffRelic = true;
+
 	}
 	
 	@Override
@@ -40,6 +40,14 @@ public class ShopRelicRarityRelic extends CustomRelic
 	// Which relic to return on making a copy of this relic.
 	@Override
 	public AbstractRelic makeCopy() {
-		return new ShopRelicRarityRelic();
+		return new ShopToken();
 	}
+	
+	
+	@Override
+	public int getPrice()
+	{
+		return 50;
+	}
+	
 }

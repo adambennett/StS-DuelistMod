@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.*;
 
@@ -31,6 +32,24 @@ public class CardRewardRelicB extends CustomRelic
     {
     	this.counter = 1;
         DuelistMod.hasCardRewardRelic = true;        
+        try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
+    }
+    
+    @Override
+    public void onUnequip()
+    {
+        DuelistMod.hasCardRewardRelic = false;        
+        try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_CARD_REWARD_RELIC, DuelistMod.hasCardRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
     }
     
     @Override

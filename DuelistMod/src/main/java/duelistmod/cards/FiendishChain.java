@@ -37,8 +37,8 @@ public class FiendishChain extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.originalName = this.name;
 		this.tags.add(Tags.TRAP);
-		this.tributes = this.baseTributes = 1;
-		this.baseMagicNumber = this.magicNumber = 9;
+		this.tributes = this.baseTributes = 2;
+		this.baseSecondMagic = this.secondMagic = 12;
 		this.baseMagicNumber = this.magicNumber = 2;
 	}
 
@@ -47,7 +47,7 @@ public class FiendishChain extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute();
-		gainTempHP(this.magicNumber);
+		gainTempHP(this.secondMagic);
 		for (AbstractCard c : p.hand.group)
 		{
 			if (c instanceof DuelistCard && !c.uuid.equals(this.uuid) && c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.TOKEN))
@@ -72,7 +72,7 @@ public class FiendishChain extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(-1);
+			this.upgradeSecondMagic(3);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

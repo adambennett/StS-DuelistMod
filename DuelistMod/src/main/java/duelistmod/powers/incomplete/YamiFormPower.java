@@ -49,7 +49,7 @@ public class YamiFormPower extends AbstractPower
 	@Override
 	public void updateDescription() 
 	{
-		if (this.amount > DuelistMod.monsterTypes.size()) { this.amount = DuelistMod.monsterTypes.size(); }
+		if (this.amount > DuelistMod.monsterTypes.size() + 5) { this.amount = DuelistMod.monsterTypes.size() + 5; }
 		if (this.amount > 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
 		else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
 	}

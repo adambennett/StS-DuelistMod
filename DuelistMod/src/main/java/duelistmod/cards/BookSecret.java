@@ -60,8 +60,8 @@ public class BookSecret extends DuelistCard
     	ArrayList<DuelistCard> randomCards = new ArrayList<DuelistCard>();
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELLCASTER);
-			while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELLCASTER); }
+			DuelistCard randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELLCASTER, false);
+			while (randomCards.contains(randomMonster)) { randomMonster = (DuelistCard) returnTrulyRandomFromSet(Tags.SPELLCASTER, false); }
 			randomCards.add(randomMonster);
 		}
 		

@@ -40,6 +40,9 @@ public class ShardGreed extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.REDUCED);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 1;
     }

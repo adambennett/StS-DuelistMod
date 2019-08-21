@@ -16,13 +16,13 @@
 			"At the start of combat, #ySummon #b1 #yMachine Token, and add a random Token to your hand.",
 			"At the start of combat, #ySummon #b1 #ySuperheavy Token, gain a random amount (0-5) of #yBlock and gain #b2 #yBlur.",
 			"At the start of combat, #ySummon #b1 #yInsect Token and apply #b2 #yPoison to ALL enemies.",
-			"At the start of combat, #ySummon #b1 #yPlant Token and apply #b4 #yConstricted to ALL enemies.",
+			"At the start of combat, #ySummon #b1 #yPlant Token and apply #b2 #yConstricted to ALL enemies.",
 			"At the start of combat, #ySummon #b1 #yPuzzle Token and gain #b2 #yThorns.",
 			"At the start of combat, #ySummon #b1 #yMegatype Token and add a random monster to your hand.",
 			"At the start of combat, #yIncrement and #ySummon #b1 for each Act.",
 			"At the start of combat, #ySummon #b2 #yPuzzle Tokens, and add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.",
 			"At the start of combat, #ySummon a random amount of #yBonanza Tokens and gain a random #yBuff.",
-			"At the start of combat, #ySummon #b1 #yExodia Token and draw #b2 extra cards. All cards in your starter deck have #ySoulbound.",
+			"At the start of combat, #ySummon #b1 #yExodia Token. NL All cards in your starter deck have #ySoulbound and you cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.",
 			"At the start of combat, #ySummon #b1 #yPuzzle Token (GIANT DECK)",
 			"At the start of combat, #ySummon #b1 #yMegatype Token and apply #b2 #yWeak or #yVulnerable to a random enemy.",
 			"At the start of combat, #ySummon #b1 #yMegatype Token and #yChannel a #yShadow orb.",
@@ -337,7 +337,7 @@
 			"#yUpgrading Duelist cards will grant extra bonuses."
 		]
 	},
-	"theDuelist:ShopRelicRarityRelic": {
+	"theDuelist:ShopToken": {
 		"NAME": "Shop Token",
 		"FLAVOR": "A weird looking rug shaped token.",
 		"DESCRIPTIONS": [
@@ -491,6 +491,76 @@
 		"FLAVOR": "This strange anchor appears to be imbided with powerful magic...",
 		"DESCRIPTIONS": [
 			"#ySummon #b2 random Tokens at the start of each combat."
+		]
+	},
+	"theDuelist:GamblerChip": {
+		"NAME": "Gambler's Chip",
+		"FLAVOR": "You can see a small inscription on one side. It reads: \"Yugi's Lucky Chip!\"",
+		"DESCRIPTIONS": [
+			"Gain [E] at the start of each turn. Whenever you attempt to obtain a card, have a #b50% chance to not receive the card."
+		]
+	},
+	"theDuelist:MerchantPendant": {
+		"NAME": "Merchant's Pendant",
+		"FLAVOR": "A rug pendant? The Merchant is such a weird fellow.",
+		"DESCRIPTIONS": [
+			"Upon pickup, refresh the entire shop. Apply #yUpgrades to a random type of card. Apply a random discount to everything in the shop."
+		]
+	},
+	"theDuelist:MerchantTalisman": {
+		"NAME": "Merchant's Talisman",
+		"FLAVOR": "It's all rugs. All his stuff is rugs. Even this weird talisman thing is rug-shaped.",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate all #ySpells in your deck."
+		]
+	},
+	"theDuelist:MerchantSword": {
+		"NAME": "Merchant's Sword",
+		"FLAVOR": "How can a sword even be rug-shaped?",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate all #yMonsters in your deck."
+		]
+	},
+	"theDuelist:MerchantRugbox": {
+		"NAME": "Merchant's Rugbox",
+		"FLAVOR": "A whole box of the merchant's used up rugs. These really could use a wash...",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate all #yTraps in your deck."
+		]
+	},
+	"theDuelist:Monsterbox": {
+		"NAME": "Monsterbox",
+		"FLAVOR": "A box of monsters!",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL monsters from your deck and replace them with an equal number of random monsters from one random type."
+		]
+	},
+	"theDuelist:Spellbox": {
+		"NAME": "Spellbox",
+		"FLAVOR": "A box of Spells!",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Spells from your deck and replace them with an equal number of random Spells."
+		]
+	},
+	"theDuelist:Trapbox": {
+		"NAME": "Trapbox",
+		"FLAVOR": "A box of Traps!",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Traps from your deck and replace them with an equal number of random Traps."
+		]
+	},
+	"theDuelist:Spellheart": {
+		"NAME": "Spellheart",
+		"FLAVOR": "A tasty magical fruit, usually consumed by magicians.",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Spells from your deck. Gain #b5 Max HP for each Spell removed."
+		]
+	},
+	"theDuelist:TrapVortex": {
+		"NAME": "Trap Vortex",
+		"FLAVOR": "A localized black hole. Neat?",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Traps from your deck. At the start of each combat, gain ", " equal to the number of Traps removed."
 		]
 	},
 	"theDuelist:OrbCardRelic": {

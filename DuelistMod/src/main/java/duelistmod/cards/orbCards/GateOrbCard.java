@@ -35,6 +35,7 @@ public class GateOrbCard extends DuelistCard
     public GateOrbCard() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.ORB_CARD);
+        this.tags.add(Tags.NO_METRONOME);
         this.originalName = this.name;
         this.dontTriggerOnUseCard = true;
     }

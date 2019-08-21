@@ -38,6 +38,7 @@ public class ExodiaHead extends DuelistCard
         this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.EXODIA);
         this.tags.add(Tags.EXODIA_PIECE);
+        this.tags.add(Tags.EXODIA_HEAD);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.LIMITED);
         this.tags.add(Tags.EXODIA_DECK);

@@ -46,8 +46,8 @@ public class ArchfiendGeneral extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attackAllEnemies(AttackEffect.SMASH);
+    	tribute();    	
     }
 
     

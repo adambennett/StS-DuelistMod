@@ -1,9 +1,10 @@
-package duelistmod.helpers;
+package duelistmod.helpers.crossover;
 
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
 import chronomuncher.relics.*;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 
 public class DiscipleHelper 
@@ -11,6 +12,7 @@ public class DiscipleHelper
 
 	public static void extraRelics()
 	{
+		Util.log("Adding a select set of relics from The Disciple to the Duelist relic pool");
 		BaseMod.addRelicToCustomPool(new BlueBox(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new PaperTurtyl(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SlipperyGoo(), AbstractCardEnum.DUELIST);

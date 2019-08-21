@@ -40,13 +40,16 @@ public class BeastTalwar extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attack(m);
+    	tribute();    	
     }
 
     

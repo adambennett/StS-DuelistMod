@@ -36,7 +36,9 @@ public class MillenniumShield extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.LIMITED);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
         this.misc = 0;
         this.magicNumber = this.baseMagicNumber = 4;
 		this.originalName = this.name;

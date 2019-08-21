@@ -61,5 +61,11 @@ public class OrbCardRelic extends CustomRelic
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 		}
 	}
+    
+    @Override
+    public int getPrice()
+    {
+    	return 100;
+    }
    
 }

@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
@@ -37,6 +38,12 @@ public class BoosterBonusPackIncreaseRelic extends CustomRelic {
 	{
 		BoosterPackHelper.bonusPackSize = 5;
 		DuelistMod.hasBoosterRewardRelic = true;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_BOOSTER_REWARD_RELIC, DuelistMod.hasBoosterRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
 	@Override
@@ -44,6 +51,12 @@ public class BoosterBonusPackIncreaseRelic extends CustomRelic {
 	{
 		BoosterPackHelper.bonusPackSize = 3;
 		DuelistMod.hasBoosterRewardRelic = false;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setBool(DuelistMod.PROP_BOOSTER_REWARD_RELIC, DuelistMod.hasBoosterRewardRelic);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	// Description

@@ -50,9 +50,9 @@ public class GarbageLord extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	attack(m);
 		tribute();
-		summon();
-		attack(m);
+		summon();		
 		block();
 		AbstractOrb d = new Dark();
 		channel(d);

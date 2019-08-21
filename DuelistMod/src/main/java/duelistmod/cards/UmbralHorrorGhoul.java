@@ -50,8 +50,8 @@ public class UmbralHorrorGhoul extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> tributeList = tribute();
     	attack(m);
+    	ArrayList<DuelistCard> tributeList = tribute();    	
     	attack(m, AttackEffect.SLASH_VERTICAL, this.magicNumber * tributeList.size());
     }
     

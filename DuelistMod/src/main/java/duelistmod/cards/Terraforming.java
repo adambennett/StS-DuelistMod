@@ -36,12 +36,8 @@ public class Terraforming extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.ALL);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 1;
 		this.originalName = this.name;
 		this.exhaust = true;
-		this.setupStartingCopies();
     }
 
     

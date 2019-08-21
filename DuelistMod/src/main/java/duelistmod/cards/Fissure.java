@@ -38,8 +38,6 @@ public class Fissure extends DuelistCard
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.LEGEND_BLUE_EYES);
 		this.tags.add(Tags.INCREMENT_DECK);
-		this.tags.add(Tags.EXODIA_DECK);
-		this.exodiaDeckCopies = 2;
 		this.originalName = this.name;
 		this.incrementDeckCopies = 1;
 		this.setupStartingCopies();

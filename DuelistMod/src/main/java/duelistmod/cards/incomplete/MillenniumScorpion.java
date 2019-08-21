@@ -38,6 +38,9 @@ public class MillenniumScorpion extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT); 
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
         this.summons = this.baseSummons = 1;			
         this.baseBlock = this.block = 8;
         this.originalName = this.name;

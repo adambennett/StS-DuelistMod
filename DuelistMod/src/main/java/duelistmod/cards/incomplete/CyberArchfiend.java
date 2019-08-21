@@ -37,6 +37,9 @@ public class CyberArchfiend extends DuelistCard
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.MACHINE);
     	this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 1;
@@ -46,8 +49,8 @@ public class CyberArchfiend extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	tribute();
     	attack(m);
+    	tribute();    	
     	invert(1);
     }
 

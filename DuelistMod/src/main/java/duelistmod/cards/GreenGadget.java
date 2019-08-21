@@ -43,6 +43,8 @@ public class GreenGadget extends DuelistCard
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MACHINE);
 		this.tags.add(Tags.MACHINE_DECK);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
 		this.machineDeckCopies = 1;		
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;

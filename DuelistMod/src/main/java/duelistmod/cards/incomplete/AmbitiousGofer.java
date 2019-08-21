@@ -28,11 +28,11 @@ public class AmbitiousGofer extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public AmbitiousGofer() {
@@ -40,6 +40,7 @@ public class AmbitiousGofer extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);       
         this.summons = this.baseSummons = 1;
+        this.baseBlock = this.block = 4;
         this.baseMagicNumber = this.magicNumber = 2;	
         this.originalName = this.name;
     }

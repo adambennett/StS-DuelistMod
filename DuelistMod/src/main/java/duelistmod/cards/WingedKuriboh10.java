@@ -50,7 +50,7 @@ public class WingedKuriboh10 extends DuelistCard
     {
     	tribute();
     	gainTempHP(this.magicNumber);
-    	ArrayList<DuelistCard> types = generateTypeCards(this.magicNumber, true);
+    	ArrayList<DuelistCard> types = generateTypeCards(this.secondMagic, true);
     	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     }
 

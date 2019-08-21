@@ -45,18 +45,15 @@ public class SevenColoredFish extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.AQUA);
-        this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.ORIGINAL_DECK);   
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
         this.tags.add(Tags.AQUA_DECK);
 		this.aquaDeckCopies = 2;
     	this.startingOPODeckCopies = 2;
         this.startingOriginalDeckCopies = 2;
-        this.exodiaDeckCopies = 4;
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

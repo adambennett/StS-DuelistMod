@@ -37,6 +37,9 @@ public class IceQueen extends DuelistCard
         this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
+		this.setupStartingCopies();
         this.misc = 0;
         this.baseMagicNumber = this.magicNumber = 2;
 		this.originalName = this.name;

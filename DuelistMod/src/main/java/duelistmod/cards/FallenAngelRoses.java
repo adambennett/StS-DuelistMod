@@ -53,7 +53,7 @@ public class FallenAngelRoses extends DuelistCard
     {
     	tribute();
     	int attacked = attackMultipleRandom(this.magicNumber, AttackEffect.SLASH_DIAGONAL, DamageType.NORMAL);
-    	if (attacked > 0) { gainTempHP(attacked); }
+    	if (attacked > 0) { gainTempHP(attacked * this.secondMagic); }
     }
 
 

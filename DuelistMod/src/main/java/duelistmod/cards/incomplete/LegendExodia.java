@@ -40,14 +40,10 @@ public class LegendExodia extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXODIA);
-        this.tags.add(Tags.FULL);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 1;
         this.damage = this.baseDamage = 20;
         this.exhaust = true;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

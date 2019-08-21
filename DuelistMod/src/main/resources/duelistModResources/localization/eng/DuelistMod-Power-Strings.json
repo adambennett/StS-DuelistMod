@@ -325,7 +325,7 @@
 },
 "theDuelist:RainbowCapturePower": {
         "NAME": "Rainbow Capture Jar",
-        "DESCRIPTIONS": ["#y", " monsters played this turn are added back to your hand at the start of your next turn. #b", " turns remaining. #y", "s: "]
+        "DESCRIPTIONS": ["#y", " monsters played this turn are copied into your hand at the start of your next turn. #b", " turns remaining. #y", "s: "]
 },
 "theDuelist:ExplosiveMagicianPower": {
         "NAME": "Explosive Magician",
@@ -594,6 +594,18 @@
 "theDuelist:SeedCannonPower": {
         "NAME": "Seed Cannon",
         "DESCRIPTIONS": ["Add a seed whenever you #ySummon a #yPlant. At the end of each turn, choose to destroy this and deal #b", " damage to ALL enemies. NL #ySeeds: #b" ]
+},
+"theDuelist:EternalSoulPower": {
+        "NAME": "Eternal Soul",
+        "DESCRIPTIONS": ["At the start of turn, #yEvoke a random orb.", "At the start of turn, #yEvoke #b", " random orbs." ]
+},
+"theDuelist:RetainForTurnsPower": {
+        "NAME": "Retain",
+        "DESCRIPTIONS": ["At the end of the next #b", " turn, you may retain #b", " turns, you may retain #b", " card.", " cards.", "At the end of this turn, you may retain #b" ]
+},
+"theDuelist:DummyPowerDoNotApply": {
+        "NAME": "DUMMY",
+        "DESCRIPTIONS": ["" ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

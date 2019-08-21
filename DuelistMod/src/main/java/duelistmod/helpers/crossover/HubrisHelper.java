@@ -1,9 +1,10 @@
-package duelistmod.helpers;
+package duelistmod.helpers.crossover;
 
 import com.evacipated.cardcrawl.mod.hubris.relics.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 
 public class HubrisHelper 
@@ -11,6 +12,7 @@ public class HubrisHelper
 
 	public static void extraRelics()
 	{
+		Util.log("Adding a select set of relics from Hubris to the Duelist relic pool");
 		BaseMod.addRelicToCustomPool(new IronBody(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new AncientText(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new RGBLights(), AbstractCardEnum.DUELIST);

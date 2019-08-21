@@ -156,7 +156,7 @@ public class DebuffHelper
 		debuffs.add(drawDown);
 		debuffs.add(noBlock);
 		debuffs.add(noDraw);
-		debuffs.add(wraith);
+		//debuffs.add(wraith);
 		debuffs.add(focDown);
 		debuffs.add(focLoss);
 	

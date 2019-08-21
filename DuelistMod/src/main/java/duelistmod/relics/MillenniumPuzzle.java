@@ -8,9 +8,10 @@ import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
-import duelistmod.variables.Strings;
+import duelistmod.variables.*;
 
 public class MillenniumPuzzle extends CustomRelic {
 
@@ -107,7 +108,11 @@ public class MillenniumPuzzle extends CustomRelic {
 	@Override
 	public void atTurnStart()
 	{
-		
+		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+		{
+			DuelistCard.drawTag(1, Tags.EXODIA_HEAD);
+			this.flash();
+		}
 	}
 	
 	@Override

@@ -46,7 +46,7 @@ public class Electrowhip extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	applyPowerToSelf(new ElectroPower(p));
+    	applyPowerToSelfTop(new ElectroPower(p));
     	for (int i = 0; i < this.magicNumber; i++)
     	{
     		AbstractOrb l = new Lightning();

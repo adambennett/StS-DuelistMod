@@ -22,6 +22,9 @@ public class PharaohPool
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
 	
+		// Pharaoh Cards
+		cards.add(new PharaohBlessing());
+		
 		// Megatype cards
 		cards.add(new RainbowOverdragon());
 		cards.add(new RainbowKuriboh());

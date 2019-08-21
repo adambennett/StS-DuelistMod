@@ -33,13 +33,9 @@ public class UltimateOffering extends DuelistCard
 
     public UltimateOffering() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.TRAP);        
-        this.tags.add(Tags.ALL);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 1;
+        this.tags.add(Tags.TRAP);   
 		this.originalName = this.name;
 		this.baseMagicNumber = this.magicNumber = 1;
-		this.setupStartingCopies();
     }
 
 

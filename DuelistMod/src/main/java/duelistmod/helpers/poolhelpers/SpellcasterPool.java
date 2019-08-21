@@ -161,6 +161,7 @@ public class SpellcasterPool
 		spellcasterCards.add(new BlastMagician());
 		spellcasterCards.add(new WitchBlackRose());
 		spellcasterCards.add(new CrystalWingDragon());
+		spellcasterCards.add(new SkilledDarkMagician());
 		if (!DuelistMod.exodiaBtnBool)
 		{
 			spellcasterCards.add(new ExodiaHead());

@@ -45,8 +45,8 @@ public class DoomcaliberKnight extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	attack(m);
+    	tribute();    	
     	discard(1, true);
     }
 

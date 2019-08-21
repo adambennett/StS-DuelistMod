@@ -76,8 +76,8 @@
         "DESCRIPTIONS": ["#yChannel a #yMetal.", "#yChannel #b", " #yMetal Orbs.", "Gives #yBlock at the end of turn based on number of #ySpells played, and gives #yMetallicize when #yEvoked."]
 },
 "theDuelist:MonsterOrbBottle": {
-        "NAME": "Bottled MonsterOrb",
-        "DESCRIPTIONS": ["#yChannel a #yMonsterOrb.", "#yChannel #b", " #yMonsterOrbs.", "Adds #yMonsters to your hand at the start of turn, and sets the cost of #yMonsters in your hand to #b0 when #yEvoked."]
+        "NAME": "Bottled Monster",
+        "DESCRIPTIONS": ["#yChannel a #yMonsterOrb.", "#yChannel #b", " #yMonsterOrbs.", "Adds #yMonster #yEggs to your hand at the start of turn, and sets the cost of #yMonsters in your hand to #b0 when #yEvoked."]
 },
 "theDuelist:SandBottle": {
         "NAME": "Hourglass",

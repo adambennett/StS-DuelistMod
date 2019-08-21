@@ -41,10 +41,8 @@ public class SpiritHarp extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.CREATOR_DECK);
-        this.tags.add(Tags.EXODIA_DECK);
         this.tags.add(Tags.OP_SPELLCASTER_DECK);
         this.startingOPSPDeckCopies = 2;
-        this.exodiaDeckCopies = 2;
         this.creatorDeckCopies = 2;
         this.summons = this.baseSummons = 1;
 		this.originalName = this.name;

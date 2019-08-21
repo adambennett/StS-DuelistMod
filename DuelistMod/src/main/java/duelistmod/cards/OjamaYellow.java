@@ -41,6 +41,8 @@ public class OjamaYellow extends DuelistCard
 		this.tags.add(Tags.OJAMA);
 		this.tags.add(Tags.INVASION_CHAOS);
 		this.tags.add(Tags.OJAMA_DECK);
+        this.tags.add(Tags.EXODIA_DECK);
+		this.exodiaDeckCopies = 1;
 		this.ojamaDeckCopies = 2;
 		this.originalName = this.name;
 		this.exhaust = true;

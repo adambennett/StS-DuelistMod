@@ -6458,6 +6458,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom, boolean special) 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DuelistMod.myCards)
+		{
+			if (card.hasTag(setToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				if (special || !card.rarity.equals(CardRarity.SPECIAL))
+				{
+					dragonGroup.add(card.makeCopy());
+				}				
+			}
+		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
 	public static AbstractCard returnTrulyRandomInCombatFromSet(CardTags setToFindFrom) 
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
@@ -6537,6 +6562,17 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			return new Token();
 		}
+	}
+	
+	public static DuelistCard returnMetronomeCard(boolean upgraded) 
+	{		
+		ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+		cardsToPullFrom.addAll(DuelistMod.myCards);
+		cardsToPullFrom.addAll(DuelistMod.orbCards);
+		if (upgraded) { cardsToPullFrom.addAll(DuelistMod.rareCards); }
+		DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+		while (c.hasTag(Tags.NEVER_GENERATE) || c.hasTag(Tags.EXEMPT) || c.hasTag(Tags.NO_METRONOME)) { c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)); }
+		return c;
 	}
 	
 	public static AbstractCard returnTrulyRandomDuelistCardInCombat() 
