@@ -56,7 +56,10 @@ public class ShallowGrave extends DuelistCard
     {
     	//tribute(p, 1, false, this);
     	m = AbstractDungeon.getRandomMonster();
-    	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, false, m, this.uuid));
+    	if (m != null)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, false, m, this.uuid));
+    	}
     }
 
     // Which card to return when making a copy of this card.

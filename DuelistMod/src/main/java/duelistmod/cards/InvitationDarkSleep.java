@@ -52,7 +52,7 @@ public class InvitationDarkSleep extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p, this.summons, this);
-		if (!this.upgraded) { AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(AbstractDungeon.getRandomMonster(), p)); }
+		if (!this.upgraded) { m = AbstractDungeon.getRandomMonster(); if (m != null) { AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(m, p)); }}
 		else { AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(m, p)); }
 	}
 

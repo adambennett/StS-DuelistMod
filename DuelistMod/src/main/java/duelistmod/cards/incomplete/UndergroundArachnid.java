@@ -50,7 +50,8 @@ public class UndergroundArachnid extends DuelistCard
     {
     	tribute();
     	incMaxSummons(this.magicNumber);
-    	attack(AbstractDungeon.getRandomMonster());
+    	m = AbstractDungeon.getRandomMonster();
+    	if (m != null) { attack(m); }
     	block();
     }
 

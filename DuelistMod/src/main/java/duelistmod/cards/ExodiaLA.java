@@ -158,53 +158,12 @@ public class ExodiaLA extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
-    	
-    	// If player has already played at least 1 other piece of exodia
-    	if (p.hasPower(ExodiaPower.POWER_ID))
-    	{
-    		// If power has not already triggered once or this is not the first piece played in second set
-    		if (p.getPower(ExodiaPower.POWER_ID).amount > 0)
-    		{
-    			ExodiaPower power = (ExodiaPower) p.getPower(ExodiaPower.POWER_ID);
-    			power.addNewPiece(this);
-    		}
-    		
-    		// If power has already triggered and player has the power but it's 0
-    		// Just reroll the power
-    		else
-    		{
-    			applyPowerToSelf(new ExodiaPower(p, p, this));
-    		}
-    	}
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
-    	
-    	// If player has already played at least 1 other piece of exodia
-    	if (p.hasPower(ExodiaPower.POWER_ID))
-    	{
-    		// If power has not already triggered once or this is not the first piece played in second set
-    		if (p.getPower(ExodiaPower.POWER_ID).amount > 0)
-    		{
-    			ExodiaPower power = (ExodiaPower) p.getPower(ExodiaPower.POWER_ID);
-    			power.addNewPiece(this);
-    		}
-    		
-    		// If power has already triggered and player has the power but it's 0
-    		// Just reroll the power
-    		else
-    		{
-    			applyPowerToSelf(new ExodiaPower(p, p, this));
-    		}
-    	}
+		
 		
 	}
 

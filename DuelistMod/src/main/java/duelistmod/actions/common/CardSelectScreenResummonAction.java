@@ -163,11 +163,11 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				c.unhover();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))
 				{
-					if (c instanceof DuelistCard && this.resummon)
+					if (c instanceof DuelistCard && this.resummon && this.target != null)
 					{
 						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
 					}
-					else if (c instanceof DuelistCard && !this.resummon)
+					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
 					{
 						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
 					}

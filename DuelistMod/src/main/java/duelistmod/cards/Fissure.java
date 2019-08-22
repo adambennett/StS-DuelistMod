@@ -49,22 +49,25 @@ public class Fissure extends DuelistCard
 	{
 		
 		AbstractMonster selected = AbstractDungeon.getRandomMonster();
-		int lowestHP = selected.currentHealth;
-		for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
+		if (selected != null)
 		{
-			if (!mon.isDead && !mon.isDying && mon.currentHealth < lowestHP && mon.currentHealth != 0)
+			int lowestHP = selected.currentHealth;
+			for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
 			{
-				selected = mon;
-				if (DuelistMod.debug && mon.name != null) { DuelistMod.logger.info("Fissure: found a new monster with lowest HP. Old lowest HP was: " + lowestHP + " -- and new HP is: " + mon.currentHealth + " -- New Selected Monster: " + mon.name); }
-				lowestHP = mon.currentHealth;
+				if (!mon.isDead && !mon.isDying && mon.currentHealth < lowestHP && mon.currentHealth != 0)
+				{
+					selected = mon;
+					if (DuelistMod.debug && mon.name != null) { DuelistMod.logger.info("Fissure: found a new monster with lowest HP. Old lowest HP was: " + lowestHP + " -- and new HP is: " + mon.currentHealth + " -- New Selected Monster: " + mon.name); }
+					lowestHP = mon.currentHealth;
+				}
 			}
+			int playerSummons = getSummons(p);
+			int newDamage = this.damage * playerSummons;
+			if (DuelistMod.debug) { DuelistMod.logger.info("Fissure: damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
+			this.applyPowers();
+			attack(selected, this.baseAFX, newDamage);
+			if (DuelistMod.debug) { DuelistMod.logger.info("Fissure (after applyPowers function and attacking): damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }	
 		}
-		int playerSummons = getSummons(p);
-		int newDamage = this.damage * playerSummons;
-		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure: damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
-		this.applyPowers();
-		attack(selected, this.baseAFX, newDamage);
-		if (DuelistMod.debug) { DuelistMod.logger.info("Fissure (after applyPowers function and attacking): damage dealt was " + newDamage + ", summons was " + playerSummons + ", this.damage was " + this.damage); }		
 	}
 
 	// Which card to return when making a copy of this card.

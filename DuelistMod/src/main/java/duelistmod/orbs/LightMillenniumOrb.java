@@ -1,27 +1,21 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.actions.unique.RedMedicineAction;
-import duelistmod.helpers.*;
-import duelistmod.interfaces.*;
 import duelistmod.powers.incomplete.*;
 
 @SuppressWarnings("unused")
@@ -86,8 +80,12 @@ public class LightMillenniumOrb extends DuelistOrb
 	{
 		if (this.passiveAmount > 0)
 		{
-			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-			AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, AbstractDungeon.getRandomMonster(), 3, this.passiveAmount, this.passiveAmount));
+			AbstractMonster m = AbstractDungeon.getRandomMonster();
+			if (m != null)
+			{
+				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+				AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, 3, this.passiveAmount, this.passiveAmount));
+			}
 		}
 	}
 

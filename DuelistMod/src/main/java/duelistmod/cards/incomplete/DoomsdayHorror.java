@@ -51,7 +51,7 @@ public class DoomsdayHorror extends DuelistCard
     	attack(m);
     	tribute();    	
     	AbstractMonster random = AbstractDungeon.getRandomMonster();
-    	applyPower(new VulnerablePower(random, this.magicNumber, false), random);
+    	if (random != null) { applyPower(new VulnerablePower(random, this.magicNumber, false), random); }
     }
 
     

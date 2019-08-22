@@ -58,7 +58,7 @@ public class ZombieToken extends TokenCard
     	if (roll == 1)
     	{
     		m = AbstractDungeon.getRandomMonster();
-        	AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m, this.uuid));
+        	if (m != null) { AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(1, false, m, this.uuid)); }
     	}
     }
     @Override public AbstractCard makeCopy() { return new ZombieToken(); }

@@ -257,20 +257,13 @@ public class SangaThunder extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Lightning();
-    	channel(orb);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
-		summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Lightning();
-    	channel(orb);
+		
 	}
 
 	@Override

@@ -58,7 +58,10 @@ public class CannonPower extends AbstractPower
     				{
 	    				// Deal 5 damage to a random enemy for each copy of Cannon Soldier
 						AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-						AbstractDungeon.actionManager.addToTop(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+						if (targetMonster != null)
+						{
+							AbstractDungeon.actionManager.addToTop(new DamageAction(targetMonster, new DamageInfo(this.owner, TURN_DMG, DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+						}
     				}
     			}
     		}

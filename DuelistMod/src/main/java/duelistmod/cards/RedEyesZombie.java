@@ -121,8 +121,6 @@ public class RedEyesZombie extends DuelistCard
 	public void onResummon(int summons) 
 	{
 		applyPowerToSelf((AbstractPower) new StrengthPower(AbstractDungeon.player, 3));
-		//AbstractMonster m = AbstractDungeon.getRandomMonster();
-		//attack(m, AFX, 10);
 	}
 
 	@Override

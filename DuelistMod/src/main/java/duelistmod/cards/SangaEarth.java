@@ -250,20 +250,13 @@ public class SangaEarth extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Plasma();
-    	channel(orb);
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
 	{
-		summon(player(), this.summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb orb = new Plasma();
-    	channel(orb);
+		
 	}
 
 	@Override

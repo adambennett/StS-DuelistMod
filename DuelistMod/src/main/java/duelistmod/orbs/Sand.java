@@ -87,8 +87,11 @@ public class Sand extends DuelistOrb
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 		AbstractMonster randomMonster = AbstractDungeon.getRandomMonster();
-		AbstractPower slow = new SlowPower(randomMonster, this.passiveAmount);
-		DuelistCard.applyPower(slow, randomMonster);
+		if (randomMonster != null)
+		{
+			AbstractPower slow = new SlowPower(randomMonster, this.passiveAmount);
+			DuelistCard.applyPower(slow, randomMonster);
+		}
 	}
 
 	@Override

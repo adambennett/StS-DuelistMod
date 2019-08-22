@@ -243,22 +243,13 @@ public class FortressWarrior extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		//tribute(p, this.tributes, false, this);
-		summon(p, summons, this);
-		attack(m, AFX, this.damage);
-		block(this.block);
+		
 		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		//tribute(p, this.tributes, false, this);
-		summon(p, summons, this);
-		attack(m, AFX, this.damage);
-		block(this.block);
+		
 		
 	}
 	

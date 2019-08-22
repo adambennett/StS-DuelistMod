@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -63,8 +62,11 @@ public class SplendidConfirmCard extends DuelistCard
     	{    		
     		AbstractCard randomPlant = plants.get(AbstractDungeon.cardRandomRng.random(plants.size() - 1));
     		AbstractMonster mon = AbstractDungeon.getRandomMonster();
-    		AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(randomPlant, p.discardPile));
-    		applyPower(new StrengthDownPower(mon, p, 1, this.magicNumber), mon);
+    		if (mon != null)
+    		{
+	    		AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(randomPlant, p.discardPile));
+	    		applyPower(new StrengthDownPower(mon, p, 1, this.magicNumber), mon);
+    		}
     	}
     }   
 	@Override public void onTribute(DuelistCard tributingCard)  {}	

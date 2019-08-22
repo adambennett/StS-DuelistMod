@@ -64,7 +64,8 @@ public class FrillerRabca extends DuelistCard
             AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
             // Choose and gain a random buff
-			AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, AbstractDungeon.getRandomMonster(), 3, 1, this.magicNumber + 3));
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+			if (m != null) { AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, 3, 1, this.magicNumber + 3)); }
 			
             // Check Splash Orbs
             checkSplash();

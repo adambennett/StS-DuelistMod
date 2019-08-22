@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.*;
@@ -90,8 +91,12 @@ public class Blaze extends DuelistOrb
 	{
 		if (this.passiveAmount > 0) 
 		{ 
-			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-			DuelistCard.staticThornAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.passiveAmount); 
+			AbstractMonster mon = AbstractDungeon.getRandomMonster();
+			if (mon != null)
+			{
+				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+				DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); 
+			}
 		}
 	}
 	

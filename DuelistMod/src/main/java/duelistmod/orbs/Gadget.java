@@ -10,14 +10,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.QueueCardSuperFastAction;
-import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
@@ -67,7 +67,8 @@ public class Gadget extends DuelistOrb
 			randomTrap.freeToPlayOnce = true;
 			randomTrap.applyPowers();
 			randomTrap.purgeOnUse = true;
-			AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(randomTrap, AbstractDungeon.getRandomMonster(), 1.0F));
+			AbstractMonster mon = AbstractDungeon.getRandomMonster();
+			if (mon != null) { AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(randomTrap, mon, 1.0F)); }
 		}
 	}
 	

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.PlayerTurnEffect;
 
@@ -211,7 +212,8 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 		    		DuelistCard cardCopy = (DuelistCard)summon;
 					if (cardCopy != null)
 					{
-						DuelistCard.fullResummon(cardCopy, summon.upgraded, AbstractDungeon.getRandomMonster(), false);
+						AbstractMonster m = AbstractDungeon.getRandomMonster();
+						if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
 					}
 		    	}
 				this.isDone = true;
@@ -227,7 +229,8 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 		    		DuelistCard cardCopy = (DuelistCard)summon;
 					if (cardCopy != null)
 					{
-						DuelistCard.fullResummon(cardCopy, summon.upgraded, AbstractDungeon.getRandomMonster(), false);
+						AbstractMonster m = AbstractDungeon.getRandomMonster();
+						if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
 					}
 		    	}
 				this.isDone = true;

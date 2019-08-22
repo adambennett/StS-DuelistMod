@@ -46,7 +46,8 @@ public class FishRain extends DuelistCard
     	for (int i = 0; i < this.magicNumber; i++)
     	{
     		DuelistCard randFish = (DuelistCard)returnTrulyRandomFromSet(Tags.AQUA);
-    		fullResummon(randFish, false, AbstractDungeon.getRandomMonster(), false);
+    		m = AbstractDungeon.getRandomMonster();
+    		if (m != null) { fullResummon(randFish, false, m, false); }
     	}
     }
 

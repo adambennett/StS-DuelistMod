@@ -48,7 +48,8 @@ public class RosePaladinAction extends AbstractGameAction
 	            	
 	            	if (plants.size() > 0)
 	            	{    		
-	            		AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(plants, 1, AbstractDungeon.getRandomMonster(), true, false));    		 		
+	            		AbstractMonster m = AbstractDungeon.getRandomMonster();
+	            		if (m != null) { AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(plants, 1, m, true, false));  }		 		
 	            	}
             	}
             }

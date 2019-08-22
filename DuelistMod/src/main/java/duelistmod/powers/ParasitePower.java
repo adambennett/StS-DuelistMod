@@ -72,8 +72,11 @@ public class ParasitePower extends AbstractPower
     		for (int i = 0; i < enemiesToDebuff; i++)
     		{
     			AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-    			AbstractPower randomDebuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, randomTurnNum);
-    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, AbstractDungeon.player, randomDebuff));
+    			if (targetMonster != null)
+    			{
+	    			AbstractPower randomDebuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, targetMonster, randomTurnNum);
+	    			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(targetMonster, AbstractDungeon.player, randomDebuff));
+    			}
     		}
     	}
     	

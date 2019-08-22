@@ -59,7 +59,8 @@ public class LightningRodLord extends DuelistCard
     			{
     				AbstractOrb l = new Lightning();
     				channel(l);
-    				attack(AbstractDungeon.getRandomMonster());
+    				m = AbstractDungeon.getRandomMonster();
+    				if (m != null) { attack(m); }
     			}
     		}
     	}
@@ -72,7 +73,8 @@ public class LightningRodLord extends DuelistCard
     			{
     				AbstractOrb l = new Lightning();
     				channel(l);
-    				attack(AbstractDungeon.getRandomMonster());
+    				m = AbstractDungeon.getRandomMonster();
+    				if (m != null) { attack(m); }
     			}
     		}
     	}

@@ -65,7 +65,7 @@ public class SmashingGround extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		m = AbstractDungeon.getRandomMonster();
-		attack(m);
+		if (m != null) { attack(m); }
 	}
 
 	// Which card to return when making a copy of this card.

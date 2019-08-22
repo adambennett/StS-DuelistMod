@@ -52,10 +52,11 @@ public class ViceDragon extends DuelistCard
     	summon();
     	attack(AbstractDungeon.getRandomMonster());
 	    AbstractMonster mon = AbstractDungeon.getRandomMonster();
-	    applyPower(new WeakPower(mon, this.magicNumber, false), mon);
-	    applyPower(new VulnerablePower(mon, this.magicNumber, false), mon);
-    	
-    	
+	    if (mon != null)
+	    {
+		    applyPower(new WeakPower(mon, this.magicNumber, false), mon);
+		    applyPower(new VulnerablePower(mon, this.magicNumber, false), mon);
+	    }   	
     }
 
     // Which card to return when making a copy of this card.

@@ -108,7 +108,7 @@ public class VoidOrb extends DuelistOrb
 		else
 		{
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
-			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped())
+			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && m != null)
 			{
 				DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
 				DuelistCard.gainTempHP(this.passiveAmount);

@@ -54,7 +54,10 @@ public class ArchfiendInterceptor extends DuelistCard
     	for (int i = 0; i < 2; i++)
     	{
 	    	AbstractMonster mon = AbstractDungeon.getRandomMonster();
-	    	applyPower(new WeakPower(mon, this.magicNumber, false), mon);
+	    	if (mon != null)
+	    	{
+	    		applyPower(new WeakPower(mon, this.magicNumber, false), mon);
+	    	}
     	}
     	
     }

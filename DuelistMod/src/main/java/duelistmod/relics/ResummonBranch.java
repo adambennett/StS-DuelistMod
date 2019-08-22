@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
 public class ResummonBranch extends CustomRelic
@@ -72,12 +73,12 @@ public class ResummonBranch extends CustomRelic
 					this.flash();
 	    			DuelistCard toResummon = modMonsters.get(AbstractDungeon.relicRng.random(modMonsters.size() - 1));
 					AbstractMonster m = AbstractDungeon.getRandomMonster();
-					DuelistCard.fullResummon(toResummon, false, m, true);	  
-					if (DuelistMod.debug)
+					if (m != null)
 					{
-						System.out.println("theDuelist:ResummonBranch:atTurnStart() ---> called resummon block on " + toResummon.originalName);
-					}    	
-					setCounter(counter - 1);
+						DuelistCard.fullResummon(toResummon, false, m, true);	  
+						Util.log("theDuelist:ResummonBranch:atTurnStart() ---> called resummon block on " + toResummon.originalName);
+						setCounter(counter - 1);
+					}
 	    		}
 			}
     	}

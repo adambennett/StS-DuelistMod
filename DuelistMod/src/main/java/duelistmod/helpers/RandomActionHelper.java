@@ -116,21 +116,26 @@ public class RandomActionHelper
 			case "Apply #b1 random #ydebuff to random enemy":
 				int randomTurnNumD = AbstractDungeon.cardRandomRng.random(1, 3);
 				AbstractMonster m = DuelistCard.getRandomMonster();
-				AbstractPower debuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
-				DuelistCard.applyPower(debuff, (AbstractCreature)m);
+				if (m != null)
+				{
+					AbstractPower debuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
+					DuelistCard.applyPower(debuff, (AbstractCreature)m);
+				}
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Apply #b2 random #ydebuffs to random enemy":
 				
 				int randomTurnNumDe = AbstractDungeon.cardRandomRng.random(1, 3);
 				AbstractMonster ma = DuelistCard.getRandomMonster();
-				AbstractPower debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
-				DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
-				
-				randomTurnNumDe = AbstractDungeon.cardRandomRng.random(1, 3);
-				debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
-				DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
-				
+				if (ma != null)
+				{
+					AbstractPower debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
+					DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
+					
+					randomTurnNumDe = AbstractDungeon.cardRandomRng.random(1, 3);
+					debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
+					DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
+				}				
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#yChannel #b1 random orb":
@@ -231,10 +236,13 @@ public class RandomActionHelper
 				}
 				
 				// Give 3 random debuffs to enemy
-				for (int i = 0; i < RAND_DEBUFFS; i++)
+				if (mO != null)
 				{
-					int randomTurnNumO2 = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-					DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
+					for (int i = 0; i < RAND_DEBUFFS; i++)
+					{
+						int randomTurnNumO2 = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
+						DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
+					}
 				}
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;

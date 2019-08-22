@@ -174,20 +174,13 @@ public class SuperheavySwordsman extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		if (upgraded) { attack(m, AFX, this.damage); }
-		applyPowerToSelf(new DexterityPower(p, this.dex));
+		
 
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		if (upgraded) { attack(m, AFX, this.damage); }
-		applyPowerToSelf(new DexterityPower(p, this.dex));
+		
 		
 	}
 

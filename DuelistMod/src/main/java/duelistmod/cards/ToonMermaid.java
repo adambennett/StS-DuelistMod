@@ -150,18 +150,13 @@ public class ToonMermaid extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	damageThroughBlock(m, p, this.damage, AFX);
+		
 		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	damageThroughBlock(m, p, this.damage, AFX);
+		
 		
 	}
 

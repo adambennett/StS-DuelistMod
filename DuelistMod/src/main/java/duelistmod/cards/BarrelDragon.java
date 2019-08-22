@@ -57,7 +57,10 @@ public class BarrelDragon extends DuelistCard
 		tribute(p, this.tributes, false, this);
 		attack(m, AFX, this.damage);
 		AbstractCreature rand = AbstractDungeon.getRandomMonster();
-		applyPower(new WeakPower(rand, this.magicNumber, false), rand);
+		if (rand != null)
+		{
+			applyPower(new WeakPower(rand, this.magicNumber, false), rand);
+		}
     }
 
     // Which card to return when making a copy of this card.

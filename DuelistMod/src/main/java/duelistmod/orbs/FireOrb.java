@@ -10,14 +10,14 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.*;
-import duelistmod.interfaces.*;
+import duelistmod.helpers.Util;
 import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Tags;
 
@@ -106,8 +106,12 @@ public class FireOrb extends DuelistOrb
 		}
 		else
 		{
-			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-			if (this.passiveAmount > 0) { DuelistCard.staticThornAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.passiveAmount); }
+			AbstractMonster mon = AbstractDungeon.getRandomMonster(null);			
+			if (this.passiveAmount > 0 && mon != null) 
+			{ 
+				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+				DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); 
+			}
 		}
 		
 	}

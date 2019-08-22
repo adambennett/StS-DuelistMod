@@ -48,7 +48,8 @@ public class FishKicks extends DuelistCard
     	AbstractOrb mist = new Mist();
     	channel(mist);
     	incMaxSummons(p, this.magicNumber);
-    	attack(AbstractDungeon.getRandomMonster());
+    	m = AbstractDungeon.getRandomMonster();
+    	if (m != null) { attack(m); }
     }
 
     // Which card to return when making a copy of this card.

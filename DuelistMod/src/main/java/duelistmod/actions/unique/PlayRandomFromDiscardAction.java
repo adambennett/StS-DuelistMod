@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Tags;
 
@@ -82,7 +81,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 					{
 						// Play card
 						DuelistCard cardCopy = (DuelistCard)card;
-		    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
+		    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
 		    			{
 		    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
 		    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
@@ -120,7 +119,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 				{
 					// Play card
 					DuelistCard cardCopy = (DuelistCard)cardsToPlayFrom.get(i);
-	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
+	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
 	    			{
 	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
 	    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
@@ -156,7 +155,7 @@ public class PlayRandomFromDiscardAction extends AbstractGameAction
 				{
 					// Play card
 					DuelistCard cardCopy = (DuelistCard)cardsToPlayFrom.get(i);
-	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
+	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
 	    			{
 	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
 	    			}

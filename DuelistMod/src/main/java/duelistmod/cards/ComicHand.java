@@ -81,7 +81,7 @@ public class ComicHand extends DuelistCard
 	    		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
 	    		summon(player(), 1, tempCard);
 	    		AbstractMonster randomM = getRandomMonster();
-	    		attack(randomM, AFX, this.damage);
+	    		if (randomM != null) { attack(randomM, AFX, this.damage); }
 	    	}
     	}
     	

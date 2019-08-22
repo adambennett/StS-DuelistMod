@@ -4,11 +4,12 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.SpiritHarp;
+import duelistmod.cards.*;
 
 public class HarpPotion extends AbstractPotion {
 
@@ -42,9 +43,10 @@ public class HarpPotion extends AbstractPotion {
     {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
-    	{
-	       DuelistCard.fullResummon(new SpiritHarp(), false, AbstractDungeon.getRandomMonster(), false);
-    	}
+		{
+			AbstractMonster m = AbstractDungeon.getRandomMonster();
+			if (m != null) { DuelistCard.fullResummon(new SpiritHarp(), false, m, false); }
+		}
     }
     
     @Override

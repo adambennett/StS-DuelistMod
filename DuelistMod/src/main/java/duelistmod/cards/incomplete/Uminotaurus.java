@@ -63,7 +63,8 @@ public class Uminotaurus extends DuelistCard
             AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
             
             // Choose and gain a random buff
-			thornAttack(AbstractDungeon.getRandomMonster(), this.baseAFX, getMaxSummons(AbstractDungeon.player));
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+			if (m != null) { thornAttack(m, this.baseAFX, getMaxSummons(AbstractDungeon.player)); }
 			
             // Check Splash Orbs
             checkSplash();

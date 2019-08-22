@@ -3,17 +3,15 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.*;
-import duelistmod.interfaces.*;
+import duelistmod.helpers.Util;
 import duelistmod.orbs.Black;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -35,8 +33,6 @@ public class OjamaBlack extends DuelistCard
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 0;
 	private static final int SUMMONS = 1;
-	private static int MIN_TURNS_ROLL = 3;
-	private static int MAX_TURNS_ROLL = 6;
 	// /STAT DECLARATION/
 
 	public OjamaBlack() {
@@ -99,19 +95,7 @@ public class OjamaBlack extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
-		int randomDebuffNumU = AbstractDungeon.cardRandomRng.random(2, 4); 
-		int primary = 4;
-		if (this.upgraded) { primary = randomDebuffNumU; }
-		else { primary = randomDebuffNum; }
-		for (int i = 0; i < primary; i++)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			applyPower(DebuffHelper.getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
-		}
+		
 	}
 	
     // Checking for Monster Zones if the challenge is enabled
@@ -159,19 +143,7 @@ public class OjamaBlack extends DuelistCard
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-		AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(1, 2); 
-		int randomDebuffNumU = AbstractDungeon.cardRandomRng.random(2, 4); 
-		int primary = 4;
-		if (this.upgraded) { primary = randomDebuffNumU; }
-		else { primary = randomDebuffNum; }
-		for (int i = 0; i < primary; i++)
-		{
-			int randomTurnNum = AbstractDungeon.cardRandomRng.random(MIN_TURNS_ROLL, MAX_TURNS_ROLL);
-			applyPower(DebuffHelper.getRandomDebuff(p, targetMonster, randomTurnNum), targetMonster);
-		}
+		
 		
 	}
 

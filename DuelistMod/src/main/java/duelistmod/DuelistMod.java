@@ -2033,7 +2033,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 						if (c instanceof RevivalRose)
 						{
 							DuelistCard rvrose = (DuelistCard)c;
-							DuelistCard.fullResummon(rvrose, c.upgraded, AbstractDungeon.getRandomMonster(), false);
+							AbstractMonster m = AbstractDungeon.getRandomMonster();
+							if (m != null) { DuelistCard.fullResummon(rvrose, c.upgraded, m, false); }
 						}
 					}
 				}
@@ -2316,7 +2317,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				{
 					AbstractPower pow = AbstractDungeon.player.getPower(FutureFusionPower.POWER_ID);
 					pow.amount--; pow.updateDescription();
-					DuelistCard.fullResummon((DuelistCard) drawnCard, false, AbstractDungeon.getRandomMonster(), false);
+					AbstractMonster m = AbstractDungeon.getRandomMonster();
+					if (m != null) { DuelistCard.fullResummon((DuelistCard) drawnCard, false, m, false); }
 				}
 				else
 				{
@@ -2463,17 +2465,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Check to maybe print secret message
 		if (summonTurnCount > 2)
 		{
+			AbstractMonster m = AbstractDungeon.getRandomMonster();
 			int msgRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-			if (debugMsg)
-			{				
-				AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
+			if (debugMsg && m != null)
+			{					
+				AbstractDungeon.actionManager.addToBottom(new TalkAction(m, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
 				AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
 			}
-			else
+			else if (m != null)
 			{
 				if (msgRoll <= 2)
 				{
-					AbstractDungeon.actionManager.addToBottom(new TalkAction(AbstractDungeon.getRandomMonster(), "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
+					AbstractDungeon.actionManager.addToBottom(new TalkAction(m, "Did you just summon a whole bunch of monsters in one turn? Isn't that against the rules?", 3.5F, 3.0F));
 					AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Screw the rules, I have money!", 1.0F, 2.0F));
 				}
 			}

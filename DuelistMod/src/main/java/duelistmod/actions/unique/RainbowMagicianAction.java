@@ -119,14 +119,14 @@ public class RainbowMagicianAction extends AbstractGameAction
 				c.unhover();
 				if (!(c instanceof CancelCard))
 				{
-					if (c instanceof DuelistCard && this.resummon)
+					if (c instanceof DuelistCard && this.resummon && this.target != null)
 					{
 						for (int i = 0; i < this.amountToResummon; i++)
 						{
 							DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
 						}
 					}
-					else if (c instanceof DuelistCard && !this.resummon)
+					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
 					{
 						for (int i = 0; i < this.amountToResummon; i++)
 						{

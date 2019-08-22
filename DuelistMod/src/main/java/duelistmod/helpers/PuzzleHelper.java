@@ -135,11 +135,14 @@ public class PuzzleHelper
 				// Dragon Deck
 				case 1:
 					int floor = AbstractDungeon.actNum;
-					AbstractMonster randy = AbstractDungeon.getRandomMonster();			
+					AbstractMonster randy = AbstractDungeon.getRandomMonster();
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
-					int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-					if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
-					else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
+					if (randy != null)
+					{
+						int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+						if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
+						else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
+					}
 					break;
 		
 				// Nature Deck
@@ -147,9 +150,12 @@ public class PuzzleHelper
 					int floorN = AbstractDungeon.actNum;
 					AbstractMonster randyN = AbstractDungeon.getRandomMonster();
 					natureDeckAction(extra);
-					int rollN = AbstractDungeon.cardRandomRng.random(1, 2);
-					if (rollN == 1) { DuelistCard.applyPower(new PoisonPower(randyN, AbstractDungeon.player, floorN), randyN); }
-					else { DuelistCard.applyPower(new ConstrictedPower(randyN, AbstractDungeon.player, floorN), randyN); }
+					if (randyN != null)
+					{
+						int rollN = AbstractDungeon.cardRandomRng.random(1, 2);
+						if (rollN == 1) { DuelistCard.applyPower(new PoisonPower(randyN, AbstractDungeon.player, floorN), randyN); }
+						else { DuelistCard.applyPower(new ConstrictedPower(randyN, AbstractDungeon.player, floorN), randyN); }
+					}
 					break;
 		
 				// Spellcaster Deck
@@ -337,9 +343,12 @@ public class PuzzleHelper
 				case 19:
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
 					AbstractMonster randyA = AbstractDungeon.getRandomMonster();			
-					int rollA = AbstractDungeon.cardRandomRng.random(1, 2);
-					if (rollA == 1) { DuelistCard.applyPower(new WeakPower(randyA, 2, false), randyA); }
-					else { DuelistCard.applyPower(new VulnerablePower(randyA, 2, false), randyA); }
+					if (randyA != null)
+					{
+						int rollA = AbstractDungeon.cardRandomRng.random(1, 2);
+						if (rollA == 1) { DuelistCard.applyPower(new WeakPower(randyA, 2, false), randyA); }
+						else { DuelistCard.applyPower(new VulnerablePower(randyA, 2, false), randyA); }
+					}
 					break;
 					
 				// Ascended II
@@ -420,9 +429,12 @@ public class PuzzleHelper
 				int floor = AbstractDungeon.actNum;
 				AbstractMonster randy = AbstractDungeon.getRandomMonster();			
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
-				int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-				if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
-				else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
+				if (randy != null)
+				{
+					int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+					if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
+					else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
+				}
 				break;
 	
 			// Nature Deck
@@ -430,9 +442,12 @@ public class PuzzleHelper
 				int floorN = AbstractDungeon.actNum;
 				AbstractMonster randyN = AbstractDungeon.getRandomMonster();
 				natureDeckAction(extra);
-				int rollN = AbstractDungeon.cardRandomRng.random(1, 2);
-				if (rollN == 1) { DuelistCard.applyPower(new PoisonPower(randyN, AbstractDungeon.player, floorN), randyN); }
-				else { DuelistCard.applyPower(new ConstrictedPower(randyN, AbstractDungeon.player, floorN), randyN); }
+				if (randyN != null)
+				{
+					int rollN = AbstractDungeon.cardRandomRng.random(1, 2);
+					if (rollN == 1) { DuelistCard.applyPower(new PoisonPower(randyN, AbstractDungeon.player, floorN), randyN); }
+					else { DuelistCard.applyPower(new ConstrictedPower(randyN, AbstractDungeon.player, floorN), randyN); }
+				}
 				break;
 	
 			// Spellcaster Deck
@@ -617,10 +632,13 @@ public class PuzzleHelper
 			// Ascended I
 			case 19:
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
-				AbstractMonster randyA = AbstractDungeon.getRandomMonster();			
-				int rollA = AbstractDungeon.cardRandomRng.random(1, 2);
-				if (rollA == 1) { DuelistCard.applyPower(new WeakPower(randyA, 2, false), randyA); }
-				else { DuelistCard.applyPower(new VulnerablePower(randyA, 2, false), randyA); }
+				AbstractMonster randyA = AbstractDungeon.getRandomMonster();	
+				if (randyA != null)
+				{
+					int rollA = AbstractDungeon.cardRandomRng.random(1, 2);
+					if (rollA == 1) { DuelistCard.applyPower(new WeakPower(randyA, 2, false), randyA); }
+					else { DuelistCard.applyPower(new VulnerablePower(randyA, 2, false), randyA); }
+				}
 				break;
 				
 			// Ascended II

@@ -80,7 +80,8 @@ public class DynamicTypeCard extends DuelistCard
     	{
     		DuelistCard randResu = (DuelistCard) returnTrulyRandomFromSets(tagSave, Tags.MONSTER);
     		while (randResu.hasTag(Tags.EXEMPT)) { randResu = (DuelistCard) returnTrulyRandomFromSets(tagSave, Tags.MONSTER); }
-    		DuelistCard.fullResummon(randResu, false, AbstractDungeon.getRandomMonster(), false);
+    		AbstractMonster mon = AbstractDungeon.getRandomMonster();
+    		if (mon != null) { DuelistCard.fullResummon(randResu, false, mon, false); }
     	}
     	
     	if (this.callCard instanceof SummonToken)

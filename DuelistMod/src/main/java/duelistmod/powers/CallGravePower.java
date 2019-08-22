@@ -80,7 +80,8 @@ public class CallGravePower extends AbstractPower
 		    	
 		    	for (DuelistCard c : actualResummons)
 		    	{
-		    		DuelistCard.fullResummon(c, false, AbstractDungeon.getRandomMonster(), false);
+		    		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		    		if (m != null) { DuelistCard.fullResummon(c, false, m, false); }
 		    		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> called resummon on: " + c.originalName);
 		    	}
     		}	    	

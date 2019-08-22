@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
@@ -42,9 +43,10 @@ public class DragonSoulPotion extends AbstractPotion {
     {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
-    	{
-	       DuelistCard.fullResummon((DuelistCard)DuelistCard.returnTrulyRandomFromSet(Tags.DRAGON), false, AbstractDungeon.getRandomMonster(), false);
-    	}
+		{
+			AbstractMonster m = AbstractDungeon.getRandomMonster();
+			if (m != null) { DuelistCard.fullResummon((DuelistCard)DuelistCard.returnTrulyRandomFromSet(Tags.DRAGON), false, m, false); }
+		}
     }
     
     @Override

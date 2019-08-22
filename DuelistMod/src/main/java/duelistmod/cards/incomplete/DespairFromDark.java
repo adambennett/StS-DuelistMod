@@ -48,7 +48,7 @@ public class DespairFromDark extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.MONSTER) && !c.originalName.equals(this.originalName)) { fullResummon((DuelistCard) c.makeStatEquivalentCopy(), false, AbstractDungeon.getRandomMonster(), false); }}
+    	for (AbstractCard c : p.hand.group) { if (c.hasTag(Tags.MONSTER) && !c.originalName.equals(this.originalName)) { m = AbstractDungeon.getRandomMonster(); if (m != null) { fullResummon((DuelistCard) c.makeStatEquivalentCopy(), false, m, false); }}}
     }
 
     // Which card to return when making a copy of this card.

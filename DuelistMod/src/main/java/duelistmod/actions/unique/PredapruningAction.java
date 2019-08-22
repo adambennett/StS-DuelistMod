@@ -71,7 +71,7 @@ public class PredapruningAction extends AbstractGameAction
 				AbstractCard card = tmp.getTopCard();
 				// Play card
 				DuelistCard cardCopy = (DuelistCard)card;
-    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
+    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
     			{
     				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
     				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
@@ -96,7 +96,7 @@ public class PredapruningAction extends AbstractGameAction
 					AbstractCard card = tmp.getNCardFromTop(AbstractDungeon.cardRandomRng.random(tmp.size() - 1));
 					// Play card
 					DuelistCard cardCopy = (DuelistCard)card;
-	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
+	    			if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
 	    			{
 	    				DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
 	    				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
@@ -135,7 +135,7 @@ public class PredapruningAction extends AbstractGameAction
 				c.unhover();
 				// Play card
 				DuelistCard cardCopy = (DuelistCard)c;
-				if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT))
+				if (cardCopy != null && !cardCopy.hasTag(Tags.EXEMPT) && m != null)
     			{
 					DuelistCard.fullResummon(cardCopy, this.upgrade, m, false);
     				/*if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }

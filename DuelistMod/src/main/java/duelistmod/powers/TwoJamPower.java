@@ -67,7 +67,10 @@ public class TwoJamPower extends TwoAmountPower
 			for (int i = 0; i < this.amount; i++)
 			{
 				AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-				AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, turnDmg, DamageInfo.DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+				if (targetMonster != null)
+				{
+					AbstractDungeon.actionManager.addToBottom(new DamageAction(targetMonster, new DamageInfo(this.owner, turnDmg, DamageInfo.DamageType.THORNS),AbstractGameAction.AttackEffect.FIRE));
+				}
 			}
 		}
     }

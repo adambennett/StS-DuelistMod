@@ -48,7 +48,7 @@ public class SpiritPharaoh extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	for (int i = 0; i < this.magicNumber; i++) { attack(AbstractDungeon.getRandomMonster()); }
+    	for (int i = 0; i < this.magicNumber; i++) { m = AbstractDungeon.getRandomMonster(); if (m != null) { attack(m); }}
     	evoke(1);
     }
 

@@ -85,7 +85,8 @@ public class BlueRoseDragon extends DuelistCard
     	
     	if (plants.size() > 0)
     	{    		
-    		AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(plants, 1, AbstractDungeon.getRandomMonster(), true, !this.upgraded));    		 		
+    		AbstractMonster m = AbstractDungeon.getRandomMonster();
+    		if (m != null) { AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(plants, 1, m, true, !this.upgraded)); }		 		
     	}
     }
 

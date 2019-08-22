@@ -95,12 +95,7 @@ public class SnowDragon extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var)
 	{
-		AbstractMonster m = AbstractDungeon.getRandomMonster();
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb frost = new Frost();
-    	channel(frost);
+		
 		
 	}
 	
@@ -148,11 +143,7 @@ public class SnowDragon extends DuelistCard
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	attack(m, AFX, this.damage);
-    	AbstractOrb frost = new Frost();
-    	channel(frost);
+		
 	}
 
 	@Override

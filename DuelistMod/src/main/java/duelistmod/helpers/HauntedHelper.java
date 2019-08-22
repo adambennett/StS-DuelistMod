@@ -185,28 +185,43 @@ public class HauntedHelper
 				break;
 			case "Apply #b1 Strength to a random enemy":
 				AbstractCreature mon = AbstractDungeon.getRandomMonster();
-				DuelistCard.applyPower(new StrengthPower(mon, 1), mon);
+				if (mon != null)
+				{
+					DuelistCard.applyPower(new StrengthPower(mon, 1), mon);
+				}
 				break;
 			case "Apply #b1 Thorns to a random enemy":
 				AbstractCreature monB = AbstractDungeon.getRandomMonster();
-				DuelistCard.applyPower(new ThornsPower(monB, 1), monB);
+				if (monB != null)
+				{
+					DuelistCard.applyPower(new ThornsPower(monB, 1), monB);
+				}
 				break;
 			case "Apply #b2 Thorns to a random enemy":
 				AbstractCreature monC = AbstractDungeon.getRandomMonster();
-				DuelistCard.applyPower(new ThornsPower(monC, 2), monC);
+				if (monC != null)
+				{
+					DuelistCard.applyPower(new ThornsPower(monC, 2), monC);
+				}
 				break;
 			case "Apply #b3 Thorns to a random enemy":
 				AbstractCreature monD = AbstractDungeon.getRandomMonster();
-				DuelistCard.applyPower(new ThornsPower(monD, 3), monD);
+				if (monD != null)
+				{
+					DuelistCard.applyPower(new ThornsPower(monD, 3), monD);
+				}
 				break;
 			case "Apply #b4 Thorns to a random enemy":
 				AbstractCreature monE = AbstractDungeon.getRandomMonster();
-				DuelistCard.applyPower(new ThornsPower(monE, 4), monE);
+				if (monE != null)
+				{
+					DuelistCard.applyPower(new ThornsPower(monE, 4), monE);
+				}
 				break;
 			case "Apply #b2 Thorns to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped())
+					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
 					{
 						DuelistCard.applyPower(new ThornsPower(m, 2), m);
 					}
@@ -215,7 +230,7 @@ public class HauntedHelper
 			case "Apply #b1 Strength to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped())
+					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
 					{
 						DuelistCard.applyPower(new StrengthPower(m, 1), m);
 					}
@@ -224,7 +239,7 @@ public class HauntedHelper
 			case "Apply #b2 Strength to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped())
+					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
 					{
 						DuelistCard.applyPower(new StrengthPower(m, 2), m);
 					}

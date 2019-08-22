@@ -47,7 +47,8 @@ public class GravityBlaster extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	attack(AbstractDungeon.getRandomMonster());
+    	m = AbstractDungeon.getRandomMonster();
+    	if (m != null) { attack(m); }
     	for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
     	{
     		AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(monster, p));

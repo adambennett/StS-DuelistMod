@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.relics.AquaRelicB;
 import duelistmod.variables.Tags;
 
 public class LostBlueBreaker extends DuelistCard 
@@ -54,11 +53,14 @@ public class LostBlueBreaker extends DuelistCard
     	for (int i = 0; i < this.magicNumber; i++)
     	{
     		m = getRandomMonster();
-	    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);    	
-	    	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA.cardID.equals(this.cardID)) { extraDragA = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
-	    	String cardNameA = extraDragA.originalName;    	
-	    	if (DuelistMod.debug) { System.out.println("theDuelist:LostBlueBreaker --- > Generated: " + cardNameA); }
-	    	fullResummon(extraDragA, this.upgraded, m, false);
+    		if (m != null)
+    		{
+		    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);    	
+		    	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA.cardID.equals(this.cardID)) { extraDragA = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+		    	String cardNameA = extraDragA.originalName;    	
+		    	if (DuelistMod.debug) { System.out.println("theDuelist:LostBlueBreaker --- > Generated: " + cardNameA); }
+		    	fullResummon(extraDragA, this.upgraded, m, false);
+    		}
     	}
     }
 

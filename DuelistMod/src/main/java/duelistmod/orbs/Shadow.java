@@ -89,16 +89,18 @@ public class Shadow extends DuelistOrb
 	    		for (int i = 0; i < this.evokeAmount; i++)
 	    		{
 	    			AbstractMonster m = AbstractDungeon.getRandomMonster();
-		    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
-		    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
-		    		String cardName = chosen.originalName;
-		    		if (DuelistMod.debug) { System.out.println("theDuelist:Shadow --- > Found: " + cardName); }
-	    			DuelistCard cardCopy = (DuelistCard)chosen;
-	    			if (cardCopy != null)
+	    			if (m != null)
 	    			{
-	    				DuelistCard.fullResummon(cardCopy, false, m, false);
-	    			}
-	    		
+			    		int randomAttack = AbstractDungeon.cardRandomRng.random(toChooseFrom.size() - 1);
+			    		AbstractCard chosen = toChooseFrom.get(randomAttack).makeStatEquivalentCopy();
+			    		String cardName = chosen.originalName;
+			    		if (DuelistMod.debug) { System.out.println("theDuelist:Shadow --- > Found: " + cardName); }
+		    			DuelistCard cardCopy = (DuelistCard)chosen;
+		    			if (cardCopy != null)
+		    			{
+		    				DuelistCard.fullResummon(cardCopy, false, m, false);
+		    			}
+	    			}	    		
 	    		}
 	    	}
 		}

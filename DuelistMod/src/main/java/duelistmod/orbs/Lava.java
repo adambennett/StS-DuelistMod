@@ -58,7 +58,7 @@ public class Lava extends DuelistOrb
 	{
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 10;
+		this.baseEvokeAmount = this.evokeAmount = startingDamage;
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -101,7 +101,8 @@ public class Lava extends DuelistOrb
 					DuelistCard dc = (DuelistCard)c;
 					extra += dc.lavaEvokeEffect();
 				}
-				DuelistCard.staticThornAttack(AbstractDungeon.getRandomMonster(), AttackEffect.FIRE, this.evokeAmount + extra);
+				AbstractMonster m = AbstractDungeon.getRandomMonster();
+				if (m != null) { DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.evokeAmount + extra); }
 			}
 		}
 	}

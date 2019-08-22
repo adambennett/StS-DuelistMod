@@ -77,7 +77,8 @@ public class HeavyStorm extends DuelistCard
 	    	
 	    	for (int i = 0; i < summonsRemoved; i++)
 	    	{
-	    		thornAttack(AbstractDungeon.getRandomMonster(), this.magicNumber); 
+	    		AbstractMonster mon = AbstractDungeon.getRandomMonster();
+	    		if (mon != null) { thornAttack(mon, this.magicNumber); }
 	    	}
     	}
     }
