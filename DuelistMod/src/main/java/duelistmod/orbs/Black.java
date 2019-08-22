@@ -168,7 +168,7 @@ public class Black extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("ORB_DARK_EVOKE", 10.0F);
+		CardCrawlGame.sound.playV("ORB_DARK_EVOKE", 8.0F);
 	}
 	
 	@Override

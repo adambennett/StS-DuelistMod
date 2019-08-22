@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -120,8 +121,11 @@ public class MillenniumPuzzle extends CustomRelic {
 	{
 		boolean eliteVictory = false;
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { eliteVictory = true; }
-		if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
-		else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }
+		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck"))
+		{
+			if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
+			else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }
+		}
 	}
 
 	// Description
@@ -311,6 +315,16 @@ public class MillenniumPuzzle extends CustomRelic {
 			// Random (Big) Deck
 			case 28:
 				localdesc = DESCRIPTIONS[33];
+				break;
+				
+			// Random (Upgrade) Deck
+			case 29:
+				localdesc = DESCRIPTIONS[34];
+				break;
+			
+			// Metronome Deck
+			case 30:
+				localdesc = DESCRIPTIONS[35];
 				break;
 	
 			// Generic

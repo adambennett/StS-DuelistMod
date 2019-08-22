@@ -329,6 +329,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean isPharaohDeckThreeUnlocked = false;
 	public static boolean isPharaohDeckFourUnlocked = false;
 	public static boolean isPharaohDeckFiveUnlocked = false;
+	public static boolean isExtraRandomDecksUnlocked = false;
 
 	// Numbers
 	public static final int baseInsectPoison = 3;
@@ -726,6 +727,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		StarterDeck p5Deck = new StarterDeck(Tags.PHARAOH_FIVE_DECK, "Pharaoh V", save, "Pharaoh V", true); starterDeckList.add(p5Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ran1Deck = new StarterDeck(Tags.RANDOM_DECK_SMALL, "Random Deck (10 cards)", save, "Random Deck (Small)", true); starterDeckList.add(ran1Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		StarterDeck ran2Deck = new StarterDeck(Tags.RANDOM_DECK_BIG, "Random Deck (15 cards)", save, "Random Deck (Big)", true); starterDeckList.add(ran2Deck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck upgradeRanDeck = new StarterDeck(Tags.RANDOM_DECK_UPGRADE, "Upgrade Deck (10 cards)", save, "Upgrade Deck", true); starterDeckList.add(upgradeRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
+		StarterDeck metRanDeck = new StarterDeck(Tags.METRONOME_DECK, "Metronome Deck (15 cards)", save, "Metronome Deck", true); starterDeckList.add(metRanDeck); deckTagMap.put(starterDeckList.get(save).getDeckTag(), starterDeckList.get(save)); save++;
 		
 		for (StarterDeck d : starterDeckList) { startingDecks.add(d.getName()); starterDeckNamesMap.put(d.getSimpleName(), d); }
 		for (int i = 0; i < starterDeckList.size(); i++)
@@ -1080,15 +1083,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new WhiteBowlRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SummonAnchorRare(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GamblerChip(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new MerchantPendant(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new MerchantSword(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new MerchantPendant(), AbstractCardEnum.DUELIST);
+		/*BaseMod.addRelicToCustomPool(new MerchantSword(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MerchantTalisman(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MerchantRugbox(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Monsterbox(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Spellbox(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Trapbox(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Spellheart(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new TrapVortex(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new TrapVortex(), AbstractCardEnum.DUELIST);*/
+		BaseMod.addRelicToCustomPool(new MonsterEggRelic(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1173,7 +1177,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(WhiteBowlRelic.ID);
 		UnlockTracker.markRelicAsSeen(SummonAnchorRare.ID);
 		UnlockTracker.markRelicAsSeen(GamblerChip.ID);
-		UnlockTracker.markRelicAsSeen(MerchantPendant.ID);
+		/*UnlockTracker.markRelicAsSeen(MerchantPendant.ID);
 		UnlockTracker.markRelicAsSeen(MerchantSword.ID);
 		UnlockTracker.markRelicAsSeen(MerchantTalisman.ID);
 		UnlockTracker.markRelicAsSeen(MerchantRugbox.ID);
@@ -1181,7 +1185,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(Spellbox.ID);
 		UnlockTracker.markRelicAsSeen(Trapbox.ID);
 		UnlockTracker.markRelicAsSeen(Spellheart.ID);
-		UnlockTracker.markRelicAsSeen(TrapVortex.ID);
+		UnlockTracker.markRelicAsSeen(TrapVortex.ID);*/
+		UnlockTracker.markRelicAsSeen(MonsterEggRelic.ID);
 		
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
@@ -1235,6 +1240,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new SpellMaxHPRelic());
 		duelistRelicsForTombEvent.add(new WhiteBowlRelic());
 		duelistRelicsForTombEvent.add(new SummonAnchorRare());
+		duelistRelicsForTombEvent.add(new MonsterEggRelic());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 

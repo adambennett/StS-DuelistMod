@@ -62,6 +62,8 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MEGATYPED;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPE_DECK;
 	@SpireEnum public static AbstractCard.CardTags METAL_RAIDERS;
+	@SpireEnum public static AbstractCard.CardTags METRONOME;
+	@SpireEnum public static AbstractCard.CardTags METRONOME_DECK;
 	@SpireEnum public static AbstractCard.CardTags MONSTER;
 	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
 	@SpireEnum public static AbstractCard.CardTags NATURIA;
@@ -95,6 +97,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags PREDAPLANT_DECK;
 	@SpireEnum public static AbstractCard.CardTags RANDOMONLY;
 	@SpireEnum public static AbstractCard.CardTags RANDOMONLY_NOCREATOR;
+	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_UPGRADE;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags REDUCED;

@@ -15,7 +15,7 @@ public class HeartCheckPatch
 {
     public static void Prefix() 
     {
-    	if (AbstractDungeon.ascensionLevel > 19 && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) { DuelistMod.bonusUnlockHelper.beatHeart(); }
-    	else { Util.log("Beat the Heart! Ascension was below 20, or you're playing as a character that is not the Duelist (how could you)"); }
+    	if (AbstractDungeon.ascensionLevel > 19 && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST)) { DuelistMod.bonusUnlockHelper.beatHeartA20(); }
+    	else { DuelistMod.bonusUnlockHelper.beatHeart(); }
     }
 }

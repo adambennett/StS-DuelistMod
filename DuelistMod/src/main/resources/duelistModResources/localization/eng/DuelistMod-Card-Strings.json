@@ -1213,6 +1213,11 @@
 		"NAME": "Monster Egg",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Create a random upgraded monster and Resummon it on the target enemy."
 	},
+	"theDuelist:MonsterEggSpecial": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Create a random monster and Resummon it on the target enemy. NL Draw a card. NL Exhaust.",
+		"NAME": "Monster Egg",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Create a random upgraded monster and Resummon it on the target enemy. NL Draw a card. NL Exhaust."
+	},
 	"theDuelist:MonsterOrbCard": {
 		"DESCRIPTION": "Channel a MonsterOrb.",
 		"NAME": "MonsterOrb",
@@ -4391,10 +4396,50 @@
 		"NAME": "Millennium Metronome",
 		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist card."
 	},
+	"theDuelist:SkillMetronome": {
+		"DESCRIPTION": "Resummon a completely random Duelist Skill.",
+		"NAME": "Skill Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist Skill."
+	},
+	"theDuelist:RareSkillMetronome": {
+		"DESCRIPTION": "Resummon a completely random Rare Duelist Skill.",
+		"NAME": "R. Skill Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Rare Duelist Skill."
+	},
+	"theDuelist:AttackMetronome": {
+		"DESCRIPTION": "Resummon a completely random Duelist Attack.",
+		"NAME": "Attack Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist Attack."
+	},
+	"theDuelist:RareAttackMetronome": {
+		"DESCRIPTION": "Resummon a completely random Rare Duelist Attack.",
+		"NAME": "R. Attack Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Rare Duelist Attack."
+	},
+	"theDuelist:PowerMetronome": {
+		"DESCRIPTION": "Resummon a completely random Duelist Power.",
+		"NAME": "Power Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist Power."
+	},
+	"theDuelist:RarePowerMetronome": {
+		"DESCRIPTION": "Resummon a completely random Rare Duelist Power.",
+		"NAME": "R. Power Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Rare Duelist Power."
+	},
+	"theDuelist:UncommonMetronome": {
+		"DESCRIPTION": "Resummon a completely random Uncommon Duelist card.",
+		"NAME": "Uncommon Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Uncommon Duelist card."
+	},
 	"theDuelist:OneForOne": {
 		"DESCRIPTION": "Arcane NL Retain !M! card this turn. NL Exhaust.",
 		"NAME": "One for One",
 		"UPGRADE_DESCRIPTION": "Arcane NL Retain !M! cards this turn. NL Exhaust."
+	},
+	"theDuelist:RainbowMedicine": {
+		"DESCRIPTION": "Arcane NL Gain 2 random buffs.",
+		"NAME": "Rainbow Medicine",
+		"UPGRADE_DESCRIPTION": "Arcane NL Choose 2 random buffs (from !M! choices)."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

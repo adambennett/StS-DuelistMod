@@ -131,7 +131,7 @@ public class Mud extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("theDuelist:MudChannel", 20.0F);
+		CardCrawlGame.sound.playV("theDuelist:MudChannel", 15.0F);
 	}
 
 	@Override

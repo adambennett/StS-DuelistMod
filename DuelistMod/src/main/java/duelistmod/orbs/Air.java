@@ -143,7 +143,7 @@ public class Air extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("theDuelist:AirChannel", 20.0F);
+		CardCrawlGame.sound.playV("theDuelist:AirChannel", 15.0F);
 	}
 	
 	@Override

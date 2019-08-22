@@ -26,7 +26,7 @@ public class ExodiaPool
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
 		pools.add(NaturePool.deck());
-		//pools.add(PlantPool.deck());
+		pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
@@ -54,7 +54,7 @@ public class ExodiaPool
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
 		pools.add(NaturePool.deck());
-		//pools.add(PlantPool.deck());
+		pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());

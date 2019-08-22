@@ -671,6 +671,17 @@ public class PuzzleHelper
 				DuelistCard.puzzleSummon(AbstractDungeon.player, summonRollB + extra, "Puzzle Token", false);
 				break;
 			
+			// Random (Upgrade) Deck
+			case 29:
+				int summonRollC = AbstractDungeon.cardRandomRng.random(1, 3);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, summonRollC + extra, "Puzzle Token", false);
+				break;
+				
+			// Metronome Deck
+			case 30:
+				int summonRollD = AbstractDungeon.cardRandomRng.random(1, 3);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, summonRollD + extra, "Puzzle Token", false);
+				break;
 			// Generic
 			default:
 				DuelistCard.puzzleSummon(AbstractDungeon.player, SUMMONS + extra, "Puzzle Token", false);

@@ -120,7 +120,7 @@ public class DuelistCrystal extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("ORB_FROST_CHANNEL", 7.0F);
+		CardCrawlGame.sound.playV("ORB_FROST_CHANNEL", 8.0F);
 	}
 
 	@Override

@@ -740,7 +740,16 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Slushy());
 		DuelistMod.myCards.add(new PharaohBlessing());
 		DuelistMod.myCards.add(new Metronome());
+		DuelistMod.myCards.add(new UncommonMetronome());
+		DuelistMod.myCards.add(new AttackMetronome());
+		DuelistMod.myCards.add(new SkillMetronome());
+		DuelistMod.myCards.add(new RareAttackMetronome());
+		DuelistMod.myCards.add(new RareSkillMetronome());
+		DuelistMod.myCards.add(new PowerMetronome());
+		DuelistMod.myCards.add(new RarePowerMetronome());
 		DuelistMod.myCards.add(new OneForOne());
+		DuelistMod.myCards.add(new MonsterEggSpecial());
+		DuelistMod.myCards.add(new RainbowMedicine());
 		
 		
 		//DuelistMod.myCards.add(new WightLady());			
@@ -790,7 +799,10 @@ public class DuelistCardLibrary
 		DuelistMod.cardCount = 0;
 		for (int i = 0; i < DuelistMod.myCards.size(); i++)
 		{
-			DuelistMod.cardCount++;
+			if (!DuelistMod.myCards.get(i).hasTag(Tags.METRONOME) || DuelistMod.myCards.get(i) instanceof Metronome)
+			{
+				DuelistMod.cardCount++;
+			}			
 		}
 		
 		// Add tokens to 'The Duelist' section of compendium
@@ -1136,6 +1148,21 @@ public class DuelistCardLibrary
 		{
 			return CardLibrary.getCurse();
 		}
+	}
+	
+	public static AbstractCard getRandomMetronome()
+	{
+		Util.log("Calling getRandomMetronome()");
+		ArrayList<AbstractCard> mets = new ArrayList<AbstractCard>();
+		mets.add(new Metronome());
+		mets.add(new AttackMetronome());
+		mets.add(new RareAttackMetronome());
+		mets.add(new SkillMetronome());
+		mets.add(new RareSkillMetronome());
+		mets.add(new PowerMetronome());
+		mets.add(new RarePowerMetronome());
+		mets.add(new UncommonMetronome());
+		return mets.get(AbstractDungeon.cardRandomRng.random(mets.size() - 1));
 	}
 	
 	public static void setupMyCardsDebug(String poolName)

@@ -4,8 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.variables.Strings;
+import duelistmod.DuelistMod;
 
 public class MillenniumScale extends CustomRelic {
 

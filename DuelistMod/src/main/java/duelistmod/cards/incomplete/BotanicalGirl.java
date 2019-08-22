@@ -40,7 +40,7 @@ public class BotanicalGirl extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT); 
         this.summons = this.baseSummons = 1;
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 3;
         this.originalName = this.name;
     }
 
@@ -63,7 +63,7 @@ public class BotanicalGirl extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

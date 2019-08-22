@@ -863,7 +863,7 @@ public class BoosterPackHelper
 				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster", roll);
 			}
 		}
-		else
+		else 
 		{
 			// Common - 4%
 			if (roll <= 4)

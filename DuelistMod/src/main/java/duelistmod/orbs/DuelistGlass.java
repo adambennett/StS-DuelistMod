@@ -120,7 +120,7 @@ public class DuelistGlass extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("POTION_DROP_2", 10.0F);
+		CardCrawlGame.sound.playV("POTION_DROP_2", 8.0F);
 	}
 	
 	@Override

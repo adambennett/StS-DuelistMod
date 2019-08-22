@@ -197,7 +197,7 @@ public class Gate extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("theDuelist:GateChannel", 20.0F);
+		CardCrawlGame.sound.playV("theDuelist:GateChannel", 15.0F);
 	}
 	
 	

@@ -134,7 +134,7 @@ public class DuelistLight extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("HEAL_3", 20.0F);
+		CardCrawlGame.sound.playV("HEAL_3", 15.0F);
 	}
 	
 	@Override

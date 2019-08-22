@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
@@ -39,6 +40,7 @@ public class SummonAnchor extends CustomRelic {
 	{
 		AbstractDungeon.actionManager.addToBottom(new SummonAnchorAction(summs));
 		this.flash();
+		AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 	}
 
 	// Description

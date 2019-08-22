@@ -30,12 +30,12 @@ public class BoosterReplaceRewardsPatch {
 					{						
 						cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards);
 					}
-					else
+					else if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck"))
 					{						
 						cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, null);
 					}
 				}
-				else
+				else if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck"))
 				{
 					RewardItem empty = new RewardItem();
 					empty.cards = new ArrayList<AbstractCard>();

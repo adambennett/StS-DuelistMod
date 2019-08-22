@@ -139,7 +139,7 @@ public class ReducerOrb extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("BLOOD_SPLAT", 20.0F);
+		CardCrawlGame.sound.playV("BLOOD_SPLAT", 15.0F);
 	}
 
 	@Override

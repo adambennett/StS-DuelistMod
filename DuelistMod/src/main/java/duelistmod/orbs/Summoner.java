@@ -114,7 +114,7 @@ public class Summoner extends DuelistOrb
 	@Override
 	public void playChannelSFX()
 	{
-		CardCrawlGame.sound.playV("ORB_PLASMA_CHANNEL", 12.0F);
+		CardCrawlGame.sound.playV("ORB_PLASMA_CHANNEL", 10.0F);
 	}
 
 	@Override

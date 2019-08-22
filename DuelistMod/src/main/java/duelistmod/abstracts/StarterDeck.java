@@ -5,7 +5,6 @@ import java.util.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 
-import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class StarterDeck 
@@ -89,6 +88,7 @@ public class StarterDeck
 		deckCopiesMap.put(Tags.PHARAOH_THREE_DECK, 24);
 		deckCopiesMap.put(Tags.PHARAOH_FOUR_DECK, 25);
 		deckCopiesMap.put(Tags.PHARAOH_FIVE_DECK, 26);
+		deckCopiesMap.put(Tags.METRONOME_DECK, 27);
 	}
 
 	public CardTags getDeckTag() {
@@ -170,15 +170,6 @@ public class StarterDeck
 
 	public void fillPoolCards(ArrayList<AbstractCard> poolCards)
 	{
-		/*for (AbstractCard c : poolCards)
-		{
-			if (!this.poolNames.contains(c.name))
-			{
-				this.poolCards.add(c);
-				this.poolNames.add(c.name);
-			}
-		}*/
-		
 		this.poolCards.addAll(poolCards);
 	}
 

@@ -1,6 +1,7 @@
 package duelistmod.helpers;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
@@ -187,6 +188,16 @@ public class StarterDeckSetup {
 		return hasAnyTag;
 	}
 	
+	private static boolean randomUpgradeDeckChecker(int lastRoll)
+	{
+		int rollCheck = 2;
+		int maxChance = 10;
+		if (lastRoll > (maxChance - rollCheck+1)) { return false; }		// if they cant roll a number that passes the check because they already upgraded a lot
+		int roll = ThreadLocalRandom.current().nextInt(1, maxChance);	// otherwise roll 1-10
+		if (roll > (rollCheck + lastRoll)) { return true; }				// if roll is bigger than the sum of the original low bound + number of upgrades, return true
+		else { return false; }											// else, final fail
+	}
+	
 	public static void setupStartDecksB()
 	{
 		DuelistMod.chosenDeckTag = findDeckTag(DuelistMod.deckIndex);
@@ -211,6 +222,20 @@ public class StarterDeckSetup {
 				Util.log("Random Deck (Big) initialized");
 			}
 			
+			else if (DuelistMod.chosenDeckTag.equals(Tags.RANDOM_DECK_UPGRADE))
+			{
+				setupRandomDecks();
+				DuelistMod.deckToStartWith = new ArrayList<DuelistCard>();
+				int lastRoll = 0;
+				for (int i = 0; i < DuelistMod.randomDeckSmallSize; i++) 
+				{ 
+					DuelistCard nextRand = (DuelistCard)DuelistCard.returnTrulyRandomDuelistCardForRandomDecks();
+					while (randomUpgradeDeckChecker(lastRoll) && nextRand.canUpgrade()) { nextRand.upgrade(); lastRoll++; }
+					lastRoll = 0;
+					DuelistMod.deckToStartWith.add(nextRand); 
+				}
+				Util.log("Random Deck (Upgraded) initialized");
+			}
 			else 
 			{
 				Util.log("theDuelist:DuelistMod:setupStartDecksB() ---> " + refDeck.getSimpleName() + " size: " + refDeck.getDeck().size());
@@ -281,6 +306,8 @@ public class StarterDeckSetup {
 		ZombiePool.deck();
 		RandomSmallPool.deck();
 		RandomBigPool.deck();
+		RandomUpgradePool.deck();
+		RandomMetronomePool.deck();
 		
 		AquaPool.basic();
 		AscendedOnePool.basic();
@@ -307,6 +334,8 @@ public class StarterDeckSetup {
 		ZombiePool.basic();
 		RandomSmallPool.basic();
 		RandomBigPool.basic();
+		RandomUpgradePool.basic();
+		RandomMetronomePool.basic();
 	}
 
 	public static void deckFill()
@@ -336,6 +365,8 @@ public class StarterDeckSetup {
 		ZombiePool.deck();
 		RandomSmallPool.deck();
 		RandomBigPool.deck();
+		RandomUpgradePool.deck();
+		RandomMetronomePool.deck();
 	}
 	
 	public static void basicFill()
@@ -365,6 +396,8 @@ public class StarterDeckSetup {
 		ZombiePool.basic();
 		RandomSmallPool.basic();
 		RandomBigPool.basic();
+		RandomUpgradePool.basic();
+		RandomMetronomePool.basic();
 	}
 
 	public static void deckBasicOneRandomFill()
@@ -394,6 +427,8 @@ public class StarterDeckSetup {
 		ZombiePool.deck();
 		RandomSmallPool.deck();
 		RandomBigPool.deck();
+		RandomUpgradePool.deck();
+		RandomMetronomePool.deck();
 		
 		AquaPool.basic();
 		AscendedOnePool.basic();
@@ -420,6 +455,8 @@ public class StarterDeckSetup {
 		ZombiePool.basic();
 		RandomSmallPool.basic();
 		RandomBigPool.basic();
+		RandomUpgradePool.basic();
+		RandomMetronomePool.basic();
 		
 		AquaPool.oneRandom();
 		AscendedOnePool.oneRandom();
@@ -446,6 +483,8 @@ public class StarterDeckSetup {
 		ZombiePool.oneRandom();
 		RandomSmallPool.oneRandom();
 		RandomBigPool.oneRandom();
+		RandomUpgradePool.oneRandom();
+		RandomMetronomePool.oneRandom();
 	}
 
 	public static void deckOneRandomFill()
@@ -475,6 +514,8 @@ public class StarterDeckSetup {
 		ZombiePool.deck();
 		RandomSmallPool.deck();
 		RandomBigPool.deck();
+		RandomUpgradePool.deck();
+		RandomMetronomePool.deck();
 		AquaPool.oneRandom();
 		AscendedOnePool.oneRandom();
 		AscendedTwoPool.oneRandom();
@@ -500,6 +541,8 @@ public class StarterDeckSetup {
 		ZombiePool.oneRandom();
 		RandomSmallPool.oneRandom();
 		RandomBigPool.oneRandom();
+		RandomUpgradePool.oneRandom();
+		RandomMetronomePool.oneRandom();
 	}
 
 	public static void basicOneRandomFill()
@@ -529,6 +572,8 @@ public class StarterDeckSetup {
 		ZombiePool.basic();
 		RandomSmallPool.basic();
 		RandomBigPool.basic();
+		RandomUpgradePool.basic();
+		RandomMetronomePool.basic();
 		ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
 		poolCards.addAll(BasicPool.oneRandom());
 		for (StarterDeck s : DuelistMod.starterDeckList)
@@ -564,6 +609,8 @@ public class StarterDeckSetup {
 		ZombiePool.basic();
 		RandomSmallPool.basic();
 		RandomBigPool.basic();
+		RandomUpgradePool.basic();
+		RandomMetronomePool.basic();
 		AquaPool.deck();
 		AscendedOnePool.deck();
 		AscendedTwoPool.deck();
@@ -589,6 +636,8 @@ public class StarterDeckSetup {
 		ZombiePool.deck();
 		RandomSmallPool.deck();
 		RandomBigPool.deck();
+		RandomUpgradePool.deck();
+		RandomMetronomePool.deck();
 		AscendedOnePool.twoRandom();
 		AscendedTwoPool.twoRandom();
 		AscendedThreePool.twoRandom();
@@ -613,6 +662,8 @@ public class StarterDeckSetup {
 		ZombiePool.twoRandom();
 		RandomSmallPool.twoRandom();
 		RandomBigPool.twoRandom();
+		RandomUpgradePool.twoRandom();
+		RandomMetronomePool.twoRandom();
 	}
 	
 	public static void twoRandomFill()
@@ -651,6 +702,8 @@ public class StarterDeckSetup {
 		ZombiePool.twoRandom();
 		RandomSmallPool.twoRandom();
 		RandomBigPool.twoRandom();
+		RandomUpgradePool.twoRandom();
+		RandomMetronomePool.twoRandom();
 		AquaPool.deck();
 		AscendedOnePool.deck();
 		AscendedTwoPool.deck();
@@ -669,6 +722,8 @@ public class StarterDeckSetup {
 		PharaohPool.deck();
 		RandomSmallPool.deck();
 		RandomBigPool.deck();
+		RandomUpgradePool.deck();
+		RandomMetronomePool.deck();
 	}
 	
 	

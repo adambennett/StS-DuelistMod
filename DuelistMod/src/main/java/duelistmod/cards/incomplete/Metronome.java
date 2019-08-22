@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.typecards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -23,25 +24,31 @@ public class Metronome extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public Metronome() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.EXEMPT);
+        this.tags.add(Tags.NEVER_GENERATE);
+        this.tags.add(Tags.METRONOME);
+        this.tags.add(Tags.METRONOME_DECK);
+        this.metronomeDeckCopies = 5;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	DuelistCard randy = returnMetronomeCard(this.upgraded);
-    	fullResummon(randy, this.upgraded, m, false);
+    	DuelistCard randy = returnMetronomeCard(this.upgraded, this);
+    	if (!(randy instanceof CancelCard)) { fullResummon(randy, this.upgraded, m, false); }
     }
 
     // Which card to return when making a copy of this card.

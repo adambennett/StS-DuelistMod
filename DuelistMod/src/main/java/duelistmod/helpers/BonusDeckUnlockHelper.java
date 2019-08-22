@@ -39,6 +39,7 @@ public class BonusDeckUnlockHelper
 	private int a20_heart_kills_p5_deck = 0;
 	private int a20_heart_kills_random_small_deck = 0;
 	private int a20_heart_kills_random_big_deck = 0;
+	private int heartKillsRandomDecks = 0;
 	private ArrayList<Integer> heartKills = new ArrayList<Integer>();
 	private ArrayList<Integer> heartKillsForA1 = new ArrayList<Integer>();
 	private ArrayList<Integer> heartKillsForP5 = new ArrayList<Integer>();
@@ -51,6 +52,7 @@ public class BonusDeckUnlockHelper
 	private boolean p3_Unlocked = false;
 	private boolean p4_Unlocked = false;
 	private boolean p5_Unlocked = false;
+	private boolean extraRandomsUnlocked = false;
 	private boolean playOnce = false;
 	
 	public BonusDeckUnlockHelper()
@@ -91,6 +93,7 @@ public class BonusDeckUnlockHelper
 		if (a1_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isAscendedDeckOneUnlocked = true; }
 		if (a2_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isAscendedDeckTwoUnlocked = true; }
 		if (a3_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isAscendedDeckThreeUnlocked = true; }
+		if (extraRandomsUnlocked) { DuelistMod.isExtraRandomDecksUnlocked = true; }
 		//if (p1_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isPharaohDeckOneUnlocked = true; }
 		//if (p2_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isPharaohDeckTwoUnlocked = true; }
 		//if (p3_Unlocked && DuelistMod.allowBonusDeckUnlocks) { DuelistMod.isPharaohDeckThreeUnlocked = true; }
@@ -102,6 +105,9 @@ public class BonusDeckUnlockHelper
 	
 	private void unlockDecks()
 	{
+		// Extra Random Decks
+		if (heartKillsRandomDecks > 0) { extraRandomsUnlocked = true; }
+		
 		// Ascended 1
 		for (Integer i : heartKillsForA1) { if (i > 0) { a1_Unlocked = true; break; }}
 		
@@ -242,6 +248,7 @@ public class BonusDeckUnlockHelper
         	config.setBool("p3_Unlocked", p3_Unlocked);
         	config.setBool("p4_Unlocked", p4_Unlocked);
         	config.setBool("p5_Unlocked", p5_Unlocked);
+        	config.setBool("extraRandomsUnlocked", extraRandomsUnlocked);
         	config.setInt("a20_heart_kills_standard_deck", a20_heart_kills_standard_deck);
         	config.setInt("a20_heart_kills_dragon_deck", a20_heart_kills_dragon_deck);
         	config.setInt("a20_heart_kills_nature_deck", a20_heart_kills_nature_deck);
@@ -271,6 +278,7 @@ public class BonusDeckUnlockHelper
         	config.setInt("a20_heart_kills_p5_deck", a20_heart_kills_p5_deck);
         	config.setInt("a20_heart_kills_random_small_deck", a20_heart_kills_random_small_deck);
         	config.setInt("a20_heart_kills_random_big_deck", a20_heart_kills_random_big_deck);     
+        	config.setInt("heartKillsRandomDecks", heartKillsRandomDecks);
         	config.setBool("playOnce", playOnce);    
 			config.save();
 		} 
@@ -281,6 +289,19 @@ public class BonusDeckUnlockHelper
 	}
 	
 	public void beatHeart()
+	{
+		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
+		if (currentDeck == 27 || currentDeck == 28)
+		{
+			heartKillsRandomDecks++;
+		}		
+		setupNumberLists();
+		unlockDecks();
+		unlockDecksGlobally();
+		saveProperties();
+	}
+	
+	public void beatHeartA20()
 	{
 		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
 		switch (currentDeck)
@@ -368,9 +389,11 @@ public class BonusDeckUnlockHelper
 				break;
 			case 27:
 				a20_heart_kills_random_small_deck++;
+				heartKillsRandomDecks++;
 				break;
 			case 28:
 				a20_heart_kills_random_big_deck++;
+				heartKillsRandomDecks++;
 				break;
 		}
 		saveProperties();
@@ -393,7 +416,8 @@ public class BonusDeckUnlockHelper
         	p2_Unlocked = config.getBool("p2_Unlocked");
         	p3_Unlocked = config.getBool("p3_Unlocked");
         	p4_Unlocked = config.getBool("p4_Unlocked");
-        	p5_Unlocked = config.getBool("p5_Unlocked");        	
+        	p5_Unlocked = config.getBool("p5_Unlocked");  
+        	extraRandomsUnlocked = config.getBool("extraRandomsUnlocked"); 
         	a20_heart_kills_standard_deck = config.getInt("a20_heart_kills_standard_deck");
         	a20_heart_kills_dragon_deck = config.getInt("a20_heart_kills_dragon_deck");
         	a20_heart_kills_nature_deck = config.getInt("a20_heart_kills_nature_deck");
@@ -423,6 +447,7 @@ public class BonusDeckUnlockHelper
         	a20_heart_kills_p5_deck = config.getInt("a20_heart_kills_p5_deck");
         	a20_heart_kills_random_small_deck = config.getInt("a20_heart_kills_random_small_deck");
         	a20_heart_kills_random_big_deck = config.getInt("a20_heart_kills_random_big_deck");   
+        	heartKillsRandomDecks = config.getInt("heartKillsRandomDecks");
         	playOnce = config.getBool("playOnce");
         } 
 		catch (Exception e) { e.printStackTrace(); }
@@ -478,5 +503,7 @@ public class BonusDeckUnlockHelper
 		propertyList.setProperty("p3_Unlocked", "FALSE");
 		propertyList.setProperty("p4_Unlocked", "FALSE");
 		propertyList.setProperty("p5_Unlocked", "FALSE");
+		propertyList.setProperty("extraRandomsUnlocked", "FALSE");
+		propertyList.setProperty("heartKillsRandomDecks", "0");
 	}
 }
