@@ -6580,69 +6580,68 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (metronome instanceof Metronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
-			cardsToPullFrom.addAll(DuelistMod.myCards);
-			cardsToPullFrom.addAll(DuelistMod.orbCards);
-			if (upgraded) { cardsToPullFrom.addAll(DuelistMod.rareCards); }
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
-			while (c.hasTag(Tags.NEVER_GENERATE) || c.hasTag(Tags.EXEMPT) || c.hasTag(Tags.NO_METRONOME)) { c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)); }
+			for (DuelistCard c : DuelistMod.myCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
+			for (DuelistCard c : DuelistMod.orbCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
+			if (upgraded) { for (DuelistCard c : DuelistMod.rareCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); } }
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			while (c.hasTag(Tags.NEVER_GENERATE) || c.hasTag(Tags.EXEMPT) || c.hasTag(Tags.NO_METRONOME)) { c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy(); }
 			return c;
 		}
 		else if (metronome instanceof SkillMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.SKILL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			cardsToPullFrom.addAll(DuelistMod.orbCards);
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			for (DuelistCard c : DuelistMod.orbCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else if (metronome instanceof RareSkillMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.SKILL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			cardsToPullFrom.addAll(DuelistMod.orbCards);
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else if (metronome instanceof AttackMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else if (metronome instanceof RareAttackMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else if (metronome instanceof PowerMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.POWER) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else if (metronome instanceof RarePowerMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.POWER) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else if (metronome instanceof UncommonMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (!c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.UNCOMMON)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else if (metronome instanceof UncommonAttackMetronome)
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
-			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return c;
 		}
 		else
