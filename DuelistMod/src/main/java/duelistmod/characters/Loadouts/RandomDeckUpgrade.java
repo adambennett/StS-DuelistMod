@@ -9,7 +9,7 @@ public class RandomDeckUpgrade extends DuelistCustomLoadout
     public RandomDeckUpgrade()
     {
         this.ID = 29;
-        this.Name = "Random Deck (Upgraded)";
+        this.Name = "Upgrade Deck";
         this.permaLockMessage = "Beat the Heart with a Random Deck";
     }
 

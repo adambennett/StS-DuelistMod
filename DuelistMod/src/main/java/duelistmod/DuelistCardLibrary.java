@@ -21,6 +21,7 @@ import duelistmod.cards.orbCards.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 public class DuelistCardLibrary 
@@ -741,6 +742,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new PharaohBlessing());
 		DuelistMod.myCards.add(new Metronome());
 		DuelistMod.myCards.add(new UncommonMetronome());
+		DuelistMod.myCards.add(new UncommonAttackMetronome());
 		DuelistMod.myCards.add(new AttackMetronome());
 		DuelistMod.myCards.add(new SkillMetronome());
 		DuelistMod.myCards.add(new RareAttackMetronome());
@@ -801,7 +803,10 @@ public class DuelistCardLibrary
 		{
 			if (!DuelistMod.myCards.get(i).hasTag(Tags.METRONOME) || DuelistMod.myCards.get(i) instanceof Metronome)
 			{
-				DuelistMod.cardCount++;
+				if (!DuelistMod.myCards.get(i).color.equals(AbstractCardEnum.DUELIST_SPECIAL))
+				{
+					DuelistMod.cardCount++;
+				}				
 			}			
 		}
 		

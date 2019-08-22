@@ -6566,6 +6566,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public void metronomeAction(AbstractMonster m)
+	{
+		for (int i = 0; i < this.magicNumber; i++)
+    	{
+    		DuelistCard randy = returnMetronomeCard(this.upgraded, this);
+        	if (!(randy instanceof CancelCard)) { fullResummon(randy, this.upgraded, m, false); }
+    	}    
+	}
+	
 	public static DuelistCard returnMetronomeCard(boolean upgraded, DuelistCard metronome) 
 	{		
 		if (metronome instanceof Metronome)
@@ -6626,6 +6635,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (!c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && c.rarity.equals(CardRarity.UNCOMMON)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
+			return c;
+		}
+		else if (metronome instanceof UncommonAttackMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
 			DuelistCard c = cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1));
 			return c;
 		}

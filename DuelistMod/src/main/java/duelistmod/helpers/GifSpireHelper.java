@@ -43,6 +43,7 @@ public class GifSpireHelper
 		skillMetronome.addAsCardAnimation("theDuelist:UncommonMetronome");
 		skillMetronome.addAsCardAnimation("theDuelist:RareSkillMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:AttackMetronome");
+		attackMetronome.addAsCardAnimation("theDuelist:UncommonAttackMetronome");
 		attackMetronome.addAsCardAnimation("theDuelist:RareAttackMetronome");
 		powerMetronome.addAsCardAnimation("theDuelist:PowerMetronome");
 		powerMetronome.addAsCardAnimation("theDuelist:RarePowerMetronome");

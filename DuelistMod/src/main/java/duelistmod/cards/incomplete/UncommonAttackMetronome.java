@@ -12,33 +12,36 @@ import duelistmod.cards.typecards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class RareSkillMetronome extends DuelistCard 
+public class UncommonAttackMetronome extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("RareSkillMetronome");
+    public static final String ID = DuelistMod.makeID("UncommonAttackMetronome");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("Metronome.png");
+    public static final String IMG = DuelistMod.makeCardPath("MetronomeAttack.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public RareSkillMetronome() {
+    public UncommonAttackMetronome() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METRONOME);
+        this.tags.add(Tags.METRONOME_DECK);
+        this.metronomeDeckCopies = 1;
         this.baseMagicNumber = this.magicNumber = 1;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -51,7 +54,7 @@ public class RareSkillMetronome extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new RareSkillMetronome();
+        return new UncommonAttackMetronome();
     }
 
     // Upgraded stats.

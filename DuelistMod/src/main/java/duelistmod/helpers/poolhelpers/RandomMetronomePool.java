@@ -24,6 +24,7 @@ public class RandomMetronomePool
 		cards.add(new PowerMetronome());
 		cards.add(new RarePowerMetronome());
 		cards.add(new UncommonMetronome());
+		cards.add(new UncommonAttackMetronome());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(cards);	
 		Util.log(deckName + " was filled with only Metronomes!");
@@ -41,6 +42,7 @@ public class RandomMetronomePool
 		cards.add(new PowerMetronome());
 		cards.add(new RarePowerMetronome());
 		cards.add(new UncommonMetronome());
+		cards.add(new UncommonAttackMetronome());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		deck.fillPoolCards(cards);	
 		Util.log(deckName + " was filled with only Metronomes!");
@@ -61,6 +63,7 @@ public class RandomMetronomePool
 		cards.add(new PowerMetronome());
 		cards.add(new RarePowerMetronome());
 		cards.add(new UncommonMetronome());
+		cards.add(new UncommonAttackMetronome());
 		
 		deck.fillPoolCards(cards);		
 		deck.fillArchetypeCards(cards);	
@@ -78,6 +81,7 @@ public class RandomMetronomePool
 		cards.add(new PowerMetronome());
 		cards.add(new RarePowerMetronome());
 		cards.add(new UncommonMetronome());
+		cards.add(new UncommonAttackMetronome());
 		return cards;
 	}
 }

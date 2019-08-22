@@ -4392,44 +4392,49 @@
 		"UPGRADE_DESCRIPTION": "Activate the Millennium Puzzle. NL Channel a Light MillenniumOrb."
 	},
 	"theDuelist:Metronome": {
-		"DESCRIPTION": "Resummon a completely random Duelist card.",
+		"DESCRIPTION": "Resummon !M! completely random Duelist card.",
 		"NAME": "Millennium Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist card."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Duelist card."
 	},
 	"theDuelist:SkillMetronome": {
-		"DESCRIPTION": "Resummon a completely random Duelist Skill.",
+		"DESCRIPTION": "Resummon !M! completely random Duelist Skill.",
 		"NAME": "Skill Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist Skill."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Duelist Skill."
 	},
 	"theDuelist:RareSkillMetronome": {
-		"DESCRIPTION": "Resummon a completely random Rare Duelist Skill.",
+		"DESCRIPTION": "Resummon !M! completely random Rare Duelist Skill.",
 		"NAME": "R. Skill Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Rare Duelist Skill."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare Duelist Skill."
 	},
 	"theDuelist:AttackMetronome": {
-		"DESCRIPTION": "Resummon a completely random Duelist Attack.",
+		"DESCRIPTION": "Resummon !M! completely random Duelist Attack.",
 		"NAME": "Attack Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist Attack."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Duelist Attack."
 	},
 	"theDuelist:RareAttackMetronome": {
-		"DESCRIPTION": "Resummon a completely random Rare Duelist Attack.",
+		"DESCRIPTION": "Resummon !M! completely random Rare Duelist Attack.",
 		"NAME": "R. Attack Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Rare Duelist Attack."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare Duelist Attack."
 	},
 	"theDuelist:PowerMetronome": {
-		"DESCRIPTION": "Resummon a completely random Duelist Power.",
+		"DESCRIPTION": "Resummon !M! completely random Duelist Power.",
 		"NAME": "Power Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Duelist Power."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Duelist Power."
 	},
 	"theDuelist:RarePowerMetronome": {
-		"DESCRIPTION": "Resummon a completely random Rare Duelist Power.",
+		"DESCRIPTION": "Resummon !M! completely random Rare Duelist Power.",
 		"NAME": "R. Power Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Rare Duelist Power."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Rare Duelist Power."
 	},
 	"theDuelist:UncommonMetronome": {
-		"DESCRIPTION": "Resummon a completely random Uncommon Duelist card.",
+		"DESCRIPTION": "Resummon !M! completely random Uncommon Duelist card.",
 		"NAME": "Uncommon Metronome",
-		"UPGRADE_DESCRIPTION": "Resummon a completely random Upgraded Uncommon Duelist card."
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Uncommon Duelist card."
+	},
+	"theDuelist:UncommonAttackMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random non-Rare Duelist Attack.",
+		"NAME": "U. Attack Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random non-Rare Upgraded Duelist Attack."
 	},
 	"theDuelist:OneForOne": {
 		"DESCRIPTION": "Arcane NL Retain !M! card this turn. NL Exhaust.",

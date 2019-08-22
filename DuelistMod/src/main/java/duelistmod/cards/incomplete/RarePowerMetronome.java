@@ -38,14 +38,14 @@ public class RarePowerMetronome extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METRONOME);
+        this.baseMagicNumber = this.magicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	DuelistCard randy = returnMetronomeCard(this.upgraded, this);
-    	if (!(randy instanceof CancelCard)) { fullResummon(randy, this.upgraded, m, false); }
+    	metronomeAction(m);
     }
 
     // Which card to return when making a copy of this card.

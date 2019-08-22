@@ -230,11 +230,12 @@ public class StarterDeckSetup {
 				for (int i = 0; i < DuelistMod.randomDeckSmallSize; i++) 
 				{ 
 					DuelistCard nextRand = (DuelistCard)DuelistCard.returnTrulyRandomDuelistCardForRandomDecks();
+					nextRand.upgrade();
 					while (randomUpgradeDeckChecker(lastRoll) && nextRand.canUpgrade()) { nextRand.upgrade(); lastRoll++; }
 					lastRoll = 0;
 					DuelistMod.deckToStartWith.add(nextRand); 
 				}
-				Util.log("Random Deck (Upgraded) initialized");
+				Util.log("Upgrade Deck initialized");
 			}
 			else 
 			{

@@ -3,7 +3,6 @@ package duelistmod.relics;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -39,7 +38,7 @@ public class MonsterEggRelic extends CustomRelic {
 		cards.add(new MonsterEggSpecial());
 		cards.add(new MonsterEggSpecial());
 		cards.add(new MonsterEggSpecial());
-		AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+		//AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 		AbstractDungeon.actionManager.addToBottom(new MonsterEggRelicAction(cards));
 	}
 
