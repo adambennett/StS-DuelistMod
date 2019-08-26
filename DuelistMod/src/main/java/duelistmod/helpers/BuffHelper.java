@@ -53,35 +53,33 @@ public class BuffHelper {
 	
 	public static String trapVortexBuffName(int powerID)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		int traps = 1;
 		if (powerID == 1)
 		{
-			return new StrengthPower(p, traps).name;
+			return "#yStrength";
 		}
 		else if (powerID == 2)
 		{
-			return new ThornsPower(p, traps).name;
+			return "#yThorns";
 		}
 		else if (powerID == 3)
 		{
-			return new ArtifactPower(p, traps).name;
+			return "#yArtifacts";
 		}
 		else if (powerID == 4)
 		{
-			return new PotGenerosityPower(p, p, traps).name;
+			return "#yPot #yof #yGenerosity";
 		}
 		else if (powerID == 5)
 		{
-			return new JuggernautPower(p, traps).name;
+			return "#yJuggernaut";
 		}
 		else if (powerID == 6)
 		{
-			return new TombLooterPower(p, traps).name;
+			return "#yTomb #yLooter";
 		}
 		else
 		{
-			return new BlurPower(p, traps).name;
+			return "#yBlur";
 		}
 	}
 

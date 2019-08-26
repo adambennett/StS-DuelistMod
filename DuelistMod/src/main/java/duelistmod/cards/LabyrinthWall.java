@@ -67,8 +67,7 @@ public class LabyrinthWall extends DuelistCard
         {
             this.upgradeName();
             this.upgradeBlock(UPGRADE_PLUS_BLK);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

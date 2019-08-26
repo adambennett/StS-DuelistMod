@@ -509,6 +509,13 @@
 			"Upon pickup, refresh the entire shop. Apply #yUpgrades to a random type of card. Apply a random discount to everything in the shop."
 		]
 	},
+	"theDuelist:MerchantNecklace": {
+		"NAME": "Merchant's Necklace",
+		"FLAVOR": "A rug necklace? The Merchant is such a weird dude.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]in [#2aecd7]a [#2aecd7]shop [#2aecd7]to [#2aecd7]activate. NL Refresh the entire shop. Apply #yUpgrades to a random type of card. Apply a random discount to everything in the shop. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
+		]
+	},
 	"theDuelist:MerchantTalisman": {
 		"NAME": "Merchant's Talisman",
 		"FLAVOR": "It's all rugs. All his stuff is rugs. Even this weird talisman thing is rug-shaped.",
@@ -534,7 +541,7 @@
 		"NAME": "Monsterbox",
 		"FLAVOR": "A box of monsters!",
 		"DESCRIPTIONS": [
-			"Upon pickup, remove ALL monsters from your deck and replace them with an equal number of random monsters from one random type."
+			"Upon pickup, choose 1 of 5 random monster types. Replace ALL monsters from your deck with an equal number of random monsters from the chosen type."
 		]
 	},
 	"theDuelist:Spellbox": {
@@ -562,7 +569,8 @@
 		"NAME": "Trap Vortex",
 		"FLAVOR": "A localized black hole. Neat?",
 		"DESCRIPTIONS": [
-			"Upon pickup, remove ALL Traps from your deck. At the start of each combat, gain ", " equal to the number of Traps removed."
+			"Upon pickup, remove ALL Traps from your deck. At the start of each combat, gain ", " equal to the number of Traps removed.",
+			"At the start of each combat, gain #b"
 		]
 	},
 	"theDuelist:MonsterEggRelic": {
@@ -570,6 +578,41 @@
 		"FLAVOR": "A small egg-shaped token. Seems valuable.",
 		"DESCRIPTIONS": [
 			"At the start of each combat, add #b3 #yMonster #yEggs (with modified stats) to your draw pile."
+		]
+	},
+	"theDuelist:MagnetRelic": {
+		"NAME": "Magnet Stimulus",
+		"FLAVOR": "Get some Magnets!",
+		"DESCRIPTIONS": [
+			"Upon pickup, obtain all basic Magnet Warriors and Valkyrion. Lose #b10 Max HP."
+		]
+	},
+	"theDuelist:KaibaToken": {
+		"NAME": "Kaiba Token",
+		"FLAVOR": "A token shaped like a small treasure chest.",
+		"DESCRIPTIONS": [
+			"Whenever you obtain a monster, gain Gold based on the rarity of the monster. NL #yCommon: #b10 Gold NL #yUncommon: #b20 Gold NL #yRare: #b30 Gold NL #yOther: #b40 Gold"
+		]
+	},
+	"theDuelist:AknamkanonsEssence": {
+		"NAME": "Aknamkanon's Essence",
+		"FLAVOR": "How can I have this?",
+		"DESCRIPTIONS": [
+			"At the start of combat, gain #b10 #yTomb #yLooter.", "Each time you attack with a max stack of #ySummons, gain #b10 Gold."
+		]
+	},
+	"theDuelist:MarkExxod": {
+		"NAME": "Mark of Exxod",
+		"FLAVOR": "This brand was used by Ancient Egyptians to signify warriors who had successfully summoned Exodia in battle.",
+		"DESCRIPTIONS": [
+			"You can no longer obtain duplicate cards. Gain #b10 Max HP."
+		]
+	},
+	"theDuelist:DuelistCoin": {
+		"NAME": "Yu-Gi-Oh! Coin",
+		"FLAVOR": "A very beautiful coin!",
+		"DESCRIPTIONS": [
+			"Upon pickup, gain #b30 #yGold for each other relic you have."
 		]
 	},
 	"theDuelist:OrbCardRelic": {

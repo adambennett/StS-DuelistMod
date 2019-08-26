@@ -1,10 +1,8 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -12,82 +10,61 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
-public class ExodiaRA extends DuelistCard 
+public class MonsterEggSuper extends DuelistCard 
 {
-
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("ExodiaRA");
+    public static final String ID = DuelistMod.makeID("MonsterEggSuper");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.EXODIA_RIGHT_ARM);
+    public static final String IMG = DuelistMod.makePath(Strings.MONSTER_EGG);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
-
+    
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.BLUNT_HEAVY;
-    private static final int COST = 1;
+    private static final CardType TYPE = CardType.SKILL;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPECIAL;
+    //private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
-    public ExodiaRA() {
+    public MonsterEggSuper() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.EXODIA);
-        this.tags.add(Tags.EXODIA_PIECE);
-        this.tags.add(Tags.SPELLCASTER);
-        this.tags.add(Tags.LEGEND_BLUE_EYES);
-        this.tags.add(Tags.LIMITED);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.exodiaDeckCopies = 1;
-        this.damage = this.baseDamage = 6;
         this.summons = this.baseSummons = 1;
-        this.block = this.baseBlock = 1;
-        this.exodiaName = "Right Arm";
-        this.originalName = this.name;
-        this.setupStartingCopies();
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseDamage = this.damage = 0;
+        this.tags.add(Tags.MONSTER);
+        this.misc = 0;
+		this.originalName = this.name;
+		this.isSummon = true;
+		this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m)
+    public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	attack(m, AFX, this.damage);
-    	
-    	// If player has already played at least 1 other piece of exodia
-    	if (p.hasPower(ExodiaPower.POWER_ID))
+    	for (int i = 0; i < this.magicNumber; i++)
     	{
-    		// If power has not already triggered once or this is not the first piece played in second set
-    		if (p.getPower(ExodiaPower.POWER_ID).amount > 0)
-    		{
-    			ExodiaPower power = (ExodiaPower) p.getPower(ExodiaPower.POWER_ID);
-    			power.addNewPiece(this);
-    		}
-    		
-    		// If power has already triggered and player has the power but it's 0
-    		// Just reroll the power
-    		else
-    		{
-    			applyPowerToSelf(new ExodiaPower(p, p, this));
-    		}
+	    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.MONSTER, Tags.TOON);    	
+	    	while (extraDragA.hasTag(Tags.EXEMPT)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.MONSTER, Tags.TOON); }
+	    	String cardNameA = extraDragA.originalName;    	
+	    	if (DuelistMod.debug) { System.out.println("theDuelist:MonsterEggSpecial --- > Generated: " + cardNameA); }
+	    	fullResummon(extraDragA, false, m, false);
     	}
-    	
-    	// If player doesn't yet have any pieces assembled
-    	else { applyPowerToSelf(new ExodiaPower(p, p, this)); }
-    	
+    	draw(1);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ExodiaRA();
+        return new MonsterEggSuper();
     }
 
     // Upgraded stats.
@@ -95,16 +72,42 @@ public class ExodiaRA extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
-            //this.exhaust = false;
-			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
+            this.upgradeMagicNumber(1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 
 	@Override
-	public void onTribute(DuelistCard tributingCard) {
-		spellcasterSynTrib(tributingCard);
+	public void onTribute(DuelistCard tributingCard) 
+	{
 		
+		
+	}
+
+
+	@Override
+	public void onResummon(int summons) 
+	{
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var) 
+	{
+		
+		
+	}
+
+	@Override
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
+		 
+		
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 	
     // Checking for Monster Zones if the challenge is enabled
@@ -148,31 +151,6 @@ public class ExodiaRA extends DuelistCard
     		return true;
     	}
     }
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
-	{
-		
-		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		
-		
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
 
 	@Override
 	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {

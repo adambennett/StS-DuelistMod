@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.variables.Tags;
+import duelistmod.variables.*;
 
 public class MerchantTalisman extends CustomRelic {
 
@@ -24,8 +24,8 @@ public class MerchantTalisman extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MerchantTalisman");
-	public static final String IMG =  DuelistMod.makeRelicPath("AeroRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("AeroRelic_Outline.png");
+    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
+    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 
 	public MerchantTalisman() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);

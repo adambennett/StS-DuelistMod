@@ -61,6 +61,26 @@
 	  "[Dig] #gReceive #ga #grandom #gDuelist #grelic. #rLose #r8 #rHP."
     ]
   },
+  "theDuelist:TombNameless": {
+    "NAME": "Tomb of the Nameless",
+    "DESCRIPTIONS": [
+      "The inscriptions seem to be saying something about a powerful Duelist from long ago."
+    ],
+    "OPTIONS": [
+      "[Offer: ",
+	  "] #rLose #rthis #rrelic. ",
+	  "[Worship] #gHeal #g6 #gHP.",
+      "[Succumb] #g20%: #gGain #g12 #gMax #gHP. #rBecome #rCursed #r- #r(Random #rDuelist). ",
+	  "[Break] #gGain #g12 #gMax #gHP. #rBecome #rCursed #r- #r(3 #rRandom #rDuelist). ",
+      "[Leave]",
+	  "[Locked] Requires: Duelist Relics",
+	  "#gObtain #ga #gSpecial #gRelic.",
+	  "#gObtain #ga #gSpecial #gCard.",
+	  "#gHeal #g50% #gof #gMax #gHP.",
+	  "#gGain #g",
+	  " #gGold."
+    ]
+  },
   "theDuelist:EgyptVillage": {
     "NAME": "Egyptian Village",
     "DESCRIPTIONS": [

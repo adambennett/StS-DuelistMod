@@ -188,14 +188,26 @@ public class StarterDeckSetup {
 		return hasAnyTag;
 	}
 	
-	private static boolean randomUpgradeDeckChecker(int lastRoll)
+	private static boolean randomUpgradeDeckChecker(int lastRoll, boolean arcane)
 	{
-		int rollCheck = 2;
-		int maxChance = 10;
-		if (lastRoll > (maxChance - rollCheck+1)) { return false; }		// if they cant roll a number that passes the check because they already upgraded a lot
-		int roll = ThreadLocalRandom.current().nextInt(1, maxChance);	// otherwise roll 1-10
-		if (roll > (rollCheck + lastRoll)) { return true; }				// if roll is bigger than the sum of the original low bound + number of upgrades, return true
-		else { return false; }											// else, final fail
+		if (arcane) 
+		{ 
+			int rollCheck = 1;
+			int maxChance = 15;
+			if (lastRoll > (maxChance - rollCheck+1)) { return false; }
+			int roll = ThreadLocalRandom.current().nextInt(1, maxChance);	// otherwise roll 1-6
+			if (roll > (rollCheck + lastRoll)) { return true; }				// if roll is bigger than the sum of the original low bound + number of upgrades, return true
+			else { return false; }											// else, final fail
+		}
+		else
+		{
+			int rollCheck = 2;
+			int maxChance = 10;
+			if (lastRoll > (maxChance - rollCheck+1)) { return false; }		// if they cant roll a number that passes the check because they already upgraded a lot
+			int roll = ThreadLocalRandom.current().nextInt(1, maxChance);	// otherwise roll 1-10
+			if (roll > (rollCheck + lastRoll)) { return true; }				// if roll is bigger than the sum of the original low bound + number of upgrades, return true
+			else { return false; }											// else, final fail
+		}
 	}
 	
 	public static void setupStartDecksB()
@@ -231,7 +243,7 @@ public class StarterDeckSetup {
 				{ 
 					DuelistCard nextRand = (DuelistCard)DuelistCard.returnTrulyRandomDuelistCardForRandomDecks();
 					nextRand.upgrade();
-					while (randomUpgradeDeckChecker(lastRoll) && nextRand.canUpgrade()) { nextRand.upgrade(); lastRoll++; }
+					while (randomUpgradeDeckChecker(lastRoll, nextRand.hasTag(Tags.ARCANE)) && nextRand.canUpgrade()) { nextRand.upgrade(); lastRoll++; }
 					lastRoll = 0;
 					DuelistMod.deckToStartWith.add(nextRand); 
 				}

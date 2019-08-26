@@ -74,8 +74,7 @@ public class IceQueen extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(2);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

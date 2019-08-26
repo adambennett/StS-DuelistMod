@@ -80,8 +80,7 @@ public class ShardGreed extends DuelistCard
         {
             this.upgradeName();
             this.isInnate = true;
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
 

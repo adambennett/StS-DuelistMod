@@ -402,6 +402,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				counter++;
 			}
 		}
+		
+		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+		{
+			Util.log("Found card from exodia deck!");
+			this.makeSoulbound(true);
+			this.rawDescription = "Soulbound NL " + this.rawDescription;
+			this.initializeDescription();
+		}
 	}
 	
 	@Override
@@ -1165,6 +1173,21 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 			}
 		}
+	}
+	
+	
+	public void exodiaDeckCardUpgradeDesc(String UPGRADE_DESCRIPTION)
+	{
+		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
+		{
+			this.rawDescription = "Soulbound NL " + UPGRADE_DESCRIPTION;
+			this.initializeDescription();
+		}
+		else
+		{
+			this.rawDescription = UPGRADE_DESCRIPTION;
+			this.initializeDescription();
+		}    
 	}
 	
 	public void fetch(CardGroup group, boolean top)
@@ -6485,6 +6508,35 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom, boolean special, boolean allowMegatype) 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DuelistMod.myCards)
+		{
+			if (card.hasTag(setToFindFrom) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				if (special || !card.rarity.equals(CardRarity.SPECIAL))
+				{
+					if (allowMegatype || !card.hasTag(Tags.MEGATYPED))
+					{
+						dragonGroup.add(card.makeCopy());
+					}					
+				}				
+			}
+		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
+	
 	public static AbstractCard returnTrulyRandomInCombatFromSet(CardTags setToFindFrom) 
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
@@ -6740,6 +6792,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== /RANDOM CARD FUNCTIONS/ =======================================================================================================================================================
 
 	// =============== TYPE CARD FUNCTIONS =========================================================================================================================================================
+	public static String generateTypeDescForRelics(CardTags tag, AbstractRelic callingRelic)
+	{
+		String res = "";
+		String tagString = tag.toString().toLowerCase();
+		String temp = tagString.substring(0, 1).toUpperCase();
+		tagString = temp + tagString.substring(1);
+		//boolean useAN = false;
+		//if (tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama")) { useAN = true; }
+		if (callingRelic instanceof Monsterbox)
+		{			
+			res = "Replace ALL monsters in your deck with " + tagString + " monsters.";			
+		}
+		
+		return res;
+	}
+	
 	public String generateDynamicTypeCardDesc(int magic, CardTags tag)
 	{
 		String res = "";
@@ -6848,6 +6916,51 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public ArrayList<DuelistCard> generateTypeCards(int magic)
 	{
 		return generateTypeCards(magic, false);
+	}
+	
+	public static ArrayList<DuelistCard> generateTypeCardsForRelics(AbstractRelic callingRelic, int magic, boolean limitTypes, int types)
+	{
+		ArrayList<DuelistCard> typeCards = new ArrayList<DuelistCard>();
+		ArrayList<CardTags> randomThreeTags = new ArrayList<CardTags>();
+		ArrayList<CardTags> allTags = new ArrayList<CardTags>();	
+		if (limitTypes)
+		{
+			if (types > DuelistMod.monsterTypes.size() + 2) { randomThreeTags.addAll(DuelistMod.monsterTypes); randomThreeTags.add(Tags.ROSE); randomThreeTags.add(Tags.OJAMA); }
+			else 
+			{
+				allTags.addAll(DuelistMod.monsterTypes);
+				allTags.add(Tags.ROSE);
+				allTags.add(Tags.OJAMA);
+				while (randomThreeTags.size() < types)
+				{
+					int ind = AbstractDungeon.cardRandomRng.random(allTags.size() - 1);
+					CardTags rand = allTags.get(ind);
+					randomThreeTags.add(rand);
+					allTags.remove(ind);
+				}
+			}
+			
+			for (CardTags t : randomThreeTags)
+			{
+				typeCards.add(new DynamicRelicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
+			}
+		}
+		else
+		{
+			for (CardTags t : DuelistMod.monsterTypes)
+			{
+				typeCards.add(new DynamicRelicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
+			}
+			
+			ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
+			extraTags.add(Tags.ROSE);		
+			extraTags.add(Tags.OJAMA);
+			for (CardTags t : extraTags)
+			{
+				typeCards.add(new DynamicRelicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
+			}
+		}		
+		return typeCards;
 	}
 	
 	public ArrayList<DuelistCard> generateTypeCards(int magic, boolean customDesc)

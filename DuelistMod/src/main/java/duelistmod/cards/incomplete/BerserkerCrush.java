@@ -68,8 +68,7 @@ public class BerserkerCrush extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	if (this.timesUpgraded%2==0) { this.upgradeMagicNumber(1); }
         	this.upgradeDamage(3);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

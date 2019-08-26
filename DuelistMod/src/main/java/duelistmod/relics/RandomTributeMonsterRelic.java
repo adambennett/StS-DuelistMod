@@ -53,14 +53,14 @@ public class RandomTributeMonsterRelic extends CustomRelic {
 		{
 			DuelistCard rand = (DuelistCard) multiTributeList.get(AbstractDungeon.relicRng.random(multiTributeList.size() - 1));
 			while (currentChoices.contains(rand.originalName)) { rand = (DuelistCard) multiTributeList.get(AbstractDungeon.relicRng.random(multiTributeList.size() - 1)); }
-			rand.setTributes(1);
+			rand.modifyTributesPerm(-rand.tributes + 1);
 			currentChoices.add(rand.originalName);
 			list.add(rand);
 		}
 		
 		DuelistCard rand = (DuelistCard) tributeList.get(AbstractDungeon.relicRng.random(tributeList.size() - 1));
 		while (currentChoices.contains(rand.originalName)) { rand = (DuelistCard) tributeList.get(AbstractDungeon.relicRng.random(tributeList.size() - 1)); }
-		rand.setTributes(1);
+		rand.modifyTributesPerm(-rand.tributes + 1);
 		currentChoices.add(rand.originalName);
 		list.add(rand);
 		

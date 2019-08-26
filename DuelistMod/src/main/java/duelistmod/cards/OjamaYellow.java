@@ -79,8 +79,7 @@ public class OjamaYellow extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeMagicNumber(1);
-			this.rawDescription = UPGRADE_DESCRIPTION;
-			this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
 		}
 	}
 

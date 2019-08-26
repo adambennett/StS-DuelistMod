@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
+import duelistmod.helpers.Util;
 import duelistmod.relics.*;
 import duelistmod.variables.Tags;
 
@@ -116,7 +117,7 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            		screenNum = 1;
 	            		break;
 	
-	            		// Dig - random Duelist relic - lose 6(8) HP
+	            	// Dig - random Duelist relic - lose 6(8) HP
 	            	case 3:
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();      
@@ -127,6 +128,7 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            			AbstractRelic r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1));
 	            			while (AbstractDungeon.player.hasRelic(r.relicId) || !r.canSpawn()) { r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1)); }
 	            			AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
+	            			Util.removeRelicFromPools(r);
 	            			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
 	            			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
 	            		}

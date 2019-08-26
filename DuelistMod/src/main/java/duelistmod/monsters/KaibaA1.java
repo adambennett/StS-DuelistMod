@@ -38,7 +38,6 @@ public class KaibaA1 extends DuelistMonster
 	private DuelistCard hinotama;	
 	private DuelistCard bew;	
 	private DuelistCard beserk;
-	private DuelistCard judge;	
 	private DuelistCard spiral;
 	private DuelistCard redmed;
 	private DuelistCard redeyes;	
@@ -46,7 +45,8 @@ public class KaibaA1 extends DuelistMonster
 	private DuelistCard miracle;
 	private DuelistCard arma;
 	private DuelistCard yamata;
-
+	private DuelistCard mirage;
+	private DuelistCard dragonwing;
 	
 	public KaibaA1() 
 	{
@@ -64,8 +64,7 @@ public class KaibaA1 extends DuelistMonster
 		this.lesser = new LesserDragon();	
 		this.hinotama = new Hinotama();		
 		this.bew = new BlueEyes();		
-		this.beserk = new BerserkerCrush();
-		this.judge = new JudgeMan();	
+		this.beserk = new BerserkerCrush();	
 		this.spiral = new SpiralSpearStrike();
 		this.redmed = new RedMedicine();
 		this.redeyes = new RedEyes();		
@@ -73,6 +72,8 @@ public class KaibaA1 extends DuelistMonster
 		this.miracle = new MiraculousDescent();
 		this.arma = new ArmageddonDragonEmp();
 		this.yamata = new YamataDragon();
+		this.mirage = new MirageDragon();
+		this.dragonwing = new ExploderDragonwing();
 		this.miracle.upgrade();
 		this.totem.upgrade();
 		this.redmed.upgrade();
@@ -149,11 +150,11 @@ public class KaibaA1 extends DuelistMonster
 			
 			else if (summons > 0)
 			{
-				moveCards.add(new JudgeMan());
+				moveCards.add(new YamataDragon());
 				moveCards.add(new Sparks());
 				moveCards.add(new CastleWalls());
 				overflowCards.add(new PreventRat());
-				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.judge.damage + this.sparks.damage);
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage + this.sparks.damage);
 			}
 			
 			else
@@ -162,9 +163,9 @@ public class KaibaA1 extends DuelistMonster
 				if (roll == 1)
 				{
 					moveCards.add(new PreventRat());
-					moveCards.add(new JudgeMan());
+					moveCards.add(new YamataDragon());
 					moveCards.add(new CastleWalls());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.judge.damage);
+					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage);
 				}
 				else
 				{
@@ -252,25 +253,9 @@ public class KaibaA1 extends DuelistMonster
 			}
 			else
 			{
-				if (summons > 1)
+				if (this.destructUsed)
 				{
-					int roll = AbstractDungeon.aiRng.random(1, 2);
-					if (roll == 1)
-					{
-						moveCards.add(new LabyrinthWall());
-						moveCards.add(new GoldenApples());
-						this.setMove((byte)2, Intent.DEFEND);
-					}
-					else
-					{
-						moveCards.add(new LabyrinthWall());
-						moveCards.add(new LesserDragon());
-						this.setMove((byte)2, Intent.ATTACK_DEFEND, this.lesser.damage);
-					}					
-				}
-				else if (this.destructUsed)
-				{
-					int roll = AbstractDungeon.aiRng.random(1, 3);
+					int roll = AbstractDungeon.aiRng.random(1, 5);
 					if (roll == 1)
 					{
 						moveCards.add(new BerserkerCrush());
@@ -278,6 +263,19 @@ public class KaibaA1 extends DuelistMonster
 						this.setMove((byte)2, Intent.ATTACK_DEBUFF, this.beserk.damage);
 					}
 					else if (roll == 2)
+					{
+						moveCards.add(new BerserkerCrush());
+						moveCards.add(new MirageDragon());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, this.mirage.damage + this.beserk.damage);
+					}
+					else if (roll == 3)
+					{
+						moveCards.add(new LesserDragon());
+						moveCards.add(new MirageDragon());
+						moveCards.add(new GoldenApples());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, this.mirage.damage + this.lesser.damage);
+					}
+					else if (roll == 4)
 					{
 						moveCards.add(new BerserkerCrush());
 						moveCards.add(new LesserDragon());
@@ -293,12 +291,25 @@ public class KaibaA1 extends DuelistMonster
 				}
 				else
 				{
-					int roll = AbstractDungeon.aiRng.random(1, 3);
+					int roll = AbstractDungeon.aiRng.random(1, 4);
 					if (roll == 1)
 					{
 						moveCards.add(new BerserkerCrush());
 						moveCards.add(new GoldenApples());
 						this.setMove((byte)2, Intent.ATTACK_DEBUFF, this.beserk.damage);
+					}
+					else if (roll == 2)
+					{
+						moveCards.add(new BerserkerCrush());
+						moveCards.add(new MirageDragon());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, this.mirage.damage + this.beserk.damage);
+					}
+					else if (roll == 3)
+					{
+						moveCards.add(new LesserDragon());
+						moveCards.add(new MirageDragon());
+						moveCards.add(new GoldenApples());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, this.mirage.damage + this.lesser.damage);
 					}
 					else
 					{
@@ -309,99 +320,74 @@ public class KaibaA1 extends DuelistMonster
 				}
 			}
 			break;
-		case 4:			
-			if (summons >= this.earthGiant)
+		case 4:	
+			int rand = AbstractDungeon.aiRng.random(1, 5);
+			if (rand == 1)
 			{
-				int roll = AbstractDungeon.aiRng.random(1, 2);
-				if (roll == 1)
-				{
-					moveCards.add(new EarthGiant());
-					moveCards.add(new CaveDragon());
-					moveCards.add(new Sparks());
-					overflowCards.add(new BackgroundDragon());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
-				}
-				else
-				{
-					moveCards.add(new Kuriboh());
-					moveCards.add(new EarthGiant());
-					moveCards.add(new Sparks());
-					overflowCards.add(new BackgroundDragon());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
-				}				
+				moveCards.add(new ExploderDragonwing());
+				moveCards.add(new CaveDragon());
+				overflowCards.add(new BackgroundDragon());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.dragonwing.damage);
 			}
-			else if (summons >= this.earthGiant - 1)
+			else if (rand == 2)
 			{
-				moveCards.add(new Kuriboh());
-				moveCards.add(new EarthGiant());
+				moveCards.add(new ExploderDragonwing());
 				moveCards.add(new Sparks());
 				overflowCards.add(new BackgroundDragon());
-				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
+				this.setMove((byte)2, Intent.ATTACK, this.dragonwing.damage + this.sparks.damage);
+			}
+			else if (rand == 3)
+			{
+				moveCards.add(new BackgroundDragon());
+				moveCards.add(new CaveDragon());
+				this.setMove((byte)2, Intent.DEFEND);
+			}
+			else if (rand == 4)
+			{
+				moveCards.add(new Kuriboh());
+				moveCards.add(new CaveDragon());
+				moveCards.add(new Sparks());
+				overflowCards.add(new BackgroundDragon());
+				this.setMove((byte)2, Intent.ATTACK_BUFF, this.sparks.damage);
 			}
 			else
 			{
-				int roll = AbstractDungeon.aiRng.random(1, 3);
-				if (roll == 1)
-				{
-					moveCards.add(new BackgroundDragon());
-					moveCards.add(new CaveDragon());
-					this.setMove((byte)2, Intent.DEFEND);
-				}
-				else if (roll == 2)
-				{
-					moveCards.add(new Kuriboh());
-					moveCards.add(new CaveDragon());
-					moveCards.add(new Sparks());
-					overflowCards.add(new BackgroundDragon());
-					this.setMove((byte)2, Intent.ATTACK_BUFF, this.sparks.damage);
-				}
-				else
-				{
-					moveCards.add(new CaveDragon());
-					moveCards.add(new Kuriboh());					
-					moveCards.add(new Sparks());
-					overflowCards.add(new BackgroundDragon());
-					this.setMove((byte)2, Intent.ATTACK_BUFF, this.sparks.damage);
-				}	
+				moveCards.add(new CaveDragon());
+				moveCards.add(new Kuriboh());					
+				moveCards.add(new Sparks());
+				overflowCards.add(new BackgroundDragon());
+				this.setMove((byte)2, Intent.ATTACK_BUFF, this.sparks.damage);
 			}
 			break;
 		case 5:		
-			if (summons > 1)
-			{
-				int roll = AbstractDungeon.aiRng.random(1, 3);
-				if (roll == 1)
-				{
-					moveCards.add(new LabyrinthWall());
-					moveCards.add(new CaveDragon());
-					this.setMove((byte)2, Intent.DEFEND);
-				}
-				else if (roll == 2)
-				{
-					moveCards.add(new LabyrinthWall());
-					moveCards.add(new GoldenApples());
-					this.setMove((byte)2, Intent.DEFEND);
-				}
-				else
-				{
-					moveCards.add(new LabyrinthWall());
-					moveCards.add(new Sparks());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
-				}
-			}
-			else if (summons > 0)
-			{
-				moveCards.add(new CaveDragon());
-				moveCards.add(new LabyrinthWall());				
-				this.setMove((byte)2, Intent.DEFEND);
+			if (summons > 0)
+			{				
+				moveCards.add(new SpiralSpearStrike());
+				moveCards.add(new YamataDragon());
+				this.setMove((byte)2, Intent.ATTACK_DEBUFF, this.yamata.damage + this.spiral.damage);
 			}
 			else
 			{
-				int roll = AbstractDungeon.aiRng.random(1, 2);
+				int roll = AbstractDungeon.aiRng.random(1, 4);
 				if (roll == 1)
 				{
 					moveCards.add(new SpiralSpearStrike());
-					moveCards.add(new GoldenApples());
+					moveCards.add(new CaveDragon());
 					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.spiral.damage);
+				}
+				else if (roll == 2)
+				{
+					moveCards.add(new CaveDragon());
+					moveCards.add(new GoldenApples());					
+					moveCards.add(new YamataDragon());
+					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage);
+				}
+				else if (roll == 3)
+				{
+					moveCards.add(new CaveDragon());
+					moveCards.add(new Sparks());					
+					moveCards.add(new YamataDragon());
+					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage + this.sparks.damage);
 				}
 				else
 				{
@@ -540,85 +526,73 @@ public class KaibaA1 extends DuelistMonster
 				}	
 			}
 			break;
-		case 8:
-			if (summons > 0)
+		case 8:		
+			int seed = AbstractDungeon.aiRng.random(1, 4);
+			if (seed == 1)
 			{
 				moveCards.add(new Reinforcements());
-				moveCards.add(new YamataDragon());				
 				moveCards.add(new LesserDragon());
-				this.setMove((byte)2, Intent.ATTACK_BUFF, this.yamata.damage + this.lesser.damage);
+				moveCards.add(new Sparks());	
+				this.setMove((byte)2, Intent.ATTACK_BUFF, this.sparks.damage + this.lesser.damage);
 			}
-			else
+			else if (seed == 2)
 			{
-				int roll = AbstractDungeon.aiRng.random(1, 4);
-				if (roll == 1)
-				{
-					moveCards.add(new Reinforcements());
-					moveCards.add(new LesserDragon());
-					moveCards.add(new YamataDragon());	
-					this.setMove((byte)2, Intent.ATTACK_BUFF, this.yamata.damage + this.lesser.damage);
-				}
-				else if (roll == 2)
-				{
-					moveCards.add(new CaveDragon());
-					moveCards.add(new LesserDragon());
-					moveCards.add(new YamataDragon());	
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage + this.lesser.damage);
-				}
-				else if (roll == 3)
-				{
-					moveCards.add(new CaveDragon());
-					moveCards.add(new LesserDragon());
-					moveCards.add(new LesserDragon());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.lesser.damage * 2);
-				}
-				else 
-				{
-					moveCards.add(new Reinforcements());
-					moveCards.add(new LesserDragon());
-					moveCards.add(new LesserDragon());
-					this.setMove((byte)2, Intent.ATTACK_BUFF, this.lesser.damage * 2);
-				}
+				moveCards.add(new CaveDragon());
+				moveCards.add(new LesserDragon());
+				moveCards.add(new Sparks());	
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage + this.lesser.damage);
+			}
+			else if (seed == 3)
+			{
+				moveCards.add(new CaveDragon());
+				moveCards.add(new LesserDragon());
+				moveCards.add(new LesserDragon());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.lesser.damage * 2);
+			}
+			else if (seed == 4)
+			{
+				moveCards.add(new Reinforcements());
+				moveCards.add(new LesserDragon());
+				moveCards.add(new LesserDragon());
+				this.setMove((byte)2, Intent.ATTACK_BUFF, this.lesser.damage * 2);
 			}
 			break;
 		case 9:
-			if (summons > 2)
+			int seedy = AbstractDungeon.aiRng.random(1, 5);
+			if (seedy == 1)
 			{
-				moveCards.add(new BlueEyes());
+				moveCards.add(new Sparks());
+				moveCards.add(new CastleWalls());
 				moveCards.add(new GoldenApples());
 				overflowCards.add(new PreventRat());
-				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.bew.damage);
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
 			}
-			else if (summons > 1)
-			{
-				moveCards.add(new BlueEyes());
-				moveCards.add(new CastleWalls());
-				overflowCards.add(new PreventRat());
-				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.bew.damage);
-			}
-			else if (summons > 0)
+			else if (seedy == 2)
 			{
 				moveCards.add(new PreventRat());
-				moveCards.add(new BlueEyes());
-				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.bew.damage);
+				moveCards.add(new Sparks());
+				moveCards.add(new GoldenApples());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
+			}
+			else if (seedy == 3)
+			{
+				moveCards.add(new SpiralSpearStrike());
+				moveCards.add(new GoldenApples());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.spiral.damage);
+			}
+			else if (seedy == 4)
+			{
+				moveCards.add(new SpiralSpearStrike());
+				moveCards.add(new Sparks());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK, this.spiral.damage + this.sparks.damage);
 			}
 			else
 			{
-				int roll = AbstractDungeon.aiRng.random(1, 2);
-				if (roll == 1)
-				{
-					moveCards.add(new SpiralSpearStrike());
-					moveCards.add(new GoldenApples());
-					overflowCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.spiral.damage);
-				}
-				else
-				{
-					moveCards.add(new SpiralSpearStrike());
-					moveCards.add(new CastleWalls());
-					overflowCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.spiral.damage);
-				}
+				moveCards.add(new SpiralSpearStrike());
+				moveCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.spiral.damage);
 			}
 			break;
 		case 10:
@@ -658,34 +632,22 @@ public class KaibaA1 extends DuelistMonster
 		case 11:
 			if (summons > 0)
 			{
+				moveCards.add(new SpiralSpearStrike());
+				moveCards.add(new YamataDragon());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK, this.spiral.damage + this.yamata.damage);
+			}
+			else
+			{
 				int roll = AbstractDungeon.aiRng.random(1, 3);
 				if (roll == 1)
 				{
 					moveCards.add(new SpiralSpearStrike());
-					moveCards.add(new YamataDragon());
+					moveCards.add(new LesserDragon());
 					overflowCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.ATTACK, this.spiral.damage + this.yamata.damage);
+					this.setMove((byte)2, Intent.ATTACK, this.spiral.damage + this.lesser.damage);
 				}
 				else if (roll == 2)
-				{
-					moveCards.add(new SpiralSpearStrike());
-					moveCards.add(new JudgeMan());
-					overflowCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.ATTACK, this.spiral.damage + this.judge.damage);
-				}
-				else
-				{					
-					moveCards.add(new JudgeMan());
-					moveCards.add(new CaveDragon());
-					moveCards.add(new YamataDragon());
-					overflowCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage + this.judge.damage);
-				}
-			}
-			else
-			{
-				int roll = AbstractDungeon.aiRng.random(1, 2);
-				if (roll == 1)
 				{
 					moveCards.add(new SpiralSpearStrike());
 					moveCards.add(new PreventRat());
@@ -694,10 +656,10 @@ public class KaibaA1 extends DuelistMonster
 				else
 				{
 					moveCards.add(new CaveDragon());
-					moveCards.add(new JudgeMan());
 					moveCards.add(new YamataDragon());
+					moveCards.add(new LesserDragon());
 					overflowCards.add(new PreventRat());
-					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage + this.judge.damage);
+					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.lesser.damage + this.yamata.damage);
 				}
 			}
 			break;
@@ -764,7 +726,7 @@ public class KaibaA1 extends DuelistMonster
 		hand1.add("Sparks");
 		hand1.add("Prevent Rat");
 		hand1.add("Castle Walls");
-		hand1.add("Judge Man"); 
+		hand1.add("Yamata Dragon"); 
 		hand1.add("Millennium Shield");
 
 		hand2.add("Blue Eyes"); 
@@ -776,10 +738,10 @@ public class KaibaA1 extends DuelistMonster
 		hand3.add("Berserker Crush");
 		hand3.add("Lesser Dragon");
 		hand3.add("Destruct Potion");
-		hand3.add("Labyrinth Wall"); 
+		hand3.add("Mirage Dragon"); 
 		hand3.add("Golden Apples");
 
-		hand4.add("Earth Giant");    
+		hand4.add("Exploder Dragonwing");    
 		hand4.add("Kuriboh");
 		hand4.add("Cave Dragon");
 		hand4.add("Background Dragon");
@@ -789,7 +751,7 @@ public class KaibaA1 extends DuelistMonster
 		hand5.add("Sparks");
 		hand5.add("Cave Dragon");
 		hand5.add("Spiral Spear Strike");    
-		hand5.add("Labyrinth Wall"); 
+		hand5.add("Yamata Dragon"); 
 
 		hand6.add("Red Medicine+");
 		hand6.add("Red Eyes");
@@ -803,13 +765,13 @@ public class KaibaA1 extends DuelistMonster
 		hand7.add("Red Eyes"); 
 		hand7.add("Prevent Rat");
 		
-		hand8.add("Yamata Dragon");
+		hand8.add("Sparks");
 		hand8.add("Reinforcements");    	
 		hand8.add("Lesser Dragon");
 		hand8.add("Cave Dragon"); 
 		hand8.add("Lesser Dragon");
 				
-		hand9.add("Blue Eyes");
+		hand9.add("Sparks");
 		hand9.add("Castle Walls");    	
 		hand9.add("Prevent Rat");
 		hand9.add("Spiral Spear Strike"); 
@@ -821,8 +783,8 @@ public class KaibaA1 extends DuelistMonster
 		hand10.add("Lesser Dragon"); 
 		hand10.add("Reinforcements");
 				
-		hand11.add("Yamata");
-		hand11.add("Judge Man");    	
+		hand11.add("Lesser Dragon");
+		hand11.add("Yamata Dragon");    	
 		hand11.add("Cave Dragon");
 		hand11.add("Spiral Spear Strike"); 
 		hand11.add("Prevent Rat");
@@ -836,6 +798,10 @@ public class KaibaA1 extends DuelistMonster
 		newHands.add(hand5);
 		newHands.add(hand6);
 		newHands.add(hand7);
+		newHands.add(hand8);
+		newHands.add(hand9);
+		newHands.add(hand10);
+		newHands.add(hand11);
 		return newHands;
 	}
 

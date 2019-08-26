@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.Util;
+import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -71,9 +71,8 @@ public class ArchfiendSoldier extends DuelistCard
 		if (!this.upgraded) {
 			this.upgradeName();
 			this.upgradeDamage(3);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeSummons(1); }
-			this.rawDescription = UPGRADE_DESCRIPTION;
-			this.initializeDescription();
+			if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeSummons(1); }
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
 		}
 	}
 

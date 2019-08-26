@@ -24,6 +24,11 @@ public class ExodiaObtainCardPatch
 			Util.log("Exodia Deck -- returning early from Soul.obtain()");
 			return SpireReturn.Return(null);
 		}
+		else if (AbstractDungeon.player.hasRelic(MarkExxod.ID))
+		{
+			Util.log("Mark of Exxod -- returning early from Soul.obtain()");
+			return SpireReturn.Return(null);
+		}
 		else if (AbstractDungeon.player.hasRelic(GamblerChip.ID) && !card.type.equals(CardType.CURSE))
 		{
 			AbstractRelic chip = AbstractDungeon.player.getRelic(GamblerChip.ID);
@@ -34,7 +39,7 @@ public class ExodiaObtainCardPatch
 		}
 		else
 		{
-			Util.log("No Exodia Deck -- normal card obtain");
+			Util.log("No Special Triggers -- normal card obtain");
 			return SpireReturn.Continue();
 		}
 	}

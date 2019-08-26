@@ -2,6 +2,7 @@ package duelistmod.abstracts;
 
 import java.util.*;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -198,7 +199,6 @@ public abstract class DuelistMonster extends AbstractMonster
 		for (AbstractCard card : cards)
 		{
 			Util.log(this.name + " played " + card.name);
-			//AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card));
 			takeCardAction(card);
 		}	
 	}
@@ -206,17 +206,25 @@ public abstract class DuelistMonster extends AbstractMonster
 	public ArrayList<String> tribute(int amount, boolean dragon, boolean toon, boolean machine)
 	{
 		ArrayList<String> tribs = new ArrayList<String>();
+		
 		if (this.hasPower(EnemySummonsPower.POWER_ID))
 		{
 			EnemySummonsPower pow = (EnemySummonsPower)this.getPower(EnemySummonsPower.POWER_ID);
 			tribs = pow.tribute(amount);
 			this.tributesThisCombat += tribs.size();
 		}
+		
 		if (dragon)
 		{
 			int dragsTributed = dragonsTributed(tribs);
 			if (dragsTributed > 0) { DuelistCard.applyPower(new StrengthPower(this, dragsTributed), this); }
 			if (this.hasPower(EnemyBoosterDragonPower.POWER_ID)) { EnemyBoosterDragonPower pow = (EnemyBoosterDragonPower)this.getPower(EnemyBoosterDragonPower.POWER_ID); for (int i = 0; i < dragsTributed; i++) { pow.trigger(this); }}
+		}
+		
+		else
+		{
+			int dragsTributed = lambsTributed(tribs);
+			if (dragsTributed > 0) { DuelistCard.applyPower(new IntangiblePlayerPower(this, dragsTributed), this); }
 		}
 		
 		if (toon)
@@ -231,11 +239,21 @@ public abstract class DuelistMonster extends AbstractMonster
 			if (machinesTributed > 0) { DuelistCard.applyPower(new ArtifactPower(this, machinesTributed), this); }
 		}
 		
-		else
-		{
-			int dragsTributed = lambsTributed(tribs);
-			if (dragsTributed > 0) { DuelistCard.applyPower(new IntangiblePlayerPower(this, dragsTributed), this); }
-		}
+		int explodes = explodesTributed(tribs);
+		if (explodes > 0) 
+		{ 
+			int dmgTotal = 0;
+			for (int i = 0; i < explodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh); }
+			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+		}	
+		
+		int supExplodes = superExplodesTributed(tribs);
+		if (supExplodes > 0) 
+		{ 
+			int dmgTotal = 0;
+			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2); }
+			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+		}	
 		return tribs;
 	}
 	
@@ -255,17 +273,39 @@ public abstract class DuelistMonster extends AbstractMonster
 			if (this.hasPower(EnemyBoosterDragonPower.POWER_ID)) { EnemyBoosterDragonPower pow = (EnemyBoosterDragonPower)this.getPower(EnemyBoosterDragonPower.POWER_ID); for (int i = 0; i < dragsTributed; i++) { pow.trigger(this); }}
 		}
 		
+		else
+		{
+			int dragsTributed = lambsTributed(tribs);
+			if (dragsTributed > 0) { DuelistCard.applyPower(new IntangiblePlayerPower(this, dragsTributed), this); }
+		}
+		
 		if (toon)
 		{
 			int toonsTributed = toonsTributes(tribs);
 			if (toonsTributed > 0) { DuelistCard.applyPowerToSelf(new VulnerablePower(AbstractDungeon.player, toonsTributed, true)); }
 		}
 		
-		else
+		if (machine)
 		{
-			int dragsTributed = lambsTributed(tribs);
-			if (dragsTributed > 0) { DuelistCard.applyPower(new IntangiblePlayerPower(this, dragsTributed), this); }
+			int machinesTributed = machineTributes(tribs);
+			if (machinesTributed > 0) { DuelistCard.applyPower(new ArtifactPower(this, machinesTributed), this); }
 		}
+		
+		int explodes = explodesTributed(tribs);
+		if (explodes > 0) 
+		{ 
+			int dmgTotal = 0;
+			for (int i = 0; i < explodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh); }
+			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+		}	
+		
+		int supExplodes = superExplodesTributed(tribs);
+		if (supExplodes > 0) 
+		{ 
+			int dmgTotal = 0;
+			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2); }
+			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+		}	
 		return tribs;
 	}
 
@@ -285,16 +325,6 @@ public abstract class DuelistMonster extends AbstractMonster
 	public void summon(String card, int amount)
 	{
 		for (int i = 0; i < amount; i++) { summon(card); }
-	}
-	
-	private void gainPower(AbstractPower pow)
-	{
-		DuelistCard.applyPower(pow, this);
-	}
-	
-	private void applyPower(AbstractPower pow)
-	{
-		DuelistCard.applyPowerToSelf(pow);
 	}
 	
 	private void attackThroughBlock(int amount)
@@ -465,10 +495,25 @@ public abstract class DuelistMonster extends AbstractMonster
 			block(blk);
 		}
 		
+		if (c instanceof ExploderDragonwing)
+		{
+			DuelistCard ref = new ExploderDragonwing();
+			summon("[#FF5252]Explosive [#FF5252]Token", ref.summons);
+			attack(ref.damage);
+		}
+		
+		if (c instanceof MirageDragon)
+		{
+			DuelistCard ref = new MirageDragon();
+			summon("Mirage Dragon", ref.summons);
+			attack(ref.damage);
+			DuelistCard.applyPower(new WeakPower(AbstractDungeon.player, ref.magicNumber, true), AbstractDungeon.player);
+		}
+		
 		if (c instanceof DestructPotion)
 		{
 			ArrayList<String> tribs = tributeAll(false, false, false);
-			if (tribs.size() > 0) { this.increaseMaxHp(tribs.size() * new DestructPotion().magicNumber, true); }
+			if (tribs.size() > 0) { int num = tribs.size() * new DestructPotion().magicNumber; this.increaseMaxHp(num, true); this.heal(num); }
 			this.destructUsed = true;
 			this.onUseDestructPotion();
 		}
@@ -945,6 +990,32 @@ public abstract class DuelistMonster extends AbstractMonster
 		this.dialog.addAll(strings);
 	}
 	
+	private int explodesTributed(ArrayList<String> cards)
+	{
+		int total = 0;
+		for (String s : cards)
+		{
+			if (s.equals("[#FF5252]Explosive [#FF5252]Token"))
+			{
+				total++;
+			}
+		}
+		return total;
+	}
+	
+	private int superExplodesTributed(ArrayList<String> cards)
+	{
+		int total = 0;
+		for (String s : cards)
+		{
+			if (s.equals("[#FF5252]Super [#FF5252]Explosive [#FF5252]Token"))
+			{
+				total++;
+			}
+		}
+		return total;
+	}
+	
 	private int machineTributes(ArrayList<String> cards)
 	{
 		int total = 0;
@@ -1051,6 +1122,11 @@ public abstract class DuelistMonster extends AbstractMonster
 			}
 			
 			if (s.equals("Lesser Dragon"))
+			{
+				total++;
+			}
+			
+			if (s.equals("Mirage Dragon"))
 			{
 				total++;
 			}

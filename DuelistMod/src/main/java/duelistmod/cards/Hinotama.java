@@ -76,8 +76,7 @@ public class Hinotama extends DuelistCard
         	if (this.timesUpgraded == 1) { this.upgradeMagicNumber(1); }
         	else if (this.timesUpgraded%2 == 1) { this.upgradeMagicNumber(1); }
         	else { this.upgradeDamage(1); }
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

@@ -75,8 +75,7 @@ public class Polymerization extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.exhaust = false;
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
 

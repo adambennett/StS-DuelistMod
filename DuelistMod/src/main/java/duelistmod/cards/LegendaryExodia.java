@@ -89,8 +89,7 @@ public class LegendaryExodia extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(5);
             this.upgradeMagicNumber(5);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

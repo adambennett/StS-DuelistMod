@@ -64,8 +64,7 @@ public class CastleWalls extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(UPGRADE_PLUS_BLK);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
 

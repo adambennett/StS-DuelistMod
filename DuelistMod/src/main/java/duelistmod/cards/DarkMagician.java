@@ -81,8 +81,7 @@ public class DarkMagician extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(3);
             this.upgradeMagicNumber(1);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

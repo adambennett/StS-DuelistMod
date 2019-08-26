@@ -154,4 +154,13 @@ public class Util
 		return items.get(AbstractDungeon.relicRng.random(items.size() - 1));
 	}
 	
+	public static void removeRelicFromPools(AbstractRelic relic)
+	{
+		AbstractDungeon.commonRelicPool.remove(relic.relicId);
+		AbstractDungeon.uncommonRelicPool.remove(relic.relicId);
+		AbstractDungeon.rareRelicPool.remove(relic.relicId);
+		AbstractDungeon.shopRelicPool.remove(relic.relicId);
+		AbstractDungeon.bossRelicPool.remove(relic.relicId);
+	}	
+	
 }

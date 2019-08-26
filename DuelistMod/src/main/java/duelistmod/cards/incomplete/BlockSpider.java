@@ -68,8 +68,7 @@ public class BlockSpider extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(3);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
 

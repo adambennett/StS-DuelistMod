@@ -61,7 +61,7 @@ public class BattleFootballer extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeMagicNumber(3);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(7); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

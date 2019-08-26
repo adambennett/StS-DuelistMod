@@ -1,15 +1,15 @@
 package duelistmod.relics;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.variables.Tags;
+import duelistmod.variables.*;
 
 public class Spellheart extends CustomRelic {
 
@@ -21,8 +21,8 @@ public class Spellheart extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("Spellheart");
-	public static final String IMG =  DuelistMod.makeRelicPath("AeroRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("AeroRelic_Outline.png");
+    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
+    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 
 	public Spellheart() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);
@@ -32,17 +32,23 @@ public class Spellheart extends CustomRelic {
     public void onEquip()
     {
 		int monsters = 0;
+		ArrayList<AbstractCard> toKeep = new ArrayList<AbstractCard>();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
-			if (c.hasTag(Tags.SPELL))
-			{
-				 monsters++;
-				 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F)); 				
-			}
+			if (c.hasTag(Tags.SPELL)) {  monsters++; }
+			else { toKeep.add(c); }
 		}
-		
+		AbstractDungeon.player.masterDeck.group.clear();
+		for (AbstractCard c : toKeep) { AbstractDungeon.player.masterDeck.addToTop(c); }
 		AbstractDungeon.player.increaseMaxHp(monsters * 5, true);
+		setCounter(monsters * 5);
     }
+	
+	@Override
+	public void onUnequip()
+	{
+		if (this.counter > 0) { AbstractDungeon.player.decreaseMaxHealth(this.counter); }
+	}
 
 	// Description
 	@Override

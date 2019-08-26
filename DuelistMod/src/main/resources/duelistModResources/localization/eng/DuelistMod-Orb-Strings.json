@@ -206,9 +206,9 @@
    "theDuelist:VoidOrb": {
     "DESCRIPTION": [
       "#yPassive: At the start of turn, siphon #b",
-      " #yTemporary #yHP from a random enemy. NL #yEvoke: Add #b",
-	  " [#FF5252]Void to your hand.",
-	  " [#FF5252]Voids to your hand."
+      " #yTemporary #yHP from a random enemy. NL #yEvoke: Play #b",
+	  " Dark Hole.",
+	  " Dark Holes."
     ],
     "NAME": "Void"
   },

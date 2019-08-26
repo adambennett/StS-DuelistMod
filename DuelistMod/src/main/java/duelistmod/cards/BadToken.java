@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.incomplete.FlameTigerPower;
+import duelistmod.powers.TombLooterPower;
 import duelistmod.variables.*;
 
 public class BadToken extends DuelistCard 
@@ -50,7 +50,7 @@ public class BadToken extends DuelistCard
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
     	
-    	applyPowerToSelf(new FlameTigerPower(p, p));
+    	applyPowerToSelf(new TombLooterPower(p, 10, 30, true));
     	
     	if (DuelistMod.debug)
     	{

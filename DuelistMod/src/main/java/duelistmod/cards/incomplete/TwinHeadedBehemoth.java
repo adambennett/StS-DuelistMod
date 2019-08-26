@@ -1,6 +1,7 @@
 package duelistmod.cards.incomplete;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -24,7 +25,7 @@ public class TwinHeadedBehemoth extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -35,7 +36,8 @@ public class TwinHeadedBehemoth extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseTributes = this.tributes = 4;
-        this.baseDamage = this.damage = 16;
+        this.baseDamage = this.damage = 12;
+        this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
     }
@@ -45,8 +47,8 @@ public class TwinHeadedBehemoth extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackAllEnemies(this.damage);
-    	attackAllEnemies(this.damage);
+    	attackAll(this.baseAFX, this.multiDamage, DamageType.NORMAL);
+    	attackAll(this.baseAFX, this.multiDamage, DamageType.NORMAL);    	
     }
 
     // Which card to return when making a copy of this card.

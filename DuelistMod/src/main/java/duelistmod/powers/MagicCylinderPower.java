@@ -47,7 +47,7 @@ public class MagicCylinderPower extends AbstractPower
     @Override
     public int onLoseHp(int damageAmount)
     {
-    	if (this.amount > 0 && damageAmount > 0) { DuelistCard.draw(this.amount); }
+    	if (this.amount > 0 && damageAmount > 0) { DuelistCard.drawBottom(this.amount); }
     	return damageAmount;
     }
     

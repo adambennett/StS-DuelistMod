@@ -8,10 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.Util;
 import duelistmod.relics.TributeEggRelic;
 import duelistmod.variables.Tags;
 
-
+/*
 @SpirePatch(
 		clz = AbstractDungeon.class,
 		method = "getRewardCards"
@@ -33,6 +34,7 @@ public class RewardCardsPatch
 						if (dc.tributes > 1 && dc.hasTag(Tags.MONSTER))
 						{
 							dc.modifyTributesPerm(-1);
+							Util.log("Ran tribute egg patch on getRewardCards()");
 						}
 					}
 				}
@@ -54,4 +56,4 @@ public class RewardCardsPatch
 		return (ArrayList<AbstractCard>)__result;
 	}
 }
-
+*/

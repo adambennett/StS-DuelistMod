@@ -32,7 +32,7 @@ public class DuelistOnlyEventPatch {
 				AbstractDungeon.specialOneTimeEventList.add(MillenniumItems.ID);
 				AbstractDungeon.specialOneTimeEventList.add(AknamkanonTomb.ID);
 				AbstractDungeon.specialOneTimeEventList.add(EgyptVillage.ID);
-				
+				AbstractDungeon.specialOneTimeEventList.add(TombNameless.ID);
 			}
 		}
 	}

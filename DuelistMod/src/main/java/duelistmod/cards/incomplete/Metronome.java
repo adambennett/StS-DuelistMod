@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 

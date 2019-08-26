@@ -70,8 +70,7 @@ public class DarkMasterZorc extends DuelistCard
             this.upgradeName();
             this.upgradeTributes(-1);
             this.upgradeDamage(5);
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
 

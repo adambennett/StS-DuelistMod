@@ -203,6 +203,10 @@
         "NAME": "White Potion",
         "DESCRIPTIONS": ["#yChannel a #yWhite.", "#yChannel #b", " #yWhite Orbs.", "#yUpgrades Spells and Traps when you draw them, and all cards in your hand when #yEvoked."]
 },
+"theDuelist:VoidBottle": {
+        "NAME": "Supertiny Blackhole",
+        "DESCRIPTIONS": ["#yChannel a #yVoid.", "#yChannel #b", " #yVoid Orbs.", "Siphons #yTemporary #yHP from random enemies at the start of turn, and plays copies of Dark Hole when #yEvoked."]
+},
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",
         "DESCRIPTIONS": ["#yChannel a random offensive orb.", "#yChannel #b", " random offensive orbs."]

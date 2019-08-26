@@ -1218,6 +1218,11 @@
 		"NAME": "Monster Egg",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Create a random upgraded monster and Resummon it on the target enemy. NL Draw a card. NL Exhaust."
 	},
+	"theDuelist:MonsterEggSuper": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Create !M! random monsters and Resummon them on the target enemy. NL Draw a card. NL Exhaust.",
+		"NAME": "S. Monster Egg",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Create !M! random monsters and Resummon them on the target enemy. NL Draw a card. NL Exhaust."
+	},
 	"theDuelist:MonsterOrbCard": {
 		"DESCRIPTION": "Channel a MonsterOrb.",
 		"NAME": "MonsterOrb",
@@ -3632,9 +3637,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL Channel a Dark."
 	},
 	"theDuelist:PutridPudding": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Void. NL Channel !duelist:M! Dark. NL Apply !duelist:O! Vulnerable.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !duelist:M! Void. NL Channel !M! Dark. NL Apply !duelist:O! Vulnerable.",
 		"NAME": "Putrid Pudding",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !M! Void. NL Channel !duelist:M! Dark. NL Apply !duelist:O! Vulnerable."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !duelist:M! Void. NL Channel !M! Dark. NL Apply !duelist:O! Vulnerable."
 	},
 	"theDuelist:DoomsdayHorror": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Vulnerable to a random enemy.",
@@ -4372,9 +4377,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Channel a random orb for each enemy you attack."
 	},
 	"theDuelist:Slushy": {
-		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !duelist:M! NL Gain !M Temporary HP. NL Draw a card. NL Channel a Water. NL Exhaust.",
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !duelist:M! NL Gain !M! Temporary HP. NL Draw a card. NL Channel a Water. NL Exhaust.",
 		"NAME": "Slushy",
-		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !duelist:M! NL Gain !M Temporary HP. NL Draw a card. NL Channel a Water. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Increment !duelist:M! NL Gain !M! Temporary HP. NL Draw a card. NL Channel a Water. NL Exhaust."
 	},
 	"theDuelist:MobiusFrostMonarch": {
 		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Frost for each Aqua you Tribute.",

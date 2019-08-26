@@ -75,8 +75,7 @@ public class MysticalElf extends DuelistCard
 			this.upgradeName();
 			//this.upgradeBaseCost(0);
 			this.upgradeBlock(3);
-			this.rawDescription = UPGRADE_DESCRIPTION;
-			this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
 		}
 	}
 

@@ -2,6 +2,7 @@ package duelistmod;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.logging.log4j.*;
 
@@ -213,6 +214,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static String exodiaLeftLegString = "";
 	public static String exodiaRightLegString = "";	
 	public static String selectedDeck = "";	
+	public static String trapVortexBuffName = "PLACEHOLDER";
 	
 	
 	// Maps and Lists
@@ -226,6 +228,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static HashMap<CardTags, String> typeCardMap_IMG = new HashMap<CardTags, String>();
 	public static HashMap<CardTags, String> typeCardMap_NAME = new HashMap<CardTags, String>();	
 	public static HashMap<CardTags, String> typeCardMap_DESC = new HashMap<CardTags, String>();	
+	public static HashMap<AbstractRelic, AbstractCard> relicToDynamicCard = new HashMap<AbstractRelic, AbstractCard>();	
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<CardTags, Integer>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<String, DuelistCard>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<CardTags, StarterDeck>();
@@ -235,7 +238,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> rareCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> rareNonPowers = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> nonPowers = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> allPowers = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> merchantPendantPowers = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uncommonCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> commonCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> nonRareCards = new ArrayList<DuelistCard>();
@@ -909,20 +914,21 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// Events													
 		BaseMod.addEvent(MillenniumItems.ID, MillenniumItems.class);
 		BaseMod.addEvent(AknamkanonTomb.ID, AknamkanonTomb.class, TheBeyond.ID);
-		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class, TheBeyond.ID);												// Any
+		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class, TheBeyond.ID);
+		BaseMod.addEvent(TombNameless.ID, TombNameless.class);	
 		
 		// Monsters
 		BaseMod.addMonster(SetoKaiba.ID, "Seto Kaiba", () -> new SetoKaiba(-5.0F, 15.0F));
 		BaseMod.addMonster(KaibaA1.ID, "Seto Kaiba", () -> new KaibaA1());
 		BaseMod.addMonster(KaibaA2.ID, "Seto Kaiba", () -> new KaibaA2());
 		BaseMod.addMonster(KaibaA3.ID, "Seto Kaiba", () -> new KaibaA3());
-		BaseMod.addMonster(DuelistNob.ID, "Duelist Nob", () -> new DuelistNob(0.0f, 0.0f));
+		//BaseMod.addMonster(DuelistNob.ID, "Duelist Nob", () -> new DuelistNob(0.0f, 0.0f));
 		
 		// Encounters
 		if (DuelistMod.duelistMonsters)
 		{
 			//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
-			BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 3.0F)); 
+			BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(KaibaA1.ID, 3.0F)); 
 			//BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(KaibaA2.ID, 3.0F)); 
 			//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
 			//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 100.0F)); 
@@ -1004,6 +1010,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		pots.add(new MetallicizePotion());
 		pots.add(new GiftPotion());
 		pots.add(new WhiteBottle());
+		pots.add(new VoidBottle());
 		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.PLACEHOLDER_POTION_LIQUID, Colors.PLACEHOLDER_POTION_HYBRID, Colors.PLACEHOLDER_POTION_SPOTS, p.ID, TheDuelistEnum.THE_DUELIST); }
 		
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
@@ -1053,7 +1060,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new NatureRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ZombieRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new DragonRelicB(), AbstractCardEnum.DUELIST);
-		//BaseMod.addRelicToCustomPool(new UpgradeBuffRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ShopToken(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumScale(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MachineTokenB(), AbstractCardEnum.DUELIST);
@@ -1065,7 +1071,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new CardRewardRelicF(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new CardRewardRelicG(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new CardRewardRelicH(), AbstractCardEnum.DUELIST);
-		//BaseMod.addRelicToCustomPool(new TributeEggRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new TributeEggRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ZombieResummonBuffRelic(), AbstractCardEnum.DUELIST);		
 		BaseMod.addRelicToCustomPool(new StoneExxod(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GiftAnubis(), AbstractCardEnum.DUELIST);
@@ -1083,16 +1089,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new WhiteBowlRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SummonAnchorRare(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GamblerChip(), AbstractCardEnum.DUELIST);
-		//BaseMod.addRelicToCustomPool(new MerchantPendant(), AbstractCardEnum.DUELIST);
-		/*BaseMod.addRelicToCustomPool(new MerchantSword(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MerchantPendant(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MerchantSword(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MerchantTalisman(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MerchantRugbox(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Monsterbox(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new Spellbox(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new Trapbox(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new Spellbox(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new Trapbox(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Spellheart(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new TrapVortex(), AbstractCardEnum.DUELIST);*/
+		BaseMod.addRelicToCustomPool(new TrapVortex(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MonsterEggRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MagnetRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MerchantNecklace(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new KaibaToken(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new AknamkanonsEssence(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MarkExxod(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new DuelistCoin(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1149,19 +1161,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(NatureRelic.ID);
 		UnlockTracker.markRelicAsSeen(ZombieRelic.ID);
 		UnlockTracker.markRelicAsSeen(DragonRelicB.ID);
-		//UnlockTracker.markRelicAsSeen(UpgradeBuffRelic.ID);
 		UnlockTracker.markRelicAsSeen(ShopToken.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumScale.ID);
 		UnlockTracker.markRelicAsSeen(MachineTokenB.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumNecklace.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumToken.ID);
 		UnlockTracker.markRelicAsSeen(DragonRelicC.ID);
-	//	UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
+		//UnlockTracker.markRelicAsSeen(RandomTributeMonsterRelic.ID);
 		UnlockTracker.markRelicAsSeen(YugiMirror.ID);
 		UnlockTracker.markRelicAsSeen(CardRewardRelicF.ID);
 		UnlockTracker.markRelicAsSeen(CardRewardRelicG.ID);
 		UnlockTracker.markRelicAsSeen(CardRewardRelicH.ID);
-		//UnlockTracker.markRelicAsSeen(TributeEggRelic.ID);
+		UnlockTracker.markRelicAsSeen(TributeEggRelic.ID);
 		UnlockTracker.markRelicAsSeen(ZombieResummonBuffRelic.ID);
 		UnlockTracker.markRelicAsSeen(ToonRelic.ID);
 		UnlockTracker.markRelicAsSeen(HauntedRelic.ID);
@@ -1177,16 +1188,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(WhiteBowlRelic.ID);
 		UnlockTracker.markRelicAsSeen(SummonAnchorRare.ID);
 		UnlockTracker.markRelicAsSeen(GamblerChip.ID);
-		/*UnlockTracker.markRelicAsSeen(MerchantPendant.ID);
+		UnlockTracker.markRelicAsSeen(MerchantPendant.ID);
 		UnlockTracker.markRelicAsSeen(MerchantSword.ID);
 		UnlockTracker.markRelicAsSeen(MerchantTalisman.ID);
 		UnlockTracker.markRelicAsSeen(MerchantRugbox.ID);
 		UnlockTracker.markRelicAsSeen(Monsterbox.ID);
-		UnlockTracker.markRelicAsSeen(Spellbox.ID);
-		UnlockTracker.markRelicAsSeen(Trapbox.ID);
+		//UnlockTracker.markRelicAsSeen(Spellbox.ID);
+		//UnlockTracker.markRelicAsSeen(Trapbox.ID);
 		UnlockTracker.markRelicAsSeen(Spellheart.ID);
-		UnlockTracker.markRelicAsSeen(TrapVortex.ID);*/
+		UnlockTracker.markRelicAsSeen(TrapVortex.ID);
 		UnlockTracker.markRelicAsSeen(MonsterEggRelic.ID);
+		UnlockTracker.markRelicAsSeen(MagnetRelic.ID);
+		UnlockTracker.markRelicAsSeen(MerchantNecklace.ID);
+		UnlockTracker.markRelicAsSeen(KaibaToken.ID);
+		UnlockTracker.markRelicAsSeen(AknamkanonsEssence.ID);
+		UnlockTracker.markRelicAsSeen(MarkExxod.ID);
+		UnlockTracker.markRelicAsSeen(DuelistCoin.ID);
 		
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
@@ -1226,7 +1243,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new CardRewardRelicF());
 		duelistRelicsForTombEvent.add(new CardRewardRelicG());
 		duelistRelicsForTombEvent.add(new CardRewardRelicH());
-		//duelistRelicsForTombEvent.add(new TributeEggRelic());
+		duelistRelicsForTombEvent.add(new TributeEggRelic());
 		duelistRelicsForTombEvent.add(new ZombieResummonBuffRelic());
 		duelistRelicsForTombEvent.add(new ToonRelic());
 		duelistRelicsForTombEvent.add(new SpellcasterStone());
@@ -1241,6 +1258,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new WhiteBowlRelic());
 		duelistRelicsForTombEvent.add(new SummonAnchorRare());
 		duelistRelicsForTombEvent.add(new MonsterEggRelic());
+		duelistRelicsForTombEvent.add(new MerchantNecklace());
+		duelistRelicsForTombEvent.add(new KaibaToken());
+		duelistRelicsForTombEvent.add(new AknamkanonsEssence());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
@@ -1698,6 +1718,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			{
 				poisonAppliedThisCombat+=power.amount;
 				if (debug) { logger.info("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat); }
+			}
+			
+			if (power instanceof TombLooterPower)
+			{
+				if (AbstractDungeon.player.hasPower(TombLooterPower.POWER_ID))
+				{
+					TombLooterPower pow = (TombLooterPower)AbstractDungeon.player.getPower(TombLooterPower.POWER_ID);
+					((TombLooterPower) power).goldGainedThisCombat = pow.goldGainedThisCombat;
+					((TombLooterPower) power).goldLimit = pow.goldLimit;
+				}
 			}
 		}
 		if (debug)
@@ -2499,6 +2529,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	{
 		if (!shouldFill && AbstractDungeon.actNum == 1)
 		{
+			//int buffRollID = ThreadLocalRandom.current().nextInt(1, 8);
+			//trapVortexBuffName = BuffHelper.trapVortexBuffName(buffRollID);
 			if (debug) { logger.info("Started act and should fill was false. Act #1! So we reset everything!!"); }
 			chosenRockSunriseTag = Tags.DUMMY_TAG;
 			selectedDeck = StarterDeckSetup.getCurrentDeck().getSimpleName();

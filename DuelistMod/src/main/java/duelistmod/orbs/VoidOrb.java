@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.cards.DarkHole;
 import duelistmod.powers.incomplete.VoidVanishmentPower;
 
 @SuppressWarnings("unused")
@@ -77,7 +78,8 @@ public class VoidOrb extends DuelistOrb
 		{
 			for (int i = 0; i < this.evokeAmount; i++)
 			{
-				DuelistCard.addCardToHand(new VoidCard());
+				AbstractMonster targ = AbstractDungeon.getRandomMonster();
+				if (targ != null) { DuelistCard.fullResummon(new DarkHole(), false, targ, false); }
 			}
 		}
 	}

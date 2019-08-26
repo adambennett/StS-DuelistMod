@@ -61,6 +61,7 @@ public class MillenniumItems extends AbstractImageEvent {
                         		 AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                                  AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), (AbstractRelic) randMill);
+                        		 Util.removeRelicFromPools((AbstractRelic) randMill);
                         	}
                         	
                         	else if (randMill instanceof AbstractPotion)

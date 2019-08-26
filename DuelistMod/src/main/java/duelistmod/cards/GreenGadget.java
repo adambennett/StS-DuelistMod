@@ -101,8 +101,7 @@ public class GreenGadget extends DuelistCard
 			this.upgradeName();
 			//this.upgradeMagicNumber(1);
 			this.upgradeBlock(3);
-			this.rawDescription = UPGRADE_DESCRIPTION;
-			this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
 		}
 	}
 

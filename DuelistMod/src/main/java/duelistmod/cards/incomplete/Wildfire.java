@@ -67,8 +67,7 @@ public class Wildfire extends DuelistCard
 	    	else { this.upgradeName(NAME + "+"); }
         	this.upgradeDamage(2);
         	if (this.timesUpgraded%2==0) { this.upgradeMagicNumber(1); }
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

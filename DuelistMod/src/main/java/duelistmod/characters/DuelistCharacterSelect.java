@@ -99,8 +99,8 @@ public class DuelistCharacterSelect
             AddLoadout(new P5Deck(), save, "10 cards", !DuelistMod.isPharaohDeckFiveUnlocked);
             AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
             AddLoadout(new RandomDeckBig(), save, "15 random Duelist cards"); 
-            AddLoadout(new RandomDeckUpgrade(), save, "10 random Duelist cards", !DuelistMod.isExtraRandomDecksUnlocked);   
-            AddLoadout(new RandomDeckMetronome(), save, "15 Metronomes", !DuelistMod.isExtraRandomDecksUnlocked);   
+            AddLoadout(new RandomDeckUpgrade(), save, "10 random Duelist cards");   
+            AddLoadout(new RandomDeckMetronome(), save, "15 Metronomes");   
         }
     	
         else
@@ -135,8 +135,8 @@ public class DuelistCharacterSelect
             AddLoadout(new P5Deck(), save, "10 cards", !DuelistMod.isPharaohDeckFiveUnlocked);
             AddLoadout(new RandomDeckSmall(), save, "10 random Duelist cards"); 
             AddLoadout(new RandomDeckBig(), save, "15 random Duelist cards");  
-            AddLoadout(new RandomDeckUpgrade(), save, "10 random Duelist cards", !DuelistMod.isExtraRandomDecksUnlocked);   
-            AddLoadout(new RandomDeckMetronome(), save, "15 Metronomes", !DuelistMod.isExtraRandomDecksUnlocked);   
+            AddLoadout(new RandomDeckUpgrade(), save, "10 random Duelist cards");   
+            AddLoadout(new RandomDeckMetronome(), save, "15 Metronomes");   
         }
     }
 

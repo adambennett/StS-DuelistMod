@@ -101,8 +101,8 @@ public class FairyBox extends DuelistCard
 			this.upgradeName();
 			if (this.magicNumber < 5 && timesUpgraded > 1) { this.upgradeMagicNumber(1); }
 			else { this.upgraded = true; }
-			if (timesUpgraded == 0 || this.magicNumber == 5) { this.rawDescription = DESCRIPTION; }
-			else { this.rawDescription = UPGRADE_DESCRIPTION; }			
+			if (timesUpgraded == 0 || this.magicNumber == 5) { exodiaDeckCardUpgradeDesc(DESCRIPTION); }
+			else { exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); }			
 			this.initializeDescription();
 		}
 	}

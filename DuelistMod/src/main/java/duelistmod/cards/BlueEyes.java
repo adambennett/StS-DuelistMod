@@ -70,8 +70,7 @@ public class BlueEyes extends DuelistCard
             this.upgradeName();
             this.upgradeDamage(this.upgradeDmg);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(1); }
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
     

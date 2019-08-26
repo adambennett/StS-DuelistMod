@@ -752,6 +752,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new OneForOne());
 		DuelistMod.myCards.add(new MonsterEggSpecial());
 		DuelistMod.myCards.add(new RainbowMedicine());
+		DuelistMod.myCards.add(new MonsterEggSpecial());
 		
 		
 		//DuelistMod.myCards.add(new WightLady());			
@@ -870,6 +871,14 @@ public class DuelistCardLibrary
 			if (c.type.equals(CardType.POWER))
 			{
 				DuelistMod.allPowers.add((DuelistCard)c.makeStatEquivalentCopy());
+				if (!c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NO_MERCHANT_PENDANT) && !c.hasTag(Tags.NEVER_GENERATE))
+				{
+					DuelistMod.merchantPendantPowers.add((DuelistCard)c.makeStatEquivalentCopy());
+				}
+			}
+			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
+			{
+				DuelistMod.nonPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 			}
 		}
 		

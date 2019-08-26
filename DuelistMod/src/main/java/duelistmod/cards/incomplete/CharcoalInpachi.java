@@ -69,7 +69,8 @@ public class CharcoalInpachi extends DuelistCard
     public void upgrade() {
         if (canUpgrade()) 
         {
-            this.upgradeName();
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

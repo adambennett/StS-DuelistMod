@@ -94,8 +94,7 @@ public class ExodiaRL extends DuelistCard
             this.upgradeName();
             this.upgradeBlock(3);
             //this.exhaust = false;
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
+			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }
 
