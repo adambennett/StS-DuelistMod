@@ -21,7 +21,7 @@ public class BoosterReplaceRewardsPatch {
 			localvars = {"cardReward"})
 		public static void convertToBoosterReward(CombatRewardScreen __instance, @ByRef RewardItem[] cardReward) 
 		{
-			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.removeCardRewards) 
+			if(AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) && DuelistMod.removeCardRewards && !StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck")) 
 			{
 				if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
 				{
@@ -30,17 +30,21 @@ public class BoosterReplaceRewardsPatch {
 					{						
 						cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards);
 					}
-					else if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck"))
+					else
 					{						
 						cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, null);
 					}
 				}
-				else if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck"))
+				else
 				{
 					RewardItem empty = new RewardItem();
 					empty.cards = new ArrayList<AbstractCard>();
 					cardReward[0] = empty;
-				}				
+				}
+			}
+			else if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck") && AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
+			{
+				cardReward[0] = BoosterPackHelper.replaceMetronomeReward();
 			}
 		}
 

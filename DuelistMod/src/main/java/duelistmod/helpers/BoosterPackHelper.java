@@ -13,7 +13,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.DestructPotion;
 import duelistmod.relics.*;
-import duelistmod.rewards.BoosterReward;
+import duelistmod.rewards.*;
 import duelistmod.variables.Tags;
 
 public class BoosterPackHelper 
@@ -58,6 +58,7 @@ public class BoosterPackHelper
 	public static ArrayList<AbstractCard> special = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> fullPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> fullPoolNonCommon = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> metronomes = new ArrayList<AbstractCard>();
 	private static ArrayList<ArrayList<AbstractCard>> lists = new ArrayList<ArrayList<AbstractCard>>();
 	
 	public static void resetPackSizes()
@@ -185,6 +186,13 @@ public class BoosterPackHelper
 	public static ArrayList<AbstractCard> commonBoosterPack()
 	{
 		Util.log("Common Booster Pack -- commons.size()==" + commons.size());
+		ArrayList<AbstractCard> toReturn = getRandomCards(commons, normalPackSize);
+		return toReturn;
+	}
+	
+	public static ArrayList<AbstractCard> commonMetronomePack()
+	{
+		Util.log("Common Metronome Pack -- commons.size()==" + commons.size());
 		ArrayList<AbstractCard> toReturn = getRandomCards(commons, normalPackSize);
 		return toReturn;
 	}
@@ -501,6 +509,17 @@ public class BoosterPackHelper
 		}
 	}
 	
+	public static void setupMetronomePools()
+	{
+		metronomes.clear();
+		for (AbstractCard c : DuelistMod.myCards)
+		{
+			if (c.hasTag(Tags.METRONOME))
+			{
+				metronomes.add(c.makeStatEquivalentCopy());
+			}			
+		}
+	}
 	
 	public static void setupPoolsForPacks()
 	{
@@ -767,6 +786,13 @@ public class BoosterPackHelper
 		return toReturn;
 	}
 	
+	public static RewardItem getMetronomeBooster()
+	{
+		setupMetronomePools();
+		ArrayList<AbstractCard> mets = getRandomCards(metronomes, 2);
+		RewardItem toReturn = new MetronomeReward(mets, "SillyPack", "Metronome Booster", 0);
+		return toReturn;
+	}
 	
 	public static RewardItem getRandomBooster(boolean spellcasterDeck, int roll)
 	{
@@ -1141,6 +1167,11 @@ public class BoosterPackHelper
 		}
 	}
 	
+	public static RewardItem replaceMetronomeReward()
+	{
+		return BoosterPackHelper.getMetronomeBooster();
+	}
+	
 	public static RewardItem replaceCardReward(int lastPackRoll, boolean eliteVictory, ArrayList<CardTags> deckType)
 	{
 		if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
@@ -1511,6 +1542,12 @@ public class BoosterPackHelper
 			}
 		}
 		return toReturn;
+	}
+	
+	public static  ArrayList<AbstractCard> getMetronomeCardsFromID()
+	{
+		ArrayList<AbstractCard> mets = getRandomCards(metronomes, normalPackSize);
+		return mets;
 	}
 
 	public static ArrayList<AbstractCard> getBoosterCardsFromID(int id, boolean bonus) 

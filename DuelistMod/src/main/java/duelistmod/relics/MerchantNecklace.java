@@ -42,23 +42,29 @@ public class MerchantNecklace extends CustomRelic implements ClickableRelic {
 	    	if (shop == null) { return; }
 	    	ArrayList<AbstractCard> newColored = new ArrayList<AbstractCard>();
 	    	ArrayList<AbstractCard> newColorless = new ArrayList<AbstractCard>();
-	    	for (int i = 0; i < 4; i++)
-	    	{
-	    		newColored.add(DuelistMod.nonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.nonPowers.size() - 1)).makeCopy());
-	    	}
-	    	newColored.add(DuelistMod.merchantPendantPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.merchantPendantPowers.size() - 1)).makeCopy());
-	    	for (int i = 0; i < 2; i++)
-	    	{
-	    		newColorless.add(DuelistMod.rareNonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.rareNonPowers.size() - 1)).makeCopy());
-	    	}
 	    	
+	    	// 4 Regular Card Slots
+	    	if (DuelistMod.nonPowers.size() > 0) { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.nonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.nonPowers.size() - 1)).makeCopy()); }}
+	    	else { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }}
+	    	
+	    	// Power Slot
+	    	if (DuelistMod.merchantPendantPowers.size() > 0) { newColored.add(DuelistMod.merchantPendantPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.merchantPendantPowers.size() - 1)).makeCopy()); }
+	    	else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
+	    	
+	    	// Colorless Slots
+	    	if (DuelistMod.rareNonPowers.size() > 0) { for (int i = 0; i < 2; i++) { newColorless.add(DuelistMod.rareNonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.rareNonPowers.size() - 1)).makeCopy()); }}
+	    	else { for (int i = 0; i < 2; i++) { newColorless.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }}
+	    	
+	    	// Refresh Shop
 	    	shop.init(newColored, newColorless);
 	    	
+	    	// Upgrade Random Card Type
 	    	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
 	    	if (roll == 1) { shop.applyUpgrades(CardType.ATTACK); }
 	    	else if (roll == 2) { shop.applyUpgrades(CardType.SKILL); }
 	    	else { shop.applyUpgrades(CardType.POWER); }
 	    	
+	    	// Discount Costs
 	    	int discountRoll = AbstractDungeon.cardRandomRng.random(1, 4);
 	    	float disc = 0.1F * discountRoll;
 	    	shop.applyDiscount(disc, true);

@@ -9,4 +9,7 @@ public class RewardItemTypeEnumPatch
 	@SpireEnum
 	public static RewardItem.RewardType DUELIST_PACK;
 	
+	@SpireEnum
+	public static RewardItem.RewardType METRONOME_PACK;
+	
 }

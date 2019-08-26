@@ -2,7 +2,6 @@ package duelistmod;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.logging.log4j.*;
 
@@ -57,7 +56,7 @@ import duelistmod.potions.*;
 import duelistmod.powers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
-import duelistmod.rewards.BoosterReward;
+import duelistmod.rewards.*;
 import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
 
@@ -937,6 +936,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 
 		// Rewards
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return new BoosterReward(rewardSave.amount);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0); });
+		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.METRONOME_PACK, (rewardSave) -> { return new MetronomeReward(rewardSave.amount);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((MetronomeReward)customReward).boosterID, 0); });
 		
 		// Debug
 		if (printSQL)

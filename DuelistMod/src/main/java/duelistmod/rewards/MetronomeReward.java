@@ -12,20 +12,20 @@ import duelistmod.helpers.*;
 import duelistmod.patches.RewardItemTypeEnumPatch;
 import duelistmod.relics.BoosterPackEggRelic;
 
-public class BoosterReward extends CustomReward 
+public class MetronomeReward extends CustomReward 
 {
 	public String packName;
 	public ArrayList<AbstractCard> booster;
 	public int boosterID;
 	
 	// if id-200 > 0 then we had a bonus booster
-	public BoosterReward(int id)
+	public MetronomeReward(int id)
 	{
-		super(new Texture("duelistModResources/images/ui/rewards/" + BoosterPackHelper.getIMG(id, id-200>0) + ".png"), BoosterPackHelper.getPackName(id, id-200>0), RewardItemTypeEnumPatch.DUELIST_PACK);
-		this.cards = BoosterPackHelper.getBoosterCardsFromID(id, id-200 > 0);
+		super(new Texture("duelistModResources/images/ui/rewards/" + BoosterPackHelper.getIMG(98, false) + ".png"), "Metronome Booster", RewardItemTypeEnumPatch.METRONOME_PACK);
+		this.cards = BoosterPackHelper.getMetronomeCardsFromID();
 		this.booster = cards;
 		this.type = RewardType.CARD;
-		this.packName = BoosterPackHelper.getPackName(id, id-200>0);
+		this.packName = "Metronome Booster";
 		this.boosterID = id;
 		for (AbstractCard c : this.cards) 
 		{
@@ -61,9 +61,9 @@ public class BoosterReward extends CustomReward
 		}
 	}
 	
-	public BoosterReward(ArrayList<AbstractCard> cards, String imgPath, String packName, int id) 
+	public MetronomeReward(ArrayList<AbstractCard> cards, String imgPath, String packName, int id) 
 	{
-		super(new Texture("duelistModResources/images/ui/rewards/" + imgPath + ".png"), packName, RewardItemTypeEnumPatch.DUELIST_PACK);
+		super(new Texture("duelistModResources/images/ui/rewards/" + imgPath + ".png"), packName, RewardItemTypeEnumPatch.METRONOME_PACK);
 		this.cards = cards;
 		this.booster = cards;
 		this.packName = packName;
