@@ -37,27 +37,22 @@ public class DuelistCardLibrary
 	{
 		for (DuelistCard c : DuelistMod.myCards) 
 		{ 
-			if ((!c.hasTag(Tags.RANDOMONLY) && (!c.hasTag(Tags.RANDOMONLY_NOCREATOR))))
-			{
-				BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); DuelistMod.summonMap.put(c.originalName, c); 
-			}
-			else { if (!c.rarity.equals(CardRarity.SPECIAL)) { UnlockTracker.unlockCard(c.getID()); }}
-			
-			//if (c.type.equals(CardType.POWER) && !c.hasTag(Tags.NO_POWER_FOR_RANDOM_DECK_POOLS)) { DuelistMod.powersForRandomDecks.add(c.makeCopy()); }
+			BaseMod.addCard(c); 		
+			UnlockTracker.unlockCard(c.getID());
+			DuelistMod.summonMap.put(c.originalName, c); 
 		}
-		
+
 		for (DuelistCard c : DuelistMod.curses)
 		{
-			BaseMod.addCard(c); UnlockTracker.unlockCard(c.getID()); 
+			BaseMod.addCard(c); 
+			UnlockTracker.unlockCard(c.getID()); 
 		}
 
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> saving config options for card set");
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
-			//config.setInt(DuelistMod.PROP_CARDS, DuelistMod.cardCount);
 			config.setInt(DuelistMod.PROP_DECK, DuelistMod.deckIndex);
-			//config.setInt(DuelistMod.PROP_MAX_SUMMONS, DuelistMod.lastMaxSummons);
 			config.setInt(DuelistMod.PROP_RESUMMON_DMG, DuelistMod.resummonDeckDamage);
 			config.save();
 		} catch (Exception e) {
@@ -749,6 +744,13 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new RareSkillMetronome());
 		DuelistMod.myCards.add(new PowerMetronome());
 		DuelistMod.myCards.add(new RarePowerMetronome());
+		DuelistMod.myCards.add(new AttackTrapMetronome());
+		DuelistMod.myCards.add(new TrapMetronome());
+		DuelistMod.myCards.add(new BlockMetronome());
+		DuelistMod.myCards.add(new BlockSpellMetronome());
+		DuelistMod.myCards.add(new RareBlockMetronome());
+		DuelistMod.myCards.add(new SpellMetronome());
+		DuelistMod.myCards.add(new OrbMetronome());
 		DuelistMod.myCards.add(new OneForOne());
 		DuelistMod.myCards.add(new MonsterEggSpecial());
 		DuelistMod.myCards.add(new RainbowMedicine());
@@ -879,6 +881,11 @@ public class DuelistCardLibrary
 			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.nonPowers.add((DuelistCard)c.makeStatEquivalentCopy());
+			}
+			
+			if (c.hasTag(Tags.METRONOME))
+			{
+				DuelistMod.metronomes.add(c.makeStatEquivalentCopy());
 			}
 		}
 		

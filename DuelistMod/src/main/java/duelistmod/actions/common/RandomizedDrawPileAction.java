@@ -211,7 +211,7 @@ public class RandomizedDrawPileAction extends AbstractGameAction {
         if (this.duration == Settings.ACTION_DUR_FAST) 
         {
             AbstractCard c = cardRef.makeStatEquivalentCopy();
-            if (!c.upgraded && upgradeCheck)
+            if (c.canUpgrade() && upgradeCheck)
     		{
     			c.upgrade();
     		}

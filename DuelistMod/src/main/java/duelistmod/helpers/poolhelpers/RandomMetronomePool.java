@@ -164,6 +164,12 @@ public class RandomMetronomePool
 		cards.add(new RarePowerMetronome());
 		cards.add(new UncommonMetronome());
 		cards.add(new UncommonAttackMetronome());
+		cards.add(new AttackTrapMetronome());
+		cards.add(new TrapMetronome());
+		cards.add(new BlockMetronome());
+		cards.add(new BlockSpellMetronome());
+		cards.add(new RareBlockMetronome());
+		cards.add(new SpellMetronome());
 		cards.addAll(MegatypePool.deck());
 		deck.fillPoolCards(cards);		
 		deck.fillArchetypeCards(cards);	
@@ -184,6 +190,12 @@ public class RandomMetronomePool
 		cards.add(new RarePowerMetronome());
 		cards.add(new UncommonMetronome());
 		cards.add(new UncommonAttackMetronome());
+		cards.add(new AttackTrapMetronome());
+		cards.add(new TrapMetronome());
+		cards.add(new BlockMetronome());
+		cards.add(new BlockSpellMetronome());
+		cards.add(new RareBlockMetronome());
+		cards.add(new SpellMetronome());
 		deck.fillPoolCards(cards); 
 		return cards;
 	}

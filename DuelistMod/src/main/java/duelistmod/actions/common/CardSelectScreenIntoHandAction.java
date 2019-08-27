@@ -41,7 +41,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	private boolean damageBlockRandomize = false;
 	private boolean dontTrig = false;
 	private boolean canCancel = false;
-  
+	
 	// Cloning, Wiretap, Red/Yellow/Green Gadgets, Grand Spellbook Tower
 	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
 	{

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.variables.Strings;
 
@@ -18,7 +18,7 @@ public class GravityAxePower extends AbstractPower
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = duelistmod.DuelistMod.makeID("GravityAxePower");
+    public static final String POWER_ID = DuelistMod.makeID("GravityAxePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -32,29 +32,10 @@ public class GravityAxePower extends AbstractPower
         this.owner = owner;
         this.img = new Texture(IMG);
         this.isTurnBased = false;
-        this.type = PowerType.BUFF;
-        if (owner.hasPower(StrengthPower.POWER_ID))
-        {
-        	DuelistCard.applyPowerToSelf(new StrengthPower(this.owner, strGain));
-        	int startStr = owner.getPower(StrengthPower.POWER_ID).amount + strGain;
-        	this.FINAL_STRENGTH = startStr;
-        	DuelistMod.gravAxeStr = strGain;
-        }
+        this.type = PowerType.DEBUFF;
+        if (owner.hasPower(StrengthPower.POWER_ID)) { int startStr = owner.getPower(StrengthPower.POWER_ID).amount; this.FINAL_STRENGTH = startStr; }
         else { this.FINAL_STRENGTH = strGain; DuelistMod.gravAxeStr = strGain; }
         this.updateDescription();
-    }
-    
-    @Override
-    public void onRemove() 
-    {
-    	
-    }
-    
-    @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) 
-    {
-    	if (power.ID == StrengthPower.POWER_ID && target.isPlayer) { power.amount = 0; }
-    	updateDescription();
     }
     
     @Override
@@ -63,6 +44,11 @@ public class GravityAxePower extends AbstractPower
     	this.description = DESCRIPTIONS[0];
     }
     
+    @Override
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) 
+    {
+    	if (power instanceof StrengthPower && target.isPlayer) { power.amount = 0; }
+    }
     
     @Override
     public void onDrawOrDiscard() 
@@ -81,7 +67,6 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
     }
 
     @Override
@@ -101,7 +86,6 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
     }
     
     @Override
@@ -121,34 +105,8 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
     }
-    
-    @Override
-    public void onSpecificTrigger()
-    {
-    	/*
-    	if (FINAL_STRENGTH > 0)
-    	{
-	    	if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID))
-	    	{
-	    		int playerStrength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
-	    		if (playerStrength != FINAL_STRENGTH)
-	    		{
-	    			StrengthPower instance = (StrengthPower) AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
-	    			instance.amount = FINAL_STRENGTH;
-	    			instance.updateDescription();
-	    		}
-	    	}
-	    	else
-	    	{
-	    		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
-	    	}
-    	}
-    	updateDescription();
-    	*/
-    }
-    
+
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
@@ -166,7 +124,6 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
 	}
     
     @Override
@@ -186,7 +143,6 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
     }
     
     @Override
@@ -206,7 +162,6 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
     }
     
     @Override
@@ -226,7 +181,6 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
     }
     
     @Override
@@ -246,8 +200,7 @@ public class GravityAxePower extends AbstractPower
     	{
     		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, FINAL_STRENGTH));
     	}
-    	updateDescription();
     	return damageAmount;
     }
-
+   
 }

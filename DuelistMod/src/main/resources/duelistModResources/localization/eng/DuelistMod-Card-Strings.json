@@ -4441,6 +4441,41 @@
 		"NAME": "U. Attack Metronome",
 		"UPGRADE_DESCRIPTION": "Resummon !M! completely random non-Rare Upgraded Duelist Attack."
 	},
+	"theDuelist:TrapMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Trap.",
+		"NAME": "Trap Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Trap."
+	},
+	"theDuelist:AttackTrapMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Attack Trap.",
+		"NAME": "T. Attack Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Attack Trap."
+	},
+	"theDuelist:SpellMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Spell.",
+		"NAME": "Spell Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Spell."
+	},
+	"theDuelist:BlockSpellMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Block Spell.",
+		"NAME": "B. Spell Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Block Spell."
+	},
+	"theDuelist:BlockMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random Block card.",
+		"NAME": "Block Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random Upgraded Block card."
+	},
+	"theDuelist:RareBlockMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random rare Block card.",
+		"NAME": "R. Block Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random rare Upgraded Block card."
+	},
+	"theDuelist:OrbMetronome": {
+		"DESCRIPTION": "Resummon !M! completely random orb cards. NL Exhaust.",
+		"NAME": "Orb Metronome",
+		"UPGRADE_DESCRIPTION": "Resummon !M! completely random orb cards. NL Exhaust."
+	},
 	"theDuelist:OneForOne": {
 		"DESCRIPTION": "Arcane NL Retain !M! card this turn. NL Exhaust.",
 		"NAME": "One for One",

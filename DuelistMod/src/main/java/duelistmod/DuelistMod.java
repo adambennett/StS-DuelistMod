@@ -258,6 +258,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<AbstractCard> uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> basicCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> metronomes = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> powersForRandomDecks = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> cardsForRandomDecks = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> tinFluteCards = new ArrayList<AbstractCard>();
@@ -1105,6 +1106,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new AknamkanonsEssence(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MarkExxod(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new DuelistCoin(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MetronomeRelicA(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MetronomeRelicB(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MetronomeRelicC(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MetronomeRelicD(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1204,6 +1209,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(AknamkanonsEssence.ID);
 		UnlockTracker.markRelicAsSeen(MarkExxod.ID);
 		UnlockTracker.markRelicAsSeen(DuelistCoin.ID);
+		UnlockTracker.markRelicAsSeen(MetronomeRelicA.ID);
+		UnlockTracker.markRelicAsSeen(MetronomeRelicB.ID);
+		UnlockTracker.markRelicAsSeen(MetronomeRelicC.ID);
+		UnlockTracker.markRelicAsSeen(MetronomeRelicD.ID);
 		
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
@@ -1261,6 +1270,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new MerchantNecklace());
 		duelistRelicsForTombEvent.add(new KaibaToken());
 		duelistRelicsForTombEvent.add(new AknamkanonsEssence());
+		duelistRelicsForTombEvent.add(new MetronomeRelicA());
+		duelistRelicsForTombEvent.add(new MetronomeRelicB());
+		duelistRelicsForTombEvent.add(new MetronomeRelicC());
+		duelistRelicsForTombEvent.add(new MetronomeRelicD());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
@@ -1704,9 +1717,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	}
 
 	@Override
-	public int receiveOnPlayerDamaged(int arg0, DamageInfo arg1) 
+	public int receiveOnPlayerDamaged(int dmg, DamageInfo dmgInfo) 
 	{
-		return arg0;
+		Util.log("Player damaged for: " + dmg);
+		return dmg;
 	}
 
 	@Override
@@ -1717,7 +1731,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			if (power instanceof PoisonPower)
 			{
 				poisonAppliedThisCombat+=power.amount;
-				if (debug) { logger.info("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat); }
+				Util.log("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat);
 			}
 			
 			if (power instanceof TombLooterPower)
@@ -1729,28 +1743,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 					((TombLooterPower) power).goldLimit = pow.goldLimit;
 				}
 			}
-		}
-		if (debug)
-		{
-			if (power != null && target != null && source != null)
+			
+			if (power instanceof StrengthPower)
 			{
-				logger.info("Power Applied: " + power.name + " - Target: " + target.name + " - Source: " + source.name);
-				if (power.ID.equals("Strength"))
+				if (!AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID) && AbstractDungeon.player.hasRelic(MetronomeRelicD.ID))
 				{
-					logger.info("Caught Strength application!");
+					MetronomeRelicD relic = (MetronomeRelicD)AbstractDungeon.player.getRelic(MetronomeRelicD.ID);
+					relic.addMetToHand();
 				}
-			}
-			else if (power != null)
-			{
-				logger.info("Power Applied: " + power.name + " - Target: " + "null" + " - Source: " + "null");
-				if (power.ID.equals("Strength"))
-				{
-					logger.info("Caught Strength application!");
-				}
-			}
-			else
-			{
-				logger.info("Power Applied: " + "null" + " - Target: " + "null" + " - Source: " + "null");
 			}
 		}
 	}
@@ -1771,14 +1771,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				{
 					oOrb.checkFocus(false);
 				}
-			}
-		}
-		
-		if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID) && debug)
-		{
-			if (AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount != gravAxeStr && AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID))
-			{
-				logger.info("Got the wrong value for gravAxeStr == player.strength.amount, Player Strength: " + AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount + " - gravAxeStr: " + gravAxeStr);
 			}
 		}
 	}
@@ -1931,6 +1923,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 								TwoAmountPower pow = (TwoAmountPower)AbstractDungeon.player.getPower(MagiciansRobePower.POWER_ID);
 								if (pow.amount2 > 0)
 								{
+									pow.flash();
 									pow.amount2--; pow.updateDescription();
 								}
 								else
@@ -1946,7 +1939,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 							}
 						}						
 					}
-					if (spellcasterBlockOnAttack + extra > 0) { DuelistCard.staticBlock(spellcasterBlockOnAttack + extra); }
+					if (spellcasterBlockOnAttack + extra > 0 && AbstractDungeon.player.hasPower(ManaPower.POWER_ID) && extra > 0) { ManaPower pow = (ManaPower)AbstractDungeon.player.getPower(ManaPower.POWER_ID); DuelistCard.manaBlock(spellcasterBlockOnAttack + extra, pow); }
+					else if (spellcasterBlockOnAttack + extra > 0) { DuelistCard.staticBlock(spellcasterBlockOnAttack + extra); }
 				}
 			}
 			

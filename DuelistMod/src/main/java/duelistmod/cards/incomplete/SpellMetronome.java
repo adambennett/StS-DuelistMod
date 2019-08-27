@@ -11,10 +11,10 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
-public class Metronome extends DuelistCard 
+public class SpellMetronome extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Metronome");
+    public static final String ID = DuelistMod.makeID("SpellMetronome");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("Metronome.png");
     public static final String NAME = cardStrings.NAME;
@@ -23,24 +23,21 @@ public class Metronome extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public Metronome() {
+    public SpellMetronome() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.NEVER_GENERATE);
         this.tags.add(Tags.METRONOME);
-        this.tags.add(Tags.METRONOME_DECK);
-        this.metronomeDeckCopies = 2;
         this.baseMagicNumber = this.magicNumber = 1;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.
@@ -53,7 +50,7 @@ public class Metronome extends DuelistCard
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Metronome();
+        return new SpellMetronome();
     }
 
     // Upgraded stats.

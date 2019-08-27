@@ -1,7 +1,6 @@
 package duelistmod.cards.incomplete;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.MagicalBlastAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.ManaPower;
 import duelistmod.variables.Tags;
@@ -40,6 +40,7 @@ public class MagicalBlast extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.isMultiDamage = true;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NO_MANA_RESET);
     }
 
     // Actions the card should do.
@@ -49,7 +50,7 @@ public class MagicalBlast extends DuelistCard
     	this.damage = this.baseDamage;
         if (this.damage > 0) 
         {
-            AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
+            AbstractDungeon.actionManager.addToTop(new MagicalBlastAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
         }
     }
     

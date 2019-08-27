@@ -513,7 +513,7 @@
 		"NAME": "Merchant's Necklace",
 		"FLAVOR": "A rug necklace? The Merchant is such a weird dude.",
 		"DESCRIPTIONS": [
-			"[#2aecd7]Right [#2aecd7]click [#2aecd7]in [#2aecd7]a [#2aecd7]shop [#2aecd7]to [#2aecd7]activate. NL Refresh the entire shop. Apply #yUpgrades to a random type of card. Apply a random discount to everything in the shop. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]in [#2aecd7]a [#2aecd7]shop [#2aecd7]to [#2aecd7]activate. NL Refresh the entire shop. Apply #yUpgrades to a random type of card. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, gain #b1 #yCharge."
 		]
 	},
 	"theDuelist:MerchantTalisman": {
@@ -613,6 +613,34 @@
 		"FLAVOR": "A very beautiful coin!",
 		"DESCRIPTIONS": [
 			"Upon pickup, gain #b30 #yGold for each other relic you have."
+		]
+	},
+	"theDuelist:MetronomeRelicA": {
+		"NAME": "Metronomic",
+		"FLAVOR": "A pristine, high quality, wooden metronome. Gotta practice those paradiddles!",
+		"DESCRIPTIONS": [
+			"Whenever you play a Metronome, #yResummon another random Metronome on a random enemy."
+		]
+	},
+	"theDuelist:MetronomeRelicB": {
+		"NAME": "Metronometry",
+		"FLAVOR": "The study of blast beats.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, add #b3 random Metronomes to your draw pile."
+		]
+	},
+	"theDuelist:MetronomeRelicC": {
+		"NAME": "Solidified Metronome",
+		"FLAVOR": "A sturdy metronome made from a piece of rock.",
+		"DESCRIPTIONS": [
+			"Whenever you play a Metronome, gain #b2 Block."
+		]
+	},
+	"theDuelist:MetronomeRelicD": {
+		"NAME": "Metronomic Power",
+		"FLAVOR": "You feel a strong pulsing sensation when holding this relic.",
+		"DESCRIPTIONS": [
+			"Whenever you gain #yStrength, add a #yRandomized Metronome to your hand."
 		]
 	},
 	"theDuelist:OrbCardRelic": {

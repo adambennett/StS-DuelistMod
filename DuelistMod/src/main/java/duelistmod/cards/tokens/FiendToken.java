@@ -53,17 +53,23 @@ public class FiendToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
-    	ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-    	for (AbstractCard c : p.discardPile.group)
+    	if (p.discardPile.group.size() > 0)
     	{
-    		if (c.cost > 0)
-    		{
-    			cards.add(c);
-    		}
+	    	ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+	    	for (AbstractCard c : p.discardPile.group)
+	    	{
+	    		if (c.cost > 0)
+	    		{
+	    			cards.add(c);
+	    		}
+	    	}
+	    	
+	    	if (cards.size() > 0)
+	    	{
+		    	AbstractCard random = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+		    	random.modifyCostForCombat(-this.magicNumber);
+	    	}
     	}
-    	
-    	AbstractCard random = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-    	random.modifyCostForCombat(-this.magicNumber);
     }
     @Override public AbstractCard makeCopy() { return new FiendToken(); }
 

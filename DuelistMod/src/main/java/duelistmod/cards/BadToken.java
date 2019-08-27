@@ -5,11 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.BeatOfDeathPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.TombLooterPower;
 import duelistmod.variables.*;
 
 public class BadToken extends DuelistCard 
@@ -50,7 +50,7 @@ public class BadToken extends DuelistCard
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
     	
-    	applyPowerToSelf(new TombLooterPower(p, 10, 30, true));
+    	applyPowerToSelf(new BeatOfDeathPower(p, 1));
     	
     	if (DuelistMod.debug)
     	{

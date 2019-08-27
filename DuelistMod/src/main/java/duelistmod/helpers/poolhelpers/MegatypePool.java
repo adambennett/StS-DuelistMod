@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.*;
-import com.megacrit.cardcrawl.cards.green.*;
-import com.megacrit.cardcrawl.cards.red.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
@@ -259,6 +256,8 @@ public class MegatypePool
 		cards.add(new BlastingFuse());
 		cards.add(new CemetaryBomb());
 		cards.add(new RockBombardment());
+		cards.add(new Metronome());
+		cards.add(new OrbMetronome());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

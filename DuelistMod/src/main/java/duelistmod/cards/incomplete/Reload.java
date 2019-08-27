@@ -37,6 +37,7 @@ public class Reload extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.makeFleeting();
     }
 

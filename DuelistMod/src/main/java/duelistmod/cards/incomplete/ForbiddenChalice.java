@@ -41,6 +41,7 @@ public class ForbiddenChalice extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NEVER_GENERATE);
         this.makeFleeting();
     }
 

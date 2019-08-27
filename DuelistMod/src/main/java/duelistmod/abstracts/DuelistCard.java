@@ -863,6 +863,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
+	
+	public static void manaBlock(int amount, ManaPower pow) 
+	{
+		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
+		pow.flash();
+	}
 	// =============== /DEFEND FUNCTIONS/ =======================================================================================================================================================
 	
 	
@@ -5361,6 +5367,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void fullResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target, boolean superFast)
 	{
+		if (cardCopy.hasTag(Tags.EXEMPT)) { Util.log("You're attemtping to Resummon " + cardCopy.name + ", which is Exempt, so nothing will happen."); }
 		// We want to check for Vanity Fiend, Exempt card, or Mortality power - these things prevent Resummons
 		// To check for Vanity Fiend, first we check for summons, if the player has summons we look in them for Vanity Fiend plus the power and tag
 		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
@@ -6460,6 +6467,27 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return new Token();
 		}
 	}
+	
+	public static AbstractCard returnRandomMetronome()
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (AbstractCard card : DuelistMod.metronomes)
+		{
+			if (card.hasTag(Tags.METRONOME)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
 
 	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom) 
 	{
@@ -6693,6 +6721,55 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
 			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.RARE)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			return (DuelistCard) c.makeCopy();
+		}
+		else if (metronome instanceof TrapMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.myCards) { if (c.hasTag(Tags.TRAP) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			return (DuelistCard) c.makeCopy();
+		}
+		else if (metronome instanceof AttackTrapMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.myCards) { if (c.type.equals(CardType.ATTACK) && c.hasTag(Tags.TRAP) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			return (DuelistCard) c.makeCopy();
+		}
+		else if (metronome instanceof SpellMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.myCards) { if (c.hasTag(Tags.SPELL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			return (DuelistCard) c.makeCopy();
+		}
+		else if (metronome instanceof BlockSpellMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.myCards) { if (c.baseBlock > 0 && c.hasTag(Tags.SPELL) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			return (DuelistCard) c.makeCopy();
+		}
+		else if (metronome instanceof BlockMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.myCards) { if (c.baseBlock > 0 && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			return (DuelistCard) c.makeCopy();
+		}
+		else if (metronome instanceof RareBlockMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.myCards) { if (c.rarity.equals(CardRarity.RARE) && c.baseBlock > 0 && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.EXEMPT) && !c.hasTag(Tags.NO_METRONOME) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }}
+			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
+			return (DuelistCard) c.makeCopy();
+		}
+		else if (metronome instanceof OrbMetronome)
+		{
+			ArrayList<DuelistCard> cardsToPullFrom = new ArrayList<DuelistCard>();
+			for (DuelistCard c : DuelistMod.orbCards) { cardsToPullFrom.add((DuelistCard) c.makeCopy()); }
 			DuelistCard c = (DuelistCard) cardsToPullFrom.get(AbstractDungeon.cardRandomRng.random(cardsToPullFrom.size() - 1)).makeCopy();
 			return (DuelistCard) c.makeCopy();
 		}

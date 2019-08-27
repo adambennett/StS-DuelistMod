@@ -110,6 +110,7 @@ public class BasicPool
 		toReturn.add(new UltraPolymerization());
 		toReturn.add(new MillenniumScorpion());
 		toReturn.add(new Metronome());
+		toReturn.add(new OrbMetronome());
 		
 		// megatype pool cards
 		toReturn.add(new KamionTimelord());
@@ -240,6 +241,7 @@ public class BasicPool
 		DuelistMod.basicCards.add(new MillenniumScorpion());
 		DuelistMod.basicCards.add(new Metronome());
 		DuelistMod.basicCards.add(new OneForOne());
+		DuelistMod.basicCards.add(new OrbMetronome());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }
@@ -383,6 +385,7 @@ public class BasicPool
 		DuelistMod.basicCards.add(new MiraculousDescent());
 		DuelistMod.basicCards.add(new RockSunrise());
 		DuelistMod.basicCards.add(new UltraPolymerization());
+		DuelistMod.basicCards.add(new OrbMetronome());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }
