@@ -40,10 +40,13 @@ public class CommandKnight extends DuelistCard
         this.baseBlock = this.block = 7;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.MAGNET_DECK);
+        this.superheavyDeckCopies = 1;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;
         this.exhaust = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

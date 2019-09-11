@@ -36,11 +36,14 @@ public class ColossalFighter extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 13;
-        this.tributes = this.baseTributes = 4;
+        this.baseDamage = this.damage = 9;
+        this.tributes = this.baseTributes = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.MAGNET_DECK);
+        this.superheavyDeckCopies = 1;
+        this.setupStartingCopies();
     }
 
     @Override
