@@ -1,7 +1,5 @@
 package duelistmod.patches;
 
-import java.util.ArrayList;
-
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
@@ -21,23 +19,6 @@ public class RemovePotionsPatch
 			{
 				for (String s : DuelistMod.orbPotionIDs) { PotionHelper.potions.remove(s); Util.log("Duelist config settings: removing " + s + " from potion pool"); }
 			}
-		}
-	}
-	
-	@SpirePatch(clz = PotionHelper.class, method = "getPotions")
-	public static class PotionAddPatch
-	{
-		@SpirePostfixPatch
-		public static ArrayList<String> Postfix(ArrayList<String> __result, final AbstractPlayer.PlayerClass c, final boolean getAll) 
-		{
-			if (c == TheDuelistEnum.THE_DUELIST && !getAll) 
-			{
-				__result.add("BloodPotion");	
-				__result.add("GhostInAJar");	
-				__result.add("FocusPotion");	
-				//__result.add("StancePotion");	
-			}
-			return __result;
 		}
 	}
 }
