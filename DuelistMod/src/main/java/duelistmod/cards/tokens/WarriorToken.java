@@ -51,11 +51,6 @@ public class WarriorToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
-    	int roll = AbstractDungeon.cardRandomRng.random(1,2);
-    	if (roll == 1) 
-    	{ 
-    		changeToRandomStance(false, false);
-    	}
     }
     @Override public AbstractCard makeCopy() { return new WarriorToken(); }
 

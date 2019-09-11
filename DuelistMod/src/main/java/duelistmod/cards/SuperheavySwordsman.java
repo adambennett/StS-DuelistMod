@@ -51,8 +51,7 @@ public class SuperheavySwordsman extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon();
-		attack(m, AFX, this.damage);
-		changeToRandomStance(true, false);
+		attack(m, AFX, this.damage);		
 	}
 
 	// Which card to return when making a copy of this card.

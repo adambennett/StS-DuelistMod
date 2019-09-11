@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
@@ -284,7 +283,7 @@ public class PuzzleHelper
 				// Superheavy Deck
 				case 9:		
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Stance Token", false);
-					DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
+					//DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
 					DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
 					break;
 					
@@ -574,7 +573,7 @@ public class PuzzleHelper
 			// Superheavy Deck
 			case 9:		
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Stance Token", false);
-				DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
+				//DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
 				break;
 				

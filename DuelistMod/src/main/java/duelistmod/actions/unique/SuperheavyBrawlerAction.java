@@ -33,7 +33,7 @@ public class SuperheavyBrawlerAction extends AbstractGameAction
                 AbstractDungeon.actionManager.clearPostCombatActions();
             }
             else {
-                this.addToTop(new WaitAction(0.1f));
+               AbstractDungeon.actionManager.addToTop(new WaitAction(0.1f));
             }
         }
     }

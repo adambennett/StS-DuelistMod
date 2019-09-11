@@ -50,12 +50,7 @@ public class SuperheavyOgre extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	attack(m, AFX, this.damage);
-    	if (p.stance.ID.equals("theDuelist:Samurai"))
-    	{
-    		DuelistCard.drawRare(1, CardRarity.RARE);
-    	}
-    	
+    	attack(m, AFX, this.damage);    	
     }
 
     // Which card to return when making a copy of this card.

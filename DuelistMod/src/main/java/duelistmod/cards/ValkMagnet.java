@@ -58,8 +58,6 @@ public class ValkMagnet extends DuelistCard
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, AlphaMagPower.POWER_ID, 1));
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, BetaMagPower.POWER_ID, 1));
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, GammaMagPower.POWER_ID, 1));
-        	ArrayList<DuelistCard> stances = Util.getStanceChoices(true, true, true);
-        	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(stances, 1, false, false, false, true));
     	}
     }
 

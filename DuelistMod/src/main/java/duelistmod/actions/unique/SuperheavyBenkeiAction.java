@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 
+import duelistmod.abstracts.DuelistCard;
+
 public class SuperheavyBenkeiAction extends AbstractGameAction
 {
     private DamageInfo info;
@@ -28,12 +30,12 @@ public class SuperheavyBenkeiAction extends AbstractGameAction
         this.tickDuration();
         if (this.isDone) {
             this.target.damage(this.info);
-            this.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player,  this.target.lastDamageTaken)));
+            DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player,  this.target.lastDamageTaken));
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
                 AbstractDungeon.actionManager.clearPostCombatActions();
             }
             else {
-                this.addToTop(new WaitAction(0.1f));
+                AbstractDungeon.actionManager.addToTop(new WaitAction(0.1f));
             }
         }
     }

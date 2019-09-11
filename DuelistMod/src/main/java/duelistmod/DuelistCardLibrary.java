@@ -760,24 +760,12 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new Overworked());
 		DuelistMod.myCards.add(new GoldenSparks());
 
-		DuelistMod.myCards.add(new AssaultArmor());
-		DuelistMod.myCards.add(new BambooSwordBroken());
-		DuelistMod.myCards.add(new BambooSwordBurning());
-		DuelistMod.myCards.add(new BambooSwordCursed());
-		DuelistMod.myCards.add(new BambooSwordGolden());
-		DuelistMod.myCards.add(new BambooSwordSoul());
-		DuelistMod.myCards.add(new BattleWarrior());
-		DuelistMod.myCards.add(new BladeArmorNinja());
-		DuelistMod.myCards.add(new BladeKnight());
+		
 		DuelistMod.myCards.add(new BrushfireKnight());
-		DuelistMod.myCards.add(new BullBlader());
-		DuelistMod.myCards.add(new ColossalFighter());
+		
 		DuelistMod.myCards.add(new ComboFighter());
 		DuelistMod.myCards.add(new ComboMaster());
 		DuelistMod.myCards.add(new CrossAttack());
-		DuelistMod.myCards.add(new DarkGrepher());
-		DuelistMod.myCards.add(new DustKnight());
-		DuelistMod.myCards.add(new FeedbackWarrior());
 		DuelistMod.myCards.add(new GoyoChaser());
 		DuelistMod.myCards.add(new GoyoKing());
 		DuelistMod.myCards.add(new GravityWarrior());
@@ -785,53 +773,14 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new LegendarySword());
 		DuelistMod.myCards.add(new LightningBlade());
 		DuelistMod.myCards.add(new MightyWarrior());
-		DuelistMod.myCards.add(new NinjaGrandmaster());
-		DuelistMod.myCards.add(new NitroWarrior());
 		DuelistMod.myCards.add(new SoldierLady());
-		DuelistMod.myCards.add(new SwordDragonSoul());
-		DuelistMod.myCards.add(new AdvanceForce());
-		DuelistMod.myCards.add(new AfterGenocide());
-		DuelistMod.myCards.add(new AfterTheStorm());
-		DuelistMod.myCards.add(new AgainstTheWind());
-		DuelistMod.myCards.add(new BattleguardHowling());
-		DuelistMod.myCards.add(new BattleguardRage());
 		DuelistMod.myCards.add(new ChaosSeed());
-		DuelistMod.myCards.add(new CrystalBlessing());
-		DuelistMod.myCards.add(new CrystalTree());
-		DuelistMod.myCards.add(new CubicWave());
-		DuelistMod.myCards.add(new DarkBurningAttack());
-		DuelistMod.myCards.add(new DarkBurningMagic());
-		DuelistMod.myCards.add(new DarkCrusader());
-		DuelistMod.myCards.add(new DarkOccultism());
 		DuelistMod.myCards.add(new DawnKnight());
-		DuelistMod.myCards.add(new DefenseZone());
-		DuelistMod.myCards.add(new DeltaAttacker());
-		DuelistMod.myCards.add(new Downbeat());
-		DuelistMod.myCards.add(new EgoBoost());
-		DuelistMod.myCards.add(new ElfLight());
-		DuelistMod.myCards.add(new EulerCircuit());
-		DuelistMod.myCards.add(new FengshengMirror());
-		DuelistMod.myCards.add(new GladiatorReturn());
-		DuelistMod.myCards.add(new GlowingCrossbow());
 		DuelistMod.myCards.add(new GoyoDefender());
-		DuelistMod.myCards.add(new GoyoEmperor());
 		DuelistMod.myCards.add(new GravityLash());
 		DuelistMod.myCards.add(new GuardianOrder());
 		DuelistMod.myCards.add(new HardArmor());
-		DuelistMod.myCards.add(new HarmonicWaves());
-		DuelistMod.myCards.add(new HerculeanPower());
-		DuelistMod.myCards.add(new HeroRing());
-		DuelistMod.myCards.add(new HiddenArmory());
-		DuelistMod.myCards.add(new LegendHeart());
-		DuelistMod.myCards.add(new LegendaryBlackBelt());
-		DuelistMod.myCards.add(new LightLaser());
-		DuelistMod.myCards.add(new MagnumShield());
-		DuelistMod.myCards.add(new WarriorReturningAlive());
-		DuelistMod.myCards.add(new CommanderSwords());
 		//DuelistMod.myCards.add(new CubicKarma());
-		DuelistMod.myCards.add(new FightingSpirit());
-		DuelistMod.myCards.add(new Flint());
-		DuelistMod.myCards.add(new GridRod());
 		//DuelistMod.myCards.add(new ReinforceTruth());
 		//DuelistMod.myCards.add(new SpiritForce());
 		//DuelistMod.myCards.add(new WeaponChange());		
@@ -1087,9 +1036,7 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Buffer Token", new Token());		
 		DuelistMod.summonMap.put("Tribute Token", new Token());
 		DuelistMod.summonMap.put("Summon Token", new Token());		
-		DuelistMod.summonMap.put("Warrior Token", new WarriorToken());		
-		DuelistMod.summonMap.put("Stance Token", new StanceToken());		
-		DuelistMod.summonMap.put("Forsaken Token", new ForsakenToken());
+		DuelistMod.summonMap.put("Warrior Token", new WarriorToken());
 		DuelistMod.summonMap.put("Token", new Token());
 		DuelistMod.summonMap.put("Jam Token", new JamToken());
 		DuelistMod.summonMap.put("Castle Token", new CastleToken());
@@ -1174,9 +1121,7 @@ public class DuelistCardLibrary
 		tokens.add(new TributeToken());
 		tokens.add(new SuperExplodingToken());
 		tokens.add(new MegatypeToken());
-		tokens.add(new ForsakenToken());
 		tokens.add(new WarriorToken());
-		tokens.add(new StanceToken());
 		return tokens;
 	}
 	
@@ -1222,9 +1167,7 @@ public class DuelistCardLibrary
 		tokens.add(new TributeToken());
 		tokens.add(new SuperExplodingToken());
 		tokens.add(new MegatypeToken());
-		tokens.add(new ForsakenToken());
 		tokens.add(new WarriorToken());
-		tokens.add(new StanceToken());
 		return tokens;
 	}
 	

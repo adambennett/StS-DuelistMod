@@ -41,7 +41,7 @@ public class SuperheavySoulbeads extends DuelistCard
         this.misc = 0;
         this.magicNumber = this.baseMagicNumber = 3;
 		this.originalName = this.name;
-		this.selfRetain = true;
+		this.retain = true;
     }
 
     // Actions the card should do.

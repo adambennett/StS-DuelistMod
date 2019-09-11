@@ -165,29 +165,11 @@ public class StandardPool
 		cards.add(new MiracleFertilizer());
 		cards.add(new UnderworldCannon());
 		cards.add(new SpiritHarp());
-		
-		cards.add(new Downbeat());
-		cards.add(new EgoBoost());
-		cards.add(new AfterGenocide());
-		cards.add(new AdvanceForce());
-		cards.add(new AfterTheStorm());
-		cards.add(new AssaultArmor());
 		cards.add(new ChaosSeed());
-		cards.add(new CrossAttack());
-		cards.add(new CrystalBlessing());
-		cards.add(new DarkBurningAttack());
-		cards.add(new DarkBurningMagic());
-		cards.add(new DeltaAttacker());
-		cards.add(new FengshengMirror());
-		cards.add(new GoldenSparks());
-		cards.add(new GridRod());
-		cards.add(new HarmonicWaves());
-		cards.add(new LegendHeart());
-		cards.add(new LightLaser());
+		cards.add(new CrossAttack());		
+		cards.add(new GoldenSparks());		
 		cards.add(new LegendarySword());
-		cards.add(new LightningBlade());
-		cards.add(new MagnumShield());
-		cards.add(new SwordDragonSoul());
+		cards.add(new LightningBlade());		
 		
 		if (!DuelistMod.ojamaBtnBool)
 		{

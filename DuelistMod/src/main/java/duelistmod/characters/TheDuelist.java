@@ -355,9 +355,4 @@ public class TheDuelist extends CustomPlayer {
 	    return result;
 	}
 
-	@Override
-	public String getPortraitImageName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

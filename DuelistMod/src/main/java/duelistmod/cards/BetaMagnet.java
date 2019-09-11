@@ -50,7 +50,6 @@ public class BetaMagnet extends DuelistCard
     	summon(p, this.summons, this);
     	if (!p.hasPower(BetaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p))); }
     	block();
-    	exitStance();
     }
 
     // Which card to return when making a copy of this card.

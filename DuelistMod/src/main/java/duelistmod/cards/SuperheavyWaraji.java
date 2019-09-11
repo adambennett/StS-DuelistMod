@@ -39,11 +39,11 @@ public class SuperheavyWaraji extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.baseBlock = this.block = 6;
 		this.originalName = this.name;
-		this.selfRetain = true;
+		this.retain = true;
     }
     
     @Override
-    public void onRetained() {
+    public void triggerOnEndOfPlayerTurn() {
         this.upgradeBlock(this.magicNumber);
     }
 

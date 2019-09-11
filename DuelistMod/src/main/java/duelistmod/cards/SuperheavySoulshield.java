@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -50,14 +49,6 @@ public class SuperheavySoulshield extends DuelistCard
     {
     	tribute();
     	applyPowerToSelf(new PlatedArmorPower(p, this.magicNumber));
-    	if (p.hasPower(SummonPower.POWER_ID))
-    	{
-    		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
-    		if (pow.isOnlyTypeSummoned(Tags.SUPERHEAVY))
-    		{
-    			applyPowerToSelf(new MantraPower(p, this.secondMagic));
-    		}
-    	}
     }
 
     // Which card to return when making a copy of this card.

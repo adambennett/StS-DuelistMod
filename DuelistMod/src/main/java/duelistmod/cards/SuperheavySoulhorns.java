@@ -40,7 +40,7 @@ public class SuperheavySoulhorns extends DuelistCard
         this.tags.add(Tags.SUPERHEAVY);
         this.misc = 0;
 		this.originalName = this.name;
-		this.selfRetain = true;
+		this.retain = true;
     }
 
     // Actions the card should do.

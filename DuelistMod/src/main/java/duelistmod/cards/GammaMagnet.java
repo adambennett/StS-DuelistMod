@@ -13,7 +13,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.stances.Guarded;
 import duelistmod.variables.*;
 
 public class GammaMagnet extends DuelistCard 
@@ -54,7 +53,6 @@ public class GammaMagnet extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	changeStance(new Guarded());
     	drawTag(this.magicNumber, Tags.MONSTER);
     	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }
     }

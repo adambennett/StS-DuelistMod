@@ -10,7 +10,6 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.stances.Guarded;
 import duelistmod.variables.Tags;
 
 public class Hayate extends DuelistCard
@@ -53,7 +52,6 @@ public class Hayate extends DuelistCard
     {
     	tribute();
     	attack(m);
-    	if (p.currentHealth < p.maxHealth / 2) { changeStance(new Guarded()); }
     }
 
     // Which card to return when making a copy of this card.

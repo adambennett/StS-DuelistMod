@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.actions.animations.*;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -29,8 +28,6 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.stances.*;
-import com.megacrit.cardcrawl.stances.AbstractStance.StanceName;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
@@ -42,7 +39,6 @@ import duelistmod.DuelistMod;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
-import duelistmod.cards.fourthWarriors.DarkCrusader;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.cards.typecards.*;
@@ -54,7 +50,6 @@ import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
-import duelistmod.stances.*;
 import duelistmod.variables.*;
 
 public abstract class DuelistCard extends CustomCard implements ModalChoice.Callback, CustomSavable <String>
@@ -266,7 +261,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 2);  }}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { tmp += player().getPower(TyrantWingPower.POWER_ID).amount;  }
 		if (this.hasTag(DuelistMod.chosenRockSunriseTag) && player().hasPower(RockSunrisePower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.25); }
-		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		//if (DuelistMod.debug) { DuelistMod.logger.info("Updated damage for " + this.originalName + " based on power effects. New damage should read as: " + tmp);}
 		return tmp;
 	}
@@ -1537,60 +1531,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 	
 	// =============== /MISC ACTION FUNCTIONS/ =======================================================================================================================================================
-	 
-	// =============== STANCE FUNCTIONS =========================================================================================================================================================
-		
-	public static void exitStance()
-	{
-		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(AbstractStance.StanceName.NONE));
-	}
 	
-	public static void changeStance(AbstractStance stance)
-	{
-		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(stance));
-	}
-	
-	public static void changeStance(StanceName name)
-	{
-		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(name));
-	}
-	
-	public static void changeToRandomStance(boolean allowChaotic, boolean allowDivinity, boolean allowBaseGame, boolean allowDuelist)
-	{
-		if (!allowBaseGame && !allowDuelist) { return; }
-		ArrayList<AbstractStance> stances = new ArrayList<AbstractStance>();
-		if (allowDuelist)
-		{
-			stances.add(new Samurai());
-			stances.add(new Guarded());
-			stances.add(new Spectral());
-			stances.add(new Meditative());		
-			stances.add(new Forsaken());
-			if (allowChaotic) { stances.add(new Chaotic()); }
-		}
-		if (allowBaseGame)
-		{
-			stances.add(new CalmStance());
-			stances.add(new WrathStance());
-			if (allowDivinity) { stances.add(new DivinityStance()); }
-		}
-
-		AbstractStance newStance = stances.get(AbstractDungeon.cardRandomRng.random(stances.size() - 1));
-		changeStance(newStance);
-	}
-	
-	public static void changeToRandomStance()
-	{
-		changeToRandomStance(false, false, true, true);
-	}
-	
-	public static void changeToRandomStance(boolean allowChaotic, boolean allowDivinity)
-	{
-		changeToRandomStance(allowChaotic, allowDivinity, true, true);
-	}
-	
-	// =============== /STANCE FUNCTIONS/ =======================================================================================================================================================
-		
 	// =============== SUMMON MONSTER FUNCTIONS =========================================================================================================================================================
 	public void summon()
 	{
@@ -5031,23 +4972,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.WARRIOR))
 		{			
-			if (!DuelistMod.warriorTribThisCombat)
-			{
-				Util.log("Warrior for Warrior tribute code executing, choosing any stance (except Divinity)");
-				DuelistMod.warriorTribEffectsTriggeredThisCombat++;
-				if (DuelistMod.warriorTribEffectsTriggeredThisCombat >= DuelistMod.warriorTribEffectsPerCombat) { 
-					DuelistMod.warriorTribThisCombat = true;
-				}
-				ArrayList<DuelistCard> stances = Util.getStanceChoices(true, false, true);
-	        	AbstractDungeon.actionManager.addToBottom(new WarriorTribAction(stances));
-			}
 			
-			if (AbstractDungeon.player.hasPower(FightingSpiritPower.POWER_ID))
-			{
-				FightingSpiritPower pow = (FightingSpiritPower)AbstractDungeon.player.getPower(FightingSpiritPower.POWER_ID);
-				pow.onTrib();
-				pow.flash();
-			}
 		}
 	}
 	
@@ -7010,12 +6935,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		boolean useAN = false;
 		
 		if (tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama")) { useAN = true; }
-		if (this instanceof DarkCrusader)
-		{
-			if (magic != 1) { res = "Summon " + magic + " " + tagString + " Tokens"; }
-			else { res = "Summon " + magic + " " + tagString + " Token"; }
-		}
-		
+
 		if (this instanceof ShardGreed)
 		{
 			if (useAN)

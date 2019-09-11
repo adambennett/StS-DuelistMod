@@ -43,7 +43,7 @@ public class SuperheavySoulbuster extends DuelistCard
 		this.setupStartingCopies();
         this.misc = 0;
 		this.originalName = this.name;
-		this.selfRetain = true;
+		this.retain = true;
     }
 
     // Actions the card should do.

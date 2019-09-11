@@ -1,13 +1,12 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.watcher.FollowUpAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -46,24 +45,15 @@ public class AlphaMagnet extends DuelistCard
         this.originalName = this.name;
         this.isSummon = true;
     }
-    
-    @Override
-    public void triggerOnGlowCheck() {
-        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
-            this.gColor = GlowColor.GOLD;
-        }
-        else {
-            this.gColor = GlowColor.BLUE;
-        }
-    }
-
+ 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
     	attack(m, AFX, this.damage);
-    	this.addToBot(new FollowUpAction());
+    	//this.addToBot(new FollowUpAction());
+    	if (DuelistMod.secondLastCardPlayed.type.equals(CardType.ATTACK)) { applyPowerToSelf(new EnergizedBluePower(p, 1)); }
     	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
     }
 

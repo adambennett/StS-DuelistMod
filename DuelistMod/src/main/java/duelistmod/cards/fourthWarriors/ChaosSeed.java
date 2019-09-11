@@ -43,11 +43,11 @@ public class ChaosSeed extends DuelistCard
         this.tags.add(Tags.ARCANE);
         this.magicNumber = this.baseMagicNumber = 4;	// Str Loss
         this.exhaust = true;
-        this.selfRetain = true;
+        this.retain = true;
     }
     
     @Override
-    public void onRetained() 
+    public void triggerOnEndOfPlayerTurn() 
     {
     	if (upgraded) 
     	{ 

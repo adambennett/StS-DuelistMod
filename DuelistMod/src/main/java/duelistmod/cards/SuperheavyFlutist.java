@@ -54,7 +54,7 @@ public class SuperheavyFlutist extends DuelistCard
     {
     	summon(p,  this.summons, this);
     	block(this.block);
-    	changeToRandomStance(true, false);
+    	
     }
 
     // Which card to return when making a copy of this card.

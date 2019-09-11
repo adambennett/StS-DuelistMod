@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -52,7 +51,7 @@ public class SuperheavyMagnet extends DuelistCard
     {
     	
     	tribute();
-    	applyPowerToSelf(new MantraPower(p, this.magicNumber));
+    	//applyPowerToSelf(new MantraPower(p, this.magicNumber));
     	for (int i = 0; i < this.secondMagic; i++)
     	{
 	    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
