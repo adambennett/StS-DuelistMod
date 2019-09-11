@@ -78,7 +78,7 @@ public class SteamTrainKing extends DuelistCard
     	}
     	else if (dmgFallback > 0)
     	{
-    		attackAllEnemies(dmgFallback);
+    		damageAllEnemiesThornsNormal(dmgFallback);
     		Util.log("Triggering fallback code for Steam Train King - should at least damage the enemies properly, but maybe vulnerable and stuff like that is applied incorrectly");
     	}
     }

@@ -8,16 +8,18 @@ import duelistmod.abstracts.DuelistStance;
 
 public class CardGroupPatch
 {
-    @SpirePatch(clz = CardGroup.class, method = "moveToExhaustPile")
-    public static class StanceExhaustPilePatch
+    @SpirePatch(cls = "com.megacrit.cardcrawl.cards.CardGroup", method="moveToExhaustPile", paramtypes = {"com.megacrit.cardcrawl.cards.AbstractCard"})
+    public static class moveToExhaustPile
     {
-        public static void Postfix(final AbstractCard c)
+        @SuppressWarnings("rawtypes")
+		public static SpireReturn Prefix(CardGroup __instance, AbstractCard c)
         {
            if (AbstractDungeon.player.stance instanceof DuelistStance)
            {
         	   DuelistStance stanceRef = (DuelistStance) AbstractDungeon.player.stance;
-        	   stanceRef.onExhaust(c);
+        	   stanceRef.onExhaust(c);        	  
            }
+           return SpireReturn.Continue();
         }
     }
 }

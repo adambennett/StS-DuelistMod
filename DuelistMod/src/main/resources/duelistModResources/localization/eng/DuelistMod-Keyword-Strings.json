@@ -608,7 +608,7 @@
       "Chaotic",
 	  "chaotic"
     ],   
-    "DESCRIPTION": "In this #yStance, at the start of turn, switch to another random #yStance."
+    "DESCRIPTION": "In this #yStance, whenever you #yExhaust a card, increase the magic number of a card in your hand by #b1 for the rest of combat. Whenever you #yBlock, randomize the amount of #yBlock you gain."
   },
   {
   "PROPER_NAME": "Forsaken",
