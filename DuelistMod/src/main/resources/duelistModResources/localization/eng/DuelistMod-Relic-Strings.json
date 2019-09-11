@@ -428,7 +428,7 @@
 		"NAME": "Spellcaster Stone",
 		"FLAVOR": "A glowing purple stone that seems to hold a marvelous power.",
 		"DESCRIPTIONS": [
-			"Start each combat with #b5 #yMana and #b2 #yWeak.",
+			"Start each combat with #b5 #yMagicka and #b2 #yWeak.",
 			"Buff that gives extra block whenever you trigger the #ySpellcaster block-on-attack effect."
 		]
 	},

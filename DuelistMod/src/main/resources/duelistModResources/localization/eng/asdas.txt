@@ -96,15 +96,14 @@
 [RELIC]Egyptian Elephant- Upon exiting Guarded, apply Slow to ALL enemies.
 [RELIC]Mark of the Shadow Realm- Upon exiting Forsaken, draw 3 cards.
 [RELIC]Warrior's Mark- Upon exiting Spectral, ALL Warriors now cost 1 less energy and tribute for the turn.
-[RELIC]Chaos Token- When choosing a stance for Chaotic, you now choose between 3 random stances.
+[RELIC]Chaos Token- Whenever you Exhaust a card while in Chaotic, gain 4 Block.
 [RELIC]Ghostly Amulet- When you are in Spectral, Warriors cost 1 less energy.
 [RELIC]Samurai Shield- Start each combat in Guarded.
 [RELIC]Magical Crystal- Whenever you switch stances, choose to channel a random offensive or defensive orb.
 [RELIC]Elephant Crystal- Whenever you switch stances, apply 3 Slow to a random enemy.
 [RELIC]Warrior Crystal- Whenever you switch stances, deal 2 damage to ALL enemies for each Warrior you currently have Summoned.
 [RELIC]Samurai Crystal- Whenever you switch stances, gain 2 Block for each Superheavy you currently have Summoned.
-[RELIC]Chaos Crystal- Whenever you Exhaust a card, enter a random stance.
-[RELIC]Battle Token- At the start of each Boss and Elite combat, gain 5 Vigor.
+[RELIC]Pharaoh's Sword- At the start of each Boss and Elite combat, gain 5 Vigor.
 [RELIC]Samurai Pendant- At the start of each Boss and Elite combat, gain 3 Blur and Vigor.
 [RELIC]Spirit Token- When you are in Spectral, Warriors deal triple damage instead of double. [Boss? Rare?]
 

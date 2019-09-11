@@ -749,9 +749,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Gate."
 	},
 	"theDuelist:GatesDarkWorld": {
-		"DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block.",
+		"DESCRIPTION": "Fiends and Zombies deal 100% more damage and gain 100% more Block.",
 		"NAME": "Gates of Dark World",
-		"UPGRADE_DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block."
+		"UPGRADE_DESCRIPTION": "Fiends and Zombies deal 100% more damage and gain 100% more Block."
 	},
 	"theDuelist:GauntletWarrior": {
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
@@ -955,9 +955,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !M! Focus. NL Reduce your max summons by !duelist:M!. NL Channel !duelist:O! Frost."
 	},
 	"theDuelist:Illusionist": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Mana.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Magicka.",
 		"NAME": "Illusionist Faceless Mage",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Mana."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Magicka."
 	},
 	"theDuelist:ImperialOrder": {
 		"DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap card in your hand to 0.",
@@ -1239,9 +1239,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Apply !M! Poison."
 	},
 	"theDuelist:Mountain": {
-		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
+		"DESCRIPTION": "Dragons deal 50% more damage. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
 		"NAME": "Mountain",
-		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
+		"UPGRADE_DESCRIPTION": "Dragons deal 50% more damage. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
 	},
 	"theDuelist:MsJudge": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Temporary HP for each monster you currently have Summoned.",
@@ -1322,9 +1322,9 @@
 		"UPGRADE_DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Shuffle 1 copy of this card into your draw pile."
 	},
 	"theDuelist:NaturiaSacredTree": {
-		"DESCRIPTION": "Your Naturia monster cards deal 50% more damage and gain 50% more Block.",
+		"DESCRIPTION": "Naturia monster cards deal 50% more damage and gain 50% more Block.",
 		"NAME": "Naturia Sacred Tree",
-		"UPGRADE_DESCRIPTION": "Innate NL Your Naturia monster cards deal 50% more damage and gain 50% more Block."
+		"UPGRADE_DESCRIPTION": "Innate NL Naturia monster cards deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:NaturiaStrawberry": {
 		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -1541,9 +1541,9 @@
 		"NAME": "Pots"
 	},
 	"theDuelist:PowerKaishin": {
-		"DESCRIPTION": "Channel a random Orb. NL Gain !M! Mana. NL Exhaust.",
+		"DESCRIPTION": "Channel a random Orb. NL Gain !M! Magicka. NL Exhaust.",
 		"NAME": "Power of Kaishin",
-		"UPGRADE_DESCRIPTION": "Innate NL Channel a random Orb. NL Gain !M! Mana. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Innate NL Channel a random Orb. NL Gain !M! Magicka. NL Exhaust."
 	},
 	"theDuelist:PredaplantChimerafflesia": {
 		"DESCRIPTION": "Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you Tribute a Predaplant, add a 0-cost copy of Polymerization to your hand.",
@@ -2224,9 +2224,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with no empty zones: lose !duelist:M! HP, Increment !M! and then Summon !M!."
 	},
 	"theDuelist:Umi": {
-		"DESCRIPTION": "Your Aqua monster cards deal 50% more damage and gain 50% more Block.",
+		"DESCRIPTION": "Aqua monster cards deal 50% more damage and gain 50% more Block.",
 		"NAME": "Umi",
-		"UPGRADE_DESCRIPTION": "Your Aqua monster cards deal 50% more damage and gain 50% more Block."
+		"UPGRADE_DESCRIPTION": "Aqua monster cards deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:ValkMagnet": {
 		"DESCRIPTION": "If you have all three Magnets: deal !D! damage to ALL enemies, remove all Magnets, and choose 1 of !M! random Stances to enter. NL Exempt.",
@@ -2239,9 +2239,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned."
 	},
 	"theDuelist:VioletCrystal": {
-		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased.",
+		"DESCRIPTION": "Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased.",
 		"NAME": "Violet Crystal",
-		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased."
+		"UPGRADE_DESCRIPTION": "Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased."
 	},
 	"theDuelist:WaterOrbCard": {
 		"DESCRIPTION": "Channel a Water Orb.",
@@ -2254,9 +2254,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel an Air."
 	},
 	"theDuelist:WhiteMagicalHat": {
-		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Channel a White. NL Gain !M! Mana.",
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Channel a White. NL Gain !M! Magicka.",
 		"NAME": "White Magical Hat",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Channel a White. NL Gain !M! Mana."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Channel a White. NL Gain !M! Magicka."
 	},
 	"theDuelist:WhiteNightDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. Channel a White.",
@@ -2317,9 +2317,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:Yami": {
-		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
+		"DESCRIPTION": "Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
 		"NAME": "Yami",
-		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
+		"UPGRADE_DESCRIPTION": "Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
 	},
 	"theDuelist:YellowGadget": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Choose 1 of !M! random Tokens to add to your hand.",
@@ -2382,9 +2382,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Tribute ALL of your Tokens and Resummon a random Token for each."
 	},
 	"theDuelist:SpikedGillman": {
-		"DESCRIPTION": "Arcane NL Aqua NL Summon !duelist:SUMM! NL Your Aqua monsters deal an additional !M! damage.",
+		"DESCRIPTION": "Arcane NL Aqua NL Summon !duelist:SUMM! NL Aqua monsters deal an additional !M! damage.",
 		"NAME": "Spiked Gillman",
-		"UPGRADE_DESCRIPTION": "Arcane NL Aqua NL Summon !duelist:SUMM! NL Your Aqua monsters deal an additional !M! damage."
+		"UPGRADE_DESCRIPTION": "Arcane NL Aqua NL Summon !duelist:SUMM! NL Aqua monsters deal an additional !M! damage."
 	},
 	"theDuelist:SwampFrog": {
 		"DESCRIPTION": "Tidal Aqua NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -3567,6 +3567,11 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel Lightning until all your orb slots are filled, then deal !D! damage to a random enemy for each Lightning Channeled. NL Lose !M! Focus for !duelist:M! turns."
 	},
 	"theDuelist:MiraculousDescent": {
+		"DESCRIPTION": "Arcane NL At the end of each turn, if the last card played matches a random type, gain !M! Block.",
+		"NAME": "Miraculous Descent",
+		"UPGRADE_DESCRIPTION": "Arcane NL At the end of each turn, if the last card played matches a random type, gain !M! Block."
+	},
+	"theDuelist:MiraculousDescentEnemy": {
 		"DESCRIPTION": "At the end of each turn, gain a random amount of Block.",
 		"NAME": "Miraculous Descent",
 		"UPGRADE_DESCRIPTION": "Innate NL At the start of end turn, gain a random amount of Block."
@@ -3702,19 +3707,19 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel !M! Dark."
 	},
 	"theDuelist:MagiciansRod": {
-		"DESCRIPTION": "Gain !M! Mana at the start of each turn.",
+		"DESCRIPTION": "Gain !M! Magicka at the start of each turn.",
 		"NAME": "Magicians Rod",
-		"UPGRADE_DESCRIPTION": "Gain !M! Mana at the start of each turn."
+		"UPGRADE_DESCRIPTION": "Gain !M! Magicka at the start of each turn."
 	},
 	"theDuelist:MagiciansRobe": {
-		"DESCRIPTION": "Whenever your Mana would reset, lose a charge on this power instead. Gain !M! charge at the start of each turn.",
+		"DESCRIPTION": "Whenever your Magicka would reset, lose a charge on this power instead. Gain !M! charge at the start of each turn.",
 		"NAME": "Magicians Robe",
-		"UPGRADE_DESCRIPTION": "Whenever your Mana would reset, lose a charge on this power instead. Gain !M! charges at the start of each turn."
+		"UPGRADE_DESCRIPTION": "Whenever your Magicka would reset, lose a charge on this power instead. Gain !M! charges at the start of each turn."
 	},
 	"theDuelist:WonderWand": {
-		"DESCRIPTION": "Whenever you Increment, gain !M! Mana.",
+		"DESCRIPTION": "Whenever you Increment, gain !M! Magicka.",
 		"NAME": "Wonder Wand",
-		"UPGRADE_DESCRIPTION": "Whenever you Increment, gain !M! Mana."
+		"UPGRADE_DESCRIPTION": "Whenever you Increment, gain !M! Magicka."
 	},
 	"theDuelist:InariFire": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Fire. NL Whenever you Increment, Channel a Fire.",
@@ -3722,9 +3727,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Fire. NL Whenever you Increment, Channel a Fire."
 	},
 	"theDuelist:MagicalBlast": {
-		"DESCRIPTION": "Deal damage to ALL enemies equal to your twice your current Mana.",
+		"DESCRIPTION": "Deal damage to ALL enemies equal to your twice your current Magicka.",
 		"NAME": "Magical Blast",
-		"UPGRADE_DESCRIPTION": "Deal damage to ALL enemies equal to your three times your current Mana."
+		"UPGRADE_DESCRIPTION": "Deal damage to ALL enemies equal to your three times your current Magicka."
 	},
 	"theDuelist:DiffusionWaveMotion": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel X Void. NL Exhaust.",
@@ -3732,9 +3737,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel X Void. NL Exhaust."
 	},
 	"theDuelist:CosmoBrain": {
-		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Increment X. NL Gain X Mana.",
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Increment X. NL Gain X Magicka.",
 		"NAME": "Cosmo Brain",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Increment X. NL Gain X Mana."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Increment X. NL Gain X Magicka."
 	},
 	"theDuelist:DarkSimorgh": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Target enemy loses Strength equal to half your max summons for !M! turns.",
@@ -4951,6 +4956,11 @@
 		"DESCRIPTION": "Enter Chaotic.",
 		"NAME": "Chaotic",
 		"UPGRADE_DESCRIPTION": "Enter Chaotic."
+	},
+	"theDuelist:Sogen": {
+		"DESCRIPTION": "Warriors deal 35% more damage and gain 20% more Block.",
+		"NAME": "Sogen",
+		"UPGRADE_DESCRIPTION": "Warriors deal 35% more damage and gain 20% more Block. Reset the Warrior Tribute effect."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

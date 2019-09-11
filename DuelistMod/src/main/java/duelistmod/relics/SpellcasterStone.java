@@ -10,7 +10,7 @@ import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.powers.incomplete.ManaPower;
+import duelistmod.powers.incomplete.MagickaPower;
 
 public class SpellcasterStone extends CustomRelic {
 
@@ -41,7 +41,7 @@ public class SpellcasterStone extends CustomRelic {
 	@Override
 	public void atBattleStart() 
 	{
-		DuelistCard.applyPowerToSelf(new ManaPower(AbstractDungeon.player, AbstractDungeon.player, 5));
+		DuelistCard.applyPowerToSelf(new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, 5));
 		DuelistCard.applyPowerToSelf(new WeakPower(AbstractDungeon.player, 2, false));
 	}
 	

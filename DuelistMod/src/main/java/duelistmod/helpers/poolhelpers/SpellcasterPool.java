@@ -102,7 +102,7 @@ public class SpellcasterPool
 		spellcasterCards.add(new MysticalElf());
 		spellcasterCards.add(new MythicalBeast());
 		spellcasterCards.add(new NeoMagic());
-		spellcasterCards.add(new NutrientZ());
+		//spellcasterCards.add(new NutrientZ());
 		spellcasterCards.add(new PowerKaishin());
 		spellcasterCards.add(new RainMercy());
 		spellcasterCards.add(new Relinquished());

@@ -43,7 +43,7 @@ public class DarkOccultism extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Spectral());
+    	changeStanceInst(new Spectral());
     }
 
     // Which card to return when making a copy of this card.

@@ -37,7 +37,9 @@ public class MiraculousDescent extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.EXODIA_DECK_UPGRADE);
         this.tags.add(Tags.EXODIA_DECK);
+        this.tags.add(Tags.ARCANE);
 		this.exodiaDeckCopies = 1;
+		this.magicNumber = this.baseMagicNumber = 10;
 		this.setupStartingCopies();
     }
 
@@ -45,7 +47,7 @@ public class MiraculousDescent extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new MiraculousDescentPower(p, p));
+    	applyPowerToSelf(new MiraculousDescentPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -58,14 +60,20 @@ public class MiraculousDescent extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (!upgraded) 
+        if (canUpgrade()) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(2);
-        	this.isInnate = true;
+        	this.upgradeMagicNumber(2);
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber < 20) { return true; }
+    	else { return false; }
     }
 
 	@Override

@@ -188,7 +188,8 @@ public class WarriorPool
 		magnetCards.add(new GridRod());
 		//magnetCards.add(new ReinforceTruth());
 		//magnetCards.add(new SpiritForce());
-		//magnetCards.add(new WeaponChange());	
+		//magnetCards.add(new WeaponChange());
+		magnetCards.add(new Sogen());
 		
 		magnetDeck.fillPoolCards(magnetCards);		
 		magnetDeck.fillArchetypeCards(magnetCards);

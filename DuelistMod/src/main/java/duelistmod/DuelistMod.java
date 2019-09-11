@@ -1982,9 +1982,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				int extra = 0;
 				if (isOnlySpellcasters)
 				{
-					if (AbstractDungeon.player.hasPower(ManaPower.POWER_ID)) 
+					if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID)) 
 					{ 
-						extra = AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount; 
+						extra = AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount; 
 						if (!arg0.hasTag(Tags.NO_MANA_RESET))
 						{
 							if (AbstractDungeon.player.hasPower(MagiciansRobePower.POWER_ID))
@@ -1997,18 +1997,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 								}
 								else
 								{
-									AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount = 0;
-									AbstractDungeon.player.getPower(ManaPower.POWER_ID).updateDescription();
+									AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount = 0;
+									AbstractDungeon.player.getPower(MagickaPower.POWER_ID).updateDescription();
 								}
 							}
 							else
 							{
-								AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount = 0;
-								AbstractDungeon.player.getPower(ManaPower.POWER_ID).updateDescription();
+								AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount = 0;
+								AbstractDungeon.player.getPower(MagickaPower.POWER_ID).updateDescription();
 							}
 						}						
 					}
-					if (spellcasterBlockOnAttack + extra > 0 && AbstractDungeon.player.hasPower(ManaPower.POWER_ID) && extra > 0) { ManaPower pow = (ManaPower)AbstractDungeon.player.getPower(ManaPower.POWER_ID); DuelistCard.manaBlock(spellcasterBlockOnAttack + extra, pow); }
+					if (spellcasterBlockOnAttack + extra > 0 && AbstractDungeon.player.hasPower(MagickaPower.POWER_ID) && extra > 0) { MagickaPower pow = (MagickaPower)AbstractDungeon.player.getPower(MagickaPower.POWER_ID); DuelistCard.manaBlock(spellcasterBlockOnAttack + extra, pow); }
 					else if (spellcasterBlockOnAttack + extra > 0) { DuelistCard.staticBlock(spellcasterBlockOnAttack + extra); }
 				}
 			}

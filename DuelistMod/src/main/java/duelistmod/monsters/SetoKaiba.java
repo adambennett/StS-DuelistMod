@@ -406,7 +406,7 @@ public class SetoKaiba extends AbstractMonster {
 			}
 		}
 		
-		if (c instanceof MiraculousDescent)
+		if (c instanceof MiraculousDescentEnemy)
 		{
 			DuelistCard.applyPower(new EnemyMiraclePower(this, this, AbstractDungeon.aiRng.random(5, 10)), this);
 		}
@@ -716,7 +716,7 @@ public class SetoKaiba extends AbstractMonster {
 				else if (summons > 1)
 				{
 					moveCards.add(new ScrapFactory());
-					AbstractCard mir = new MiraculousDescent();
+					AbstractCard mir = new MiraculousDescentEnemy();
 					mir.upgrade();
 					moveCards.add(mir);
 					moveCards.add(new BabyDragon());
@@ -728,7 +728,7 @@ public class SetoKaiba extends AbstractMonster {
 					int roll = AbstractDungeon.aiRng.random(1, 3);
 					if (roll == 1)
 					{
-						AbstractCard mir = new MiraculousDescent();
+						AbstractCard mir = new MiraculousDescentEnemy();
 						mir.upgrade();
 						moveCards.add(mir);
 						moveCards.add(new BabyDragon());
@@ -736,7 +736,7 @@ public class SetoKaiba extends AbstractMonster {
 					}
 					else if (roll == 2)
 					{
-						AbstractCard mir = new MiraculousDescent();
+						AbstractCard mir = new MiraculousDescentEnemy();
 						mir.upgrade();
 						moveCards.add(mir);
 						moveCards.add(new Reinforcements());

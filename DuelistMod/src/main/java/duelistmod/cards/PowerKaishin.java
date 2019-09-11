@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.incomplete.ManaPower;
+import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.*;
 
 public class PowerKaishin extends DuelistCard
@@ -44,7 +44,7 @@ public class PowerKaishin extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	channelRandomNoGlassOrGate();
-    	applyPowerToSelf(new ManaPower(p, p, 2));
+    	applyPowerToSelf(new MagickaPower(p, p, 2));
     }
 
     // Which card to return when making a copy of this card.

@@ -896,7 +896,7 @@ public abstract class DuelistMonster extends AbstractMonster
 			}
 		}
 		
-		if (c instanceof MiraculousDescent)
+		if (c instanceof MiraculousDescentEnemy)
 		{
 			if (!this.hasPower(EnemyMiraclePower.POWER_ID)) { DuelistCard.applyPower(new EnemyMiraclePower(this, this, AbstractDungeon.aiRng.random(5, 10)), this); }
 		}

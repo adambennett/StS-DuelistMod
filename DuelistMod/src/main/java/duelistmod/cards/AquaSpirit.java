@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -51,7 +52,6 @@ public class AquaSpirit extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
     	if (p.hasPower(SummonPower.POWER_ID))
     	{
     		SummonPower instance = (SummonPower)p.getPower(SummonPower.POWER_ID);
@@ -60,6 +60,24 @@ public class AquaSpirit extends DuelistCard
     		else { attack(m, AFX, this.damage); }
     	}
     	else { attack(m, AFX, this.damage); }
+    	tribute();
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	boolean dealExtra = false;
+    	if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+    		dealExtra = instance.isEveryMonsterCheck(Tags.AQUA, false);
+    	}
+        if (dealExtra) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Which card to return when making a copy of this card.

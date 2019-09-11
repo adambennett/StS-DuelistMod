@@ -49,7 +49,7 @@ public class ForsakenToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 2, this);
-    	changeStance(new Forsaken());
+    	changeStanceInst(new Forsaken());
     }
     @Override public AbstractCard makeCopy() { return new ForsakenToken(); }
 

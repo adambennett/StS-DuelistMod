@@ -1,8 +1,11 @@
 package duelistmod.cards.fourthWarriors;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -87,6 +90,17 @@ public class ComboFighter extends DuelistCard
     {
     	summon();
     	AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+        if (this.wasRetained) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Which card to return when making a copy of this card.

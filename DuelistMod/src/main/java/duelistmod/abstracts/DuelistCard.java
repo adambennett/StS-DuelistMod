@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.stances.*;
 import com.megacrit.cardcrawl.stances.AbstractStance.StanceName;
@@ -266,6 +267,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 2);  }}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { tmp += player().getPower(TyrantWingPower.POWER_ID).amount;  }
 		if (this.hasTag(DuelistMod.chosenRockSunriseTag) && player().hasPower(RockSunrisePower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.25); }
+		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.35); }
 		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		//if (DuelistMod.debug) { DuelistMod.logger.info("Updated damage for " + this.originalName + " based on power effects. New damage should read as: " + tmp);}
 		return tmp;
@@ -861,13 +863,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public void block(int amount) 
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(Tags.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		else if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { amount = (int) Math.floor(amount * 2); }}
+		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.2); }
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 
@@ -876,7 +878,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 	
-	public static void manaBlock(int amount, ManaPower pow) 
+	public static void staticBlock(int amount, boolean allowDexterity) 
+	{
+		int extraBlock = 0;
+		if (player().hasPower(DexterityPower.POWER_ID) && allowDexterity) { extraBlock = player().getPower(DexterityPower.POWER_ID).amount; }
+		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount + extraBlock));
+	}
+	
+	public static void manaBlock(int amount, MagickaPower pow) 
 	{
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 		pow.flash();
@@ -1339,10 +1348,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		powerTypeMap.put(Tags.NATURIA, new NaturiaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.PLANT, new PlantTypePower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.SPELLCASTER, new ManaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(Tags.SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.TOON, new RetainCardPower(AbstractDungeon.player, 1));
-		powerTypeMap.put(Tags.WARRIOR, new StrengthPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(Tags.WARRIOR, new VigorPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
 		
 		if (!powerTypeMap.get(type).equals(null)) { return powerTypeMap.get(type); }
@@ -1550,9 +1559,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(stance));
 	}
 	
-	public static void changeStance(StanceName name)
+	public void changeStanceInst(AbstractStance stance)
 	{
-		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(name));
+		this.addToBot(new ChangeStanceAction(stance));
+	}
+	
+	public void changeStance(StanceName name)
+	{
+		this.addToBot(new ChangeStanceAction(name));
 	}
 	
 	public static void changeToRandomStance(boolean allowChaotic, boolean allowDivinity, boolean allowBaseGame, boolean allowDuelist)
@@ -5039,7 +5053,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					DuelistMod.warriorTribThisCombat = true;
 				}
 				ArrayList<DuelistCard> stances = Util.getStanceChoices(true, false, true);
-	        	AbstractDungeon.actionManager.addToBottom(new WarriorTribAction(stances));
+	        	tributingCard.addToBot(new WarriorTribAction(stances));
 			}
 			
 			if (AbstractDungeon.player.hasPower(FightingSpiritPower.POWER_ID))
@@ -5387,7 +5401,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		if (p.hasPower(WonderWandPower.POWER_ID) && incremented)
 		{
-			applyPowerToSelf(new ManaPower(p, p, p.getPower(WonderWandPower.POWER_ID).amount));
+			applyPowerToSelf(new MagickaPower(p, p, p.getPower(WonderWandPower.POWER_ID).amount));
 		}
 		
 		if (p.hasPower(InariFirePower.POWER_ID) && incremented)

@@ -12,7 +12,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.MagicalBlastAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.incomplete.ManaPower;
+import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.Tags;
 
 public class MagicalBlast extends DuelistCard 
@@ -58,9 +58,9 @@ public class MagicalBlast extends DuelistCard
     public void applyPowers() 
     {
         super.applyPowers();
-        if (AbstractDungeon.player.hasPower(ManaPower.POWER_ID))
+        if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID))
         {
-        	this.baseDamage = this.magicNumber * AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount;
+        	this.baseDamage = this.magicNumber * AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount;
         }
         else
         {
@@ -75,9 +75,9 @@ public class MagicalBlast extends DuelistCard
     public void calculateCardDamage(AbstractMonster mo) 
     {
         super.calculateCardDamage(mo);
-        if (AbstractDungeon.player.hasPower(ManaPower.POWER_ID))
+        if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID))
         {
-        	this.baseDamage = this.magicNumber * AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount;
+        	this.baseDamage = this.magicNumber * AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount;
         }
         else
         {

@@ -122,7 +122,7 @@
 },
 "theDuelist:SwordsConcealPower": {
         "NAME": "Swords of Concealing Light",
-        "DESCRIPTIONS": ["Each time you play a card, gain #b", " block." ]
+        "DESCRIPTIONS": ["Each time you play a card, gain #b", " #yBlock." ]
 },
 "theDuelist:SwordsRevealPower": {
         "NAME": "Swords of Revealing Light",
@@ -186,15 +186,15 @@
 },
 "theDuelist:MountainPower": {
         "NAME": "Mountain",
-        "DESCRIPTIONS": ["Your #yDragons deal 50% more damage and gain 50% more block. Whenever you gain #yStrength from Tributing a #yDragon, gain 1 extra #yStrength." ]
+        "DESCRIPTIONS": ["#yDragons deal 50% more damage. Whenever you gain #yStrength from Tributing a #yDragon, gain 1 extra #yStrength." ]
 },
 "theDuelist:VioletCrystalPower": {
         "NAME": "Violet Crystal",
-        "DESCRIPTIONS": ["Your #yInsects and #yPlants deal 50% more damage and gain 50% more block. #yInsect and #yPlant tributing effects are increased." ]
+        "DESCRIPTIONS": ["#yInsects and #yPlants deal 50% more damage and gain 50% more #yBlock. #yInsect and #yPlant tributing effects are increased." ]
 },
 "theDuelist:YamiPower": {
         "NAME": "Yami",
-        "DESCRIPTIONS": ["Your #ySpellcasters deal 50% more damage and gain 50% more block. Whenever you #ySummon a #ySpellcaster, gain 1 extra #ySummon." ]
+        "DESCRIPTIONS": ["#ySpellcasters deal 50% more damage and gain 50% more #yBlock. Whenever you #ySummon a #ySpellcaster, gain 1 extra #ySummon." ]
 },
 "theDuelist:TimeWizardPower": {
         "NAME": "Time Wizard",
@@ -218,7 +218,7 @@
 },
 "theDuelist:JinzoPower": {
         "NAME": "Jinzo",
-        "DESCRIPTIONS": ["Your Trap cards cost 0." ]
+        "DESCRIPTIONS": ["#yTrap cards cost #b0." ]
 },
 "theDuelist:UltimateOfferingPower": {
         "NAME": "Ultimate Offering",
@@ -250,7 +250,7 @@
 },
 "theDuelist:GatesDarkPower": {
         "NAME": "Gate of Dark World",
-        "DESCRIPTIONS": ["Your #yFiends and #yZombies deal 100% more damage and gain 100% more #yBlock." ]
+        "DESCRIPTIONS": ["#yFiends and #yZombies deal 100% more damage and gain 100% more #yBlock." ]
 },
 "theDuelist:SphereKuribohPower": {
         "NAME": "Sphere Kuriboh",
@@ -274,7 +274,7 @@
 },
 "theDuelist:AerodynamicsPower": {
         "NAME": "Aerodynamics",
-        "DESCRIPTIONS": ["Your #yAir Orbs will always #yChannel randomly at the start of turn." ]
+        "DESCRIPTIONS": ["#yAir Orbs will always #yChannel randomly at the start of turn." ]
 },
 "theDuelist:NaturiaPower": {
         "NAME": "Naturia Monsters",
@@ -282,11 +282,11 @@
 },
 "theDuelist:SacredTreePower": {
         "NAME": "Sacred Tree",
-        "DESCRIPTIONS": ["Your #yNaturia monsters deal 50% more damage and gain 50% more block." ]
+        "DESCRIPTIONS": ["#yNaturia monsters deal 50% more damage and gain 50% more #yBlock." ]
 },
 "theDuelist:UmiPower": {
         "NAME": "Umi",
-        "DESCRIPTIONS": ["Your #yAqua monsters deal 50% more damage and gain 50% more block." ]
+        "DESCRIPTIONS": ["#yAqua monsters deal 50% more damage and gain 50% more #yBlock." ]
 },
 "theDuelist:ToonCannonPower": {
         "NAME": "Toon Cannon Soldier",
@@ -342,7 +342,7 @@
 },
 "theDuelist:SpikedGillmanPower": {
         "NAME": "Spiked Gillman",
-        "DESCRIPTIONS": ["Your #yAqua monsters deal an additional #b", " damage."  ]
+        "DESCRIPTIONS": ["#yAqua monsters deal an additional #b", " damage."  ]
 },
 "theDuelist:TripodFishPower": {
         "NAME": "Tripod Fish",
@@ -358,7 +358,7 @@
 },
 "theDuelist:AquaJetPower": {
         "NAME": "Aqua Jet",
-        "DESCRIPTIONS": ["Your #yAqua monsters deal an additional #b", " damage. Each time you attack with an #yAqua monster, increase the extra damage by #b1. NL #yTurns #yRemaining: #b"  ]
+        "DESCRIPTIONS": ["#yAqua monsters deal an additional #b", " damage. Each time you attack with an #yAqua monster, increase the extra damage by #b1. NL #yTurns #yRemaining: #b"  ]
 },
 "theDuelist:ForgottenTemplePower": {
         "NAME": "Forgotten Temple",
@@ -422,7 +422,7 @@
 },
 "theDuelist:TyrantWingPower": {
         "NAME": "Tyrant Wing",
-        "DESCRIPTIONS": ["Your #yDragons deal an additional #b", " damage. Gain extra charges by tributing #yDragons for other #yDragons. NL #yCharges: " ]
+        "DESCRIPTIONS": ["#yDragons deal an additional #b", " damage. Gain extra charges by tributing #yDragons for other #yDragons. NL #yCharges: " ]
 },
 "theDuelist:SpellbookLifePower": {
         "NAME": "Spellbook of Life",
@@ -462,11 +462,11 @@
 },
 "theDuelist:BoosterDragonPower": {
         "NAME": "Booster Dragon",
-        "DESCRIPTIONS": ["Whenever you #yTribute a #yDragon for another, gain #b", " Block." ]
+        "DESCRIPTIONS": ["Whenever you #yTribute a #yDragon for another, gain #b", " #yBlock." ]
 },
-"theDuelist:ManaPower": {
-        "NAME": "Mana",
-        "DESCRIPTIONS": ["The next time you trigger the #ySpellcaster block-on-attack effect, gain #b", " extra #yBlock. At the end of each turn, your mana is set to the number of #ySpellcasters you currently have summoned.", " less #yBlock. At the end of each turn, your mana is set to the number of #ySpellcasters you currently have summoned." ]
+"theDuelist:MagickaPower": {
+        "NAME": "Magicka",
+        "DESCRIPTIONS": ["The next time you trigger the #ySpellcaster block-on-attack effect, gain #b", " extra #yBlock. At the end of each turn, your #yMagicka is set to the number of #ySpellcasters you currently have summoned.", " less #yBlock. At the end of each turn, your #yMagicka is set to the number of #ySpellcasters you currently have summoned." ]
 },
 "theDuelist:DepoweredPower": {
         "NAME": "Powerless",
@@ -482,7 +482,14 @@
 },
 "theDuelist:MiraculousDescentPower": {
         "NAME": "Miraculous Descent",
-        "DESCRIPTIONS": ["At the end of turn, gain #b", " #yBlock and then randomize the amount of #yBlock gained next turn." ]
+        "DESCRIPTIONS": [
+		"At the end of turn, if the last card played was a #y",
+		", gain #b",
+		" #yBlock and randomize the required card type for next turn.",
+		"A bad thing happened and no card type is currently selected. Sorry :/",
+		"At the end of turn, if the last card played was an #y",
+		"At the end of turn, if the last card played was #y"
+		]
 },
 "theDuelist:StatueAnguishPatternPower": {
         "NAME": "Statue of Anguish Pattern",
@@ -494,11 +501,11 @@
 },
 "theDuelist:VoidVanishmentPower": {
         "NAME": "Voidynamics",
-        "DESCRIPTIONS": ["Your #yVoid orbs now siphon from ALL enemies." ]
+        "DESCRIPTIONS": ["#yVoid orbs now siphon from ALL enemies." ]
 },
 "theDuelist:FlameTigerPower": {
         "NAME": "Thermodynamics",
-        "DESCRIPTIONS": ["Your #yFire orbs now damage ALL enemies." ]
+        "DESCRIPTIONS": ["#yFire orbs now damage ALL enemies." ]
 },
 "theDuelist:DoomDonutsPower": {
         "NAME": "Doom Donuts",
@@ -506,15 +513,15 @@
 },
 "theDuelist:MagiciansRodPower": {
         "NAME": "Magicians Rod",
-        "DESCRIPTIONS": ["Gain #b", " #yMana at the start of each turn." ]
+        "DESCRIPTIONS": ["Gain #b", " #yMagicka at the start of each turn." ]
 },
 "theDuelist:MagiciansRobePower": {
         "NAME": "Magicians Robe",
-        "DESCRIPTIONS": ["Whenever your Mana would reset, lose a charge on this power instead. Gain #b", " charge at the start of each turn. NL #yCharges: #b", " charges at the start of each turn. NL #yCharges: #b" ]
+        "DESCRIPTIONS": ["Whenever your #yMagicka would reset, lose a charge on this power instead. Gain #b", " charge at the start of each turn. NL #yCharges: #b", " charges at the start of each turn. NL #yCharges: #b" ]
 },
 "theDuelist:WonderWandPower": {
         "NAME": "Wonder Wand",
-        "DESCRIPTIONS": ["Whenever you #yIncrement, gain #b", " #yMana." ]
+        "DESCRIPTIONS": ["Whenever you #yIncrement, gain #b", " #yMagicka." ]
 },
 "theDuelist:InariFirePower": {
         "NAME": "Inari Fire",
@@ -632,29 +639,9 @@
         "NAME": "Weapon Change",
         "DESCRIPTIONS": ["Whenever you switch #yStances, draw #b", " #yWarrior.", " #yWarriors." ]
 },
-"theDuelist:Guarded": {
-        "NAME": "Guarded",
-        "DESCRIPTIONS": ["In this #yStance, #yDexterity is doubly effective." ]
-},
-"theDuelist:Meditative": {
-        "NAME": "Meditative",
-        "DESCRIPTIONS": ["In this #yStance, #yRetain your hand at the end of each turn." ]
-},
-"theDuelist:Chaotic": {
-        "NAME": "Chaotic",
-        "DESCRIPTIONS": ["In this #yStance, at the start of turn, switch to another random #yStance." ]
-},
-"theDuelist:Samurai": {
-        "NAME": "Samurai",
-        "DESCRIPTIONS": ["Upon exiting this #yStance, gain #b2 #yDexterity." ]
-},
-"theDuelist:Forsaken": {
-        "NAME": "Forsaken",
-        "DESCRIPTIONS": ["In this #yStance, discard a random card at the end of turn." ]
-},
-"theDuelist:Spectral": {
-        "NAME": "Spectral",
-        "DESCRIPTIONS": ["In this #yStance, #yWarriors deal double damage and #yExhaust when played." ]
+"theDuelist:SogenPower": {
+        "NAME": "Sogen",
+        "DESCRIPTIONS": ["#yWarriors deal 35% more damage and gain 20% more #yBlock." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

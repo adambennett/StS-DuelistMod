@@ -34,6 +34,7 @@ public class ToonMagic extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_DONT_TRIG);
         this.tags.add(Tags.FULL);
 		this.originalName = this.name;
     }

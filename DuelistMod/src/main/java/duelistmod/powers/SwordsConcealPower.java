@@ -50,13 +50,7 @@ public class SwordsConcealPower extends AbstractPower
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) 
     {
-    	int blockGain = 0;
-    	if (this.owner.hasPower(DexterityPower.POWER_ID))
-    	{
-    		blockGain += this.owner.getPower(DexterityPower.POWER_ID).amount;
-    	}
-    	blockGain+= this.amount;
-    	DuelistCard.staticBlock(blockGain);
+    	DuelistCard.staticBlock(this.amount, true);
     	updateDescription();
     }
     

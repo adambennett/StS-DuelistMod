@@ -314,7 +314,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BarrelDragon());
 		DuelistMod.myCards.add(new DarkMirrorForce());
 		DuelistMod.myCards.add(new MagicCylinder());
-		DuelistMod.myCards.add(new NutrientZ());
+		//DuelistMod.myCards.add(new NutrientZ());
 		DuelistMod.myCards.add(new OjamaBlack());
 		DuelistMod.myCards.add(new OjamaKing());
 		DuelistMod.myCards.add(new OjamaKnight());
@@ -835,6 +835,7 @@ public class DuelistCardLibrary
 		//DuelistMod.myCards.add(new ReinforceTruth());
 		//DuelistMod.myCards.add(new SpiritForce());
 		//DuelistMod.myCards.add(new WeaponChange());		
+		DuelistMod.myCards.add(new Sogen());	
 		
 		//DuelistMod.myCards.add(new WightLady());			
 		

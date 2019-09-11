@@ -3,6 +3,7 @@ package duelistmod.cards.incomplete;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -91,6 +92,26 @@ public class ForbiddenChalice extends DuelistCard
     		}
     	}
     	else { Util.log("Forbidden Chalice found duplicates of something, so you didn't gain max hp or get some potions. Upgrading a copy of a card doesn't get you around this! NO DUPLICATES"); }
+    }
+    
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	ArrayList<String> deckCards = new ArrayList<String>();
+    	boolean foundDupe = false;
+    	for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+    	{
+    		String name = c.makeCopy().name;
+    		if (deckCards.contains(name)) { foundDupe = true;  }
+    		else { deckCards.add(name);  }
+    	}
+        if (!foundDupe) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Which card to return when making a copy of this card.

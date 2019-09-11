@@ -1,8 +1,10 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -49,6 +51,17 @@ public class DokiDoki extends DuelistCard
     	summon(p, this.summons, this);
     	if (DuelistMod.playedSpellThisTurn) { gainTempHP(this.magicNumber); }
     	else { block(); }    	
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	if (DuelistMod.playedSpellThisTurn) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Which card to return when making a copy of this card.

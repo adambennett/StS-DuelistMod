@@ -114,6 +114,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags SUPER_EXPLODING_TOKEN;
 	@SpireEnum public static AbstractCard.CardTags TOKEN;
 	@SpireEnum public static AbstractCard.CardTags TOON;
+	@SpireEnum public static AbstractCard.CardTags TOON_DONT_TRIG;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;

@@ -42,7 +42,7 @@ public class SuperheavyMagnet extends DuelistCard
         this.tags.add(Tags.REDUCED);
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
-		this.baseMagicNumber = this.magicNumber = 2;
+		this.baseMagicNumber = this.magicNumber = 3;
 		this.secondMagic = this.baseSecondMagic = 2;
     }
 
@@ -78,7 +78,7 @@ public class SuperheavyMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

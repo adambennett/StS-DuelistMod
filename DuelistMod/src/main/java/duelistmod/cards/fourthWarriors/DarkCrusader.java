@@ -55,7 +55,7 @@ public class DarkCrusader extends DuelistCard
     	tokenTypes.add(Tags.SUPERHEAVY);
     	ArrayList<DuelistCard> types = generateTypeCardsCustomTypes(this.summons, true, tokenTypes);
     	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
-    	changeStance(new Forsaken());
+    	changeStanceInst(new Forsaken());
     }
 
     // Which card to return when making a copy of this card.

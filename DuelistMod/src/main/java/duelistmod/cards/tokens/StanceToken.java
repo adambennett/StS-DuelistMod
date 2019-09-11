@@ -53,7 +53,7 @@ public class StanceToken extends TokenCard
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
-    	changeStance(new Guarded());
+    	changeStanceInst(new Guarded());
     }
     @Override public AbstractCard makeCopy() { return new StanceToken(); }
 

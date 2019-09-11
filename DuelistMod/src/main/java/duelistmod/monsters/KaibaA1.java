@@ -71,7 +71,7 @@ public class KaibaA1 extends DuelistMonster
 		this.redmed = new RedMedicine();
 		this.redeyes = new RedEyes();		
 		this.totem = new TotemDragon();
-		this.miracle = new MiraculousDescent();
+		this.miracle = new MiraculousDescentEnemy();
 		this.arma = new ArmageddonDragonEmp();
 		this.yamata = new YamataDragon();
 		this.mirage = new MirageDragon();
@@ -96,7 +96,7 @@ public class KaibaA1 extends DuelistMonster
 			switch (moveRoll)
 			{
 				case 1:
-					AbstractCard mir = new MiraculousDescent();
+					AbstractCard mir = new MiraculousDescentEnemy();
 					mir.upgrade();
 					moveCards.add(mir);
 					moveCards.add(new LesserDragon());
@@ -104,14 +104,14 @@ public class KaibaA1 extends DuelistMonster
 					this.setMove((byte)2, Intent.ATTACK_BUFF, this.lesser.damage);
 					break;
 				case 2:
-					AbstractCard mirB = new MiraculousDescent();
+					AbstractCard mirB = new MiraculousDescentEnemy();
 					mirB.upgrade();
 					moveCards.add(mirB);
 					moveCards.add(new PreventRat());
 					this.setMove((byte)2, Intent.DEFEND_BUFF);
 					break;
 				case 3:
-					AbstractCard mirC = new MiraculousDescent();
+					AbstractCard mirC = new MiraculousDescentEnemy();
 					mirC.upgrade();
 					moveCards.add(mirC);
 					moveCards.add(new CastleWalls());

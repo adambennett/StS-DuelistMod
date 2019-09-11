@@ -42,7 +42,7 @@ public class WarriorReturningAlive extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		changeStance(new Meditative());
+    	changeStanceInst(new Meditative());
 		this.addToBot(new PressEndTurnButtonAction());
     }
 

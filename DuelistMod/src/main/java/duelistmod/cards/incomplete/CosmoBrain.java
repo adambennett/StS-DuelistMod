@@ -11,7 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.incomplete.ManaPower;
+import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.Tags;
 
 public class CosmoBrain extends DuelistCard 
@@ -49,7 +49,7 @@ public class CosmoBrain extends DuelistCard
     	summon();
     	int x = getXEffect();
     	incMaxSummons(x);
-    	applyPowerToSelf(new ManaPower(p, p, x));
+    	applyPowerToSelf(new MagickaPower(p, p, x));
     	useXEnergy();
     }
 

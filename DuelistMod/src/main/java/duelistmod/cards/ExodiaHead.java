@@ -1,15 +1,17 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.ExodiaPower;
+import duelistmod.powers.*;
 import duelistmod.variables.*;
 
 public class ExodiaHead extends DuelistCard 
@@ -64,6 +66,27 @@ public class ExodiaHead extends DuelistCard
     	   }
        }
     }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	boolean dealExtra = false;
+    	if (AbstractDungeon.player.hasPower(ExodiaPower.POWER_ID))
+        {
+     	   ExodiaPower powerInstance = (ExodiaPower)AbstractDungeon.player.getPower(ExodiaPower.POWER_ID);
+     	   if (powerInstance.checkForAllPiecesButHead())
+     	   {
+     		   dealExtra = true;
+     	   }
+        }
+        if (dealExtra) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
+    }
+
 
     // Which card to return when making a copy of this card.
     @Override

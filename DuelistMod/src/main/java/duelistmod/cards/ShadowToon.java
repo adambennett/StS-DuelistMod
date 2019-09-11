@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -39,6 +40,7 @@ public class ShadowToon extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.TOON_DONT_TRIG);
 		this.originalName = this.name;
     }
 
@@ -58,6 +60,23 @@ public class ShadowToon extends DuelistCard
 			SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
 			if (instance.isEveryMonsterCheck(Tags.TOON, false)) { heal(p, this.magicNumber); }
 		}
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	boolean dealExtra = false;
+    	if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower instance = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+    		dealExtra = instance.isEveryMonsterCheck(Tags.TOON, false);
+    	}
+        if (dealExtra) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Which card to return when making a copy of this card.

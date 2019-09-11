@@ -21,17 +21,17 @@ import duelistmod.variables.*;
 
 
 @SuppressWarnings("unused")
-public class ManaPower extends AbstractPower
+public class MagickaPower extends AbstractPower
 {
 	public AbstractCreature source;
-	public static final String POWER_ID = DuelistMod.makeID("ManaPower");
+	public static final String POWER_ID = DuelistMod.makeID("MagickaPower");
 	private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 	public static final String NAME = powerStrings.NAME;
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-	public static final String IMG = DuelistMod.makePowerPath("ManaPower.png");
+	public static final String IMG = DuelistMod.makePowerPath("MagickaPower.png");
 	private boolean finished = false;
 	
-	public ManaPower(final AbstractCreature owner, final AbstractCreature source, int amount) 
+	public MagickaPower(final AbstractCreature owner, final AbstractCreature source, int amount) 
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;

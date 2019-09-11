@@ -49,7 +49,7 @@ public class DarkGrepher extends DuelistCard
     {
     	tribute(); 	
     	attack(m);
-    	changeStance(new Spectral());
+    	changeStanceInst(new Spectral());
     	applyPowerToSelf(new CannotChangeStancePower(p));
     }
 

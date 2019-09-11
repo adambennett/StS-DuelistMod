@@ -3,8 +3,10 @@ package duelistmod.cards.incomplete;
 import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -12,6 +14,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class Reload extends DuelistCard 
@@ -55,6 +58,25 @@ public class Reload extends DuelistCard
     	}
     	if (!foundDupe && p.maxHealth - p.currentHealth > 0) { DuelistCard.heal(p, p.maxHealth - p.currentHealth); }
     	else { Util.log("Reload found duplicates of something, so you didn't heal buddy. Upgrading a copy of a card doesn't get you around this! NO DUPLICATES"); }
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	ArrayList<String> deckCards = new ArrayList<String>();
+    	boolean foundDupe = false;
+    	for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+    	{
+    		String name = c.makeCopy().name;
+    		if (deckCards.contains(name)) { foundDupe = true;  }
+    		else { deckCards.add(name);  }
+    	}
+        if (!foundDupe) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Which card to return when making a copy of this card.

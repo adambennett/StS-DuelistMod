@@ -499,12 +499,12 @@
     "DESCRIPTION": "#yOrb: Whenever you #ySummon, gain #b2 #yBlock. NL #yEvoke: Draw and discard #b4 cards."
   },
    {
-    "PROPER_NAME": "Mana",
+    "PROPER_NAME": "Magicka",
     "NAMES": [
-      "Mana",
-	  "mana"
+      "Magicka",
+	  "magicka"
     ],   
-    "DESCRIPTION": "When you gain #yBlock via the #ySpellcaster effect, you gain additional #yBlock based on how much #yMana you currently have. #yMana resets to #b0 when you trigger it, and at the end of the turn is set to the number of #ySpellcasters you currently have summoned."
+    "DESCRIPTION": "When you gain #yBlock via the #ySpellcaster effect, you gain additional #yBlock based on how much #yMagicka you currently have. NL NL #yMagicka resets to #b0 when you trigger it, and at the end of the turn is set to the number of #ySpellcasters you currently have summoned."
   },
   {
  "PROPER_NAME": "White",

@@ -3,6 +3,7 @@ package duelistmod.cards.incomplete;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -36,11 +37,9 @@ public class Hayate extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseDamage = this.damage = 11;
     	this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.WARRIOR);
-    	this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.WARRIOR);    	
     	this.tags.add(Tags.MEGATYPE_DECK);
     	this.megatypeDeckCopies = 1;
-    	this.superheavyDeckCopies = 1;
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 1;
@@ -53,7 +52,18 @@ public class Hayate extends DuelistCard
     {
     	tribute();
     	attack(m);
-    	if (p.currentHealth < p.maxHealth / 2) { changeStance(new Guarded()); }
+    	if (p.currentHealth < p.maxHealth / 2) { changeStanceInst(new Guarded()); }
+    }
+    
+    @Override
+    public void triggerOnGlowCheck()
+    {
+    	if (AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth / 2) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Which card to return when making a copy of this card.
