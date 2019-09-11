@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 
-public class BigOrbBottle extends AbstractPotion {
+public class BigOrbBottle extends OrbPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("BigOrbBottle");

@@ -19,9 +19,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust."
 	},
 	"theDuelist:AlphaMagnet": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain Alpha Magnet for the rest of combat.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E].",
 		"NAME": "A. Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain Alpha Magnet for the rest of combat. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, gain [E]."
 	},
 	"theDuelist:AltarTribute": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain HP equal to the combined total block of all tributes. Exhaust. NL ( !duelist:M! HP )",
@@ -82,9 +82,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:ArmorBreaker": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Remove all block from an enemy.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Remove all block from an enemy.",
 		"NAME": "Armor Breaker",
-		"UPGRADE_DESCRIPTION": "Innate NL Summon !duelist:SUMM! NL Remove all block from an enemy."
+		"UPGRADE_DESCRIPTION": "Innate NL Warrior NL Summon !duelist:SUMM! NL Remove all block from an enemy."
 	},
 	"theDuelist:ArmoredBee": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Deal !D! damage.",
@@ -140,9 +140,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Poison."
 	},
 	"theDuelist:BattleFootballer": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !M! Temporary HP.",
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !M! Temporary HP.",
 		"NAME": "Battle Footballer",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !M! Temporary HP."
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !M! Temporary HP."
 	},
 	"theDuelist:BattleOx": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Deal !duelist:M! damage to a random enemy.",
@@ -150,9 +150,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Deal !duelist:M! damage to a random enemy."
 	},
 	"theDuelist:BattleguardKing": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
 		"NAME": "Battleguard King",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:BeastFangs": {
 		"DESCRIPTION": "Purge NL Gain Strength equal to half the number of monsters Summoned in this combat. NL ( !M! Strength )",
@@ -165,9 +165,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:BetaMagnet": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !M! Temporary HP. NL Gain Beta Magnet for the rest of combat.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Exit your Stance.",
 		"NAME": "B. Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !M! Temporary HP. NL Gain Beta Magnet for the rest of combat. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Exit your Stance."
 	},
 	"theDuelist:BigCastleWalls": {
 		"DESCRIPTION": "Gain !B! Block.",
@@ -220,9 +220,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel 2 Frost."
 	},
 	"theDuelist:BlizzardWarrior": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Channel 2 Frost.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel 2 Frost.",
 		"NAME": "Blizzard Warrior",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Channel 2 Frost."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel 2 Frost."
 	},
 	"theDuelist:BlockGolem": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !M! Temporary HP. NL Exhaust.",
@@ -265,9 +265,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Buffer Orb."
 	},
 	"theDuelist:BusterBlader": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )",
 		"NAME": "Buster Blader",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )"
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )"
 	},
 	"theDuelist:CallGrave": {
 		"DESCRIPTION": "At the start of each turn, Resummon a random monster you have played this combat.",
@@ -315,9 +315,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:CelticGuardian": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies.",
 		"NAME": "Celtic Guardian",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies."
 	},
 	"theDuelist:ChangeHeart": {
 		"DESCRIPTION": "Set your maximum Summons to 8. Exhaust.",
@@ -358,9 +358,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute ALL of your Toons. Summon a random monster and deal !D! damage to a random enemy for each Toon Tributed."
 	},
 	"theDuelist:CommandKnight": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust.",
 		"NAME": "Command Knight",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Increase the Summons of all monsters in your hand by !M!. NL Exhaust."
 	},
 	"theDuelist:ConsumerOrbCard": {
 		"DESCRIPTION": "Channel a Consumer.",
@@ -531,9 +531,9 @@
 		"NAME": "Dragons"
 	},
 	"theDuelist:DrivenDaredevil": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy.",
 		"NAME": "Driven Daredevil",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Strength to an enemy."
 	},
 	"theDuelist:EarthOrbCard": {
 		"DESCRIPTION": "Channel an Earth Orb.",
@@ -669,9 +669,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage !M! times. NL Exempt."
 	},
 	"theDuelist:FlameSwordsman": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Erupt: Gain !M! Strength.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Erupt: Gain !M! Strength.",
 		"NAME": "Flame Swordsman",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Erupt: Gain !M! Strength."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Erupt: Gain !M! Strength."
 	},
 	"theDuelist:FluteKuriboh": {
 		"DESCRIPTION": "Increment !duelist:M! NL Gain !M! Temporary HP.",
@@ -689,9 +689,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal damage equal to the combined damage of all Tributes + 9 extra damage. NL ( !M! damage )"
 	},
 	"theDuelist:FortressWarrior": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
 		"NAME": "Fortress Warrior",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:FrontierWiseman": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Channel an Earth. NL Overflow !M! - Next turn, gain [E].",
@@ -719,19 +719,19 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Resummon 1 of the monsters or tokens you used to Tribute (chooses most recent Summon)."
 	},
 	"theDuelist:GaiaFierce": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies.",
 		"NAME": "G. Fierce Knight",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies."
 	},
 	"theDuelist:GaiaMidNightSun": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
 		"NAME": "Gaia Mid-Night Sun",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:GammaMagnet": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Draw !M! monster. NL Gain Gamma Magnet for the rest of combat.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Enter Guarded. NL Draw !M! monster.",
 		"NAME": "G. Magnet Warrior",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Draw !M! monsters. NL Gain Gamma Magnet for the rest of combat. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Enter Guarded. NL Draw !M! monsters."
 	},
 	"theDuelist:Gandora": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB!. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 3 random, upgraded dragons to your hand. Exhaust.",
@@ -739,9 +739,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB!. Exhaust your hand. Deal !D! damage, plus !M! damage for every card exhausted. Add 4 random, upgraded dragons to your hand. Exhaust."
 	},
 	"theDuelist:GateGuardian": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Gate. NL If you Tribute a Guardian to play this, Channel the matching Orb.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Gate. NL If you Tribute a Guardian to play this, Channel the matching Orb.",
 		"NAME": "Gate Guardian",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Gate. NL If you Tribute a Guardian to play this, Channel the matching Orb."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Gate. NL If you Tribute a Guardian to play this, Channel the matching Orb."
 	},
 	"theDuelist:GateOrbCard": {
 		"DESCRIPTION": "Channel a Gate.",
@@ -754,9 +754,9 @@
 		"UPGRADE_DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block."
 	},
 	"theDuelist:GauntletWarrior": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
 		"NAME": "Gauntlet Warrior",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
 	},
 	"theDuelist:GeminiElf": {
 		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Choose to Channel either a Lightning, Dark or Lava.",
@@ -779,14 +779,14 @@
 		"UPGRADE_DESCRIPTION": "Evoke ALL Orbs."
 	},
 	"theDuelist:Gigaplant": {
-		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply 10 Poison. Resummon an upgraded copy of a random monster from your discard pile. Exempt.",
+		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !M! Poison. Resummon an upgraded copy of a random monster from your discard pile. Exempt.",
 		"NAME": "Gigaplant",
-		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply 10 Poison. Resummon upgraded copies of !M! random monsters from your discard pile. Exempt."
+		"UPGRADE_DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !M! Poison. Resummon an upgraded copy of a random monster from your discard pile. Exempt."
 	},
 	"theDuelist:GilfordLegend": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Summon !duelist:M! Token",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Summon !duelist:M! Token",
 		"NAME": "Gilford, the Legend",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Summon !duelist:M! Token"
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Overflow !M! - Summon !duelist:M! Token"
 	},
 	"theDuelist:GlassOrbCard": {
 		"DESCRIPTION": "Channel a Glass Orb.",
@@ -1033,9 +1033,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL 50% chance to deal !D! damage."
 	},
 	"theDuelist:JudgeMan": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
 		"NAME": "Judge Man",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
 	},
 	"theDuelist:JunkKuriboh": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Increment !M! NL Exhaust.",
@@ -1073,19 +1073,19 @@
 		"UPGRADE_DESCRIPTION": "Channel a Lava Orb."
 	},
 	"theDuelist:LegendaryExodia": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL If you have any pieces of Exodia currently summoned, deal !D! damage. Deal !M! damage for each piece of Exodia you Tribute.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL If you have any pieces of Exodia currently summoned, deal !D! damage. Deal !M! damage for each piece of Exodia you Tribute.",
 		"NAME": "L. Exodia Incarnate",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL If you have any pieces of Exodia currently summoned, deal !D! damage. Deal !M! damage for each piece of Exodia you Tribute."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL If you have any pieces of Exodia currently summoned, deal !D! damage. Deal !M! damage for each piece of Exodia you Tribute."
 	},
 	"theDuelist:LegendaryFisherman": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 Aquas. NL Exhaust.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 Aquas. NL Exhaust.",
 		"NAME": "Legendary Fisherman",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 Aquas."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Channel a Water. NL If you Tribute 7-Colored Fish for this card, draw 2 Aquas."
 	},
 	"theDuelist:LegendaryFlameLord": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava. NL Erupt: Deal !M! damage to ALL enemies.",
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava. NL Erupt: Deal !M! damage to ALL enemies.",
 		"NAME": "Legendary Flame Lord",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava. NL Erupt: Deal !M! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Lava. NL Erupt: Deal !M! damage to ALL enemies."
 	},
 	"theDuelist:LesserDragon": {
 		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -1154,9 +1154,9 @@
 		"UPGRADE_DESCRIPTION": "Toon Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage (through block)."
 	},
 	"theDuelist:Mathematician": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal X! damage. NL Exhaust.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal X! damage. NL Exhaust.",
 		"NAME": "Mathematician",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal X! damage. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal X! damage. NL Exhaust."
 	},
 	"theDuelist:Mausoleum": {
 		"DESCRIPTION": "The first Tribute monster you play each turn does not Tribute. Take 1 damage each turn.",
@@ -1918,14 +1918,14 @@
 		"NAME": "Superheavy"
 	},
 	"theDuelist:SuperheavyBenkei": {
-		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! dexterity. NL Exhaust.",
+		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Dexterity equal to unblocked damage dealt. NL Exhaust.",
 		"NAME": "Superheavy Benkei",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! dexterity. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Dexterity equal to unblocked damage dealt. NL Exhaust."
 	},
 	"theDuelist:SuperheavyBlueBrawler": {
-		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust.",
+		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Temporary HP equal to unblocked damage dealt. NL Exhaust.",
 		"NAME": "Superheavy Brawler",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Temporary HP equal to unblocked damage dealt. NL Exhaust."
 	},
 	"theDuelist:SuperheavyBlueBrawlerBasic": {
 		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity.",
@@ -1933,14 +1933,14 @@
 		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity."
 	},
 	"theDuelist:SuperheavyDaihachi": {
-		"DESCRIPTION": "Arcane NL Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block !M! times.",
+		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Wrath: Gain !duelist:M! additional Block. NL Samurai: Gain !M! Dexterity. NL Guarded: Gain !duelist:M! Temporary HP.",
 		"NAME": "Superheavy Daihachi",
-		"UPGRADE_DESCRIPTION": "Arcane NL Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block !M! times."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Wrath: Gain !duelist:M! additional Block. NL Samurai: Gain !M! Dexterity. NL Guarded: Gain !duelist:M! Temporary HP."
 	},
 	"theDuelist:SuperheavyFlutist": {
-		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block. NL Enter a random Stance.",
 		"NAME": "Superheavy Flutist",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block. NL Enter a random Stance."
 	},
 	"theDuelist:SuperheavyGeneral": {
 		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust.",
@@ -1948,54 +1948,54 @@
 		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Dexterity. NL Exhaust."
 	},
 	"theDuelist:SuperheavyMagnet": {
-		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain 2 random Magnets.",
+		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! Mantra. NL Gain !duelist:M! random Magnets.",
 		"NAME": "Superheavy Magnet",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain 2 random Magnets."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! Mantra. NL Gain !duelist:M! random Magnets."
 	},
 	"theDuelist:SuperheavyOgre": {
-		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have at least !M! Dexterity, draw a Rare card.",
+		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Samurai: Draw a Rare card.",
 		"NAME": "Superheavy Ogre",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you have at least !M! Dexterity, draw a Rare card."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Samurai: Draw a Rare card."
 	},
 	"theDuelist:SuperheavyScales": {
-		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block twice.",
+		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block !M! times. NL On Stance change, returns from the Exhaust pile to your hand. NL Exhaust.",
 		"NAME": "Superheavy Scales",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block twice."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block !M! times. NL On Stance change, returns from the Exhaust pile to your hand. NL Exhaust."
 	},
 	"theDuelist:SuperheavySoulbeads": {
-		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Blur.",
+		"DESCRIPTION": "Retain NL Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Blur.",
 		"NAME": "Superheavy Soulbeads",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Blur."
+		"UPGRADE_DESCRIPTION": "Retain NL Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Blur."
 	},
 	"theDuelist:SuperheavySoulbuster": {
-		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"DESCRIPTION": "Retain NL Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage twice.",
 		"NAME": "Superheavy Soulbuster",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Retain NL Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage twice."
 	},
 	"theDuelist:SuperheavySoulclaw": {
-		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Whenever you play a Power, gain !M! Dexterity.",
+		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL While you are in Samurai, HP loss grants !M! Temporary HP.",
 		"NAME": "Superheavy Soulclaw",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Whenever you play a Power, gain !M! Dexterity."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL While you are in Samurai, HP loss grants !M! Temporary HP."
 	},
 	"theDuelist:SuperheavySoulhorns": {
-		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
+		"DESCRIPTION": "Retain NL Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Superheavy Soulhorns",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Retain NL Superheavy NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:SuperheavySoulpiercer": {
 		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Apply !M! Slow. NL Channel a Sand.",
 		"NAME": "Superheavy Soulpiercer",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Apply !M! Slow. NL Channel 2 Sand."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Apply !M! Slow. NL Channel a Sand."
 	},
 	"theDuelist:SuperheavySoulshield": {
-		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! Plated Armor.",
+		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! Plated Armor. NL If you only have Superheavy monsters summoned, gain !duelist:M! Mantra.",
 		"NAME": "Superheavy Soulshield",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! Plated Armor."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! Plated Armor. NL If you only have Superheavy monsters summoned, gain !duelist:M! Mantra."
 	},
 	"theDuelist:SuperheavySwordsman": {
-		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Deal damage equal to your Dexterity to ALL enemies.",
+		"DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter a random Stance.",
 		"NAME": "Superheavy Swordsman",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Deal damage equal to your Dexterity to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Superheavy NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter a random Stance."
 	},
 	"theDuelist:SuperheavyToken": {
 		"DESCRIPTION": "Superheavy NL Summon 1 NL Roulette: Gain 1 Dexterity.",
@@ -2003,9 +2003,9 @@
 		"UPGRADE_DESCRIPTION": "Superheavy NL Summon 1 NL Roulette: Gain 1 Dexterity."
 	},
 	"theDuelist:SuperheavyWaraji": {
-		"DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! dexterity. NL Exhaust.",
+		"DESCRIPTION": "Retain NL Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL  Whenever this card is retained, increase its Block by !M!.",
 		"NAME": "Superheavy Waraji",
-		"UPGRADE_DESCRIPTION": "Superheavy NL Tribute !duelist:TRIB! NL Gain !M! dexterity. NL Gain !B! Block. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Retain NL Superheavy NL Tribute !duelist:TRIB! NL Gain !B! Block. NL  Whenever this card is retained, increase its Block by !M!."
 	},
 	"theDuelist:SwordDeepSeated": {
 		"DESCRIPTION": "Gain 5 Strength this turn. NL Add !M! copies of this card to your draw pile, plus !M! more copies for each Sword of Deep-Seated you have played this combat.",
@@ -2204,9 +2204,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw a Rare card for each Dragon you Tribute to play this."
 	},
 	"theDuelist:TurretWarrior": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you play a Token, deal !M! damage to ALL enemies.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Whenever you play a Token, deal !M! damage to ALL enemies.",
 		"NAME": "Turret Warrior",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Whenever you play a Token, deal !M! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Whenever you play a Token, deal !M! damage to ALL enemies."
 	},
 	"theDuelist:TwinBarrelDragon": {
 		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Vulnerable.",
@@ -2219,9 +2219,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice."
 	},
 	"theDuelist:UltimateOffering": {
-		"DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons: lose 3 HP, Increment !M! and then Summon !M!.",
+		"DESCRIPTION": "Whenever you attempt to Summon with no empty zones: lose !duelist:M! HP, Increment !M! and then Summon !M!.",
 		"NAME": "Ultimate Offering",
-		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with a max stack of summons: lose 3 HP, Increment !M! and then Summon !M!."
+		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with no empty zones: lose !duelist:M! HP, Increment !M! and then Summon !M!."
 	},
 	"theDuelist:Umi": {
 		"DESCRIPTION": "Your Aqua monster cards deal 50% more damage and gain 50% more Block.",
@@ -2229,9 +2229,9 @@
 		"UPGRADE_DESCRIPTION": "Your Aqua monster cards deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:ValkMagnet": {
-		"DESCRIPTION": "If you have all three Magnets: Summon !duelist:SUMM! and deal !D! damage to ALL enemies. Remove all magnets. Exempt.",
+		"DESCRIPTION": "If you have all three Magnets: deal !D! damage to ALL enemies, remove all Magnets, and choose 1 of !M! random Stances to enter. NL Exempt.",
 		"NAME": "Valkyrion",
-		"UPGRADE_DESCRIPTION": "If you have all three Magnets: Summon !duelist:SUMM! and deal !D! damage to ALL enemies. Exempt."
+		"UPGRADE_DESCRIPTION": "If you have all three Magnets: deal !D! damage to ALL enemies, remove all Magnets, and choose 1 of !M! random Stances to enter. NL Exempt."
 	},
 	"theDuelist:VanityFiend": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned.",
@@ -2702,9 +2702,9 @@
 		"UPGRADE_DESCRIPTION": "Copy all Machines in your hand."
 	},
 	"theDuelist:Zombyra": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns.",
 		"NAME": "Zombyra",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turn."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns."
 	},
 	"theDuelist:MagicalStone": {
 		"DESCRIPTION": "Arcane NL Draw !M! Spells. NL Exhaust.",
@@ -2910,6 +2910,11 @@
 		"DESCRIPTION": "Trap",
 		"NAME": "Trap",
 		"UPGRADE_DESCRIPTION": "Trap"
+	},
+	"theDuelist:WarriorTypeCard": {
+		"DESCRIPTION": "Warrior",
+		"NAME": "Warrior",
+		"UPGRADE_DESCRIPTION": "Warrior"
 	},
 	"theDuelist:DropOff": {
 		"DESCRIPTION": "Gain a buff based on the last type of monster you summoned. NL Exhaust.",
@@ -3117,9 +3122,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by !M! for this combat."
 	},
 	"theDuelist:Oilman": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat.",
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. Exhaust.",
 		"NAME": "Oilman",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat."
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. Exhaust."
 	},
 	"theDuelist:Mixeroid": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain a random combination of !M! Block and Temporary HP.",
@@ -3307,14 +3312,14 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:Hayate": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If your HP is less than half, enter Guarded.",
 		"NAME": "Hayate",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage."
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If your HP is less than half, enter Guarded."
 	},
 	"theDuelist:Spore": {
 		"DESCRIPTION": "Plant NL Increment X NL Summon X",
 		"NAME": "Spore",
-		"UPGRADE_DESCRIPTION": "Plant NL Increment X NL Summon X"
+		"UPGRADE_DESCRIPTION": "Plant NL Increment X NL Summon X NL Gain !M! Temporary HP."
 	},
 	"theDuelist:RagingMadPlants": {
 		"DESCRIPTION": "Arcane NL Gain !M! Strength for each Plant you currently have Summoned. NL Exhaust.",
@@ -3502,9 +3507,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block for each Dragon you currently have summoned."
 	},
 	"theDuelist:BusterBladerDDS": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )",
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )",
 		"NAME": "Buster Blader D.D.S.",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )"
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Deals an additional !M! damage for each Dragon tributed. NL ( !duelist:M! extra damage )"
 	},
 	"theDuelist:SilverDragon": {
 		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Gain !M! Block for each monster you have tributed this combat. NL ( !B! Block )",
@@ -3592,9 +3597,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Mud."
 	},
 	"theDuelist:Mudballman": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Mud and Sand.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Channel a Mud and Sand.",
 		"NAME": "Mudballman",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Mud and Sand."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Channel a Mud and Sand."
 	},
 	"theDuelist:VoidExpansion": {
 		"DESCRIPTION": "Whenever you Channel a Void, gain !M! orb slot.",
@@ -4047,9 +4052,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of even turns, Summon !M! Explosive Tokens. At the start of odd turns, Tribute all of your Explosive Tokens, dealing damage to ALL enemies instead of you."
 	},
 	"theDuelist:BlastAsmodian": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Explosive Tokens. NL Deal !D! damage. NL Channel a Gadget.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Explosive Tokens. NL Deal !D! damage. NL Channel a Gadget. NL Exempt.",
 		"NAME": "Blast Asmodian",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Explosive Tokens. NL Deal !D! damage. NL Channel a Gadget."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Explosive Tokens. NL Deal !D! damage. NL Channel a Gadget. NL Exempt."
 	},
 	"theDuelist:BlastingRuins": {
 		"DESCRIPTION": "Summon !duelist:SUMM! Explosive Tokens. NL Gain !M! Artifact. NL Channel an Alien.",
@@ -4102,9 +4107,9 @@
 		"UPGRADE_DESCRIPTION": "The next time you trigger the Exodia damage effect, your Exodia power will not be reset. NL Exhaust."
 	},
 	"theDuelist:ExodiaNecross": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand.",
 		"NAME": "Exodia Necross",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Add a random piece of Exodia to your hand."
 	},
 	"theDuelist:AlphaElectro": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Electrify your Alpha Magnet.",
@@ -4232,9 +4237,9 @@
 		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !M! Temporary HP. NL Heal !duelist:M! HP. NL Exempt. NL Exhaust."
 	},
 	"theDuelist:RosePaladin": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL If this kills an enemy, Resummon a Plant from your discard pile.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If this kills an enemy, Resummon a Plant from your discard pile.",
 		"NAME": "Rose Paladin",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL If this kills an enemy, Resummon a Plant from your discard pile."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If this kills an enemy, Resummon a Plant from your discard pile."
 	},
 	"theDuelist:RoseWitch": {
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain a random buff.",
@@ -4257,9 +4262,9 @@
 		"UPGRADE_DESCRIPTION": "Skip"
 	},
 	"theDuelist:TwilightRoseKnight": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon a Plant from your hand on a random enemy. NL Exempt.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon a Plant from your hand on a random enemy. NL Exempt.",
 		"NAME": "Twilight Rose Knight",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon a Plant from your hand. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Resummon a Plant from your hand. NL Exempt."
 	},
 	"theDuelist:CopyPlant": {
 		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !M! Temporary HP. NL Resummon a copy of the last Plant you played. NL Exempt.",
@@ -4485,6 +4490,467 @@
 		"DESCRIPTION": "Arcane NL Gain 2 random buffs.",
 		"NAME": "Rainbow Medicine",
 		"UPGRADE_DESCRIPTION": "Arcane NL Choose 2 random buffs (from !M! choices)."
+	},
+	"theDuelist:PredaPolymerization": {
+		"DESCRIPTION": "Purge NL Ethereal NL Choose !M! monsters from your hand to Resummon on an enemy.",
+		"NAME": "Polymerization",
+		"UPGRADE_DESCRIPTION": "Purge NL Ethereal NL Choose !M! monsters from your hand to Resummon on an enemy."
+	},
+	"theDuelist:Overworked": {
+		"DESCRIPTION": "Whenever a Skill is played, gain !M! Strength.",
+		"NAME": "Overworked",
+		"UPGRADE_DESCRIPTION": "Whenever a Skill is played, gain !M! Strength."
+	},
+	"theDuelist:DarkCubicLord": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Gain !M! Strength. NL Exempt.",
+		"NAME": "Dark Cubic Lord",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Gain !M! Strength. NL Exempt."
+	},
+	"theDuelist:GoldenSparks": {
+		"DESCRIPTION": "Strike NL Deal !D! damage. NL If this kills an enemy, Upgrade a random Spell in your deck. NL Exhaust.",
+		"NAME": "Golden Sparks",
+		"UPGRADE_DESCRIPTION": "Strike NL Deal !D! damage. NL If this kills an enemy, Upgrade a random Spell in your deck. NL Exhaust."
+	},
+	"theDuelist:DarkCrusader": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! Warrior or Superheavy Tokens NL Enter Forsaken.",
+		"NAME": "Dark Crusader",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! Warrior or Superheavy Tokens NL Enter Forsaken."
+	},
+	"theDuelist:BattleWarrior": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL End your turn.",
+		"NAME": "Battle Warrior",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL End your turn."
+	},
+	"theDuelist:SoldierLady": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Slow.",
+		"NAME": "Soldier Lady",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Slow."
+	},
+	"theDuelist:BullBlader": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter Wrath. You cannot leave Wrath for the remainder of the turn.",
+		"NAME": "Bull Blader",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter Wrath. You cannot leave Wrath for the remainder of the turn."
+	},
+	"theDuelist:BladeKnight": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exit your Stance.",
+		"NAME": "Blade Knight",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Exit your Stance."
+	},
+	"theDuelist:GoyoChaser": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, apply !M! Vulnerable.",
+		"NAME": "Goyo Chaser",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the previous card played was an Attack, apply !M! Vulnerable."
+	},
+	"theDuelist:ComboFighter": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If this card was retained, it deals double damage.",
+		"NAME": "Combo Fighter",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL If this card was retained, it deals double damage."
+	},
+	"theDuelist:GoyoDefender": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was an Attack, draw !M! card.",
+		"NAME": "Goyo Defender",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL If the previous card played was an Attack, draw !M! cards."
+	},
+	"theDuelist:DawnKnight": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Upgrade all cards that Retain in your hand. NL Exhaust.",
+		"NAME": "Dawn Knight",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Upgrade all cards that Retain in your hand."
+	},
+	"theDuelist:BrushfireKnight": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose to Channel a Lava or Fire. NL Erupt: Gain !M! Strength.",
+		"NAME": "Brushfire Knight",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Choose to Channel a Lava or Fire. NL Erupt: Gain !M! Strength."
+	},
+	"theDuelist:HardArmor": {
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Retain !M! cards this turn.",
+		"NAME": "Hard Armor",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block. NL Retain !M! cards this turn."
+	},
+	"theDuelist:DustKnight": {
+		"DESCRIPTION": "Retain NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage and apply Slow to ALL enemies.",
+		"NAME": "Dust Knight",
+		"UPGRADE_DESCRIPTION": "Retain NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage and apply Slow to ALL enemies."
+	},
+	"theDuelist:DarkGrepher": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enter Spectral. You cannot leave Spectral for the remainder of the turn.",
+		"NAME": "Dark Grepher",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enter Spectral. You cannot leave Spectral for the remainder of the turn."
+	},
+	"theDuelist:ColossalFighter": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enter Wrath.",
+		"NAME": "Colossal Fighter",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Enter Wrath."
+	},
+	"theDuelist:ComboMaster": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this card was Retained, it deals triple damage.",
+		"NAME": "Combo Master",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this card was Retained, it deals triple damage."
+	},
+	"theDuelist:GoyoKing": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this kills an enemy, Upgrade a random Warrior in your deck. NL Exhaust.",
+		"NAME": "Goyo King",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If this kills an enemy, Upgrade a random Warrior in your deck. NL Exhaust."
+	},
+	"theDuelist:NinjaGrandmaster": {
+		"DESCRIPTION": "Retain NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Whenever this card is Retained, increase its damage by !M!.",
+		"NAME": "Ninja Grandmaster",
+		"UPGRADE_DESCRIPTION": "Retain NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Whenever this card is Retained, increase its damage by !M!."
+	},
+	"theDuelist:BladeArmorNinja": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Wrath: Deal !D! damage to ALL enemies instead. NL Samurai: Apply !M! Vulnerable to ALL enemies.",
+		"NAME": "Blade Armor Ninja",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Wrath: Deal !D! damage to ALL enemies instead. NL Samurai: Apply !M! Vulnerable to ALL enemies."
+	},
+	"theDuelist:GoyoEmperor": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Gain !B! Block. NL The next Attack you play costs 0.",
+		"NAME": "Goyo Emperor",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Gain !B! Block. NL The next Attack you play costs 0."
+	},
+	"theDuelist:GuardianOrder": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Gain !M! Block for each card in your hand. NL (Gain !B! Block.)",
+		"NAME": "Guardian of Order",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Gain !M! Block for each card in your hand. NL (Gain !B! Block.)"
+	},
+	"theDuelist:LegendaryBlackBelt": {
+		"DESCRIPTION": "Gain !M! Vigor.",
+		"NAME": "Legendary Black Belt",
+		"UPGRADE_DESCRIPTION": "Gain !M! Vigor."
+	},
+	"theDuelist:ChaosSeed": {
+		"DESCRIPTION": "Arcane NL Retain NL ALL enemies lose !M! Strength this turn. NL Exhaust.",
+		"NAME": "Chaos Seed",
+		"UPGRADE_DESCRIPTION": "Arcane NL Retain NL ALL enemies lose !M! Strength this turn. When Retained, this card is Upgraded. NL Exhaust."
+	},
+	"theDuelist:CrystalTree": {
+		"DESCRIPTION": "Calm: Apply !M! Weak. NL Wrath: Apply !M! Vulnerable. NL Samurai: Apply !M! Slow.",
+		"NAME": "Crystal Tree",
+		"UPGRADE_DESCRIPTION": "Calm: Apply !M! Weak. NL Wrath: Apply !M! Vulnerable. NL Samurai: Apply !M! Slow. NL Guarded: Gain !duelist:M! Dexterity."
+	},
+	"theDuelist:SwordDragonSoul": {
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary HP. NL Apply !duelist:M! Slow. NL Costs !duelist:O! less per switched Stance this turn.",
+		"NAME": "Sword of D. Soul",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Temporary HP. NL Apply !duelist:M! Slow. NL Costs !duelist:O! less per switched Stance this turn."
+	},
+	"theDuelist:LegendarySword": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage !M! times. For each unblocked hit, Retain one card this turn.",
+		"NAME": "Legendary Sword",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage !M! times. For each unblocked hit, Retain one card this turn."
+	},
+	"theDuelist:LightningBlade": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage !M! times. For each unblocked hit, Channel a Lightning.",
+		"NAME": "Lightning Blade",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage !M! times. For each unblocked hit, Channel a Lightning."
+	},
+	"theDuelist:CrossAttack": {
+		"DESCRIPTION": "Deal !D! damage on odd turns or gain !B! Block on even turns.",
+		"NAME": "Cross Attack",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage on odd turns or gain !B! Block on even turns.",
+		"EXTENDED_DESCRIPTION": [ "Deal !D! damage.", "Gain !B! Block."]
+	},
+	"theDuelist:AssaultArmor": {
+		"DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust.",
+		"NAME": "Assault Armor",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust."
+	},
+	"theDuelist:CubicWave": {
+		"DESCRIPTION": "Retain NL Discard !M! cards. NL Enter Chaotic.",
+		"NAME": "Cubic Wave",
+		"UPGRADE_DESCRIPTION": "Retain NL Discard !M! cards. NL Enter Chaotic."
+	},
+	"theDuelist:CubicKarma": {
+		"DESCRIPTION": "At the end of each turn, enter Chaotic.",
+		"NAME": "Cubic Karma",
+		"UPGRADE_DESCRIPTION": "At the end of each turn, enter Chaotic."
+	},
+	"theDuelist:LightLaser": {
+		"DESCRIPTION": "Retain NL Draw !M! cards. NL Exhaust.",
+		"NAME": "Light Laser",
+		"UPGRADE_DESCRIPTION": "Retain NL Draw !M! cards. NL Exhaust."
+	},
+	"theDuelist:DarkBurningAttack": {
+		"DESCRIPTION": "Draw !M! cards. NL You cannot play Attacks for the rest of this turn.",
+		"NAME": "Dark Burning Attack",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL You cannot play Attacks for the rest of this turn."
+	},
+	"theDuelist:DarkBurningMagic": {
+		"DESCRIPTION": "Draw !M! cards. NL You cannot play Skills for the rest of this turn.",
+		"NAME": "Dark Burning Magic",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL You cannot play Skills for the rest of this turn."
+	},
+	"theDuelist:HiddenArmory": {
+		"DESCRIPTION": "Tribute !duelist:TRIB! NL Draw cards until your hand is full. NL Exhaust.",
+		"NAME": "Hidden Armory",
+		"UPGRADE_DESCRIPTION": "Retain NL Tribute !duelist:TRIB! NL Draw cards until your hand is full. NL Exhaust."
+	},
+	"theDuelist:CrystalBlessing": {
+		"DESCRIPTION": "Enter Calm. NL Draw !M! cards.",
+		"NAME": "Crystal Blessing",
+		"UPGRADE_DESCRIPTION": "Enter Calm. NL Draw !M! cards."
+	},
+	"theDuelist:EgoBoost": {
+		"DESCRIPTION": "Enter Calm. NL Exhaust.",
+		"NAME": "Ego Boost",
+		"UPGRADE_DESCRIPTION": "Enter Calm. NL Exhaust."
+	},
+	"theDuelist:WarriorReturningAlive": {
+		"DESCRIPTION": "Enter Meditative. NL End your turn.",
+		"NAME": "Returning Warrior",
+		"UPGRADE_DESCRIPTION": "Enter Meditative. NL End your turn."
+	},
+	"theDuelist:DarkOccultism": {
+		"DESCRIPTION": "Retain NL Enter Spectral. NL Exhaust.",
+		"NAME": "Dark Occultism",
+		"UPGRADE_DESCRIPTION": "Retain NL Enter Spectral. NL Exhaust."
+	},
+	"theDuelist:DeltaAttacker": {
+		"DESCRIPTION": "Retain NL Enter Wrath. NL Exhaust.",
+		"NAME": "Delta Attacker",
+		"UPGRADE_DESCRIPTION": "Retain NL Enter Wrath. NL Exhaust."
+	},
+	"theDuelist:AfterTheStorm": {
+		"DESCRIPTION": "Exhaust up to !M! cards. NL Enter Calm.",
+		"NAME": "After the Storm",
+		"UPGRADE_DESCRIPTION": "Exhaust up to !M! cards. NL Enter Calm."
+	},
+	"theDuelist:AgainstTheWind": {
+		"DESCRIPTION": "Exhaust up to !M! cards. NL Enter Samurai.",
+		"NAME": "Against the Wind",
+		"UPGRADE_DESCRIPTION": "Exhaust up to !M! cards. NL Enter Samurai."
+	},
+	"theDuelist:DefenseZone": {
+		"DESCRIPTION": "Exhaust up to !M! cards. NL Enter Guarded.",
+		"NAME": "Defense Zone",
+		"UPGRADE_DESCRIPTION": "Exhaust up to !M! cards. NL Enter Guarded."
+	},
+	"theDuelist:Downbeat": {
+		"DESCRIPTION": "Exit your Stance. NL Draw !M! cards.",
+		"NAME": "Downbeat",
+		"UPGRADE_DESCRIPTION": "Exit your Stance. NL Draw !M! cards."
+	},
+	"theDuelist:GlowingCrossbow": {
+		"DESCRIPTION": "Gain !M! Mantra for each Superheavy you currently have Summoned. NL Exhaust.",
+		"NAME": "Glowing Crossbow",
+		"UPGRADE_DESCRIPTION": "Gain !M! Mantra for each Superheavy you currently have Summoned. NL Exhaust."
+	},
+	"theDuelist:HerculeanPower": {
+		"DESCRIPTION": "Gain !M! Mantra. NL Shuffle a random Bamboo Sword into your draw pile.",
+		"NAME": "Herculean Power",
+		"UPGRADE_DESCRIPTION": "Gain !M! Mantra. NL Shuffle a random Upgraded Bamboo Sword into your draw pile."
+	},
+	"theDuelist:LegendHeart": {
+		"DESCRIPTION": "Gain !M! Vigor. NL Enter a random Stance.",
+		"NAME": "Legend of Heart",
+		"UPGRADE_DESCRIPTION": "Gain !M! Vigor. NL Enter a random Stance."
+	},
+	"theDuelist:MagnumShield": {
+		"DESCRIPTION": "Gain !M! Vigor. NL Gain !B! Block.",
+		"NAME": "Magnum Shield",
+		"UPGRADE_DESCRIPTION": "Gain !M! Vigor. NL Gain !B! Block."
+	},
+	"theDuelist:AdvanceForce": {
+		"DESCRIPTION": "Gain !M! Vigor. NL Channel an Alien.",
+		"NAME": "Advance Force",
+		"UPGRADE_DESCRIPTION": "Gain !M! Vigor. NL Channel an Alien."
+	},
+	"theDuelist:ElfLight": {
+		"DESCRIPTION": "Retain NL Gain [E] for each turn this card is Retained. NL Exhaust. NL (Retained !M! turns)",
+		"NAME": "Elf's Light",
+		"UPGRADE_DESCRIPTION": "Retain NL Gain [E] for each turn this card is Retained. NL Exhaust. NL (Retained !M! turns)"
+	},
+	"theDuelist:GravityLash": {
+		"DESCRIPTION": "Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. NL Exhaust.",
+		"NAME": "Gravity Lash",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. NL Exhaust."
+	},
+	"theDuelist:AfterGenocide": {
+		"DESCRIPTION": "Gain [E] [E] at the start of your next X turns. NL Exhaust.",
+		"NAME": "After Genocide",
+		"UPGRADE_DESCRIPTION": "Gain [E] [E] at the start of your next X+1 turns. NL Exhaust."
+	},
+	"theDuelist:EulerCircuit": {
+		"DESCRIPTION": "Guarded: Enter Samurai. NL Samurai: Enter Guarded.",
+		"NAME": "Euler's Circuit",
+		"UPGRADE_DESCRIPTION": "Guarded: Enter Samurai. NL Samurai: Enter Guarded."
+	},
+	"theDuelist:FengshengMirror": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Kuriboh Token NL End your turn. NL At the start of next turn, deal !D! damage. NL Exhaust.",
+		"NAME": "Fengsheng Mirror",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Kuriboh Tokens NL End your turn. NL At the start of next turn, deal !D! damage. NL Exhaust."
+	},
+	"theDuelist:GridRod": {
+		"DESCRIPTION": "The first card you draw each turn has its cost reduced by !M! for the turn.",
+		"NAME": "Grid Rod",
+		"UPGRADE_DESCRIPTION": "The first card you draw each turn has its cost reduced by !M! for the turn."
+	},
+	"theDuelist:Flint": {
+		"DESCRIPTION": "Whenever a card is Retained, reduce its cost by !M!.",
+		"NAME": "Flint",
+		"UPGRADE_DESCRIPTION": "Innate NL Whenever a card is Retained, reduce its cost by !M!."
+	},
+	"theDuelist:FightingSpirit": {
+		"DESCRIPTION": "Whenever you Tribute a Warrior for another, gain !M! Mantra.",
+		"NAME": "Fighting Spirit",
+		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Warrior for another, gain !M! Mantra."
+	},
+	"theDuelist:WeaponChange": {
+		"DESCRIPTION": "Whenever you switch Stances, draw !M! Warrior.",
+		"NAME": "Weapon Change",
+		"UPGRADE_DESCRIPTION": "Whenever you switch Stances, draw !M! Warriors."
+	},
+	"theDuelist:HarmonicWaves": {
+		"DESCRIPTION": "Wrath: Enter Calm. NL Calm: Enter Wrath. NL Exhaust.",
+		"NAME": "Harmonic Waves",
+		"UPGRADE_DESCRIPTION": "Wrath: Enter Calm. NL Calm: Enter Wrath."
+	},
+	"theDuelist:GladiatorReturn": {
+		"DESCRIPTION": "Spectral: Enter Meditative. NL Meditative: Enter Spectral. NL Exhaust.",
+		"NAME": "Gladiator's Return",
+		"UPGRADE_DESCRIPTION": "Spectral: Enter Meditative. NL Meditative: Enter Spectral."
+	},
+	"theDuelist:HeroRing": {
+		"DESCRIPTION": "If the enemy has !M! or less HP, set their HP to 0.",
+		"NAME": "Hero Ring",
+		"UPGRADE_DESCRIPTION": "If the enemy has !M! or less HP, set their HP to 0."
+	},
+	"theDuelist:BattleguardHowling": {
+		"DESCRIPTION": "If your HP is greater than it was last turn, enter Calm.",
+		"NAME": "Battleguard Howling",
+		"UPGRADE_DESCRIPTION": "If your HP is greater than it was last turn, enter Calm."
+	},
+	"theDuelist:BattleguardRage": {
+		"DESCRIPTION": "If your HP is less than it was last turn, enter Wrath.",
+		"NAME": "Battleguard Rage",
+		"UPGRADE_DESCRIPTION": "If your HP is less than it was last turn, enter Wrath."
+	},
+	"theDuelist:ReinforceTruth": {
+		"DESCRIPTION": "Whenever you switch Stances, gain !M! Dexterity for the turn.",
+		"NAME": "Reinforce Truth",
+		"UPGRADE_DESCRIPTION": "Whenever you switch Stances, gain !M! Dexterity for the turn."
+	},
+	"theDuelist:SpiritForce": {
+		"DESCRIPTION": "Whenever you switch Stances, gain !M! Temporary HP.",
+		"NAME": "SpiritForce",
+		"UPGRADE_DESCRIPTION": "Whenever you switch Stances, gain !M! Temporary HP."
+	},
+	"theDuelist:CommanderSwords": {
+		"DESCRIPTION": "While you are in Calm, HP loss is reduced by !M!.",
+		"NAME": "Commander of Swords",
+		"UPGRADE_DESCRIPTION": "While you are in Calm, HP loss is reduced by !M!."
+	},
+	"theDuelist:BambooSwordBroken": {
+		"DESCRIPTION": "Retain NL Deal !D! damage. NL Exhaust.",
+		"NAME": "Broken Bamboo Sword ",
+		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Exhaust."
+	},
+	"theDuelist:BambooSwordBurning": {
+		"DESCRIPTION": "Retain NL Deal !D! damage. NL Next turn, gain [E]. Samurai: Apply !M! Vulnerable to ALL enemies. NL Exhaust.",
+		"NAME": "Burning Bamboo Sword ",
+		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Next turn, gain [E]. Samurai: Apply !M! Vulnerable to ALL enemies. NL Exhaust."
+	},
+	"theDuelist:BambooSwordCursed": {
+		"DESCRIPTION": "Retain NL Deal !D! damage. NL Add a random Curse into your discard pile.",
+		"NAME": "Cursed Bamboo Sword ",
+		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Add a random Curse into your discard pile."
+	},
+	"theDuelist:BambooSwordGolden": {
+		"DESCRIPTION": "Retain NL Deal !D! damage. NL Gain !M! Temporary HP. NL Enter Meditative. NL Exhaust.",
+		"NAME": "Golden Bamboo Sword ",
+		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Gain !M! Temporary HP. NL Enter Meditative. NL Exhaust."
+	},
+	"theDuelist:BambooSwordSoul": {
+		"DESCRIPTION": "Retain NL Deal !D! damage. NL Take !M! damage. NL Enter Forsaken.",
+		"NAME": "Bamboo Sword of Souls",
+		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage. NL Enter Forsaken."
+	},
+	"theDuelist:FeedbackWarrior": {
+		"DESCRIPTION": "Retain NL Warrior NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Feedback Warrior",
+		"UPGRADE_DESCRIPTION": "Retain NL Warrior NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:MightyWarrior": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Mighty Warrior",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:JunkWarrior": {
+		"DESCRIPTION": "Machine Warrior NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage.",
+		"NAME": "Junk Warrior",
+		"UPGRADE_DESCRIPTION": "Machine Warrior NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage."
+	},
+	"theDuelist:GravityWarrior": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Strength equal to twice your Dexterity for this turn.",
+		"NAME": "Gravity Warrior",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain Strength equal to twice your Dexterity for this turn."
+	},
+	"theDuelist:NitroWarrior": {
+		"DESCRIPTION": "Retain NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Fire.",
+		"NAME": "Nitro Warrior",
+		"UPGRADE_DESCRIPTION": "Retain NL Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Fire."
+	},
+	"theDuelist:DrillWarrior": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Deal !D! damage !M! times. NL On Stance change, returns from the Exhaust pile to your hand. NL Exhaust.",
+		"NAME": "Drill Warrior",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Gain !B! Block !M! times. NL On Stance change, returns from the Exhaust pile to your hand. NL Exhaust."
+	},
+	"theDuelist:WarriorToken": {
+		"DESCRIPTION": "Warrior NL Summon 1 NL Roulette: Enter a random stance.",
+		"NAME": "Warrior Token",
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon 1 NL Roulette: Enter a random stance."
+	},
+	"theDuelist:StanceToken": {
+		"DESCRIPTION": "Superheavy Warrior NL Summon 1 NL Enter Guarded.",
+		"NAME": "Stance Token",
+		"UPGRADE_DESCRIPTION": "Superheavy Warrior NL Summon 1 NL Enter Guarded."
+	},
+	"theDuelist:ForsakenToken": {
+		"DESCRIPTION": "Summon 2 NL Enter Forsaken.",
+		"NAME": "Forsaken Token",
+		"UPGRADE_DESCRIPTION": "Summon 2 NL Enter Forsaken."
+	},
+	"theDuelist:ChooseCalmCard": {
+		"DESCRIPTION": "Enter Calm.",
+		"NAME": "Calm",
+		"UPGRADE_DESCRIPTION": "Enter Calm."
+	},
+	"theDuelist:ChooseWrathCard": {
+		"DESCRIPTION": "Enter Wrath.",
+		"NAME": "Wrath",
+		"UPGRADE_DESCRIPTION": "Enter Wrath."
+	},
+	"theDuelist:ChooseDivinityCard": {
+		"DESCRIPTION": "Enter Divinity.",
+		"NAME": "Divinity",
+		"UPGRADE_DESCRIPTION": "Enter Divinity."
+	},
+	"theDuelist:ChooseSamuraiCard": {
+		"DESCRIPTION": "Enter Samurai.",
+		"NAME": "Samurai",
+		"UPGRADE_DESCRIPTION": "Enter Samurai."
+	},
+	"theDuelist:ChooseGuardedCard": {
+		"DESCRIPTION": "Enter Guarded.",
+		"NAME": "Guarded",
+		"UPGRADE_DESCRIPTION": "Enter Guarded."
+	},
+	"theDuelist:ChooseMeditativeCard": {
+		"DESCRIPTION": "Enter Meditative.",
+		"NAME": "Meditative",
+		"UPGRADE_DESCRIPTION": "Enter Meditative."
+	},
+	"theDuelist:ChooseSpectralCard": {
+		"DESCRIPTION": "Enter Spectral.",
+		"NAME": "Spectral",
+		"UPGRADE_DESCRIPTION": "Enter Spectral."
+	},
+	"theDuelist:ChooseForsakenCard": {
+		"DESCRIPTION": "Enter Forsaken.",
+		"NAME": "Forsaken",
+		"UPGRADE_DESCRIPTION": "Enter Forsaken."
+	},
+	"theDuelist:ChooseChaoticCard": {
+		"DESCRIPTION": "Enter Chaotic.",
+		"NAME": "Chaotic",
+		"UPGRADE_DESCRIPTION": "Enter Chaotic."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

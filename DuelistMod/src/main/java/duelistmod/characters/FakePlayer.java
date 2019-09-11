@@ -267,4 +267,10 @@ public class FakePlayer extends AbstractPlayer
     {
 
     }
+
+	@Override
+	public String getPortraitImageName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

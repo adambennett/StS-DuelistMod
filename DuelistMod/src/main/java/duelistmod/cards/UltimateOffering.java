@@ -36,6 +36,7 @@ public class UltimateOffering extends DuelistCard
         this.tags.add(Tags.TRAP);   
 		this.originalName = this.name;
 		this.baseMagicNumber = this.magicNumber = 1;
+		this.baseSecondMagic = this.secondMagic = 3;
     }
 
 
@@ -43,7 +44,7 @@ public class UltimateOffering extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new UltimateOfferingPower(p, p, this.magicNumber));
+    	applyPowerToSelf(new UltimateOfferingPower(p, p, this.magicNumber, this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.

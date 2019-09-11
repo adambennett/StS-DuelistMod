@@ -39,6 +39,7 @@ public class CommandKnight extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 7;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;

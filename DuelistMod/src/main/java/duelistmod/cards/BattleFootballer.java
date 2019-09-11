@@ -37,6 +37,7 @@ public class BattleFootballer extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 7;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.MACHINE);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
     }

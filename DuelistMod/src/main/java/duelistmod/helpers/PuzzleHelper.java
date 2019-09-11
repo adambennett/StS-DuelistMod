@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
@@ -111,9 +112,15 @@ public class PuzzleHelper
 	
 	public static void zombieChannel()
 	{
-		if (StarterDeckSetup.getCurrentDeck().getIndex() == 5 || StarterDeckSetup.getCurrentDeck().getIndex() == 20)
+		if (StarterDeckSetup.getCurrentDeck().getIndex() == 5)
 		{
 			DuelistCard.zombieLavaChannel();
+		}
+		
+		else if (StarterDeckSetup.getCurrentDeck().getIndex() == 20)
+		{
+			int roll = AbstractDungeon.miscRng.random(1, 2);
+			if (roll == 1) { DuelistCard.zombieLavaChannel(); }
 		}
 	}
 	
@@ -276,9 +283,9 @@ public class PuzzleHelper
 					
 				// Superheavy Deck
 				case 9:		
-					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Superheavy Token", false);
+					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Stance Token", false);
+					DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
 					DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
-					DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 5));
 					break;
 					
 				// Insect Deck
@@ -304,7 +311,7 @@ public class PuzzleHelper
 				case 13:
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
 					AbstractCard randomMon = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
-					randomMon.modifyCostForTurn(-randomMon.cost); randomMon.isCostModifiedForTurn = true;
+					randomMon.setCostForTurn(-randomMon.cost); randomMon.isCostModifiedForTurn = true;
 					DuelistCard.addCardToHand(randomMon);
 					break;
 					
@@ -342,13 +349,13 @@ public class PuzzleHelper
 				// Ascended I
 				case 19:
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
-					AbstractMonster randyA = AbstractDungeon.getRandomMonster();			
+					/*AbstractMonster randyA = AbstractDungeon.getRandomMonster();			
 					if (randyA != null)
 					{
 						int rollA = AbstractDungeon.cardRandomRng.random(1, 2);
 						if (rollA == 1) { DuelistCard.applyPower(new WeakPower(randyA, 2, false), randyA); }
 						else { DuelistCard.applyPower(new VulnerablePower(randyA, 2, false), randyA); }
-					}
+					}*/
 					break;
 					
 				// Ascended II
@@ -566,9 +573,9 @@ public class PuzzleHelper
 				
 			// Superheavy Deck
 			case 9:		
-				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Superheavy Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Stance Token", false);
+				DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
-				DuelistCard.staticBlock(AbstractDungeon.cardRandomRng.random(0, 5));
 				break;
 				
 			// Insect Deck
@@ -594,7 +601,7 @@ public class PuzzleHelper
 			case 13:
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
 				AbstractCard randomMon = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
-				randomMon.modifyCostForTurn(-randomMon.cost); randomMon.isCostModifiedForTurn = true;
+				randomMon.setCostForTurn(-randomMon.cost); randomMon.isCostModifiedForTurn = true;
 				DuelistCard.addCardToHand(randomMon);
 				break;
 				
@@ -632,13 +639,13 @@ public class PuzzleHelper
 			// Ascended I
 			case 19:
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Megatype Token", false);
-				AbstractMonster randyA = AbstractDungeon.getRandomMonster();	
+				/*AbstractMonster randyA = AbstractDungeon.getRandomMonster();	
 				if (randyA != null)
 				{
 					int rollA = AbstractDungeon.cardRandomRng.random(1, 2);
 					if (rollA == 1) { DuelistCard.applyPower(new WeakPower(randyA, 2, false), randyA); }
 					else { DuelistCard.applyPower(new VulnerablePower(randyA, 2, false), randyA); }
-				}
+				}*/
 				break;
 				
 			// Ascended II

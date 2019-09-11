@@ -37,6 +37,7 @@ public class LegendaryFisherman extends DuelistCard
 		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tags.add(Tags.ORIGINAL_ORB_DECK);
 		this.tags.add(Tags.AQUA_DECK);
+        this.tags.add(Tags.WARRIOR);
 		this.aquaDeckCopies = 1;
 		this.startingOPODeckCopies = 1;
 		this.misc = 0;

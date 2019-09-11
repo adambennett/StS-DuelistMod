@@ -1,6 +1,6 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,11 +8,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.stances.Guarded;
 import duelistmod.variables.*;
 
 public class GammaMagnet extends DuelistCard 
@@ -29,7 +30,7 @@ public class GammaMagnet extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -53,12 +54,9 @@ public class GammaMagnet extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	
-    	// Gain Gamma Magnet
-    	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }
-    	
-    	// Draw cards
+    	changeStance(new Guarded());
     	drawTag(this.magicNumber, Tags.MONSTER);
+    	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +71,6 @@ public class GammaMagnet extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            this.exhaust = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

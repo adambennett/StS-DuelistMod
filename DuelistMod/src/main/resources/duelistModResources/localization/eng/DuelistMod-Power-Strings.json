@@ -53,7 +53,12 @@
 },
 "theDuelist:CannonPower": {
         "NAME": "Cannon Soldier",
-        "DESCRIPTIONS": ["At the start of turn, #yTribute #b", " and deal #b", " damage to #b", " random enemy. (5 total damage)", " damage to random enemies. (", " total damage)" ]
+        "DESCRIPTIONS": [
+		"At the start of turn, #yTribute #b",
+		" and deal #b",
+		" damage to a random enemy.", 
+		" damage to random enemies."
+		]
 },
 "theDuelist:CatapultPower": {
         "NAME": "Catapult Power",
@@ -217,7 +222,7 @@
 },
 "theDuelist:UltimateOfferingPower": {
         "NAME": "Ultimate Offering",
-        "DESCRIPTIONS": ["Whenever you #ySummon with a max stack of summons: lose 3 HP, #yIncrement #b", " and then #ySummon #b", "." ]
+        "DESCRIPTIONS": ["Whenever you #ySummon with a max stack of summons: lose #b", " HP, #yIncrement #b", ", and then #ySummon #b", " Blood Token." ]
 },
 "theDuelist:NaturePower": {
         "NAME": "Nature's Blessing",
@@ -606,6 +611,50 @@
 "theDuelist:DummyPowerDoNotApply": {
         "NAME": "DUMMY",
         "DESCRIPTIONS": ["" ]
+},
+"theDuelist:FightingSpiritPower": {
+        "NAME": "Fighting Spirit",
+        "DESCRIPTIONS": ["Whenever you #yTribute a #yWarrior for another, gain #b", " #yMantra." ]
+},
+"theDuelist:CubicKarmaPower": {
+        "NAME": "Cubic Karma",
+        "DESCRIPTIONS": ["At the end of each turn, enter #yChaotic." ]
+},
+"theDuelist:ReinforceTruthPower": {
+        "NAME": "Reinforce Truth",
+        "DESCRIPTIONS": ["Whenever you switch #yStances, gain #b", " #yDexterity for the turn." ]
+},
+"theDuelist:SpiritForcePower": {
+        "NAME": "Spirit Force",
+        "DESCRIPTIONS": ["Whenever you switch #yStances, gain #b", " #yTemporary #yHP." ]
+},
+"theDuelist:WeaponChangePower": {
+        "NAME": "Weapon Change",
+        "DESCRIPTIONS": ["Whenever you switch #yStances, draw #b", " #yWarrior.", " #yWarriors." ]
+},
+"theDuelist:Guarded": {
+        "NAME": "Guarded",
+        "DESCRIPTIONS": ["In this #yStance, #yDexterity is doubly effective." ]
+},
+"theDuelist:Meditative": {
+        "NAME": "Meditative",
+        "DESCRIPTIONS": ["In this #yStance, #yRetain your hand at the end of each turn." ]
+},
+"theDuelist:Chaotic": {
+        "NAME": "Chaotic",
+        "DESCRIPTIONS": ["In this #yStance, at the start of turn, switch to another random #yStance." ]
+},
+"theDuelist:Samurai": {
+        "NAME": "Samurai",
+        "DESCRIPTIONS": ["Upon exiting this #yStance, gain #b2 #yDexterity." ]
+},
+"theDuelist:Forsaken": {
+        "NAME": "Forsaken",
+        "DESCRIPTIONS": ["In this #yStance, discard a random card at the end of turn." ]
+},
+"theDuelist:Spectral": {
+        "NAME": "Spectral",
+        "DESCRIPTIONS": ["In this #yStance, #yWarriors deal double damage and #yExhaust when played." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

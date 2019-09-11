@@ -38,6 +38,7 @@ public class CelticGuardian extends DuelistCard
         this.baseDamage = this.damage = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);        
+        this.tags.add(Tags.WARRIOR);
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;

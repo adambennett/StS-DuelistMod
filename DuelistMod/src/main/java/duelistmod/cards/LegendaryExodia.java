@@ -39,6 +39,7 @@ public class LegendaryExodia extends DuelistCard
     public LegendaryExodia() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.EXODIA);
         this.tags.add(Tags.EXODIA_DECK);
 		this.exodiaDeckCopies = 1;

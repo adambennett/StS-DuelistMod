@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.watcher.FollowUpAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,10 +9,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
@@ -42,21 +43,28 @@ public class AlphaMagnet extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LIMITED);
         this.tags.add(Tags.MAGNET);
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
         this.originalName = this.name;
         this.isSummon = true;
+    }
+    
+    @Override
+    public void triggerOnGlowCheck() {
+        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
+            this.gColor = GlowColor.GOLD;
+        }
+        else {
+            this.gColor = GlowColor.BLUE;
+        }
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	//summon(p, this.summons, this);
     	summon();
-    	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
     	attack(m, AFX, this.damage);
+    	this.addToBot(new FollowUpAction());
+    	if (!p.hasPower(AlphaMagPower.POWER_ID)) { applyPowerToSelf(new AlphaMagPower(p, p)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -70,9 +78,7 @@ public class AlphaMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
-            this.exhaust = true;
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(4); }
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

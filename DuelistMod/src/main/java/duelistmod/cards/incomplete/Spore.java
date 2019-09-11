@@ -36,6 +36,7 @@ public class Spore extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT);
@@ -48,6 +49,7 @@ public class Spore extends DuelistCard
     	incMaxSummons(p, getXEffect());
     	summon(p, getXEffect(), this);    	
     	useXEnergy();
+    	if (this.upgraded) { gainTempHP(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.
@@ -64,14 +66,6 @@ public class Spore extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic)
-        	{
-        		this.upgradeSummons(2);
-        	}
-        	else
-        	{
-        		this.upgradeSummons(1);
-        	}
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

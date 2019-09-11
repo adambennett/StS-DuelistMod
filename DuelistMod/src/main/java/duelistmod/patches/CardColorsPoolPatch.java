@@ -1,15 +1,6 @@
 package duelistmod.patches;
-import java.util.ArrayList;
 
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
-
-import basemod.abstracts.CustomPlayer;
-import duelistmod.*;
-import duelistmod.helpers.*;
-
-
+/*
 @SpirePatch(
 		clz = CustomPlayer.class,
 		method = "getCardPool"
@@ -39,4 +30,5 @@ public class CardColorsPoolPatch
 		}
 	}
 }
+*/
 

@@ -40,6 +40,7 @@ public class GilfordLegend extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 4;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.summons = this.baseSummons = 4;
         this.magicNumber = this.baseMagicNumber = 4;
         this.secondMagic = this.baseSecondMagic = 1;

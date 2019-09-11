@@ -42,6 +42,7 @@ public class ExodiaNecross extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 2;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.EXODIA);
         this.tags.add(Tags.EXODIA_DECK);
         this.exodiaDeckCopies = 2;

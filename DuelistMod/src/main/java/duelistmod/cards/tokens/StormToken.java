@@ -53,7 +53,7 @@ public class StormToken extends TokenCard
     	AbstractCard randPower = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.POWER);
     	if (randPower.cost > 0)
     	{
-    		randPower.modifyCostForTurn(-randPower.cost);
+    		randPower.setCostForTurn(-randPower.cost);
     		randPower.isCostModifiedForTurn = true;
     	}
     	addCardToHand(randPower);

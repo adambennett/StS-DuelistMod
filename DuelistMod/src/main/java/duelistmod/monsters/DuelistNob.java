@@ -62,6 +62,8 @@ public class DuelistNob extends AbstractMonster
         if (AbstractDungeon.ascensionLevel >= 3) {
             this.bashDmg = 8;
             this.rushDmg = 16;
+           
+            
         }
         else {
             this.bashDmg = 6;
@@ -77,7 +79,8 @@ public class DuelistNob extends AbstractMonster
     @Override
     public void takeTurn() {
         switch (this.nextMove) {
-            case 3: {
+            case 3: 
+            {
                 this.playSfx();
                 AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DuelistNob.DIALOG[0], 1.0f, 3.0f));
                 if (AbstractDungeon.ascensionLevel >= 18) {

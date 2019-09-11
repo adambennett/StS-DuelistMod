@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 
-public class OrbBottle extends AbstractPotion {
+public class OrbBottle extends OrbPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("OrbBottle");

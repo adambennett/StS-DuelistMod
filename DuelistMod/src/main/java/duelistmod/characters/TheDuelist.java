@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
@@ -22,6 +23,7 @@ import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
+import duelistmod.helpers.*;
 import duelistmod.orbs.Black;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MillenniumPuzzle;
@@ -142,10 +144,11 @@ public class TheDuelist extends CustomPlayer {
 
 	// Starting description and loadout
 	@Override
-	public CharSelectInfo getLoadout() {
-		return new CharSelectInfo(NAME,
-				DESCRIPTIONS[0],
-				STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
+	public CharSelectInfo getLoadout() 
+	{
+		return new CharSelectInfo(NAME,DESCRIPTIONS[0],
+				STARTING_HP, 
+				MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
 				getStartingDeck(), false);
 	}
 
@@ -156,7 +159,8 @@ public class TheDuelist extends CustomPlayer {
 
 		logger.info("Begin loading starter Deck Strings");
 
-		// Standard Deck (10 cards)
+		// The original standard deck from the earliest version of the mod
+		// Deprecated, deck is filled in DuelistMod with PostCreateStartingDeckSubscriber
 		retVal.add(SevenColoredFish.ID);
 		retVal.add(SevenColoredFish.ID);
 		retVal.add(GiantSoldier.ID);
@@ -171,15 +175,17 @@ public class TheDuelist extends CustomPlayer {
 		return retVal;
 	}
 
-	/*
+	
 	// Card Pool Patch 
 	@Override
 	public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool)
 	{
-		//tmpPool = super.getCardPool(tmpPool);
+		tmpPool = super.getCardPool(tmpPool);
+		//tmpPool = new ArrayList<AbstractCard>();
 		if (DuelistMod.shouldFill)
 		{ 
-			PoolHelpers.fillColoredCards(); 
+			PoolHelpers.newFillColored();
+			BoosterPackHelper.setupPoolsForPacks();
 			DuelistMod.shouldFill = false;
 		}
 		else { PoolHelpers.coloredCardsHadCards(); }
@@ -192,7 +198,7 @@ public class TheDuelist extends CustomPlayer {
 		}
 		return tmpPool;
 	}
-	*/
+	
 
 	// Starting Relics	
 	@Override
@@ -227,8 +233,8 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public int getAscensionMaxHPLoss() 
 	{
-		if (DuelistMod.challengeMode) { return 20; }
-		else { return 15; }
+		if (DuelistMod.challengeMode) { return 15; }
+		else { return 10; }
 	}
 
 	// Should return the card color enum to be associated with your character.
@@ -240,7 +246,7 @@ public class TheDuelist extends CustomPlayer {
 	// Should return a color object to be used to color the trail of moving cards
 	@Override
 	public Color getCardTrailColor() {
-		return Colors.DEFAULT_GRAY;
+		return Colors.CARD_GRAY;
 	}
 
 	// Should return a BitmapFont object that you can use to customize how your
@@ -278,14 +284,14 @@ public class TheDuelist extends CustomPlayer {
 	// Should return a Color object to be used to color the miniature card images in run history.
 	@Override
 	public Color getCardRenderColor() {
-		return Colors.DEFAULT_PURPLE;
+		return Colors.CARD_PURPLE;
 	}
 
 	// Should return a Color object to be used as screen tint effect when your
 	// character attacks the heart.
 	@Override
 	public Color getSlashAttackColor() {
-		return Colors.DEFAULT_PURPLE;
+		return Colors.CARD_PURPLE;
 	}
 
 	// Should return an AttackEffect array of any size greater than 0. These effects
@@ -293,8 +299,15 @@ public class TheDuelist extends CustomPlayer {
 	// Attack effects are the same as used in DamageAction and the like.
 	@Override
 	public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
-		return new AbstractGameAction.AttackEffect[] {
-				AbstractGameAction.AttackEffect.FIRE };
+		return new AbstractGameAction.AttackEffect[] 
+				{
+						AbstractGameAction.AttackEffect.FIRE,
+						AbstractGameAction.AttackEffect.BLUNT_HEAVY,
+						AbstractGameAction.AttackEffect.POISON,
+						AbstractGameAction.AttackEffect.BLUNT_LIGHT,
+						AbstractGameAction.AttackEffect.FIRE,
+						AbstractGameAction.AttackEffect.SLASH_HEAVY
+				};
 	}
 
 	// Should return a string containing what text is shown when your character is
@@ -313,6 +326,9 @@ public class TheDuelist extends CustomPlayer {
 		return DESCRIPTIONS[3];
 	}
 
+	// Fills in the cut up image slideshow during the Heart victory animation sequence
+	// I guess the first one plays a sound effect when the image appears on screen? 
+	// Idk this is copied from someone, Slimebound perhaps
 	@Override
 	public List<CutscenePanel> getCutscenePanels() {
 		List<CutscenePanel> panels = new ArrayList<CutscenePanel>();
@@ -322,6 +338,7 @@ public class TheDuelist extends CustomPlayer {
 		return panels;
 	}
 
+	// Used to load images in the character select screen
 	public static Texture GetCharacterPortrait(int id)
 	{
 	    Texture result;
@@ -336,5 +353,11 @@ public class TheDuelist extends CustomPlayer {
 	    }
 	
 	    return result;
+	}
+
+	@Override
+	public String getPortraitImageName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

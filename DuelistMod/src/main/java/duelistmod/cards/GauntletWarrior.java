@@ -41,6 +41,7 @@ public class GauntletWarrior extends DuelistCard
         this.tributes = this.baseTributes = 1;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.misc = 0;
         this.originalName = this.name;
     }

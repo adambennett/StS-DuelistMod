@@ -44,6 +44,7 @@ public class BusterBladerDDS extends DuelistCard
         this.baseDamage = this.damage = 30;
         this.magicNumber = this.baseMagicNumber = 7;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 4; 

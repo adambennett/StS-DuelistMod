@@ -6,12 +6,16 @@ import java.util.function.Predicate;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.fourthWarriors.*;
+import duelistmod.cards.typecards.*;
 import duelistmod.relics.*;
 
 public class Util
@@ -152,6 +156,66 @@ public class Util
 		items.add(new MillenniumNecklace());
 		items.add(new MillenniumToken());
 		return items.get(AbstractDungeon.relicRng.random(items.size() - 1));
+	}
+	
+	public static AbstractCard getRandomBambooSword()
+	{
+		ArrayList<AbstractCard> swords = new ArrayList<AbstractCard>();
+		swords.add(new BambooSwordBroken());
+		swords.add(new BambooSwordBurning());
+		swords.add(new BambooSwordCursed());
+		swords.add(new BambooSwordGolden());
+		swords.add(new BambooSwordSoul());
+		return swords.get(AbstractDungeon.cardRandomRng.random(swords.size() - 1));
+	}
+	
+	public static AbstractCard getRandomBambooSword(boolean upgraded)
+	{
+		ArrayList<AbstractCard> swords = new ArrayList<AbstractCard>();
+		swords.add(new BambooSwordBroken());
+		swords.add(new BambooSwordBurning());
+		swords.add(new BambooSwordCursed());
+		swords.add(new BambooSwordGolden());
+		swords.add(new BambooSwordSoul());
+		AbstractCard sword = swords.get(AbstractDungeon.cardRandomRng.random(swords.size() - 1));
+		if (upgraded && sword.canUpgrade()) { sword.upgrade(); }
+		return sword;
+	}
+	
+	public static ArrayList<DuelistCard> getStanceChoices(boolean allowMeditative, boolean allowDivinity, boolean allowChaotic, boolean allowDuelist, boolean allowBaseGame)
+	{
+		ArrayList<DuelistCard> stances = new ArrayList<DuelistCard>();
+		if (allowDuelist)
+		{
+			stances.add(new ChooseSpectralCard());
+			stances.add(new ChooseSamuraiCard());
+			stances.add(new ChooseGuardedCard());
+			stances.add(new ChooseForsakenCard());
+			if (allowMeditative) { stances.add(new ChooseMeditativeCard()); }
+			if (allowChaotic) { stances.add(new ChooseChaoticCard()); }
+		}
+		if (allowBaseGame)
+		{
+			stances.add(new ChooseWrathCard());
+			stances.add(new ChooseCalmCard());			
+			if (allowDivinity) { stances.add(new ChooseDivinityCard()); }
+		}
+		return stances;
+	}
+	
+	public static ArrayList<DuelistCard> getStanceChoices(boolean allowMeditative, boolean allowDivinity, boolean allowChaotic)
+	{
+		return getStanceChoices(allowMeditative, allowDivinity, allowChaotic, true, true);
+	}
+	
+	public static ArrayList<DuelistCard> getStanceChoices(boolean allowDivinity, boolean allowChaotic)
+	{
+		return getStanceChoices(true, allowDivinity, allowChaotic, true, true);
+	}
+	
+	public static ArrayList<DuelistCard> getStanceChoices()
+	{
+		return getStanceChoices(true, false, false, true, true);
 	}
 	
 	public static void removeRelicFromPools(AbstractRelic relic)

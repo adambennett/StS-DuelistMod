@@ -39,6 +39,7 @@ public class JudgeMan extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseDamage = this.damage = DAMAGE;
 		this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
 		this.tags.add(Tags.ORIGINAL_RESUMMON_DECK);
         this.startingOPRDeckCopies = 1;
 		this.misc = 0;

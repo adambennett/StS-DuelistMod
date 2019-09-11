@@ -38,7 +38,6 @@ public class HammerShot extends DuelistCard
     	this.baseMagicNumber = this.magicNumber = 2;
     	this.damage = this.baseDamage = 0;
     	this.isMultiDamage = true;
-    	this.isMultiDamage = true;
     	this.tags.add(Tags.SPELL);
     	this.originalName = this.name;
     }

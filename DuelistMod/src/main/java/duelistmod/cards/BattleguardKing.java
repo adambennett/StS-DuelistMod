@@ -40,6 +40,7 @@ public class BattleguardKing extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
     }

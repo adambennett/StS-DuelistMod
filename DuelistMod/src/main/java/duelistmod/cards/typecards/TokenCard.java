@@ -29,7 +29,7 @@ public class TokenCard extends DuelistCard
 		super.update();
 		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumToken.ID) && this.cost > 0)
 		{
-			this.modifyCostForTurn(-this.cost);
+			this.setCostForTurn(-this.cost);
 			this.isCostModifiedForTurn = true;
 		}
 	}

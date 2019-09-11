@@ -6,9 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -27,7 +26,7 @@ public class SuperheavyOgre extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -42,8 +41,6 @@ public class SuperheavyOgre extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.REDUCED);
-        this.magicNumber = this.baseMagicNumber = 5;
 		this.originalName = this.name;
 		this.isSummon = true;
     }
@@ -54,13 +51,11 @@ public class SuperheavyOgre extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	if (p.hasPower(DexterityPower.POWER_ID))
+    	if (p.stance.ID.equals("theDuelist:Samurai"))
     	{
-    		if (p.getPower(DexterityPower.POWER_ID).amount >= this.magicNumber)
-    		{
-    			DuelistCard.drawRare(1, CardRarity.RARE);
-    		}
+    		DuelistCard.drawRare(1, CardRarity.RARE);
     	}
+    	
     }
 
     // Which card to return when making a copy of this card.
@@ -74,8 +69,7 @@ public class SuperheavyOgre extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(-2);
-            this.upgradeDamage(2);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

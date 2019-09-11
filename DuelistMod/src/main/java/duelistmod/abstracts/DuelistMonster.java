@@ -2,12 +2,14 @@ package duelistmod.abstracts;
 
 import java.util.*;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.colorless.Trip;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -116,7 +118,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		Util.log(this.name + " new hand index:" + this.handIndex);
 		return newHand;
 	}
-	
+
 	public void drawNewHand()
 	{
 		if (this.hasPower(EnemyMiraclePower.POWER_ID))
@@ -478,6 +480,43 @@ public abstract class DuelistMonster extends AbstractMonster
 	
 	private void takeCardAction(AbstractCard c)
 	{
+		if (c instanceof DarkCubicLord)
+		{
+			tribute(7, false, false, false);
+			DuelistCard ref = new DarkCubicLord();
+			DuelistCard.applyPower(new StrengthPower(this, ref.magicNumber), this);
+		}
+		
+		if (c instanceof Overworked)
+		{
+			
+		}
+		
+		if (c instanceof MeteorDestruction)
+		{
+			
+		}
+		
+		if (c instanceof Trip)
+		{
+			
+		}
+		
+		if (c instanceof SummonedSkull)
+		{
+			
+		}
+		
+		if (c instanceof ForbiddenLance)
+		{
+			
+		}
+		
+		if (c instanceof ObeliskTormentor)
+		{
+			
+		}
+		
 		if (c instanceof BlueEyesToon)
 		{
 			tribute(2, true, true, false);
@@ -538,6 +577,7 @@ public abstract class DuelistMonster extends AbstractMonster
 			DuelistCard ref = new GiantSoldierSteel();
 			summon("Giant Steel Soldier", ref.summons);
 			block(ref.block);
+			AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(this, this, ref.magicNumber));
 		}
 		
 		if (c instanceof Illusionist)
@@ -552,11 +592,6 @@ public abstract class DuelistMonster extends AbstractMonster
 		}
 		
 		if (c instanceof MangaRyuRan)
-		{
-			
-		}
-		
-		if (c instanceof MeteorDestruction)
 		{
 			
 		}
@@ -591,11 +626,6 @@ public abstract class DuelistMonster extends AbstractMonster
 		}
 		
 		if (c instanceof NeoMagic)
-		{
-			
-		}
-		
-		if (c instanceof ObeliskTormentor)
 		{
 			
 		}

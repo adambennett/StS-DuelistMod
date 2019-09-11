@@ -40,9 +40,10 @@ public class Zombyra extends DuelistCard
         this.baseDamage = this.damage = 11;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.originalName = this.name;
         this.isSummon = true;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 3;
     }
 
     // Actions the card should do.

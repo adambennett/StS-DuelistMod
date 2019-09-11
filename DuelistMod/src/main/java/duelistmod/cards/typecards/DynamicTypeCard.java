@@ -11,8 +11,10 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.AddCardTagsToListAction;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.DarkCrusader;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.tokens.*;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.incomplete.RockSunrisePower;
@@ -96,6 +98,13 @@ public class DynamicTypeCard extends DuelistCard
     		//while (getAllMonsterTypes(randMon).size() != 1 || !getAllMonsterTypes(randMon).contains(tagSave)) { randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave); }
     		tribute(p, 1, false, randMon);
     		if (DuelistMod.debug) { DuelistMod.logger.info("Tribute Token just called tribute with this randomly generated monster: " + randMon.originalName + " :: and tagSave was: " + tagSave.toString()); }
+    	}
+    	
+    	if (this.callCard instanceof DarkCrusader)
+    	{
+    		if (this.tagSave.equals(Tags.WARRIOR)) { summon(p, this.magicNumber, new WarriorToken()); }
+    		else if (this.tagSave.equals(Tags.SUPERHEAVY)) { summon(p, this.magicNumber, new SuperheavyToken()); }
+    		else { Util.log("How'd you choose something besides Warrior or Superheavy for Dark Crusader??"); }
     	}
     	
     	if (this.callCard instanceof RainbowGravity)

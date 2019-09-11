@@ -32,13 +32,13 @@ public class SuperheavySoulpiercer extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SuperheavySoulpiercer() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 1;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.misc = 0;

@@ -1,12 +1,14 @@
 package duelistmod.cards;
 
+import com.megacrit.cardcrawl.actions.utility.ExhaustToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
@@ -26,36 +28,39 @@ public class SuperheavyScales extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
+	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 1;
-	private static final int BLOCK = 5;
+	private static final int COST = 0;
+	private static final int BLOCK = 3;
 	private static final int SUMMONS = 1;
 	// /STAT DECLARATION/
 
 	public SuperheavyScales() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.baseBlock = this.block = BLOCK;
+		this.magicNumber = this.baseMagicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SUPERHEAVY);
 		this.tags.add(Tags.GOOD_TRIB);
-		this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 2;
-		this.setupStartingCopies();
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;
 		this.isSummon = true;
+		this.exhaust = true;
 	}
+	
+    @Override
+    public void triggerExhaustedCardsOnStanceChange(final AbstractStance newStance) {
+        this.addToBot(new ExhaustToHandAction(this));
+    }
 
 	// Actions the card should do.
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		summon(p,  this.summons, this);
-		block(this.block);
-		block(this.block);
+		for (int i = 0; i < this.magicNumber; i++) { block(this.block); }
 	}
 
 	// Which card to return when making a copy of this card.
@@ -69,7 +74,7 @@ public class SuperheavyScales extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBlock(3);
+			this.upgradeBlock(2);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

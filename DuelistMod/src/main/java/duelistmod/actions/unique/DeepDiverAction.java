@@ -103,7 +103,7 @@ public class DeepDiverAction extends AbstractGameAction
 		    			else
 		    			{
 		    				int gridCardBaseCost = gridCard.cost;
-		    				gridCard.modifyCostForTurn(-gridCard.cost + randomNum);
+		    				gridCard.setCostForTurn(-gridCard.cost + randomNum);
 		    				if (randomNum != gridCardBaseCost) { gridCard.isCostModifiedForTurn = true; }
 		    			}
 		    		}       

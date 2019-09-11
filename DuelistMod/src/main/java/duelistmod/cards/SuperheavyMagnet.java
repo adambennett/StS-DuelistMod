@@ -1,18 +1,16 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -30,53 +28,43 @@ public class SuperheavyMagnet extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
-    private static final int BLOCK = 12;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public SuperheavyMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = BLOCK;
+        this.baseBlock = this.block = 15;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.REDUCED);
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 3;
+		this.baseMagicNumber = this.magicNumber = 2;
+		this.secondMagic = this.baseSecondMagic = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int magnets = 0;
-    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	if (tributeList.size() > 0)
+    	
+    	tribute();
+    	applyPowerToSelf(new MantraPower(p, this.magicNumber));
+    	for (int i = 0; i < this.secondMagic; i++)
     	{
-	    	for (DuelistCard c : tributeList)
+	    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
+	    	switch (randomMagnetNum)
 	    	{
-	    		if (c.hasTag(Tags.MAGNET))
-	    		{
-	    			magnets++;
-	    		}
+	    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
+	    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
+	    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
+	    		default: applyPowerToSelf(new BetaMagPower(p, p));
 	    	}
     	}
-    	block(this.block);
-    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
-    	switch (randomMagnetNum)
-    	{
-    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
-    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
-    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
-    		default: applyPowerToSelf(new BetaMagPower(p, p));
-    	}
-    	
-    	if (magnets > 0)
-    	{
-    		applyPowerToSelf(new DexterityPower(p, magnets));
-    	}
+    
     }
 
     // Which card to return when making a copy of this card.
@@ -90,7 +78,7 @@ public class SuperheavyMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

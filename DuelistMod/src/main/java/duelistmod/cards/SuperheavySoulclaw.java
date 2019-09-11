@@ -25,7 +25,7 @@ public class SuperheavySoulclaw extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 3;
@@ -33,7 +33,7 @@ public class SuperheavySoulclaw extends DuelistCard
 
     public SuperheavySoulclaw() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 1;
         this.baseBlock = this.block = 8;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
@@ -62,7 +62,7 @@ public class SuperheavySoulclaw extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

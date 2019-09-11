@@ -201,7 +201,7 @@ public class CreatorIncarnateAction extends AbstractGameAction
 		    			}
 		    			else
 		    			{
-		    				gridCard.modifyCostForTurn(-gridCard.cost + randomNum);
+		    				gridCard.setCostForTurn(-gridCard.cost + randomNum);
 			    			gridCard.isCostModifiedForTurn = true;
 		    			}
 		    		}       

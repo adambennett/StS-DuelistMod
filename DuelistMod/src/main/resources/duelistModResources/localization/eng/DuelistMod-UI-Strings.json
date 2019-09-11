@@ -166,5 +166,11 @@
       " and ",
       "Stuff."
     ]
+  },
+  "theDuelist:theDuelist:ActFourText": {
+    "TEXT": [
+      "Duelist Kingdom",
+	  "Placeholder"
+    ]
   }
 }

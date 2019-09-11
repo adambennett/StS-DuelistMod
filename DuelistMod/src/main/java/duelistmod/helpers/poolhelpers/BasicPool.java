@@ -242,6 +242,7 @@ public class BasicPool
 		DuelistMod.basicCards.add(new Metronome());
 		DuelistMod.basicCards.add(new OneForOne());
 		DuelistMod.basicCards.add(new OrbMetronome());
+		DuelistMod.basicCards.add(new Overworked());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }

@@ -50,6 +50,7 @@ public class BusterBlader extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PHARAOH_SERVANT);
         this.tags.add(Tags.OP_DRAGON_DECK);
+        this.tags.add(Tags.WARRIOR);
         this.startingOPDragDeckCopies = 1;
         this.misc = 0;
         this.originalName = this.name;

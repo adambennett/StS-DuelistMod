@@ -42,6 +42,7 @@ public class TwilightRoseKnight extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXEMPT);  
         this.tags.add(Tags.ROSE);
+        this.tags.add(Tags.WARRIOR);
         this.summons = this.baseSummons = 1;
         this.damage = this.baseDamage = 10;	
         this.originalName = this.name;

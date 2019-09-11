@@ -8,10 +8,10 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.orbs.Earth;
 
-public class EarthBottle extends AbstractPotion {
+public class EarthBottle extends OrbPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("EarthBottle");

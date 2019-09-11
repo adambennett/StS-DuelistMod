@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.*;
-import duelistmod.helpers.GridSort;
+import duelistmod.helpers.*;
 import duelistmod.variables.Strings;
 
 public class CardSelectScreenResummonAction extends AbstractGameAction
@@ -97,7 +97,8 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			{
 				AbstractCard gridCard = card.makeStatEquivalentCopy();
 				if (this.upgrade) { gridCard.upgrade(); }
-				if (randomTarget) { this.target = AbstractDungeon.getRandomMonster(); }
+				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
+				if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
 	    		if (damageBlockRandomize)
 	    		{
 	    			if (gridCard.damage > 0)
@@ -166,10 +167,18 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 					if (c instanceof DuelistCard && this.resummon && this.target != null)
 					{
 						DuelistCard.fullResummon((DuelistCard)c, false, this.target, false);
+						Util.log("CardSelectScreenResummonAction :: fullResummon triggered with " + c.name);
 					}
 					else if (c instanceof DuelistCard && !this.resummon && this.target != null)
 					{
 						DuelistCard.playNoResummon((DuelistCard)c, false, this.target, false);
+						Util.log("CardSelectScreenResummonAction :: playNoResummon triggered with " + c.name);
+					}
+					
+					else if (this.target == null)
+					{
+						Util.log("BIGGEST BADDEST GUYY cmon GUY getout");
+						DuelistCard.fullResummon((DuelistCard)c, false, AbstractDungeon.getRandomMonster(), false);
 					}
 				}
 			}

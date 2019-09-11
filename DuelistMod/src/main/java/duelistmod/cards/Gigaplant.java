@@ -38,12 +38,11 @@ public class Gigaplant extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXEMPT);
-        this.tags.add(Tags.ALL);
         this.tags.add(Tags.PLANT);
         this.tags.add(Tags.GOOD_TRIB);
         this.tributes = this.baseTributes = 3;
 		this.originalName = this.name;
-		this.baseMagicNumber = this.magicNumber = 1;
+		this.baseMagicNumber = this.magicNumber = 8;
 		this.misc = 0;
     }
 
@@ -52,8 +51,8 @@ public class Gigaplant extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	applyPower(new PoisonPower(m, p, 10), m);
-    	AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(this.magicNumber, true, m, this.uuid));
+    	applyPower(new PoisonPower(m, p, this.magicNumber), m);
+    	AbstractDungeon.actionManager.addToBottom(new PlayRandomFromDiscardAction(1, true, m, this.uuid));
     }
 
     // Which card to return when making a copy of this card.
@@ -67,8 +66,7 @@ public class Gigaplant extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
-            this.tributes = 2;
+            this.upgradeMagicNumber(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -416,7 +416,7 @@
       "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Spellcaster, Superheavy, Toon, and Zombie)."
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Spellcaster, Superheavy, Toon, Warrior, and Zombie)."
   },
   {
     "PROPER_NAME": "Exodia",
@@ -569,6 +569,62 @@
 	  "erupt"
     ],   
     "DESCRIPTION": "#yErupt effects are triggered on all cards in your hand whenever you #yEvoke any #yLava orbs."
+  },
+  {
+  "PROPER_NAME": "Warrior",
+    "NAMES": [
+      "Warrior",
+	  "warrior"
+    ],   
+    "DESCRIPTION": "The first time you #yTribute a #yWarrior for another #yWarrior each combat, choose any #yStance to enter."
+  },
+  {
+  "PROPER_NAME": "Samurai",
+    "NAMES": [
+      "Samurai",
+	  "samurai"
+    ],   
+    "DESCRIPTION": "Upon exiting this #yStance, gain #b2 #yDexterity."
+  },
+  {
+  "PROPER_NAME": "Guarded",
+    "NAMES": [
+      "Guarded",
+	  "guarded"
+    ],   
+    "DESCRIPTION": "When you enter this stance, gain #b1 #yBlur. Upon exiting this stance, gain #yBlock equal to your #yDexterity."
+  },
+  {
+  "PROPER_NAME": "Meditative",
+    "NAMES": [
+      "Meditative",
+	  "meditative"
+    ],   
+    "DESCRIPTION": "While in this stance, you receive #b20% more damage. Upon exiting this stance, gain #yVigor equal to twice your #yDexterity."
+  },
+  {
+  "PROPER_NAME": "Chaotic",
+    "NAMES": [
+      "Chaotic",
+	  "chaotic"
+    ],   
+    "DESCRIPTION": "In this #yStance, at the start of turn, switch to another random #yStance."
+  },
+  {
+  "PROPER_NAME": "Forsaken",
+    "NAMES": [
+      "Forsaken",
+	  "forsaken"
+    ],   
+    "DESCRIPTION": "In this #yStance, whenever you #yExhaust a card, deal damage equal to your #yDexterity to ALL enemies."
+  },
+  {
+  "PROPER_NAME": "Spectral",
+    "NAMES": [
+      "Spectral",
+	  "spectral"
+    ],   
+    "DESCRIPTION": "In this #yStance, #yWarriors deal double damage and you cannot #yBlock."
   },
   {
     "PROPER_NAME": "Gate",

@@ -37,13 +37,14 @@ public class FlameSwordsman extends DuelistCard
 
     public FlameSwordsman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 15;
+        this.baseDamage = this.damage = 14;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
+        this.tags.add(Tags.WARRIOR);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 2;
-        this.baseMagicNumber = this.magicNumber = 5;
+        this.tributes = this.baseTributes = 4;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
     
     @Override
@@ -71,7 +72,7 @@ public class FlameSwordsman extends DuelistCard
     	{
 	    	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-	        this.upgradeDamage(5);
+	        this.upgradeDamage(4);
 	        this.rawDescription = UPGRADE_DESCRIPTION;
 	        this.initializeDescription();       
     	}

@@ -38,6 +38,7 @@ public class Mathematician extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 7;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.SPELLCASTER);
         this.originalName = this.name;
         this.isSummon = true;
         this.exhaust = true;

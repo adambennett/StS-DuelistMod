@@ -41,6 +41,7 @@ public class LegendaryFlameLord extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 10;
         this.secondMagic = this.baseSecondMagic = 5;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.SPELLCASTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
     }

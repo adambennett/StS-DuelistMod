@@ -35,7 +35,7 @@ public class SuperheavySoulbuster extends DuelistCard
     public SuperheavySoulbuster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.damage = this.baseDamage = 6;
+        this.damage = this.baseDamage = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.tags.add(Tags.MAGNET_DECK);
@@ -43,6 +43,7 @@ public class SuperheavySoulbuster extends DuelistCard
 		this.setupStartingCopies();
         this.misc = 0;
 		this.originalName = this.name;
+		this.selfRetain = true;
     }
 
     // Actions the card should do.
@@ -50,6 +51,7 @@ public class SuperheavySoulbuster extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
+    	attack(m, this.baseAFX, this.damage);
     	attack(m, this.baseAFX, this.damage);
     }
 

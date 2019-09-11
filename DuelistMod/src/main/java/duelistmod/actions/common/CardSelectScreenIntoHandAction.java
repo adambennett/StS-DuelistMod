@@ -182,7 +182,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		    			else
 		    			{
 		    				int gridCardCost = gridCard.cost;
-		    				gridCard.modifyCostForTurn(-gridCard.cost + randomNum);
+		    				gridCard.setCostForTurn(-gridCard.cost + randomNum);
 		    				if (randomNum != gridCardCost) { gridCard.isCostModifiedForTurn = true; }
 		    			}
 		    		}       

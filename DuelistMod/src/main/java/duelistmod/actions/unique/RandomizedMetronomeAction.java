@@ -95,10 +95,10 @@ public class RandomizedMetronomeAction extends AbstractGameAction
     		
     		if (c.magicNumber > 0)
     		{
-    			int roll = AbstractDungeon.cardRandomRng.random(1, 4);
+    			int roll = AbstractDungeon.cardRandomRng.random(1, 5);
     			if (roll == 1)
     			{
-    				int randomNum = AbstractDungeon.cardRandomRng.random(1, 3);
+    				int randomNum = AbstractDungeon.cardRandomRng.random(0, 2);
     				c.magicNumber = c.baseMagicNumber += randomNum;  
     				Util.log("MetronomeRelicD modified the magic number of " + c.name);
     			}

@@ -38,6 +38,7 @@ public class ArmorBreaker extends DuelistCard
     public ArmorBreaker() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.summons = this.baseSummons = 3;
         this.originalName = this.name;
     }

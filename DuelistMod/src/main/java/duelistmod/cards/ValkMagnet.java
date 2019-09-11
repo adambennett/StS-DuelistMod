@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,10 +10,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -29,40 +31,35 @@ public class ValkMagnet extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
     private static final int COST = 1;
-    private static final int DAMAGE = 60;
-    private static final int SUMMONS = 3;
     // /STAT DECLARATION/
 
     public ValkMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = DAMAGE;
+        this.baseDamage = this.damage = 30;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
         this.tags.add(Tags.EXEMPT);
 		this.originalName = this.name;
-		this.summons = this.baseSummons = SUMMONS;
-        this.isSummon = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
-    	attackAllEnemies(this.damage);
-    	
-    	// Remove magnets
-    	if (!this.upgraded)
+    	if (p.hasPower(AlphaMagPower.POWER_ID) && p.hasPower(BetaMagPower.POWER_ID) && p.hasPower(GammaMagPower.POWER_ID))
     	{
+        	attackAllEnemies(this.damage);
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, AlphaMagPower.POWER_ID, 1));
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, BetaMagPower.POWER_ID, 1));
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, GammaMagPower.POWER_ID, 1));
+        	ArrayList<DuelistCard> stances = Util.getStanceChoices(true, true, true);
+        	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(stances, 1, false, false, false, true));
     	}
     }
 
@@ -77,7 +74,7 @@ public class ValkMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName(); 
-            //this.upgradeBaseCost(1);
+            this.upgradeDamage(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

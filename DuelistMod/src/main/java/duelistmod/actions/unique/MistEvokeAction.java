@@ -31,8 +31,8 @@ public class MistEvokeAction extends com.megacrit.cardcrawl.actions.AbstractGame
 
 		if (this.duration == 0.1F)
 		{
-			this.target.damageFlash = true;
-			this.target.damageFlashFrames = 4;
+			//this.target.damageFlash = true;
+			//this.target.damageFlashFrames = 4;
 			AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.POISON));
 		}
 

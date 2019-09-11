@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion.PotionRarity;
 
 import duelistmod.DuelistMod;
@@ -71,19 +71,23 @@ public class ForbiddenChalice extends DuelistCard
     			}
     		}
     		
-    		else if (p.potionSlots - p.potions.size() > 0)
-    		{
-    			for (int i = 0; i < p.potionSlots - p.potions.size(); i++)
-    			{
-    				AbstractPotion pot = AbstractDungeon.returnRandomPotion(PotionRarity.RARE, false);
-    				Util.log("Forbidden Chalice generated " + pot.name + " in the loop that indicated you did not have all empty slots before playing the card");
-    				p.obtainPotion(pot);
-    			}
-    		}
-    		
     		else
     		{
-    			Util.log("No potion slots were open for Forbidden Chalice");
+    			int pots = 0;
+    			for (AbstractPotion pot : p.potions) { if (!(pot instanceof PotionSlot)) { pots++; }}
+    			if (p.potionSlots - pots > 0)
+    			{
+	    			for (int i = 0; i < p.potionSlots - pots; i++)
+	    			{
+	    				AbstractPotion pot = AbstractDungeon.returnRandomPotion(PotionRarity.RARE, false);
+	    				Util.log("Forbidden Chalice generated " + pot.name + " in the loop that indicated you did not have all empty slots before playing the card");
+	    				p.obtainPotion(pot);
+	    			}
+    			}
+    			else
+    			{
+    				Util.log("No potion slots were open for Forbidden Chalice");
+    			}
     		}
     	}
     	else { Util.log("Forbidden Chalice found duplicates of something, so you didn't gain max hp or get some potions. Upgrading a copy of a card doesn't get you around this! NO DUPLICATES"); }

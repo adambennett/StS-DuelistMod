@@ -60,8 +60,8 @@ public class DarkfireDragon extends DuelistCard
     	{
     		if (!c.uuid.equals(this.uuid) && c.hasTag(Tags.DRAGON) && c.cost > 0)
     		{
-    			if (c.cost >= this.magicNumber) { c.modifyCostForTurn(-this.magicNumber); c.isCostModifiedForTurn = true; }
-    			else { c.modifyCostForTurn(-c.cost); c.isCostModifiedForTurn = true; }
+    			if (c.cost >= this.magicNumber) { c.setCostForTurn(-this.magicNumber); c.isCostModifiedForTurn = true; }
+    			else { c.setCostForTurn(-c.cost); c.isCostModifiedForTurn = true; }
     		}
     	}
     }

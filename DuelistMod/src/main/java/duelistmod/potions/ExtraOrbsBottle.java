@@ -8,8 +8,9 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.OrbPotion;
 
-public class ExtraOrbsBottle extends AbstractPotion {
+public class ExtraOrbsBottle extends OrbPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("ExtraOrbsBottle");

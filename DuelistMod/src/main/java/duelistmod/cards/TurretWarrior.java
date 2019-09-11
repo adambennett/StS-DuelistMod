@@ -36,6 +36,7 @@ public class TurretWarrior extends DuelistCard
     public TurretWarrior() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.summons = this.baseSummons = 2;
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;

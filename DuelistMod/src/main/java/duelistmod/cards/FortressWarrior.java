@@ -42,6 +42,7 @@ public class FortressWarrior extends DuelistCard
         this.tributes = this.baseTributes = 2;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.misc = 0;
         this.originalName = this.name;
     }

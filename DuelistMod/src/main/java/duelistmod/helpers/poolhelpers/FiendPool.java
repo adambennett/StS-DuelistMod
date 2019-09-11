@@ -159,6 +159,7 @@ public class FiendPool
 		fiendCards.add(new UmbralHorrorWilloWisp());
 		fiendCards.add(new UmbralHorrorUniform());
 		fiendCards.add(new DarkHunter());
+		fiendCards.add(new DarkCubicLord());
 		fiendDeck.fillPoolCards(fiendCards);		
 		fiendDeck.fillArchetypeCards(fiendCards);
 		DuelistMod.archetypeCards.addAll(fiendCards);

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -45,8 +46,8 @@ public class SteamTrainKing extends DuelistCard
         this.tags.add(Tags.ALL);
         this.originalName = this.name;
         this.exhaust = true;
-        this.tributes = this.baseTributes = 3;
         this.isMultiDamage = true;
+        this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.
@@ -54,12 +55,15 @@ public class SteamTrainKing extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
+    	int dmgFallback = 0;
     	ArrayList<AbstractCard> toDiscard = new ArrayList<AbstractCard>();
     	for (AbstractCard c : AbstractDungeon.player.drawPile.group)
     	{
     		if (c.hasTag(Tags.MONSTER))
 			{
     			toDiscard.add(c);
+    			dmgFallback += c.baseDamage;
+    			Util.log("incrementing Steam Train King dmgFallback value, new value=" + dmgFallback);
 			}
     	}
     	for (AbstractCard c : toDiscard)
@@ -71,6 +75,11 @@ public class SteamTrainKing extends DuelistCard
     	if (this.damage > 0)
     	{
     		 AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HEAVY));
+    	}
+    	else if (dmgFallback > 0)
+    	{
+    		attackAllEnemies(dmgFallback);
+    		Util.log("Triggering fallback code for Steam Train King - should at least damage the enemies properly, but maybe vulnerable and stuff like that is applied incorrectly");
     	}
     }
     

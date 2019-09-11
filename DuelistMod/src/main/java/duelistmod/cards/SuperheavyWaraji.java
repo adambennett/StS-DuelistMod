@@ -5,9 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -35,13 +34,17 @@ public class SuperheavyWaraji extends DuelistCard
     public SuperheavyWaraji() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 2;
-        this.dex = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
-        this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = this.dex;
-        this.baseBlock = this.block = 5;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseBlock = this.block = 6;
 		this.originalName = this.name;
+		this.selfRetain = true;
+    }
+    
+    @Override
+    public void onRetained() {
+        this.upgradeBlock(this.magicNumber);
     }
 
     // Actions the card should do.
@@ -49,7 +52,6 @@ public class SuperheavyWaraji extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	applyPowerToSelf(new DexterityPower(p, this.magicNumber));
     	block(this.block);
     }
 
@@ -64,8 +66,8 @@ public class SuperheavyWaraji extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            //this.upgradeBaseCost(1);
             this.upgradeMagicNumber(1);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

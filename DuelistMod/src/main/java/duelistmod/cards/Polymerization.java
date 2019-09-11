@@ -19,11 +19,15 @@ public class Polymerization extends DuelistCard
 {
     // TEXT DECLARATION
     public static final String ID = DuelistMod.makeID("Polymerization");
+    public static final String IDB = DuelistMod.makeID("PredaPolymerization");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    private static final CardStrings cardStringsB = CardCrawlGame.languagePack.getCardStrings(IDB);
     public static final String IMG = DuelistMod.makePath(Strings.POLYMERIZATION);
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
+    public static final String DESCRIPTIONB = cardStringsB.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String UPGRADE_DESCRIPTIONB = cardStringsB.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
@@ -32,12 +36,13 @@ public class Polymerization extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
+    private boolean preda = false;
     // /STAT DECLARATION/
 
-    public Polymerization() {
+    public Polymerization() 
+    {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.ALL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.EXODIA_DECK);
         this.exodiaDeckCopies = 1;
@@ -46,6 +51,22 @@ public class Polymerization extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
         this.setupStartingCopies();
+    }
+    
+    // For Predaplant Chimerafflesia
+    public Polymerization(boolean predaCham) 
+    {
+        super(ID, NAME, IMG, COST,  DESCRIPTIONB, TYPE, COLOR, RARITY, TARGET);
+        this.tags.add(Tags.SPELL);
+        this.misc = 0;
+        this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.preda = true;
+        this.purgeOnUse = true;
+        this.isEthereal = true;	  
+        this.modifyCostForCombat(-cost);
+        this.isCostModified = true;   
+        this.initializeDescription();
     }
 
     // Actions the card should do.
@@ -75,7 +96,8 @@ public class Polymerization extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.exhaust = false;
-			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
+            if (this.preda) { exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTIONB); }
+            else { exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); }
         }
     }
 

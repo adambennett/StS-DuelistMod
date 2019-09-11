@@ -3,6 +3,8 @@ package duelistmod.helpers;
 import java.util.*;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.screens.GameOverStat;
 
 import duelistmod.DuelistMod;
 
@@ -78,6 +80,7 @@ public class BonusDeckUnlockHelper
 			this.played_all_gods_in_combat = false;
 			checkUnlocks();
 		}*/
+		//AbstractDungeon.victoryScreen.stats.add(new GameOverStat("", null, "10"));
 	}
 	
 	public void checkUnlocks()

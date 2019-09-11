@@ -28,7 +28,7 @@ public class BetaMagnet extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -36,13 +36,9 @@ public class BetaMagnet extends DuelistCard
 
     public BetaMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 5;
+        this.baseBlock = this.block = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
-        this.tags.add(Tags.LIMITED);
-        this.tags.add(Tags.MAGNET_DECK);
-		this.superheavyDeckCopies = 1;
-		this.setupStartingCopies();
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
     }
@@ -52,12 +48,9 @@ public class BetaMagnet extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	
-    	// Gain Beta Magnet
     	if (!p.hasPower(BetaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p))); }
-    	
-    	// Gain block
-    	gainTempHP(this.magicNumber);
+    	block();
+    	exitStance();
     }
 
     // Which card to return when making a copy of this card.
@@ -71,9 +64,7 @@ public class BetaMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
-            this.exhaust = true;
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(4); }
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -138,19 +129,12 @@ public class BetaMagnet extends DuelistCard
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var)
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p)));
-    	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
+		
 	}
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {
-		AbstractPlayer p = AbstractDungeon.player;
-		summon(p, summons, this);
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new BetaMagPower(p, p)));
-    	AbstractDungeon.actionManager.addToTop(new GainBlockAction(p, p, this.block));
-		
+
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -55,6 +56,7 @@ public class KaibaA1 extends DuelistMonster
 		ArrayList<String> dialog = new ArrayList<String>();
 		for (String s : DIALOG) { dialog.add(s); }
 		this.setupDialog(dialog);
+		this.type = EnemyType.ELITE;
 		this.cardDialogMin = 3;
 		this.cardDialogMax = 8;
 		this.startingToken = "Dragon Token";

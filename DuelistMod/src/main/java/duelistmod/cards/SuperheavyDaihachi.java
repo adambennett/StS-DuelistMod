@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -28,19 +30,17 @@ public class SuperheavyDaihachi extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SuperheavyDaihachi() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 3;
-        this.exhaust = true;
+        this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
-        this.tags.add(Tags.REDUCED);
-		this.tags.add(Tags.ARCANE);
         this.baseMagicNumber = this.magicNumber = 2;
-        this.baseBlock = this.block = 11;
+        this.secondMagic = this.baseSecondMagic = 8;
+        this.baseBlock = this.block = 9;
 		this.originalName = this.name;
     }
 
@@ -49,7 +49,10 @@ public class SuperheavyDaihachi extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	for (int i = 0; i < this.magicNumber; i++) { block(this.block); }
+    	if (p.stanceName == AbstractStance.StanceName.WRATH) { block(this.block + this.secondMagic); }
+    	else { block(); }
+    	if (p.stance.ID.equals("theDuelist:Samurai")) { applyPowerToSelf(new DexterityPower(p, this.magicNumber)); }
+    	if (p.stance.ID.equals("theDuelist:Guarded")) { gainTempHP(this.secondMagic); }
     }
 
     // Which card to return when making a copy of this card.
@@ -61,29 +64,18 @@ public class SuperheavyDaihachi extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (canUpgrade()) {
+        if (!upgraded) {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(2);
+            this.upgradeTributes(1);
+            this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (timesUpgraded < 2)
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
-    }
-    
- // If player doesn't have enough summons, can't play card
+
+    // If player doesn't have enough summons, can't play card
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {

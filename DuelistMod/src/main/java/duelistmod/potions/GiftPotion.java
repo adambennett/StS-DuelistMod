@@ -19,7 +19,7 @@ public class GiftPotion extends AbstractPotion {
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
     
-    private int healAmt = 6;
+    private int healAmt = 4;
 
     public GiftPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
@@ -61,7 +61,7 @@ public class GiftPotion extends AbstractPotion {
     public void upgradePotion()
     {
       this.potency += 2;
-      this.healAmt += 3;
+      this.healAmt += 2;
       this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.healAmt + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));

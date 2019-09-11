@@ -37,7 +37,6 @@ public class GravityBlaster extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
-        this.isMultiDamage = true;
 		this.originalName = this.name;
 		this.baseDamage = this.damage = 10;
 		this.exhaust = true;

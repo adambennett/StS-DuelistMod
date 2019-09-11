@@ -54,7 +54,7 @@ public class SlateWarrior extends DuelistCard
 		tribute(p, this.tributes, false, this);		
 		for (AbstractCard c : p.discardPile.group)
 		{
-			c.modifyCostForTurn(-c.cost);
+			c.setCostForTurn(-c.cost);
 			c.isCostModifiedForTurn = true;
 		}
 	}

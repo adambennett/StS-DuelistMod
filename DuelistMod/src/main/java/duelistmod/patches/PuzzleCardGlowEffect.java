@@ -10,7 +10,7 @@ import basemod.ReflectionHacks;
 import duelistmod.abstracts.DuelistCard;
 
 public class PuzzleCardGlowEffect {
-	@SpirePatch(clz = CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR)
+	@SpirePatch(clz = CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez={ AbstractCard.class})
 	public static class CardGlowPatch {
 		public static void Postfix(CardGlowBorder __instance, AbstractCard c) 
 		{

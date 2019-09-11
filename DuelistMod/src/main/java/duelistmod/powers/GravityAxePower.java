@@ -33,7 +33,7 @@ public class GravityAxePower extends AbstractPower
         this.img = new Texture(IMG);
         this.isTurnBased = false;
         this.type = PowerType.DEBUFF;
-        if (owner.hasPower(StrengthPower.POWER_ID)) { int startStr = owner.getPower(StrengthPower.POWER_ID).amount; this.FINAL_STRENGTH = startStr; }
+        if (owner.hasPower(StrengthPower.POWER_ID)) { int startStr = owner.getPower(StrengthPower.POWER_ID).amount + strGain; this.FINAL_STRENGTH = startStr; }
         else { this.FINAL_STRENGTH = strGain; DuelistMod.gravAxeStr = strGain; }
         this.updateDescription();
     }

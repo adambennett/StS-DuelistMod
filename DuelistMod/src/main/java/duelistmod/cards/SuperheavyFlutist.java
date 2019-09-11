@@ -6,12 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -33,7 +32,7 @@ public class SuperheavyFlutist extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int BLOCK = 8;
+    private static final int BLOCK = 5;
     private static final int SUMMONS = 1;
     // /STAT DECLARATION/
 
@@ -55,6 +54,7 @@ public class SuperheavyFlutist extends DuelistCard
     {
     	summon(p,  this.summons, this);
     	block(this.block);
+    	changeToRandomStance(true, false);
     }
 
     // Which card to return when making a copy of this card.
@@ -68,7 +68,7 @@ public class SuperheavyFlutist extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(4);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -1,18 +1,15 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -33,12 +30,11 @@ public class CannonSoldier extends DuelistCard
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private static final int DAMAGE = 5;
     // /STAT DECLARATION/
 
     public CannonSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.METAL_RAIDERS);
@@ -51,7 +47,7 @@ public class CannonSoldier extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new CannonPower(p, 1, 1), 1));
+    	applyPowerToSelf(new CannonPower(p, this.magicNumber, 1));
     }
 
 

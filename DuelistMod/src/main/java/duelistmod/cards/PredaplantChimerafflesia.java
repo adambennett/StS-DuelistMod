@@ -10,10 +10,9 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import basemod.ReflectionHacks;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -61,27 +60,22 @@ public class PredaplantChimerafflesia extends DuelistCard
     {
     	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
+    	boolean tributedPreda = false;
     	if (tributeList.size() > 0)
     	{
     		for (DuelistCard c : tributeList)
     		{
     			if (c.hasTag(Tags.PREDAPLANT))
     			{
-    				DuelistCard poly = new Polymerization();
-    				if (poly.cost > 0) 
-    				{ 
-    					poly.modifyCostForCombat(-poly.cost);
-    					poly.isCostModified= true;
-    				}
-    				poly.purgeOnUse = true;
-    				poly.rawDescription = DuelistMod.purgeString + c.rawDescription;
-		            poly.initializeDescription();
-    				addCardToHand(poly);
+    				tributedPreda = true;
+    				break;
     			}
-    			else
-    			{
-    				if (DuelistMod.debug) { System.out.println("tributed something non predplant: " + c.originalName); }
-    			}
+    		}
+    		
+    		if (tributedPreda)
+    		{
+    			DuelistCard poly = new Polymerization(true);
+				addCardToHand(poly);
     		}
     	}
     }
