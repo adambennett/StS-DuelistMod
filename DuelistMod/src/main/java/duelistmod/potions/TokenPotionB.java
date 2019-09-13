@@ -55,7 +55,9 @@ public class TokenPotionB extends AbstractPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-        return 4;
+    	int pot = 4;
+    	if (AbstractDungeon.player == null) { return pot; }
+        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
     
     public void upgradePotion()

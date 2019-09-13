@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.deprecated.DEPRECATEDSerenityPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.CommanderSwordsPower;
 import duelistmod.variables.Tags;
 
 public class CommanderSwords extends DuelistCard 
@@ -43,7 +43,7 @@ public class CommanderSwords extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.addToBot(new ApplyPowerAction(p, p, new DEPRECATEDSerenityPower(p, this.magicNumber), this.magicNumber));
+    	this.addToBot(new ApplyPowerAction(p, p, new CommanderSwordsPower(p, p, this.magicNumber), this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

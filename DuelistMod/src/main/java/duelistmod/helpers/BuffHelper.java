@@ -173,6 +173,7 @@ public class BuffHelper {
 		AbstractPower flameTiger = new FlameTigerPower(p, p);
 		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
 		AbstractPower exodia = new ExodiaPower();
+		AbstractPower oniPower = new OniPower(p, p, 1);
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
@@ -183,7 +184,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC, hello
+					naturia, jambreedC, hello, oniPower
 			};
 		}
 		else
@@ -195,7 +196,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia
+					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
 			};
 		}
 		for (AbstractPower a : buffs)
@@ -256,6 +257,7 @@ public class BuffHelper {
 		AbstractPower flameTiger = new FlameTigerPower(p, p);
 		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
 		AbstractPower exodia = new ExodiaPower();
+		AbstractPower oniPower = new OniPower(p, p, 1);		
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
@@ -266,7 +268,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC, hello
+					naturia, jambreedC, hello, oniPower
 			};
 		}
 		else
@@ -278,7 +280,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia
+					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
 			};
 		}
 		for (AbstractPower a : buffs)

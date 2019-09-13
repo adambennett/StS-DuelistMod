@@ -14,8 +14,7 @@ import duelistmod.patches.AbstractStanceEnum;
 
 public class Spectral extends DuelistStance
 {
-	private static long sfxId;
-
+	
 	public Spectral()
 	{
 		this.ID = "theDuelist:Spectral";
@@ -24,8 +23,7 @@ public class Spectral extends DuelistStance
 		this.updateDescription();
 	}
 
-	static { Spectral.sfxId = -1L; }
-
+	
 	@Override
 	public void updateDescription() 
 	{
@@ -55,8 +53,6 @@ public class Spectral extends DuelistStance
 	public void onEnterStance() 
 	{
 		AbstractDungeon.player.stanceName = this.stanceName;
-		CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-		sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 	}
 	
@@ -72,11 +68,7 @@ public class Spectral extends DuelistStance
 	@Override
 	public void stopIdleSfx() 
 	{
-		if (Spectral.sfxId != -1L) 
-		{
-			CardCrawlGame.sound.stop("STANCE_LOOP_CALM", Spectral.sfxId);
-			Spectral.sfxId = -1L;
-		}
+		
 	}
 
 }

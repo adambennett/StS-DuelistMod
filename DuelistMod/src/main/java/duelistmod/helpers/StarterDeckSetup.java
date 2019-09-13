@@ -86,8 +86,8 @@ public class StarterDeckSetup {
 	public static void initStarterDeckPool()
 	{
 		if (StarterDeckSetup.getCurrentDeck().getIndex() > 18 && StarterDeckSetup.getCurrentDeck().getIndex() < 27) { BasicPool.ascendedBasics(); }
-		else if (DuelistMod.smallBasicSet) { BasicPool.smallBasic(); }
-		else { BasicPool.fullBasic(); }
+		else if (DuelistMod.smallBasicSet) { BasicPool.smallBasic(); Util.log("Reduced Basic Set"); }
+		else { BasicPool.fullBasic(); Util.log("Full Basic Set"); }
 		
 		// Standard -- Card Pool defined in poolhelper file
 		if (DuelistMod.setIndex == 0) { standardFill(); }

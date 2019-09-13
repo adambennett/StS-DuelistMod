@@ -250,7 +250,7 @@
       "Consumer",
 	  "consumer"
     ],   
-    "DESCRIPTION": "#yOrb: At the end of turn, Evoke another random orb. NL #yEvoke: For each orb Evoked by this orb's passive effect, gain #b2 Energy at the start of the next turn."
+    "DESCRIPTION": "#yOrb: Whenever you #yExhaust a card, #yEvoke another random orb. NL #yEvoke: For each orb Evoked by this orb's passive effect, gain #b2 Energy at the start of the next turn."
   },
   {
     "PROPER_NAME": "Gadget",
@@ -579,12 +579,36 @@
     "DESCRIPTION": "The first time you #yTribute a #yWarrior for another #yWarrior each combat, choose any #yStance to enter."
   },
   {
+  "PROPER_NAME": "Unstable",
+    "NAMES": [
+      "Unstable",
+	  "unstable"
+    ],   
+    "DESCRIPTION": "While in this #yStance, you take #b40% more damage."
+  },
+  {
+  "PROPER_NAME": "Entrenched",
+    "NAMES": [
+      "Entrenched",
+	  "entrenched"
+    ],   
+    "DESCRIPTION": "In this #yStance, #ySuperheavy cards have a low chance to apply #yPlated #yArmor or #yMetallicize when played."
+  },
+  {
+  "PROPER_NAME": "Nimble",
+    "NAMES": [
+      "Nimble",
+	  "nimble"
+    ],   
+    "DESCRIPTION": "In this #yStance, whenever you play a card, have a #b25% chance to reduce the cost of a random card in your hand by #b1 for the turn."
+  },
+  {
   "PROPER_NAME": "Samurai",
     "NAMES": [
       "Samurai",
 	  "samurai"
     ],   
-    "DESCRIPTION": "Upon exiting this #yStance, gain #b2 #yDexterity."
+    "DESCRIPTION": "In this #yStance, #yBlock from cards is improved by #b3. Upon exiting this #yStance, gain #b1 #yDexterity."
   },
   {
   "PROPER_NAME": "Guarded",
@@ -600,7 +624,7 @@
       "Meditative",
 	  "meditative"
     ],   
-    "DESCRIPTION": "While in this stance, you receive #b20% more damage. Upon exiting this stance, gain #yVigor equal to twice your #yDexterity."
+    "DESCRIPTION": "Upon exiting this stance, gain #yVigor equal to twice your #yDexterity."
   },
   {
   "PROPER_NAME": "Chaotic",

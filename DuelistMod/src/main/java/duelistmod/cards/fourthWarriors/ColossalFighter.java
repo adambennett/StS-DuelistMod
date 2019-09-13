@@ -36,8 +36,8 @@ public class ColossalFighter extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 9;
-        this.tributes = this.baseTributes = 3;
+        this.baseDamage = this.damage = 8;
+        this.tributes = this.baseTributes = 2;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
@@ -63,7 +63,7 @@ public class ColossalFighter extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeTributes(-1);
+        	this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

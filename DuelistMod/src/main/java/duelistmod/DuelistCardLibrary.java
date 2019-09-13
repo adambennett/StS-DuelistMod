@@ -828,14 +828,22 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new MagnumShield());
 		DuelistMod.myCards.add(new WarriorReturningAlive());
 		DuelistMod.myCards.add(new CommanderSwords());
-		//DuelistMod.myCards.add(new CubicKarma());
+		DuelistMod.myCards.add(new CubicKarma());
 		DuelistMod.myCards.add(new FightingSpirit());
 		DuelistMod.myCards.add(new Flint());
 		DuelistMod.myCards.add(new GridRod());
-		//DuelistMod.myCards.add(new ReinforceTruth());
-		//DuelistMod.myCards.add(new SpiritForce());
-		//DuelistMod.myCards.add(new WeaponChange());		
+		DuelistMod.myCards.add(new ReinforceTruth());
+		DuelistMod.myCards.add(new SpiritForce());
+		DuelistMod.myCards.add(new WeaponChange());		
 		DuelistMod.myCards.add(new Sogen());	
+		//DuelistMod.myCards.add(new Abaki());	
+		DuelistMod.myCards.add(new GreenGraveOni());			
+		DuelistMod.myCards.add(new PurplePainOni());	
+		DuelistMod.myCards.add(new BrilliantSpark());	
+		DuelistMod.myCards.add(new WhiteNinja());	
+		DuelistMod.myCards.add(new CyberRaider());	
+		DuelistMod.myCards.add(new SatelliteCannon());	
+		DuelistMod.myCards.add(new MaxWarrior());	
 		
 		//DuelistMod.myCards.add(new WightLady());			
 		

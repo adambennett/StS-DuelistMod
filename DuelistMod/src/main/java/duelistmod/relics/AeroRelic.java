@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.helpers.StarterDeckSetup;
 
 public class AeroRelic extends CustomRelic {
 
@@ -21,6 +22,14 @@ public class AeroRelic extends CustomRelic {
 
 	public AeroRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+	}
+	
+	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Spellcaster Deck")) { return true; }
+		else { return false; }
 	}
 
 	// Description

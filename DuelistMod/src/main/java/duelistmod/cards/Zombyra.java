@@ -37,7 +37,7 @@ public class Zombyra extends DuelistCard
 
     public Zombyra() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 11;
+        this.baseDamage = this.damage = 12;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);

@@ -41,7 +41,7 @@ public class FengshengMirror extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.exhaust = true;
-        this.baseDamage = this.damage = 15;
+        this.baseDamage = this.damage = 20;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
     }
@@ -69,7 +69,7 @@ public class FengshengMirror extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(5);
+        	this.upgradeDamage(6);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

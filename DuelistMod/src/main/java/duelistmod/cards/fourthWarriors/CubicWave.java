@@ -1,8 +1,10 @@
 package duelistmod.cards.fourthWarriors;
 
+import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -36,14 +38,14 @@ public class CubicWave extends DuelistCard
         this.originalName = this.name;
         this.selfRetain = true;
         this.tags.add(Tags.SPELL);
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		DuelistCard.discardTop(this.magicNumber, false);
+    	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, this.magicNumber, false, false, false));
 		changeStanceInst(new Chaotic());
     }
 

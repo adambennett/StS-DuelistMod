@@ -25,6 +25,10 @@ public abstract class DuelistStance extends AbstractStance
     
     public abstract void updateDescription();
     
+    public void onShuffle() { }
+    
+    public void onAddCardToHand(AbstractCard c) { }
+    
     public void atStartOfTurn() {
     }
     
@@ -34,8 +38,14 @@ public abstract class DuelistStance extends AbstractStance
     public void onEnterStance() {
     }
     
+    public void onDrawCard(AbstractCard drawnCard) { }
+    
+    public void onLoseBlock(int amt) { }
+    
     public void onExitStance() {
     }
+    
+    public void onGainDex(int amount) { }
     
     public void onExhaust(final AbstractCard c) { }
     
@@ -106,6 +116,12 @@ public abstract class DuelistStance extends AbstractStance
             }
             case CHAOTIC: {
             	return new Chaotic();
+            }            
+            case ENTRENCHED: {
+            	return new Entrenched();
+            }
+            case NIMBLE: {
+            	return new Nimble();
             }
             default: {
                 Util.log("[ERROR] Unknown stance: " + name.name() + " called for in getStanceFromName()");
@@ -125,6 +141,8 @@ public abstract class DuelistStance extends AbstractStance
         CHAOTIC,
         SPECTRAL,
         MEDITATIVE,
+        ENTRENCHED,
+        NIMBLE,
         NONE;
     }
 }

@@ -3,7 +3,6 @@ package duelistmod.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -17,8 +16,7 @@ import duelistmod.patches.AbstractStanceEnum;
 
 public class Meditative extends DuelistStance
 {
-	private static long sfxId;
-
+	
 	public Meditative()
 	{
 		this.ID = "theDuelist:Meditative";
@@ -27,20 +25,20 @@ public class Meditative extends DuelistStance
 		this.updateDescription();
 	}
 
-	static { Meditative.sfxId = -1L; }
-
 	@Override
 	public void updateDescription() 
 	{
-		this.description = "While in this stance, you receive #b20% more damage. Upon exiting this stance, gain #yVigor equal to twice your #yDexterity.";
+		this.description = "Upon exiting this stance, gain #yVigor equal to twice your #yDexterity.";
 	}
 	
+	/*
 	public float atDamageReceive(final float damage, final DamageInfo.DamageType damageType) {
 		if (damageType == DamageInfo.DamageType.NORMAL) {
             return damage * 1.2f;
         }
         return damage;
     }
+    */
 
 	@Override
 	public void updateAnimation() {
@@ -65,8 +63,6 @@ public class Meditative extends DuelistStance
 	public void onEnterStance() 
 	{
 		AbstractDungeon.player.stanceName = this.stanceName;
-		CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-		sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 	}
 
@@ -84,11 +80,7 @@ public class Meditative extends DuelistStance
 	@Override
 	public void stopIdleSfx() 
 	{
-		if (Meditative.sfxId != -1L) 
-		{
-			CardCrawlGame.sound.stop("STANCE_LOOP_CALM", Meditative.sfxId);
-			Meditative.sfxId = -1L;
-		}
+		
 	}
 
 }

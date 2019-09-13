@@ -39,14 +39,16 @@ public class GuardianOrder extends DuelistCard
         this.originalName = this.name;
         this.baseBlock = this.block = 0;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.tributes = this.baseTributes = 3;
+        this.baseTributes = this.tributes = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
     }
 
     @Override
-    public void use(final AbstractPlayer p, final AbstractMonster m) {
+    public void use(final AbstractPlayer p, final AbstractMonster m) 
+    {
+    	tribute();
         this.addToBot(new GainBlockAction(p, p, this.block));
     }
     

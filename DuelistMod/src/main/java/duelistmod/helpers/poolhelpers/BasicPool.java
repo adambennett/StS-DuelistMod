@@ -111,6 +111,9 @@ public class BasicPool
 		toReturn.add(new MillenniumScorpion());
 		toReturn.add(new Metronome());
 		toReturn.add(new OrbMetronome());
+		toReturn.add(new Jinzo());
+		toReturn.add(new OneForOne());
+		
 		
 		// megatype pool cards
 		toReturn.add(new KamionTimelord());
@@ -243,6 +246,8 @@ public class BasicPool
 		DuelistMod.basicCards.add(new OneForOne());
 		DuelistMod.basicCards.add(new OrbMetronome());
 		DuelistMod.basicCards.add(new Overworked());
+		DuelistMod.basicCards.add(new Jinzo());
+		DuelistMod.basicCards.add(new YellowBelliedOni());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }
@@ -282,8 +287,8 @@ public class BasicPool
 		DuelistMod.basicCards = new ArrayList<AbstractCard>();		
 		//DuelistMod.basicCards.add(new CastleWalls());
 		//DuelistMod.basicCards.add(new CelticGuardian());
-		DuelistMod.basicCards.add(new Cloning());		
-		DuelistMod.basicCards.add(new DarkFactory());
+		//DuelistMod.basicCards.add(new Cloning());		
+		//DuelistMod.basicCards.add(new DarkFactory());
 		//DuelistMod.basicCards.add(new DarkHole());
 		//DuelistMod.basicCards.add(new DarkMirrorForce());
 		//DuelistMod.basicCards.add(new Fissure());
@@ -291,29 +296,29 @@ public class BasicPool
 		DuelistMod.basicCards.add(new FortressWarrior());
 		DuelistMod.basicCards.add(new GaiaFierce());
 		DuelistMod.basicCards.add(new GoldenApples());
-		DuelistMod.basicCards.add(new HammerShot());
+		//DuelistMod.basicCards.add(new HammerShot());
 		DuelistMod.basicCards.add(new HaneHane());
 		//DuelistMod.basicCards.add(new HarpieFeather());
 		//DuelistMod.basicCards.add(new HeavyStorm());
-		DuelistMod.basicCards.add(new Hinotama());
+		//DuelistMod.basicCards.add(new Hinotama());
 		DuelistMod.basicCards.add(new ImperialOrder());
 		//DuelistMod.basicCards.add(new JudgeMan());
-		DuelistMod.basicCards.add(new Kuriboh());
+		//DuelistMod.basicCards.add(new Kuriboh());
 		DuelistMod.basicCards.add(new LabyrinthWall());
 		DuelistMod.basicCards.add(new Mausoleum());
 		//DuelistMod.basicCards.add(new MirrorForce());
-		DuelistMod.basicCards.add(new MillenniumShield());
+		//DuelistMod.basicCards.add(new MillenniumShield());
 		DuelistMod.basicCards.add(new ObeliskTormentor());
 		//DuelistMod.basicCards.add(new FeatherPho());
 		//DuelistMod.basicCards.add(new PotAvarice());
 		//DuelistMod.basicCards.add(new PotForbidden());
-		DuelistMod.basicCards.add(new PotDichotomy());
+		//DuelistMod.basicCards.add(new PotDichotomy());
 		DuelistMod.basicCards.add(new PotGenerosity());
-		DuelistMod.basicCards.add(new PotGreed());
+		//DuelistMod.basicCards.add(new PotGreed());
 		DuelistMod.basicCards.add(new PreventRat());
 		//DuelistMod.basicCards.add(new RadiantMirrorForce());
 		DuelistMod.basicCards.add(new Raigeki());
-		DuelistMod.basicCards.add(new Sangan());
+		//DuelistMod.basicCards.add(new Sangan());
 		//DuelistMod.basicCards.add(new Scapegoat());
 		DuelistMod.basicCards.add(new ScrapFactory());
 		DuelistMod.basicCards.add(new ShardGreed());
@@ -324,12 +329,11 @@ public class BasicPool
 		//DuelistMod.basicCards.add(new Terraforming());
 		//DuelistMod.basicCards.add(new BigFire());
 		//DuelistMod.basicCards.add(new UltimateOffering());
-		//DuelistMod.basicCards.add(new ValkMagnet());
 		DuelistMod.basicCards.add(new Wiretap());
-		DuelistMod.basicCards.add(new Mathematician());
-		DuelistMod.basicCards.add(new BattleOx());
+		//DuelistMod.basicCards.add(new Mathematician());
+		//DuelistMod.basicCards.add(new BattleOx());
 		DuelistMod.basicCards.add(new FluteKuriboh());
-		//DuelistMod.basicCards.add(new WingedKuriboh());
+		DuelistMod.basicCards.add(new WingedKuriboh());
 		//DuelistMod.basicCards.add(new CastleDarkIllusions());
 		DuelistMod.basicCards.add(new ChangeHeart());
 		//DuelistMod.basicCards.add(new JamBreeding());
@@ -339,29 +343,29 @@ public class BasicPool
 		DuelistMod.basicCards.add(new BattleFootballer());
 		//DuelistMod.basicCards.add(new EarthquakeGiant());
 		//DuelistMod.basicCards.add(new EvilswarmHeliotrope());
-		DuelistMod.basicCards.add(new WormApocalypse());
+		//DuelistMod.basicCards.add(new WormApocalypse());
 		//DuelistMod.basicCards.add(new WormBarses());
 		//DuelistMod.basicCards.add(new WormWarlord());
 		//DuelistMod.basicCards.add(new WormKing());
 		//DuelistMod.basicCards.add(new GauntletWarrior());		
 		DuelistMod.basicCards.add(new GaiaMidnight());		
 		//DuelistMod.basicCards.add(new GilfordLegend());
-		//DuelistMod.basicCards.add(new ReinforcementsArmy());
-		DuelistMod.basicCards.add(new BlockGolem());
-		DuelistMod.basicCards.add(new DokiDoki());
-		DuelistMod.basicCards.add(new GiantSoldierSteel());
-		DuelistMod.basicCards.add(new RainbowJar());
+		DuelistMod.basicCards.add(new ReinforcementsArmy());
+		//DuelistMod.basicCards.add(new BlockGolem());
+		//DuelistMod.basicCards.add(new DokiDoki());
+		//DuelistMod.basicCards.add(new GiantSoldierSteel());
+		//DuelistMod.basicCards.add(new RainbowJar());
 		DuelistMod.basicCards.add(new WingedKuriboh9());
 		//DuelistMod.basicCards.add(new WingedKuriboh10());
-		DuelistMod.basicCards.add(new MagicalStone());
+		//DuelistMod.basicCards.add(new MagicalStone());
 		//DuelistMod.basicCards.add(new Kuribohrn());
 		//DuelistMod.basicCards.add(new DropOff());
 		DuelistMod.basicCards.add(new GiantRex());
 		DuelistMod.basicCards.add(new PowerGiant());
-		//DuelistMod.basicCards.add(new RainbowBridge());
+		DuelistMod.basicCards.add(new RainbowBridge());
 		DuelistMod.basicCards.add(new EarthGiant());
-		DuelistMod.basicCards.add(new RainbowKuriboh());
-		DuelistMod.basicCards.add(new ClearKuriboh());
+		//DuelistMod.basicCards.add(new RainbowKuriboh());
+		//DuelistMod.basicCards.add(new ClearKuriboh());
 		//DuelistMod.basicCards.add(new Linkuriboh());
 		//DuelistMod.basicCards.add(new GiantTrapHole());
 		DuelistMod.basicCards.add(new BigEye());
@@ -369,24 +373,29 @@ public class BasicPool
 		DuelistMod.basicCards.add(new RainbowOverdragon());
 		//DuelistMod.basicCards.add(new RainbowGravity());
 		//DuelistMod.basicCards.add(new RainbowLife());
-		DuelistMod.basicCards.add(new SilverApples());
+		//DuelistMod.basicCards.add(new SilverApples());
 		DuelistMod.basicCards.add(new DarklordSuperbia());	
 		DuelistMod.basicCards.add(new LightningVortex());
-		DuelistMod.basicCards.add(new BlackPendant());	
+		//DuelistMod.basicCards.add(new BlackPendant());	
 		//DuelistMod.basicCards.add(new LightningRodLord());	
 		DuelistMod.basicCards.add(new ForbiddenLance());
 		//DuelistMod.basicCards.add(new FutureFusion());
 		//DuelistMod.basicCards.add(new ElectromagneticShield());
 		//DuelistMod.basicCards.add(new Electrowhip());
-		DuelistMod.basicCards.add(new FuryFire());
+		//DuelistMod.basicCards.add(new FuryFire());
 		//DuelistMod.basicCards.add(new MudGolem());	
 		//DuelistMod.basicCards.add(new Mudora());	
 		//DuelistMod.basicCards.add(new MudragonSwamp());	
 		//DuelistMod.basicCards.add(new FlameTiger());
 		DuelistMod.basicCards.add(new MiraculousDescent());
 		DuelistMod.basicCards.add(new RockSunrise());
-		DuelistMod.basicCards.add(new UltraPolymerization());
+		//DuelistMod.basicCards.add(new UltraPolymerization());
+		DuelistMod.basicCards.add(new MillenniumScorpion());
+		//DuelistMod.basicCards.add(new Metronome());
+		DuelistMod.basicCards.add(new OneForOne());
 		DuelistMod.basicCards.add(new OrbMetronome());
+		//DuelistMod.basicCards.add(new Overworked());
+		DuelistMod.basicCards.add(new Jinzo());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { DuelistMod.basicCards.add(new TheCreator()); DuelistMod.basicCards.add(new DarkCreator()); }

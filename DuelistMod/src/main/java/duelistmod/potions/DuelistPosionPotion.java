@@ -62,7 +62,9 @@ public class DuelistPosionPotion extends AbstractPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-        return 12;
+    	int pot = 12;
+    	if (AbstractDungeon.player == null) { return pot; }
+        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
     
     public void upgradePotion()

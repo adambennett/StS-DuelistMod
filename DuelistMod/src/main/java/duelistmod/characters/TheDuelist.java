@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistOrb;
 import duelistmod.cards.*;
 import duelistmod.helpers.*;
 import duelistmod.orbs.Black;
@@ -140,7 +141,11 @@ public class TheDuelist extends CustomPlayer {
 		}
 	}
 	
-	
+	@Override
+	public void switchedStance() {
+		super.switchedStance();
+		for (AbstractOrb o : this.orbs) { if (o instanceof DuelistOrb) { ((DuelistOrb) o).onChangeStance(); }}
+	}
 
 	// Starting description and loadout
 	@Override

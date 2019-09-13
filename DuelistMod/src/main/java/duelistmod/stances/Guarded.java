@@ -15,8 +15,6 @@ import duelistmod.patches.AbstractStanceEnum;
 
 public class Guarded extends DuelistStance
 {
-	private static long sfxId;
-
 	public Guarded()
 	{
 		this.ID = "theDuelist:Guarded";
@@ -24,8 +22,6 @@ public class Guarded extends DuelistStance
 		this.stanceName = AbstractStanceEnum.GUARDED;
 		this.updateDescription();
 	}
-
-	static { Guarded.sfxId = -1L; }
 
 	@Override
 	public void updateDescription() 
@@ -56,8 +52,6 @@ public class Guarded extends DuelistStance
 	public void onEnterStance() 
 	{
 		AbstractDungeon.player.stanceName = this.stanceName;
-		CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-		sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 		DuelistCard.applyPowerToSelf(new BlurPower(AbstractDungeon.player, 1));
 	}
@@ -76,11 +70,7 @@ public class Guarded extends DuelistStance
 	@Override
 	public void stopIdleSfx() 
 	{
-		if (Guarded.sfxId != -1L) 
-		{
-			CardCrawlGame.sound.stop("STANCE_LOOP_CALM", Guarded.sfxId);
-			Guarded.sfxId = -1L;
-		}
+		
 	}
 
 }

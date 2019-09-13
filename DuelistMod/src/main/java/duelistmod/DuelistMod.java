@@ -956,7 +956,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 
 		// Rewards
-		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return new BoosterReward(rewardSave.amount);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0); });
+		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return new BoosterReward(rewardSave.amount, BoosterPackHelper.getGoldCostFromID(rewardSave.amount));}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0); });
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.METRONOME_PACK, (rewardSave) -> { return new MetronomeReward(rewardSave.amount);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((MetronomeReward)customReward).boosterID, 0); });
 		
 		// Debug
@@ -1166,6 +1166,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new MetronomeRelicB(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MetronomeRelicC(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MetronomeRelicD(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardRewardRelicI(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1186,7 +1187,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new Brimstone(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new SneckoSkull(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new PaperCrane(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new TheSpecimen(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new TheSpecimen(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Tingsha(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new ToughBandages(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new HoveringKite(), AbstractCardEnum.DUELIST);
@@ -1269,6 +1270,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(MetronomeRelicB.ID);
 		UnlockTracker.markRelicAsSeen(MetronomeRelicC.ID);
 		UnlockTracker.markRelicAsSeen(MetronomeRelicD.ID);
+		UnlockTracker.markRelicAsSeen(CardRewardRelicI.ID);
 		
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
@@ -1637,6 +1639,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public void receiveOnBattleStart(AbstractRoom arg0) 
 	{
 		warriorTribEffectsTriggeredThisCombat = 0;
+		warriorTribThisCombat = false;
 		lastTurnHP = AbstractDungeon.player.currentHealth;
 		secondLastTurnHP = lastTurnHP;
 		//if (!AbstractDungeon.player.hasRelic(NaturiaRelic.ID)) { naturiaDmg = 1; }
@@ -1789,6 +1792,17 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	{
 		if (power != null)
 		{
+			if (power.owner.equals(AbstractDungeon.player))
+			{
+				for (AbstractOrb o : AbstractDungeon.player.orbs)
+	            {
+	            	if (o instanceof DuelistOrb)
+	            	{
+	            		((DuelistOrb)o).onPowerApplied(power);
+	            	}
+	            }
+			}
+			
 			if (power instanceof PoisonPower)
 			{
 				poisonAppliedThisCombat+=power.amount;
@@ -1816,6 +1830,23 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			else if (power instanceof StrengthPower && power.amount < 1 && power.owner.equals(AbstractDungeon.player))
 			{
 				Util.log("Caught Strength application, but amount was less than 1 so we didn't trigger Metronomic Power");
+			}
+			
+			if (power instanceof DexterityPower && power.amount > 0 && power.owner.equals(AbstractDungeon.player))
+			{
+				if (AbstractDungeon.player.stance instanceof DuelistStance)
+				{
+					DuelistStance stance = (DuelistStance) AbstractDungeon.player.stance;
+					stance.onGainDex(power.amount);
+				}
+				
+				for (AbstractOrb o : AbstractDungeon.player.orbs)
+	            {
+	            	if (o instanceof DuelistOrb)
+	            	{
+	            		((DuelistOrb)o).onGainDex(power.amount);
+	            	}
+	            }
 			}
 		}
 	}
@@ -2356,6 +2387,19 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receivePostDraw(AbstractCard drawnCard) 
 	{
+		if (AbstractDungeon.player.stance instanceof DuelistStance)
+		{
+			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+			stance.onDrawCard(drawnCard);
+		}
+		
+		for (AbstractOrb o : AbstractDungeon.player.orbs)
+        {
+        	if (o instanceof DuelistOrb)
+        	{
+        		((DuelistOrb)o).onDrawCard(drawnCard);
+        	}
+        }
 		Smoke smoke = new Smoke();
 		secondLastCardDrawn = lastCardDrawn;
 		lastCardDrawn = drawnCard;
@@ -2516,6 +2560,20 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public int receiveOnPlayerLoseBlock(int arg0) 
 	{
+		if (AbstractDungeon.player.stance instanceof DuelistStance)
+		{
+			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
+			stance.onLoseBlock(arg0);
+		}
+		
+		for (AbstractOrb o : AbstractDungeon.player.orbs)
+        {
+        	if (o instanceof DuelistOrb)
+        	{
+        		((DuelistOrb)o).onLoseBlock(arg0);
+        	}
+        }
+		
 		return arg0;
 	}
 	

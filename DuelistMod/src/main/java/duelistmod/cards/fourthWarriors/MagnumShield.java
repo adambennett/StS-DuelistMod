@@ -35,6 +35,7 @@ public class MagnumShield extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.ARCANE);
         this.baseMagicNumber = this.magicNumber = 2;
         this.baseBlock = this.block = 8;
     }
@@ -57,15 +58,22 @@ public class MagnumShield extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (!upgraded)
+        if (canUpgrade())
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeMagicNumber(2);
         	this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber < 8) { return true; }
+    	else { return false; }
     }
 
 	@Override

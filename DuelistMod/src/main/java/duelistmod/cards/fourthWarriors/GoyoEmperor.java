@@ -38,7 +38,7 @@ public class GoyoEmperor extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseBlock = this.block = 12;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
@@ -61,7 +61,7 @@ public class GoyoEmperor extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(0);
+        	this.selfRetain = true;
         	this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -43,7 +43,7 @@ public class Sogen extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	applyPowerToSelf(new SogenPower(p, p));
-    	if (upgraded) { DuelistMod.warriorTribEffectsTriggeredThisCombat = 0; }
+    	if (upgraded) { DuelistMod.warriorTribEffectsTriggeredThisCombat = 0; DuelistMod.warriorTribThisCombat = false; }
     }
 
     // Which card to return when making a copy of this card.

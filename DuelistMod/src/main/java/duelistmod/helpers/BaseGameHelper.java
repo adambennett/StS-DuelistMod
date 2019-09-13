@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.purple.*;
 import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -16,7 +17,16 @@ public class BaseGameHelper
 		toFill.addAll(getAllIroncladCards());
 		toFill.addAll(getAllSilentCards());
 		toFill.addAll(getAllDefectCards());
+		toFill.addAll(getAllWatcherCards());
 		return toFill;
+	}
+	
+	public static AbstractCard getPurpleCard()
+	{
+		ArrayList<AbstractCard> purples = new ArrayList<AbstractCard>();
+		for (AbstractCard c : getAllWatcherCards()){ purples.add(c); }		
+		AbstractCard card = purples.get(AbstractDungeon.cardRandomRng.random(purples.size() - 1));
+		return card;
 	}
 	
 	public static AbstractCard getRedCard()
@@ -41,6 +51,88 @@ public class BaseGameHelper
 		for (AbstractCard c : getAllSilentCards()){ greens.add(c); }		
 		AbstractCard card = greens.get(AbstractDungeon.cardRandomRng.random(greens.size() - 1));
 		return card;
+	}
+	
+	public static ArrayList<AbstractCard> getAllWatcherCards()
+	{
+		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		toFill.add(new Adaptation());
+		toFill.add(new Alpha());
+		toFill.add(new BattleHymn());
+		toFill.add(new Blasphemy());
+		toFill.add(new BowlingBash());
+		toFill.add(new Brilliance());
+		toFill.add(new CarveReality());
+		toFill.add(new Clarity());
+		toFill.add(new CleanseEvil());
+		toFill.add(new ClearTheMind());
+		toFill.add(new Collect());
+		toFill.add(new Conclude());
+		toFill.add(new Consecrate());
+		toFill.add(new Crescendo());
+		toFill.add(new CrushJoints());
+		toFill.add(new CutThroughFate());
+		toFill.add(new DeceiveReality());
+		toFill.add(new DeusExMachina());
+		toFill.add(new DevaForm());
+		toFill.add(new Devotion());
+		toFill.add(new EmptyBody());
+		toFill.add(new EmptyFist());
+		toFill.add(new EmptyMind());
+		toFill.add(new Eruption());
+		toFill.add(new Establishment());
+		toFill.add(new Evaluate());
+		toFill.add(new Fasting());
+		toFill.add(new FearNoEvil());
+		toFill.add(new FlowState());
+		toFill.add(new FlurryOfBlows());
+		toFill.add(new FlyingSleeves());
+		toFill.add(new FollowUp());
+		toFill.add(new ForeignInfluence());
+		toFill.add(new Halt());
+		toFill.add(new InnerPeace());
+		toFill.add(new Judgement());
+		toFill.add(new JustLucky());
+		toFill.add(new LessonLearned());
+		toFill.add(new MasterReality());
+		toFill.add(new Meditate());
+		toFill.add(new MentalFortress());
+		toFill.add(new Metaphysics());
+		toFill.add(new Nirvana());
+		toFill.add(new Omniscience());
+		toFill.add(new PathToVictory());
+		toFill.add(new Perseverance());
+		toFill.add(new Pray());
+		toFill.add(new Prostrate());
+		toFill.add(new Protect());
+		toFill.add(new Ragnarok());
+		toFill.add(new ReachHeaven());
+		toFill.add(new Sanctity());
+		toFill.add(new SandsOfTime());
+		toFill.add(new Scrawl());
+		toFill.add(new SignatureMove());
+		//toFill.add(new SoothingAura());
+		toFill.add(new SpiritShield());
+		toFill.add(new StepAndStrike());
+		//toFill.add(new Stomp());
+		toFill.add(new Swivel());
+		toFill.add(new TalkToTheHand());
+		toFill.add(new Tantrum());
+		toFill.add(new ThirdEye());
+		//toFill.add(new Transcendence());
+		toFill.add(new Unraveling());
+		toFill.add(new Vault());
+		//toFill.add(new Vengeance());
+		toFill.add(new Vigilance());
+		toFill.add(new Wallop());
+		toFill.add(new WaveOfTheHand());
+		toFill.add(new Weave());
+		toFill.add(new WindmillStrike());
+		toFill.add(new Wireheading());
+		toFill.add(new Wish());
+		toFill.add(new Worship());
+		toFill.add(new WreathOfFlame());	
+		return toFill;
 	}
 	
 	public static ArrayList<AbstractCard> getAllIroncladCards()

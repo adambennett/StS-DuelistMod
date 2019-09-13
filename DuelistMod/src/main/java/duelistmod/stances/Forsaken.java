@@ -16,8 +16,7 @@ import duelistmod.patches.AbstractStanceEnum;
 
 public class Forsaken extends DuelistStance
 {
-	private static long sfxId;
-
+	
 	public Forsaken()
 	{
 		this.ID = "theDuelist:Forsaken";
@@ -25,8 +24,6 @@ public class Forsaken extends DuelistStance
 		this.stanceName = AbstractStanceEnum.FORSAKEN;
 		this.updateDescription();
 	}
-
-	static { Forsaken.sfxId = -1L; }
 
 	@Override
 	public void updateDescription() 
@@ -57,8 +54,6 @@ public class Forsaken extends DuelistStance
 	public void onEnterStance() 
 	{
 		AbstractDungeon.player.stanceName = this.stanceName;
-		CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-		sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 	}
 	
@@ -87,11 +82,7 @@ public class Forsaken extends DuelistStance
 	@Override
 	public void stopIdleSfx() 
 	{
-		if (Forsaken.sfxId != -1L) 
-		{
-			CardCrawlGame.sound.stop("STANCE_LOOP_CALM", Forsaken.sfxId);
-			Forsaken.sfxId = -1L;
-		}
+		
 	}
 
 }

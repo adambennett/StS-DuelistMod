@@ -24,6 +24,10 @@ public class GladiatorReturnAction extends AbstractGameAction
             {
             	 DuelistCard.changeStance(new Spectral());
             }
+            else
+            {
+            	DuelistCard.changeStance(new Nimble());
+            }
             if (Settings.FAST_MODE) {
                 this.isDone = true;
                 return;

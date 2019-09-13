@@ -28,7 +28,7 @@ public class EulerCircuit extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public EulerCircuit() {
@@ -58,7 +58,7 @@ public class EulerCircuit extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(1);
+        	this.selfRetain = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

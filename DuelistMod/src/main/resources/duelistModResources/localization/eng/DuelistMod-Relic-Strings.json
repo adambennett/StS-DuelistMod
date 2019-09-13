@@ -206,6 +206,26 @@
 			"Upon pickup, choose any Monster to add to your deck."
 		]
 	},
+	"theDuelist:CardRewardRelicI": {
+		"NAME": "Spiretome",
+		"FLAVOR": "A multi-colored, glowing book.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any [#d40e00]Red card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue card to add to your deck.",
+			"Upon pickup, choose any [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or [#2a44ec]Blue card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue or [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [2a44ec]Blue or [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#0c821a]Green or [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue or [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue or [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue, [#0c821a]Green or [#5b0bbd]Purple card to add to your deck.",			
+			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue, [#0c821a]Green or [#5b0bbd]Purple card to add to your deck."
+		]
+	},
 	"theDuelist:InversionRelic": {
 		"NAME": "Inversion Stone",
 		"FLAVOR": "A strange looking stone.",

@@ -23,5 +23,13 @@ public class AbstractStanceEnum {
     @SpireEnum
     public static AbstractStance.StanceName CHAOTIC;
     
+    @SpireEnum
+    public static AbstractStance.StanceName ENTRENCHED;
+    
+    @SpireEnum
+    public static AbstractStance.StanceName NIMBLE;
+    
+    @SpireEnum
+    public static AbstractStance.StanceName UNSTABLE;
     
 }

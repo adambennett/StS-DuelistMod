@@ -35,6 +35,7 @@ public class LegendaryBlackBelt extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.ARCANE);
         this.baseMagicNumber = this.magicNumber = 5;
     }
 
@@ -43,6 +44,7 @@ public class LegendaryBlackBelt extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		applyPowerToSelf(new VigorPower(p, this.magicNumber));
+		if (upgraded) { draw(1); }
     }
 
     // Which card to return when making a copy of this card.
@@ -55,16 +57,23 @@ public class LegendaryBlackBelt extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (!upgraded)
+        if (canUpgrade())
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(3);
+        	this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
 
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber < 15) { return true; }
+    	else { return false; }
+    }
+    
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{

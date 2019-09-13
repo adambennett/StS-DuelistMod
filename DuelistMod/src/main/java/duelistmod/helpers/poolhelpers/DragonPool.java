@@ -180,7 +180,8 @@ public class DragonPool
 		dragonCards.add(new RedRoseDragon());
 		dragonCards.add(new BlueRoseDragon());
 		dragonCards.add(new WhiteRoseDragon());
-
+		dragonCards.add(new PurplePainOni());
+		dragonCards.add(new GreenGraveOni());
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());

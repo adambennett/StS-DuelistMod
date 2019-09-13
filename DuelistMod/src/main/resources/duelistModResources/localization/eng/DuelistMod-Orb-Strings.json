@@ -98,7 +98,7 @@
   "theDuelist:Consumer": {
     "NAME": "Consumer",
     "DESCRIPTION": [
-	  "#yPassive: At the end of turn, Evoke another random orb. NL #yEvoke: For each orb that was Evoked by this orb, gain #b", " Energy at the start of next turn."
+	  "#yPassive: Whenever you #yExhaust a card, #yEvoke another random orb. NL #yEvoke: For each orb that was Evoked by this orb, gain #b", " Energy at the start of next turn."
     ]
   },
   "theDuelist:Gadget": {
@@ -270,6 +270,12 @@
       "#yPassive: Whenever you draw a #ySummon monster, #yUpgrade it. NL #yEvoke: Deal #b", " damage to ALL enemies."
     ],
     "NAME": "Sun"
+  },
+  "theDuelist:Robot": {
+    "DESCRIPTION": [
+      "#yPassive: Whenever you shuffle your deck, heal, gain gold, use a potion, change your #yStance or add a card to your hand, deal #b", " damage to a random enemy. NL #yEvoke: Trigger one of the passive effects at random."
+    ],
+    "NAME": "Robot"
   },
   "theDuelist:WaterOrb": {
     "NAME": "Water",

@@ -41,6 +41,7 @@ public class LightningBlade extends DuelistCard
         this.tags.add(Tags.ARCANE);
         this.baseDamage = this.damage = 3;
         this.baseMagicNumber = this.magicNumber = 2;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

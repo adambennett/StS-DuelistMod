@@ -18,8 +18,7 @@ import duelistmod.patches.AbstractStanceEnum;
 
 public class Samurai extends DuelistStance
 {
-	private static long sfxId;
-
+	
 	public Samurai()
 	{
 		this.tips = new ArrayList<PowerTip>();
@@ -30,12 +29,11 @@ public class Samurai extends DuelistStance
 		this.updateDescription();
 	}
 
-	static { Samurai.sfxId = -1L; }
-
+	
 	@Override
 	public void updateDescription() 
 	{
-		this.description = "Upon exiting this #yStance, gain #b2 #yDexterity.";
+		this.description = "In this #yStance, #yBlock from cards is improved by #b3. Upon exiting this #yStance, gain #b1 #yDexterity.";
 	}
 
 	@Override
@@ -56,31 +54,31 @@ public class Samurai extends DuelistStance
 			AbstractDungeon.effectsQueue.add(new StanceAuraEffect(AbstractStance.StanceName.CALM));
 		}
 	}
+	
+	@Override
+	public float modifyBlock(final float blockAmount) 
+	{ 
+		return blockAmount + 3; 
+	}
 
 	@Override
 	public void onEnterStance() 
 	{
 		AbstractDungeon.player.stanceName = this.stanceName;
-		CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-		sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 	}
 
 	@Override
 	public void onExitStance() 
 	{
-		DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, 2));
+		DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, 1));
 		this.stopIdleSfx();
 	}
 
 	@Override
 	public void stopIdleSfx() 
 	{
-		if (Samurai.sfxId != -1L) 
-		{
-			CardCrawlGame.sound.stop("STANCE_LOOP_CALM", Samurai.sfxId);
-			Samurai.sfxId = -1L;
-		}
+		
 	}
 
 }

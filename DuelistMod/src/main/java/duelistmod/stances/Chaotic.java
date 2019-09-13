@@ -16,8 +16,6 @@ import duelistmod.patches.AbstractStanceEnum;
 
 public class Chaotic extends DuelistStance
 {
-	private static long sfxId;
-
 	public Chaotic()
 	{
 		this.ID = "theDuelist:Chaotic";
@@ -25,8 +23,6 @@ public class Chaotic extends DuelistStance
 		this.stanceName = AbstractStanceEnum.CHAOTIC;
 		this.updateDescription();
 	}
-
-	static { Chaotic.sfxId = -1L; }
 
 	@Override
 	public void updateDescription() 
@@ -76,8 +72,6 @@ public class Chaotic extends DuelistStance
 	public void onEnterStance() 
 	{
 		AbstractDungeon.player.stanceName = this.stanceName;
-		CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-		sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 	}
 
@@ -90,11 +84,7 @@ public class Chaotic extends DuelistStance
 	@Override
 	public void stopIdleSfx() 
 	{
-		if (Chaotic.sfxId != -1L) 
-		{
-			CardCrawlGame.sound.stop("STANCE_LOOP_CALM", Chaotic.sfxId);
-			Chaotic.sfxId = -1L;
-		}
+		
 	}
 
 }

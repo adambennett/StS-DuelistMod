@@ -38,7 +38,7 @@ public class Mudballman extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.summons = this.baseSummons = 2;
+        this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
@@ -63,7 +63,7 @@ public class Mudballman extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(0);
+        	this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -8,4 +8,6 @@ public abstract class DuelistPotion extends AbstractPotion
 	{
 		super(name, id, rarity, size, color);
 	}
+	
+	
 }

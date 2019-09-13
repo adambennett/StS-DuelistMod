@@ -153,6 +153,8 @@ public class ZombiePool
 		zombieCards.add(new SilentDoom());
 		zombieCards.add(new SpiralSpearStrike());
 		zombieCards.add(new CemetaryBomb());
+		zombieCards.add(new PurplePainOni());
+		zombieCards.add(new GreenGraveOni());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

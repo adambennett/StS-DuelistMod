@@ -87,14 +87,9 @@ public class SealedPackD extends AbstractPotion {
 	@Override
 	public int getPotency(final int potency) 
 	{
-		if (DuelistMod.challengeMode)
-		{
-			return 4;
-		}
-		else
-		{
-			return 5;
-		}
+    	int pot = 5;
+    	if (AbstractDungeon.player == null) { return pot; }
+        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
 	}
 
 	public void upgradePotion()

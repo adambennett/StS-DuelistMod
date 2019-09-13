@@ -643,6 +643,18 @@
         "NAME": "Sogen",
         "DESCRIPTIONS": ["#yWarriors deal 35% more damage and gain 20% more #yBlock." ]
 },
+"theDuelist:CommanderSwordsPower": {
+        "NAME": "Commander of Swords",
+        "DESCRIPTIONS": ["While you are in #yCalm, HP loss is reduced by #b", "." ]
+},
+"theDuelist:CrystalTreePower": {
+        "NAME": "Crystal Tree",
+        "DESCRIPTIONS": ["While you are in any #yStance, HP loss grants #b", " #yTemporary #yHP." ]
+},
+"theDuelist:OniPower": {
+        "NAME": "Yellow-Bellied Oni",
+        "DESCRIPTIONS": ["At the start of turn, add #b", " random #y", " card to your hand.", " cards to your hand." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

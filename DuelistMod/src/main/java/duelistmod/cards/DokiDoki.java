@@ -1,10 +1,8 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -42,6 +40,7 @@ public class DokiDoki extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
+        this.selfRetain = true;
     }
 
     // Actions the card should do.

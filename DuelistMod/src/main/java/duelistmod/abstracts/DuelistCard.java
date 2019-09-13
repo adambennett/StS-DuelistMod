@@ -870,6 +870,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { amount = (int) Math.floor(amount * 2); }}
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.2); }
+		if (this.hasTag(Tags.SUPERHEAVY) && player().stance.ID.equals("theDuelist:Entrenched")) { amount += 4; }
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 
@@ -1580,6 +1581,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			stances.add(new Spectral());
 			stances.add(new Meditative());		
 			stances.add(new Forsaken());
+			stances.add(new Entrenched());
+			stances.add(new Nimble());
+			stances.add(new Unstable());
 			if (allowChaotic) { stances.add(new Chaotic()); }
 		}
 		if (allowBaseGame)
@@ -1591,6 +1595,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 		AbstractStance newStance = stances.get(AbstractDungeon.cardRandomRng.random(stances.size() - 1));
 		changeStance(newStance);
+		Util.log("Random stance we changed to: " + newStance.name);
 	}
 	
 	public static void changeToRandomStance()

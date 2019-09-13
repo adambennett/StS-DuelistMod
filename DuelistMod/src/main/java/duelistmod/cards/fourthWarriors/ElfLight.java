@@ -38,6 +38,11 @@ public class ElfLight extends DuelistCard
         this.exhaust = true;
         this.selfRetain = true;
     }
+    
+    @Override
+    public void onRetained() {
+        this.upgradeMagicNumber(1);
+    }
 
     // Actions the card should do.
     @Override

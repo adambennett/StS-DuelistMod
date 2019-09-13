@@ -16,6 +16,8 @@ public class AbstractDungeonPatches
         {
             AbstractDungeon.eventList.remove(AknamkanonTomb.ID);
             AbstractDungeon.eventList.remove(MillenniumItems.ID);
+            AbstractDungeon.eventList.remove(EgyptVillage.ID);
+            AbstractDungeon.eventList.remove(TombNameless.ID);
         }
     }
 }

@@ -27,7 +27,7 @@ public class MetronomeRelicA extends CustomRelic {
     public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 
 	public MetronomeRelicA() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.RARE, LandingSound.SOLID);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.SOLID);
 	}
 	
 	@Override

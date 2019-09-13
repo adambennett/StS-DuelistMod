@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.fourthWarriors.JunkWarrior;
+import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -155,6 +155,8 @@ public class MachinePool
 		machineCards.add(new CemetaryBomb());
 		machineCards.add(new RockBombardment());
 		machineCards.add(new JunkWarrior());
+		machineCards.add(new CyberRaider());
+		machineCards.add(new SatelliteCannon());
 		
 		if (!DuelistMod.toonBtnBool)
 		{

@@ -11,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.stances.Nimble;
 import duelistmod.variables.Tags;
 
 public class DawnKnight extends DuelistCard 
@@ -39,7 +40,6 @@ public class DawnKnight extends DuelistCard
         this.tags.add(Tags.WARRIOR); 
         this.summons = this.baseSummons = 1;
         this.originalName = this.name;
-        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -51,6 +51,7 @@ public class DawnKnight extends DuelistCard
     	{
     		if (c.canUpgrade() && c.retain) { c.upgrade(); }
     	}
+    	if (upgraded) { changeStance(new Nimble()); }
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +65,6 @@ public class DawnKnight extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

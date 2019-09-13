@@ -191,6 +191,8 @@ public class Util
 			stances.add(new ChooseSamuraiCard());
 			stances.add(new ChooseGuardedCard());
 			stances.add(new ChooseForsakenCard());
+			stances.add(new ChooseEntrenchedCard());
+			stances.add(new ChooseNimbleCard());
 			if (allowMeditative) { stances.add(new ChooseMeditativeCard()); }
 			if (allowChaotic) { stances.add(new ChooseChaoticCard()); }
 		}
