@@ -42,7 +42,7 @@ public class CardRewardRelicI extends CustomRelic
     
     public int getRandomColors()
     {
-    	return ThreadLocalRandom.current().nextInt(0, 14);
+    	return ThreadLocalRandom.current().nextInt(0, 10);
     }
     
     public void setDescription()
