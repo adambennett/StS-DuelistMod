@@ -44,6 +44,7 @@ public class CocoonUltraEvolution extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.BAD_MAGIC);
         this.exhaust = true;
     }
 

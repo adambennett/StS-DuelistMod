@@ -48,6 +48,7 @@ public class SwordDeepSeated extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.METAL_RAIDERS);
+        this.tags.add(Tags.BAD_MAGIC);
         this.originalName = this.name;
     }
 

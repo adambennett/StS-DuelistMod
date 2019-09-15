@@ -45,6 +45,7 @@ public class WanderingKing extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.BAD_MAGIC);
     }
     
     @Override

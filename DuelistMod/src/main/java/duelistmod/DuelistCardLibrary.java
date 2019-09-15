@@ -18,6 +18,10 @@ import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.nameless.greed.*;
+import duelistmod.cards.nameless.magic.*;
+import duelistmod.cards.nameless.power.*;
+import duelistmod.cards.nameless.war.*;
 import duelistmod.cards.orbCards.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.helpers.*;
@@ -844,8 +848,58 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new CyberRaider());	
 		DuelistMod.myCards.add(new SatelliteCannon());	
 		DuelistMod.myCards.add(new MaxWarrior());	
+		DuelistMod.myCards.add(new CircleFireKings());	
+		DuelistMod.myCards.add(new OnslaughtFireKings());	
+		DuelistMod.myCards.add(new WhiteHowling());	
 		
-		//DuelistMod.myCards.add(new WightLady());			
+		//DuelistMod.myCards.add(new WightLady());		
+		
+		// NAMELESS TOMB CARDS
+		DuelistMod.myCards.add(new AllyJusticeNameless());
+		DuelistMod.myCards.add(new AncientGearBoxNameless());
+		DuelistMod.myCards.add(new AssaultArmorNameless());
+		DuelistMod.myCards.add(new AxeDespairNameless());
+		DuelistMod.myCards.add(new BerserkerCrushNameless());
+		DuelistMod.myCards.add(new BigWhaleNameless());
+		DuelistMod.myCards.add(new DarkworldThornsNameless());
+		DuelistMod.myCards.add(new ForbiddenLanceNameless());
+		DuelistMod.myCards.add(new GoldenApplesNameless());
+		DuelistMod.myCards.add(new GracefulCharityNameless());
+		DuelistMod.myCards.add(new GravityLashNameless());
+		DuelistMod.myCards.add(new GridRodNameless());
+		DuelistMod.myCards.add(new HappyLoverNameless());
+		DuelistMod.myCards.add(new ImperialOrderNameless());
+		DuelistMod.myCards.add(new InsectQueenNameless());
+		DuelistMod.myCards.add(new KamionTimelordNameless());
+		DuelistMod.myCards.add(new MagnumShieldNameless());
+		DuelistMod.myCards.add(new MaskedDragonNameless());
+		DuelistMod.myCards.add(new ObeliskTormentorNameless());
+		DuelistMod.myCards.add(new OilmanNameless());
+		DuelistMod.myCards.add(new PotDualityNameless());
+		DuelistMod.myCards.add(new PotGenerosityNameless());
+		DuelistMod.myCards.add(new PredaplantSarraceniantNameless());
+		DuelistMod.myCards.add(new SpiralSpearStrikeNameless());
+		DuelistMod.myCards.add(new YamiFormNameless());
+		DuelistMod.myCards.add(new AllyJusticeNamelessPower());		
+		DuelistMod.myCards.add(new AssaultArmorNamelessPower());	
+		DuelistMod.myCards.add(new BerserkerCrushNamelessPower());		
+		DuelistMod.myCards.add(new ForbiddenLanceNamelessPower());	
+		DuelistMod.myCards.add(new KamionTimelordNamelessPower());	
+		DuelistMod.myCards.add(new MaskedDragonNamelessPower());		
+		DuelistMod.myCards.add(new SpiralSpearStrikeNamelessPower());	
+		DuelistMod.myCards.add(new AncientGearBoxNamelessGreed());		
+		DuelistMod.myCards.add(new BerserkerCrushNamelessGreed());		
+		DuelistMod.myCards.add(new GracefulCharityNamelessGreed());	
+		DuelistMod.myCards.add(new MagnumShieldNamelessGreed());	
+		DuelistMod.myCards.add(new AllyJusticeNamelessWar());		
+		DuelistMod.myCards.add(new AssaultArmorNamelessWar());	
+		DuelistMod.myCards.add(new BerserkerCrushNamelessWar());		
+		DuelistMod.myCards.add(new ForbiddenLanceNamelessWar());	
+		DuelistMod.myCards.add(new MaskedDragonNamelessWar());	
+		DuelistMod.myCards.add(new SpiralSpearStrikeNamelessWar());
+		DuelistMod.myCards.add(new FortressWarriorNamelessWar());		
+		DuelistMod.myCards.add(new BlueEyesNamelessWar());	
+		// NAMELESS TOMB CARDS
 		
 		if (DuelistMod.duelistCurses)
 		{

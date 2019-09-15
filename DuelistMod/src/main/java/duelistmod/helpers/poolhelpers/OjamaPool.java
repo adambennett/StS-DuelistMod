@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.WhiteHowling;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -157,6 +158,9 @@ public class OjamaPool
 		ojamaCards.add(new RainbowFlower());
 		ojamaCards.add(new SpiralSpearStrike());
 		ojamaCards.add(new FlyingSaucer());
+		ojamaCards.add(new CircleFireKings());
+		ojamaCards.add(new OnslaughtFireKings());
+		ojamaCards.add(new WhiteHowling());
 		ojamaDeck.fillPoolCards(ojamaCards);		
 		ojamaDeck.fillArchetypeCards(ojamaCards);
 		DuelistMod.archetypeCards.addAll(ojamaCards);

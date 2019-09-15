@@ -18,6 +18,7 @@ public class AbstractDungeonPatches
             AbstractDungeon.eventList.remove(MillenniumItems.ID);
             AbstractDungeon.eventList.remove(EgyptVillage.ID);
             AbstractDungeon.eventList.remove(TombNameless.ID);
+            AbstractDungeon.eventList.remove(TombNamelessPuzzle.ID);
         }
     }
 }

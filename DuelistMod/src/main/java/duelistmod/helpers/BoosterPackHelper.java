@@ -12,6 +12,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.DestructPotion;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.*;
 import duelistmod.rewards.*;
 import duelistmod.variables.Tags;
@@ -553,7 +554,7 @@ public class BoosterPackHelper
 		for (AbstractCard c : DuelistMod.myCards)
 		{
 			boolean okToAdd = true;
-			if (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL)) { okToAdd = false; }
+			if (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL) || c.color.equals(AbstractCardEnum.DUELIST_SPECIAL)) { okToAdd = false; }
 			if (okToAdd)
 			{
 				if (c.hasTag(Tags.DRAGON))

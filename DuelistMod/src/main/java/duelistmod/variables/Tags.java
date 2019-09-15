@@ -19,6 +19,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags AQUA_DECK;
 	@SpireEnum public static AbstractCard.CardTags ARCHETYPE;
 	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
+	@SpireEnum public static AbstractCard.CardTags BAD_MAGIC;
 	@SpireEnum public static AbstractCard.CardTags BAMBOO_SWORD;
 	@SpireEnum public static AbstractCard.CardTags COCOON;
 	@SpireEnum public static AbstractCard.CardTags CONSPIRE;

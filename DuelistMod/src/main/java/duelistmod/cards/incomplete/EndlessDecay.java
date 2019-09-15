@@ -42,6 +42,7 @@ public class EndlessDecay extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.EXEMPT);
+        this.tags.add(Tags.BAD_MAGIC);
         this.exhaust = true;
     }
 
@@ -56,7 +57,7 @@ public class EndlessDecay extends DuelistCard
     	for (AbstractCard c : p.exhaustPile.group) { oldExhaustCards.add(c.makeStatEquivalentCopy()); }
     	p.drawPile.group.clear(); p.drawPile.group.addAll(oldExhaustCards);
     	p.exhaustPile.clear(); p.exhaustPile.group.addAll(oldDrawCards); 
-    	damageSelf(this.magicNumber);
+    	if (this.magicNumber > 0) { damageSelf(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.

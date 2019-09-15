@@ -7,6 +7,7 @@ import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
@@ -15,7 +16,13 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.fourthWarriors.*;
+import duelistmod.cards.nameless.greed.*;
+import duelistmod.cards.nameless.magic.*;
+import duelistmod.cards.nameless.power.*;
+import duelistmod.cards.nameless.war.*;
+import duelistmod.cards.tokens.Token;
 import duelistmod.cards.typecards.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.*;
 
 public class Util
@@ -180,6 +187,116 @@ public class Util
 		AbstractCard sword = swords.get(AbstractDungeon.cardRandomRng.random(swords.size() - 1));
 		if (upgraded && sword.canUpgrade()) { sword.upgrade(); }
 		return sword;
+	}
+	
+	public static AbstractCard getSpecialGreedCardForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = getSpecialGreedCardsForNamelessTomb();
+		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+	}
+	
+	public static ArrayList<DuelistCard> getSpecialGreedCardsForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();	
+		specialCards.add(new AncientGearBoxNamelessGreed());		
+		specialCards.add(new BerserkerCrushNamelessGreed());		
+		specialCards.add(new GracefulCharityNamelessGreed());	
+		specialCards.add(new MagnumShieldNamelessGreed());	
+		return specialCards;
+	}
+	
+	public static AbstractCard getSpecialPowerCardForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = getSpecialPowerCardsForNamelessTomb();
+		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+	}
+	
+	public static ArrayList<DuelistCard> getSpecialPowerCardsForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
+		specialCards.add(new AllyJusticeNamelessPower());		
+		specialCards.add(new AssaultArmorNamelessPower());	
+		specialCards.add(new BerserkerCrushNamelessPower());		
+		specialCards.add(new ForbiddenLanceNamelessPower());	
+		specialCards.add(new ForbiddenLanceNamelessPower());
+		specialCards.add(new KamionTimelordNamelessPower());	
+		specialCards.add(new MaskedDragonNamelessPower());		
+		specialCards.add(new SpiralSpearStrikeNamelessPower());	
+		return specialCards;
+	}
+	
+	public static AbstractCard getSpecialWarCardForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = getSpecialWarCardsForNamelessTomb();
+		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+	}
+	
+	public static ArrayList<DuelistCard> getSpecialWarCardsForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
+		specialCards.add(new AllyJusticeNamelessWar());		
+		specialCards.add(new AssaultArmorNamelessWar());	
+		specialCards.add(new BerserkerCrushNamelessWar());		
+		specialCards.add(new ForbiddenLanceNamelessWar());
+		specialCards.add(new ForbiddenLanceNamelessWar());	
+		specialCards.add(new MaskedDragonNamelessWar());	
+		specialCards.add(new SpiralSpearStrikeNamelessWar());
+		specialCards.add(new FortressWarriorNamelessWar());	
+		specialCards.add(new BlueEyesNamelessWar());		
+		return specialCards;
+	}
+	
+	public static AbstractCard getRandomRarePowerForNamelessTomb()
+	{
+		ArrayList<AbstractCard> rarePow = new ArrayList<AbstractCard>();
+		for (DuelistCard c : DuelistMod.myCards)
+		{
+			if (c.rarity.equals(CardRarity.RARE) && c.type.equals(CardType.POWER) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
+			{
+				while (c.canUpgrade()) { c.upgrade(); }
+				rarePow.add(c.makeStatEquivalentCopy());
+			}
+		}
+		
+		if (rarePow.size() > 0) { return rarePow.get(AbstractDungeon.cardRandomRng.random(rarePow.size() - 1)); }
+		else { return new Token(); }
+	}
+	
+	public static AbstractCard getSpecialMagicCardForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = getSpecialMagicCardsForNamelessTomb();
+		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+	}
+	
+	public static ArrayList<DuelistCard> getSpecialMagicCardsForNamelessTomb()
+	{
+		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
+		specialCards.add(new AllyJusticeNameless());
+		specialCards.add(new AncientGearBoxNameless());
+		specialCards.add(new AssaultArmorNameless());
+		specialCards.add(new AxeDespairNameless());
+		specialCards.add(new BerserkerCrushNameless());
+		specialCards.add(new BigWhaleNameless());
+		specialCards.add(new DarkworldThornsNameless());
+		specialCards.add(new ForbiddenLanceNameless());
+		specialCards.add(new GoldenApplesNameless());
+		specialCards.add(new GracefulCharityNameless());
+		specialCards.add(new GravityLashNameless());
+		specialCards.add(new GridRodNameless());
+		specialCards.add(new HappyLoverNameless());
+		specialCards.add(new ImperialOrderNameless());
+		specialCards.add(new InsectQueenNameless());
+		specialCards.add(new KamionTimelordNameless());
+		specialCards.add(new MagnumShieldNameless());
+		//specialCards.add(new MaskedDragonNameless());
+		specialCards.add(new ObeliskTormentorNameless());
+		specialCards.add(new OilmanNameless());
+		specialCards.add(new PotDualityNameless());
+		specialCards.add(new PotGenerosityNameless());
+		specialCards.add(new PredaplantSarraceniantNameless());
+		specialCards.add(new SpiralSpearStrikeNameless());
+		specialCards.add(new YamiFormNameless());		
+		return specialCards;
 	}
 	
 	public static ArrayList<DuelistCard> getStanceChoices(boolean allowMeditative, boolean allowDivinity, boolean allowChaotic, boolean allowDuelist, boolean allowBaseGame)

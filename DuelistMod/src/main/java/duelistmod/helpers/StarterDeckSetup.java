@@ -11,7 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.helpers.poolhelpers.*;
-import duelistmod.patches.TheDuelistEnum;
+import duelistmod.patches.*;
 import duelistmod.variables.Tags;
 
 public class StarterDeckSetup {
@@ -34,7 +34,7 @@ public class StarterDeckSetup {
 		ArrayList<AbstractCard> newRandomCardList = new ArrayList<AbstractCard>();
 		for (AbstractCard c : DuelistMod.myCards)
 		{
-			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS))
+			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
 				boolean toonCard = c.hasTag(Tags.TOON);
 				boolean ojamaCard = c.hasTag(Tags.OJAMA);

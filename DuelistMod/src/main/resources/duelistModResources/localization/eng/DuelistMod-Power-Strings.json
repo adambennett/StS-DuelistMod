@@ -434,7 +434,7 @@
 },
 "theDuelist:OutriggerExtensionPower": {
         "NAME": "Outrigger Extension",
-        "DESCRIPTIONS": ["Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by #b", " for this combat."  ]
+        "DESCRIPTIONS": ["Whenever you draw a #yMachine, increase the magic number of another random card in your hand by #b", " for the turn."  ]
 },
 "theDuelist:JumboDrillPower": {
         "NAME": "Jumbo Drill",
@@ -442,7 +442,7 @@
 },
 "theDuelist:YamiFormPower": {
         "NAME": "Yami Form",
-        "DESCRIPTIONS": ["At the start of turn, choose 1 of #b", " random monster type. Resummon a random monster of that type on a random enemy.", " random monster types. Resummon a random monster of that type on a random enemy." ]
+        "DESCRIPTIONS": ["At the start of turn, choose 1 of #b", " random monster type. #yResummon a random monster of that type on a random enemy.", " random monster types. Resummon a random monster of that type on a random enemy." ]
 },
 "theDuelist:MillenniumSpellbookPower": {
         "NAME": "Millennium Spellbook",
@@ -654,6 +654,10 @@
 "theDuelist:OniPower": {
         "NAME": "Yellow-Bellied Oni",
         "DESCRIPTIONS": ["At the start of turn, add #b", " random #y", " card to your hand.", " cards to your hand." ]
+},
+"theDuelist:WhiteHowlingPower": {
+        "NAME": "White Howling",
+        "DESCRIPTIONS": ["At the start of turn, if you have no #yWhite orbs, #yChannel #b", " #yWhite."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

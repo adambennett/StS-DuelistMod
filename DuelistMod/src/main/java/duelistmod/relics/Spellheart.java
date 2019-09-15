@@ -40,8 +40,8 @@ public class Spellheart extends CustomRelic {
 		}
 		AbstractDungeon.player.masterDeck.group.clear();
 		for (AbstractCard c : toKeep) { AbstractDungeon.player.masterDeck.addToTop(c); }
-		AbstractDungeon.player.increaseMaxHp(monsters * 5, true);
-		setCounter(monsters * 5);
+		AbstractDungeon.player.increaseMaxHp(monsters * 4, true);
+		setCounter(monsters * 4);
     }
 	
 	@Override

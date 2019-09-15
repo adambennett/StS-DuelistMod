@@ -38,6 +38,7 @@ public class DoomDonuts extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.BAD_MAGIC);
         this.baseSummons = this.summons = 2;
         this.baseMagicNumber = this.magicNumber = 1;
     }

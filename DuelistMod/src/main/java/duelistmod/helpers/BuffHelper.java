@@ -120,6 +120,75 @@ public class BuffHelper {
 		}
 	}
 	
+	public static String trapVortexBuffNameB(int powerID)
+	{
+		if (powerID == 1)
+		{
+			return "#yStrength";
+		}
+		else if (powerID == 2)
+		{
+			return "#yThorns";
+		}
+		else if (powerID == 3)
+		{
+			return "#yArtifacts";
+		}
+		else if (powerID == 4)
+		{
+			return "#yPot #yof #yGenerosity";
+		}
+		else if (powerID == 5)
+		{
+			return "#yJuggernaut";
+		}
+		else if (powerID == 6)
+		{
+			return "#yBlur";
+		}
+		else
+		{
+			return "#yBlur";
+		}
+	}
+
+	public static AbstractPower trapVortexB(int powerID, int traps)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		if (powerID > 7 || powerID < 1) { return new BlurPower(p, traps); }
+		else
+		{
+			if (powerID == 1)
+			{
+				return new StrengthPower(p, traps);
+			}
+			else if (powerID == 2)
+			{
+				return new ThornsPower(p, traps);
+			}
+			else if (powerID == 3)
+			{
+				return new ArtifactPower(p, traps);
+			}
+			else if (powerID == 4)
+			{
+				return new PotGenerosityPower(p, p, traps);
+			}
+			else if (powerID == 5)
+			{
+				return new JuggernautPower(p, traps);
+			}
+			else if (powerID == 6)
+			{
+				return new BlurPower(p, traps);
+			}
+			else
+			{
+				return new BlurPower(p, traps);
+			}
+		}
+	}
+	
 	public static void initBuffMap(AbstractPlayer p)
 	{
 		DuelistMod.buffMap = new HashMap<String, AbstractPower>();

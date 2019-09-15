@@ -12,6 +12,7 @@ import basemod.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 public class Debug 
@@ -371,7 +372,7 @@ public class Debug
     	ArrayList<ArrayList<DuelistCard>> tribLists = new ArrayList<ArrayList<DuelistCard>>();
     	for (DuelistCard c : DuelistMod.myCards)
     	{
-    		if (c.baseTributes > 0 && c.hasTag(Tags.MONSTER))
+    		if (c.baseTributes > 0 && c.hasTag(Tags.MONSTER) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
     		{
     			cards.put(c, c.baseTributes);
     		}

@@ -63,7 +63,7 @@ public class DebuffPosionPotion extends AbstractPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 8;
+    	int pot = 12;
     	if (AbstractDungeon.player == null) { return pot; }
         return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }

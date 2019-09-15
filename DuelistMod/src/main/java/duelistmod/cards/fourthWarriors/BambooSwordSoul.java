@@ -38,6 +38,7 @@ public class BambooSwordSoul extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.BAMBOO_SWORD);
+        this.tags.add(Tags.BAD_MAGIC);
         this.baseDamage = this.damage = 10;
         this.magicNumber = this.baseMagicNumber = 3;
         this.selfRetain = true;

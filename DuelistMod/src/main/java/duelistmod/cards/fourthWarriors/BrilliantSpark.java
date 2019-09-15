@@ -37,15 +37,20 @@ public class BrilliantSpark extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.TRAP);
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.tags.add(Tags.BAD_MAGIC);
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.selfRetain = true;
     }
     
     @Override
     public void onRetained() {
-        channel(new Lightning());
-        AbstractCard rand = AbstractDungeon.player.drawPile.getRandomCard(true);
-        AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(rand, AbstractDungeon.player.drawPile));
+        channel(new Lightning(), this.secondMagic);
+        for (int i = 0; i < this.magicNumber; i++)
+        {
+	        AbstractCard rand = AbstractDungeon.player.drawPile.getRandomCard(true);
+	        AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(rand, AbstractDungeon.player.drawPile));
+        }
     }
 
     // Actions the card should do.
@@ -71,7 +76,8 @@ public class BrilliantSpark extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(-2);
+        	this.upgradeSecondMagic(1);
+        	this.upgradeMagicNumber(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

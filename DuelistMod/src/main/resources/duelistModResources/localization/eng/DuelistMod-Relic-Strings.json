@@ -582,7 +582,7 @@
 		"NAME": "Spellheart",
 		"FLAVOR": "A tasty magical fruit, usually consumed by magicians.",
 		"DESCRIPTIONS": [
-			"Upon pickup, remove ALL Spells from your deck. Gain #b5 Max HP for each Spell removed."
+			"Upon pickup, remove ALL Spells from your deck. Gain #b4 Max HP for each Spell removed."
 		]
 	},
 	"theDuelist:TrapVortex": {
@@ -661,6 +661,56 @@
 		"FLAVOR": "You feel a strong pulsing sensation when holding this relic.",
 		"DESCRIPTIONS": [
 			"Whenever you gain #yStrength, add a #yRandomized Metronome to your hand."
+		]
+	},
+	"theDuelist:NamelessPowerRelicA": {
+		"NAME": "Duelist Power",
+		"FLAVOR": "I'm running out of flavor text ideas.",
+		"DESCRIPTIONS": [
+			"Every other turn, gain #b4 #yVigor."
+		]
+	},
+	"theDuelist:NamelessPowerRelicB": {
+		"NAME": "Ascended Power",
+		"FLAVOR": "You have become Ascended!",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain #b3 ", ".",
+			"At the start of each combat, gain #b"
+		]
+	},
+	"theDuelist:NamelessGreedRelic": {
+		"NAME": "Ascended Greed",
+		"FLAVOR": "You are quite greedy!",
+		"DESCRIPTIONS": [
+			"Whenever you obtain a card, gain #b15 #yGold. Whenever you obtain the same card twice in a row, gain #b25 #yGold."
+		]
+	},
+	"theDuelist:NamelessHungerRelic": {
+		"NAME": "Ascended Hunger",
+		"FLAVOR": "You are quite hungry!",
+		"DESCRIPTIONS": [
+			"Whenever you obtain a potion, gain #b2 Max HP."
+		]
+	},
+	"theDuelist:NamelessWarRelicA": {
+		"NAME": "Apprentice War",
+		"FLAVOR": "Not quite battle ready...",
+		"DESCRIPTIONS": [
+			"ALL enemies start combat with #b10% less HP."
+		]
+	},
+	"theDuelist:NamelessWarRelicB": {
+		"NAME": "Duelist War",
+		"FLAVOR": "Getting more powerful...",
+		"DESCRIPTIONS": [
+			"At the start of Boss and Elite combats, gain #b3 #yStrength."
+		]
+	},
+	"theDuelist:NamelessWarRelicC": {
+		"NAME": "Ascended War",
+		"FLAVOR": "You are quite the Warrior!",
+		"DESCRIPTIONS": [
+			"Whenever you draw a #yTribute monster, gain #b1 #yStrength."
 		]
 	},
 	"theDuelist:OrbCardRelic": {

@@ -50,6 +50,7 @@ public class BlastWithChain extends DuelistCard
     @Override
     public void triggerOnGlowCheck()
     {
+    	super.triggerOnGlowCheck();
     	boolean dealExtra = false;
     	if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
     	{
@@ -59,7 +60,7 @@ public class BlastWithChain extends DuelistCard
         if (dealExtra) {
             this.gColor = GlowColor.GOLD;
         }
-        else {
+        else if (!this.fiendDeckDmgMod) {
             this.gColor = GlowColor.BLUE;
         }
     }

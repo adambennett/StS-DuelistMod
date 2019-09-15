@@ -177,7 +177,7 @@
 	"theDuelist:BigFire": {
 		"DESCRIPTION": "ALL enemies take a random amount (0-25) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies.",
 		"NAME": "Tremendous Fire",
-		"UPGRADE_DESCRIPTION": "ALL enemies take a random amount (0-30) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies."
+		"UPGRADE_DESCRIPTION": "ALL enemies take a random amount (0-25) of damage. NL Erupt: Deal !duelist:M! damage to ALL enemies."
 	},
 	"theDuelist:BigKoala": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -2672,9 +2672,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Draw a Machine, then discard ALL monsters in your draw pile. Deal !D! damage to an enemy for each monster discarded."
 	},
 	"theDuelist:CyberneticFusion": {
-		"DESCRIPTION": "Draw !M! Machine. NL Resummon a random Machine from your hand on a random enemy.",
+		"DESCRIPTION": "Draw !M! Machine. NL Resummon a random Machine from your hand.",
 		"NAME": "Cybernetic Fusion",
-		"UPGRADE_DESCRIPTION": "Draw !M! Machines. NL Resummon a random Machine from your hand on a random enemy."
+		"UPGRADE_DESCRIPTION": "Draw !M! Machines. NL Resummon a random Machine from your hand."
 	},
 	"theDuelist:GravityBlaster": {
 		"DESCRIPTION": "Machine NL Deal !D! damage to a random enemy. NL Stun ALL enemies. NL Exhaust.",
@@ -3117,9 +3117,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Whenever you discard a card, deal !M! damage to ALL enemies."
 	},
 	"theDuelist:OutriggerExtension": {
-		"DESCRIPTION": "Machine NL Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by !M! for this combat.",
+		"DESCRIPTION": "Machine NL Whenever you draw a Machine, increase the magic number of a random card in your hand by !M! for the turn.",
 		"NAME": "Outrigger Extension",
-		"UPGRADE_DESCRIPTION": "Machine NL Whenever you draw a Machine, increase the magic number of a random Skill in your draw pile by !M! for this combat."
+		"UPGRADE_DESCRIPTION": "Machine NL Whenever you draw a Machine, increase the magic number of a random card in your hand by !M! for the turn"
 	},
 	"theDuelist:Oilman": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. Exhaust.",
@@ -3567,9 +3567,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Channel Lightning until all your orb slots are filled, then deal !D! damage to a random enemy for each Lightning Channeled. NL Lose !M! Focus for !duelist:M! turns."
 	},
 	"theDuelist:MiraculousDescent": {
-		"DESCRIPTION": "At the end of each turn, gain a random amount of Block.",
+		"DESCRIPTION": "At the end of each turn, if the last card played matches a random card type, gain !M! Block.",
 		"NAME": "Miraculous Descent",
-		"UPGRADE_DESCRIPTION": "Innate NL At the start of end turn, gain a random amount of Block."
+		"UPGRADE_DESCRIPTION": "At the end of each turn, if the last card played matches a random card type, gain !M! Block."
 	},
 	"theDuelist:MiracleFertilizer": {
 		"DESCRIPTION": "Apply !M! Constricted. NL Gain !duelist:M! Constricted. NL Exhaust.",
@@ -4829,7 +4829,7 @@
 	},
 	"theDuelist:SpiritForce": {
 		"DESCRIPTION": "Whenever you switch Stances, gain !M! Temporary HP.",
-		"NAME": "SpiritForce",
+		"NAME": "Spirit Force",
 		"UPGRADE_DESCRIPTION": "Whenever you switch Stances, gain !M! Temporary HP."
 	},
 	"theDuelist:CommanderSwords": {
@@ -5031,6 +5031,241 @@
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter Unstable.",
 		"NAME": "Max Warrior",
 		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Enter Unstable."
+	},
+	"theDuelist:Nameless:Magic:AllyJustice": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust.",
+		"NAME": "Justice Clausolas",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust."
+	},
+	"theDuelist:Nameless:Power:AllyJustice": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust.",
+		"NAME": "Justice Clausolas",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Artifacts. NL Exhaust."
+	},
+	"theDuelist:Nameless:War:AllyJustice": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Gain !M! Artifacts. NL Exhaust.",
+		"NAME": "Justice Clausolas",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Gain !M! Artifacts. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:AncientGearBox": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Draw !M! Uncommon cards.",
+		"NAME": "Ancient Gear Box",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Draw !M! Uncommon cards."
+	},
+	"theDuelist:Nameless:Greed:AncientGearBox": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Draw !M! Uncommon cards. NL Gain !duelist:M! Gold. NL Exhaust.",
+		"NAME": "Ancient Gear Box",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Draw !M! Uncommon cards. Gain !duelist:M! Gold. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:AssaultArmor": {
+		"DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust.",
+		"NAME": "Assault Armor",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust."
+	},
+	"theDuelist:Nameless:Power:AssaultArmor": {
+		"DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust.",
+		"NAME": "Assault Armor",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. Whenever this enemy takes damage, gain !M! Block. NL Exhaust."
+	},
+	"theDuelist:Nameless:War:AssaultArmor": {
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. Whenever ANY enemy takes damage, gain !M! Block. NL Exhaust.",
+		"NAME": "Assault Armor",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. Whenever ANY enemy takes damage, gain !M! Block. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:AxeDespair": {
+		"DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or take 30 damage). NL Place this card on top of your draw pile.",
+		"NAME": "Axe of Despair",
+		"UPGRADE_DESCRIPTION": "This turn, NL Gain !M! Strength. NL End of turn: Tribute 2 NL (or take 30 damage). NL Place this card on top of your draw pile."
+	},
+	"theDuelist:Nameless:Magic:BerserkerCrush": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Enemy loses !M! Strength. NL Exhaust.",
+		"NAME": "Berserker Crush",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage. NL Enemy loses !M! Strength. NL Exhaust."
+	},
+	"theDuelist:Nameless:War:BerserkerCrush": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage to ALL enemies. NL ALL enemies lose !M! Strength. NL Exhaust.",
+		"NAME": "Berserker Crush",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage to ALL enemies. NL ALL enemies lose !M! Strength. NL Exhaust."
+	},
+	"theDuelist:Nameless:Power:BerserkerCrush": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Enemy loses !M! Strength. NL Exhaust.",
+		"NAME": "Berserker Crush",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage. NL Enemy loses !M! Strength. NL Exhaust."
+	},
+	"theDuelist:Nameless:Greed:BerserkerCrush": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Enemy loses !M! Strength. NL Gain !duelist:M! Gold. NL Exhaust.",
+		"NAME": "Berserker Crush",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage. NL Enemy loses !M! Strength. NL Gain !duelist:M! Gold. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:BigWhale": {
+		"DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Gain !M! Block for every !duelist:M! max summons you have. NL ( !B! Block )",
+		"NAME": "Big Whale",
+		"UPGRADE_DESCRIPTION": "Aqua NL Tribute !duelist:TRIB! NL Gain !M! Block for every !duelist:M! max summons you have. NL ( !B! Block )"
+	},
+	"theDuelist:Nameless:Magic:DarkworldThorns": {
+		"DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns.",
+		"NAME": "Darkworld Thorns",
+		"UPGRADE_DESCRIPTION": "Plant NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Thorns."
+	},
+	"theDuelist:Nameless:Magic:ImperialOrder": {
+		"DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap cards in your hand to 0.",
+		"NAME": "Imperial Order",
+		"UPGRADE_DESCRIPTION": "At the start of turn, set the cost of !M! random Spell or Trap cards in your hand to 0."
+	},
+	"theDuelist:Nameless:Magic:ForbiddenLance": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Apply !M! Vulnerable twice. NL Exhaust.",
+		"NAME": "Forbidden Lance",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage. NL Apply !M! Vulnerable twice. NL Exhaust."
+	},
+	"theDuelist:Nameless:War:ForbiddenLance": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage to ALL enemies. NL Apply !M! Vulnerable twice. NL Exhaust.",
+		"NAME": "Forbidden Lance",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage to ALL enemies. NL Apply !M! Vulnerable twice. NL Exhaust."
+	},
+	"theDuelist:Nameless:Power:ForbiddenLance": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage. NL Apply !M! Vulnerable twice. NL Exhaust.",
+		"NAME": "Forbidden Lance",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage. NL Apply !M! Vulnerable twice. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:GoldenApples": {
+		"DESCRIPTION": "Gain !M! Block for each monster you have Summoned this combat. NL ( !B! Block )",
+		"NAME": "Golden Apples",
+		"UPGRADE_DESCRIPTION": "Gain !M! Block for each monster you have Summoned this combat. NL ( !B! Block )"
+	},
+	"theDuelist:Nameless:Magic:GracefulCharity": {
+		"DESCRIPTION": "Draw !M! cards. NL Discard 2 cards.",
+		"NAME": "Graceful Charity",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard a card."
+	},
+	"theDuelist:Nameless:Greed:GracefulCharity": {
+		"DESCRIPTION": "Draw !M! cards. NL Discard 2 cards. NL Gain !duelist:M! Gold. NL Exhaust.",
+		"NAME": "Graceful Charity",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard a card. NL Gain !duelist:M! Gold. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:GravityLash": {
+		"DESCRIPTION": "Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. NL Exhaust.",
+		"NAME": "Gravity Lash",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:Oilman": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. Exhaust.",
+		"NAME": "Oilman",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Increase the magic number of a card in your hand by !M! for this combat. Exhaust."
+	},
+	"theDuelist:Nameless:Magic:GridRod": {
+		"DESCRIPTION": "The first card you draw each turn has its cost reduced by !M! for the turn.",
+		"NAME": "Grid Rod",
+		"UPGRADE_DESCRIPTION": "The first card you draw each turn has its cost reduced by !M! for the turn."
+	},
+	"theDuelist:Nameless:Magic:HappyLover": {
+		"DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Gain !M! Temporary HP.",
+		"NAME": "Happy Lover",
+		"UPGRADE_DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Gain !M! Temporary HP."
+	},
+	"theDuelist:Nameless:Magic:InsectQueen": {
+		"DESCRIPTION": "Insect NL Tribute X NL Apply !M! Poison to ALL enemies for each Tribute. NL Reduce your max Summons by 1.",
+		"NAME": "Insect Queen",
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Apply !M! Poison to ALL enemies for each Tribute."
+	},
+	"theDuelist:Nameless:Magic:KamionTimelord": {
+		"DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt.",
+		"NAME": "Kamion, the Timelord",
+		"UPGRADE_DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt."
+	},
+	"theDuelist:Nameless:Power:KamionTimelord": {
+		"DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt.",
+		"NAME": "Kamion, the Timelord",
+		"UPGRADE_DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt."
+	},
+	"theDuelist:Nameless:Magic:MagnumShield": {
+		"DESCRIPTION": "Arcane NL Gain !M! Vigor. NL Gain !B! Block.",
+		"NAME": "Magnum Shield",
+		"UPGRADE_DESCRIPTION": "Arcane NL Gain !M! Vigor. NL Gain !B! Block."
+	},
+	"theDuelist:Nameless:Greed:MagnumShield": {
+		"DESCRIPTION": "Arcane NL Gain !M! Vigor. NL Gain !B! Block. NL Gain !duelist:M! Gold. NL Exhaust.",
+		"NAME": "Magnum Shield",
+		"UPGRADE_DESCRIPTION": "Arcane NL Gain !M! Vigor. NL Gain !B! Block. Gain !duelist:M! Gold. NL Exhaust."
+	},
+	"theDuelist:Nameless:Magic:MaskedDragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak.",
+		"NAME": "Masked Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak."
+	},
+	"theDuelist:Nameless:War:MaskedDragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Apply !M! Weak.",
+		"NAME": "Masked Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Apply !M! Weak."
+	},
+	"theDuelist:Nameless:Power:MaskedDragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak.",
+		"NAME": "Masked Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Apply !M! Weak."
+	},
+	"theDuelist:Nameless:Magic:ObeliskTormentor": {
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies.",
+		"NAME": "Obelisk",
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Each time you Tribute, deal !M! damage to ALL enemies."
+	},
+	"theDuelist:Nameless:Magic:PotDuality": {
+		"DESCRIPTION": "Draw !M! cards. NL Gain !B! Block.",
+		"NAME": "Pot of Duality",
+		"UPGRADE_DESCRIPTION": "Draw !M! cards. NL Gain !B! Block."
+	},
+	"theDuelist:Nameless:Magic:PotGenerosity": {
+		"DESCRIPTION": "For !M! turns, each time you Summon gain [G].",
+		"NAME": "Pot of Generosity",
+		"UPGRADE_DESCRIPTION": "For !M! turns, each time you Summon gain [G]."
+	},
+	"theDuelist:Nameless:Magic:PredaplantSarraceniant": {
+		"DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Whenever you receive attack damage, apply !M! Poison to ALL enemies.",
+		"NAME": "P. Sarraceniant",
+		"UPGRADE_DESCRIPTION": "Predaplant NL Summon !duelist:SUMM! NL Whenever you receive attack damage, apply !M! Poison to ALL enemies."
+	},
+	"theDuelist:Nameless:Magic:SpiralSpearStrike": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage and apply a random debuff with !M! turns.",
+		"NAME": "Spiral Spear Strike",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage and apply a random debuff with !M! turns."
+	},
+	"theDuelist:Nameless:War:SpiralSpearStrike": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage and apply a random debuff with !M! turns to ALL enemies.",
+		"NAME": "Spiral Spear Strike",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage and apply a random debuff with !M! turns to ALL enemies."
+	},
+	"theDuelist:Nameless:Power:SpiralSpearStrike": {
+		"DESCRIPTION": "Arcane NL Deal !D! damage and apply a random debuff with !M! turns.",
+		"NAME": "Spiral Spear Strike",
+		"UPGRADE_DESCRIPTION": "Arcane NL Deal !D! damage and apply a random debuff with !M! turns."
+	},
+	"theDuelist:Nameless:Magic:YamiForm": {
+		"DESCRIPTION": "At the start of turn, choose 1 of !M! random monster types. Resummon a random monster of that type on a random enemy.",
+		"NAME": "Yami Form",
+		"UPGRADE_DESCRIPTION": "At the start of turn, choose 1 of !M! random monster types. Resummon a random monster of that type on a random enemy."
+	},
+	"theDuelist:Nameless:War:FortressWarrior": {
+		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Gain !B! Block.",
+		"NAME": "Fortress Warrior",
+		"UPGRADE_DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Gain !B! Block."
+	},
+	"theDuelist:Nameless:War:BlueEyes": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies.",
+		"NAME": "B.E. White Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies."
+	},
+	"theDuelist:CircleFireKings": {
+		"DESCRIPTION": "Channel !M! Lava. NL Evoke a random Lava orb.",
+		"NAME": "Circle of Fire Kings",
+		"UPGRADE_DESCRIPTION": "Channel !M! Lava. NL Evoke a random Lava orb."
+	},
+	"theDuelist:OnslaughtFireKings": {
+		"DESCRIPTION": "Add X Tremendous Fire to your hand. NL Exhaust.",
+		"NAME": "Onslaught of Fire Kings",
+		"UPGRADE_DESCRIPTION": "Add X Tremendous Fire to your hand."
+	},
+	"theDuelist:WhiteHowling": {
+		"DESCRIPTION": "At the start of turn, if you have no White orbs, Channel !M! White.",
+		"NAME": "White Howling",
+		"UPGRADE_DESCRIPTION": "At the start of turn, if you have no White orbs, Channel !M! White."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

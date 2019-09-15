@@ -98,6 +98,7 @@ public class ForbiddenChalice extends DuelistCard
     @Override
     public void triggerOnGlowCheck()
     {
+    	super.triggerOnGlowCheck();
     	ArrayList<String> deckCards = new ArrayList<String>();
     	boolean foundDupe = false;
     	for (AbstractCard c : AbstractDungeon.player.masterDeck.group)

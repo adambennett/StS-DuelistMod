@@ -64,8 +64,7 @@ public class BaseGameHelper
 		toFill.add(new Brilliance());
 		toFill.add(new CarveReality());
 		toFill.add(new Clarity());
-		toFill.add(new CleanseEvil());
-		toFill.add(new ClearTheMind());
+		toFill.add(new CleanseEvil());		
 		toFill.add(new Collect());
 		toFill.add(new Conclude());
 		toFill.add(new Consecrate());
@@ -120,9 +119,10 @@ public class BaseGameHelper
 		toFill.add(new Tantrum());
 		toFill.add(new ThirdEye());
 		//toFill.add(new Transcendence());
+		toFill.add(new Tranquility());
 		toFill.add(new Unraveling());
 		toFill.add(new Vault());
-		//toFill.add(new Vengeance());
+		toFill.add(new SimmeringFury());
 		toFill.add(new Vigilance());
 		toFill.add(new Wallop());
 		toFill.add(new WaveOfTheHand());

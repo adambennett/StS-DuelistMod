@@ -92,6 +92,7 @@ public class ComboMaster extends DuelistCard
     @Override
     public void triggerOnGlowCheck()
     {
+    	super.triggerOnGlowCheck();
         if (this.wasRetained) {
             this.gColor = GlowColor.GOLD;
         }

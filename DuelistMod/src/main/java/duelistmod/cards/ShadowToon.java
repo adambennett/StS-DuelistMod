@@ -65,6 +65,7 @@ public class ShadowToon extends DuelistCard
     @Override
     public void triggerOnGlowCheck()
     {
+    	super.triggerOnGlowCheck();
     	boolean dealExtra = false;
     	if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
     	{

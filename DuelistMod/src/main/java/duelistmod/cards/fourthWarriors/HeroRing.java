@@ -50,6 +50,7 @@ public class HeroRing extends DuelistCard
     @Override
     public void triggerOnGlowCheck() 
     {
+    	super.triggerOnGlowCheck();
         if (GameActionManager.playerHpLastTurn > AbstractDungeon.player.currentHealth) {
             this.gColor = GlowColor.GOLD;
         }

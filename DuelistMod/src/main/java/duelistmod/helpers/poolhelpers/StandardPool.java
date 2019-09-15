@@ -165,6 +165,9 @@ public class StandardPool
 		cards.add(new MiracleFertilizer());
 		cards.add(new UnderworldCannon());
 		cards.add(new SpiritHarp());
+		cards.add(new CircleFireKings());
+		cards.add(new OnslaughtFireKings());
+		cards.add(new WhiteHowling());
 		
 		cards.add(new Downbeat());
 		cards.add(new EgoBoost());
@@ -188,6 +191,7 @@ public class StandardPool
 		cards.add(new LightningBlade());
 		cards.add(new MagnumShield());
 		cards.add(new SwordDragonSoul());
+		cards.add(new WhiteNinja());
 		
 		if (!DuelistMod.ojamaBtnBool)
 		{

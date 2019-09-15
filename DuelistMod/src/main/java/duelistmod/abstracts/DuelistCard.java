@@ -5,6 +5,9 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
@@ -23,20 +26,21 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.*;
 import com.megacrit.cardcrawl.stances.AbstractStance.StanceName;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 
-import basemod.BaseMod;
+import basemod.*;
 import basemod.abstracts.*;
 import basemod.helpers.*;
 import duelistmod.DuelistMod;
@@ -57,6 +61,7 @@ import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.stances.*;
 import duelistmod.variables.*;
+import duelistmod.vfx.DuelistGlowBorder;
 
 public abstract class DuelistCard extends CustomCard implements ModalChoice.Callback, CustomSavable <String>
 {
@@ -68,6 +73,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	 * Static Setup						// Hack together the orb list before the dungeon is loaded, orb list is for orb modal so every card can open random orb choices dynamically
 	 * Abstract Methods					// Abstracts for Duelist Cards
 	 * Constructors						// Create new Duelist Cards via constructor
+	 * Enums							// Duelist Card Enums
 	 * Super Override Functions			// Override AbstractCard and CustomCard methods
 	 * Duelist Functions				// Special functions for Duelist Cards
 	 * Attack Functions					// Functions that run attack and damage actions
@@ -116,6 +122,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean isCastle = false;
 	public boolean isTributesModified = false;
 	public boolean isTributesModifiedForTurn = false;
+	public boolean isMagicNumModifiedForTurn = false;
 	public boolean isTribModPerm = false;
 	public boolean isSummonsModified = false;
 	public boolean isSummonsModifiedForTurn = false;
@@ -189,7 +196,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int p4DeckCopies = 1;
 	public int p5DeckCopies = 1;
 	public int metronomeDeckCopies = 1;
+	public int originalMagicNumber = 0;
 	public double dynDmg = 0;
+	
+	public GlowColor gColor;
+	private float glowTimer;
+	private ArrayList<CardGlowBorder> glowList;
 	
 	public int startingOriginalDeckCopies = 1;
 	public int startingOPDragDeckCopies = 1;
@@ -198,6 +210,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int startingOPRDeckCopies = 1;
 	public int startingOPHDeckCopies = 1;
 	public int startingOPODeckCopies = 1;
+	
+    private static final Color BLUE_BORDER_GLOW_COLOR;
+    private static final Color GREEN_BORDER_GLOW_COLOR;
 	// =============== /CARD FIELDS/ =======================================================================================================================================================
 	
 	
@@ -212,6 +227,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
         for (AbstractOrb o : allOrbs) { orbMap.put(o.name, o); }
         resetInvertStringMap();
         AbstractDungeon.player = realPlayer;
+        BLUE_BORDER_GLOW_COLOR = new Color(0.2f, 0.9f, 1.0f, 0.25f);
+        GREEN_BORDER_GLOW_COLOR = new Color(0.0f, 1.0f, 0.0f, 0.25f);
     }
 	// =============== /STATIC SETUP/ =======================================================================================================================================================
 	
@@ -254,7 +271,106 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
 	
+	// =============== ENUMS =========================================================================================================================================================
+	public enum GlowColor
+    {
+        BLUE, 
+        GOLD,
+        GREEN,
+        PURPLE,
+        ORANGE,
+        WHITE,
+		RED;
+    }
+	// =============== /ENUMS/ =======================================================================================================================================================
+	
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
+	private void updateGlow() {
+        if (this.isGlowing) {
+            this.glowTimer -= Gdx.graphics.getDeltaTime();
+            if (this.glowTimer < 0.0f) {
+                this.glowList.add(new DuelistGlowBorder(this, this.gColor));
+                this.glowTimer = 0.3f;
+            }
+        }
+        final Iterator<CardGlowBorder> i = this.glowList.iterator();
+        while (i.hasNext()) {
+            final CardGlowBorder e = i.next();
+            e.update();
+            if (e.isDone) {
+                i.remove();
+            }
+        }
+    }	
+	
+	private void renderMainBorder(final SpriteBatch sb) {
+        if (this.isGlowing) {
+            sb.setBlendFunction(770, 1);
+            TextureAtlas.AtlasRegion img = null;
+            switch (this.type) {
+                case POWER: {
+                    img = ImageMaster.CARD_POWER_BG_SILHOUETTE;
+                    break;
+                }
+                case ATTACK: {
+                    img = ImageMaster.CARD_ATTACK_BG_SILHOUETTE;
+                    break;
+                }
+                default: {
+                    img = ImageMaster.CARD_SKILL_BG_SILHOUETTE;
+                    break;
+                }
+            }
+            if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+                switch (this.gColor) {
+                    case BLUE: {
+                        sb.setColor(DuelistCard.BLUE_BORDER_GLOW_COLOR);
+                        break;
+                    }
+                    case GOLD: {
+                        sb.setColor(Color.GOLD);
+                        break;
+                    }
+                    case RED: {
+                    	sb.setColor(Color.RED);
+                        break;
+                    }
+                    case GREEN: {
+                    	sb.setColor(Color.GREEN);
+                        break;
+                    }
+                    case PURPLE: {
+                    	sb.setColor(Color.PURPLE);
+                        break;
+                    }
+                    case ORANGE: {
+                    	sb.setColor(Color.ORANGE);
+                        break;
+                    }
+                    case WHITE: {
+                    	sb.setColor(Color.WHITE);
+                        break;
+                    }
+                    default: {
+                        sb.setColor(Color.PURPLE);
+                        break;
+                    }
+                }
+            }
+            else {
+                sb.setColor(DuelistCard.GREEN_BORDER_GLOW_COLOR);
+            }
+            sb.draw(img, this.current_x + img.offsetX - img.originalWidth / 2.0f, this.current_y + img.offsetY - img.originalWidth / 2.0f, img.originalWidth / 2.0f - img.offsetX, img.originalWidth / 2.0f - img.offsetY, (float)img.packedWidth, (float)img.packedHeight, this.drawScale * Settings.scale * 1.04f, this.drawScale * Settings.scale * 1.03f, this.angle);
+        }
+    }
+	
+	@Override
+	public void triggerOnGlowCheck()
+	{
+		super.triggerOnGlowCheck();
+		if (this.fiendDeckDmgMod) { this.gColor = DuelistCard.GlowColor.RED; }
+	}
+	
 	@Override
 	public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
 	{
@@ -285,7 +401,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			dCard.isTributesModified = this.isTributesModified;
 			dCard.isSummonsModified = this.isSummonsModified;
 			dCard.isTributesModifiedForTurn = this.isTributesModifiedForTurn;
+			dCard.isMagicNumModifiedForTurn = this.isMagicNumModifiedForTurn;
 			dCard.isSummonsModifiedForTurn = this.isSummonsModifiedForTurn;
+			dCard.originalMagicNumber = this.originalMagicNumber;
 			dCard.inDuelistBottle = this.inDuelistBottle;
 			dCard.baseTributes = this.baseTributes;
 			dCard.baseSummons = this.baseSummons;
@@ -564,6 +682,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			this.isSummonsModified = false;
 			this.summons = this.baseSummons;
 			this.rawDescription = this.originalDescription;
+			this.initializeDescription();
+		}
+		
+		if (this.isMagicNumModifiedForTurn)
+		{
+			this.isMagicNumModifiedForTurn = false;
+			this.magicNumber = this.baseMagicNumber = this.originalMagicNumber;
 			this.initializeDescription();
 		}
 	}
@@ -1166,6 +1291,23 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== MISC ACTION FUNCTIONS =========================================================================================================================================================
+	public void chooseHandCardToModifyMagicNumForTurn(int cardsToChoose, int addAmt, boolean canCancel)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		ArrayList<DuelistCard> handDuelistCards = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> secondSet = new ArrayList<DuelistCard>();
+    	for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard && !c.uuid.equals(this.uuid)) { handDuelistCards.add((DuelistCard) c); }}
+    	for (DuelistCard c : handDuelistCards) { if (!c.isTributesModifiedForTurn) { secondSet.add(c); }}
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberForTurnAction(secondSet, cardsToChoose, addAmt, canCancel));
+	}
+	
+	public void modifyMagicNumForTurn(ArrayList<DuelistCard> handDuelistCards, int cardsToChoose, int addAmt, boolean canCancel)
+	{
+		ArrayList<DuelistCard> secondSet = new ArrayList<DuelistCard>();
+    	for (DuelistCard c : handDuelistCards) { if (!c.isTributesModifiedForTurn && !c.hasTag(Tags.NO_MAGIC_MOD)) { secondSet.add(c); }}
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberForTurnAction(secondSet, cardsToChoose, addAmt, canCancel));
+	}
+	
 	public void makeFleeting()
 	{
 		FleetingField.fleeting.set(this, true);

@@ -58,10 +58,11 @@ public class Hayate extends DuelistCard
     @Override
     public void triggerOnGlowCheck()
     {
+    	super.triggerOnGlowCheck();
     	if (AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth / 2) {
             this.gColor = GlowColor.GOLD;
         }
-        else {
+    	else if (!this.fiendDeckDmgMod) {
             this.gColor = GlowColor.BLUE;
         }
     }

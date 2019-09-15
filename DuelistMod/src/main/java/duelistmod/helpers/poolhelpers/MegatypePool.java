@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -211,12 +212,6 @@ public class MegatypePool
 		cards.add(new BetaMagnet());
 		cards.add(new GammaMagnet());
 		cards.add(new ValkMagnet());
-		cards.add(new SuperheavyBenkei());
-		cards.add(new SuperheavyFlutist());
-		cards.add(new SuperheavyGeneral());
-		cards.add(new SuperheavyOgre());
-		cards.add(new SuperheavyScales());
-		cards.add(new SuperheavySwordsman());
 		cards.add(new PatricianDarkness());
 		cards.add(new VampireGenesis());
 		cards.add(new VampireLord());
@@ -258,6 +253,8 @@ public class MegatypePool
 		cards.add(new RockBombardment());
 		cards.add(new Metronome());
 		cards.add(new OrbMetronome());
+		cards.add(new WhiteHowling());
+		cards.add(new WhiteNinja());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

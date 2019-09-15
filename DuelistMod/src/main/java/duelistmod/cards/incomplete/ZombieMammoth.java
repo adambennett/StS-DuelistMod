@@ -46,6 +46,7 @@ public class ZombieMammoth extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
     	this.tags.add(Tags.EXODIA_DECK);
+        this.tags.add(Tags.BAD_MAGIC);
     	this.exodiaDeckCopies = 1;
     	this.setupStartingCopies();
     }
@@ -67,7 +68,7 @@ public class ZombieMammoth extends DuelistCard
     			AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile)); exhausted.add(c.uuid);
     		}
     	}
-    	else if (drawCards.size() > 0) { for (AbstractCard c : drawCards) {  AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile)); }}
+    	else if (drawCards.size() > 0 && this.magicNumber > 0) { for (AbstractCard c : drawCards) {  AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, p.drawPile)); }}
     }
 
     // Upgraded stats.

@@ -40,6 +40,7 @@ public class HauntedShrine extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.TRAP);
+        this.tags.add(Tags.BAD_MAGIC);
         this.magicNumber = this.baseMagicNumber = 2;
     }
 

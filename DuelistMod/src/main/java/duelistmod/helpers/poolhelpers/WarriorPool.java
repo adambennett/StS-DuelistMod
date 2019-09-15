@@ -205,6 +205,8 @@ public class WarriorPool
 		magnetCards.add(new WhiteNinja());
 		magnetCards.add(new CyberRaider());
 		magnetCards.add(new MaxWarrior());
+		magnetCards.add(new CircleFireKings());
+		magnetCards.add(new OnslaughtFireKings());
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 			magnetCards.add(new Adaptation());

@@ -74,7 +74,7 @@ public class SpiralSpearStrike extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.magicNumber < 4) { return true; }
+    	if (this.magicNumber < 6) { return true; }
     	else { return false; }
     }
 

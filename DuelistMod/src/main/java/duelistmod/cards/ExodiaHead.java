@@ -70,6 +70,7 @@ public class ExodiaHead extends DuelistCard
     @Override
     public void triggerOnGlowCheck()
     {
+    	super.triggerOnGlowCheck();
     	boolean dealExtra = false;
     	if (AbstractDungeon.player.hasPower(ExodiaPower.POWER_ID))
         {

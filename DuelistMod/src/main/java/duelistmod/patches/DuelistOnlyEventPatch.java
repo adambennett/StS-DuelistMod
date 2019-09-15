@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 
 import duelistmod.events.*;
+import duelistmod.helpers.*;
 
 public class DuelistOnlyEventPatch {
 	@SpirePatch(clz = EventHelper.class, method = "getEvent")
@@ -30,9 +31,12 @@ public class DuelistOnlyEventPatch {
 			if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) 
 			{
 				AbstractDungeon.specialOneTimeEventList.add(MillenniumItems.ID);
-				AbstractDungeon.specialOneTimeEventList.add(AknamkanonTomb.ID);
-				AbstractDungeon.specialOneTimeEventList.add(EgyptVillage.ID);
+				AbstractDungeon.specialOneTimeEventList.add(AknamkanonTomb.ID);				
 				AbstractDungeon.specialOneTimeEventList.add(TombNameless.ID);
+				AbstractDungeon.specialOneTimeEventList.add(TombNamelessPuzzle.ID);
+				String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+				if (deck.equals("Warrior Deck")) { AbstractDungeon.specialOneTimeEventList.add(EgyptVillage.ID); Util.log("Added Egypt Village to events list");}
+				else { Util.log("Egypt Village event was not added to special events list, you are not playing with the Warrior Deck"); }
 			}
 		}
 	}

@@ -1,14 +1,18 @@
 package duelistmod.cards;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BeatOfDeathPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CardSelectScreenModifyMagicNumberForTurnAction;
+import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -35,6 +39,7 @@ public class BadToken extends DuelistCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.damage = this.baseDamage = 1;
+    	this.baseMagicNumber = this.magicNumber = 3;
     	this.tags.add(Tags.NEVER_GENERATE);
     	//makeMegatyped();
     }
@@ -42,6 +47,7 @@ public class BadToken extends DuelistCard
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.damage = this.baseDamage = 1; 
+    	this.baseMagicNumber = this.magicNumber = 3;
     	this.tags.add(Tags.NEVER_GENERATE);
     	//makeMegatyped();
     }
@@ -49,15 +55,15 @@ public class BadToken extends DuelistCard
     
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
+    	chooseHandCardToModifyMagicNumForTurn(1, this.magicNumber, true);
     	
-    	applyPowerToSelf(new BeatOfDeathPower(p, 1));
     	
     	if (DuelistMod.debug)
     	{
-    		//Debug.printTributeInfo();
-        	//Debug.printRarityInfo();
-        	//Debug.printTypedRarityInfo();
-        	//BoosterPackHelper.debugCheckLists();
+    		Debug.printTributeInfo();
+        	Debug.printRarityInfo();
+        	Debug.printTypedRarityInfo();
+        	BoosterPackHelper.debugCheckLists();
     	}
     }
    

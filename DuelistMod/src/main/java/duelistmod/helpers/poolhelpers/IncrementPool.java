@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.WhiteHowling;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -132,6 +133,7 @@ public class IncrementPool
 		incCards.add(new MultiplicationOfAnts());		
 		incCards.add(new DarkSpider());		
 		incCards.add(new UndergroundArachnid());
+		incCards.add(new WhiteHowling());
 		
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)

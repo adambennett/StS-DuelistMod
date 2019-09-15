@@ -55,6 +55,7 @@ public class DokiDoki extends DuelistCard
     @Override
     public void triggerOnGlowCheck()
     {
+    	super.triggerOnGlowCheck();
     	if (DuelistMod.playedSpellThisTurn) {
             this.gColor = GlowColor.GOLD;
         }

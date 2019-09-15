@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.typecards.CancelCard;
 import duelistmod.helpers.GridSort;
 import duelistmod.variables.Tags;
@@ -62,14 +63,37 @@ public class CardSelectScreenModifyMagicNumberAction extends AbstractGameAction
 				if (!(c instanceof CancelCard))
 				{
 					AbstractCard original = originalMap.get(c.uuid);
-					original.baseMagicNumber += this.magicBonus;
-					if (original.baseMagicNumber < 0) { original.baseMagicNumber = 0; }
-					original.magicNumber = original.baseMagicNumber;
+					if (original instanceof DuelistCard)
+					{
+						modify((DuelistCard) original, this.magicBonus);
+					}
+					else
+					{
+						original.baseMagicNumber += this.magicBonus;
+						if (original.baseMagicNumber < 0) { original.baseMagicNumber = 0; }
+						original.magicNumber = original.baseMagicNumber;
+					}
 				}
 			}
 			AbstractDungeon.gridSelectScreen.selectedCards.clear();
 			this.p.hand.refreshHandLayout();
 		}
 		tickDuration();
+	}
+	
+	private void modify(DuelistCard original, int magic)
+	{
+		if (original.hasTag(Tags.BAD_MAGIC))
+		{
+			original.baseMagicNumber -= magic;
+			if (original.baseMagicNumber < 0) { original.baseMagicNumber = 0; }
+			original.magicNumber = original.baseMagicNumber;
+		}
+		else
+		{
+			original.baseMagicNumber += magic;
+			if (original.baseMagicNumber < 0) { original.baseMagicNumber = 0; }
+			original.magicNumber = original.baseMagicNumber;
+		}
 	}
 }

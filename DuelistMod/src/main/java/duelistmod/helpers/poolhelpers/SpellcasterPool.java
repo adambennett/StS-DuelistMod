@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.blue.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.WhiteHowling;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -162,6 +163,9 @@ public class SpellcasterPool
 		spellcasterCards.add(new WitchBlackRose());
 		spellcasterCards.add(new CrystalWingDragon());
 		spellcasterCards.add(new SkilledDarkMagician());
+		spellcasterCards.add(new CircleFireKings());
+		spellcasterCards.add(new OnslaughtFireKings());
+		spellcasterCards.add(new WhiteHowling());
 		if (!DuelistMod.exodiaBtnBool)
 		{
 			spellcasterCards.add(new ExodiaHead());

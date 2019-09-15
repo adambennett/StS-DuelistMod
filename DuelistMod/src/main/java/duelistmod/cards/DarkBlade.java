@@ -38,6 +38,7 @@ public class DarkBlade extends DuelistCard
         this.summons = this.baseSummons = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.BAD_MAGIC);
         this.originalName = this.name;
         this.isSummon = true;
         this.baseDamage = this.damage = 10;
@@ -52,7 +53,7 @@ public class DarkBlade extends DuelistCard
     	attack(m, this.baseAFX, this.damage);
     	AbstractOrb dark = new Dark();
     	channel(dark);    	
-    	DuelistCard.damageSelf(this.magicNumber);
+    	if (this.magicNumber > 0) { DuelistCard.damageSelf(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.

@@ -39,6 +39,7 @@ public class DrivenDaredevil extends DuelistCard
         this.baseDamage = this.damage = 10;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.BAD_MAGIC);
         this.summons = this.baseSummons = 3;
         this.magicNumber = this.baseMagicNumber = 2;
         this.originalName = this.name;
@@ -50,7 +51,7 @@ public class DrivenDaredevil extends DuelistCard
     {    	
     	summon(p, this.summons, this);
     	attack(m);
-    	applyPower(new StrengthPower(m, this.magicNumber), m);
+    	if (this.magicNumber > 0) { applyPower(new StrengthPower(m, this.magicNumber), m); }
     }
 
     // Which card to return when making a copy of this card.
