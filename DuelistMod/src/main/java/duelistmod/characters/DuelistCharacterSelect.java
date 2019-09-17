@@ -72,7 +72,7 @@ public class DuelistCharacterSelect
         	int save = 0;
             AddLoadout(new StandardDeck(), save, "10 cards");  
             AddLoadout(new DragonDeck(), save, "10 cards"); 
-            AddLoadout(new NaturiaDeck(), save, "10 cards"); 
+            AddLoadout(new NaturiaDeck(), save, "10 cards", true); 
             AddLoadout(new SpellcasterDeck(), save, "10 cards");
             AddLoadout(new ToonDeck(), save, "10 cards"); 
             AddLoadout(new ZombieDeck(), save, "10 cards"); 
@@ -108,7 +108,7 @@ public class DuelistCharacterSelect
         	int save = 0;
             AddLoadout(new StandardDeck(), save, "10 cards");  
             AddLoadout(new DragonDeck(), save, "10 cards"); save += 1000;
-            AddLoadout(new NaturiaDeck(), save, "10 cards"); save += 1000;
+            AddLoadout(new NaturiaDeck(), save, "10 cards", true); save += 1000;
             AddLoadout(new SpellcasterDeck(), save, "10 cards"); save += 2500;
             AddLoadout(new ToonDeck(), save, "10 cards"); save += 2500;
             AddLoadout(new ZombieDeck(), save, "10 cards");  save += 5000;
