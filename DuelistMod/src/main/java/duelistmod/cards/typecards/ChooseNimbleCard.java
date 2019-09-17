@@ -38,7 +38,7 @@ public class ChooseNimbleCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Nimble());
+    	changeStance("theDuelist:Nimble");
     }
     @Override public AbstractCard makeCopy() { return new ChooseNimbleCard(); }
 

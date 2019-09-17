@@ -87,8 +87,11 @@ public class MerchantNecklace extends CustomRelic implements ClickableRelic {
     {
     	if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) 
         {
-            flash();
-            setCounter(this.counter + 1);
+    		if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
+    		{
+	            flash();
+	            setCounter(this.counter + 1);
+    		}
         }
     }
 	

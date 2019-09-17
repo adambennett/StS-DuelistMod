@@ -102,6 +102,13 @@ public class SummonPower extends AbstractPower
 	}
 	
 	@Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+		// Rock-type blocking effect
+		for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock); }}
+	}
+	
+	@Override
 	public void onVictory()
 	{
 	
@@ -320,7 +327,7 @@ public class SummonPower extends AbstractPower
 		goodTags.add(Tags.INSECT);
 		goodTags.add(Tags.PLANT);
 		goodTags.add(Tags.TOON);
-		goodTags.add(Tags.WARRIOR);
+		if (!DuelistMod.warriorTribThisCombat) { goodTags.add(Tags.WARRIOR); }
 		coloredSummonList = new ArrayList<String>();
 		for (DuelistCard s : actualCardSummonList)
 		{

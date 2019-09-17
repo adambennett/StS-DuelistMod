@@ -41,7 +41,7 @@ public class PotForbidden extends DuelistCard
     public PotForbidden() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.POT);
         this.misc = 0;
         this.tributes = this.baseTributes = 5;

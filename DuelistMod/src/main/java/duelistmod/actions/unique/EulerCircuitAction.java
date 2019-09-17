@@ -18,11 +18,11 @@ public class EulerCircuitAction extends AbstractGameAction
         if (this.duration == Settings.ACTION_DUR_FAST) {
             if (AbstractDungeon.player.stance.ID.equals("theDuelist:Samurai")) 
             {
-                DuelistCard.changeStance(new Guarded());
+                DuelistCard.changeStance("theDuelist:Guarded");
             }
             else if (AbstractDungeon.player.stance.ID.equals("theDuelist:Guarded")) 
             {
-            	 DuelistCard.changeStance(new Samurai());
+            	 DuelistCard.changeStance("theDuelist:Samurai");
             }
             if (Settings.FAST_MODE) {
                 this.isDone = true;

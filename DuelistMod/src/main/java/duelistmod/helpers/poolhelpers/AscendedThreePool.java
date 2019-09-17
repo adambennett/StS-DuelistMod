@@ -29,7 +29,7 @@ public class AscendedThreePool
 		pools.add(IncrementPool.deck());
 		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(OjamaPool.deck());
 		pools.add(PlantPool.deck());
 		pools.add(PredaplantPool.deck());
@@ -38,6 +38,7 @@ public class AscendedThreePool
 		pools.add(ToonPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
 		ArrayList<AbstractCard> random = pools.get(DuelistMod.archRoll1);
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
@@ -57,7 +58,7 @@ public class AscendedThreePool
 		pools.add(IncrementPool.deck());
 		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(OjamaPool.deck());
 		pools.add(PlantPool.deck());
 		pools.add(PredaplantPool.deck());
@@ -65,7 +66,8 @@ public class AscendedThreePool
 		pools.add(StandardPool.deck());
 		pools.add(ToonPool.deck());
 		pools.add(WarriorPool.deck());
-		pools.add(ZombiePool.deck());		
+		pools.add(ZombiePool.deck());	
+		pools.add(RockPool.deck());
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size() || DuelistMod.archRoll2 > pools.size())
 		{

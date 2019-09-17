@@ -38,6 +38,7 @@ public class LightningVortex extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
+		this.tags.add(Tags.X_COST);
         this.baseDamage = this.damage = 8;
     }
 

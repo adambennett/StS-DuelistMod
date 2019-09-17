@@ -38,6 +38,7 @@ public class EarthquakeGiant extends DuelistCard
         this.baseBlock = this.block = 8;
         this.baseDamage = this.damage = 8;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.ROCK);
        // this.tags.add(Tags.GIANTS);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;

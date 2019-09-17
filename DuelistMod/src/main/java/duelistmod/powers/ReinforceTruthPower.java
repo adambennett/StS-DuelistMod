@@ -39,7 +39,7 @@ public class ReinforceTruthPower extends AbstractPower
     @Override
     public void onChangeStance(final AbstractStance oldStance, final AbstractStance newStance) 
     {
-    	if (oldStance.stanceName != newStance.stanceName && newStance.stanceName != AbstractStance.StanceName.NONE) 
+    	if (oldStance.name != newStance.name && !newStance.name.equals("Neutral")) 
     	{
             this.flash();
             DuelistCard.applyPowerToSelf(new DexterityPower(AbstractDungeon.player, this.amount));

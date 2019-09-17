@@ -41,7 +41,7 @@ public class DarkworldThornsNameless extends DuelistCard
         this.tags.add(Tags.PLANT_DECK);
         this.plantDeckCopies = 1;
         this.summons = this.baseSummons = 2;			
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 4;
         this.magicNumber = this.baseMagicNumber = 1 + DuelistMod.namelessTombMagicMod;
         this.originalName = this.name;
         this.setupStartingCopies();
@@ -68,7 +68,6 @@ public class DarkworldThornsNameless extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(2);
-            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

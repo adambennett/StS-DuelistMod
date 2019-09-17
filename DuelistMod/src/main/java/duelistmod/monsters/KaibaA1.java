@@ -114,13 +114,13 @@ public class KaibaA1 extends DuelistMonster
 					AbstractCard mirC = new MiraculousDescentEnemy();
 					mirC.upgrade();
 					moveCards.add(mirC);
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					overflowCards.add(new PreventRat());
 					this.setMove((byte)2, Intent.DEFEND_BUFF);					
 					break;
 				case 4:
 					moveCards.add(new LesserDragon());
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					moveCards.add(new Hinotama());
 					overflowCards.add(new PreventRat());
 					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.lesser.damage + (this.hinotama.damage * this.hinotama.magicNumber));
@@ -128,7 +128,7 @@ public class KaibaA1 extends DuelistMonster
 				case 5:
 					moveCards.add(new LesserDragon());
 					moveCards.add(new PreventRat());
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.lesser.damage);
 					break;				
 			}			
@@ -138,7 +138,7 @@ public class KaibaA1 extends DuelistMonster
 			{
 				moveCards.add(new MillenniumShield());
 				moveCards.add(new PreventRat());
-				moveCards.add(new CastleWalls());
+				moveCards.add(new PowerWall());
 				this.setMove((byte)2, Intent.DEFEND_BUFF);
 			}
 			
@@ -146,7 +146,7 @@ public class KaibaA1 extends DuelistMonster
 			{
 				moveCards.add(new PreventRat());
 				moveCards.add(new MillenniumShield());
-				moveCards.add(new CastleWalls());
+				moveCards.add(new PowerWall());
 				this.setMove((byte)2, Intent.DEFEND_BUFF);
 			}
 			
@@ -154,7 +154,7 @@ public class KaibaA1 extends DuelistMonster
 			{
 				moveCards.add(new YamataDragon());
 				moveCards.add(new Sparks());
-				moveCards.add(new CastleWalls());
+				moveCards.add(new PowerWall());
 				overflowCards.add(new PreventRat());
 				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage + this.sparks.damage);
 			}
@@ -166,14 +166,14 @@ public class KaibaA1 extends DuelistMonster
 				{
 					moveCards.add(new PreventRat());
 					moveCards.add(new YamataDragon());
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.yamata.damage);
 				}
 				else
 				{
 					moveCards.add(new Sparks());
 					moveCards.add(new PreventRat());
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
 				}
 			}
@@ -232,7 +232,7 @@ public class KaibaA1 extends DuelistMonster
 				if (roll == 1)
 				{
 					moveCards.add(new CaveDragon());
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					moveCards.add(new Kuriboh());
 					this.setMove((byte)2, Intent.DEFEND_BUFF);
 				}
@@ -240,7 +240,7 @@ public class KaibaA1 extends DuelistMonster
 				{
 					moveCards.add(new Kuriboh());
 					moveCards.add(new CaveDragon());
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					this.setMove((byte)2, Intent.DEFEND_BUFF);
 				}
 			}
@@ -436,7 +436,7 @@ public class KaibaA1 extends DuelistMonster
 					AbstractCard red = new RedMedicine();
 					red.upgrade();
 					moveCards.add(red);
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					moveCards.add(new GoldenApples());
 					this.setMove((byte)2, Intent.DEFEND_BUFF);
 				}
@@ -453,7 +453,7 @@ public class KaibaA1 extends DuelistMonster
 					AbstractCard tot = new TotemDragon();
 					tot.upgrade();
 					moveCards.add(tot);
-					moveCards.add(new CastleWalls());
+					moveCards.add(new PowerWall());
 					this.setMove((byte)2, Intent.DEFEND_BUFF);
 				}
 			}
@@ -564,7 +564,7 @@ public class KaibaA1 extends DuelistMonster
 			if (seedy == 1)
 			{
 				moveCards.add(new Sparks());
-				moveCards.add(new CastleWalls());
+				moveCards.add(new PowerWall());
 				moveCards.add(new GoldenApples());
 				overflowCards.add(new PreventRat());
 				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);

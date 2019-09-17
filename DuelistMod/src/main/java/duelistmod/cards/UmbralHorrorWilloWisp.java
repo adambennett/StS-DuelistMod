@@ -40,6 +40,7 @@ public class UmbralHorrorWilloWisp extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
         this.tags.add(Tags.TRIBUTE);
+		this.tags.add(Tags.X_COST);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 0; 

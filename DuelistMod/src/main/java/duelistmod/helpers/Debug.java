@@ -522,7 +522,7 @@ public class Debug
 				spellcaster.add(c);
 			}
 
-			if (c.hasTag(Tags.NATURE_DECK))
+			if (c.hasTag(Tags.NATURIA_DECK))
 			{
 				nature.add(c);
 			}
@@ -577,7 +577,7 @@ public class Debug
 				exodiaDeck.add(c);
 			}
 
-			if (c.hasTag(Tags.MAGNET_DECK))
+			if (c.hasTag(Tags.WARRIOR_DECK))
 			{
 				magnetDeck.add(c);
 			}
@@ -645,7 +645,7 @@ public class Debug
 
 		for (DuelistCard c : nature)
 		{
-			DuelistMod.logger.info(c.originalName + " - " + "[i]Nature Deck[/i]");
+			DuelistMod.logger.info(c.originalName + " - " + "[i]Naturia Deck[/i]");
 		}
 
 		for (DuelistCard c : creator)

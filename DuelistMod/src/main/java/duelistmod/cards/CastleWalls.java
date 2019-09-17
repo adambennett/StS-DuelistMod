@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.helpers.BaseModCardTags;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
@@ -14,7 +15,7 @@ import duelistmod.variables.*;
 public class CastleWalls extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("CastleWalls");
+    public static final String ID = DuelistMod.makeID("CastleWalls");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.CASTLE_WALLS);
     public static final String NAME = cardStrings.NAME;
@@ -23,24 +24,62 @@ public class CastleWalls extends DuelistCard
     // /TEXT DECLARATION/ 
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
-    private static final int BLOCK = 10;
-    private static final int UPGRADE_PLUS_BLK = 4;
+    private static final int BLOCK = 5;
     // /STAT DECLARATION/
 
     public CastleWalls() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = BLOCK;
         this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.EXODIA_DECK);
-        this.tags.add(Tags.ORIGINAL_DECK);       
-        this.startingOriginalDeckCopies = 2;
-        this.exodiaDeckCopies = 4;
+        this.tags.add(BaseModCardTags.BASIC_DEFEND);
+        this.tags.add(Tags.STANDARD_DECK);
+        this.tags.add(Tags.DRAGON_DECK);
+        this.tags.add(Tags.SPELLCASTER_DECK);
+        this.tags.add(Tags.NATURIA_DECK);
+        this.tags.add(Tags.TOON_DECK);
+        this.tags.add(Tags.ORB_DECK);
+        this.tags.add(Tags.RESUMMON_DECK);
+        this.tags.add(Tags.HEAL_DECK);
+        this.tags.add(Tags.CREATOR_DECK);
+        this.tags.add(Tags.GENERATION_DECK);
+        this.tags.add(Tags.MACHINE_DECK);
+        this.tags.add(Tags.ZOMBIE_DECK);
+        this.tags.add(Tags.FIEND_DECK);
+        this.tags.add(Tags.AQUA_DECK);
+        this.tags.add(Tags.WARRIOR_DECK);
+        this.tags.add(Tags.ASCENDED_ONE_DECK);
+        this.tags.add(Tags.ASCENDED_TWO_DECK);
+        this.tags.add(Tags.ASCENDED_THREE_DECK);
+        this.tags.add(Tags.MEGATYPE_DECK);
+        this.tags.add(Tags.INCREMENT_DECK);
+        this.tags.add(Tags.PLANT_DECK);
+        this.plantDeckCopies = 2;
+        this.incrementDeckCopies = 2;
+        this.megatypeDeckCopies = 2;
+        this.a1DeckCopies = 2;
+        this.a2DeckCopies = 2;
+        this.a3DeckCopies = 2;
+        this.superheavyDeckCopies = 2;
+        this.zombieDeckCopies = 3;
+        this.fiendDeckCopies = 3;
+        this.zombieDeckCopies = 2;
+        this.machineDeckCopies = 2;
+		this.generationDeckCopies = 3;
         this.standardDeckCopies = 2;
+        this.dragonDeckCopies = 2;
+        this.spellcasterDeckCopies = 2;
+        this.natureDeckCopies = 3;
+        this.toonDeckCopies = 2;
+        this.creatorDeckCopies = 3;
+        this.orbDeckCopies = 2;
+        this.resummonDeckCopies = 2;
+        this.healDeckCopies = 3;
+        this.aquaDeckCopies = 2;
         this.originalName = this.name;
         this.setupStartingCopies();
     }
@@ -63,8 +102,9 @@ public class CastleWalls extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(UPGRADE_PLUS_BLK);
-			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
+            this.upgradeBlock(3);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 

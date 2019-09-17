@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -46,7 +45,7 @@ public class AfterTheStorm extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, this.magicNumber, false, true, true));
-		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(AbstractStance.StanceName.CALM));
+		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction("Calm"));
     }
 
     // Which card to return when making a copy of this card.

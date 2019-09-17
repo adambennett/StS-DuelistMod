@@ -45,7 +45,7 @@ public class DefenseZone extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, this.magicNumber, false, true, true));
-    	changeStanceInst(new Guarded());
+    	changeStanceInst("theDuelist:Guarded");
     }
 
     // Which card to return when making a copy of this card.

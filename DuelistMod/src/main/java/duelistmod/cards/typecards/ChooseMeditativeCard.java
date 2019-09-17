@@ -38,7 +38,7 @@ public class ChooseMeditativeCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Meditative());
+    	changeStance("theDuelist:Meditative");
     }
     @Override public AbstractCard makeCopy() { return new ChooseMeditativeCard(); }
 

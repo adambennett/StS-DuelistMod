@@ -50,7 +50,7 @@ public class BullBlader extends DuelistCard
     {
     	summon();
     	attack(m);
-    	changeStance(AbstractStance.StanceName.WRATH);
+    	changeStance("Wrath");
     	applyPowerToSelf(new CannotChangeStancePower(p));
     }
 

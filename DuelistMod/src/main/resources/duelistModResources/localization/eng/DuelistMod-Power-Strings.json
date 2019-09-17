@@ -659,6 +659,82 @@
         "NAME": "White Howling",
         "DESCRIPTIONS": ["At the start of turn, if you have no #yWhite orbs, #yChannel #b", " #yWhite."]
 },
+"theDuelist:AnteaterPower": {
+        "NAME": "Anteatereatingant",
+        "DESCRIPTIONS": ["For the next #b", " turn, whenever you #ySummon, draw a card.", " turns, whenever you #ySummon, draw a card."]
+},
+"theDuelist:CanyonPower": {
+        "NAME": "Canyon",
+        "DESCRIPTIONS": ["Whenever you gain #yBlock at the end of turn from #yRocks, gain #b", " extra #yBlock."]
+},
+"theDuelist:CatapultZonePower": {
+        "NAME": "Catapult Zone",
+        "DESCRIPTIONS": ["Whenever you are attacked, if you have any #yRocks summoned, #yTribute them all and receive no damage. At the start of each turn, deal damage to ALL enemies equal to the number of #yRocks currently summoned."]
+},
+"theDuelist:ConvulsionNaturePower": {
+        "NAME": "Convulsion of Nature",
+        "DESCRIPTIONS": ["At the start of turn, #yResummon #b", " random #yNaturia monster on a random enemy.", " random #yNaturia monsters on a random enemy."]
+},
+"theDuelist:CorrosiveScalesPower": {
+        "NAME": "Corrosive Scales",
+        "DESCRIPTIONS": ["Whenever you are attacked, if you have any #yInsects summoned, #yTribute them all and apply twice that much Poison to ALL enemies.", "Whenever you are attacked, if you have any #yInsects summoned, #yTribute them all and apply three times that much Poison to ALL enemies."]
+},
+"theDuelist:CrystalForestPower": {
+        "NAME": "Crystal Forest",
+        "DESCRIPTIONS": ["At the start of turn, gain #b", " #yTemporary #yHP for each #yNaturia card in your draw pile."]
+},
+"theDuelist:DemiseLandPower": {
+        "NAME": "Demise of Land",
+        "DESCRIPTIONS": ["#yNaturia monsters deal 100% more damage and gain 75% more #yBlock. All other monster types deal 50% less damage."]
+},
+"theDuelist:LairWirePower": {
+        "NAME": "Lair Wire",
+        "DESCRIPTIONS": ["Whenever you play an X-cost card, gain #b", " #yLeaves."]
+},
+"theDuelist:LeodrakeManePower": {
+        "NAME": "Leodrake Mane",
+        "DESCRIPTIONS": ["Whenever you #ySummon a #yNaturia, #yScry #b", "."]
+},
+"theDuelist:NaturalDisasterPower": {
+        "NAME": "Natural Disaster",
+        "DESCRIPTIONS": ["Whenever you gain #yVines, gain #b", " #yLeaves."]
+},
+"theDuelist:NatureReflectionPower": {
+        "NAME": "Nature's Reflection",
+        "DESCRIPTIONS": ["Whenever you gain #yVines, add a random #yNaturia card to your hand."]
+},
+"theDuelist:NaturiaLeodrakePower": {
+        "NAME": "Naturia Leodrake",
+        "DESCRIPTIONS": ["Whenever you draw a #yNaturia, gain #b", " #yEnergy."]
+},
+"theDuelist:NaturiaStagBeetlePower": {
+        "NAME": "Naturia Stag Beetle",
+        "DESCRIPTIONS": ["At the start of even turns, #yTribute X. At the start of odd turns, gain #yVines equal to the last amount tributed by this effect."]
+},
+"theDuelist:PollinosisPower": {
+        "NAME": "Pollinosis",
+        "DESCRIPTIONS": ["At the start of turn, if you did not draw any #yNaturia cards, add a random #yNaturia monster to your hand."]
+},
+"theDuelist:ReleaseFromStonePower": {
+        "NAME": "Release from Stone",
+        "DESCRIPTIONS": ["At the start of turn, if you have no #yRocks summoned, add a random #yRock monster to your hand."]
+},
+"theDuelist:WastelandPower": {
+        "NAME": "Wasteland",
+        "DESCRIPTIONS": ["#yZombies and #yRocks gain 60% more damage and gain 30% more #yBlock.", "#yZombies and #yRocks gain 30% more damage and gain 60% more #yBlock."]
+},
+"theDuelist:VinesPower": {
+        "NAME": "Vines",
+        "DESCRIPTIONS": ["At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned. NL #yCurrent #yDamage: #b" ]
+},
+"theDuelist:LeavesPower": {
+        "NAME": "Leaves",
+        "DESCRIPTIONS": ["At the start of turn, gain #yBlock. #yBlock amount depends on the number of #yLeaves and the number of #yNaturias currently summoned. NL #yCurrent #yBlock: #b" ]
+},
+"theDuelist:CompostPower": {
+        "NAME": "Compost",
+        "DESCRIPTIONS": ["Whenever you are attacked, deal #b", " damage to ALL enemies." ]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

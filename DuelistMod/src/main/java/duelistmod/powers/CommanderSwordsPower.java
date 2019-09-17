@@ -6,10 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.DuelistMod;
-import duelistmod.variables.Strings;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
@@ -38,7 +36,7 @@ public class CommanderSwordsPower extends AbstractPower
     
     @Override
     public int onAttacked(final DamageInfo info, int damageAmount) {
-        if (damageAmount > 0 && ((AbstractPlayer)this.owner).stanceName == AbstractStance.StanceName.CALM) {
+        if (damageAmount > 0 && ((AbstractPlayer)this.owner).stance.name.equals("Calm")) {
             this.flash();
             damageAmount -= this.amount;
             if (damageAmount < this.amount) {

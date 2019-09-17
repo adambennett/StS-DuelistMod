@@ -40,6 +40,7 @@ public class Berserkion extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.misc = 0;
         this.originalName = this.name;
     }

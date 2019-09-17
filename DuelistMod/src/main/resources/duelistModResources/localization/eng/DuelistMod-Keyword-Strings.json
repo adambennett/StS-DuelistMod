@@ -340,7 +340,7 @@
       "Naturia",
 	  "naturia"
     ],   
-    "DESCRIPTION": "Whenever you #ySummon a #yNaturia monster, it deals #b1 damage to all enemies at the end of turn for the rest of combat as long as you have at least 1 #yNaturia monster summoned."
+    "DESCRIPTION": "Whenever you #ySummon a #yNaturia monster, gain #b1 #yVine. Whenever you #yTribute a #yNaturia for another, gain #yVines equal to the number of #yNaturias currently summoned."
   },
   {
     "PROPER_NAME": "Superheavy",
@@ -649,6 +649,30 @@
 	  "spectral"
     ],   
     "DESCRIPTION": "In this #yStance, #yWarriors deal double damage and you cannot #yBlock."
+  },
+  {
+  "PROPER_NAME": "Rock",
+    "NAMES": [
+      "Rock",
+	  "rock"
+    ],   
+    "DESCRIPTION": "At the end of each turn, gain #b2 #yBlock for each #yRock you have summoned."
+  },
+  {
+  "PROPER_NAME": "Vines",
+    "NAMES": [
+      "Vines",
+	  "vines"
+    ],   
+    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned."
+  },
+  {
+  "PROPER_NAME": "Leaves",
+    "NAMES": [
+      "Leaves",
+	  "leaves"
+    ],   
+    "DESCRIPTION": "At the start of turn, gain #yBlock. #yBlock amount depends on the number of #yLeaves and the number of #yNaturias currently summoned."
   },
   {
     "PROPER_NAME": "Gate",

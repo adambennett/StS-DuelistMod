@@ -42,7 +42,7 @@ public class ChooseCalmCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(AbstractStance.StanceName.CALM);
+    	changeStance("Calm");
     }
     @Override public AbstractCard makeCopy() { return new ChooseCalmCard(); }
 

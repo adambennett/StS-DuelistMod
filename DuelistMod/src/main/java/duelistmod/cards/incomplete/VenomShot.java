@@ -37,7 +37,6 @@ public class VenomShot extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
-        this.exhaust = true;
     }
 
     // Actions the card should do.

@@ -39,6 +39,7 @@ public class InsectQueen extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.TRIBUTE);
 		this.tags.add(Tags.INSECT);
+		this.tags.add(Tags.X_COST);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.misc = 0;
 		this.originalName = this.name;

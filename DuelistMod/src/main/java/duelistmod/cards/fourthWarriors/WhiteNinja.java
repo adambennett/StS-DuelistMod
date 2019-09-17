@@ -47,7 +47,7 @@ public class WhiteNinja extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(); 	
-    	changeStance(new Nimble());
+    	changeStance("theDuelist:Nimble");
     	channel(new WhiteOrb());
     }
 

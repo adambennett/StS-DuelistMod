@@ -63,7 +63,7 @@ public class BaseGameHelper
 		toFill.add(new BowlingBash());
 		toFill.add(new Brilliance());
 		toFill.add(new CarveReality());
-		toFill.add(new Clarity());
+		//toFill.add(new Clarity());
 		toFill.add(new CleanseEvil());		
 		toFill.add(new Collect());
 		toFill.add(new Conclude());

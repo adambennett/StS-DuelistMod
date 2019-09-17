@@ -28,12 +28,13 @@ public class StandardPool
 		//pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -56,12 +57,13 @@ public class StandardPool
 		//pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -93,7 +95,7 @@ public class StandardPool
 		cards.add(new MillenniumShield());
 		cards.add(new CharcoalInpachi());
 		cards.add(new Mathematician());
-		cards.add(new CastleWalls());
+		cards.add(new PowerWall());
 		cards.add(new GoldenApples());
 		cards.add(new SilverApples());
 		cards.add(new MiraculousDescent());
@@ -157,7 +159,7 @@ public class StandardPool
 		cards.add(new PotDuality());
 		cards.add(new PotGreed());
 		cards.add(new Predaponics());
-		cards.add(new RainMercy());
+		//cards.add(new RainMercy());
 		cards.add(new SwordDeepSeated());
 		cards.add(new SwordsRevealing());
 		cards.add(new SwordsConcealing());

@@ -16,13 +16,15 @@ import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistOrb;
+import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.helpers.*;
 import duelistmod.orbs.Black;
@@ -145,6 +147,8 @@ public class TheDuelist extends CustomPlayer {
 	public void switchedStance() {
 		super.switchedStance();
 		for (AbstractOrb o : this.orbs) { if (o instanceof DuelistOrb) { ((DuelistOrb) o).onChangeStance(); }}
+		for (AbstractRelic r : this.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onChangeStance(); }}
+		for (AbstractPotion p : this.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onChangeStance(); }}
 	}
 
 	// Starting description and loadout
@@ -170,8 +174,8 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(SevenColoredFish.ID);
 		retVal.add(GiantSoldier.ID);
 		retVal.add(GiantSoldier.ID);
-		retVal.add(CastleWalls.ID);
-		retVal.add(CastleWalls.ID);
+		retVal.add(PowerWall.ID);
+		retVal.add(PowerWall.ID);
 		retVal.add(ScrapFactory.ID);
 		retVal.add(Ookazi.ID);
 		retVal.add(Ookazi.ID);

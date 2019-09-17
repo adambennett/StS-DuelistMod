@@ -41,6 +41,7 @@ public class DestructPotion extends DuelistCard
         this.tags.add(Tags.TRAP); 
 		this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.NEVER_GENERATE);
+		this.tags.add(Tags.X_COST);
         makeFleeting();
     }
 

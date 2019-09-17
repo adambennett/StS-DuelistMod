@@ -35,12 +35,11 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.*;
-import com.megacrit.cardcrawl.stances.AbstractStance.StanceName;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 
-import basemod.*;
+import basemod.BaseMod;
 import basemod.abstracts.*;
 import basemod.helpers.*;
 import duelistmod.DuelistMod;
@@ -1291,6 +1290,21 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== MISC ACTION FUNCTIONS =========================================================================================================================================================
+	public static boolean isXCostCard(AbstractCard c)
+	{
+		if (c.cost == -1 || c.hasTag(Tags.X_COST)) { return true; }
+		else { return false; }
+	}
+	
+	public boolean hasOtherMonsterTypes(CardTags excludeTag)
+	{
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			if (this.hasTag(t) && !t.equals(excludeTag)) { return true; }
+		}
+		return false;
+	}
+	
 	public void chooseHandCardToModifyMagicNumForTurn(int cardsToChoose, int addAmt, boolean canCancel)
 	{
 		AbstractPlayer p = AbstractDungeon.player;
@@ -1496,6 +1510,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		powerTypeMap.put(Tags.TOON, new RetainCardPower(AbstractDungeon.player, 1));
 		powerTypeMap.put(Tags.WARRIOR, new VigorPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
+		powerTypeMap.put(Tags.ROCK, new PlatedArmorPower(AbstractDungeon.player, 2));
 		
 		if (!powerTypeMap.get(type).equals(null)) { return powerTypeMap.get(type); }
 		else { return new StrengthPower(AbstractDungeon.player, turnAmount); }
@@ -1694,22 +1709,17 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 	public static void exitStance()
 	{
-		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(AbstractStance.StanceName.NONE));
+		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction("Neutral"));
 	}
 	
-	public static void changeStance(AbstractStance stance)
-	{
-		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(stance));
-	}
-	
-	public void changeStanceInst(AbstractStance stance)
+	public void changeStanceInst(String stance)
 	{
 		this.addToBot(new ChangeStanceAction(stance));
 	}
 	
-	public void changeStance(StanceName name)
+	public static void changeStance(String name)
 	{
-		this.addToBot(new ChangeStanceAction(name));
+		AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(name));
 	}
 	
 	public static void changeToRandomStance(boolean allowChaotic, boolean allowDivinity, boolean allowBaseGame, boolean allowDuelist)
@@ -1735,9 +1745,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (allowDivinity) { stances.add(new DivinityStance()); }
 		}
 
-		AbstractStance newStance = stances.get(AbstractDungeon.cardRandomRng.random(stances.size() - 1));
+		String newStance = stances.get(AbstractDungeon.cardRandomRng.random(stances.size() - 1)).ID;
 		changeStance(newStance);
-		Util.log("Random stance we changed to: " + newStance.name);
+		Util.log("Random stance we changed to: " + newStance);
 	}
 	
 	public static void changeToRandomStance()
@@ -5133,6 +5143,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						case 12:
 							warriorSynTrib(tc);
 							Util.log("ran warrior syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+						case 13:
+							rockSynTrib(tc);
+							Util.log("ran rock syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
 						default: break;
 					}
 				}
@@ -5178,14 +5191,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		fiendSynTrib(tc);
 		aquaSynTrib(tc);
 		naturiaSynTrib(tc);
-		plantSynTrib(tc);
-		predaplantSynTrib(tc);
+		megatypePlantHandler(tc);
 		insectSynTrib(tc);
 		superSynTrib(tc);
 		spellcasterSynTrib(tc);
 		zombieSynTrib(tc);
 		warriorSynTrib(tc);
+		rockSynTrib(tc);
 		if (DuelistMod.debug) { DuelistMod.logger.info("Ran megatype tribute function, tributing card: " + tc.originalName); }
+	}
+	
+	public static void rockSynTrib(DuelistCard tc)
+	{
+		if (tc.hasTag(Tags.ROCK))
+		{
+			
+		}
 	}
 	
 	public static void warriorSynTrib(DuelistCard tributingCard)
@@ -5339,6 +5360,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			
 		}
+	}
+	
+	public static void megatypePlantHandler(DuelistCard tc)
+	{		
+		if (tc.hasTag(Tags.PREDAPLANT))
+		{
+			predaplantSynTrib(tc);
+		}
+		else if (tc.hasTag(Tags.PLANT))
+		{
+			plantSynTrib(tc);
+		}		
 	}
 	
 	public static void plantSynTrib(DuelistCard tributingCard)
@@ -5509,6 +5542,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (curseFailure) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, Strings.configFailedIncActionText, 1.0F, 2.0F)); return; }}
 		Util.log("Incrementing Max Summons by: " + amount);
 		boolean incremented = true;
+		int oldMax = 5;
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
@@ -5529,6 +5563,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			incremented = false;
 		}
+		
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onIncrement(amount, DuelistMod.lastMaxSummons); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onIncrement(amount, DuelistMod.lastMaxSummons); }}
 		
 		if (p.hasOrb() && incremented)
 		{
@@ -7366,7 +7403,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		extraTags.add(Tags.ARCANE);
 		extraTags.add(Tags.MEGATYPED);
 		extraTags.add(Tags.OJAMA);
-		extraTags.add(Tags.MONSTER);
+		//extraTags.add(Tags.MONSTER);
 		extraTags.add(Tags.SPELL);
 		extraTags.add(Tags.TRAP);
 		extraTags.add(Tags.GIANT);

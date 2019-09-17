@@ -43,7 +43,7 @@ public class PredaplantSarraceniantNameless extends DuelistCard
         this.summons = this.baseSummons = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
-		this.magicNumber = this.baseMagicNumber = 3 + DuelistMod.namelessTombMagicMod;
+		this.magicNumber = this.baseMagicNumber = 6;
     }
 
     // Actions the card should do.

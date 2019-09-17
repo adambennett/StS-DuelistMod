@@ -32,7 +32,7 @@ public class NatureRelic extends CustomRelic {
 	public boolean canSpawn()
 	{
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Nature Deck")) { return true; }
+		if (deck.equals("Insect Deck")) { return true; }
 		else { return false; }
 	}
 	

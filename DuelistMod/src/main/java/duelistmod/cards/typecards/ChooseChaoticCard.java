@@ -38,7 +38,7 @@ public class ChooseChaoticCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Chaotic());
+    	changeStance("theDuelist:Chaotic");
     }
     @Override public AbstractCard makeCopy() { return new ChooseChaoticCard(); }
 

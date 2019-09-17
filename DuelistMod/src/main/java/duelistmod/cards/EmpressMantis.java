@@ -40,7 +40,7 @@ public class EmpressMantis extends DuelistCard
         this.tags.add(Tags.LABYRINTH_NIGHTMARE);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
-        this.tags.add(Tags.NATURE_DECK);
+        this.tags.add(Tags.NATURIA_DECK);
         this.natureDeckCopies = 1;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 1;

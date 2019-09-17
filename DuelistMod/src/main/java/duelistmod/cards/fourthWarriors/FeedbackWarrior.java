@@ -37,7 +37,7 @@ public class FeedbackWarrior extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);  
         this.tags.add(Tags.WARRIOR); 
-        this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.WARRIOR_DECK);
         this.superheavyDeckCopies = 2;
         this.summons = this.baseSummons = 1;	
         this.baseDamage = this.damage = 6;

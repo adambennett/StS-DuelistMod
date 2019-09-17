@@ -29,14 +29,14 @@ public class BerserkerCrushNamelessGreed extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPECIAL;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public BerserkerCrushNamelessGreed() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.damage = this.baseDamage = 11;
+        this.baseMagicNumber = this.magicNumber = 1;
+        this.damage = this.baseDamage = 6;
         this.baseSecondMagic = this.secondMagic = DuelistMod.namelessTombGoldMod;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);

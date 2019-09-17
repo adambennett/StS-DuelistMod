@@ -207,6 +207,10 @@
         "NAME": "Supertiny Blackhole",
         "DESCRIPTIONS": ["#yChannel a #yVoid.", "#yChannel #b", " #yVoid Orbs.", "Siphons #yTemporary #yHP from random enemies at the start of turn, and plays copies of Dark Hole when #yEvoked."]
 },
+"theDuelist:StanceSwitchPotion": {
+        "NAME": "Brewing Stand",
+        "DESCRIPTIONS": ["While holding this potion, whenever you switch #yStances, gain #b", " #yTemporary #yHP and take #b", " damage. You may only gain #b", " more #yTemporary #yHP from this potion."]
+},
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",
         "DESCRIPTIONS": ["#yChannel a random offensive orb.", "#yChannel #b", " random offensive orbs."]

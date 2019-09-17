@@ -85,47 +85,50 @@ public abstract class DuelistStance extends AbstractStance
     public void stopIdleSfx() {
     }
     
-    public static AbstractStance getStanceFromName(final StanceName name) {
+    public static AbstractStance getStanceFromName(String name) {
         switch (name) {
-            case CALM: {
+            case "Calm": {
                 return new CalmStance();
             }
-            case DIVINITY: {
+            case "Divinity": {
                 return new DivinityStance();
             }
-            case NONE: {
+            case "Neutral": {
                 return new NeutralStance();
             }
-            case WRATH: {
+            case "None": {
+            	return new NeutralStance();
+            }
+            case "Wrath": {
                 return new WrathStance();
             }
-            case SAMURAI: {
+            case "Samurai": {
             	return new Samurai();
             }
-            case FORSAKEN: {
+            case "Forsaken": {
             	return new Forsaken();
             }
-            case GUARDED: {
+            case "Guarded": {
             	return new Guarded();
             }
-            case MEDITATIVE: {
+            case "Meditative": {
             	return new Meditative();
             }
-            case SPECTRAL: {
+            case "Spectral": {
             	return new Spectral();
             }
-            case CHAOTIC: {
+            case "Chaotic": {
             	return new Chaotic();
             }            
-            case ENTRENCHED: {
+            case "Entrenched": {
             	return new Entrenched();
             }
-            case NIMBLE: {
+            case "Nimble": {
             	return new Nimble();
             }
             default: {
-                Util.log("[ERROR] Unknown stance: " + name.name() + " called for in getStanceFromName()");
-                return null;
+                Util.log("[ERROR] Unknown stance: " + name + " called for in getStanceFromName()");
+                return new DivinityStance();
             }
         }
     }

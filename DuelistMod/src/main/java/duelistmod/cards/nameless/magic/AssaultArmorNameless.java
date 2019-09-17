@@ -28,14 +28,14 @@ public class AssaultArmorNameless extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPECIAL;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public AssaultArmorNameless() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
-        this.baseDamage = this.damage = 10;
+        this.baseDamage = this.damage = 5;
         this.baseMagicNumber = this.magicNumber = 3 + DuelistMod.namelessTombMagicMod;
         this.exhaust = true;
     }

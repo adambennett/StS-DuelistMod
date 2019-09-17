@@ -3,17 +3,12 @@ package duelistmod.cards.typecards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.RelicBallAction;
-import duelistmod.cards.typecards.TokenCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.variables.Tags;
 
 public class ChooseWrathCard extends TokenCard 
 {
@@ -42,7 +37,7 @@ public class ChooseWrathCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(AbstractStance.StanceName.WRATH);
+    	changeStance("Wrath");
     }
     @Override public AbstractCard makeCopy() { return new ChooseWrathCard(); }
 

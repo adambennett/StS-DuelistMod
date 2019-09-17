@@ -42,6 +42,7 @@ public class DeltaMagnet extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;
     }

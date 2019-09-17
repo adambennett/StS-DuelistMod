@@ -44,6 +44,7 @@ public class ValkMagnet extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.EXEMPT);
 		this.originalName = this.name;
     }

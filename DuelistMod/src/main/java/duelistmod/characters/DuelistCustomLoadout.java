@@ -110,8 +110,8 @@ public class DuelistCustomLoadout
 		res.add(SevenColoredFish.ID);
 		res.add(GiantSoldier.ID);
 		res.add(GiantSoldier.ID);
-		res.add(CastleWalls.ID);
-		res.add(CastleWalls.ID);
+		res.add(PowerWall.ID);
+		res.add(PowerWall.ID);
 		res.add(ScrapFactory.ID);
 		res.add(Ookazi.ID);
 		res.add(Ookazi.ID);

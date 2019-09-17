@@ -39,6 +39,7 @@ public class NaturiaLandoise extends DuelistCard
         this.baseDamage = this.damage = 3;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.NATURIA);
         this.originalName = this.name;
         this.isSummon = true;

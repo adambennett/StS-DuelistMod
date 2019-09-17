@@ -933,7 +933,7 @@ public abstract class DuelistMonster extends AbstractMonster
 			else { attack(6); }			
 		}
 		
-		if (c instanceof CastleWalls)
+		if (c instanceof PowerWall)
 		{
 			block(10);
 		}

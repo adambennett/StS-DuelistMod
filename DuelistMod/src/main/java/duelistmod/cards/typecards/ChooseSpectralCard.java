@@ -38,7 +38,7 @@ public class ChooseSpectralCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Spectral());
+    	changeStance("theDuelist:Spectral");
     }
     @Override public AbstractCard makeCopy() { return new ChooseSpectralCard(); }
 

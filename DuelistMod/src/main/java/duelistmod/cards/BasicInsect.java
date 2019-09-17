@@ -43,7 +43,7 @@ public class BasicInsect extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
-        this.tags.add(Tags.NATURE_DECK);
+        this.tags.add(Tags.NATURIA_DECK);
         this.natureDeckCopies = 1;
         this.originalName = this.name;
         this.isSummon = true;

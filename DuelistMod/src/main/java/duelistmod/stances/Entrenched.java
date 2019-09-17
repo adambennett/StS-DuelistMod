@@ -4,16 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.*;
 
 import duelistmod.abstracts.*;
 import duelistmod.helpers.Util;
-import duelistmod.patches.AbstractStanceEnum;
 import duelistmod.variables.Tags;
 
 public class Entrenched extends DuelistStance
@@ -24,7 +22,6 @@ public class Entrenched extends DuelistStance
 	{
 		this.ID = "theDuelist:Entrenched";
 		this.name = "Entrenched";
-		this.stanceName = AbstractStanceEnum.ENTRENCHED;
 		this.updateDescription();
 	}
 
@@ -49,7 +46,7 @@ public class Entrenched extends DuelistStance
 		if (this.particleTimer2 < 0.0f) 
 		{
 			this.particleTimer2 = MathUtils.random(0.45f, 0.55f);
-			AbstractDungeon.effectsQueue.add(new StanceAuraEffect(AbstractStance.StanceName.CALM));
+			AbstractDungeon.effectsQueue.add(new StanceAuraEffect("Calm"));
 		}
 	}
 	
@@ -86,7 +83,7 @@ public class Entrenched extends DuelistStance
 	@Override
 	public void onEnterStance() 
 	{
-		AbstractDungeon.player.stanceName = this.stanceName;
+		AbstractDungeon.player.stance = this;
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 	}
 

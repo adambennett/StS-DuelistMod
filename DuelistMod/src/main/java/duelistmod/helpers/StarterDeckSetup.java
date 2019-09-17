@@ -307,7 +307,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -335,7 +335,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -366,7 +366,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -397,7 +397,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -428,7 +428,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -456,7 +456,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -484,7 +484,7 @@ public class StarterDeckSetup {
 		InsectPool.oneRandom();
 		MachinePool.oneRandom();
 		MegatypePool.oneRandom();
-		NaturePool.oneRandom();
+		NaturiaPool.oneRandom();
 		OjamaPool.oneRandom();
 		PharaohPool.oneRandom();
 		PlantPool.oneRandom();
@@ -515,7 +515,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -542,7 +542,7 @@ public class StarterDeckSetup {
 		InsectPool.oneRandom();
 		MachinePool.oneRandom();
 		MegatypePool.oneRandom();
-		NaturePool.oneRandom();
+		NaturiaPool.oneRandom();
 		OjamaPool.oneRandom();
 		PharaohPool.oneRandom();
 		PlantPool.oneRandom();
@@ -573,7 +573,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -610,7 +610,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -637,7 +637,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -663,7 +663,7 @@ public class StarterDeckSetup {
 		InsectPool.twoRandom();
 		MachinePool.twoRandom();
 		MegatypePool.twoRandom();
-		NaturePool.twoRandom();
+		NaturiaPool.twoRandom();
 		OjamaPool.twoRandom();
 		PharaohPool.twoRandom();
 		PlantPool.twoRandom();
@@ -703,7 +703,7 @@ public class StarterDeckSetup {
 		InsectPool.twoRandom();
 		MachinePool.twoRandom();
 		MegatypePool.twoRandom();
-		NaturePool.twoRandom();
+		NaturiaPool.twoRandom();
 		OjamaPool.twoRandom();
 		PharaohPool.twoRandom();
 		PlantPool.twoRandom();
@@ -730,7 +730,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		RandomSmallPool.deck();

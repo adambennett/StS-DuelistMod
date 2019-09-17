@@ -46,7 +46,7 @@ public class CubicWave extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, this.magicNumber, false, false, false));
-		changeStanceInst(new Chaotic());
+		changeStanceInst("theDuelist:Chaotic");
     }
 
     // Which card to return when making a copy of this card.

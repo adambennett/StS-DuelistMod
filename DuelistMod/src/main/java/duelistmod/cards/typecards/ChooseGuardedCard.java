@@ -38,7 +38,7 @@ public class ChooseGuardedCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Guarded());
+    	changeStance("theDuelist:Guarded");
     }
     @Override public AbstractCard makeCopy() { return new ChooseGuardedCard(); }
 

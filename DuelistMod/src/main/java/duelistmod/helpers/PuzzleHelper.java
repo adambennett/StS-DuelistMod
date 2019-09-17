@@ -152,7 +152,7 @@ public class PuzzleHelper
 					}
 					break;
 		
-				// Nature Deck
+				// Naturia Deck
 				case 2:				
 					int floorN = AbstractDungeon.actNum;
 					AbstractMonster randyN = AbstractDungeon.getRandomMonster();
@@ -444,7 +444,7 @@ public class PuzzleHelper
 				}
 				break;
 	
-			// Nature Deck
+			// Naturia Deck
 			case 2:				
 				int floorN = AbstractDungeon.actNum;
 				AbstractMonster randyN = AbstractDungeon.getRandomMonster();

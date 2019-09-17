@@ -43,7 +43,7 @@ public class DeltaAttacker extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(AbstractStance.StanceName.WRATH);
+    	changeStance("Wrath");
     }
 
     // Which card to return when making a copy of this card.

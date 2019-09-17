@@ -53,7 +53,7 @@ public class MaxWarrior extends DuelistCard
 		tribute(p, this.tributes, false, this);
 		summon(p, this.summons, this);
 		attack(m, AFX, this.damage);
-		changeStance(new Unstable());
+		changeStance("theDuelist:Unstable");
     }
 		
     // Which card to return when making a copy of this card.

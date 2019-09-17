@@ -38,7 +38,7 @@ public class ChooseSamuraiCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Samurai());
+    	changeStance("theDuelist:Samurai");
     }
     @Override public AbstractCard makeCopy() { return new ChooseSamuraiCard(); }
 

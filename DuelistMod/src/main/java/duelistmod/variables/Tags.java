@@ -40,6 +40,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags FIEND;
 	@SpireEnum public static AbstractCard.CardTags FIEND_DECK;
 	@SpireEnum public static AbstractCard.CardTags FULL;
+	@SpireEnum public static AbstractCard.CardTags GEM_KNIGHT;
 	@SpireEnum public static AbstractCard.CardTags GENERATION_DECK;
 	@SpireEnum public static AbstractCard.CardTags GIANT;
 	@SpireEnum public static AbstractCard.CardTags GIANT_DECK;
@@ -60,14 +61,14 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER;
 	@SpireEnum public static AbstractCard.CardTags MAGNET;
-	@SpireEnum public static AbstractCard.CardTags MAGNET_DECK;
+	@SpireEnum public static AbstractCard.CardTags WARRIOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPED;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPE_DECK;
 	@SpireEnum public static AbstractCard.CardTags METAL_RAIDERS;
 	@SpireEnum public static AbstractCard.CardTags METRONOME;
 	@SpireEnum public static AbstractCard.CardTags METRONOME_DECK;
 	@SpireEnum public static AbstractCard.CardTags MONSTER;
-	@SpireEnum public static AbstractCard.CardTags NATURE_DECK;
+	@SpireEnum public static AbstractCard.CardTags NATURIA_DECK;
 	@SpireEnum public static AbstractCard.CardTags NATURIA;
 	@SpireEnum public static AbstractCard.CardTags NEVER_ETHEREAL;
 	@SpireEnum public static AbstractCard.CardTags NEVER_EXHAUST;
@@ -106,6 +107,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPLAYSPIRE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
+	@SpireEnum public static AbstractCard.CardTags ROCK;
 	@SpireEnum public static AbstractCard.CardTags ROSE;
 	@SpireEnum public static AbstractCard.CardTags SPELL;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER;
@@ -120,6 +122,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags TRAP;
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR;
+	@SpireEnum public static AbstractCard.CardTags X_COST;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE_DECK;
 	@SpireEnum public static AbstractCard.CardTags DUMMY_TAG;

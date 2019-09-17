@@ -33,7 +33,6 @@ public class Downbeat extends DuelistCard
     public Downbeat() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.selfRetain = true;
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 2;
     }

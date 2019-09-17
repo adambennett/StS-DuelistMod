@@ -42,7 +42,7 @@ public class CrystalBlessing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		changeStance(AbstractStance.StanceName.CALM);
+		changeStance("Calm");
     	draw(this.magicNumber);
     }
 

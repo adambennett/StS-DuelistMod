@@ -38,7 +38,7 @@ public class CubicKarmaPower extends AbstractPower implements NonStackablePower
     @Override
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
-    	DuelistCard.changeStance(new Chaotic());
+    	DuelistCard.changeStance("theDuelist:Chaotic");
 	}
 
     @Override

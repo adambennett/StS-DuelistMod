@@ -39,8 +39,7 @@ public class CharcoalInpachi extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.ARCANE);
-        this.summons = this.baseSummons = 2;			
-        this.baseBlock = this.block = 12;
+        this.summons = this.baseSummons = 2;	
         this.magicNumber = this.baseMagicNumber = 1;
         this.originalName = this.name;
     }
@@ -50,7 +49,6 @@ public class CharcoalInpachi extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	block();
     	for (int i = 0; i < this.magicNumber; i++)
     	{
 	    	AbstractOrb fire = new FireOrb();
@@ -71,7 +69,7 @@ public class CharcoalInpachi extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBlock(4);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -80,7 +78,7 @@ public class CharcoalInpachi extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.baseBlock < 24) { return true; }
+    	if (this.magicNumber < 3) { return true; }
     	else { return false; }
     }
 

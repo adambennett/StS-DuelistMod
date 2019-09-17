@@ -43,7 +43,7 @@ public class EgoBoost extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(AbstractStance.StanceName.CALM);
+    	changeStance("Calm");
     }
 
     // Which card to return when making a copy of this card.

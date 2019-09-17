@@ -38,7 +38,7 @@ public class ChooseForsakenCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Forsaken());
+    	changeStance("theDuelist:Forsaken");
     }
     @Override public AbstractCard makeCopy() { return new ChooseForsakenCard(); }
 

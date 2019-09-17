@@ -50,7 +50,7 @@ public class BladeArmorNinja extends DuelistCard
     {
     	tribute(); 	
     	attack(m);
-    	if (AbstractDungeon.player.stanceName == AbstractStance.StanceName.WRATH) { attackAllEnemies(this.damage); }
+    	if (AbstractDungeon.player.stance.ID.equals("Wrath")) { attackAllEnemies(this.damage); }
     	if (AbstractDungeon.player.stance.ID.equals("theDuelist:Samurai")) { vulnAllEnemies(this.magicNumber); }
     }
 

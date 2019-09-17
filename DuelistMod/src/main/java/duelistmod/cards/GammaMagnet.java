@@ -42,6 +42,7 @@ public class GammaMagnet extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.LIMITED);
         this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;
@@ -54,7 +55,7 @@ public class GammaMagnet extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, this.summons, this);
-    	changeStanceInst(new Guarded());
+    	changeStanceInst("theDuelist:Guarded");
     	drawTag(this.magicNumber, Tags.MONSTER);
     	if (!p.hasPower(GammaMagPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new GammaMagPower(p, p))); }
     }

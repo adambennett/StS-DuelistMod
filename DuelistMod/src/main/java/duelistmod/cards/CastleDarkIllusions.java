@@ -40,6 +40,7 @@ public class CastleDarkIllusions extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.METAL_RAIDERS);
         this.tags.add(Tags.GOOD_TRIB);
+        this.tags.add(Tags.FIEND);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 5;

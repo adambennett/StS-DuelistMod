@@ -36,7 +36,7 @@ public class GridRodNameless extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
-        this.baseMagicNumber = this.magicNumber = 1 + DuelistMod.namelessTombMagicMod;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     // Actions the card should do.

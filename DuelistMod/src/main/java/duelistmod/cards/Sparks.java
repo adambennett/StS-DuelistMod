@@ -46,7 +46,7 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.STANDARD_DECK);
         this.tags.add(Tags.DRAGON_DECK);
         this.tags.add(Tags.SPELLCASTER_DECK);
-        this.tags.add(Tags.NATURE_DECK);
+        this.tags.add(Tags.NATURIA_DECK);
         this.tags.add(Tags.TOON_DECK);
         this.tags.add(Tags.ORB_DECK);
         this.tags.add(Tags.RESUMMON_DECK);
@@ -56,7 +56,7 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.ZOMBIE_DECK);
         this.tags.add(Tags.FIEND_DECK);
         this.tags.add(Tags.AQUA_DECK);
-        this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.WARRIOR_DECK);
         this.tags.add(Tags.ASCENDED_ONE_DECK);
         this.tags.add(Tags.ASCENDED_TWO_DECK);
         this.tags.add(Tags.ASCENDED_THREE_DECK);

@@ -27,8 +27,16 @@ public class ExodiaObtainCardPatch
 		}
 		else if (AbstractDungeon.player.hasRelic(MarkExxod.ID))
 		{
-			Util.log("Mark of Exxod -- returning early from Soul.obtain()");
-			return SpireReturn.Return(null);
+			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+			{
+				if (c.makeCopy().name.equals(card.makeCopy().name)) 
+				{ 
+					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.makeCopy().name + ", " + c.makeCopy().name);
+					return SpireReturn.Return(null);
+				}
+			}
+			return SpireReturn.Continue();
+			
 		}
 		else if (AbstractDungeon.player.hasRelic(GamblerChip.ID) && !card.type.equals(CardType.CURSE))
 		{

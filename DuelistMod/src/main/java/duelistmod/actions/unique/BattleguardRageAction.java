@@ -10,7 +10,7 @@ public class BattleguardRageAction extends AbstractGameAction
     @Override
     public void update() {
         if (GameActionManager.playerHpLastTurn < AbstractDungeon.player.currentHealth) {
-            this.addToBot(new ChangeStanceAction(AbstractStance.StanceName.WRATH));
+            this.addToBot(new ChangeStanceAction("Wrath"));
         }
         this.isDone = true;
     }

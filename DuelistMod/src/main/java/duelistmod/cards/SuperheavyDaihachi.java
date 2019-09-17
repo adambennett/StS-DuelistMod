@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -49,7 +48,7 @@ public class SuperheavyDaihachi extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute(p, this.tributes, false, this);
-    	if (p.stanceName == AbstractStance.StanceName.WRATH) { block(this.block + this.secondMagic); }
+    	if (p.stance.ID.equals("Wrath")) { block(this.block + this.secondMagic); }
     	else { block(); }
     	if (p.stance.ID.equals("theDuelist:Samurai")) { applyPowerToSelf(new DexterityPower(p, this.magicNumber)); }
     	if (p.stance.ID.equals("theDuelist:Guarded")) { gainTempHP(this.secondMagic); }

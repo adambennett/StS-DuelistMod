@@ -38,7 +38,7 @@ public class ChooseEntrenchedCard extends TokenCard
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	changeStance(new Entrenched());
+    	changeStance("theDuelist:Entrenched");
     }
     @Override public AbstractCard makeCopy() { return new ChooseEntrenchedCard(); }
 

@@ -52,7 +52,7 @@ public class Hayate extends DuelistCard
     {
     	tribute();
     	attack(m);
-    	if (p.currentHealth < p.maxHealth / 2) { changeStanceInst(new Guarded()); }
+    	if (p.currentHealth < p.maxHealth / 2) { changeStanceInst("theDuelist:Guarded"); }
     }
     
     @Override

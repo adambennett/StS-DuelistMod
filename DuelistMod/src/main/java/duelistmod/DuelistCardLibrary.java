@@ -67,7 +67,7 @@ public class DuelistCardLibrary
 
 	public static void setupMyCards()
 	{
-		DuelistMod.myCards.add(new CastleWalls());
+		DuelistMod.myCards.add(new PowerWall());
 		DuelistMod.myCards.add(new GiantSoldier());
 		DuelistMod.myCards.add(new Ookazi());
 		DuelistMod.myCards.add(new ScrapFactory());
@@ -146,7 +146,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SphereKuriboh());
 		DuelistMod.myCards.add(new Wiseman());
 		DuelistMod.myCards.add(new Sparks());
-		DuelistMod.myCards.add(new CastleWallsBasic());
+		DuelistMod.myCards.add(new CastleWalls());
 		DuelistMod.myCards.add(new Sangan());
 		DuelistMod.myCards.add(new FlameSwordsman()); 
 		DuelistMod.myCards.add(new BlastJuggler());
@@ -1350,7 +1350,7 @@ public class DuelistCardLibrary
 				for (AbstractCard c : SpellcasterPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 				break;
 			case "Nature":
-				for (AbstractCard c : NaturePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+				for (AbstractCard c : NaturiaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 				break;
 			case "Aqua":
 				for (AbstractCard c : AquaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}

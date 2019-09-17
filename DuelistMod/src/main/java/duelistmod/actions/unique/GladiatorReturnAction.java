@@ -18,15 +18,15 @@ public class GladiatorReturnAction extends AbstractGameAction
         if (this.duration == Settings.ACTION_DUR_FAST) {
             if (AbstractDungeon.player.stance.ID.equals("theDuelist:Spectral")) 
             {
-                DuelistCard.changeStance(new Meditative());
+                DuelistCard.changeStance("theDuelist:Meditative");
             }
             else if (AbstractDungeon.player.stance.ID.equals("theDuelist:Meditative")) 
             {
-            	 DuelistCard.changeStance(new Spectral());
+            	 DuelistCard.changeStance("theDuelist:Spectral");
             }
             else
             {
-            	DuelistCard.changeStance(new Nimble());
+            	DuelistCard.changeStance("theDuelist:Nimble");
             }
             if (Settings.FAST_MODE) {
                 this.isDone = true;

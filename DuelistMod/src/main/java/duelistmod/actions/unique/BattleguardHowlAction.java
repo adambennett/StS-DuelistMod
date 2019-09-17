@@ -10,7 +10,7 @@ public class BattleguardHowlAction extends AbstractGameAction
     @Override
     public void update() {
         if (GameActionManager.playerHpLastTurn > AbstractDungeon.player.currentHealth) {
-            this.addToBot(new ChangeStanceAction(AbstractStance.StanceName.CALM));
+            this.addToBot(new ChangeStanceAction("Calm"));
         }
         this.isDone = true;
     }

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -40,7 +39,7 @@ public class CrystalTreePower extends AbstractPower
     
     @Override
     public int onAttacked(final DamageInfo info, int damageAmount) {
-        if (damageAmount > 0 && ((AbstractPlayer)this.owner).stanceName != AbstractStance.StanceName.NONE) {
+        if (damageAmount > 0 && ((AbstractPlayer)this.owner).stance.name.equals("Nimble")) {
             this.flash();
             DuelistCard.gainTempHP(this.amount);
         }

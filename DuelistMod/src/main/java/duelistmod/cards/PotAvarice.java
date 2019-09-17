@@ -39,6 +39,7 @@ public class PotAvarice extends DuelistCard
         this.tags.add(Tags.POT);
         this.tags.add(Tags.TRIBUTE);
         this.tags.add(Tags.REDUCED);
+		this.tags.add(Tags.X_COST);
         this.misc = 0;
 		this.originalName = this.name;
 		this.baseMagicNumber = this.magicNumber = 3;

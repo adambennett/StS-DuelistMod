@@ -41,7 +41,7 @@ public class DarkworldThorns extends DuelistCard
         this.tags.add(Tags.PLANT_DECK);
         this.plantDeckCopies = 1;
         this.summons = this.baseSummons = 1;			
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 4;
         this.magicNumber = this.baseMagicNumber = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
@@ -68,7 +68,6 @@ public class DarkworldThorns extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(2);
-            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

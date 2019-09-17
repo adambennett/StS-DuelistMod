@@ -28,6 +28,8 @@ public class DuelistOrb extends AbstractOrb {
 	
 	public void onChangeStance() { }
 	
+	public void onIncrement(int amount, int newMaxSummons) { }
+	
 	public void onDrawCard(AbstractCard drawnCard) { }
 	
 	public boolean hasNegativeFocus()

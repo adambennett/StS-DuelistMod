@@ -180,10 +180,9 @@ public class MillenniumPuzzle extends CustomRelic {
 				else { localdesc = DESCRIPTIONS[3] + AbstractDungeon.actNum + DESCRIPTIONS[4];}
 				break;
 	
-			// Nature Deck
+			// Naturia Deck
 			case 2:			
-				if (AbstractDungeon.actNum == 0) { localdesc = DESCRIPTIONS[5] + 1 + DESCRIPTIONS[6]; }
-				else { localdesc = DESCRIPTIONS[5] + AbstractDungeon.actNum + DESCRIPTIONS[6]; }
+				localdesc = DESCRIPTIONS[5];
 				break;
 	
 			// Spellcaster Deck

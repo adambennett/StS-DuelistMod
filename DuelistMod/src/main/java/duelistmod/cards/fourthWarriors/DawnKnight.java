@@ -49,9 +49,9 @@ public class DawnKnight extends DuelistCard
     	summon();
     	for (AbstractCard c : p.hand.group)
     	{
-    		if (c.canUpgrade() && c.retain) { c.upgrade(); }
+    		if (c.canUpgrade() && c.selfRetain) { c.upgrade(); }
     	}
-    	if (upgraded) { changeStance(new Nimble()); }
+    	if (upgraded) { changeStance("theDuelist:Nimble"); }
     }
 
     // Which card to return when making a copy of this card.

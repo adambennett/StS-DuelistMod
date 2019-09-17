@@ -3,15 +3,13 @@ package duelistmod.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.*;
 
 import duelistmod.abstracts.*;
-import duelistmod.patches.AbstractStanceEnum;
 
 public class Guarded extends DuelistStance
 {
@@ -19,7 +17,6 @@ public class Guarded extends DuelistStance
 	{
 		this.ID = "theDuelist:Guarded";
 		this.name = "Guarded";
-		this.stanceName = AbstractStanceEnum.GUARDED;
 		this.updateDescription();
 	}
 
@@ -44,14 +41,14 @@ public class Guarded extends DuelistStance
 		if (this.particleTimer2 < 0.0f) 
 		{
 			this.particleTimer2 = MathUtils.random(0.45f, 0.55f);
-			AbstractDungeon.effectsQueue.add(new StanceAuraEffect(AbstractStance.StanceName.CALM));
+			AbstractDungeon.effectsQueue.add(new StanceAuraEffect("Calm"));
 		}
 	}
 
 	@Override
 	public void onEnterStance() 
 	{
-		AbstractDungeon.player.stanceName = this.stanceName;
+		AbstractDungeon.player.stance = this;
 		AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.FIREBRICK, true));
 		DuelistCard.applyPowerToSelf(new BlurPower(AbstractDungeon.player, 1));
 	}

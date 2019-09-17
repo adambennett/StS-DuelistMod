@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.green.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
-import duelistmod.cards.incomplete.MillenniumScorpion;
+import duelistmod.cards.*;
+import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
 public class InsectPool 
@@ -25,13 +27,14 @@ public class InsectPool
 		pools.add(IncrementPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -53,13 +56,14 @@ public class InsectPool
 		pools.add(IncrementPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }		
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -82,12 +86,51 @@ public class InsectPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-	
 		cards.add(new MillenniumScorpion());
+		cards.add(new BasicInsect());
+		cards.add(new CocoonEvolution());
+		cards.add(new EmpressMantis());
+		cards.add(new Firegrass());
+		cards.add(new Grasschopper());
+		cards.add(new HundredFootedHorror());
+		cards.add(new InsectKnight());
+		cards.add(new InsectQueen());
+		cards.add(new Invigoration());
+		cards.add(new JiraiGumo());
+		cards.add(new ManEaterBug());
+		cards.add(new MotherSpider());
+		cards.add(new Parasite());
+		cards.add(new PetitMoth());
+		cards.add(new VioletCrystal());	
+		cards.add(new ArmoredBee());
+		cards.add(new SuperSolarNutrient());
+		cards.add(new ArsenalBug());
+		cards.add(new CrossSwordBeetle());
+		cards.add(new MultiplicationOfAnts());
+		cards.add(new DarkSpider());
+		cards.add(new CocoonUltraEvolution());
+		cards.add(new PinchHopper());
+		cards.add(new UndergroundArachnid());	
+		cards.add(new BlockSpider());
+		cards.add(new LordPoison());
+		cards.add(new DarkworldThorns());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 			//cards.add(new Token());
+		}
+		
+		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		{
+			cards.add(new NoxiousFumes());
+			cards.add(new BouncingFlask());
+			cards.add(new Catalyst());
+			cards.add(new CorpseExplosion());
+			cards.add(new CripplingPoison());
+			cards.add(new Envenom());
+			cards.add(new DeadlyPoison());
+			cards.add(new PoisonedStab());
+			cards.add(new Bane());			
 		}
 
 		deck.fillPoolCards(cards);		

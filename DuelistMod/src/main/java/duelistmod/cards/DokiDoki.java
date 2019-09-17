@@ -38,6 +38,7 @@ public class DokiDoki extends DuelistCard
         this.baseBlock = this.block = 4;
         this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.ROCK);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
         this.selfRetain = true;

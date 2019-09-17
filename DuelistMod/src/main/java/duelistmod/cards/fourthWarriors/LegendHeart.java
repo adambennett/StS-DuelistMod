@@ -1,6 +1,5 @@
 package duelistmod.cards.fourthWarriors;
 
-import com.megacrit.cardcrawl.actions.watcher.RandomStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -44,7 +43,7 @@ public class LegendHeart extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		applyPowerToSelf(new VigorPower(p, this.magicNumber));
-		this.addToBot(new RandomStanceAction());
+		changeToRandomStance(true, false);
     }
 
     // Which card to return when making a copy of this card.
