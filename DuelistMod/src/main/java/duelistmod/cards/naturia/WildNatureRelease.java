@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -47,7 +46,7 @@ public class WildNatureRelease extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	this.addToTop(new WildNatureActionA(this.magicNumber));
-    	this.addToBot(new WildNatureActionB(new DamageInfo(AbstractDungeon.getRandomMonster(), 1, DamageType.NORMAL)));
+    	this.addToBot(new WildNatureActionB(new DamageInfo(p, 1, DamageType.NORMAL)));
     }
 
     

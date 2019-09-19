@@ -1651,7 +1651,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void exhaust(int amount, boolean isRandom)
 	{
-		AbstractDungeon.actionManager.addToBottom(new ExhaustAction(player(), player(), amount, isRandom));
+		AbstractDungeon.actionManager.addToBottom(new ExhaustAction(amount, isRandom));
 	}
 
 	public static void discardTop(int amount, boolean isRandom)

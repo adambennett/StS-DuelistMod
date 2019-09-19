@@ -65,7 +65,7 @@ public class Gandora extends DuelistCard
     	if (handSize < 0) { handSize = 0; }
     	
     	// Exhaust all cards
-    	AbstractDungeon.actionManager.addToTop(new ExhaustAction(p, p, handSize, true));
+    	AbstractDungeon.actionManager.addToTop(new ExhaustAction(handSize, true));
     	
     	// Deal 50 damage + 30 for every card exhausted
     	attack(m, AFX, this.damage + (this.magicNumber * handSize));

@@ -45,7 +45,7 @@ public class CubicWave extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(p, p, this.magicNumber, false, false, false));
+    	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(this.magicNumber, false, false, false));
 		changeStanceInst("theDuelist:Chaotic");
     }
 

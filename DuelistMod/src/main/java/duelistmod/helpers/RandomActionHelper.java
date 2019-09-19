@@ -81,7 +81,7 @@ public class RandomActionHelper
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "#yExhaust #b1 random card in hand":
-				AbstractDungeon.actionManager.addToTop(new ExhaustAction(AbstractDungeon.player, AbstractDungeon.player, 1, true));
+				AbstractDungeon.actionManager.addToTop(new ExhaustAction(1, true));
 				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
 				break;
 			case "Gain a random amount of gold (50-100)":

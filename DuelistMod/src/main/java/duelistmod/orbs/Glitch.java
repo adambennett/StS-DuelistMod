@@ -228,7 +228,7 @@ public class Glitch extends DuelistOrb
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "#yExhaust #b1 random card in hand":
-				AbstractDungeon.actionManager.addToBottom(new ExhaustAction(AbstractDungeon.player, AbstractDungeon.player, 1, true));
+				AbstractDungeon.actionManager.addToBottom(new ExhaustAction(1, true));
 				if (printing) { System.out.println("theDuelist:Glitch:runAction ---> triggered: " + string); }
 				break;
 			case "Gain a random amount of gold (50-100)":

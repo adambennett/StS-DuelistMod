@@ -35,7 +35,6 @@ public class NaturiaSacredTree extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
-        this.tags.add(Tags.NATURIA);
         this.originalName = this.name;
         this.isSummon = true;
     }
