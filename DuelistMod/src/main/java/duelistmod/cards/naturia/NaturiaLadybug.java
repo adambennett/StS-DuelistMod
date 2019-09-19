@@ -39,11 +39,8 @@ public class NaturiaLadybug extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
-        this.tags.add(Tags.NATURIA_DECK);
-        this.natureDeckCopies = 1;
         this.originalName = this.name;
         this.isMultiDamage = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

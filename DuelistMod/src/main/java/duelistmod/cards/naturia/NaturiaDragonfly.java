@@ -36,9 +36,9 @@ public class NaturiaDragonfly extends DuelistCard
 
     public NaturiaDragonfly() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 2;
+        this.baseDamage = this.damage = 4;
         this.baseBlock = this.block = 2;
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
@@ -68,7 +68,8 @@ public class NaturiaDragonfly extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeSummons(1);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

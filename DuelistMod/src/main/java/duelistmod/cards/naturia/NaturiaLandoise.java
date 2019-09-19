@@ -35,7 +35,7 @@ public class NaturiaLandoise extends DuelistCard
 
     public NaturiaLandoise() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 5;
+        this.baseDamage = this.damage = 9;
         this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);

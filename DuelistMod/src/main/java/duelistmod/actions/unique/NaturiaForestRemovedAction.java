@@ -15,14 +15,14 @@ import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
-public class JinzoAction extends AbstractGameAction
+public class NaturiaForestRemovedAction extends AbstractGameAction
 {
 	private static final float DURATION_PER_CARD = 0.35F;
 	private AbstractCard c;
 	private static final float PADDING = 25.0F * Settings.scale;
 	private boolean isOtherCardInCenter = true;
 
-	public JinzoAction(int amount) 
+	public NaturiaForestRemovedAction(int amount) 
 	{
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.amount = amount;
@@ -53,7 +53,7 @@ public class JinzoAction extends AbstractGameAction
     	ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
     	
     	// Add all spells and traps from hand to list
-    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if ((c.tags.contains(Tags.TRAP))) { modCards.add(c); } }
+    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if ((c.tags.contains(Tags.NATURIA))) { modCards.add(c); } }
     	
     	// Remove all 0 cost spells and traps from list
     	if (modCards.size() > 0) { for (int i = 0; i < modCards.size(); i++) { if (modCards.get(i).cost < 1) { modCards.remove(i); } } }
@@ -62,8 +62,8 @@ public class JinzoAction extends AbstractGameAction
     	// Do this until no cards remain in list, or iterations = power stacks
     	for (AbstractCard trap : modCards)
     	{
-    		trap.setCostForTurn(-trap.cost);
-    		trap.isCostModifiedForTurn = true;
+    		trap.updateCost(trap.cost);
+    		trap.isCostModifiedForTurn = false;
     	}
     	
     	// Set amount to 0 so update() knows to return

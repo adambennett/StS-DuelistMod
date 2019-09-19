@@ -109,7 +109,7 @@ public class NaturiaPool
 		naturiaCards.add(new VenomShot());
 		naturiaCards.add(new MillenniumScorpion());
 		naturiaCards.add(new MiracleFertilizer());
-		naturiaCards.add(new HarpieFeather());
+		naturiaCards.add(new Wildfire());
 		naturiaCards.add(new AfterGenocide());
 		naturiaCards.add(new MultiplicationOfAnts());
 		naturiaCards.add(new Wiretap());
@@ -165,8 +165,16 @@ public class NaturiaPool
 		naturiaCards.add(new SummoningSwarm());
 		naturiaCards.add(new WildNatureRelease());
 		naturiaCards.add(new WormBait());
-		
-		
+		naturiaCards.add(new CorrosiveScales());
+		naturiaCards.add(new Pollinosis());
+		naturiaCards.add(new DemiseLand());
+		naturiaCards.add(new SurvivalInstinct());
+		naturiaCards.add(new ConvulsionNature());
+		naturiaCards.add(new NaturiaForest());
+		naturiaCards.add(new FuryFire());
+		naturiaCards.add(new CopyPlant());
+		naturiaCards.add(new FutureFusion());
+
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 						

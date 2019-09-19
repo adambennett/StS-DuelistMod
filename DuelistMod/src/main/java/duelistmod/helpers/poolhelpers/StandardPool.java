@@ -10,6 +10,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.naturia.DemiseLand;
 import duelistmod.helpers.Util;
 
 public class StandardPool 
@@ -88,7 +89,6 @@ public class StandardPool
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
 	
 		// Bonus
-		cards.add(new LabyrinthWall());
 		cards.add(new PreventRat());
 		cards.add(new BigKoala());
 		cards.add(new BattleFootballer());
@@ -96,7 +96,6 @@ public class StandardPool
 		cards.add(new CharcoalInpachi());
 		cards.add(new Mathematician());
 		cards.add(new PowerWall());
-		cards.add(new GoldenApples());
 		cards.add(new SilverApples());
 		cards.add(new MiraculousDescent());
 		cards.add(new Reinforcements());
@@ -145,19 +144,17 @@ public class StandardPool
 		cards.add(new BlackPendant());
 		cards.add(new CardDestruction());
 		cards.add(new FairyBox());
-		cards.add(new FeatherPho());
 		cards.add(new FluteKuriboh());
 		cards.add(new GiantTrunade());
 		cards.add(new GravityBlaster());
 		cards.add(new GravityAxe());
-		cards.add(new HarpieFeather());
+		//cards.add(new HarpieFeather());
 		cards.add(new Hinotama());
 		cards.add(new Invigoration());
 		cards.add(new LightningVortex());
 		cards.add(new ScrapFactory());
 		cards.add(new DarkFactory());
 		cards.add(new PotDuality());
-		cards.add(new PotGreed());
 		cards.add(new Predaponics());
 		//cards.add(new RainMercy());
 		cards.add(new SwordDeepSeated());
@@ -170,6 +167,7 @@ public class StandardPool
 		cards.add(new CircleFireKings());
 		cards.add(new OnslaughtFireKings());
 		cards.add(new WhiteHowling());
+		cards.add(new DemiseLand());
 		
 		cards.add(new Downbeat());
 		cards.add(new EgoBoost());

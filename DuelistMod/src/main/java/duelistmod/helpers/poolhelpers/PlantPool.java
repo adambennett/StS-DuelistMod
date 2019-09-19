@@ -146,13 +146,11 @@ public class PlantPool
 		cards.add(new OrbitalBombardment());
 		cards.add(new BlossomBombardment());
 		cards.add(new ThornMalice());
-		cards.add(new GoldenApples());
 		cards.add(new SilverApples());
 		cards.add(new MiraculousDescent());
 		cards.add(new Reinforcements());
 		cards.add(new KamionTimelord());
 		cards.add(new WormApocalypse());
-		cards.add(new PotGreed());
 		cards.add(new CactusBouncer());
 		cards.add(new Inmato());
 		cards.add(new PlantFoodChain());

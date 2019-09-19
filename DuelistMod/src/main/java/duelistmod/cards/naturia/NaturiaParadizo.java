@@ -39,6 +39,7 @@ public class NaturiaParadizo extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
+        this.tags.add(Tags.PREDAPLANT);
         this.originalName = this.name;
         this.exhaust = true;
     }

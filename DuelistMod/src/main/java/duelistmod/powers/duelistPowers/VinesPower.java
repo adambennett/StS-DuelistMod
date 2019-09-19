@@ -8,11 +8,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.powers.SummonPower;
-import duelistmod.relics.NatureOrb;
+import duelistmod.relics.*;
 import duelistmod.variables.Tags;
 
 public class VinesPower extends DuelistPower
@@ -36,7 +37,6 @@ public class VinesPower extends DuelistPower
         this.img = new Texture(IMG);
         this.source = AbstractDungeon.player;
         this.amount = amt;
-        for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
 		updateDescription(); 
 	}
 	
@@ -87,13 +87,8 @@ public class VinesPower extends DuelistPower
 		if (card.hasTag(Tags.NATURIA)) 
 		{ 
 			this.amount += DuelistMod.naturiaVines; 
-			for (AbstractPower pow : AbstractDungeon.player.powers)
-			{
-				if (pow instanceof DuelistPower)
-				{
-					((DuelistPower)pow).onGainVines();
-				}
-			}
+			for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
+			for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
 			updateDescription(); 
 		}
     }

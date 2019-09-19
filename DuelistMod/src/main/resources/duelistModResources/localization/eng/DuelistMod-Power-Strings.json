@@ -673,11 +673,11 @@
 },
 "theDuelist:ConvulsionNaturePower": {
         "NAME": "Convulsion of Nature",
-        "DESCRIPTIONS": ["At the start of turn, #yResummon #b", " random #yNaturia monster on a random enemy.", " random #yNaturia monsters on a random enemy."]
+        "DESCRIPTIONS": ["At the start of turn, #yResummon #b", " random #yNaturia monster on a random enemy.", " random #yNaturia monsters on random enemies."]
 },
 "theDuelist:CorrosiveScalesPower": {
         "NAME": "Corrosive Scales",
-        "DESCRIPTIONS": ["Whenever you are attacked, if you have any #yInsects summoned, #yTribute them all and apply twice that much Poison to ALL enemies.", "Whenever you are attacked, if you have any #yInsects summoned, #yTribute them all and apply three times that much Poison to ALL enemies."]
+        "DESCRIPTIONS": ["Whenever you are attacked, if you have any #yInsects summoned, #yTribute them all and apply twice that much #yPoison to ALL enemies.", "Whenever you are attacked, if you have any #yInsects summoned, #yTribute them all and apply three times that much #yPoison to ALL enemies."]
 },
 "theDuelist:CrystalForestPower": {
         "NAME": "Crystal Forest",
@@ -685,7 +685,7 @@
 },
 "theDuelist:DemiseLandPower": {
         "NAME": "Demise of Land",
-        "DESCRIPTIONS": ["#yNaturia monsters deal 100% more damage and gain 75% more #yBlock. All other monster types deal 50% less damage."]
+        "DESCRIPTIONS": ["Whenever you play a #yPower, deal #b", " damage to ALL enemies."]
 },
 "theDuelist:LairWirePower": {
         "NAME": "Lair Wire",
@@ -739,9 +739,13 @@
         "NAME": "Compost",
         "DESCRIPTIONS": ["Whenever you are attacked, deal #b", " damage to ALL enemies." ]
 },
+"theDuelist:NaturiaForestPrePower": {
+        "NAME": "Naturia Forest",
+        "DESCRIPTIONS": ["#yNaturia cards cost 0 next turn.", "#yNaturia cards cost 0 for the next #b2 turns." ]
+},
 "theDuelist:NaturiaForestPower": {
         "NAME": "Naturia Forest",
-        "DESCRIPTIONS": ["#yNaturia cards cost #b0 next turn.", "#yNaturia cards cost #b0 this turn." ]
+        "DESCRIPTIONS": ["#yNaturia cards cost 0 for the next #b", " turn.", " turns." ]
 },
 "theDuelist:PlaceholderPower": {
         "NAME": "Placeholder",

@@ -29,6 +29,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
     	}
     }
 	
+	public void onGainVines() { }
+	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
 	public void onSummon(DuelistCard summoned, int amountSummoned) { }

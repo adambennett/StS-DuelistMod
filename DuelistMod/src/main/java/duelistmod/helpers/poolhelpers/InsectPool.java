@@ -118,6 +118,7 @@ public class InsectPool
 		cards.add(new Anteater());
 		cards.add(new BrainCrusher());
 		cards.add(new DigitalBug());
+		cards.add(new CorrosiveScales());
 
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

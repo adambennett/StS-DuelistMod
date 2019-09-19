@@ -5377,14 +5377,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.NATURIA))
 		{
-			if (player().hasPower(SummonPower.POWER_ID))
-			{
-				SummonPower pow = (SummonPower)player().getPower(SummonPower.POWER_ID);
-				int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
-				Util.log("Naturia Synergy tribute happened with Vines up! We're about to add " + nats + " Leaves!");
-				if (AbstractDungeon.player.hasRelic(MarkOfNature.ID)) { nats++; }
-				DuelistCard.applyPowerToSelf(new LeavesPower(nats));
-			}
+			DuelistCard.applyPowerToSelf(new LeavesPower(1));
 		}
 	}
 	

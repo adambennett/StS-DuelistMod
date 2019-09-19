@@ -12,33 +12,36 @@ import duelistmod.variables.Tags;
 
 public class WildNatureActionB extends AbstractGameAction
 {
-    private DamageInfo info;
-    private float startingDuration;
-    
-    public WildNatureActionB() 
-    {
-        this.actionType = ActionType.WAIT;
-        this.attackEffect = AttackEffect.FIRE;
-        this.startingDuration = Settings.ACTION_DUR_FAST;
-        this.duration = this.startingDuration;
-    }
-    
-    @Override
-    public void update() {
-        if (this.duration == this.startingDuration) 
-        {
-        	AbstractPlayer p = AbstractDungeon.player;
-        	int nats = 0;
-        	for (AbstractCard c : p.drawPile.group) { if (c.hasTag(Tags.NATURIA)) { nats++; }}
-        	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
-        	{
-        		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
-        		{
-        			this.info = new DamageInfo(mon, nats);
-                    this.addToTop(new DamageAction(this.target, this.info, AttackEffect.FIRE));                    
-        		}
-        	}
-        }
-        this.tickDuration();
-    }
+	private DamageInfo info;
+	private float startingDuration;
+
+	public WildNatureActionB(DamageInfo info) 
+	{
+		this.info = info;
+		this.actionType = ActionType.WAIT;
+		this.attackEffect = AttackEffect.POISON;
+		this.startingDuration = Settings.ACTION_DUR_FAST;
+		this.duration = this.startingDuration;
+	}
+
+	@Override
+	public void update() {
+		if (this.duration == this.startingDuration) 
+		{
+			AbstractPlayer p = AbstractDungeon.player;
+			int nats = 0;
+			for (AbstractCard c : p.drawPile.group) { if (c.hasTag(Tags.NATURIA)) { nats++; }}
+			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+				{
+					for (int i = 0; i < nats; i++)
+					{
+						this.addToTop(new DamageAction(mon, this.info, AttackEffect.FIRE));
+					}              
+				}
+			}
+		}
+		this.tickDuration();
+	}
 }

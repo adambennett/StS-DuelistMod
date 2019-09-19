@@ -392,6 +392,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int aquaTidalBoost = 1;
 	public static int superheavyDex = 1;
 	public static int naturiaVines = 1;
+	public static int naturiaLeaves = 1;
 	public static int machineArt = 1;
 	public static int rockBlock = 2;
 	public static int beastStrSummons = 0;
@@ -1416,7 +1417,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		/* Debug Commands (fill game with only cards from specified pool) */
 		//DuelistCardLibrary.setupMyCardsDebug("Standard"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = true;
-		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = false;
+		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Spellcaster"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Toon"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Zombie"); fullPool = false; addBasic = true;
@@ -1994,6 +1995,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		explosiveDmgHigh = 3;
 		insectPoisonDmg = baseInsectPoison;
 		naturiaVines = 1;
+		naturiaLeaves = 1;
 		AbstractPlayer.customMods = new ArrayList<String>();
 		defaultMaxSummons = 5;
 		lastMaxSummons = 5;
@@ -2049,18 +2051,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 		if (arg0.hasTag(Tags.NATURIA))
 		{
+			if (AbstractDungeon.player.hasRelic(Leafpile.ID)) { DuelistCard.applyPowerToSelf(new LeavesPower(1)); }
 			if (!AbstractDungeon.player.hasPower(VinesPower.POWER_ID)) 
 			{ 
 				DuelistCard.applyPowerToSelf(new VinesPower(DuelistMod.naturiaVines)); 
-				for (AbstractPower pow : AbstractDungeon.player.powers)
-				{
-					if (pow instanceof DuelistPower)
-					{
-						((DuelistPower)pow).onGainVines();
-					}
-				}
+				for (AbstractPower pow : AbstractDungeon.player.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onGainVines(); }}
+				for (AbstractRelic r : AbstractDungeon.player.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onGainVines(); }}
 			}
-			if (AbstractDungeon.player.hasRelic(Leafpile.ID)) { DuelistCard.applyPowerToSelf(new LeavesPower(1)); }
 		}
 		
 		secondLastCardPlayed = lastCardPlayed;
@@ -2835,6 +2832,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			explosiveDmgHigh = 3;
 			insectPoisonDmg = baseInsectPoison;
 			naturiaVines = 1;
+			naturiaLeaves = 1;
 			zombiesResummonedThisRun = 0;
 			AbstractPlayer.customMods = new ArrayList<String>();
 			swordsPlayed = 0;

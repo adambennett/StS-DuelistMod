@@ -40,6 +40,7 @@ public class NaturiaStagBeetle extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.X_COST);
         this.originalName = this.name;
         this.isMultiDamage = true;
     }

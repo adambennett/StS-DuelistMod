@@ -338,9 +338,11 @@
     "PROPER_NAME": "Naturia",
     "NAMES": [
       "Naturia",
-	  "naturia"
+	  "naturia",
+	  "Naturias",
+	  "naturias"
     ],   
-    "DESCRIPTION": "Whenever you #ySummon a #yNaturia monster, gain #b1 #yVine. Whenever you #yTribute a #yNaturia for another, gain #yVines equal to the number of #yNaturias currently summoned."
+    "DESCRIPTION": "Whenever you play a #yNaturia monster, gain #b1 #yVine. Whenever you #yTribute a #yNaturia for another, gain #b1 #yLeaf."
   },
   {
     "PROPER_NAME": "Superheavy",

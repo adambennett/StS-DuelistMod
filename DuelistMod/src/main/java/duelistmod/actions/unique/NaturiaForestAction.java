@@ -15,14 +15,14 @@ import com.megacrit.cardcrawl.vfx.cardManip.*;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
-public class JinzoAction extends AbstractGameAction
+public class NaturiaForestAction extends AbstractGameAction
 {
 	private static final float DURATION_PER_CARD = 0.35F;
 	private AbstractCard c;
 	private static final float PADDING = 25.0F * Settings.scale;
 	private boolean isOtherCardInCenter = true;
 
-	public JinzoAction(int amount) 
+	public NaturiaForestAction(int amount) 
 	{
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
 		this.amount = amount;
@@ -52,10 +52,10 @@ public class JinzoAction extends AbstractGameAction
 		// Create empty list of cards
     	ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
     	
-    	// Add all spells and traps from hand to list
-    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if ((c.tags.contains(Tags.TRAP))) { modCards.add(c); } }
+    	// Add all Naturias from hand to list
+    	for (AbstractCard c : AbstractDungeon.player.hand.group) { if ((c.tags.contains(Tags.NATURIA))) { modCards.add(c); } }
     	
-    	// Remove all 0 cost spells and traps from list
+    	// Remove all 0 cost Naturias
     	if (modCards.size() > 0) { for (int i = 0; i < modCards.size(); i++) { if (modCards.get(i).cost < 1) { modCards.remove(i); } } }
     	
     	// For the amount of times equal to power stacks, grab a random card from the remaining list and set cost to 0

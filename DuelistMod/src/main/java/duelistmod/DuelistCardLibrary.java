@@ -934,7 +934,12 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SummoningSwarm());
 		DuelistMod.myCards.add(new WildNatureRelease());
 		DuelistMod.myCards.add(new WormBait());
-
+		DuelistMod.myCards.add(new CorrosiveScales());
+		DuelistMod.myCards.add(new Pollinosis());
+		DuelistMod.myCards.add(new DemiseLand());
+		DuelistMod.myCards.add(new SurvivalInstinct());
+		DuelistMod.myCards.add(new ConvulsionNature());
+		DuelistMod.myCards.add(new NaturiaForest());
 		//DuelistMod.myCards.add(new WightLady());		
 		
 		// NAMELESS TOMB CARDS

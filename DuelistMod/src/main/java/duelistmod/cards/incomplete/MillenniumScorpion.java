@@ -42,7 +42,7 @@ public class MillenniumScorpion extends DuelistCard
 		this.exodiaDeckCopies = 1;
 		this.setupStartingCopies();
         this.summons = this.baseSummons = 1;			
-        this.baseBlock = this.block = 8;
+        this.baseBlock = this.block = 4;
         this.originalName = this.name;
     }
 

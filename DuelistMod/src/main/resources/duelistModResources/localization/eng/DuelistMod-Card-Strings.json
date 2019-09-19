@@ -483,9 +483,9 @@
 		"UPGRADE_DESCRIPTION": "Fleeting NL Arcane NL Heal !M! HP."
 	},
 	"theDuelist:DokiDoki": {
-		"DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL If you have played a Spell this turn, gain !M! Temporary HP. Otherwise, gain !B! Block.",
+		"DESCRIPTION": "Retain NL Rock NL Summon !duelist:SUMM! NL If you have played a Spell this turn, gain !M! Temporary HP. Otherwise, gain !B! Block.",
 		"NAME": "Doki Doki",
-		"UPGRADE_DESCRIPTION": "Retain NL Summon !duelist:SUMM! NL If you have played a Spell this turn, gain !M! Temporary HP. Otherwise, gain !B! Block."
+		"UPGRADE_DESCRIPTION": "Retain NL Rock NL Summon !duelist:SUMM! NL If you have played a Spell this turn, gain !M! Temporary HP. Otherwise, gain !B! Block."
 	},
 	"theDuelist:Doomdog": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Whenever you Tribute a Fiend for another, deal !M! damage to ALL enemies.",
@@ -3571,6 +3571,11 @@
 		"NAME": "Miraculous Descent",
 		"UPGRADE_DESCRIPTION": "Arcane NL At the end of each turn, if the last card played matches a random card type, gain !M! Block."
 	},
+	"theDuelist:MiraculousDescentEnemy": {
+		"DESCRIPTION": "At the end of turn, gain a random amount of Block.",
+		"NAME": "Miraculous Descent",
+		"UPGRADE_DESCRIPTION": "Innate NL At the end of turn, gain a random amount of Block."
+	},
 	"theDuelist:MiracleFertilizer": {
 		"DESCRIPTION": "Apply !M! Constricted. NL Gain !duelist:M! Constricted. NL Exhaust.",
 		"NAME": "Miracle Fertilizer",
@@ -5398,9 +5403,9 @@
 		"UPGRADE_DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Gain Vines equal to the number of Naturias currently summoned."
 	},
 	"theDuelist:NaturiaParadizo": {
-		"DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Strength. NL Exhaust.",
+		"DESCRIPTION": "Naturia Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Strength. NL Exhaust.",
 		"NAME": "Naturia Paradizo",
-		"UPGRADE_DESCRIPTION": "Naturia NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Strength. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Naturia Predaplant NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Strength. NL Exhaust."
 	},
 	"theDuelist:GemArmadillo": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -5475,7 +5480,7 @@
 	"theDuelist:NaturiaForest": {
 		"DESCRIPTION": "Naturia cards cost 0 next turn.",
 		"NAME": "Naturia Forest",
-		"UPGRADE_DESCRIPTION": "Naturia cards cost 0 for the next !M! turns."
+		"UPGRADE_DESCRIPTION": "Naturia cards cost 0 for the next two turns."
 	},
 	"theDuelist:ExterioFang": {
 		"DESCRIPTION": "Tribute all non-Naturias and Resummon a random monster that costs that many Tributes.",
@@ -5483,9 +5488,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute all non-Naturias and Resummon a random monster that costs that many Tributes."
 	},
 	"theDuelist:ConvulsionNature": {
-		"DESCRIPTION": "At the start of turn, Resummon a random Naturia monster on a random enemy.",
+		"DESCRIPTION": "At the start of turn, Resummon !M! random Naturia monster on a random enemy.",
 		"NAME": "Convulsion of Nature",
-		"UPGRADE_DESCRIPTION": "At the start of turn, Resummon a random Naturia monster on a random enemy."
+		"UPGRADE_DESCRIPTION": "At the start of turn, Resummon !M! random Naturia monster on a random enemy."
 	},
 	"theDuelist:SeedSacredTree": {
 		"DESCRIPTION": "Retain NL Unplayable NL Whenever this card is Retained, gain !M! Vines and take !duelist:M! damage.",
@@ -5503,14 +5508,14 @@
 		"UPGRADE_DESCRIPTION": "Exhaust up to !M! cards. NL Fill your summon zones with Naturia Tokens."
 	},
 	"theDuelist:DemiseLand": {
-		"DESCRIPTION": "Naturia monsters deal 100% more damage and gain 75% more Block. All other monsters deal 50% less damage.",
+		"DESCRIPTION": "Deal !D! damage. NL For the rest of combat, whenever you play a Power, deal !M! damage to ALL enemies. NL Exhaust.",
 		"NAME": "Demise of the Land",
-		"UPGRADE_DESCRIPTION": "Naturia monsters deal 100% more damage and gain 75% more Block. All other monsters deal 50% less damage."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL For the rest of combat, whenever you play a Power, deal !M! damage to ALL enemies. NL Exhaust."
 	},
 	"theDuelist:Pollinosis": {
-		"DESCRIPTION": "At the start of turn, if you did not draw any Naturia cards, add a random Naturia monster to your hand.",
+		"DESCRIPTION": "Gain Strength equal to your Vines for this turn. Lose all Vines.",
 		"NAME": "Pollinosis",
-		"UPGRADE_DESCRIPTION": "At the start of turn, if you did not draw any Naturia cards, add a random Naturia monster to your hand."
+		"UPGRADE_DESCRIPTION": "Gain Strength equal to your Vines for this turn. Lose all Vines."
 	},
 	"theDuelist:NatureReflection": {
 		"DESCRIPTION": "Whenever you gain Vines, add a random Naturia card to your hand.",
@@ -5538,9 +5543,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage for each Vine and Leaf you have."
 	},
 	"theDuelist:SurvivalInstinct": {
-		"DESCRIPTION": "Choose to double your Vines or Leaves. NL Exhaust.",
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Leaves. NL Exhaust.",
 		"NAME": "Survival Instinct",
-		"UPGRADE_DESCRIPTION": "Choose to double your Vines or Leaves. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Leaves. "
 	},
 	"theDuelist:SeismicShockwave": {
 		"DESCRIPTION": "Deal !D! damage and apply !M! Weak to ALL enemies.",

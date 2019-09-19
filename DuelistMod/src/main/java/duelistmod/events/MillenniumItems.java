@@ -56,6 +56,8 @@ public class MillenniumItems extends AbstractImageEvent {
                         	mills.add(new MillenniumSpellbook());
                         	mills.add(new Metronome());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
+                        	if (randMill instanceof AbstractCard) { randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1)); }
+                        	
                         	if (randMill instanceof AbstractRelic)
                         	{
                         		 AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();

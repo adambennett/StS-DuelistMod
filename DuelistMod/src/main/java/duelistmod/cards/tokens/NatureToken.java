@@ -40,6 +40,7 @@ public class NatureToken extends TokenCard
     	this.tags.add(Tags.INSECT);  
     	this.tags.add(Tags.NATURIA);  
     	this.tags.add(Tags.PREDAPLANT);
+    	this.magicNumber = this.baseMagicNumber = 1;
     	this.purgeOnUse = true;
     }
     public NatureToken(String tokenName) 
@@ -49,14 +50,15 @@ public class NatureToken extends TokenCard
     	this.tags.add(Tags.INSECT);  
     	this.tags.add(Tags.NATURIA);  
     	this.tags.add(Tags.PREDAPLANT);  
+       	this.magicNumber = this.baseMagicNumber = 1;
     	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon(p, 1, this);
-    	if (Util.tokenRoll()) { DuelistCard.applyPower(new PoisonPower(m, p, 1), m); }
-    	if (Util.tokenRoll()) { DuelistCard.applyPower(new ConstrictedPower(m, p, 1), m);}
-    	if (Util.tokenRoll()) { DuelistCard.applyPowerToSelf(new ThornsPower(p, 1)); }
+    	if (Util.tokenRoll()) { DuelistCard.applyPower(new PoisonPower(m, p, this.magicNumber), m); }
+    	if (Util.tokenRoll()) { DuelistCard.applyPower(new ConstrictedPower(m, p, this.magicNumber), m);}
+    	if (Util.tokenRoll()) { DuelistCard.applyPowerToSelf(new ThornsPower(p, this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new NatureToken(); }
 

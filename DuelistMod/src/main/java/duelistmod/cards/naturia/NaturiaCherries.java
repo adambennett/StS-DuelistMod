@@ -42,7 +42,6 @@ public class NaturiaCherries extends DuelistCard
         this.tags.add(Tags.PLANT);
         this.originalName = this.name;
         this.isSummon = true;
-        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -65,7 +64,7 @@ public class NaturiaCherries extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeBlock(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

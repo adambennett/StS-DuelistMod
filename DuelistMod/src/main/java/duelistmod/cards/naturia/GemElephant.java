@@ -34,7 +34,7 @@ public class GemElephant extends DuelistCard
 
     public GemElephant() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 20;
+        this.baseBlock = this.block = 17;
         this.summons = this.baseSummons = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
