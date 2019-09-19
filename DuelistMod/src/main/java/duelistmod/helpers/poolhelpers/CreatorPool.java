@@ -92,7 +92,8 @@ public class CreatorPool
 		cards.add(new OrbitalBombardment());
 		cards.add(new BlastingRuins());
 		
-		cards.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic()); }
+		else { cards.addAll(BasicPool.fullBasic()); }
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

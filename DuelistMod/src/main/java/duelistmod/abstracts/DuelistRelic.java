@@ -2,7 +2,6 @@ package duelistmod.abstracts;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 
 import basemod.abstracts.CustomRelic;
 
@@ -30,8 +29,6 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
     	}
     }
 	
-	public void onChangeStance() { }
-	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
 	public void onSummon(DuelistCard summoned, int amountSummoned) { }
@@ -40,5 +37,5 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	
 	public void onResummon(DuelistCard resummoned) { }
 	
-	public void onSynergyTriubte(CardTags whichSynergy) { }
+	public void onSynergyTribute() { }
 }

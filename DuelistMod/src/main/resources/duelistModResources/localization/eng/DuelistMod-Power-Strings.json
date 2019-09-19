@@ -709,7 +709,11 @@
 },
 "theDuelist:NaturiaStagBeetlePower": {
         "NAME": "Naturia Stag Beetle",
-        "DESCRIPTIONS": ["At the start of even turns, #yTribute X. At the start of odd turns, gain #yVines equal to the last amount tributed by this effect."]
+        "DESCRIPTIONS": ["At the start of next turn, #yTribute X.", " At the start of next turn, gain #b", " #yVines."]
+},
+"theDuelist:NaturiaVeinPower": {
+        "NAME": "Naturia Vein",
+        "DESCRIPTIONS": ["Whenever you play an X-cost card, gain #b", " #yEnergy."]
 },
 "theDuelist:PollinosisPower": {
         "NAME": "Pollinosis",
@@ -734,6 +738,14 @@
 "theDuelist:CompostPower": {
         "NAME": "Compost",
         "DESCRIPTIONS": ["Whenever you are attacked, deal #b", " damage to ALL enemies." ]
+},
+"theDuelist:NaturiaForestPower": {
+        "NAME": "Naturia Forest",
+        "DESCRIPTIONS": ["#yNaturia cards cost #b0 next turn.", "#yNaturia cards cost #b0 this turn." ]
+},
+"theDuelist:PlaceholderPower": {
+        "NAME": "Placeholder",
+        "DESCRIPTIONS": [""]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

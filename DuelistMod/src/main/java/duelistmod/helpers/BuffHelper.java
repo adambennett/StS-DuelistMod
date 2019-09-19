@@ -235,7 +235,7 @@ public class BuffHelper {
 		AbstractPower conserve = new ConservePower(p, 1);
 		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower aero = new AerodynamicsPower(p, p);
-		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
+		//AbstractPower naturia = new NaturiaPower(p, p, turnNum);
 		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
 		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
 		AbstractPower hello = new HelloPower(p, turnNum);
@@ -253,7 +253,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC, hello, oniPower
+					jambreedC, hello, oniPower
 			};
 		}
 		else
@@ -265,7 +265,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
+					jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
 			};
 		}
 		for (AbstractPower a : buffs)
@@ -319,7 +319,7 @@ public class BuffHelper {
 		AbstractPower conserve = new ConservePower(p, 1);
 		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower aero = new AerodynamicsPower(p, p);
-		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
+		//AbstractPower naturia = new NaturiaPower(p, p, turnNum);
 		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
 		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
 		AbstractPower hello = new HelloPower(p, turnNum);
@@ -337,7 +337,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC, hello, oniPower
+					jambreedC, hello, oniPower
 			};
 		}
 		else
@@ -349,7 +349,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
+					jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
 			};
 		}
 		for (AbstractPower a : buffs)

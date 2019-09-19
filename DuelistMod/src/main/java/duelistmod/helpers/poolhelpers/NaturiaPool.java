@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.green.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.AfterGenocide;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.naturia.*;
 import duelistmod.helpers.Util;
 
 public class NaturiaPool 
@@ -85,46 +86,104 @@ public class NaturiaPool
 	public static ArrayList<AbstractCard> deck()
 	{
 		StarterDeck natureDeck = DuelistMod.starterDeckNamesMap.get(deckName);		
-		ArrayList<AbstractCard> natureCards = new ArrayList<AbstractCard>();
-		natureCards.add(new NaturiaBeast());
-		natureCards.add(new NaturiaCliff());
-		natureCards.add(new NaturiaDragonfly());
-		natureCards.add(new NaturiaGuardian());
-		natureCards.add(new NaturiaHorneedle());
-		natureCards.add(new NaturiaLandoise());
-		natureCards.add(new NaturiaMantis());
-		natureCards.add(new NaturiaPineapple());
-		natureCards.add(new NaturiaPumpkin());
-		natureCards.add(new NaturiaRosewhip());
-		natureCards.add(new NaturiaSacredTree());
-		natureCards.add(new NaturiaStrawberry());
-		natureCards.add(new SangaEarth());
-		natureCards.add(new GracefulCharity());
-		natureCards.add(new HeartUnderdog());
-		natureCards.add(new PotDuality());
-		natureCards.add(new AcidTrapHole());
-		natureCards.add(new BottomlessTrapHole());
-		natureCards.add(new Spore());
-		natureCards.add(new VenomShot());
-		natureCards.add(new MillenniumScorpion());
-
+		ArrayList<AbstractCard> naturiaCards = new ArrayList<AbstractCard>();
+		naturiaCards.add(new NaturiaBeast());
+		naturiaCards.add(new NaturiaCliff());
+		naturiaCards.add(new NaturiaDragonfly());
+		naturiaCards.add(new NaturiaGuardian());
+		naturiaCards.add(new NaturiaHorneedle());
+		naturiaCards.add(new NaturiaLandoise());
+		naturiaCards.add(new NaturiaMantis()); 
+		naturiaCards.add(new NaturiaPineapple());
+		naturiaCards.add(new NaturiaPumpkin());
+		naturiaCards.add(new NaturiaRosewhip());
+		naturiaCards.add(new NaturiaSacredTree());
+		naturiaCards.add(new NaturiaStrawberry());
+		naturiaCards.add(new SangaEarth());
+		naturiaCards.add(new GracefulCharity());
+		naturiaCards.add(new HeartUnderdog());
+		naturiaCards.add(new PotDuality());
+		naturiaCards.add(new AcidTrapHole());
+		naturiaCards.add(new BottomlessTrapHole());
+		naturiaCards.add(new Spore());
+		naturiaCards.add(new VenomShot());
+		naturiaCards.add(new MillenniumScorpion());
+		naturiaCards.add(new MiracleFertilizer());
+		naturiaCards.add(new HarpieFeather());
+		naturiaCards.add(new AfterGenocide());
+		naturiaCards.add(new MultiplicationOfAnts());
+		naturiaCards.add(new Wiretap());
+		naturiaCards.add(new Alpacaribou());	
+		naturiaCards.add(new Anteater());	
+		naturiaCards.add(new BarkionBark());	
+		naturiaCards.add(new BrainCrusher());	
+		naturiaCards.add(new Canyon());	
+		naturiaCards.add(new ClosedForest());	
+		naturiaCards.add(new CrystalRose());	
+		naturiaCards.add(new DigitalBug());	
+		naturiaCards.add(new ExterioFang());	
+		naturiaCards.add(new FossilDig());	
+		naturiaCards.add(new FossilExcavation());
+		naturiaCards.add(new GemArmadillo());		
+		naturiaCards.add(new HuntingInstinct());
+		naturiaCards.add(new LairWire());
+		naturiaCards.add(new LeodrakeMane());
+		naturiaCards.add(new LonefireBlossom());
+		naturiaCards.add(new LuminousMoss());
+		naturiaCards.add(new NaturalDisaster());
+		naturiaCards.add(new NatureReflection());
+		naturiaCards.add(new NaturiaBambooShoot());
+		naturiaCards.add(new NaturiaBarkion());
+		naturiaCards.add(new NaturiaBeans());
+		naturiaCards.add(new NaturiaBeetle());
+		naturiaCards.add(new NaturiaBrambi());
+		naturiaCards.add(new NaturiaButterfly());
+		naturiaCards.add(new NaturiaCherries());
+		naturiaCards.add(new NaturiaCosmobeet());
+		naturiaCards.add(new NaturiaEggplant());
+		naturiaCards.add(new NaturiaExterio());
+		naturiaCards.add(new NaturiaGaiastrio());
+		naturiaCards.add(new NaturiaHydrangea());
+		naturiaCards.add(new NaturiaLadybug());
+		naturiaCards.add(new NaturiaLeodrake());
+		naturiaCards.add(new NaturiaMarron());
+		naturiaCards.add(new NaturiaMosquito());
+		naturiaCards.add(new NaturiaParadizo());
+		naturiaCards.add(new NaturiaRagweed());
+		naturiaCards.add(new NaturiaRock());
+		naturiaCards.add(new NaturiaSpiderfang());
+		naturiaCards.add(new NaturiaStagBeetle());
+		naturiaCards.add(new NaturiaStinkbug());
+		naturiaCards.add(new NaturiaStrawberry());
+		naturiaCards.add(new NaturiaSunflower());
+		naturiaCards.add(new NaturiaTulip());
+		naturiaCards.add(new NaturiaVein());
+		naturiaCards.add(new NaturiaWhiteOak());
+		naturiaCards.add(new SeedSacredTree());
+		naturiaCards.add(new SeismicShockwave());
+		naturiaCards.add(new SpacetimeTranscendence());
+		naturiaCards.add(new SummoningSwarm());
+		naturiaCards.add(new WildNatureRelease());
+		naturiaCards.add(new WormBait());
+		
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 						
 		}
 		
-		natureDeck.fillPoolCards(natureCards);		
-		natureDeck.fillArchetypeCards(natureCards);
-		DuelistMod.archetypeCards.addAll(natureCards);
-		return natureCards;
+		natureDeck.fillPoolCards(naturiaCards);		
+		natureDeck.fillArchetypeCards(naturiaCards);
+		DuelistMod.archetypeCards.addAll(naturiaCards);
+		return naturiaCards;
 	}
 	
 	public static  ArrayList<AbstractCard> basic()
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

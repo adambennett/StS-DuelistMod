@@ -188,6 +188,7 @@ public class Debug
 		System.out.println(counter - 1 + " total rare traps.");
 		listCounter++;
 		
+		/*
 		System.out.println("Common Basic Cards\n----------------------");
 		counter = 1;
 		for (AbstractCard c : DuelistMod.basicCards)
@@ -229,6 +230,7 @@ public class Debug
 		System.out.println("----------------------");
 		System.out.println(counter - 1 + " total rare basic cards.");
 		listCounter++;
+		*/
 		
 		System.out.println("Common Ojama Cards\n----------------------");
 		counter = 1;
@@ -421,7 +423,7 @@ public class Debug
 				//DuelistMod.logger.info("added all cards from " + s.getSimpleName());
 			//}
 		}
-		archetypeCards.addAll(DuelistMod.basicCards);
+		//archetypeCards.addAll(DuelistMod.basicCards);
 		for (DuelistCard c : checkCards)
 		{
 			if (!archetypeCards.contains(c) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL))

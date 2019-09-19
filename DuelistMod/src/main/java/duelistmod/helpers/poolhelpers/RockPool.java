@@ -1,15 +1,12 @@
 package duelistmod.helpers.poolhelpers;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-import duelistmod.DuelistMod;
-import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.*;
-import duelistmod.helpers.Util;
+import duelistmod.cards.incomplete.MudGolem;
+import duelistmod.cards.naturia.*;
 
 public class RockPool 
 {
@@ -29,11 +26,29 @@ public class RockPool
 		cards.add(new IronhammerGiant());
 		cards.add(new LabyrinthWall());
 		cards.add(new NaturiaCliff());
+		cards.add(new NaturiaGaiastrio());
+		cards.add(new NaturiaRock());
+		cards.add(new NaturiaCliff());
 		cards.add(new NaturiaLandoise());
 		cards.add(new PotForbidden());
 		cards.add(new PowerGiant());
 		cards.add(new ValkMagnet());
 		cards.add(new MudGolem());
+		cards.add(new ChrysalisMole());
+		cards.add(new Blockman());
+		cards.add(new AttackTheMoon());
+		cards.add(new Canyon());
+		cards.add(new EarthEffigy());
+		cards.add(new ElephantStatueBlessing());
+		cards.add(new ElephantStatueDisaster());
+		cards.add(new DestroyerGolem());
+		cards.add(new DummyGolem());
+		cards.add(new EvilswarmGolem());
+		cards.add(new GateBlocker());
+		cards.add(new GemElephant());
+		cards.add(new GemArmadillo());
+		cards.add(new CastleGate());
+		cards.add(new FossilTusker());
 		return cards;
 	}
 }

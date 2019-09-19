@@ -2,11 +2,8 @@ package duelistmod.abstracts;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.stances.*;
 
@@ -23,69 +20,34 @@ public abstract class DuelistStance extends AbstractStance
         this.particleTimer2 = 0.0f;
     }
     
-    public abstract void updateDescription();
-    
-    public void onShuffle() { }
+    public float modifyBlock(final float blockAmount) { return blockAmount; }
     
     public void onAddCardToHand(AbstractCard c) { }
     
-    public void atStartOfTurn() {
-    }
-    
-    public void onEndOfTurn() {
-    }
-    
-    public void onEnterStance() {
-    }
-    
     public void onDrawCard(AbstractCard drawnCard) { }
-    
-    public void onLoseBlock(int amt) { }
-    
-    public void onExitStance() {
-    }
-    
-    public void onGainDex(int amount) { }
     
     public void onExhaust(final AbstractCard c) { }
     
-    public float atDamageGive(final float damage, final DamageInfo.DamageType type) {
-        return damage;
-    }
+    public void onGainDex(int amount) { }
     
-    public float atDamageReceive(final float damage, final DamageInfo.DamageType damageType) {
-        return damage;
-    }
+    public void onIncrement(int amount, int newMaxSummons) { }
     
-    public float modifyBlock(final float blockAmount) {
-        return blockAmount;
-    }
+    public void onLoseBlock(int amt) { }
     
-    public void onPlayCard(final AbstractCard card) {
-    }
+    public void onPlayCard(final AbstractCard card) { }
     
-    public void update() {
-        this.updateAnimation();
-    }
+    public void onResummon(DuelistCard resummoned) { }
+   
+    public void onShuffle() { }
     
-    public void updateAnimation() {
-    }
+    public void onSummon(DuelistCard summoned, int amountSummoned) { }
     
-    public void render(final SpriteBatch sb) 
+    public void onSynergyTribute() { }
+   
+    public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
+
+    public static AbstractStance getStanceFromName(final String name) 
     {
-        if (this.img == null) {
-            return;
-        }
-        sb.setColor(this.c);
-        sb.setBlendFunction(770, 1);
-        sb.draw(this.img, AbstractDungeon.player.drawX - 256.0f + AbstractDungeon.player.animX, AbstractDungeon.player.drawY - 256.0f + AbstractDungeon.player.animY + AbstractDungeon.player.hb_h / 2.0f, 256.0f, 256.0f, 512.0f, 512.0f, Settings.scale, Settings.scale, -this.angle, 0, 0, 512, 512, false, false);
-        sb.setBlendFunction(770, 771);
-    }
-    
-    public void stopIdleSfx() {
-    }
-    
-    public static AbstractStance getStanceFromName(String name) {
         switch (name) {
             case "Calm": {
                 return new CalmStance();
@@ -124,6 +86,30 @@ public abstract class DuelistStance extends AbstractStance
             	return new Entrenched();
             }
             case "Nimble": {
+            	return new Nimble();
+            }
+            case "theDuelist:Samurai": {
+            	return new Samurai();
+            }
+            case "theDuelist:Forsaken": {
+            	return new Forsaken();
+            }
+            case "theDuelist:Guarded": {
+            	return new Guarded();
+            }
+            case "theDuelist:Meditative": {
+            	return new Meditative();
+            }
+            case "theDuelist:Spectral": {
+            	return new Spectral();
+            }
+            case "theDuelist:Chaotic": {
+            	return new Chaotic();
+            }            
+            case "theDuelist:Entrenched": {
+            	return new Entrenched();
+            }
+            case "theDuelist:Nimble": {
             	return new Nimble();
             }
             default: {

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.*;
+import duelistmod.cards.tempCards.*;
 import duelistmod.helpers.GridSort;
 import duelistmod.powers.incomplete.SeedCannonPower;
 

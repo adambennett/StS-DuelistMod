@@ -67,7 +67,7 @@ public class NamelessPowerRelicB extends CustomRelic {
 	@Override
 	public void atBattleStart()
 	{
-		this.buff = BuffHelper.trapVortexB(this.buffRollID, this.trapsRemoved);
+		this.buff = BuffHelper.trapVortexB(this.buffRollID, this.counter);
 		if (!(this.buff instanceof DummyPowerDoNotApply)) { DuelistCard.applyPowerToSelf(buff); this.flash(); }
 	}
 

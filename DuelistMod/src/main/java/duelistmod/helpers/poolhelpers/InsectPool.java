@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.naturia.*;
 import duelistmod.helpers.Util;
 
 public class InsectPool 
@@ -114,7 +115,10 @@ public class InsectPool
 		cards.add(new BlockSpider());
 		cards.add(new LordPoison());
 		cards.add(new DarkworldThorns());
-		
+		cards.add(new Anteater());
+		cards.add(new BrainCrusher());
+		cards.add(new DigitalBug());
+
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 			//cards.add(new Token());
@@ -142,7 +146,8 @@ public class InsectPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

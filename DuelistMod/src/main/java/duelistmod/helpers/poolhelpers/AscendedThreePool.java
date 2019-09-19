@@ -245,7 +245,7 @@ public class AscendedThreePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		pool.addAll(BasicPool.ascendedBasics());
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

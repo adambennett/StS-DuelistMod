@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.CancelCard;
+import duelistmod.cards.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
 import duelistmod.variables.Strings;
 

@@ -10,4 +10,14 @@ public abstract class DuelistPotion extends AbstractPotion
 	}
 	
 	public void onChangeStance() { }
+	
+	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
+	public void onSummon(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onIncrement(int amount, int newMaxSummons) { }
+	
+	public void onResummon(DuelistCard resummoned) { }
+	
+	public void onSynergyTribute() { }
 }

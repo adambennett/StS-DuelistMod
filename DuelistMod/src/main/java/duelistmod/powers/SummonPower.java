@@ -16,6 +16,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.BigEye;
 import duelistmod.cards.tokens.Token;
 import duelistmod.helpers.*;
+import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;
 import duelistmod.variables.*;
 
@@ -105,7 +106,14 @@ public class SummonPower extends AbstractPower
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
 		// Rock-type blocking effect
-		for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock); }}
+		if (AbstractDungeon.player.hasPower(CanyonPower.POWER_ID))
+		{
+			for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock + AbstractDungeon.player.getPower(CanyonPower.POWER_ID).amount); }}
+		}
+		else
+		{
+			for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock); }}
+		}
 	}
 	
 	@Override

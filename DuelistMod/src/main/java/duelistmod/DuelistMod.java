@@ -43,7 +43,7 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.RevivalRose;
-import duelistmod.cards.typecards.CancelCard;
+import duelistmod.cards.tempCards.CancelCard;
 import duelistmod.characters.TheDuelist;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
@@ -55,6 +55,7 @@ import duelistmod.orbs.*;
 import duelistmod.patches.*;
 import duelistmod.potions.*;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.rewards.*;
@@ -241,6 +242,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> myNamelessCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> rareCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> rareNonPowers = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> nonPowers = new ArrayList<DuelistCard>();
@@ -269,6 +271,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<AbstractCard> cardsForRandomDecks = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> tinFluteCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> coloredCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> duelColorlessCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> rareCardInPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> randomDeckSmallPool = new ArrayList<AbstractCard>();
@@ -388,7 +391,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int aquaInc = 1;
 	public static int aquaTidalBoost = 1;
 	public static int superheavyDex = 1;
-	public static int naturiaDmg = 1;
+	public static int naturiaVines = 1;
 	public static int machineArt = 1;
 	public static int rockBlock = 2;
 	public static int beastStrSummons = 0;
@@ -1188,6 +1191,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new NamelessWarRelicA(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new NamelessWarRelicB(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new NamelessWarRelicC(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new Leafblower(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new NatureOrb(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MarkOfNature(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1299,6 +1305,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(NamelessWarRelicA.ID);
 		UnlockTracker.markRelicAsSeen(NamelessWarRelicB.ID);
 		UnlockTracker.markRelicAsSeen(NamelessWarRelicC.ID);
+		UnlockTracker.markRelicAsSeen(Leafblower.ID);
+		UnlockTracker.markRelicAsSeen(NatureOrb.ID);
+		UnlockTracker.markRelicAsSeen(MarkOfNature.ID);
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
 		//duelistRelicsForTombEvent.add(new MillenniumRing());
@@ -1359,6 +1368,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new MetronomeRelicB());
 		duelistRelicsForTombEvent.add(new MetronomeRelicC());
 		duelistRelicsForTombEvent.add(new MetronomeRelicD());
+		duelistRelicsForTombEvent.add(new Leafblower());
+		duelistRelicsForTombEvent.add(new NatureOrb());
+		duelistRelicsForTombEvent.add(new MarkOfNature());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
@@ -1896,6 +1908,17 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	            	}
 	            }
 			}
+			
+			if (power instanceof VinesPower && power.amount > 0 && power.owner.equals(AbstractDungeon.player))
+			{
+				for (AbstractPower pow : AbstractDungeon.player.powers)
+				{
+					if (pow instanceof DuelistPower)
+					{
+						((DuelistPower)pow).onGainVines();
+					}
+				}
+			}
 		}
 	}
 
@@ -1970,7 +1993,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		explosiveDmgLow = 1;
 		explosiveDmgHigh = 3;
 		insectPoisonDmg = baseInsectPoison;
-		naturiaDmg = 1;
+		naturiaVines = 1;
 		AbstractPlayer.customMods = new ArrayList<String>();
 		defaultMaxSummons = 5;
 		lastMaxSummons = 5;
@@ -2022,6 +2045,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				Alien al = (Alien)o;
 				al.triggerPassiveEffect();
 			}
+		}
+		
+		if (arg0.hasTag(Tags.NATURIA))
+		{
+			if (!AbstractDungeon.player.hasPower(VinesPower.POWER_ID)) 
+			{ 
+				DuelistCard.applyPowerToSelf(new VinesPower(DuelistMod.naturiaVines)); 
+				for (AbstractPower pow : AbstractDungeon.player.powers)
+				{
+					if (pow instanceof DuelistPower)
+					{
+						((DuelistPower)pow).onGainVines();
+					}
+				}
+			}
+			if (AbstractDungeon.player.hasRelic(Leafpile.ID)) { DuelistCard.applyPowerToSelf(new LeavesPower(1)); }
 		}
 		
 		secondLastCardPlayed = lastCardPlayed;
@@ -2407,6 +2446,24 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receiveRelicGet(AbstractRelic arg0) 
 	{
+		if (arg0 instanceof Courier)
+		{
+			Util.log("Picked up The Courier, so we are removing all colored basic set cards from the colorless pool to avoid crashes. I'd rather do this than patch shopscreen to be smarter");
+			ArrayList<AbstractCard> resetColorless = new ArrayList<AbstractCard>();
+			for (AbstractCard c : AbstractDungeon.colorlessCardPool.group) { if (c.color.equals(CardColor.COLORLESS)) { resetColorless.add(c); }}
+			AbstractDungeon.colorlessCardPool.clear();
+			AbstractDungeon.colorlessCardPool.group.addAll(resetColorless);
+			
+			// If playing with basic cards turned on
+			// or if the player possibly added basic cards to the colorless slots with either of the shop relics
+			// We need to reset the shop to prevent the game from attempting to fill colored card slots with a new card when you pruchase a colored card from a colorless card slot
+			// .. because devs are lazy and shopscreen was coded stupid
+			// .. but then again look at me writing lazy fixes too
+			if (setIndex == 0 || setIndex == 3 || setIndex == 5 || setIndex == 6 || AbstractDungeon.player.hasRelic(MerchantPendant.ID) || AbstractDungeon.player.hasRelic(MerchantNecklace.ID)) 
+			{ 
+				if (Util.refreshShop()) { Util.log("Forced shop reset on Courier pickup"); }
+			}
+		}
 		if (arg0 instanceof QuestionCard)
 		{
 			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
@@ -2419,7 +2476,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				Util.log("Question Card --> no increment to bonus booster size, booster packs were turned off");
 			}
 		}
-		
+
 		if (arg0 instanceof BustedCrown)
 		{
 			if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
@@ -2777,7 +2834,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			explosiveDmgLow = 1;
 			explosiveDmgHigh = 3;
 			insectPoisonDmg = baseInsectPoison;
-			naturiaDmg = 1;
+			naturiaVines = 1;
 			zombiesResummonedThisRun = 0;
 			AbstractPlayer.customMods = new ArrayList<String>();
 			swordsPlayed = 0;

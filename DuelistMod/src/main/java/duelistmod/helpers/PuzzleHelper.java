@@ -17,6 +17,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.tokens.ExplosiveToken;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.ToonWorldPower;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.relics.*;
 import duelistmod.variables.Tags;
 
@@ -154,15 +155,9 @@ public class PuzzleHelper
 		
 				// Naturia Deck
 				case 2:				
-					int floorN = AbstractDungeon.actNum;
-					AbstractMonster randyN = AbstractDungeon.getRandomMonster();
-					natureDeckAction(extra);
-					if (randyN != null)
-					{
-						int rollN = AbstractDungeon.cardRandomRng.random(1, 2);
-						if (rollN == 1) { DuelistCard.applyPower(new PoisonPower(randyN, AbstractDungeon.player, floorN), randyN); }
-						else { DuelistCard.applyPower(new ConstrictedPower(randyN, AbstractDungeon.player, floorN), randyN); }
-					}
+					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Nature Token", false);
+					DuelistCard.applyPowerToSelf(new VinesPower(1));
+					DuelistCard.applyPowerToSelf(new LeavesPower(1));
 					break;
 		
 				// Spellcaster Deck
@@ -446,15 +441,9 @@ public class PuzzleHelper
 	
 			// Naturia Deck
 			case 2:				
-				int floorN = AbstractDungeon.actNum;
-				AbstractMonster randyN = AbstractDungeon.getRandomMonster();
-				natureDeckAction(extra);
-				if (randyN != null)
-				{
-					int rollN = AbstractDungeon.cardRandomRng.random(1, 2);
-					if (rollN == 1) { DuelistCard.applyPower(new PoisonPower(randyN, AbstractDungeon.player, floorN), randyN); }
-					else { DuelistCard.applyPower(new ConstrictedPower(randyN, AbstractDungeon.player, floorN), randyN); }
-				}
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Nature Token", false);
+				DuelistCard.applyPowerToSelf(new VinesPower(1));
+				DuelistCard.applyPowerToSelf(new LeavesPower(1));
 				break;
 	
 			// Spellcaster Deck
@@ -713,60 +702,7 @@ public class PuzzleHelper
 				break;
 		}
 	}
-	
-	public static void natureDeckAction(int extra)
-	{
-		int rollN = AbstractDungeon.cardRandomRng.random(1, 6);
-    	switch (rollN)
-    	{
-	    	case 1:
-	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Plant Token", false);
-	    		break;
-	    	case 2:
-	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
-	    		break;
-	    	case 3:
-	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Predaplant Token", false);
-	    		break;
-	    	case 4:
-	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Plant Token", false);
-	    		break;
-	    	case 5:
-	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
-	    		break;
-	    	case 6:
-	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Predaplant Token", false);			    		
-	    		break;
-	    	default:
-	    		DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
-	    		break;
-    	
-		}
-	}
-	
-	/*
-	public static void toonDeckAction(AbstractPlayer p, int extra)
-	{
-		if (!DuelistMod.toonBtnBool)
-		{
-			DuelistMod.toonWorldTemp = true;
-			DuelistCard.applyPowerToSelf(new ToonWorldPower(p, p, 0, false));
-			ArrayList<DuelistCard> cardsToChooseFrom = new ArrayList<DuelistCard>();
-			for (int i = 0; i < 4; i++)
-			{
-				DuelistCard randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TOON);
-				while (cardsToChooseFrom.contains(randomToon) || randomToon.originalName.equals("Toon Mask"))
-				{
-					randomToon = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.TOON);
-				}
-				cardsToChooseFrom.add(randomToon);
-			}
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(cardsToChooseFrom, 1, false, false, false));
-			//new Token().openRandomCardChoiceDuelist(3, cardsToChooseFrom, false);
-		}
-	}
-	*/
-	
+
 	public static void creatorDeckAction(int extra)
 	{
 		int roll = AbstractDungeon.cardRandomRng.random(1, 9);

@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 
 @SuppressWarnings("unused")
 public class Alien extends DuelistOrb
@@ -168,6 +169,36 @@ public class Alien extends DuelistOrb
 	{
 		this.passiveAmount = this.basePassiveAmount;
 		this.evokeAmount = this.baseEvokeAmount;
+	}
+	
+	@Override
+	public void onSynergyTribute()
+	{
+		Util.log(this.getClass().getSimpleName() + " triggered on synergy tribute! ");
+	}
+
+	@Override
+	public void onTribute(DuelistCard ed, DuelistCard ing)
+	{
+		Util.log(this.getClass().getSimpleName() + " triggered on tribute! tributeded=" + ed.name + ", tributing=" + ing.name);
+	}
+	
+	@Override
+	public void onSummon(DuelistCard c, int amt)
+	{
+		Util.log(this.getClass().getSimpleName() + " triggered on summon! C=" + c.name + ", amt=" + amt);
+	}
+	
+	@Override
+	public void onIncrement(int amt, int newMax)
+	{
+		Util.log(this.getClass().getSimpleName() + " triggered on increment! newMax=" + newMax + ", amt=" + amt);
+	}
+	
+	@Override
+	public void onResummon(DuelistCard card)
+	{
+		Util.log(this.getClass().getSimpleName() + " triggered on resummon! resummoned: " + card.name);
 	}
 }
 

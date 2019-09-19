@@ -28,7 +28,7 @@ public class DarkBurningAttack extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public DarkBurningAttack() {
@@ -36,7 +36,7 @@ public class DarkBurningAttack extends DuelistCard
         this.originalName = this.name;
         this.selfRetain = true;
         this.tags.add(Tags.SPELL);
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     // Actions the card should do.
@@ -61,7 +61,7 @@ public class DarkBurningAttack extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(0);
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

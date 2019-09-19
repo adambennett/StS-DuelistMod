@@ -36,13 +36,13 @@ public class NaturiaRelic extends CustomRelic {
 	@Override
 	public void onEquip()
 	{
-		DuelistMod.naturiaDmg = 2;
+		DuelistMod.naturiaVines = 2;
 	}
 	
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.naturiaDmg = 1;
+		DuelistMod.naturiaVines = 1;
 	}
 
 	// Description

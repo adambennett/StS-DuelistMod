@@ -11,7 +11,6 @@ import basemod.abstracts.CustomReward;
 import duelistmod.helpers.*;
 import duelistmod.patches.RewardItemTypeEnumPatch;
 import duelistmod.relics.*;
-import duelistmod.ui.BoosterRewardScreen;
 
 public class BoosterReward extends CustomReward 
 {
@@ -19,6 +18,7 @@ public class BoosterReward extends CustomReward
 	public ArrayList<AbstractCard> booster;
 	public int boosterID;
 	public int goldCost;
+	private boolean isBonus = false;
 	
 	// if id-200 > 0 then we had a bonus booster
 	public BoosterReward(int id, int goldCost)
@@ -30,6 +30,7 @@ public class BoosterReward extends CustomReward
 		this.packName = BoosterPackHelper.getPackName(id, id-200>0);
 		this.boosterID = id;
 		this.goldCost = goldCost;
+		this.isBonus = id-200>0;
 		for (AbstractCard c : this.cards) 
 		{
 			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 
@@ -73,6 +74,7 @@ public class BoosterReward extends CustomReward
 		this.boosterID = id;
 		this.type = RewardType.CARD;
 		this.goldCost = goldCost;
+		this.isBonus = id-200>0;
 		for (AbstractCard c : this.cards) 
 		{
 			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 
@@ -110,6 +112,7 @@ public class BoosterReward extends CustomReward
 	@Override
 	public boolean claimReward() 
 	{
+		if (isBonus && AbstractDungeon.player.hasRelic(QuestionCard.ID)) { AbstractDungeon.player.getRelic(QuestionCard.ID).flash(); }
 		if (AbstractDungeon.player.hasRelic("Busted Crown")) { AbstractDungeon.player.getRelic("Busted Crown").flash(); }
 		if (AbstractDungeon.player.hasRelic(BoosterBonusPackIncreaseRelic.ID) && this.boosterID > 200) { AbstractDungeon.player.getRelic(BoosterBonusPackIncreaseRelic.ID).flash(); }
 		if (AbstractDungeon.player.hasRelic(BoosterPackEggRelic.ID)) { AbstractDungeon.player.getRelic(BoosterPackEggRelic.ID).flash(); }

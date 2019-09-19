@@ -9,6 +9,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.naturia.*;
 import duelistmod.helpers.Util;
 
 public class PlantPool 
@@ -92,11 +93,11 @@ public class PlantPool
 		cards.add(new Gigaplant());
 		cards.add(new Invigoration());
 		cards.add(new JerryBeansMan());
-		cards.add(new NaturiaGuardian());
-		cards.add(new NaturiaPineapple());
-		cards.add(new NaturiaPumpkin());
-		cards.add(new NaturiaRosewhip());
-		cards.add(new NaturiaStrawberry());
+		//cards.add(new NaturiaGuardian());
+		//cards.add(new NaturiaPineapple());
+		//cards.add(new NaturiaPumpkin());
+		//cards.add(new NaturiaRosewhip());
+		//cards.add(new NaturiaStrawberry());
 		cards.add(new PredaplantChimerafflesia());
 		cards.add(new PredaplantChlamydosundew());
 		cards.add(new PredaplantDrosophyllum());
@@ -162,6 +163,8 @@ public class PlantPool
 		cards.add(new DarkworldThorns());
 		cards.add(new Mudora());
 		cards.add(new MudGolem());
+		cards.add(new CrystalRose());
+		cards.add(new LonefireBlossom());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
@@ -177,7 +180,8 @@ public class PlantPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

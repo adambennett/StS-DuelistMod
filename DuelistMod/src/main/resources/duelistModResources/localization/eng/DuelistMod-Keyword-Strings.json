@@ -654,7 +654,9 @@
   "PROPER_NAME": "Rock",
     "NAMES": [
       "Rock",
-	  "rock"
+	  "rock",
+	  "Rocks",
+	  "rocks"
     ],   
     "DESCRIPTION": "At the end of each turn, gain #b2 #yBlock for each #yRock you have summoned."
   },
@@ -662,7 +664,9 @@
   "PROPER_NAME": "Vines",
     "NAMES": [
       "Vines",
-	  "vines"
+	  "vines",
+	  "Vine",
+	  "vine"
     ],   
     "DESCRIPTION": "At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned."
   },
@@ -670,7 +674,9 @@
   "PROPER_NAME": "Leaves",
     "NAMES": [
       "Leaves",
-	  "leaves"
+	  "leaves",
+	  "leaf",
+	  "Leaf"
     ],   
     "DESCRIPTION": "At the start of turn, gain #yBlock. #yBlock amount depends on the number of #yLeaves and the number of #yNaturias currently summoned."
   },

@@ -67,7 +67,7 @@ public class InsectRelic extends CustomRelic {
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.naturiaDmg -= cautiousChecker;
+		DuelistMod.naturiaVines -= cautiousChecker;
 	}
 
 	// Description

@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.megacrit.cardcrawl.shop.ShopScreen;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -20,8 +22,8 @@ import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
+import duelistmod.cards.tempCards.*;
 import duelistmod.cards.tokens.Token;
-import duelistmod.cards.typecards.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.*;
 
@@ -115,6 +117,13 @@ public class Util
 	    }
 	
 	    return converted.toString();
+	}
+	
+	public static boolean tokenRoll()
+	{
+		int roll = AbstractDungeon.cardRandomRng.random(1,2);
+    	if (roll == 1) { return true; }
+    	else { return false; }
 	}
 	
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
@@ -345,5 +354,38 @@ public class Util
 		AbstractDungeon.shopRelicPool.remove(relic.relicId);
 		AbstractDungeon.bossRelicPool.remove(relic.relicId);
 	}	
+	
+	public static boolean refreshShop()
+	{
+		if (AbstractDungeon.getCurrRoom() instanceof ShopRoom)
+		{
+			ShopScreen shop = AbstractDungeon.shopScreen;
+			if (shop == null) { return false; }
+			boolean remove = shop.purgeAvailable;
+	    	ArrayList<AbstractCard> newColored = new ArrayList<AbstractCard>();
+	    	ArrayList<AbstractCard> newColorless = new ArrayList<AbstractCard>();
+	    	
+	    	// 4 Regular Card Slots
+	    	if (DuelistMod.nonPowers.size() > 0) { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.nonPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.nonPowers.size() - 1)).makeCopy()); }}
+	    	else { for (int i = 0; i < 4; i++) { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }}
+	    	
+	    	// Power Slot
+	    	if (DuelistMod.merchantPendantPowers.size() > 0) { newColored.add(DuelistMod.merchantPendantPowers.get(AbstractDungeon.cardRandomRng.random(DuelistMod.merchantPendantPowers.size() - 1)).makeCopy()); }
+	    	else { newColored.add(DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)).makeCopy()); }
+	
+	    	// Colorless Slots
+			for (int i = 0; i < 2; i++)
+			{
+				AbstractCard c = AbstractDungeon.getColorlessCardFromPool(CardRarity.RARE).makeCopy();
+	    		newColorless.add(c.makeCopy());
+			}
+	    	
+	    	// Refresh Shop
+	    	shop.init(newColored, newColorless);
+	    	shop.purgeAvailable = remove;
+	    	return true;
+		}
+		else { return false; }
+	}
 	
 }

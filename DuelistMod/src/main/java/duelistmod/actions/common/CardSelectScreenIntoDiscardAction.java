@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.CancelCard;
+import duelistmod.cards.tempCards.CancelCard;
 import duelistmod.variables.Strings;
 
 public class CardSelectScreenIntoDiscardAction extends AbstractGameAction

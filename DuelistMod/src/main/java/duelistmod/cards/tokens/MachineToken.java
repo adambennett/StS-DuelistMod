@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.TokenCard;
+import duelistmod.cards.tempCards.TokenCard;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.Metal;
 import duelistmod.patches.AbstractCardEnum;

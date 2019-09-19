@@ -9,15 +9,16 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Courier;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -146,9 +147,9 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public void switchedStance() {
 		super.switchedStance();
-		for (AbstractOrb o : this.orbs) { if (o instanceof DuelistOrb) { ((DuelistOrb) o).onChangeStance(); }}
-		for (AbstractRelic r : this.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onChangeStance(); }}
-		for (AbstractPotion p : this.potions) { if (p instanceof DuelistPotion) { ((DuelistPotion)p).onChangeStance(); }}
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onChangeStance(); }}
+		for (AbstractPotion ppopt : this.potions) { if (ppopt instanceof DuelistPotion) { ((DuelistPotion)ppopt).onChangeStance(); }}
 	}
 
 	// Starting description and loadout
@@ -205,6 +206,22 @@ public class TheDuelist extends CustomPlayer {
 				tmpPool.add(c);
 			}				
 		}
+		
+		if (!this.hasRelic(Courier.ID))
+		{
+			int ind = DuelistMod.setIndex;
+			if (ind == 0 || ind == 3 || ind == 5 || ind == 6)
+			{
+				int counter = 1;
+				for (AbstractCard c : DuelistMod.duelColorlessCards) 
+				{
+					Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
+					AbstractDungeon.colorlessCardPool.group.add(c); 
+					counter++;
+				}
+			}
+		}
+		
 		return tmpPool;
 	}
 	

@@ -182,7 +182,8 @@ public class RandomMetronomePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-		cards.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic()); }
+		else { cards.addAll(BasicPool.fullBasic()); }
 		cards.add(new Metronome());
 		cards.add(new AttackMetronome());
 		cards.add(new RareAttackMetronome());

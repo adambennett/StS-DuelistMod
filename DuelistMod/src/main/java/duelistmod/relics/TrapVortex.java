@@ -80,7 +80,7 @@ public class TrapVortex extends CustomRelic {
 	@Override
 	public void atBattleStart()
 	{
-		this.buff = BuffHelper.trapVortex(this.buffRollID, this.trapsRemoved);
+		this.buff = BuffHelper.trapVortex(this.buffRollID, this.counter);
 		if (!(this.buff instanceof DummyPowerDoNotApply)) { DuelistCard.applyPowerToSelf(buff); this.flash(); }
 	}
 

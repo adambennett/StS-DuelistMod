@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.*;
+import duelistmod.cards.tempCards.*;
 import duelistmod.helpers.*;
 import duelistmod.variables.Strings;
 
