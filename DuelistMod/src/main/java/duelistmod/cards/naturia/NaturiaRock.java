@@ -36,8 +36,8 @@ public class NaturiaRock extends DuelistCard
     public NaturiaRock() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.baseBlock = this.block = 4;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseBlock = this.block = 6;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.NATURIA_DECK);

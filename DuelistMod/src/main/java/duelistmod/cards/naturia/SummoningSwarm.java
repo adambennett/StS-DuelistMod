@@ -34,7 +34,7 @@ public class SummoningSwarm extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 8;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
     }

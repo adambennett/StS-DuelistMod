@@ -26,7 +26,7 @@ public class NaturiaHydrangea extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -64,7 +64,7 @@ public class NaturiaHydrangea extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            this.upgradeDamage(2);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

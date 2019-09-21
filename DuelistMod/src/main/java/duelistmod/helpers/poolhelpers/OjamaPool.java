@@ -152,7 +152,7 @@ public class OjamaPool
 		ojamaCards.add(new CrystalRaigeki());
 		ojamaCards.add(new RainbowRuins());
 		ojamaCards.add(new RainbowDragon());
-		ojamaCards.add(new HourglassLife());
+		//ojamaCards.add(new HourglassLife());
 		ojamaCards.add(new Eva());
 		ojamaCards.add(new HappyLover());
 		ojamaCards.add(new DunamesDarkWitch());

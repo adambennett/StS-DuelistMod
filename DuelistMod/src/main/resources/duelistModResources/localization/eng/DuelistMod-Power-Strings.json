@@ -326,7 +326,7 @@
 },
 "theDuelist:DarknessNeospherePower": {
         "NAME": "Darkness Neosphere",
-        "DESCRIPTIONS": ["For the next #b", " turns, at the end of turn, ALL enemies lose #b1 #yStrength. NL For the next #b", " turns, at the end of turn, all tribute monsters in your draw pile gain #b1 #yTribute.", " turn, at the end of turn, ALL enemies lose #b1 #yStrength. For the next #b", " turn, at the end of turn, all tribute monsters in your draw pile gain #b1 #yTribute."]
+        "DESCRIPTIONS": ["Whenever you draw a #yTribute monster, increase its #yTribute cost by #b" " and ALL enemies lose #b", " #yStrength."]
 },
 "theDuelist:RainbowCapturePower": {
         "NAME": "Rainbow Capture Jar",
@@ -589,7 +589,7 @@
 },
 "theDuelist:RockSunrisePower": {
         "NAME": "Rock Sunrise",
-        "DESCRIPTIONS": [" cards deal an additional #b25% damage." ]
+        "DESCRIPTIONS": [" cards deal an additional #b30% damage." ]
 },
 "theDuelist:BloomingDarkRosePower": {
         "NAME": "Blooming of Dark Rose",
@@ -644,8 +644,8 @@
         "DESCRIPTIONS": ["#yWarriors deal 35% more damage and gain 20% more #yBlock." ]
 },
 "theDuelist:CommanderSwordsPower": {
-        "NAME": "Commander of Swords",
-        "DESCRIPTIONS": ["While you are in #yCalm, HP loss is reduced by #b", "." ]
+        "NAME": "Sword Commander",
+        "DESCRIPTIONS": ["While you are #yNimble, HP loss is reduced by #b", "." ]
 },
 "theDuelist:CrystalTreePower": {
         "NAME": "Crystal Tree",
@@ -697,7 +697,7 @@
 },
 "theDuelist:NaturalDisasterPower": {
         "NAME": "Natural Disaster",
-        "DESCRIPTIONS": ["Whenever you gain #yVines, gain #b", " #yLeaves."]
+        "DESCRIPTIONS": ["Whenever you gain #yVines, gain #b", " #yLeaf.", " #yLeaves."]
 },
 "theDuelist:NatureReflectionPower": {
         "NAME": "Nature's Reflection",
@@ -746,6 +746,14 @@
 "theDuelist:NaturiaForestPower": {
         "NAME": "Naturia Forest",
         "DESCRIPTIONS": ["#yNaturia cards cost 0 for the next #b", " turn.", " turns." ]
+},
+"theDuelist:ResistNatureEnemyPower": {
+        "NAME": "Resist Nature",
+        "DESCRIPTIONS": ["#yVines deal #b", "% less damage against this enemy." ]
+},
+"theDuelist:SoulBonePower": {
+        "NAME": "Soul-Absorbing Bone Tower",
+        "DESCRIPTIONS": ["At the start of turn, choose 1 of 2 random cards from your #yExhaust pile to #yResummon." ]
 },
 "theDuelist:PlaceholderPower": {
         "NAME": "Placeholder",

@@ -52,11 +52,8 @@ public class AlphaMagnet extends DuelistCard
     public void triggerOnGlowCheck() 
     {
     	super.triggerOnGlowCheck();
-        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
+    	if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
             this.gColor = GlowColor.GOLD;
-        }
-        else if (!this.fiendDeckDmgMod) {
-            this.gColor = GlowColor.BLUE;
         }
     }
 

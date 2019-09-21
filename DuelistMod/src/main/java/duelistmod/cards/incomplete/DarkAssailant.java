@@ -62,16 +62,8 @@ public class DarkAssailant extends DuelistCard
         if (canUpgrade()) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic)
-        	{
-        		this.upgradeMagicNumber(1);
-        		this.upgradeDamage(2);
-        	}
-        	else
-        	{
-        		this.upgradeMagicNumber(1);
-        	}
+	    	else { this.upgradeName(NAME + "+"); }        	
+        	this.upgradeDamage(3);        	
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

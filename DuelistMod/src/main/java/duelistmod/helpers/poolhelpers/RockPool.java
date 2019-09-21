@@ -49,6 +49,7 @@ public class RockPool
 		cards.add(new GemArmadillo());
 		cards.add(new CastleGate());
 		cards.add(new FossilTusker());
+		cards.add(new CatapultZone());
 		return cards;
 	}
 }

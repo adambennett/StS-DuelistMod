@@ -34,12 +34,13 @@ public class GemKnightPearl extends DuelistCard
 
     public GemKnightPearl() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 8;
+        this.baseMagicNumber = this.magicNumber = 6;
         this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.GEM_KNIGHT);
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

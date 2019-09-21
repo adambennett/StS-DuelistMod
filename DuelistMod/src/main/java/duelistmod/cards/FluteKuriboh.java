@@ -25,7 +25,7 @@ public class FluteKuriboh extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
 	private static final int COST = 1;
@@ -33,13 +33,14 @@ public class FluteKuriboh extends DuelistCard
 
 	public FluteKuriboh() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = 6;
-		this.secondMagic = this.baseSecondMagic = 1;
+		this.magicNumber = this.baseMagicNumber = 5;
+		this.secondMagic = this.baseSecondMagic = 3;
 		this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.INCREMENT_DECK);
 		this.incrementDeckCopies = 2;
 		this.originalName = this.name;
 		this.setupStartingCopies();
+		this.exhaust = true;
 	}
 
 	// Actions the card should do.
@@ -61,7 +62,7 @@ public class FluteKuriboh extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeMagicNumber(2);
+			this.exhaust = false;
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

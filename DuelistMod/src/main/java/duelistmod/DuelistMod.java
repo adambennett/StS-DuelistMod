@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.*;
+import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.powers.*;
@@ -56,6 +57,7 @@ import duelistmod.patches.*;
 import duelistmod.potions.*;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
+import duelistmod.powers.enemyPowers.ResistNatureEnemyPower;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.rewards.*;
@@ -1691,6 +1693,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) { wasEliteCombat = true; Util.log("Got Elite room!"); }
 		else if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { wasBossCombat = true; Util.log("Got Boss room!"); }
 		else { wasEliteCombat = false; wasBossCombat = false; Util.log("Got non-Elite, non-Boss room!"); }
+		Util.handleBossResistNature(wasBossCombat);
+		Util.handleEliteResistNature(wasEliteCombat);
+		if (!wasBossCombat && !wasEliteCombat) { Util.handleHallwayResistNature(); }
 		warriorTribEffectsTriggeredThisCombat = 0;
 		warriorTribThisCombat = false;
 		lastTurnHP = AbstractDungeon.player.currentHealth;

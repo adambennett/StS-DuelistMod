@@ -26,7 +26,7 @@ public class NaturiaBeetle extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -36,8 +36,8 @@ public class NaturiaBeetle extends DuelistCard
     public NaturiaBeetle() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.baseDamage = this.damage = 3;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseDamage = this.damage = 4;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
@@ -65,7 +65,7 @@ public class NaturiaBeetle extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

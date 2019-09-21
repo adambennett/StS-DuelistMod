@@ -34,7 +34,7 @@ public class GemKnightAlexandrite extends DuelistCard
 
     public GemKnightAlexandrite() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 10;
+        this.baseDamage = this.damage = 9;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
@@ -62,7 +62,7 @@ public class GemKnightAlexandrite extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -25,17 +25,17 @@ public class NaturiaStinkbug extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public NaturiaStinkbug() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 2;
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
@@ -49,6 +49,7 @@ public class NaturiaStinkbug extends DuelistCard
     {
     	summon();
     	vulnAllEnemies(this.magicNumber);
+    	if (upgraded) { DuelistCard.weakAllEnemies(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.
@@ -62,7 +63,6 @@ public class NaturiaStinkbug extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

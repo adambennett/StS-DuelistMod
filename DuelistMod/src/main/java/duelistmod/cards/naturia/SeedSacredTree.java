@@ -33,7 +33,7 @@ public class SeedSacredTree extends DuelistCard
 
     public SeedSacredTree() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 2;	// Vines
+        this.baseMagicNumber = this.magicNumber = 3;	// Vines
         this.baseSecondMagic = this.secondMagic = 2;	// Self-dmg
         this.selfRetain = true;
         this.tags.add(Tags.SPELL);
@@ -64,7 +64,7 @@ public class SeedSacredTree extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSecondMagic(-1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

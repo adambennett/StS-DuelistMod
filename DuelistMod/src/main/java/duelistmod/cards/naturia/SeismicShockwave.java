@@ -35,7 +35,7 @@ public class SeismicShockwave extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 15;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
         this.isMultiDamage = true;

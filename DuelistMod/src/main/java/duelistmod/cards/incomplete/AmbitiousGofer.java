@@ -5,12 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.*;
-import duelistmod.orbs.VoidOrb;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -29,10 +27,10 @@ public class AmbitiousGofer extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public AmbitiousGofer() {
@@ -40,7 +38,7 @@ public class AmbitiousGofer extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);       
         this.summons = this.baseSummons = 1;
-        this.baseBlock = this.block = 4;
+        this.baseBlock = this.block = 8;
         this.baseMagicNumber = this.magicNumber = 2;	
         this.originalName = this.name;
     }
@@ -50,14 +48,18 @@ public class AmbitiousGofer extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	for (int i = 0; i < 2; i++)
+    	block();
+    	for (AbstractCard c : p.hand.group)
     	{
-	    	AbstractOrb o1 = new Dark();
-	    	AbstractOrb o2 = new VoidOrb();
-	    	channel(o1); channel(o2);
-	    }
-    	applyPowerToSelf(DebuffHelper.getRandomPlayerDebuff(p, this.magicNumber));
-    	
+    		if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
+    		{
+    			DuelistCard dc = (DuelistCard)c;
+    			if (dc.tributes > 0)
+    			{
+    				dc.modifyTributesForTurn(this.magicNumber);
+    			}
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -71,7 +73,6 @@ public class AmbitiousGofer extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
             this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

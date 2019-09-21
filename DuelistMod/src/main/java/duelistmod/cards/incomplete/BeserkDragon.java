@@ -35,7 +35,7 @@ public class BeserkDragon extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 15;
+        this.baseDamage = this.damage = 9;
         this.baseMagicNumber = this.magicNumber = 3;		// Str Loss turns
         this.secondMagic = this.baseSecondMagic = 4;		// Str Loss amount
         this.tributes = this.baseTributes = 3;

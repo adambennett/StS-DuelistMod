@@ -940,6 +940,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SurvivalInstinct());
 		DuelistMod.myCards.add(new ConvulsionNature());
 		DuelistMod.myCards.add(new NaturiaForest());
+		DuelistMod.myCards.add(new CatapultZone());
 		//DuelistMod.myCards.add(new WightLady());		
 		
 		// NAMELESS TOMB CARDS

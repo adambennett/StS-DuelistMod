@@ -76,7 +76,7 @@ public class RockSunrise extends DuelistCard
         	// Name
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.isInnate = true;
+        	this.upgradeBaseCost(1);
         	this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }        

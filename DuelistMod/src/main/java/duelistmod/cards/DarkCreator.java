@@ -1,7 +1,5 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,10 +7,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.*;
-import duelistmod.patches.*;
+import duelistmod.actions.unique.ExhaustSpecificCardSuperFastAction;
+import duelistmod.helpers.DebuffHelper;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -29,15 +28,15 @@ public class DarkCreator extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DarkCreator() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.CREATOR_DECK);
@@ -55,27 +54,19 @@ public class DarkCreator extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> randomCreatedCards = new ArrayList<DuelistCard>();
-    	ArrayList<String> randomCreatedCardNames = new ArrayList<String>();
-    	tribute(p, this.tributes, false, this);
-    	ArrayList<AbstractCard> drawPile = p.drawPile.group;
-    	int drawPileSize = drawPile.size();
-    	for (AbstractCard c : drawPile) { AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.drawPile, true)); }
-    	ArrayList<AbstractCard> discardPile = p.discardPile.group;
-    	drawPileSize += discardPile.size();
-    	for (AbstractCard c : discardPile) { AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.discardPile, true)); }
-    	int loopCount = drawPileSize * 5;
-    	if (loopCount > 50) { loopCount = 50; }
-    	for (int i = 0; i < loopCount; i++)
-		{
-			DuelistCard card = (DuelistCard) returnTrulyRandomDuelistCardInCombat();
-			while (card.rarity.equals(CardRarity.SPECIAL) || card.hasTag(Tags.TOKEN) || card.hasTag(Tags.NO_CREATOR) || randomCreatedCardNames.contains(card.originalName)) { card =  (DuelistCard) returnTrulyRandomDuelistCardInCombat(); }
-			randomCreatedCards.add(card);
-			randomCreatedCardNames.add(card.originalName);
-		}
-    	ArrayList<AbstractCard> finalCards = new ArrayList<AbstractCard>();
-    	finalCards.addAll(randomCreatedCards);
-		AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, finalCards, 1, true, false));
+    	tribute();
+    	int counter = 0;
+    	for (AbstractCard c : p.drawPile.group) { counter++; AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardSuperFastAction(c, p.drawPile, true)); }
+    	if (counter > 0) 
+    	{
+    		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+    		{
+    			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    			{
+    				DebuffHelper.getRandomDebuff(p, mon, counter);
+    			}
+    		}
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -89,7 +80,7 @@ public class DarkCreator extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

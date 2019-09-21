@@ -11,13 +11,18 @@ import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.Gandora;
 import duelistmod.cards.fourthWarriors.*;
+import duelistmod.cards.incomplete.HourglassLife;
 import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
@@ -25,7 +30,9 @@ import duelistmod.cards.nameless.war.*;
 import duelistmod.cards.tempCards.*;
 import duelistmod.cards.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.enemyPowers.ResistNatureEnemyPower;
 import duelistmod.relics.*;
+import duelistmod.variables.Tags;
 
 public class Util
 {
@@ -251,7 +258,8 @@ public class Util
 		specialCards.add(new MaskedDragonNamelessWar());	
 		specialCards.add(new SpiralSpearStrikeNamelessWar());
 		specialCards.add(new FortressWarriorNamelessWar());	
-		specialCards.add(new BlueEyesNamelessWar());		
+		specialCards.add(new BlueEyesNamelessWar());	
+		specialCards.add(new Gandora());	
 		return specialCards;
 	}
 	
@@ -304,7 +312,8 @@ public class Util
 		specialCards.add(new PotGenerosityNameless());
 		specialCards.add(new PredaplantSarraceniantNameless());
 		specialCards.add(new SpiralSpearStrikeNameless());
-		specialCards.add(new YamiFormNameless());		
+		specialCards.add(new YamiFormNameless());	
+		specialCards.add(new HourglassLife());
 		return specialCards;
 	}
 	
@@ -357,7 +366,7 @@ public class Util
 	
 	public static boolean refreshShop()
 	{
-		if (AbstractDungeon.getCurrRoom() instanceof ShopRoom)
+		if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() instanceof ShopRoom)
 		{
 			ShopScreen shop = AbstractDungeon.shopScreen;
 			if (shop == null) { return false; }
@@ -386,6 +395,98 @@ public class Util
 	    	return true;
 		}
 		else { return false; }
+	}
+	
+	// NATURIA - Resistance to Vines Helpers
+	// These functions are run at the start of each battle
+	// Nothing should be applied unless the player is using Naturia deck or has Naturia cards
+	
+	// Bosses
+	// Always get resistance to Vines
+	// On A17+, 10 or 20% extra resistance is added on to each combat
+	// Otherwise, resistance percentage is (act num * 10) + 30
+	public static void handleBossResistNature(boolean wasBossCombat)
+	{
+		boolean naturia = false;
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Naturia Deck")) { naturia = true; }
+		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
+		
+		// For Naturia deck or if player has Naturia cards in deck
+		if (wasBossCombat && naturia)
+		{
+			for (AbstractMonster mons : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (mons.type.equals(EnemyType.BOSS))
+				{
+					int roll = AbstractDungeon.actNum + 3;
+					if (AbstractDungeon.ascensionLevel > 16 || DuelistMod.challengeMode) { roll += AbstractDungeon.cardRandomRng.random(1, 2); }
+					DuelistCard.applyPower(new ResistNatureEnemyPower(mons, mons, roll), mons);
+				}
+				else if (!mons.hasPower(MinionPower.POWER_ID)) { Util.log("Found non-minion, non-boss enemy in a boss room. Should this have Resistance? Enemy=" + mons.name); }
+			}
+		}
+	}
+	
+	// Elites
+	// Can get Resistance to Vines on A17+
+	// On A20, 10 or 20% extra resistance is added on to each combat
+	// Otherwise, resistance percentage is (act num * 10) + 10
+	public static void handleEliteResistNature(boolean wasEliteCombat)
+	{
+		if (AbstractDungeon.ascensionLevel < 17) { return; }
+		boolean naturia = false;
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Naturia Deck")) { naturia = true; }
+		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
+		
+		// For Naturia deck or if player has Naturia cards in deck
+		if (wasEliteCombat && naturia)
+		{
+			for (AbstractMonster mons : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (mons.type.equals(EnemyType.ELITE))
+				{
+					int roll = AbstractDungeon.actNum + 1;
+					if (AbstractDungeon.ascensionLevel > 19 || DuelistMod.challengeMode) { roll += AbstractDungeon.cardRandomRng.random(1, 2); }
+					DuelistCard.applyPower(new ResistNatureEnemyPower(mons, mons, roll), mons);
+				}
+			}
+		}
+	}
+	
+	// Hallways
+	// Can get Resistance to Vines on A19+
+	// On A20, Resistance is always applied
+	// Otherwise, resistance is applied to 25% of all non-Elite/non-Boss room enemies
+	// Resistance percentage for hallways is randomly chosen to be 10, 20, or 30%
+	public static void handleHallwayResistNature()
+	{
+		if (AbstractDungeon.ascensionLevel < 19) { return; }
+		boolean naturia = false;
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Naturia Deck")) { naturia = true; }
+		if (!naturia) { for (AbstractCard c : AbstractDungeon.player.masterDeck.group) { if (c.hasTag(Tags.NATURIA) && !c.hasTag(Tags.MEGATYPED)) { naturia = true; break; }}}
+		
+		// For Naturia deck or if player has Naturia cards in deck
+		if (naturia)
+		{
+			for (AbstractMonster mons : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (AbstractDungeon.ascensionLevel > 19)
+				{
+					int roll = AbstractDungeon.cardRandomRng.random(1, AbstractDungeon.actNum);
+					if (DuelistMod.challengeMode) { roll++; }
+					DuelistCard.applyPower(new ResistNatureEnemyPower(mons, mons, roll), mons);
+				}
+				else if (AbstractDungeon.cardRandomRng.random(1, 4) == 1)
+				{
+					int roll = AbstractDungeon.cardRandomRng.random(1, AbstractDungeon.actNum);
+					if (DuelistMod.challengeMode) { roll++; }
+					DuelistCard.applyPower(new ResistNatureEnemyPower(mons, mons, roll), mons);
+				}
+			}
+		}
 	}
 	
 }

@@ -35,7 +35,7 @@ public class NaturiaExterio extends DuelistCard
 
     public NaturiaExterio() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 14;
+        this.baseDamage = this.damage = 10;
         this.tributes = this.baseTributes = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
@@ -64,7 +64,7 @@ public class NaturiaExterio extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

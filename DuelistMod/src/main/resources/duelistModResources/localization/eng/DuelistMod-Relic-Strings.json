@@ -244,7 +244,7 @@
 		"NAME": "Nature Orb",
 		"FLAVOR": "An orb covered with leaves and dirt. How odd.",
 		"DESCRIPTIONS": [
-			"Your #yNaturia powers deal #b2 damage per #yNaturia monster instead of #b1."
+			"#yVines gained by playing #yNaturia cards is increased by #b1."
 		]
 	},
 	"theDuelist:InsectRelic": {
@@ -721,7 +721,7 @@
 		]
 	},
 	"theDuelist:NatureOrb": {
-		"NAME": "Nature Orb",
+		"NAME": "Vine Orb",
 		"FLAVOR": "Oohh, Vines!",
 		"DESCRIPTIONS": [
 			"Increase damage of #yVines by #b20%."

@@ -34,7 +34,7 @@ public class GemKnightMasterDiamond extends DuelistCard
     public GemKnightMasterDiamond() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 10;
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.GEM_KNIGHT);

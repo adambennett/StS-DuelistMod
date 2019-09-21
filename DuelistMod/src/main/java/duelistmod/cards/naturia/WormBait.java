@@ -38,6 +38,8 @@ public class WormBait extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.misc = 0;
+        this.tags.add(Tags.NEVER_GENERATE);
+        this.tags.add(Tags.NEVER_EXHAUST);
         this.tags.add(Tags.SPELL);
         this.makeFleeting();
     }

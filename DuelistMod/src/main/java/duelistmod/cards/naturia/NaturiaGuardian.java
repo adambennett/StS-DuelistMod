@@ -41,14 +41,14 @@ public class NaturiaGuardian extends DuelistCard
 
     public NaturiaGuardian() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 4;
+        this.baseDamage = this.damage = 10;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);
         this.originalName = this.name;
         this.isSummon = true;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 1;
         tooltips = new ArrayList<>();
         tooltips.add(new NaturiaHorneedle());
     }
@@ -80,7 +80,7 @@ public class NaturiaGuardian extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
             for (AbstractCard c : tooltips)

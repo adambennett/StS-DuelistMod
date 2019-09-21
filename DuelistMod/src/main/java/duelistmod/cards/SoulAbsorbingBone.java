@@ -1,25 +1,22 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.PlayRandomFromDiscardAction;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.SoulBonePower;
 import duelistmod.variables.*;
 
 public class SoulAbsorbingBone extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = duelistmod.DuelistMod.makeID("SoulAbsorbingBone");
+    public static final String ID = DuelistMod.makeID("SoulAbsorbingBone");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makePath(Strings.SOUL_BONE);
     public static final String NAME = cardStrings.NAME;
@@ -29,11 +26,11 @@ public class SoulAbsorbingBone extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     //private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 1;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public SoulAbsorbingBone() {
@@ -44,7 +41,7 @@ public class SoulAbsorbingBone extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 3;
+        this.tributes = this.baseTributes = 2;
         this.magicNumber = this.baseMagicNumber = 1;
     }
 
@@ -52,24 +49,8 @@ public class SoulAbsorbingBone extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> tributeList = tribute(p, this.tributes, false, this);
-    	AbstractMonster mon = getRandomMonster();
-    	if (mon != null)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new PlayRandomFromDiscardAction(this.magicNumber, this.upgraded, getRandomMonster(), this.uuid));
-    	}
-    	
-    	if (tributeList.size() > 0) 
-    	{ 
-    		for (DuelistCard c : tributeList) 
-    		{ 
-    			mon = getRandomMonster();
-    			if (c.hasTag(Tags.ZOMBIE) && !c.hasTag(Tags.EXEMPT) && mon != null) 
-    			{ 
-    				fullResummon(c, this.upgraded, mon, false);
-    			} 
-    		} 
-    	}
+    	tribute();
+    	applyPowerToSelf(new SoulBonePower());
     }
 
     // Which card to return when making a copy of this card.
@@ -84,7 +65,7 @@ public class SoulAbsorbingBone extends DuelistCard
     {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -67,7 +67,7 @@ public class BuffHelper {
 		}
 		else if (powerID == 4)
 		{
-			return "#yPot #yof #yGenerosity";
+			return "#yBlur";
 		}
 		else if (powerID == 5)
 		{
@@ -103,7 +103,7 @@ public class BuffHelper {
 			}
 			else if (powerID == 4)
 			{
-				return new PotGenerosityPower(p, p, traps);
+				return new BlurPower(p, traps);
 			}
 			else if (powerID == 5)
 			{
@@ -136,7 +136,7 @@ public class BuffHelper {
 		}
 		else if (powerID == 4)
 		{
-			return "#yPot #yof #yGenerosity";
+			return "#Strength";
 		}
 		else if (powerID == 5)
 		{
@@ -172,7 +172,7 @@ public class BuffHelper {
 			}
 			else if (powerID == 4)
 			{
-				return new PotGenerosityPower(p, p, traps);
+				return new StrengthPower(p, traps);
 			}
 			else if (powerID == 5)
 			{

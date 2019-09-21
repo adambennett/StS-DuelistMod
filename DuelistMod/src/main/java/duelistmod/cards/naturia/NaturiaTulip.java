@@ -36,7 +36,6 @@ public class NaturiaTulip extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
         this.baseBlock = this.block = 7;
-        this.magicNumber = this.baseMagicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);
@@ -52,7 +51,6 @@ public class NaturiaTulip extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	incMaxSummons(this.magicNumber);
     	block();
     }
 

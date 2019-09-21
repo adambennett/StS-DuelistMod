@@ -1,18 +1,16 @@
 package duelistmod.cards.naturia;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
 public class NaturiaRosewhip extends DuelistCard 
@@ -28,7 +26,7 @@ public class NaturiaRosewhip extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -37,7 +35,8 @@ public class NaturiaRosewhip extends DuelistCard
     public NaturiaRosewhip() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 2;
-        this.summons = this.baseSummons = 2;
+        this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);
@@ -51,8 +50,7 @@ public class NaturiaRosewhip extends DuelistCard
     {
     	summon(p, this.summons, this);
     	block(this.block);
-    	//applyPowerToSelf(new NaturiaPower(p, p, 1));
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
+    	incMaxSummons(this.magicNumber);    	
     }
     
     // Checking for Monster Zones if the challenge is enabled
@@ -108,7 +106,8 @@ public class NaturiaRosewhip extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBlock(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

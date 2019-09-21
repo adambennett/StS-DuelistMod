@@ -37,7 +37,7 @@ public class Anteater extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);

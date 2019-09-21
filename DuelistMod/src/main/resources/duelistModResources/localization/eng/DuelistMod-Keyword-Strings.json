@@ -180,7 +180,9 @@
    "PROPER_NAME": "Shadow",
     "NAMES": [
       "Shadow",
-	  "shadow"
+	  "shadow",
+	  "shadows",
+	  "Shadows"
     ],    
     "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b3 damage to ALL enemies. NL #yEvoke: #yResummon #b2 random monsters from your discard pile on random enemies."
   },

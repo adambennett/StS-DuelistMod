@@ -32,7 +32,7 @@ public class AmuletDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     private double dynamicBlock = 0;
     // /STAT DECLARATION/
     
@@ -42,8 +42,8 @@ public class AmuletDragon extends DuelistCard
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.DRAGON);
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 3;
-		this.tributes = this.baseTributes = 3;
+		this.magicNumber = this.baseMagicNumber = 2;
+		this.tributes = this.baseTributes = 2;
 		this.secondMagic = this.baseSecondMagic = 0;
 		this.exhaust = true;
     }

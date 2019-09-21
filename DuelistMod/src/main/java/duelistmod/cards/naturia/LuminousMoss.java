@@ -67,7 +67,7 @@ public class LuminousMoss extends DuelistCard
     		gainTempHP(cards * this.magicNumber);
     		for (int i = 0; i < cards; i++)
     		{
-    			AbstractCard randNat = returnTrulyRandomFromSet(Tags.NATURIA);
+    			AbstractCard randNat = returnTrulyRandomFromOnlyFirstSet(Tags.NATURIA, Tags.MEGATYPED);
     			this.addToBot(new MakeTempCardInDrawPileAction(randNat, 1, true, true));
     		}
     	}

@@ -35,11 +35,12 @@ public class GemKnightQuartz extends DuelistCard
     public GemKnightQuartz() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 19;
-        this.tributes = this.baseTributes = 6;
+        this.tributes = this.baseTributes = 7;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.GEM_KNIGHT);
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

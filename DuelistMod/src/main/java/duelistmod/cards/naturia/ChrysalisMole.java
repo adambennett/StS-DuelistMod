@@ -3,11 +3,13 @@ package duelistmod.cards.naturia;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -48,6 +50,9 @@ public class ChrysalisMole extends DuelistCard
     {
     	summon();
     	block();
+    	int roll = AbstractDungeon.cardRandomRng.random(1, 2);
+    	if (roll == 1) { addCardToHand(new NatureToken()); }
+    	else { addCardToHand(new NaturiaToken()); }
     }
 
     // Which card to return when making a copy of this card.

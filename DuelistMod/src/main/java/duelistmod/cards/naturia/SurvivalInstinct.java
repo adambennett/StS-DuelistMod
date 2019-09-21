@@ -35,11 +35,10 @@ public class SurvivalInstinct extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 8;
+        this.baseDamage = this.damage = 9;
         this.baseMagicNumber = this.magicNumber = 3;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
-        this.exhaust = true;
     }
 
     @Override
@@ -58,7 +57,7 @@ public class SurvivalInstinct extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.exhaust = false;
+        	this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

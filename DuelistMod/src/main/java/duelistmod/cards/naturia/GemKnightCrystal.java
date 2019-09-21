@@ -39,6 +39,7 @@ public class GemKnightCrystal extends DuelistCard
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.GEM_KNIGHT);
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

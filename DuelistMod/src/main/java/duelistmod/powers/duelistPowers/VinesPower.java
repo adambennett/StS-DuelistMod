@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.powers.SummonPower;
+import duelistmod.powers.enemyPowers.ResistNatureEnemyPower;
 import duelistmod.relics.*;
 import duelistmod.variables.Tags;
 
@@ -44,7 +46,7 @@ public class VinesPower extends DuelistPower
 	public void atEndOfTurn(final boolean isPlayer) 
 	{
 		updateDescription();
-		if (this.amount2 > 0) { this.flash(); DuelistCard.damageAllEnemiesThornsPoison(this.amount2); }
+		if (this.amount2 > 0) { this.flash(); dmgEnemies(); }
 	}
 
 	@Override
@@ -92,4 +94,28 @@ public class VinesPower extends DuelistPower
 			updateDescription(); 
 		}
     }
+	
+	private void dmgEnemies()
+	{
+		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+		{
+			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+			{
+				if (mon.hasPower(ResistNatureEnemyPower.POWER_ID))
+				{
+					Util.log("Vines Power attacking target with resistance");
+					float res = ((ResistNatureEnemyPower)mon.getPower(ResistNatureEnemyPower.POWER_ID)).calc();
+					Util.log("Calculated modifier for vines damage: " + res);
+					int dmg = (int) (this.amount2 * (res/10));
+					if (dmg > 0) { DuelistCard.vinesAttack(mon, dmg); }
+					else { Util.log("Vines power damage was 0 for " + mon.name); }
+				}
+				else
+				{
+					Util.log("Normal vines attack for " + mon.name);
+					DuelistCard.vinesAttack(mon, this.amount2);
+				}
+			}
+		}
+	}
 }

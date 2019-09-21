@@ -42,6 +42,7 @@ public class GemKnightZirconia extends DuelistCard
         this.tags.add(Tags.GEM_KNIGHT);
         this.originalName = this.name;
         this.isMultiDamage = true;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -64,7 +65,7 @@ public class GemKnightZirconia extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

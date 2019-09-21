@@ -33,7 +33,7 @@ public class BotanicalLion extends DuelistCard
 
     public BotanicalLion() {
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-    	this.baseDamage = this.damage = 18;
+    	this.baseDamage = this.damage = 14;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.PLANT);
     	this.misc = 0;
@@ -61,7 +61,7 @@ public class BotanicalLion extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

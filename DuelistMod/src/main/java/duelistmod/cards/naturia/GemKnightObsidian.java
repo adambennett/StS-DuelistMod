@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -30,14 +30,14 @@ public class GemKnightObsidian extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public GemKnightObsidian() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 4;
+        this.baseBlock = this.block = 3;
         this.summons = this.baseSummons = 2;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 14;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.GEM_KNIGHT);
@@ -52,7 +52,7 @@ public class GemKnightObsidian extends DuelistCard
     {
     	summon();
     	block();
-    	applyPowerToSelf(new StrengthPower(p, this.magicNumber));
+    	applyPowerToSelf(new VigorPower(p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

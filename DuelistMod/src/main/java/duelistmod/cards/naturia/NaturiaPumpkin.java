@@ -37,7 +37,7 @@ public class NaturiaPumpkin extends DuelistCard
 
     public NaturiaPumpkin() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 3;
+        this.baseDamage = this.damage = 5;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
@@ -74,7 +74,7 @@ public class NaturiaPumpkin extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -284,7 +285,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 2);  }}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { tmp += player().getPower(TyrantWingPower.POWER_ID).amount;  }
-		if (this.hasTag(DuelistMod.chosenRockSunriseTag) && player().hasPower(RockSunrisePower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.25); }
+		if (this.hasTag(DuelistMod.chosenRockSunriseTag) && player().hasPower(RockSunrisePower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.3); }
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.35); }
 		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		//if (DuelistMod.debug) { DuelistMod.logger.info("Updated damage for " + this.originalName + " based on power effects. New damage should read as: " + tmp);}
@@ -363,6 +364,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 		}
 	}
+	
+	@Override
+    public void triggerOnGlowCheck() 
+    {
+    	super.triggerOnGlowCheck();
+    	if (this.fiendDeckDmgMod) {
+            this.gColor = GlowColor.GOLD;
+        }
+    }
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
 	
 	
@@ -691,6 +701,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void staticThornAttack(AbstractMonster m, AttackEffect effect, int damageAmount)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
+	}
+	
+	public static void vinesAttack(AbstractMonster m, int dmg)
+	{
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), dmg, DamageType.THORNS), AttackEffect.POISON));
 	}
 	
 	public void attack(AbstractMonster m, AttackEffect effect, int damageAmount) 

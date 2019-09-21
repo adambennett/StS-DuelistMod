@@ -28,14 +28,13 @@ public class NaturalDisaster extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final int COST = 3;
     // /STAT DECLARATION/
 
     public NaturalDisaster() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 2;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
     }
@@ -43,7 +42,7 @@ public class NaturalDisaster extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new NaturalDisasterPower(this.magicNumber));
+    	applyPowerToSelf(new NaturalDisasterPower(1));
     }
 
     
@@ -55,7 +54,7 @@ public class NaturalDisaster extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeBaseCost(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

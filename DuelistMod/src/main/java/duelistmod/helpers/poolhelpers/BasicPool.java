@@ -122,7 +122,7 @@ public class BasicPool
 		toReturn.add(new RainbowRefraction());
 		toReturn.add(new CrystalRaigeki());
 		toReturn.add(new RainbowRuins());
-		toReturn.add(new HourglassLife());
+		//toReturn.add(new HourglassLife());
 		toReturn.add(new Eva());
 		toReturn.add(new HappyLover());
 		toReturn.add(new DunamesDarkWitch());
@@ -259,6 +259,7 @@ public class BasicPool
 		cards.add(new DummyGolem());
 		cards.add(new GemElephant());
 		cards.add(new GemArmadillo());
+		cards.add(new CatapultZone());
 		
 		
 		// Creators

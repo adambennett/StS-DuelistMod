@@ -1,13 +1,12 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -26,10 +25,10 @@ public class DarknessNeosphere extends DuelistCard
 
     // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DarknessNeosphere() {
@@ -37,8 +36,8 @@ public class DarknessNeosphere extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 3;
-		this.magicNumber = this.baseMagicNumber = 4;
+		this.tributes = this.baseTributes = 2;
+		this.magicNumber = this.baseMagicNumber = 2;
 		this.secondMagic = this.baseSecondMagic = 3;
     }
 
@@ -47,18 +46,8 @@ public class DarknessNeosphere extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	if (player().hasPower(DarknessNeospherePower.POWER_ID))
-    	{
-    		applyPowerToSelf(new DarknessNeospherePower(p, p, this.magicNumber, this.secondMagic));
-    		TwoAmountPower pow = (TwoAmountPower)player().getPower(DarknessNeospherePower.POWER_ID);
-    		pow.amount2++;
-    		pow.updateDescription();
-    	}
-    	else
-    	{
-    		applyPowerToSelf(new DarknessNeospherePower(p, p, this.magicNumber, this.secondMagic));
-    	}
+    	tribute();    	
+    	applyPowerToSelf(new DarknessNeospherePower(p, p, this.magicNumber, this.secondMagic));    	
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +62,7 @@ public class DarknessNeosphere extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            this.upgradeSecondMagic(-1);
+            this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -83,7 +72,7 @@ public class DarknessNeosphere extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		fiendSynTrib(tributingCard);
+		
 	}
 
     // If player doesn't have enough summons, can't play card

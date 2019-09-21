@@ -44,6 +44,7 @@ public class DarkworldThornsNameless extends DuelistCard
         this.baseBlock = this.block = 4;
         this.magicNumber = this.baseMagicNumber = 1 + DuelistMod.namelessTombMagicMod;
         this.originalName = this.name;
+        this.exhaust = true;
         this.setupStartingCopies();
     }
 

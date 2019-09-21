@@ -101,7 +101,7 @@ public class StandardPool
 		cards.add(new Reinforcements());
 		
 		// Megatype
-		cards.add(new HourglassLife());
+		//cards.add(new HourglassLife());
 		cards.add(new Eva());
 		cards.add(new HappyLover());
 		cards.add(new RainbowNeos());

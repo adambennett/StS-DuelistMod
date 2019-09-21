@@ -1,6 +1,7 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -42,5 +43,9 @@ public class NaturiaLeodrakePower extends DuelistPower
 	}
 
 	@Override
-	public void onSummon(DuelistCard c, int amt) { if (c.hasTag(Tags.NATURIA)) { this.flash(); DuelistCard.gainEnergy(this.amount); }}
+	public void onCardDraw(final AbstractCard card) 
+	{
+		if (card.hasTag(Tags.NATURIA)) { this.flash(); DuelistCard.gainEnergy(this.amount); }
+    }
+
 }

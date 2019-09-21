@@ -35,7 +35,7 @@ public class GemKnightLapis extends DuelistCard
     public GemKnightLapis() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 8;
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.GEM_KNIGHT);

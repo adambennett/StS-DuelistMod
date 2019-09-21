@@ -38,6 +38,7 @@ public class NaturiaMantis extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 4;
         this.summons = this.baseSummons = 1;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
@@ -52,7 +53,7 @@ public class NaturiaMantis extends DuelistCard
     	summon(p, this.summons, this);
     	block(this.block);
     	//applyPowerToSelf(new NaturiaPower(p, p, 1));
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
+    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.magicNumber, true, true));
     }
 
     // Which card to return when making a copy of this card.
@@ -66,7 +67,8 @@ public class NaturiaMantis extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(3);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -87,7 +87,7 @@ public class NaturiaPool
 	{
 		StarterDeck natureDeck = DuelistMod.starterDeckNamesMap.get(deckName);		
 		ArrayList<AbstractCard> naturiaCards = new ArrayList<AbstractCard>();
-		naturiaCards.add(new NaturiaBeast());
+		//naturiaCards.add(new NaturiaBeast());
 		naturiaCards.add(new NaturiaCliff());
 		naturiaCards.add(new NaturiaDragonfly());
 		naturiaCards.add(new NaturiaGuardian());
@@ -108,7 +108,6 @@ public class NaturiaPool
 		naturiaCards.add(new Spore());
 		naturiaCards.add(new VenomShot());
 		naturiaCards.add(new MillenniumScorpion());
-		naturiaCards.add(new MiracleFertilizer());
 		naturiaCards.add(new Wildfire());
 		naturiaCards.add(new AfterGenocide());
 		naturiaCards.add(new MultiplicationOfAnts());
@@ -170,10 +169,11 @@ public class NaturiaPool
 		naturiaCards.add(new DemiseLand());
 		naturiaCards.add(new SurvivalInstinct());
 		naturiaCards.add(new ConvulsionNature());
-		naturiaCards.add(new NaturiaForest());
+		//naturiaCards.add(new NaturiaForest());
 		naturiaCards.add(new FuryFire());
 		naturiaCards.add(new CopyPlant());
 		naturiaCards.add(new FutureFusion());
+		naturiaCards.add(new FrozenRose());
 
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

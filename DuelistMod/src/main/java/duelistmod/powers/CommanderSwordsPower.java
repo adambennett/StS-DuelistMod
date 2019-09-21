@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
+import duelistmod.stances.Nimble;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
@@ -36,7 +37,7 @@ public class CommanderSwordsPower extends AbstractPower
     
     @Override
     public int onAttacked(final DamageInfo info, int damageAmount) {
-        if (damageAmount > 0 && ((AbstractPlayer)this.owner).stance.name.equals("Calm")) {
+        if (damageAmount > 0 && ((AbstractPlayer)this.owner).stance instanceof Nimble) {
             this.flash();
             damageAmount -= this.amount;
             if (damageAmount < this.amount) {

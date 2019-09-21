@@ -424,6 +424,13 @@ public class BoosterPackHelper
 		return toReturn;
 	}
 	
+	public static ArrayList<AbstractCard> exodiaPack()
+	{
+		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		for (int i = 0; i < normalPackSize; i++) { toReturn.add(new ExodiaHead()); }
+		return toReturn;
+	}
+	
 	// Bonus
 	public static ArrayList<AbstractCard> deckBoosterPack()
 	{
@@ -818,6 +825,14 @@ public class BoosterPackHelper
 		return toReturn;
 	}
 	
+	public static RewardItem getExodiaBooster(int roll)
+	{
+		setupPoolsForPacks();
+		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll, 0);
+		toReturn = new BoosterReward(exodiaPack(), "OrbBooster", "Exodia Head Booster", roll, commonPackCost);
+		return toReturn;
+	}
+	
 	public static RewardItem getRandomBooster(boolean spellcasterDeck, int roll)
 	{
 		setupPoolsForPacks();
@@ -1078,14 +1093,17 @@ public class BoosterPackHelper
 					
 					// Check if we are playing Spellcasters, if so we can roll Orb Boosters
 					boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
+					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
 					
 					// Receive random booster based on deck type and our roll
-					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
+					if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+					else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 					
 					// Add a 2nd Booster for Prayer Wheel
 					if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) 
 					{
-						AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
+						if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+						else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 					}
 					
 					// Reset roll chances for next combat
@@ -1147,7 +1165,9 @@ public class BoosterPackHelper
 					}
 				}
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
-				AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+				if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+				else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 				if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
 				Util.log("Rolled and added a booster pack reward");
 				DuelistMod.lastPackRoll = 0;
@@ -1188,7 +1208,9 @@ public class BoosterPackHelper
 			{ 
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
 				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-				AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); 
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+				if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+				else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 			}			
 		}
 	}
@@ -1266,7 +1288,9 @@ public class BoosterPackHelper
 					Util.log("Rolled and added a booster pack reward");
 					
 					// Receive random booster based on deck type and our roll
-					return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll);
+					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+					if (!exodiaDeck) { return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll); }
+					else { return BoosterPackHelper.getExodiaBooster(roll); }
 				}
 				else
 				{
@@ -1313,7 +1337,9 @@ public class BoosterPackHelper
 				}
 				DuelistMod.lastPackRoll = 0;
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
-				return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll);
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+				if (!exodiaDeck) { return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll); }
+				else { return BoosterPackHelper.getExodiaBooster(roll); }
 			}
 		}
 		else

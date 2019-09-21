@@ -1,6 +1,5 @@
 package duelistmod.cards.naturia;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.LeavesPower;
 import duelistmod.variables.Tags;
 
 public class NaturiaLadybug extends DuelistCard 
@@ -34,8 +34,9 @@ public class NaturiaLadybug extends DuelistCard
 
     public NaturiaLadybug() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 4;
+        this.baseBlock = this.block = 3;
         this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
@@ -53,7 +54,7 @@ public class NaturiaLadybug extends DuelistCard
     	{
     		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
     		int nats = pow.getNumberOfTypeSummoned(Tags.NATURIA);
-    		if (nats > 0) { this.addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), nats, true, true)); } 
+    		if (nats > 0) { applyPowerToSelf(new LeavesPower(this.magicNumber * nats)); } 
     	}
     }
 
@@ -69,6 +70,7 @@ public class NaturiaLadybug extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
