@@ -39,7 +39,7 @@ public class CrystalTreePower extends AbstractPower
     
     @Override
     public int onAttacked(final DamageInfo info, int damageAmount) {
-        if (damageAmount > 0 && !((AbstractPlayer)this.owner).stance.name.equals("")) {
+        if (damageAmount > 0 && !((AbstractPlayer)this.owner).stance.ID.equals("Neutral")) {
             this.flash();
             DuelistCard.gainTempHP(this.amount);
         }

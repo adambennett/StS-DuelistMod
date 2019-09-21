@@ -326,7 +326,7 @@
 },
 "theDuelist:DarknessNeospherePower": {
         "NAME": "Darkness Neosphere",
-        "DESCRIPTIONS": ["Whenever you draw a #yTribute monster, increase its #yTribute cost by #b" " and ALL enemies lose #b", " #yStrength."]
+        "DESCRIPTIONS": ["Whenever you draw a #yTribute monster, increase its #yTribute cost by #b", " and ALL enemies lose #b", " #yStrength."]
 },
 "theDuelist:RainbowCapturePower": {
         "NAME": "Rainbow Capture Jar",
