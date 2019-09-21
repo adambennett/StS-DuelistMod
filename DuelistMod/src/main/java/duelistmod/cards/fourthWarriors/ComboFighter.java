@@ -99,9 +99,6 @@ public class ComboFighter extends DuelistCard
         if (this.wasRetained) {
             this.gColor = GlowColor.GOLD;
         }
-        else {
-            this.gColor = GlowColor.BLUE;
-        }
     }
 
     // Which card to return when making a copy of this card.

@@ -60,9 +60,6 @@ public class BlastWithChain extends DuelistCard
         if (dealExtra) {
             this.gColor = GlowColor.GOLD;
         }
-        else if (!this.fiendDeckDmgMod) {
-            this.gColor = GlowColor.BLUE;
-        }
     }
 
     // Which card to return when making a copy of this card.

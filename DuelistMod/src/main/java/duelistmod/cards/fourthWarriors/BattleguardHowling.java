@@ -53,8 +53,9 @@ public class BattleguardHowling extends DuelistCard
         if (GameActionManager.playerHpLastTurn > AbstractDungeon.player.currentHealth) {
             this.gColor = GlowColor.GOLD;
         }
-        else {
-            this.gColor = GlowColor.BLUE;
+        else
+        {
+        	this.gColor = GlowColor.BLUE;
         }
     }
 

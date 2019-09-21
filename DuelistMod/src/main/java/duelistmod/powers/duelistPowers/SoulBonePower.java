@@ -42,7 +42,7 @@ public class SoulBonePower extends NoStackDuelistPower
 		ArrayList<DuelistCard> avail = new ArrayList<DuelistCard>();
 		for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) { if (c instanceof DuelistCard && !c.hasTag(Tags.EXEMPT)) { avail.add((DuelistCard) c.makeStatEquivalentCopy()); }}
 		if (avail.size() > 0) { while (avail.size() > 2) { avail.remove(AbstractDungeon.cardRandomRng.random(avail.size() - 1)); }}
-		this.addToBot(new CardSelectScreenResummonAction(avail, 1, false, false, true, true));
+		if (avail.size() == 2) { this.addToBot(new CardSelectScreenResummonAction(avail, 1, false, false, true, true)); }
 	}
 	
 	@Override

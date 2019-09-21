@@ -67,7 +67,7 @@ public class Nimble extends DuelistStance
 			if (cards.size() > 0)
 			{
 				AbstractCard rand = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-				rand.setCostForTurn(-1);
+				rand.setCostForTurn(rand.cost - 1);
 				rand.isCostModifiedForTurn = true;
 				Util.log("Nimble: reduced the cost of " + rand.name);
 			}

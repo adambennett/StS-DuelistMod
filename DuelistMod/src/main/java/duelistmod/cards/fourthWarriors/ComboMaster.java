@@ -96,9 +96,6 @@ public class ComboMaster extends DuelistCard
         if (this.wasRetained) {
             this.gColor = GlowColor.GOLD;
         }
-        else {
-            this.gColor = GlowColor.BLUE;
-        }
     }
     
     // Upgraded stats.

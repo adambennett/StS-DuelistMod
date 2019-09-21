@@ -62,9 +62,6 @@ public class GoyoChaser extends DuelistCard
         if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
             this.gColor = GlowColor.GOLD;
         }
-        else {
-            this.gColor = GlowColor.BLUE;
-        }
     }
 
     // Which card to return when making a copy of this card.

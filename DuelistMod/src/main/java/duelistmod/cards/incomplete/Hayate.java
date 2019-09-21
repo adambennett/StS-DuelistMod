@@ -62,9 +62,6 @@ public class Hayate extends DuelistCard
     	if (AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth / 2) {
             this.gColor = GlowColor.GOLD;
         }
-    	else if (!this.fiendDeckDmgMod) {
-            this.gColor = GlowColor.BLUE;
-        }
     }
 
     // Which card to return when making a copy of this card.

@@ -752,7 +752,7 @@
         "DESCRIPTIONS": ["#yVines deal #b", "% less damage against this enemy." ]
 },
 "theDuelist:SoulBonePower": {
-        "NAME": "Soul-Absorbing Bone Tower",
+        "NAME": "Soul Bone Tower",
         "DESCRIPTIONS": ["At the start of turn, choose 1 of 2 random cards from your #yExhaust pile to #yResummon." ]
 },
 "theDuelist:PlaceholderPower": {

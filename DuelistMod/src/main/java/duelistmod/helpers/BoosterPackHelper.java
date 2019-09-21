@@ -1093,7 +1093,7 @@ public class BoosterPackHelper
 					
 					// Check if we are playing Spellcasters, if so we can roll Orb Boosters
 					boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
-					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
 					
 					// Receive random booster based on deck type and our roll
 					if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
@@ -1165,7 +1165,7 @@ public class BoosterPackHelper
 					}
 				}
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
-				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
 				if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
 				else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 				if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
@@ -1208,7 +1208,7 @@ public class BoosterPackHelper
 			{ 
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
 				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
 				if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
 				else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 			}			
@@ -1288,7 +1288,7 @@ public class BoosterPackHelper
 					Util.log("Rolled and added a booster pack reward");
 					
 					// Receive random booster based on deck type and our roll
-					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
 					if (!exodiaDeck) { return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll); }
 					else { return BoosterPackHelper.getExodiaBooster(roll); }
 				}
@@ -1337,7 +1337,7 @@ public class BoosterPackHelper
 				}
 				DuelistMod.lastPackRoll = 0;
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
-				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"));
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
 				if (!exodiaDeck) { return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll); }
 				else { return BoosterPackHelper.getExodiaBooster(roll); }
 			}

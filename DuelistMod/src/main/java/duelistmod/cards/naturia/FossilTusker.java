@@ -63,9 +63,6 @@ public class FossilTusker extends DuelistCard
         if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).hasTag(Tags.ROCK)) {
             this.gColor = GlowColor.GOLD;
         }
-        else if (!this.fiendDeckDmgMod) {
-            this.gColor = GlowColor.BLUE;
-        }
     }
     
     // Which card to return when making a copy of this card.
