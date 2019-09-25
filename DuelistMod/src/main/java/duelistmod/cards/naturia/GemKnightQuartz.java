@@ -53,6 +53,7 @@ public class GemKnightQuartz extends DuelistCard
     	for (int i = 0; i < cards; i++)
     	{
     		AbstractCard randGem = returnTrulyRandomFromSet(Tags.GEM_KNIGHT);
+    		while (randGem instanceof GemKnightQuartz) { randGem = returnTrulyRandomFromSet(Tags.GEM_KNIGHT); }
     		if (randGem.cost > 0) { randGem.setCostForTurn(-randGem.cost); }
     		addCardToHand(randGem);
     	}

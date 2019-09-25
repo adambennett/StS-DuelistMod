@@ -68,6 +68,12 @@ public class Summoner extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
+		triggerPassive();
+		if (gpcCheck()) { triggerPassive(); }
+	}	
+	
+	private void triggerPassive()
+	{
 		if (this.passiveAmount > 0) 
 		{
 			AbstractPlayer p = AbstractDungeon.player;
@@ -75,7 +81,7 @@ public class Summoner extends DuelistOrb
 			if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Spellcaster Token", false); }
 			else { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token", false); }
 		}
-	}	
+	}
 
 	@Override
 	public void render(SpriteBatch sb) 

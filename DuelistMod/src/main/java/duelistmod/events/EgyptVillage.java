@@ -3,14 +3,14 @@ package duelistmod.events;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.*;
 
-public class EgyptVillage extends AbstractImageEvent {
+public class EgyptVillage extends DuelistEvent {
 
 
     public static final String ID = DuelistMod.makeID("EgyptVillage");

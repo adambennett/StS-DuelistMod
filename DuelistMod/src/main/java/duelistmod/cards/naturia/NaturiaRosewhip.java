@@ -34,8 +34,8 @@ public class NaturiaRosewhip extends DuelistCard
 
     public NaturiaRosewhip() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 2;
-        this.summons = this.baseSummons = 1;
+        this.baseBlock = this.block = 4;
+        this.summons = this.baseSummons = 2;
         this.magicNumber = this.baseMagicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
@@ -106,8 +106,7 @@ public class NaturiaRosewhip extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(3);
-            this.upgradeMagicNumber(1);
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

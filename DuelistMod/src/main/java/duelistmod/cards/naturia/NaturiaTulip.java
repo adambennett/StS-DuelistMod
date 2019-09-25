@@ -66,7 +66,7 @@ public class NaturiaTulip extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeBlock(2);
-            this.upgradeMagicNumber(1);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -209,9 +209,10 @@ public class WarriorPool
 		magnetCards.add(new MaxWarrior());
 		magnetCards.add(new CircleFireKings());
 		magnetCards.add(new OnslaughtFireKings());
+		magnetCards.add(new RockstoneWarrior());
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
-			magnetCards.add(new Adaptation());
+			magnetCards.add(new Rushdown());
 			magnetCards.add(new Blasphemy());
 			magnetCards.add(new BowlingBash());
 			magnetCards.add(new CarveReality());
@@ -238,7 +239,7 @@ public class WarriorPool
 			magnetCards.add(new MasterReality());
 			magnetCards.add(new Meditate());
 			magnetCards.add(new MentalFortress());
-			magnetCards.add(new Metaphysics());
+			magnetCards.add(new Indignation());
 			magnetCards.add(new Nirvana());
 			magnetCards.add(new Omniscience());
 			magnetCards.add(new PathToVictory());
@@ -251,7 +252,7 @@ public class WarriorPool
 			magnetCards.add(new SandsOfTime());
 			//magnetCards.add(new SoothingAura());
 			magnetCards.add(new SpiritShield());
-			magnetCards.add(new StepAndStrike());
+			magnetCards.add(new WheelKick());
 			magnetCards.add(new Swivel());
 			magnetCards.add(new TalkToTheHand());
 			magnetCards.add(new ThirdEye());
@@ -262,7 +263,7 @@ public class WarriorPool
 			magnetCards.add(new Wallop());
 			magnetCards.add(new Weave());
 			magnetCards.add(new WindmillStrike());
-			magnetCards.add(new Wireheading());
+			//magnetCards.add(new Wireheading());
 			magnetCards.add(new Wish());
 			magnetCards.add(new Worship());
 			magnetCards.add(new WreathOfFlame());

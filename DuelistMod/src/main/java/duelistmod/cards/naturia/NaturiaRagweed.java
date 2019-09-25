@@ -35,7 +35,7 @@ public class NaturiaRagweed extends DuelistCard
 
     public NaturiaRagweed() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);

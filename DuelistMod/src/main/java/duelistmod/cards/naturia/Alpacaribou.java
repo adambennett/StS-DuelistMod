@@ -48,7 +48,7 @@ public class Alpacaribou extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 
-    	tribute(true);
+    	xCostTribute();
     	attack(m);
     	if (p.hasPower(VinesPower.POWER_ID)) { applyPowerToSelf(new VinesPower(p.getPower(VinesPower.POWER_ID).amount)); }
     }

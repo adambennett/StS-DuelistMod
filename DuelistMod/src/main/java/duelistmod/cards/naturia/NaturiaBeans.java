@@ -1,17 +1,16 @@
 package duelistmod.cards.naturia;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
 import duelistmod.variables.Tags;
 
 public class NaturiaBeans extends DuelistCard 
@@ -30,7 +29,7 @@ public class NaturiaBeans extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public NaturiaBeans() {
@@ -47,8 +46,19 @@ public class NaturiaBeans extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> list = tribute(true);
-    	for (int i = 0; i < list.size(); i++) { addCardToHand(returnTrulyRandomFromSet(Tags.NATURIA)); }
+    	int size = xCostTribute();
+    	if (upgraded) { size++; }
+    	for (int i = 0; i < size; i++) 
+    	{ 
+    		// Rolling to determine what kind of random power we get
+    		// 1 - 			ANY random power from the entire mod card pool
+    		// 2 - 			Random power from the card pool, including basic cards (if enabled)
+    		// 3,4,5,6 - 	Random power from the card pool, no basic cards
+    		int roll = AbstractDungeon.cardRandomRng.random(1, 6);
+    		if (roll == 1) { AbstractCard randPower = returnTrulyRandomFromType(CardType.POWER); this.addToBot(new RandomizedHandAction(randPower)); }
+    		else if (roll == 2) { AbstractCard randPoolPowerB = returnTrulyRandomFromTypeInCombat(CardType.POWER, true); this.addToBot(new RandomizedHandAction(randPoolPowerB)); }
+    		else { AbstractCard randPoolPower = returnTrulyRandomFromTypeInCombat(CardType.POWER, false); this.addToBot(new RandomizedHandAction(randPoolPower)); }
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -62,45 +72,11 @@ public class NaturiaBeans extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
     
-	// If player doesn't have enough summons, can't play card
-  	@Override
-  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-  	{
-  		// Check super canUse()
-  		boolean canUse = super.canUse(p, m); 
-  		if (!canUse) { return false; }
-  		
-  		// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-  		
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
-			}
-		}
-
-  		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
-
-  		// Player doesn't have something required at this point
-  		this.cantUseMessage = DuelistMod.needSummonsString;
-  		return false;
-  	}
-
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{

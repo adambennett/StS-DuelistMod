@@ -50,7 +50,7 @@ public class InsectQueen extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		// Tribute all
-		int playerSummons = tribute(p, 0, true, this).size();
+		int playerSummons = xCostTribute();
 
 		// Apply poison to all enemies
 		poisonAllEnemies(p, playerSummons * this.magicNumber);

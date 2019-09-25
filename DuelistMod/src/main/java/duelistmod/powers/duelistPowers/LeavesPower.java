@@ -1,5 +1,7 @@
 package duelistmod.powers.duelistPowers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -8,9 +10,11 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
+import duelistmod.cards.tempCards.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.relics.Leafblower;
-import duelistmod.variables.*;
+import duelistmod.variables.Tags;
 
 public class LeavesPower extends DuelistPower
 {	
@@ -21,8 +25,8 @@ public class LeavesPower extends DuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePowerPath("LeavesPower.png");
-	
-	public LeavesPower(int amt)
+    
+	public LeavesPower(int leaves)
 	{ 
 		this.name = NAME;
         this.ID = POWER_ID;
@@ -32,17 +36,38 @@ public class LeavesPower extends DuelistPower
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = AbstractDungeon.player;
-        this.amount = amt;
-		updateDescription(); 
+        this.amount = leaves;
+        this.amount2 = 0;
+        updateDescription(); 
 	}
 	
 	@Override
 	public void atStartOfTurn()
 	{
 		updateDescription();
-		if (this.amount2 > 0) { this.flash(); DuelistCard.staticBlock(this.amount2); }
+		if (this.amount2 > 0 && this.amount > 5)
+		{
+			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+			choices.add(new VineBlockCard(this.amount2));
+			choices.add(new LeafBlockCard(this.amount2/2, this.amount/2));
+			choices.add(new SplendidCancel());
+			this.addToBot(new CardSelectScreenResummonAction(choices, 1));
+		}
 	}
 	
+	public void resetLeaves()
+	{
+		this.amount = 0;
+		this.amount2 = 0;
+		updateDescription();
+	}
+	
+	public void halfReset(int loss)
+	{
+		this.amount -= loss;
+		updateDescription();
+	}
+
 	@Override
 	public void onTribute(DuelistCard c, DuelistCard c2) { updateDescription(); }
 	
@@ -57,7 +82,8 @@ public class LeavesPower extends DuelistPower
 	{
 		calcDamage();
 		if (this.amount2 < 0) { this.amount2 = 0; }
-		this.description = DESCRIPTIONS[0] + this.amount2;
+		if (this.amount < 0)  { this.amount  = 0; }
+		this.description = DESCRIPTIONS[0] + this.amount2 + DESCRIPTIONS[1];
 	}
 	
 	private void calcDamage()
@@ -69,8 +95,15 @@ public class LeavesPower extends DuelistPower
 		{
 			float mod = natsSummoned * 0.2f;
 			int dmg = (int)(mod * this.amount);
-			if (p.hasRelic(Leafblower.ID)) { dmg = (int)(dmg * 1.3f); }
+			if (p.hasRelic(Leafblower.ID)) { dmg = (int)(dmg * 1.2f); }
+			if (p.hasPower(NaturiaForestPower.POWER_ID)) 
+			{
+				int amt = p.getPower(NaturiaForestPower.POWER_ID).amount;
+				float modi = (amt/10) + 1;
+				dmg = (int)(dmg * modi);
+			}
 			this.amount2 = dmg;
 		}
+		else { this.amount2 = 0; }
 	}
 }

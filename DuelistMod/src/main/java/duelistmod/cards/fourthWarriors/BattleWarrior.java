@@ -41,7 +41,7 @@ public class BattleWarrior extends DuelistCard
         this.tags.add(Tags.MONSTER);  
         this.tags.add(Tags.WARRIOR); 
         this.summons = this.baseSummons = 1;	
-        this.baseDamage = this.damage = 8;
+        this.baseDamage = this.damage = 12;
         this.isMultiDamage = true;
         this.originalName = this.name;
     }
@@ -66,7 +66,7 @@ public class BattleWarrior extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(2);
+            this.upgradeDamage(3);
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

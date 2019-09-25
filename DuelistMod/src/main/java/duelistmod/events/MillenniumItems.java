@@ -5,19 +5,18 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 import duelistmod.potions.MillenniumElixir;
 
-public class MillenniumItems extends AbstractImageEvent {
+public class MillenniumItems extends DuelistEvent {
 
 
     public static final String ID = DuelistMod.makeID("MillenniumItems");

@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -69,6 +69,7 @@ public class VinesPower extends DuelistPower
 			if (p.hasRelic(NatureOrb.ID)) { dmg = (int)(dmg * 1.2f); }
 			this.amount2 = dmg;
 		}
+		else { this.amount2 = 0; }
 	}
 	
 	@Override
@@ -97,6 +98,7 @@ public class VinesPower extends DuelistPower
 	
 	private void dmgEnemies()
 	{
+		AbstractPlayer p = AbstractDungeon.player;
 		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
 		{
 			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
@@ -107,13 +109,29 @@ public class VinesPower extends DuelistPower
 					float res = ((ResistNatureEnemyPower)mon.getPower(ResistNatureEnemyPower.POWER_ID)).calc();
 					Util.log("Calculated modifier for vines damage: " + res);
 					int dmg = (int) (this.amount2 * (res/10));
-					if (dmg > 0) { DuelistCard.vinesAttack(mon, dmg); }
+					if (dmg > 0) 
+					{ 
+						if (p.hasPower(NaturiaVeinPower.POWER_ID) && mon.hasPower(VulnerablePower.POWER_ID)) 
+						{
+							if (p.hasRelic(PaperFrog.ID)) { dmg = (int) (dmg * 1.75f); }
+							else { dmg = (int) (dmg * 1.5f); }
+							DuelistCard.vinesAttack(mon, dmg);
+						}
+						else { DuelistCard.vinesAttack(mon, dmg); }
+						
+					}
 					else { Util.log("Vines power damage was 0 for " + mon.name); }
 				}
 				else
 				{
 					Util.log("Normal vines attack for " + mon.name);
-					DuelistCard.vinesAttack(mon, this.amount2);
+					if (p.hasPower(NaturiaVeinPower.POWER_ID) && mon.hasPower(VulnerablePower.POWER_ID)) 
+					{
+						if (p.hasRelic(PaperFrog.ID)) { this.amount2 = (int) (this.amount2 * 1.75f); }
+						else { this.amount2 = (int) (this.amount2 * 1.5f); }
+						DuelistCard.vinesAttack(mon, this.amount2);
+					}
+					else { DuelistCard.vinesAttack(mon, this.amount2); }
 				}
 			}
 		}

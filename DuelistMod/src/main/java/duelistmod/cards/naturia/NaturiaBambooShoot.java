@@ -33,7 +33,7 @@ public class NaturiaBambooShoot extends DuelistCard
 
     public NaturiaBambooShoot() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 6;
+        this.baseDamage = this.damage = 7;
         this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);

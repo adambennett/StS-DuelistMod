@@ -34,8 +34,8 @@ public class NaturiaSpiderfang extends DuelistCard
 
     public NaturiaSpiderfang() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 3;
-        this.baseDamage = this.damage = 2;
+        this.summons = this.baseSummons = 2;
+        this.baseDamage = this.damage = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.INSECT);
@@ -63,7 +63,7 @@ public class NaturiaSpiderfang extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSummons(1);
+            this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

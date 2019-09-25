@@ -49,7 +49,7 @@ public class DuelistCustomLoadout
 			e.printStackTrace();
 		}
 		
-		DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
+		//DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
 		
 		// Standard
 		if (DuelistMod.deckIndex == 0) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
@@ -81,6 +81,12 @@ public class DuelistCustomLoadout
 		// Superheavy
 		else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
+		// Insect
+		else if (DuelistMod.deckIndex == 10) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
+				
+		// Plant
+		else if (DuelistMod.deckIndex == 11) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
+
 		else { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
 	}
 

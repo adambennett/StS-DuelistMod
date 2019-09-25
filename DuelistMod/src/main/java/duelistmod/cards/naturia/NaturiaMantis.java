@@ -53,7 +53,7 @@ public class NaturiaMantis extends DuelistCard
     	summon(p, this.summons, this);
     	block(this.block);
     	//applyPowerToSelf(new NaturiaPower(p, p, 1));
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.magicNumber, true, true));
+    	this.addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.magicNumber, true, true));
     }
 
     // Which card to return when making a copy of this card.

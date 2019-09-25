@@ -31,7 +31,7 @@ public class NaturiaStagBeetle extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public NaturiaStagBeetle() {
@@ -49,8 +49,8 @@ public class NaturiaStagBeetle extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> list = tribute(true);
-    	applyPower(new PoisonPower(m, p, list.size()), m);
+    	int size = xCostTribute();
+    	applyPower(new PoisonPower(m, p, size), m);
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +64,7 @@ public class NaturiaStagBeetle extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(1);
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

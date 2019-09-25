@@ -81,6 +81,7 @@ public class Sand extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		if (this.passiveAmount > 0) { this.triggerPassiveEffect(); }
+		if (gpcCheck() && this.passiveAmount > 0) { this.triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()

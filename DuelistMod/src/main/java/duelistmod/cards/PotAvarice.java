@@ -6,10 +6,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class PotAvarice extends DuelistCard
@@ -49,10 +48,9 @@ public class PotAvarice extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		int playerSummons = getSummons(p);
+		int playerSummons = xCostTribute();
 		if (upgraded) { playerSummons += this.magicNumber; }
-		incMaxSummons(p, playerSummons);
-    	tribute(p, 0, true, this);
+		if (playerSummons > 0) { incMaxSummons(p, playerSummons); }
     }
 
     // Which card to return when making a copy of this card.
@@ -71,41 +69,6 @@ public class PotAvarice extends DuelistCard
         }
     }
     
-    // If player doesn't have enough summons, can't play card
-  	@Override
-  	public boolean canUse(AbstractPlayer p, AbstractMonster m)
-  	{
-  		// Check super canUse()
-  		boolean canUse = super.canUse(p, m); 
-  		if (!canUse) { return false; }
-  		
-  		else if (upgraded) { return true; }
-  		
-  		// Pumpking & Princess
-  		else if (this.misc == 52) { return true; }
-  		
-  		// Mausoleum check
-    	else if (p.hasPower(EmperorPower.POWER_ID))
-		{
-			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
-			{
-				return true;
-			}
-			else
-			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
-			}
-		}
-
-  		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
-
-  		// Player doesn't have something required at this point
-  		this.cantUseMessage = DuelistMod.needSummonsString;
-  		return false;
-  	}
-
 	@Override
 	public void onTribute(DuelistCard tributingCard) {
 		// TODO Auto-generated method stub

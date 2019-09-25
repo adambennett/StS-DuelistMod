@@ -39,7 +39,6 @@ public class LostBlueBreaker extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
 		this.tags.add(Tags.ARCANE);
-        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
 		this.originalName = this.name;
 		this.setupStartingCopies();
@@ -56,7 +55,7 @@ public class LostBlueBreaker extends DuelistCard
     		if (m != null)
     		{
 		    	DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);    	
-		    	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA.cardID.equals(this.cardID)) { extraDragA = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
+		    	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA instanceof LostBlueBreaker) { extraDragA = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA); }
 		    	String cardNameA = extraDragA.originalName;    	
 		    	if (DuelistMod.debug) { System.out.println("theDuelist:LostBlueBreaker --- > Generated: " + cardNameA); }
 		    	fullResummon(extraDragA, this.upgraded, m, false);

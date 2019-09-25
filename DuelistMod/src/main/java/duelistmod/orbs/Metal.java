@@ -62,9 +62,8 @@ public class Metal extends DuelistOrb
 	@Override
 	public void onEndOfTurn()
 	{
-		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
-		int spells = (DuelistMod.spellCombatCount / 2) + this.passiveAmount;
-		if (spells > 0) { DuelistCard.staticBlock(spells); }
+		triggerPassiveEffect();
+		if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
 	@Override
@@ -75,7 +74,9 @@ public class Metal extends DuelistOrb
 
 	private void triggerPassiveEffect()
 	{
-		
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
+		int spells = (DuelistMod.spellCombatCount / 2) + this.passiveAmount;
+		if (spells > 0) { DuelistCard.staticBlock(spells); }
 	}
 
 	@Override

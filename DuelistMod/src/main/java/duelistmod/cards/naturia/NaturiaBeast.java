@@ -53,7 +53,7 @@ public class NaturiaBeast extends DuelistCard
     {
     	tribute();
     	attack(m, this.baseAFX, this.damage);
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.magicNumber, true, true));
+    	this.addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.magicNumber, true, true));
     }
 
     // Which card to return when making a copy of this card.

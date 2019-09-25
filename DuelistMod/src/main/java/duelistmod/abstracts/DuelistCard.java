@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
@@ -295,7 +294,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	@Override
 	protected void applyPowersToBlock() 
 	{
-		super.applyPowersToBlock();
 		float tmp = (float)this.baseBlock;
 		if (AbstractDungeon.player.stance instanceof DuelistStance) { ((DuelistStance)AbstractDungeon.player.stance).modifyBlock(tmp); }
 		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.5); }
@@ -307,6 +305,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.2); }
 		if (this.hasTag(Tags.SUPERHEAVY) && player().stance.ID.equals("theDuelist:Entrenched")) { tmp += 4; }
 		this.block = MathUtils.floor(tmp);
+		super.applyPowersToBlock();
 	}
 	
 	@Override
@@ -1684,6 +1683,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, false));
 		}
+	}
+	
+	public static void addCardToHand(AbstractCard card, int amt)
+	{
+		for (int i = 0; i < amt; i++) { addCardToHand(card); }
 	}
 	
 	public static void gainTempHP(int amount)
@@ -3998,6 +4002,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return tribute(AbstractDungeon.player, 0, tributeAll, this);
 	}
 	
+	public int xCostTribute()
+	{
+		int size = tribute(AbstractDungeon.player, 0, true, this).size();
+		if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return size * 2; }
+		else { return size; }
+	}
+	
 	public static ArrayList<DuelistCard> tribute(AbstractPlayer p, int tributes, boolean tributeAll, DuelistCard card)
 	{		
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
@@ -5610,7 +5621,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				if (o instanceof Lava)
 				{
-					((Lava) o).triggerPassiveEffect();
+					Lava la = (Lava)o;
+					la.triggerPassiveEffect();
+					if (la.gpcCheck()) { la.triggerPassiveEffect(); }
 				}
 			}
 		}
@@ -6341,6 +6354,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					Splash ref = (Splash)o;
 					ref.triggerPassiveEffect();
+					if (ref.gpcCheck()) { ref.triggerPassiveEffect(); }
 				}
 			}
 		}
@@ -6881,6 +6895,62 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				dragonGroup.add(card.makeCopy());
 			}
 		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
+	public static AbstractCard returnTrulyRandomFromType(CardType type) 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DuelistMod.myCards)
+		{
+			if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
+	public static AbstractCard returnTrulyRandomFromTypeInCombat(CardType type, boolean basic) 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (AbstractCard card : DuelistMod.coloredCards)
+		{
+			if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		
+		if (basic)
+		{
+			for (AbstractCard card : DuelistMod.duelColorlessCards)
+			{
+				if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+				{
+					dragonGroup.add(card.makeCopy());
+				}
+			}
+		}
+		
 		if (dragonGroup.size() > 0)
 		{
 			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));

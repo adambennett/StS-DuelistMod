@@ -90,6 +90,7 @@ public class VoidOrb extends DuelistOrb
 		if (this.passiveAmount > 0) 
 		{ 
 			triggerPassiveEffect();
+			if (gpcCheck()) { triggerPassiveEffect(); }
 		}
 	}
 

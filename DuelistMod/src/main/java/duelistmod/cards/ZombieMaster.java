@@ -53,7 +53,7 @@ public class ZombieMaster extends DuelistCard
     	for (int i = 0; i < this.magicNumber; i++)
     	{
     		DuelistCard extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.ZOMBIE, Tags.TOON);
-        	while (extraDragA.hasTag(Tags.EXEMPT)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.ZOMBIE, Tags.TOON); }
+        	while (extraDragA.hasTag(Tags.EXEMPT) || extraDragA.hasTag(Tags.NEVER_GENERATE)) { extraDragA = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.ZOMBIE, Tags.TOON); }
         	String cardNameA = extraDragA.originalName;
         	if (DuelistMod.debug) { System.out.println("theDuelist:ZombieMaster --- > Generated: " + cardNameA); }
         	fullResummon(extraDragA, false, m, false);

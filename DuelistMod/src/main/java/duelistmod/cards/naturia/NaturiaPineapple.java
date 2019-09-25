@@ -26,17 +26,16 @@ public class NaturiaPineapple extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 0;
     // /STAT DECLARATION/
 
     public NaturiaPineapple() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 2;
         this.baseBlock = this.block = 2;
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);
@@ -48,10 +47,9 @@ public class NaturiaPineapple extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, this.summons, this);
+    	summon();
     	block(this.block);
-    	attack(m, this.baseAFX, this.damage);
-    	//applyPowerToSelf(new NaturiaPower(p, p, 1));
+    	draw(1);
     }
 
     // Which card to return when making a copy of this card.
@@ -65,8 +63,7 @@ public class NaturiaPineapple extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(1);
-            this.upgradeBlock(1);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

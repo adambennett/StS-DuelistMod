@@ -64,13 +64,13 @@
   "theDuelist:TombNameless": {
     "NAME": "Tomb of the Nameless",
     "DESCRIPTIONS": [
-      "The inscriptions seem to be saying something about a powerful Duelist from long ago."
+      "You enter a dark old tomb. You notice a statue with some inscriptions and hieroglyphics. As you approach the statue, you feel weak. NL #r~It~ #r~feels~ #r~like~ #r~a~ #r~good~ #r~idea~ #r~to~ #r~rest~ #r~here...~"
     ],
     "OPTIONS": [
       "[Offer: ",
 	  "] #rLose #rthis #rrelic. ",
-	  "[Worship] #gHeal #g6 #gHP.",
-      "[Succumb] #g20%: #gGain #g12 #gMax #gHP. #rCursed #r- #r(Random #rDuelist). ",
+	  "[Succumb] #gHeal #g25 #gHP.",
+      "[Worship] #g20%: #gGain #g12 #gMax #gHP. #rCursed #r- #r(Random #rDuelist). ",
 	  "[Break] #gGain #g12 #gMax #gHP. #rCursed #r- #r(3 #rRandom #rDuelist). ",
       "[Leave]",
 	  "[Locked] Requires: Duelist Relics",

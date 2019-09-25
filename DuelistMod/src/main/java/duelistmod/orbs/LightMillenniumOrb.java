@@ -78,6 +78,12 @@ public class LightMillenniumOrb extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
+		triggerPassiveEffect();
+		if (gpcCheck()) { triggerPassiveEffect(); }
+	}
+
+	public void triggerPassiveEffect()
+	{
 		if (this.passiveAmount > 0)
 		{
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
@@ -87,11 +93,6 @@ public class LightMillenniumOrb extends DuelistOrb
 				AbstractDungeon.actionManager.addToTop(new RedMedicineAction(1, m, 3, this.passiveAmount, this.passiveAmount));
 			}
 		}
-	}
-
-	public void triggerPassiveEffect()
-	{
-		
 	}
 	
 	@Override

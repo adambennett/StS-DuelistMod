@@ -33,6 +33,7 @@ public class CurseAging extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 1;
+        this.isEthereal = true;
     }
 
     // Actions the card should do.

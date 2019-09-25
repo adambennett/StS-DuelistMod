@@ -83,45 +83,25 @@ public class MillenniumOrb extends DuelistOrb
 	public void onEvoke()
 	{
 		applyFocus();
-		if (StarterDeckSetup.isDeckArchetype() && !hasNegativeFocus())
+		if (!hasNegativeFocus())
 		{
 			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
 			ArrayList<String> deckCardNames = new ArrayList<String>();
-			for (int i = 0; i < 30; i++)
+			for (int i = 0; i < 20; i++)
 			{
-				int index = StarterDeckSetup.getCurrentDeck().getPoolCards().size() - 1;
+				int index = DuelistMod.coloredCards.size() - 1;
 				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
-				AbstractCard c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll).makeStatEquivalentCopy();
+				AbstractCard c = DuelistMod.coloredCards.get(indexRoll).makeStatEquivalentCopy();
 				while (deckCardNames.contains(c.name))
 				{
 					indexRoll = AbstractDungeon.cardRandomRng.random(index);
-					c = StarterDeckSetup.getCurrentDeck().getPoolCards().get(indexRoll).makeStatEquivalentCopy();
+					c = DuelistMod.coloredCards.get(indexRoll).makeStatEquivalentCopy();
 				}
 				deckCards.add(c);
 				deckCardNames.add(c.name);
 			}
 			//int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
 			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, true, this.evokeAmount, false, false, false, true, true, true, true, 0, 3, 0, 2, 0, 1));
-		}
-		else if (!hasNegativeFocus())
-		{
-			ArrayList<AbstractCard> deckCards = new ArrayList<AbstractCard>();
-			ArrayList<String> deckCardNames = new ArrayList<String>();
-			for (int i = 0; i < 30; i++)
-			{
-				int index = DuelistMod.myCards.size() - 1;
-				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
-				AbstractCard c = DuelistMod.myCards.get(indexRoll).makeStatEquivalentCopy();
-				while (deckCardNames.contains(c.name))
-				{
-					indexRoll = AbstractDungeon.cardRandomRng.random(index);
-					c = DuelistMod.myCards.get(indexRoll).makeStatEquivalentCopy();
-				}
-				deckCards.add(c);
-				deckCardNames.add(c.name);
-			}
-			int highRoll = AbstractDungeon.cardRandomRng.random(3, 4);
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(true, deckCards, false, this.evokeAmount, false, false, false, true, true, true, true, 0, highRoll, 0, 2, 0, 2));
 		}
 	}
 	
@@ -135,6 +115,7 @@ public class MillenniumOrb extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		if (this.passiveAmount > 0) { triggerPassiveEffect(); }
+		if (gpcCheck() && this.passiveAmount > 0) { triggerPassiveEffect(); }
 	}
 
 	public void triggerPassiveEffect()

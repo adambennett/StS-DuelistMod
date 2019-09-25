@@ -118,9 +118,9 @@ public class MillenniumPuzzle extends CustomRelic {
 	@Override
 	public void onVictory() 
 	{
-		boolean eliteVictory = false;
-		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { eliteVictory = true; }
-		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck"))
+		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
+		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
+		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck") && !boss)
 		{
 			if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
 			else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }

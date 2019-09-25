@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import duelistmod.DuelistMod;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.MudGolem;
+import duelistmod.cards.incomplete.*;
 import duelistmod.cards.naturia.*;
 
 public class RockPool 
@@ -50,6 +51,18 @@ public class RockPool
 		cards.add(new CastleGate());
 		cards.add(new FossilTusker());
 		cards.add(new CatapultZone());
+		cards.add(new GolemSentry());
+		cards.add(new GraniteLoyalist());
+		cards.add(new LostGuardian());
+		cards.add(new MagicHoleGolem());
+		cards.add(new MasterMagmaBlacksmith());
+		cards.add(new MegarockDragon());
+		cards.add(new MillenniumGolem());
+		cards.add(new ObsidianDragon());
+		cards.add(new ReleaseFromStone());
+		cards.add(new RockstoneWarrior());
+		cards.add(new StoneDragon());
+		cards.add(new WeepingIdol());
 		return cards;
 	}
 }

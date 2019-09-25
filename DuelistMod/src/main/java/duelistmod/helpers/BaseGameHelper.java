@@ -112,7 +112,7 @@ public class BaseGameHelper
 	public static ArrayList<AbstractCard> getAllWatcherCards()
 	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
-		toFill.add(new Adaptation());
+		toFill.add(new Rushdown());
 		toFill.add(new Alpha());
 		toFill.add(new BattleHymn());
 		toFill.add(new Blasphemy());
@@ -152,7 +152,7 @@ public class BaseGameHelper
 		toFill.add(new MasterReality());
 		toFill.add(new Meditate());
 		toFill.add(new MentalFortress());
-		toFill.add(new Metaphysics());
+		toFill.add(new Indignation());
 		toFill.add(new Nirvana());
 		toFill.add(new Omniscience());
 		toFill.add(new PathToVictory());
@@ -168,7 +168,7 @@ public class BaseGameHelper
 		toFill.add(new SignatureMove());
 		//toFill.add(new SoothingAura());
 		toFill.add(new SpiritShield());
-		toFill.add(new StepAndStrike());
+		toFill.add(new WheelKick());
 		//toFill.add(new Stomp());
 		toFill.add(new Swivel());
 		toFill.add(new TalkToTheHand());
@@ -184,7 +184,7 @@ public class BaseGameHelper
 		toFill.add(new WaveOfTheHand());
 		toFill.add(new Weave());
 		toFill.add(new WindmillStrike());
-		toFill.add(new Wireheading());
+		//toFill.add(new Wireheading());
 		toFill.add(new Wish());
 		toFill.add(new Worship());
 		toFill.add(new WreathOfFlame());	

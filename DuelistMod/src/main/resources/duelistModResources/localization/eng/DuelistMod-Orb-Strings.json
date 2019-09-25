@@ -118,7 +118,7 @@
   "theDuelist:MillenniumOrb": {
     "NAME": "Millennium Orb",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " #yRandomized cards from your deck pool into your hand."
+	  "#yPassive: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #b", " of 20 #yRandomized cards from the current card pool to add to your hand."
     ]
   },
   "theDuelist:Metal": {
@@ -167,7 +167,7 @@
   },
   "theDuelist:LightOrb": {
     "DESCRIPTION": [
-      "#yPassive: Whenever you draw a #ySpell, have a 25% chance to duplicate it #b", " times. NL #yEvoke: Duplicate all #ySpells in your hand."
+      "#yPassive: Whenever you draw a #ySpell, have a 25% chance to duplicate it. NL #yEvoke: Duplicate all #ySpells in your hand."
     ],
     "NAME": "Light"
   },

@@ -52,7 +52,7 @@ public class DuelistLight extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1];
+		this.description = DESC[0];
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class DuelistLight extends DuelistOrb
 
 	public void triggerPassiveEffect(DuelistCard spell)
 	{
-		if (this.passiveAmount > 0)
+		if (!hasNegativeFocus())
 		{
 			int roll = AbstractDungeon.cardRandomRng.random(1, 4);
 			if (roll == 1)
@@ -149,7 +149,7 @@ public class DuelistLight extends DuelistOrb
 		// Render evoke amount text
 		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
 		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
+		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
 	}
 
 	@Override

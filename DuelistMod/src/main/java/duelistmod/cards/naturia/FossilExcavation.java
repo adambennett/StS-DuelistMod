@@ -44,7 +44,7 @@ public class FossilExcavation extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute(true);
+    	xCostTribute();
     	if (p.hasPower(VinesPower.POWER_ID))
     	{
     		gainEnergy(p.getPower(VinesPower.POWER_ID).amount);

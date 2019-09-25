@@ -37,6 +37,7 @@ public class CastleWalls extends DuelistCard
         this.baseBlock = this.block = BLOCK;
         this.tags.add(Tags.TRAP);
         this.tags.add(BaseModCardTags.BASIC_DEFEND);
+        this.tags.add(CardTags.STARTER_DEFEND);
         this.tags.add(Tags.STANDARD_DECK);
         this.tags.add(Tags.DRAGON_DECK);
         this.tags.add(Tags.SPELLCASTER_DECK);

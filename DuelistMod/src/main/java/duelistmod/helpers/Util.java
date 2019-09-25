@@ -314,6 +314,12 @@ public class Util
 		specialCards.add(new SpiralSpearStrikeNameless());
 		specialCards.add(new YamiFormNameless());	
 		specialCards.add(new HourglassLife());
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Naturia Deck")) 
+		{ 
+			specialCards.add(new NaturalDisasterNameless()); 
+			specialCards.add(new NaturalDisasterNameless());
+		}
 		return specialCards;
 	}
 	

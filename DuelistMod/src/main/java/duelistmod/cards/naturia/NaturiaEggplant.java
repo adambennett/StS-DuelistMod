@@ -1,19 +1,17 @@
 package duelistmod.cards.naturia;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 public class NaturiaEggplant extends DuelistCard 
 {
@@ -36,9 +34,9 @@ public class NaturiaEggplant extends DuelistCard
 
     public NaturiaEggplant() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons = 1;
+        this.summons = this.baseSummons = 2;
         this.baseDamage = this.damage = 8;
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 8;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.PLANT);
@@ -53,7 +51,6 @@ public class NaturiaEggplant extends DuelistCard
     	summon();
     	attack(m);
     	block();
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
     }
 
     // Which card to return when making a copy of this card.
@@ -67,8 +64,9 @@ public class NaturiaEggplant extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeDamage(2);
             this.upgradeBlock(2);
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

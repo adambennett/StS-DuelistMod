@@ -276,7 +276,7 @@
 		  "MillenniumOrb",
 		  "millenniumorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #bX #yRandomized cards from the card reward pool into your hand."
+		"DESCRIPTION": "#yOrb: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose #b1 of 20 #yRandomized cards from the current card pool to add to your hand."
 	},
   {
     "PROPER_NAME": "Metal",
@@ -540,7 +540,7 @@
       "Light",
 	  "light"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you draw a #ySpell, have a 25% chance to duplicate it #b2 times. NL #yEvoke: Duplicate all #ySpells in your hand."
+    "DESCRIPTION": "#yOrb: Whenever you draw a #ySpell, have a 25% chance to duplicate it. NL #yEvoke: Duplicate all #ySpells in your hand."
   },
   {
   "PROPER_NAME": "Alien",
@@ -682,7 +682,7 @@
 	  "leaf",
 	  "Leaf"
     ],   
-    "DESCRIPTION": "At the start of turn, gain #yBlock. #yBlock amount depends on the number of #yLeaves and the number of #yNaturias currently summoned."
+    "DESCRIPTION": "At the start of turn, if you have at least #b5 #yLeaves, you may choose to consume your #yLeaves and gain #yBlock. #yBlock amount depends on the number of #yLeaves you have and the number of #yNaturias currently summoned."
   },
   {
     "PROPER_NAME": "Gate",

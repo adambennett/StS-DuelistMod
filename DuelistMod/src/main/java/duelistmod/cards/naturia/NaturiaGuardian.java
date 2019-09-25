@@ -49,6 +49,7 @@ public class NaturiaGuardian extends DuelistCard
         this.originalName = this.name;
         this.isSummon = true;
         this.baseMagicNumber = this.magicNumber = 1;
+        this.secondMagic = this.baseSecondMagic = 8;
         tooltips = new ArrayList<>();
         tooltips.add(new NaturiaHorneedle());
     }
@@ -59,13 +60,11 @@ public class NaturiaGuardian extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, this.baseAFX, this.damage);
-    	//applyPowerToSelf(new NaturiaPower(p, p, 1));
-    	if (!upgraded) { AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(new NaturiaHorneedle(), this.magicNumber, true, true)); }
-    	else 
+    	for (int i = 0; i < this.magicNumber; i++)
     	{
-    		DuelistCard uNH = new NaturiaHorneedle();
-    		uNH.upgrade();
-    		AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(uNH, this.magicNumber, true, true));
+			DuelistCard uNH = new NaturiaHorneedle();
+			if (AbstractDungeon.cardRandomRng.random(1, this.secondMagic) == 1) { uNH.upgrade(); }
+			this.addToBot(new MakeTempCardInDrawPileAction(uNH, 1, true, true));
     	}
     }
 
@@ -81,12 +80,9 @@ public class NaturiaGuardian extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(2);
+            this.upgradeSecondMagic(-2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
-            for (AbstractCard c : tooltips)
-            {
-            	c.upgrade();
-            }
         }
     }
     

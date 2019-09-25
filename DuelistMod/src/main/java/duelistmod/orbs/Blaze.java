@@ -96,6 +96,7 @@ public class Blaze extends DuelistOrb
 			{
 				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 				DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); 
+				if (gpcCheck()) { DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); }
 			}
 		}
 	}

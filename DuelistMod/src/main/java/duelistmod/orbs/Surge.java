@@ -77,6 +77,7 @@ public class Surge extends DuelistOrb
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 			DuelistCard.staticBlock(this.passiveAmount);
+			if (gpcCheck()) { DuelistCard.staticBlock(this.passiveAmount); }
 			Util.log("Triggered Surge passive block action");
 		}		
 	}

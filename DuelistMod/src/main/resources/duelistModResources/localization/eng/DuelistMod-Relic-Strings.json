@@ -717,7 +717,7 @@
 		"NAME": "Leafblower",
 		"FLAVOR": "Blow those leaves",
 		"DESCRIPTIONS": [
-			"Increase #yBlock gained by #yLeaves by #b30%."
+			"Increase #yBlock gained by #yLeaves by #b20%."
 		]
 	},
 	"theDuelist:NatureOrb": {
@@ -739,6 +739,13 @@
 		"FLAVOR": "We needa leafblower around here",
 		"DESCRIPTIONS": [
 			"Whenever you play a #yNaturia, gain #b1 Leaf."
+		]
+	},
+	"theDuelist:CursedHealer": {
+		"NAME": "Nameless",
+		"FLAVOR": "You succumbed to the Tomb of the Nameless...",
+		"DESCRIPTIONS": [
+			"You chose to rest in a place where an ancient evil lives."
 		]
 	},
 	"theDuelist:OrbCardRelic": {

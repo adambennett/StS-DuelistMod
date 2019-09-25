@@ -185,6 +185,9 @@ public class DragonPool
 		dragonCards.add(new PurplePainOni());
 		dragonCards.add(new GreenGraveOni());
 		dragonCards.add(new Hinotama());
+		dragonCards.add(new ObsidianDragon());
+		dragonCards.add(new StoneDragon());
+		dragonCards.add(new MegarockDragon());
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());

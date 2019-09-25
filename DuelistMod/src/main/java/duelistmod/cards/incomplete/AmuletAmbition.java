@@ -33,7 +33,7 @@ public class AmuletAmbition extends DuelistCard
     public AmuletAmbition() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.block = this.baseBlock = 12;				// block
+        this.block = this.baseBlock = 11;				// block
         this.magicNumber = this.baseMagicNumber = 2;	// increment
         this.secondMagic = this.baseSecondMagic = 1;	// random offensive orbs
         this.tags.add(Tags.SPELL);

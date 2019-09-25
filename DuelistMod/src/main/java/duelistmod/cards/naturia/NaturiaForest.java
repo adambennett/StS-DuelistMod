@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.duelistPowers.NaturiaForestPrePower;
+import duelistmod.powers.duelistPowers.NaturiaForestPower;
 import duelistmod.variables.Tags;
 
 public class NaturiaForest extends DuelistCard 
@@ -24,11 +24,11 @@ public class NaturiaForest extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public NaturiaForest() 
@@ -37,12 +37,13 @@ public class NaturiaForest extends DuelistCard
         this.originalName = this.name;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
+        this.magicNumber = this.baseMagicNumber = 2;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new NaturiaForestPrePower(this.upgraded));
+    	applyPowerToSelf(new NaturiaForestPower(this.magicNumber));
     }
 
     
@@ -54,6 +55,7 @@ public class NaturiaForest extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

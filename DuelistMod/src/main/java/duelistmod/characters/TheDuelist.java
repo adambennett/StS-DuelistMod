@@ -139,6 +139,7 @@ public class TheDuelist extends CustomPlayer {
 				{
 					Black b = (Black)o;
 					if (b.passiveAmount > 0) { b.triggerPassiveEffect(); }
+					if (b.gpcCheck() && b.passiveAmount > 0) { b.triggerPassiveEffect(); }
 				}
 			}
 		}
@@ -184,12 +185,12 @@ public class TheDuelist extends CustomPlayer {
 
 		return retVal;
 	}
-
 	
 	// Card Pool Patch 
 	@Override
 	public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool)
 	{
+		ArrayList<String> addedNames = new ArrayList<String>();
 		tmpPool = super.getCardPool(tmpPool);
 		//tmpPool = new ArrayList<AbstractCard>();
 		if (DuelistMod.shouldFill)
@@ -201,10 +202,12 @@ public class TheDuelist extends CustomPlayer {
 		else { PoolHelpers.coloredCardsHadCards(); }
 		for (AbstractCard c : DuelistMod.coloredCards)
 		{
-			if (!c.rarity.equals(CardRarity.SPECIAL))
+			if (!c.rarity.equals(CardRarity.SPECIAL) && !addedNames.contains(c.originalName))
 			{
 				tmpPool.add(c);
-			}				
+				addedNames.add(c.originalName);
+			}		
+			else if (addedNames.contains(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
 		}
 		
 		if (!this.hasRelic(Courier.ID))
@@ -215,9 +218,14 @@ public class TheDuelist extends CustomPlayer {
 				int counter = 1;
 				for (AbstractCard c : DuelistMod.duelColorlessCards) 
 				{
-					Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
-					AbstractDungeon.colorlessCardPool.group.add(c); 
-					counter++;
+					if (!c.rarity.equals(CardRarity.SPECIAL) && !addedNames.contains(c.originalName))
+					{
+						Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
+						AbstractDungeon.colorlessCardPool.group.add(c); 
+						addedNames.add(c.originalName);
+						counter++;
+					}
+					else if (addedNames.contains(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
 				}
 			}
 		}

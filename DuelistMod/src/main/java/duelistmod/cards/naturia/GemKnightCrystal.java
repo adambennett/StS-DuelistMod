@@ -49,7 +49,7 @@ public class GemKnightCrystal extends DuelistCard
     	tribute();
     	for (int i = 0; i < this.magicNumber; i++)
     	{
-    		DuelistCard randRock = (DuelistCard) returnTrulyRandomFromSet(Tags.ROCK);
+    		DuelistCard randRock = (DuelistCard) returnTrulyRandomFromOnlyFirstSet(Tags.ROCK, Tags.EXEMPT);
     		fullResummon(randRock, false, m, false);
     	}
     }

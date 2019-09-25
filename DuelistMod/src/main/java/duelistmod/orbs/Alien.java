@@ -79,6 +79,11 @@ public class Alien extends DuelistOrb
 			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 			DuelistCard.draw(this.passiveAmount);
 			DuelistCard.discard(1, true);
+			if (gpcCheck())
+			{
+				DuelistCard.draw(this.passiveAmount);
+				DuelistCard.discard(1, true);
+			}
 		}
 	}
 

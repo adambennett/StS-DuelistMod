@@ -4,16 +4,15 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.SummonPower;
+import duelistmod.variables.Tags;
 
 public class NaturiaButterfly extends DuelistCard 
 {
@@ -53,7 +52,7 @@ public class NaturiaButterfly extends DuelistCard
     {
     	summon();
     	gainTempHP(this.magicNumber);
-    	AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.secondMagic, true, true));
+    	this.addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), this.secondMagic, true, true));
     	draw(1);
     }
 
@@ -68,7 +67,7 @@ public class NaturiaButterfly extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

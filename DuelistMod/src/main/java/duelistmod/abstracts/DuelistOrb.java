@@ -2,9 +2,11 @@ package duelistmod.abstracts;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 
 import duelistmod.DuelistMod;
 
@@ -39,6 +41,13 @@ public class DuelistOrb extends AbstractOrb {
 	public void onSynergyTribute() { }
 	
 	public void onDrawCard(AbstractCard drawnCard) { }
+	
+	public boolean gpcCheck()
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		if (p.orbs.get(0).equals(this) && p.hasRelic(GoldPlatedCables.ID)) { return true; }
+		else { return false; }		
+	}
 	
 	public boolean hasNegativeFocus()
 	{

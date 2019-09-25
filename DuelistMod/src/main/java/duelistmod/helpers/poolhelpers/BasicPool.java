@@ -251,7 +251,7 @@ public class BasicPool
 		cards.add(new Overworked());
 		cards.add(new Jinzo());
 		cards.add(new YellowBelliedOni());		
-		cards.add(new ChrysalisMole());
+		cards.add(new GolemSentry());
 		cards.add(new Blockman());
 		cards.add(new AttackTheMoon());
 		cards.add(new EarthEffigy());
@@ -260,8 +260,12 @@ public class BasicPool
 		cards.add(new GemElephant());
 		cards.add(new GemArmadillo());
 		cards.add(new CatapultZone());
-		
-		
+		cards.add(new ReleaseFromStone());
+		cards.add(new GraniteLoyalist());		
+		cards.add(new WeepingIdol());
+		cards.add(new MagicHoleGolem());
+		cards.add(new MillenniumGolem());
+
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
 		
@@ -410,7 +414,7 @@ public class BasicPool
 		cards.add(new OrbMetronome());
 		//cards.add(new Overworked());
 		cards.add(new Jinzo());
-		cards.add(new ChrysalisMole());
+		cards.add(new GolemSentry());
 		cards.add(new Blockman());
 		//cards.add(new AttackTheMoon());
 		cards.add(new EarthEffigy());

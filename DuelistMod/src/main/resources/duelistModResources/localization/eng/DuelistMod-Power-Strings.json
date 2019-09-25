@@ -705,7 +705,7 @@
 },
 "theDuelist:NaturiaLeodrakePower": {
         "NAME": "Naturia Leodrake",
-        "DESCRIPTIONS": ["Whenever you draw a #yNaturia, gain #b", " #yEnergy."]
+        "DESCRIPTIONS": ["Whenever you gain #yBlock from #yLeaves, gain #b", " #yEnergy."]
 },
 "theDuelist:NaturiaStagBeetlePower": {
         "NAME": "Naturia Stag Beetle",
@@ -713,7 +713,7 @@
 },
 "theDuelist:NaturiaVeinPower": {
         "NAME": "Naturia Vein",
-        "DESCRIPTIONS": ["Whenever you play an X-cost card, gain #b", " #yEnergy."]
+        "DESCRIPTIONS": ["#yVine damage is affected by #yVulnerable."]
 },
 "theDuelist:PollinosisPower": {
         "NAME": "Pollinosis",
@@ -721,7 +721,7 @@
 },
 "theDuelist:ReleaseFromStonePower": {
         "NAME": "Release from Stone",
-        "DESCRIPTIONS": ["At the start of turn, if you have no #yRocks summoned, add a random #yRock monster to your hand."]
+        "DESCRIPTIONS": ["At the start of turn, if you have no #yRocks summoned, add #b", " random #yRock card to your hand.", " random #yRock cards to your hand."]
 },
 "theDuelist:WastelandPower": {
         "NAME": "Wasteland",
@@ -733,19 +733,15 @@
 },
 "theDuelist:LeavesPower": {
         "NAME": "Leaves",
-        "DESCRIPTIONS": ["At the start of turn, gain #yBlock. #yBlock amount depends on the number of #yLeaves and the number of #yNaturias currently summoned. NL #yCurrent #yBlock: #b" ]
+        "DESCRIPTIONS": ["At the start of turn, if you have at least 5 #yLeaves, you may choose to consume your #yLeaves and gain #b", " #yBlock." ]
 },
 "theDuelist:CompostPower": {
         "NAME": "Compost",
         "DESCRIPTIONS": ["Whenever you are attacked, deal #b", " damage to ALL enemies." ]
 },
-"theDuelist:NaturiaForestPrePower": {
-        "NAME": "Naturia Forest",
-        "DESCRIPTIONS": ["#yNaturia cards cost 0 next turn.", "#yNaturia cards cost 0 for the next #b2 turns." ]
-},
 "theDuelist:NaturiaForestPower": {
         "NAME": "Naturia Forest",
-        "DESCRIPTIONS": ["#yNaturia cards cost 0 for the next #b", " turn.", " turns." ]
+        "DESCRIPTIONS": ["#yLeaves generate #b", "% more #yBlock." ]
 },
 "theDuelist:ResistNatureEnemyPower": {
         "NAME": "Resist Nature",

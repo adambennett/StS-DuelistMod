@@ -6,16 +6,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.MonsterEggSuper;
 import duelistmod.relics.*;
 
-public class TombNameless extends AbstractImageEvent {
+public class TombNameless extends DuelistEvent {
 
 
     public static final String ID = DuelistMod.makeID("TombNameless");
@@ -65,7 +65,7 @@ public class TombNameless extends AbstractImageEvent {
         }
         else { imageEventText.setDialogOption(OPTIONS[6], true); }
         
-        imageEventText.setDialogOption(OPTIONS[2]);
+        imageEventText.setDialogOption(OPTIONS[2], new CursedHealer());
         imageEventText.setDialogOption(OPTIONS[3]);
         imageEventText.setDialogOption(OPTIONS[4]);
         imageEventText.setDialogOption(OPTIONS[5]);
@@ -112,15 +112,16 @@ public class TombNameless extends AbstractImageEvent {
 	            		screenNum = 1;
 	            		break;
 	
-	            	// Worship - Gain 6 HP
+	            	// Succumb - Gain 25 HP, obtain Cursed Relic
 	            	case 1:
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();
-	            		AbstractDungeon.player.heal(6); 
+	            		AbstractDungeon.player.heal(25); 	            		
+	            		AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), new CursedHealer());
 	            		screenNum = 1;
 	            		break;
 	
-	            	// Succumb - Gamble 20% roll to get 12 max hp, 100% chance to get 1 random duelist curse
+	            	// Worship - Gamble 20% roll to get 12 max hp, 100% chance to get 1 random duelist curse
 	            	case 2:
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();                        

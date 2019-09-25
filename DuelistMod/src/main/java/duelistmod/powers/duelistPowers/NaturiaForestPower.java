@@ -3,15 +3,13 @@ package duelistmod.powers.duelistPowers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
-import duelistmod.actions.unique.*;
+import duelistmod.abstracts.DuelistPower;
 
 
 public class NaturiaForestPower extends DuelistPower 
@@ -38,55 +36,10 @@ public class NaturiaForestPower extends DuelistPower
         this.amount = turns;
 		updateDescription(); 
     }
-    
-    @Override
-    public void onInitialApplication() 
-    {
-    	AbstractDungeon.actionManager.addToTop(new NaturiaForestAction(1));
-    }
-    
-    @Override
-    public void atEndOfTurn(boolean isPlayer)
-    {
-    	this.amount--;
-    	updateDescription();
-    }
-    
-    @Override
-    public void onRemove() 
-    {
-    	AbstractDungeon.actionManager.addToBottom(new NaturiaForestRemovedAction(1));
-    }
-    
-    @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) 
-    {
-    	AbstractDungeon.actionManager.addToTop(new NaturiaForestAction(1));
-    }
-    
-    @Override
-    public void onAfterCardPlayed(AbstractCard usedCard) 
-    {
-    	AbstractDungeon.actionManager.addToTop(new NaturiaForestAction(1));
-    }
-    
-    @Override
-    public void onDrawOrDiscard() 
-    {
-    	AbstractDungeon.actionManager.addToTop(new NaturiaForestAction(1));
-    }
-  
-    @Override
-    public void atStartOfTurnPostDraw() 
-    {
-    	flash();AbstractDungeon.actionManager.addToTop(new NaturiaForestAction(1));
-    }
-    
+
     @Override
 	public void updateDescription() 
     {
-    	if (this.amount == 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
-    	else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
-    	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
+    	this.description = DESCRIPTIONS[0] + (this.amount * 10) + DESCRIPTIONS[1];
     }
 }

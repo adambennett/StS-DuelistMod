@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -15,13 +14,13 @@ import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.helpers.Util;
 import duelistmod.relics.*;
 import duelistmod.variables.Tags;
 
-public class TombNamelessPuzzle extends AbstractImageEvent 
+public class TombNamelessPuzzle extends DuelistEvent 
 {
     public static final String ID = DuelistMod.makeID("TombNamelessPuzzle");
     public static final String IMG = DuelistMod.makeEventPath("TombNamelessD.png");
@@ -358,7 +357,7 @@ public class TombNamelessPuzzle extends AbstractImageEvent
     {
     	//points = DuelistMod.namelessTombPoints;
     	points = ThreadLocalRandom.current().nextInt(1, 20);
-    	if (points > 10) { points = ThreadLocalRandom.current().nextInt(4, 20); }
+    	if (points > 8) { points = ThreadLocalRandom.current().nextInt(2, 20); }
     	if (points == 20) { points = ThreadLocalRandom.current().nextInt(10, 20); }
     	//if (points > 20) { points = 20; }
     }

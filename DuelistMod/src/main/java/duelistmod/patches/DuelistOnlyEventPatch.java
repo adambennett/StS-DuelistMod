@@ -4,28 +4,35 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.EventHelper;
+import com.megacrit.cardcrawl.random.Random;
 
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
 
 public class DuelistOnlyEventPatch {
 	@SpirePatch(clz = EventHelper.class, method = "getEvent")
-	public static class GetEvent {
+	public static class GetEvent 
+	{
 		public static AbstractEvent Postfix(AbstractEvent __result, String key)
 		{
-			//if (key.equals(BottleCollector.ID)) 
-			//{
-			//	return new BottleCollector();
-			//} 
-			//else 
-			//{
-				return __result;
-			//}
+			if (!AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
+			{
+				if (__result instanceof DuelistEvent) 
+				{
+					AbstractEvent newEv = AbstractDungeon.getEvent(new Random()); 
+					while (newEv instanceof DuelistEvent) { newEv = AbstractDungeon.getEvent(new Random()); }
+					Util.log("DuelistOnlyEventPatch --- not playing as The Duelist but you rolled a Duelist Event (" + key + "), so we replaced it with another random event.");
+					return newEv;  
+				}
+			}
+			return __result;
 		}
 	}
 
 	@SpirePatch(clz = AbstractDungeon.class, method = "initializeSpecialOneTimeEventList")
-	public static class AddToSpecialOneTimeEventList {
+	public static class AddToSpecialOneTimeEventList 
+	{
 		public static void Postfix(AbstractDungeon dungeon) 
 		{
 			if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) 

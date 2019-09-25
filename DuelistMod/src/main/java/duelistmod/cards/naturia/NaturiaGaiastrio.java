@@ -33,8 +33,8 @@ public class NaturiaGaiastrio extends DuelistCard
 
     public NaturiaGaiastrio() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
-        this.tributes = this.baseTributes = 4;
+        this.baseDamage = this.damage = 15;
+        this.tributes = this.baseTributes = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);
         this.tags.add(Tags.ROCK);

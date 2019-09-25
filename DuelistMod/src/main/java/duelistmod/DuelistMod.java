@@ -708,7 +708,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		monsterTypes.add(Tags.SUPERHEAVY);	typeCardMap_ID.put(Tags.SUPERHEAVY, makeID("SuperheavyTypeCard"));		typeCardMap_IMG.put(Tags.SUPERHEAVY, makePath(Strings.SUPERHEAVY_SCALES));	
 		monsterTypes.add(Tags.TOON);		typeCardMap_ID.put(Tags.TOON, makeID("ToonTypeCard"));					typeCardMap_IMG.put(Tags.TOON, makePath(Strings.TOON_GOBLIN_ATTACK));	
 		monsterTypes.add(Tags.ZOMBIE);		typeCardMap_ID.put(Tags.ZOMBIE, makeID("ZombieTypeCard"));				typeCardMap_IMG.put(Tags.ZOMBIE, makePath(Strings.ARMORED_ZOMBIE));	
-		monsterTypes.add(Tags.WARRIOR);		typeCardMap_ID.put(Tags.WARRIOR, makeID("WarriorTypeCard"));			typeCardMap_IMG.put(Tags.WARRIOR, makeCardPath("DawnKnight.png"));
+		monsterTypes.add(Tags.WARRIOR);		typeCardMap_ID.put(Tags.WARRIOR, makeID("WarriorTypeCard"));			typeCardMap_IMG.put(Tags.WARRIOR, makeCardPath("HardArmor.png"));
 		monsterTypes.add(Tags.ROCK);		typeCardMap_ID.put(Tags.ROCK, makeID("RockTypeCard"));					typeCardMap_IMG.put(Tags.ROCK, makeCardPath("Giant_Soldier.png"));
 		
 											typeCardMap_ID.put(Tags.ROSE, makeID("RoseTypeCard"));					typeCardMap_IMG.put(Tags.ROSE, makeCardPath("RevivalRose.png"));	
@@ -1197,13 +1197,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new Leafblower(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new NatureOrb(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MarkOfNature(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CursedHealer(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new Inserter(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new NuclearBattery(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new DataDisk(), AbstractCardEnum.DUELIST);
-		BaseMod.addRelicToCustomPool(new SymbioticVirus(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new SymbioticVirus(), AbstractCardEnum.DUELIST);
 		//BaseMod.addRelicToCustomPool(new EmotionChip(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new RunicCapacitor(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new RedSkull(), AbstractCardEnum.DUELIST);
@@ -1311,6 +1312,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(Leafblower.ID);
 		UnlockTracker.markRelicAsSeen(NatureOrb.ID);
 		UnlockTracker.markRelicAsSeen(MarkOfNature.ID);
+		UnlockTracker.markRelicAsSeen(CursedHealer.ID);
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
 		//duelistRelicsForTombEvent.add(new MillenniumRing());
@@ -1419,7 +1421,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		/* Debug Commands (fill game with only cards from specified pool) */
 		//DuelistCardLibrary.setupMyCardsDebug("Standard"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = true;
-		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = true;
+		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Spellcaster"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Toon"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Zombie"); fullPool = false; addBasic = true;
@@ -1756,6 +1758,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		}
 		BuffHelper.resetBuffPool();
 		lastMaxSummons = defaultMaxSummons;
+		if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
+		{
+			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
+			pow.MAX_SUMMONS = defaultMaxSummons;
+		}
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
@@ -1860,6 +1867,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		{
 			if (power.owner.equals(AbstractDungeon.player))
 			{
+				if (AbstractDungeon.player.hasRelic(CursedHealer.ID))
+				{
+					if (AbstractDungeon.cardRandomRng.random(1, 6) == 1)
+					{
+						DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, -1));
+						AbstractDungeon.player.getRelic(CursedHealer.ID).flash();
+					}
+				}
+				
 				for (AbstractOrb o : AbstractDungeon.player.orbs)
 	            {
 	            	if (o instanceof DuelistOrb)
@@ -1867,61 +1883,61 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	            		((DuelistOrb)o).onPowerApplied(power);
 	            	}
 	            }
-			}
-			
-			if (power instanceof PoisonPower)
-			{
-				poisonAppliedThisCombat+=power.amount;
-				Util.log("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat);
-			}
-			
-			if (power instanceof TombLooterPower)
-			{
-				if (AbstractDungeon.player.hasPower(TombLooterPower.POWER_ID))
+
+				if (power instanceof PoisonPower)
 				{
-					TombLooterPower pow = (TombLooterPower)AbstractDungeon.player.getPower(TombLooterPower.POWER_ID);
-					((TombLooterPower) power).goldGainedThisCombat = pow.goldGainedThisCombat;
-					((TombLooterPower) power).goldLimit = pow.goldLimit;
-				}
-			}
-			
-			if (power instanceof StrengthPower && power.amount > 0 && power.owner.equals(AbstractDungeon.player))
-			{
-				if (!AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID) && AbstractDungeon.player.hasRelic(MetronomeRelicD.ID))
-				{
-					MetronomeRelicD relic = (MetronomeRelicD)AbstractDungeon.player.getRelic(MetronomeRelicD.ID);
-					relic.addMetToHand();
-				}
-			}
-			else if (power instanceof StrengthPower && power.amount < 1 && power.owner.equals(AbstractDungeon.player))
-			{
-				Util.log("Caught Strength application, but amount was less than 1 so we didn't trigger Metronomic Power");
-			}
-			
-			if (power instanceof DexterityPower && power.amount > 0 && power.owner.equals(AbstractDungeon.player))
-			{
-				if (AbstractDungeon.player.stance instanceof DuelistStance)
-				{
-					DuelistStance stance = (DuelistStance) AbstractDungeon.player.stance;
-					stance.onGainDex(power.amount);
+					poisonAppliedThisCombat+=power.amount;
+					Util.log("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat);
 				}
 				
-				for (AbstractOrb o : AbstractDungeon.player.orbs)
-	            {
-	            	if (o instanceof DuelistOrb)
-	            	{
-	            		((DuelistOrb)o).onGainDex(power.amount);
-	            	}
-	            }
-			}
-			
-			if (power instanceof VinesPower && power.amount > 0 && power.owner.equals(AbstractDungeon.player))
-			{
-				for (AbstractPower pow : AbstractDungeon.player.powers)
+				if (power instanceof TombLooterPower)
 				{
-					if (pow instanceof DuelistPower)
+					if (AbstractDungeon.player.hasPower(TombLooterPower.POWER_ID))
 					{
-						((DuelistPower)pow).onGainVines();
+						TombLooterPower pow = (TombLooterPower)AbstractDungeon.player.getPower(TombLooterPower.POWER_ID);
+						((TombLooterPower) power).goldGainedThisCombat = pow.goldGainedThisCombat;
+						((TombLooterPower) power).goldLimit = pow.goldLimit;
+					}
+				}
+				
+				if (power instanceof StrengthPower && power.amount > 0)
+				{
+					if (!AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID) && AbstractDungeon.player.hasRelic(MetronomeRelicD.ID))
+					{
+						MetronomeRelicD relic = (MetronomeRelicD)AbstractDungeon.player.getRelic(MetronomeRelicD.ID);
+						relic.addMetToHand();
+					}
+				}
+				else if (power instanceof StrengthPower && power.amount < 1)
+				{
+					Util.log("Caught Strength application, but amount was less than 1 so we didn't trigger Metronomic Power");
+				}
+				
+				if (power instanceof DexterityPower && power.amount > 0)
+				{
+					if (AbstractDungeon.player.stance instanceof DuelistStance)
+					{
+						DuelistStance stance = (DuelistStance) AbstractDungeon.player.stance;
+						stance.onGainDex(power.amount);
+					}
+					
+					for (AbstractOrb o : AbstractDungeon.player.orbs)
+		            {
+		            	if (o instanceof DuelistOrb)
+		            	{
+		            		((DuelistOrb)o).onGainDex(power.amount);
+		            	}
+		            }
+				}
+				
+				if (power instanceof VinesPower && power.amount > 0)
+				{
+					for (AbstractPower pow : AbstractDungeon.player.powers)
+					{
+						if (pow instanceof DuelistPower)
+						{
+							((DuelistPower)pow).onGainVines();
+						}
 					}
 				}
 			}
@@ -2519,6 +2535,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			{
 				WhiteOrb white = (WhiteOrb)orb;
 				white.triggerPassiveEffect(drawnCard);
+				if (white.gpcCheck()) { white.triggerPassiveEffect(drawnCard); }
 				if (debug) { logger.info("found a White orb and a Spell/Trap card was drawn"); }
 			}
 			
@@ -2526,6 +2543,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			{
 				DuelistLight light = (DuelistLight)orb;
 				light.triggerPassiveEffect((DuelistCard) drawnCard);
+				if (light.gpcCheck()) { light.triggerPassiveEffect((DuelistCard) drawnCard); }
 				Util.log("Triggered Light orb with " + drawnCard.name);
 			}
 		}
@@ -2539,18 +2557,21 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				{
 					Smoke duelSmoke = (Smoke)orb;
 					duelSmoke.triggerPassiveEffect((DuelistCard)drawnCard);
+					if (duelSmoke.gpcCheck()) { duelSmoke.triggerPassiveEffect((DuelistCard)drawnCard); }
 				}
 
 				if (orb instanceof Sun && dc.summons > 0)
 				{
 					Sun sun = (Sun)orb;
 					sun.triggerPassiveEffect(drawnCard);
+					if (sun.gpcCheck()) { sun.triggerPassiveEffect(drawnCard); }
 				}
 				
 				if (orb instanceof Moon && dc.tributes > 0)
 				{
 					Moon moon = (Moon)orb;
 					moon.triggerPassiveEffect(drawnCard);
+					if (moon.gpcCheck()) { moon.triggerPassiveEffect(drawnCard); }
 				}
 			}
 			
@@ -3334,6 +3355,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		genericLB(40);
 		// END Check Box DEBUG
 
+		genericLB(20);
 
 		// Set Size Selector
 		setSelectLabelTxt = new ModLabel(setString,xLabPos, yPos,settingsPanel,(me)->{});
@@ -3373,6 +3395,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// END Set Size Selector
 
 		// Starting Deck Selector
+		/*
 		setSelectLabelTxtB = new ModLabel(deckString, xLabPos, yPos,settingsPanel,(me)->{});
 		//settingsPanel.addUIElement(setSelectLabelTxtB);
 		setSelectColorTxtB = new ModLabel(startingDecks.get(deckIndex),xSelection, yPos,settingsPanel,(me)->{});
@@ -3410,6 +3433,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 
 		});
 		// Starting Deck Selector
+		*/
 		
 		settingsPanel.addUIElement(cardLabelTxt);
 		settingsPanel.addUIElement(allowBoostersBtn);
@@ -3445,10 +3469,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		settingsPanel.addUIElement(setSelectColorTxt);
 		settingsPanel.addUIElement(setSelectLeftBtn);
 		settingsPanel.addUIElement(setSelectRightBtn);
-		settingsPanel.addUIElement(setSelectLabelTxtB);
-		settingsPanel.addUIElement(setSelectColorTxtB);
-		settingsPanel.addUIElement(setSelectLeftBtnB);
-		settingsPanel.addUIElement(setSelectRightBtnB);
+		//settingsPanel.addUIElement(setSelectLabelTxtB);
+		//settingsPanel.addUIElement(setSelectColorTxtB);
+		//settingsPanel.addUIElement(setSelectLeftBtnB);
+		//settingsPanel.addUIElement(setSelectRightBtnB);
 
 
 	}

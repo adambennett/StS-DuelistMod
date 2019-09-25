@@ -867,7 +867,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new BrainCrusher());	
 		DuelistMod.myCards.add(new Canyon());	
 		DuelistMod.myCards.add(new CastleGate());	
-		DuelistMod.myCards.add(new ChrysalisMole());	
+		DuelistMod.myCards.add(new GolemSentry());	
 		DuelistMod.myCards.add(new ClosedForest());	
 		DuelistMod.myCards.add(new CrystalRose());	
 		DuelistMod.myCards.add(new DestroyerGolem());	
@@ -941,6 +941,22 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ConvulsionNature());
 		DuelistMod.myCards.add(new NaturiaForest());
 		DuelistMod.myCards.add(new CatapultZone());
+		DuelistMod.myCards.add(new GolemSentry());
+		DuelistMod.myCards.add(new GraniteLoyalist());
+		DuelistMod.myCards.add(new LostGuardian());
+		DuelistMod.myCards.add(new MagicHoleGolem());
+		DuelistMod.myCards.add(new MasterMagmaBlacksmith());
+		DuelistMod.myCards.add(new MegarockDragon());
+		DuelistMod.myCards.add(new MillenniumGolem());
+		DuelistMod.myCards.add(new ObsidianDragon());
+		DuelistMod.myCards.add(new ReleaseFromStone());
+		DuelistMod.myCards.add(new RockstoneWarrior());
+		DuelistMod.myCards.add(new StoneDragon());
+		DuelistMod.myCards.add(new WeepingIdol());
+		
+		
+		
+		
 		//DuelistMod.myCards.add(new WightLady());		
 		
 		// NAMELESS TOMB CARDS
@@ -988,6 +1004,7 @@ public class DuelistCardLibrary
 		DuelistMod.myNamelessCards.add(new SpiralSpearStrikeNamelessWar());
 		DuelistMod.myNamelessCards.add(new FortressWarriorNamelessWar());		
 		DuelistMod.myNamelessCards.add(new BlueEyesNamelessWar());	
+		DuelistMod.myNamelessCards.add(new NaturalDisasterNameless());	
 		// NAMELESS TOMB CARDS
 		
 		if (DuelistMod.duelistCurses)

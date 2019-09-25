@@ -37,7 +37,7 @@ public class GiantSoldier extends DuelistCard
 
     public GiantSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
@@ -73,7 +73,7 @@ public class GiantSoldier extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeMagicNumber(1);
-            this.upgradeBlock(3);
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

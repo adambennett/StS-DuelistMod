@@ -37,12 +37,13 @@ public class NaturalDisaster extends DuelistCard
         this.originalName = this.name;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new NaturalDisasterPower(1));
+    	applyPowerToSelf(new NaturalDisasterPower(this.magicNumber));
     }
 
     

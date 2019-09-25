@@ -48,9 +48,7 @@ public class DigitalBug extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-
-    	ArrayList<DuelistCard> list = tribute(true);
-    	int x = list.size();
+    	int x = xCostTribute();
     	draw(x);
     }
 

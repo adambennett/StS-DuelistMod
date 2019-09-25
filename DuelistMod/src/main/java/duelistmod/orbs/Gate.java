@@ -112,8 +112,7 @@ public class Gate extends DuelistOrb
 		updateDescription();
 	}
 	
-	@Override
-	public void onStartOfTurn()
+	private void triggerPassive()
 	{
 		if (!hasNegativeFocus())
 		{
@@ -133,37 +132,14 @@ public class Gate extends DuelistOrb
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 			DuelistCard.staticBlock(this.passiveAmount + 1);
 		}
-		
 	}
-
-	/*
-	private void triggerPassiveEffect(DamageInfo info, boolean hitAll)
-	{
-		float speedTime;
-
-		if (!hitAll) 
-		{
-			AbstractCreature m = AbstractDungeon.getRandomMonster();
-			if (m != null) 
-			{
-				speedTime = 0.2F / AbstractDungeon.player.orbs.size();
-				if (Settings.FAST_MODE) 
-				{
-					speedTime = 0.0F;
-				}
-				AbstractDungeon.actionManager.addToBottom(new DamageAction(m, info, AbstractGameAction.AttackEffect.NONE, true));
-				
-			}
-		} 
-		else 
-		{
 	
-			AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(AbstractDungeon.player, 
-			DamageInfo.createDamageMatrix(info.base, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
-			
-		}
+	@Override
+	public void onStartOfTurn()
+	{
+		triggerPassive();
+		if (gpcCheck()) { triggerPassive(); }
 	}
-	*/
 
 	@Override
 	public void triggerEvokeAnimation()

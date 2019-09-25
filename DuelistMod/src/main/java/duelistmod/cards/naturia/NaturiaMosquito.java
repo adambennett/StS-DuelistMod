@@ -36,7 +36,7 @@ public class NaturiaMosquito extends DuelistCard
     public NaturiaMosquito() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
-        this.baseDamage = this.damage = 4;
+        this.baseDamage = this.damage = 8;
         this.selfRetain = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.NATURIA);

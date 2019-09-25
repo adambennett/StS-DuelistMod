@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.ChemicalX;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
@@ -78,6 +79,9 @@ public class LightningVortex extends DuelistCard
 	    	
 	    	if (tokens > 0)
 	    	{
+	    		// Handle Chemical X relic
+	    		if (p.hasRelic(ChemicalX.ID)) { tokens = tokens*2; }
+	    		
 		    	// Find monster of that many tributes, or the next highest available if there are none of that tribute cost
 		    	int highestTrib = 0;																// Keeps track of highest tribute cost that exists that is less than the number of aquas summoned
 		    	ArrayList<DuelistCard> possibleTributeMonsters = new ArrayList<DuelistCard>();		// All tribute monsters that match either the number of aquas summoned or the highest trib value after the first iteration
@@ -88,7 +92,7 @@ public class LightningVortex extends DuelistCard
 		    	for (DuelistCard c : DuelistMod.myCards)
 		    	{
 		    		// Only look at monsters
-		    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED))
+		    		if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.NOT_ADDED) && !c.hasTag(Tags.EXEMPT))
 		    		{
 		    			// Only look at monsters with tribute costs
 		    			if (c.baseTributes > 0)

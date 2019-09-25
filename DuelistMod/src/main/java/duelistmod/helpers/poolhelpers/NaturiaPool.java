@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.fourthWarriors.AfterGenocide;
+import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.naturia.*;
 import duelistmod.helpers.Util;
@@ -164,16 +164,19 @@ public class NaturiaPool
 		naturiaCards.add(new SummoningSwarm());
 		naturiaCards.add(new WildNatureRelease());
 		naturiaCards.add(new WormBait());
-		naturiaCards.add(new CorrosiveScales());
+		//naturiaCards.add(new CorrosiveScales());
 		naturiaCards.add(new Pollinosis());
 		naturiaCards.add(new DemiseLand());
 		naturiaCards.add(new SurvivalInstinct());
 		naturiaCards.add(new ConvulsionNature());
-		//naturiaCards.add(new NaturiaForest());
+		naturiaCards.add(new NaturiaForest());
 		naturiaCards.add(new FuryFire());
 		naturiaCards.add(new CopyPlant());
-		naturiaCards.add(new FutureFusion());
+		//naturiaCards.add(new FutureFusion());
 		naturiaCards.add(new FrozenRose());
+		//naturiaCards.add(new DeepDarkTrapHole());
+		//naturiaCards.add(new DoubleTrapHole());
+		//naturiaCards.add(new TraptrixTrapHole());
 
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

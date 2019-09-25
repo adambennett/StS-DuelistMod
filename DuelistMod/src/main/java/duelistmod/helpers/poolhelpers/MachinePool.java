@@ -161,7 +161,7 @@ public class MachinePool
 		machineCards.add(new CyberRaider());
 		machineCards.add(new SatelliteCannon());
 		machineCards.add(new DigitalBug());
-		
+		machineCards.add(new LostGuardian());
 		if (!DuelistMod.toonBtnBool)
 		{
 			machineCards.add(new ToonWorld());
