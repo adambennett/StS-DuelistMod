@@ -67,7 +67,7 @@ public class TheCreator extends DuelistCard
     	else { p.exhaustPile.group.addAll(p.discardPile.group);	p.discardPile.group.clear(); }
     	
     	// Add a 1 cost for combat, ethereal copy of EVERY Card in pool to draw pile
-    	// Hardcoded different pool for Creator Deck - since that pool sucks that sort of ruins the card which is the entire basis of the deck
+    	// Hardcoded different pool for Creator Deck - since that pool sucks, which sort of ruins the card which is the entire basis of the deck
     	if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Creator Deck")) 
     	{  
 	    	ArrayList<AbstractCard> creatorDeckUniquePool = new ArrayList<AbstractCard>();

@@ -398,9 +398,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel a Dark. NL Lose !M! HP."
 	},
 	"theDuelist:DarkCreator": {
-		"DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust every card in your draw pile. Randomly debuff ALL enemies equal to the number of cards Exhausted. NL Exempt.",
+		"DESCRIPTION": "Retain NL Tribute !duelist:TRIB! NL Exhaust your draw pile. Randomly debuff ALL enemies equal to the number of cards Exhausted. Exempt.",
 		"NAME": "Dark Creator",
-		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Exhaust every card in your draw pile. Randomly debuff ALL enemies equal to the number of cards Exhausted. NL Exempt."
+		"UPGRADE_DESCRIPTION": "Retain NL Tribute !duelist:TRIB! NL Exhaust your draw pile. Randomly debuff ALL enemies equal to the number of cards Exhausted. Exempt."
 	},
 	"theDuelist:DarkEnergy": {
 		"DESCRIPTION": "Deal !D! damage. NL Add !M! Randomized Fiend cards to your hand.",
