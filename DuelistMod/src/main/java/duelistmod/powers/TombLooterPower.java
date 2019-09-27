@@ -95,7 +95,7 @@ public class TombLooterPower extends TwoAmountPower
     		int roll = AbstractDungeon.cardRandomRng.random(1, 10);
     		if (roll < 6)
     		{
-	    		this.amount -= Math.floor(this.amount/3); 
+	    		this.amount -= (int)(this.amount/3.0f); 
 	    		if (this.amount < 1) 
 	    		{ 
 	    			DuelistCard.removePower(this, AbstractDungeon.player);

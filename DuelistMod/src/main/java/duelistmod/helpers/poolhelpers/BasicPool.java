@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.Solidarity;
 import duelistmod.cards.naturia.*;
 
 public class BasicPool 
@@ -115,7 +116,7 @@ public class BasicPool
 		toReturn.add(new Jinzo());
 		toReturn.add(new OneForOne());
 		toReturn.add(new DigitalBug());
-		
+		toReturn.add(new Solidarity());
 		
 		// megatype pool cards
 		toReturn.add(new KamionTimelord());
@@ -265,6 +266,7 @@ public class BasicPool
 		cards.add(new WeepingIdol());
 		cards.add(new MagicHoleGolem());
 		cards.add(new MillenniumGolem());
+		cards.add(new Solidarity());
 
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
@@ -411,7 +413,8 @@ public class BasicPool
 		cards.add(new MillenniumScorpion());
 		//cards.add(new Metronome());
 		cards.add(new OneForOne());
-		cards.add(new OrbMetronome());
+		//cards.add(new OrbMetronome());
+		cards.add(new Solidarity());
 		//cards.add(new Overworked());
 		cards.add(new Jinzo());
 		cards.add(new GolemSentry());

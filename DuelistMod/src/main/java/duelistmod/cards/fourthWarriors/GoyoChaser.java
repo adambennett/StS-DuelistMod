@@ -1,5 +1,6 @@
 package duelistmod.cards.fourthWarriors;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -60,7 +61,7 @@ public class GoyoChaser extends DuelistCard
     {
     	super.triggerOnGlowCheck();
         if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
-            this.gColor = GlowColor.GOLD;
+        	 this.glowColor = Color.GOLD;
         }
     }
 

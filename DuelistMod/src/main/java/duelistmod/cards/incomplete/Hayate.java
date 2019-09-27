@@ -1,5 +1,6 @@
 package duelistmod.cards.incomplete;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,7 +12,6 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.stances.Guarded;
 import duelistmod.variables.Tags;
 
 public class Hayate extends DuelistCard
@@ -60,7 +60,7 @@ public class Hayate extends DuelistCard
     {
     	super.triggerOnGlowCheck();
     	if (AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth / 2) {
-            this.gColor = GlowColor.GOLD;
+    		 this.glowColor = Color.GOLD;
         }
     }
 

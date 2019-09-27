@@ -11,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.ToonCannonPower;
 import duelistmod.variables.Tags;
 
 public class ToonCannonSoldier extends DuelistCard 
@@ -27,7 +28,7 @@ public class ToonCannonSoldier extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;

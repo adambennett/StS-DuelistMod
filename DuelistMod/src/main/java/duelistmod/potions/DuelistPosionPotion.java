@@ -46,7 +46,7 @@ public class DuelistPosionPotion extends AbstractPotion {
     	target = AbstractDungeon.player;
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			DuelistCard.applyPower(new PoisonPower(mon, AbstractDungeon.player, this.potency), mon);
     		}

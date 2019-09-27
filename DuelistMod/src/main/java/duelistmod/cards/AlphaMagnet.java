@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.watcher.FollowUpAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -53,7 +54,7 @@ public class AlphaMagnet extends DuelistCard
     {
     	super.triggerOnGlowCheck();
     	if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).type == CardType.ATTACK) {
-            this.gColor = GlowColor.GOLD;
+            this.glowColor = Color.GOLD;
         }
     }
 

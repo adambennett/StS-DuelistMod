@@ -45,11 +45,11 @@ public class LeavesPower extends DuelistPower
 	public void atStartOfTurn()
 	{
 		updateDescription();
-		if (this.amount2 > 0 && this.amount > 5)
+		if (this.amount2 > 0 && this.amount >= 5)
 		{
 			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
 			choices.add(new VineBlockCard(this.amount2));
-			choices.add(new LeafBlockCard(this.amount2/2, this.amount/2));
+			choices.add(new LeafBlockCard(this.amount2/2.0f, this.amount/2.0f));
 			choices.add(new SplendidCancel());
 			this.addToBot(new CardSelectScreenResummonAction(choices, 1));
 		}
@@ -93,7 +93,7 @@ public class LeavesPower extends DuelistPower
 		if (p.hasPower(SummonPower.POWER_ID)) { SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID); natsSummoned = pow.getNumberOfTypeSummoned(Tags.NATURIA); }
 		if (natsSummoned > 0)
 		{
-			float mod = natsSummoned * 0.2f;
+			float mod = natsSummoned * 0.5f;
 			int dmg = (int)(mod * this.amount);
 			if (p.hasRelic(Leafblower.ID)) { dmg = (int)(dmg * 1.2f); }
 			if (p.hasPower(NaturiaForestPower.POWER_ID)) 

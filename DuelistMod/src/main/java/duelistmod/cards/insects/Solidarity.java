@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.insects;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -6,57 +6,55 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.*;
+import duelistmod.variables.Tags;
 
-public class LegendaryOcean extends DuelistCard 
+public class Solidarity extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Yami");
+    public static final String ID = DuelistMod.makeID("Solidarity");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makePath(Strings.YAMI);
+    public static final String IMG = DuelistMod.makeCardPath("Solidarity.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
     // /STAT DECLARATION/
 
-    public LegendaryOcean() {
+    public Solidarity() 
+    {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.originalName = this.name;
+        this.misc = 0;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
-        this.originalName = this.name;
     }
 
-    // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new YamiPower(p, p));
-    }
-
-    // Which card to return when making a copy of this card.
-    @Override
-    public AbstractCard makeCopy() {
-        return new LegendaryOcean();
+    	if (!upgraded) { applyPowerToSelf(new SolidarityDiscardPower()); }
+    	else { applyPowerToSelf(new SolidarityExhaustPower()); }
     }
 
     // Upgraded stats.
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBaseCost(1);
+    public void upgrade() 
+    {
+        if (!upgraded) 
+        {
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -65,37 +63,22 @@ public class LegendaryOcean extends DuelistCard
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void onResummon(int summons) {
-		// TODO Auto-generated method stub
-		
+			
 	}
 
 	@Override
-	public void summonThis(int summons, DuelistCard c, int var) 
+	public void onResummon(int summons) 
 	{
 		
-	}
-
-	@Override
-	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) 
-	{
 		
 	}
 
 	@Override
-	public String getID() {
-		return ID;
-	}
-
+	public String getID() { return ID; }
+	
 	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
-	}
+    public AbstractCard makeCopy() { return new Solidarity(); }
+	public void summonThis(int summons, DuelistCard c, int var) {}
+	public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) {}
+	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) {}
 }

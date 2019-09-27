@@ -33,7 +33,7 @@ public class WildNatureActionB extends AbstractGameAction
 			for (AbstractCard c : p.drawPile.group) { if (c.hasTag(Tags.NATURIA)) { nats++; }}
 			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
 			{
-				if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+				if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
 				{
 					for (int i = 0; i < nats; i++)
 					{

@@ -1,5 +1,6 @@
 package duelistmod.cards.naturia;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -61,7 +62,7 @@ public class FossilTusker extends DuelistCard
     {
     	super.triggerOnGlowCheck();
         if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).hasTag(Tags.ROCK)) {
-            this.gColor = GlowColor.GOLD;
+        	 this.glowColor = Color.GOLD;
         }
     }
     

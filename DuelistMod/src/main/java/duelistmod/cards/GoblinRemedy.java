@@ -10,6 +10,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.GoblinRemedyPower;
 import duelistmod.variables.*;
 
 public class GoblinRemedy extends DuelistCard 
@@ -25,7 +26,7 @@ public class GoblinRemedy extends DuelistCard
 
     // STAT DECLARATION 	
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;

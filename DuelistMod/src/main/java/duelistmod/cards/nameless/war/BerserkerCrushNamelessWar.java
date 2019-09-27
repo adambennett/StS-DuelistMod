@@ -52,7 +52,7 @@ public class BerserkerCrushNamelessWar extends DuelistCard
     	this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			applyPower(new StrengthPower(mon, -this.magicNumber), mon);
     		}

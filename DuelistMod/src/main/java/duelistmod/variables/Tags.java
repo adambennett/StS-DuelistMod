@@ -21,6 +21,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags BAD_TRIB;
 	@SpireEnum public static AbstractCard.CardTags BAD_MAGIC;
 	@SpireEnum public static AbstractCard.CardTags BAMBOO_SWORD;
+	@SpireEnum public static AbstractCard.CardTags BUG;
 	@SpireEnum public static AbstractCard.CardTags COCOON;
 	@SpireEnum public static AbstractCard.CardTags COLORLESS_POOL;
 	@SpireEnum public static AbstractCard.CardTags CONSPIRE;
@@ -113,6 +114,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags SPELL;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
+	@SpireEnum public static AbstractCard.CardTags SPIDER;
 	@SpireEnum public static AbstractCard.CardTags STANDARD_DECK;
 	@SpireEnum public static AbstractCard.CardTags SUPERHEAVY;
 	@SpireEnum public static AbstractCard.CardTags SUPER_EXPLODING_TOKEN;

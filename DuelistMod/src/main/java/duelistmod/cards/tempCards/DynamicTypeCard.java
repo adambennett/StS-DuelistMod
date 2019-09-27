@@ -17,7 +17,7 @@ import duelistmod.cards.tokens.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.incomplete.RockSunrisePower;
+import duelistmod.powers.duelistPowers.RockSunrisePower;
 import duelistmod.variables.Tags;
 
 public class DynamicTypeCard extends DuelistCard 
@@ -64,7 +64,7 @@ public class DynamicTypeCard extends DuelistCard
     	
     	if (this.callCard instanceof RockSunrise)
     	{
-    		applyPowerToSelf(new RockSunrisePower(p, p, this.tagSave));
+    		applyPowerToSelf(new RockSunrisePower(this.magicNumber, this.tagSave));
     		DuelistMod.chosenRockSunriseTag = this.tagSave;
     	}
     	

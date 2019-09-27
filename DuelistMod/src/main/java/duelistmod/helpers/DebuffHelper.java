@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.SummonSicknessPower;
 import duelistmod.powers.incomplete.*;
 
 public class DebuffHelper 

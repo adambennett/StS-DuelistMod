@@ -1,7 +1,7 @@
 package duelistmod.cards.incomplete;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -58,7 +58,7 @@ public class BlastWithChain extends DuelistCard
     		dealExtra = instance.hasExplosiveTokens();
     	}
         if (dealExtra) {
-            this.gColor = GlowColor.GOLD;
+        	 this.glowColor = Color.GOLD;
         }
     }
 

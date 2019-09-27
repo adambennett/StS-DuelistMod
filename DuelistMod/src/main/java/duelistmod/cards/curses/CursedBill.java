@@ -3,11 +3,13 @@ package duelistmod.cards.curses;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Tags;
 
 public class CursedBill extends DuelistCard 
 {
@@ -32,7 +34,14 @@ public class CursedBill extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 5;
+        this.tags.add(Tags.BAD_MAGIC);
         this.isEthereal = true;
+    }
+    
+    @Override
+    public void onSummonWhileInDraw(DuelistCard c, int amt)
+    {
+    	if (amt > 0) { AbstractDungeon.player.loseGold(this.magicNumber); }
     }
 
     // Actions the card should do.

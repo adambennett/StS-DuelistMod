@@ -14,7 +14,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.incomplete.RockSunrisePower;
+import duelistmod.powers.duelistPowers.RockSunrisePower;
 import duelistmod.variables.Tags;
 
 public class RockSunrise extends DuelistCard 
@@ -42,6 +42,7 @@ public class RockSunrise extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
+        this.magicNumber = this.baseMagicNumber = 3;
     }
 
     // Actions the card should do.
@@ -50,14 +51,14 @@ public class RockSunrise extends DuelistCard
     {    
     	if (!p.hasPower(RockSunrisePower.POWER_ID))
     	{
-	    	ArrayList<DuelistCard> types = generateTypeCardsShard(0, true);
+	    	ArrayList<DuelistCard> types = generateTypeCardsShard(this.magicNumber, true);
 	    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     	}
     	
     	else
     	{
     		AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, p.getPower(RockSunrisePower.POWER_ID), p.getPower(RockSunrisePower.POWER_ID).amount));
-    		ArrayList<DuelistCard> types = generateTypeCardsShard(0, true);
+    		ArrayList<DuelistCard> types = generateTypeCardsShard(this.magicNumber, true);
 	    	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     	}
     }
@@ -76,7 +77,7 @@ public class RockSunrise extends DuelistCard
         	// Name
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(1);
+        	this.upgradeMagicNumber(2);
         	this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }        

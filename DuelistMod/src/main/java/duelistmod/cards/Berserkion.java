@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -60,7 +61,7 @@ public class Berserkion extends DuelistCard
     {
     	super.triggerOnGlowCheck();
     	if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).hasTag(Tags.MAGNET)) {
-            this.gColor = GlowColor.GOLD;
+    		 this.glowColor = Color.GOLD;
         }
     }
 

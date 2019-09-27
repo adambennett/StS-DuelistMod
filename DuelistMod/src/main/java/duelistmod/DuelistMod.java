@@ -2302,7 +2302,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID))
 			{
 				DuelistCard dC = (DuelistCard)arg0;
-				if (dC.tributes < 1) { DuelistCard.summon(AbstractDungeon.player, 1, (DuelistCard)arg0); }
+				if (dC.tributes < 1 && arg0.hasTag(Tags.MONSTER)) { DuelistCard.summon(AbstractDungeon.player, 1, (DuelistCard)arg0); }
 			}
 			
 			for (AbstractCard c : AbstractDungeon.player.discardPile.group)

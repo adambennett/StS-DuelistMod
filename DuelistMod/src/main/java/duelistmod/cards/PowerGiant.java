@@ -58,6 +58,15 @@ public class PowerGiant extends DuelistCard
     	}
     }
     
+    @Override
+    public void onSummonWhileInHand(DuelistCard c, int amt) { if (amt > 0) { damageInc(); }}
+    
+    @Override
+    public void onSummonWhileInDiscard(DuelistCard c, int amt) { if (amt > 0) { damageInc(); }}
+    
+    @Override
+    public void onSummonWhileInDraw(DuelistCard c, int amt) { if (amt > 0) { damageInc(); }}
+    
     public void damageInc()
     {
     	AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(this.uuid, this.magicNumber));

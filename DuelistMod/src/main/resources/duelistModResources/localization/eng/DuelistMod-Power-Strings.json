@@ -186,15 +186,15 @@
 },
 "theDuelist:MountainPower": {
         "NAME": "Mountain",
-        "DESCRIPTIONS": ["#yDragons deal 50% more damage. Whenever you gain #yStrength from Tributing a #yDragon, gain 1 extra #yStrength." ]
+        "DESCRIPTIONS": ["#yDragons deal #b", "% more damage. Whenever you gain #yStrength from Tributing a #yDragon, gain 1 extra #yStrength." ]
 },
 "theDuelist:VioletCrystalPower": {
         "NAME": "Violet Crystal",
-        "DESCRIPTIONS": ["#yInsects and #yPlants deal 50% more damage and gain 50% more #yBlock. #yInsect and #yPlant tributing effects are increased." ]
+        "DESCRIPTIONS": ["#yPlants deal #b", "% more damage and gain #b", "% more #yBlock. #yPlant tributes generate an extra #b", " #yConstricted." ]
 },
 "theDuelist:YamiPower": {
         "NAME": "Yami",
-        "DESCRIPTIONS": ["#ySpellcasters deal 50% more damage and gain 50% more #yBlock. Whenever you #ySummon a #ySpellcaster, gain 1 extra #ySummon." ]
+        "DESCRIPTIONS": ["#ySpellcasters deal #b", "% more damage and gain #b", "% more #yBlock. Whenever you #ySummon a #ySpellcaster, gain 1 extra #ySummon." ]
 },
 "theDuelist:TimeWizardPower": {
         "NAME": "Time Wizard",
@@ -250,7 +250,7 @@
 },
 "theDuelist:GatesDarkPower": {
         "NAME": "Gate of Dark World",
-        "DESCRIPTIONS": ["#yFiends and #yZombies deal 100% more damage and gain 100% more #yBlock." ]
+        "DESCRIPTIONS": ["#yFiends and #yZombies deal #b", "% more damage and gain #b", "% more #yBlock." ]
 },
 "theDuelist:SphereKuribohPower": {
         "NAME": "Sphere Kuriboh",
@@ -282,11 +282,11 @@
 },
 "theDuelist:SacredTreePower": {
         "NAME": "Sacred Tree",
-        "DESCRIPTIONS": ["#yNaturia monsters deal 50% more damage and gain 50% more #yBlock." ]
+        "DESCRIPTIONS": ["#yNaturia monsters deal #b", "% more damage and gain #b", "% more #yBlock." ]
 },
 "theDuelist:UmiPower": {
         "NAME": "Umi",
-        "DESCRIPTIONS": ["#yAqua monsters deal 50% more damage and gain 50% more #yBlock." ]
+        "DESCRIPTIONS": ["#yAqua monsters deal #b", "% more damage and gain #b", "% more #yBlock." ]
 },
 "theDuelist:ToonCannonPower": {
         "NAME": "Toon Cannon Soldier",
@@ -589,7 +589,7 @@
 },
 "theDuelist:RockSunrisePower": {
         "NAME": "Rock Sunrise",
-        "DESCRIPTIONS": [" cards deal an additional #b30% damage." ]
+        "DESCRIPTIONS": [" cards deal an additional #b", "% damage." ]
 },
 "theDuelist:BloomingDarkRosePower": {
         "NAME": "Blooming of Dark Rose",
@@ -641,7 +641,7 @@
 },
 "theDuelist:SogenPower": {
         "NAME": "Sogen",
-        "DESCRIPTIONS": ["#yWarriors deal 35% more damage and gain 20% more #yBlock." ]
+        "DESCRIPTIONS": ["#yWarriors deal #b", "% more damage and gain #b", "% more #yBlock." ]
 },
 "theDuelist:CommanderSwordsPower": {
         "NAME": "Sword Commander",
@@ -750,6 +750,14 @@
 "theDuelist:SoulBonePower": {
         "NAME": "Soul Bone Tower",
         "DESCRIPTIONS": ["At the start of turn, choose 1 of 2 random cards from your #yExhaust pile to #yResummon." ]
+},
+"theDuelist:SolidarityDiscardPower": {
+        "NAME": "Solidarity",
+        "DESCRIPTIONS": ["You currently have more than #b1 type of monster in your discard pile.", "All #y", " monsters currently deal #b", "% more damage.", "There are no typed monsters in your discard pile." ]
+},
+"theDuelist:SolidarityExhaustPower": {
+        "NAME": "Upgraded Solidarity",
+        "DESCRIPTIONS": ["You currently have more than #b1 type of monster in your Exhaust pile.", "All #y", " monsters currently deal #b", "% more damage.", "There are no typed monsters in your Exhaust pile." ]
 },
 "theDuelist:PlaceholderPower": {
         "NAME": "Placeholder",

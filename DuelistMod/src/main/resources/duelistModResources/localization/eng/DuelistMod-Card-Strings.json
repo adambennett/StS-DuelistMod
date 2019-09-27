@@ -749,9 +749,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Gate."
 	},
 	"theDuelist:GatesDarkWorld": {
-		"DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block.",
+		"DESCRIPTION": "Fiends and Zombies deal 80% more damage and gain 80% more Block.",
 		"NAME": "Dark World",
-		"UPGRADE_DESCRIPTION": "Your Fiends and Zombies deal 100% more damage and gain 100% more Block."
+		"UPGRADE_DESCRIPTION": "Fiends and Zombies deal 100% more damage and gain 100% more Block."
 	},
 	"theDuelist:GauntletWarrior": {
 		"DESCRIPTION": "Warrior NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
@@ -1239,9 +1239,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Apply !M! Poison."
 	},
 	"theDuelist:Mountain": {
-		"DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
+		"DESCRIPTION": "Dragons deal 50% more damage. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength.",
 		"NAME": "Mountain",
-		"UPGRADE_DESCRIPTION": "Your Dragons deal 50% more damage and gain 50% more Block. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
+		"UPGRADE_DESCRIPTION": "Dragons deal 50% more damage. Whenever you gain Strength from Tributing a Dragon, gain 1 extra Strength."
 	},
 	"theDuelist:MsJudge": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Temporary HP for each monster you currently have Summoned.",
@@ -1322,9 +1322,9 @@
 		"UPGRADE_DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Increment !M!. NL Gain !B! Block."
 	},
 	"theDuelist:NaturiaSacredTree": {
-		"DESCRIPTION": "Your Naturia monster cards deal 50% more damage and gain 50% more Block.",
+		"DESCRIPTION": "Naturia monster cards deal 50% more damage and gain 50% more Block.",
 		"NAME": "Naturia Sacred Tree",
-		"UPGRADE_DESCRIPTION": "Innate NL Your Naturia monster cards deal 50% more damage and gain 50% more Block."
+		"UPGRADE_DESCRIPTION": "Naturia monster cards deal 70% more damage and gain 70% more Block."
 	},
 	"theDuelist:NaturiaStrawberry": {
 		"DESCRIPTION": "Naturia Plant NL Summon !duelist:SUMM! NL Deal !D! damage.",
@@ -1493,9 +1493,9 @@
 		"UPGRADE_DESCRIPTION": "Channel a Plasma Orb."
 	},
 	"theDuelist:Polymerization": {
-		"DESCRIPTION": "Choose !M! monsters from your hand to Resummon on an enemy. Exhaust.",
+		"DESCRIPTION": "Retain NL Choose !M! monsters from your hand to Resummon on an enemy. Exhaust.",
 		"NAME": "Polymerization",
-		"UPGRADE_DESCRIPTION": "Choose !M! monsters from your hand to Resummon on an enemy."
+		"UPGRADE_DESCRIPTION": "Retain NL Choose !M! monsters from your hand to Resummon on an enemy. Exhaust."
 	},
 	"theDuelist:PortraitSecret": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Gain !M! Strength. Increase the Tributes of a random card in your hand by 2 for this combat. Exhaust.",
@@ -2229,9 +2229,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you attempt to Summon with no empty zones: lose !duelist:M! HP, Increment !M! and then Summon !M!."
 	},
 	"theDuelist:Umi": {
-		"DESCRIPTION": "Your Aqua monster cards deal 50% more damage and gain 50% more Block.",
+		"DESCRIPTION": "Aqua monster cards deal 50% more damage and gain 50% more Block.",
 		"NAME": "Umi",
-		"UPGRADE_DESCRIPTION": "Your Aqua monster cards deal 50% more damage and gain 50% more Block."
+		"UPGRADE_DESCRIPTION": "Aqua monster cards deal 50% more damage and gain 50% more Block."
 	},
 	"theDuelist:ValkMagnet": {
 		"DESCRIPTION": "If you have all three Magnets: deal !D! damage to ALL enemies, remove all Magnets, and choose 1 of 3 random Stances to enter. NL Exempt.",
@@ -2244,9 +2244,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL You cannot Resummon while this monster is summoned."
 	},
 	"theDuelist:VioletCrystal": {
-		"DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased.",
+		"DESCRIPTION": "Plants deal 40% more damage and gain 40% more Block. Plant tributes generate !duelist:M! extra Constricted.",
 		"NAME": "Violet Crystal",
-		"UPGRADE_DESCRIPTION": "Your Insects and Plants deal 50% more damage and gain 50% more Block. Insect and Plant tributing effects are increased."
+		"UPGRADE_DESCRIPTION": "Plants deal 40% more damage and gain 40% more Block. Plant tributes generate !duelist:M! extra Constricted."
 	},
 	"theDuelist:WaterOrbCard": {
 		"DESCRIPTION": "Channel a Water Orb.",
@@ -2322,9 +2322,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
 	},
 	"theDuelist:Yami": {
-		"DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
+		"DESCRIPTION": "Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon.",
 		"NAME": "Yami",
-		"UPGRADE_DESCRIPTION": "Your Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
+		"UPGRADE_DESCRIPTION": "Spellcasters deal 50% more damage and gain 50% more Block. Whenever you Summon a Spellcaster, gain 1 extra Summon."
 	},
 	"theDuelist:YellowGadget": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Choose 1 of !M! random Tokens to add to your hand.",
@@ -2967,9 +2967,9 @@
 		"UPGRADE_DESCRIPTION": "Giant Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this monster, reduce its Tribute cost by !M! for each Artifact you have."
 	},
 	"theDuelist:GiantPairfish": {
-		"DESCRIPTION": "Giant Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this monster, reduce its Tribute cost by !M! for each Aqua you have currently summoned.",
+		"DESCRIPTION": "Giant Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this monster, reduce its Tribute cost by !M! for each Wyrm in your hand.",
 		"NAME": "Giant Pairfish",
-		"UPGRADE_DESCRIPTION": "Giant Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this monster, reduce its Tribute cost by !M! for each Aqua you have currently summoned."
+		"UPGRADE_DESCRIPTION": "Giant Aqua NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this monster, reduce its Tribute cost by !M! for each Wyrm in your hand."
 	},
 	"theDuelist:ChaosAncientGearGiant": {
 		"DESCRIPTION": "Giant Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Decrease the Tribute cost of this monster by !M! each time you play a Machine.",
@@ -4502,9 +4502,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Choose 2 random buffs (from !M! choices)."
 	},
 	"theDuelist:PredaPolymerization": {
-		"DESCRIPTION": "Purge NL Ethereal NL Choose !M! monsters from your hand to Resummon on an enemy.",
+		"DESCRIPTION": "Retain NL Choose !M! monsters from your hand to Resummon on an enemy. NL Exhaust.",
 		"NAME": "Polymerization",
-		"UPGRADE_DESCRIPTION": "Purge NL Ethereal NL Choose !M! monsters from your hand to Resummon on an enemy."
+		"UPGRADE_DESCRIPTION": "Retain NL Choose !M! monsters from your hand to Resummon on an enemy. NL Exhaust."
 	},
 	"theDuelist:Overworked": {
 		"DESCRIPTION": "Whenever a Skill is played, gain !M! Strength.",
@@ -4988,9 +4988,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add a random Watcher card to your hand. NL Resummon: Fetch a card from your Exhaust pile."
 	},
 	"theDuelist:Sogen": {
-		"DESCRIPTION": "Warriors deal 35% more damage and gain 20% more Block.",
+		"DESCRIPTION": "Warriors deal 40% more damage and gain 20% more Block.",
 		"NAME": "Sogen",
-		"UPGRADE_DESCRIPTION": "Warriors deal 35% more damage and gain 20% more Block. Reset the Warrior Tribute effect."
+		"UPGRADE_DESCRIPTION": "Warriors deal 40% more damage and gain 20% more Block. Reset the Warrior Tribute effect."
 	},
 	"theDuelist:CyberRaider": {
 		"DESCRIPTION": "Machine Warrior NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -5548,9 +5548,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you are attacked, if you have any Insects summoned, Tribute them all and apply three times that much Poison to ALL enemies."
 	},
 	"theDuelist:HuntingInstinct": {
-		"DESCRIPTION": "Deal !D! damage for each Vine you have.",
+		"DESCRIPTION": "Deal !D! damage and gain !M! Leaf for each Vine you have.",
 		"NAME": "Hunting Instinct",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage for each Vine and Leaf you have."
+		"UPGRADE_DESCRIPTION": "Deal !D! damage and gain !M! Leaves for each Vine you have."
 	},
 	"theDuelist:SurvivalInstinct": {
 		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Leaves.",
@@ -5881,6 +5881,16 @@
 		"DESCRIPTION": "Discard every monster in your draw pile. Gain !M! Temporary HP for each monster discarded. NL Exhaust.",
 		"NAME": "Void Trap Hole",
 		"UPGRADE_DESCRIPTION": "Discard every monster in your draw pile. Gain !M! Temporary HP for each monster discarded. NL Exhaust."
+	},
+	"theDuelist:Solidarity": {
+		"DESCRIPTION": "As long as you have exactly one type of monster in your discard pile, that type of monster deals 40% more damage.",
+		"NAME": "Solidarity",
+		"UPGRADE_DESCRIPTION": "As long as you have exactly one type of monster in your Exhaust pile, that type of monster deals 40% more damage."
+	},
+	"theDuelist:PoisonChain": {
+		"DESCRIPTION": "Apply 1 poison to a random enemy. Increase the poison amount by 0.5 and repeat this action for each Insect you have summoned. Perform this entire action once for each enemy in combat. Exhaust.",
+		"NAME": "Poison Chain",
+		"UPGRADE_DESCRIPTION": "Apply 1 poison to a random enemy. Increase the poison amount by 0.5 and repeat this action for each Insect you have summoned. Perform this entire action once for each enemy in combat. Exhaust."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

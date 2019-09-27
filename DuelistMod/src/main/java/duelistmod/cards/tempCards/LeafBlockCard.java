@@ -31,12 +31,12 @@ public class LeafBlockCard extends TokenCard
     private static final int COST = -2;
     // /STAT DECLARATION/
 
-    public LeafBlockCard(int magic, int leafLoss) 
+    public LeafBlockCard(float magic, float leafLoss) 
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.dontTriggerOnUseCard = true;
-    	this.magicNumber = this.baseMagicNumber = magic;
-    	this.secondMagic = this.baseSecondMagic = leafLoss;
+    	this.magicNumber = this.baseMagicNumber = (int) magic;
+    	this.secondMagic = this.baseSecondMagic = (int) leafLoss;
     }
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 

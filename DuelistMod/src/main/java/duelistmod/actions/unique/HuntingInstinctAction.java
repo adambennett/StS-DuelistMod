@@ -30,22 +30,22 @@ public class HuntingInstinctAction extends AbstractGameAction
         if (this.duration == this.startingDuration) 
         {
         	AbstractPlayer p = AbstractDungeon.player;
-        	int leaf = 0;
+        	//int leaf = 0;
         	int vine = 0;
         	if (p.hasPower(VinesPower.POWER_ID)) { vine = p.getPower(VinesPower.POWER_ID).amount; }
-        	if (p.hasPower(LeavesPower.POWER_ID)) { leaf = p.getPower(LeavesPower.POWER_ID).amount; }
-            if (this.up)
+        	//if (p.hasPower(LeavesPower.POWER_ID)) { leaf = p.getPower(LeavesPower.POWER_ID).amount; }
+            /*if (this.up)
             {
             	for (int i = 0; i < leaf + vine; ++i) {
                     this.addToTop(new DamageAction(this.target, this.info, AttackEffect.FIRE));
                 }
             }
             else
-            {
+            {*/
             	for (int i = 0; i < vine; ++i) {
                     this.addToTop(new DamageAction(this.target, this.info, AttackEffect.FIRE));
                 }
-            }
+           // }
         	
         }
         this.tickDuration();

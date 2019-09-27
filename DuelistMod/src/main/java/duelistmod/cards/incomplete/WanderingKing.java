@@ -73,7 +73,7 @@ public class WanderingKing extends DuelistCard
     	tribute();    	
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			int roll = AbstractDungeon.cardRandomRng.random(1, 4);
     			if (roll == 1)

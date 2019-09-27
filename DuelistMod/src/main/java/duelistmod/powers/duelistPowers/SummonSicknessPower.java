@@ -1,4 +1,4 @@
-package duelistmod.powers;
+package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,17 +8,17 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.variables.Strings;
 
 
 
-public class SummonSicknessPower extends AbstractPower
+public class SummonSicknessPower extends DuelistPower
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = duelistmod.DuelistMod.makeID("SummonSicknessPower");
+    public static final String POWER_ID = DuelistMod.makeID("SummonSicknessPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -26,14 +26,25 @@ public class SummonSicknessPower extends AbstractPower
     
     public SummonSicknessPower(final AbstractCreature owner, int newAmount) 
     {
-        this.name = NAME;
+    	this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
-        this.type = PowerType.DEBUFF;
+        this.owner = owner;        
+        this.type = PowerType.BUFF;
         this.isTurnBased = false;
+        this.canGoNegative = false;
         this.img = new Texture(IMG);
+        this.source = AbstractDungeon.player;
         this.amount = newAmount;
         this.updateDescription();
+    }
+    
+    @Override
+    public void onSummon(DuelistCard c, int amt)
+    {
+    	if (amt > 0 && this.amount > 0)
+    	{
+    		DuelistCard.damageSelfNotHP(this.amount * amt);
+    	}
     }
     
     @Override
@@ -74,6 +85,8 @@ public class SummonSicknessPower extends AbstractPower
     {
     	updateDescription();
     }
+    
+    
 
     @Override
 	public void updateDescription() 

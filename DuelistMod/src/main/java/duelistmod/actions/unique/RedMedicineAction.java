@@ -15,6 +15,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.tempCards.*;
 import duelistmod.helpers.GridSort;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.PotGenerosityPower;
 import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Strings;
 
@@ -104,7 +105,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new SadisticPower(p, turnNum));
 			toReturn.add(new StormPower(p, 1));
 			toReturn.add(new RetainCardPower(p, 1));
-			toReturn.add(new PotGenerosityPower(p, p, 2));
+			toReturn.add(new PotGenerosityPower(2));
 			toReturn.add(new TimeWizardPower(p, p, 1));
 			toReturn.add(new MayhemPower(p, 1));
 			toReturn.add(new AmplifyPower(p, 1));

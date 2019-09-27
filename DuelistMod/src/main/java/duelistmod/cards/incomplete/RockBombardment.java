@@ -51,7 +51,7 @@ public class RockBombardment extends DuelistCard
     	summon(p, this.summons, new ExplosiveToken());
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-	    	if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && mon.hasPower(ArtifactPower.POWER_ID))
+	    	if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && mon.hasPower(ArtifactPower.POWER_ID))
 	    	{
 	    		removePower(mon.getPower(ArtifactPower.POWER_ID), mon);
 	    	}	    	

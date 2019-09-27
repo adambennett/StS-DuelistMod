@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.PotGenerosityPower;
 import duelistmod.powers.incomplete.FlameTigerPower;
 
 public class BuffHelper {
@@ -221,7 +222,7 @@ public class BuffHelper {
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
-		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
+		AbstractPower generosity = new PotGenerosityPower(2);
 		AbstractPower focus = new FocusPower(p, 1);
 		AbstractPower focusB = new FocusPower(p, 2);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
@@ -305,7 +306,7 @@ public class BuffHelper {
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
-		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
+		AbstractPower generosity = new PotGenerosityPower(2);
 		AbstractPower focus = new FocusPower(p, 1);
 		AbstractPower focusB = new FocusPower(p, 2);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);

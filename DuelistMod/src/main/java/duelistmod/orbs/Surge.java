@@ -47,6 +47,16 @@ public class Surge extends DuelistOrb
 		checkFocus(true);
 		this.updateDescription();
 	}
+	
+	@Override
+	public void onSummon(DuelistCard c, int amt)
+	{
+		if (amt > 0 && this.passiveAmount > 0)
+		{
+			triggerPassiveEffect();
+			if (gpcCheck()) { triggerPassiveEffect(); }
+		}
+	}
 
 	@Override
 	public void updateDescription()
@@ -73,13 +83,9 @@ public class Surge extends DuelistOrb
 
 	public void triggerPassiveEffect()
 	{
-		if (this.passiveAmount > 0)
-		{
-			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-			DuelistCard.staticBlock(this.passiveAmount);
-			if (gpcCheck()) { DuelistCard.staticBlock(this.passiveAmount); }
-			Util.log("Triggered Surge passive block action");
-		}		
+		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+		DuelistCard.staticBlock(this.passiveAmount);
+		Util.log("Triggered Surge passive block action");	
 	}
 
 	@Override

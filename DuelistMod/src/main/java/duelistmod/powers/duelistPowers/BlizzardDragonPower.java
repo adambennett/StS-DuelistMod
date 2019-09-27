@@ -1,17 +1,17 @@
-package duelistmod.powers;
+package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.orbs.Frost;
 
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.variables.Strings;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
+import duelistmod.variables.*;
 
 
 
-public class BlizzardDragonPower extends AbstractPower 
+public class BlizzardDragonPower extends DuelistPower 
 {
     public AbstractCreature source;
     public static final String POWER_ID = DuelistMod.makeID("BlizzardDragonPower");
@@ -22,15 +22,25 @@ public class BlizzardDragonPower extends AbstractPower
     
     public BlizzardDragonPower(final AbstractCreature owner, final AbstractCreature source) 
     {
-        this.name = NAME;
+    	this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
+        this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = source;
         this.updateDescription();
     }
+    
+	@Override
+	public void onSummon(DuelistCard c, int amt)
+	{
+		if (c.hasTag(Tags.DRAGON) && amt > 0)
+		{
+			DuelistCard.channel(new Frost(), amt);
+		}
+	}
     
     @Override
     public void atEndOfTurn(final boolean isPlayer) 

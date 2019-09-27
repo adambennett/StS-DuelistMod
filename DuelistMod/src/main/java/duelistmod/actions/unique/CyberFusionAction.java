@@ -232,7 +232,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 		    		DuelistCard cardCopy = (DuelistCard)summon;
 					if (cardCopy != null)
 					{
-						if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped())
+						if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
 						{
 							DuelistCard.fullResummon(cardCopy, summon.upgraded, this.targ, false);
 						}

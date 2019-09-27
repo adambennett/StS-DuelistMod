@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.SliferSkyPower;
 import duelistmod.variables.*;
 
 public class SliferSky extends DuelistCard 

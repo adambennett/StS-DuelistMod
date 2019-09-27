@@ -18,6 +18,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.*;
 import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
@@ -953,10 +954,9 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new RockstoneWarrior());
 		DuelistMod.myCards.add(new StoneDragon());
 		DuelistMod.myCards.add(new WeepingIdol());
-		
-		
-		
-		
+		DuelistMod.myCards.add(new Solidarity());
+		DuelistMod.myCards.add(new PoisonChain());
+
 		//DuelistMod.myCards.add(new WightLady());		
 		
 		// NAMELESS TOMB CARDS

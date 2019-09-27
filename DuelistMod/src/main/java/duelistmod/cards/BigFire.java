@@ -61,7 +61,7 @@ public class BigFire extends DuelistCard
     	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
     	for (AbstractMonster g : monsters)
     	{
-    		if (!g.isDead)
+    		if (!g.isDead && !g.isDying && !g.isDeadOrEscaped() && !g.halfDead)
     		{
 	    		int randomDmgNumM = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
 	    		int randomDmgNumM_Upgrade = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL_U);

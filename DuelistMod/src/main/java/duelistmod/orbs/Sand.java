@@ -62,7 +62,7 @@ public class Sand extends DuelistOrb
 		{
 			for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 			{
-				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped())
+				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead)
 				{
 					AbstractPower slow = new SlowPower(m, this.evokeAmount);
 					DuelistCard.applyPower(slow, m);

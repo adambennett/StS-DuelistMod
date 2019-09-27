@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.PoisonChain;
 import duelistmod.cards.naturia.*;
 import duelistmod.helpers.Util;
 
@@ -119,6 +120,7 @@ public class InsectPool
 		cards.add(new BrainCrusher());
 		cards.add(new DigitalBug());
 		cards.add(new CorrosiveScales());
+		cards.add(new PoisonChain());
 
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

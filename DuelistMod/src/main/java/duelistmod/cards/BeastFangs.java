@@ -51,7 +51,7 @@ public class BeastFangs extends DuelistCard
 		{
 			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
 			{
-				this.magicNumber = this.baseMagicNumber = (int)Math.floor(DuelistMod.summonCombatCount/2);
+				this.magicNumber = this.baseMagicNumber = (int)(DuelistMod.summonCombatCount/2.0f);
 			}
 		}
     }
@@ -60,9 +60,9 @@ public class BeastFangs extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (this.magicNumber != (int)Math.floor(DuelistMod.summonCombatCount/2))
+    	if (this.magicNumber != (int)(DuelistMod.summonCombatCount/2.0f))
     	{
-    		this.magicNumber = this.baseMagicNumber = (int)Math.floor(DuelistMod.summonCombatCount/2);
+    		this.magicNumber = this.baseMagicNumber = (int)(DuelistMod.summonCombatCount/2.0f);
     	}
     	applyPowerToSelf(new StrengthPower(p, this.magicNumber));
     }

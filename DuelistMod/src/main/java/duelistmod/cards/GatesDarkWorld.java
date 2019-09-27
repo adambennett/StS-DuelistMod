@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.GatesDarkPower;
 import duelistmod.variables.*;
 
 public class GatesDarkWorld extends DuelistCard 
@@ -25,10 +25,10 @@ public class GatesDarkWorld extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public GatesDarkWorld() {
@@ -37,13 +37,14 @@ public class GatesDarkWorld extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.FIELDSPELL);
         this.originalName = this.name;
+        this.magicNumber = this.baseMagicNumber = 8;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new GatesDarkPower(p, p));
+    	applyPowerToSelf(new GatesDarkPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -57,7 +58,7 @@ public class GatesDarkWorld extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(2);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

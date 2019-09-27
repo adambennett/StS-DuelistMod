@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.SacredTreePower;
+import duelistmod.powers.duelistPowers.SacredTreePower;
 import duelistmod.variables.*;
 
 public class NaturiaSacredTree extends DuelistCard 
@@ -25,7 +25,7 @@ public class NaturiaSacredTree extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -35,6 +35,7 @@ public class NaturiaSacredTree extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
+        this.baseMagicNumber = this.magicNumber = 5;
         this.originalName = this.name;
         this.isSummon = true;
     }
@@ -43,7 +44,7 @@ public class NaturiaSacredTree extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SacredTreePower(p, p));
+    	applyPowerToSelf(new SacredTreePower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -57,7 +58,7 @@ public class NaturiaSacredTree extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.isInnate = true;
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

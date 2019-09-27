@@ -10,6 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.HuntingInstinctAction;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Tags;
 
 public class HuntingInstinct extends DuelistCard 
@@ -43,7 +44,13 @@ public class HuntingInstinct extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.addToBot(new HuntingInstinctAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), this.upgraded));
+    	int vine = 0;
+    	if (p.hasPower(VinesPower.POWER_ID)) { vine = p.getPower(VinesPower.POWER_ID).amount; }
+    	if (vine > 0)
+    	{
+    		this.addToBot(new HuntingInstinctAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), this.upgraded));
+    		applyPowerToSelf(new LeavesPower(vine));
+    	}
     }
 
     
@@ -55,6 +62,7 @@ public class HuntingInstinct extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+        	this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

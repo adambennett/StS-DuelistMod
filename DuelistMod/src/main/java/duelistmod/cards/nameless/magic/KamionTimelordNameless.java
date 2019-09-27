@@ -55,7 +55,7 @@ public class KamionTimelordNameless extends DuelistCard
     	attackAllEnemies(this.damage);
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			applyPower(new WeakPower(mon, this.magicNumber, false), mon);
     		}

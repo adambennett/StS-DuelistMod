@@ -62,7 +62,7 @@ public class DarkCreator extends DuelistCard
     	{
     		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     		{
-    			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     			{
     				DebuffHelper.getRandomDebuff(p, mon, counter);
     			}

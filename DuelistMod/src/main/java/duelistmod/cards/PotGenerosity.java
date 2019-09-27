@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.PotGenerosityPower;
+import duelistmod.powers.duelistPowers.PotGenerosityPower;
 import duelistmod.variables.*;
 
 public class PotGenerosity extends DuelistCard 
@@ -45,7 +45,7 @@ public class PotGenerosity extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new PotGenerosityPower(p, p, this.magicNumber));
+    	applyPowerToSelf(new PotGenerosityPower(this.magicNumber));
     }
 
 

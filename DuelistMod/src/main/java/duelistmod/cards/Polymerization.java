@@ -50,6 +50,7 @@ public class Polymerization extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
         this.exhaust = true;
+        this.selfRetain = true;
         this.setupStartingCopies();
     }
     
@@ -62,8 +63,8 @@ public class Polymerization extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
         this.preda = true;
-        this.purgeOnUse = true;
-        this.isEthereal = true;	  
+        this.exhaust = true;
+        this.selfRetain = true;
         this.modifyCostForCombat(-cost);
         this.isCostModified = true;   
         this.initializeDescription();
@@ -95,7 +96,7 @@ public class Polymerization extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeMagicNumber(1);
             if (this.preda) { exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTIONB); }
             else { exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); }
         }

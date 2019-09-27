@@ -52,7 +52,7 @@ public class BlasterDragonInfernos extends DuelistCard
     	summon(p, getMaxSummons(p), new ExplosiveToken());
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			applyPower(new VulnerablePower(mon, this.magicNumber, false), mon);
     		}

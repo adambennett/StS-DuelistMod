@@ -101,7 +101,7 @@ public class VinesPower extends DuelistPower
 		AbstractPlayer p = AbstractDungeon.player;
 		for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
 		{
-			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+			if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
 			{
 				if (mon.hasPower(ResistNatureEnemyPower.POWER_ID))
 				{

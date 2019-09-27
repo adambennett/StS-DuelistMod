@@ -1,9 +1,9 @@
 package duelistmod.cards.fourthWarriors;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.GlowColor;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -94,7 +94,7 @@ public class ComboMaster extends DuelistCard
     {
     	super.triggerOnGlowCheck();
         if (this.wasRetained) {
-            this.gColor = GlowColor.GOLD;
+        	 this.glowColor = Color.GOLD;
         }
     }
     

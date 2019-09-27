@@ -51,7 +51,7 @@ public class BlossomBombardment extends DuelistCard
     	summon(p, this.summons, new ExplosiveToken());
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-	    	if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+	    	if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
 	    	{
 	    		applyPower(new ConstrictedPower(mon, p, this.magicNumber), mon);
 	    	}	    	

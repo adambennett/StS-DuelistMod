@@ -1,5 +1,6 @@
 package duelistmod.cards.fourthWarriors;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -51,11 +52,7 @@ public class BattleguardHowling extends DuelistCard
     {
     	super.triggerOnGlowCheck();
         if (GameActionManager.playerHpLastTurn > AbstractDungeon.player.currentHealth) {
-            this.gColor = GlowColor.GOLD;
-        }
-        else
-        {
-        	this.gColor = GlowColor.BLUE;
+        	 this.glowColor = Color.GOLD;
         }
     }
 

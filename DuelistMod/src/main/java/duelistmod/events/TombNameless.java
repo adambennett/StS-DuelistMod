@@ -106,7 +106,7 @@ public class TombNameless extends DuelistEvent {
 	                    	else if (this.offering instanceof TributeEggRelic)
 	                    	{
 	                    		AbstractDungeon.player.loseRelic(TributeEggRelic.ID);
-	                    		AbstractDungeon.player.heal(AbstractDungeon.player.maxHealth/2);
+	                    		AbstractDungeon.player.heal((int) (AbstractDungeon.player.maxHealth/2.0f));
 	                    	}
 	            		}
 	            		screenNum = 1;

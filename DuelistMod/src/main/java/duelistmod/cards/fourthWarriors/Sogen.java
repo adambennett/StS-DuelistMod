@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
-import duelistmod.variables.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.SogenPower;
+import duelistmod.variables.Tags;
 
 public class Sogen extends DuelistCard 
 {
@@ -25,7 +25,7 @@ public class Sogen extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
@@ -36,13 +36,15 @@ public class Sogen extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
         this.originalName = this.name;
+        this.magicNumber = this.baseMagicNumber = 4;
+        this.secondMagic = this.baseSecondMagic = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new SogenPower(p, p));
+    	applyPowerToSelf(new SogenPower(this.magicNumber, this.secondMagic));
     	if (upgraded) { DuelistMod.warriorTribEffectsTriggeredThisCombat = 0; DuelistMod.warriorTribThisCombat = false; }
     }
 

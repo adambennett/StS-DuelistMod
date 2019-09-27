@@ -1,17 +1,16 @@
-package duelistmod.powers;
+package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.variables.Strings;
 
 
-public class PotGenerosityPower extends AbstractPower 
+public class PotGenerosityPower extends DuelistPower 
 {
     public AbstractCreature source;
 
@@ -21,15 +20,16 @@ public class PotGenerosityPower extends AbstractPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.POT_GENEROSITY_POWER);
 
-    public PotGenerosityPower(final AbstractCreature owner, final AbstractCreature source, int newAmount) 
+    public PotGenerosityPower(int newAmount) 
     {
-        this.name = NAME;
+    	this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = owner;
+        this.owner = AbstractDungeon.player;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
+        this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = source;
+        this.source = AbstractDungeon.player;
         this.amount = newAmount;
         this.updateDescription();
     }
@@ -40,6 +40,12 @@ public class PotGenerosityPower extends AbstractPower
     	if (this.amount > 0) { this.amount--; if (this.amount < 1) { DuelistCard.removePower(this, AbstractDungeon.player); updateDescription(); } }
     	else { DuelistCard.removePower(this, AbstractDungeon.player); }
 	}
+    
+    @Override
+    public void onSummon(DuelistCard c, int amt)
+    {
+    	if (amt > 0) { DuelistCard.gainEnergy(1); }
+    }
 
     @Override
 	public void updateDescription() {

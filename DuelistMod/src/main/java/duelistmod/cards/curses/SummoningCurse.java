@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.variables.Tags;
 
 public class SummoningCurse extends DuelistCard 
 {
@@ -32,6 +33,7 @@ public class SummoningCurse extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 15;
+        this.tags.add(Tags.BAD_MAGIC);
     }
 
     // Actions the card should do.

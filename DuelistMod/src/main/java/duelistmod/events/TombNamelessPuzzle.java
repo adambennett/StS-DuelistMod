@@ -576,7 +576,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     
     private void duelistGreedReward()
     {
-    	AbstractDungeon.player.loseGold(AbstractDungeon.player.gold/2);
+    	AbstractDungeon.player.loseGold((int) (AbstractDungeon.player.gold/2.0f));
     	int monsters = 0;
 		int upgrades = 0;
 		ArrayList<AbstractCard> toKeep = new ArrayList<AbstractCard>();

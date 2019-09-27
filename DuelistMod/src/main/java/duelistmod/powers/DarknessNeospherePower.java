@@ -51,7 +51,7 @@ public class DarknessNeospherePower extends TwoAmountPower
 				dc.modifyTributesForTurn(this.amount);
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-		    		if (!m.isDeadOrEscaped() && !m.isDying && !m.isDead)
+		    		if (!m.isDeadOrEscaped() && !m.isDying && !m.isDead && !m.halfDead)
 		    		{
 		    			DuelistCard.applyPower(new StrengthPower(m, -this.amount2), m);
 		    		}
