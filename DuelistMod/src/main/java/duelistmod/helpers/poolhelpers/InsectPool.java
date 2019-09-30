@@ -92,7 +92,6 @@ public class InsectPool
 		cards.add(new BasicInsect());
 		cards.add(new CocoonEvolution());
 		cards.add(new EmpressMantis());
-		cards.add(new Firegrass());
 		cards.add(new Grasschopper());
 		cards.add(new HundredFootedHorror());
 		cards.add(new InsectKnight());
@@ -102,10 +101,8 @@ public class InsectPool
 		cards.add(new ManEaterBug());
 		cards.add(new MotherSpider());
 		cards.add(new Parasite());
-		cards.add(new PetitMoth());
-		cards.add(new VioletCrystal());	
+		cards.add(new PetitMoth());	
 		cards.add(new ArmoredBee());
-		cards.add(new SuperSolarNutrient());
 		cards.add(new ArsenalBug());
 		cards.add(new CrossSwordBeetle());
 		cards.add(new MultiplicationOfAnts());
@@ -114,18 +111,11 @@ public class InsectPool
 		cards.add(new PinchHopper());
 		cards.add(new UndergroundArachnid());	
 		cards.add(new BlockSpider());
-		cards.add(new LordPoison());
-		cards.add(new DarkworldThorns());
 		cards.add(new Anteater());
 		cards.add(new BrainCrusher());
 		cards.add(new DigitalBug());
 		cards.add(new CorrosiveScales());
 		cards.add(new PoisonChain());
-
-		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
-		{
-			//cards.add(new Token());
-		}
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

@@ -173,6 +173,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean duelistCurses = false;
 	public static boolean actFourEnabled = false;
 	public static boolean addOrbPotions = false;
+	public static boolean playedBug = false;
+	public static boolean playedSecondBug = false;
+	public static boolean playedSpider = false;
+	public static boolean playedSecondSpider = false;
+	public static boolean playedThirdSpider = false;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
 	public static int powerCheckIncCheck = 0;
@@ -330,6 +335,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean gotFrozenEyeFromBigEye = false;	
 	public static boolean spellcasterDidChannel = false;
 	public static boolean warriorTribThisCombat = false;
+	public static boolean wyrmTribThisCombat = false;
 	public static boolean wasEliteCombat = false;	
 	public static boolean wasBossCombat = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
@@ -402,7 +408,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int mimic1Copies = 0;
 	public static int extraCardsFromRandomArch = 25;
 	public static int archRoll1 = -1;
-	public static int archRoll2 = -1;
+	public static int archRoll2 = -1;	
+	public static int bugTempHP = 5;
+	public static int spiderTempHP = 7;	
 	public static int gravAxeStr = -99;
 	public static int poisonAppliedThisCombat = 0;
 	public static int zombiesResummonedThisCombat = 0;
@@ -710,6 +718,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		monsterTypes.add(Tags.ZOMBIE);		typeCardMap_ID.put(Tags.ZOMBIE, makeID("ZombieTypeCard"));				typeCardMap_IMG.put(Tags.ZOMBIE, makePath(Strings.ARMORED_ZOMBIE));	
 		monsterTypes.add(Tags.WARRIOR);		typeCardMap_ID.put(Tags.WARRIOR, makeID("WarriorTypeCard"));			typeCardMap_IMG.put(Tags.WARRIOR, makeCardPath("HardArmor.png"));
 		monsterTypes.add(Tags.ROCK);		typeCardMap_ID.put(Tags.ROCK, makeID("RockTypeCard"));					typeCardMap_IMG.put(Tags.ROCK, makeCardPath("Giant_Soldier.png"));
+		monsterTypes.add(Tags.WYRM);		typeCardMap_ID.put(Tags.WYRM, makeID("WyrmTypeCard"));					typeCardMap_IMG.put(Tags.WYRM, makeCardPath("Bixi.png"));
 		
 											typeCardMap_ID.put(Tags.ROSE, makeID("RoseTypeCard"));					typeCardMap_IMG.put(Tags.ROSE, makeCardPath("RevivalRose.png"));	
 											typeCardMap_ID.put(Tags.GIANT, makeID("GiantTypeCard"));				typeCardMap_IMG.put(Tags.GIANT, makeCardPath("EarthGiant.png"));	
@@ -1198,6 +1207,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new NatureOrb(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MarkOfNature(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new CursedHealer(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new MillenniumSymbol(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1313,6 +1323,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(NatureOrb.ID);
 		UnlockTracker.markRelicAsSeen(MarkOfNature.ID);
 		UnlockTracker.markRelicAsSeen(CursedHealer.ID);
+		UnlockTracker.markRelicAsSeen(MillenniumSymbol.ID);
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
 		//duelistRelicsForTombEvent.add(new MillenniumRing());
@@ -1376,6 +1387,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new Leafblower());
 		duelistRelicsForTombEvent.add(new NatureOrb());
 		duelistRelicsForTombEvent.add(new MarkOfNature());
+		duelistRelicsForTombEvent.add(new MillenniumSymbol());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
@@ -1525,6 +1537,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// MonsterStrings
         BaseMod.loadCustomStringsFile(MonsterStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Monster-Strings.json");
 
+        // Custom Tips
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, "duelistModResources/localization/" + loc + "/DuelistMod-Tip-Strings.json");
+
+        
 		logger.info("Done editing strings");
 	}
 
@@ -1809,6 +1825,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				((DuelistCard) c).postBattleReset();
 			}
 		}
+		wyrmTribThisCombat = false;
+		playedBug = false;
+		playedSecondBug = false;
+		playedSpider = false;
+		playedSecondSpider = false;
+		playedThirdSpider = false;
 		warriorTribThisCombat = false;
 		godsPlayedForBonus = 0;
 		warriorTribEffectsTriggeredThisCombat = 0;
@@ -2068,6 +2090,19 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				Alien al = (Alien)o;
 				al.triggerPassiveEffect();
 			}
+		}
+		
+		if (arg0.hasTag(Tags.SPIDER))
+		{
+			if (!playedSpider) { playedSpider = true; }
+			else if (playedSpider && !playedSecondSpider) { playedSecondSpider = true; }
+			else if (playedSecondSpider && !playedThirdSpider) { DuelistCard.gainTempHP(spiderTempHP); playedThirdSpider = true; }
+		}
+		
+		if (arg0.hasTag(Tags.BUG))
+		{
+			if (!playedBug) { playedBug = true; }
+			else if (playedBug && !playedSecondBug) { DuelistCard.gainTempHP(bugTempHP); playedSecondBug = true; }
 		}
 		
 		if (arg0.hasTag(Tags.NATURIA))
@@ -2816,6 +2851,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			archRoll1 = -1;
 			archRoll2 = -1;
 			shouldFill = true;
+			wyrmTribThisCombat = false;
+			playedBug = false;
+			playedSecondBug = false;
+			playedSpider = false;
+			playedSecondSpider = false;
+			playedThirdSpider = false;
 			monstersThisRun = new ArrayList<DuelistCard>();
 			monstersThisCombat = new ArrayList<DuelistCard>();
 			spellsThisRun = new ArrayList<DuelistCard>();

@@ -125,6 +125,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags TRAP;
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR;
+	@SpireEnum public static AbstractCard.CardTags WYRM;
 	@SpireEnum public static AbstractCard.CardTags X_COST;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE;
 	@SpireEnum public static AbstractCard.CardTags ZOMBIE_DECK;

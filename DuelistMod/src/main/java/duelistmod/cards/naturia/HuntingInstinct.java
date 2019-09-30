@@ -37,6 +37,7 @@ public class HuntingInstinct extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.baseDamage = this.damage = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
     }
@@ -62,7 +63,8 @@ public class HuntingInstinct extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(2);
+        	this.upgradeDamage(1);
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

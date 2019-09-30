@@ -217,7 +217,7 @@ public class WarriorPool
 			magnetCards.add(new BowlingBash());
 			magnetCards.add(new CarveReality());
 			//magnetCards.add(new Clarity());
-			magnetCards.add(new CleanseEvil());
+			magnetCards.add(new ConjureBlade());
 			magnetCards.add(new Consecrate());
 			magnetCards.add(new CutThroughFate());
 			magnetCards.add(new DeceiveReality());

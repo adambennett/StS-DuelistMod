@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import basemod.abstracts.CustomRelic;
@@ -26,11 +27,11 @@ public class CardRewardRelicI extends CustomRelic
     
     private int colorIndex = -1;
 
-    public CardRewardRelicI() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL); this.colorIndex = getRandomColors(); setDescription(); }
+    public CardRewardRelicI() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL); this.colorIndex = getRandomColors();  this.setCounter(colorIndex); setDescription(); }
     @Override public String getUpdatedDescription() 
     {
-    	if (this.colorIndex > -1) { return this.DESCRIPTIONS[this.colorIndex]; }
-    	else { return this.DESCRIPTIONS[13]; }
+    	if (this.counter > -1) { return this.DESCRIPTIONS[this.counter]; }
+    	else { return this.DESCRIPTIONS[19]; }
     }
 
     @Override
@@ -42,7 +43,7 @@ public class CardRewardRelicI extends CustomRelic
     
     public int getRandomColors()
     {
-    	return ThreadLocalRandom.current().nextInt(0, 10);
+    	return ThreadLocalRandom.current().nextInt(0, 19);
     }
     
     public void setDescription()
@@ -78,15 +79,25 @@ public class CardRewardRelicI extends CustomRelic
 	    	case 9:
 	    		return "Silent or Watcher";
 	    	case 10:
-	    		return "Ironclad or Defect or Silent";
+	    		return "Colorless";
 	    	case 11:
-	    		return "Ironclad or Defect or Watcher";
+	    		return "Ironclad or Colorless";
 	    	case 12:
-	    		return "Silent or Defect or Watcher";
+	    		return "Silent or Colorless";
 	    	case 13:
-	    		return "Ironclad or Silent or Defect or Watcher";
+	    		return "Defect or Colorless";
+	    	case 14:
+	    		return "Watcher or Colorless";
+	    	case 15:
+	    		return "Ironclad";
+	    	case 16:
+	    		return "Defect";
+	    	case 17:
+	    		return "Silent";
+	    	case 18:
+	    		return "Watcher";
 	    	default:
-	    		return "Ironclad or Silent or Defect or Watcher";
+	    		return "Ironclad or Silent or Defect or Watcher or Colorless";
     	}
     }
     
@@ -136,35 +147,43 @@ public class CardRewardRelicI extends CustomRelic
 	    		return all;
 	    	case 10:
 	    		all.clear();
-	    		all.addAll(BaseGameHelper.getAllIroncladCards());
-	    		all.addAll(BaseGameHelper.getAllDefectCards());
-	    		all.addAll(BaseGameHelper.getAllSilentCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	    	case 11:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllIroncladCards());
-	    		all.addAll(BaseGameHelper.getAllDefectCards());
-	    		all.addAll(BaseGameHelper.getAllWatcherCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	    	case 12:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllSilentCards());
-	    		all.addAll(BaseGameHelper.getAllDefectCards());
-	    		all.addAll(BaseGameHelper.getAllWatcherCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	    	case 13:
 	    		all.clear();
-	    		all.addAll(BaseGameHelper.getAllIroncladCards());
-	    		all.addAll(BaseGameHelper.getAllSilentCards());
-	    		all.addAll(BaseGameHelper.getAllWatcherCards());
 	    		all.addAll(BaseGameHelper.getAllDefectCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
+	     	case 14:
+	    		all.clear();
+	    		all.addAll(BaseGameHelper.getAllWatcherCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
+	    		return all;
+	     	case 15:
+	    		return BaseGameHelper.getAllIroncladCards();
+	    	case 16:
+	    		return BaseGameHelper.getAllDefectCards();
+	    	case 17:
+	    		return BaseGameHelper.getAllSilentCards();
+	    	case 18:
+	    		return BaseGameHelper.getAllWatcherCards();
 	    	default:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllIroncladCards());
 	    		all.addAll(BaseGameHelper.getAllSilentCards());
-	    		all.addAll(BaseGameHelper.getAllWatcherCards());
 	    		all.addAll(BaseGameHelper.getAllDefectCards());
+	    		all.addAll(BaseGameHelper.getAllWatcherCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
     	}
     }
@@ -181,6 +200,7 @@ public class CardRewardRelicI extends CustomRelic
 		for (AbstractCard c : list)
 		{
 			group.addToBottom(c);
+			UnlockTracker.unlockCard(c.cardID);
 		}
 		group.sortAlphabetically(true);
 		AbstractDungeon.gridSelectScreen.open(group, 1, "Select any " + getColorName() + " card to add to your deck", false);

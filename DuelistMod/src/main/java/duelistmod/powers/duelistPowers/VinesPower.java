@@ -108,7 +108,7 @@ public class VinesPower extends DuelistPower
 					Util.log("Vines Power attacking target with resistance");
 					float res = ((ResistNatureEnemyPower)mon.getPower(ResistNatureEnemyPower.POWER_ID)).calc();
 					Util.log("Calculated modifier for vines damage: " + res);
-					int dmg = (int) (this.amount2 * (res/10));
+					int dmg = (int) (this.amount2 * ((1.0f) - (res/10.0f)));
 					if (dmg > 0) 
 					{ 
 						if (p.hasPower(NaturiaVeinPower.POWER_ID) && mon.hasPower(VulnerablePower.POWER_ID)) 

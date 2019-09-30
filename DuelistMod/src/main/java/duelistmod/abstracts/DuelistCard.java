@@ -31,6 +31,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.stances.*;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
@@ -4056,6 +4057,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						case 13:
 							rockSynTrib(tc);
 							Util.log("ran rock syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+						case 14:
+							wyrmSynTrib(tc);
+							Util.log("ran wyrm syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
 						default: break;
 					}
 				}
@@ -4106,6 +4110,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		zombieSynTrib(tc);
 		warriorSynTrib(tc);
 		rockSynTrib(tc);
+		wyrmSynTrib(tc);
 		if (DuelistMod.debug) { DuelistMod.logger.info("Ran megatype tribute function, tributing card: " + tc.originalName); }
 	}
 	
@@ -4114,6 +4119,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (tc.hasTag(Tags.ROCK))
 		{
 			
+		}
+	}
+	
+	public static void wyrmSynTrib(DuelistCard tc)
+	{
+		if (tc.hasTag(Tags.WYRM))
+		{
+			if (!DuelistMod.wyrmTribThisCombat)
+			{
+				ArrayList<AbstractMonster> mons = new ArrayList<AbstractMonster>();
+				for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+				{
+					if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && mon.hasPower(PoisonPower.POWER_ID))
+					{
+						mons.add(mon);
+					}
+				}
+				
+				if (mons.size() > 0)
+				{
+					AbstractMonster rand = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+					applyPower(new PoisonPower(rand, player(), rand.getPower(PoisonPower.POWER_ID).amount), rand);
+				}
+				DuelistMod.wyrmTribThisCombat = true;
+			}
 		}
 	}
 	
@@ -5268,10 +5298,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void spellcasterPuzzleChannel()
 	{
-		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.spellcasterPuzzleChannel(); }
-		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.spellcasterPuzzleChannel(); }
-		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.spellcasterPuzzleChannel(); }
-		else { RandomOrbHelper.spellcasterPuzzleChannel(); }
+		AbstractOrb copy;
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ copy = RandomOrbHelperDualMod.spellcasterPuzzleChannel(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ copy = RandomOrbHelperCon.spellcasterPuzzleChannel(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { copy = RandomOrbHelperRep.spellcasterPuzzleChannel(); }
+		else { copy = RandomOrbHelper.spellcasterPuzzleChannel(); }
+		
+		if (AbstractDungeon.player.hasRelic(MillenniumSymbol.ID))
+		{
+			if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss || AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite)
+			{
+				RandomOrbHelper.triggerSecondSpellcasterOrb(copy);
+			}
+		}
 	}
 	
 	public static void channelRandomOffensive()
@@ -5864,15 +5903,23 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return new Token();
 		}
 	}
-	
-	
+
 	public static AbstractCard returnTrulyRandomInCombatFromSet(CardTags setToFindFrom) 
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
-			AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
-			while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
-			return c;
+			if (DuelistMod.coloredCards.size() > 0)
+			{
+				AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
+				while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
+				return c;
+			}
+			else
+			{
+				AbstractCard c = DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1));
+				while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)); }
+				return c;
+			}
 		}
 		else
 		{

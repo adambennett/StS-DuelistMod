@@ -851,6 +851,7 @@ public class DuelistCardLibrary
 		//DuelistMod.myCards.add(new Abaki());	
 		DuelistMod.myCards.add(new GreenGraveOni());			
 		DuelistMod.myCards.add(new PurplePainOni());	
+		DuelistMod.myCards.add(new GreyGreedOni());
 		DuelistMod.myCards.add(new BrilliantSpark());	
 		DuelistMod.myCards.add(new WhiteNinja());	
 		DuelistMod.myCards.add(new CyberRaider());	
@@ -902,6 +903,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new LuminousMoss());
 		DuelistMod.myCards.add(new NaturalDisaster());
 		DuelistMod.myCards.add(new NatureReflection());
+		DuelistMod.myCards.add(new NaturiaAntjaw());
 		DuelistMod.myCards.add(new NaturiaBambooShoot());
 		DuelistMod.myCards.add(new NaturiaBarkion());
 		DuelistMod.myCards.add(new NaturiaBeans());
@@ -956,6 +958,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new WeepingIdol());
 		DuelistMod.myCards.add(new Solidarity());
 		DuelistMod.myCards.add(new PoisonChain());
+		DuelistMod.myCards.add(new SlotMachine());
 
 		//DuelistMod.myCards.add(new WightLady());		
 		

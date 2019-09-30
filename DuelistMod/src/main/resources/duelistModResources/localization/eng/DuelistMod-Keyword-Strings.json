@@ -420,7 +420,7 @@
       "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Spellcaster, Superheavy, Toon, Warrior, and Zombie)."
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie)."
   },
   {
     "PROPER_NAME": "Exodia",
@@ -663,6 +663,30 @@
 	  "rocks"
     ],   
     "DESCRIPTION": "At the end of each turn, gain #b2 #yBlock for each #yRock you have summoned."
+  },
+  {
+  "PROPER_NAME": "Wyrm",
+    "NAMES": [
+      "Wyrm",
+	  "wyrm"
+    ],   
+    "DESCRIPTION": "The first time you #yTribute a #yWyrm for another each combat, double a random enemy's #yPoison."
+  },
+  {
+  "PROPER_NAME": "Bug",
+    "NAMES": [
+      "Bug",
+	  "bug"
+    ],   
+    "DESCRIPTION": "The #b2nd #yBug you play each combat gives you #b5 #yTemporary #yHP."
+  },
+  {
+  "PROPER_NAME": "Spider",
+    "NAMES": [
+      "Spider",
+	  "spider"
+    ],   
+    "DESCRIPTION": "The #b3rd #ySpider you play each combat gives you #b7 #yTemporary #yHP."
   },
   {
   "PROPER_NAME": "Vines",

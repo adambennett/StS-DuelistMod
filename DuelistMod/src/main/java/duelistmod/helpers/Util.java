@@ -145,6 +145,7 @@ public class Util
 		items.add(new MillenniumScale().name);
 		items.add(new MillenniumNecklace().name);
 		items.add(new MillenniumToken().name);
+		items.add(new MillenniumSymbol().name);
 		if (includePuzzle) { items.add(new MillenniumPuzzle().name); }
 		if (items.contains(r.name)) { return true; }
 		else { return false; }		
@@ -162,6 +163,7 @@ public class Util
 		items.add(new MillenniumScale());
 		items.add(new MillenniumNecklace());
 		items.add(new MillenniumToken());
+		items.add(new MillenniumSymbol());
 		if (includePuzzle) { items.add(new MillenniumPuzzle()); }
 		return items;
 	}
@@ -178,6 +180,7 @@ public class Util
 		items.add(new MillenniumScale());
 		items.add(new MillenniumNecklace());
 		items.add(new MillenniumToken());
+		items.add(new MillenniumSymbol());
 		return items.get(AbstractDungeon.relicRng.random(items.size() - 1));
 	}
 	

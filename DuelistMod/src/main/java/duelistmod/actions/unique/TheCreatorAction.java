@@ -6,19 +6,18 @@ import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 
-import duelistmod.*;
 import duelistmod.variables.*;
 
 public class TheCreatorAction extends AbstractGameAction {
 	private ArrayList<AbstractCard> cardToMake;
 	private boolean randomSpot = false;
 	private boolean cardOffset = false;
+	private boolean trigExtra = false;
 
-	public TheCreatorAction(AbstractCreature target, AbstractCreature source, ArrayList<AbstractCard> card,int amount, boolean randomSpot, boolean cardOffset) 
+	public TheCreatorAction(AbstractCreature target, AbstractCreature source, ArrayList<AbstractCard> card,int amount, boolean randomSpot, boolean cardOffset, boolean trigExtraEffect) 
 	{
 		setValues(target, source, amount);
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -26,12 +25,14 @@ public class TheCreatorAction extends AbstractGameAction {
 		this.cardToMake = card;
 		this.randomSpot = randomSpot;
 		this.cardOffset = cardOffset;
+		this.trigExtra = trigExtraEffect;
 	}
 
 	@Override
 	public void update() {
 		if (this.duration == 0.001F) 
 		{
+			boolean flipper = false;
 			for (int i = 0; i < this.amount; i++) 
 			{
 				for (AbstractCard card : this.cardToMake)
@@ -55,8 +56,10 @@ public class TheCreatorAction extends AbstractGameAction {
 							c.updateCost(1);
 							c.isCostModified = true;
 						}
-						AbstractDungeon.player.drawPile.addToRandomSpot(c);
-						//AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F, this.randomSpot, this.cardOffset));
+						if (flipper) { AbstractDungeon.player.discardPile.addToRandomSpot(c); }
+						else { AbstractDungeon.player.drawPile.addToRandomSpot(c); }
+						if (!flipper && this.trigExtra) { flipper = true; }
+						else if (flipper) { flipper = false; }
 					}
 				}
 			}

@@ -11,10 +11,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.actions.unique.*;
+import duelistmod.cards.tempCards.*;
 import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.relics.MillenniumSymbol;
 import duelistmod.variables.*;
 
 public class TheCreator extends DuelistCard 
@@ -30,7 +33,7 @@ public class TheCreator extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -78,9 +81,27 @@ public class TheCreator extends DuelistCard
 	    			creatorDeckUniquePool.add(c.makeCopy());
 	    		}
 	    	}
-	    	AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, creatorDeckUniquePool, 1, true, false)); 
+	    	
+	    	if (p.hasRelic(MillenniumSymbol.ID))
+    		{
+    			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    			choices.add(new NormalCreatorEffectCard(creatorDeckUniquePool));
+    			choices.add(new BonusCreatorEffectCard(creatorDeckUniquePool));
+    			this.addToBot(new CardSelectScreenResummonAction(choices, 1));
+    		}
+    		else { this.addToBot(new TheCreatorAction(p, p, creatorDeckUniquePool, 1, true, false, false)); }
     	}
-    	else { AbstractDungeon.actionManager.addToBottom(new TheCreatorAction(p, p, DuelistMod.coloredCards, 1, true, false)); }
+    	else 
+    	{ 
+    		if (p.hasRelic(MillenniumSymbol.ID))
+    		{
+    			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    			choices.add(new NormalCreatorEffectCard(DuelistMod.coloredCards));
+    			choices.add(new BonusCreatorEffectCard(DuelistMod.coloredCards));
+    			this.addToBot(new CardSelectScreenResummonAction(choices, 1));
+    		}
+    		else { this.addToBot(new TheCreatorAction(p, p, DuelistMod.coloredCards, 1, true, false, false)); }
+    	}
 		
     }
 

@@ -87,7 +87,6 @@ public class NaturiaPool
 	{
 		StarterDeck natureDeck = DuelistMod.starterDeckNamesMap.get(deckName);		
 		ArrayList<AbstractCard> naturiaCards = new ArrayList<AbstractCard>();
-		//naturiaCards.add(new NaturiaBeast());
 		naturiaCards.add(new NaturiaCliff());
 		naturiaCards.add(new NaturiaDragonfly());
 		naturiaCards.add(new NaturiaGuardian());
@@ -131,6 +130,7 @@ public class NaturiaPool
 		naturiaCards.add(new LuminousMoss());
 		naturiaCards.add(new NaturalDisaster());
 		naturiaCards.add(new NatureReflection());
+		naturiaCards.add(new NaturiaAntjaw());
 		naturiaCards.add(new NaturiaBambooShoot());
 		naturiaCards.add(new NaturiaBarkion());
 		naturiaCards.add(new NaturiaBeans());
@@ -164,7 +164,6 @@ public class NaturiaPool
 		naturiaCards.add(new SummoningSwarm());
 		naturiaCards.add(new WildNatureRelease());
 		naturiaCards.add(new WormBait());
-		//naturiaCards.add(new CorrosiveScales());
 		naturiaCards.add(new Pollinosis());
 		naturiaCards.add(new DemiseLand());
 		naturiaCards.add(new SurvivalInstinct());
@@ -172,7 +171,6 @@ public class NaturiaPool
 		naturiaCards.add(new NaturiaForest());
 		naturiaCards.add(new FuryFire());
 		naturiaCards.add(new CopyPlant());
-		//naturiaCards.add(new FutureFusion());
 		naturiaCards.add(new FrozenRose());
 		//naturiaCards.add(new DeepDarkTrapHole());
 		//naturiaCards.add(new DoubleTrapHole());

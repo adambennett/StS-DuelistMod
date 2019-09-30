@@ -117,6 +117,7 @@ public class BasicPool
 		toReturn.add(new OneForOne());
 		toReturn.add(new DigitalBug());
 		toReturn.add(new Solidarity());
+		toReturn.add(new SlotMachine());
 		
 		// megatype pool cards
 		toReturn.add(new KamionTimelord());
@@ -267,6 +268,7 @@ public class BasicPool
 		cards.add(new MagicHoleGolem());
 		cards.add(new MillenniumGolem());
 		cards.add(new Solidarity());
+		cards.add(new SlotMachine());
 
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }

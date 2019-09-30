@@ -162,9 +162,8 @@ public class DebuffHelper
 		debuffs.add(focLoss);
 	
 		// Get randomized debuff
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
+		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1); 
 		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);
-
 		return randomDebuff;
 
 	}

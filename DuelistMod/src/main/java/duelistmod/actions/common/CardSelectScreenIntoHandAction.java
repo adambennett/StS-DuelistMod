@@ -57,6 +57,31 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.canCancel = true;
 	}
 	
+	// Megatype Deck w/ Millennium Symbol relic
+	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, int newCost)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, 1);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = upgraded;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = false;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.canCancel = true;
+		this.costChangeCheck = true;
+		this.lowCostRoll = newCost;
+		this.highCostRoll = newCost;
+		this.randomize = true;
+		this.upgrade = false;
+		this.exhaustCheck = false;
+		this.etherealCheck = false;
+		this.summonCheck = false;
+		this.tributeCheck = false;
+		this.damageBlockRandomize = false;
+	}
+	
 	// Pot of the Forbidden
 	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, boolean sendExtraToDiscard, int amount, boolean upgraded, boolean exhaust, boolean ethereal, boolean costChange, boolean summonCheck, boolean tributeCheck, boolean combat, int lowCost, int highCost, int lowTrib, int highTrib, int lowSummon, int highSummon)
 	{

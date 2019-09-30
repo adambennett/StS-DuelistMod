@@ -38,6 +38,29 @@
 			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens."
 		]
 	},
+	"theDuelist:MillenniumSymbol": {
+		"NAME": "Millennium Symbol",
+		"FLAVOR": "This symbol seems to fit right into the Millennium Puzzle...",
+		"DESCRIPTIONS": [
+			"Improve the effects of the #yMillennium #yPuzzle.",
+			"Challenge Mode: No longer #ySummon #yExploding Tokens at the start of combat.",
+			"Gain #b1 extra #yBlur at the start of combat.",
+			"Apply #yWeak or #yVulnerable to ALL enemies at the start of combat instead of one random enemy.",
+			"Gain #b2 extra #yVines and #yLeaves at the start of combat.",
+			"Whenever the #yMillennium #yPuzzle channels an orb at the start of an Elite or Boss combat, channel a second copy of the same orb.",
+			"Gain #yToon #yKingdom at the start of combat instead of #yToon #yWorld.",
+			"Each combat, have a small chance to channel an additional #yShadow orb.",
+			"Whenever you trigger the puzzle effect, a random summon monster is added to the total #b3 times.",
+			"Whenever you trigger the puzzle effect, a random tribute monster is added to the total #b3 times.",
+			"Instead of random Tokens, choose #b1 of #b5 random Tokens to add to your hand at the start of combat.",
+			"At the start of each combat, gain a random amount (0-10) of #yBlock.",
+			"Apply #b2 extra #yPoison to ALL enemies at the start of each combat.",
+			"Apply #b3 extra #yConstricted to ALL enemies at the start of each combat.",
+			"Instead of random monsters, choose #b1 of #b3 random monsters to add to your hand at the start of combat.",
+			"After you #yIncrement, gain #yTemporary #yHP equal to your max summons.",
+			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile."
+		]
+	},
 	"theDuelist:MillenniumPuzzleShared": {
 		"NAME": "Millennium Puzzle",
 		"FLAVOR": "It was originally known as the Millennium Pendant, but after being shattered and requiring assembly it came to be known as the Millennium Puzzle.",
@@ -220,10 +243,16 @@
 			"Upon pickup, choose any [#2a44ec]Blue or [#0c821a]Green card to add to your deck.",
 			"Upon pickup, choose any [#2a44ec]Blue or [#5b0bbd]Purple card to add to your deck.",
 			"Upon pickup, choose any [#0c821a]Green or [#5b0bbd]Purple card to add to your deck.",
-			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue or [#0c821a]Green card to add to your deck.",
-			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue or [#5b0bbd]Purple card to add to your deck.",
-			"Upon pickup, choose any [#2a44ec]Blue, [#0c821a]Green or [#5b0bbd]Purple card to add to your deck.",			
-			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue, [#0c821a]Green or [#5b0bbd]Purple card to add to your deck."
+			"Upon pickup, choose any Colorless card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or Colorless card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue or Colorless card to add to your deck.",			
+			"Upon pickup, choose any [#0c821a]Green or Colorless card to add to your deck.",
+			"Upon pickup, choose any [#5b0bbd]Purple or Colorless card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue card to add to your deck.",
+			"Upon pickup, choose any [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue, [#0c821a]Green, [#5b0bbd]Purple, or Colorless card to add to your deck."
 		]
 	},
 	"theDuelist:InversionRelic": {
