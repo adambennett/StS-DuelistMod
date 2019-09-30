@@ -3346,11 +3346,6 @@
 		"NAME": "Ant Multiplication",
 		"UPGRADE_DESCRIPTION": "Triple your max Summons. NL Exhaust."
 	},
-	"theDuelist:DarkSpider": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Channel a Dark.",
-		"NAME": "Dark Spider",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Channel a Dark."
-	},
 	"theDuelist:CocoonUltraEvolution": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after !M! more turns. NL Exhaust.",
 		"NAME": "Ultra Cocoon",
