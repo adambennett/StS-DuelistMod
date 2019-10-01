@@ -572,7 +572,7 @@ public class PuzzleHelper
 				
 			// Superheavy Deck
 			case 9:		
-				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Stance Token", false);
+				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Puzzle Token", false);
 				//DuelistCard.applyPowerToSelf(new VigorPower(p, 3));
 				DuelistCard.applyPowerToSelf(new BlurPower(p, 2));
 				break;
