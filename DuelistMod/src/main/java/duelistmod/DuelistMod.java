@@ -359,7 +359,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean isExtraRandomDecksUnlocked = false;
 
 	// Numbers
-	public static final int baseInsectPoison = 3;
+	public static final int baseInsectPoison = 1;
 	public static int randomDeckSmallSize = 10;
 	public static int randomDeckBigSize = 15;
 	public static int cardCount = 75;
