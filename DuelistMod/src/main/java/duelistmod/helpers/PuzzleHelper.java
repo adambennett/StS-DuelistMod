@@ -15,6 +15,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
 import duelistmod.cards.*;
+import duelistmod.cards.insects.Bixi;
 import duelistmod.cards.tokens.ExplosiveToken;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.*;
@@ -346,7 +347,8 @@ public class PuzzleHelper
 					int pois = 2;
 					if (bonusy) { pois += 2; }
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
-					DuelistCard.poisonAllEnemies(p, pois);
+					if (!bonusy) { DuelistCard.addCardToHand(new Bixi()); }
+					else { DuelistCard bix = new Bixi(); bix.upgrade(); DuelistCard.addCardToHand(bix); }
 					break;
 					
 				// Plant Deck
@@ -698,10 +700,9 @@ public class PuzzleHelper
 				
 			// Insect Deck
 			case 10:
-				int pois = 2;
-				if (bonusy) { pois += 2; }
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
-				DuelistCard.poisonAllEnemies(p, pois);
+				if (!bonusy) { DuelistCard.addCardToHand(new Bixi()); }
+				else { DuelistCard bix = new Bixi(); bix.upgrade(); DuelistCard.addCardToHand(bix); }
 				break;
 				
 			// Plant Deck

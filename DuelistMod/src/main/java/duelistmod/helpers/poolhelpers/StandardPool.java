@@ -10,6 +10,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.*;
 import duelistmod.cards.naturia.DemiseLand;
 import duelistmod.helpers.Util;
 

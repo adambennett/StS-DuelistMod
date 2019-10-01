@@ -46,6 +46,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.fourthWarriors.DarkCrusader;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.MirrorLadybug;
 import duelistmod.cards.tempCards.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.characters.FakePlayer;
@@ -315,6 +316,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { float dmgMod = (player().getPower(GatesDarkPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { float dmgMod = (player().getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.BUG) && player().hasPower(BugMatrixPower.POWER_ID)) { float dmgMod = (player().getPower(BugMatrixPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) { float dmgMod = (player().getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { tmp += player().getPower(TyrantWingPower.POWER_ID).amount;  }
 		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
@@ -976,6 +979,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) {  float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod);  }
 		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) {  float dmgMod = (player().getPower(GatesDarkPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod);  }}
 		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) {  float dmgMod = (player().getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod);  }
+		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) 
+		{ 
+			TwoAmountPower fore = (TwoAmountPower)player().getPower(ForestPower.POWER_ID);
+			int mm = fore.amount2;
+			float dmgMod = (mm / 10.00f) + 1.0f; amount = (int) (amount * dmgMod); 
+		}
 		if (this.hasTag(Tags.SUPERHEAVY) && player().stance.ID.equals("theDuelist:Entrenched")) { amount += 4; }
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
@@ -1293,6 +1302,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		this.color = CardColor.COLORLESS;
 	}
 	
+	public static ArrayList<AbstractMonster> getAllMons()
+	{
+		ArrayList<AbstractMonster> mons = new ArrayList<AbstractMonster>();
+    	for (AbstractMonster monst : AbstractDungeon.getCurrRoom().monsters.monsters) { if (!monst.isDead && !monst.isDying && !monst.isDeadOrEscaped() && !monst.halfDead) { mons.add(monst); }}
+    	return mons;
+	}
 	
 	// Handle onTribute for custom relics, powers, orbs, stances, cards, potions
 	private static void handleOnTributeForAllAbstracts(DuelistCard tributed, DuelistCard tributingCard)
@@ -1332,9 +1347,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onSummon(summoned, amountSummoned); }}
 		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onSummon(summoned, amountSummoned); }}
 		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onSummon(summoned, amountSummoned); }}
-		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
-		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
-		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+		if (!DuelistMod.mirrorLadybug)
+		{
+			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
+			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
+			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+		}
+		else
+		{
+			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
+			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
+			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+		}
 		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInExhaust(summoned, amountSummoned); }}
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSummon(summoned, amountSummoned); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onSummon(summoned, amountSummoned); }
@@ -4776,6 +4800,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			MortalityPower pow = (MortalityPower)AbstractDungeon.player.getPower(MortalityPower.POWER_ID);
 			pow.triggerOnResummon();
+		}
+		
+		if (DuelistMod.mirrorLadybug)
+		{
+			AbstractDungeon.actionManager.addToBottom(new QueueCardSuperFastAction(new MirrorLadybugFixer(), target)); 
 		}
 	}
 	

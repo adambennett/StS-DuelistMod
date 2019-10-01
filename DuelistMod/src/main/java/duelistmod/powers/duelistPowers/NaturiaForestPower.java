@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistPower;
+import duelistmod.abstracts.NoStackDuelistPower;
 
 
-public class NaturiaForestPower extends DuelistPower 
+public class NaturiaForestPower extends NoStackDuelistPower 
 {
     public AbstractCreature source;
     public static final String POWER_ID = DuelistMod.makeID("NaturiaForestPower");
@@ -23,7 +23,7 @@ public class NaturiaForestPower extends DuelistPower
     public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
     ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
     
-    public NaturiaForestPower(int turns) 
+    public NaturiaForestPower() 
     {
     	this.name = NAME;
         this.ID = POWER_ID;
@@ -33,13 +33,12 @@ public class NaturiaForestPower extends DuelistPower
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = AbstractDungeon.player;
-        this.amount = turns;
 		updateDescription(); 
     }
 
     @Override
 	public void updateDescription() 
     {
-    	this.description = DESCRIPTIONS[0] + (this.amount * 10) + DESCRIPTIONS[1];
+    	this.description = DESCRIPTIONS[0];
     }
 }

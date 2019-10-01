@@ -80,7 +80,7 @@ public class DuelistCharacterSelect
             AddLoadout(new FiendDeck(), save, "10 cards");
             AddLoadout(new MachineDeck(), save, "10 cards"); 
             AddLoadout(new MagnetDeck(), save, "10 cards");
-            AddLoadout(new InsectDeck(), save, "10 cards", true);
+            AddLoadout(new InsectDeck(), save, "10 cards");
             AddLoadout(new PlantDeck(), save, "10 cards");
             AddLoadout(new PredaplantDeck(), save, "10 cards", true);
             AddLoadout(new MegatypeDeck(), save, "10 cards");
@@ -116,7 +116,7 @@ public class DuelistCharacterSelect
             AddLoadout(new FiendDeck(), save, "10 cards"); save += 5000;
             AddLoadout(new MachineDeck(), save, "10 cards"); save += 5000;
             AddLoadout(new MagnetDeck(), save, "10 cards"); save += 10000;
-            AddLoadout(new InsectDeck(), save, "10 cards", true); 
+            AddLoadout(new InsectDeck(), save, "10 cards"); 
             AddLoadout(new PlantDeck(), save, "10 cards");
             AddLoadout(new PredaplantDeck(), save, "10 cards", true); save += 10000;
             AddLoadout(new MegatypeDeck(), save, "10 cards"); save += 10000;

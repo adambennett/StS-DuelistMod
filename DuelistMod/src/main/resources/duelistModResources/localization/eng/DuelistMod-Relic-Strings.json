@@ -15,7 +15,7 @@
 			"At the start of combat, sum up the total #yTribute cost of all monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat. #ySummon #b1 #yFiend Token.",
 			"At the start of combat, #ySummon #b1 #yMachine Token, and add a random Token to your hand.",
 			"At the start of combat, #ySummon #b1 #yStance Token, gain #b3 #yVigor and gain #b2 #yBlur.",
-			"At the start of combat, #ySummon #b1 #yInsect Token and apply #b2 #yPoison to ALL enemies.",
+			"At the start of combat, #ySummon #b1 #yInsect Token and add #yBixi to your hand.",
 			"At the start of combat, #ySummon #b1 #yPlant Token and apply #b2 #yConstricted to ALL enemies.",
 			"At the start of combat, #ySummon #b1 #yPuzzle Token and gain #b2 #yThorns.",
 			"At the start of combat, #ySummon #b1 #yMegatype Token and add a random monster to your hand.",
@@ -54,7 +54,7 @@
 			"Whenever you trigger the puzzle effect, a random tribute monster is added to the total #b3 times.",
 			"Instead of random Tokens, choose #b1 of #b5 random Tokens to add to your hand at the start of combat.",
 			"At the start of each combat, gain a random amount (0-10) of #yBlock.",
-			"Apply #b2 extra #yPoison to ALL enemies at the start of each combat.",
+			"#yBixi is #yUpgraded.",
 			"Apply #b3 extra #yConstricted to ALL enemies at the start of each combat.",
 			"Instead of random monsters, choose #b1 of #b3 random monsters to add to your hand at the start of combat.",
 			"After you #yIncrement, gain #yTemporary #yHP equal to your max summons.",
@@ -280,7 +280,7 @@
 		"NAME": "Bug Token",
 		"FLAVOR": "A dirty token shaped like a beetle.",
 		"DESCRIPTIONS": [
-			"Whenever you apply #yPoison from #yTributing an #yInsect or #yPlant, add #b", " extra poison. Upon defeating Bosses and Elites, have a #b25% chance to further increase this #yPoison buff by #b1."
+			"Whenever you apply #yPoison from #yTributing an #yInsect, add #b", " extra poison. Upon defeating Bosses and Elites, have a #b25% chance to further increase this #yPoison buff by #b1."
 		]
 	},
 	"theDuelist:MachineToken": {

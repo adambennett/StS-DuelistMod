@@ -86,6 +86,21 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.randomTarget = true;
 		this.canCancel = false;
 	}
+	
+	// Inzektron
+	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, AbstractMonster m)
+	{
+		this.p = AbstractDungeon.player;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.damageBlockRandomize = false;
+		this.randomTarget = false;
+		this.target = m;
+		this.canCancel = false;
+	}
 
 	public void update()
 	{

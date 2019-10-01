@@ -34,8 +34,7 @@ public class InsectQueenNameless extends DuelistCard
 	public InsectQueenNameless() 
 	{
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-		this.magicNumber = this.baseMagicNumber = 3 + DuelistMod.namelessTombMagicMod;
-		this.decSummons = 1;
+		this.magicNumber = this.baseMagicNumber = 2;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.TRIBUTE);
 		this.tags.add(Tags.INSECT);
@@ -53,11 +52,11 @@ public class InsectQueenNameless extends DuelistCard
 		int playerSummons = xCostTribute();
 
 		// Apply poison to all enemies
-		poisonAllEnemies(p, playerSummons * this.magicNumber);
+		poisonAllEnemies(p, playerSummons * 5);
 		
 		// If unupgraded, reduce max summons by 1.
-		if (!upgraded) { decMaxSummons(p, this.decSummons); }
-		
+		decMaxSummons(p, this.magicNumber);
+
 	}
 
 	// Which card to return when making a copy of this card.
@@ -71,7 +70,7 @@ public class InsectQueenNameless extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();			
-			this.upgradeMagicNumber(1);
+			this.upgradeMagicNumber(-1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

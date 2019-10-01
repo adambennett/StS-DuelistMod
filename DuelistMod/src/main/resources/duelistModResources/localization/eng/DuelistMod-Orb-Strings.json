@@ -167,7 +167,7 @@
   },
   "theDuelist:LightOrb": {
     "DESCRIPTION": [
-      "#yPassive: Whenever you draw a #ySpell, have a 25% chance to duplicate it. NL #yEvoke: Duplicate all #ySpells in your hand."
+      "#yPassive: At the start of turn, reduce a random one of your debuffs by #b", ". NL #yEvoke: Permanently enhance your other orbs by #b", "."
     ],
     "NAME": "Light"
   },

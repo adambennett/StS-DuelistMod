@@ -42,6 +42,16 @@ public class DuelistOrb extends AbstractOrb {
 	
 	public void onDrawCard(AbstractCard drawnCard) { }
 	
+	public void lightOrbEnhance(int amt)
+	{
+		this.passiveAmount = this.originalPassive = this.originalPassive + amt;
+		this.evokeAmount = this.originalEvoke = this.originalEvoke + amt;
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID)) 
+		{
+			this.passiveAmount += AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		}
+	}
+	
 	public boolean gpcCheck()
 	{
 		AbstractPlayer p = AbstractDungeon.player;

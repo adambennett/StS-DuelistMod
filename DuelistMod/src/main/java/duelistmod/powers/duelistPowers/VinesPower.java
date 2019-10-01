@@ -67,6 +67,12 @@ public class VinesPower extends DuelistPower
 			float mod = natsSummoned * 0.3f;
 			int dmg = (int)(mod * this.amount);
 			if (p.hasRelic(NatureOrb.ID)) { dmg = (int)(dmg * 1.2f); }
+			if (p.hasPower(NaturiaForestPower.POWER_ID) && p.hasPower(StrengthPower.POWER_ID)) 
+			{
+				int amt = p.getPower(StrengthPower.POWER_ID).amount;
+				float modi = (amt/20.0f) + 1.0f;
+				dmg = (int)(dmg * modi);
+			}
 			this.amount2 = dmg;
 		}
 		else { this.amount2 = 0; }

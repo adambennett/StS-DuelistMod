@@ -10,6 +10,8 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.fourthWarriors.WhiteHowling;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.*;
+import duelistmod.cards.naturia.MultiplicationOfAnts;
 import duelistmod.helpers.Util;
 
 public class IncrementPool 

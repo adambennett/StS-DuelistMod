@@ -3352,9 +3352,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Add a copy of Great Moth to your hand after !M! more turns. NL Exhaust."
 	},
 	"theDuelist:PinchHopper": {
-		"DESCRIPTION": "Arcane NL Insect NL Summon !duelist:SUMM! NL Deal !D! damage for each Insect you currently have summoned.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal damage equal to the sum of all enemy Poison.",
 		"NAME": "Pinch Hopper",
-		"UPGRADE_DESCRIPTION": "Arcane NL Insect NL Summon !duelist:SUMM! NL Deal !D! damage for each Insect you currently have summoned."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal damage equal to the sum of all enemy Poison."
 	},
 	"theDuelist:UndergroundArachnid": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage to a random enemy. NL Gain !B! Block.",
@@ -5168,9 +5168,9 @@
 		"UPGRADE_DESCRIPTION": "Megatyped NL Summon !duelist:SUMM! NL Gain !M! Temporary HP."
 	},
 	"theDuelist:Nameless:Magic:InsectQueen": {
-		"DESCRIPTION": "Insect NL Tribute X NL Apply 3X Poison to ALL enemies. NL Reduce your max summons by !M!.",
+		"DESCRIPTION": "Insect NL Tribute X NL Apply 5X Poison to ALL enemies. NL Reduce your max summons by !M!.",
 		"NAME": "Insect Queen",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Apply 3X Poison to ALL enemies. NL Reduce your max summons by !M!."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Apply 5X Poison to ALL enemies. NL Reduce your max summons by !M!."
 	},
 	"theDuelist:Nameless:Magic:KamionTimelord": {
 		"DESCRIPTION": "Megatyped NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Weak to ALL enemies. NL Add a 0-cost copy of the last card you played to your hand. Exempt.",
@@ -5478,9 +5478,9 @@
 		"UPGRADE_DESCRIPTION": "Whenever you Summon a Naturia, Scry !M!."
 	},
 	"theDuelist:NaturiaForest": {
-		"DESCRIPTION": "Leaves generate 20% more Block.",
+		"DESCRIPTION": "Vines are affected by Strength. Leaves are affected by Dexterity.",
 		"NAME": "Naturia Forest",
-		"UPGRADE_DESCRIPTION": "Leaves generate 30% more Block."
+		"UPGRADE_DESCRIPTION": "Vines are affected by Strength. Leaves are affected by Dexterity."
 	},
 	"theDuelist:ExterioFang": {
 		"DESCRIPTION": "Tribute all non-Rocks and Resummon a random monster that costs that many Tributes.",
@@ -5903,9 +5903,9 @@
 		"UPGRADE_DESCRIPTION": "Put 1 cost, Ethereal copies of half the cards in the current card pool into your draw pile, and the other half into your discard pile."
 	},
 	"theDuelist:BeeListSoldier": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the last card played was a Spider or Bug, gain !M! Block.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the last card played was a Spider or Bug, gain !B! Block.",
 		"NAME": "Bee List Soldier",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the last card played was a Spider or Bug, gain !M! Block."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL If the last card played was a Spider or Bug, gain !B! Block."
 	},
 	"theDuelist:BiteBug": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL Draw a card.",
@@ -5943,9 +5943,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Apply !M! Poison. NL Channel a Lava."
 	},
 	"theDuelist:CobraJar": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random 0-cost Spider and Bug to your hand.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random 0-cost Spider and Bug to your hand. NL Exhaust.",
 		"NAME": "Cobra Jar",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random 0-cost Spider, Bug, and Insect to your hand."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random 0-cost Spider, Bug, and Insect to your hand. NL Exhaust."
 	},
 	"theDuelist:DarkSpider": {
 		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Channel a Dark.",
@@ -5963,9 +5963,9 @@
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Channel a Water."
 	},
 	"theDuelist:GroundSpider": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Exhaust.",
+		"DESCRIPTION": "Insect NL Increment !M!. NL Summon !duelist:SUMM! NL Exhaust.",
 		"NAME": "Ground Spider",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Increment !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Insect NL Increment !M!. NL Summon !duelist:SUMM! NL Exhaust."
 	},
 	"theDuelist:KarakuriSpider": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Increment !M! twice.",
@@ -6023,9 +6023,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add !M! Burns to your draw pile."
 	},
 	"theDuelist:DrillBug": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage (1-4) times. NL Draw a card for each attack.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage ( 1 - !M! ) times. NL Draw a card for each attack.",
 		"NAME": "Drill Bug",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage (1-4) times. NL Draw a card for each attack."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Deal !D! damage ( 1 - !M! ) times. NL Draw a card for each attack."
 	},
 	"theDuelist:GiantPairfish": {
 		"DESCRIPTION": "Giant Wyrm NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this card, reduce the Tribute cost by the number of Wyrms in play.",
@@ -6033,9 +6033,9 @@
 		"UPGRADE_DESCRIPTION": "Giant Wyrm NL Tribute !duelist:TRIB! NL Deal !D! damage. NL When you draw this card, reduce the Tribute cost by the number of Wyrms in play."
 	},
 	"theDuelist:HerculesBeetle": {
-		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M!. NL Exhaust.",
+		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Strength. NL Exhaust.",
 		"NAME": "Hercules Beetle",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M!. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Gain !M! Strength. NL Exhaust."
 	},
 	"theDuelist:Suanni": {
 		"DESCRIPTION": "Wyrm NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL Channel !M! Lava.",
@@ -6068,9 +6068,9 @@
 		"UPGRADE_DESCRIPTION": "Aqua Insect NL Tribute !duelist:TRIB! NL Channel !M! of a random water-based orb."
 	},
 	"theDuelist:Greatfly": {
-		"DESCRIPTION": "Insect NL Tribute X NL Resummon a random Insect for each Insect you Tribute.",
+		"DESCRIPTION": "Insect NL Tribute X NL Resummon X random Insects.",
 		"NAME": "Greatfly",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Resummon a random Insect for each Insect you Tribute."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Resummon X random Insects."
 	},
 	"theDuelist:InsectPrincess": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Invert your next orb twice.",
@@ -6158,9 +6158,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Apply !M! Poison. NL Exhaust. NL While Exhausted: Gain !duelist:M! Block whenever you Summon an Insect."
 	},
 	"theDuelist:Zektarrow": {
-		"DESCRIPTION": "Siphon !M! Temporary HP. NL Apply !duelist:M! Poison. NL Exhaust. NL While Exhausted: Siphon !duelist:O! Temporary HP whenever you Summon an Insect.",
+		"DESCRIPTION": "Siphon !M! Temporary HP. NL Apply !duelist:M! Poison. NL Exhaust. NL While Exhausted: Siphon !duelist:O! Temporary HP from a random enemy whenever you Summon an Insect.",
 		"NAME": "Zektarrow",
-		"UPGRADE_DESCRIPTION": "Siphon !M! Temporary HP. NL Apply !duelist:M! Poison. NL Exhaust. NL While Exhausted: Siphon !duelist:O! Temporary HP whenever you Summon an Insect."
+		"UPGRADE_DESCRIPTION": "Siphon !M! Temporary HP. NL Apply !duelist:M! Poison. NL Exhaust. NL While Exhausted: Siphon !duelist:O! Temporary HP from a random enemy whenever you Summon an Insect."
 	},
 	"theDuelist:Zektkaliber": {
 		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust. NL While Exhausted: Deal !duelist:M! damage to ALL enemies whenever you Summon an Insect.",
@@ -6168,9 +6168,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Poison. NL Exhaust. NL While Exhausted: Deal !duelist:M! damage to ALL enemies whenever you Summon an Insect."
 	},
 	"theDuelist:DarkBug": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you draw a bug with this card in hand, Channel a Dark. NL Exhaust.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you Summon a Bug with this card in hand, Channel a Dark. NL Exhaust.",
 		"NAME": "Dark Bug",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you draw a bug with this card in play, Channel a Dark. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Whenever you Summon a Bug with this card in play, Channel a Dark. NL Exhaust."
 	},
 	"theDuelist:InsectKing": {
 		"DESCRIPTION": "Insect NL Tribute X NL Apply 5X Poison to ALL enemies. NL Reduce your max summons by !M!.",
@@ -6183,9 +6183,9 @@
 		"UPGRADE_DESCRIPTION": "Insect NL Tribute X NL Apply 4X Poison to ALL enemies. NL Reduce your max summons by !M!."
 	},
 	"theDuelist:MirrorLadybug": {
-		"DESCRIPTION": "Ethereal NL Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Whenever you Summon an Insect while this card is in play, Resummon a second copy.",
+		"DESCRIPTION": "Ethereal NL Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. Reset Tribute cost to 1. NL Whenever you Summon an Insect while this card is in play, Resummon a second copy and increase the Tribute cost of this card by !M!.",
 		"NAME": "Mirror Ladybug",
-		"UPGRADE_DESCRIPTION": "Ethereal NL Insect NL Summon !duelist:SUMM! NL "
+		"UPGRADE_DESCRIPTION": "Ethereal NL Insect NL Tribute !duelist:TRIB! NL Gain !B! Block. Reset Tribute cost to 1. NL Whenever you Summon an Insect while this card is in play, Resummon a second copy and increase the Tribute cost of this card by !M!."
 	},
 	"theDuelist:PoisonousMayakashi": {
 		"DESCRIPTION": "Zombie NL Tribute X NL Apply 4X Poison split among enemies randomly.",
@@ -6228,19 +6228,44 @@
 		"UPGRADE_DESCRIPTION": "Whenever you are attacked, if you have no Insects summoned, gain !M! Thorns."
 	},
 	"theDuelist:Bixi": {
-		"DESCRIPTION": "Wyrm NL Summon !duelist:SUMM! NL Choose to gain !M! Thorns or apply !duelist:M! Poison.",
+		"DESCRIPTION": "Wyrm NL Summon !duelist:SUMM! NL Choose to gain !M! Thorns or apply !duelist:M! Poison. NL Exhaust.",
 		"NAME": "Bixi",
-		"UPGRADE_DESCRIPTION": "Wyrm NL Summon !duelist:SUMM! NL Choose to gain !M! Thorns or apply !duelist:M! Poison."
+		"UPGRADE_DESCRIPTION": "Wyrm NL Summon !duelist:SUMM! NL Choose to gain !M! Thorns or apply !duelist:M! Poison. NL Exhaust."
 	},
 	"theDuelist:ColdBlooded": {
-		"DESCRIPTION": "Retain NL Whenever this card is Retained, reduce your max summons by !M!.",
+		"DESCRIPTION": "Retain NL Whenever this card is Retained, reduce your max summons by !M!. NL Exhaust.",
 		"NAME": "Cold-Blooded",
-		"UPGRADE_DESCRIPTION": "Retain NL Whenever this card is Retained, reduce your max summons by !M!."
+		"UPGRADE_DESCRIPTION": "Retain NL Whenever this card is Retained, reduce your max summons by !M!. NL Exhaust."
 	},
 	"theDuelist:Swarm": {
 		"DESCRIPTION": "Retain NL Whenever this card is Retained, duplicate it. NL Exhaust.",
 		"NAME": "Swarm",
 		"UPGRADE_DESCRIPTION": "Retain NL Whenever this card is Retained, duplicate it. NL Exhaust."
+	},
+	"theDuelist:ChooseBugsCard": {
+		"DESCRIPTION": "Resummon !M! random Bugs.",
+		"NAME": "Bugs",
+		"UPGRADE_DESCRIPTION": "Resummon !M! random Bugs."
+	},
+	"theDuelist:ChooseSpidersCard": {
+		"DESCRIPTION": "Resummon !M! random Spiders.",
+		"NAME": "Spiders",
+		"UPGRADE_DESCRIPTION": "Resummon !M! random Spiders."
+	},
+	"theDuelist:ChoosePoisonBixi": {
+		"DESCRIPTION": "Apply !M! Poison.",
+		"NAME": "Poison",
+		"UPGRADE_DESCRIPTION": "Apply !M! Poison."
+	},
+	"theDuelist:ChooseThornsBixi": {
+		"DESCRIPTION": "Gain !M! Thorns.",
+		"NAME": "Thorns",
+		"UPGRADE_DESCRIPTION": "Gain !M! Thorns."
+	},
+	"theDuelist:MirrorLadybugFixer": {
+		"DESCRIPTION": "",
+		"NAME": "",
+		"UPGRADE_DESCRIPTION": ""
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

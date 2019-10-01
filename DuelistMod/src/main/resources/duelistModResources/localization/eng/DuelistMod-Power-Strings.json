@@ -106,7 +106,7 @@
 },
 "theDuelist:ParasitePower": {
         "NAME": "Parasite Paracide",
-        "DESCRIPTIONS": ["At the end of turn, have a chance to #ydebuff random enemies. Chances are raised with more #ysummon stacks. #yChance #yModifier: #b" ]
+        "DESCRIPTIONS": ["At the end of turn, randomly debuff ALL enemies for #b", " turn.", " turns." ]
 },
 "theDuelist:StormingMirrorPower": {
         "NAME": "Storming Mirror Force",
@@ -741,7 +741,11 @@
 },
 "theDuelist:NaturiaForestPower": {
         "NAME": "Naturia Forest",
-        "DESCRIPTIONS": ["#yLeaves generate #b", "% more #yBlock." ]
+        "DESCRIPTIONS": ["#yVines are affected by #yStrength. #yLeaves are affected by #yDexterity." ]
+},
+"theDuelist:GridRodPower": {
+        "NAME": "Grid Rod",
+        "DESCRIPTIONS": ["The first card you draw each turn has its cost reduced by #b", "." ]
 },
 "theDuelist:ResistNatureEnemyPower": {
         "NAME": "Resist Nature",
@@ -762,6 +766,26 @@
 "theDuelist:PlaceholderPower": {
         "NAME": "Placeholder",
         "DESCRIPTIONS": [""]
+},
+"theDuelist:BugMatrixPower": {
+        "NAME": "Bug Matrix",
+        "DESCRIPTIONS": ["At the start of turn, add a random #yBug to your hand. #yBugs deal #b", "% more damage." ]
+},
+"theDuelist:ForestPower": {
+        "NAME": "Forest",
+        "DESCRIPTIONS": ["#yBugs and #ySpiders deal #b", "% more damage and gain #b", "% more #yBlock." ]
+},
+"theDuelist:IgnisHeatPower": {
+        "NAME": "Ignis Heat",
+        "DESCRIPTIONS": ["At the end of turn, add #b", " #yBurn to your draw pile.", " #yBurns to your draw pile." ]
+},
+"theDuelist:SpiritualForestPower": {
+        "NAME": "Spiritual Forest",
+        "DESCRIPTIONS": ["At the start of turn, gain #yTemporary #yHP equal to your max summons." ]
+},
+"theDuelist:WallThornsPower": {
+        "NAME": "Wall of Thorns",
+        "DESCRIPTIONS": ["Whenever you are attacked, if you have no #yInsects summoned, gain #b", " #yThorns." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

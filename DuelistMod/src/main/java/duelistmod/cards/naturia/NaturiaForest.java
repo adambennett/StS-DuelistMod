@@ -37,13 +37,12 @@ public class NaturiaForest extends DuelistCard
         this.originalName = this.name;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
-        this.magicNumber = this.baseMagicNumber = 2;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new NaturiaForestPower(this.magicNumber));
+    	applyPowerToSelf(new NaturiaForestPower());
     }
 
     

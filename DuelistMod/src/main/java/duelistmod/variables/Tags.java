@@ -108,6 +108,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPLAYSPIRE;
+	@SpireEnum public static AbstractCard.CardTags REPTILE;
 	@SpireEnum public static AbstractCard.CardTags RESUMMON_DECK;
 	@SpireEnum public static AbstractCard.CardTags ROCK;
 	@SpireEnum public static AbstractCard.CardTags ROSE;

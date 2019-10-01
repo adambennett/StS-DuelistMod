@@ -50,7 +50,7 @@ public class BambooSwordGolden extends DuelistCard
     {
     	attack(m);
     	gainTempHP(this.magicNumber);
-    	AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction("theDuelist:Meditative"));
+    	DuelistCard.changeStance("theDuelist:Meditative");
     }
 
     // Which card to return when making a copy of this card.

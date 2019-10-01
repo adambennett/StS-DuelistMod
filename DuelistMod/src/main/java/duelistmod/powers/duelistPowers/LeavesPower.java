@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -96,10 +97,10 @@ public class LeavesPower extends DuelistPower
 			float mod = natsSummoned * 0.5f;
 			int dmg = (int)(mod * this.amount);
 			if (p.hasRelic(Leafblower.ID)) { dmg = (int)(dmg * 1.2f); }
-			if (p.hasPower(NaturiaForestPower.POWER_ID)) 
+			if (p.hasPower(NaturiaForestPower.POWER_ID) && p.hasPower(DexterityPower.POWER_ID)) 
 			{
-				int amt = p.getPower(NaturiaForestPower.POWER_ID).amount;
-				float modi = (amt/10) + 1;
+				int amt = p.getPower(DexterityPower.POWER_ID).amount;
+				float modi = (amt/20.0f) + 1.0f;
 				dmg = (int)(dmg * modi);
 			}
 			this.amount2 = dmg;

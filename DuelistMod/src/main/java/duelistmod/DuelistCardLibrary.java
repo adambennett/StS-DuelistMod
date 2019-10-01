@@ -25,6 +25,7 @@ import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
 import duelistmod.cards.naturia.*;
 import duelistmod.cards.orbCards.*;
+import duelistmod.cards.statuses.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
@@ -50,6 +51,12 @@ public class DuelistCardLibrary
 		}
 		
 		for (DuelistCard c : DuelistMod.myNamelessCards)
+		{
+			BaseMod.addCard(c); 		
+			UnlockTracker.unlockCard(c.getID());
+		}
+		
+		for (DuelistCard c : DuelistMod.myStatusCards)
 		{
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
@@ -960,6 +967,73 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new PoisonChain());
 		DuelistMod.myCards.add(new SlotMachine());
 
+		DuelistMod.myCards.add(new BeeListSoldier());
+		DuelistMod.myCards.add(new BiteBug());
+		DuelistMod.myCards.add(new DragonDowser());
+		DuelistMod.myCards.add(new HunterSpider());
+		DuelistMod.myCards.add(new NeoBug());
+		DuelistMod.myCards.add(new RazorLizard());
+		DuelistMod.myCards.add(new TornadoDragon());
+		DuelistMod.myCards.add(new AtomicFirefly());
+		DuelistMod.myCards.add(new CobraJar());
+		DuelistMod.myCards.add(new DarkSpider());
+		DuelistMod.myCards.add(new FirestormProminence());
+		DuelistMod.myCards.add(new Gagagigo());
+		DuelistMod.myCards.add(new GroundSpider());
+		DuelistMod.myCards.add(new KarakuriSpider());
+		DuelistMod.myCards.add(new Lightserpent());
+		DuelistMod.myCards.add(new MetalArmoredBug());
+		DuelistMod.myCards.add(new RelinquishedSpider());
+		DuelistMod.myCards.add(new ZefraMetaltron());
+		DuelistMod.myCards.add(new ReptiliannePoison());
+		DuelistMod.myCards.add(new SpiderWeb());
+		DuelistMod.myCards.add(new BugEmergency());
+		DuelistMod.myCards.add(new BeakedSnake());
+		DuelistMod.myCards.add(new BigInsect());
+		DuelistMod.myCards.add(new BlazewingButterfly());
+		DuelistMod.myCards.add(new DrillBug());
+		DuelistMod.myCards.add(new GiantPairfish());
+		DuelistMod.myCards.add(new HerculesBeetle());
+		DuelistMod.myCards.add(new Suanni());
+		DuelistMod.myCards.add(new Yazi());
+		DuelistMod.myCards.add(new Aztekipede());
+		DuelistMod.myCards.add(new BirdParadise());
+		DuelistMod.myCards.add(new Chiwen());
+		DuelistMod.myCards.add(new PoseidonBeetle());
+		DuelistMod.myCards.add(new Greatfly());
+		DuelistMod.myCards.add(new InsectPrincess());
+		DuelistMod.myCards.add(new Inzektron());
+		DuelistMod.myCards.add(new MareMare());
+		DuelistMod.myCards.add(new PoisonMummy());
+		DuelistMod.myCards.add(new ResonanceInsect());
+		DuelistMod.myCards.add(new PoisonOldMan());
+		DuelistMod.myCards.add(new BugSignal());
+		DuelistMod.myCards.add(new BugMatrix());
+		DuelistMod.myCards.add(new Forest());
+		DuelistMod.myCards.add(new Denglong());
+		DuelistMod.myCards.add(new DestructionCyclone());
+		DuelistMod.myCards.add(new GigaCricket());
+		DuelistMod.myCards.add(new GigaMantis());
+		DuelistMod.myCards.add(new HowlingInsect());
+		DuelistMod.myCards.add(new LinkSpider());
+		DuelistMod.myCards.add(new Taotie());
+		DuelistMod.myCards.add(new Zektahawk());
+		DuelistMod.myCards.add(new Zektarrow());
+		DuelistMod.myCards.add(new Zektkaliber());
+		DuelistMod.myCards.add(new DarkBug());
+		DuelistMod.myCards.add(new InsectKing());
+		DuelistMod.myCards.add(new MetamorphInsectQueen());
+		DuelistMod.myCards.add(new MirrorLadybug());
+		DuelistMod.myCards.add(new PoisonousMayakashi());
+		DuelistMod.myCards.add(new SkullMarkLadybug());
+		DuelistMod.myCards.add(new PoisonousWinds());
+		DuelistMod.myCards.add(new SpiderEgg());
+		DuelistMod.myCards.add(new IgnisHeat());
+		DuelistMod.myCards.add(new PoisonFangs());
+		DuelistMod.myCards.add(new SpiritualForest());
+		DuelistMod.myCards.add(new WallThorns());
+		DuelistMod.myCards.add(new Bixi());
+
 		//DuelistMod.myCards.add(new WightLady());		
 		
 		// NAMELESS TOMB CARDS
@@ -1009,6 +1083,11 @@ public class DuelistCardLibrary
 		DuelistMod.myNamelessCards.add(new BlueEyesNamelessWar());	
 		DuelistMod.myNamelessCards.add(new NaturalDisasterNameless());	
 		// NAMELESS TOMB CARDS
+		
+		// STATUS
+		DuelistMod.myStatusCards.add(new ColdBlooded());
+		DuelistMod.myStatusCards.add(new Swarm());
+		// STATUS
 		
 		if (DuelistMod.duelistCurses)
 		{

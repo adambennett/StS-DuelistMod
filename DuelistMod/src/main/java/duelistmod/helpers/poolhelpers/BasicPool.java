@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.insects.Solidarity;
+import duelistmod.cards.insects.*;
 import duelistmod.cards.naturia.*;
 
 public class BasicPool 

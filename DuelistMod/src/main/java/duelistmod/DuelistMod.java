@@ -26,7 +26,6 @@ import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.*;
-import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.*;
 import com.megacrit.cardcrawl.powers.*;
@@ -44,6 +43,7 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.RevivalRose;
+import duelistmod.cards.insects.GiantPairfish;
 import duelistmod.cards.tempCards.CancelCard;
 import duelistmod.characters.TheDuelist;
 import duelistmod.events.*;
@@ -57,7 +57,6 @@ import duelistmod.patches.*;
 import duelistmod.potions.*;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
-import duelistmod.powers.enemyPowers.ResistNatureEnemyPower;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.rewards.*;
@@ -250,6 +249,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> myCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> myNamelessCards = new ArrayList<DuelistCard>();
+	public static ArrayList<DuelistCard> myStatusCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> rareCards = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> rareNonPowers = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> nonPowers = new ArrayList<DuelistCard>();
@@ -338,6 +338,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean wyrmTribThisCombat = false;
 	public static boolean wasEliteCombat = false;	
 	public static boolean wasBossCombat = false;
+	public static boolean mirrorLadybug = false;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -390,7 +391,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int normalSelectDeck = -1;
 	public static int dragonStr = 1;
 	public static int toonVuln = 1;
-	public static int insectPoisonDmg = 3;
+	public static int insectPoisonDmg = 1;
 	public static int plantConstricted = 2;
 	public static int predaplantThorns = 1;	
 	public static int fiendDraw = 1;
@@ -1441,7 +1442,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//DuelistCardLibrary.setupMyCardsDebug("Fiend"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Machine"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Warrior"); fullPool = false; addBasic = false;
-		//DuelistCardLibrary.setupMyCardsDebug("Insect"); fullPool = false; addBasic = true;
+		//DuelistCardLibrary.setupMyCardsDebug("Insect"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Plant"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Predaplant"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Megatype"); fullPool = false; addBasic = true;
@@ -2548,6 +2549,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receivePostDraw(AbstractCard drawnCard) 
 	{
+		if (AbstractDungeon.player.hasPower(GridRodPower.POWER_ID))
+		{
+			GridRodPower pow = ((GridRodPower)AbstractDungeon.player.getPower(GridRodPower.POWER_ID));
+			if (pow.ready)
+			{
+				pow.trigger(drawnCard);
+			}
+		}
 		if (AbstractDungeon.player.stance instanceof DuelistStance)
 		{
 			DuelistStance stance = (DuelistStance)AbstractDungeon.player.stance;
@@ -2573,19 +2582,21 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				if (white.gpcCheck()) { white.triggerPassiveEffect(drawnCard); }
 				if (debug) { logger.info("found a White orb and a Spell/Trap card was drawn"); }
 			}
-			
-			if (orb instanceof DuelistLight && drawnCard.hasTag(Tags.SPELL) && drawnCard instanceof DuelistCard)
-			{
-				DuelistLight light = (DuelistLight)orb;
-				light.triggerPassiveEffect((DuelistCard) drawnCard);
-				if (light.gpcCheck()) { light.triggerPassiveEffect((DuelistCard) drawnCard); }
-				Util.log("Triggered Light orb with " + drawnCard.name);
-			}
 		}
 	
 		if (drawnCard.hasTag(Tags.MONSTER))
 		{
 			DuelistCard dc = (DuelistCard)drawnCard;
+			
+			if (drawnCard instanceof GiantPairfish)
+			{
+				int wyrms = 0;
+				for (AbstractCard c : AbstractDungeon.player.drawPile.group) { if (c.hasTag(Tags.WYRM)) { wyrms++; }}
+				for (AbstractCard c : AbstractDungeon.player.discardPile.group) { if (c.hasTag(Tags.WYRM)) { wyrms++; }}
+				for (AbstractCard c : AbstractDungeon.player.hand.group) { if (c.hasTag(Tags.WYRM) && !c.uuid.equals(drawnCard.uuid)) { wyrms++; }}
+				dc.modifyTributes(-wyrms);
+			}
+			
 			for (AbstractOrb orb : AbstractDungeon.player.orbs)
 			{
 				if (orb instanceof Smoke)

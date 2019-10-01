@@ -50,7 +50,7 @@ public class BambooSwordSoul extends DuelistCard
     {
     	attack(m);
     	if (this.magicNumber > 0) { damageSelfNotHP(this.magicNumber); }
-    	AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction("theDuelist:Forsaken"));
+    	DuelistCard.changeStance("theDuelist:Forsaken");
     }
 
     // Which card to return when making a copy of this card.
