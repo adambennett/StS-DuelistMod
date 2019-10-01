@@ -42,6 +42,7 @@ public class MillenniumItems extends DuelistEvent {
             case 0:
                 switch (i) {
                     case 0:
+                    	String nameOfItem = "";
                         //this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
                         this.imageEventText.updateDialogOption(0, OPTIONS[1]);
                         this.imageEventText.clearRemainingOptions();
@@ -55,7 +56,7 @@ public class MillenniumItems extends DuelistEvent {
                         	mills.add(new MillenniumSpellbook());
                         	mills.add(new Metronome());
                         	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
-                        	if (randMill instanceof AbstractCard) { randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1)); }
+                        	if (randMill instanceof AbstractCard) { nameOfItem = ((AbstractCard)randMill).name; randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1)); }
                         	
                         	if (randMill instanceof AbstractRelic)
                         	{
@@ -63,6 +64,7 @@ public class MillenniumItems extends DuelistEvent {
                                  AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), (AbstractRelic) randMill);
                         		 Util.removeRelicFromPools((AbstractRelic) randMill);
+                        		 nameOfItem = ((AbstractRelic)randMill).name;
                         	}
                         	
                         	else if (randMill instanceof AbstractPotion)
@@ -70,6 +72,7 @@ public class MillenniumItems extends DuelistEvent {
                         		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		AbstractDungeon.player.obtainPotion((AbstractPotion) randMill);
+                        		nameOfItem = ((AbstractPotion)randMill).name;
                         	}
                         	
                         	else if (randMill instanceof DuelistCard)
@@ -77,6 +80,7 @@ public class MillenniumItems extends DuelistEvent {
                         		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH * 0.6F, Settings.HEIGHT / 2.0F));
                         		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH * 0.3F, Settings.HEIGHT / 2.0F));
+                        		nameOfItem = ((AbstractCard)randMill).name;
                         	}
                         	
                         	else if (DuelistMod.debug && randMill != null)
@@ -101,6 +105,7 @@ public class MillenniumItems extends DuelistEvent {
                         		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		AbstractDungeon.player.obtainPotion((AbstractPotion) randMill);
+                        		nameOfItem = ((AbstractPotion)randMill).name;
                         	}
                         	
                         	else if (randMill instanceof DuelistCard)
@@ -108,6 +113,7 @@ public class MillenniumItems extends DuelistEvent {
                         		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH * 0.6F, Settings.HEIGHT / 2.0F));
                         		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) randMill, Settings.WIDTH * 0.3F, Settings.HEIGHT / 2.0F));
+                        		nameOfItem = ((AbstractCard)randMill).name;
                         	}
                         	
                         	else if (DuelistMod.debug && randMill != null)
@@ -115,12 +121,13 @@ public class MillenniumItems extends DuelistEvent {
                         		DuelistMod.logger.info("Millennium Items event generated a random object from the object array that wasn't a potion, relic or card? Hmm. How did that happen? The object: " + randMill.toString());
                         	}
                         }
-                        
+                        logMetric(NAME, "Took item - Received: " + nameOfItem);
                         screenNum = 1;
                         break;
                     case 1:
                         this.imageEventText.updateDialogOption(0, OPTIONS[1]);
                         this.imageEventText.clearRemainingOptions();
+                        logMetric(NAME, "Leave");
                         screenNum = 1;
                 }
                 break;

@@ -1,6 +1,7 @@
 package duelistmod.patches;
 
 import java.lang.reflect.*;
+import java.util.HashMap;
 
 import org.apache.logging.log4j.*;
 
@@ -12,6 +13,8 @@ import com.megacrit.cardcrawl.metrics.Metrics;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 
+import basemod.ReflectionHacks;
+import duelistmod.helpers.*;
 import javassist.CtBehavior;
 
 public class DuelistMetricsPatch {
@@ -66,7 +69,9 @@ public class DuelistMetricsPatch {
 
         public static void Postfix(Metrics metrics) {
             if (metrics.type == Metrics.MetricRequestType.UPLOAD_METRICS && AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
-                try {
+            	HashMap<Object, Object> par = (HashMap<Object, Object>) ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
+            	MetricsHelper.setupCustomMetrics(par);
+            	try {
                     Method m = Metrics.class.getDeclaredMethod("gatherAllDataAndSend", boolean.class, boolean.class, MonsterGroup.class);
                     m.setAccessible(true);
                     m.invoke(metrics, metrics.death, metrics.trueVictory, metrics.monsters);

@@ -89,24 +89,28 @@ public class TombNameless extends DuelistEvent {
 	                    	{
 	            				AbstractDungeon.player.loseRelic(MillenniumCoin.ID);
 	            				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), new DuelistCoin());
+	            				logMetric(NAME, "Offering - offered Millennium Coin");
 	                    	}
 	            			
 	                    	else if (this.offering instanceof ShopToken)
 	                    	{
 	                    		AbstractDungeon.player.gainGold(this.shopGoldGain);
 	                    		AbstractDungeon.player.loseRelic(ShopToken.ID);
+	                    		logMetric(NAME, "Offering - offered Shop Token");
 	                    	}
 	            			
 	                    	else if (this.offering instanceof MonsterEggRelic)
 	                    	{
 	                    		AbstractDungeon.player.loseRelic(MonsterEggRelic.ID);
 	                    		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new MonsterEggSuper(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	                    		logMetric(NAME, "Offering - offered Monster Egg Relic");
 	                    	}
 	            			
 	                    	else if (this.offering instanceof TributeEggRelic)
 	                    	{
 	                    		AbstractDungeon.player.loseRelic(TributeEggRelic.ID);
 	                    		AbstractDungeon.player.heal((int) (AbstractDungeon.player.maxHealth/2.0f));
+	                    		logMetric(NAME, "Offering - offered Tribute Egg");
 	                    	}
 	            		}
 	            		screenNum = 1;
@@ -118,6 +122,7 @@ public class TombNameless extends DuelistEvent {
 	            		this.imageEventText.clearRemainingOptions();
 	            		AbstractDungeon.player.heal(25); 	            		
 	            		AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), new CursedHealer());
+	            		logMetric(NAME, "Succumb - +25HP/Cursed Relic");
 	            		screenNum = 1;
 	            		break;
 	
@@ -129,6 +134,7 @@ public class TombNameless extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(curse, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		int rolly = AbstractDungeon.cardRandomRng.random(1, 10);
 	            		if (rolly < 3) { AbstractDungeon.player.increaseMaxHp(12, true); }
+	            		logMetric(NAME, "Worship - 20% roll at +12 Max HP");
 	            		screenNum = 1;
 	            		break;
 	
@@ -145,6 +151,7 @@ public class TombNameless extends DuelistEvent {
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c3, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));	
 	            		AbstractDungeon.player.increaseMaxHp(12, true);
+	            		logMetric(NAME, "Break - +12 Max HP");
 	            		screenNum = 1;
 	            		break;
 
@@ -154,6 +161,7 @@ public class TombNameless extends DuelistEvent {
 	            		//this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();
+	            		logMetric(NAME, "Leave");
 	            		screenNum = 1;
 	            		break;
             	}

@@ -429,7 +429,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int lastFiendBonus = 0;
 	public static int lastTurnHP = -1;
 	public static int secondLastTurnHP = -1;
-	public static int spectralDamageMult = 2;
+	public static int spectralDamageMult = 2;	
+	public static int spellsObtained = 0;
+	public static int trapsObtained = 0;
+	public static int monstersObtained = 0;	
+	public static int synergyTributesRan = 0;
+	public static int highestMaxSummonsObtained = 5;
+	public static int resummonsThisRun = 0;
 	public static int warriorTribEffectsPerCombat = 1;
 	public static int warriorTribEffectsTriggeredThisCombat = 0;
 	public static int namelessTombMagicMod = 5;
@@ -2925,6 +2931,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			hasBoosterRewardRelic = false;
 			hasShopDupeRelic = false;
 			warriorTribThisCombat = false;
+			monstersObtained = 0;
+			spellsObtained = 0;
+			trapsObtained = 0;
+			synergyTributesRan = 0;
+			highestMaxSummonsObtained = 5;
+			resummonsThisRun = 0;
+			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+			{
+				if (c.hasTag(Tags.MONSTER)) { monstersObtained++; }
+				if (c.hasTag(Tags.SPELL)) { spellsObtained++; }
+				if (c.hasTag(Tags.TRAP)) { trapsObtained++; }
+			}
 			CardCrawlGame.dungeon.initializeCardPools();
 		}
 		else if (!shouldFill)

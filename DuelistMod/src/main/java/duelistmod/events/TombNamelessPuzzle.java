@@ -135,6 +135,7 @@ public class TombNamelessPuzzle extends DuelistEvent
 	    		{
 	    			this.imageEventText.updateDialogOption(0, leave);
             		this.imageEventText.clearRemainingOptions();
+            		logMetric(NAME, "Final Spent Points -- Magic: " + magicInc + ", Power: " + powerInc + ", Greed: " + greedInc + ", War: " + warInc + ", Hunger: " + hungerInc);
             		screenNum = -10;
 	    		}
 	    	}				
@@ -161,6 +162,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				AbstractDungeon.player.masterDeck.addToTop(randCurse);
     				AbstractDungeon.player.masterDeck.addToTop(randCurseB);
     				AbstractDungeon.player.masterDeck.addToTop(randCurseC);
+    				logMetric(NAME, "Magic Reward Received - Level " + magicInc);
     			}
     			else if (magicInc == 2)
     			{
@@ -173,6 +175,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randCurse, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randCurseB, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randMagic, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+    				logMetric(NAME, "Magic Reward Received - Level " + magicInc);
     			}
     			else if (magicInc == 3)
     			{
@@ -182,6 +185,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				if (randMagic == null) { randMagic = Util.getSpecialMagicCardForNamelessTomb(); }
        				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randCurse, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randMagic, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+    				logMetric(NAME, "Magic Reward Received - Level " + magicInc);
     			}
     			else
     			{
@@ -189,6 +193,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				AbstractCard randMagic = this.lvl4Magic;
     				if (randMagic == null) { randMagic = Util.getSpecialMagicCardForNamelessTomb(); }
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randMagic, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+    				logMetric(NAME, "Magic Reward Received - Level " + magicInc);
     			}
     			break;
     		
@@ -202,6 +207,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				while (randMagic.canUpgrade()) { randMagic.upgrade(); }
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randMagic, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
     				AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS));
+    				logMetric(NAME, "Power Reward Received - Level " + powerInc);
     			}
     			else if (powerInc == 2)
     			{
@@ -210,6 +216,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				if (r == null) { r = new NamelessPowerRelicA(); }
     				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
     				AbstractDungeon.player.loseGold(AbstractDungeon.cardRandomRng.random(10, 75));
+    				logMetric(NAME, "Power Reward Received - Level " + powerInc);
     			}
     			else if (powerInc == 3)
     			{
@@ -218,6 +225,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				if (r == null) { r = new NamelessPowerRelicB(); }
     				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
     				AbstractDungeon.player.decreaseMaxHealth(4);
+    				logMetric(NAME, "Power Reward Received - Level " + powerInc);
     			}
     			else
     			{
@@ -225,6 +233,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				AbstractCard randMagic = this.lvl4Power;
     				if (randMagic == null) { randMagic = Util.getSpecialPowerCardForNamelessTomb(); }
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randMagic, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+    				logMetric(NAME, "Power Reward Received - Level " + powerInc);
     			}
     			break;
     			
@@ -235,11 +244,13 @@ public class TombNamelessPuzzle extends DuelistEvent
     				Util.log("Got Greed Reward #1");
     				AbstractDungeon.player.gainGold(250);
     				AbstractDungeon.player.decreaseMaxHealth(6);
+    				logMetric(NAME, "Greed Reward Received - Level " + greedInc);
     			}
     			else if (greedInc == 2)
     			{
     				Util.log("Got Greed Reward #2");
     				duelistGreedReward();
+    				logMetric(NAME, "Greed Reward Received - Level " + greedInc);
     			}
     			else if (greedInc == 3)
     			{
@@ -249,6 +260,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
     				AbstractCard randCurse = CardLibrary.getCurse();
 					AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(randCurse, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+					logMetric(NAME, "Greed Reward Received - Level " + greedInc);
     			}
     			else
     			{
@@ -256,6 +268,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				AbstractCard randMagic = this.lvl4Greed;
     				if (randMagic == null) { randMagic = Util.getSpecialGreedCardForNamelessTomb(); }
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randMagic, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+    				logMetric(NAME, "Greed Reward Received - Level " + greedInc);
     			}
     			break;
     			
@@ -273,13 +286,14 @@ public class TombNamelessPuzzle extends DuelistEvent
     					AbstractCard randCurse = CardLibrary.getCurse();
     					AbstractDungeon.topLevelEffects.add(new FastCardObtainEffect(randCurse, (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
     				}
-    				
+    				logMetric(NAME, "Hunger Reward Received - Level " + hungerInc);
     			}
     			else if (hungerInc == 2)
     			{
     				Util.log("Got Hunger Reward #2");
     				AbstractDungeon.player.increaseMaxHp(20, true);
     				AbstractDungeon.player.damage(new DamageInfo(null, 45, DamageInfo.DamageType.HP_LOSS));
+    				logMetric(NAME, "Hunger Reward Received - Level " + hungerInc);
     			}
     			else if (hungerInc == 3)
     			{
@@ -288,13 +302,15 @@ public class TombNamelessPuzzle extends DuelistEvent
     				if (r == null) { r = new NamelessHungerRelic(); }
     				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
     				AbstractDungeon.player.damage(new DamageInfo(null, 10, DamageInfo.DamageType.HP_LOSS));
+    				logMetric(NAME, "Hunger Reward Received - Level " + hungerInc);
     			}
     			else
     			{
     				Util.log("Got Hunger Reward #4");
     				int maxHPRoll = AbstractDungeon.cardRandomRng.random(1, 20);    				
     				Util.log("Nameless Tomb : Pharaoh Hunger : MaxHP=" + maxHPRoll);
-    				AbstractDungeon.player.increaseMaxHp(maxHPRoll, true);    				
+    				AbstractDungeon.player.increaseMaxHp(maxHPRoll, true);    		
+    				logMetric(NAME, "Hunger Reward Received - Level " + hungerInc);
     			}
     			break;
     			
@@ -307,6 +323,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				if (r == null) { r = new NamelessWarRelicA(); }
     				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
     				AbstractDungeon.player.damage(new DamageInfo(null, (int) (AbstractDungeon.player.maxHealth * 0.15), DamageInfo.DamageType.HP_LOSS));
+    				logMetric(NAME, "War Reward Received - Level " + warInc);
     			}
     			else if (warInc == 2)
     			{
@@ -319,6 +336,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				percentage = (0.1f * percentage);
     				AbstractDungeon.player.loseGold((int) (AbstractDungeon.player.gold * percentage));
     				Util.log("War Reward #2 - percentage=" + percentage + ", roll=" + origi);
+    				logMetric(NAME, "War Reward Received - Level " + warInc);
     			}
     			else if (warInc == 3)
     			{
@@ -327,6 +345,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				if (r == null) { r = new NamelessWarRelicC(); }
     				AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
     				AbstractDungeon.player.decreaseMaxHealth(10);
+    				logMetric(NAME, "War Reward Received - Level " + warInc);
     			}
     			else
     			{
@@ -334,6 +353,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     				AbstractCard randMagic = this.lvl4War;
     				if (randMagic == null) { randMagic = Util.getSpecialWarCardForNamelessTomb(); }
     				AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(randMagic, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+    				logMetric(NAME, "War Reward Received - Level " + warInc);
     			}
     			break;
     	}
@@ -360,6 +380,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     	if (points > 8) { points = ThreadLocalRandom.current().nextInt(2, 20); }
     	if (points == 20) { points = ThreadLocalRandom.current().nextInt(10, 20); }
     	//if (points > 20) { points = 20; }
+    	logMetric(NAME, "Points at Start - " + points);
     }
     
     private int checkMagicAllowed()
@@ -419,6 +440,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     	Util.log("Nameless Tomb - Magic Total Score: " + totalScore + " -- You need a 26 or higher to enable the Magic Option");
     	if (totalScore > 30) { this.magicAllowed = true; }
     	else { this.magicAllowed = false; }
+    	logMetric(NAME, "Magic Score - " + totalScore);
     	return totalScore;
     }
     

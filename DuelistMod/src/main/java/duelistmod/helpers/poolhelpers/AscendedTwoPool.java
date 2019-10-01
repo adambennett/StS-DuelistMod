@@ -17,15 +17,13 @@ public class AscendedTwoPool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
-		pools.add(DragonPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(DragonPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
 		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());

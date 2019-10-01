@@ -17,15 +17,13 @@ public class AscendedOnePool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
-		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(FiendPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
 		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());

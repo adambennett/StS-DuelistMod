@@ -114,6 +114,8 @@ public class SummonPower extends AbstractPower
 		{
 			for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock); }}
 		}
+		
+		if (MAX_SUMMONS > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = MAX_SUMMONS; }
 	}
 	
 	@Override

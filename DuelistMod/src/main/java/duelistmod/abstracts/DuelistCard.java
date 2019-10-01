@@ -4116,6 +4116,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			if (AbstractDungeon.player.hasRelic(MillenniumScale.ID)) { gainTempHP(3); }
 			handleOnSynergyForAllAbstracts();
+			DuelistMod.synergyTributesRan++;
 		}
 	}
 	
@@ -4454,6 +4455,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			 DuelistMod.lastMaxSummons = amount; 
 		}
+		
+		if (DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
 
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -4592,6 +4595,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				doomPow.flash();
 			}
 		}
+		
+		if (DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
 
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -4649,6 +4654,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== RESUMMON FUNCTIONS =========================================================================================================================================================
 	public void checkResummon()
 	{
+		DuelistMod.resummonsThisRun++;
 		AbstractPlayer p = AbstractDungeon.player;
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onResummon(this); }}
 		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onResummon(this); }}

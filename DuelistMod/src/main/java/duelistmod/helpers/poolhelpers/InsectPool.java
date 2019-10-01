@@ -24,13 +24,11 @@ public class InsectPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
 		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
@@ -53,13 +51,11 @@ public class InsectPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
 		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
