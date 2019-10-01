@@ -58,7 +58,8 @@ public class MetricsHelper
 		par.put("number_of_monsters", DuelistMod.monstersObtained);
 		par.put("total_synergy_tributes", DuelistMod.synergyTributesRan);
 		par.put("highest_max_summons", DuelistMod.highestMaxSummonsObtained);
-		par.put("number_of_resummons", DuelistMod.resummonsThisRun);		
+		par.put("number_of_resummons", DuelistMod.resummonsThisRun);	
+		par.put("bonus_deck_stats", DuelistMod.bonusUnlockHelper.logMetrics());
 	}
 	
 }
