@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.monsters.SetoKaiba;
+import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.powers.enemyPowers.EnemySummonsPower;
@@ -67,9 +66,9 @@ public class HeavyStorm extends DuelistCard
 	    			int amt = mon.getPower(EnemySummonsPower.POWER_ID).amount;
 	    			DuelistCard.removePower(mon.getPower(EnemySummonsPower.POWER_ID), mon);
 	    			summonsRemoved += amt;
-	    			if (mon instanceof SetoKaiba)
+	    			if (mon instanceof DuelistMonster)
 	    			{
-	    				SetoKaiba kaiba = (SetoKaiba)mon;
+	    				DuelistMonster kaiba = (DuelistMonster)mon;
 	    				kaiba.triggerHandReset();
 	    			}
 	    		}

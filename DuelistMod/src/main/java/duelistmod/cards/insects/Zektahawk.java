@@ -37,7 +37,7 @@ public class Zektahawk extends DuelistCard
         this.originalName = this.name;
         this.baseBlock = this.block = 10;
         this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 5;
+        this.baseMagicNumber = this.magicNumber = 7;
         this.baseSecondMagic = this.secondMagic = 2;
         this.misc = 0;
         this.tags.add(Tags.SPELL);

@@ -5,52 +5,60 @@
       "#yPassive: At the start of turn: Deal #b",
 	  " damage to ALL enemies NL Gain #b",
 	  " #yBlock NL Gain [R] NL #yEvoke: ", 
-	  "Gain [R] [R] NL Evoke effect cycles to the next Gate effect at the end of each turn.", 
-	  "Gain #b", " #yBlock. NL Evoke effect cycles to the next Gate effect at the end of each turn.", 
-	  "Deal #b", " damage to ALL enemies. NL Evoke effect cycles to the next Gate effect at the end of each turn."
+	  "Gain [R] [R] NL Evoke effect cycles to the next Gate effect at the end of each turn. NL NL #bInversion: #bMillenniumOrb", 
+	  "Gain #b", " #yBlock. NL Evoke effect cycles to the next Gate effect at the end of each turn. NL NL #bInversion: #bMillenniumOrb", 
+	  "Deal #b", " damage to ALL enemies. NL Evoke effect cycles to the next Gate effect at the end of each turn. NL NL #bInversion: #bMillenniumOrb"
     ]
   },
   "theDuelist:Buffer": {
     "NAME": "Buffer",
     "DESCRIPTION": [
       "#yPassive: At the start of turn, have a chance to increase all of your buffs by #b", 
-	  ". You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain 1 Buffer."
+	  ". You have a higher chance if all monsters summoned are #ySpellcasters. NL #yEvoke: Gain 1 Buffer. NL #bInversion: #bReducer"
     ]
   },
   "theDuelist:MonsterOrb": {
     "NAME": "MonsterOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yMonster #yEgg to your hand. NL #yEvoke: Change the cost of #b", " random monster in your hand to 0 for this turn.", " #yMonster #yEggs to your hand. NL #yEvoke: Change the cost of #b", " random monsters in your hand to 0 for this turn."
+      "#yPassive: At the start of turn, add #b", 
+	  " #yMonster #yEgg to your hand. NL #yEvoke: Change the cost of #b", 
+	  " random monster in your hand to 0 for this turn. NL #bInversion: #bTokenOrb", 
+	  " #yMonster #yEggs to your hand. NL #yEvoke: Change the cost of #b", 
+	  " random monsters in your hand to 0 for this turn. NL #bInversion: #bTokenOrb"
     ]
   },
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn."
+      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn. NL #bInversion: #bDragonOrb+"
     ]
   },
    "theDuelist:DragonPlusOrb": {
     "NAME": "DragonOrb+",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn."
+      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn. NL #bInversion: #bDragonOrb"
     ]
   },
   "theDuelist:ReducerOrb": {
     "NAME": "Reducer",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, increase this orb's evoke amount by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0.", " random cards in your hand to 0."
+      "#yPassive: At the start of turn, increase this orb's evoke amount by #b", ". NL #yEvoke: Change the cost of #b", " random card in your hand to 0. NL #bInversion: #bBuffer", " random cards in your hand to 0. NL #bInversion: #bBuffer"
     ]
   },
   "theDuelist:Earth": {
     "NAME": "Earth",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #ySpells to your hand. NL #yEvoke: Change the cost of #b", " random #ySpell in your hand to 0 for this turn.", " random #ySpells in your hand to 1 for this turn.", " #yRandomized #ySpell to your hand. NL #yEvoke: Change the cost of #b"
+      "#yPassive: At the start of turn, add #b",
+	  " #yRandomized #ySpells to your hand. NL #yEvoke: Change the cost of #b", 
+	  " random #ySpell in your hand to 0 for this turn. NL #bInversion: #bMud", 
+	  " random #ySpells in your hand to 1 for this turn. NL #bInversion: #bMud", 
+	  " #yRandomized #ySpell to your hand. NL #yEvoke: Change the cost of #b"
     ]
   },
   "theDuelist:Air": {
     "NAME": "Air",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons.", " NL #yEvoke: Gain #b", " #yOrb slot. NL Air is unaffected by #yFocus.", " #yOrb slots. NL Air is unaffected by #yFocus."
+      "#yPassive: At the start of turn, have a chance to #yChannel a random offensive #yOrb. You have a higher chance if all monsters summoned are #yDragons.", " NL #yEvoke: Gain #b", " #yOrb slot. NL Air is unaffected by #yFocus. NL NL #bInversion: #bSmoke", " #yOrb slots. NL Air is unaffected by #yFocus. NL NL #bInversion: #bSmoke"
     ]
   },
   "theDuelist:Black": {
@@ -59,19 +67,23 @@
       "#yPassive: At the start of turn, discard #b", 
 	  " random card from your draw pile. NL #yEvoke: Deal #b", 
 	  " random cards from your draw pile. NL #yEvoke: Deal #b",
-	  " damage to ALL enemies for each card in your discard pile."
+	  " damage to ALL enemies for each card in your discard pile. NL #bInversion: #bWhite"
     ]
   },
   "theDuelist:FireOrb": {
     "NAME": "Fire",
     "DESCRIPTION": [
-      "#yPassive: Whenever you play a card, deal #b", " damage to a random enemy. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b", " for this combat."
+      "#yPassive: Whenever you play a card, deal #b", " damage to a random enemy. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b", " for this combat. NL #bInversion: #bWater"
     ]
   },
   "theDuelist:Glitch": {
     "NAME": "Glitch",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, trigger #b", " random effects. NL #yEvoke: Trigger #b", " random effect. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ", " random effects. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL "
+      "#yPassive: At the start of turn, trigger #b", 
+	  " random effects. NL #yEvoke: Trigger #b",
+	  " random effect. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ", 
+	  " random effects. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ",
+	  " NL NL #bInversion: #bGadget"
     ]
   },
   "theDuelist:Shadow": {
@@ -79,40 +91,40 @@
     "DESCRIPTION": [
       "#yPassive: Whenever you #yResummon, deal #b",
 	  " damage to ALL enemies. NL #yEvoke: #yResummon #b",
-	  " random monster from your discard pile on a random enemy.",
-	  " random monsters from your discard pile on random enemies."
+	  " random monster from your discard pile on a random enemy. NL #bInversion: #bLight",
+	  " random monsters from your discard pile on random enemies. NL #bInversion: #bLight"
     ]
   },
   "theDuelist:Splash": {
     "NAME": "Splash",
     "DESCRIPTION": [
-	  "#yPassive: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b", " damage and apply #yWeak to ALL enemies. NL #yEvoke: Increase the #ySummons of monsters (everywhere) by #b", " for this combat."
+	  "#yPassive: Whenever you trigger an #yOverflow effect or play a monster with 3 or more #ySummons, deal #b", " damage and apply #yWeak to ALL enemies. NL #yEvoke: Increase the #ySummons of monsters (everywhere) by #b", " for this combat. NL #bInversion: #bHellfire"
     ]
   },
   "theDuelist:Blaze": {
     "NAME": "Blaze",
     "DESCRIPTION": [
-	 "#yPassive: Whenever you #yTribute, deal #b", " damage to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled."
+	 "#yPassive: Whenever you #yTribute, deal #b", " damage to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled. NL #bInversion: #bMist"
     ]
   },
   "theDuelist:Consumer": {
     "NAME": "Consumer",
     "DESCRIPTION": [
-	  "#yPassive: Whenever you #yExhaust a card, #yEvoke another random orb. NL #yEvoke: For each orb that was Evoked by this orb, gain #b", " Energy at the start of next turn."
+	  "#yPassive: Whenever you #yExhaust a card, #yEvoke another random orb. NL #yEvoke: For each orb that was Evoked by this orb, gain #b", " Energy at the start of next turn. NL #bInversion: #bSummoner"
     ]
   },
   "theDuelist:Gadget": {
     "NAME": "Gadget",
     "DESCRIPTION": [
 	  "#yPassive: At the start of turn, gain #b", " #yDexterity until the end of turn. NL #yEvoke: Play #b",
-	  " random #ySkill you have played this combat on a random enemy.",
-	  " random #ySkills you have played this combat on a random enemy."
+	  " random #ySkill you have played this combat on a random enemy. NL #bInversion: #bGlitch",
+	  " random #ySkills you have played this combat on a random enemy. NL #bInversion: #bGlitch"
     ]
   },
   "theDuelist:Lava": {
     "NAME": "Lava",
     "DESCRIPTION": [
-	  "#yPassive: Whenever you #yIncrement, deal #b", " damage to ALL enemies. NL #yEvoke: Deal #b", " damage to a random enemy for each card in your hand."
+	  "#yPassive: Whenever you #yIncrement, deal #b", " damage to ALL enemies. NL #yEvoke: Deal #b", " damage to a random enemy for each card in your hand. NL #bInversion: #bFrost"
     ]
   },
   "theDuelist:MillenniumOrb": {
@@ -124,25 +136,25 @@
   "theDuelist:Metal": {
     "NAME": "Metal",
     "DESCRIPTION": [
-	  "#yPassive: At the end of turn, gain #yBlock equal to half the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", "."
+	  "#yPassive: At the end of turn, gain #yBlock equal to half the number of #ySpells played this combat plus #b", ". NL #yEvoke: Gain #yMetallicize #b", ". NL #bInversion: #bSurge"
     ]
   },
   "theDuelist:Mud": {
     "NAME": "Mud",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, apply #b", " #yPoison to ALL enemies. NL #yEvoke: Gain #b", " #yThorns."
+	  "#yPassive: At the start of turn, apply #b", " #yPoison to ALL enemies. NL #yEvoke: Gain #b", " #yThorns. NL #bInversion: #bEarth"
     ]
   },
   "theDuelist:Mist": {
     "NAME": "Mist",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, #yIncrement #b", ". NL #yEvoke: Deal #b", " damage to a random enemy for each of your max summons."
+	  "#yPassive: At the start of turn, #yIncrement #b", ". NL #yEvoke: Deal #b", " damage to a random enemy for each of your max summons. NL #bInversion: #bBlaze"
     ]
   },
   "theDuelist:Sand": {
     "NAME": "Sand",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, apply #b", " #ySlow to a random enemy. NL #yEvoke: Apply #b", " #ySlow to ALL enemies."
+	  "#yPassive: At the start of turn, apply #b", " #ySlow to a random enemy. NL #yEvoke: Apply #b", " #ySlow to ALL enemies. NL #bInversion: #bGlass"
     ]
   },
   "theDuelist:Smoke": {
@@ -150,56 +162,63 @@
     "DESCRIPTION": [
 	  "#yPassive: Whenver you draw a monster, increase its damage by #b",
 	  ". NL #yEvoke: Sum the energy and tribute cost of all cards in your hand. Deal damage to ALL enemies equal to #b",
-	  "x this sum."
+	  "x this sum. NL #bInversion: #bAir"
     ]
   },
   "theDuelist:Storm": {
     "NAME": "Storm",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, add a #yRandomized Power card to your hand. NL #yEvoke: Gain #b", " of the Storm buff."
+	  "#yPassive: At the start of turn, add a #yRandomized Power card to your hand. NL #yEvoke: Gain #b", " of the Storm buff. NL #bInversion: #bLightning"
     ]
   },
   "theDuelist:Summoner": {
     "NAME": "Summoner",
     "DESCRIPTION": [
-      "#yPassive: At the end of turn, #ySummon #b", " Spellcaster Token. NL #yEvoke: #yIncrement #b", ".", " Spellcaster Tokens. NL #yEvoke: #yIncrement #b"
+      "#yPassive: At the end of turn, #ySummon #b",
+	  " Spellcaster Token. NL #yEvoke: #yIncrement #b", 
+	  ". NL #bInversion: #bConsumer", 
+	  " Spellcaster Tokens. NL #yEvoke: #yIncrement #b"
     ]
   },
   "theDuelist:LightOrb": {
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, reduce a random one of your debuffs by #b", ". NL #yEvoke: Permanently enhance your other orbs by #b", "."
+      "#yPassive: At the start of turn, reduce a random one of your debuffs by #b", ". NL #yEvoke: Permanently enhance your other orbs by #b", ". NL #bInversion: #bShadow"
     ],
     "NAME": "Light"
   },
   "theDuelist:CrystalOrb": {
     "DESCRIPTION": [
       "#yPassive: At the start of turn, gain #b",
-      " #yFocus until end of turn. NL #yEvoke: Apply #yWeak to a random enemy #b", " time(s)."
+      " #yFocus until end of turn. NL #yEvoke: Apply #yWeak to a random enemy #b", " time(s). NL #bInversion: #bAnticrystal"
     ],
     "NAME": "Crystal"
   },
   "theDuelist:HellfireOrb": {
     "DESCRIPTION": [
       "#yPassive: At the start of turn, gain #b",
-      " #yStrength until end of turn. NL #yEvoke: Apply #yVulnerable to a random enemy #b", " time(s)."
+      " #yStrength until end of turn. NL #yEvoke: Apply #yVulnerable to a random enemy #b", " time(s). NL #bInversion: #bSplash"
     ],
     "NAME": "Hellfire"
   },
    "theDuelist:GlassOrb": {
     "DESCRIPTION": [
-      "#yPassive: No effect. NL #yEvoke: Gain #yStrength equal to a random enemy's #yStrength. NL Glass is unaffected by #yFocus."
+      "#yPassive: No effect. NL #yEvoke: Gain #yStrength equal to a random enemy's #yStrength. NL Glass is unaffected by #yFocus. NL NL #bInversion: #bSand"
     ],
     "NAME": "Glass"
   },
   "theDuelist:TokenOrb": {
     "NAME": "TokenOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " random #yToken to your hand. NL #yEvoke: Change the cost of #b", " random monster in your hand to 0 for this turn.", " random #yTokens to your hand. NL #yEvoke: Change the cost of #b", " random monsters in your hand to 0 for this turn."
+      "#yPassive: At the start of turn, add #b",
+	  " random #yToken to your hand. NL #yEvoke: Change the cost of #b",
+	  " random monster in your hand to 0 for this turn. NL #bInversion: #bMonsterOrb",
+	  " random #yTokens to your hand. NL #yEvoke: Change the cost of #b", 
+	  " random monsters in your hand to 0 for this turn. NL #bInversion: #bMonsterOrb"
     ]
   },
    "theDuelist:WhiteOrb": {
     "DESCRIPTION": [
-      "#yPassive: Whenever you draw a Spell or Trap, #yUpgrade it. NL #yEvoke: #yUpgrade all cards in your hand."
+      "#yPassive: Whenever you draw a Spell or Trap, #yUpgrade it. NL #yEvoke: #yUpgrade all cards in your hand. NL #bInversion: #bBlack"
     ],
     "NAME": "White"
   },
@@ -207,8 +226,8 @@
     "DESCRIPTION": [
       "#yPassive: At the start of turn, siphon #b",
       " #yTemporary #yHP from a random enemy. NL #yEvoke: Play #b",
-	  " Dark Hole.",
-	  " Dark Holes."
+	  " Dark Hole. NL #bInversion: #bAlien",
+	  " Dark Holes. NL #bInversion: #bAlien"
     ],
     "NAME": "Void"
   },
@@ -217,15 +236,15 @@
      "#yPassive: At the start of turn: Draw #b",
 	  " card NL Gain #b",
 	  " #yTemp #yHP NL Add a #yRandomized #ySpell to your hand. NL #yEvoke: ", 
-	  "Add #b2 #yRandomized #ySpells to your hand. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn.", 
-	  "Draw #b", " cards. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn.", 
-	  "Gain #b", " #yTemp #yHP. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn."
+	  "Add #b2 #yRandomized #ySpells to your hand. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn. NL NL #bInversion: #bCrystal", 
+	  "Draw #b", " cards. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn. NL NL #bInversion: #bCrystal", 
+	  "Gain #b", " #yTemp #yHP. NL Evoke effect cycles to the next Anticrystal effect at the end of each turn. NL NL #bInversion: #bCrystal"
     ],
     "NAME": "Anticrystal"
   },
    "theDuelist:Surge": {
     "DESCRIPTION": [
-      "#yPassive: Whenever you #ySummon, gain #b", " Block. NL #yEvoke: Draw and discard #b", " cards."
+      "#yPassive: Whenever you #ySummon, gain #b", " Block. NL #yEvoke: Draw and discard #b", " cards. NL #bInversion: #bMetal"
     ],
     "NAME": "Surge"
   },
@@ -254,33 +273,27 @@
 	"theDuelist:Alien": {
     "DESCRIPTION": [
       "#yPassive: Whenever you play a card, draw #b", 
-	  " card and discard a random card. NL #yEvoke: Discard your hand and draw a card for each card discarded.",
-	  " cards and discard a random card. NL #yEvoke: Discard your hand and draw a card for each card discarded."
+	  " card and discard a random card. NL #yEvoke: Discard your hand and draw a card for each card discarded. NL #bInversion: #bVoid",
+	  " cards and discard a random card. NL #yEvoke: Discard your hand and draw a card for each card discarded. NL #bInversion: #bVoid"
     ],
     "NAME": "Alien"
   },
 	"theDuelist:Moon": {
     "DESCRIPTION": [
-      "#yPassive: Whenever you draw a #yTribute monster, #yUpgrade it. NL #yEvoke: Gain #b", " #yBlock."
+      "#yPassive: Whenever you draw a #yTribute monster, #yUpgrade it. NL #yEvoke: Gain #b", " #yBlock. NL #bInversion: #bSun"
     ],
     "NAME": "Moon"
   },
   "theDuelist:Sun": {
     "DESCRIPTION": [
-      "#yPassive: Whenever you draw a #ySummon monster, #yUpgrade it. NL #yEvoke: Deal #b", " damage to ALL enemies."
+      "#yPassive: Whenever you draw a #ySummon monster, #yUpgrade it. NL #yEvoke: Deal #b", " damage to ALL enemies. NL #bInversion: #bMoon"
     ],
     "NAME": "Sun"
-  },
-  "theDuelist:Robot": {
-    "DESCRIPTION": [
-      "#yPassive: Whenever you shuffle your deck, heal, gain gold, use a potion, change your #yStance or add a card to your hand, deal #b", " damage to a random enemy. NL #yEvoke: Trigger one of the passive effects at random."
-    ],
-    "NAME": "Robot"
   },
   "theDuelist:WaterOrb": {
     "NAME": "Water",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, draw #b1 card. NL #yEvoke: Draw #b", " cards. NL Water is unaffected by #yFocus."
+      "#yPassive: At the start of turn, draw #b1 card. NL #yEvoke: Draw #b", " cards. NL Water is unaffected by #yFocus. NL NL #bInversion: #bFire"
     ]
   }
 }

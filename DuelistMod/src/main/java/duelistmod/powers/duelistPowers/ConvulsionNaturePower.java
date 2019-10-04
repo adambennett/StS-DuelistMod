@@ -19,7 +19,7 @@ public class ConvulsionNaturePower extends DuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     //public static final String IMG = DuelistMod.makePowerPath("ConvulsionNaturePower.png");
-    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("ConvulsionNaturePower.png");
     
 	public ConvulsionNaturePower(int amt)
 	{ 

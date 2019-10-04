@@ -194,7 +194,6 @@ public class BaseGameHelper
         toFill.add(new Tantrum());
         toFill.add(new ThirdEye());
         toFill.add(new Tranquility());
-        toFill.add(new Unraveling());
         toFill.add(new Vault());
         toFill.add(new Vigilance());
         toFill.add(new Wallop());

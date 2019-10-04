@@ -135,8 +135,8 @@ public class Glitch extends DuelistOrb
 			for (String s : lastTurnActions) { actionString += s + ", "; }
 			int endingIndex = actionString.lastIndexOf(",");
 	        String finalActionString = actionString.substring(0, endingIndex) + ".";
-	        if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + finalActionString; }
-			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + finalActionString; }
+	        if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + finalActionString + DESC[4]; }
+			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + finalActionString + DESC[4]; }
 		}
 		else if (lastTurnActions.size() >= 2)
 		{
@@ -144,13 +144,13 @@ public class Glitch extends DuelistOrb
 			for (String s : lastTurnActions) { actionString += s + ", "; }
 			int endingIndex = actionString.lastIndexOf(",");
 	        String finalActionString = actionString.substring(0, endingIndex) + ".";
-	        if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + finalActionString; }
-			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + finalActionString; }
+	        if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + finalActionString + DESC[4]; }
+			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + finalActionString + DESC[4]; }
 		} 
 		else
 		{
-			if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + "None."; }
-			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + "None."; }
+			if (this.evokeAmount < 2) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2] + "None." + DESC[4]; }
+			else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3] + "None." + DESC[4]; }
 		}
 	}
 

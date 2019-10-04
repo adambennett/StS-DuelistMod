@@ -394,4 +394,16 @@ public class TheDuelist extends CustomPlayer {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public static String getDuelist()
+	{
+		boolean isDragonDeck = false;
+		//boolean isToonDeck = false;
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Dragon Deck")) { isDragonDeck = true; }
+		//if (deck.equals("Toon Deck")) { isToonDeck = true; }
+		//if (isToonDeck) { return "Pegasus"; }
+		if (isDragonDeck || DuelistMod.playAsKaiba) { return "Kaiba"; }
+		else { return "Yugi"; }
+	}
 }

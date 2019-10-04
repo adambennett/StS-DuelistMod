@@ -37,7 +37,6 @@ public class BasicInsect extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 5;
         this.summons = this.baseSummons = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
@@ -53,7 +52,6 @@ public class BasicInsect extends DuelistCard
     {
     	summon();
     	block();
-    	applyPower(new PoisonPower(m, p, this.magicNumber), m);
     }
 
     // Which card to return when making a copy of this card.

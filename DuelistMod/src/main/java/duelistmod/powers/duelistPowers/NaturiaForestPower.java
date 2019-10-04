@@ -20,7 +20,7 @@ public class NaturiaForestPower extends NoStackDuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     //public static final String IMG = DuelistMod.makePowerPath("NaturiaForestPower.png");
-    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("NaturiaForestPower.png");
     ArrayList<AbstractCard> modCards = new ArrayList<AbstractCard>();
     
     public NaturiaForestPower() 

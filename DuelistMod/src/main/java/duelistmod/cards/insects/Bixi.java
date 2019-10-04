@@ -30,7 +30,7 @@ public class Bixi extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -39,7 +39,7 @@ public class Bixi extends DuelistCard
     public Bixi() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 2;
-        this.secondMagic = this.baseSecondMagic = 4;
+        this.secondMagic = this.baseSecondMagic = 3;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WYRM);
@@ -55,7 +55,7 @@ public class Bixi extends DuelistCard
     	summon();
     	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
     	choices.add(new ChooseThornsBixi(this.magicNumber));
-    	choices.add(new ChoosePoisonBixi(this.secondMagic));
+    	choices.add(new ChoosePoisonBixi(this.secondMagic, m));
     	this.addToBot(new CardSelectScreenResummonAction(choices, 1, m));
     }
 

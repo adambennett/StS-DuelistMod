@@ -36,7 +36,7 @@ public class Denglong extends DuelistCard
 
     public Denglong() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 16;
+        this.baseDamage = this.damage = 15;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tributes = this.baseTributes = 6;
         this.tags.add(Tags.MONSTER);
@@ -64,6 +64,7 @@ public class Denglong extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

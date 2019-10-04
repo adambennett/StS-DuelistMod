@@ -9,6 +9,17 @@
       "[Leave]"
     ]
   },
+  "theDuelist:ValleyKings": {
+    "NAME": "Valley of Kings",
+    "DESCRIPTIONS": [
+      "A deserted valley..."
+    ],
+    "OPTIONS": [
+      "[Exchange] #gObtain #ga #gSpecial #gPot. #rLose #r",
+	  ".",
+      "[Leave]"
+    ]
+  },
   "theDuelist:PharoahRoom": {
     "NAME": "Pharoah Room",
     "DESCRIPTIONS": [
@@ -82,7 +93,7 @@
     ]
   },
   "theDuelist:TombNamelessPuzzle": {
-    "NAME": "Tomb of the Nameless",
+    "NAME": "Nameless Tomb",
     "DESCRIPTIONS": [
       ""
     ],
@@ -114,6 +125,22 @@
 	  "[Duelist War] #gReceive #gStrength #gRelic. #rLose #r30%-70% #rGold.",
 	  "[Ascended War] #gReceive #gTribute #gMonster #gRelic. #rLose #r10 #rMax #rHP.",
 	  "[Pharaoh War] #gReceive #gEnraged #gDuelist #gCard."
+    ]
+  },
+  "theDuelist:BattleCity": {
+    "NAME": "Battle City",
+    "DESCRIPTIONS": [
+      "Jutting from the chaotic terrain around you, a bony sphere surrounds a mysterious glowing object within. NL While you are curious what lies inside, you see that none other than Seto Kaiba himself is keeping an eye on it.",
+      "As soon as you strike the sphere, Seto laughs mischievously.",
+      "No need to be greedy.",
+	  "Jutting from the chaotic terrain around you, a bony sphere surrounds a mysterious glowing object within. NL While you are curious what lies inside, you see that none other than Yugi Muto himself is keeping an eye on it.",
+      "As soon as you strike the sphere, Yugi grins mischievously. Do you believe in the Heart of the Cards?"
+    ],
+    "OPTIONS": [
+      "[Open Sphere] #rFight #rSeto. #gReward: #g3 #gRare #gRelics.",
+      "[Leave]",
+      "[Fight]",
+	  "[Open Sphere] #rFight #rYugi. #gReward: #g3 #gRare #gRelics."
     ]
   },
   "theDuelist:EgyptVillage": {

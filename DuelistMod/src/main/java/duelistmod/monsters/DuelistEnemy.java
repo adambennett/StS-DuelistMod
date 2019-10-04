@@ -6,23 +6,28 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster.EnemyType;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.helpers.*;
 import duelistmod.powers.enemyPowers.EnemyMiraclePower;
 
-public class KaibaA1 extends DuelistMonster
+public class DuelistEnemy extends DuelistMonster
 {
 	
-	public static final String ID = DuelistMod.makeID("KaibaA1"); // Monster ID (remember the prefix - yourModID:DefaultMonster)
-	private static final MonsterStrings monsterstrings = CardCrawlGame.languagePack.getMonsterStrings(ID); // Grab the string
+	public static final String ID = DuelistMod.makeID("KaibaA2"); 
+	public static final String ID_YUGI = DuelistMod.makeID("YugiEnemy");
+	private static final MonsterStrings monsterstrings = CardCrawlGame.languagePack.getMonsterStrings(ID); 
+	private static final MonsterStrings monsterstrings_YUGI = CardCrawlGame.languagePack.getMonsterStrings(ID_YUGI); 
 
-	public static final String NAME = monsterstrings.NAME; // The name of the monster
-	public static final String[] MOVES = monsterstrings.MOVES; // The names of the moves
-	public static final String[] DIALOG = monsterstrings.DIALOG; // The dialogue (if any)
+	public static final String NAME = monsterstrings.NAME; 
+	public static final String NAME_YUGI = monsterstrings_YUGI.NAME; 
+	public static final String[] MOVES = monsterstrings.MOVES;
+	public static final String[] MOVES_YUGI = monsterstrings_YUGI.MOVES; 
+	public static final String[] DIALOG = monsterstrings.DIALOG; 
+	public static final String[] DIALOG_YUGI = monsterstrings_YUGI.DIALOG; 
 	
 	private static final float HB_X = 0.0F;     
 	private static final float HB_Y = -25.0F; 
@@ -48,18 +53,48 @@ public class KaibaA1 extends DuelistMonster
 	private DuelistCard yamata;
 	private DuelistCard mirage;
 	private DuelistCard dragonwing;
+	private DuelistCard darkMagician;
+	private DuelistCard neoMagic;
+	private DuelistCard sSkull;
 	
-	public KaibaA1() 
+	private boolean kaiba = true;
+	
+	private static String getName()
 	{
-		super(NAME, ID, 50, HB_X, HB_Y, HB_W, HB_H, "KaibaModel2", HP_MIN, HP_MAX, A7_HP_MIN, A7_HP_MAX);
+		int deckCode = 0;
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Dragon Deck")) { deckCode = 1; }
+		else if (deck.equals("Spellcaster Deck")) { deckCode = 3; }
+		DuelistMod.getEnemyDuelistModel(deckCode);
+		if (DuelistMod.monsterIsKaiba) { Util.log("Kaiba/Yugi monsters is gonna return " + NAME + " as a Name"); return NAME; }
+		else { Util.log("Kaiba/Yugi monsters is gonna return " + NAME_YUGI + " as a Name"); return NAME_YUGI; }
+	}
+	
+	private static String getID()
+	{
+		int deckCode = 0;
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Dragon Deck")) { deckCode = 1; }
+		else if (deck.equals("Spellcaster Deck")) { deckCode = 3; }
+		DuelistMod.getEnemyDuelistModel(deckCode);
+		if (DuelistMod.monsterIsKaiba) { Util.log("Kaiba/Yugi monsters is gonna return " + ID + " as an ID"); return ID; }
+		else { Util.log("Kaiba/Yugi monsters is gonna return " + ID_YUGI + " as an ID"); return ID_YUGI; }
+	}
+
+	public DuelistEnemy() 
+	{
+		super(getName(), getID(), 50, HB_X, HB_Y, HB_W, HB_H, DuelistMod.kaibaEnemyModel, HP_MIN, HP_MAX, A7_HP_MIN, A7_HP_MAX);
+		this.kaiba = DuelistMod.monsterIsKaiba;
 		this.setHands(initHands());
 		ArrayList<String> dialog = new ArrayList<String>();
-		for (String s : DIALOG) { dialog.add(s); }
+		if (kaiba) { for (String s : DIALOG) { dialog.add(s); }}
+		else { for (String s : DIALOG_YUGI) { dialog.add(s); }}
 		this.setupDialog(dialog);
 		this.type = EnemyType.ELITE;
 		this.cardDialogMin = 3;
 		this.cardDialogMax = 8;
-		this.startingToken = "Dragon Token";
+		if (kaiba) { this.startingToken = "Dragon Token"; }
+		else { this.startingToken = "Spellcaster Token"; }
 		this.overflowDialog = this.dialog.get(2);
 		this.lowWeightHandIndex = 7;
 		this.sparks = new Sparks();		
@@ -76,6 +111,9 @@ public class KaibaA1 extends DuelistMonster
 		this.yamata = new YamataDragon();
 		this.mirage = new MirageDragon();
 		this.dragonwing = new ExploderDragonwing();
+		this.darkMagician = new DarkMagician();
+		this.neoMagic = new NeoMagic();
+		this.sSkull = new SummonedSkull();
 		this.miracle.upgrade();
 		this.totem.upgrade();
 		this.redmed.upgrade();
@@ -84,6 +122,262 @@ public class KaibaA1 extends DuelistMonster
 	
 	@Override
 	protected ArrayList<AbstractCard> getHandMove()
+	{
+		if (kaiba) { return kaibaMoves(); }
+		else { return yugiMoves(); }
+	}
+	
+	private ArrayList<ArrayList<String>> initHands()
+	{
+		if (kaiba) { return getKaibaHands(); }
+		else { return getYugiHands(); }
+	}
+
+	@Override
+	public void onUseDestructPotion() 
+	{
+		this.possibleHands.get(3).clear();
+		if (kaiba)
+		{
+			this.possibleHands.get(3).add("Beserker Crush");
+			this.possibleHands.get(3).add("Lesser Dragon");
+			this.possibleHands.get(3).add("Cave Dragon");
+			this.possibleHands.get(3).add("Labyrinth Wall");
+			this.possibleHands.get(3).add("Golden Apples");
+		}
+		else
+		{
+			this.possibleHands.get(3).add("Forbidden Lance");
+			this.possibleHands.get(3).add("Neo the Magic Swordsman");
+			this.possibleHands.get(3).add("Red Medicine");
+			this.possibleHands.get(3).add("#yRight #yArm");
+			this.possibleHands.get(3).add("Golden Apples");
+		}
+	}
+	
+	private ArrayList<AbstractCard> yugiMoves()
+	{
+		ArrayList<AbstractCard> moveCards = new ArrayList<AbstractCard>();
+		int summons = getSummons();
+		//boolean hasLambs = hasLambs();
+		int moveRoll = AbstractDungeon.aiRng.random(1, 5);
+		switch (this.handIndex)
+		{
+		case 0:
+			if (moveRoll == 1 && summons > 0)
+			{
+				moveCards.add(new NeoMagic());
+				moveCards.add(new DarkMagician());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK, this.darkMagician.damage + this.neoMagic.damage);
+			}
+			else if (moveRoll == 1)
+			{
+				moveCards.add(new NeoMagic());
+				moveCards.add(new MysticalElf());
+				moveCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.neoMagic.damage);
+			}
+			else if (moveRoll == 2)
+			{
+				moveCards.add(new ExodiaLL());
+				moveCards.add(new NeoMagic());
+				moveCards.add(new MysticalElf());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.neoMagic.damage);
+			}
+			else if (moveRoll == 3)
+			{
+				moveCards.add(new ExodiaLL());
+				moveCards.add(new NeoMagic());
+				moveCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.neoMagic.damage);
+			}
+			else if (moveRoll == 4)
+			{
+				moveCards.add(new MysticalElf());
+				moveCards.add(new DarkMagician());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.darkMagician.damage);
+			}
+			else if (moveRoll == 5)
+			{
+				moveCards.add(new ExodiaLL());
+				moveCards.add(new DarkMagician());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.darkMagician.damage);
+			}
+			break;
+		case 1:
+			if (summons > 0)
+			{
+				moveCards.add(new ExodiaRL());
+				moveCards.add(new PreventRat());
+				moveCards.add(new Sparks());
+				moveCards.add(new MillenniumShield());
+				this.setMove((byte)2, Intent.ATTACK_BUFF, this.sparks.damage);
+			}
+			else if (moveRoll == 1)
+			{
+				moveCards.add(new ExodiaRL());
+				moveCards.add(new PreventRat());
+				moveCards.add(new Sparks());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage);
+			}
+			else if (moveRoll == 2)
+			{
+				moveCards.add(new Sparks());
+				moveCards.add(new ExodiaRL());
+				moveCards.add(new SummonedSkull());
+				overflowCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage + this.sSkull.damage);
+			}
+			else
+			{
+				moveCards.add(new Sparks());
+				moveCards.add(new PreventRat());
+				moveCards.add(new SummonedSkull());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage + this.sSkull.damage);
+			}
+			break;
+		case 2:						
+			if (moveRoll == 5)
+			{
+				moveCards.add(new SwordsRevealing());
+				this.setMove((byte)2, Intent.MAGIC);
+			}
+			else if (summons > 0 && moveRoll > 2)
+			{
+				moveCards.add(new MysticalElf());
+				moveCards.add(new DarkMagician());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, new DarkMagician().damage);
+			}
+			else if (summons > 0 && moveRoll < 3)
+			{
+				moveCards.add(new CelticGuardian());
+				moveCards.add(new DarkMagician());
+				this.setMove((byte)2, Intent.ATTACK, new DarkMagician().damage + new CelticGuardian().damage);
+			}
+			else
+			{
+				moveCards.add(new CelticGuardian());
+				moveCards.add(new MysticalElf());
+				moveCards.add(new ExodiaLA());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, new ExodiaLA().damage + new CelticGuardian().damage);
+			}
+			break;
+		case 3:
+			if (!this.destructUsed && this.summonsThisCombat > 2 && summons > 0)
+			{
+				moveCards.add(new ForbiddenLance());
+				moveCards.add(new DestructPotion());
+				moveCards.add(new GoldenApples());
+				this.setMove((byte)2, Intent.ATTACK_BUFF, new ForbiddenLance().damage);
+			}
+			else
+			{
+				if (this.destructUsed)
+				{
+					int roll = AbstractDungeon.aiRng.random(1, 5);
+					if (roll == 1)
+					{
+						moveCards.add(new ForbiddenLance());
+						moveCards.add(new GoldenApples());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, new ForbiddenLance().damage);
+					}
+					else if (roll == 2)
+					{
+						moveCards.add(new RedMedicine());
+						moveCards.add(new NeoMagic());
+						moveCards.add(new GoldenApples());
+						this.setMove((byte)2, Intent.ATTACK_BUFF, new NeoMagic().damage);
+					}
+					else if (roll == 3)
+					{
+						moveCards.add(new ExodiaRA());
+						moveCards.add(new NeoMagic());
+						moveCards.add(new RedMedicine());
+						this.setMove((byte)2, Intent.ATTACK_BUFF, new NeoMagic().damage + new ExodiaRA().damage);
+					}
+					else if (roll == 4)
+					{
+						moveCards.add(new ExodiaRA());
+						moveCards.add(new NeoMagic());
+						moveCards.add(new GoldenApples());
+						this.setMove((byte)2, Intent.ATTACK_DEFEND, new NeoMagic().damage + new ExodiaRA().damage);
+					}
+					else
+					{
+						moveCards.add(new ForbiddenLance());
+						moveCards.add(new NeoMagic());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, new ForbiddenLance().damage + new NeoMagic().damage);
+					}				
+				}
+				else
+				{
+					int roll = AbstractDungeon.aiRng.random(1, 3);
+					if (roll == 1)
+					{
+						moveCards.add(new ForbiddenLance());
+						moveCards.add(new GoldenApples());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, new ForbiddenLance().damage);
+					}
+					else if (roll == 2)
+					{
+						moveCards.add(new ExodiaRA());
+						moveCards.add(new NeoMagic());
+						moveCards.add(new GoldenApples());
+						this.setMove((byte)2, Intent.ATTACK_DEFEND, new NeoMagic().damage + new ExodiaRA().damage);
+					}
+					else
+					{
+						moveCards.add(new ForbiddenLance());
+						moveCards.add(new NeoMagic());
+						this.setMove((byte)2, Intent.ATTACK_DEBUFF, new ForbiddenLance().damage + new NeoMagic().damage);
+					}				
+				}
+			}
+			break;
+		case 4:	
+			if (exodiaHeadDmg(new ExodiaHead()) > 0 && summons > 1) 
+			{
+				moveCards.add(new ExodiaHead());
+				moveCards.add(new PowerWall());
+				moveCards.add(new LabyrinthWall());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, exodiaHeadDmg(new ExodiaHead()));
+			}
+			else if (exodiaHeadDmg(new ExodiaHead()) > 0) 
+			{
+				moveCards.add(new ExodiaHead());
+				moveCards.add(new PowerWall());
+				moveCards.add(new CelticGuardian());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, exodiaHeadDmg(new ExodiaHead()) + new CelticGuardian().damage);
+			}
+			else if (summons > 0)
+			{
+				moveCards.add(new CelticGuardian());
+				moveCards.add(new LabyrinthWall());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, new CelticGuardian().damage);
+			}
+			else 
+			{
+				moveCards.add(new CelticGuardian());
+				moveCards.add(new SummonedSkull());
+				moveCards.add(new PowerWall());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, new CelticGuardian().damage + sSkull.damage);
+			}
+			break;
+		default:
+			moveCards.add(new GoldenApples());
+			moveCards.add(new GoldenApples());
+			moveCards.add(new SilverApples());
+			this.setMove((byte)2, Intent.MAGIC);
+			break;
+		}
+		return moveCards;
+	}
+	
+	private ArrayList<AbstractCard> kaibaMoves()
 	{
 		ArrayList<AbstractCard> moveCards = new ArrayList<AbstractCard>();
 		int summons = getSummons();
@@ -246,7 +540,7 @@ public class KaibaA1 extends DuelistMonster
 			}
 			break;
 		case 3:
-			if (!this.destructUsed && this.summonsThisCombat > 2)
+			if (!this.destructUsed && this.summonsThisCombat > 2 && summons > 0)
 			{
 				moveCards.add(new LesserDragon());
 				moveCards.add(new DestructPotion());
@@ -666,45 +960,62 @@ public class KaibaA1 extends DuelistMonster
 			}
 			break;
 		default:
-			switch (moveRoll)
-			{
-				case 1:
-					moveCards.add(new GoldenApples());
-					moveCards.add(new GoldenApples());
-					moveCards.add(new SilverApples());
-					this.setMove((byte)2, Intent.MAGIC);
-					break;
-				case 2:
-					moveCards.add(new GoldenApples());
-					moveCards.add(new GoldenApples());
-					moveCards.add(new SilverApples());
-					this.setMove((byte)2, Intent.MAGIC);
-					break;
-				case 3:
-					moveCards.add(new GoldenApples());
-					moveCards.add(new GoldenApples());
-					moveCards.add(new SilverApples());
-					this.setMove((byte)2, Intent.MAGIC);
-					break;
-				case 4:
-					moveCards.add(new GoldenApples());
-					moveCards.add(new GoldenApples());
-					moveCards.add(new SilverApples());
-					this.setMove((byte)2, Intent.MAGIC);
-					break;
-				case 5:
-					moveCards.add(new GoldenApples());
-					moveCards.add(new GoldenApples());
-					moveCards.add(new SilverApples());
-					this.setMove((byte)2, Intent.MAGIC);
-					break;
-			}
+			moveCards.add(new GoldenApples());
+			moveCards.add(new GoldenApples());
+			moveCards.add(new SilverApples());
+			this.setMove((byte)2, Intent.MAGIC);
 			break;
 		}
 		return moveCards;
 	}
 	
-	private ArrayList<ArrayList<String>> initHands()
+	private ArrayList<ArrayList<String>> getYugiHands()
+	{
+		ArrayList<ArrayList<String>> newHands = new ArrayList<ArrayList<String>>();
+		ArrayList<String> hand0 = new ArrayList<String>();
+		ArrayList<String> hand1 = new ArrayList<String>();
+		ArrayList<String> hand2 = new ArrayList<String>();
+		ArrayList<String> hand3 = new ArrayList<String>();
+		ArrayList<String> hand4 = new ArrayList<String>();
+		hand0.add("Dark Magician");
+		hand0.add("Neo the Magic Swordsman");
+		hand0.add("Mystical Elf");
+		hand0.add("Prevent Rat");
+		hand0.add("#yLeft #yLeg");    	
+
+		hand1.add("Sparks");
+		hand1.add("#yRight #yLeg");
+		hand1.add("Prevent Rat");
+		hand1.add("Summoned Skull"); 
+		hand1.add("Millennium Shield");
+
+		hand2.add("Dark Magician"); 
+		hand2.add("Celtic Guardian");
+		hand2.add("Mystical Elf");
+		hand2.add("#yLeft #yArm");
+		hand2.add("Swords of Revealing Light");
+
+		hand3.add("Forbidden Lance");
+		hand3.add("Neo the Magic Swordsman");
+		hand3.add("Destruct Potion");
+		hand3.add("#yRight #yArm"); 
+		hand3.add("Golden Apples");
+		
+		hand4.add("Summoned Skull");
+		hand4.add("Labyrinth Wall");
+		hand4.add("Celtic Guardian");
+		hand4.add("#yHead #yof #yExodia"); 
+		hand4.add("Power Wall");
+		
+		newHands.add(hand0);
+		newHands.add(hand1);
+		newHands.add(hand2);
+		newHands.add(hand3);
+		newHands.add(hand4);
+		return newHands;
+	}
+	
+	private ArrayList<ArrayList<String>> getKaibaHands()
 	{
 		ArrayList<ArrayList<String>> newHands = new ArrayList<ArrayList<String>>();
 		ArrayList<String> hand0 = new ArrayList<String>();
@@ -805,17 +1116,6 @@ public class KaibaA1 extends DuelistMonster
 		newHands.add(hand10);
 		newHands.add(hand11);
 		return newHands;
-	}
-
-	@Override
-	public void onUseDestructPotion() 
-	{
-		this.possibleHands.get(3).clear();
-		this.possibleHands.get(3).add("Beserker Crush");
-		this.possibleHands.get(3).add("Lesser Dragon");
-		this.possibleHands.get(3).add("Cave Dragon");
-		this.possibleHands.get(3).add("Labyrinth Wall");
-		this.possibleHands.get(3).add("Golden Apples");
 	}
 
 }

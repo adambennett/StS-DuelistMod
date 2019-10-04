@@ -5,23 +5,25 @@ import java.util.*;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.*;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
-import com.megacrit.cardcrawl.cards.colorless.Trip;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.actions.common.DuelistMonsterDrawHandAction;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.*;
+import duelistmod.powers.SwordsRevealPower;
 import duelistmod.powers.enemyPowers.*;
 import duelistmod.variables.Tags;
 
@@ -338,6 +340,22 @@ public abstract class DuelistMonster extends AbstractMonster
 		if (playerBlock > 0) { AbstractDungeon.player.addBlock(playerBlock); }
 	}
 	
+	public static void staticAttack(int amt, AbstractCreature owner, boolean exodia)
+	{
+		int dmg = applyDmgPowers(amt, owner);
+		if (exodia)
+		{
+			AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_HEAVY"));
+			AbstractDungeon.actionManager.addToBottom(new VFXAction(new LaserBeamEffect(owner.hb.cX, owner.hb.cY + 60.0f * Settings.scale), 1.5f));
+		}
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, new DamageInfo(owner, dmg), AttackEffect.SLASH_HEAVY)); 
+	}
+	
+	public static void staticAttack(int amt, AbstractCreature owner)
+	{
+		staticAttack(amt, owner, false);
+	}
+	
 	private void attack(int amount)
 	{
 		int dmg = localApplyDmgPowers(amount);
@@ -383,6 +401,35 @@ public abstract class DuelistMonster extends AbstractMonster
 		}
 	}
 	
+	public int getExodiaDamage()
+	{
+		if (this.hasPower(EnemyExodiaPower.POWER_ID))
+		{
+			EnemyExodiaPower pow = (EnemyExodiaPower)this.getPower(EnemyExodiaPower.POWER_ID);
+			return pow.effectDmg;
+		}
+		else { return 0; }
+	}
+	
+	private boolean exodiaHeadDmgCheck()
+	{
+		if (this.hasPower(EnemyExodiaPower.POWER_ID))
+		{
+			EnemyExodiaPower pow = (EnemyExodiaPower)this.getPower(EnemyExodiaPower.POWER_ID);
+			return pow.checkForAllPiecesButHead();
+		}
+		else { return false; }
+	}
+	
+	public int exodiaHeadDmg(AbstractCard head)
+	{
+		if (exodiaHeadDmgCheck()) 
+		{
+			return head.magicNumber;
+		}
+		else { return 0; }
+	}
+	
 	public void incMaxSummons(int amount)
 	{
 		if (this.hasPower(EnemySummonsPower.POWER_ID))
@@ -405,6 +452,55 @@ public abstract class DuelistMonster extends AbstractMonster
 		AbstractPlayer p = AbstractDungeon.player;
 		if (this.hasPower(StrengthPower.POWER_ID)) { dmg+=this.getPower(StrengthPower.POWER_ID).amount; }
 		if (this.hasPower(WeakPower.POWER_ID)) 
+		{ 
+			if (p.hasRelic("Paper Crane"))
+			{
+				dmg = (int) (dmg * 0.6F); 
+			}
+			else
+			{
+				dmg = (int) (dmg * 0.75F); 
+			}
+			
+		}
+		
+		if (p.hasPower(SlowPower.POWER_ID))
+		{
+			int amt = p.getPower(SlowPower.POWER_ID).amount;
+			float temp = dmg * (1.0F + amt * 0.1F);
+			dmg = (int)temp;
+		}
+		
+		if (p.hasPower(VulnerablePower.POWER_ID)) 
+		{ 
+			if (p.hasRelic("Odd Mushroom"))
+			{
+				dmg = (int) (dmg * 1.25F);
+			}
+			else if (p.hasRelic("Paper Frog"))
+			{
+				dmg = (int) (dmg * 1.75F);
+			}
+			else
+			{
+				dmg = (int) (dmg * 1.5F);
+			}
+		}
+		
+		if (p.hasPower(IntangiblePlayerPower.POWER_ID))
+		{
+			dmg = 1;
+		}
+		
+		return dmg;
+	}
+	
+	public static int applyDmgPowers(int baseDamage, AbstractCreature owner)
+	{
+		int dmg = baseDamage;
+		AbstractPlayer p = AbstractDungeon.player;
+		if (owner.hasPower(StrengthPower.POWER_ID)) { dmg+=owner.getPower(StrengthPower.POWER_ID).amount; }
+		if (owner.hasPower(WeakPower.POWER_ID)) 
 		{ 
 			if (p.hasRelic("Paper Crane"))
 			{
@@ -478,6 +574,23 @@ public abstract class DuelistMonster extends AbstractMonster
 		else { this.rollMessage++; return false; }
 	}
 	
+	private void exodiaAction(DuelistCard card)
+	{
+		if (this.hasPower(EnemyExodiaPower.POWER_ID))
+    	{
+    		if (this.getPower(EnemyExodiaPower.POWER_ID).amount > 0)
+    		{
+    			EnemyExodiaPower power = (EnemyExodiaPower)this.getPower(EnemyExodiaPower.POWER_ID);
+    			power.addNewPiece(card);
+    		}
+    		else
+    		{
+    			DuelistCard.applyPower(new EnemyExodiaPower(this, this, card), this);
+    		}
+    	}
+    	else { DuelistCard.applyPower(new EnemyExodiaPower(this, this, card), this); }
+	}
+	
 	private void takeCardAction(AbstractCard c)
 	{
 		if (c instanceof DarkCubicLord)
@@ -486,37 +599,7 @@ public abstract class DuelistMonster extends AbstractMonster
 			DuelistCard ref = new DarkCubicLord();
 			DuelistCard.applyPower(new StrengthPower(this, ref.magicNumber), this);
 		}
-		
-		if (c instanceof Overworked)
-		{
-			
-		}
-		
-		if (c instanceof MeteorDestruction)
-		{
-			
-		}
-		
-		if (c instanceof Trip)
-		{
-			
-		}
-		
-		if (c instanceof SummonedSkull)
-		{
-			
-		}
-		
-		if (c instanceof ForbiddenLance)
-		{
-			
-		}
-		
-		if (c instanceof ObeliskTormentor)
-		{
-			
-		}
-		
+	
 		if (c instanceof BlueEyesToon)
 		{
 			tribute(2, true, true, false);
@@ -586,28 +669,6 @@ public abstract class DuelistMonster extends AbstractMonster
 			block(new Illusionist().block);
 		}
 		
-		if (c instanceof Kuribohrn)
-		{
-			
-		}
-		
-		if (c instanceof MangaRyuRan)
-		{
-			
-		}
-		
-		/*
-		if (c instanceof MillenniumEyesRestrict)
-		{
-			
-		}
-		
-		if (c instanceof MillenniumEyesIllusionist)
-		{
-			
-		}
-		*/
-		
 		if (c instanceof MillenniumShield)
 		{
 			DuelistCard ms = new MillenniumShield();
@@ -620,78 +681,93 @@ public abstract class DuelistMonster extends AbstractMonster
 			summon("Kuriboh Token");
 		}
 		
+		if (c instanceof ForbiddenLance)
+		{
+			DuelistCard ref = new ForbiddenLance();
+			attack(ref.damage);
+			DuelistCard.applyPower(new VulnerablePower(AbstractDungeon.player, ref.magicNumber, true), AbstractDungeon.player);
+			DuelistCard.applyPower(new VulnerablePower(AbstractDungeon.player, ref.magicNumber, true), AbstractDungeon.player);
+		}
+		
+		if (c instanceof SummonedSkull)
+		{
+			DuelistCard ms = new SummonedSkull();
+			tribute(ms.tributes, false, false, false);
+			attack(ms.damage);
+		}
+		
 		if (c instanceof MysticalElf)
 		{
-			
+			summon("Mystical Elf");
+			block(new MysticalElf().block);
 		}
 		
 		if (c instanceof NeoMagic)
 		{
-			
+			summon("Neo the Magic Swordsman");
+			attack(new NeoMagic().damage);
 		}
 		
-		if (c instanceof RedEyesToon)
+		if (c instanceof DarkMagician)
 		{
-			
+			DuelistCard ms = new DarkMagician();
+			tribute(ms.tributes, false, false, false);
+			attack(ms.damage);
 		}
 		
-		if (c instanceof Scapegoat)
+		if (c instanceof CelticGuardian)
 		{
-			
-		}
-		
-		if (c instanceof SliferSky)
-		{
-			
+			summon("Celtic Guardian");
+			attack(new CelticGuardian().damage);
 		}
 		
 		if (c instanceof SwordsRevealing)
 		{
-			
-		}
-		
-		if (c instanceof ToonAncientGear)
-		{
-			
-		}
-		
-		if (c instanceof ToonBarrelDragon)
-		{
-			
-		}
-		
-		if (c instanceof ToonCannonSoldier)
-		{
-			
-		}
-		
-		/*
-		if (c instanceof ToonGoblin)
-		{
-			
-		}
-		*/
-		
-		if (c instanceof ToonKingdom)
-		{
-			
-		}
-		
-		if (c instanceof ToonMask)
-		{
-			
-		}
-		
-		if (c instanceof ToonMermaid)
-		{
-			
-		}
-		
-		if (c instanceof ToonSummonedSkull)
-		{
-			
+			DuelistCard sword = new SwordsRevealing();
+			DuelistCard.applyPower(new SwordsRevealPower(this, this, sword.magicNumber), this);
 		}
 
+		if (c instanceof ExodiaHead)
+		{
+			if (this.hasPower(EnemyExodiaPower.POWER_ID))
+			{
+				EnemyExodiaPower powerInstance = (EnemyExodiaPower)this.getPower(EnemyExodiaPower.POWER_ID);
+				if (powerInstance.checkForAllPiecesButHead())
+				{
+					powerInstance.addNewPiece(new ExodiaHead());
+					powerInstance.headDamage(c.magicNumber);
+				}
+			}
+		}
+		
+		if (c instanceof ExodiaRA)
+		{
+			summon("#yRight #yArm");
+			attack(new ExodiaRA().damage);
+	    	exodiaAction(new ExodiaRA());
+		}
+		
+		if (c instanceof ExodiaLA)
+		{
+			summon("#yLeft #yArm");
+			attack(new ExodiaLA().damage);
+	    	exodiaAction(new ExodiaLA());
+		}
+		
+		if (c instanceof ExodiaLL)
+		{
+			summon("#yLeft #yLeg");
+			block(new ExodiaLL().block);
+	    	exodiaAction(new ExodiaLL());
+		}
+		
+		if (c instanceof ExodiaRL)
+		{
+			summon("#yRight #yLeg");
+			block(new ExodiaRL().block);
+	    	exodiaAction(new ExodiaRL());
+		}
+		
 		if (c instanceof GoldenApples)
 		{
 			int blk = localApplyBlkPowers(this.summonsThisCombat);
@@ -956,9 +1032,7 @@ public abstract class DuelistMonster extends AbstractMonster
 			attack(12);
 			DuelistCard.applyPowerToSelf(DebuffHelper.getRandomPlayerDebuff(AbstractDungeon.player, 3));
 		}
-		
-
-		
+			
 		if (c instanceof RedMedicine)
 		{
 			int roll = AbstractDungeon.aiRng.random(1, 8);
@@ -1009,7 +1083,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		{
 			if (this.dialog.size() > 0)
 			{
-				int dialogRoll = AbstractDungeon.aiRng.random(this.cardDialogMin, this.cardDialogMax);
+				int dialogRoll = AbstractDungeon.aiRng.random(this.dialog.size() - 1);
 				AbstractDungeon.actionManager.addToBottom(new TalkAction(this, this.dialog.get(dialogRoll), 0.5F, 2.0F));
 			}
 		}

@@ -16,8 +16,8 @@ public class SpiritualForestPower extends NoStackDuelistPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
-	
+    public static final String IMG = DuelistMod.makePowerPath("SpiritualForestPower.png");
+	private boolean ready = false;
 	public SpiritualForestPower() 
 	{ 
 		this.name = NAME;
@@ -34,7 +34,8 @@ public class SpiritualForestPower extends NoStackDuelistPower
 	@Override
 	public void atStartOfTurn()
 	{
-		DuelistCard.gainTempHP(DuelistCard.getMaxSummons(AbstractDungeon.player));
+		if (!ready) { DuelistCard.gainTempHP(DuelistCard.getMaxSummons(AbstractDungeon.player)); ready = true; }
+		else { ready = false; }
 	}
 
 	@Override

@@ -18,8 +18,8 @@ public class BoosterBetterBoostersRelic extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("BoosterBetterBoostersRelic");
-	 public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-	    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+	public static final String IMG = DuelistMod.makeRelicPath("BoosterRelic.png");
+	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 
 	public BoosterBetterBoostersRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);

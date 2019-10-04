@@ -27,7 +27,7 @@ public class GreyGreedOni extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -38,8 +38,9 @@ public class GreyGreedOni extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 3;
         this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
@@ -50,7 +51,10 @@ public class GreyGreedOni extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(BaseGameHelper.getColorlessCard(), 0));
+    	for (int i = 0; i < this.magicNumber; i++) 
+    	{ 
+    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(BaseGameHelper.getColorlessCard(), this.secondMagic)); 
+    	}
     }
 
 
@@ -62,13 +66,13 @@ public class GreyGreedOni extends DuelistCard
     	{
     		if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
     		else { this.upgradeName(NAME + "+"); }
-    		this.upgradeMagicNumber(2);
+    		this.upgradeSecondMagic(-1);
     		this.rawDescription = UPGRADE_DESCRIPTION;
     		this.initializeDescription();
     	}
     }
 
-    @Override
+	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
 		
@@ -120,9 +124,9 @@ public class GreyGreedOni extends DuelistCard
 	@Override
 	public void onResummon(int summons) 
 	{
-		fetch(player().exhaustPile, false);
+		
 	}
-
+	
 	@Override
 	public String getID() { return ID; }
 	

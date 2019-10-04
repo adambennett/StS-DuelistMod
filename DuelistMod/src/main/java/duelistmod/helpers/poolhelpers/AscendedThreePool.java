@@ -125,8 +125,6 @@ public class AscendedThreePool
 		cards.add(new GatesDarkWorld());
 		cards.add(new SuperancientDinobeast());
 		cards.add(new Carboneddon());
-		cards.add(new BlueBloodedOni());
-		cards.add(new RedHeadedOni());
 		cards.add(new HorusServant());
 		cards.add(new CaveDragon());
 		cards.add(new CurseDragon());

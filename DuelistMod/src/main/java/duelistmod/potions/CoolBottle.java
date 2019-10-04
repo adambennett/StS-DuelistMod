@@ -59,13 +59,18 @@ public class CoolBottle extends OrbPotion {
         return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
     
+    @Override
+    public void initializeData() {
+        this.potency = this.getPotency();
+        this.description = DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+    }
+    
     public void upgradePotion()
     {
-      this.potency += 1;
-      if (this.potency > 1)
-      {
-    	  this.description = DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];
-      }
+      this.potency += 1;      
+      this.description = DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];      
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
     }

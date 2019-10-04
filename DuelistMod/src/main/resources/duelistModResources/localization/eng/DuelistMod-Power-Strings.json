@@ -100,6 +100,10 @@
         "NAME": "The Forbidden One",
         "DESCRIPTIONS": ["Assemble all five pieces of Exodia to unleash a powerful damage effect on ALL enemies. #yPieces #yof #yExodia: ", "#b", "The full power of #yExodia will be unleashed on ALL enemies at the end of turn. #yDamage: #b" ]
 },
+"theDuelist:EnemyExodiaPower": {
+        "NAME": "The Forbidden One",
+        "DESCRIPTIONS": ["Assemble all five pieces of Exodia to unleash a powerful damage effect on ALL enemies. #yPieces #yof #yExodia: ", "#b", "The full power of #yExodia will be unleashed on ALL enemies at the end of turn. #yDamage: #b" ]
+},
 "theDuelist:DarkMirrorPower": {
         "NAME": "Dark Mirror Force",
         "DESCRIPTIONS": ["The next time you are about to take damage, gain a random debuff equal to the damage instead." ]
@@ -781,7 +785,7 @@
 },
 "theDuelist:SpiritualForestPower": {
         "NAME": "Spiritual Forest",
-        "DESCRIPTIONS": ["At the start of turn, gain #yTemporary #yHP equal to your max summons." ]
+        "DESCRIPTIONS": ["At the start of every other turn, gain #yTemporary #yHP equal to your max summons." ]
 },
 "theDuelist:WallThornsPower": {
         "NAME": "Wall of Thorns",

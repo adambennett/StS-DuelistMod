@@ -129,16 +129,13 @@ public class ZombiePool
 		zombieCards.add(new GoblinZombie());
 		zombieCards.add(new Gozuki());
 		zombieCards.add(new Kasha());
-		zombieCards.add(new OniTankT34());
-		zombieCards.add(new RedHeadedOni());		
+		zombieCards.add(new OniTankT34());		
 		zombieCards.add(new ZombieWarrior());
-		zombieCards.add(new BlueBloodedOni());
 		zombieCards.add(new DesLacooda());
 		zombieCards.add(new EndlessDecay());		
 		zombieCards.add(new HauntedShrine());
 		zombieCards.add(new OniGamiCombo());
 		zombieCards.add(new PlaguespreaderZombie());
-		zombieCards.add(new YellowBelliedOni());
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new DespairFromDark());
 		zombieCards.add(new SpiritPharaoh());
@@ -153,9 +150,6 @@ public class ZombiePool
 		zombieCards.add(new SilentDoom());
 		zombieCards.add(new SpiralSpearStrike());
 		zombieCards.add(new CemetaryBomb());
-		zombieCards.add(new PurplePainOni());
-		zombieCards.add(new GreenGraveOni());
-		zombieCards.add(new GreyGreedOni());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

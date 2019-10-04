@@ -121,7 +121,7 @@
 },
 "theDuelist:JoeyJuice": {
         "NAME": "Joey Juice",
-        "DESCRIPTIONS": ["Increase the #yTribute cost of all monsters in your hand by #b", " for this turn."]
+        "DESCRIPTIONS": ["Deal #b", " damage for each of your max summons."]
 },
 "theDuelist:WaterBottle": {
         "NAME": "Water Bottle",

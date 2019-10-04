@@ -37,7 +37,7 @@ public class PoisonOldMan extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 6;
+        this.baseMagicNumber = this.magicNumber = 5;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
     }

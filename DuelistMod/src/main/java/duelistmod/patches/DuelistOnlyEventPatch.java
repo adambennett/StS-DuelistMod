@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.random.Random;
 
-import duelistmod.abstracts.DuelistEvent;
+import duelistmod.abstracts.*;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
 
@@ -18,7 +18,7 @@ public class DuelistOnlyEventPatch {
 		{
 			if (!AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 			{
-				if (__result instanceof DuelistEvent) 
+				if (__result instanceof DuelistEvent || __result instanceof CombatDuelistEvent) 
 				{
 					AbstractEvent newEv = AbstractDungeon.getEvent(new Random()); 
 					while (newEv instanceof DuelistEvent) { newEv = AbstractDungeon.getEvent(new Random()); }
@@ -41,6 +41,7 @@ public class DuelistOnlyEventPatch {
 				AbstractDungeon.specialOneTimeEventList.add(AknamkanonTomb.ID);				
 				AbstractDungeon.specialOneTimeEventList.add(TombNameless.ID);
 				AbstractDungeon.specialOneTimeEventList.add(TombNamelessPuzzle.ID);
+				//AbstractDungeon.specialOneTimeEventList.add(BattleCity.ID);
 				String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 				if (deck.equals("Warrior Deck")) { AbstractDungeon.specialOneTimeEventList.add(EgyptVillage.ID); Util.log("Added Egypt Village to events list");}
 				else { Util.log("Egypt Village event was not added to special events list, you are not playing with the Warrior Deck"); }

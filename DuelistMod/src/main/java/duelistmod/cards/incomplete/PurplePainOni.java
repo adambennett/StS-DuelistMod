@@ -27,9 +27,9 @@ public class PurplePainOni extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -38,8 +38,9 @@ public class PurplePainOni extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 5;
         this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
@@ -50,8 +51,10 @@ public class PurplePainOni extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	attack(m);
-    	AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(BaseGameHelper.getPurpleCard(), 0));
+    	for (int i = 0; i < this.magicNumber; i++) 
+    	{ 
+    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(BaseGameHelper.getPurpleCard(), this.secondMagic)); 
+    	}
     }
 
 
@@ -63,17 +66,16 @@ public class PurplePainOni extends DuelistCard
     	{
     		if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
     		else { this.upgradeName(NAME + "+"); }
-    		this.upgradeDamage(3);
+    		this.upgradeSecondMagic(-1);
     		this.rawDescription = UPGRADE_DESCRIPTION;
     		this.initializeDescription();
     	}
     }
 
-    @Override
+	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{
-		zombieSynTrib(tributingCard);
-		dragonSynTrib(tributingCard);
+		
 	}
 	
     // Checking for Monster Zones if the challenge is enabled
@@ -122,7 +124,7 @@ public class PurplePainOni extends DuelistCard
 	@Override
 	public void onResummon(int summons) 
 	{
-		fetch(player().exhaustPile, false);
+		
 	}
 
 	@Override

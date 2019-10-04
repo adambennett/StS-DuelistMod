@@ -135,9 +135,9 @@
 		"NAME": "Duelist Cards"
 	},
 	"theDuelist:BasicInsect": {
-		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Poison.",
+		"DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block.",
 		"NAME": "Basic Insect",
-		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block. NL Apply !M! Poison."
+		"UPGRADE_DESCRIPTION": "Insect NL Summon !duelist:SUMM! NL Gain !B! Block."
 	},
 	"theDuelist:BattleFootballer": {
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Gain !M! Temporary HP.",
@@ -774,9 +774,9 @@
 		"UPGRADE_DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !B! Block. NL Gain !M! Temporary HP."
 	},
 	"theDuelist:GiantTrunade": {
-		"DESCRIPTION": "Evoke ALL Orbs. Exhaust.",
+		"DESCRIPTION": "Evoke all Orbs. Exhaust.",
 		"NAME": "Giant Trunade",
-		"UPGRADE_DESCRIPTION": "Evoke ALL Orbs."
+		"UPGRADE_DESCRIPTION": "Evoke all Orbs."
 	},
 	"theDuelist:Gigaplant": {
 		"DESCRIPTION": "Plant NL Tribute !duelist:TRIB! NL Apply !M! Poison. Resummon an upgraded copy of a random monster from your discard pile. Exempt.",
@@ -3202,14 +3202,14 @@
 		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL ALL enemies lose !duelist:M! Strength for !M! turn."
 	},
 	"theDuelist:BlueBloodedOni": {
-		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random Defect card to your hand. NL Resummon: Fetch a card from your Exhaust pile.",
+				"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Defect card to your hand. It costs !duelist:M! this turn.",
 		"NAME": "Blue-Blooded Oni",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random Defect card to your hand. NL Resummon: Fetch a card from your Exhaust pile."
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Defect card to your hand. It costs !duelist:M! this turn."
 	},
 	"theDuelist:RedHeadedOni": {
-		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add a random Ironclad card to your hand. NL Resummon: Fetch a card from your Exhaust pile.",
+		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Ironclad card to your hand. It costs !duelist:M! this turn.",
 		"NAME": "Red-Headed Oni",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add a random Ironclad card to your hand. NL Resummon: Fetch a card from your Exhaust pile."
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Ironclad card to your hand. It costs !duelist:M! this turn."
 	},
 	"theDuelist:YellowBelliedOni": {
 		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL At the start of turn, add a random card from another color to your hand. It costs 0 this turn.",
@@ -4968,14 +4968,14 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Deal !D! damage. NL Set your Max HP to !M!."
 	},
 	"theDuelist:GreenGraveOni": {
-		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random Silent card to your hand. NL Resummon: Fetch a card from your Exhaust pile.",
+		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Silent card to your hand. It costs !duelist:M! this turn.",
 		"NAME": "Green Grave Oni",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL Add a random Silent card to your hand. NL Resummon: Fetch a card from your Exhaust pile."
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Silent card to your hand. It costs !duelist:M! this turn."
 	},
 	"theDuelist:PurplePainOni": {
-		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add a random Watcher card to your hand. NL Resummon: Fetch a card from your Exhaust pile.",
+		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Watcher card to your hand. It costs !duelist:M! this turn.",
 		"NAME": "Purple Pain Oni",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL Add a random Watcher card to your hand. NL Resummon: Fetch a card from your Exhaust pile."
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Watcher card to your hand. It costs !duelist:M! this turn."
 	},
 	"theDuelist:Sogen": {
 		"DESCRIPTION": "Warriors deal 40% more damage and gain 20% more Block.",
@@ -5888,9 +5888,9 @@
 		"UPGRADE_DESCRIPTION": "Apply 1 poison to a random enemy. Increase the poison amount by 0.5 and repeat this action for each Insect you have summoned. Perform this entire action once for each enemy in combat. Exhaust."
 	},
 	"theDuelist:GreyGreedOni": {
-		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Colorless cards to your hand. NL Resummon: Fetch a card from your Exhaust pile.",
+		"DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Colorless card to your hand. It costs !duelist:M! this turn.",
 		"NAME": "Grey Greed Oni",
-		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Colorless cards to your hand. NL Resummon: Fetch a card from your Exhaust pile."
+		"UPGRADE_DESCRIPTION": "Zombie Dragon NL Summon !duelist:SUMM! NL Add !M! random Colorless card to your hand. It costs !duelist:M! this turn."
 	},
 	"theDuelist:NormalCreatorEffectCard": {
 		"DESCRIPTION": "Put 1 cost, Ethereal copies of ALL cards in the current card pool into your draw pile.",
@@ -6218,9 +6218,9 @@
 		"UPGRADE_DESCRIPTION": "Gain !M! Envenom."
 	},
 	"theDuelist:SpiritualForest": {
-		"DESCRIPTION": "At the start of turn, gain Temporary HP equal to your max summons.",
+		"DESCRIPTION": "At the start of every other turn, gain Temporary HP equal to your max summons.",
 		"NAME": "Spiritual Forest",
-		"UPGRADE_DESCRIPTION": "At the start of turn, gain Temporary HP equal to your max summons."
+		"UPGRADE_DESCRIPTION": "At the start of every other turn, gain Temporary HP equal to your max summons."
 	},
 	"theDuelist:WallThorns": {
 		"DESCRIPTION": "Whenever you are attacked, if you have no Insects summoned, gain !M! Thorns.",

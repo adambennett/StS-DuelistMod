@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.relics.SacredBark;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 
-public class StanceSwitchPotion extends OrbPotion {
+public class StanceSwitchPotion extends DuelistPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("StanceSwitchPotion");

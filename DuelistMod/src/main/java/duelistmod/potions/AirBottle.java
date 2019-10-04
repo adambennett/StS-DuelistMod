@@ -34,8 +34,8 @@ public class AirBottle extends OrbPotion {
         this.isThrown = false;
         
         // Initialize the on-hover name + description
-        this.tips.add(new PowerTip(this.name, this.description));
-        this.tips.add(new PowerTip("Air", DESCRIPTIONS[3]));
+        //this.tips.add(new PowerTip(this.name, this.description));
+        //this.tips.add(new PowerTip("Air", DESCRIPTIONS[3]));
         
     }
 
@@ -62,6 +62,17 @@ public class AirBottle extends OrbPotion {
     	if (AbstractDungeon.player == null) { return pot; }
         return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
+    
+    @Override
+    public void initializeData() {
+        this.potency = this.getPotency();
+        if (this.potency > 1) { this.description = DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2]; }
+        else { this.description = DESCRIPTIONS[0]; }
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip("Air", DESCRIPTIONS[3]));
+    }
+    
     
     public void upgradePotion()
     {

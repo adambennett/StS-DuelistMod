@@ -19,6 +19,7 @@ public class AbstractDungeonPatches
             AbstractDungeon.eventList.remove(EgyptVillage.ID);
             AbstractDungeon.eventList.remove(TombNameless.ID);
             AbstractDungeon.eventList.remove(TombNamelessPuzzle.ID);
+            AbstractDungeon.eventList.remove(BattleCity.ID);
         }
     }
 }

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
-import duelistmod.variables.Strings;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
@@ -19,7 +18,7 @@ public class ForestPower extends DuelistPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePath(Strings.YAMI_POWER);
+    public static final String IMG = DuelistMod.makePowerPath("ForestPower.png");
 
     public ForestPower(int dmgMod, int blkMod) 
     {

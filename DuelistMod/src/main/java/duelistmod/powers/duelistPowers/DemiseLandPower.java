@@ -20,7 +20,7 @@ public class DemiseLandPower extends DuelistPower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     //public static final String IMG = DuelistMod.makePowerPath("DemiseLandPower.png");
-    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
+    public static final String IMG = DuelistMod.makePowerPath("DemiseLandPower.png");
     
 	public DemiseLandPower(int amt) 
 	{ 

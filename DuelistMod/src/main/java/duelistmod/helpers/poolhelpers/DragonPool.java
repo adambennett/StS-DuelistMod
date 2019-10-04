@@ -144,11 +144,8 @@ public class DragonPool
 		dragonCards.add(new EyeTimaeus());
 		dragonCards.add(new DragonShield());
 		dragonCards.add(new BeserkDragon());		
-		dragonCards.add(new DoomkaiserDragon());		
-		dragonCards.add(new RedHeadedOni());	
-		dragonCards.add(new BlueBloodedOni());	
+		dragonCards.add(new DoomkaiserDragon());			
 		dragonCards.add(new DragonZombie());
-		dragonCards.add(new YellowBelliedOni());
 		dragonCards.add(new LavaDragon());		
 		dragonCards.add(new DarkSimorgh());
 		dragonCards.add(new MaskedDragon());
@@ -178,8 +175,6 @@ public class DragonPool
 		dragonCards.add(new RedRoseDragon());
 		dragonCards.add(new BlueRoseDragon());
 		dragonCards.add(new WhiteRoseDragon());
-		dragonCards.add(new PurplePainOni());
-		dragonCards.add(new GreenGraveOni());
 		dragonCards.add(new Hinotama());
 		dragonCards.add(new ObsidianDragon());
 		dragonCards.add(new StoneDragon());

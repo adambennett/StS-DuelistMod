@@ -119,8 +119,6 @@ public class MegatypePool
 		cards.add(new GatesDarkWorld());
 		cards.add(new SuperancientDinobeast());
 		cards.add(new Carboneddon());
-		cards.add(new BlueBloodedOni());
-		cards.add(new RedHeadedOni());
 		cards.add(new StarBlast());
 		cards.add(new StardustDragon());
 		cards.add(new HorusServant());

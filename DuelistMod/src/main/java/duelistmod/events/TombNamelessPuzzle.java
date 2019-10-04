@@ -548,7 +548,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     private void handleMagicReward()
     {
     	if (magicInc == 0) 		 { imageEventText.setDialogOption("[Locked] Low Mana", true); return; }    	
-    	else					 { this.lvl4Magic = Util.getSpecialMagicCardForNamelessTomb(); imageEventText.setDialogOption(rewardsMagic.get(magicInc - 1), this.lvl4Magic); }
+    	else					 { this.lvl4Magic = Util.getSpecialMagicCardForNamelessTomb(); log(lvl4Magic); imageEventText.setDialogOption(rewardsMagic.get(magicInc - 1), this.lvl4Magic); }
     }
     
     private void handleGreedReward()
@@ -557,16 +557,16 @@ public class TombNamelessPuzzle extends DuelistEvent
     	else if (greedInc == 1)  { imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1)); }
     	else if (greedInc == 2)  { imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), new GoldenSparks()); }
     	else if (greedInc == 3)  { imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), this.greed3R); }    	
-    	else if (greedInc == 4)  { this.lvl4Greed = Util.getSpecialGreedCardForNamelessTomb(); imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), this.lvl4Greed); }
+    	else if (greedInc == 4)  { this.lvl4Greed = Util.getSpecialGreedCardForNamelessTomb(); log(lvl4Greed); imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), this.lvl4Greed); }
     }
     
     private void handlePowerReward()
     {
     	if 		(powerInc == 0)  { imageEventText.setDialogOption("[Locked] Weak", true); return; }
-    	if 		(powerInc == 1)	 { this.randRarePower = Util.getRandomRarePowerForNamelessTomb(); imageEventText.setDialogOption(rewardsPower.get(powerInc - 1), this.randRarePower); }
+    	if 		(powerInc == 1)	 { this.randRarePower = Util.getRandomRarePowerForNamelessTomb(); log(randRarePower); imageEventText.setDialogOption(rewardsPower.get(powerInc - 1), this.randRarePower); }
     	else if (powerInc == 2)  { imageEventText.setDialogOption(rewardsPower.get(powerInc - 1), this.power2R); }
     	else if (powerInc == 3)  { imageEventText.setDialogOption(rewardsPower.get(powerInc - 1), this.power3R); }
-    	else if (powerInc == 4)  { this.lvl4Power = Util.getSpecialPowerCardForNamelessTomb(); imageEventText.setDialogOption(rewardsPower.get(powerInc - 1), this.lvl4Power); }
+    	else if (powerInc == 4)  { this.lvl4Power = Util.getSpecialPowerCardForNamelessTomb(); log(lvl4Power); imageEventText.setDialogOption(rewardsPower.get(powerInc - 1), this.lvl4Power); }
     }
     
     private void handleHungerReward()
@@ -582,7 +582,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     	else if (warInc == 1) 	{ imageEventText.setDialogOption(rewardsWar.get(warInc - 1), this.war1R); }
     	else if (warInc == 2) 	{ imageEventText.setDialogOption(rewardsWar.get(warInc - 1), this.war2R); }
     	else if (warInc == 3) 	{ imageEventText.setDialogOption(rewardsWar.get(warInc - 1), this.war3R); }
-    	else if (warInc == 4) 	{ this.lvl4War = Util.getSpecialWarCardForNamelessTomb();imageEventText.setDialogOption(rewardsWar.get(warInc - 1), this.lvl4War); }
+    	else if (warInc == 4) 	{ this.lvl4War = Util.getSpecialWarCardForNamelessTomb(); log(lvl4War); imageEventText.setDialogOption(rewardsWar.get(warInc - 1), this.lvl4War); }
     }
  
     private void setupRelics()
@@ -594,6 +594,11 @@ public class TombNamelessPuzzle extends DuelistEvent
     	this.war1R = new NamelessWarRelicA();
     	this.war2R = new NamelessWarRelicB();
     	this.war3R = new NamelessWarRelicC();
+    }
+    
+    private void log(AbstractCard c)
+    {
+    	logMetric(NAME, "Generated " + c.originalName + " as reward");
     }
     
     private void duelistGreedReward()

@@ -50,14 +50,18 @@ public class PoisonousMayakashi extends DuelistCard
     {
     	int size = xCostTribute();
     	int mult = 4;
-    	if (upgraded) { mult++; }
+    	//if (upgraded) { mult++; }
     	size = mult * size;
     	ArrayList<AbstractMonster> mons = getAllMons();
-    	while (size > 0)
+    	if (mons.size() == 1) { applyPower(new PoisonPower(mons.get(0), p, size), mons.get(0)); }
+    	else
     	{
-    		int index = AbstractDungeon.cardRandomRng.random(mons.size() - 1);
-    		applyPower(new PoisonPower(mons.get(index), p, 1), mons.get(index));
-    		size--;
+	    	while (size > 0)
+	    	{
+	    		int index = AbstractDungeon.cardRandomRng.random(mons.size() - 1);
+	    		applyPower(new PoisonPower(mons.get(index), p, 1), mons.get(index));
+	    		size--;
+	    	}
     	}
     }
 

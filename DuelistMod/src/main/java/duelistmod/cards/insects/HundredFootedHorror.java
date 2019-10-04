@@ -38,7 +38,7 @@ public class HundredFootedHorror extends DuelistCard
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 5;
     }
 
     // Actions the card should do.

@@ -28,20 +28,22 @@ public class ChoosePoisonBixi extends TokenCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = -2;
+    private AbstractMonster targ;
     // /STAT DECLARATION/
 
-    public ChoosePoisonBixi(int magic) 
+    public ChoosePoisonBixi(int magic, AbstractMonster target) 
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.dontTriggerOnUseCard = true;
     	this.baseMagicNumber = this.magicNumber = magic;
+    	this.targ = target;
     }
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	applyPower(new PoisonPower(m, p, this.magicNumber), m);
     }
-    @Override public AbstractCard makeCopy() { return new ChoosePoisonBixi(this.magicNumber); }
+    @Override public AbstractCard makeCopy() { return new ChoosePoisonBixi(this.magicNumber, this.targ); }
 
     
     

@@ -40,7 +40,6 @@ public class BrainCrusher extends DuelistCard
         this.originalName = this.name;
         this.baseDamage = this.damage = 12;
         this.tributes = this.baseTributes = 4;
-        this.exhaust = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);

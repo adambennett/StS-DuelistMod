@@ -252,7 +252,6 @@ public class WarriorPool
 			magnetCards.add(new Swivel());
 			magnetCards.add(new TalkToTheHand());
 			magnetCards.add(new ThirdEye());
-			magnetCards.add(new Unraveling());
 			magnetCards.add(new Vault());
 			//magnetCards.add(new Vengeance());
 			magnetCards.add(new Vigilance());

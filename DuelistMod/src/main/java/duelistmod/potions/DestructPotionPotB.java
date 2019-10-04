@@ -149,6 +149,14 @@ public class DestructPotionPotB extends AbstractPotion {
         return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
     
+    @Override
+    public void initializeData() {
+        this.potency = this.getPotency();
+        this.description =  DESCRIPTIONS[0];
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+    }
+    
     public void upgradePotion()
     {
       this.tips.clear();

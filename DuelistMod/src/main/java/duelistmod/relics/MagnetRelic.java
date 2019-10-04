@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
-import duelistmod.variables.Strings;
 
 public class MagnetRelic extends CustomRelic {
 
@@ -24,8 +23,8 @@ public class MagnetRelic extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MagnetRelic");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("MagnetRelic.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MagnetRelicOutline.png");
 
 	public MagnetRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.CLINK);

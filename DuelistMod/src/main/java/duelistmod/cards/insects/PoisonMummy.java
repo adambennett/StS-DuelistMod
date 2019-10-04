@@ -32,7 +32,7 @@ public class PoisonMummy extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public PoisonMummy() {
@@ -51,11 +51,15 @@ public class PoisonMummy extends DuelistCard
     	int size = xCostTribute();
     	size = 2 * size;
     	ArrayList<AbstractMonster> mons = getAllMons();
-    	while (size > 0)
+    	if (mons.size() == 1) { applyPower(new PoisonPower(mons.get(0), p, size), mons.get(0)); }
+    	else
     	{
-    		int index = AbstractDungeon.cardRandomRng.random(mons.size() - 1);
-    		applyPower(new PoisonPower(mons.get(index), p, 1), mons.get(index));
-    		size--;
+	    	while (size > 0)
+	    	{
+	    		int index = AbstractDungeon.cardRandomRng.random(mons.size() - 1);
+	    		applyPower(new PoisonPower(mons.get(index), p, 1), mons.get(index));
+	    		size--;
+	    	}
     	}
     }
 
@@ -70,7 +74,7 @@ public class PoisonMummy extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

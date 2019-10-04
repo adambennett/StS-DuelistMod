@@ -43,8 +43,8 @@ public class ReptiliannePoison extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 8;
-        this.secondMagic = this.baseSecondMagic = 4;
+        this.baseMagicNumber = this.magicNumber = 6;
+        this.secondMagic = this.baseSecondMagic = 3;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.ARCANE);
@@ -67,7 +67,7 @@ public class ReptiliannePoison extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(3);
+        	this.upgradeMagicNumber(2);
         	if (this.timesUpgraded == 1) { this.upgradeSecondMagic(-1); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
@@ -77,7 +77,7 @@ public class ReptiliannePoison extends DuelistCard
     @Override
     public boolean canUpgrade()
     {
-    	if (this.magicNumber < 20) { return true; }
+    	if (this.magicNumber < 12) { return true; }
     	else { return false; }
     }
     

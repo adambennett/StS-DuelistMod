@@ -77,6 +77,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
+	public static String version = "v2.921.3-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -137,17 +138,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String PROP_ADD_ORB_POTIONS = "addOrbPotions";
 	public static final String PROP_ADD_ACT_FOUR = "actFourEnabled";
 	public static final String PROP_NAMELESS = "namelessTombPoints";
+	public static final String PROP_PLAY_KAIBA = "playAsKaiba";
+	public static final String PROP_MONSTER_IS_KAIBA = "monsterIsKaiba";	
 	public static String seenString = "";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
-	public static final String defaultChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
-	public static final String oldChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
-	public static final String kaibaModel = "duelistModResources/images/char/enemies/KaibaModel.scml";
+	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
+	public static final String oldYugiChar = "duelistModResources/images/char/duelistCharacter/theDuelistAnimation.scml";
+	public static final String kaibaPlayerModel = "duelistModResources/images/char/duelistCharacterUpdate/KaibaPlayer.scml";
+	public static final String pegasusPlayerModel = "duelistModResources/images/char/duelistCharacterUpdate/PegasusPlayer.scml";
+	public static String kaibaEnemyModel = "KaibaModel2";
 	public static Properties duelistDefaults = new Properties();
 	public static boolean toonBtnBool = false;
 	public static boolean exodiaBtnBool = false;
 	public static boolean ojamaBtnBool = false;
 	public static boolean creatorBtnBool = false;
 	public static boolean oldCharacter = false;
+	public static boolean playAsKaiba = false;
 	public static boolean challengeMode = false;
 	public static boolean unlockAllDecks = false;
 	public static boolean flipCardTags = false;
@@ -177,6 +183,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean playedSpider = false;
 	public static boolean playedSecondSpider = false;
 	public static boolean playedThirdSpider = false;
+	public static boolean monsterIsKaiba = true;
 	public static ArrayList<Boolean> genericConfigBools = new ArrayList<Boolean>();
 	public static int magnetSlider = 50;
 	public static int powerCheckIncCheck = 0;
@@ -284,6 +291,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<AbstractCard> randomDeckSmallPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> randomDeckBigPool = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
+	public static ArrayList<AbstractPotion> allDuelistPotions = new ArrayList<AbstractPotion>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<AbstractRelic>();
 	public static ArrayList<String> skillsPlayedCombatNames = new ArrayList<String>();
 	public static ArrayList<String> spellsPlayedCombatNames = new ArrayList<String>();
@@ -481,6 +489,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ModLabeledToggleButton ojamaBtn;
 	public static ModLabeledToggleButton unlockBtn;
 	public static ModLabeledToggleButton oldCharBtn;
+	public static ModLabeledToggleButton kaibaCharBtn;
 	public static ModLabeledToggleButton challengeBtn;
 	public static ModLabeledToggleButton flipBtn;
 	public static ModLabeledToggleButton noChangeBtnCost;
@@ -529,7 +538,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean debug = false;				// print statements only, used in mod option panel
 	public static boolean debugMsg = false;				// for secret msg
 	public static final boolean addTokens = false;		// adds debug tokens to library
-	public static final boolean printSQL = false;		// toggles SQL db formatted info print
+	public static final boolean printSQL = true;		// toggles SQL db formatted info print
 	public static final boolean fullDebug = false;		// actually modifies char stats, cards in compendium, starting max summons, etc
 	public static boolean allowBonusDeckUnlocks = true;	// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
 
@@ -710,6 +719,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty(PROP_ADD_ORB_POTIONS, "TRUE");
 		duelistDefaults.setProperty(PROP_ADD_ACT_FOUR, "TRUE");
 		duelistDefaults.setProperty(PROP_NAMELESS, "0");
+		duelistDefaults.setProperty(PROP_PLAY_KAIBA, "FALSE");
+		duelistDefaults.setProperty(PROP_MONSTER_IS_KAIBA, "TRUE");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -898,6 +909,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
             addOrbPotions = config.getBool(PROP_ADD_ORB_POTIONS);
             actFourEnabled = config.getBool(PROP_ADD_ACT_FOUR);  
             namelessTombPoints = config.getInt(PROP_NAMELESS);
+            playAsKaiba = config.getBool(PROP_PLAY_KAIBA);
+            monsterIsKaiba = config.getBool(PROP_MONSTER_IS_KAIBA);
         } catch (Exception e) { e.printStackTrace(); }
 		
 		if (fullDebug)
@@ -931,6 +944,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public void receiveEditCharacters() 
 	{
 		// Yugi Moto
+		resetDuelist();
 		duelistChar = new TheDuelist("the Duelist", TheDuelistEnum.THE_DUELIST);
 		BaseMod.addCharacter(duelistChar,makePath(Strings.THE_DEFAULT_BUTTON), makePath(Strings.THE_DEFAULT_PORTRAIT), TheDuelistEnum.THE_DUELIST);
 
@@ -971,19 +985,24 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addEvent(EgyptVillage.ID, EgyptVillage.class, TheBeyond.ID);
 		BaseMod.addEvent(TombNameless.ID, TombNameless.class);	
 		BaseMod.addEvent(TombNamelessPuzzle.ID, TombNamelessPuzzle.class);	
+		BaseMod.addEvent(BattleCity.ID, BattleCity.class, TheBeyond.ID);	
 		
 		// Monsters
-		BaseMod.addMonster(SetoKaiba.ID, "Seto Kaiba", () -> new SetoKaiba(-5.0F, 15.0F));
-		BaseMod.addMonster(KaibaA1.ID, "Seto Kaiba", () -> new KaibaA1());
-		BaseMod.addMonster(KaibaA2.ID, "Seto Kaiba", () -> new KaibaA2());
-		BaseMod.addMonster(KaibaA3.ID, "Seto Kaiba", () -> new KaibaA3());
+		//BaseMod.addMonster(DEPRECATEDOriginalKaiba.ID, "Seto Kaiba", () -> new DEPRECATEDOriginalKaiba(-5.0F, 15.0F));
+		BaseMod.addMonster(DuelistEnemy.ID, "Seto Kaiba", () -> new DuelistEnemy());
+		BaseMod.addMonster(DuelistEnemy.ID_YUGI, "Yugi Muto", () -> new DuelistEnemy());
+		//BaseMod.addMonster(KaibaA2.ID, "Seto Kaiba", () -> new KaibaA2());
+		//BaseMod.addMonster(KaibaA3.ID, "Seto Kaiba", () -> new KaibaA3());
+		BaseMod.addMonster(SuperKaiba.ID, "Seto Kaiba (Event)", () -> new SuperKaiba());
+		BaseMod.addMonster(SuperYugi.ID, "Yugi Muto (Event)", () -> new SuperYugi());
 		//BaseMod.addMonster(DuelistNob.ID, "Duelist Nob", () -> new DuelistNob(0.0f, 0.0f));
 		
 		// Encounters
 		if (DuelistMod.duelistMonsters)
 		{
 			//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
-			BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(KaibaA1.ID, 3.0F)); 
+			//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(DuelistEnemy.ID, 100.0F)); 
+			BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(DuelistEnemy.ID, 4.0F)); 
 			//BaseMod.addEliteEncounter(TheCity.ID, new MonsterInfo(KaibaA2.ID, 3.0F)); 
 			//BaseMod.addEliteEncounter(TheBeyond.ID, new MonsterInfo(KaibaA3.ID, 3.0F)); 
 			//BaseMod.addEliteEncounter(Exordium.ID, new MonsterInfo(KaibaA1.ID, 100.0F)); 
@@ -1015,8 +1034,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 
 		ArrayList<AbstractPotion> pots = new ArrayList<AbstractPotion>();
 		pots.add(new MillenniumElixir());
-		pots.add(new StanceSwitchPotion());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.LIGHT_PURPLE, Colors.DARK_PURPLE, Colors.NEAR_WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
+		//pots.add(new StanceSwitchPotion());
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p); BaseMod.addPotion(p.getClass(), Colors.LIGHT_PURPLE, Colors.DARK_PURPLE, Colors.NEAR_WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
+		pots.clear();
+		
+		pots.add(new JoeyJuice());
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.TEAL, Colors.DARK_PURPLE, Colors.NEAR_WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new SealedPack());
@@ -1024,35 +1047,35 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		pots.add(new SealedPackC());
 		pots.add(new SealedPackD());
 		pots.add(new SealedPackE());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.DARK_PURPLE, Colors.WHITE, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.DARK_PURPLE, Colors.WHITE, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new TributeBottle());
 		pots.add(new BigTributeBottle());		
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.BLUE, Colors.BLUE, Colors.BLUE, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.BLUE, Colors.BLUE, Colors.BLUE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new DestructPotionPot());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.RED, Colors.WHITE, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.RED, Colors.WHITE, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new DestructPotionPotB());	
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.DARK_PURPLE, Colors.LIGHT_PURPLE, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.DARK_PURPLE, Colors.LIGHT_PURPLE, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new BabyPotion());
 		pots.add(new HarpPotion());
 		pots.add(new TokenPotion());
 		pots.add(new TokenPotionB());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.RED, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.RED, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new DragonSoulPotion());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.GRAY, Colors.GRAY, Colors.RED, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.GRAY, Colors.GRAY, Colors.RED, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new BottledKuriboh());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.RED, Colors.GRAY, Colors.ORANGE, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.RED, Colors.GRAY, Colors.ORANGE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new SummonFuryPotion());
@@ -1065,11 +1088,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		pots.add(new BarricadePotion());
 		pots.add(new MayhemPotion());
 		pots.add(new MetallicizePotion());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.TEAL, Colors.TEAL, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.TEAL, Colors.TEAL, Colors.BLACK, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 		
 		pots.add(new GiftPotion());
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.GRAY, Colors.GRAY, Colors.PINK, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.GRAY, Colors.GRAY, Colors.PINK, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 
 		pots.add(new AirBottle());
@@ -1098,12 +1121,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//pots.add(new GlitchBottle());
 		//pots.add(new StormBottle());
 		for (AbstractPotion p : pots){ orbPotionIDs.add(p.ID); }
-		for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.ORANGE, Colors.DARK_PURPLE, Colors.BLUE, p.ID, TheDuelistEnum.THE_DUELIST); }
+		for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.ORANGE, Colors.DARK_PURPLE, Colors.BLUE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();
 
 		if (pots.size() > 0)
 		{
-			for (AbstractPotion p : pots){ BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
+			for (AbstractPotion p : pots){ allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
 			Util.log("Some potions did not have custom color schemes, extra potion add code is running to add " + pots.size() + " potions with all the same (default) colors");
 		}
 		// Class Specific Potion. If you want your potion to not be class-specific, just remove the player class at the end (in this case the "TheDuelistEnum.THE_DUELIST")
@@ -1439,7 +1462,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		boolean addBasic = false;
 		/* Debug Commands (fill game with only cards from specified pool) */
 		//DuelistCardLibrary.setupMyCardsDebug("Standard"); fullPool = false; addBasic = true;
-		//DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = true;
+		//DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Spellcaster"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Toon"); fullPool = false; addBasic = true;
@@ -1876,6 +1899,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			config.setInt(PROP_MAX_SUMMONS, lastMaxSummons);
 			config.setInt(PROP_RESUMMON_DMG, resummonDeckDamage);
 			config.setInt(PROP_NAMELESS, namelessTombPoints);
+			config.setBool(PROP_MONSTER_IS_KAIBA, monsterIsKaiba);
 			config.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1913,12 +1937,6 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	            	}
 	            }
 
-				if (power instanceof PoisonPower)
-				{
-					poisonAppliedThisCombat+=power.amount;
-					Util.log("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat);
-				}
-				
 				if (power instanceof TombLooterPower)
 				{
 					if (AbstractDungeon.player.hasPower(TombLooterPower.POWER_ID))
@@ -1968,6 +1986,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 							((DuelistPower)pow).onGainVines();
 						}
 					}
+				}
+			}
+			else
+			{
+				if (power instanceof PoisonPower)
+				{
+					poisonAppliedThisCombat+=power.amount;
+					Util.log("Incremented poisonAppliedThisCombat by: " + power.amount + ", new value: " + poisonAppliedThisCombat);
 				}
 			}
 		}
@@ -3320,8 +3346,23 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB(); saver++;
+		saver++;
 		// END Add 2 Randomziation Buttons
+		
+		// Switch to kaiba character model
+		kaibaCharBtn = new ModLabeledToggleButton("Play as Kaiba", xLabPos + xSecondCol + xSecondCol - 10, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, playAsKaiba, settingsPanel, (label) -> {}, (button) -> 
+		{
+			playAsKaiba = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_PLAY_KAIBA, playAsKaiba);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+			resetDuelist();
+		});
+		cbLB();	
+		// END Switch to kaiba character model
 		
 		// Add 2 randomization buttons
 		alwaysUpgradeBtn = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos + xSecondCol, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, alwaysUpgrade, settingsPanel, (label) -> {}, (button) -> 
@@ -3528,6 +3569,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//settingsPanel.addUIElement(addActFourBtn);
 		settingsPanel.addUIElement(noChangeBtnSumm);
 		settingsPanel.addUIElement(onlyIncBtnSumm);
+		settingsPanel.addUIElement(kaibaCharBtn);		
 		settingsPanel.addUIElement(alwaysUpgradeBtn);
 		settingsPanel.addUIElement(neverUpgradeBtn);
 		settingsPanel.addUIElement(etherealBtn);
@@ -3686,12 +3728,39 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 	}
 	
-	private void resetDuelist() 
+	public void resetDuelist() 
 	{
-		if (oldCharacter) { characterModel = oldChar; }
-		else { characterModel = defaultChar; }
+		if (playAsKaiba) { characterModel = kaibaPlayerModel; }
+		else if (oldCharacter) { characterModel = oldYugiChar; }
+		else { characterModel = yugiChar; }
+	}
+	
+	public static void resetDuelistWithDeck(int deckCode)
+	{
+		boolean isDragonDeck = deckCode == 1;
+		boolean isSpellcasterDeck = deckCode == 3;
+		boolean isToonDeck = deckCode == 4;
+		if (isDragonDeck) { characterModel = kaibaPlayerModel; }
+		//else if (isToonDeck) { characterModel = pegasusPlayerModel; }
+		else if (isSpellcasterDeck && oldCharacter) { characterModel = oldYugiChar; }
+		else if (isSpellcasterDeck && !oldCharacter) { characterModel = yugiChar; }
+		else if (playAsKaiba) { characterModel = kaibaPlayerModel; }
+		else if (oldCharacter) { characterModel = oldYugiChar; }
+		else { characterModel = yugiChar; }
 	}
 
+	public static void getEnemyDuelistModel(int deckCode)
+	{
+		boolean isDragonDeck = deckCode == 1;
+		boolean isSpellcasterDeck = deckCode == 3;
+		if (isDragonDeck && oldCharacter) { DuelistMod.kaibaEnemyModel = "OldYugiEnemy2"; monsterIsKaiba = false; }
+		else if (isDragonDeck && !oldCharacter) { DuelistMod.kaibaEnemyModel = "YugiEnemy2"; monsterIsKaiba = false; }
+		else if (isSpellcasterDeck) { DuelistMod.kaibaEnemyModel = "KaibaModel2"; monsterIsKaiba = true; }
+		else if (playAsKaiba && oldCharacter) { DuelistMod.kaibaEnemyModel = "OldYugiEnemy2"; monsterIsKaiba = false; }
+		else if (playAsKaiba && !oldCharacter) { DuelistMod.kaibaEnemyModel = "YugiEnemy2"; monsterIsKaiba = false; }
+		else { DuelistMod.kaibaEnemyModel = "KaibaModel2"; monsterIsKaiba = true; }
+	}
+	
 	@Override
 	public void receivePostObtainCard(AbstractCard card) 
 	{

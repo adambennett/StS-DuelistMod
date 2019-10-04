@@ -343,7 +343,8 @@
 		"NAME": "Nature Token",
 		"FLAVOR": "An orb covered with mud and grass. Gross.",
 		"DESCRIPTIONS": [
-			"If you apply at least #b25 #yPoison in combat, drop an extra card reward."
+			"If you apply at least #b35 #yPoison in combat, drop an extra card reward.",
+			"If you apply at least #b35 #yPoison in combat, drop an extra Booster reward."
 		]
 	},
 	"theDuelist:RandomTributeMonsterRelic": {

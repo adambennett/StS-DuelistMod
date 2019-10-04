@@ -28,7 +28,7 @@ public class MagicCylinder extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.NONE;
 	private static final CardType TYPE = CardType.POWER;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-	private static final int COST = 3;
+	private static final int COST = 4;
 	// /STAT DECLARATION/
 
 	public MagicCylinder() {
@@ -71,7 +71,7 @@ public class MagicCylinder extends DuelistCard
 	@Override
 	public boolean canUpgrade()
 	{
-		if (this.magicNumber < 4) { return true; }
+		if (this.magicNumber < 6) { return true; }
 		else { return false; }
 	}
 
