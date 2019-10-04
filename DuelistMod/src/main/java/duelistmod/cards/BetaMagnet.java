@@ -39,6 +39,7 @@ public class BetaMagnet extends DuelistCard
         this.baseBlock = this.block = 5;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
     }

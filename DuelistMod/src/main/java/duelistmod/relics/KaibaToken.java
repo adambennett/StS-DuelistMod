@@ -20,8 +20,8 @@ public class KaibaToken extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("KaibaToken");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("KaibaToken.png");
+    public static final String OUTLINE = DuelistMod.makePath(Strings.M_COIN_RELIC_OUTLINE);
 	//public boolean cardSelected = false;
 	//public DuelistCard cardToAdd = null;
 

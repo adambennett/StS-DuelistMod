@@ -39,6 +39,7 @@ public class UnderworldCannon extends DuelistCard
         this.magicNumber = this.baseMagicNumber = 2;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.BAD_MAGIC);
     }
 
     // Actions the card should do.
@@ -47,16 +48,19 @@ public class UnderworldCannon extends DuelistCard
     {
     	tribute();
     	attack(m);
-    	for (AbstractCard c : p.drawPile.group)
+    	if (this.magicNumber > 0)
     	{
-    		if (c instanceof DuelistCard)
-    		{
-    			DuelistCard dc = (DuelistCard)c;
-    			if (dc.summons > 0)
-    			{
-    				dc.modifySummons(-this.magicNumber);
-    			}
-    		}
+	    	for (AbstractCard c : p.drawPile.group)
+	    	{
+	    		if (c instanceof DuelistCard)
+	    		{
+	    			DuelistCard dc = (DuelistCard)c;
+	    			if (dc.summons > 0)
+	    			{
+	    				dc.modifySummons(-this.magicNumber);
+	    			}
+	    		}
+	    	}
     	}
     }
 

@@ -1,8 +1,10 @@
 package duelistmod.cards.incomplete;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -44,7 +46,7 @@ public class BlastWithChain extends DuelistCard
     {   
     	if (p.hasPower(SummonPower.POWER_ID)) { SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID); if (pow.hasExplosiveTokens()) { attack(m); }}
     }
-
+    
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

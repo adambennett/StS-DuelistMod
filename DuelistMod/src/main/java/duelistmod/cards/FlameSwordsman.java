@@ -32,7 +32,7 @@ public class FlameSwordsman extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.FIRE;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public FlameSwordsman() {
@@ -43,7 +43,7 @@ public class FlameSwordsman extends DuelistCard
         this.tags.add(Tags.WARRIOR);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 3;
     }
     

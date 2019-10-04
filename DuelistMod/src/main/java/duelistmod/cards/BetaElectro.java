@@ -37,6 +37,7 @@ public class BetaElectro extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 12;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
     }

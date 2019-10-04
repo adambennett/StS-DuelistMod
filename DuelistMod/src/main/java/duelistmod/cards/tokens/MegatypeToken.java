@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.cards.typecards.TokenCard;
+import duelistmod.cards.tempCards.TokenCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 

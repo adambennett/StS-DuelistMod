@@ -18,25 +18,6 @@
 	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
     ]
   },
-    "theDuelist:KaibaA1": {
-    "MOVES": [
-      "Attack and Defend",
-      "Defend Test",
-      "Other Test"
-    ],
-    "NAME": "Seto Kaiba",
-    "DIALOG": [
-	  "Me? Duel you? I’d have more of a challenge playing solitaire...",
-	  "Your deck seems quite powerful...",
-	  "Underestimating my Overflow cards Yugi?",
-	  "You have nothing that can withstand the phenomenal strength of my Blue Eyes Ultimate Dragon!",
-	  "Blue Eyes! Attack with all your might! White lightning!",
-	  "I've put all my fate in my next card. So now let it be revealed!",
-	  "There's no escape! Nothing can save you now",
-	  "You’ll have the rest of your entire life to brood over this defeat",
-	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
-    ]
-  },
     "theDuelist:KaibaA2": {
     "MOVES": [
       "Attack and Defend",
@@ -56,7 +37,39 @@
 	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
     ]
   },
-    "theDuelist:KaibaA3": {
+   "theDuelist:YugiEnemy": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Yugi Muto",
+    "DIALOG": [
+	  "You've fought a valiant duel, my friend, and this is the hardest move I've ever had to make. But this ends now!",
+	  "Yu-Gi-Oh!",
+	  "Underestimating my Overflow cards Kaiba?",
+	  "The gift of kindness you've given and the courage I've given you will remain with us, and that will forever bind us together.",
+	  "Do you believe in the Heart of the Cards?",
+	  "My Grandpa's deck has no pathetic cards, Kaiba. But it does contain... the unstoppable Exodia!",
+	  "If I have to duel, I'm gonna need the spirit of the Puzzle to help me.",
+	  "The past is gone, you can not change it! But the future is based on the decisions you make!"
+    ]
+  },
+   "theDuelist:SuperYugi": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Yugi Muto",
+    "DIALOG": [
+	  "You've fought a valiant duel, my friend, and this is the hardest move I've ever had to make. But this ends now!",
+	  "Yu-Gi-Oh!",
+	  "Underestimating my Overflow cards Kaiba?",
+	  "The gift of kindness you've given and the courage I've given you will remain with us, and that will forever bind us together.",
+	  "Do you believe in the Heart of the Cards?",
+	  "My Grandpa's deck has no pathetic cards, Kaiba. But it does contain... the unstoppable Exodia!",
+	  "If I have to duel, I'm gonna need the spirit of the Puzzle to help me.",
+	  "The past is gone, you can not change it! But the future is based on the decisions you make!"
+    ]
+  },
+  "theDuelist:SuperKaiba": {
     "MOVES": [
       "Attack and Defend",
       "Defend Test",
@@ -73,16 +86,6 @@
 	  "There's no escape! Nothing can save you now",
 	  "You’ll have the rest of your entire life to brood over this defeat",
 	  "Why don’t you look for an opponent you can actually beat? Like an infant, or a monkey"
-    ]
-  },
-  "theDuelist:DuelistNob": {
-    "MOVES": [
-      "Skull Bash",
-      "Bull Rush"
-    ],
-    "NAME": "Duelist Nob",
-    "DIALOG": [
-      "@RRrroohrrRGHHhhh!!@"
     ]
   }
 }

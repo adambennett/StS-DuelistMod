@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import basemod.BaseMod;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.CancelCard;
+import duelistmod.cards.tempCards.CancelCard;
 import duelistmod.helpers.GridSort;
 import duelistmod.variables.Strings;
 
@@ -55,6 +55,31 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.randomize = false;
 		this.sendExtraToDiscard = sendExtraToDiscard;
 		this.canCancel = true;
+	}
+	
+	// Megatype Deck w/ Millennium Symbol relic
+	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom, int newCost)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, 1);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = upgraded;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = false;
+		this.sendExtraToDiscard = sendExtraToDiscard;
+		this.canCancel = true;
+		this.costChangeCheck = true;
+		this.lowCostRoll = newCost;
+		this.highCostRoll = newCost;
+		this.randomize = true;
+		this.upgrade = false;
+		this.exhaustCheck = false;
+		this.etherealCheck = false;
+		this.summonCheck = false;
+		this.tributeCheck = false;
+		this.damageBlockRandomize = false;
 	}
 	
 	// Pot of the Forbidden

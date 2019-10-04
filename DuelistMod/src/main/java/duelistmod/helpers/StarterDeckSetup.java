@@ -11,7 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.helpers.poolhelpers.*;
-import duelistmod.patches.TheDuelistEnum;
+import duelistmod.patches.*;
 import duelistmod.variables.Tags;
 
 public class StarterDeckSetup {
@@ -21,6 +21,7 @@ public class StarterDeckSetup {
 	{
 		DuelistMod.archetypeCards.clear();
 		DuelistMod.coloredCards.clear();
+		DuelistMod.duelColorlessCards.clear();
 		for (StarterDeck s : DuelistMod.starterDeckList)
 		{
 			s.getArchetypeCards().clear();
@@ -34,7 +35,7 @@ public class StarterDeckSetup {
 		ArrayList<AbstractCard> newRandomCardList = new ArrayList<AbstractCard>();
 		for (AbstractCard c : DuelistMod.myCards)
 		{
-			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS))
+			if (!c.hasTag(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
 				boolean toonCard = c.hasTag(Tags.TOON);
 				boolean ojamaCard = c.hasTag(Tags.OJAMA);
@@ -85,12 +86,9 @@ public class StarterDeckSetup {
 	
 	public static void initStarterDeckPool()
 	{
-		if (StarterDeckSetup.getCurrentDeck().getIndex() > 18 && StarterDeckSetup.getCurrentDeck().getIndex() < 27) { BasicPool.ascendedBasics(); }
-		else if (DuelistMod.smallBasicSet) { BasicPool.smallBasic(); }
-		else { BasicPool.fullBasic(); }
-		
 		// Standard -- Card Pool defined in poolhelper file
-		if (DuelistMod.setIndex == 0) { standardFill(); }
+		// Fill Colorless with Basic Set
+		if (DuelistMod.setIndex == 0) { standardFill(); setupColorlessCards(); }
 		
 		// Deck Only -- Card pool defined in poolhelper file (without basic cards)
 		else if (DuelistMod.setIndex == 1) { deckFill(); }
@@ -99,16 +97,19 @@ public class StarterDeckSetup {
 		else if (DuelistMod.setIndex == 2) { basicFill(); }
 		
 		// Deck + Basic + 1 random -- Deck set, basic set, one random poolhelper set
-		else if (DuelistMod.setIndex == 3) { deckBasicOneRandomFill(); }
+		// Fill Colorless with Basic Set
+		else if (DuelistMod.setIndex == 3) { deckBasicOneRandomFill(); setupColorlessCards(); }
 		
 		// Deck + 1 random -- Deck set and one random poolhelper set
 		else if (DuelistMod.setIndex == 4) { deckOneRandomFill(); }
 		
 		// Basic + 1 random -- 1 random set + Basic set
-		else if (DuelistMod.setIndex == 5) { basicOneRandomFill(); }
+		// Fill Colorless with Basic Set
+		else if (DuelistMod.setIndex == 5) { basicOneRandomFill(); setupColorlessCards(); }
 		
 		// Basic + 2 random + Deck -- Two random poolhelper sets, deck set, basic set
-		else if (DuelistMod.setIndex == 6) { basicTwoRandomDeckFill(); }
+		// Fill Colorless with Basic Set
+		else if (DuelistMod.setIndex == 6) { basicTwoRandomDeckFill(); setupColorlessCards(); }
 		
 		// 2 random -- Card pools from two random poolhelper files (using AscendedOnePool here because it has all available pools in it's random list)
 		else if (DuelistMod.setIndex == 7) { twoRandomFill(); }
@@ -157,7 +158,7 @@ public class StarterDeckSetup {
 		{
 			for (CardTags t : deckTagList)
 			{
-				if (c.hasTag(t))
+				if (c.hasTag(t) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 				{
 					StarterDeck ref = DuelistMod.deckTagMap.get(t);
 					int copyIndex = StarterDeck.getDeckCopiesMap().get(ref.getDeckTag());
@@ -292,6 +293,13 @@ public class StarterDeckSetup {
 		}
 	}
 	
+	public static void setupColorlessCards()
+	{
+		DuelistMod.duelColorlessCards.clear();
+		if (DuelistMod.smallBasicSet) { DuelistMod.duelColorlessCards.addAll(BasicPool.smallBasic()); }
+		else { DuelistMod.duelColorlessCards.addAll(BasicPool.fullBasic()); }
+	}
+	
 	public static void standardFill()
 	{
 		AquaPool.deck();
@@ -307,7 +315,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -322,6 +330,7 @@ public class StarterDeckSetup {
 		RandomUpgradePool.deck();
 		RandomMetronomePool.deck();
 		
+		/*
 		AquaPool.basic();
 		AscendedOnePool.basic();
 		AscendedTwoPool.basic();
@@ -335,7 +344,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -349,6 +358,7 @@ public class StarterDeckSetup {
 		RandomBigPool.basic();
 		RandomUpgradePool.basic();
 		RandomMetronomePool.basic();
+		*/
 	}
 
 	public static void deckFill()
@@ -366,7 +376,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -390,14 +400,14 @@ public class StarterDeckSetup {
 		AscendedThreePool.basic();
 		CreatorPool.basic();
 		DragonPool.basic();
-		ExodiaPool.basic();
+		ExodiaPool.deck();
 		FiendPool.basic();
 		GiantPool.basic();
 		IncrementPool.basic();
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -428,7 +438,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -443,6 +453,7 @@ public class StarterDeckSetup {
 		RandomUpgradePool.deck();
 		RandomMetronomePool.deck();
 		
+		/*
 		AquaPool.basic();
 		AscendedOnePool.basic();
 		AscendedTwoPool.basic();
@@ -456,7 +467,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -470,7 +481,7 @@ public class StarterDeckSetup {
 		RandomBigPool.basic();
 		RandomUpgradePool.basic();
 		RandomMetronomePool.basic();
-		
+		*/
 		AquaPool.oneRandom();
 		AscendedOnePool.oneRandom();
 		AscendedTwoPool.oneRandom();
@@ -484,7 +495,7 @@ public class StarterDeckSetup {
 		InsectPool.oneRandom();
 		MachinePool.oneRandom();
 		MegatypePool.oneRandom();
-		NaturePool.oneRandom();
+		NaturiaPool.oneRandom();
 		OjamaPool.oneRandom();
 		PharaohPool.oneRandom();
 		PlantPool.oneRandom();
@@ -515,7 +526,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -542,7 +553,7 @@ public class StarterDeckSetup {
 		InsectPool.oneRandom();
 		MachinePool.oneRandom();
 		MegatypePool.oneRandom();
-		NaturePool.oneRandom();
+		NaturiaPool.oneRandom();
 		OjamaPool.oneRandom();
 		PharaohPool.oneRandom();
 		PlantPool.oneRandom();
@@ -560,6 +571,7 @@ public class StarterDeckSetup {
 
 	public static void basicOneRandomFill()
 	{
+		/*
 		AquaPool.basic();
 		AscendedOnePool.basic();
 		AscendedTwoPool.basic();
@@ -573,7 +585,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -587,6 +599,7 @@ public class StarterDeckSetup {
 		RandomBigPool.basic();
 		RandomUpgradePool.basic();
 		RandomMetronomePool.basic();
+		*/
 		ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
 		poolCards.addAll(BasicPool.oneRandom());
 		for (StarterDeck s : DuelistMod.starterDeckList)
@@ -610,7 +623,7 @@ public class StarterDeckSetup {
 		InsectPool.basic();
 		MachinePool.basic();
 		MegatypePool.basic();
-		NaturePool.basic();
+		NaturiaPool.basic();
 		OjamaPool.basic();
 		PharaohPool.basic();
 		PlantPool.basic();
@@ -637,7 +650,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		PlantPool.deck();
@@ -663,7 +676,7 @@ public class StarterDeckSetup {
 		InsectPool.twoRandom();
 		MachinePool.twoRandom();
 		MegatypePool.twoRandom();
-		NaturePool.twoRandom();
+		NaturiaPool.twoRandom();
 		OjamaPool.twoRandom();
 		PharaohPool.twoRandom();
 		PlantPool.twoRandom();
@@ -703,7 +716,7 @@ public class StarterDeckSetup {
 		InsectPool.twoRandom();
 		MachinePool.twoRandom();
 		MegatypePool.twoRandom();
-		NaturePool.twoRandom();
+		NaturiaPool.twoRandom();
 		OjamaPool.twoRandom();
 		PharaohPool.twoRandom();
 		PlantPool.twoRandom();
@@ -730,7 +743,7 @@ public class StarterDeckSetup {
 		InsectPool.deck();
 		MachinePool.deck();
 		MegatypePool.deck();
-		NaturePool.deck();
+		NaturiaPool.deck();
 		OjamaPool.deck();
 		PharaohPool.deck();
 		RandomSmallPool.deck();

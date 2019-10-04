@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.WhiteHowling;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -25,18 +26,17 @@ public class OjamaPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
 		ArrayList<AbstractCard> random = pools.get(DuelistMod.archRoll1);
@@ -52,18 +52,17 @@ public class OjamaPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size() || DuelistMod.archRoll2 > pools.size())
@@ -149,7 +148,7 @@ public class OjamaPool
 		ojamaCards.add(new CrystalRaigeki());
 		ojamaCards.add(new RainbowRuins());
 		ojamaCards.add(new RainbowDragon());
-		ojamaCards.add(new HourglassLife());
+		//ojamaCards.add(new HourglassLife());
 		ojamaCards.add(new Eva());
 		ojamaCards.add(new HappyLover());
 		ojamaCards.add(new DunamesDarkWitch());
@@ -157,6 +156,9 @@ public class OjamaPool
 		ojamaCards.add(new RainbowFlower());
 		ojamaCards.add(new SpiralSpearStrike());
 		ojamaCards.add(new FlyingSaucer());
+		ojamaCards.add(new CircleFireKings());
+		ojamaCards.add(new OnslaughtFireKings());
+		ojamaCards.add(new WhiteHowling());
 		ojamaDeck.fillPoolCards(ojamaCards);		
 		ojamaDeck.fillArchetypeCards(ojamaCards);
 		DuelistMod.archetypeCards.addAll(ojamaCards);
@@ -167,7 +169,8 @@ public class OjamaPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

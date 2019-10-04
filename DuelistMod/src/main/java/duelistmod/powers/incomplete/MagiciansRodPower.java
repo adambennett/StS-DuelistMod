@@ -57,7 +57,7 @@ public class MagiciansRodPower extends AbstractPower
 		if (this.amount > 0)
 		{
 			this.flash();
-			DuelistCard.applyPowerToSelf(new ManaPower(AbstractDungeon.player, AbstractDungeon.player, this.amount));
+			DuelistCard.applyPowerToSelf(new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, this.amount));
 		}
 	}
 }

@@ -53,7 +53,14 @@ public class MetricsHelper
 		par.put("duelist_curses", DuelistMod.duelistCurses);
 		par.put("bonus_puzzle_summons", DuelistMod.forcePuzzleSummons);
 		par.put("pool_fill", getPoolFillType(DuelistMod.setIndex));
-		par.put("duelistmod_version", "v2.748.2");
+		par.put("number_of_spells", DuelistMod.spellsObtained);
+		par.put("number_of_traps", DuelistMod.trapsObtained);
+		par.put("number_of_monsters", DuelistMod.monstersObtained);
+		par.put("total_synergy_tributes", DuelistMod.synergyTributesRan);
+		par.put("highest_max_summons", DuelistMod.highestMaxSummonsObtained);
+		par.put("number_of_resummons", DuelistMod.resummonsThisRun);	
+		par.put("bonus_deck_stats", DuelistMod.bonusUnlockHelper.logMetrics());
+		par.put("duelistmod_version", DuelistMod.version);	
 	}
 	
 }

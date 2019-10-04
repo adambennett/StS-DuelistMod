@@ -2,12 +2,12 @@ package duelistmod.actions.unique;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
-import duelistmod.monsters.SetoKaiba;
+import duelistmod.abstracts.DuelistMonster;
 
 public class KaibaDrawHandAction extends AbstractGameAction 
 {
-	SetoKaiba enemy;
-	public KaibaDrawHandAction(SetoKaiba enemy) 
+	DuelistMonster enemy;
+	public KaibaDrawHandAction(DuelistMonster enemy) 
 	{
 		this.setValues(this.target, this.source, amount);
 		this.actionType = AbstractGameAction.ActionType.DRAW;

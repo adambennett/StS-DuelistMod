@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.YamiPower;
 import duelistmod.variables.*;
 
 public class Yami extends DuelistCard 
@@ -25,7 +25,7 @@ public class Yami extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -38,6 +38,7 @@ public class Yami extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.OP_SPELLCASTER_DECK);
         this.startingOPSPDeckCopies = 1;
+        this.magicNumber = this.baseMagicNumber = 4;
         this.originalName = this.name;
         this.setupStartingCopies();
     }
@@ -46,7 +47,7 @@ public class Yami extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new YamiPower(p, p));
+    	applyPowerToSelf(new YamiPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

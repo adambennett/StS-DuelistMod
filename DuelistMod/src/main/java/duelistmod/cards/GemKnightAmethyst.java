@@ -36,12 +36,12 @@ public class GemKnightAmethyst extends DuelistCard
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.AQUA);
+		this.tags.add(Tags.GEM_KNIGHT);
 		this.magicNumber = this.baseMagicNumber = 10;
 		this.damage = this.baseDamage = 30;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 6;
 		this.isSummon = true;
-		this.setupStartingCopies();
 	}
 
 	// Actions the card should do.

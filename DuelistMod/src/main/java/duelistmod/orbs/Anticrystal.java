@@ -112,8 +112,7 @@ public class Anticrystal extends DuelistOrb
 		updateDescription();
 	}
 	
-	@Override
-	public void onStartOfTurn()
+	private void triggerPassive()
 	{
 		if (!hasNegativeFocus() || this.passiveAmount > 0)
 		{
@@ -135,7 +134,13 @@ public class Anticrystal extends DuelistOrb
 			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, true, false, false, false, false, 0, 3, 0, 0, 0, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:Anticrystal --- > Added: " + randomMonster.name + " to player hand."); }
 		}
-		
+	}
+	
+	@Override
+	public void onStartOfTurn()
+	{
+		triggerPassive();
+		if (gpcCheck()) { triggerPassive(); }
 	}
 
 	@Override

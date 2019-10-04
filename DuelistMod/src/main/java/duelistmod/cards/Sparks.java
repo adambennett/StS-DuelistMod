@@ -4,15 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.helpers.BaseModCardTags;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.GoldenSparksAction;
-import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -41,12 +38,12 @@ public class Sparks extends DuelistCard
         this.baseDamage = this.damage = 6;
         this.tags.add(Tags.SPELL);
         this.tags.add(BaseModCardTags.BASIC_STRIKE);
-        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(CardTags.STRIKE);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.STANDARD_DECK);
         this.tags.add(Tags.DRAGON_DECK);
         this.tags.add(Tags.SPELLCASTER_DECK);
-        this.tags.add(Tags.NATURE_DECK);
+        this.tags.add(Tags.NATURIA_DECK);
         this.tags.add(Tags.TOON_DECK);
         this.tags.add(Tags.ORB_DECK);
         this.tags.add(Tags.RESUMMON_DECK);
@@ -56,7 +53,7 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.ZOMBIE_DECK);
         this.tags.add(Tags.FIEND_DECK);
         this.tags.add(Tags.AQUA_DECK);
-        this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.WARRIOR_DECK);
         this.tags.add(Tags.ASCENDED_ONE_DECK);
         this.tags.add(Tags.ASCENDED_TWO_DECK);
         this.tags.add(Tags.ASCENDED_THREE_DECK);
@@ -64,6 +61,8 @@ public class Sparks extends DuelistCard
         this.tags.add(Tags.INCREMENT_DECK);
         this.tags.add(Tags.PLANT_DECK);
         this.tags.add(Tags.EXODIA_DECK);
+        this.tags.add(Tags.INSECT_DECK);
+        this.insectDeckCopies = 3;
         this.exodiaDeckCopies = 4;
         this.plantDeckCopies = 2;
         this.incrementDeckCopies = 2;

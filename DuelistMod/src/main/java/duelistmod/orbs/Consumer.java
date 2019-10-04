@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -67,10 +68,16 @@ public class Consumer extends DuelistOrb
 	}
 	
 	@Override
+	public void onExhaust(AbstractCard c)
+	{
+		triggerPassiveEffect();
+		if (gpcCheck()) { triggerPassiveEffect(); }
+	}
+	
+	@Override
 	public void onEndOfTurn()
 	{
 		checkFocus(false);
-		triggerPassiveEffect();
 	}
 
 	@Override

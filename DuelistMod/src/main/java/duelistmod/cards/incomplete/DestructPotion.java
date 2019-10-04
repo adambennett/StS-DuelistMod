@@ -41,6 +41,7 @@ public class DestructPotion extends DuelistCard
         this.tags.add(Tags.TRAP); 
 		this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.NEVER_GENERATE);
+		this.tags.add(Tags.X_COST);
         makeFleeting();
     }
 
@@ -48,8 +49,8 @@ public class DestructPotion extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	ArrayList<DuelistCard> list = tribute(true);
-    	if (list.size() > 0) { p.increaseMaxHp(list.size() * this.magicNumber, true);  }
+    	int size = xCostTribute();
+    	if (size > 0) { p.increaseMaxHp(size * this.magicNumber, true);  }
     }
 
     // Which card to return when making a copy of this card.

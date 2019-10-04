@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -58,7 +57,9 @@ public class SummonerBottle extends OrbPotion {
 	// This is your potency.
 	@Override
 	public int getPotency(final int potency) {
-		return 1;
+    	int pot = 1;
+    	if (AbstractDungeon.player == null) { return pot; }
+        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
 	}
 
 	public void upgradePotion()
@@ -70,6 +71,6 @@ public class SummonerBottle extends OrbPotion {
 		}
 		this.tips.clear();
 		this.tips.add(new PowerTip(this.name, this.description));
-		 this.tips.add(new PowerTip("Summoner", DESCRIPTIONS[3]));
+		this.tips.add(new PowerTip("Summoner", DESCRIPTIONS[3]));
 	}
 }

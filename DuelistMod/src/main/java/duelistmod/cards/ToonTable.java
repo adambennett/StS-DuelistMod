@@ -36,6 +36,7 @@ public class ToonTable extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON);
+        this.tags.add(Tags.TOON_DONT_TRIG);
         this.originalName = this.name;
     }
 

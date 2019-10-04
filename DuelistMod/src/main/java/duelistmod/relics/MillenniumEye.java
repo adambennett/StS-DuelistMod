@@ -51,10 +51,13 @@ public class MillenniumEye extends CustomRelic {
     @Override
     public void atBattleStart() 
     {
-        this.flash();
-        AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 0)));
-    
+    	String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+    	if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && deck.equals("Toon Deck"))) 
+    	{
+    		 this.flash();
+ 	        AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+ 	        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 0)));
+    	}
     }
 
     // Description

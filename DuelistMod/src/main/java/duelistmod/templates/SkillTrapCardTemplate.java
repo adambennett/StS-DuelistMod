@@ -55,7 +55,7 @@ public class SkillTrapCardTemplate extends DuelistCard
         this.tags.add(Tags.AQUA);
 
         // Starting Deck
-        this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.WARRIOR_DECK);
 		this.superheavyDeckCopies = 1;
 		this.setupStartingCopies();
 

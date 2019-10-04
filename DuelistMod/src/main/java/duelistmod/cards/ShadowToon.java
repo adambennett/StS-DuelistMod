@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -7,10 +8,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
-import duelistmod.patches.*;
+import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -39,6 +40,7 @@ public class ShadowToon extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.TOON);
         this.tags.add(Tags.ALL);
+        this.tags.add(Tags.TOON_DONT_TRIG);
 		this.originalName = this.name;
     }
 
@@ -59,6 +61,8 @@ public class ShadowToon extends DuelistCard
 			if (instance.isEveryMonsterCheck(Tags.TOON, false)) { heal(p, this.magicNumber); }
 		}
     }
+    
+
 
     // Which card to return when making a copy of this card.
     @Override

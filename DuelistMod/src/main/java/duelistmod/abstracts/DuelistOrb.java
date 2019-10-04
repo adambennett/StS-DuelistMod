@@ -1,9 +1,12 @@
 package duelistmod.abstracts;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 
 import duelistmod.DuelistMod;
 
@@ -12,6 +15,49 @@ public class DuelistOrb extends AbstractOrb {
 	protected int originalPassive = 0;
 	protected int originalEvoke = 0;
 	public boolean triggersOnSpellcasterPuzzle = false;
+	
+	public void onExhaust(AbstractCard c) { }
+	
+	public void onAddCardToHand(AbstractCard c) { }
+	
+	public void onShuffle() { }
+	
+	public void onLoseBlock(int amt) { }
+	
+	public void onGainDex(int amount) { }
+	
+	public void onPowerApplied(AbstractPower pow) { }
+	
+	public void onChangeStance() { }
+	
+	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
+	public void onSummon(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onIncrement(int amount, int newMaxSummons) { }
+	
+	public void onResummon(DuelistCard resummoned) { }
+	
+	public void onSynergyTribute() { }
+	
+	public void onDrawCard(AbstractCard drawnCard) { }
+	
+	public void lightOrbEnhance(int amt)
+	{
+		this.passiveAmount = this.originalPassive = this.originalPassive + amt;
+		this.evokeAmount = this.originalEvoke = this.originalEvoke + amt;
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID)) 
+		{
+			this.passiveAmount += AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+		}
+	}
+	
+	public boolean gpcCheck()
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		if (p.orbs.get(0).equals(this) && p.hasRelic(GoldPlatedCables.ID)) { return true; }
+		else { return false; }		
+	}
 	
 	public boolean hasNegativeFocus()
 	{

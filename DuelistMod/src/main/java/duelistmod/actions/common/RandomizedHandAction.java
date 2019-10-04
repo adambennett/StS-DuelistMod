@@ -32,7 +32,7 @@ public class RandomizedHandAction extends AbstractGameAction
 	private int highSummonRoll = 2;
 	private int lowTributeRoll = 1;
 	private int highTributeRoll = 3;
-
+	
 	public RandomizedHandAction(AbstractCard c)
 	{
 		this.actionType = ActionType.CARD_MANIPULATION;

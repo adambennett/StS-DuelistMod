@@ -16,6 +16,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.BigEye;
 import duelistmod.cards.tokens.Token;
 import duelistmod.helpers.*;
+import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;
 import duelistmod.variables.*;
 
@@ -99,6 +100,22 @@ public class SummonPower extends AbstractPower
 		updateCount(this.amount);
 		updateStringColors();
 		updateDescription();
+	}
+	
+	@Override
+	public void atEndOfTurn(final boolean isPlayer) 
+	{
+		// Rock-type blocking effect
+		if (AbstractDungeon.player.hasPower(CanyonPower.POWER_ID))
+		{
+			for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock + AbstractDungeon.player.getPower(CanyonPower.POWER_ID).amount); }}
+		}
+		else
+		{
+			for (DuelistCard c : actualCardSummonList) { if (c.hasTag(Tags.ROCK)) { DuelistCard.staticBlock(DuelistMod.rockBlock); }}
+		}
+		
+		if (MAX_SUMMONS > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = MAX_SUMMONS; }
 	}
 	
 	@Override
@@ -320,7 +337,7 @@ public class SummonPower extends AbstractPower
 		goodTags.add(Tags.INSECT);
 		goodTags.add(Tags.PLANT);
 		goodTags.add(Tags.TOON);
-		goodTags.add(Tags.WARRIOR);
+		if (!DuelistMod.warriorTribThisCombat) { goodTags.add(Tags.WARRIOR); }
 		coloredSummonList = new ArrayList<String>();
 		for (DuelistCard s : actualCardSummonList)
 		{

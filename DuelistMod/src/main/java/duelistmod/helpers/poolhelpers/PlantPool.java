@@ -9,6 +9,8 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.*;
+import duelistmod.cards.naturia.*;
 import duelistmod.helpers.Util;
 
 public class PlantPool 
@@ -22,17 +24,16 @@ public class PlantPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
-		//pools.add(PredaplantPool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -50,17 +51,16 @@ public class PlantPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
-		//pools.add(PredaplantPool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -90,11 +90,11 @@ public class PlantPool
 		cards.add(new Gigaplant());
 		cards.add(new Invigoration());
 		cards.add(new JerryBeansMan());
-		cards.add(new NaturiaGuardian());
-		cards.add(new NaturiaPineapple());
-		cards.add(new NaturiaPumpkin());
-		cards.add(new NaturiaRosewhip());
-		cards.add(new NaturiaStrawberry());
+		//cards.add(new NaturiaGuardian());
+		//cards.add(new NaturiaPineapple());
+		//cards.add(new NaturiaPumpkin());
+		//cards.add(new NaturiaRosewhip());
+		//cards.add(new NaturiaStrawberry());
 		cards.add(new PredaplantChimerafflesia());
 		cards.add(new PredaplantChlamydosundew());
 		cards.add(new PredaplantDrosophyllum());
@@ -143,13 +143,11 @@ public class PlantPool
 		cards.add(new OrbitalBombardment());
 		cards.add(new BlossomBombardment());
 		cards.add(new ThornMalice());
-		cards.add(new GoldenApples());
 		cards.add(new SilverApples());
 		cards.add(new MiraculousDescent());
 		cards.add(new Reinforcements());
 		cards.add(new KamionTimelord());
 		cards.add(new WormApocalypse());
-		cards.add(new PotGreed());
 		cards.add(new CactusBouncer());
 		cards.add(new Inmato());
 		cards.add(new PlantFoodChain());
@@ -160,6 +158,8 @@ public class PlantPool
 		cards.add(new DarkworldThorns());
 		cards.add(new Mudora());
 		cards.add(new MudGolem());
+		cards.add(new CrystalRose());
+		cards.add(new LonefireBlossom());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
@@ -175,7 +175,8 @@ public class PlantPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

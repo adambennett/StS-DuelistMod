@@ -118,6 +118,7 @@ public class Shadow extends DuelistOrb
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 			DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount);
+			if (gpcCheck()) { DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount); }
 		}
 	}
 	

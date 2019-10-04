@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.SummonSicknessPower;
 import duelistmod.powers.incomplete.*;
 
 public class DebuffHelper 
@@ -161,9 +162,8 @@ public class DebuffHelper
 		debuffs.add(focLoss);
 	
 		// Get randomized debuff
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
+		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1); 
 		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);
-
 		return randomDebuff;
 
 	}

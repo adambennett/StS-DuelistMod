@@ -38,7 +38,7 @@ public class SuperheavySoulbuster extends DuelistCard
         this.damage = this.baseDamage = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
-        this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.WARRIOR_DECK);
 		this.superheavyDeckCopies = 1;
 		this.setupStartingCopies();
         this.misc = 0;

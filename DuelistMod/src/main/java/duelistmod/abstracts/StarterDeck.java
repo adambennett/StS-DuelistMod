@@ -63,14 +63,14 @@ public class StarterDeck
 	{
 		deckCopiesMap.put(Tags.STANDARD_DECK, 0);
 		deckCopiesMap.put(Tags.DRAGON_DECK, 1);
-		deckCopiesMap.put(Tags.NATURE_DECK, 2);
+		deckCopiesMap.put(Tags.NATURIA_DECK, 2);
 		deckCopiesMap.put(Tags.SPELLCASTER_DECK, 3);
 		deckCopiesMap.put(Tags.TOON_DECK, 4);
 		deckCopiesMap.put(Tags.ZOMBIE_DECK, 5);
 		deckCopiesMap.put(Tags.AQUA_DECK, 6);
 		deckCopiesMap.put(Tags.FIEND_DECK, 7);
 		deckCopiesMap.put(Tags.MACHINE_DECK, 8);
-		deckCopiesMap.put(Tags.MAGNET_DECK, 9);
+		deckCopiesMap.put(Tags.WARRIOR_DECK, 9);
 		deckCopiesMap.put(Tags.INSECT_DECK, 10);
 		deckCopiesMap.put(Tags.PLANT_DECK, 11);
 		deckCopiesMap.put(Tags.PREDAPLANT_DECK, 12);

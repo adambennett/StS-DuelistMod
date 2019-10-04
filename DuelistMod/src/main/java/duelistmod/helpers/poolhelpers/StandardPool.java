@@ -10,6 +10,8 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.*;
+import duelistmod.cards.naturia.DemiseLand;
 import duelistmod.helpers.Util;
 
 public class StandardPool 
@@ -23,17 +25,16 @@ public class StandardPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -51,17 +52,16 @@ public class StandardPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -86,21 +86,19 @@ public class StandardPool
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
 	
 		// Bonus
-		cards.add(new LabyrinthWall());
 		cards.add(new PreventRat());
 		cards.add(new BigKoala());
 		cards.add(new BattleFootballer());
 		cards.add(new MillenniumShield());
 		cards.add(new CharcoalInpachi());
 		cards.add(new Mathematician());
-		cards.add(new CastleWalls());
-		cards.add(new GoldenApples());
+		cards.add(new PowerWall());
 		cards.add(new SilverApples());
 		cards.add(new MiraculousDescent());
 		cards.add(new Reinforcements());
 		
 		// Megatype
-		cards.add(new HourglassLife());
+		//cards.add(new HourglassLife());
 		cards.add(new Eva());
 		cards.add(new HappyLover());
 		cards.add(new RainbowNeos());
@@ -143,21 +141,19 @@ public class StandardPool
 		cards.add(new BlackPendant());
 		cards.add(new CardDestruction());
 		cards.add(new FairyBox());
-		cards.add(new FeatherPho());
 		cards.add(new FluteKuriboh());
 		cards.add(new GiantTrunade());
 		cards.add(new GravityBlaster());
 		cards.add(new GravityAxe());
-		cards.add(new HarpieFeather());
+		//cards.add(new HarpieFeather());
 		cards.add(new Hinotama());
 		cards.add(new Invigoration());
 		cards.add(new LightningVortex());
 		cards.add(new ScrapFactory());
 		cards.add(new DarkFactory());
 		cards.add(new PotDuality());
-		cards.add(new PotGreed());
 		cards.add(new Predaponics());
-		cards.add(new RainMercy());
+		//cards.add(new RainMercy());
 		cards.add(new SwordDeepSeated());
 		cards.add(new SwordsRevealing());
 		cards.add(new SwordsConcealing());
@@ -165,11 +161,17 @@ public class StandardPool
 		cards.add(new MiracleFertilizer());
 		cards.add(new UnderworldCannon());
 		cards.add(new SpiritHarp());
+		cards.add(new CircleFireKings());
+		cards.add(new OnslaughtFireKings());
+		cards.add(new WhiteHowling());
+		cards.add(new DemiseLand());
 		cards.add(new ChaosSeed());
 		cards.add(new CrossAttack());		
 		cards.add(new GoldenSparks());		
 		cards.add(new LegendarySword());
 		cards.add(new LightningBlade());		
+		cards.add(new LightningBlade());
+		cards.add(new WhiteNinja());
 		
 		if (!DuelistMod.ojamaBtnBool)
 		{
@@ -195,7 +197,8 @@ public class StandardPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

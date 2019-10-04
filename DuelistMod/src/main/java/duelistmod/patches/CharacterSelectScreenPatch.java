@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
+import duelistmod.DuelistMod;
 import duelistmod.characters.*;
+import duelistmod.helpers.Util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -98,6 +100,14 @@ public class CharacterSelectScreenPatch
         /*bonusCardsLabelHb.update();
         bonusCardsRightHb.update();
         bonusCardsLeftHb.update();*/
+        
+        int deckIndex = DuelistCharacterSelect.getIndex();
+        if (deckIndex == 1 || deckIndex == 3 || deckIndex == 4) 
+        { 
+        	DuelistMod.resetDuelistWithDeck(deckIndex);
+        	//DuelistMod.getEnemyDuelistModel(deckIndex);
+            Util.log("Resetting duelist character model! DeckCode=" + deckIndex);
+        }
 
         if (InputHelper.justClickedLeft)
         {
@@ -130,11 +140,14 @@ public class CharacterSelectScreenPatch
 
         if (startingCardsLeftHb.clicked)
         {
+        	
             startingCardsLeftHb.clicked = false;
             DuelistCharacterSelect.PreviousLoadout();
             int newIndex = DuelistCharacterSelect.getIndex();
             DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
             RefreshLoadout(selectScreen, selectedOption);
+            DuelistMod.resetDuelistWithDeck(newIndex);
+            Util.log("Resetting duelist character model! DeckCode=" + newIndex);
         }
 
         if (startingCardsRightHb.clicked)
@@ -144,6 +157,8 @@ public class CharacterSelectScreenPatch
             int newIndex = DuelistCharacterSelect.getIndex();
             DuelistCharacterSelect.GetSelectedLoadout().setIndex(newIndex);
             RefreshLoadout(selectScreen, selectedOption);
+            DuelistMod.resetDuelistWithDeck(newIndex);
+            Util.log("Resetting duelist character model! DeckCode=" + newIndex);
         }
         
      /*   if (bonusCardsLeftHb.clicked)
@@ -270,7 +285,9 @@ public class CharacterSelectScreenPatch
     private static void RefreshLoadout(CharacterSelectScreen selectScreen, CharacterOption option)
     {
     	DuelistCharacterSelect.refreshCharacterDecks();
-        int currentTotalScore = UnlockTracker.getCurrentScoreTotal(TheDuelistEnum.THE_DUELIST);
+        //int currentTotalScore = UnlockTracker.getCurrentScoreTotal(TheDuelistEnum.THE_DUELIST);
+    	int currentTotalScore = UnlockTracker.unlockProgress.getInteger(TheDuelistEnum.THE_DUELIST.toString() + "TotalScore");
+        if (currentTotalScore < 0) { currentTotalScore = 0; }
         DuelistCharacterSelect.GetSelectedLoadout().Refresh(currentTotalScore, selectScreen, option);
     }
 }

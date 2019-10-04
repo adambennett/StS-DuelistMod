@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -13,11 +14,11 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.helpers.Util;
 import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Tags;
 
@@ -96,13 +97,17 @@ public class FireOrb extends DuelistOrb
 	{
 		
 	}
-
+	
 	public void triggerPassiveEffect()
 	{		
 		if (AbstractDungeon.player.hasPower(FlameTigerPower.POWER_ID))
 		{
 			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-			if (this.passiveAmount > 0) { DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount); }
+			if (this.passiveAmount > 0) 
+			{ 
+				DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount); 
+				if (gpcCheck()) { DuelistCard.damageAllEnemiesThornsFire(this.passiveAmount);  }
+			}
 		}
 		else
 		{
@@ -111,6 +116,7 @@ public class FireOrb extends DuelistOrb
 			{ 
 				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
 				DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); 
+				if (gpcCheck()) { DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); }
 			}
 		}
 		

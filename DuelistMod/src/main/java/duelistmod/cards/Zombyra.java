@@ -37,10 +37,11 @@ public class Zombyra extends DuelistCard
 
     public Zombyra() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 11;
+        this.baseDamage = this.damage = 12;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.BAD_MAGIC);
         this.originalName = this.name;
         this.isSummon = true;
         this.magicNumber = this.baseMagicNumber = 3;
@@ -52,8 +53,11 @@ public class Zombyra extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, AFX, this.damage);
-    	AbstractPower randomDebuff = DebuffHelper.getRandomPlayerDebuff(p, this.magicNumber);
-		DuelistCard.applyPowerToSelf(randomDebuff);
+    	if (this.magicNumber > 0)
+    	{
+	    	AbstractPower randomDebuff = DebuffHelper.getRandomPlayerDebuff(p, this.magicNumber);
+			DuelistCard.applyPowerToSelf(randomDebuff);
+    	}
     }
 
     // Which card to return when making a copy of this card.

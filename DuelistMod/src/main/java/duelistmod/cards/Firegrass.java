@@ -37,13 +37,10 @@ public class Firegrass extends DuelistCard
         this.baseBlock = this.block = 4;
         this.summons = this.baseSummons = 2;
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.NATURE_DECK);
         this.tags.add(Tags.GOOD_TRIB);
-        this.tags.add(Tags.PLANT);
-        this.natureDeckCopies = 2;
+        this.tags.add(Tags.PLANT);        
         this.originalName = this.name;
         this.isSummon = true;
-        this.setupStartingCopies();
     }
 
     // Actions the card should do.

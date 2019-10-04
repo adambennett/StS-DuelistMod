@@ -118,9 +118,9 @@ public class MillenniumPuzzle extends CustomRelic {
 	@Override
 	public void onVictory() 
 	{
-		boolean eliteVictory = false;
-		if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) { eliteVictory = true; }
-		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck"))
+		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
+		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
+		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck") && !boss)
 		{
 			if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
 			else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }
@@ -180,10 +180,9 @@ public class MillenniumPuzzle extends CustomRelic {
 				else { localdesc = DESCRIPTIONS[3] + AbstractDungeon.actNum + DESCRIPTIONS[4];}
 				break;
 	
-			// Nature Deck
+			// Naturia Deck
 			case 2:			
-				if (AbstractDungeon.actNum == 0) { localdesc = DESCRIPTIONS[5] + 1 + DESCRIPTIONS[6]; }
-				else { localdesc = DESCRIPTIONS[5] + AbstractDungeon.actNum + DESCRIPTIONS[6]; }
+				localdesc = DESCRIPTIONS[5];
 				break;
 	
 			// Spellcaster Deck

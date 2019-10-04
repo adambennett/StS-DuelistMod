@@ -26,7 +26,7 @@ public class CyberneticFusion extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -43,7 +43,7 @@ public class CyberneticFusion extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToTop(new CyberFusionAction(p, this.magicNumber, false, Tags.MACHINE));
+    	AbstractDungeon.actionManager.addToTop(new CyberFusionAction(p, this.magicNumber, Tags.MACHINE, m));
     }
 
     // Which card to return when making a copy of this card.

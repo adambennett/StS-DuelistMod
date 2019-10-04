@@ -221,7 +221,7 @@ public class HauntedHelper
 			case "Apply #b2 Thorns to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
+					if (!m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
 					{
 						DuelistCard.applyPower(new ThornsPower(m, 2), m);
 					}
@@ -230,7 +230,7 @@ public class HauntedHelper
 			case "Apply #b1 Strength to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
+					if (!m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
 					{
 						DuelistCard.applyPower(new StrengthPower(m, 1), m);
 					}
@@ -239,7 +239,7 @@ public class HauntedHelper
 			case "Apply #b2 Strength to ALL enemies":
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
+					if (!m.isDead && !m.halfDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped() && m != null)
 					{
 						DuelistCard.applyPower(new StrengthPower(m, 2), m);
 					}
@@ -270,11 +270,11 @@ public class HauntedHelper
 				break;
 			case "ALL enemies gain #b5 Block":
 				int block = 5;
-				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) { if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped()) { m.addBlock(block); }}	
+				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) { if (!m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped()) { m.addBlock(block); }}	
 				break;
 			case "ALL enemies gain #b10 Block":
 				int blockB = 10;
-				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) { if (!m.isDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped()) { m.addBlock(blockB); }}
+				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) { if (!m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped()) { m.addBlock(blockB); }}
 				break;
 			case "Add #b1 Wound to your discard pile":
 				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Wound(), 1));

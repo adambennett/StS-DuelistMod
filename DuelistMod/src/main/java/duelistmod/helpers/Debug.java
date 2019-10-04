@@ -12,6 +12,7 @@ import basemod.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 public class Debug 
@@ -187,6 +188,7 @@ public class Debug
 		System.out.println(counter - 1 + " total rare traps.");
 		listCounter++;
 		
+		/*
 		System.out.println("Common Basic Cards\n----------------------");
 		counter = 1;
 		for (AbstractCard c : DuelistMod.basicCards)
@@ -228,6 +230,7 @@ public class Debug
 		System.out.println("----------------------");
 		System.out.println(counter - 1 + " total rare basic cards.");
 		listCounter++;
+		*/
 		
 		System.out.println("Common Ojama Cards\n----------------------");
 		counter = 1;
@@ -371,7 +374,7 @@ public class Debug
     	ArrayList<ArrayList<DuelistCard>> tribLists = new ArrayList<ArrayList<DuelistCard>>();
     	for (DuelistCard c : DuelistMod.myCards)
     	{
-    		if (c.baseTributes > 0 && c.hasTag(Tags.MONSTER))
+    		if (c.baseTributes > 0 && c.hasTag(Tags.MONSTER) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
     		{
     			cards.put(c, c.baseTributes);
     		}
@@ -420,7 +423,7 @@ public class Debug
 				//DuelistMod.logger.info("added all cards from " + s.getSimpleName());
 			//}
 		}
-		archetypeCards.addAll(DuelistMod.basicCards);
+		//archetypeCards.addAll(DuelistMod.basicCards);
 		for (DuelistCard c : checkCards)
 		{
 			if (!archetypeCards.contains(c) && !c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL))
@@ -521,7 +524,7 @@ public class Debug
 				spellcaster.add(c);
 			}
 
-			if (c.hasTag(Tags.NATURE_DECK))
+			if (c.hasTag(Tags.NATURIA_DECK))
 			{
 				nature.add(c);
 			}
@@ -576,7 +579,7 @@ public class Debug
 				exodiaDeck.add(c);
 			}
 
-			if (c.hasTag(Tags.MAGNET_DECK))
+			if (c.hasTag(Tags.WARRIOR_DECK))
 			{
 				magnetDeck.add(c);
 			}
@@ -644,7 +647,7 @@ public class Debug
 
 		for (DuelistCard c : nature)
 		{
-			DuelistMod.logger.info(c.originalName + " - " + "[i]Nature Deck[/i]");
+			DuelistMod.logger.info(c.originalName + " - " + "[i]Naturia Deck[/i]");
 		}
 
 		for (DuelistCard c : creator)
@@ -711,9 +714,16 @@ public class Debug
 	@SuppressWarnings("unchecked")
 	public static void outputSQLListsForMetrics() {
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-		cards.addAll(DuelistMod.myCards);
+		ArrayList<String> addedCards = new ArrayList<String>();
+		for (AbstractCard c : DuelistMod.myCards)
+		{
+			if (!(c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) || c.color.equals(AbstractCardEnum.DUELIST))) 
+			{ 
+				if (!addedCards.contains(c.name)) { cards.add(c); addedCards.add(c.name); }
+			}			
+		}
 
-		System.out.println("Cards in cardlist: " + DuelistMod.myCards.size());
+		System.out.println("Cards in cardlist: " + cards.size());
 
 		String cardstring = "INSERT INTO `meta_card_data` (`id`, `name`, `character_class`, `neutral`, `invalid`, `rarity`, `type`, `cost`, `description`, `ignore_before`, `updated_on`, `score`, `a0_total`, `a114_total`, `a15_total`, `pick_updated_on`, `a0_pick`, `a114_pick`, `a15_pick`, `a0_not_pick`, `a114_not_pick`, `a15_not_pick`, `up_updated_on`, `a0_up`, `a114_up`, `a15_up`, `a0_purchased`, `a114_purchased`, `a15_purchased`, `a0_purged`, `a114_purged`, `a15_purged`, `wr_updated_on`, `a0_wr`, `a114_wr`, `a15_wr`, `a0_floor`, `a114_floor`, `a15_floor`, `a0_floordetails`, `a114_floordetails`, `a15_floordetails`) VALUES ";
 		cardstring = cardstring + "(0,'',1,0,0,'','','','',NULL,'0000-00-00 00:00:00',0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'','',''),";
@@ -723,7 +733,7 @@ public class Debug
 		int i = 0;
 		for (AbstractCard c : cards) {
 			i++;
-			cardstring = String.format("(%d,'%s',1,0,0,'%s','%s','%d','%s',NULL,'0000-00-00 00:00:00',0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'','',''),", i, c.cardID, Util.titleCase(c.rarity.name()), Util.titleCase(c.type.name()), c.cost, c.rawDescription.replace("'","\'"));
+			cardstring = String.format("(%d,'%s',1,0,0,'%s','%s','%d','%s',NULL,'0000-00-00 00:00:00',0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,0,0,0,'0000-00-00 00:00:00',0,0,0,0,0,0,'','',''),", i, c.cardID, c.rarity.name().toLowerCase(), c.type.name().toLowerCase(), c.cost, c.rawDescription.replace("'","\'"));
 			System.out.println(cardstring);
 		}
 
@@ -738,38 +748,32 @@ public class Debug
 
 
 		ArrayList<AbstractRelic> relics = new ArrayList<>();
-
+		ArrayList<String> relicsAdded = new ArrayList<String>();
 		HashMap<String,AbstractRelic> sharedRelics = (HashMap<String,AbstractRelic>)ReflectionHacks.getPrivateStatic(RelicLibrary.class, "sharedRelics");
 		for (AbstractRelic relic : sharedRelics.values()) {
-			relics.add(relic);
+			if (!relicsAdded.contains(relic.name)) {
+				relics.add(relic);
+				relicsAdded.add(relic.name);
+			}
 		}
 
 		for (Entry<CardColor, HashMap<String, AbstractRelic>> a : BaseMod.getAllCustomRelics().entrySet())
 		{
 			for (AbstractRelic r : a.getValue().values())
 			{
-				relics.add(r);
-				if (r != null)
-				{
-					System.out.println("theDuelist:outputSQLListsForMetrics() ---> added " + r.name + " to relics"); 
-				}
-				else
-				{
-					System.out.println("theDuelist:outputSQLListsForMetrics() ---> relic not added because it was null!");
+				if (!relicsAdded.contains(r.name)) {
+					relics.add(r);
+					relicsAdded.add(r.name);
 				}
 			}
-
-			System.out.println("got here at least");
 		}
 
 
 		for (HashMap.Entry<AbstractCard.CardColor,HashMap<String,AbstractRelic>> entry : BaseMod.getAllCustomRelics().entrySet()) {
 			for (AbstractRelic relic : entry.getValue().values()) {
-				relics.add(relic);
-				if (relic != null) { System.out.println("theDuelist:outputSQLListsForMetrics() ---> added " + relic.name + " to relics"); }
-				else 
-				{
-					System.out.println("theDuelist:outputSQLListsForMetrics() ---> relic not added because it was null!");
+				if (!relicsAdded.contains(relic.name)) {
+					relics.add(relic);
+					relicsAdded.add(relic.name);
 				}
 			}
 		}
@@ -780,7 +784,9 @@ public class Debug
 		i = 0;
 		for (AbstractRelic relic: relics) {
 			i++;
-			relicstring = relicstring + String.format("(%d,'%s',0,1,'%s','%s',0,'0000-00-00'),", i, relic.name, relic.description, relic.tier.name().toLowerCase());
+			String nameString = relic.name.replaceAll("'", "");
+			String desc = relic.description.replaceAll("'", "");
+			relicstring = relicstring + String.format("(%d,'%s',0,1,'%s','%s',0,'0000-00-00'),", i, nameString, desc, relic.tier.name().toLowerCase());
 		}
 		System.out.println(relicstring);
 

@@ -28,7 +28,7 @@ public class GiantSoldier extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.BASIC;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -37,8 +37,9 @@ public class GiantSoldier extends DuelistCard
 
     public GiantSoldier() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 6;
+        this.baseBlock = this.block = 4;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.STANDARD_DECK);
         this.tags.add(Tags.ORIGINAL_DECK);   
@@ -72,7 +73,7 @@ public class GiantSoldier extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             //this.upgradeMagicNumber(1);
-            this.upgradeBlock(3);
+            this.upgradeBlock(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

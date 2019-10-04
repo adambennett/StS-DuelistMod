@@ -42,6 +42,7 @@ public class GrossGhost extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
 		this.tags.add(Tags.NEVER_EXHAUST);
+        this.tags.add(Tags.BAD_MAGIC);
 		this.misc = 0;
 		this.originalName = this.name;
 		this.isEthereal = true;
@@ -65,7 +66,7 @@ public class GrossGhost extends DuelistCard
 			}
 		}
 		
-		if (handTribs.size() > 0)
+		if (handTribs.size() > 0 && this.magicNumber > 0)
 		{
 			for (DuelistCard pick : handTribs)
 			{

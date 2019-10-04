@@ -3,8 +3,6 @@ package duelistmod.helpers;
 import java.util.*;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.GameOverStat;
 
 import duelistmod.DuelistMod;
 
@@ -42,6 +40,7 @@ public class BonusDeckUnlockHelper
 	private int a20_heart_kills_random_small_deck = 0;
 	private int a20_heart_kills_random_big_deck = 0;
 	private int heartKillsRandomDecks = 0;
+	private int heartKillsTotal = 0;
 	private ArrayList<Integer> heartKills = new ArrayList<Integer>();
 	private ArrayList<Integer> heartKillsForA1 = new ArrayList<Integer>();
 	private ArrayList<Integer> heartKillsForP5 = new ArrayList<Integer>();
@@ -56,6 +55,45 @@ public class BonusDeckUnlockHelper
 	private boolean p5_Unlocked = false;
 	private boolean extraRandomsUnlocked = false;
 	private boolean playOnce = false;
+	
+	public String logMetrics()
+	{
+		loadProperties();
+		String toLog = " {";
+		toLog += "(played_all_gods::" + Boolean.toString(played_all_gods_in_combat) + "), ";
+		toLog += "(a20_heart_kills_standard_deck - " + Integer.toString(a20_heart_kills_standard_deck) + "), ";
+		toLog += "(a20_heart_kills_dragon_deck - " + Integer.toString(a20_heart_kills_dragon_deck) + "), ";
+		toLog += "(a20_heart_kills_nature_deck - " + Integer.toString(a20_heart_kills_nature_deck) + "), ";
+		toLog += "(a20_heart_kills_spellcaster_deck - " + Integer.toString(a20_heart_kills_spellcaster_deck) + "), ";
+		toLog += "(a20_heart_kills_toon_deck - " + Integer.toString(a20_heart_kills_toon_deck) + "), ";
+		toLog += "(a20_heart_kills_zombie_deck - " + Integer.toString(a20_heart_kills_zombie_deck) + "), ";
+		toLog += "(a20_heart_kills_aqua_deck - " + Integer.toString(a20_heart_kills_aqua_deck) + "), ";
+		toLog += "(a20_heart_kills_fiend_deck - " + Integer.toString(a20_heart_kills_fiend_deck) + "), ";
+		toLog += "(a20_heart_kills_machine_deck - " + Integer.toString(a20_heart_kills_machine_deck) + "), ";
+		toLog += "(a20_heart_kills_insect_deck - " + Integer.toString(a20_heart_kills_insect_deck) + "), ";
+		toLog += "(a20_heart_kills_plant_deck - " + Integer.toString(a20_heart_kills_plant_deck) + "), ";
+		toLog += "(a20_heart_kills_predaplant_deck - " + Integer.toString(a20_heart_kills_predaplant_deck) + "), ";
+		toLog += "(a20_heart_kills_warrior_deck - " + Integer.toString(a20_heart_kills_warrior_deck) + "), ";
+		toLog += "(a20_heart_kills_megatype_deck - " + Integer.toString(a20_heart_kills_megatype_deck) + "), ";
+		toLog += "(a20_heart_kills_increment_deck - " + Integer.toString(a20_heart_kills_increment_deck) + "), ";
+		toLog += "(a20_heart_kills_creator_deck - " + Integer.toString(a20_heart_kills_creator_deck) + "), ";
+		toLog += "(a20_heart_kills_ojama_deck - " + Integer.toString(a20_heart_kills_ojama_deck) + "), ";
+		toLog += "(a20_heart_kills_exodia_deck - " + Integer.toString(a20_heart_kills_exodia_deck) + "), ";
+		toLog += "(a20_heart_kills_giants_deck - " + Integer.toString(a20_heart_kills_giants_deck) + "), ";
+		toLog += "(a20_heart_kills_a1_deck - " + Integer.toString(a20_heart_kills_a1_deck) + "), ";
+		toLog += "(a20_heart_kills_a2_deck - " + Integer.toString(a20_heart_kills_a2_deck) + "), ";
+		toLog += "(a20_heart_kills_a3_deck - " + Integer.toString(a20_heart_kills_a3_deck) + "), ";
+		toLog += "(a20_heart_kills_p1_deck - " + Integer.toString(a20_heart_kills_p1_deck) + "), ";
+		toLog += "(a20_heart_kills_p2_deck - " + Integer.toString(a20_heart_kills_p2_deck) + "), ";
+		toLog += "(a20_heart_kills_p3_deck - " + Integer.toString(a20_heart_kills_p3_deck) + "), ";
+		toLog += "(a20_heart_kills_p4_deck - " + Integer.toString(a20_heart_kills_p4_deck) + "), ";
+		toLog += "(a20_heart_kills_p5_deck - " + Integer.toString(a20_heart_kills_p5_deck) + "), ";
+		toLog += "(a20_heart_kills_random_small_deck - " + Integer.toString(a20_heart_kills_random_small_deck) + "), ";
+		toLog += "(a20_heart_kills_random_big_deck - " + Integer.toString(a20_heart_kills_random_big_deck) + "), ";
+		toLog += "(heartKills - " + Integer.toString(heartKillsTotal) + "), ";
+		toLog += "(heartKillsRandomDecks - " + Integer.toString(heartKillsRandomDecks) + ")} ";
+		return toLog;
+	}
 	
 	public BonusDeckUnlockHelper()
 	{
@@ -282,6 +320,7 @@ public class BonusDeckUnlockHelper
         	config.setInt("a20_heart_kills_random_small_deck", a20_heart_kills_random_small_deck);
         	config.setInt("a20_heart_kills_random_big_deck", a20_heart_kills_random_big_deck);     
         	config.setInt("heartKillsRandomDecks", heartKillsRandomDecks);
+        	config.setInt("heartKillsTotal", heartKillsTotal);
         	config.setBool("playOnce", playOnce);    
 			config.save();
 		} 
@@ -298,6 +337,7 @@ public class BonusDeckUnlockHelper
 		{
 			heartKillsRandomDecks++;
 		}		
+		heartKillsTotal++;
 		setupNumberLists();
 		unlockDecks();
 		unlockDecksGlobally();
@@ -306,6 +346,7 @@ public class BonusDeckUnlockHelper
 	
 	public void beatHeartA20()
 	{
+		heartKillsTotal++;
 		int currentDeck = StarterDeckSetup.getCurrentDeck().getIndex();
 		switch (currentDeck)
 		{
@@ -451,6 +492,7 @@ public class BonusDeckUnlockHelper
         	a20_heart_kills_random_small_deck = config.getInt("a20_heart_kills_random_small_deck");
         	a20_heart_kills_random_big_deck = config.getInt("a20_heart_kills_random_big_deck");   
         	heartKillsRandomDecks = config.getInt("heartKillsRandomDecks");
+        	heartKillsTotal = config.getInt("heartKillsTotal");
         	playOnce = config.getBool("playOnce");
         } 
 		catch (Exception e) { e.printStackTrace(); }
@@ -508,5 +550,6 @@ public class BonusDeckUnlockHelper
 		propertyList.setProperty("p5_Unlocked", "FALSE");
 		propertyList.setProperty("extraRandomsUnlocked", "FALSE");
 		propertyList.setProperty("heartKillsRandomDecks", "0");
+		propertyList.setProperty("heartKillsTotal", "0");
 	}
 }

@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,10 +9,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
 
@@ -57,7 +58,6 @@ public class InjectionFairy extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower power = (SummonPower) p.getPower(SummonPower.POWER_ID);
@@ -67,7 +67,10 @@ public class InjectionFairy extends DuelistCard
 			}
 		}
 		attack(m, AFX, this.damage); 
+		summon(p, this.summons, this);
 	}
+	
+
 
 	// Which card to return when making a copy of this card.
 	@Override

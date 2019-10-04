@@ -62,7 +62,7 @@ public class Sand extends DuelistOrb
 		{
 			for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 			{
-				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped())
+				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead)
 				{
 					AbstractPower slow = new SlowPower(m, this.evokeAmount);
 					DuelistCard.applyPower(slow, m);
@@ -81,6 +81,7 @@ public class Sand extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		if (this.passiveAmount > 0) { this.triggerPassiveEffect(); }
+		if (gpcCheck() && this.passiveAmount > 0) { this.triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()

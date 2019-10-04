@@ -45,7 +45,7 @@ public class PharaohPool
 		cards.add(new RainbowDarkDragon());
 		cards.add(new MaleficRainbowDragon());
 		cards.add(new RainbowDragon());
-		cards.add(new HourglassLife());
+		//cards.add(new HourglassLife());
 		cards.add(new Eva());
 		cards.add(new HappyLover());
 		cards.add(new DunamesDarkWitch());
@@ -81,19 +81,18 @@ public class PharaohPool
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
-		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(FiendPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -119,18 +118,17 @@ public class PharaohPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }		
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -165,11 +163,23 @@ public class PharaohPool
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
-		deck.fillPoolCards(DuelistMod.basicCards);
-		deckB.fillPoolCards(DuelistMod.basicCards);
-		deckC.fillPoolCards(DuelistMod.basicCards);
-		deckD.fillPoolCards(DuelistMod.basicCards);
-		deckE.fillPoolCards(DuelistMod.basicCards);	
-		return DuelistMod.basicCards;
+		
+		if (DuelistMod.smallBasicSet) { deck.fillPoolCards(BasicPool.smallBasic()); }
+		else { deck.fillPoolCards(BasicPool.fullBasic()); }
+		
+		if (DuelistMod.smallBasicSet) { deckB.fillPoolCards(BasicPool.smallBasic()); }
+		else { deckB.fillPoolCards(BasicPool.fullBasic()); }
+		
+		if (DuelistMod.smallBasicSet) { deckC.fillPoolCards(BasicPool.smallBasic()); }
+		else { deckC.fillPoolCards(BasicPool.fullBasic()); }
+		
+		if (DuelistMod.smallBasicSet) { deckD.fillPoolCards(BasicPool.smallBasic()); }
+		else { deckD.fillPoolCards(BasicPool.fullBasic()); }
+		
+		if (DuelistMod.smallBasicSet) { deckE.fillPoolCards(BasicPool.smallBasic()); }
+		else { deckE.fillPoolCards(BasicPool.fullBasic()); }
+		
+		if (DuelistMod.smallBasicSet) { return BasicPool.smallBasic(); }
+		else { return BasicPool.fullBasic(); }
 	}
 }

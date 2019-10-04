@@ -56,7 +56,7 @@ public class JinzoAction extends AbstractGameAction
     	for (AbstractCard c : AbstractDungeon.player.hand.group) { if ((c.tags.contains(Tags.TRAP))) { modCards.add(c); } }
     	
     	// Remove all 0 cost spells and traps from list
-    	if (modCards.size() > 0) { for (int i = 0; i < modCards.size(); i++) { if (modCards.get(i).cost == 0) { modCards.remove(i); } } }
+    	if (modCards.size() > 0) { for (int i = 0; i < modCards.size(); i++) { if (modCards.get(i).cost < 1) { modCards.remove(i); } } }
     	
     	// For the amount of times equal to power stacks, grab a random card from the remaining list and set cost to 0
     	// Do this until no cards remain in list, or iterations = power stacks

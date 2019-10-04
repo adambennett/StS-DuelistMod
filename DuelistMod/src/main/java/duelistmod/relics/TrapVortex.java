@@ -27,8 +27,8 @@ public class TrapVortex extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("TrapVortex");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("TrapVortex.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("TrapVortexOutline.png");
 	
 	private AbstractPower buff = new DummyPowerDoNotApply();
 	private String buffName;
@@ -80,7 +80,7 @@ public class TrapVortex extends CustomRelic {
 	@Override
 	public void atBattleStart()
 	{
-		this.buff = BuffHelper.trapVortex(this.buffRollID, this.trapsRemoved);
+		this.buff = BuffHelper.trapVortex(this.buffRollID, this.counter);
 		if (!(this.buff instanceof DummyPowerDoNotApply)) { DuelistCard.applyPowerToSelf(buff); this.flash(); }
 	}
 

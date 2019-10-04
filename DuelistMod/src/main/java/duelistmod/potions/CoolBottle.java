@@ -54,16 +54,16 @@ public class CoolBottle extends OrbPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-        return 2;
+    	int pot = 2;
+    	if (AbstractDungeon.player == null) { return pot; }
+        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
+
     
     public void upgradePotion()
     {
-      this.potency += 1;
-      if (this.potency > 1)
-      {
-    	  this.description = DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];
-      }
+      this.potency += 1;      
+      this.description = DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2];      
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
     }

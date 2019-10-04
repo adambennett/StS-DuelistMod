@@ -3,7 +3,6 @@ package duelistmod.events;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.potions.PotionSlot;
@@ -11,11 +10,12 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.*;
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.helpers.Util;
 import duelistmod.relics.*;
 import duelistmod.variables.Tags;
 
-public class AknamkanonTomb extends AbstractImageEvent {
+public class AknamkanonTomb extends DuelistEvent {
 
 
     public static final String ID = DuelistMod.makeID("AknamkanonTomb");
@@ -82,6 +82,7 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            		for (int j = 0; j < initSlots; j++) { AbstractDungeon.player.potions.add(new PotionSlot(initSlots + j)); }
 	            		if (a15) { AbstractDungeon.player.decreaseMaxHealth(7); }
 	            		else { AbstractDungeon.player.decreaseMaxHealth(4); }
+	            		logMetric(NAME, "Brew - 2x Potion Slots");
 	            		screenNum = 1;
 	            		break;
 	
@@ -101,6 +102,7 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            			while (c3.name.equals(c.name) || c3.name.equals(c2.name)) { c3 = DuelistCardLibrary.getRandomDuelistCurse(); }
 	            			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(c3, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		}
+	            		logMetric(NAME, "Enrich - 2x gold");
 	            		screenNum = 1;
 	            		break;
 	
@@ -114,6 +116,7 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            		while (ca2.name.equals(ca.name)) { ca2 = CardLibrary.getCurse(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(ca, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(ca2, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		logMetric(NAME, "Intellect - dupe all spells");
 	            		screenNum = 1;
 	            		break;
 	
@@ -136,6 +139,7 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            		{
 	            			DuelistMod.logger.info("Triggered hasEveryDuelistRelic boolean, so do you have them all? DuelistMod.duelistRelics.size() == " + DuelistMod.duelistRelicsForTombEvent.size());
 	            		}
+	            		logMetric(NAME, "Dig - random Duelist relic");
 	            		screenNum = 1;
 	            		break;
 
@@ -145,6 +149,7 @@ public class AknamkanonTomb extends AbstractImageEvent {
 	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[4]);
 	            		this.imageEventText.clearRemainingOptions();
+	            		logMetric(NAME, "Leave");
 	            		screenNum = 1;
 	            		break;
             	}

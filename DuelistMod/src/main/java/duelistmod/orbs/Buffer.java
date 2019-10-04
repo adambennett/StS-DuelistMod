@@ -95,10 +95,12 @@ public class Buffer extends DuelistOrb
 			if (!hasNegativeFocus())
 			{
 				this.triggerPassiveEffect();
+				if (gpcCheck()) { this.triggerPassiveEffect(); }
 			}
 			else if (this.passiveAmount > 0)
 			{
 				this.triggerPassiveEffect();
+				if (gpcCheck()) { this.triggerPassiveEffect(); }
 			}
 			else if (DuelistMod.debug)
 			{

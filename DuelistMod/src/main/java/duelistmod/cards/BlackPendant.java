@@ -46,6 +46,7 @@ public class BlackPendant extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 4;	// Strength
         this.thirdMagic = this.baseThirdMagic = 3;		// HP Loss
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.BAD_MAGIC);
         this.originalName = this.name;
     }
     

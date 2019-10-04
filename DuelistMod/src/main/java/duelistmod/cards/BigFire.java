@@ -32,14 +32,14 @@ public class BigFire extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     private static int MIN_HEAL = 0;
     private static int MAX_HEAL = 25;
 	private static final int MIN_HEAL_U = 5;
-    private static final int MAX_HEAL_U = 30;
+    private static final int MAX_HEAL_U = 25;
     // /STAT DECLARATION/
 
     public BigFire() {
@@ -61,7 +61,7 @@ public class BigFire extends DuelistCard
     	ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
     	for (AbstractMonster g : monsters)
     	{
-    		if (!g.isDead)
+    		if (!g.isDead && !g.isDying && !g.isDeadOrEscaped() && !g.halfDead)
     		{
 	    		int randomDmgNumM = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL);
 	    		int randomDmgNumM_Upgrade = AbstractDungeon.cardRandomRng.random(MIN_HEAL, MAX_HEAL_U);
@@ -83,7 +83,7 @@ public class BigFire extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
+            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

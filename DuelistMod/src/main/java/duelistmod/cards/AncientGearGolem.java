@@ -75,8 +75,7 @@ public class AncientGearGolem extends DuelistCard
 		if (!this.upgraded) 
 		{
 			this.upgradeName();
-			this.upgradeMagicNumber(2);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBaseCost(0); }
+			this.upgradeBaseCost(0);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

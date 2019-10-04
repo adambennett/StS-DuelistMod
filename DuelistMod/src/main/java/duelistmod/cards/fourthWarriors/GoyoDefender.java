@@ -1,8 +1,11 @@
 package duelistmod.cards.fourthWarriors;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -51,6 +54,7 @@ public class GoyoDefender extends DuelistCard
     	block();
     	if (DuelistMod.secondLastCardPlayed.type.equals(CardType.ATTACK)) { draw(this.magicNumber); }
     }
+
 
     // Which card to return when making a copy of this card.
     @Override

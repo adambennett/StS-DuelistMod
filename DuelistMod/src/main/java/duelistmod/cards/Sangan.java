@@ -41,6 +41,7 @@ public class Sangan extends DuelistCard
         this.baseDamage = this.damage = 4;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.FIEND);
         this.tags.add(Tags.METAL_RAIDERS);
         this.originalName = this.name;
         this.isSummon = true;

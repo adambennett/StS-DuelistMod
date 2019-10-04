@@ -91,19 +91,18 @@ public class RandomMetronomePool
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
-		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(FiendPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -121,18 +120,17 @@ public class RandomMetronomePool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -180,7 +178,8 @@ public class RandomMetronomePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
-		cards.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic()); }
+		else { cards.addAll(BasicPool.fullBasic()); }
 		cards.add(new Metronome());
 		cards.add(new AttackMetronome());
 		cards.add(new RareAttackMetronome());

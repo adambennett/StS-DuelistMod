@@ -2,7 +2,8 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -41,11 +42,12 @@ public class ValkMagnet extends DuelistCard
     public ValkMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 30;
-        this.magicNumber = this.baseMagicNumber = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.EXEMPT);
 		this.originalName = this.name;
+		this.isMultiDamage = true;
     }
 
     // Actions the card should do.
@@ -54,7 +56,7 @@ public class ValkMagnet extends DuelistCard
     {
     	if (p.hasPower(AlphaMagPower.POWER_ID) && p.hasPower(BetaMagPower.POWER_ID) && p.hasPower(GammaMagPower.POWER_ID))
     	{
-        	attackAllEnemies(this.damage);
+    		this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AttackEffect.SLASH_DIAGONAL));
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, AlphaMagPower.POWER_ID, 1));
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, BetaMagPower.POWER_ID, 1));
 	    	AbstractDungeon.actionManager.addToTop(new ReducePowerAction(p, p, GammaMagPower.POWER_ID, 1));

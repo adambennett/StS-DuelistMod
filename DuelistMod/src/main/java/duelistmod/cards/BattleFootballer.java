@@ -35,7 +35,7 @@ public class BattleFootballer extends DuelistCard
 
     public BattleFootballer() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 7;
+        this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.summons = this.baseSummons = 2;
@@ -62,7 +62,7 @@ public class BattleFootballer extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(3);
+            this.upgradeMagicNumber(2);
             if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeBlock(7); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

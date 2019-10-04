@@ -8,7 +8,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.WhiteHowling;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.*;
+import duelistmod.cards.naturia.MultiplicationOfAnts;
 import duelistmod.helpers.Util;
 
 public class IncrementPool 
@@ -22,17 +25,16 @@ public class IncrementPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -50,17 +52,16 @@ public class IncrementPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -132,6 +133,7 @@ public class IncrementPool
 		incCards.add(new MultiplicationOfAnts());		
 		incCards.add(new DarkSpider());		
 		incCards.add(new UndergroundArachnid());
+		incCards.add(new WhiteHowling());
 		
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
@@ -147,7 +149,8 @@ public class IncrementPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

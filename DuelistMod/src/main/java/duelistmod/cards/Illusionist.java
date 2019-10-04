@@ -10,7 +10,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.incomplete.ManaPower;
+import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.*;
 
 public class Illusionist extends DuelistCard 
@@ -54,7 +54,7 @@ public class Illusionist extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	block(this.block);
-    	applyPowerToSelf(new ManaPower(p, p, this.magicNumber));
+    	applyPowerToSelf(new MagickaPower(p, p, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

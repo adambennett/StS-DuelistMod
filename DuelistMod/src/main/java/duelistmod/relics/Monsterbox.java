@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.*;
+import duelistmod.cards.tempCards.*;
 import duelistmod.helpers.GridSort;
 import duelistmod.variables.*;
 

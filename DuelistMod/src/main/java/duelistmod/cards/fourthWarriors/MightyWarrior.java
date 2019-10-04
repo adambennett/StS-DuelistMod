@@ -40,6 +40,9 @@ public class MightyWarrior extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+        this.tags.add(Tags.WARRIOR_DECK);
+        this.superheavyDeckCopies = 1;
+        this.setupStartingCopies();
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
-import duelistmod.monsters.SetoKaiba;
+import duelistmod.abstracts.DuelistMonster;
 
 
 public class EnemyMiraclePower extends AbstractPower
@@ -34,7 +34,7 @@ public class EnemyMiraclePower extends AbstractPower
 		updateDescription();
 	}
 	
-	public void trigger(SetoKaiba seto)
+	public void trigger(DuelistMonster seto)
 	{
 		AbstractDungeon.actionManager.addToBottom(new GainBlockAction(seto, seto, this.amount));
 		this.flash();

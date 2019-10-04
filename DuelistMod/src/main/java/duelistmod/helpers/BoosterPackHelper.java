@@ -12,12 +12,36 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.DestructPotion;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.*;
 import duelistmod.rewards.*;
 import duelistmod.variables.Tags;
 
 public class BoosterPackHelper 
 {
+	public static int commonPackCost = 130;
+	public static int spellPackCost = 150;
+	public static int trapPackCost = 150;
+	public static int summonPackCost = 150;
+	public static int rareDragPackCost = 200;
+	public static int rareSpellcasterPackCost = 180;
+	public static int dragPackCost = 175;
+	public static int deckPackCost = 150;
+	public static int specialPackCost = 100;
+	public static int uncommonPackCost = 140;
+	public static int skillPackCost = 145;
+	public static int attackPackCost = 145;
+	public static int allUncommonPackCost = 150;
+	public static int rarePackCost = 175;
+	public static int multitypePackCost = 160;
+	public static int powerPackCost = 165;
+	public static int rareAttackPackCost = 180;
+	public static int rareSkillPackCost = 170;
+	public static int rarePowerPackCost = 185;
+	public static int sillyPackCost = 155;
+	public static int orbPackCost = 75;
+	public static int exodiaPackCost = 120;
+	public static int allRarePackCost = 250;
 	public static int normalPackSize = 5;
 	public static int fatPackSize = 7;
 	public static int bonusPackSize = 3;
@@ -400,6 +424,13 @@ public class BoosterPackHelper
 		return toReturn;
 	}
 	
+	public static ArrayList<AbstractCard> exodiaPack()
+	{
+		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
+		for (int i = 0; i < normalPackSize; i++) { toReturn.add(new ExodiaHead()); }
+		return toReturn;
+	}
+	
 	// Bonus
 	public static ArrayList<AbstractCard> deckBoosterPack()
 	{
@@ -530,7 +561,7 @@ public class BoosterPackHelper
 		for (AbstractCard c : DuelistMod.myCards)
 		{
 			boolean okToAdd = true;
-			if (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL)) { okToAdd = false; }
+			if (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL) || c.color.equals(AbstractCardEnum.DUELIST_SPECIAL)) { okToAdd = false; }
 			if (okToAdd)
 			{
 				if (c.hasTag(Tags.DRAGON))
@@ -552,9 +583,15 @@ public class BoosterPackHelper
 					exodia.add(c.makeStatEquivalentCopy());
 				}
 				
-				fullPool.add(c.makeStatEquivalentCopy()); 
-				if (!c.rarity.equals(CardRarity.COMMON)) { fullPoolNonCommon.add(c.makeStatEquivalentCopy());  }
+				
+				
 			}
+		}
+		
+		for (AbstractCard c : DuelistMod.duelColorlessCards)
+		{
+			fullPool.add(c.makeStatEquivalentCopy()); 
+			if (!c.rarity.equals(CardRarity.COMMON)) { fullPoolNonCommon.add(c.makeStatEquivalentCopy());  }
 		}
 		
 		for (AbstractCard c : DuelistMod.coloredCards)
@@ -563,6 +600,8 @@ public class BoosterPackHelper
 			if (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL)) { okToAdd = false; }
 			if (okToAdd)
 			{
+				fullPool.add(c.makeStatEquivalentCopy()); 
+				if (!c.rarity.equals(CardRarity.COMMON)) { fullPoolNonCommon.add(c.makeStatEquivalentCopy());  }
 				if (c.rarity.equals(CardRarity.COMMON))
 				{
 					commons.add(c.makeStatEquivalentCopy());
@@ -704,7 +743,7 @@ public class BoosterPackHelper
 	
 	public static RewardItem getBonusBoosterDebug(boolean archetypeDeck)
 	{
-		RewardItem toReturn = new BoosterReward(deckBoosterPack(), "DeckBooster", "Archetype Booster", 6000);
+		RewardItem toReturn = new BoosterReward(deckBoosterPack(), "DeckBooster", "Archetype Booster", 6000, 0);
 		if (toReturn.cards.size() < bonusPackSize) { return getBonusBooster(false, archetypeDeck); }
 		return toReturn;
 	}
@@ -712,72 +751,72 @@ public class BoosterPackHelper
 	public static RewardItem getBonusBooster(boolean special, boolean archetypeDeck)
 	{
 		int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll);
+		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll, 0);
 		if (special) { roll = 101; }
 		if (!archetypeDeck)
 		{
 			if (roll <= 25)
 			{
-				toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster", roll + 200);
+				toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster", roll + 200, spellPackCost);
 			}
 			else if (roll <= 44)
 			{
-				toReturn = new BoosterReward(trapsBoosterPack(), "TrapBooster", "Trap Booster", roll + 200);
+				toReturn = new BoosterReward(trapsBoosterPack(), "TrapBooster", "Trap Booster", roll + 200, trapPackCost);
 			}
 			else if (roll <= 72)
 			{
-				toReturn = new BoosterReward(summonsBoosterPack(), "SummonBooster", "Summons Booster", roll + 200);
+				toReturn = new BoosterReward(summonsBoosterPack(), "SummonBooster", "Summons Booster", roll + 200, summonPackCost);
 			}
 			else if (roll <= 79)
 			{
-				toReturn = new BoosterReward(rareDragonsBoosterPack(), "RareDragons", "Rare Dragon Booster", roll + 200);
+				toReturn = new BoosterReward(rareDragonsBoosterPack(), "RareDragons", "Rare Dragon Booster", roll + 200, rareDragPackCost);
 			}
 			else if (roll <= 86)
 			{
-				toReturn = new BoosterReward(rareSpellcasterBoosterPack(), "RareDragons", "Rare Spellcaster Booster", roll + 200);
+				toReturn = new BoosterReward(rareSpellcasterBoosterPack(), "RareDragons", "Rare Spellcaster Booster", roll + 200, rareSpellcasterPackCost);
 			}
 			else if (roll <= 100)
 			{
-				toReturn = new BoosterReward(dragonsBoosterPack(), "DragonBooster", "Dragon Booster", roll + 200);
+				toReturn = new BoosterReward(dragonsBoosterPack(), "DragonBooster", "Dragon Booster", roll + 200, dragPackCost);
 			}
 			else
 			{
-				toReturn = new BoosterReward(specialBoosterPack(), "SpecialBooster", "Special Booster", roll + 200);
+				toReturn = new BoosterReward(specialBoosterPack(), "SpecialBooster", "Special Booster", roll + 200, specialPackCost);
 			}
 		}
 		else
 		{
 			if (roll <= 21)
 			{
-				toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster", roll + 200);
+				toReturn = new BoosterReward(spellsBoosterPack(), "SpellBooster", "Spell Booster", roll + 200, spellPackCost);
 			}
 			else if (roll <= 36)
 			{
-				toReturn = new BoosterReward(trapsBoosterPack(), "TrapBooster", "Trap Booster", roll + 200);
+				toReturn = new BoosterReward(trapsBoosterPack(), "TrapBooster", "Trap Booster", roll + 200, trapPackCost);
 			}
 			else if (roll <= 60)
 			{
-				toReturn = new BoosterReward(summonsBoosterPack(), "SummonBooster", "Summons Booster", roll + 200);
+				toReturn = new BoosterReward(summonsBoosterPack(), "SummonBooster", "Summons Booster", roll + 200, summonPackCost);
 			}
 			else if (roll <= 65)
 			{
-				toReturn = new BoosterReward(rareDragonsBoosterPack(), "RareDragons", "Rare Dragon Booster", roll + 200);
+				toReturn = new BoosterReward(rareDragonsBoosterPack(), "RareDragons", "Rare Dragon Booster", roll + 200, rareDragPackCost);
 			}
 			else if (roll <= 70)
 			{
-				toReturn = new BoosterReward(rareSpellcasterBoosterPack(), "RareDragons", "Rare Spellcaster Booster", roll + 200);
+				toReturn = new BoosterReward(rareSpellcasterBoosterPack(), "RareDragons", "Rare Spellcaster Booster", roll + 200, rareSpellcasterPackCost);
 			}
 			else if (roll <= 80)
 			{
-				toReturn = new BoosterReward(dragonsBoosterPack(), "DragonBooster", "Dragon Booster", roll + 200);
+				toReturn = new BoosterReward(dragonsBoosterPack(), "DragonBooster", "Dragon Booster", roll + 200, dragPackCost);
 			}
 			else if (roll <= 100)
 			{
-				toReturn = new BoosterReward(deckBoosterPack(), "DeckBooster", "Archetype Booster", roll + 200);
+				toReturn = new BoosterReward(deckBoosterPack(), "DeckBooster", "Archetype Booster", roll + 200, deckPackCost);
 			}
 			else
 			{
-				toReturn = new BoosterReward(specialBoosterPack(), "SpecialBooster", "Special Booster", roll + 200);
+				toReturn = new BoosterReward(specialBoosterPack(), "SpecialBooster", "Special Booster", roll + 200, specialPackCost);
 			}
 		}
 		
@@ -794,99 +833,108 @@ public class BoosterPackHelper
 		return toReturn;
 	}
 	
+	public static RewardItem getExodiaBooster(int roll)
+	{
+		setupPoolsForPacks();
+		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll, 0);
+		toReturn = new BoosterReward(exodiaPack(), "OrbBooster", "Exodia Head Booster", roll, commonPackCost);
+		return toReturn;
+	}
+	
 	public static RewardItem getRandomBooster(boolean spellcasterDeck, int roll)
 	{
 		setupPoolsForPacks();
 		if (AbstractDungeon.player.hasRelic(NlothsGift.ID)) { roll+= 36; }
-		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll);
+		RewardItem toReturn = new BoosterReward(uncommonBoosterPackB(), "UncommonBooster", "Uncommon Booster", roll, 0);
 		if (spellcasterDeck)
 		{
 			// Common - 3%
 			if (roll <= 3)
 			{
-				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster", roll);
+				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster", roll, commonPackCost);
 			}
 			
 			// Orb/Exodia - 3%
 			else if (roll <= 6)
 			{
-				toReturn = new BoosterReward(orbBoosterPack(), "OrbBooster", "Orb Booster", roll);
+				toReturn = new BoosterReward(orbBoosterPack(), "OrbBooster", "Orb Booster", roll, orbPackCost);
 				boolean exodia = false;
 				for (AbstractCard c : toReturn.cards) { if (c.hasTag(Tags.EXODIA)) { exodia = true; }}
-				if (exodia) { toReturn = new BoosterReward(toReturn.cards, "OrbBooster", "Exodia Booster", roll); }
+				if (exodia) { toReturn = new BoosterReward(toReturn.cards, "OrbBooster", "Exodia Booster", roll, exodiaPackCost); }
 			}
 			
 			// Uncommon - 30%
 			else if (roll <= 36)
 			{
-				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster", roll);
+				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster", roll, uncommonPackCost);
 			}
 			
 			// Skill - 10%
 			else if (roll <= 46)
 			{
-				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster", roll);
+				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster", roll, skillPackCost);
 			}
 			
 			// Attack - 16%
 			else if (roll <= 62)
 			{
-				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster", roll);
+				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster", roll, attackPackCost);
 			}
 			
 			// All Uncommon - 10%
 			else if (roll <= 72)
 			{
-				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster", roll);
+				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster", roll, allUncommonPackCost);
 			}
 			
 			// Rare - 8%
 			else if (roll <= 80)
 			{
-				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster", roll);
+				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster", roll, rarePackCost);
 				
 			}
 			
 			// Multi-Type - 7%
 			else if (roll <= 87)
 			{
-				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster", roll);
+				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster", roll, multitypePackCost);
 			}
 			
 			// Power - 4%
 			else if (roll <= 91)
 			{
-				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster", roll);
+				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster", roll, powerPackCost);
 			}
 			
 			// Rare Skill - 2%
 			else if (roll <= 93)
 			{
-				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster", roll);
+				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster", roll, rareSkillPackCost);
 			}
 			
 			// Rare Attack - 2%
 			else if (roll <= 95)
 			{
-				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster", roll);
+				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster", roll, rareAttackPackCost);
 			}
 			
 			// Rare Power - 2%
 			else if (roll <= 97)
 			{
-				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster", roll);
+				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster", roll, rarePowerPackCost);
 			}
 			
-			// Silly Pack - 2%
-			else if (roll <= 99)
+			// Silly Pack - 1%
+			else if (roll <= 98)
 			{
-				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster", roll);
+				int gcRoll = AbstractDungeon.cardRandomRng.random(100, 200);
+				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster", roll, gcRoll);
 			}
 			
-			// All Rares - 1%
-			else if (roll >= 100)
+			// All Rares - 2%
+			else if (roll >= 99)
 			{
-				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster", roll);
+				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster", roll, allRarePackCost);
 			}
 		}
 		else 
@@ -894,80 +942,81 @@ public class BoosterPackHelper
 			// Common - 4%
 			if (roll <= 4)
 			{
-				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster", roll);
+				toReturn = new BoosterReward(commonBoosterPack(), "CommonBooster", "Common Booster", roll, commonPackCost);
 			}
 			
 			// Uncommon - 32%
 			else if (roll <= 32)
 			{
-				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster", roll);
+				toReturn = new BoosterReward(uncommonBoosterPack(), "UncommonBooster", "Uncommon Booster", roll, uncommonPackCost);
 			}
 			
 			// Skill - 10%
 			else if (roll <= 46)
 			{
-				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster", roll);
+				toReturn = new BoosterReward(skillBoosterPack(), "SkillBooster", "Skill Booster", roll, skillPackCost);
 			}
 			
 			// Attack - 16%
 			else if (roll <= 62)
 			{
-				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster", roll);
+				toReturn = new BoosterReward(attackBoosterPack(), "AttackBooster", "Attack Booster", roll, attackPackCost);
 			}
 			
 			// All Uncommon - 10%
 			else if (roll <= 72)
 			{
-				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster", roll);
+				toReturn = new BoosterReward(allUncommonBoosterPack(), "AllUncommonBooster", "All Uncommon Booster", roll, allUncommonPackCost);
 			}
 			
 			// Rare - 8%
 			else if (roll <= 80)
 			{
-				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster", roll);
+				toReturn = new BoosterReward(rareBoosterPack(), "RareBooster", "Rare Booster", roll, rarePackCost);
 				
 			}
 			
 			// Multi-Type - 7%
 			else if (roll <= 87)
 			{
-				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster", roll);
+				toReturn = new BoosterReward(multitypeBoosterPack(), "MultiTypeBooster", "Multi-Type Booster", roll, multitypePackCost);
 			}
 			
 			// Power - 4%
 			else if (roll <= 91)
 			{
-				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster", roll);
+				toReturn = new BoosterReward(powerBoosterPack(), "PowerBooster", "Power Booster", roll, powerPackCost);
 			}
 			
 			// Rare Skill - 2%
 			else if (roll <= 93)
 			{
-				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster", roll);
+				toReturn = new BoosterReward(rareSkillBoosterPack(), "RareSkills", "Rare Skill Booster", roll, rareSkillPackCost);
 			}
 			
 			// Rare Attack - 2%
 			else if (roll <= 95)
 			{
-				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster", roll);
+				toReturn = new BoosterReward(rareAttackBoosterPack(), "RareAttacks", "Rare Attack Booster", roll, rareAttackPackCost);
 			}
 			
 			// Rare Power - 2%
 			else if (roll <= 97)
 			{
-				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster", roll);
+				toReturn = new BoosterReward(rarePowerBoosterPack(), "RarePowerBooster", "Rare Power Booster", roll, rarePowerPackCost);
 			}
 			
-			// Silly Pack - 2%
-			else if (roll <= 99)
+			// Silly Pack - 1%
+			else if (roll <= 98)
 			{
-				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster", roll);
+				int gcRoll = AbstractDungeon.cardRandomRng.random(100, 200);
+				toReturn = new BoosterReward(sillyBoosterPack(), "SillyPack", "Bonanza Booster", roll, gcRoll);
 			}
 			
-			// All Rares - 1%
-			else if (roll >= 100)
+			// All Rares - 2%
+			else if (roll >= 99)
 			{
-				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster", roll);
+				toReturn = new BoosterReward(allRaresBoosterPack(), "AllRaresBooster", "All Rare Booster", roll, allRarePackCost);
 			}
 		}
 		
@@ -985,7 +1034,6 @@ public class BoosterPackHelper
 	{
 		generateBoosterOnVictory(lastPackRoll, false, deckType);
 	}
-	
 	
 	public static void generateBoosterOnVictory(int lastPackRoll, boolean eliteVictory, ArrayList<CardTags> deckType)
 	{
@@ -1024,7 +1072,7 @@ public class BoosterPackHelper
 						else
 						{
 							if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-							if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+							if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 						}
 					}
 					
@@ -1032,7 +1080,7 @@ public class BoosterPackHelper
 					else
 					{
 						if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 					}
 					
 					// Manipulate booster roll if elite victory
@@ -1052,14 +1100,17 @@ public class BoosterPackHelper
 					
 					// Check if we are playing Spellcasters, if so we can roll Orb Boosters
 					boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
+					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
 					
 					// Receive random booster based on deck type and our roll
-					AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
+					if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+					else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 					
 					// Add a 2nd Booster for Prayer Wheel
 					if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) 
 					{
-						AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
+						if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+						else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 					}
 					
 					// Reset roll chances for next combat
@@ -1100,13 +1151,13 @@ public class BoosterPackHelper
 					else
 					{
 						if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 					}
 				}
 				else
 				{
 					if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-					if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+					if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 				}
 				if (roll < 80 && eliteVictory) 
 				{ 
@@ -1121,7 +1172,9 @@ public class BoosterPackHelper
 					}
 				}
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
-				AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll));
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
+				if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+				else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 				if (AbstractDungeon.player.hasRelic(PrayerWheel.ID)) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
 				Util.log("Rolled and added a booster pack reward");
 				DuelistMod.lastPackRoll = 0;
@@ -1134,7 +1187,7 @@ public class BoosterPackHelper
 		}
 		
 		// Player has removed card rewards, so we just need to do a Bonus Booster roll
-		if (DuelistMod.removeCardRewards)
+		else if (DuelistMod.removeCardRewards)
 		{
 			if (DuelistMod.alwaysBoosters)
 			{
@@ -1162,7 +1215,9 @@ public class BoosterPackHelper
 			{ 
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
 				int roll = AbstractDungeon.cardRandomRng.random(1, 100);
-				AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); 
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
+				if (!exodiaDeck) { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getRandomBooster(spellcasterDeck, roll)); }
+				else { AbstractDungeon.getCurrRoom().rewards.add(BoosterPackHelper.getExodiaBooster(roll)); }
 			}			
 		}
 	}
@@ -1204,7 +1259,7 @@ public class BoosterPackHelper
 						else
 						{
 							if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-							if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+							if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 						}
 					}
 					
@@ -1212,7 +1267,7 @@ public class BoosterPackHelper
 					else
 					{
 						if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 					}
 					
 					// Manipulate booster roll if elite victory
@@ -1240,7 +1295,9 @@ public class BoosterPackHelper
 					Util.log("Rolled and added a booster pack reward");
 					
 					// Receive random booster based on deck type and our roll
-					return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll);
+					boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
+					if (!exodiaDeck) { return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll); }
+					else { return BoosterPackHelper.getExodiaBooster(roll); }
 				}
 				else
 				{
@@ -1265,13 +1322,13 @@ public class BoosterPackHelper
 					else
 					{
 						if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+						if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 					}
 				}
 				else
 				{
 					if (AbstractDungeon.player.hasRelic(BoosterBetterBoostersRelic.ID)) { roll+=30; }
-					if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 99; }
+					if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
 				}
 				if (roll < 80 && eliteVictory) 
 				{ 
@@ -1287,7 +1344,9 @@ public class BoosterPackHelper
 				}
 				DuelistMod.lastPackRoll = 0;
 				boolean spellcasterDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Spellcaster Deck"));
-				return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll);
+				boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
+				if (!exodiaDeck) { return BoosterPackHelper.getRandomBooster(spellcasterDeck, roll); }
+				else { return BoosterPackHelper.getExodiaBooster(roll); }
 			}
 		}
 		else
@@ -1298,6 +1357,25 @@ public class BoosterPackHelper
 		}
 	}
 	
+	public static RewardItem replaceCardRewardWithBoss()
+	{
+		if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
+		{
+			int roll = 101;
+			if (AbstractDungeon.player.hasRelic(BoosterAlwaysSillyRelic.ID)) { roll = 98; }
+			boolean exodiaDeck = (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck")) && AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID);
+			if (!exodiaDeck) { return BoosterPackHelper.getRandomBooster(false, roll); }
+			else { return BoosterPackHelper.getExodiaBooster(roll); }			
+		}
+		else
+		{
+			RewardItem empty = new RewardItem();
+			empty.cards = new ArrayList<AbstractCard>();
+			return empty;
+		}
+	}
+	
+
 	public static String getPackName(int id, boolean bonus)
 	{
 		String toReturn = "";
@@ -1406,14 +1484,14 @@ public class BoosterPackHelper
 				toReturn = "Rare Power Booster";
 			}
 			
-			// Silly Pack - 2%
-			else if (id <= 99)
+			// Silly Pack - 1%
+			else if (id <= 98)
 			{
 				toReturn = "Bonanza Booster";
 			}
 			
-			// All Rares - 1%
-			else if (id >= 100)
+			// All Rares - 2%
+			else if (id >= 99)
 			{
 				toReturn = "All Rare Booster";
 			}
@@ -1530,13 +1608,13 @@ public class BoosterPackHelper
 			}
 			
 			// Silly Pack - 2%
-			else if (id <= 99)
+			else if (id <= 98)
 			{
 				toReturn = "SillyPack";
 			}
 			
 			// All Rares - 1%
-			else if (id >= 100)
+			else if (id >= 99)
 			{
 				toReturn = "AllRaresBooster";
 			}
@@ -1660,17 +1738,139 @@ public class BoosterPackHelper
 			}
 			
 			// Silly Pack - 2%
-			else if (id <= 99)
+			else if (id <= 98)
 			{
 				toReturn = sillyBoosterPack();
 			}
 			
 			// All Rares - 1%
-			else if (id >= 100)
+			else if (id >= 99)
 			{
 				toReturn = allRaresBoosterPack();
 			}
 		}
 		return toReturn;
+	}
+	
+	public static int getGoldCostFromID(int id)
+	{
+		if (id > 200)
+		{
+			id -= 200;
+			if (id <= 15)
+			{
+				return spellPackCost;
+			}
+			else if (id <= 28)
+			{
+				return trapPackCost;
+			}
+			else if (id <= 48)
+			{
+				return summonPackCost;
+			}
+			else if (id <= 53)
+			{
+				return rareDragPackCost;
+			}
+			else if (id <= 58)
+			{
+				return rareSpellcasterPackCost;
+			}
+			else if (id <= 80)
+			{
+				return dragPackCost;
+			}
+			else if (id <= 100)
+			{
+				return deckPackCost;
+			}
+			else
+			{
+				return specialPackCost;
+			}
+		}
+		else
+		{
+			// Common - 4%
+			if (id <= 4)
+			{
+				return commonPackCost;
+			}
+			
+			// Uncommon - 32%
+			else if (id <= 32)
+			{
+				return uncommonPackCost;
+			}
+			
+			// Skill - 10%
+			else if (id <= 46)
+			{
+				return skillPackCost;
+			}
+			
+			// Attack - 16%
+			else if (id <= 62)
+			{
+				return attackPackCost;
+			}
+			
+			// All Uncommon - 10%
+			else if (id <= 72)
+			{
+				return allUncommonPackCost;
+			}
+			
+			// Rare - 8%
+			else if (id <= 80)
+			{
+				return rarePackCost;
+			}
+			
+			// Multi-Type - 7%
+			else if (id <= 87)
+			{
+				return multitypePackCost;
+			}
+			
+			// Power - 4%
+			else if (id <= 91)
+			{
+				return powerPackCost;
+			}
+			
+			// Rare Skill - 2%
+			else if (id <= 93)
+			{
+				return rareSkillPackCost;
+			}
+			
+			// Rare Attack - 2%
+			else if (id <= 95)
+			{
+				return rareAttackPackCost;
+			}
+			
+			// Rare Power - 2%
+			else if (id <= 97)
+			{
+				return rarePowerPackCost;
+			}
+			
+			// Silly Pack - 2%
+			else if (id <= 98)
+			{
+				return sillyPackCost;
+			}
+			
+			// All Rares - 1%
+			else if (id >= 99)
+			{
+				return allRarePackCost;
+			}
+		}
+		
+		return 120;
 	}
 }

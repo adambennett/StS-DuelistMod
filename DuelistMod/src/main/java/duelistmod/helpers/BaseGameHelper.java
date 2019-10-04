@@ -4,21 +4,37 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
+import com.megacrit.cardcrawl.cards.colorless.*;
 import com.megacrit.cardcrawl.cards.green.*;
 import com.megacrit.cardcrawl.cards.red.*;
+import com.megacrit.cardcrawl.cards.status.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class BaseGameHelper 
 {
 	public static ArrayList<AbstractCard> getAllBaseGameCards()
 	{
+		return getAllBaseGameCards(false);
+	}
+	
+	public static ArrayList<AbstractCard> getAllBaseGameCards(boolean colorless)
+	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
 		toFill.addAll(getAllIroncladCards());
 		toFill.addAll(getAllSilentCards());
 		toFill.addAll(getAllDefectCards());
+		if (colorless) { toFill.addAll(getAllColorlessCards()); }
 		return toFill;
 	}
 	
+	public static AbstractCard getColorlessCard()
+	{
+		ArrayList<AbstractCard> colorless = new ArrayList<AbstractCard>();
+		for (AbstractCard c : getAllColorlessCards()){ colorless.add(c); }		
+		AbstractCard card = colorless.get(AbstractDungeon.cardRandomRng.random(colorless.size() - 1));
+		return card;
+	}
+
 	public static AbstractCard getRedCard()
 	{
 		ArrayList<AbstractCard> reds = new ArrayList<AbstractCard>();
@@ -42,6 +58,59 @@ public class BaseGameHelper
 		AbstractCard card = greens.get(AbstractDungeon.cardRandomRng.random(greens.size() - 1));
 		return card;
 	}
+	
+	public static ArrayList<AbstractCard> getAllColorlessCards()
+	{
+		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
+		toFill.add(new Apotheosis());
+        toFill.add(new BandageUp());
+        toFill.add(new Blind());
+        toFill.add(new Chrysalis());
+        toFill.add(new DarkShackles());
+        toFill.add(new DeepBreath());
+        toFill.add(new Discovery());
+        toFill.add(new DramaticEntrance());
+        toFill.add(new Enlightenment());
+        toFill.add(new Finesse());
+        toFill.add(new FlashOfSteel());
+        toFill.add(new Forethought());
+        toFill.add(new GoodInstincts());
+        toFill.add(new HandOfGreed());
+        toFill.add(new Impatience());
+        toFill.add(new JackOfAllTrades());
+        toFill.add(new Madness());
+        toFill.add(new Magnetism());
+        toFill.add(new MasterOfStrategy());
+        toFill.add(new Mayhem());
+        toFill.add(new Metamorphosis());
+        toFill.add(new MindBlast());
+        toFill.add(new Panacea());
+        toFill.add(new Panache());
+        toFill.add(new PanicButton());
+        toFill.add(new Purity());
+        toFill.add(new SadisticNature());
+        toFill.add(new SecretTechnique());
+        toFill.add(new SecretWeapon());
+        toFill.add(new SwiftStrike());
+        toFill.add(new TheBomb());
+        toFill.add(new ThinkingAhead());
+        toFill.add(new Transmutation());
+        toFill.add(new Trip());
+        toFill.add(new Violence());
+        toFill.add(new Burn());
+        toFill.add(new Dazed());
+        toFill.add(new Slimed());
+        toFill.add(new VoidCard());
+        toFill.add(new Wound());
+        toFill.add(new Apparition());
+        toFill.add(new Bite());
+        toFill.add(new JAX());
+        toFill.add(new RitualDagger());
+        toFill.add(new Shiv());
+		return toFill;
+	}
+	
+	
 	
 	public static ArrayList<AbstractCard> getAllIroncladCards()
 	{

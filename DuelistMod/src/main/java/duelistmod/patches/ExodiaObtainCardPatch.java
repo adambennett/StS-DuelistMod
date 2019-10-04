@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
+import duelistmod.DuelistMod;
 import duelistmod.helpers.*;
 import duelistmod.relics.*;
+import duelistmod.variables.Tags;
 
 
 @SpirePatch(
@@ -26,8 +28,20 @@ public class ExodiaObtainCardPatch
 		}
 		else if (AbstractDungeon.player.hasRelic(MarkExxod.ID))
 		{
-			Util.log("Mark of Exxod -- returning early from Soul.obtain()");
-			return SpireReturn.Return(null);
+			for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+			{
+				if (c.makeCopy().name.equals(card.makeCopy().name)) 
+				{ 
+					Util.log("Mark of Exxod -- returning early from Soul.obtain() -- matching cards: " + card.makeCopy().name + ", " + c.makeCopy().name);
+					return SpireReturn.Return(null);
+				}
+			}
+			
+			if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
+			if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
+			if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
+			return SpireReturn.Continue();
+			
 		}
 		else if (AbstractDungeon.player.hasRelic(GamblerChip.ID) && !card.type.equals(CardType.CURSE))
 		{
@@ -35,13 +49,35 @@ public class ExodiaObtainCardPatch
 			Util.log("Gambler Chip -- rolling to see if we will skip this card");
 			int roll = AbstractDungeon.cardRandomRng.random(1, 2);
 			if (roll == 1) { Util.log("Gambler Chip - Skipped Card"); chip.flash(); return SpireReturn.Return(null); }
-			else { Util.log("Gambler Chip - Obtained Card"); return SpireReturn.Continue(); }
+			else 
+			{ 
+				Util.log("Gambler Chip - Obtained Card"); 
+				handleNamelessGreedRelic(card); 
+				if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
+				if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
+				if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
+				return SpireReturn.Continue(); 
+			}
 		}
 		else
 		{
 			Util.log("No Special Triggers -- normal card obtain");
+			handleNamelessGreedRelic(card);
+			if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
+			if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
+			if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
 			return SpireReturn.Continue();
 		}
+	}
+	
+	private static void handleNamelessGreedRelic(AbstractCard obtained)
+	{
+		if (AbstractDungeon.player.hasRelic(NamelessGreedRelic.ID) && DuelistMod.lastCardObtained != null)
+		{
+			if (DuelistMod.lastCardObtained.originalName.equals(obtained.originalName)) { AbstractDungeon.player.gainGold(25 + 15); }
+			else { AbstractDungeon.player.gainGold(15); }
+		}
+		DuelistMod.lastCardObtained = obtained.makeCopy();
 	}
 }
 

@@ -54,7 +54,7 @@ public class Fissure extends DuelistCard
 			int lowestHP = selected.currentHealth;
 			for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters)
 			{
-				if (!mon.isDead && !mon.isDying && mon.currentHealth < lowestHP && mon.currentHealth != 0)
+				if (!mon.isDead && !mon.isDying && !mon.halfDead && !mon.isDeadOrEscaped() && mon.currentHealth < lowestHP && mon.currentHealth != 0)
 				{
 					selected = mon;
 					if (DuelistMod.debug && mon.name != null) { DuelistMod.logger.info("Fissure: found a new monster with lowest HP. Old lowest HP was: " + lowestHP + " -- and new HP is: " + mon.currentHealth + " -- New Selected Monster: " + mon.name); }

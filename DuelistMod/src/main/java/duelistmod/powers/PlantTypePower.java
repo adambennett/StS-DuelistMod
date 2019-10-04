@@ -61,7 +61,7 @@ public class PlantTypePower extends AbstractPower
 			{
 				for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters)
 				{
-					if (!monster.isDead && !monster.isDying)
+					if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead)
 					{
 						DuelistCard.applyPower(new ConstrictedPower(monster, AbstractDungeon.player, this.amount), monster);
 					}

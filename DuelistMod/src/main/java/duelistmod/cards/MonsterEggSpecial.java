@@ -38,6 +38,7 @@ public class MonsterEggSpecial extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.baseDamage = this.damage = 0;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;

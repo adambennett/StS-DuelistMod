@@ -124,7 +124,7 @@
         "insect",
 		"insects"
       ],     
-      "DESCRIPTION": "When you #yTribute an #yInsect monster for another #yInsect, apply #b3 #yPoison to ALL enemies."
+      "DESCRIPTION": "When you #yTribute an #yInsect monster for another #yInsect, apply #b1 #yPoison to ALL enemies."
     },
      {
 	  "PROPER_NAME": "Plant",
@@ -180,7 +180,9 @@
    "PROPER_NAME": "Shadow",
     "NAMES": [
       "Shadow",
-	  "shadow"
+	  "shadow",
+	  "shadows",
+	  "Shadows"
     ],    
     "DESCRIPTION": "#yOrb: Whenever you #yResummon, deal #b3 damage to ALL enemies. NL #yEvoke: #yResummon #b2 random monsters from your discard pile on random enemies."
   },
@@ -250,7 +252,7 @@
       "Consumer",
 	  "consumer"
     ],   
-    "DESCRIPTION": "#yOrb: At the end of turn, Evoke another random orb. NL #yEvoke: For each orb Evoked by this orb's passive effect, gain #b2 Energy at the start of the next turn."
+    "DESCRIPTION": "#yOrb: Whenever you #yExhaust a card, #yEvoke another random orb. NL #yEvoke: For each orb Evoked by this orb's passive effect, gain #b2 Energy at the start of the next turn."
   },
   {
     "PROPER_NAME": "Gadget",
@@ -274,7 +276,7 @@
 		  "MillenniumOrb",
 		  "millenniumorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose and add #bX #yRandomized cards from the card reward pool into your hand."
+		"DESCRIPTION": "#yOrb: At the start of turn, activate the #yMillennium #yPuzzle. NL #yEvoke: Choose #b1 of 20 #yRandomized cards from the current card pool to add to your hand."
 	},
   {
     "PROPER_NAME": "Metal",
@@ -338,9 +340,11 @@
     "PROPER_NAME": "Naturia",
     "NAMES": [
       "Naturia",
-	  "naturia"
+	  "naturia",
+	  "Naturias",
+	  "naturias"
     ],   
-    "DESCRIPTION": "Whenever you #ySummon a #yNaturia monster, it deals #b1 damage to all enemies at the end of turn for the rest of combat as long as you have at least 1 #yNaturia monster summoned."
+    "DESCRIPTION": "Whenever you play a #yNaturia monster, gain #b1 #yVine. Whenever you #yTribute a #yNaturia for another, gain #b1 #yLeaf."
   },
   {
     "PROPER_NAME": "Superheavy",
@@ -416,7 +420,7 @@
       "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Spellcaster, Superheavy, Toon, Warrior, and Zombie)."
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie)."
   },
   {
     "PROPER_NAME": "Exodia",
@@ -499,12 +503,12 @@
     "DESCRIPTION": "#yOrb: Whenever you #ySummon, gain #b2 #yBlock. NL #yEvoke: Draw and discard #b4 cards."
   },
    {
-    "PROPER_NAME": "Mana",
+    "PROPER_NAME": "Magicka",
     "NAMES": [
-      "Mana",
-	  "mana"
+      "Magicka",
+	  "magicka"
     ],   
-    "DESCRIPTION": "When you gain #yBlock via the #ySpellcaster effect, you gain additional #yBlock based on how much #yMana you currently have. #yMana resets to #b0 when you trigger it, and at the end of the turn is set to the number of #ySpellcasters you currently have summoned."
+    "DESCRIPTION": "When you gain #yBlock via the #ySpellcaster effect, you gain additional #yBlock based on how much #yMagicka you currently have. NL NL #yMagicka resets to #b0 when you trigger it, and at the end of the turn is set to the number of #ySpellcasters you currently have summoned."
   },
   {
  "PROPER_NAME": "White",
@@ -536,7 +540,7 @@
       "Light",
 	  "light"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you draw a #ySpell, have a 25% chance to duplicate it #b2 times. NL #yEvoke: Duplicate all #ySpells in your hand."
+    "DESCRIPTION": "#yOrb: At the start of turn, reduces a random one of your debuffs by #b1. NL #yEvoke: Permanently enhances all your other channeled orbs by #b1."
   },
   {
   "PROPER_NAME": "Alien",
@@ -579,12 +583,36 @@
     "DESCRIPTION": "The first time you #yTribute a #yWarrior for another #yWarrior each combat, choose any #yStance to enter."
   },
   {
+  "PROPER_NAME": "Unstable",
+    "NAMES": [
+      "Unstable",
+	  "unstable"
+    ],   
+    "DESCRIPTION": "While in this #yStance, you take #b40% more damage."
+  },
+  {
+  "PROPER_NAME": "Entrenched",
+    "NAMES": [
+      "Entrenched",
+	  "entrenched"
+    ],   
+    "DESCRIPTION": "In this #yStance, #ySuperheavy cards have a low chance to apply #yPlated #yArmor or #yMetallicize when played."
+  },
+  {
+  "PROPER_NAME": "Nimble",
+    "NAMES": [
+      "Nimble",
+	  "nimble"
+    ],   
+    "DESCRIPTION": "In this #yStance, whenever you play a card, have a #b25% chance to reduce the cost of a random card in your hand by #b1 for the turn."
+  },
+  {
   "PROPER_NAME": "Samurai",
     "NAMES": [
       "Samurai",
 	  "samurai"
     ],   
-    "DESCRIPTION": "Upon exiting this #yStance, gain #b2 #yDexterity."
+    "DESCRIPTION": "In this #yStance, #yBlock from cards is improved by #b3. Upon exiting this #yStance, gain #b1 #yDexterity."
   },
   {
   "PROPER_NAME": "Guarded",
@@ -600,7 +628,7 @@
       "Meditative",
 	  "meditative"
     ],   
-    "DESCRIPTION": "While in this stance, you receive #b20% more damage. Upon exiting this stance, gain #yVigor equal to twice your #yDexterity."
+    "DESCRIPTION": "Upon exiting this stance, gain #yVigor equal to twice your #yDexterity."
   },
   {
   "PROPER_NAME": "Chaotic",
@@ -625,6 +653,72 @@
 	  "spectral"
     ],   
     "DESCRIPTION": "In this #yStance, #yWarriors deal double damage and you cannot #yBlock."
+  },
+  {
+  "PROPER_NAME": "Rock",
+    "NAMES": [
+      "Rock",
+	  "rock",
+	  "Rocks",
+	  "rocks"
+    ],   
+    "DESCRIPTION": "At the end of each turn, gain #b2 #yBlock for each #yRock you have summoned."
+  },
+  {
+  "PROPER_NAME": "Wyrm",
+    "NAMES": [
+      "Wyrm",
+	  "wyrm"
+    ],   
+    "DESCRIPTION": "The first time you #yTribute a #yWyrm for another each combat, double a random enemy's #yPoison."
+  },
+  {
+  "PROPER_NAME": "Bug",
+    "NAMES": [
+      "Bug",
+	  "bug",
+	  "bugs",
+	  "Bugs"
+    ],   
+    "DESCRIPTION": "The #b2nd #yBug you play each combat gives you #b5 #yTemporary #yHP."
+  },
+  {
+  "PROPER_NAME": "Cold-Blooded",
+    "NAMES": [
+      "Cold-Blooded",
+	  "cold-blooded"
+    ],   
+    "DESCRIPTION": "#yCold-Blooded are #yStatus cards that #yRetain and reduce your max summons when #yRetained."
+  },
+  {
+  "PROPER_NAME": "Spider",
+    "NAMES": [
+      "Spider",
+	  "spider",
+	  "spiders",
+	  "Spiders"
+    ],   
+    "DESCRIPTION": "The #b3rd #ySpider you play each combat gives you #b7 #yTemporary #yHP."
+  },
+  {
+  "PROPER_NAME": "Vines",
+    "NAMES": [
+      "Vines",
+	  "vines",
+	  "Vine",
+	  "vine"
+    ],   
+    "DESCRIPTION": "At the end of turn, deal damage to ALL enemies. Damage total depends on the number of #yVines and the number of #yNaturias currently summoned."
+  },
+  {
+  "PROPER_NAME": "Leaves",
+    "NAMES": [
+      "Leaves",
+	  "leaves",
+	  "leaf",
+	  "Leaf"
+    ],   
+    "DESCRIPTION": "At the start of turn, if you have at least #b5 #yLeaves, you may choose to consume your #yLeaves and gain #yBlock. #yBlock amount depends on the number of #yLeaves you have and the number of #yNaturias currently summoned."
   },
   {
     "PROPER_NAME": "Gate",

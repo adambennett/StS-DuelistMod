@@ -7,9 +7,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.variables.Strings;
 
 public class InsectRelic extends CustomRelic {
 
@@ -23,7 +22,6 @@ public class InsectRelic extends CustomRelic {
 	public static final String ID = DuelistMod.makeID("InsectRelic");
 	public static final String IMG = DuelistMod.makeRelicPath("NatureRelic.png");
 	public static final String OUTLINE = DuelistMod.makeRelicPath("NatureRelic.png");
-	private static int cautiousChecker = 1;
 	
 	public InsectRelic() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
@@ -35,7 +33,7 @@ public class InsectRelic extends CustomRelic {
 	public boolean canSpawn()
 	{
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (deck.equals("Nature Deck")) { return true; }
+		if (deck.equals("Insect Deck")) { return true; }
 		else { return false; }
 	}
 	
@@ -58,7 +56,6 @@ public class InsectRelic extends CustomRelic {
         		flash();
                 setCounter(counter + 1);
                 DuelistMod.insectPoisonDmg++;
-                cautiousChecker++;
                 setDescription();
         	}
         }
@@ -67,7 +64,7 @@ public class InsectRelic extends CustomRelic {
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.naturiaDmg -= cautiousChecker;
+		DuelistMod.insectPoisonDmg--;
 	}
 
 	// Description

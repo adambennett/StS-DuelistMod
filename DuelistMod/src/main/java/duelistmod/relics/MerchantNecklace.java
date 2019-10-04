@@ -40,6 +40,7 @@ public class MerchantNecklace extends CustomRelic implements ClickableRelic {
 			setCounter(this.counter - 1);
 			ShopScreen shop = AbstractDungeon.shopScreen;
 	    	if (shop == null) { return; }
+	    	boolean remove = shop.purgeAvailable;
 	    	ArrayList<AbstractCard> newColored = new ArrayList<AbstractCard>();
 	    	ArrayList<AbstractCard> newColorless = new ArrayList<AbstractCard>();
 	    	
@@ -67,6 +68,7 @@ public class MerchantNecklace extends CustomRelic implements ClickableRelic {
 	    	}
 	    	// Refresh Shop
 	    	shop.init(newColored, newColorless);
+	    	shop.purgeAvailable = remove;
 	    	
 	    	// Upgrade Random Card Type
 	    	int roll = AbstractDungeon.cardRandomRng.random(1, 3);
@@ -87,8 +89,11 @@ public class MerchantNecklace extends CustomRelic implements ClickableRelic {
     {
     	if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) 
         {
-            flash();
-            setCounter(this.counter + 1);
+    		if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
+    		{
+	            flash();
+	            setCounter(this.counter + 1);
+    		}
         }
     }
 	

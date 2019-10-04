@@ -7,11 +7,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.DebuffHelper;
-import duelistmod.interfaces.*;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class NutrientZ extends DuelistCard 
@@ -60,7 +59,7 @@ public class NutrientZ extends DuelistCard
     	   }
        }
     }
-
+    
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {

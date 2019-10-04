@@ -92,6 +92,12 @@ public class DarkMillenniumOrb extends DuelistOrb
 	@Override
 	public void onStartOfTurn()
 	{
+		triggerPassiveEffect();
+		if (gpcCheck()) { triggerPassiveEffect(); }
+	}
+
+	private void triggerPassiveEffect()
+	{
 		if (this.passiveAmount > 0)
 		{
 			AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
@@ -100,11 +106,6 @@ public class DarkMillenniumOrb extends DuelistOrb
 				DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, this.passiveAmount), m);
 			}
 		}
-	}
-
-	private void triggerPassiveEffect()
-	{
-		
 	}
 
 	@Override

@@ -106,6 +106,8 @@ public class MetronomeReward extends CustomReward
 	@Override
 	public boolean claimReward() 
 	{
+		if (AbstractDungeon.player.hasRelic(BoosterPackEggRelic.ID)) { AbstractDungeon.player.getRelic(BoosterPackEggRelic.ID).flash(); }
+		if (AbstractDungeon.player.hasRelic("Busted Crown")) { AbstractDungeon.player.getRelic("Busted Crown").flash(); }
 		if(AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) 
 		{
 			AbstractDungeon.cardRewardScreen.open(this.cards, this, "Keep 1 Card from the Pack");

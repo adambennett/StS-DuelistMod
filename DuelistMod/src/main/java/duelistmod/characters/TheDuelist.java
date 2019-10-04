@@ -9,19 +9,23 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.relics.Courier;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.helpers.*;
 import duelistmod.orbs.Black;
@@ -135,11 +139,11 @@ public class TheDuelist extends CustomPlayer {
 				{
 					Black b = (Black)o;
 					if (b.passiveAmount > 0) { b.triggerPassiveEffect(); }
+					if (b.gpcCheck() && b.passiveAmount > 0) { b.triggerPassiveEffect(); }
 				}
 			}
 		}
 	}
-	
 	
 
 	// Starting description and loadout
@@ -165,8 +169,8 @@ public class TheDuelist extends CustomPlayer {
 		retVal.add(SevenColoredFish.ID);
 		retVal.add(GiantSoldier.ID);
 		retVal.add(GiantSoldier.ID);
-		retVal.add(CastleWalls.ID);
-		retVal.add(CastleWalls.ID);
+		retVal.add(PowerWall.ID);
+		retVal.add(PowerWall.ID);
 		retVal.add(ScrapFactory.ID);
 		retVal.add(Ookazi.ID);
 		retVal.add(Ookazi.ID);
@@ -174,12 +178,12 @@ public class TheDuelist extends CustomPlayer {
 
 		return retVal;
 	}
-
 	
 	// Card Pool Patch 
 	@Override
 	public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool)
 	{
+		ArrayList<String> addedNames = new ArrayList<String>();
 		tmpPool = super.getCardPool(tmpPool);
 		//tmpPool = new ArrayList<AbstractCard>();
 		if (DuelistMod.shouldFill)
@@ -191,11 +195,34 @@ public class TheDuelist extends CustomPlayer {
 		else { PoolHelpers.coloredCardsHadCards(); }
 		for (AbstractCard c : DuelistMod.coloredCards)
 		{
-			if (!c.rarity.equals(CardRarity.SPECIAL))
+			if (!c.rarity.equals(CardRarity.SPECIAL) && !addedNames.contains(c.originalName))
 			{
 				tmpPool.add(c);
-			}				
+				addedNames.add(c.originalName);
+			}		
+			else if (addedNames.contains(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
 		}
+		
+		if (!this.hasRelic(Courier.ID))
+		{
+			int ind = DuelistMod.setIndex;
+			if (ind == 0 || ind == 3 || ind == 5 || ind == 6)
+			{
+				int counter = 1;
+				for (AbstractCard c : DuelistMod.duelColorlessCards) 
+				{
+					if (!c.rarity.equals(CardRarity.SPECIAL) && !addedNames.contains(c.originalName))
+					{
+						Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
+						AbstractDungeon.colorlessCardPool.group.add(c); 
+						addedNames.add(c.originalName);
+						counter++;
+					}
+					else if (addedNames.contains(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
+				}
+			}
+		}
+		
 		return tmpPool;
 	}
 	
@@ -354,5 +381,16 @@ public class TheDuelist extends CustomPlayer {
 	
 	    return result;
 	}
-
+	
+	public static String getDuelist()
+	{
+		boolean isDragonDeck = false;
+		//boolean isToonDeck = false;
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (deck.equals("Dragon Deck")) { isDragonDeck = true; }
+		//if (deck.equals("Toon Deck")) { isToonDeck = true; }
+		//if (isToonDeck) { return "Pegasus"; }
+		if (isDragonDeck || DuelistMod.playAsKaiba) { return "Kaiba"; }
+		else { return "Yugi"; }
+	}
 }

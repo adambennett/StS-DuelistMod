@@ -5,7 +5,18 @@
       "It seems strange that these powerful items would just be available to take..."
     ],
     "OPTIONS": [
-      "[Take] #gObtain #ga #gMillennium #gItem. #rBecome #rCursed #r- #r(Random #rDuelist).",
+      "[Take] #gObtain #ga #gMillennium #gItem. #rCursed #r- #r(Random #rDuelist).",
+      "[Leave]"
+    ]
+  },
+  "theDuelist:ValleyKings": {
+    "NAME": "Valley of Kings",
+    "DESCRIPTIONS": [
+      "A deserted valley..."
+    ],
+    "OPTIONS": [
+      "[Exchange] #gObtain #ga #gSpecial #gPot. #rLose #r",
+	  ".",
       "[Leave]"
     ]
   },
@@ -15,11 +26,11 @@
       "A hidden tomb filled with treasure!"
     ],
     "OPTIONS": [
-      "[Tributes] #gUpgrade #gall #gTribute #gmonsters. #rBecome #rCursed #r- #r(Random #rDuelist).",
-	  "[Summons] #gUpgrade #gall #gSummon #gmonsters. #rBecome #rCursed #r- #r(Random #rDuelist).",
-	  "[Spells] #gUpgrade #gall #gSpells. #rBecome #rCursed #r- #r(Random #rDuelist).",
-	  "[Traps] #gUpgrade #gall #gTraps. #rBecome #rCursed #r- #r(Random #rDuelist).",
-	  "[Choose] #gChoose #g5 #gcards #gto #gadd #gto #gyour #gdeck. #rBecome #rCursed #r- #r(Random).",
+      "[Tributes] #gUpgrade #gall #gTribute #gmonsters. #rCursed #r- #r(Random #rDuelist).",
+	  "[Summons] #gUpgrade #gall #gSummon #gmonsters. #rCursed #r- #r(Random #rDuelist).",
+	  "[Spells] #gUpgrade #gall #gSpells. #rCursed #r- #r(Random #rDuelist).",
+	  "[Traps] #gUpgrade #gall #gTraps. #rCursed #r- #r(Random #rDuelist).",
+	  "[Choose] #gChoose #g5 #gcards #gto #gadd #gto #gyour #gdeck. #rCursed #r- #r(Random).",
       "[Leave]",
 	  "[Locked] Requires: 20 or more Tributes in combat",
 	  "[Locked] Requires: 30 or more Summons in combat"
@@ -49,29 +60,29 @@
     ],
     "OPTIONS": [
       "[Brew] #gDouble #gyour #gpotion #gslots. #rLose #r4 #rMax #rHP.",
-      "[Enrich] #gDouble #gyour #gGold. #rBecome #rCursed #r- #r(2 #rRandom #rDuelist).",
-      "[Intellect] #gDuplicate #gall #gSpells. #rBecome #rCursed #r- #r(2 #rRandom).",
+      "[Enrich] #gDouble #gyour #gGold. #rCursed #r- #r(2 #rRandom #rDuelist).",
+      "[Intellect] #gDuplicate #gall #gSpells. #rCursed #r- #r(2 #rRandom).",
 	  "[Dig] #gReceive #ga #grandom #gDuelist #grelic. #rLose #r6 #rHP.",
       "[Leave]",
 	  "[Locked] Requires: Millennium Puzzle",
 	  "[Locked] Requires: Fewer than 9 potion slots",
 	  "[Brew] #gDouble #gyour #gpotion #gslots. #rLose #r7 #rMax #rHP.",
-      "[Enrich] #gDouble #gyour #gGold. #rBecome #rCursed #r- #r(3 #rRandom #rDuelist).",
-      "[Intellect] #gDuplicate #gall #gSpells. #rBecome #rCursed #r- #r(2 #rRandom).",
+      "[Enrich] #gDouble #gyour #gGold. #rCursed #r- #r(3 #rRandom #rDuelist).",
+      "[Intellect] #gDuplicate #gall #gSpells. #rCursed #r- #r(2 #rRandom).",
 	  "[Dig] #gReceive #ga #grandom #gDuelist #grelic. #rLose #r8 #rHP."
     ]
   },
   "theDuelist:TombNameless": {
     "NAME": "Tomb of the Nameless",
     "DESCRIPTIONS": [
-      "The inscriptions seem to be saying something about a powerful Duelist from long ago."
+      "You enter a dark old tomb. You notice a statue with some inscriptions and hieroglyphics. As you approach the statue, you feel weak. NL #r~It~ #r~feels~ #r~like~ #r~a~ #r~good~ #r~idea~ #r~to~ #r~rest~ #r~here...~"
     ],
     "OPTIONS": [
       "[Offer: ",
 	  "] #rLose #rthis #rrelic. ",
-	  "[Worship] #gHeal #g6 #gHP.",
-      "[Succumb] #g20%: #gGain #g12 #gMax #gHP. #rBecome #rCursed #r- #r(Random #rDuelist). ",
-	  "[Break] #gGain #g12 #gMax #gHP. #rBecome #rCursed #r- #r(3 #rRandom #rDuelist). ",
+	  "[Succumb] #gHeal #g25 #gHP.",
+      "[Worship] #g20%: #gGain #g12 #gMax #gHP. #rCursed #r- #r(Random #rDuelist). ",
+	  "[Break] #gGain #g12 #gMax #gHP. #rCursed #r- #r(3 #rRandom #rDuelist). ",
       "[Leave]",
 	  "[Locked] Requires: Duelist Relics",
 	  "#gObtain #ga #gSpecial #gRelic.",
@@ -79,6 +90,57 @@
 	  "#gHeal #g50% #gof #gMax #gHP.",
 	  "#gGain #g",
 	  " #gGold."
+    ]
+  },
+  "theDuelist:TombNamelessPuzzle": {
+    "NAME": "Nameless Tomb",
+    "DESCRIPTIONS": [
+      ""
+    ],
+    "OPTIONS": [
+	  "[Leave]",
+	  "[Magic] #gEnhance #gMagic #gReward #g(",
+	  "[Power] #gEnhance #gPower #gReward #g(",
+	  "[Greed] #gEnhance #gGreed #gReward #g(",
+	  "[Hunger] #gEnhance #gHunger #gReward #g(",
+	  "[War] #gEnhance #gWar #gReward #g(",
+	  ")",
+	  "[Apprentice Magic] #gReceive #gEnchanted #gDuelist #gCard. #rCursed #r- #r3 #rRandom",
+	  "[Duelist Magic] #gReceive #gEnchanted #gDuelist #gCard. #rCursed #r- #r2 #rRandom",
+	  "[Ascended Magic] #gReceive #gEnchanted #gDuelist #gCard. #rCursed #r- #rRandom",
+	  "[Pharaoh Magic] #gReceive #gEnchanted #gDuelist #gCard.",
+	  "[Apprentice Greed] #gGain #g250 #gGold. #rLose #r6 #rMax #rHP.",
+	  "[Duelist Greed] #gReplace #gall #gSparks #gwith #gGolden #gSparks. #rLose #rhalf #ryour #rGold.",
+	  "[Ascended Greed] #gReceive #gGolden #gRelic. #rCursed #r- #rRandom",
+	  "[Pharaoh Greed] #gReceive #gGolden #gDuelist #gCard.",
+	  "[Apprentice Power] #gReceive #gRare #gPower #gCard. #rLose #r8 #rHP.",
+	  "[Duelist Power] #gReceive #gPower #gRelic. #rLose #r(10-75) #rGold.",
+	  "[Ascended Power] #gReceive #gBuff #gRelic. #rLose #r4 #rMax #rHP.",
+	  "[Pharaoh Power] #gReceive #gPowerful #gDuelist #gCard.",
+	  "[Apprentice Hunger] #gGain #g(1-15) #gMax #gHP. #rCursed #r- #r(1-3) #rRandom.",
+	  "[Duelist Hunger] #gGain #g20 #gMax #gHP. #rLose #r45 #rHP.",
+	  "[Ascended Hunger] #gReceive #gMax #gHP #gRelic. #rLose #r10 #rHP.",
+	  "[Pharaoh Hunger] #gGain #g(1-20) #gMax #gHP.",
+	  "[Apprentice War] #gReceive #gWar #gRelic. #rLose #r15% #rHP.",
+	  "[Duelist War] #gReceive #gStrength #gRelic. #rLose #r30%-70% #rGold.",
+	  "[Ascended War] #gReceive #gTribute #gMonster #gRelic. #rLose #r10 #rMax #rHP.",
+	  "[Pharaoh War] #gReceive #gEnraged #gDuelist #gCard."
+    ]
+  },
+  "theDuelist:BattleCity": {
+    "NAME": "Battle City",
+    "DESCRIPTIONS": [
+      "Jutting from the chaotic terrain around you, a bony sphere surrounds a mysterious glowing object within. NL While you are curious what lies inside, you see that none other than Seto Kaiba himself is keeping an eye on it.",
+      "As soon as you strike the sphere, Seto laughs mischievously.",
+      "No need to be greedy.",
+	  "Jutting from the chaotic terrain around you, a bony sphere surrounds a mysterious glowing object within. NL While you are curious what lies inside, you see that none other than Yugi Muto himself is keeping an eye on it.",
+      "As soon as you strike the sphere, Yugi grins mischievously. Do you believe in the Heart of the Cards?"
+    ],
+    "OPTIONS": [
+      "[Open Sphere] #rFight #rSeto. #gReward: #g3 #gRare #gRelics.",
+      "[Leave]",
+      "[Fight]",
+	  "[Open Sphere] #rFight #rYugi. #gReward: #g3 #gRare #gRelics."
     ]
   },
   "theDuelist:EgyptVillage": {

@@ -1,16 +1,18 @@
 package duelistmod.events;
 
+import java.util.*;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.*;
 
-public class EgyptVillage extends AbstractImageEvent {
+public class EgyptVillage extends DuelistEvent {
 
 
     public static final String ID = DuelistMod.makeID("EgyptVillage");
@@ -89,6 +91,9 @@ public class EgyptVillage extends AbstractImageEvent {
 	            		holder = new AlphaElectro();
 	            		if (this.alphaUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		List<String> cardList = new ArrayList<String>();
+	            		cardList.add("Alpha Electromagnet Warrior");
+	            		logMetric(NAME, "Alpha Electro", cardList, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	
@@ -100,6 +105,9 @@ public class EgyptVillage extends AbstractImageEvent {
 	            		holder = new BetaElectro();
 	            		if (this.betaUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		List<String> cardListB = new ArrayList<String>();
+	            		cardListB.add("Beta Electromagnet Warrior");
+	            		logMetric(NAME, "Beta Electro", cardListB, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	
@@ -111,6 +119,9 @@ public class EgyptVillage extends AbstractImageEvent {
 	            		holder = new GammaElectro();
 	            		if (this.gammaUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		List<String> cardListC = new ArrayList<String>();
+	            		cardListC.add("Gamma Electromagnet Warrior");
+	            		logMetric(NAME, "Gamma Electro", cardListC, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	
@@ -120,6 +131,9 @@ public class EgyptVillage extends AbstractImageEvent {
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(new DeltaMagnet(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		List<String> cardListD = new ArrayList<String>();
+	            		cardListD.add("Delta Electromagnet Warrior");
+	            		logMetric(NAME, "Delta Electro", cardListD, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 	            	
@@ -131,6 +145,9 @@ public class EgyptVillage extends AbstractImageEvent {
 	            		holder = new Berserkion();
 	            		if (this.valkUpgrade) { holder.upgrade(); }
 	            		AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(holder, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+	            		List<String> cardListE = new ArrayList<String>();
+	            		cardListE.add("Berserkion Electromagna");
+	            		logMetric(NAME, "Berserkion", cardListE, null, null, null, null, null, null, 0, 0, 0, 0, 0, 0);
 	            		screenNum = 1;
 	            		break;
 
@@ -139,6 +156,7 @@ public class EgyptVillage extends AbstractImageEvent {
 	            		this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
 	            		this.imageEventText.updateDialogOption(0, OPTIONS[5]);
 	            		this.imageEventText.clearRemainingOptions();
+	            		logMetric(NAME, "Leave");
 	            		screenNum = 1;
 	            		break;
             	}

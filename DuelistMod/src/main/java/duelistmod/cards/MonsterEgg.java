@@ -38,6 +38,7 @@ public class MonsterEgg extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.baseDamage = this.damage = 0;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.WARRIOR);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GENERATION_DECK);

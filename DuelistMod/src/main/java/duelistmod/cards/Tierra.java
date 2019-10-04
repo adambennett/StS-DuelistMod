@@ -2,7 +2,6 @@ package duelistmod.cards;
 
 import java.util.ArrayList;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,9 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -43,6 +42,7 @@ public class Tierra extends DuelistCard
 		this.damage = this.baseDamage = 32;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.BAD_MAGIC);
 		this.misc = 0;
 		this.originalName = this.name;
 	}
@@ -54,59 +54,62 @@ public class Tierra extends DuelistCard
 		attack(m);
 		tribute();		
 		ArrayList<DuelistCard> handTribs = new ArrayList<DuelistCard>();
-		for (AbstractCard c : p.hand.group)
+		if (this.magicNumber > 0)
 		{
-			if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
+			for (AbstractCard c : p.hand.group)
 			{
-				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0)
+				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
-					handTribs.add(dC);
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						handTribs.add(dC);
+					}
 				}
 			}
-		}
-		
-		for (AbstractCard c : p.drawPile.group)
-		{
-			if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
+			
+			for (AbstractCard c : p.drawPile.group)
 			{
-				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0)
+				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
-					handTribs.add(dC);
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						handTribs.add(dC);
+					}
 				}
 			}
-		}
-		
-		for (AbstractCard c : p.discardPile.group)
-		{
-			if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
+			
+			for (AbstractCard c : p.discardPile.group)
 			{
-				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0)
+				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
-					handTribs.add(dC);
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						handTribs.add(dC);
+					}
 				}
 			}
-		}
-		
-		for (AbstractCard c : p.exhaustPile.group)
-		{
-			if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
+			
+			for (AbstractCard c : p.exhaustPile.group)
 			{
-				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0)
+				if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.uuid.equals(this.uuid))
 				{
-					handTribs.add(dC);
+					DuelistCard dC = (DuelistCard)c;
+					if (dC.tributes > 0)
+					{
+						handTribs.add(dC);
+					}
 				}
 			}
-		}
-		
-		if (handTribs.size() > 0)
-		{
-			for (DuelistCard pick : handTribs)
+			
+			if (handTribs.size() > 0)
 			{
-				AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(pick, this.magicNumber, true));
+				for (DuelistCard pick : handTribs)
+				{
+					AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(pick, this.magicNumber, true));
+				}
 			}
 		}
 	}

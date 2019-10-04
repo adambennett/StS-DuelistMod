@@ -13,7 +13,7 @@ import duelistmod.helpers.Util;
 import duelistmod.orbs.WhiteOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.powers.incomplete.ManaPower;
+import duelistmod.powers.incomplete.MagickaPower;
 import duelistmod.variables.*;
 
 public class WhiteMagicalHat extends DuelistCard 
@@ -52,7 +52,7 @@ public class WhiteMagicalHat extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		AbstractOrb white = new WhiteOrb(); channel(white);
-		applyPowerToSelf(new ManaPower(p, p, this.magicNumber));
+		applyPowerToSelf(new MagickaPower(p, p, this.magicNumber));
 	}
 
 	// Which card to return when making a copy of this card.

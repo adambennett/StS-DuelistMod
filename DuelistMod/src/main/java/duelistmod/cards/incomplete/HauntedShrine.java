@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.HauntedShrineAction;
-import duelistmod.cards.typecards.*;
+import duelistmod.cards.tempCards.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.*;
 import duelistmod.variables.Tags;
@@ -40,6 +40,7 @@ public class HauntedShrine extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.TRAP);
+        this.tags.add(Tags.BAD_MAGIC);
         this.magicNumber = this.baseMagicNumber = 2;
     }
 

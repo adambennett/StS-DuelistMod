@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -22,17 +23,16 @@ public class MegatypePool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -50,17 +50,16 @@ public class MegatypePool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -103,7 +102,7 @@ public class MegatypePool
 		cards.add(new RainbowDarkDragon());
 		cards.add(new MaleficRainbowDragon());
 		cards.add(new RainbowDragon());
-		cards.add(new HourglassLife());
+		//cards.add(new HourglassLife());
 		cards.add(new Eva());
 		cards.add(new HappyLover());
 		cards.add(new DunamesDarkWitch());
@@ -120,8 +119,6 @@ public class MegatypePool
 		cards.add(new GatesDarkWorld());
 		cards.add(new SuperancientDinobeast());
 		cards.add(new Carboneddon());
-		cards.add(new BlueBloodedOni());
-		cards.add(new RedHeadedOni());
 		cards.add(new StarBlast());
 		cards.add(new StardustDragon());
 		cards.add(new HorusServant());
@@ -211,12 +208,6 @@ public class MegatypePool
 		cards.add(new BetaMagnet());
 		cards.add(new GammaMagnet());
 		cards.add(new ValkMagnet());
-		cards.add(new SuperheavyBenkei());
-		cards.add(new SuperheavyFlutist());
-		cards.add(new SuperheavyGeneral());
-		cards.add(new SuperheavyOgre());
-		cards.add(new SuperheavyScales());
-		cards.add(new SuperheavySwordsman());
 		cards.add(new PatricianDarkness());
 		cards.add(new VampireGenesis());
 		cards.add(new VampireLord());
@@ -258,6 +249,8 @@ public class MegatypePool
 		cards.add(new RockBombardment());
 		cards.add(new Metronome());
 		cards.add(new OrbMetronome());
+		cards.add(new WhiteHowling());
+		cards.add(new WhiteNinja());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
@@ -273,7 +266,8 @@ public class MegatypePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

@@ -1,5 +1,6 @@
 package duelistmod.cards.fourthWarriors;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.*;
@@ -87,6 +88,7 @@ public class ComboMaster extends DuelistCard
     	tribute(); 	
     	AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
     }
+
 
     
     // Upgraded stats.

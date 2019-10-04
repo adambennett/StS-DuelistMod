@@ -237,7 +237,7 @@ public class RandomOrbHelperRep
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
 	}
 	
-	public static void spellcasterPuzzleChannel()
+	public static AbstractOrb spellcasterPuzzleChannel()
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
 		orbs.add(new WaterOrb());
@@ -271,6 +271,8 @@ public class RandomOrbHelperRep
 			orb.onEndOfTurn();
 			Util.log("Trigger onEndOfTurn() for " + orb.name);
 		}
+		
+		return orb.makeCopy();
 	}
 	
 	public static void channelRandomOffense()

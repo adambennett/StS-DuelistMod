@@ -10,16 +10,18 @@ import com.megacrit.cardcrawl.relics.*;
 import basemod.abstracts.CustomReward;
 import duelistmod.helpers.*;
 import duelistmod.patches.RewardItemTypeEnumPatch;
-import duelistmod.relics.BoosterPackEggRelic;
+import duelistmod.relics.*;
 
 public class BoosterReward extends CustomReward 
 {
 	public String packName;
 	public ArrayList<AbstractCard> booster;
 	public int boosterID;
+	public int goldCost;
+	private boolean isBonus = false;
 	
 	// if id-200 > 0 then we had a bonus booster
-	public BoosterReward(int id)
+	public BoosterReward(int id, int goldCost)
 	{
 		super(new Texture("duelistModResources/images/ui/rewards/" + BoosterPackHelper.getIMG(id, id-200>0) + ".png"), BoosterPackHelper.getPackName(id, id-200>0), RewardItemTypeEnumPatch.DUELIST_PACK);
 		this.cards = BoosterPackHelper.getBoosterCardsFromID(id, id-200 > 0);
@@ -27,6 +29,8 @@ public class BoosterReward extends CustomReward
 		this.type = RewardType.CARD;
 		this.packName = BoosterPackHelper.getPackName(id, id-200>0);
 		this.boosterID = id;
+		this.goldCost = goldCost;
+		this.isBonus = id-200>0;
 		for (AbstractCard c : this.cards) 
 		{
 			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 
@@ -61,7 +65,7 @@ public class BoosterReward extends CustomReward
 		}
 	}
 	
-	public BoosterReward(ArrayList<AbstractCard> cards, String imgPath, String packName, int id) 
+	public BoosterReward(ArrayList<AbstractCard> cards, String imgPath, String packName, int id, int goldCost) 
 	{
 		super(new Texture("duelistModResources/images/ui/rewards/" + imgPath + ".png"), packName, RewardItemTypeEnumPatch.DUELIST_PACK);
 		this.cards = cards;
@@ -69,6 +73,8 @@ public class BoosterReward extends CustomReward
 		this.packName = packName;
 		this.boosterID = id;
 		this.type = RewardType.CARD;
+		this.goldCost = goldCost;
+		this.isBonus = id-200>0;
 		for (AbstractCard c : this.cards) 
 		{
 			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 
@@ -106,8 +112,13 @@ public class BoosterReward extends CustomReward
 	@Override
 	public boolean claimReward() 
 	{
+		if (isBonus && AbstractDungeon.player.hasRelic(QuestionCard.ID)) { AbstractDungeon.player.getRelic(QuestionCard.ID).flash(); }
+		if (AbstractDungeon.player.hasRelic("Busted Crown")) { AbstractDungeon.player.getRelic("Busted Crown").flash(); }
+		if (AbstractDungeon.player.hasRelic(BoosterBonusPackIncreaseRelic.ID) && this.boosterID > 200) { AbstractDungeon.player.getRelic(BoosterBonusPackIncreaseRelic.ID).flash(); }
+		if (AbstractDungeon.player.hasRelic(BoosterPackEggRelic.ID)) { AbstractDungeon.player.getRelic(BoosterPackEggRelic.ID).flash(); }
 		if(AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD) 
 		{
+			//BoosterRewardScreen screen = new BoosterRewardScreen(this.goldCost);
 			AbstractDungeon.cardRewardScreen.open(this.cards, this, "Keep 1 Card from the Pack");
 			AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
 		}

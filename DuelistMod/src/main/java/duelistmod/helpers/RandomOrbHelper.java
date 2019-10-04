@@ -233,7 +233,22 @@ public class RandomOrbHelper
 		AbstractDungeon.actionManager.addToTop(new ChannelAction(orbs.get(randomOrb)));
 	}
 	
-	public static void spellcasterPuzzleChannel()
+	public static void triggerSecondSpellcasterOrb(AbstractOrb orb)
+	{
+		AbstractDungeon.player.channelOrb(orb);
+		if (orb instanceof DuelistOrb)
+		{
+			DuelistOrb duelOrb = (DuelistOrb)orb;
+			if (duelOrb.triggersOnSpellcasterPuzzle) { orb.onStartOfTurn(); }
+			else { Util.log("Did not trigger onStartOfTurn() for " + duelOrb.name); }
+		}
+		else
+		{
+			orb.onStartOfTurn();
+		}
+	}
+	
+	public static AbstractOrb spellcasterPuzzleChannel()
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
 		//orbs.add(new Water());		// conspire only
@@ -272,6 +287,7 @@ public class RandomOrbHelper
 			orbs.get(randomOrb).onStartOfTurn();
 		}
 	
+		return orbs.get(randomOrb).makeCopy();
 	}
 	
 	public static void channelRandomOffense()

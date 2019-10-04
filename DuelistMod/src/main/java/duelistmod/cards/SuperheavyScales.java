@@ -30,8 +30,8 @@ public class SuperheavyScales extends DuelistCard
 	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 0;
-	private static final int BLOCK = 3;
+	private static final int COST = 1;
+	private static final int BLOCK = 5;
 	private static final int SUMMONS = 1;
 	// /STAT DECLARATION/
 
@@ -67,7 +67,7 @@ public class SuperheavyScales extends DuelistCard
 	public void upgrade() {
 		if (!this.upgraded) {
 			this.upgradeName();
-			this.upgradeBlock(2);
+			this.upgradeBaseCost(0);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

@@ -25,9 +25,9 @@ public class SuperheavySoulshield extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
     // /STAT DECLARATION/
@@ -35,7 +35,7 @@ public class SuperheavySoulshield extends DuelistCard
     public SuperheavySoulshield() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 3;
-        this.magicNumber = this.baseMagicNumber = 6;
+        this.magicNumber = this.baseMagicNumber = 7;
         this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
@@ -46,11 +46,11 @@ public class SuperheavySoulshield extends DuelistCard
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
-    {
+    {    	
     	tribute();
     	applyPowerToSelf(new PlatedArmorPower(p, this.magicNumber));
     }
-
+    
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
@@ -62,8 +62,7 @@ public class SuperheavySoulshield extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-1);
-            this.upgradeMagicNumber(1);
+            this.upgradeMagicNumber(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

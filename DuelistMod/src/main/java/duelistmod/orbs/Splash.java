@@ -121,7 +121,7 @@ public class Splash extends DuelistOrb
 		DuelistCard.damageAllEnemiesThornsNormal(this.passiveAmount);
 		for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 		{
-			if (!m.isDead && !m.isDying && !m.isEscaping && !m.isDeadOrEscaped() && m.currentHealth > 0)
+			if (!m.isDead && !m.halfDead && !m.isDying && !m.isEscaping && !m.isDeadOrEscaped() && m.currentHealth > 0)
 			{
 				DuelistCard.applyPower(new WeakPower(m, 1, false), m);
 			}

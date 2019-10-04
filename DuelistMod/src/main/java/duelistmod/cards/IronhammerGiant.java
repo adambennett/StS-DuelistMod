@@ -40,6 +40,7 @@ public class IronhammerGiant extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 1;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
+        this.tags.add(Tags.ROCK);
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GIANT);
     }

@@ -90,6 +90,7 @@ public class VoidOrb extends DuelistOrb
 		if (this.passiveAmount > 0) 
 		{ 
 			triggerPassiveEffect();
+			if (gpcCheck()) { triggerPassiveEffect(); }
 		}
 	}
 
@@ -100,7 +101,7 @@ public class VoidOrb extends DuelistOrb
 		{
 			for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
 			{
-				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped())
+				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead)
 				{
 					DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
 					DuelistCard.gainTempHP(this.passiveAmount);
@@ -110,7 +111,7 @@ public class VoidOrb extends DuelistOrb
 		else
 		{
 			AbstractMonster m = AbstractDungeon.getRandomMonster();
-			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && m != null)
+			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && m != null && !m.halfDead)
 			{
 				DuelistCard.staticThornAttack(m, AttackEffect.FIRE, this.passiveAmount);
 				DuelistCard.gainTempHP(this.passiveAmount);

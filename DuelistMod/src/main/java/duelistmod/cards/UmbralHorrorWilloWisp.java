@@ -40,6 +40,7 @@ public class UmbralHorrorWilloWisp extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
         this.tags.add(Tags.TRIBUTE);
+		this.tags.add(Tags.X_COST);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 0; 
@@ -49,7 +50,7 @@ public class UmbralHorrorWilloWisp extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int size = tribute(p, 0, true, this).size();
+    	int size = xCostTribute();
     	attack(m, AttackEffect.SLASH_VERTICAL, this.magicNumber * size);
     	block(this.secondMagic * size);
     }

@@ -24,17 +24,16 @@ public class ZombiePool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -57,12 +56,13 @@ public class ZombiePool
 		//pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
 		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }	
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -129,16 +129,13 @@ public class ZombiePool
 		zombieCards.add(new GoblinZombie());
 		zombieCards.add(new Gozuki());
 		zombieCards.add(new Kasha());
-		zombieCards.add(new OniTankT34());
-		zombieCards.add(new RedHeadedOni());		
+		zombieCards.add(new OniTankT34());		
 		zombieCards.add(new ZombieWarrior());
-		zombieCards.add(new BlueBloodedOni());
 		zombieCards.add(new DesLacooda());
 		zombieCards.add(new EndlessDecay());		
 		zombieCards.add(new HauntedShrine());
 		zombieCards.add(new OniGamiCombo());
 		zombieCards.add(new PlaguespreaderZombie());
-		zombieCards.add(new YellowBelliedOni());
 		zombieCards.add(new ZombieWorld());
 		zombieCards.add(new DespairFromDark());
 		zombieCards.add(new SpiritPharaoh());
@@ -191,7 +188,8 @@ public class ZombiePool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

@@ -44,6 +44,7 @@ public class PowerGiant extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GIANT);
+        this.tags.add(Tags.ROCK);
     }
 
     @Override
@@ -56,6 +57,15 @@ public class PowerGiant extends DuelistCard
     		AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(this.uuid, -this.damage + this.secondMagic));
     	}
     }
+    
+    @Override
+    public void onSummonWhileInHand(DuelistCard c, int amt) { if (amt > 0) { damageInc(); }}
+    
+    @Override
+    public void onSummonWhileInDiscard(DuelistCard c, int amt) { if (amt > 0) { damageInc(); }}
+    
+    @Override
+    public void onSummonWhileInDraw(DuelistCard c, int amt) { if (amt > 0) { damageInc(); }}
     
     public void damageInc()
     {

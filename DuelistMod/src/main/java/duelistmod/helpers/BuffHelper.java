@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.PotGenerosityPower;
 import duelistmod.powers.incomplete.FlameTigerPower;
 
 public class BuffHelper {
@@ -67,7 +68,7 @@ public class BuffHelper {
 		}
 		else if (powerID == 4)
 		{
-			return "#yPot #yof #yGenerosity";
+			return "#yBlur";
 		}
 		else if (powerID == 5)
 		{
@@ -103,7 +104,7 @@ public class BuffHelper {
 			}
 			else if (powerID == 4)
 			{
-				return new PotGenerosityPower(p, p, traps);
+				return new BlurPower(p, traps);
 			}
 			else if (powerID == 5)
 			{
@@ -112,6 +113,75 @@ public class BuffHelper {
 			else if (powerID == 6)
 			{
 				return new TombLooterPower(p, traps);
+			}
+			else
+			{
+				return new BlurPower(p, traps);
+			}
+		}
+	}
+	
+	public static String trapVortexBuffNameB(int powerID)
+	{
+		if (powerID == 1)
+		{
+			return "#yStrength";
+		}
+		else if (powerID == 2)
+		{
+			return "#yThorns";
+		}
+		else if (powerID == 3)
+		{
+			return "#yArtifacts";
+		}
+		else if (powerID == 4)
+		{
+			return "#Strength";
+		}
+		else if (powerID == 5)
+		{
+			return "#yJuggernaut";
+		}
+		else if (powerID == 6)
+		{
+			return "#yBlur";
+		}
+		else
+		{
+			return "#yBlur";
+		}
+	}
+
+	public static AbstractPower trapVortexB(int powerID, int traps)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		if (powerID > 7 || powerID < 1) { return new BlurPower(p, traps); }
+		else
+		{
+			if (powerID == 1)
+			{
+				return new StrengthPower(p, traps);
+			}
+			else if (powerID == 2)
+			{
+				return new ThornsPower(p, traps);
+			}
+			else if (powerID == 3)
+			{
+				return new ArtifactPower(p, traps);
+			}
+			else if (powerID == 4)
+			{
+				return new StrengthPower(p, traps);
+			}
+			else if (powerID == 5)
+			{
+				return new JuggernautPower(p, traps);
+			}
+			else if (powerID == 6)
+			{
+				return new BlurPower(p, traps);
 			}
 			else
 			{
@@ -152,7 +222,7 @@ public class BuffHelper {
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
-		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
+		AbstractPower generosity = new PotGenerosityPower(2);
 		AbstractPower focus = new FocusPower(p, 1);
 		AbstractPower focusB = new FocusPower(p, 2);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
@@ -166,13 +236,14 @@ public class BuffHelper {
 		AbstractPower conserve = new ConservePower(p, 1);
 		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower aero = new AerodynamicsPower(p, p);
-		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
+		//AbstractPower naturia = new NaturiaPower(p, p, turnNum);
 		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
 		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
 		AbstractPower hello = new HelloPower(p, turnNum);
 		AbstractPower flameTiger = new FlameTigerPower(p, p);
 		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
 		AbstractPower exodia = new ExodiaPower();
+		AbstractPower oniPower = new OniPower(p, p, 1);
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
@@ -183,7 +254,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC, hello
+					jambreedC, hello, oniPower
 			};
 		}
 		else
@@ -195,7 +266,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia
+					jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
 			};
 		}
 		for (AbstractPower a : buffs)
@@ -235,7 +306,7 @@ public class BuffHelper {
 		AbstractPower orbEvoker = new OrbEvokerPower(p, turnNum);
 		AbstractPower tombPilfer = new HealGoldPower(p, turnNum);
 		AbstractPower retainCards = new RetainCardPower(p, 1);
-		AbstractPower generosity = new PotGenerosityPower(p, p, 2);
+		AbstractPower generosity = new PotGenerosityPower(2);
 		AbstractPower focus = new FocusPower(p, 1);
 		AbstractPower focusB = new FocusPower(p, 2);
 		AbstractPower reductionist = new ReducerPower(p, turnNum);
@@ -249,13 +320,14 @@ public class BuffHelper {
 		AbstractPower conserve = new ConservePower(p, 1);
 		AbstractPower curiosity = new CuriosityPower(p, 1);
 		AbstractPower aero = new AerodynamicsPower(p, p);
-		AbstractPower naturia = new NaturiaPower(p, p, turnNum);
+		//AbstractPower naturia = new NaturiaPower(p, p, turnNum);
 		AbstractPower jambreed = new TwoJamPower(p, 1, turnNum, 3);
 		AbstractPower jambreedC = new TwoJamPower(p, 1, turnNum, 2);
 		AbstractPower hello = new HelloPower(p, turnNum);
 		AbstractPower flameTiger = new FlameTigerPower(p, p);
 		AbstractPower zombieLord = new ResummonBonusPower(p, p, turnNum);
 		AbstractPower exodia = new ExodiaPower();
+		AbstractPower oniPower = new OniPower(p, p, 1);		
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
 		if (DuelistMod.challengeMode)
@@ -266,7 +338,7 @@ public class BuffHelper {
 					orbHeal, tombLoot, orbEvoker, tombPilfer,
 					focus, reductionist, envenom,
 					anger, angry, conserve, curiosity, aero,
-					naturia, jambreedC, hello
+					jambreedC, hello, oniPower
 			};
 		}
 		else
@@ -278,7 +350,7 @@ public class BuffHelper {
 					orbEvoker, tombPilfer, retainCards, timeWizard,
 					generosity, focus, reductionist, creative, mayhem, envenom,
 					amplify, anger, angry, buffer, conserve, curiosity, aero,
-					naturia, jambreed, focusB, hello, flameTiger, zombieLord, exodia
+					jambreed, focusB, hello, flameTiger, zombieLord, exodia, oniPower
 			};
 		}
 		for (AbstractPower a : buffs)

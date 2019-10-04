@@ -27,7 +27,7 @@ public class BlackRoseMoonlight extends DuelistCard
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
     // /STAT DECLARATION/
@@ -36,10 +36,8 @@ public class BlackRoseMoonlight extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 16;
         this.tributes = this.baseTributes = 4;
-        this.baseMagicNumber = this.magicNumber = 5;	// Constricted (all enemies)
-        this.secondMagic = this.baseSecondMagic = 2;	// Thorns
+        this.baseMagicNumber = this.magicNumber = 8;	// Constricted (all enemies)
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT); 
@@ -51,9 +49,9 @@ public class BlackRoseMoonlight extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	attackAll(this.damage);
+    	//attackAll(this.damage);
     	constrictAllEnemies(p, this.magicNumber);
-    	channel(new Moon(), 2);
+    	channel(new Moon());
     }
 
     
@@ -65,8 +63,7 @@ public class BlackRoseMoonlight extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(2);
-        	this.upgradeDamage(4);
+        	this.upgradeMagicNumber(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

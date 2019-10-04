@@ -12,6 +12,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.MountainPower;
 import duelistmod.variables.*;
 
 public class ToonBarrelDragon extends DuelistCard 

@@ -24,7 +24,7 @@ public class PotDuality extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -35,7 +35,7 @@ public class PotDuality extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.POT);
         this.tags.add(Tags.REDUCED);
-        this.baseBlock = this.block = 12;
+        this.baseBlock = this.block = 11;
         this.magicNumber = this.baseMagicNumber = 2;
 		this.originalName = this.name;
 
@@ -60,7 +60,7 @@ public class PotDuality extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(4);
+            this.upgradeBlock(3);
             //this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

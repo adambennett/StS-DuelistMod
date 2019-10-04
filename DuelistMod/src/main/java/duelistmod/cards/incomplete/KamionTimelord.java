@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.CancelCard;
+import duelistmod.cards.tempCards.CancelCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -55,7 +55,7 @@ public class KamionTimelord extends DuelistCard
     	attackAllEnemies(this.damage);
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			applyPower(new WeakPower(mon, this.magicNumber, false), mon);
     		}

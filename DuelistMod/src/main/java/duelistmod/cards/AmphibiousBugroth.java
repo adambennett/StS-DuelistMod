@@ -37,8 +37,8 @@ public class AmphibiousBugroth extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 10;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseDamage = this.damage = 11;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tributes = this.baseTributes = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
@@ -62,8 +62,8 @@ public class AmphibiousBugroth extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeDamage(2);
-        	this.upgradeMagicNumber(2);
+        	this.upgradeDamage(3);
+        	this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

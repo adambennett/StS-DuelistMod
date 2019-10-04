@@ -40,7 +40,7 @@ public class CommandKnight extends DuelistCard
         this.baseBlock = this.block = 7;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
-        this.tags.add(Tags.MAGNET_DECK);
+        this.tags.add(Tags.WARRIOR_DECK);
         this.superheavyDeckCopies = 1;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
@@ -57,7 +57,7 @@ public class CommandKnight extends DuelistCard
     	block(this.block);
     	for (AbstractCard c : p.hand.group)
     	{
-    		if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.TOKEN))
+    		if (c instanceof DuelistCard && c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.TOKEN) && !c.uuid.equals(this.uuid))
     		{
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.baseSummons > 0)

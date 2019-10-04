@@ -73,24 +73,15 @@ public class Mud extends DuelistOrb
 		applyFocus();
 		if (this.passiveAmount > 0)
 		{
-			int extra = 0;
-			if (AbstractDungeon.player.hasPower(SummonPower.POWER_ID))
-			{
-				SummonPower instance = (SummonPower) AbstractDungeon.player.getPower(SummonPower.POWER_ID);
-				if (instance.isEveryMonsterCheck(Tags.INSECT, false))
-				{
-					extra += this.passiveAmount;
-				}
-			}
-			
-			this.triggerPassiveEffect(extra);
+			this.triggerPassiveEffect();
+			if (gpcCheck()) { this.triggerPassiveEffect(); }
 		}
 	}
 
-	public void triggerPassiveEffect(int poisonExtra)
+	public void triggerPassiveEffect()
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-		DuelistCard.poisonAllEnemies(AbstractDungeon.player, this.passiveAmount + poisonExtra);
+		DuelistCard.poisonAllEnemies(AbstractDungeon.player, this.passiveAmount);
 	}
 
 	@Override

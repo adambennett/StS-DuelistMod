@@ -8,8 +8,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.*;
 import duelistmod.variables.*;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
@@ -85,7 +86,7 @@ public class ToonWorldPower extends AbstractPower
     	}
     	else
     	{
-	    	if (c.hasTag(Tags.TOON) && !c.originalName.equals("Toon World") && !c.originalName.equals("Toon Kingdom")) 
+	    	if (c.hasTag(Tags.TOON) && !c.hasTag(Tags.TOON_DONT_TRIG))
 	    	{ 
 	    		if (this.amount > 0) { DuelistCard.damageSelf(this.amount); }
 	    	}

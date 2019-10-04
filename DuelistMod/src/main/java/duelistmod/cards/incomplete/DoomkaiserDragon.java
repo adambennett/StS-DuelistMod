@@ -53,7 +53,7 @@ public class DoomkaiserDragon extends DuelistCard
     	attackAllEnemies(this.damage);
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			applyPower(new StrengthDownPower(mon, mon, this.magicNumber, this.secondMagic), mon);
     		}

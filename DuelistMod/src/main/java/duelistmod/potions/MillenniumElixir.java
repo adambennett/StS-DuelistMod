@@ -56,8 +56,11 @@ public class MillenniumElixir extends AbstractPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-        return 2;
+    	int pot = 2;
+    	if (AbstractDungeon.player == null) { return pot; }
+        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
+
     
     public void upgradePotion()
     {

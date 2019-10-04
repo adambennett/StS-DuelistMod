@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
@@ -40,14 +41,16 @@ import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.insects.MirrorLadybug;
+import duelistmod.cards.tempCards.*;
 import duelistmod.cards.tokens.*;
-import duelistmod.cards.typecards.*;
 import duelistmod.characters.FakePlayer;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.variables.*;
@@ -61,7 +64,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	 * Card Fields						// Fields for Duelist Cards
 	 * Static Setup						// Hack together the orb list before the dungeon is loaded, orb list is for orb modal so every card can open random orb choices dynamically
 	 * Abstract Methods					// Abstracts for Duelist Cards
+	 * Void Methods						// Empty method calls that can be implemented by Duelist cards
 	 * Constructors						// Create new Duelist Cards via constructor
+	 * Enums							// Duelist Card Enums
 	 * Super Override Functions			// Override AbstractCard and CustomCard methods
 	 * Duelist Functions				// Special functions for Duelist Cards
 	 * Attack Functions					// Functions that run attack and damage actions
@@ -110,6 +115,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean isCastle = false;
 	public boolean isTributesModified = false;
 	public boolean isTributesModifiedForTurn = false;
+	public boolean isMagicNumModifiedForTurn = false;
 	public boolean isTribModPerm = false;
 	public boolean isSummonsModified = false;
 	public boolean isSummonsModifiedForTurn = false;
@@ -183,8 +189,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int p4DeckCopies = 1;
 	public int p5DeckCopies = 1;
 	public int metronomeDeckCopies = 1;
+	public int originalMagicNumber = 0;
 	public double dynDmg = 0;
-	
+
 	public int startingOriginalDeckCopies = 1;
 	public int startingOPDragDeckCopies = 1;
 	public int startingOPSPDeckCopies = 1;
@@ -219,6 +226,47 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public abstract void summonThis(int summons, DuelistCard c, int var, AbstractMonster m);
 	// =============== /ABSTRACT METHODS/ =======================================================================================================================================================
 	
+	// =============== VOID METHODS =========================================================================================================================================================
+	public void onTributeWhileInHand(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
+	public void onTributeWhileInDiscard(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
+	public void onTributeWhileInExhaust(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
+	public void onTributeWhileInDraw(DuelistCard tributedMon, DuelistCard tributingMon) { }
+	
+	public void onSummonWhileInHand(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onSummonWhileInDiscard(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onSummonWhileInExhaust(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onSummonWhileInDraw(DuelistCard summoned, int amountSummoned) { }
+	
+	public void onIncrementWhileInHand(int amount, int newMaxSummons) { }
+	
+	public void onIncrementWhileInDraw(int amount, int newMaxSummons) { }
+	
+	public void onIncrementWhileInDiscard(int amount, int newMaxSummons) { }
+	
+	public void onIncrementWhileInExhaust(int amount, int newMaxSummons) { }
+	
+	public void onResummonWhileInHand(DuelistCard resummoned) { }
+	
+	public void onResummonWhileInDraw(DuelistCard resummoned) { }
+	
+	public void onResummonWhileInDiscard(DuelistCard resummoned) { }
+	
+	public void onResummonWhileInExhaust(DuelistCard resummoned) { }
+	
+	public void onSynergyTributeWhileInHand() { }
+	
+	public void onSynergyTributeWhileInDiscard() { }
+	
+	public void onSynergyTributeWhileInExhaust() { }
+	
+	public void onSynergyTributeWhileInDraw() { }
+	// =============== /VOID METHODS/ =======================================================================================================================================================
 	
 	
 	// =============== CONSTRUCTORS =========================================================================================================================================================
@@ -243,28 +291,55 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (DuelistCard c : allowedCardChoices) { duelistCardBuilder.addOption(c); }
 		duelistCardModal = duelistCardBuilder.create();
 	}
-	
-	
-	
+
 	// =============== /CONSTRUCTORS/ =======================================================================================================================================================
+	
+	// =============== ENUMS =========================================================================================================================================================
+
+	// =============== /ENUMS/ =======================================================================================================================================================
 	
 	// =============== SUPER OVERRIDE FUNCTIONS =========================================================================================================================================================
 	@Override
 	public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.5);  }
-		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  tmp = (int) Math.floor(tmp * 1.5);   }
-		if ((this.hasTag(Tags.INSECT) || this.hasTag(Tags.PLANT)) && player().hasPower(VioletCrystalPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.5);  }
-		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) {  tmp = (int) Math.floor(tmp * 1.5);   }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) {  tmp = (int) Math.floor(tmp * 1.5);   }
+		super.calculateModifiedCardDamage(player, mo, tmp);
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { float dmgMod = (player().getPower(MountainPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  float dmgMod = (player().getPower(YamiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { float dmgMod = (player().getPower(VioletCrystalPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { float dmgMod = (player().getPower(SacredTreePower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { float dmgMod = (player().getPower(GatesDarkPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod;  }}
+		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) { float dmgMod = (player().getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if (this.hasTag(Tags.BUG) && player().hasPower(BugMatrixPower.POWER_ID)) { float dmgMod = (player().getPower(BugMatrixPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
+		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) { float dmgMod = (player().getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
-		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { tmp = (int) Math.floor(tmp * 2);  }}
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { tmp += player().getPower(TyrantWingPower.POWER_ID).amount;  }
 		if (this.hasTag(DuelistMod.chosenRockSunriseTag) && player().hasPower(RockSunrisePower.POWER_ID)) { tmp = (int) Math.floor(tmp * 1.25); }
+		if (player().hasPower(SolidarityDiscardPower.POWER_ID))
+		{
+			SolidarityDiscardPower pow = (SolidarityDiscardPower)player().getPower(SolidarityDiscardPower.POWER_ID);
+			CardTags modTag = pow.solidarity();
+			if (!modTag.equals(Tags.ALL) && this.hasTag(modTag)) 
+			{ 
+				float dmgMod = (pow.amount/10.00f) + 1.00f; 
+				tmp = (tmp * dmgMod); 
+			}
+		}
+		if (player().hasPower(SolidarityExhaustPower.POWER_ID))
+		{
+			SolidarityExhaustPower pow = (SolidarityExhaustPower)player().getPower(SolidarityExhaustPower.POWER_ID);
+			CardTags modTag = pow.solidarity();
+			if (!modTag.equals(Tags.ALL) && this.hasTag(modTag)) 
+			{ 
+				float dmgMod = (pow.amount/10.00f) + 1.00f; 
+				tmp = (tmp * dmgMod); 			
+			}
+		}
 		//if (DuelistMod.debug) { DuelistMod.logger.info("Updated damage for " + this.originalName + " based on power effects. New damage should read as: " + tmp);}
+		if (this.hasTag(DuelistMod.chosenRockSunriseTag) && player().hasPower(RockSunrisePower.POWER_ID)) { float dmgMod = (player().getPower(RockSunrisePower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		return tmp;
 	}
-	
+		
 	@Override
 	public AbstractCard makeStatEquivalentCopy()
 	{
@@ -277,7 +352,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			dCard.isTributesModified = this.isTributesModified;
 			dCard.isSummonsModified = this.isSummonsModified;
 			dCard.isTributesModifiedForTurn = this.isTributesModifiedForTurn;
+			dCard.isMagicNumModifiedForTurn = this.isMagicNumModifiedForTurn;
 			dCard.isSummonsModifiedForTurn = this.isSummonsModifiedForTurn;
+			dCard.originalMagicNumber = this.originalMagicNumber;
 			dCard.inDuelistBottle = this.inDuelistBottle;
 			dCard.baseTributes = this.baseTributes;
 			dCard.baseSummons = this.baseSummons;
@@ -318,6 +395,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 		}
 	}
+	
+
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
 	
 	
@@ -558,6 +637,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			this.rawDescription = this.originalDescription;
 			this.initializeDescription();
 		}
+		
+		if (this.isMagicNumModifiedForTurn)
+		{
+			this.isMagicNumModifiedForTurn = false;
+			this.magicNumber = this.baseMagicNumber = this.originalMagicNumber;
+			this.initializeDescription();
+		}
 	}
 	
 	
@@ -641,6 +727,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
 	}
 	
+	public static void vinesAttack(AbstractMonster m, int dmg)
+	{
+		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), dmg, DamageType.THORNS), AttackEffect.POISON));
+	}
+	
 	public void attack(AbstractMonster m, AttackEffect effect, int damageAmount) 
 	{
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
@@ -690,7 +781,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		ArrayList<AbstractMonster> allEnemies = new ArrayList<AbstractMonster>();
 		for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
 		{
-			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped()) { allEnemies.add(m); }
+			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) { allEnemies.add(m); }
 		}
 		
 		if (amountOfEnemies >= allEnemies.size()) 
@@ -719,7 +810,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		ArrayList<AbstractMonster> allEnemies = new ArrayList<AbstractMonster>();
 		for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
 		{
-			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped()) { allEnemies.add(m); }
+			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) { allEnemies.add(m); }
 		}
 		
 		if (amountOfEnemiesToAttack >= allEnemies.size()) 
@@ -754,6 +845,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static void attackAll(AttackEffect effect, int[] damageAmounts, DamageType dmgForTurn)
 	{
 		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(player(), damageAmounts, dmgForTurn, effect));
+	}
+	
+	public void normalMultidmg()
+	{
+		this.addToBot(new DamageAllEnemiesAction(player(), this.multiDamage, this.damageTypeForTurn, this.baseAFX));
 	}
 	
 	public static void attackAll(int damage)
@@ -819,7 +915,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
 		for (AbstractMonster m : monsters)
 		{
-			if (!m.isDead) 
+			if (!m.isDead && !m.halfDead && !m.isDying && !m.isDeadOrEscaped()) 
 			{ 
 				damageThroughBlock(m, p, damage, effect); 
 			}
@@ -855,13 +951,18 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 	public void block(int amount) 
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
-		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
-		if (this.hasTag(Tags.INSECT) && player().hasPower(VioletCrystalPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
-		else if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
-		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
-		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) { amount = (int) Math.floor(amount * 1.5); }
-		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) { amount = (int) Math.floor(amount * 2); }}
+		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) { float dmgMod = (player().getPower(YamiPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod); }
+		if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { float dmgMod = (player().getPower(VioletCrystalPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod); }
+		if (this.hasTag(Tags.NATURIA) && player().hasPower(SacredTreePower.POWER_ID)) { float dmgMod = (player().getPower(SacredTreePower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod); }
+		if (this.hasTag(Tags.AQUA) && player().hasPower(UmiPower.POWER_ID)) {  float dmgMod = (player().getPower(UmiPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod);  }
+		if (this.hasTag(Tags.ZOMBIE) || this.hasTag(Tags.FIEND)) { if (player().hasPower(GatesDarkPower.POWER_ID)) {  float dmgMod = (player().getPower(GatesDarkPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod);  }}
+		if (this.hasTag(Tags.WARRIOR) && player().hasPower(SogenPower.POWER_ID)) {  float dmgMod = (player().getPower(SogenPower.POWER_ID).amount / 10.00f) + 1.0f; amount = (int) (amount * dmgMod);  }
+		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) 
+		{ 
+			TwoAmountPower fore = (TwoAmountPower)player().getPower(ForestPower.POWER_ID);
+			int mm = fore.amount2;
+			float dmgMod = (mm / 10.00f) + 1.0f; amount = (int) (amount * dmgMod); 
+		}
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 
@@ -870,7 +971,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 	}
 	
-	public static void manaBlock(int amount, ManaPower pow) 
+	public static void staticBlock(int amount, boolean allowDexterity) 
+	{
+		int extraBlock = 0;
+		if (player().hasPower(DexterityPower.POWER_ID) && allowDexterity) { extraBlock = player().getPower(DexterityPower.POWER_ID).amount; }
+		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount + extraBlock));
+	}
+	
+	public static void manaBlock(int amount, MagickaPower pow) 
 	{
 		AbstractDungeon.actionManager.addToTop(new GainBlockAction(player(), player(), amount));
 		pow.flash();
@@ -1088,7 +1196,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			//flash();
 			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
 			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped()) 
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) 
 				{
 					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new PoisonPower(monster, p, amount), amount));
 				}
@@ -1104,9 +1212,25 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
 			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped()) 
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) 
 				{
 					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new VulnerablePower(monster, amount, false), amount));
+				}
+			}
+		}
+
+	}
+	
+	public static void weakAllEnemies(int amount)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
+		{
+			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
+			{
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) 
+				{
+					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new WeakPower(monster, amount, false), amount));
 				}
 			}
 		}
@@ -1120,7 +1244,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
 			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped()) 
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) 
 				{
 					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new SlowPower(monster, amount), amount));
 				}
@@ -1136,7 +1260,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			//flash();
 			for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) 
 			{
-				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped()) 
+				if (!monster.isDead && !monster.isDying && !monster.isDeadOrEscaped() && !monster.halfDead) 
 				{
 					AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(monster, p, new ConstrictedPower(monster, p, amount), amount));
 				}
@@ -1150,6 +1274,98 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== MISC ACTION FUNCTIONS =========================================================================================================================================================
+	public void setColorless()
+	{
+		this.color = CardColor.COLORLESS;
+	}
+	
+	public static ArrayList<AbstractMonster> getAllMons()
+	{
+		ArrayList<AbstractMonster> mons = new ArrayList<AbstractMonster>();
+    	for (AbstractMonster monst : AbstractDungeon.getCurrRoom().monsters.monsters) { if (!monst.isDead && !monst.isDying && !monst.isDeadOrEscaped() && !monst.halfDead) { mons.add(monst); }}
+    	return mons;
+	}
+	
+	// Handle onTribute for custom relics, powers, orbs, stances, cards, potions
+	private static void handleOnTributeForAllAbstracts(DuelistCard tributed, DuelistCard tributingCard)
+	{
+		Util.log("Running onSummon for all abstract objects! Tributed: " + tributed + " for " + tributingCard.name);
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onTribute(tributed, tributingCard); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onTribute(tributed, tributingCard); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onTribute(tributed, tributingCard); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInHand(tributed, tributingCard); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInDiscard(tributed, tributingCard); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInDraw(tributed, tributingCard); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onTributeWhileInExhaust(tributed, tributingCard); }}
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion) pot).onTribute(tributed, tributingCard); }}
+		
+	}
+	
+	private static void handleOnSynergyForAllAbstracts()
+	{
+		Util.log("Running onSynergyTribute for all abstract objects!");
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onSynergyTribute(); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onSynergyTribute(); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onSynergyTribute(); }}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInHand(); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInDiscard(); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInDraw(); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSynergyTributeWhileInExhaust(); }}
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSynergyTribute(); }}
+	}
+	
+	private static void handleOnSummonForAllAbstracts(DuelistCard summoned, int amountSummoned)
+	{
+		Util.log("Running onSummon for all abstract objects! Summoned: " + amountSummoned + "x " + summoned.name);
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onSummon(summoned, amountSummoned); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onSummon(summoned, amountSummoned); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onSummon(summoned, amountSummoned); }}
+		if (!DuelistMod.mirrorLadybug)
+		{
+			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
+			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
+			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+		}
+		else
+		{
+			for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInHand(summoned, amountSummoned); }}
+			for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDiscard(summoned, amountSummoned); }}
+			for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard && (!(c instanceof MirrorLadybug))) { ((DuelistCard)c).onSummonWhileInDraw(summoned, amountSummoned); }}
+		}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onSummonWhileInExhaust(summoned, amountSummoned); }}
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onSummon(summoned, amountSummoned); }}
+	
+	}
+		
+	public boolean hasOtherMonsterTypes(CardTags excludeTag)
+	{
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			if (this.hasTag(t) && !t.equals(excludeTag)) { return true; }
+		}
+		return false;
+	}
+	
+	public void chooseHandCardToModifyMagicNumForTurn(int cardsToChoose, int addAmt, boolean canCancel)
+	{
+		AbstractPlayer p = AbstractDungeon.player;
+		ArrayList<DuelistCard> handDuelistCards = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> secondSet = new ArrayList<DuelistCard>();
+    	for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard && !c.uuid.equals(this.uuid)) { handDuelistCards.add((DuelistCard) c); }}
+    	for (DuelistCard c : handDuelistCards) { if (!c.isTributesModifiedForTurn) { secondSet.add(c); }}
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberForTurnAction(secondSet, cardsToChoose, addAmt, canCancel));
+	}
+	
+	public void modifyMagicNumForTurn(ArrayList<DuelistCard> handDuelistCards, int cardsToChoose, int addAmt, boolean canCancel)
+	{
+		ArrayList<DuelistCard> secondSet = new ArrayList<DuelistCard>();
+    	for (DuelistCard c : handDuelistCards) { if (!c.isTributesModifiedForTurn && !c.hasTag(Tags.NO_MAGIC_MOD)) { secondSet.add(c); }}
+    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberForTurnAction(secondSet, cardsToChoose, addAmt, canCancel));
+	}
+	
 	public void makeFleeting()
 	{
 		FleetingField.fleeting.set(this, true);
@@ -1330,14 +1546,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		powerTypeMap.put(Tags.FIEND, new DoomdogPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.INSECT, new CocoonPower(AbstractDungeon.player, AbstractDungeon.player, 3));
 		powerTypeMap.put(Tags.MACHINE, new ArtifactPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.NATURIA, new NaturiaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(Tags.NATURIA, new VinesPower(turnAmount));
 		powerTypeMap.put(Tags.PLANT, new PlantTypePower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.PREDAPLANT, new ThornsPower(AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.SPELLCASTER, new ManaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(Tags.SPELLCASTER, new MagickaPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.SUPERHEAVY, new DexterityPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.TOON, new RetainCardPower(AbstractDungeon.player, 1));
 		powerTypeMap.put(Tags.WARRIOR, new StrengthPower(AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.ZOMBIE, new TrapHolePower(AbstractDungeon.player, AbstractDungeon.player, 1));
+		powerTypeMap.put(Tags.ROCK, new PlatedArmorPower(AbstractDungeon.player, 2));
 		
 		if (!powerTypeMap.get(type).equals(null)) { return powerTypeMap.get(type); }
 		else { return new StrengthPower(AbstractDungeon.player, turnAmount); }
@@ -1500,7 +1717,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void exhaust(int amount, boolean isRandom)
 	{
-		AbstractDungeon.actionManager.addToBottom(new ExhaustAction(player(), player(), amount, isRandom));
+		AbstractDungeon.actionManager.addToBottom(new ExhaustAction(AbstractDungeon.player, AbstractDungeon.player, amount, isRandom));
 	}
 
 	public static void discardTop(int amount, boolean isRandom)
@@ -1520,6 +1737,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static void addCardToHand(AbstractCard card, int amt)
+	{
+		for (int i = 0; i < amt; i++) { addCardToHand(card); }
+	}
+	
 	public static void gainTempHP(int amount)
 	{
 		AbstractDungeon.actionManager.addToTop(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, amount));
@@ -1531,12 +1753,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	}
 	
 	// =============== /MISC ACTION FUNCTIONS/ =======================================================================================================================================================
-	
+
 	// =============== SUMMON MONSTER FUNCTIONS =========================================================================================================================================================
 	public void summon()
 	{
 		summon(AbstractDungeon.player, this.summons, this);
-		//summon(p, this.summons, this);
 	}
 	
 	public static void summon(AbstractPlayer p, int SUMMONS, DuelistCard c)
@@ -1581,141 +1802,22 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		//int currentDeck = 0;
 		//if (StarterDeckSetup.getCurrentDeck().getArchetypeCards().size() > 0) { currentDeck = StarterDeckSetup.getCurrentDeck().getIndex(); }
-		if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> called summon()"); }
+		Util.log("theDuelist:DuelistCard:summon() ---> called summon()");
 		if (!DuelistMod.checkTrap)
 		{
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> no check trap, SUMMONS: " + SUMMONS); }
+			Util.log("theDuelist:DuelistCard:summon() ---> no check trap, SUMMONS: " + SUMMONS);
 			// Check to make sure they still have summon power, if they do not give it to them with a stack of 0
 			if (!p.hasPower(SummonPower.POWER_ID))
 			{
 				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, c.originalName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 				int startSummons = SUMMONS;
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && startSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, startSummons);
 
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID)) 
-				{ 
-					SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-					applyPowerToSelf(new StrengthPower(p, instance.amount));
-					//applyPowerToSelf(new LoseStrengthPower(p, instance.amount));
-				} 
-				
-				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
-				
-				// Check for Blizzard Dragon
-				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-				{ 
-					for (int i = 0; i < startSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-				}
-				
-				// Check for Toon Cannon Soldier
-				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
-				{
-					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-				}
-				
-				// Check for Seed Cannon
-				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
-				{
-					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-					seedC.amount += startSummons;
-					seedC.updateDescription();
-				}
-				
-				// Check for Tripod Fish
-				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
-				{
-					for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-					{						
-						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-					}
-				}
-				
-				// Check for Surge orbs
-				if (p.hasOrb())
-				{
-					for (AbstractOrb o : p.orbs)
-					{
-						if (o instanceof Surge)
-						{
-							Surge s = (Surge)o;
-							s.triggerPassiveEffect();
-							Util.log("Triggered Surge without checking potSummons");
-						}
-					}
-				}
-				
-				int cursedBillGold = cursedBillGoldLoss();
-				if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-				
-				// Check for Power Giants
-				for (AbstractCard giantCard : player().hand.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().discardPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().drawPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				// Check for new summoned types
+				// Set last summoned type to random type from this monster
 				ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-				if (toRet.size() > 0)
-				{
-					for (CardTags t : toRet)
-					{
-						if (!DuelistMod.summonedTypesThisTurn.contains(t))
-						{
-							DuelistMod.summonedTypesThisTurn.add(t);
-							if (player().hasPower(KuribohrnPower.POWER_ID))
-							{
-								if (DuelistMod.kuribohrnFlipper) 
-								{ 
-									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-								}
-								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-							}
-						}
-					}					
-					DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-				}
-			
-				if (DuelistMod.debug)
-				{
-					int counter = 1;
-					for (CardTags t : DuelistMod.summonedTypesThisTurn)
-					{
-						DuelistMod.logger.info("DuelistMod.summonedTypesThisTurn[" + counter + "]: " + t);
-						counter++;
-					}
-				}
-				
+				if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
+		
 				if (!c.hasTag(Tags.TOKEN))
 				{
 					DuelistMod.summonCombatCount += startSummons;
@@ -1745,106 +1847,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());
 					} 
 				}
+				
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, potSummons);
 
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && potSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
-				{ 
-					SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-					applyPowerToSelf(new StrengthPower(p, instance.amount * potSummons));
-					//applyPowerToSelf(new LoseStrengthPower(p, instance.amount * potSummons));
-				} 
-				
-				
-				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
-
-				// Check for Blizzard Dragon
-				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-				{ 
-					for (int i = 0; i < potSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-				}
-				
-				// Check for Toon Cannon Soldier
-				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
-				{
-					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-				}
-				
-				// Check for Seed Cannon
-				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
-				{
-					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-					seedC.amount += potSummons;
-					seedC.updateDescription();
-				}
-				
-				// Check for Tripod Fish
-				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA) && potSummons > 0)
-				{
-					for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-					{						
-						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-					}
-				}
-				
-				// Check for Surge orbs
-				if (p.hasOrb() && potSummons > 0)
-				{
-					for (AbstractOrb o : p.orbs)
-					{
-						if (o instanceof Surge)
-						{
-							Surge s = (Surge)o;
-							for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
-						}
-					}
-				}
-				
-				if (potSummons > 0)
-				{
-					int cursedBillGold = cursedBillGoldLoss();
-					if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-				}
-				
-				// Check for Power Giants
-				if (potSummons > 0)
-				{
-					for (AbstractCard giantCard : player().hand.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-					
-					for (AbstractCard giantCard : player().discardPile.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-					
-					for (AbstractCard giantCard : player().drawPile.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-				}
-				
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0)
 				{
 					Util.log("Triggered Ultimate Offering effect!");
@@ -1856,37 +1862,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (potSummons > 0)
 				{
 					ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-					if (toRet.size() > 0)
-					{
-						for (CardTags t : toRet)
-						{
-							if (!DuelistMod.summonedTypesThisTurn.contains(t))
-							{
-								DuelistMod.summonedTypesThisTurn.add(t);
-								if (player().hasPower(KuribohrnPower.POWER_ID))
-								{
-									if (DuelistMod.kuribohrnFlipper) 
-									{ 
-										DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-										fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-									}
-									DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-								}
-							}
-						}
-						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-					}
+					if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
 				}
-				
-				if (DuelistMod.debug)
-				{
-					int counter = 1;
-					for (CardTags t : DuelistMod.summonedTypesThisTurn)
-					{
-						DuelistMod.logger.info("DuelistMod.summonedTypesThisTurn[" + counter + "]: " + t);
-						counter++;
-					}
-				}
+
 
 				// Update UI
 				summonsInstance.updateCount(summonsInstance.amount);
@@ -1999,133 +1977,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, c.originalName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 				int startSummons = SUMMONS;
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && startSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, startSummons);
 
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID)) 
-				{ 
-					SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-					applyPowerToSelf(new StrengthPower(p, instance.amount));
-					//applyPowerToSelf(new LoseStrengthPower(p, instance.amount));
-				} 
-				
-				
-				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
-				
-				// Check for Blizzard Dragon
-				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-				{ 
-					for (int i = 0; i < startSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-				}
-				
-				// Check for Toon Cannon Soldier
-				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
-				{
-					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-				}
-				
-				// Check for Seed Cannon
-				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
-				{
-					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-					seedC.amount += startSummons;
-					seedC.updateDescription();
-				}
-				
-				// Check for Tripod Fish
-				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
-				{
-					for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-					{						
-						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-					}
-				}
-				
-				// Check for Surge orbs
-				if (p.hasOrb())
-				{
-					for (AbstractOrb o : p.orbs)
-					{
-						if (o instanceof Surge)
-						{
-							Surge s = (Surge)o;
-							s.triggerPassiveEffect();
-							Util.log("Triggered Surge without checking potSummons");
-						}
-					}
-				}
-				
-				int cursedBillGold = cursedBillGoldLoss();
-				if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-				
-				// Check for Power Giants
-				for (AbstractCard giantCard : player().hand.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().discardPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().drawPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
 				// Check for new summoned types			
 				ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-				if (toRet.size() > 0)
-				{
-					for (CardTags t : toRet)
-					{
-						if (!DuelistMod.summonedTypesThisTurn.contains(t))
-						{
-							DuelistMod.summonedTypesThisTurn.add(t);
-							if (player().hasPower(KuribohrnPower.POWER_ID))
-							{
-								if (DuelistMod.kuribohrnFlipper) 
-								{ 
-									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-								}
-								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-							}
-						}
-					}
-					DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-				}
-				
-				if (DuelistMod.debug)
-				{
-					int counter = 1;
-					for (CardTags t : DuelistMod.summonedTypesThisTurn)
-					{
-						DuelistMod.logger.info("DuelistMod.summonedTypesThisTurn[" + counter + "]: " + t);
-						counter++;
-					}
-				}
-				
+				if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
+
 				if (!c.hasTag(Tags.TOKEN))
 				{
 					DuelistMod.summonCombatCount += startSummons;
@@ -2156,139 +2014,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					} 
 				}
 
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && potSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
-				{ 
-					SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-					applyPowerToSelf(new StrengthPower(p, instance.amount * potSummons));
-					//applyPowerToSelf(new LoseStrengthPower(p, instance.amount * potSummons));
-				} 
-				
-				
-				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
-
-				// Check for Blizzard Dragon
-				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-				{ 
-					for (int i = 0; i < potSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-				}
-				
-				// Check for Toon Cannon Soldier
-				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
-				{
-					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-				}
-				
-				// Check for Seed Cannon
-				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
-				{
-					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-					seedC.amount += potSummons;
-					seedC.updateDescription();
-				}
-				
-				// Check for Tripod Fish
-				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA) && potSummons > 0)
-				{
-					for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-					{						
-						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-					}
-				}
-				
-				// Check for Surge orbs
-				if (p.hasOrb() && potSummons > 0)
-				{
-					for (AbstractOrb o : p.orbs)
-					{
-						if (o instanceof Surge)
-						{
-							Surge s = (Surge)o;
-							for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
-						}
-					}
-				}
-				
-				if (potSummons > 0)
-				{
-					int cursedBillGold = cursedBillGoldLoss();
-					if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-				}
-				
-				// Check for Power Giants
-				if (potSummons > 0)
-				{
-					for (AbstractCard giantCard : player().hand.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-					
-					for (AbstractCard giantCard : player().discardPile.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-					
-					for (AbstractCard giantCard : player().drawPile.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-				}
-				
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, potSummons);
+			
 				// Check for new summoned types
 				if (potSummons > 0)
 				{
 					ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-					if (toRet.size() > 0)
-					{
-						for (CardTags t : toRet)
-						{
-							if (!DuelistMod.summonedTypesThisTurn.contains(t))
-							{
-								DuelistMod.summonedTypesThisTurn.add(t);
-								if (player().hasPower(KuribohrnPower.POWER_ID))
-								{
-									if (DuelistMod.kuribohrnFlipper) 
-									{ 
-										DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-										fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-									}
-									DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-								}
-							}
-						}
-						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-					}
-				}
-				
-				if (DuelistMod.debug)
-				{
-					int counter = 1;
-					for (CardTags t : DuelistMod.summonedTypesThisTurn)
-					{
-						DuelistMod.logger.info("DuelistMod.summonedTypesThisTurn[" + counter + "]: " + t);
-						counter++;
-					}
+					if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
 				}
 				
 				// Update UI
@@ -2367,131 +2100,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				//DuelistCard newSummonCard = (DuelistCard) DefaultMod.summonMap.get(cardName).makeCopy();
 				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, cardName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons."), SUMMONS));
 				int startSummons = SUMMONS;
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && startSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
-
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID)) 
-				{ 
-					SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-					applyPowerToSelf(new StrengthPower(p, instance.amount));
-					//applyPowerToSelf(new LoseStrengthPower(p, instance.amount));
-				} 
-				
-				
-				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) {gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons); }
-				
-				// Check for Blizzard Dragon
-				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-				{ 
-					for (int i = 0; i < startSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-				}
-				// Check for Toon Cannon Soldier
-				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
-				{
-					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-				}
-				
-				// Check for Seed Cannon
-				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
-				{
-					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-					seedC.amount += startSummons;
-					seedC.updateDescription();
-				}
-				
-				// Check for Tripod Fish
-				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
-				{
-					for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-					{						
-						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-					}
-				}
-				
-				// Check for Surge orbs
-				if (p.hasOrb())
-				{
-					for (AbstractOrb o : p.orbs)
-					{
-						if (o instanceof Surge)
-						{
-							Surge s = (Surge)o;
-							s.triggerPassiveEffect();
-							Util.log("Triggered Surge without checking potSummons");
-						}
-					}
-				}
-				
-				int cursedBillGold = cursedBillGoldLoss();
-				if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-				
-				// Check for Power Giants
-				for (AbstractCard giantCard : player().hand.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().discardPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().drawPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, startSummons);
 				
 				// Check for new summoned types
 				ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-				if (toRet.size() > 0)
-				{
-					for (CardTags t : toRet)
-					{
-						if (!DuelistMod.summonedTypesThisTurn.contains(t))
-						{
-							DuelistMod.summonedTypesThisTurn.add(t);
-							if (player().hasPower(KuribohrnPower.POWER_ID))
-							{
-								if (DuelistMod.kuribohrnFlipper) 
-								{ 
-									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-								}
-								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-							}
-						}
-						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-					}
-				}
-				
-				if (DuelistMod.debug)
-				{
-					int counter = 1;
-					for (CardTags t : DuelistMod.summonedTypesThisTurn)
-					{
-						DuelistMod.logger.info("DuelistMod.summonedTypesThisTurn[" + counter + "]: " + t);
-						counter++;
-					}
-				}
+				if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
 				
 				if (!c.hasTag(Tags.TOKEN))
 				{
@@ -2516,105 +2130,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 				if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());} }
 
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && potSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-				// Check for Slifer
-				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
-				{ 
-					SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-					applyPowerToSelf(new StrengthPower(p, instance.amount * potSummons));
-					//applyPowerToSelf(new LoseStrengthPower(p, instance.amount * potSummons));
-				} 
-				
-				
-				// Check for Goblin's Secret Remedy
-				if (p.hasPower(GoblinRemedyPower.POWER_ID)) {gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons); }
-
-				// Check for Blizzard Dragon
-				if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-				{ 
-					for (int i = 0; i < potSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-				}
-				
-				// Check for Toon Cannon Soldier
-				if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
-				{
-					ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-					DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-				}
-				
-				// Check for Seed Cannon
-				if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
-				{
-					TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-					seedC.amount += potSummons;
-					seedC.updateDescription();
-				}
-				
-				// Check for Tripod Fish
-				if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA) && potSummons > 0)
-				{
-					for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-					{						
-						DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-						AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-					}
-				}
-				
-				// Check for Surge orbs
-				if (p.hasOrb() && potSummons > 0)
-				{
-					for (AbstractOrb o : p.orbs)
-					{
-						if (o instanceof Surge)
-						{
-							Surge s = (Surge)o;
-							for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
-						}
-					}
-				}
-				
-				if (potSummons > 0)
-				{
-					int cursedBillGold = cursedBillGoldLoss();
-					if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-				}
-				
-				// Check for Power Giants
-				if (potSummons > 0)
-				{
-					for (AbstractCard giantCard : player().hand.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-					
-					for (AbstractCard giantCard : player().discardPile.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-					
-					for (AbstractCard giantCard : player().drawPile.group)
-					{
-						if (giantCard instanceof PowerGiant)
-						{
-							PowerGiant giant = (PowerGiant)giantCard;
-							giant.damageInc();
-						}
-					}
-				}
-				
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, potSummons);
+			
 				// Check for Ultimate Offering
 				if (p.hasPower(UltimateOfferingPower.POWER_ID) && potSummons == 0 && SUMMONS != 0 && !fromUO)
 				{
@@ -2627,36 +2145,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (potSummons > 0)
 				{
 					ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-					if (toRet.size() > 0)
-					{
-						for (CardTags t : toRet)
-						{
-							if (!DuelistMod.summonedTypesThisTurn.contains(t))
-							{
-								DuelistMod.summonedTypesThisTurn.add(t);
-								if (player().hasPower(KuribohrnPower.POWER_ID))
-								{
-									if (DuelistMod.kuribohrnFlipper) 
-									{ 
-										DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-										fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-									}
-									DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-								}
-							}
-						}
-						DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-					}
-				}
-				
-				if (DuelistMod.debug)
-				{
-					int counter = 1;
-					for (CardTags t : DuelistMod.summonedTypesThisTurn)
-					{
-						DuelistMod.logger.info("DuelistMod.summonedTypesThisTurn[" + counter + "]: " + t);
-						counter++;
-					}
+					if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
 				}
 
 				// Update UI
@@ -2770,131 +2259,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, c.originalName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 			int startSummons = SUMMONS;
-			// Check for Pot of Generosity
-			if (p.hasPower(PotGenerosityPower.POWER_ID) && startSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
-
-			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-			// Check for Slifer
-			if (p.hasPower(SliferSkyPower.POWER_ID)) 
-			{ 
-				SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-				applyPowerToSelf(new StrengthPower(p, instance.amount));
-				//applyPowerToSelf(new LoseStrengthPower(p, instance.amount));
-			} 
-			
-			
-			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
-			
-			// Check for Blizzard Dragon
-			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-			{ 
-				for (int i = 0; i < startSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-			}
-			// Check for Toon Cannon Soldier
-			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
-			{
-				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-			}
-			
-			// Check for Seed Cannon
-			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
-			{
-				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-				seedC.amount += startSummons;
-				seedC.updateDescription();
-			}
-			
-			// Check for Tripod Fish
-			if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
-			{
-				for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-				{						
-					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-				}
-			}
-			
-			// Check for Surge orbs
-			if (p.hasOrb())
-			{
-				for (AbstractOrb o : p.orbs)
-				{
-					if (o instanceof Surge)
-					{
-						Surge s = (Surge)o;
-						s.triggerPassiveEffect();
-						Util.log("Triggered Surge without checking potSummons");
-					}
-				}
-			}
-			
-			int cursedBillGold = cursedBillGoldLoss();
-			if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-			
-			// Check for Power Giants
-			for (AbstractCard giantCard : player().hand.group)
-			{
-				if (giantCard instanceof PowerGiant)
-				{
-					PowerGiant giant = (PowerGiant)giantCard;
-					giant.damageInc();
-				}
-			}
-			
-			for (AbstractCard giantCard : player().discardPile.group)
-			{
-				if (giantCard instanceof PowerGiant)
-				{
-					PowerGiant giant = (PowerGiant)giantCard;
-					giant.damageInc();
-				}
-			}
-			
-			for (AbstractCard giantCard : player().drawPile.group)
-			{
-				if (giantCard instanceof PowerGiant)
-				{
-					PowerGiant giant = (PowerGiant)giantCard;
-					giant.damageInc();
-				}
-			}
+			// Handle abstract objects
+			handleOnSummonForAllAbstracts(c, startSummons);
 			
 			// Check for new summoned types
 			ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-			if (toRet.size() > 0)
-			{
-				for (CardTags t : toRet)
-				{
-					if (!DuelistMod.summonedTypesThisTurn.contains(t))
-					{
-						DuelistMod.summonedTypesThisTurn.add(t);
-						if (player().hasPower(KuribohrnPower.POWER_ID))
-						{
-							if (DuelistMod.kuribohrnFlipper) 
-							{ 
-								DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-								fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-							}
-							DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-						}
-					}
-				}
-				DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-			}
-			
-			if (DuelistMod.debug)
-			{
-				int counter = 1;
-				for (CardTags t : DuelistMod.summonedTypesThisTurn)
-				{
-					DuelistMod.logger.info("DuelistMod.summonedTypesThisTurn[" + counter + "]: " + t);
-					counter++;
-				}
-			}
+			if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
 			
 			if (!c.hasTag(Tags.TOKEN))
 			{
@@ -2925,105 +2295,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());
 				} 
 			}
+			
+			// Handle abstract objects
+			handleOnSummonForAllAbstracts(c, potSummons);
 
-			// Check for Pot of Generosity
-			if (p.hasPower(PotGenerosityPower.POWER_ID) && potSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-			// Check for Slifer
-			if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
-			{ 
-				SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-				applyPowerToSelf(new StrengthPower(p, instance.amount * potSummons));
-				//applyPowerToSelf(new LoseStrengthPower(p, instance.amount * potSummons));
-			} 
-			
-			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
-
-			// Check for Blizzard Dragon
-			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-			{ 
-				for (int i = 0; i < potSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-			}
-			
-			// Check for Toon Cannon Soldier
-			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
-			{
-				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-			}
-			
-			// Check for Seed Cannon
-			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
-			{
-				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-				seedC.amount += potSummons;
-				seedC.updateDescription();
-			}
-			
-			// Check for Tripod Fish
-			if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA) && potSummons > 0)
-			{
-				for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-				{						
-					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-				}
-			}
-			
-			// Check for Surge orbs
-			if (p.hasOrb() && potSummons > 0)
-			{
-				for (AbstractOrb o : p.orbs)
-				{
-					if (o instanceof Surge)
-					{
-						Surge s = (Surge)o;
-						for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
-					}
-				}
-			}
-			
-			if (potSummons > 0)
-			{
-				int cursedBillGold = cursedBillGoldLoss();
-				if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-			}
-			
-			// Check for Power Giants
-			if (potSummons > 0)
-			{
-				for (AbstractCard giantCard : player().hand.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().discardPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().drawPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-			}
-			
 			// Check for Ultimate Offering
 			if (p.hasPower(UltimateOfferingPower.POWER_ID) && !DuelistMod.checkUO)
 			{
@@ -3034,26 +2309,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (potSummons > 0)
 			{
 				ArrayList<CardTags> toRet = getAllMonsterTypes(c);
-				if (toRet.size() > 0)
-				{
-					for (CardTags t : toRet)
-					{
-						if (!DuelistMod.summonedTypesThisTurn.contains(t))
-						{
-							DuelistMod.summonedTypesThisTurn.add(t);
-							if (player().hasPower(KuribohrnPower.POWER_ID))
-							{
-								if (DuelistMod.kuribohrnFlipper) 
-								{ 
-									DuelistCard randZomb = (DuelistCard) returnTrulyRandomFromSet(Tags.ZOMBIE);
-									fullResummon(randZomb, false, AbstractDungeon.getRandomMonster(), false);
-								}
-								DuelistMod.kuribohrnFlipper = !DuelistMod.kuribohrnFlipper;
-							}
-						}
-					}
-					DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1));
-				}
+				if (toRet.size() > 0) { DuelistMod.lastTagSummoned = toRet.get(AbstractDungeon.cardRandomRng.random(toRet.size() - 1)); }
 			}
 			
 			if (DuelistMod.debug)
@@ -3130,95 +2386,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, c.originalName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons.", c), SUMMONS));
 			int startSummons = SUMMONS;
-			// Check for Pot of Generosity
-			if (p.hasPower(PotGenerosityPower.POWER_ID) && startSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
-
-			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-			// Check for Slifer
-			if (p.hasPower(SliferSkyPower.POWER_ID)) 
-			{ 
-				SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-				applyPowerToSelf(new StrengthPower(p, instance.amount));
-				//applyPowerToSelf(new LoseStrengthPower(p, instance.amount));
-			} 
 			
-			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID)) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * startSummons);  }
-			
-			// Check for Blizzard Dragon
-			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) { AbstractOrb frost = new Frost(); channel(frost); }
-						
-			// Check for Toon Cannon Soldier
-			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON))
-			{
-				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-			}
-			
-			// Check for Seed Cannon
-			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT))
-			{
-				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-				seedC.amount += startSummons;
-				seedC.updateDescription();
-			}
-			
-			// Check for Tripod Fish
-			if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA))
-			{
-				for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-				{						
-					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-				}
-			}
-			
-			// Check for Surge orbs
-			if (p.hasOrb())
-			{
-				for (AbstractOrb o : p.orbs)
-				{
-					if (o instanceof Surge)
-					{
-						Surge s = (Surge)o;
-						s.triggerPassiveEffect();
-						Util.log("Triggered Surge without checking potSummons");
-					}
-				}
-			}
-			
-			int cursedBillGold = cursedBillGoldLoss();
-			if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-			
-			// Check for Power Giants
-			for (AbstractCard giantCard : player().hand.group)
-			{
-				if (giantCard instanceof PowerGiant)
-				{
-					PowerGiant giant = (PowerGiant)giantCard;
-					giant.damageInc();
-				}
-			}
-			
-			for (AbstractCard giantCard : player().discardPile.group)
-			{
-				if (giantCard instanceof PowerGiant)
-				{
-					PowerGiant giant = (PowerGiant)giantCard;
-					giant.damageInc();
-				}
-			}
-			
-			for (AbstractCard giantCard : player().drawPile.group)
-			{
-				if (giantCard instanceof PowerGiant)
-				{
-					PowerGiant giant = (PowerGiant)giantCard;
-					giant.damageInc();
-				}
-			}
+			// Handle abstract objects
+			handleOnSummonForAllAbstracts(c, startSummons);
 		}
 
 		else
@@ -3242,112 +2412,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy());
 				} 
 			}
+			
+			// Handle abstract objects
+			handleOnSummonForAllAbstracts(c, potSummons);
 
-			// Check for Pot of Generosity
-			if (p.hasPower(PotGenerosityPower.POWER_ID) && potSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-			// Check for Summoning Sickness
-			if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
-
-			// Check for Slifer
-			if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
-			{ 
-				SliferSkyPower instance = (SliferSkyPower) p.getPower(SliferSkyPower.POWER_ID);
-				applyPowerToSelf(new StrengthPower(p, instance.amount * potSummons));
-				//applyPowerToSelf(new LoseStrengthPower(p, instance.amount * potSummons));
-			} 
-			
-			
-			// Check for Goblin's Secret Remedy
-			if (p.hasPower(GoblinRemedyPower.POWER_ID) && potSummons > 0) { gainTempHP(p.getPower(GoblinRemedyPower.POWER_ID).amount * potSummons);  }
-
-			// Check for Blizzard Dragon
-			if (p.hasPower(BlizzardDragonPower.POWER_ID) && c.hasTag(Tags.DRAGON)) 
-			{ 
-				for (int i = 0; i < potSummons; i++) { AbstractOrb frost = new Frost(); channel(frost); }
-			}
-			
-			// Check for Toon Cannon Soldier
-			if (p.hasPower(ToonCannonPower.POWER_ID) && c.hasTag(Tags.TOON) && potSummons > 0)
-			{
-				ToonCannonPower power = (ToonCannonPower) p.getPower(ToonCannonPower.POWER_ID);
-				DuelistCard.damageAllEnemiesThornsPoison(power.amount);
-			}
-			
-			// Check for Seed Cannon
-			if (p.hasPower(SeedCannonPower.POWER_ID) && c.hasTag(Tags.PLANT) && potSummons > 0)
-			{
-				TwoAmountPower seedC = (TwoAmountPower)p.getPower(SeedCannonPower.POWER_ID);
-				seedC.amount += potSummons;
-				seedC.updateDescription();
-			}
-			
-			// Check for Tripod Fish
-			if (p.hasPower(TripodFishPower.POWER_ID) && c.hasTag(Tags.AQUA) && potSummons > 0)
-			{
-				for (int i = 0; i < p.getPower(TripodFishPower.POWER_ID).amount; i++)
-				{						
-					DuelistCard randAqExh = (DuelistCard) returnTrulyRandomFromSet(Tags.AQUA);					
-					AbstractDungeon.actionManager.addToTop(new RandomizedExhaustPileAction(randAqExh, true));
-				}
-			}
-			
-			// Check for Surge orbs
-			if (p.hasOrb() && potSummons > 0)
-			{
-				for (AbstractOrb o : p.orbs)
-				{
-					if (o instanceof Surge)
-					{
-						Surge s = (Surge)o;
-						for (int i = 0; i < potSummons; i++) { s.triggerPassiveEffect(); }
-					}
-				}
-			}
-			
-			if (potSummons > 0)
-			{
-				int cursedBillGold = cursedBillGoldLoss();
-				if (cursedBillGold > 0) { loseGold(cursedBillGold); }
-			}
-			
-			// Check for Power Giants
-			if (potSummons > 0)
-			{
-				for (AbstractCard giantCard : player().hand.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().discardPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-				
-				for (AbstractCard giantCard : player().drawPile.group)
-				{
-					if (giantCard instanceof PowerGiant)
-					{
-						PowerGiant giant = (PowerGiant)giantCard;
-						giant.damageInc();
-					}
-				}
-			}
-			
 			// Update UI
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> updating summons instance"); }
+			Util.log("theDuelist:DuelistCard:uoSummon() ---> updating summons instance");
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
-			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:uoSummon() ---> summons instance amount: " + summonsInstance.amount); }
+			Util.log("theDuelist:DuelistCard:uoSummon() ---> summons instance amount: " + summonsInstance.amount);
 		}
 	}
 	
@@ -3370,11 +2444,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				//DuelistCard newSummonCard = (DuelistCard) DefaultMod.summonMap.get(cardName).makeCopy();
 				AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SummonPower(AbstractDungeon.player, SUMMONS, cardName, "#b" + SUMMONS + " monsters summoned. Maximum of 5 Summons."), SUMMONS));
 				int startSummons = SUMMONS;
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && startSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(startSummons)); }
-
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(startSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, startSummons);
+				
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID)) 
@@ -3519,11 +2591,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 
 				if (potSummons > 0) { for (int i = 0; i < potSummons; i++) { summonsInstance.summonList.add(cardName); summonsInstance.actualCardSummonList.add((DuelistCard) c.makeStatEquivalentCopy()); } }
 
-				// Check for Pot of Generosity
-				if (p.hasPower(PotGenerosityPower.POWER_ID) && potSummons > 0) { AbstractDungeon.actionManager.addToTop(new GainEnergyAction(potSummons)); }
-
-				// Check for Summoning Sickness
-				if (p.hasPower(SummonSicknessPower.POWER_ID)) { damageSelfNotHP(potSummons * p.getPower(SummonSicknessPower.POWER_ID).amount); }
+				// Handle abstract objects
+				handleOnSummonForAllAbstracts(c, potSummons);
+				
 
 				// Check for Slifer
 				if (p.hasPower(SliferSkyPower.POWER_ID) && potSummons > 0) 
@@ -3739,6 +2809,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return tribute(AbstractDungeon.player, 0, tributeAll, this);
 	}
 	
+	public int xCostTribute()
+	{
+		int size = tribute(AbstractDungeon.player, 0, true, this).size();
+		if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return size * 2; }
+		else { return size; }
+	}
+	
 	public static ArrayList<DuelistCard> tribute(AbstractPlayer p, int tributes, boolean tributeAll, DuelistCard card)
 	{		
 		ArrayList<DuelistCard> tributeList = new ArrayList<DuelistCard>();
@@ -3873,6 +2950,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 								{
 									int endIndex = summonsInstance.summonList.size() - 1;
 									DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+									handleOnTributeForAllAbstracts(temp, card);								
 									if (temp != null) { tributeList.add(temp); }
 									//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 									summonsInstance.summonList.remove(endIndex);
@@ -4009,6 +3087,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							{								
 								int endIndex = summonsInstance.summonList.size() - 1;
 								DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+								handleOnTributeForAllAbstracts(temp, card);	
 								if (temp != null) { tributeList.add(temp); }
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(endIndex);								
@@ -4192,6 +3271,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							{
 								int endIndex = summonsInstance.summonList.size() - 1;
 								DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+								handleOnTributeForAllAbstracts(temp, new Token());	
 								if (temp != null) { tributeList.add(temp); }
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(endIndex);
@@ -4320,6 +3400,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						{
 							int endIndex = summonsInstance.summonList.size() - 1;
 							DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+							handleOnTributeForAllAbstracts(temp, new Token());	
 							if (temp != null) { tributeList.add(temp); }
 							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 							summonsInstance.summonList.remove(endIndex);
@@ -4495,6 +3576,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 							{
 								int endIndex = summonsInstance.summonList.size() - 1;
 								DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+								handleOnTributeForAllAbstracts(temp, new Token());	
 								if (temp != null) { tributeList.add(temp); }
 								//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 								summonsInstance.summonList.remove(endIndex);
@@ -4624,6 +3706,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						{
 							int endIndex = summonsInstance.summonList.size() - 1;
 							DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+							handleOnTributeForAllAbstracts(temp, new Token());	
 							if (temp != null) { tributeList.add(temp); }
 							//summonsInstance.summonMap.remove(summonsInstance.summonList.get(endIndex));
 							summonsInstance.summonList.remove(endIndex);
@@ -4786,6 +3869,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{
 						int endIndex = summonsInstance.summonList.size() - 1;
 						DuelistCard temp = DuelistMod.summonMap.get(summonsInstance.summonList.get(endIndex));
+						handleOnTributeForAllAbstracts(temp, new Token());	
 						if (temp != null) { tributeList.add(temp); }
 					}
 					
@@ -4913,6 +3997,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						case 12:
 							warriorSynTrib(tc);
 							Util.log("ran warrior syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+						case 13:
+							rockSynTrib(tc);
+							Util.log("ran rock syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
+						case 14:
+							wyrmSynTrib(tc);
+							Util.log("ran wyrm syn trib automatically from tributing " + this.originalName + " for " + tc.originalName);
 						default: break;
 					}
 				}
@@ -4943,10 +4033,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		// Call any effects that trigger on any given synergy tribute in this block
 		if (oneMatchingType)
 		{
-			if (AbstractDungeon.player.hasRelic(MillenniumScale.ID))
-			{
-				gainTempHP(3);
-			}
+			if (AbstractDungeon.player.hasRelic(MillenniumScale.ID)) { gainTempHP(3); }
+			handleOnSynergyForAllAbstracts();
+			DuelistMod.synergyTributesRan++;
 		}
 	}
 	
@@ -4958,21 +4047,65 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		fiendSynTrib(tc);
 		aquaSynTrib(tc);
 		naturiaSynTrib(tc);
-		plantSynTrib(tc);
-		predaplantSynTrib(tc);
+		megatypePlantHandler(tc);
 		insectSynTrib(tc);
 		superSynTrib(tc);
 		spellcasterSynTrib(tc);
 		zombieSynTrib(tc);
 		warriorSynTrib(tc);
+		rockSynTrib(tc);
+		wyrmSynTrib(tc);
 		if (DuelistMod.debug) { DuelistMod.logger.info("Ran megatype tribute function, tributing card: " + tc.originalName); }
+	}
+	
+	public static void rockSynTrib(DuelistCard tc)
+	{
+		if (tc.hasTag(Tags.ROCK))
+		{
+			
+		}
+	}
+	
+	public static void wyrmSynTrib(DuelistCard tc)
+	{
+		if (tc.hasTag(Tags.WYRM))
+		{
+			if (!DuelistMod.wyrmTribThisCombat)
+			{
+				ArrayList<AbstractMonster> mons = new ArrayList<AbstractMonster>();
+				for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+				{
+					if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && mon.hasPower(PoisonPower.POWER_ID))
+					{
+						mons.add(mon);
+					}
+				}
+				
+				if (mons.size() > 0)
+				{
+					AbstractMonster rand = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+					applyPower(new PoisonPower(rand, player(), rand.getPower(PoisonPower.POWER_ID).amount), rand);
+				}
+				DuelistMod.wyrmTribThisCombat = true;
+			}
+		}
 	}
 	
 	public static void warriorSynTrib(DuelistCard tributingCard)
 	{
 		if (tributingCard.hasTag(Tags.WARRIOR))
 		{			
-			
+			if (!DuelistMod.warriorTribThisCombat)
+			{
+				Util.log("Warrior for Warrior tribute code executing, choosing any stance (except Divinity)");
+				DuelistMod.warriorTribEffectsTriggeredThisCombat++;
+				if (DuelistMod.warriorTribEffectsTriggeredThisCombat >= DuelistMod.warriorTribEffectsPerCombat) { 
+					DuelistMod.warriorTribThisCombat = true;
+				}
+				/*
+				ArrayList<DuelistCard> stances = Util.getStanceChoices(true, false, true);
+	        	tributingCard.addToBot(new WarriorTribAction(stances));*/
+			}
 		}
 	}
 	
@@ -5041,7 +4174,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{ 
 			for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
 			{
-				if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.isEscaping && m.currentHealth > 0)
+				if (!m.isDead && !m.isDying && !m.halfDead && !m.isDeadOrEscaped() && !m.isEscaping && m.currentHealth > 0)
 				{
 					applyPower(new VulnerablePower(m, DuelistMod.toonVuln, false), m);
 				}
@@ -5101,13 +4234,30 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.NATURIA))
 		{
-			
+			DuelistCard.applyPowerToSelf(new LeavesPower(1));
 		}
+	}
+	
+	public static void megatypePlantHandler(DuelistCard tc)
+	{		
+		if (tc.hasTag(Tags.PREDAPLANT))
+		{
+			predaplantSynTrib(tc);
+		}
+		else if (tc.hasTag(Tags.PLANT))
+		{
+			plantSynTrib(tc);
+		}		
 	}
 	
 	public static void plantSynTrib(DuelistCard tributingCard)
 	{
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) { constrictAllEnemies(player(), DuelistMod.plantConstricted + 2); }
+		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.PLANT)) 
+		{ 
+			TwoAmountPower pow = (TwoAmountPower)player().getPower(VioletCrystalPower.POWER_ID);
+			int buff = pow.amount2;
+			constrictAllEnemies(player(), DuelistMod.plantConstricted + buff); 
+		}
 		else if (tributingCard.hasTag(Tags.PLANT)) { constrictAllEnemies(player(), DuelistMod.plantConstricted); }
 	}
 	
@@ -5119,8 +4269,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void insectSynTrib(DuelistCard tributingCard)
 	{
-		if (player().hasPower(VioletCrystalPower.POWER_ID) && tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg + 2); }
-		else if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
+		if (tributingCard.hasTag(Tags.INSECT)) { poisonAllEnemies(player(), DuelistMod.insectPoisonDmg); }
 	}
 	
 	public static void superSynTrib(DuelistCard tributingCard)
@@ -5219,6 +4368,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			 DuelistMod.lastMaxSummons = amount; 
 		}
+		
+		if (DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
 
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -5294,13 +4445,24 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			incremented = false;
 		}
 		
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onIncrement(amount, DuelistMod.lastMaxSummons); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onIncrement(amount, DuelistMod.lastMaxSummons); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onIncrement(amount, DuelistMod.lastMaxSummons);}}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInHand(amount, DuelistMod.lastMaxSummons);}}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInDiscard(amount, DuelistMod.lastMaxSummons);}}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInDraw(amount, DuelistMod.lastMaxSummons);}}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onIncrementWhileInExhaust(amount, DuelistMod.lastMaxSummons);}}
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onIncrement(amount, DuelistMod.lastMaxSummons); }}
+		
 		if (p.hasOrb() && incremented)
 		{
 			for (AbstractOrb o : p.orbs)
 			{
 				if (o instanceof Lava)
 				{
-					((Lava) o).triggerPassiveEffect();
+					Lava la = (Lava)o;
+					la.triggerPassiveEffect();
+					if (la.gpcCheck()) { la.triggerPassiveEffect(); }
 				}
 			}
 		}
@@ -5312,7 +4474,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		if (p.hasPower(WonderWandPower.POWER_ID) && incremented)
 		{
-			applyPowerToSelf(new ManaPower(p, p, p.getPower(WonderWandPower.POWER_ID).amount));
+			applyPowerToSelf(new MagickaPower(p, p, p.getPower(WonderWandPower.POWER_ID).amount));
 		}
 		
 		if (p.hasPower(InariFirePower.POWER_ID) && incremented)
@@ -5345,6 +4507,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				doomPow.flash();
 			}
 		}
+		
+		if (DuelistMod.lastMaxSummons > DuelistMod.highestMaxSummonsObtained) { DuelistMod.highestMaxSummonsObtained = DuelistMod.lastMaxSummons; }
 
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
@@ -5402,6 +4566,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// =============== RESUMMON FUNCTIONS =========================================================================================================================================================
 	public void checkResummon()
 	{
+		DuelistMod.resummonsThisRun++;
+		AbstractPlayer p = AbstractDungeon.player;
+		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onResummon(this); }}
+		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onResummon(this); }}
+		for (AbstractPower pow : p.powers) { if (pow instanceof DuelistPower) { ((DuelistPower)pow).onResummon(this);}}
+		for (AbstractCard c : p.hand.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInHand(this); }}
+		for (AbstractCard c : p.discardPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInDiscard(this); }}
+		for (AbstractCard c : p.drawPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInDraw(this); }}
+		for (AbstractCard c : p.exhaustPile.group) { if (c instanceof DuelistCard) { ((DuelistCard)c).onResummonWhileInExhaust(this); }}
+		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onResummon(this); }}
 		if (this.hasTag(Tags.ZOMBIE)) { block(DuelistMod.zombieResummonBlock); DuelistMod.zombiesResummonedThisCombat++; DuelistMod.zombiesResummonedThisRun++; }
 		if (AbstractDungeon.player.hasPower(CardSafePower.POWER_ID)) { drawTag(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount, Tags.ZOMBIE); }
 	}
@@ -5544,6 +4718,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			MortalityPower pow = (MortalityPower)AbstractDungeon.player.getPower(MortalityPower.POWER_ID);
 			pow.triggerOnResummon();
 		}
+		
+		if (DuelistMod.mirrorLadybug)
+		{
+			AbstractDungeon.actionManager.addToBottom(new QueueCardSuperFastAction(new MirrorLadybugFixer(), target)); 
+		}
 	}
 	
 	public static void polyResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target, boolean superFast)
@@ -5622,7 +4801,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					else { AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(cardCopy, target, 1.0F)); }
 					if (cardCopy.damage > 0 && AbstractDungeon.player.hasPower(PenNibPower.POWER_ID)) { AbstractDungeon.actionManager.addToTop(new ResummonModAction(cardCopy, true, false)); Util.log("Resummon cut " + cardCopy.name + "'s damage by half due to Flight or Pen Nib"); }
 					cardCopy.onResummon(1);
-					cardCopy.checkResummon();
+					cardCopy.checkResummon();					
 				}
 			}
 			else
@@ -6000,6 +5179,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					Splash ref = (Splash)o;
 					ref.triggerPassiveEffect();
+					if (ref.gpcCheck()) { ref.triggerPassiveEffect(); }
 				}
 			}
 		}
@@ -6064,10 +5244,19 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public static void spellcasterPuzzleChannel()
 	{
-		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperDualMod.spellcasterPuzzleChannel(); }
-		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ RandomOrbHelperCon.spellcasterPuzzleChannel(); }
-		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { RandomOrbHelperRep.spellcasterPuzzleChannel(); }
-		else { RandomOrbHelper.spellcasterPuzzleChannel(); }
+		AbstractOrb copy;
+		if (Loader.isModLoaded("conspire") && Loader.isModLoaded("ReplayTheSpireMod")){ copy = RandomOrbHelperDualMod.spellcasterPuzzleChannel(); }
+		else if (Loader.isModLoaded("conspire") && !Loader.isModLoaded("ReplayTheSpireMod")){ copy = RandomOrbHelperCon.spellcasterPuzzleChannel(); }
+		else if (Loader.isModLoaded("ReplayTheSpireMod") && !Loader.isModLoaded("conspire")) { copy = RandomOrbHelperRep.spellcasterPuzzleChannel(); }
+		else { copy = RandomOrbHelper.spellcasterPuzzleChannel(); }
+		
+		if (AbstractDungeon.player.hasRelic(MillenniumSymbol.ID))
+		{
+			if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss || AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite)
+			{
+				RandomOrbHelper.triggerSecondSpellcasterOrb(copy);
+			}
+		}
 	}
 	
 	public static void channelRandomOffensive()
@@ -6552,6 +5741,62 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
+	public static AbstractCard returnTrulyRandomFromType(CardType type) 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (DuelistCard card : DuelistMod.myCards)
+		{
+			if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
+	public static AbstractCard returnTrulyRandomFromTypeInCombat(CardType type, boolean basic) 
+	{
+		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
+		for (AbstractCard card : DuelistMod.coloredCards)
+		{
+			if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+			{
+				dragonGroup.add(card.makeCopy());
+			}
+		}
+		
+		if (basic)
+		{
+			for (AbstractCard card : DuelistMod.duelColorlessCards)
+			{
+				if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
+				{
+					dragonGroup.add(card.makeCopy());
+				}
+			}
+		}
+		
+		if (dragonGroup.size() > 0)
+		{
+			AbstractCard returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size()));
+			while (returnable.hasTag(Tags.NEVER_GENERATE)) { returnable = dragonGroup.get(ThreadLocalRandom.current().nextInt(0, dragonGroup.size())); }
+			return returnable;
+		}
+		else
+		{
+			return new Token();
+		}
+	}
+	
 	public static AbstractCard returnTrulyRandomFromSet(CardTags setToFindFrom, boolean special) 
 	{
 		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
@@ -6604,15 +5849,23 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return new Token();
 		}
 	}
-	
-	
+
 	public static AbstractCard returnTrulyRandomInCombatFromSet(CardTags setToFindFrom) 
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
-			AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
-			while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
-			return c;
+			if (DuelistMod.coloredCards.size() > 0)
+			{
+				AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
+				while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
+				return c;
+			}
+			else
+			{
+				AbstractCard c = DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1));
+				while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)); }
+				return c;
+			}
 		}
 		else
 		{
@@ -7125,7 +6378,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		extraTags.add(Tags.ARCANE);
 		extraTags.add(Tags.MEGATYPED);
 		extraTags.add(Tags.OJAMA);
-		extraTags.add(Tags.MONSTER);
+		//extraTags.add(Tags.MONSTER);
 		extraTags.add(Tags.SPELL);
 		extraTags.add(Tags.TRAP);
 		extraTags.add(Tags.GIANT);

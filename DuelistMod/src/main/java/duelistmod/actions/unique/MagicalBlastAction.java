@@ -56,12 +56,12 @@ public class MagicalBlastAction extends AbstractGameAction
         this.tickDuration();
         if (this.isDone) 
         {
-        	 if (AbstractDungeon.player.hasPower(ManaPower.POWER_ID) && !AbstractDungeon.player.hasPower(MagiciansRobePower.POWER_ID)) 
+        	 if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID) && !AbstractDungeon.player.hasPower(MagiciansRobePower.POWER_ID)) 
              {
-             	AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount = 0;
- 				AbstractDungeon.player.getPower(ManaPower.POWER_ID).updateDescription();
+             	AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount = 0;
+ 				AbstractDungeon.player.getPower(MagickaPower.POWER_ID).updateDescription();
              }
-             else if (AbstractDungeon.player.hasPower(ManaPower.POWER_ID) && AbstractDungeon.player.hasPower(MagiciansRobePower.POWER_ID)) 
+             else if (AbstractDungeon.player.hasPower(MagickaPower.POWER_ID) && AbstractDungeon.player.hasPower(MagiciansRobePower.POWER_ID)) 
              { 
              	TwoAmountPower pow = (TwoAmountPower)AbstractDungeon.player.getPower(MagiciansRobePower.POWER_ID);
  				if (pow.amount2 > 0)
@@ -70,8 +70,8 @@ public class MagicalBlastAction extends AbstractGameAction
  				}
  				else
  				{
- 					AbstractDungeon.player.getPower(ManaPower.POWER_ID).amount = 0;
- 					AbstractDungeon.player.getPower(ManaPower.POWER_ID).updateDescription();
+ 					AbstractDungeon.player.getPower(MagickaPower.POWER_ID).amount = 0;
+ 					AbstractDungeon.player.getPower(MagickaPower.POWER_ID).updateDescription();
  				}
              }
         	

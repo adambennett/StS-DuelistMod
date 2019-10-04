@@ -25,7 +25,7 @@ public class Umi extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -37,13 +37,14 @@ public class Umi extends DuelistCard
         this.tags.add(Tags.FIELDSPELL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.originalName = this.name;
+        this.baseMagicNumber = this.magicNumber = 5;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new UmiPower(p, p));
+    	applyPowerToSelf(new UmiPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

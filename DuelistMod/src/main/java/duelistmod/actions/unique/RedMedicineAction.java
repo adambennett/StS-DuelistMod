@@ -12,9 +12,10 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.typecards.*;
+import duelistmod.cards.tempCards.*;
 import duelistmod.helpers.GridSort;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.PotGenerosityPower;
 import duelistmod.powers.incomplete.FlameTigerPower;
 import duelistmod.variables.Strings;
 
@@ -64,7 +65,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new ConservePower(p, 1));
 			toReturn.add(new CuriosityPower(p, 1));
 			toReturn.add(new AerodynamicsPower(p, p));
-			toReturn.add(new NaturiaPower(p, p, turnNum));
+			//toReturn.add(new NaturiaPower(p, p, turnNum));
 			toReturn.add(new TwoJamPower(p, 1, turnNum, 2));
 			toReturn.add(new HelloPower(p, turnNum));
 		}
@@ -88,7 +89,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new ConservePower(p, 1));
 			toReturn.add(new CuriosityPower(p, 1));
 			toReturn.add(new AerodynamicsPower(p, p));
-			toReturn.add(new NaturiaPower(p, p, turnNum));
+			//toReturn.add(new NaturiaPower(p, p, turnNum));
 			toReturn.add(new IntangiblePlayerPower(p, 1));
 			toReturn.add(new RegenPower(p, turnNum));
 			toReturn.add(new EnergizedPower(p, 1));
@@ -104,7 +105,7 @@ public class RedMedicineAction extends AbstractGameAction
 			toReturn.add(new SadisticPower(p, turnNum));
 			toReturn.add(new StormPower(p, 1));
 			toReturn.add(new RetainCardPower(p, 1));
-			toReturn.add(new PotGenerosityPower(p, p, 2));
+			toReturn.add(new PotGenerosityPower(2));
 			toReturn.add(new TimeWizardPower(p, p, 1));
 			toReturn.add(new MayhemPower(p, 1));
 			toReturn.add(new AmplifyPower(p, 1));

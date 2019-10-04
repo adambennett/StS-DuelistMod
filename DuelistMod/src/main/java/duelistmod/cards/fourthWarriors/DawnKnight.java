@@ -27,8 +27,8 @@ public class DawnKnight extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
@@ -38,8 +38,8 @@ public class DawnKnight extends DuelistCard
         this.tags.add(Tags.MONSTER);  
         this.tags.add(Tags.WARRIOR); 
         this.summons = this.baseSummons = 1;
+        this.damage = this.baseDamage = 9;
         this.originalName = this.name;
-        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -47,10 +47,8 @@ public class DawnKnight extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	for (AbstractCard c : p.hand.group)
-    	{
-    		if (c.canUpgrade() && c.retain) { c.upgrade(); }
-    	}
+    	attack(m);
+    	evokeAll();
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +62,7 @@ public class DawnKnight extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.exhaust = false;
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

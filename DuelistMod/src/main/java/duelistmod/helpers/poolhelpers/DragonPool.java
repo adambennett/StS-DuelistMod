@@ -23,19 +23,18 @@ public class DragonPool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
-		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(FiendPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -51,19 +50,18 @@ public class DragonPool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		//pools.add(CreatorPool.deck());
-		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(FiendPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -146,11 +144,8 @@ public class DragonPool
 		dragonCards.add(new EyeTimaeus());
 		dragonCards.add(new DragonShield());
 		dragonCards.add(new BeserkDragon());		
-		dragonCards.add(new DoomkaiserDragon());		
-		dragonCards.add(new RedHeadedOni());	
-		dragonCards.add(new BlueBloodedOni());	
+		dragonCards.add(new DoomkaiserDragon());			
 		dragonCards.add(new DragonZombie());
-		dragonCards.add(new YellowBelliedOni());
 		dragonCards.add(new LavaDragon());		
 		dragonCards.add(new DarkSimorgh());
 		dragonCards.add(new MaskedDragon());
@@ -180,7 +175,10 @@ public class DragonPool
 		dragonCards.add(new RedRoseDragon());
 		dragonCards.add(new BlueRoseDragon());
 		dragonCards.add(new WhiteRoseDragon());
-
+		dragonCards.add(new Hinotama());
+		dragonCards.add(new ObsidianDragon());
+		dragonCards.add(new StoneDragon());
+		dragonCards.add(new MegarockDragon());
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());
@@ -267,7 +265,8 @@ public class DragonPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

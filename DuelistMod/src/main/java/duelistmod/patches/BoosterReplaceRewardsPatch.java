@@ -25,14 +25,22 @@ public class BoosterReplaceRewardsPatch {
 			{
 				if (DuelistMod.allowBoosters || DuelistMod.alwaysBoosters)
 				{
-					boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite|| AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
-					if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14)
-					{						
-						cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards);
+					boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
+					if (boss)
+					{										
+						cardReward[0] = BoosterPackHelper.replaceCardRewardWithBoss();
 					}
 					else
-					{						
-						cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, null);
+					{
+						boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
+						if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14)
+						{						
+							cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards);
+						}
+						else
+						{						
+							cardReward[0] = BoosterPackHelper.replaceCardReward(DuelistMod.lastPackRoll, eliteVictory, null);
+						}
 					}
 				}
 				else

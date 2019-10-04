@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
 import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.variables.Strings;
 
 public class MarkExxod extends CustomRelic {
 
@@ -19,8 +18,8 @@ public class MarkExxod extends CustomRelic {
 
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("MarkExxod");
-    public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
-    public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
+    public static final String IMG = DuelistMod.makeRelicPath("MarkExxod.png");
+    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MarkExxodOutline.png");
 
 	public MarkExxod() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);

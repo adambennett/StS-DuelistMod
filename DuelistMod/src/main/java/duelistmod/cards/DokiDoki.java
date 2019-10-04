@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -38,8 +39,10 @@ public class DokiDoki extends DuelistCard
         this.baseBlock = this.block = 4;
         this.baseMagicNumber = this.magicNumber = 5;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.ROCK);
         this.summons = this.baseSummons = 2;
         this.originalName = this.name;
+        this.retain = true;
     }
 
     // Actions the card should do.
@@ -50,6 +53,7 @@ public class DokiDoki extends DuelistCard
     	if (DuelistMod.playedSpellThisTurn) { gainTempHP(this.magicNumber); }
     	else { block(); }    	
     }
+
 
     // Which card to return when making a copy of this card.
     @Override

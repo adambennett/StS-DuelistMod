@@ -49,7 +49,7 @@ public class DuelistCustomLoadout
 			e.printStackTrace();
 		}
 		
-		DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
+		//DuelistMod.setSelectColorTxtB.text = DuelistMod.startingDecks.get(DuelistMod.deckIndex);
 		
 		// Standard
 		if (DuelistMod.deckIndex == 0) { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
@@ -81,6 +81,12 @@ public class DuelistCustomLoadout
 		// Superheavy
 		else if (DuelistMod.deckIndex == 9) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(DuelistMod.deckIndex); }
 		
+		// Insect
+		else if (DuelistMod.deckIndex == 10) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
+				
+		// Plant
+		else if (DuelistMod.deckIndex == 11) {  selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(2); }
+
 		else { selectScreen.bgCharImg = TheDuelist.GetCharacterPortrait(0); }
 	}
 
@@ -110,8 +116,8 @@ public class DuelistCustomLoadout
 		res.add(SevenColoredFish.ID);
 		res.add(GiantSoldier.ID);
 		res.add(GiantSoldier.ID);
-		res.add(CastleWalls.ID);
-		res.add(CastleWalls.ID);
+		res.add(PowerWall.ID);
+		res.add(PowerWall.ID);
 		res.add(ScrapFactory.ID);
 		res.add(Ookazi.ID);
 		res.add(Ookazi.ID);

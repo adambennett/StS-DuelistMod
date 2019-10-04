@@ -46,10 +46,11 @@ public class Spore extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	incMaxSummons(p, getXEffect());
-    	summon(p, getXEffect(), this);    	
+    	int x = getXEffect();
+    	if (upgraded) { x++; }
+    	incMaxSummons(p, x);
+    	summon(p, x, this);    	
     	useXEnergy();
-    	if (this.upgraded) { gainTempHP(this.magicNumber); }
     }
 
     // Which card to return when making a copy of this card.

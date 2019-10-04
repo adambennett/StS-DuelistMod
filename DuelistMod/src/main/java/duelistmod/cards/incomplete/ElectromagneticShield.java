@@ -36,8 +36,8 @@ public class ElectromagneticShield extends DuelistCard
     public ElectromagneticShield() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 4;
-        this.secondMagic = this.baseSecondMagic = 5;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 3;
         this.baseTributes = this.tributes = 3;
         this.tags.add(Tags.SPELL);   
     }
@@ -69,7 +69,7 @@ public class ElectromagneticShield extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

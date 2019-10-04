@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.GreatMoth;
+import duelistmod.cards.insects.GreatMoth;
 import duelistmod.variables.Strings;
 
 // Passive no-effect power, just lets Toon Monsters check for playability

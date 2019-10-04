@@ -51,6 +51,12 @@ public class SuperheavyDaihachi extends DuelistCard
     	block();
     	//if (p.stance.ID.equals("theDuelist:Samurai")) { applyPowerToSelf(new DexterityPower(p, this.magicNumber)); }
     	//if (p.stance.ID.equals("theDuelist:Guarded")) { gainTempHP(this.secondMagic); }
+    	//if (p.stance.ID.equals("Wrath")) { block(this.block + this.secondMagic); }
+    	//else { 
+    		block();
+    		//}
+    	//if (p.stance.ID.equals("theDuelist:Samurai")) { applyPowerToSelf(new DexterityPower(p, this.magicNumber)); }
+    	//if (p.stance.ID.equals("theDuelist:Guarded")) { gainTempHP(this.secondMagic); }
     }
 	
     // Which card to return when making a copy of this card.

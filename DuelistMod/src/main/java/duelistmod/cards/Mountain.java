@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.MountainPower;
+import duelistmod.powers.duelistPowers.MountainPower;
 import duelistmod.variables.*;
 
 public class Mountain extends DuelistCard 
@@ -25,7 +25,7 @@ public class Mountain extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
@@ -36,6 +36,7 @@ public class Mountain extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.FIELDSPELL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
+        this.magicNumber = this.baseMagicNumber = 5;
         this.originalName = this.name;
     }
 
@@ -43,7 +44,7 @@ public class Mountain extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new MountainPower(p, p));
+    	applyPowerToSelf(new MountainPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

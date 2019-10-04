@@ -19,8 +19,9 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 	private boolean shuffleCheck = false;
 	private CardTags tagToDraw;
 	private boolean draw = true;
+	private AbstractMonster targ;
 	
-	public CyberFusionAction(AbstractCreature source, int amount, boolean endTurnDraw, CardTags tag) {
+	public CyberFusionAction(AbstractCreature source, int amount, boolean endTurnDraw, CardTags tag, AbstractMonster target) {
 		if (endTurnDraw) 
 		{
 			AbstractDungeon.topLevelEffects.add(new PlayerTurnEffect());
@@ -44,11 +45,13 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			this.duration = Settings.ACTION_DUR_FASTER;
 		}
 		tagToDraw = tag;
+		this.targ = target;
 	}
 
-	public CyberFusionAction(AbstractCreature source, int amount, CardTags tag) {
-		this(source, amount, false, tag);
+	public CyberFusionAction(AbstractCreature source, int amount, CardTags tag, AbstractMonster m) {
+		this(source, amount, false, tag, m);
 	}
+
 	
 	public void drawTag(int numCards, CardTags tag)
 	{
@@ -169,12 +172,12 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 				}
 				if (taggedCardsInDiscard > 0 && this.draw)
 				{
-					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, tmp, tagToDraw));
+					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, tmp, tagToDraw, this.targ));
 					AbstractDungeon.actionManager.addToTop(new ShuffleOnlyTaggedAction(tagToDraw));
 					//AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
 				}
 				if (deckSize != 0 && this.draw) {
-					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, deckSize, tagToDraw));
+					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, deckSize, tagToDraw, this.targ));
 				}
 				this.amount = 0;
 				this.isDone = true;
@@ -229,8 +232,15 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 		    		DuelistCard cardCopy = (DuelistCard)summon;
 					if (cardCopy != null)
 					{
-						AbstractMonster m = AbstractDungeon.getRandomMonster();
-						if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
+						if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
+						{
+							DuelistCard.fullResummon(cardCopy, summon.upgraded, this.targ, false);
+						}
+						else
+						{
+							AbstractMonster m = AbstractDungeon.getRandomMonster();
+							if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }							
+						}
 					}
 		    	}
 				this.isDone = true;

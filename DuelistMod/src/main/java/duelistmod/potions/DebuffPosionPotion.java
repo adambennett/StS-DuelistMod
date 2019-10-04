@@ -47,7 +47,7 @@ public class DebuffPosionPotion extends AbstractPotion {
     	target = AbstractDungeon.player;
     	for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
     	{
-    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped())
+    		if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead)
     		{
     			DuelistCard.applyPower(new PoisonPower(mon, AbstractDungeon.player, this.potency), mon);
     		}
@@ -63,8 +63,11 @@ public class DebuffPosionPotion extends AbstractPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-        return 8;
+    	int pot = 12;
+    	if (AbstractDungeon.player == null) { return pot; }
+        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
     }
+
     
     public void upgradePotion()
     {

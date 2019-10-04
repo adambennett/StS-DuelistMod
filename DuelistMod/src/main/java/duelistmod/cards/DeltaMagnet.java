@@ -27,7 +27,7 @@ public class DeltaMagnet extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.NONE;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -42,6 +42,7 @@ public class DeltaMagnet extends DuelistCard
         this.secondMagic = this.baseSecondMagic = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;
     }

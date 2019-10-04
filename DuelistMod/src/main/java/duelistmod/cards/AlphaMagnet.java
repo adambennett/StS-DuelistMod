@@ -42,10 +42,11 @@ public class AlphaMagnet extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LIMITED);
         this.tags.add(Tags.MAGNET);
+        this.tags.add(Tags.ROCK);
         this.originalName = this.name;
         this.isSummon = true;
     }
- 
+
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

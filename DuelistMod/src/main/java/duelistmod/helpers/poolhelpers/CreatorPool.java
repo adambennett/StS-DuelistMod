@@ -19,19 +19,18 @@ public class CreatorPool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		pools.add(DragonPool.deck());
-		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(FiendPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -46,19 +45,18 @@ public class CreatorPool
 		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
 		pools.add(AquaPool.deck());
 		pools.add(DragonPool.deck());
-		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
+		pools.add(FiendPool.deck());		
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(WarriorPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }		
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -90,7 +88,8 @@ public class CreatorPool
 		cards.add(new OrbitalBombardment());
 		cards.add(new BlastingRuins());
 		
-		cards.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic()); }
+		else { cards.addAll(BasicPool.fullBasic()); }
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

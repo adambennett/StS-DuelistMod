@@ -2,6 +2,7 @@ package duelistmod.cards.incomplete;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -92,6 +93,8 @@ public class ForbiddenChalice extends DuelistCard
     	}
     	else { Util.log("Forbidden Chalice found duplicates of something, so you didn't gain max hp or get some potions. Upgrading a copy of a card doesn't get you around this! NO DUPLICATES"); }
     }
+    
+   
 
     // Which card to return when making a copy of this card.
     @Override

@@ -23,17 +23,16 @@ public class WarriorPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
@@ -51,17 +50,16 @@ public class WarriorPool
 		//pools.add(CreatorPool.deck());
 		pools.add(DragonPool.deck());
 		pools.add(FiendPool.deck());
-		//pools.add(GiantPool.deck());
 		pools.add(IncrementPool.deck());
-		//pools.add(InsectPool.deck());
+		pools.add(InsectPool.deck());
 		pools.add(MachinePool.deck());
 		pools.add(MegatypePool.deck());
-		pools.add(NaturePool.deck());
+		pools.add(NaturiaPool.deck());
 		pools.add(PlantPool.deck());
-		//pools.add(PredaplantPool.deck());
 		pools.add(SpellcasterPool.deck());
 		pools.add(StandardPool.deck());
 		pools.add(ZombiePool.deck());
+		pools.add(RockPool.deck());
 		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
 		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
 		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
@@ -136,11 +134,93 @@ public class WarriorPool
 		magnetCards.add(new GoyoDefender());
 		magnetCards.add(new GravityLash());
 		magnetCards.add(new GuardianOrder());
-		magnetCards.add(new HardArmor());
-		//magnetCards.add(new CubicKarma());
-		//magnetCards.add(new ReinforceTruth());
-		//magnetCards.add(new SpiritForce());
-		//magnetCards.add(new WeaponChange());	
+		magnetCards.add(new HardArmor());		
+		magnetCards.add(new LightLaser());		
+		magnetCards.add(new ReinforceTruth());
+		magnetCards.add(new SpiritForce());
+		magnetCards.add(new WeaponChange());
+		magnetCards.add(new Sogen());	
+		magnetCards.add(new ImperialOrder());
+		magnetCards.add(new MeteorDestruction());
+		magnetCards.add(new ScrapFactory());	
+		magnetCards.add(new ElectromagneticShield());
+		magnetCards.add(new MillenniumShield());
+		magnetCards.add(new DokiDoki());
+		magnetCards.add(new ReinforcementsArmy());
+		magnetCards.add(new WhiteNinja());
+		magnetCards.add(new CyberRaider());		
+		magnetCards.add(new CircleFireKings());
+		magnetCards.add(new OnslaughtFireKings());
+		magnetCards.add(new RockstoneWarrior());
+		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
+		{
+			/*magnetCards.add(new Rushdown());
+			magnetCards.add(new Blasphemy());
+			magnetCards.add(new BowlingBash());
+			magnetCards.add(new CarveReality());
+			//magnetCards.add(new Clarity());
+			magnetCards.add(new ConjureBlade());
+			magnetCards.add(new Consecrate());
+			magnetCards.add(new CutThroughFate());
+			magnetCards.add(new DeceiveReality());
+			magnetCards.add(new DeusExMachina());
+			magnetCards.add(new DevaForm());
+			magnetCards.add(new Devotion());
+			magnetCards.add(new EmptyBody());
+			magnetCards.add(new EmptyFist());
+			magnetCards.add(new EmptyMind());
+			magnetCards.add(new Evaluate());
+			magnetCards.add(new Fasting());
+			magnetCards.add(new FearNoEvil());
+			magnetCards.add(new FlurryOfBlows());
+			magnetCards.add(new ForeignInfluence());
+			magnetCards.add(new Halt());
+			magnetCards.add(new InnerPeace());
+			magnetCards.add(new JustLucky());
+			magnetCards.add(new LessonLearned());
+			magnetCards.add(new MasterReality());
+			magnetCards.add(new Meditate());
+			magnetCards.add(new MentalFortress());
+			magnetCards.add(new Indignation());
+			magnetCards.add(new Nirvana());
+			magnetCards.add(new Omniscience());
+			magnetCards.add(new PathToVictory());
+			magnetCards.add(new Pray());
+			magnetCards.add(new Prostrate());
+			magnetCards.add(new Protect());
+			magnetCards.add(new Ragnarok());
+			magnetCards.add(new ReachHeaven());
+			magnetCards.add(new Sanctity());
+			magnetCards.add(new SandsOfTime());
+			//magnetCards.add(new SoothingAura());
+			magnetCards.add(new SpiritShield());
+			magnetCards.add(new WheelKick());
+			magnetCards.add(new Swivel());
+			magnetCards.add(new TalkToTheHand());
+			magnetCards.add(new ThirdEye());
+			magnetCards.add(new Vault());
+			//magnetCards.add(new Vengeance());
+			magnetCards.add(new Vigilance());
+			magnetCards.add(new Wallop());
+			magnetCards.add(new Weave());
+			magnetCards.add(new WindmillStrike());
+			//magnetCards.add(new Wireheading());
+			magnetCards.add(new Wish());
+			magnetCards.add(new Worship());
+			magnetCards.add(new WreathOfFlame());
+			magnetCards.add(new BurningPact());
+			magnetCards.add(new Corruption());
+			magnetCards.add(new FeelNoPain());
+			magnetCards.add(new SecondWind());
+			magnetCards.add(new Sentinel());
+			magnetCards.add(new SeverSoul());
+			magnetCards.add(new DarkEmbrace());
+			magnetCards.add(new Exhume());
+			magnetCards.add(new Feed());
+			magnetCards.add(new FiendFire());
+			magnetCards.add(new Recycle());*/			
+		}
+
 		
 		magnetDeck.fillPoolCards(magnetCards);		
 		magnetDeck.fillArchetypeCards(magnetCards);
@@ -152,7 +232,8 @@ public class WarriorPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		pool.addAll(DuelistMod.basicCards);
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
+		else { pool.addAll(BasicPool.fullBasic()); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}
