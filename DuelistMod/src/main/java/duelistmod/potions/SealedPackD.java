@@ -36,7 +36,7 @@ public class SealedPackD extends AbstractPotion {
 		this.isThrown = false;
 
 		// Initialize the on-hover name + description
-		this.tips.add(new PowerTip(this.name, this.description));
+		//this.tips.add(new PowerTip(this.name, this.description));
 
 	}
 

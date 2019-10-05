@@ -35,8 +35,8 @@ public class LavaBottle extends OrbPotion {
         this.isThrown = false;
         
         // Initialize the on-hover name + description
-        this.tips.add(new PowerTip(this.name, this.description));
-        this.tips.add(new PowerTip("Lava", DESCRIPTIONS[3]));
+        //this.tips.add(new PowerTip(this.name, this.description));
+        //this.tips.add(new PowerTip("Lava", DESCRIPTIONS[3]));
         
     }
 

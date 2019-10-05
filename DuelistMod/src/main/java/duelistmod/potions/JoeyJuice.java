@@ -36,7 +36,7 @@ public class JoeyJuice extends AbstractPotion {
         this.targetRequired = true;
         
         // Initialize the on-hover name + description
-        this.tips.add(new PowerTip(this.name, this.description));
+        //this.tips.add(new PowerTip(this.name, this.description));
         
     }
 

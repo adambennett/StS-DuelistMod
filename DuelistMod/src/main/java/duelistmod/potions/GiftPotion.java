@@ -18,8 +18,6 @@ public class GiftPotion extends AbstractPotion {
     
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
-    
-    private int healAmt = 4;
 
     public GiftPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
@@ -29,13 +27,13 @@ public class GiftPotion extends AbstractPotion {
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.healAmt + DESCRIPTIONS[2];
+        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 4 + DESCRIPTIONS[2];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = false;
         
         // Initialize the on-hover name + description
-        this.tips.add(new PowerTip(this.name, this.description));
+        //this.tips.add(new PowerTip(this.name, this.description));
         
     }
 
@@ -44,7 +42,7 @@ public class GiftPotion extends AbstractPotion {
     {
     	target = AbstractDungeon.player;
     	DuelistCard.applyPowerToSelf(new RegenPower(AbstractDungeon.player, this.potency));
-    	DuelistCard.heal(AbstractDungeon.player, this.healAmt);
+    	DuelistCard.heal(AbstractDungeon.player, 4);
     }
     
     @Override
@@ -63,7 +61,7 @@ public class GiftPotion extends AbstractPotion {
     @Override
     public void initializeData() {
         this.potency = this.getPotency();
-        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.healAmt + DESCRIPTIONS[2];
+        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 4 + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
@@ -71,8 +69,7 @@ public class GiftPotion extends AbstractPotion {
     public void upgradePotion()
     {
       this.potency += 2;
-      this.healAmt += 2;
-      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.healAmt + DESCRIPTIONS[2];
+      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 6 + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
     }

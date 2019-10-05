@@ -1,15 +1,14 @@
 package duelistmod.potions;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.variables.Tags;
 
 public class EvenTurnBlockBottle extends AbstractPotion {
@@ -35,7 +34,7 @@ public class EvenTurnBlockBottle extends AbstractPotion {
 		this.isThrown = false;
 
 		// Initialize the on-hover name + description
-		this.tips.add(new PowerTip(this.name, this.description));
+		//this.tips.add(new PowerTip(this.name, this.description));
 
 	}
 

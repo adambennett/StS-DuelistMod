@@ -18,8 +18,6 @@ public class SummonArmorPotion extends AbstractPotion {
     
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
-    
-    private int lossAmt = 1;
 
     public SummonArmorPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
@@ -29,13 +27,13 @@ public class SummonArmorPotion extends AbstractPotion {
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.lossAmt + DESCRIPTIONS[2];
+        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = false;
         
         // Initialize the on-hover name + description
-        this.tips.add(new PowerTip(this.name, this.description));
+        //this.tips.add(new PowerTip(this.name, this.description));
         
     }
 
@@ -45,7 +43,7 @@ public class SummonArmorPotion extends AbstractPotion {
     	target = AbstractDungeon.player;
     	if (AbstractDungeon.player.hasPower(DexterityPower.POWER_ID)) { DuelistCard.staticBlock(this.potency + AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount); }
     	else { DuelistCard.staticBlock(this.potency); }
-    	DuelistCard.decMaxSummons(AbstractDungeon.player, this.lossAmt);
+    	DuelistCard.decMaxSummons(AbstractDungeon.player, 1);
     }
     
     @Override
@@ -64,7 +62,7 @@ public class SummonArmorPotion extends AbstractPotion {
     @Override
     public void initializeData() {
         this.potency = this.getPotency();
-        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.lossAmt + DESCRIPTIONS[2];
+        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
@@ -72,7 +70,7 @@ public class SummonArmorPotion extends AbstractPotion {
     public void upgradePotion()
     {
       this.potency += 6;
-      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.lossAmt + DESCRIPTIONS[2];
+      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
     }

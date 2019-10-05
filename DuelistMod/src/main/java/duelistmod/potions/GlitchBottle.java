@@ -35,8 +35,8 @@ public class GlitchBottle extends OrbPotion {
         this.isThrown = false;
         
         // Initialize the on-hover name + description
-        this.tips.add(new PowerTip(this.name, this.description));
-        this.tips.add(new PowerTip("Glitch", DESCRIPTIONS[3]));
+       //.tips.add(new PowerTip(this.name, this.description));
+       // this.tips.add(new PowerTip("Glitch", DESCRIPTIONS[3]));
         
     }
 
