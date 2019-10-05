@@ -25,7 +25,6 @@ import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
 import duelistmod.cards.naturia.*;
 import duelistmod.cards.orbCards.*;
-import duelistmod.cards.statuses.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.poolhelpers.*;
