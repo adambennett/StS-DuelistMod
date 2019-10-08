@@ -77,7 +77,6 @@ public class AlienTelepath extends DuelistCard
 	    	for (AbstractCard c : topCards) { newGroup.addToTop(c); }
 	    	if (newGroup.group.size() >= this.secondMagic) { AbstractDungeon.actionManager.addToTop(new FetchAction(newGroup, this.secondMagic)); }
     	}
-    	channel(new Alien());
     }
 
     // Which card to return when making a copy of this card.

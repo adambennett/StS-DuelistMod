@@ -39,6 +39,8 @@ public class MasterMagmaBlacksmith extends DuelistCard
         this.summons = this.baseSummons = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;
         this.isSummon = true;
     }

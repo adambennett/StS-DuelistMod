@@ -42,6 +42,8 @@ public class AtomicFirefly extends DuelistCard
         this.tags.add(Tags.INSECT);
         this.originalName = this.name;
         this.isSummon = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

@@ -50,6 +50,8 @@ public class GateGuardian extends DuelistCard
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
         this.damage = this.baseDamage = 25;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

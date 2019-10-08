@@ -41,6 +41,8 @@ public class FlameTiger extends DuelistCard
         this.summons = this.baseSummons = 2;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
     }
     
     @Override

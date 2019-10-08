@@ -39,6 +39,8 @@ public class CallAtlanteans extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.exhaust = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
     }
 
     // Actions the card should do.

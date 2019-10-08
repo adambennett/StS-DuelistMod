@@ -38,8 +38,17 @@ public class Electrowhip extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tributes = this.baseTributes = 4;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.SPELL);   
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

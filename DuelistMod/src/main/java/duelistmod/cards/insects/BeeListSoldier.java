@@ -51,7 +51,7 @@ public class BeeListSoldier extends DuelistCard
     {
     	super.triggerOnGlowCheck();
     	if (DuelistMod.secondLastCardPlayed.hasTag(Tags.SPIDER) || DuelistMod.secondLastCardPlayed.hasTag(Tags.BUG)) {
-            this.glowColor = Color.GREEN;
+            this.glowColor = Color.GOLD;
         }
     }
 

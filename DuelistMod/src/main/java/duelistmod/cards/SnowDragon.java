@@ -47,6 +47,8 @@ public class SnowDragon extends DuelistCard
         this.tags.add(Tags.ORIGINAL_ORB_DECK);
     	this.startingOPODeckCopies = 2;
         this.startingOPDragDeckCopies = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.misc = 0;
 		this.originalName = this.name;
 		this.isSummon = true;

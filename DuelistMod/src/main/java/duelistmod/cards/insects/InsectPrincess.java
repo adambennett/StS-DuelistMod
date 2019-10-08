@@ -37,6 +37,10 @@ public class InsectPrincess extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
         this.originalName = this.name;
+		this.showInvertValue = true;
+		this.showEvokeValue = true;
+		this.showInvertOrbs = 1;
+		this.showEvokeOrbCount = 1;		
     }
 
     // Actions the card should do.

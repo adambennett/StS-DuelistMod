@@ -42,6 +42,8 @@ public class WitchBlackRose extends DuelistCard
         this.tags.add(Tags.ROSE);  
         this.summons = this.baseSummons = 1;	
         this.originalName = this.name;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

@@ -1,9 +1,12 @@
 package duelistmod.abstracts;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.GoldPlatedCables;
@@ -14,7 +17,21 @@ public class DuelistOrb extends AbstractOrb {
 
 	protected int originalPassive = 0;
 	protected int originalEvoke = 0;
+	public boolean showInvertValue = false;
+	public String inversion = "";
 	public boolean triggersOnSpellcasterPuzzle = false;
+	
+	public boolean renderInvertText(SpriteBatch sb, boolean top)
+	{
+		if (this.inversion.equals("")) { this.inversion = "???"; }
+		if (this.showInvertValue)
+		{
+			if (top) { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET + 20.0f * Settings.scale, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
+			else { FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont_small, this.inversion, this.cX + AbstractOrb.NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0f + AbstractOrb.NUM_Y_OFFSET, new Color(0.2f, 1.0f, 1.0f, this.c.a), this.fontScale); }
+			return true;
+		}
+		else { return false; }
+	}
 	
 	public void onExhaust(AbstractCard c) { }
 	
@@ -41,6 +58,24 @@ public class DuelistOrb extends AbstractOrb {
 	public void onSynergyTribute() { }
 	
 	public void onDrawCard(AbstractCard drawnCard) { }
+	
+	public void showInvertValue() {
+        this.showInvertValue = true;
+    }
+    
+    public void hideInvertValues() {
+        this.showInvertValue = false;
+    }
+    
+    @Override
+    public void showEvokeValue() {
+        this.showEvokeValue = true;
+    }
+    
+    @Override
+    public void hideEvokeValues() {
+        this.showEvokeValue = false;
+    }
 	
 	public void lightOrbEnhance(int amt)
 	{

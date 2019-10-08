@@ -46,6 +46,8 @@ public class OjamaGreen extends DuelistCard
 		this.tags.add(Tags.REDUCED);
 		this.tags.add(Tags.OJAMA_DECK);
 		this.ojamaDeckCopies = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.exhaust = true;
 		this.originalName = this.name;
 		this.summons = this.baseSummons = SUMMONS;

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
@@ -27,8 +27,10 @@ import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
+import duelistmod.cards.incomplete.CircleFireKings;
+import duelistmod.cards.insects.Taotie;
 import duelistmod.helpers.*;
-import duelistmod.orbs.Black;
+import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.MillenniumPuzzle;
 import duelistmod.variables.Colors;
@@ -406,4 +408,73 @@ public class TheDuelist extends CustomPlayer {
 		if (isDragonDeck || DuelistMod.playAsKaiba) { return "Kaiba"; }
 		else { return "Yugi"; }
 	}
+
+	@Override
+	public void releaseCard() {
+		super.releaseCard();
+		for (final AbstractOrb o : this.orbs) 
+		{
+			if (o instanceof DuelistOrb)
+			{
+				((DuelistOrb)o).hideInvertValues();
+			}
+		}
+	}
+	
+	@Override
+	public void updateInput() 
+	{
+		super.updateInput();
+		if (this.hoveredCard instanceof DuelistCard)
+		{
+			DuelistCard hdc = (DuelistCard)hoveredCard;
+			if (hdc instanceof CircleFireKings || hdc instanceof Taotie)
+			{
+				for (final AbstractOrb o : this.orbs) 
+	            {
+	            	if (o instanceof Lava && hdc instanceof CircleFireKings)
+	            	{
+	            		o.showEvokeValue();
+	            	}
+	            	
+	            	if (o instanceof DuelistLight && hdc instanceof Taotie)
+	            	{
+	            		o.showEvokeValue();
+	            	}
+	            }
+			}
+			if (hdc.showInvertValue)
+			{
+				if (hdc.showInvertOrbs == 0)
+				{
+					for (final AbstractOrb o : this.orbs) 
+		            {
+		            	if (o instanceof DuelistOrb)
+		            	{
+		            		((DuelistOrb)o).showInvertValue();
+		            	}
+		            }
+				}
+				else
+				{
+					int counter = hdc.showInvertOrbs;
+					for (final AbstractOrb o : this.orbs) 
+		            {
+						if (counter > 0)
+						{
+			            	if (o instanceof DuelistOrb)
+			            	{
+			            		((DuelistOrb)o).showInvertValue();
+			            	}
+			            	counter--;
+						}
+						else { break; }
+		            }
+				}
+			}
+		}
+	}
+	
+	
+	
 }

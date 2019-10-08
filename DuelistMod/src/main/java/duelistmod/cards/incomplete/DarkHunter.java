@@ -42,6 +42,7 @@ public class DarkHunter extends DuelistCard
         this.tags.add(Tags.FIEND);       
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
+		this.showEvokeValue = true;
         this.originalName = this.name;
     }
 

@@ -85,7 +85,7 @@ public class DrawFromTagAction extends com.megacrit.cardcrawl.actions.AbstractGa
 
 				if ((AbstractDungeon.player.hasPower("Corruption")) && (c.type == AbstractCard.CardType.SKILL)) 
 				{
-					c.setCostForTurn(-9);
+					c.setCostForTurn(-20);
 				}
 
 				for (AbstractRelic r : AbstractDungeon.player.relics) 

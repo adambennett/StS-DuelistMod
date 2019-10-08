@@ -39,6 +39,8 @@ public class Denglong extends DuelistCard
         this.baseDamage = this.damage = 15;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tributes = this.baseTributes = 6;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WYRM);
         this.originalName = this.name;

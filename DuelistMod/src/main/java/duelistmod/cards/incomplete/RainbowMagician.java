@@ -48,8 +48,17 @@ public class RainbowMagician extends DuelistCard
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
         this.magicNumber = this.baseMagicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
         this.makeMegatyped();
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

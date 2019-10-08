@@ -36,6 +36,8 @@ public class BlueDragonSummoner extends DuelistCard
 	public BlueDragonSummoner() {
 		super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
 		this.summons = this.baseSummons = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.isSummon = true;
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.SPELLCASTER);

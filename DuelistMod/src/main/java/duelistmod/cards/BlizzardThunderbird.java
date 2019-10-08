@@ -50,6 +50,8 @@ public class BlizzardThunderbird extends DuelistCard
         this.isSummon = true;       
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
     }
 
     @Override

@@ -45,6 +45,8 @@ public class SpiritHarp extends DuelistCard
         this.startingOPSPDeckCopies = 2;
         this.creatorDeckCopies = 2;
         this.summons = this.baseSummons = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();

@@ -36,9 +36,18 @@ public class AmuletAmbition extends DuelistCard
         this.block = this.baseBlock = 11;				// block
         this.magicNumber = this.baseMagicNumber = 2;	// increment
         this.secondMagic = this.baseSecondMagic = 1;	// random offensive orbs
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.secondMagic;
+	}
 
     // Actions the card should do.
     @Override

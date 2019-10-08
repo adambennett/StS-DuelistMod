@@ -77,7 +77,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v2.921.4-beta";
+	public static String version = "v2.921.5-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -2692,7 +2692,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			}
 		}
 		
-		if (AbstractDungeon.player.hasPower(OutriggerExtensionPower.POWER_ID) && drawnCard.hasTag(Tags.MACHINE))
+		if (AbstractDungeon.player.hasPower(OutriggerExtensionPower.POWER_ID) && drawnCard.hasTag(Tags.MACHINE) && !drawnCard.hasTag(Tags.EXEMPT))
 		{
 			int magicBuffAmt = AbstractDungeon.player.getPower(OutriggerExtensionPower.POWER_ID).amount;
 			ArrayList<DuelistCard> handSkills = new ArrayList<DuelistCard>();
@@ -2970,6 +2970,13 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				if (c.hasTag(Tags.TRAP)) { trapsObtained++; }
 			}
 			CardCrawlGame.dungeon.initializeCardPools();
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_WISEMAN, gotWisemanHaunted);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		else if (!shouldFill)
 		{

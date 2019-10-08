@@ -41,6 +41,8 @@ public class IgnisHeat extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WYRM);
         this.originalName = this.name;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

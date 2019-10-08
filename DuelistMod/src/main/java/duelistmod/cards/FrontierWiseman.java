@@ -45,6 +45,8 @@ public class FrontierWiseman extends DuelistCard
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 2;
 		this.magicNumber = this.baseMagicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.isSummon = true;
 	}
 	

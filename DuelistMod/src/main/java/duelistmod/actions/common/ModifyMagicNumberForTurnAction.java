@@ -27,6 +27,7 @@ public class ModifyMagicNumberForTurnAction extends AbstractGameAction
 			}
 			this.cardToModify.magicNumber = this.cardToModify.baseMagicNumber;
 			this.cardToModify.isMagicNumModifiedForTurn = true;
+			this.cardToModify.isMagicNumberModified = true;
 		}
 		else
 		{
@@ -37,6 +38,7 @@ public class ModifyMagicNumberForTurnAction extends AbstractGameAction
 			}
 			this.cardToModify.magicNumber = this.cardToModify.baseMagicNumber;
 			this.cardToModify.isMagicNumModifiedForTurn = true;
+			this.cardToModify.isMagicNumberModified = true;
 		}
 		this.isDone = true;
 	}

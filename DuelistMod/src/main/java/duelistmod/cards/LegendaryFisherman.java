@@ -6,9 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.orbs.WaterOrb;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -40,6 +41,8 @@ public class LegendaryFisherman extends DuelistCard
         this.tags.add(Tags.WARRIOR);
 		this.aquaDeckCopies = 1;
 		this.startingOPODeckCopies = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.misc = 0;
 		this.exhaust = true;
 		this.originalName = this.name;
@@ -52,7 +55,7 @@ public class LegendaryFisherman extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		channelWater();
+		channel(new WaterOrb());
 	}
 
 	// Which card to return when making a copy of this card.

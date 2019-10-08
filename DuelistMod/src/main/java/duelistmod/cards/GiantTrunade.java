@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class GiantTrunade extends DuelistCard 
@@ -34,6 +34,7 @@ public class GiantTrunade extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
         this.originalName = this.name;
+        this.showEvokeValue = true;
         this.tags.add(Tags.MAGIC_RULER);
         this.tags.add(Tags.SPELL);
     }

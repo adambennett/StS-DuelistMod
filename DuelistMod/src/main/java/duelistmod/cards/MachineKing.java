@@ -41,6 +41,8 @@ public class MachineKing extends DuelistCard
 		this.tags.add(Tags.MACHINE);
 		this.tributes = this.baseTributes = 1;
 		this.baseMagicNumber = this.magicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.originalName = this.name;
 
 	}

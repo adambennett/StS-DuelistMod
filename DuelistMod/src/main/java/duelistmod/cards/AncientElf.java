@@ -42,6 +42,8 @@ public class AncientElf extends DuelistCard
 		this.tags.add(Tags.METAL_RAIDERS);
         this.orbDeckCopies = 1;
 		this.summons = this.baseSummons = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.originalName = this.name;
 		this.isSummon = true;
 		this.setupStartingCopies();

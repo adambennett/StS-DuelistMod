@@ -41,6 +41,8 @@ public class ResonanceInsect extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
         this.originalName = this.name;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.isSummon = true;
     }
 

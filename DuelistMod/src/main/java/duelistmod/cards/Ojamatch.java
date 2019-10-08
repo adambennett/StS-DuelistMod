@@ -36,6 +36,10 @@ public class Ojamatch extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
+		this.showInvertValue = true;
+		this.showEvokeValue = true;
+		this.showInvertOrbs = 1;
+		this.showEvokeOrbCount = 1;		
 		this.originalName = this.name;
 		this.exhaust = true;
 	}

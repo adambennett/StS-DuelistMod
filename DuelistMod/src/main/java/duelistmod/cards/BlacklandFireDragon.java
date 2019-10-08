@@ -44,9 +44,18 @@ public class BlacklandFireDragon extends DuelistCard
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.DRAGON);
         this.misc = 0;
+        this.showEvokeValue = true;
+        this.showEvokeOrbCount = 2;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
         this.magicNumber = this.baseMagicNumber = 2;
+    }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber;
     }
 
     // Actions the card should do.
@@ -74,7 +83,6 @@ public class BlacklandFireDragon extends DuelistCard
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(1);
-            if (DuelistMod.hasUpgradeBuffRelic) { this.upgradeDamage(6); }
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

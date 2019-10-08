@@ -72,6 +72,7 @@ public class BlackBottle extends OrbPotion {
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
         this.tips.add(new PowerTip("Black", DESCRIPTIONS[3]));
+        this.tips.add(new PowerTip("Invert", DESCRIPTIONS[4]));
     }
     
     public void upgradePotion()

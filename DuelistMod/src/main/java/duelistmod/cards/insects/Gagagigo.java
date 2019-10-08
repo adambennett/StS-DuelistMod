@@ -36,6 +36,8 @@ public class Gagagigo extends DuelistCard
     public Gagagigo() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
         this.originalName = this.name;

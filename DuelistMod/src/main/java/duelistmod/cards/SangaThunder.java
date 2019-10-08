@@ -5,15 +5,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
 
@@ -55,7 +54,16 @@ public class SangaThunder extends DuelistCard
 		this.isSummon = true;
 		this.summons = this.baseSummons = 1;
 		this.baseMagicNumber = this.magicNumber = 2;
+		this.showEvokeOrbCount = 2;
+		this.showEvokeValue = true;
 		this.setupStartingCopies();
+    }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber;
     }
 
     // Actions the card should do.

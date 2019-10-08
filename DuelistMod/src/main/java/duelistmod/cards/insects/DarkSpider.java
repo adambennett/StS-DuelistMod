@@ -41,6 +41,8 @@ public class DarkSpider extends DuelistCard
         this.tags.add(Tags.SPIDER);
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 2;	
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;
         this.exhaust = true;
     }

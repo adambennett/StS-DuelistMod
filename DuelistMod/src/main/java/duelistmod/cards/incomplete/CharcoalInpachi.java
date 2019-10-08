@@ -41,8 +41,17 @@ public class CharcoalInpachi extends DuelistCard
 		this.tags.add(Tags.ARCANE);
         this.summons = this.baseSummons = 2;	
         this.magicNumber = this.baseMagicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

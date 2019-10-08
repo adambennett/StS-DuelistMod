@@ -36,6 +36,8 @@ public class FirestormProminence extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 10;
         this.tributes = this.baseTributes = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.REPTILE);
         this.originalName = this.name;

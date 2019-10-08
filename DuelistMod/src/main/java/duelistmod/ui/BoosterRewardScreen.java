@@ -90,13 +90,7 @@ public class BoosterRewardScreen extends CardRewardScreen
 		super.carveRealityOpen(cardsToPickBetween);
 		this.buyPackBtn.hide();
 	}
-	
-	@Override
-	public void foreignInfluenceOpen(final boolean upgraded) {
-		super.foreignInfluenceOpen(upgraded);
-		this.buyPackBtn.hide();
-	}
-	
+
 	@Override
 	public void codexOpen() {
 		super.codexOpen();

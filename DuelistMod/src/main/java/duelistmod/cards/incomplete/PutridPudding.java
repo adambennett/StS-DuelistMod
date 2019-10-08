@@ -44,8 +44,17 @@ public class PutridPudding extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;	// Dark
         this.secondMagic = this.baseSecondMagic = 2;	// Void
         this.thirdMagic = this.baseThirdMagic = 3;		// Vulnerable
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 4;
         this.originalName = this.name;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber + this.secondMagic;
+	}
 
     // Actions the card should do.
     @Override

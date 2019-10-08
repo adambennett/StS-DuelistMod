@@ -38,6 +38,8 @@ public class OjamaDeltaHurricane extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 3;
 		this.originalName = this.name;
 	}
 

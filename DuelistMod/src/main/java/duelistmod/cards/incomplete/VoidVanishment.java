@@ -38,7 +38,17 @@ public class VoidVanishment extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
+
 
     // Actions the card should do.
     @Override

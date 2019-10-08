@@ -34,6 +34,7 @@ public class MultiplicationOfAnts extends DuelistCard
     public MultiplicationOfAnts() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.NO_MAGIC_MOD);
         this.misc = 0;
         this.magicNumber = this.baseMagicNumber = 2;
         this.originalName = this.name;

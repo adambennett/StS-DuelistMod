@@ -37,10 +37,19 @@ public class Suanni extends DuelistCard
         this.baseDamage = this.damage = 8;
         this.baseMagicNumber = this.magicNumber = 1;
         this.tributes = this.baseTributes = 4;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WYRM);
         this.originalName = this.name;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

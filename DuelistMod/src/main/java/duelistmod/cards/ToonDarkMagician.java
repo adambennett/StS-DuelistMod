@@ -49,6 +49,8 @@ public class ToonDarkMagician extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
 		this.magicNumber = this.baseMagicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 	}
 
 	// Actions the card should do.

@@ -51,7 +51,16 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		this.isSummon = true;
 		this.block = this.baseBlock = 18;
 		this.magicNumber = this.baseMagicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
 	}
+	
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber;
+    }
 
 	// Actions the card should do.
 	@Override

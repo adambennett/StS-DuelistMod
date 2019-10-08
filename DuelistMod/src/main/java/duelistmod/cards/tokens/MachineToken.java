@@ -43,6 +43,8 @@ public class MachineToken extends TokenCard
     	this.tags.add(Tags.MACHINE); 
     	this.purgeOnUse = true;
     	this.isEthereal = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
     public MachineToken(String tokenName) 
     { 
@@ -51,6 +53,8 @@ public class MachineToken extends TokenCard
     	this.tags.add(Tags.MACHINE); 
     	this.purgeOnUse = true;
     	this.isEthereal = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

@@ -83,6 +83,7 @@ public class CardSelectScreenModifyMagicNumberForTurnAction extends AbstractGame
 			}
 			original.magicNumber = original.baseMagicNumber;
 			original.isMagicNumModifiedForTurn = true;
+			original.isMagicNumberModified = true;
 		}
 		else
 		{
@@ -93,6 +94,7 @@ public class CardSelectScreenModifyMagicNumberForTurnAction extends AbstractGame
 			}
 			original.magicNumber = original.baseMagicNumber;
 			original.isMagicNumModifiedForTurn = true;
+			original.isMagicNumberModified = true;
 		}
 	}
 }

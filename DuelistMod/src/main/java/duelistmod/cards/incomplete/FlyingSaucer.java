@@ -43,6 +43,8 @@ public class FlyingSaucer extends DuelistCard
         this.tags.add(Tags.MACHINE); 
         this.summons = this.baseSummons = 1;	
         this.baseMagicNumber = this.magicNumber = 4;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;
     }
 

@@ -40,7 +40,17 @@ public class MudragonSwamp extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
 		this.magicNumber = this.baseMagicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
+    
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

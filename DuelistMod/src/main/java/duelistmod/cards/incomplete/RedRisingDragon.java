@@ -40,6 +40,10 @@ public class RedRisingDragon extends DuelistCard
         this.summons = this.baseSummons = 1;			
         this.baseBlock = this.block = 7;
         this.originalName = this.name;
+		this.showInvertValue = true;
+		this.showEvokeValue = true;
+		this.showInvertOrbs = 1;
+		this.showEvokeOrbCount = 1;		
     }
 
     // Actions the card should do.

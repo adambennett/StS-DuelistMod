@@ -41,6 +41,10 @@ public class BusterDrake extends DuelistCard
         this.summons = this.baseSummons = 2;			
         this.baseDamage = this.damage = 9;
         this.originalName = this.name;
+		this.showInvertValue = true;
+		this.showEvokeValue = true;
+		this.showInvertOrbs = 1;
+		this.showEvokeOrbCount = 1;		
     }
 
     // Actions the card should do.

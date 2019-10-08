@@ -44,6 +44,8 @@ public class OjamaRed extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 4;
 		this.magicNumber = this.baseMagicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.setupStartingCopies();
 	}
 

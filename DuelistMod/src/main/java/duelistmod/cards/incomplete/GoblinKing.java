@@ -41,8 +41,17 @@ public class GoblinKing extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.baseBlock = this.block = 8;
         this.baseMagicNumber = this.magicNumber = 1;	
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

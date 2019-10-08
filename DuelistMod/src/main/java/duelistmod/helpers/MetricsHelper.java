@@ -61,6 +61,7 @@ public class MetricsHelper
 		par.put("number_of_resummons", DuelistMod.resummonsThisRun);	
 		par.put("bonus_deck_stats", DuelistMod.bonusUnlockHelper.logMetrics());
 		par.put("duelistmod_version", DuelistMod.version);	
+		par.put("playing_as_kaiba", DuelistMod.playAsKaiba);
 	}
 	
 }

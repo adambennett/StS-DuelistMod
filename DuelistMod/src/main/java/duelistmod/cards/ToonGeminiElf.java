@@ -38,6 +38,8 @@ public class ToonGeminiElf extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 3;
         this.toon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.TOON);

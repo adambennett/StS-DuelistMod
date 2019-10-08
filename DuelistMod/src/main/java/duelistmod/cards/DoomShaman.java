@@ -40,12 +40,22 @@ public class DoomShaman extends DuelistCard
         this.tags.add(Tags.SPELLCASTER);      
         this.magicNumber = this.baseMagicNumber = 3;
         this.secondMagic = this.baseSecondMagic = 6;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 3;
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
         this.exhaust = true;
         this.setupStartingCopies();
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
+
 
     // Actions the card should do.
     @Override

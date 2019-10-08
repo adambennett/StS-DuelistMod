@@ -40,8 +40,19 @@ public class QueenDragunDjinn extends DuelistCard
         this.tags.add(Tags.DRAGON);
         this.misc = 0;
         this.baseMagicNumber = this.magicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 3;
+		this.showInvertValue = true;
+		this.showInvertOrbs = 1;
 		this.originalName = this.name;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber + 1;
+	}
 
     // Actions the card should do.
     @Override

@@ -38,6 +38,8 @@ public class NitroWarrior extends DuelistCard
         this.originalName = this.name;
         this.baseDamage = this.damage = 12;
         this.tributes = this.baseTributes = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.selfRetain = true;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);

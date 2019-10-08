@@ -37,71 +37,71 @@
 },
 "theDuelist:AirBottle": {
         "NAME": "Bottled Wind",
-        "DESCRIPTIONS": ["#yChannel an #yAir.", "#yChannel #b", " #yAir Orbs.", "Potentially #yChannels random offensive orbs at the start of turn, and gives orb slots when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel an #yAir.", "#yChannel #b", " #yAir Orbs.", "Potentially #yChannels random offensive orbs at the start of turn, and gives orb slots when #yEvoked.", "#bInversion: #bSmoke"]
 },
 "theDuelist:BlackBottle": {
         "NAME": "Bottled Darkness",
-        "DESCRIPTIONS": ["#yChannel a #yBlack.", "#yChannel #b", " #yBlack Orbs.", "Draws and discards cards at the start of each turn, and deals damage to all enemies based on the number of cards in your discard pile when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yBlack.", "#yChannel #b", " #yBlack Orbs.", "Draws and discards cards at the start of each turn, and deals damage to all enemies based on the number of cards in your discard pile when #yEvoked.", "#bInversion: #bWhite"]
 },
 "theDuelist:DragonOrbBottle": {
         "NAME": "Dragon Potion",
-        "DESCRIPTIONS": ["#yChannel a #yDragonOrb.", "#yChannel #b", " #yDragonOrbs.", "Adds #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yDragonOrb.", "#yChannel #b", " #yDragonOrbs.", "Adds #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked.", "#bInversion: #bDragonOrb+"]
 },
 "theDuelist:DragonOrbPlusBottle": {
         "NAME": "Super Dragon Potion",
-        "DESCRIPTIONS": ["#yChannel an #yupgraded #yDragonOrb.", "#yChannel #b", " #yupgraded #yDragonOrbs.", "Adds #yUpgraded #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel an #yupgraded #yDragonOrb.", "#yChannel #b", " #yupgraded #yDragonOrbs.", "Adds #yUpgraded #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked.", "#bInversion: #bDragonOrb"]
 },
 "theDuelist:EarthBottle": {
         "NAME": "Spell Bottle",
-        "DESCRIPTIONS": ["#yChannel an #yEarth.", "#yChannel #b", " #yEarth Orbs.", "Adds #ySpells to your hand at the start of turn, and sets the cost of #ySpells in your hand to #b1 when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel an #yEarth.", "#yChannel #b", " #yEarth Orbs.", "Adds #ySpells to your hand at the start of turn, and sets the cost of #ySpells in your hand to #b1 when #yEvoked.", "#bInversion: #bMud"]
 },
 "theDuelist:FireBottle": {
         "NAME": "Fire Bottle",
-        "DESCRIPTIONS": ["#yChannel a #yFire.", "#yChannel #b", " #yFire Orbs.", "Deals damage to random enemies whenever you play cards. Reduces the #yTribute cost of #yDragons when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yFire.", "#yChannel #b", " #yFire Orbs.", "Deals damage to random enemies whenever you play cards. Reduces the #yTribute cost of #yDragons when #yEvoked.", "#bInversion: #bWater"]
 },
 "theDuelist:LavaBottle": {
         "NAME": "Bottled Lava",
-        "DESCRIPTIONS": ["#yChannel a #yLava.", "#yChannel #b", " #yLava Orbs.", "Deals damage to random enemies when you #yIncrement. When #yEvoked, deals damage to a random enemy based on the number of cards in your hand."]
+        "DESCRIPTIONS": ["#yChannel a #yLava.", "#yChannel #b", " #yLava Orbs.", "Deals damage to random enemies when you #yIncrement. When #yEvoked, deals damage to a random enemy based on the number of cards in your hand.", "#bInversion: #bFrost"]
 },
 "theDuelist:GadgetBottle": {
         "NAME": "Amazon Package",
-        "DESCRIPTIONS": ["#yChannel a #yGadget.", "#yChannel #b", " #yGadget Orbs.", "Gives #yDexterity for the turn at the start of each turn, and plays random #ySkills when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yGadget.", "#yChannel #b", " #yGadget Orbs.", "Gives #yDexterity for the turn at the start of each turn, and plays random #ySkills when #yEvoked.", "#bInversion: #bGlitch"]
 },
 "theDuelist:GlitchBottle": {
         "NAME": "Broken Bottle",
-        "DESCRIPTIONS": ["#yChannel a #yGlitch.", "#yChannel #b", " #yGlitch Orbs.", "Triggers random actions at the start of turn and when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yGlitch.", "#yChannel #b", " #yGlitch Orbs.", "Triggers random actions at the start of turn and when #yEvoked.", "#bInversion: #bGadget"]
 },
 "theDuelist:MetalBottle": {
         "NAME": "Liquid Metal",
-        "DESCRIPTIONS": ["#yChannel a #yMetal.", "#yChannel #b", " #yMetal Orbs.", "Gives #yBlock at the end of turn based on number of #ySpells played, and gives #yMetallicize when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yMetal.", "#yChannel #b", " #yMetal Orbs.", "Gives #yBlock at the end of turn based on number of #ySpells played, and gives #yMetallicize when #yEvoked.", "#bInversion: #bSurge"]
 },
 "theDuelist:MonsterOrbBottle": {
         "NAME": "Bottled Monster",
-        "DESCRIPTIONS": ["#yChannel a #yMonsterOrb.", "#yChannel #b", " #yMonsterOrbs.", "Adds #yMonster #yEggs to your hand at the start of turn, and sets the cost of #yMonsters in your hand to #b0 when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yMonsterOrb.", "#yChannel #b", " #yMonsterOrbs.", "Adds #yMonster #yEggs to your hand at the start of turn, and sets the cost of #yMonsters in your hand to #b0 when #yEvoked.", "#bInversion: #bTokenOrb"]
 },
 "theDuelist:SandBottle": {
         "NAME": "Hourglass",
-        "DESCRIPTIONS": ["#yChannel a #ySand.", "#yChannel #b", " #ySand Orbs.", "#ySlows random enemies at the start of turn and when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #ySand.", "#yChannel #b", " #ySand Orbs.", "#ySlows random enemies at the start of turn and when #yEvoked.", "#bInversion: #bGlass"]
 },
 "theDuelist:StormBottle": {
         "NAME": "Bottled Storm",
-        "DESCRIPTIONS": ["#yChannel a #yStorm.", "#yChannel #b", " #yStorm Orbs.", "Adds #yPowers to your hand at the start of turn, and #yChannels #yLightning when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yStorm.", "#yChannel #b", " #yStorm Orbs.", "Adds #yPowers to your hand at the start of turn, and #yChannels #yLightning when #yEvoked.", "#bInversion: #bLightning"]
 },
 "theDuelist:SummonerBottle": {
         "NAME": "Bottled Summoner",
-        "DESCRIPTIONS": ["#yChannel a #ySummoner.", "#yChannel #b", " #ySummoner Orbs.", "Summons #ySpellcaster Tokens at the end of turn, and #yIncrements when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #ySummoner.", "#yChannel #b", " #ySummoner Orbs.", "Summons #ySpellcaster Tokens at the end of turn, and #yIncrements when #yEvoked.", "#bInversion: #bConsumer"]
 },
 "theDuelist:SteamBottle": {
         "NAME": "Bottled Steam",
-        "DESCRIPTIONS": ["#yChannel a #yMist.", "#yChannel #b", " #yMist Orbs.", "#yIncrements at the start of each turn, and then deals damage that scales with max summons when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yMist.", "#yChannel #b", " #yMist Orbs.", "#yIncrements at the start of each turn, and then deals damage that scales with max summons when #yEvoked.", "#bInversion: #bBlaze"]
 },
 "theDuelist:MudBottle": {
         "NAME": "Goopbottle",
-        "DESCRIPTIONS": ["#yChannel a #yMud.", "#yChannel #b", " #yMud Orbs.", "Applies #yPoison to ALL enemies at the start of turn, and gives the player #yThorns when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yMud.", "#yChannel #b", " #yMud Orbs.", "Applies #yPoison to ALL enemies at the start of turn, and gives the player #yThorns when #yEvoked.", "#bInversion: #bEarth"]
 },
 "theDuelist:BufferBottle": {
         "NAME": "Ojama Bottle",
-        "DESCRIPTIONS": ["#yChannel a #yBuffer.", "#yChannel #b", " #yBuffer Orbs.", "Potentially increases all your current #yBuffs at the start of turn, and gives #yBuffer when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yBuffer.", "#yChannel #b", " #yBuffer Orbs.", "Potentially increases all your current #yBuffs at the start of turn, and gives #yBuffer when #yEvoked.", "#bInversion: #bReducer"]
 },
 "theDuelist:TributeBottle": {
         "NAME": "Magic Bottle",
@@ -125,7 +125,7 @@
 },
 "theDuelist:WaterBottle": {
         "NAME": "Water Bottle",
-        "DESCRIPTIONS": ["#yChannel a #yWater.", "#yChannel #b", " #yWater Orbs.", "Draws cards at the start of turn and when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yWater.", "#yChannel #b", " #yWater Orbs.", "Draws cards at the start of turn and when #yEvoked.", "#bInversion: #bFire"]
 },
 "theDuelist:CoolBottle": {
         "NAME": "Cold Bottle",
@@ -133,15 +133,15 @@
 },
 "theDuelist:HarpPotion": {
         "NAME": "Bottled Harp",
-        "DESCRIPTIONS": ["#yResummon #b", " Spirits of the Harp."]
+        "DESCRIPTIONS": ["#yResummon #b", " Spirits of the Harp.", "#ySpirit #yof #ythe #yHarp: Spellcaster, Summon 1, Block 4, Channel a Light"]
 },
 "theDuelist:BabyPotion": {
         "NAME": "Bottled Dragons",
-        "DESCRIPTIONS": ["#yResummon #b", " Baby Dragons."]
+        "DESCRIPTIONS": ["#yResummon #b", " Baby Dragons.", "#yBaby #yDragon: Dragon, Summon 2, Block 3"]
 },
 "theDuelist:TokenPotion": {
         "NAME": "Bottled Tokens",
-        "DESCRIPTIONS": ["#yResummon #b", " Block Tokens."]
+        "DESCRIPTIONS": ["#yResummon #b", " Block Tokens.", "#yBlock #yToken: Summon 1, Block 1"]
 },
 "theDuelist:TokenPotionB": {
         "NAME": "Bottled Summons",
@@ -201,11 +201,11 @@
 },
 "theDuelist:WhiteBottle": {
         "NAME": "White Potion",
-        "DESCRIPTIONS": ["#yChannel a #yWhite.", "#yChannel #b", " #yWhite Orbs.", "#yUpgrades Spells and Traps when you draw them, and all cards in your hand when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yWhite.", "#yChannel #b", " #yWhite Orbs.", "#yUpgrades Spells and Traps when you draw them, and all cards in your hand when #yEvoked.", "#bInversion: #bBlack"]
 },
 "theDuelist:VoidBottle": {
         "NAME": "Supertiny Blackhole",
-        "DESCRIPTIONS": ["#yChannel a #yVoid.", "#yChannel #b", " #yVoid Orbs.", "Siphons #yTemporary #yHP from random enemies at the start of turn, and plays copies of Dark Hole when #yEvoked."]
+        "DESCRIPTIONS": ["#yChannel a #yVoid.", "#yChannel #b", " #yVoid Orbs.", "Siphons #yTemporary #yHP from random enemies at the start of turn, and plays copies of Dark Hole when #yEvoked.", "#bInversion: #bAlien"]
 },
 "theDuelist:StanceSwitchPotion": {
         "NAME": "Brewing Stand",

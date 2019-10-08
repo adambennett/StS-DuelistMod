@@ -46,7 +46,7 @@ public class SlotMachine extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();    	
-    	AbstractCard rand = DuelistCard.returnTrulyRandomInCombatFromSet(Tags.ARCANE);
+    	AbstractCard rand = slotMachineCard();
     	while (rand.canUpgrade()) { rand.upgrade(); }
     	addCardToHand(rand);
     }

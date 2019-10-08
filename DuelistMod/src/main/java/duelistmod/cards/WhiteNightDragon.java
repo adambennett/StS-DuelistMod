@@ -45,6 +45,8 @@ public class WhiteNightDragon extends DuelistCard
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 3;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

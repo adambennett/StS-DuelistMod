@@ -39,9 +39,18 @@ public class ElectromagneticShield extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 2;
         this.secondMagic = this.baseSecondMagic = 3;
         this.baseTributes = this.tributes = 3;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.SPELL);   
     }
 
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
+    
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

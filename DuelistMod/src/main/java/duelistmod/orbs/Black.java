@@ -37,6 +37,7 @@ public class Black extends DuelistOrb
 	
 	public Black()
 	{
+		this.inversion = "White";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Black.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
@@ -89,7 +90,7 @@ public class Black extends DuelistOrb
 				AbstractDungeon.actionManager.addToBottom(new DiscardSpecificCardAction(p.drawPile.group.get(p.drawPile.group.size() - 1), p.drawPile));
 			}
 		}
-		else if (p.drawPile.group.size() > 0)
+		else if (p.drawPile.group.size() > 0 && this.passiveAmount > 0)
 		{
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
 			for (int i = 0; i < p.drawPile.group.size(); i++)
@@ -174,10 +175,14 @@ public class Black extends DuelistOrb
 	@Override
 	protected void renderText(SpriteBatch sb)
 	{
-		// Render evoke amount text
-		//FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
-		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, this.c, this.fontScale);
+		if (renderInvertText(sb, true) || this.showEvokeValue)
+		{
+			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		}
+		else
+		{
+			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
+		}		
 	}
 
 	@Override

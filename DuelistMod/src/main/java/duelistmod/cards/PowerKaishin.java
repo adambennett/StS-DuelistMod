@@ -37,6 +37,8 @@ public class PowerKaishin extends DuelistCard
         this.originalName = this.name;
         this.exhaust = true;
         this.baseMagicNumber = this.magicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

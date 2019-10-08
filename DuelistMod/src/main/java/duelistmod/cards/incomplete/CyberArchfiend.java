@@ -43,6 +43,10 @@ public class CyberArchfiend extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 1;
+		this.showInvertValue = true;
+		this.showInvertOrbs = 1;
+		this.showEvokeOrbCount = 1;
+		this.showEvokeValue = true;
     }
 
     // Actions the card should do.

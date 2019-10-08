@@ -89,6 +89,7 @@ public class MachineFactory extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+    		this.showEvokeValue = true;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

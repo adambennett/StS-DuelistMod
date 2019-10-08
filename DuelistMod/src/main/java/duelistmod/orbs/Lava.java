@@ -42,6 +42,7 @@ public class Lava extends DuelistOrb
 	
 	public Lava()
 	{
+		this.inversion = "Frost";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 4;
@@ -56,6 +57,7 @@ public class Lava extends DuelistOrb
 	
 	public Lava(int startingDamage)
 	{
+		this.inversion = "Frost";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = startingDamage;
@@ -174,11 +176,18 @@ public class Lava extends DuelistOrb
 	
 	@Override
 	protected void renderText(SpriteBatch sb)
-	{	
-		// Render evoke amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount * AbstractDungeon.player.hand.group.size()), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET - 4.0F * Settings.scale, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
-		// Render passive amount text
-		FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET + 20.0F * Settings.scale, this.c, this.fontScale);
+	{			 
+		if (renderInvertText(sb, true) || this.showEvokeValue)
+		{
+			int handS = AbstractDungeon.player.hand.group.size() - 1;
+			if (handS < 0) { handS = 0; }
+			String damageString = this.evokeAmount + "x" + handS;
+			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, damageString, this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, new Color(0.2F, 1.0F, 1.0F, this.c.a), this.fontScale);
+		}
+		else
+		{
+			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
+		}
 	}
 	
 	@Override

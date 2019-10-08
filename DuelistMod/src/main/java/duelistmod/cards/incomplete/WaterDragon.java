@@ -39,11 +39,20 @@ public class WaterDragon extends DuelistCard
         this.baseBlock = this.block = 14;
         this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.DRAGON);
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

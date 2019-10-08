@@ -41,10 +41,20 @@ public class ShadowVampire extends DuelistCard
         this.originalName = this.name;
         this.magicNumber = this.baseMagicNumber = 2;
         this.tributes = this.baseTributes = 4;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
+
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 

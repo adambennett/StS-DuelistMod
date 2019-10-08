@@ -40,18 +40,28 @@ public class DarkAssailant extends DuelistCard
         this.baseDamage = this.damage = 5;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
         this.tags.add(Tags.ARCANE);
     }
 
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
+
+    
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
     	attack(m);
-    	for (int i = 0; i < this.magicNumber; i++) { AbstractOrb d = new Dark(); channel(d); }
+    	channel(new Dark(), this.magicNumber);
     }
 
     

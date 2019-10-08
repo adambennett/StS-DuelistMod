@@ -38,8 +38,18 @@ public class Relinquished extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.MAGIC_RULER);
 		this.tributes = this.baseTributes = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
+		this.baseMagicNumber = this.magicNumber = 1;
 		this.originalName = this.name;
 
+	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
 	}
 
 	// Actions the card should do.
@@ -47,8 +57,7 @@ public class Relinquished extends DuelistCard
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
 		tribute(p, this.tributes, false, this);
-		AbstractOrb dark = new Dark();
-		channel(dark);
+		channel(new Dark(), this.magicNumber);
 	}
 
 	// Which card to return when making a copy of this card.

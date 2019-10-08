@@ -40,6 +40,8 @@ public class InariFire extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.MONSTER);
         this.baseSummons = this.summons = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

@@ -35,6 +35,8 @@ public class ZefraMetaltron extends DuelistCard
     public ZefraMetaltron() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 3;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WYRM);
         this.originalName = this.name;

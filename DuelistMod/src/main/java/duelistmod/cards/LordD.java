@@ -40,6 +40,8 @@ public class LordD extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.ARCANE);
 		this.tributes = this.baseTributes = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.secondMagic = this.baseSecondMagic = 0;
 		this.originalName = this.name;
 		this.exhaust = true;

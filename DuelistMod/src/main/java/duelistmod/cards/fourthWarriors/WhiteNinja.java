@@ -41,6 +41,8 @@ public class WhiteNinja extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     @Override

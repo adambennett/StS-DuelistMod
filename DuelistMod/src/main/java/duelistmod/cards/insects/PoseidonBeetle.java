@@ -37,12 +37,22 @@ public class PoseidonBeetle extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 4;
         this.magicNumber = this.baseMagicNumber = 3;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.AQUA);
         this.tags.add(Tags.INSECT);
         this.originalName = this.name;
         this.exhaust = true;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
+
 
     // Actions the card should do.
     @Override

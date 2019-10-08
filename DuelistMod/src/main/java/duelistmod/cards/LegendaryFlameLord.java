@@ -40,6 +40,8 @@ public class LegendaryFlameLord extends DuelistCard
         this.baseDamage = this.damage = 12;
         this.baseMagicNumber = this.magicNumber = 10;
         this.secondMagic = this.baseSecondMagic = 5;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
         this.summons = this.baseSummons = 2;

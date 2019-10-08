@@ -3,13 +3,11 @@ package duelistmod.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.potions.*;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.*;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
@@ -53,50 +51,8 @@ public class BadToken extends DuelistCard
     
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
-    	
-    	if (!p.hasAnyPotions())
-		{
-			for (int i = 0; i < p.potionSlots; i++)
-			{
-				int loopCount = 0;
-				AbstractPotion pot = AbstractDungeon.returnRandomPotion();
-				while (!(pot instanceof DuelistPotion || pot instanceof OrbPotion)) 
-				{
-					if (loopCount > 3) { pot = DuelistMod.allDuelistPotions.get(AbstractDungeon.cardRandomRng.random(DuelistMod.allDuelistPotions.size() - 1)); loopCount = 0; }
-					else { pot = AbstractDungeon.returnRandomPotion(); }
-					loopCount++;
-				}
-				Util.log("BT generated " + pot.name + " in the loop that indicated you DID HAVE all empty potion slots before playing the card");
-				p.obtainPotion(pot);
-			}
-		}
-		
-		else
-		{
-			int pots = 0;
-			for (AbstractPotion pot : p.potions) { if (!(pot instanceof PotionSlot)) { pots++; }}
-			if (p.potionSlots - pots > 0)
-			{
-    			for (int i = 0; i < p.potionSlots - pots; i++)
-    			{
-    				int loopCount = 0;
-    				AbstractPotion pot = AbstractDungeon.returnRandomPotion();
-    				while (!(pot instanceof DuelistPotion || pot instanceof OrbPotion)) 
-    				{
-    					if (loopCount > 3) { pot = DuelistMod.allDuelistPotions.get(AbstractDungeon.cardRandomRng.random(DuelistMod.allDuelistPotions.size() - 1)); loopCount = 0; }
-    					else { pot = AbstractDungeon.returnRandomPotion(); }
-    					loopCount++;
-    				}
-    				Util.log("BT generated " + pot.name + " in the loop that indicated you did not have all empty slots before playing the card");
-    				p.obtainPotion(pot);
-    			}
-			}
-			else
-			{
-				Util.log("No potion slots were open for BT");
-			}
-		}
-    	
+    	p.increaseMaxOrbSlots(7, true);
+    	for (int i = 0; i < 9; i++) { channelRandom(); }
     	if (DuelistMod.debug)
     	{
     		Debug.printTributeInfo();

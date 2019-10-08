@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -41,20 +40,25 @@ public class Mudora extends DuelistCard
         this.baseDamage = this.damage = 4;
         this.summons = this.baseSummons = 1;
         this.magicNumber = this.baseMagicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
     	attack(m);
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-        	AbstractOrb mud = new Mud();
-        	channel(mud);
-    	}
+    	channel(new Mud(), this.magicNumber);
     }
 
     

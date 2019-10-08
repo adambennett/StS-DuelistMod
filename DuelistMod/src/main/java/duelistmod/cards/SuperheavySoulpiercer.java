@@ -38,6 +38,8 @@ public class SuperheavySoulpiercer extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 5;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SUPERHEAVY);
         this.misc = 0;

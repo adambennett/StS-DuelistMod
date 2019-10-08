@@ -41,6 +41,8 @@ public class LonefireBlossom extends DuelistCard
         this.originalName = this.name;
         this.isSummon = true;
         this.exhaust = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

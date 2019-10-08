@@ -42,6 +42,8 @@ public class NaturiaCosmobeet extends DuelistCard
         this.tags.add(Tags.PLANT);
         this.originalName = this.name;
         this.isSummon = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

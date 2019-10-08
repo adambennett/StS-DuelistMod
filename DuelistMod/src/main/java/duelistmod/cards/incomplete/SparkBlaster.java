@@ -36,10 +36,19 @@ public class SparkBlaster extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 10;
         this.magicNumber = this.baseMagicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
 		this.tags.add(Tags.ARCANE);
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

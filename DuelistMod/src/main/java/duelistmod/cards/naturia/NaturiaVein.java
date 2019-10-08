@@ -45,6 +45,7 @@ public class NaturiaVein extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	tribute();
     	applyPowerToSelf(new NaturiaVeinPower());
     }
 

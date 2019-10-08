@@ -36,6 +36,8 @@ public class DarkBlade extends DuelistCard
     public DarkBlade() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons = 4;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
         this.tags.add(Tags.BAD_MAGIC);
@@ -51,8 +53,7 @@ public class DarkBlade extends DuelistCard
     {
     	summon(p, this.summons, this);
     	attack(m, this.baseAFX, this.damage);
-    	AbstractOrb dark = new Dark();
-    	channel(dark);    	
+    	channel(new Dark());    	
     	if (this.magicNumber > 0) { DuelistCard.damageSelf(this.magicNumber); }
     }
 

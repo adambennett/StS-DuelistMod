@@ -37,6 +37,8 @@ public class WaterOrbCard extends DuelistCard
         this.tags.add(Tags.ORB_CARD);
         this.originalName = this.name;
         this.dontTriggerOnUseCard = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

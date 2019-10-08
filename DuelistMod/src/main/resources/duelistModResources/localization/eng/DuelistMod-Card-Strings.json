@@ -215,14 +215,14 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL For the rest of this turn, Channel a Frost whenever you Summon a Dragon."
 	},
 	"theDuelist:BlizzardPrincess": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel 2 Frost.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Frost.",
 		"NAME": "Blizzard Princess",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel 2 Frost."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Frost."
 	},
 	"theDuelist:BlizzardWarrior": {
-		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel 2 Frost.",
+		"DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel !M! Frost.",
 		"NAME": "Blizzard Warrior",
-		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel 2 Frost."
+		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Channel !M! Frost."
 	},
 	"theDuelist:BlockGolem": {
 		"DESCRIPTION": "Rock NL Summon !duelist:SUMM! NL Gain !M! Temporary HP. NL Exhaust.",
@@ -433,9 +433,9 @@
 		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Gain !B! Block. NL Channel an Air."
 	},
 	"theDuelist:DarkMasterZorc": {
-		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel 3 Dark.",
+		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Dark.",
 		"NAME": "Dark Master Zorc",
-		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel 3 Dark."
+		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel !M! Dark."
 	},
 	"theDuelist:DarkMimicLv1": {
 		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM!. Draw 1 card. NL Overflow 1 - Remove this from your deck. At the start of your next combat, add a copy of Dark Mimic Lv3 to your hand.",
@@ -905,9 +905,9 @@
 		"UPGRADE_DESCRIPTION": "Exhaust ALL Status and Curse cards in your draw and discard piles."
 	},
 	"theDuelist:HeartUnderdog": {
-		"DESCRIPTION": "Whenever you draw a monster, draw 1 card.",
+		"DESCRIPTION": "Whenever you draw a monster, draw a card.",
 		"NAME": "Heart of Underdog",
-		"UPGRADE_DESCRIPTION": "Innate NL Whenever you draw a monster, draw 1 card."
+		"UPGRADE_DESCRIPTION": "Innate NL Whenever you draw a monster, draw a card."
 	},
 	"theDuelist:HeartUnderspell": {
 		"DESCRIPTION": "Whenever you draw a Spell, copy it.",
@@ -1691,9 +1691,9 @@
 		"UPGRADE_DESCRIPTION": "Summon a duplicate of each monster you play this turn."
 	},
 	"theDuelist:Relinquished": {
-		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Channel 1 Dark.",
+		"DESCRIPTION": "Spellcaster NL Tribute !duelist:TRIB! NL Channel !M! Dark.",
 		"NAME": "Relinquished",
-		"UPGRADE_DESCRIPTION": "Spellcaster NL Channel 1 Dark."
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Channel !M! Dark."
 	},
 	"theDuelist:ResummonArchetype": {
 		"DESCRIPTION": "Add Resummon cards to your card pool.",
@@ -4022,9 +4022,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Increment !M!. NL Deal !D! damage."
 	},
 	"theDuelist:AlienTelepath": {
-		"DESCRIPTION": "Summon !duelist:SUMM! NL Look at the top !M! cards of your draw pile and choose !duelist:M! to draw. NL Channel an Alien.",
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Look at the top !M! cards of your draw pile and choose !duelist:M! to draw.",
 		"NAME": "Alien Telepath",
-		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Look at the top !M! cards of your draw pile and choose !duelist:M! to draw. NL Channel an Alien."
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Look at the top !M! cards of your draw pile and choose !duelist:M! to draw."
 	},
 	"theDuelist:CosmicHorrorGangiel": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Channel an Alien.",

@@ -39,11 +39,21 @@ public class BlizzardPrincess extends DuelistCard
         this.baseDamage = this.damage = 9;
         this.upgradeDmg = 3;
         this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.showEvokeOrbCount = 2;
+        this.showEvokeValue = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
         this.tags.add(Tags.ALL);
         this.misc = 0;
         this.originalName = this.name;
+    }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber;
     }
 
     // Actions the card should do.
@@ -52,10 +62,7 @@ public class BlizzardPrincess extends DuelistCard
     {
     	tribute(p, this.tributes, false, this);
     	attack(m, AFX, this.damage);
-    	AbstractOrb frost = new Frost();
-    	AbstractOrb frostB = new Frost();
-    	channel(frost);
-    	channel(frostB);
+    	channel(new Frost(), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

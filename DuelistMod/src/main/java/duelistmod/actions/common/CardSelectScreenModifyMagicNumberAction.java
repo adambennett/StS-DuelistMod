@@ -88,12 +88,14 @@ public class CardSelectScreenModifyMagicNumberAction extends AbstractGameAction
 			original.baseMagicNumber -= magic;
 			if (original.baseMagicNumber < 0) { original.baseMagicNumber = 0; }
 			original.magicNumber = original.baseMagicNumber;
+			original.isMagicNumberModified = true;
 		}
 		else
 		{
 			original.baseMagicNumber += magic;
 			if (original.baseMagicNumber < 0) { original.baseMagicNumber = 0; }
 			original.magicNumber = original.baseMagicNumber;
+			original.isMagicNumberModified = true;
 		}
 	}
 }

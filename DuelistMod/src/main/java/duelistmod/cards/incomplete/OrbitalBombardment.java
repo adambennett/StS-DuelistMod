@@ -39,6 +39,8 @@ public class OrbitalBombardment extends DuelistCard
         this.originalName = this.name;
         this.damage = this.baseDamage = 12;
         this.baseSummons = this.summons = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.TRAP);
     }
 

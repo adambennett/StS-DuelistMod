@@ -38,6 +38,8 @@ public class FishKicks extends DuelistCard
         this.originalName = this.name;
         this.baseMagicNumber = this.magicNumber = 5;
         this.damage = this.baseDamage = 15;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.SPELL);
     }
 

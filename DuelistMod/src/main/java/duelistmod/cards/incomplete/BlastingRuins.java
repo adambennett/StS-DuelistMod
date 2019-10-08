@@ -42,6 +42,8 @@ public class BlastingRuins extends DuelistCard
         this.summons = this.baseSummons = 2;	
         this.baseMagicNumber = this.magicNumber = 1;	
         this.originalName = this.name;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

@@ -37,6 +37,8 @@ public class WeepingIdol extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 3;
         this.summons = this.baseSummons = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ROCK);
         this.originalName = this.name;

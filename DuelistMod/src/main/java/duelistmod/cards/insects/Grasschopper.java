@@ -48,7 +48,7 @@ public class Grasschopper extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int size = xCostTribute();
+    	int size = xCostTribute(Tags.INSECT);
     	for (int i = 0; i < size; i++) { normalMultidmg(); }
     }
 

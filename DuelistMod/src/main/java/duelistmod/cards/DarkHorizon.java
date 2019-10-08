@@ -41,6 +41,8 @@ public class DarkHorizon extends DuelistCard
 		this.tags.add(Tags.TRAP);
 		this.tags.add(Tags.ORB_DECK);
 		this.orbDeckCopies = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.tributes = this.baseTributes = 1;
 		this.baseMagicNumber = this.magicNumber = 2;
 		this.setupStartingCopies();

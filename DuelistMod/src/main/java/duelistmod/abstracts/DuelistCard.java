@@ -137,6 +137,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public boolean loadedTribOrSummonChange = false;
 	public boolean fiendDeckDmgMod = false;
 	public boolean aquaDeckEffect = false;
+	public boolean showInvertValue = false;
+	public int showInvertOrbs;
 	public int secondMagic = 0;
 	public int baseSecondMagic = 0;
 	public int thirdMagic = 0;
@@ -418,6 +420,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
     	if (this.fiendDeckDmgMod) {
     		this.glowColor = Color.RED;
         }
+    	else if (this.isMagicNumberModified || this.isMagicNumModifiedForTurn)
+    	{
+    		this.glowColor = Color.GREEN;
+    	}
     }
 	// =============== /SUPER OVERRIDE FUNCTIONS/ =======================================================================================================================================================
 	
@@ -1312,7 +1318,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	// Handle onTribute for custom relics, powers, orbs, stances, cards, potions
 	private static void handleOnTributeForAllAbstracts(DuelistCard tributed, DuelistCard tributingCard)
 	{
-		Util.log("Running onSummon for all abstract objects! Tributed: " + tributed + " for " + tributingCard.name);
+		Util.log("Running onTribute for all abstract objects! Tributed: " + tributed + " for " + tributingCard.name);
 		AbstractPlayer p = AbstractDungeon.player;
 		for (AbstractRelic r : p.relics) { if (r instanceof DuelistRelic) { ((DuelistRelic)r).onTribute(tributed, tributingCard); }}
 		for (AbstractOrb o : p.orbs) { if (o instanceof DuelistOrb) {  ((DuelistOrb)o).onTribute(tributed, tributingCard); }}
@@ -2893,6 +2899,38 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public int xCostTribute()
 	{
 		int size = tribute(AbstractDungeon.player, 0, true, this).size();
+		if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return size * 2; }
+		else { return size; }
+	}
+	
+	public int xCostTribute(CardTags tag)
+	{
+		AbstractPlayer p = player();
+		int tokens = 0;
+		int otherTribs = 0;
+		if (player().hasPower(SummonPower.POWER_ID))
+    	{
+	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
+	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
+	    	ArrayList<String> newSummonList = new ArrayList<String>();
+	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
+	    	for (DuelistCard s : aSummonsList)
+	    	{
+	    		if (s.hasTag(tag))
+	    		{
+	    			tokens++;
+	    		}
+	    		else { otherTribs++; }
+	    	}
+	    	
+	    	tributeChecker(player(), tokens + otherTribs, this, true);
+	    	summonsInstance.summonList = newSummonList;
+	    	summonsInstance.actualCardSummonList = aNewSummonList;
+	    	summonsInstance.amount -= tokens + otherTribs;
+	    	summonsInstance.updateStringColors();
+	    	summonsInstance.updateDescription();
+    	}
+		int size = tokens;
 		if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return size * 2; }
 		else { return size; }
 	}
@@ -5938,6 +5976,40 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			return new Token();
 		}
 	}
+	
+	public AbstractCard slotMachineCard()
+	{
+		ArrayList<AbstractCard> arcane = new ArrayList<AbstractCard>();
+		for (AbstractCard c : DuelistMod.coloredCards)
+		{
+			if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
+				arcane.add(c);
+			}
+		}
+		
+		if (arcane.size() > 0)
+		{
+			return arcane.get(AbstractDungeon.cardRandomRng.random(arcane.size() - 1));
+		}
+		else
+		{
+			for (AbstractCard c : DuelistMod.myCards)
+			{
+				if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
+					arcane.add(c);
+				}
+			}
+			
+			if (arcane.size() > 0)
+			{
+				return arcane.get(AbstractDungeon.cardRandomRng.random(arcane.size() - 1));
+			}
+			else
+			{
+				return new Token();
+			}
+		}
+	}
 
 	public static AbstractCard returnTrulyRandomInCombatFromSet(CardTags setToFindFrom) 
 	{
@@ -6440,7 +6512,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		
 		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
 		extraTags.add(Tags.ROSE);		
-		if (!(this instanceof TributeToken)) { extraTags.add(Tags.MEGATYPED); }
+		boolean isTok = this instanceof TributeToken || this instanceof SummonToken;
+		if (!isTok) { extraTags.add(Tags.MEGATYPED); }
 		extraTags.add(Tags.OJAMA);	
 		extraTags.add(Tags.GIANT);
 		extraTags.add(Tags.MAGNET);
@@ -6470,7 +6543,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
 		extraTags.add(Tags.ROSE);
 		extraTags.add(Tags.ARCANE);
-		extraTags.add(Tags.MEGATYPED);
+		if (!(this instanceof ShardGreed)) { extraTags.add(Tags.MEGATYPED); }
 		extraTags.add(Tags.OJAMA);
 		//extraTags.add(Tags.MONSTER);
 		extraTags.add(Tags.SPELL);

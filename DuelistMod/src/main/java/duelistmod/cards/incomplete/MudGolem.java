@@ -41,6 +41,8 @@ public class MudGolem extends DuelistCard
     	this.misc = 0;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

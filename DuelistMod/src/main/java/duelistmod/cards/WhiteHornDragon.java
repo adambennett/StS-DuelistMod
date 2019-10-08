@@ -44,6 +44,8 @@ public class WhiteHornDragon extends DuelistCard
         this.tags.add(Tags.DRAGON);
         this.misc = 0;
         this.originalName = this.name;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tributes = this.baseTributes = 2;
     }
 

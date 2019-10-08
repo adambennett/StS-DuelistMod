@@ -42,12 +42,21 @@ public class DarkPaladin extends DuelistCard
     public DarkPaladin() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.SPELLCASTER);
         this.misc = 0;
         this.originalName = this.name;
         this.tributes = this.baseTributes = 2;
         this.magicNumber = this.baseMagicNumber = 1;
+    }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber;
     }
 
     // Actions the card should do.

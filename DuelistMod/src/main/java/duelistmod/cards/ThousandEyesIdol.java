@@ -37,6 +37,10 @@ public class ThousandEyesIdol extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tributes = this.baseTributes = 1;
+		this.showInvertValue = true;
+		this.showInvertOrbs = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
 		this.originalName = this.name;
 
 	}

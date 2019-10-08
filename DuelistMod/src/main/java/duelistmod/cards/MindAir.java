@@ -40,7 +40,16 @@ public class MindAir extends DuelistCard
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 1;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.setupStartingCopies();
+    }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber;
     }
 
     // Actions the card should do.

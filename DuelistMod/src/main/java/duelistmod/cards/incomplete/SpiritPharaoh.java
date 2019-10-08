@@ -39,6 +39,8 @@ public class SpiritPharaoh extends DuelistCard
         this.baseDamage = this.damage = 14;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tributes = this.baseTributes = 5;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);

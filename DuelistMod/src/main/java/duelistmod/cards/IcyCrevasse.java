@@ -44,7 +44,16 @@ public class IcyCrevasse extends DuelistCard
 		this.baseMagicNumber = this.magicNumber = 3;		// Focus
 		this.baseSecondMagic = this.secondMagic = 3;		// Max summon reduction
 		this.baseThirdMagic = this.thirdMagic = 2;			// Frost Channeled
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
 		this.setupStartingCopies();
+    }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.thirdMagic;
     }
 
     // Actions the card should do.

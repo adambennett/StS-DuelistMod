@@ -43,6 +43,8 @@ public class CosmicHorrorGangiel extends DuelistCard
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.tributes = this.baseTributes = 3;
 		this.damage = this.baseDamage = 12;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
     
     // Actions the card should do.

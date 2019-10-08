@@ -40,6 +40,8 @@ public class DarkMagician extends DuelistCard
     public DarkMagician() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = DAMAGE;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.SPELLCASTER);

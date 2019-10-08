@@ -35,6 +35,9 @@ public class DarkMasterZorc extends DuelistCard
     public DarkMasterZorc() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tributes = this.baseTributes = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 3;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
         this.tags.add(Tags.EXODIA_DECK);
@@ -43,6 +46,13 @@ public class DarkMasterZorc extends DuelistCard
         this.originalName = this.name;
         this.baseDamage = this.damage = 20;
     }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber;
+    }
 
     // Actions the card should do.
     @Override
@@ -50,11 +60,7 @@ public class DarkMasterZorc extends DuelistCard
     {
     	attack(m, this.baseAFX, this.damage);
     	tribute(p, this.tributes, false, this);    	
-    	for (int i = 0; i < 3; i++)
-    	{
-    		AbstractOrb dark = new Dark();
-        	channel(dark);    	
-    	}    	
+    	channel(new Dark(), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

@@ -43,6 +43,8 @@ public class BlackRoseMoonlight extends DuelistCard
         this.tags.add(Tags.PLANT); 
         this.tags.add(Tags.DRAGON); 
         this.tags.add(Tags.ROSE); 
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     @Override

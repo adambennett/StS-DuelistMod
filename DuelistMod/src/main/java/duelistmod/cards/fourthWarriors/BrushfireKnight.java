@@ -46,6 +46,8 @@ public class BrushfireKnight extends DuelistCard
         this.summons = this.baseSummons = 1;	
         this.baseDamage = this.damage = 10;
         this.magicNumber = this.baseMagicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;
     }
     

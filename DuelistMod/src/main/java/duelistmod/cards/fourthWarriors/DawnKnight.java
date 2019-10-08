@@ -39,6 +39,7 @@ public class DawnKnight extends DuelistCard
         this.tags.add(Tags.WARRIOR); 
         this.summons = this.baseSummons = 1;
         this.damage = this.baseDamage = 9;
+		this.showEvokeValue = true;
         this.originalName = this.name;
     }
 

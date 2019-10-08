@@ -38,6 +38,8 @@ public class IrisEarthMother extends DuelistCard
         this.baseBlock = this.block = 16;
         this.tributes = this.baseTributes = 4;
         this.magicNumber = this.baseMagicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.NEVER_GENERATE);
@@ -45,6 +47,13 @@ public class IrisEarthMother extends DuelistCard
         this.originalName = this.name;
         this.makeMegatyped();
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override

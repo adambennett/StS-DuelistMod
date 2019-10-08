@@ -38,6 +38,8 @@ public class MonsterOrbCard extends DuelistCard
         this.tags.add(Tags.NO_METRONOME);
         this.originalName = this.name;
         this.dontTriggerOnUseCard = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

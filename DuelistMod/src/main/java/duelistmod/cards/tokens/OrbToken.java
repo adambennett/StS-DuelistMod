@@ -41,6 +41,8 @@ public class OrbToken extends TokenCard
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
     	this.isEthereal = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
     public OrbToken(String tokenName) 
     { 
@@ -48,6 +50,8 @@ public class OrbToken extends TokenCard
     	this.tags.add(Tags.TOKEN);  
     	this.purgeOnUse = true;
     	this.isEthereal = true;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {

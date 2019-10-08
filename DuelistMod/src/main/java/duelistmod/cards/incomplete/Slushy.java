@@ -41,6 +41,8 @@ public class Slushy extends DuelistCard
         this.summons = this.baseSummons = 1;	
         this.baseMagicNumber = this.magicNumber = 6;	// Temp HP
         this.secondMagic = this.baseSecondMagic = 3;	// Increment
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;
         this.exhaust = true;
     }

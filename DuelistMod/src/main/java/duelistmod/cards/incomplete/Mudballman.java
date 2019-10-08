@@ -42,6 +42,8 @@ public class Mudballman extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
     }
 
     @Override

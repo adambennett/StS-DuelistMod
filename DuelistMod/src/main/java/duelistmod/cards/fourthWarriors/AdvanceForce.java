@@ -37,6 +37,8 @@ public class AdvanceForce extends DuelistCard
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 5;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
     }
 
     // Actions the card should do.

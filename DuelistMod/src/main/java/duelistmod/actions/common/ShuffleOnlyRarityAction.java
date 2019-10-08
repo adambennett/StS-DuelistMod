@@ -76,6 +76,7 @@ public class ShuffleOnlyRarityAction extends com.megacrit.cardcrawl.actions.Abst
 					for (AbstractCard c : taggedPile.group)
 					{
 						AbstractDungeon.getCurrRoom().souls.shuffle(c, true);
+						AbstractDungeon.player.masterDeck.shuffle();
 						DuelistMod.logger.info("shuffling " + c.name);
 					}
 				}
@@ -84,6 +85,7 @@ public class ShuffleOnlyRarityAction extends com.megacrit.cardcrawl.actions.Abst
 					for (AbstractCard c : taggedPile.group)
 					{
 						AbstractDungeon.getCurrRoom().souls.shuffle(c, false);
+						AbstractDungeon.player.masterDeck.shuffle();
 						DuelistMod.logger.info("shuffling " + c.name);
 					}
 				}

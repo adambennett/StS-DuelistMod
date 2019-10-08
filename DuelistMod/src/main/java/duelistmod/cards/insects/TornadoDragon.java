@@ -44,6 +44,7 @@ public class TornadoDragon extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WYRM);
         this.tags.add(Tags.DRAGON);
+        this.showEvokeValue = true;
         this.originalName = this.name;
         this.isSummon = true;
     }

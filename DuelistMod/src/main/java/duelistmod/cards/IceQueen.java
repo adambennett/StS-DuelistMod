@@ -42,7 +42,18 @@ public class IceQueen extends DuelistCard
 		this.setupStartingCopies();
         this.misc = 0;
         this.baseMagicNumber = this.magicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 3;
+		this.showInvertValue = true;
+		this.showInvertOrbs = 1;
 		this.originalName = this.name;
+    }
+    
+    @Override
+    public void update()
+    {
+		super.update();
+    	this.showEvokeOrbCount = this.magicNumber + 1;
     }
 
     // Actions the card should do.
@@ -54,11 +65,7 @@ public class IceQueen extends DuelistCard
     	invertIceQueen(2, this.magicNumber);
     	if (hadNoOrbs)
     	{
-    		for (int i = 0; i < this.magicNumber; i++)
-        	{
-    	    	AbstractOrb frost = new Frost();
-    	    	channel(frost);
-        	}
+    		channel(new Frost(), this.magicNumber);
     	}
     }
 

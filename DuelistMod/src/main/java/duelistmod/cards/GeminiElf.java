@@ -49,6 +49,8 @@ public class GeminiElf extends DuelistCard
         this.startingOPSPDeckCopies = 1;
         this.magicNumber = this.baseMagicNumber = 1;
         this.summons = this.baseSummons = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.originalName = this.name;    
         this.isSummon = true;
         this.setupStartingCopies();

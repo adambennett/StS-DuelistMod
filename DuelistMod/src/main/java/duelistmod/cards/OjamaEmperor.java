@@ -50,6 +50,8 @@ public class OjamaEmperor extends DuelistCard
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 5;
 		this.baseMagicNumber = this.magicNumber = 10;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
 		this.exhaust = true;
     }
 

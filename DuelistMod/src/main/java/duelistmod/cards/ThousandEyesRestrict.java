@@ -38,6 +38,10 @@ public class ThousandEyesRestrict extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.PHARAOH_SERVANT);
 		this.tributes = this.baseTributes = 4;
+		this.showInvertValue = true;
+		this.showInvertOrbs = 0;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 0;
 		this.originalName = this.name;
 
 	}

@@ -34,12 +34,13 @@ public class BookSecret extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 0;
-    private static final int CARDS = 2;
     // /STAT DECLARATION/
 
     public BookSecret() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = CARDS;
+        this.baseMagicNumber = this.magicNumber = 2;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.tags.add(Tags.GENERATION_DECK);

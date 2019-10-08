@@ -37,12 +37,21 @@ public class LordPoison extends DuelistCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	this.baseMagicNumber = this.magicNumber = 2;
     	this.secondMagic = this.baseSecondMagic = 7;
+		this.showEvokeValue = true;
+		this.showEvokeOrbCount = 2;
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.PLANT);
     	this.misc = 0;
     	this.originalName = this.name;
     	this.tributes = this.baseTributes = 4;
     }
+    
+	@Override
+	public void update()
+	{
+		super.update();
+		this.showEvokeOrbCount = this.magicNumber;
+	}
 
     // Actions the card should do.
     @Override
