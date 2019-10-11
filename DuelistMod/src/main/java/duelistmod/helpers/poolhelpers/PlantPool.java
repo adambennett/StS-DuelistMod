@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.MiraculousDescent;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.insects.*;
 import duelistmod.cards.naturia.*;
@@ -144,7 +145,6 @@ public class PlantPool
 		cards.add(new BlossomBombardment());
 		cards.add(new ThornMalice());
 		cards.add(new SilverApples());
-		cards.add(new MiraculousDescent());
 		cards.add(new Reinforcements());
 		cards.add(new KamionTimelord());
 		cards.add(new WormApocalypse());

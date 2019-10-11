@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -18,8 +19,6 @@ public class ReducerPotion extends AbstractPotion {
     
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
-    
-    private int lossAmt = 1;
 
     public ReducerPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
@@ -29,7 +28,7 @@ public class ReducerPotion extends AbstractPotion {
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.lossAmt + DESCRIPTIONS[2];
+        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = false;
@@ -38,13 +37,22 @@ public class ReducerPotion extends AbstractPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+    
+    @Override
+    public boolean canUse()
+    {
+    	int decAmt = 1;
+    	if (!AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) { return false; }
+    	if (DuelistCard.canDecMaxSummons(decAmt)) { return true; }
+    	else { return false; }
+    }
 
     @Override
     public void use(AbstractCreature target) 
     {
     	target = AbstractDungeon.player;
     	DuelistCard.applyPowerToSelf(new ReducerPower(AbstractDungeon.player, this.potency + 1));
-    	DuelistCard.decMaxSummons(AbstractDungeon.player, this.lossAmt);
+    	DuelistCard.decMaxSummons(AbstractDungeon.player, 1);
     }
     
     @Override
@@ -63,7 +71,7 @@ public class ReducerPotion extends AbstractPotion {
     @Override
     public void initializeData() {
         this.potency = this.getPotency();
-        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.lossAmt + DESCRIPTIONS[2];
+        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
@@ -71,7 +79,7 @@ public class ReducerPotion extends AbstractPotion {
     public void upgradePotion()
     {
       this.potency += 2;
-      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + this.lossAmt + DESCRIPTIONS[2];
+      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
     }

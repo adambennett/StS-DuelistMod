@@ -16,6 +16,7 @@ import basemod.BaseMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.insects.*;
@@ -107,7 +108,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new DarkMagician());
 		DuelistMod.myCards.add(new DarklordMarie());
 		DuelistMod.myCards.add(new DianKeto());
-		//DuelistMod.myCards.add(new DragonCaptureJar());
+		DuelistMod.myCards.add(new DragonCaptureJar());
 		DuelistMod.myCards.add(new FiendMegacyber());
 		DuelistMod.myCards.add(new Fissure());
 		DuelistMod.myCards.add(new FluteSummoning());
@@ -1360,6 +1361,7 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Insect Token", new InsectToken());
 		DuelistMod.summonMap.put("Plant Token", new PlantToken());
 		DuelistMod.summonMap.put("Dragon Token", new DragonToken());
+		DuelistMod.summonMap.put("Dragonic Token", new DragonicToken());
 		DuelistMod.summonMap.put("Fiend Token", new FiendToken());
 		DuelistMod.summonMap.put("Machine Token", new MachineToken());
 		DuelistMod.summonMap.put("Superheavy Token", new SuperheavyToken());
@@ -1436,6 +1438,7 @@ public class DuelistCardLibrary
 		tokens.add(new NatureToken());
 		tokens.add(new NaturiaToken());
 		tokens.add(new RockToken());
+		tokens.add(new DragonicToken());
 		return tokens;
 	}
 	
@@ -1487,6 +1490,7 @@ public class DuelistCardLibrary
 		tokens.add(new NatureToken());
 		tokens.add(new NaturiaToken());
 		tokens.add(new RockToken());
+		tokens.add(new DragonicToken());
 		return tokens;
 	}
 	

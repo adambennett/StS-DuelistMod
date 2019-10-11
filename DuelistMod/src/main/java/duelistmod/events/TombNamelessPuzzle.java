@@ -438,7 +438,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     	if (totalSummons == totalTribCost) { totalScore += 15; Util.log("Nameless Tomb - Magic Scoring: +15 for having an equal total tribute cost and total summons!");}
     	if (cards == duelistCards) { totalScore += 5; Util.log("Nameless Tomb - Magic Scoring: +5 for having all Duelist cards!");}
     	Util.log("Nameless Tomb - Magic Total Score: " + totalScore + " -- You need a 26 or higher to enable the Magic Option");
-    	if (totalScore > 30) { this.magicAllowed = true; }
+    	if (totalScore > 40) { this.magicAllowed = true; }
     	else { this.magicAllowed = false; }
     	logMetric(NAME, "Magic Score - " + totalScore);
     	return totalScore;

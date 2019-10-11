@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -143,7 +144,6 @@ public class FiendPool
 		fiendCards.add(new DoomDonuts());		
 		fiendCards.add(new Wildfire());
 		fiendCards.add(new BerserkerCrush());
-		fiendCards.add(new SpiralSpearStrike());
 		fiendCards.add(new MeteorDestruction());
 		fiendCards.add(new FeatherShot());
 		fiendCards.add(new FlyingSaucer());

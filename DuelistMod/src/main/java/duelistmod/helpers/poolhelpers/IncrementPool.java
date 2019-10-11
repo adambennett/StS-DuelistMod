@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.fourthWarriors.WhiteHowling;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.insects.*;
@@ -115,7 +116,6 @@ public class IncrementPool
 		incCards.add(new SilverApples());
 		incCards.add(new GoldenApples());
 		incCards.add(new BeastFangs());
-		incCards.add(new AmuletDragon());
 		incCards.add(new DarklordSuperbia());
 		incCards.add(new LightningVortex());		
 		incCards.add(new DarkSimorgh());	
@@ -124,7 +124,6 @@ public class IncrementPool
 		incCards.add(new AmuletAmbition());		
 		incCards.add(new Relinkuriboh());		
 		incCards.add(new LegendaryFlameLord());		
-		incCards.add(new LavaDragon());		
 		incCards.add(new FlameTiger());		
 		incCards.add(new GeminiElf());		
 		incCards.add(new SwordsBurning());		

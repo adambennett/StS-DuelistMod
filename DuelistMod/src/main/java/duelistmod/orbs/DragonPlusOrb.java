@@ -1,10 +1,13 @@
 package duelistmod.orbs;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -15,9 +18,10 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.RandomizedHandAction;
+import duelistmod.actions.common.*;
 import duelistmod.actions.unique.DragonOrbEvokeAction;
 import duelistmod.interfaces.*;
+import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.Tags;
 
 @SuppressWarnings("unused")
@@ -39,8 +43,8 @@ public class DragonPlusOrb extends DuelistOrb
 		this.inversion = "DragonOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/DragonPlus.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 3;
-		this.basePassiveAmount = this.passiveAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.basePassiveAmount = this.passiveAmount = 6;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
@@ -77,11 +81,21 @@ public class DragonPlusOrb extends DuelistOrb
 	private void triggerPassiveEffect()
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-		for (int i = 0; i < this.passiveAmount; i++)
-		{
-			DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON);
-			AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, true, true, true, false, randomMonster.baseTributes > 0, false, false, false, 1, 2, 1, 2, 0, 0));
-			if (DuelistMod.debug) { System.out.println("theDuelist:DragonOrb --- > Added: " + randomMonster.name + " to player hand."); }
+		if (this.passiveAmount > 0) 
+		{ 
+			DuelistCard.applyPowerToSelf(new Dragonscales(this.passiveAmount));
+			ArrayList<String> genDrags = new ArrayList<String>();
+			ArrayList<AbstractCard> selectDrags = new ArrayList<AbstractCard>();
+			
+			while (selectDrags.size() < 5)
+			{
+				AbstractCard randomMonster = DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON);
+				while (genDrags.contains(randomMonster.name)) { randomMonster = DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON); }
+				genDrags.add(randomMonster.name);
+				selectDrags.add(randomMonster);
+			}
+			
+			AbstractDungeon.actionManager.addToBottom(new CardSelectScreenIntoHandAction(selectDrags, 1));
 		}
 	}
 

@@ -53,7 +53,7 @@ public class BlastMagician extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	DuelistCard.attackMultipleRandom(this.damage, this.magicNumber, AttackEffect.SLASH_HEAVY, DamageType.NORMAL);
+    	attackMultipleRandom(this.damage, this.magicNumber, AttackEffect.SLASH_HEAVY, DamageType.NORMAL);
     	if (p.hasPower(SummonPower.POWER_ID))
 		{
 			int tokens = 0;

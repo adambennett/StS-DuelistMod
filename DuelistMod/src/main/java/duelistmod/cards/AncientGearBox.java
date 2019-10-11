@@ -41,6 +41,8 @@ public class AncientGearBox extends DuelistCard
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
+		this.tags.add(Tags.ANCIENT_FOR_PIXIE);
+		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
     }
 
     // Actions the card should do.

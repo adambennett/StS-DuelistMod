@@ -30,13 +30,13 @@
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn. NL #bInversion: #bDragonOrb+"
+      "#yPassive: At the start of turn, gain #b", " #yDragonscales and choose 1 of 3 #yRandomized #yDragons to add to your hand. NL #bInversion: #bDragonOrb+"
     ]
   },
    "theDuelist:DragonPlusOrb": {
     "NAME": "DragonOrb+",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, add #b", " #yRandomized #yDragon to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn. NL #bInversion: #bDragonOrb"
+      "#yPassive: At the start of turn, gain #b", " #yDragonscales and choose 1 of 5 #yRandomized #yDragons to add to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn. NL #bInversion: #bDragonOrb"
     ]
   },
   "theDuelist:ReducerOrb": {

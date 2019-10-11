@@ -45,11 +45,11 @@
 },
 "theDuelist:DragonOrbBottle": {
         "NAME": "Dragon Potion",
-        "DESCRIPTIONS": ["#yChannel a #yDragonOrb.", "#yChannel #b", " #yDragonOrbs.", "Adds #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked.", "#bInversion: #bDragonOrb+"]
+        "DESCRIPTIONS": ["#yChannel a #yDragonOrb.", "#yChannel #b", " #yDragonOrbs.", "Gives you #yDragonscales and #yRandomized #yDragons at the start of turn, no #yEvoke effect.", "#bInversion: #bDragonOrb+"]
 },
 "theDuelist:DragonOrbPlusBottle": {
         "NAME": "Super Dragon Potion",
-        "DESCRIPTIONS": ["#yChannel an #yupgraded #yDragonOrb.", "#yChannel #b", " #yupgraded #yDragonOrbs.", "Adds #yUpgraded #yDragons to your hand at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked.", "#bInversion: #bDragonOrb"]
+        "DESCRIPTIONS": ["#yChannel an #yupgraded #yDragonOrb.", "#yChannel #b", " #yupgraded #yDragonOrbs.", "Gives you #yDragonscales and #yRandomized #yDragons at the start of turn, and sets the cost of #yDragons in your hand to #b0 when #yEvoked.", "#bInversion: #bDragonOrb"]
 },
 "theDuelist:EarthBottle": {
         "NAME": "Spell Bottle",

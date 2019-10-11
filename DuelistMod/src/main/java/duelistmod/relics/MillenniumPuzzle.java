@@ -176,8 +176,9 @@ public class MillenniumPuzzle extends CustomRelic {
 				break;
 			// Dragon Deck
 			case 1:
-				if (AbstractDungeon.actNum == 0) { localdesc = DESCRIPTIONS[3] + 1 + DESCRIPTIONS[4]; }
-				else { localdesc = DESCRIPTIONS[3] + AbstractDungeon.actNum + DESCRIPTIONS[4];}
+				int effectsToChoose = 2;
+				if (AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) { effectsToChoose++; }
+				localdesc = DESCRIPTIONS[3] + effectsToChoose + DESCRIPTIONS[4]; 
 				break;
 	
 			// Naturia Deck

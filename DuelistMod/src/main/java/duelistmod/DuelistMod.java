@@ -42,6 +42,7 @@ import basemod.interfaces.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.insects.GiantPairfish;
 import duelistmod.cards.tempCards.CancelCard;
@@ -77,7 +78,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v2.921.5-beta";
+	public static String version = "v2.922.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -397,7 +398,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int randomizedTributesIndex = 0;
 	public static int randomizedSummonsIndex = 0;
 	public static int normalSelectDeck = -1;
-	public static int dragonStr = 1;
+	public static int dragonStr = 7;
 	public static int toonVuln = 1;
 	public static int insectPoisonDmg = 1;
 	public static int plantConstricted = 2;
@@ -1462,7 +1463,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		boolean addBasic = false;
 		/* Debug Commands (fill game with only cards from specified pool) */
 		//DuelistCardLibrary.setupMyCardsDebug("Standard"); fullPool = false; addBasic = true;
-		//DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = false;
+		DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Spellcaster"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Toon"); fullPool = false; addBasic = true;
@@ -2058,7 +2059,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		tributeLastCombatCount = 0;
 		zombiesResummonedThisRun = 0;
 		spectralDamageMult = 2;
-		dragonStr = 1;
+		dragonStr = 7;
 		warriorTribEffectsTriggeredThisCombat = 0;
 		warriorTribEffectsPerCombat = 1;
 		toonVuln = 1;
@@ -2375,7 +2376,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			
 			for (AbstractCard c : AbstractDungeon.player.discardPile.group)
 			{
-				if (c instanceof GiantRex)
+				if (c instanceof GiantRex && arg0.hasTag(Tags.DINOSAUR))
 				{
 					GiantRex gr = (GiantRex)c;
 					if (gr.tributes > 0)
@@ -2405,7 +2406,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			
 			for (AbstractCard c : AbstractDungeon.player.drawPile.group)
 			{
-				if (c instanceof GiantRex)
+				if (c instanceof GiantRex && arg0.hasTag(Tags.DINOSAUR))
 				{
 					GiantRex gr = (GiantRex)c;
 					if (gr.tributes > 0)
@@ -2581,6 +2582,17 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receivePostDraw(AbstractCard drawnCard) 
 	{
+		if (drawnCard.hasTag(Tags.MALICIOUS))
+		{
+			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (!mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead && AbstractDungeon.cardRandomRng.random(1, 3) == 1)
+				{
+					DuelistCard.applyPower(new VulnerablePower(mon, 1, false), mon);
+				}
+			}
+		}
+		
 		if (AbstractDungeon.player.hasPower(GridRodPower.POWER_ID))
 		{
 			GridRodPower pow = ((GridRodPower)AbstractDungeon.player.getPower(GridRodPower.POWER_ID));
@@ -2929,7 +2941,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			tribCombatCount = 0;
 			summonRunCount = 0;
 			spectralDamageMult = 2;
-			dragonStr = 1;
+			dragonStr = 7;
 			warriorTribEffectsPerCombat = 1;
 			warriorTribEffectsTriggeredThisCombat = 0;
 			toonVuln = 1;

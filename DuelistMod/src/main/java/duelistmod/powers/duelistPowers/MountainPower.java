@@ -21,7 +21,7 @@ public class MountainPower extends DuelistPower
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public static final String IMG = DuelistMod.makePath(Strings.MOUNTAIN_POWER);
 
-    public MountainPower(int dmgMod) 
+    public MountainPower(int dmgMod, int scaleInc) 
     {
     	this.name = NAME;
         this.ID = POWER_ID;
@@ -32,11 +32,12 @@ public class MountainPower extends DuelistPower
         this.img = new Texture(IMG);
         this.source = AbstractDungeon.player;
         this.amount = dmgMod;
+        this.amount2 = scaleInc;
         this.updateDescription();
     }
 
     @Override
 	public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + (this.amount * 10) + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + (this.amount * 10) + DESCRIPTIONS[1] + this.amount2 + DESCRIPTIONS[2];
     }
 }

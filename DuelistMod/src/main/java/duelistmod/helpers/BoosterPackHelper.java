@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.DestructPotion;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.*;

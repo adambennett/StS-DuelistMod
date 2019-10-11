@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.shop.ShopScreen;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.Gandora;
+import duelistmod.cards.dragons.Gandora;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.HourglassLife;
 import duelistmod.cards.nameless.greed.*;
@@ -281,11 +281,28 @@ public class Util
 		if (rarePow.size() > 0) { return rarePow.get(AbstractDungeon.cardRandomRng.random(rarePow.size() - 1)); }
 		else { return new Token(); }
 	}
+
+	public static AbstractCard getSpecialCardForMiracleDescent()
+	{
+		ArrayList<DuelistCard> specialCards = getSpecialCardsForMiracleDescent();
+		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+	}
 	
 	public static AbstractCard getSpecialMagicCardForNamelessTomb()
 	{
 		ArrayList<DuelistCard> specialCards = getSpecialMagicCardsForNamelessTomb();
 		return specialCards.get(AbstractDungeon.cardRandomRng.random(specialCards.size() - 1));
+	}
+	
+	public static ArrayList<DuelistCard> getSpecialCardsForMiracleDescent()
+	{
+		ArrayList<DuelistCard> specialCards = new ArrayList<DuelistCard>();
+		specialCards.add(new MDSpecialCardA());	
+		specialCards.add(new MDSpecialCardB());	
+		specialCards.add(new MDSpecialCardC());	
+		specialCards.add(new MDSpecialCardD());	
+		specialCards.add(new MDSpecialCardE());	
+		return specialCards;
 	}
 	
 	public static ArrayList<DuelistCard> getSpecialMagicCardsForNamelessTomb()

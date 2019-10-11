@@ -54,8 +54,11 @@ public class LightningBlade extends DuelistCard
 			if (hit == this.magicNumber-1) { effect = AbstractGameAction.AttackEffect.BLUNT_LIGHT; }
 			AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), effect));
 		}
-		int unblockedHits = this.magicNumber - (int)Math.floor(m.currentBlock / this.damage);
-		if (unblockedHits > 0) { channel(new Lightning(), unblockedHits); }
+		if (this.damage > 0)
+		{
+			int unblockedHits = this.magicNumber - (int)Math.floor(m.currentBlock / this.damage);
+			if (unblockedHits > 0) { channel(new Lightning(), unblockedHits); }
+		}
     }
 
     // Which card to return when making a copy of this card.

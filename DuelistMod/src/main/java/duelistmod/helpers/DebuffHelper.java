@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.SummonSicknessPower;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.incomplete.*;
 
 public class DebuffHelper 
@@ -25,6 +25,8 @@ public class DebuffHelper
 		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
 		AbstractPower strDown = new LoseStrengthPower(targetMonster, turnNum);
 		AbstractPower strDownB = new StrengthDownPower(targetMonster, targetMonster, turnNum, 2);
+		AbstractPower burning = new BurningDebuff(targetMonster, p, turnNum);
+		//AbstractPower frozen = new FrozenDebuff(targetMonster, p);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		debuffs.add(slow);
 		debuffs.add(vulnerable);
@@ -33,7 +35,8 @@ public class DebuffHelper
 		debuffs.add(constricted);
 		debuffs.add(strDown);
 		debuffs.add(strDownB);
-		
+		debuffs.add(burning);
+		//debuffs.add(frozen);
 
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
@@ -54,6 +57,8 @@ public class DebuffHelper
 		AbstractPower constricted = new ConstrictedPower(targetMonster, AbstractDungeon.player, turnNum);
 		AbstractPower strDown = new LoseStrengthPower(targetMonster, turnNum);
 		AbstractPower strDownB = new StrengthDownPower(targetMonster, targetMonster, turnNum, strRoll);
+		AbstractPower burning = new BurningDebuff(targetMonster, AbstractDungeon.player, turnNum);
+		AbstractPower frozen = new FrozenDebuff(targetMonster, AbstractDungeon.player);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		debuffs.add(slow);
 		debuffs.add(vulnerable);
@@ -62,35 +67,14 @@ public class DebuffHelper
 		debuffs.add(constricted);
 		debuffs.add(strDown);
 		debuffs.add(strDownB);
-		
+		debuffs.add(burning);
+		debuffs.add(frozen);
 
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
 		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);
 		if (DuelistMod.debug) { System.out.println("theDuelist:RandomEffectsHelper:getRandomDebuff() ---> grabbed debuff: " + randomDebuff.name); }
 		return randomDebuff;
-	}
-	
-	// Old Joey Juice code - didnt work properly
-	public static AbstractPower getRandomDebuffPotion(AbstractPlayer p, AbstractMonster targetMonster, int turnNum)
-	{
-		// Setup powers array for random debuff selection
-		//AbstractPower slow = new SlowPower(targetMonster, turnNum );
-		AbstractPower vulnerable = new VulnerablePower(targetMonster, turnNum, true);
-		AbstractPower poison = new PoisonPower(targetMonster, p, turnNum);
-		AbstractPower weak = new WeakPower(targetMonster, turnNum, true);
-		AbstractPower constricted = new ConstrictedPower(targetMonster, p, turnNum);
-		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
-		debuffs.add(vulnerable);
-		debuffs.add(poison);
-		debuffs.add(weak);
-		debuffs.add(constricted);
-		// Get randomized debuff
-		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
-		AbstractPower randomDebuff = debuffs.get(randomDebuffNum);
-
-		return randomDebuff;
-
 	}
 
 	// For player
@@ -125,7 +109,7 @@ public class DebuffHelper
 		AbstractPower drawDown = new DrawReductionPower(p, turnNum);
 		AbstractPower noBlock = new NoBlockPower(p, turnNum, true);
 		AbstractPower noDraw = new NoDrawPower(p);
-		AbstractPower wraith = new WraithFormPower(p, -turnNum);
+		//AbstractPower wraith = new WraithFormPower(p, -turnNum);
 		AbstractPower focDown = new FocusDownPower(p, p, turnNum, 2);
 		AbstractPower focLoss = new FocusLossPower(p, p, turnNum);
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();

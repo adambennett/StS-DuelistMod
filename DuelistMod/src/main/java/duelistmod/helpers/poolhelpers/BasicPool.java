@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.insects.*;
 import duelistmod.cards.naturia.*;
@@ -83,7 +84,6 @@ public class BasicPool
 		toReturn.add(new WingedKuriboh9());
 		toReturn.add(new WingedKuriboh10());
 		toReturn.add(new Kuribohrn());
-		toReturn.add(new GiantRex());
 		toReturn.add(new PowerGiant());
 		toReturn.add(new RainbowBridge());
 		toReturn.add(new EarthquakeGiant());
@@ -177,7 +177,6 @@ public class BasicPool
 		cards.add(new RadiantMirrorForce());
 		cards.add(new Raigeki());
 		cards.add(new Sangan());
-		cards.add(new Scapegoat());
 		cards.add(new ScrapFactory());
 		cards.add(new ShardGreed());
 		cards.add(new SmashingGround());
@@ -219,7 +218,6 @@ public class BasicPool
 		cards.add(new MagicalStone());
 		cards.add(new Kuribohrn());
 		cards.add(new DropOff());
-		cards.add(new GiantRex());
 		cards.add(new PowerGiant());
 		cards.add(new RainbowBridge());
 		cards.add(new EarthGiant());
@@ -241,7 +239,6 @@ public class BasicPool
 		cards.add(new Mudora());	
 		cards.add(new MudragonSwamp());	
 		cards.add(new FlameTiger());
-		cards.add(new MiraculousDescent());
 		cards.add(new ForbiddenLance());
 		cards.add(new FutureFusion());
 		cards.add(new ElectromagneticShield());
@@ -345,7 +342,7 @@ public class BasicPool
 		//cards.add(new PotForbidden());
 		//cards.add(new PotDichotomy());
 		cards.add(new PotGenerosity());
-		//cards.add(new PotGreed());
+		cards.add(new PotGreed());
 		cards.add(new PreventRat());
 		//cards.add(new RadiantMirrorForce());
 		cards.add(new Raigeki());
@@ -391,7 +388,6 @@ public class BasicPool
 		//cards.add(new MagicalStone());
 		//cards.add(new Kuribohrn());
 		//cards.add(new DropOff());
-		cards.add(new GiantRex());
 		cards.add(new PowerGiant());
 		cards.add(new RainbowBridge());
 		cards.add(new EarthGiant());
@@ -404,7 +400,7 @@ public class BasicPool
 		cards.add(new RainbowOverdragon());
 		//cards.add(new RainbowGravity());
 		//cards.add(new RainbowLife());
-		//cards.add(new SilverApples());
+		cards.add(new SilverApples());
 		//cards.add(new DarklordSuperbia());	
 		cards.add(new LightningVortex());
 		//cards.add(new BlackPendant());	
@@ -418,7 +414,6 @@ public class BasicPool
 		//cards.add(new Mudora());	
 		//cards.add(new MudragonSwamp());	
 		//cards.add(new FlameTiger());
-		cards.add(new MiraculousDescent());
 		//cards.add(new RockSunrise());
 		//cards.add(new UltraPolymerization());
 		cards.add(new MillenniumScorpion());

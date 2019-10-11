@@ -40,6 +40,8 @@ public class AncientGearChimera extends DuelistCard
 		this.tags.add(Tags.MONSTER);
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MACHINE);
+		this.tags.add(Tags.ANCIENT_FOR_PIXIE);
+		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 1;
 		this.misc = 0;

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.powers.duelistPowers.WhiteHornDragonPower;
 
 @SuppressWarnings("unused")
 public class WhiteOrb extends DuelistOrb
@@ -62,6 +63,11 @@ public class WhiteOrb extends DuelistOrb
 			if (c.canUpgrade())
 			{
 				c.upgrade();
+				if (AbstractDungeon.player.hasPower(WhiteHornDragonPower.POWER_ID))
+				{
+					AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).flash();
+					DuelistCard.staticBlock(AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).amount);
+				}
 			}
 			
 			if (c instanceof DuelistCard)
@@ -90,6 +96,11 @@ public class WhiteOrb extends DuelistOrb
 		{ 
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 			c.upgrade(); 
+			if (AbstractDungeon.player.hasPower(WhiteHornDragonPower.POWER_ID))
+			{
+				AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).flash();
+				DuelistCard.staticBlock(AbstractDungeon.player.getPower(WhiteHornDragonPower.POWER_ID).amount);
+			}
 		}
 		
 		if (c instanceof DuelistCard)

@@ -42,6 +42,36 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 	private boolean dontTrig = false;
 	private boolean canCancel = false;
 	
+	// DragonOrbs
+	public CardSelectScreenIntoHandAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount)
+	{
+		this.p = AbstractDungeon.player;
+		setValues(this.p, AbstractDungeon.player, amount);
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = cardsToChooseFrom;
+		this.randomize = true;
+		this.exhaustCheck = true;
+		this.etherealCheck = true;
+		this.costChangeCheck = true;
+		this.summonCheck = true;
+		this.tributeCheck = true;
+		this.lowCostRoll = 0;
+		this.highCostRoll = 4;
+		this.lowSummonRoll = 0;
+		this.highSummonRoll = 3;
+		this.lowTributeRoll = 0;
+		this.highTributeRoll = 2;
+		this.summonChangeCombatCheck = false;
+		this.tributeChangeCombatCheck = false;
+		this.costChangeCombatCheck = false;
+		this.sendExtraToDiscard = true;
+		this.canCancel = true;
+		checkFlags();
+	}
+	
 	// Cloning, Wiretap, Red/Yellow/Green Gadgets, Grand Spellbook Tower
 	public CardSelectScreenIntoHandAction(boolean upgraded, boolean sendExtraToDiscard, int amount, ArrayList<AbstractCard> cardsToChooseFrom)
 	{
@@ -169,6 +199,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		this.sendExtraToDiscard = sendExtraToDiscard;
 		this.damageBlockRandomize = randomizeDamageAndBlock;
 		this.canCancel = false;
+		checkFlags();
 	}
   
 	public void update()
@@ -342,4 +373,15 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 		}
 		tickDuration();
 	}
+	
+    private void checkFlags()
+    {
+    	if (DuelistMod.noCostChanges) { this.costChangeCheck = false; }
+    	if (DuelistMod.noTributeChanges) { this.tributeCheck = false; }
+    	if (DuelistMod.noSummonChanges) { this.summonCheck = false; }
+    	if (DuelistMod.alwaysUpgrade) { this.upgrade = true; }
+    	if (DuelistMod.neverUpgrade) { this.upgrade = false; }
+    	if (!DuelistMod.randomizeEthereal) { this.etherealCheck = false; }
+    	if (!DuelistMod.randomizeExhaust) { this.exhaustCheck = false; }
+    }
 }

@@ -157,7 +157,6 @@ public class BaseGameHelper
         toFill.add(new Evaluate());
         toFill.add(new Fasting());
         toFill.add(new FearNoEvil());
-        toFill.add(new FlowState());
         toFill.add(new FlurryOfBlows());
         toFill.add(new FlyingSleeves());
         toFill.add(new FollowUp());

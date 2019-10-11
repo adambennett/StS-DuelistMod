@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
 
 public class AscendedThreePool 
@@ -124,7 +125,6 @@ public class AscendedThreePool
 		cards.add(new Umi());
 		cards.add(new GatesDarkWorld());
 		cards.add(new SuperancientDinobeast());
-		cards.add(new Carboneddon());
 		cards.add(new HorusServant());
 		cards.add(new CaveDragon());
 		cards.add(new CurseDragon());

@@ -10,6 +10,8 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_ONE_DECK;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_TWO_DECK;
 	@SpireEnum public static AbstractCard.CardTags ASCENDED_THREE_DECK;
+	@SpireEnum public static AbstractCard.CardTags ANCIENT_FOR_PIXIE;
+	@SpireEnum public static AbstractCard.CardTags ANCIENT_FOR_MACHINE;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_ONE_DECK;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_TWO_DECK;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_THREE_DECK;
@@ -30,6 +32,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags DARK_CRISIS;
 	@SpireEnum public static AbstractCard.CardTags DRAGON;
 	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
+	@SpireEnum public static AbstractCard.CardTags DINOSAUR;
 	@SpireEnum public static AbstractCard.CardTags EQUIPSPELL;
 	@SpireEnum public static AbstractCard.CardTags EXEMPT;
 	@SpireEnum public static AbstractCard.CardTags EXODIA;
@@ -63,6 +66,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER;
 	@SpireEnum public static AbstractCard.CardTags MAGNET;
+	@SpireEnum public static AbstractCard.CardTags MALICIOUS;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPED;
 	@SpireEnum public static AbstractCard.CardTags MEGATYPE_DECK;
@@ -106,6 +110,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_UPGRADE;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_BIG;
 	@SpireEnum public static AbstractCard.CardTags RANDOM_DECK_SMALL;
+	@SpireEnum public static AbstractCard.CardTags RECKLESS;
 	@SpireEnum public static AbstractCard.CardTags REDUCED;
 	@SpireEnum public static AbstractCard.CardTags REPLAYSPIRE;
 	@SpireEnum public static AbstractCard.CardTags REPTILE;
@@ -116,6 +121,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
 	@SpireEnum public static AbstractCard.CardTags SPIDER;
+	@SpireEnum public static AbstractCard.CardTags STAMPEDING;
 	@SpireEnum public static AbstractCard.CardTags STANDARD_DECK;
 	@SpireEnum public static AbstractCard.CardTags SUPERHEAVY;
 	@SpireEnum public static AbstractCard.CardTags SUPER_EXPLODING_TOKEN;
@@ -124,6 +130,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags TOON_DONT_TRIG;
 	@SpireEnum public static AbstractCard.CardTags TOON_DECK;
 	@SpireEnum public static AbstractCard.CardTags TRAP;
+	@SpireEnum public static AbstractCard.CardTags TRAMPLE;
 	@SpireEnum public static AbstractCard.CardTags TRIBUTE;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR;
 	@SpireEnum public static AbstractCard.CardTags WYRM;

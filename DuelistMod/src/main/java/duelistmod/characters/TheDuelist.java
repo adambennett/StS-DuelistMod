@@ -27,6 +27,7 @@ import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.CircleFireKings;
 import duelistmod.cards.insects.Taotie;
 import duelistmod.helpers.*;
@@ -432,12 +433,24 @@ public class TheDuelist extends CustomPlayer {
 			{
 				for (final AbstractOrb o : this.orbs) 
 	            {
+					if (o instanceof Lava || o instanceof FireOrb || o instanceof Blaze || o instanceof DuelistHellfire)
+					{
+						if (hdc instanceof ExploderDragon)
+						{
+							o.showEvokeValue();
+						}
+					}
 	            	if (o instanceof Lava && hdc instanceof CircleFireKings)
 	            	{
 	            		o.showEvokeValue();
 	            	}
 	            	
 	            	if (o instanceof DuelistLight && hdc instanceof Taotie)
+	            	{
+	            		o.showEvokeValue();
+	            	}
+	            	
+	            	if (o instanceof FireOrb && hdc instanceof BlacklandFireDragon)
 	            	{
 	            		o.showEvokeValue();
 	            	}

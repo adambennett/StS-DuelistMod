@@ -7,15 +7,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.insects.Bixi;
+import duelistmod.cards.tempCards.*;
 import duelistmod.cards.tokens.ExplosiveToken;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.*;
@@ -156,22 +156,16 @@ public class PuzzleHelper
 				case 1:
 					int floor = AbstractDungeon.actNum;
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
-					if (bonusy)
-					{
-						int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-						if (roll == 1) { DuelistCard.weakAllEnemies(floor); }
-						else { DuelistCard.vulnAllEnemies(floor); }
-					}
-					else
-					{
-						AbstractMonster randy = AbstractDungeon.getRandomMonster();
-						if (randy != null)
-						{
-							int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-							if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
-							else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
-						}
-					}
+					int effects = 2;
+					if (bonusy) { effects++; }
+					ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+					choices.add(new PuzzleDragonRare());
+					choices.add(new PuzzleDragonScales());
+					choices.add(new PuzzleDragonStrength());
+					choices.add(new PuzzleDragonTribute());
+					choices.add(new PuzzleDragonVulnerable());
+					choices.add(new PuzzleDragonWeak(floor));
+					AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(choices, effects));
 					break;
 		
 				// Naturia Deck
@@ -344,8 +338,6 @@ public class PuzzleHelper
 					
 				// Insect Deck
 				case 10:
-					int pois = 2;
-					if (bonusy) { pois += 2; }
 					DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Insect Token", false);
 					if (!bonusy) { DuelistCard.addCardToHand(new Bixi()); }
 					else { DuelistCard bix = new Bixi(); bix.upgrade(); DuelistCard.addCardToHand(bix); }
@@ -514,22 +506,16 @@ public class PuzzleHelper
 			case 1:
 				int floor = AbstractDungeon.actNum;
 				DuelistCard.puzzleSummon(AbstractDungeon.player, 1 + extra, "Dragon Token", false);
-				if (bonusy)
-				{
-					int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-					if (roll == 1) { DuelistCard.weakAllEnemies(floor); }
-					else { DuelistCard.vulnAllEnemies(floor); }
-				}
-				else
-				{
-					AbstractMonster randy = AbstractDungeon.getRandomMonster();
-					if (randy != null)
-					{
-						int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-						if (roll == 1) { DuelistCard.applyPower(new WeakPower(randy, floor, false), randy); }
-						else { DuelistCard.applyPower(new VulnerablePower(randy, floor, false), randy); }
-					}
-				}
+				int effects = 2;
+				if (bonusy) { effects++; }
+				ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+				choices.add(new PuzzleDragonRare());
+				choices.add(new PuzzleDragonScales());
+				choices.add(new PuzzleDragonStrength());
+				choices.add(new PuzzleDragonTribute());
+				choices.add(new PuzzleDragonVulnerable());
+				choices.add(new PuzzleDragonWeak(floor));
+				AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(choices, effects));
 				break;
 	
 			// Naturia Deck

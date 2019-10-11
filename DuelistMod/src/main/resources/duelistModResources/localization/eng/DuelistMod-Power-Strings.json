@@ -190,7 +190,7 @@
 },
 "theDuelist:MountainPower": {
         "NAME": "Mountain",
-        "DESCRIPTIONS": ["#yDragons deal #b", "% more damage. Whenever you gain #yStrength from Tributing a #yDragon, gain 1 extra #yStrength." ]
+        "DESCRIPTIONS": ["#yDragons deal #b", "% more damage. Whenever you gain #yDragonscales from Tributing a #yDragon, gain #b", " extra." ]
 },
 "theDuelist:VioletCrystalPower": {
         "NAME": "Violet Crystal",
@@ -426,7 +426,7 @@
 },
 "theDuelist:TyrantWingPower": {
         "NAME": "Tyrant Wing",
-        "DESCRIPTIONS": ["#yDragons deal an additional #b", " damage. Gain extra charges by tributing #yDragons for other #yDragons. NL #yCharges: " ]
+        "DESCRIPTIONS": ["All #yDragons have #yStampeding and #yReckless." ]
 },
 "theDuelist:SpellbookLifePower": {
         "NAME": "Spellbook of Life",
@@ -466,7 +466,7 @@
 },
 "theDuelist:BoosterDragonPower": {
         "NAME": "Booster Dragon",
-        "DESCRIPTIONS": ["Whenever you #yTribute a #yDragon for another, gain #b", " #yBlock." ]
+        "DESCRIPTIONS": ["Whenever you gain #yDragonscales, gain #b", " extra #yDragonscales." ]
 },
 "theDuelist:MagickaPower": {
         "NAME": "Magicka",
@@ -487,12 +487,11 @@
 "theDuelist:MiraculousDescentPower": {
         "NAME": "Miraculous Descent",
         "DESCRIPTIONS": [
-		"At the end of turn, if the last card played was a #y",
-		", gain #b",
-		" #yBlock and randomize the required card type for next turn.",
-		"A bad thing happened and no card type is currently selected. Sorry :/",
-		"At the end of turn, if the last card played was an #y",
-		"At the end of turn, if the last card played was #y"
+		"At the start of turn, add #b",
+		" #ySpecial #yDefensive card to your hand.",
+		" #ySpecial #yDefensive cards to your hand.",
+		" #yUpgraded #ySpecial #yDefensive card to your hand.",
+		" #yUpgraded #ySpecial #yDefensive cards to your hand."
 		]
 },
 "theDuelist:StatueAnguishPatternPower": {
@@ -790,6 +789,22 @@
 "theDuelist:WallThornsPower": {
         "NAME": "Wall of Thorns",
         "DESCRIPTIONS": ["Whenever you are attacked, if you have no #yInsects summoned, gain #b", " #yThorns." ]
+},
+"theDuelist:FrozenDebuff": {
+        "NAME": "Frozen",
+        "DESCRIPTIONS": ["Receives #b200% more damage and deals #b70% less damage for this turn."]
+},
+"theDuelist:WaterDragonPower": {
+        "NAME": "Water Dragon",
+        "DESCRIPTIONS": ["Whenever you play an #yAqua card, gain #b", " #yDragonscales."]
+},
+"theDuelist:BurningDebuff": {
+        "NAME": "Burning",
+        "DESCRIPTIONS": ["At the start of your #yeven turns, take #b", " damage. At the start of #yodd turns, increase this damage by #b1.", "At the start of its #yeven turns, takes #b"]
+},
+"theDuelist:Dragonscales": {
+        "NAME": "Dragonscales",
+        "DESCRIPTIONS": ["#yBlock and damage of #yDragons is improved by #b", "."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

@@ -69,7 +69,7 @@
 		  "DragonOrb",
 		  "dragonorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, add #b1 #yRandomized #yDragon to your hand. NL #yEvoke: Set the cost of #b1 random #yDragon in your hand to 0."
+		"DESCRIPTION": "#yOrb: At the start of turn, gain #b3 #yDragonscales and choose 1 of 3 #yRandomized #yDragons to add to your hand."
 	},
     {
 	  "PROPER_NAME": "Overflow",
@@ -109,7 +109,7 @@
         "dragon",
 		"Dragon"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yDragon for another #yDragon, gain #b1 #yStrength."
+      "DESCRIPTION": "When you #yTribute a #yDragon for another #yDragon, gain #b7 #yDragonscales."
     },
     {
 	  "PROPER_NAME": "Spellcaster",
@@ -719,6 +719,67 @@
 	  "Leaf"
     ],   
     "DESCRIPTION": "At the start of turn, if you have at least #b5 #yLeaves, you may choose to consume your #yLeaves and gain #yBlock. #yBlock amount depends on the number of #yLeaves you have and the number of #yNaturias currently summoned."
+  },
+  {
+  "PROPER_NAME": "Stampeding",
+    "NAMES": [
+      "Stampeding",
+	  "stampeding"
+    ],   
+    "DESCRIPTION": "Has a chance to apply #yWeak to enemies that do not receive attack damage."
+  },
+  {
+  "PROPER_NAME": "Reckless",
+    "NAMES": [
+      "Reckless",
+	  "reckless"
+    ],   
+    "DESCRIPTION": "Has a chance to apply #yVulnerable to enemies that do not receive attack damage."
+  },
+  {
+  "PROPER_NAME": "Burning",
+    "NAMES": [
+      "Burning",
+	  "burning"
+    ],   
+    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1."
+  },
+  {
+  "PROPER_NAME": "Frozen",
+    "NAMES": [
+      "Frozen",
+	  "frozen",
+	  "Freeze",
+	  "freeze"
+    ],   
+    "DESCRIPTION": "#yFrozen characters take #b200% more damage and deal #b70% less damage for one turn."
+  },
+  {
+  "PROPER_NAME": "Malicious",
+    "NAMES": [
+      "Malicious",
+	  "malicious"
+    ],   
+    "DESCRIPTION": "Enemies have a chance to become #yVulnerable whenever a #yMalicious card is drawn."
+  },
+  {
+  "PROPER_NAME": "Dinosaur",
+    "NAMES": [
+      "Dinosaur",
+	  "dinosaur"
+    ],   
+    "DESCRIPTION": "#yDinosaurs deal #b10% more damage for each stack of #yWeak on their targets."
+  },
+    {
+  "PROPER_NAME": "Dragonscale",
+    "NAMES": [
+      "Dragonscale",
+	  "dragonscale",
+	  "Dragonscales",
+	  "dragonscales",
+	  "DragonScales"
+    ],   
+    "DESCRIPTION": "#yBlock and damage of #yDragons is improved by #b1 for every #b4 #yDragonscales you have."
   },
   {
     "PROPER_NAME": "Gate",

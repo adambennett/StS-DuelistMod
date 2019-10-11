@@ -1,25 +1,16 @@
 package duelistmod.powers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
-import duelistmod.*;
-import duelistmod.interfaces.*;
-import duelistmod.variables.Strings;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.NoStackDuelistPower;
 
 
 @SuppressWarnings("unused")
-public class TyrantWingPower extends TwoAmountPower
+public class TyrantWingPower extends NoStackDuelistPower
 {
 	public AbstractCreature source;
 	public static final String POWER_ID = DuelistMod.makeID("TyrantWingPower");
@@ -28,7 +19,7 @@ public class TyrantWingPower extends TwoAmountPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePowerPath("TyrantWingPower.png");
 	
-	public TyrantWingPower(final AbstractCreature owner, final AbstractCreature source, int amount, int amount2) 
+	public TyrantWingPower(final AbstractCreature owner, final AbstractCreature source) 
 	{
 		this.name = NAME;
 		this.ID = POWER_ID;
@@ -37,16 +28,12 @@ public class TyrantWingPower extends TwoAmountPower
 		this.isTurnBased = false;
 		this.img = new Texture(IMG);
 		this.source = source;
-		this.amount = amount;
-		this.amount2 = amount2;
 		updateDescription();
 	}
 	
 	@Override
 	public void updateDescription() 
 	{
-		String effect = DESCRIPTIONS[0];
-		String singularAmount = DESCRIPTIONS[1];
-		this.description = effect + this.amount + singularAmount + this.amount2;
+		this.description = DESCRIPTIONS[0];
 	}
 }

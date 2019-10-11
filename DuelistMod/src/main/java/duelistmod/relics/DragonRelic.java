@@ -5,9 +5,8 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.variables.Strings;
 
 public class DragonRelic extends CustomRelic {
 
@@ -38,13 +37,13 @@ public class DragonRelic extends CustomRelic {
 	public void onEquip()
 	{
 		setDescription();
-		DuelistMod.dragonStr = 2;
+		DuelistMod.dragonStr += 3;
 	}
 	
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.dragonStr = 1;
+		DuelistMod.dragonStr -= 3;
 	}
 
 	// Description

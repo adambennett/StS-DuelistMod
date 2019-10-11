@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
 
@@ -148,7 +149,6 @@ public class ZombiePool
 		zombieCards.add(new UnderworldCannon());
 		zombieCards.add(new DragonZombie());
 		zombieCards.add(new SilentDoom());
-		zombieCards.add(new SpiralSpearStrike());
 		zombieCards.add(new CemetaryBomb());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)

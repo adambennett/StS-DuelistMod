@@ -40,6 +40,8 @@ public class AncientElf extends DuelistCard
 		this.tags.add(Tags.SPELLCASTER);
 		this.tags.add(Tags.ORB_DECK);
 		this.tags.add(Tags.METAL_RAIDERS);
+		this.tags.add(Tags.ANCIENT_FOR_PIXIE);
+		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
         this.orbDeckCopies = 1;
 		this.summons = this.baseSummons = 1;
 		this.showEvokeValue = true;

@@ -36,6 +36,7 @@ public class Greatfly extends DuelistCard
         this.tributes = this.baseTributes = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.X_COST);
         this.originalName = this.name;
     }

@@ -38,6 +38,8 @@ public class AncientGearFist extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
 		this.tags.add(Tags.ARCANE);
+		this.tags.add(Tags.ANCIENT_FOR_PIXIE);
+		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
     }
 
     // Actions the card should do.

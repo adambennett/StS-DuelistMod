@@ -71,14 +71,6 @@ public class ToonBarrelDragon extends DuelistCard
 			else { damageArray[i] = randomNumU; }
 		}
 		
-		if (player().hasPower(MountainPower.POWER_ID))
-		{
-			for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++)
-			{
-				damageArray[i] = (int)Math.floor(damageArray[i] * 1.5);
-			}
-		}
-		
 		this.multiDamage = damageArray;
 		tribute(p, this.tributes, false, this);
 		for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++)

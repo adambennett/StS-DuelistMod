@@ -11,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.*;
 
 public class InsectKnight extends DuelistCard 
@@ -44,6 +45,9 @@ public class InsectKnight extends DuelistCard
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.setupStartingCopies();
+        
+        
+        this.baseMagicNumber = this.magicNumber = 6;
     }
 
     // Actions the card should do.

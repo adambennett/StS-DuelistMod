@@ -37,7 +37,8 @@ public class AncientGearExplosive extends DuelistCard
     public AncientGearExplosive() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.MACHINE);       
+        this.tags.add(Tags.MACHINE);    
+		this.tags.add(Tags.ANCIENT_FOR_MACHINE);
         this.summons = this.baseSummons = 4;	
         this.baseMagicNumber = this.magicNumber = 2;	
         this.secondMagic = this.baseSecondMagic = 2;

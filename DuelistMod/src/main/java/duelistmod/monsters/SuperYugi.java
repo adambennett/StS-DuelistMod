@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
 
 public class SuperYugi extends DuelistMonster

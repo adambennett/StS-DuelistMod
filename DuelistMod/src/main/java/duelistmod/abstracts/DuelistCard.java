@@ -34,6 +34,7 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.stances.*;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 
@@ -311,6 +312,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp)
 	{
 		super.calculateModifiedCardDamage(player, mo, tmp);
+		if (this.hasTag(Tags.DINOSAUR) && mo.hasPower(WeakPower.POWER_ID)) { int stacks = mo.getPower(WeakPower.POWER_ID).amount; float mod = (float)stacks * 0.1f; tmp = tmp * mod; }
 		if (this.hasTag(Tags.DRAGON) && player().hasPower(MountainPower.POWER_ID)) { float dmgMod = (player().getPower(MountainPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.SPELLCASTER) && player().hasPower(YamiPower.POWER_ID)) {  float dmgMod = (player().getPower(YamiPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.PLANT) && player().hasPower(VioletCrystalPower.POWER_ID)) { float dmgMod = (player().getPower(VioletCrystalPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
@@ -321,7 +323,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (this.hasTag(Tags.BUG) && player().hasPower(BugMatrixPower.POWER_ID)) { float dmgMod = (player().getPower(BugMatrixPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if ((this.hasTag(Tags.BUG) || this.hasTag(Tags.SPIDER)) && player().hasPower(ForestPower.POWER_ID)) { float dmgMod = (player().getPower(ForestPower.POWER_ID).amount / 10.00f) + 1.0f; tmp = tmp * dmgMod; }
 		if (this.hasTag(Tags.AQUA) && player().hasPower(SpikedGillmanPower.POWER_ID)) { tmp += player().getPower(SpikedGillmanPower.POWER_ID).amount;  }
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { tmp += player().getPower(TyrantWingPower.POWER_ID).amount;  }
 		if (this.hasTag(Tags.WARRIOR) && player().stance.ID.equals("theDuelist:Spectral")) { tmp = tmp * DuelistMod.spectralDamageMult; }
 		if (player().hasPower(SolidarityDiscardPower.POWER_ID))
 		{
@@ -741,12 +742,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void thornAttack(AbstractMonster m, AttackEffect effect, int damageAmount) 
 	{		
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
-		{  
-			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);			
-			power.amount2--;
-			power.updateDescription();
-		}
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, DamageType.THORNS), effect));
 	}
 	
@@ -762,23 +757,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void attack(AbstractMonster m, AttackEffect effect, int damageAmount) 
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
-		{  
-			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);
-			power.amount2--;
-			power.updateDescription();
-		}
+		stampedeHandler(m, damageAmount);
+		recklessHandler(m, damageAmount);
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect));
 	}
 	
 	public void specialAttack(AbstractMonster m, AttackEffect afx, int dmg)
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
-		{  
-			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);
-			power.amount2--;
-			power.updateDescription();
-		}
 		AbstractDungeon.actionManager.addToBottom(new DuelistDamageAction(m, new DamageInfo(player(), dmg, damageTypeForTurn), afx));
 	}
 	
@@ -790,12 +775,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	public void attackFast(AbstractMonster m, AttackEffect effect, int damageAmount)
 	{
-		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) 
-		{  
-			TwoAmountPower power = (TwoAmountPower) player().getPower(TyrantWingPower.POWER_ID);
-			power.amount2--;
-			power.updateDescription();
-		}
 		AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(player(), damageAmount, damageTypeForTurn), effect, true));
 	}
 	
@@ -833,9 +812,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 	}
 	
-	public static int attackMultipleRandom(int damage, int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType)
+	public int attackMultipleRandom(int damage, int amountOfEnemiesToAttack, AttackEffect afx, DamageType dmgType)
 	{
 		ArrayList<AbstractMonster> allEnemies = new ArrayList<AbstractMonster>();
+		ArrayList<AbstractMonster> nonTargeted = new ArrayList<AbstractMonster>();
 		for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
 		{
 			if (!m.isDead && !m.isDying && !m.isDeadOrEscaped() && !m.halfDead) { allEnemies.add(m); }
@@ -855,6 +835,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				int index = AbstractDungeon.cardRandomRng.random(allEnemies.size() - 1);
 				Util.log("attackMultipleRandom() is removing " + allEnemies.get(index).name + " from allEnemies");
+				nonTargeted.add(allEnemies.get(index));
 				allEnemies.remove(index);
 			}
 			
@@ -865,7 +846,12 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 			
 			if (allEnemies.size() != amountOfEnemiesToAttack) { Util.log("attackMultipleRandom() got different values for allEnemies.size() and amountOfEnemiesToAttack! allEnemies.size()=" + allEnemies.size() + " -- amountOfEnemiesToAttack=" + amountOfEnemiesToAttack); }
-			
+			if (nonTargeted.size() > 0)
+			{
+				if (damage == 0) { nonTargeted.addAll(allEnemies); }
+				stampedeHandler(nonTargeted);
+				recklessHandler(nonTargeted);
+			}
 			return allEnemies.size();
 		}
 	}
@@ -966,6 +952,94 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		int[] damageArray = new int[] { damage, damage, damage, damage, damage, damage, damage, damage, damage, damage };
 		attackAll(AbstractGameAction.AttackEffect.FIRE, damageArray, DamageType.THORNS);
+	}
+	
+	private void recklessHandler(AbstractMonster m, int dmg)
+	{
+		boolean reckless = this.hasTag(Tags.RECKLESS);
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { reckless = true; }
+		if (reckless)
+		{
+			ArrayList<AbstractMonster> otherMons = new ArrayList<AbstractMonster>();
+			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (!mon.equals(m) && !mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead) { otherMons.add(mon); }
+				if (dmg == 0) { otherMons.add(m); }
+			}
+			if (otherMons.size() > 0)
+			{
+				for (AbstractMonster mons : otherMons)
+				{
+					if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
+					{
+						applyPower(new VulnerablePower(mons, 1, false), mons);
+					}
+				}
+			}
+		}
+	}
+	
+	private void recklessHandler(ArrayList<AbstractMonster> otherMons)
+	{
+		boolean reckless = this.hasTag(Tags.RECKLESS);
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { reckless = true; }
+		if (reckless)
+		{
+			if (otherMons.size() > 0)
+			{
+				for (AbstractMonster mons : otherMons)
+				{
+					if (AbstractDungeon.cardRandomRng.random(1, 3) == 1)
+					{
+						applyPower(new VulnerablePower(mons, 1, false), mons);
+					}
+				}
+			}
+		}
+	}
+	
+	private void stampedeHandler(AbstractMonster m, int dmg)
+	{
+		boolean stampede = this.hasTag(Tags.STAMPEDING);
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { stampede = true; }
+		if (stampede)
+		{
+			ArrayList<AbstractMonster> otherMons = new ArrayList<AbstractMonster>();
+			for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters)
+			{
+				if (!mon.equals(m) && !mon.isDead && !mon.isDying && !mon.isDeadOrEscaped() && !mon.halfDead) { otherMons.add(mon); }
+				if (dmg == 0) { otherMons.add(m); }
+			}
+			if (otherMons.size() > 0)
+			{
+				for (AbstractMonster mons : otherMons)
+				{
+					if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
+					{
+						applyPower(new WeakPower(mons, 1, false), mons);
+					}
+				}
+			}
+		}
+	}
+	
+	private void stampedeHandler(ArrayList<AbstractMonster> otherMons)
+	{
+		boolean stampede = this.hasTag(Tags.STAMPEDING);
+		if (this.hasTag(Tags.DRAGON) && player().hasPower(TyrantWingPower.POWER_ID)) { stampede = true; }
+		if (stampede)
+		{
+			if (otherMons.size() > 0)
+			{
+				for (AbstractMonster mons : otherMons)
+				{
+					if (AbstractDungeon.cardRandomRng.random(1, 2) == 1)
+					{
+						applyPower(new WeakPower(mons, 1, false), mons);
+					}
+				}
+			}
+		}
 	}
 	// =============== /ATTACK FUNCTIONS/ =======================================================================================================================================================
 	
@@ -1572,7 +1646,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		Map<CardTags,AbstractPower> powerTypeMap = new HashMap<CardTags,AbstractPower>();
 		powerTypeMap.put(Tags.AQUA, new SpikedGillmanPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
-		powerTypeMap.put(Tags.DRAGON, new StrengthPower(AbstractDungeon.player, turnAmount));
+		powerTypeMap.put(Tags.DRAGON, new Dragonscales(turnAmount));
 		powerTypeMap.put(Tags.FIEND, new DoomdogPower(AbstractDungeon.player, AbstractDungeon.player, turnAmount));
 		powerTypeMap.put(Tags.INSECT, new CocoonPower(AbstractDungeon.player, AbstractDungeon.player, 3));
 		powerTypeMap.put(Tags.MACHINE, new ArtifactPower(AbstractDungeon.player, turnAmount));
@@ -4174,6 +4248,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		warriorSynTrib(tc);
 		rockSynTrib(tc);
 		wyrmSynTrib(tc);
+		if (tc.hasTag(Tags.MEGATYPED)) { AbstractDungeon.actionManager.addToTop(new VFXAction(new RainbowCardEffect())); }
 		if (DuelistMod.debug) { DuelistMod.logger.info("Ran megatype tribute function, tributing card: " + tc.originalName); }
 	}
 	
@@ -4238,39 +4313,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.DRAGON))
 		{
-			if (!AbstractDungeon.player.hasPower(GravityAxePower.POWER_ID)) 
-			{ 
-				if (!AbstractDungeon.player.hasPower(MountainPower.POWER_ID)) 
-				{ 
-					applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); 
-					//applyPowerToSelf(new LoseStrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); 
-				}
-				else 
-				{ 
-					applyPowerToSelf(new StrengthPower(AbstractDungeon.player, DuelistMod.dragonStr + 1)); 
-					//applyPowerToSelf(new LoseStrengthPower(AbstractDungeon.player, DuelistMod.dragonStr)); 
-				}
-			}
-			
+			DuelistCard.applyPowerToSelf(new Dragonscales(DuelistMod.dragonStr));
+		
 			if (AbstractDungeon.player.hasRelic(DragonRelicB.ID))
 			{
 				if (DuelistMod.dragonRelicBFlipper) { drawRare(1, CardRarity.RARE); }
 				DuelistMod.dragonRelicBFlipper = !DuelistMod.dragonRelicBFlipper;
 			}
-			
-			if (player().hasPower(TyrantWingPower.POWER_ID))
-			{
-				TwoAmountPower power = (TwoAmountPower)player().getPower(TyrantWingPower.POWER_ID);
-				power.amount2++;
-				power.updateDescription();
-			}
-			
-			if (player().hasPower(BoosterDragonPower.POWER_ID))
-			{
-				AbstractPower pow = player().getPower(BoosterDragonPower.POWER_ID);
-				if (pow.amount > 0) { staticBlock(pow.amount); }
-			}
-			
+				
 			if (player().hasRelic(DragonRelicC.ID))
 			{
 				AbstractRelic relic = player().getRelic(DragonRelicC.ID);
@@ -5296,6 +5346,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== ORB FUNCTIONS =========================================================================================================================================================
+	public static int fillOrbSlotsWithOrb(AbstractOrb orb)
+	{
+		int lightning = 0;
+		int channeled = 0;
+		AbstractPlayer p = AbstractDungeon.player;
+    	lightning = p.maxOrbs - p.filledOrbCount();
+    	if (lightning > 0) { for (int i = 0; i < lightning; i++) { channel(orb); channeled++; }}
+    	return channeled;
+	}
+	
 	public static void checkSplash()
 	{
 		if (AbstractDungeon.player.hasOrb())

@@ -82,6 +82,7 @@ public class InsectQueen extends DuelistCard
   	{
   		// Check super canUse()
   		boolean canUse = super.canUse(p, m); 
+  		boolean canDec = canDecMaxSummons(this.magicNumber);
   		if (!canUse) { return false; }
   		
   		// Pumpking & Princess
@@ -91,21 +92,22 @@ public class InsectQueen extends DuelistCard
     	else if (p.hasPower(EmperorPower.POWER_ID))
 		{
 			EmperorPower empInstance = (EmperorPower)p.getPower(EmperorPower.POWER_ID);
-			if (!empInstance.flag)
+			if (!empInstance.flag && canDec)
 			{
 				return true;
 			}
 			else
 			{
-				if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
+				if (p.hasPower(SummonPower.POWER_ID) && canDec) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } }
 			}
 		}
 
   		// Check for # of summons >= tributes
-  		else { if (p.hasPower(SummonPower.POWER_ID)) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
+  		else { if (p.hasPower(SummonPower.POWER_ID) && canDec) { int temp = (p.getPower(SummonPower.POWER_ID).amount); if (temp >= 1) { return true; } } }
 
   		// Player doesn't have something required at this point
-  		this.cantUseMessage = DuelistMod.needSummonsString;
+  		if (!canDec) { this.cantUseMessage = "Cannot reduce Max Summons further"; }
+  		else { this.cantUseMessage = DuelistMod.needSummonsString; }
   		return false;
   	}
 

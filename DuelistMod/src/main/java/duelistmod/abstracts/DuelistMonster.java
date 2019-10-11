@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 import duelistmod.DuelistMod;
 import duelistmod.actions.common.DuelistMonsterDrawHandAction;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.*;
 import duelistmod.powers.SwordsRevealPower;
