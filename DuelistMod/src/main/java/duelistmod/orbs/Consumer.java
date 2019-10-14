@@ -72,7 +72,7 @@ public class Consumer extends DuelistOrb
 	public void onExhaust(AbstractCard c)
 	{
 		triggerPassiveEffect();
-		if (gpcCheck()) { triggerPassiveEffect(); }
+		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 	
 	@Override

@@ -64,7 +64,7 @@ public class Metal extends DuelistOrb
 	public void onEndOfTurn()
 	{
 		triggerPassiveEffect();
-		if (gpcCheck()) { triggerPassiveEffect(); }
+		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
 	@Override

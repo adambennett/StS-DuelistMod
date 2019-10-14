@@ -38,7 +38,7 @@ public class JiraiGumo extends DuelistCard
 
     public JiraiGumo() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
+        this.baseDamage = this.damage = 18;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.GOOD_TRIB);
         this.tags.add(Tags.INSECT);

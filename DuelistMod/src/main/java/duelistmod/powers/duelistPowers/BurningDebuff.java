@@ -1,14 +1,17 @@
 package duelistmod.powers.duelistPowers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.*;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistPower;
+import duelistmod.abstracts.*;
 import duelistmod.actions.unique.BurningTakeDamageAction;
 
 public class BurningDebuff extends DuelistPower
@@ -40,7 +43,7 @@ public class BurningDebuff extends DuelistPower
 	public void updateDescription()
 	{
 		if (this.owner == null || this.owner.isPlayer) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
-		else { this.description = DESCRIPTIONS[2] + this.amount + DESCRIPTIONS[1]; }
+		else { this.description = DESCRIPTIONS[2] + this.amount + DESCRIPTIONS[3]; }
 	}
 
 	@Override
@@ -56,6 +59,25 @@ public class BurningDebuff extends DuelistPower
         	{
         		this.flashWithoutSound();
         		this.amount++;
+        		if (!this.owner.isPlayer)
+        		{
+        			ArrayList<AbstractMonster> otherMons = new ArrayList<AbstractMonster>();
+        			for (AbstractMonster m : DuelistCard.getAllMons()) { if (!m.equals(this.owner)) { otherMons.add(m); }}
+        			if (otherMons.size() > 0)
+        			{
+	        			int roll = AbstractDungeon.cardRandomRng.random(1, 4);
+	        			if (roll > 3)
+	        			{
+		        			for (AbstractMonster m : otherMons)
+		        			{
+		        				float spreadDivider = AbstractDungeon.cardRandomRng.random(1.0f, 3.0f);
+		        				int spreadAmt = (int) (this.amount / spreadDivider);
+		        				if (spreadAmt > 99) { spreadAmt = 99; }
+		        				if (spreadAmt > 0) { DuelistCard.applyPower(new BurningDebuff(m, this.owner, spreadAmt), m); }
+		        			}
+	        			}
+        			}
+        		}
         		updateDescription();
         	}
         }

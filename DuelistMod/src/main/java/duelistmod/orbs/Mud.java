@@ -75,7 +75,7 @@ public class Mud extends DuelistOrb
 		if (this.passiveAmount > 0)
 		{
 			this.triggerPassiveEffect();
-			if (gpcCheck()) { this.triggerPassiveEffect(); }
+			//if (gpcCheck()) { this.triggerPassiveEffect(); }
 		}
 	}
 

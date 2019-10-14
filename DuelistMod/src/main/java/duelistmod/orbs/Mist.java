@@ -83,7 +83,7 @@ public class Mist extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		triggerPassiveEffect(); 
-		if (gpcCheck()) { triggerPassiveEffect(); }
+		//if (gpcCheck()) { triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()

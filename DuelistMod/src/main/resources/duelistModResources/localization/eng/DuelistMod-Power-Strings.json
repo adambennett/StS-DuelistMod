@@ -800,11 +800,15 @@
 },
 "theDuelist:BurningDebuff": {
         "NAME": "Burning",
-        "DESCRIPTIONS": ["At the start of your #yeven turns, take #b", " damage. At the start of #yodd turns, increase this damage by #b1.", "At the start of its #yeven turns, takes #b"]
+        "DESCRIPTIONS": ["At the start of your #yeven turns, take #b", " damage. At the start of #yodd turns, increase this damage by #b1.", "At the start of its #yeven turns, takes #b", " damage. At the start of #yodd turns, increase this damage by #b1 and have a chance to spread to other enemies."]
 },
 "theDuelist:Dragonscales": {
         "NAME": "Dragonscales",
-        "DESCRIPTIONS": ["#yBlock and damage of #yDragons is improved by #b", "."]
+        "DESCRIPTIONS": ["#yBlock and damage of #yDragons is increased by #b", "."]
+},
+"theDuelist:AutorokketDragonPower": {
+        "NAME": "Autorokket Dragon",
+        "DESCRIPTIONS": ["Whenever you #yChannel a flame-based orb, apply #b", " #yBurning to ALL enemies."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

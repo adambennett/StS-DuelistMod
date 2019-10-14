@@ -141,7 +141,7 @@ public class Anticrystal extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		triggerPassive();
-		if (gpcCheck()) { triggerPassive(); }
+		//if (gpcCheck()) { triggerPassive(); }
 	}
 
 	@Override

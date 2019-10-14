@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
@@ -73,6 +74,15 @@ public class MillenniumSymbol extends CustomRelic {
 		if (deck.equals("Increment Deck")) { desc = DESCRIPTIONS[15]; }
 		if (deck.equals("Creator Deck")) { desc = DESCRIPTIONS[16]; }		
 		return desc;
+	}
+	
+	@Override
+	public void onEquip()
+	{
+		if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID)) { 
+			MillenniumPuzzle puz = (MillenniumPuzzle) AbstractDungeon.player.getRelic(MillenniumPuzzle.ID);
+			puz.getDeckDesc();
+		}
 	}
 	
 	public void setDescription()

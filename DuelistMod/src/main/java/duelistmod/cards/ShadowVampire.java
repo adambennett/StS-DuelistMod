@@ -46,6 +46,7 @@ public class ShadowVampire extends DuelistCard
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.ZOMBIE);
+        this.tags.add(Tags.EXEMPT);
     }
     
 	@Override

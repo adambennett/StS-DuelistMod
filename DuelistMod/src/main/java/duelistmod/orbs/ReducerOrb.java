@@ -84,7 +84,7 @@ public class ReducerOrb extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		this.triggerPassiveEffect();
-		if (gpcCheck()) { this.triggerPassiveEffect(); }
+		//if (gpcCheck()) { this.triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()

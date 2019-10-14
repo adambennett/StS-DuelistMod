@@ -1,4 +1,4 @@
-package duelistmod.cards.fourthWarriors;
+package duelistmod.cards.dragons;
 
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.stances.Guarded;
 import duelistmod.variables.Tags;
 
 public class DefenseZone extends DuelistCard 

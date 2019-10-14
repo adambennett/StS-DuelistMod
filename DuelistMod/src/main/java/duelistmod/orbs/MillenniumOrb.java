@@ -117,7 +117,7 @@ public class MillenniumOrb extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		if (this.passiveAmount > 0) { triggerPassiveEffect(); }
-		if (gpcCheck() && this.passiveAmount > 0) { triggerPassiveEffect(); }
+		//if (gpcCheck() && this.passiveAmount > 0) { triggerPassiveEffect(); }
 	}
 
 	public void triggerPassiveEffect()

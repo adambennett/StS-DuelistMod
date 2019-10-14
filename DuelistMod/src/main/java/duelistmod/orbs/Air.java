@@ -99,7 +99,7 @@ public class Air extends DuelistOrb
 			if (roll > 5)
 			{
 				this.triggerPassiveEffect();
-				if (gpcCheck()) { this.triggerPassiveEffect(); }
+				//if (gpcCheck()) { this.triggerPassiveEffect(); }
 			}
 		}
 	}

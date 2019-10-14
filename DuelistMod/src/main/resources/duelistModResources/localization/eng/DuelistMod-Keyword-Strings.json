@@ -109,7 +109,7 @@
         "dragon",
 		"Dragon"
       ],      
-      "DESCRIPTION": "When you #yTribute a #yDragon for another #yDragon, gain #b7 #yDragonscales."
+      "DESCRIPTION": "#yDragons have a chance to apply #yBurning to their targets. When you #yTribute a #yDragon for another #yDragon, gain #b2 #yDragonscales."
     },
     {
 	  "PROPER_NAME": "Spellcaster",
@@ -742,7 +742,7 @@
       "Burning",
 	  "burning"
     ],   
-    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1."
+    "DESCRIPTION": "#yDebuff that deals damage to the owner at the start of even turns. On odd turns, #yBurning is increased by #b1 and has a chance to spread to other enemies."
   },
   {
   "PROPER_NAME": "Frozen",
@@ -779,7 +779,7 @@
 	  "dragonscales",
 	  "DragonScales"
     ],   
-    "DESCRIPTION": "#yBlock and damage of #yDragons is improved by #b1 for every #b4 #yDragonscales you have."
+    "DESCRIPTION": "#yBlock and damage of #yDragons is increased by #b1 for every #b4 #yDragonscales you have."
   },
   {
     "PROPER_NAME": "Gate",

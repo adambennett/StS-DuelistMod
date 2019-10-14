@@ -70,7 +70,7 @@ public class Summoner extends DuelistOrb
 	public void onEndOfTurn()
 	{
 		triggerPassive();
-		if (gpcCheck()) { triggerPassive(); }
+		//if (gpcCheck()) { triggerPassive(); }
 	}	
 	
 	private void triggerPassive()

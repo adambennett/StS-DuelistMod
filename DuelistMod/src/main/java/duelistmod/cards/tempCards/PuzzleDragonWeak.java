@@ -15,7 +15,7 @@ import duelistmod.patches.AbstractCardEnum;
 public class PuzzleDragonWeak extends TokenCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("PuzzleDragonScales");
+    public static final String ID = DuelistMod.makeID("PuzzleDragonWeak");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String IMG = DuelistMod.makeCardPath("PuzzleDragon.png");
     public static final String NAME = cardStrings.NAME;

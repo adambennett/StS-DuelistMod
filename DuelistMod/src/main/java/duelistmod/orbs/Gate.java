@@ -37,7 +37,6 @@ public class Gate extends DuelistOrb
 	private static final float ORB_WAVY_DIST = 0.05F;
 	private static final float PI_4 = 12.566371F;
 	private static final float ORB_BORDER_SCALE = 1.2F;
-	private static ArrayList<DuelistCard> guardians = new ArrayList<DuelistCard>();
 	private int MANA = 1;
 	private int evokeIndex = 0;
 	private ArrayList<String> evokeDescriptions = new ArrayList<String>();
@@ -55,12 +54,6 @@ public class Gate extends DuelistOrb
 		this.evokeIndex = ThreadLocalRandom.current().nextInt(0, 3);
 		originalEvoke = this.baseEvokeAmount;
 		originalPassive = this.basePassiveAmount;
-		DuelistCard thunder = new SangaThunder();
-		DuelistCard earth = new SangaEarth();
-		DuelistCard water = new SangaWater(); 
-		guardians.add(thunder); 
-		guardians.add(earth);
-		guardians.add(water);
 		checkFocus(false);
 		updateEvokeValues();
 	}
@@ -139,7 +132,7 @@ public class Gate extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		triggerPassive();
-		if (gpcCheck()) { triggerPassive(); }
+		//if (gpcCheck()) { triggerPassive(); }
 	}
 
 	@Override

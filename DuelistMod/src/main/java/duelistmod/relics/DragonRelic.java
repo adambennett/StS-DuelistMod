@@ -37,13 +37,13 @@ public class DragonRelic extends CustomRelic {
 	public void onEquip()
 	{
 		setDescription();
-		DuelistMod.dragonStr += 3;
+		DuelistMod.dragonStr += 2;
 	}
 	
 	@Override
 	public void onUnequip()
 	{
-		DuelistMod.dragonStr -= 3;
+		DuelistMod.dragonStr -= 2;
 	}
 
 	// Description

@@ -2640,12 +2640,12 @@
 	},
 	"theDuelist:WingedKuribohLv9": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of card and then draw !M! card of that type.",
-		"NAME": "Winged Kuriboh Lv9",
+		"NAME": "Winged Kuriboh LV9",
 		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Gain !B! Block. NL Choose a type of card and then draw !M! card of that type."
 	},
 	"theDuelist:WingedKuribohLv10": {
 		"DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Choose a type of card and then draw !duelist:M! cards of that type.",
-		"NAME": "Winged Kuriboh Lv10",
+		"NAME": "Winged Kuriboh LV10",
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Gain !M! Temporary HP. NL Choose a type of card and then draw !duelist:M! cards of that type."
 	},
 	"theDuelist:AncientGearBox": {
@@ -3104,9 +3104,9 @@
 		"UPGRADE_DESCRIPTION": "Zombie NL Summon !duelist:SUMM! NL Gain !B! Block. NL Discard !M! cards."
 	},
 	"theDuelist:ShadowVampire": {
-		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand.",
+		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand. NL Exempt.",
 		"NAME": "Shadow Vampire",
-		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand."
+		"UPGRADE_DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Channel !M! Shadows. NL Discard your hand. NL Exempt."
 	},
 	"theDuelist:IlBlud": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Whenever you discard a card, deal !M! damage to ALL enemies.",
@@ -3523,20 +3523,10 @@
 		"NAME": "Black Pendant",
 		"UPGRADE_DESCRIPTION": "Gain !duelist:M! Strength this turn. The next time this card is in your discard pile at the start of turn, move it to your hand. NL Overflow !M! - Lose !duelist:O! HP."
 	},
-	"theDuelist:CastleDragonSouls": {
-		"DESCRIPTION": "Whenever you Tribute a Dragon for another, capture the soul of one of the Dragons (chosen randomly). After !M! turns, Resummon all Dragons captured in the Castle on random enemies.",
-		"NAME": "Castle of Dragon Souls",
-		"UPGRADE_DESCRIPTION": "Whenever you Tribute a Dragon for another, capture the soul of one of the Dragons (chosen randomly). After !M! turns, Resummon all Dragons captured in the Castle on random enemies."
-	},
 	"theDuelist:DragonShield": {
 		"DESCRIPTION": "Arcane NL Dragon NL Gain !B! Block !M! times.",
 		"NAME": "Dragon Shield",
 		"UPGRADE_DESCRIPTION": "Arcane NL Dragon NL Gain !B! Block !M! times."
-	},
-	"theDuelist:DragonShrine": {
-		"DESCRIPTION": "At the end of each turn, if you have tributed at least !M! Dragons, gain !duelist:M! Block.",
-		"NAME": "Dragon Shrine",
-		"UPGRADE_DESCRIPTION": "At the end of each turn, if you have tributed at least !M! Dragons, gain !duelist:M! Block."
 	},
 	"theDuelist:SpiritPharaoh": {
 		"DESCRIPTION": "Zombie NL Tribute !duelist:TRIB! NL Deal !D! damage a random enemy !M! times. NL Evoke your next orb.",
@@ -4715,9 +4705,9 @@
 		"UPGRADE_DESCRIPTION": "Exhaust up to !M! cards. NL Enter Samurai."
 	},
 	"theDuelist:DefenseZone": {
-		"DESCRIPTION": "Exhaust up to !M! cards. NL Enter Guarded.",
+		"DESCRIPTION": "Arcane NL Gain !B! Block.",
 		"NAME": "Defense Zone",
-		"UPGRADE_DESCRIPTION": "Exhaust up to !M! cards. NL Enter Guarded."
+		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block."
 	},
 	"theDuelist:Downbeat": {
 		"DESCRIPTION": "Exit your Stance. NL Draw !M! cards.",
@@ -5794,6 +5784,11 @@
 		"NAME": "Wyrm",
 		"UPGRADE_DESCRIPTION": "Wyrm"
 	},
+	"theDuelist:DinosaurTypeCard": {
+		"DESCRIPTION": "Dinosaur",
+		"NAME": "Dinosaur",
+		"UPGRADE_DESCRIPTION": "Dinosaur"
+	},
 	"theDuelist:BlockmanBlock": {
 		"DESCRIPTION": "Gain !B! Block.",
 		"NAME": "Blockman, Block!",
@@ -6348,6 +6343,671 @@
 		"DESCRIPTION": "Dragon NL Summon 1 NL Deal !D! damage.",
 		"NAME": "Dragonic Token",
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon 1 NL Deal !D! damage."
+	},
+	"theDuelist:AncientDragon": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Channel a DragonOrb.",
+		"NAME": "Ancient Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Channel a DragonOrb."
+	},
+	"theDuelist:AncientPixieDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Add a random Ancient card to your hand. NL Exhaust.",
+		"NAME": "Ancient Pixie Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Add a random Ancient card to your hand."
+	},
+	"theDuelist:Anthrosaurus": {
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Anthrosaurus",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:ArmedDragon3": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you have no Spells in your hand, add a copy of this to your hand. NL Exhaust.",
+		"NAME": "Armed Dragon LV3",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Gain !B! Block. NL If you have no Spells in your hand, add a copy of this to your hand. NL Exhaust."
+	},
+	"theDuelist:ArmedDragon5": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute Armed Dragon LV3, Level Up.",
+		"NAME": "Armed Dragon LV5",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL If you Tribute Armed Dragon LV3, Level Up."
+	},
+	"theDuelist:ArmedDragon7": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up.",
+		"NAME": "Armed Dragon LV7",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage twice. NL If you Tribute Armed Dragon LV5, Level Up."
+	},
+	"theDuelist:ArmedDragon10": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Exempt.",
+		"NAME": "Armed Dragon LV10",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Exempt."
+	},
+	"theDuelist:ArmedProtectorDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Level up all Armed Dragons (everywhere).",
+		"NAME": "Armed Protect Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Level up all Armed Dragons (everywhere)."
+	},
+	"theDuelist:AtomicScrapDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Costs !M! less Tribute for each card in your hand with a modified Tribute cost.",
+		"NAME": "Atomic Scrap Dragon",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Costs !M! less Tribute for each card in your hand with a modified Tribute cost."
+	},
+	"theDuelist:AutorokketDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Whenever you channel a flame-based orb, apply !M! Burning to ALL enemies.",
+		"NAME": "Autorokket Dragon",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Whenever you channel a flame-based orb, apply !M! Burning to ALL enemies."
+	},
+	"theDuelist:Babycerasaurus": {
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Babycerasaurus",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:Beatraptor": {
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Beatraptor",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:BlackBrachios": {
+		"DESCRIPTION": "Reckless NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Black Brachios",
+		"UPGRADE_DESCRIPTION": "Reckless NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:BlackBrutdrago": {
+		"DESCRIPTION": "Malicious NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Black Brutdrago",
+		"UPGRADE_DESCRIPTION": "Malicious NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:BlackPtera": {
+		"DESCRIPTION": "Reckless NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
+		"NAME": "Black Ptera",
+		"UPGRADE_DESCRIPTION": "Reckless NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
+	},
+	"theDuelist:BlackStego": {
+		"DESCRIPTION": "Stampeding NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block.",
+		"NAME": "Black Stego",
+		"UPGRADE_DESCRIPTION": "Stampeding NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block."
+	},
+	"theDuelist:BlackTyranno": {
+		"DESCRIPTION": "Malicious NL Stampeding NL Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Black Tyranno",
+		"UPGRADE_DESCRIPTION": "Malicious NL Stampeding NL Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:BlackVeloci": {
+		"DESCRIPTION": "Malicious NL Dinosaur NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Black Veloci",
+		"UPGRADE_DESCRIPTION": "Malicious NL Dinosaur NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:BlueDuston": {
+		"DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all Burning enemies.",
+		"NAME": "Blue Duston",
+		"UPGRADE_DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all Burning enemies."
+	},
+	"theDuelist:MegafleetDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Burning.",
+		"NAME": "Megafleet Dragon",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Burning."
+	},
+	"theDuelist:ChimeratechOverdragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Blaze and Fire.",
+		"NAME": "Chimera Overdragon",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Channel a Blaze and Fire."
+	},
+	"theDuelist:CloudianGhost": {
+		"DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Apply Poison to ALL enemies equal to the sum of their debuffs. NL Exhaust.",
+		"NAME": "Ghost Fog",
+		"UPGRADE_DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Apply Poison to ALL enemies equal to the sum of their debuffs. NL Exhaust."
+	},
+	"theDuelist:CoralDragon": {
+		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Gain !M! Dragonscales.",
+		"NAME": "Coral Dragon",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Gain !M! Dragonscales."
+	},
+	"theDuelist:CyberDinosaur": {
+		"DESCRIPTION": "Machine Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Cyber Dinosaur",
+		"UPGRADE_DESCRIPTION": "Machine Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:CyberDragonCore": {
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Add a random Machine Dragon to your hand.",
+		"NAME": "Cyber Dragon Core",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Add a random Machine Dragon to your hand. It costs 0 this turn."
+	},
+	"theDuelist:CyberDragonDrei": {
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to add up to !M! Power Walls to your hand.",
+		"NAME": "Cyber Dragon Drei",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to add up to !M! Power Walls to your hand."
+	},
+	"theDuelist:CyberDragonHerz": {
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL At the end of combat, heal !duelist:M! HP for each Machine you played. NL (Max. !M! HP)",
+		"NAME": "Cyber Dragon Herz",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL At the end of combat, heal !duelist:M! HP for each Machine you played. NL (Max. !M! HP)"
+	},
+	"theDuelist:CyberDragonInfinity": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to a random enemy until all enemies are below 50% HP.",
+		"NAME": "Cyber Dragon Infinity",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to a random enemy until all enemies are below 50% HP."
+	},
+	"theDuelist:CyberDragonNachster": {
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to gain !M! Dragonscales or !duelist:M! Artifact. NL Exhaust.",
+		"NAME": "Cyber Dragon Nachster",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to gain !M! Dragonscales or !duelist:M! Artifact. NL Exhaust."
+	},
+	"theDuelist:CyberDragonNova": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Exhaust your hand. Deal !D! damage for each card Exhausted. NL Exempt.",
+		"NAME": "Cyber Dragon Nova",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Exhaust your hand. Deal !D! damage for each card Exhausted. NL Exempt."
+	},
+	"theDuelist:CyberDragonSieger": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Machines deal 20% more damage. Dragons deal 20% more damage.",
+		"NAME": "Cyber Dragon Sieger",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Machines deal 40% more damage. Dragons deal 40% more damage."
+	},
+	"theDuelist:CyberDragonVier": {
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to channel a White, Fire, Blaze or Reducer.",
+		"NAME": "Cyber Dragon Vier",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Choose to channel a White, Fire, Blaze or Reducer."
+	},
+	"theDuelist:CyberEltanin": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Stampeding cards deal double damage for !M! turns.",
+		"NAME": "Cyber Eltanin",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Stampeding cards deal double damage for !M! turns."
+	},
+	"theDuelist:CyberEndDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in your hand with a modified Tribute cost, this card costs !M! Tributes.",
+		"NAME": "Cyber End Dragon",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL While you have a card in your hand with a modified Tribute cost, this card costs !M! Tribute."
+	},
+	"theDuelist:CyberLaserDragon": {
+		"DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Whenever you play a card with a modified Tribute cost, deal !M! damage to ALL enemies.",
+		"NAME": "Cyber Laser Dragon",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Tribute !duelist:TRIB! NL Whenever you play a card with a modified Tribute cost, deal !M! damage to ALL enemies."
+	},
+	"theDuelist:CyberPharos": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Fill your orb slots with random flame-based orbs and MillenniumOrbs. NL Exhaust.",
+		"NAME": "Cyber Pharos",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Fill your orb slots with random flame-based orbs and MillenniumOrbs. NL Exhaust."
+	},
+	"theDuelist:CyberPhoenix": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn.",
+		"NAME": "Cyber Phoenix",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Choose to set the energy or Tribute cost of all cards in your hand to !M! for the turn."
+	},
+	"theDuelist:CyberTwinDragon": {
+		"DESCRIPTION": "Reckless NL Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies.",
+		"NAME": "Cyber Twin Dragon",
+		"UPGRADE_DESCRIPTION": "Reckless NL Machine Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies."
+	},
+	"theDuelist:CyberValley": {
+		"DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you have a card with a modified Tribute cost in your hand, this card costs 0.",
+		"NAME": "Cyber Valley",
+		"UPGRADE_DESCRIPTION": "Machine Dragon NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you have a card with a modified Tribute cost in your hand, this card costs 0."
+	},
+	"theDuelist:DarkDriceratops": {
+		"DESCRIPTION": "Malicious NL Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Dark Driceratops",
+		"UPGRADE_DESCRIPTION": "Malicious NL Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:DarkHorus": {
+		"DESCRIPTION": "Malicious NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Dark Horus",
+		"UPGRADE_DESCRIPTION": "Malicious NL Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage."
+	},
+	"theDuelist:Destroyersaurus": {
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies.",
+		"NAME": "Destroyersaurus",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies."
+	},
+	"theDuelist:DreadnoughtDreadnoid": {
+		"DESCRIPTION": "Malicious NL Aqua Machine NL Summon !duelist:SUMM! NL Gain !B! Block.",
+		"NAME": "Dreadnought Dreadnoid",
+		"UPGRADE_DESCRIPTION": "Malicious NL Aqua Machine NL Summon !duelist:SUMM! NL Gain !B! Block."
+	},
+	"theDuelist:Duoterion": {
+		"DESCRIPTION": "Aqua Dinosaur NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Dragonscales.",
+		"NAME": "Duoterion",
+		"UPGRADE_DESCRIPTION": "Aqua Dinosaur NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Gain !M! Dragonscales."
+	},
+	"theDuelist:Freezadon": {
+		"DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Freeze an enemy. NL Exempt.",
+		"NAME": "Freezadon",
+		"UPGRADE_DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Freeze an enemy. NL Exempt."
+	},
+	"theDuelist:FrostflameDragon": {
+		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Channel a Frost and a random flame-based orb.",
+		"NAME": "Frostflame Dragon",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Channel a Frost and a random flame-based orb."
+	},
+	"theDuelist:Frostosaurus": {
+		"DESCRIPTION": "Dinosaur NL Tribute X NL Channel X Frost.",
+		"NAME": "Frostosaurus",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute X NL Channel X Frost."
+	},
+	"theDuelist:FrozenFitzgerald": {
+		"DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all enemies. NL Exhaust.",
+		"NAME": "Frozen Fitzgerald",
+		"UPGRADE_DESCRIPTION": "Aqua Fiend NL Summon !duelist:SUMM! NL Freeze all enemies. NL Exhaust."
+	},
+	"theDuelist:GalaxySoldier": {
+		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever you play a Trap, set the cost of another random card in your hand to 0 for the turn.",
+		"NAME": "Galaxy Soldier",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Whenever you play a Trap, set the cost of another random card in your hand to 0 for the turn."
+	},
+	"theDuelist:GalaxyTyranno": {
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Channel an Alien and then Evoke all orbs.",
+		"NAME": "Galaxy Tyranno",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Channel an Alien and then Evoke all orbs."
+	},
+	"theDuelist:GenesisDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL At the end of each combat, has a 10% chance to duplicate itself in your deck.",
+		"NAME": "Genesis Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL At the end of each combat, has a 30% chance to duplicate itself in your deck."
+	},
+	"theDuelist:GuardragonJusticia": {
+		"DESCRIPTION": "Aqua Dragon NL Summon !duelist:SUMM! NL Gain !M! Dragonscales, then gain Block equal to your Dragonscales.",
+		"NAME": "Guardragon Justicia",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Summon !duelist:SUMM! NL Gain !M! Dragonscales, then gain Block equal to your Dragonscales."
+	},
+	"theDuelist:HazyFlameHydra": {
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Channel !M! Fire.",
+		"NAME": "Hazy Flame Hydra",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Gain !B! Block. NL Channel !M! Fire."
+	},
+	"theDuelist:Hydrogeddon": {
+		"DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Hydrogeddon",
+		"UPGRADE_DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:InfernityDoomDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the start of turn, if you are not Frail, become Frail.",
+		"NAME": "Doom Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the start of turn, if you are not Frail, become Frail."
+	},
+	"theDuelist:IronChainDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL At the end of turn, if you have no Block, gain !M! Plated Armor.",
+		"NAME": "Iron Chain Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL At the end of turn, if you have no Block, gain !M! Plated Armor."
+	},
+	"theDuelist:Kabazauls": {
+		"DESCRIPTION": "Reckless NL Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Dragonscales.",
+		"NAME": "Kabazauls",
+		"UPGRADE_DESCRIPTION": "Reckless NL Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Dragonscales."
+	},
+	"theDuelist:Lancephorhynchus": {
+		"DESCRIPTION": "Reckless NL Stampeding NL Dragon Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies.",
+		"NAME": "Lancephorhynchus",
+		"UPGRADE_DESCRIPTION": "Reckless NL Stampeding NL Dragon Dinosaur NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies."
+	},
+	"theDuelist:MadFlameKaiju": {
+		"DESCRIPTION": "Stampeding NL Dragon Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage.",
+		"NAME": "Mad Flame Kaiju",
+		"UPGRADE_DESCRIPTION": "bbb"
+	},
+	"theDuelist:MadSwordBeast": {
+		"DESCRIPTION": "Stampeding NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to a random enemy.",
+		"NAME": "Mad Sword Beast",
+		"UPGRADE_DESCRIPTION": "Stampeding NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to a random enemy."
+	},
+	"theDuelist:Megalosmasher": {
+		"DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Has a chance to remove buffs from damaged enemies.",
+		"NAME": "Megalosmasher",
+		"UPGRADE_DESCRIPTION": "Aqua Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to ALL enemies. NL Has a chance to remove buffs from damaged enemies."
+	},
+	"theDuelist:MythicWaterDragon": {
+		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! cards. NL Exempt.",
+		"NAME": "Mythic Water Dragon",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Draw !M! cards. NL Exempt."
+	},
+	"theDuelist:AquaDolphin": {
+		"DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL If you have any Aquas in hand, enter Wrath.",
+		"NAME": "Aqua Dolphin",
+		"UPGRADE_DESCRIPTION": "Aqua Warrior NL Summon !duelist:SUMM! NL If you have any Aquas in hand, enter Wrath."
+	},
+	"theDuelist:Pyrorex": {
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have channeled a Fire this combat, apply !M! Burning.",
+		"NAME": "Pyrorex",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage. NL If you have channeled a Fire this combat, apply !M! Burning."
+	},
+	"theDuelist:RedDragonArchfiend": {
+		"DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable to ALL enemies. NL Exempt.",
+		"NAME": "Red Dragon Archfiend",
+		"UPGRADE_DESCRIPTION": "Fiend Dragon NL Tribute !duelist:TRIB! NL Apply !M! Vulnerable to ALL enemies. NL Exempt."
+	},
+	"theDuelist:Sabersaurus": {
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage.",
+		"NAME": "Sabersaurus",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage."
+	},
+	"theDuelist:SauropodBrachion": {
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Gain !B! Block.",
+		"NAME": "Sauropod Brachion",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Gain !B! Block."
+	},
+	"theDuelist:SphereChaos": {
+		"DESCRIPTION": "Machine NL Tribute X NL Apply a random debuff with X turns.",
+		"NAME": "Sphere of Chaos",
+		"UPGRADE_DESCRIPTION": "Machine NL Tribute X NL Choose and apply a random debuff with X turns."
+	},
+	"theDuelist:TidalWaterfall": {
+		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Deal !D! damage for each card in your hand. NL Exempt.",
+		"NAME": "Waterfall Dragon",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Deal !D! damage for each card in your hand. NL Exempt."
+	},
+	"theDuelist:UltimateTyranno": {
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Gain Temporary HP equal to twice unblocked damage.",
+		"NAME": "Ultimate Tyranno",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Gain Temporary HP equal to twice unblocked damage."
+	},
+	"theDuelist:Vandalgyon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Dragons deal 10% more damage for each stack of Weak on their targets.",
+		"NAME": "Van'Dalgyon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Dragons deal 10% more damage for each stack of Weak on their targets."
+	},
+	"theDuelist:VoidOgreDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL 50% chance to attack another random enemy. NL Exempt.",
+		"NAME": "Void Ogre Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Deal !D! damage. NL 50% chance to attack another random enemy. NL Exempt."
+	},
+	"theDuelist:WaterDragonCluster": {
+		"DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Exempt.",
+		"NAME": "Water-Dragon Cluster",
+		"UPGRADE_DESCRIPTION": "Aqua Dragon NL Tribute !duelist:TRIB! NL Draw !M! cards. NL Exempt."
+	},
+	"theDuelist:ArtifactIgnition": {
+		"DESCRIPTION": "Gain !duelist:M! Burning. NL Gain !M! Artifacts.",
+		"NAME": "Artifact Ignition",
+		"UPGRADE_DESCRIPTION": "Gain !duelist:M! Burning. NL Gain !M! Artifacts."
+	},
+	"theDuelist:BerserkScales": {
+		"DESCRIPTION": "Whenever you are attacked, deal !M! damage back to the attacker and gain !duelist:M! Dragonscales.",
+		"NAME": "Berserk Scales",
+		"UPGRADE_DESCRIPTION": "Whenever you are attacked, deal !M! damage back to the attacker and gain !duelist:M! Dragonscales."
+	},
+	"theDuelist:ClawHermos": {
+		"DESCRIPTION": "Fetch any Dragon from your draw pile. NL If you choose an Exempt Dragon, gain !B! Block. NL Exhaust.",
+		"NAME": "Claw of Hermos",
+		"UPGRADE_DESCRIPTION": "Fetch any Dragon from your draw pile. NL If you choose an Exempt Dragon, gain !B! Block. NL Exhaust."
+	},
+	"theDuelist:CyberEmergency": {
+		"DESCRIPTION": "Whenever you are about to take lethal attack damage, remove this buff and take 0 damage.",
+		"NAME": "Cyber Emergency",
+		"UPGRADE_DESCRIPTION": "Whenever you are about to take lethal attack damage, remove this buff and take 0 damage."
+	},
+	"theDuelist:CyberRepairPlant": {
+		"DESCRIPTION": "At the start of turn, if you have any Artifacts, gain !M! Temporary HP.",
+		"NAME": "Cyber Repair Plant",
+		"UPGRADE_DESCRIPTION": "At the start of turn, if you have any Artifacts, gain !M! Temporary HP."
+	},
+	"theDuelist:CyberRevsystem": {
+		"DESCRIPTION": "Gain !M! Temporary HP. NL Upgrade all Cyber cards in your hand.",
+		"NAME": "Cyber Revsystem",
+		"UPGRADE_DESCRIPTION": "Gain !M! Temporary HP. NL Upgrade all Cyber cards in your hand."
+	},
+	"theDuelist:CyberloadFusion": {
+		"DESCRIPTION": "Choose to Resummon any monster from your draw pile once for each of your Artifacts. Lose an Artifact for each monster you Resummon.",
+		"NAME": "Cyberload Fusion",
+		"UPGRADE_DESCRIPTION": "Choose to Resummon any monster from your draw pile once for each of your Artifacts. Lose an Artifact for each monster you Resummon."
+	},
+	"theDuelist:Dracocension": {
+		"DESCRIPTION": "If all monsters summoned are Dragons, gain !M! Focus. If all monsters summoned are Dinosaurs, gain !duelist:M! Intangible. NL Exhaust.",
+		"NAME": "Dracocension",
+		"UPGRADE_DESCRIPTION": "If all monsters summoned are Dragons, gain !M! Focus. If all monsters summoned are Dinosaurs, gain !duelist:M! Intangible. NL Exhaust."
+	},
+	"theDuelist:DragonMastery": {
+		"DESCRIPTION": "Whenever you play a Dragon, the cost of another random Dragon is reduced by !M! for the rest of the combat.",
+		"NAME": "Dragon Mastery",
+		"UPGRADE_DESCRIPTION": "Whenever you play a Dragon, the cost of another random Dragon is reduced by !M! for the rest of the combat."
+	},
+	"theDuelist:DragonRavine": {
+		"DESCRIPTION": "Dragons deal 10% more damage for each stack of Vulnerable on enemies.",
+		"NAME": "Dragon Ravine",
+		"UPGRADE_DESCRIPTION": "Dragons deal 10% more damage for each stack of Vulnerable on enemies."
+	},
+	"theDuelist:DragonShrine": {
+		"DESCRIPTION": "For the next !M! turns, gain Temporary HP equal to your Dragonscales at the start and end of turn.",
+		"NAME": "Dragon Shrine",
+		"UPGRADE_DESCRIPTION": "For the next !M! turns, gain Temporary HP equal to your Dragonscales at the start and end of turn."
+	},
+	"theDuelist:DragonTreasure": {
+		"DESCRIPTION": "At the end of each combat, gain !M! Gold.",
+		"NAME": "Dragon Treasure",
+		"UPGRADE_DESCRIPTION": "At the end of each combat, gain !M! Gold."
+	},
+	"theDuelist:DragonMirror": {
+		"DESCRIPTION": "Whenever you play a Dragon, gain !M! Block.",
+		"NAME": "Dragon's Mirror",
+		"UPGRADE_DESCRIPTION": "Whenever you play a Dragon, gain !M! Block."
+	},
+	"theDuelist:Earthquake": {
+		"DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a low chance to stun up to !M! enemies.",
+		"NAME": "Earthquake",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a moderate chance to stun up to !M! enemies."
+	},
+	"theDuelist:EvilMind": {
+		"DESCRIPTION": "Malicious NL When drawn, shuffle a copy into your draw pile, Exhaust this card and draw a card.",
+		"NAME": "Evil Mind",
+		"UPGRADE_DESCRIPTION": "Malicious NL When drawn, shuffle a copy into your draw pile, Exhaust this card and draw a card."
+	},
+	"theDuelist:EvolutionBurst": {
+		"DESCRIPTION": "Deal !D! damage. NL Level up all Armed Dragons in your hand.",
+		"NAME": "Evolution Burst",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Level up all Armed Dragons in your hand."
+	},
+	"theDuelist:FangCritias": {
+		"DESCRIPTION": "Choose any Dragon from your Exhaust pile to Resummon. If you choose an Exempt monster, add it to your hand instead.",
+		"NAME": "Fang of Critias",
+		"UPGRADE_DESCRIPTION": "Choose any Dragon from your Exhaust pile to Resummon. If you choose an Exempt monster, add it to your hand instead."
+	},
+	"theDuelist:GoldSarcophagus": {
+		"DESCRIPTION": "Tribute X NL Gain !M! Gold for each Dragon you Tribute. NL Exhaust.",
+		"NAME": "Gold Sarcophagus",
+		"UPGRADE_DESCRIPTION": "Tribute X NL Gain !M! Gold for each Dragon you Tribute. NL Exhaust."
+	},
+	"theDuelist:LivingFossil": {
+		"DESCRIPTION": "Gain !M! random debuffs that last for !duelist:M! turns. NL At the start of turn, fill your summoning zones with Dinosaur Tokens.",
+		"NAME": "Living Fossil",
+		"UPGRADE_DESCRIPTION": "Gain !M! random debuffs that last for !duelist:M! turns. NL At the start of turn, fill your summoning zones with Dinosaur Tokens."
+	},
+	"theDuelist:LostWorld": {
+		"DESCRIPTION": "Dinosaurs deal 10% extra damage for each stack of Vulnerable on their targets.",
+		"NAME": "Lost World",
+		"UPGRADE_DESCRIPTION": "Dinosaurs deal 10% extra damage for each stack of Vulnerable on their targets."
+	},
+	"theDuelist:MoltenDestruction": {
+		"DESCRIPTION": "Apply !M! Burning to ALL enemies. NL Channel a Blaze.",
+		"NAME": "Molten Destruction",
+		"UPGRADE_DESCRIPTION": "Apply !M! Burning to ALL enemies. NL Channel a Blaze."
+	},
+	"theDuelist:OneDayPeace": {
+		"DESCRIPTION": "Purge NL All characters gain !M! Temporary HP.",
+		"NAME": "One Day of Peace",
+		"UPGRADE_DESCRIPTION": "Purge NL All characters gain !M! Temporary HP."
+	},
+	"theDuelist:PowerBond": {
+		"DESCRIPTION": "Every two monsters you play give you Vigor equal to half the sum of both monsters combined damage.",
+		"NAME": "Power Bond",
+		"UPGRADE_DESCRIPTION": "Every two monsters you play give you Vigor equal to half the sum of both monsters combined damage."
+	},
+	"theDuelist:SilverWing": {
+		"DESCRIPTION": "Gain !M! Block whenever you play a Dragon.",
+		"NAME": "Silver Wing",
+		"UPGRADE_DESCRIPTION": "Gain !M! Block whenever you play a Dragon."
+	},
+	"theDuelist:SoulCharge": {
+		"DESCRIPTION": "Set your Max Summons to 1. NL Gain Focus and Artifacts equal to your Dragonscales. NL Exhaust.",
+		"NAME": "Soul Charge",
+		"UPGRADE_DESCRIPTION": "Set your Max Summons to 1. NL Gain Focus and Artifacts equal to your Dragonscales. NL Exhaust."
+	},
+	"theDuelist:SpiralFlameStrike": {
+		"DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning.",
+		"NAME": "Spiral Flame Strike",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Burning."
+	},
+	"theDuelist:StampingDestruction": {
+		"DESCRIPTION": "Arcane NL Randomly damage and apply Weak to enemies.",
+		"NAME": "Stamping Destruction",
+		"UPGRADE_DESCRIPTION": "Arcane NL Randomly damage and apply Weak to enemies."
+	},
+	"theDuelist:SuperStridentBlaze": {
+		"DESCRIPTION": "If your orb slots are filled with flame-based orbs, gain !M! Block.",
+		"NAME": "Super Strident Blaze",
+		"UPGRADE_DESCRIPTION": "If your orb slots are filled with flame-based orbs, gain !M! Block."
+	},
+	"theDuelist:SystemDown": {
+		"DESCRIPTION": "Whenever you take unblocked attack damage, Invert your next orb !M! time.",
+		"NAME": "System Down",
+		"UPGRADE_DESCRIPTION": "Whenever you take unblocked attack damage, Invert your next orb !M! times."
+	},
+	"theDuelist:TailSwipe": {
+		"DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice.",
+		"NAME": "Tail Swipe",
+		"UPGRADE_DESCRIPTION": "Dragon NL Deal !D! damage and Stun ALL enemies twice."
+	},
+	"theDuelist:UltraEvolutionPill": {
+		"DESCRIPTION": "Fleeting NL Choose to Upgrade all Dragons or Dinosaurs in your deck.",
+		"NAME": "Ultra Evolution Pill",
+		"UPGRADE_DESCRIPTION": "Fleeting NL Choose to Upgrade all Dragons or Dinosaurs in your deck."
+	},
+	"theDuelist:ArtifactSanctum": {
+		"DESCRIPTION": "At the start of even turns, if you have no Artifacts, gain !M! Artifact.",
+		"NAME": "Artifact Sanctum",
+		"UPGRADE_DESCRIPTION": "At the start of even turns, if you have no Artifacts, gain !M! Artifacts."
+	},
+	"theDuelist:BackupSoldier": {
+		"DESCRIPTION": "Arcane NL Gain !B! Block. NL If you have no other Skills in your hand, gain an additional !M! Block.",
+		"NAME": "Backup Soldier",
+		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block. NL If you have no other Skills in your hand, gain an additional !M! Block."
+	},
+	"theDuelist:Berserking": {
+		"DESCRIPTION": "Quintuple your Dragonscales. NL Double your Strength. NL At the start of next turn, die an excruciating death. NL Exhaust.",
+		"NAME": "Berserking",
+		"UPGRADE_DESCRIPTION": "Quintuple your Dragonscales. NL Double your Strength. NL At the start of next turn, die an excruciating death. NL Exhaust."
+	},
+	"theDuelist:BurstBreath": {
+		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Dragonscales.",
+		"NAME": "Burst Breath",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Dragonscales."
+	},
+	"theDuelist:CastleDragonSouls": {
+		"DESCRIPTION": "At the start of each turn, channel a DragonOrb.",
+		"NAME": "Castle of Dragon Souls",
+		"UPGRADE_DESCRIPTION": "At the start of each turn, channel a DragonOrb."
+	},
+	"theDuelist:CyberneticOverflow": {
+		"DESCRIPTION": "Gain !M! Artifacts. NL At the start of next turn, Tribute X and lose all Artifacts.",
+		"NAME": "Cybernetic Overflow",
+		"UPGRADE_DESCRIPTION": "Gain !M! Artifacts. NL At the start of next turn, Tribute X and lose all Artifacts."
+	},
+	"theDuelist:CyberneticRevolution": {
+		"DESCRIPTION": "Invert all orbs. NL All enemies lose !M! Strength.",
+		"NAME": "Cybernetic Revolution",
+		"UPGRADE_DESCRIPTION": "Invert all orbs. NL All enemies lose !M! Strength."
+	},
+	"theDuelist:DefenseDraw": {
+		"DESCRIPTION": "Arcane NL Gain !B! Block. NL Draw a card.",
+		"NAME": "Defense Draw",
+		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block. NL Draw a card."
+	},
+	"theDuelist:DefensiveTactics": {
+		"DESCRIPTION": "Gain !M! Plated Armor for each unique orb you have channeled this combat. NL Exhaust.",
+		"NAME": "Defensive Tactics",
+		"UPGRADE_DESCRIPTION": "Gain !M! Plated Armor for each unique orb you have channeled this combat. NL Exhaust."
+	},
+	"theDuelist:FireDarts": {
+		"DESCRIPTION": "Deal !D! damage to a random enemy !M! times. Each time you hit two different enemies in a row, channel a Fire.",
+		"NAME": "Fire Darts",
+		"UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy !M! times. Each time you hit two different enemies in a row, channel a Fire."
+	},
+	"theDuelist:HymnOfLight": {
+		"DESCRIPTION": "Add a Messenger of Peace to your draw pile.",
+		"NAME": "Hymn of Light",
+		"UPGRADE_DESCRIPTION": "Add a Messenger of Peace to your draw pile."
+	},
+	"theDuelist:JurassicImpact": {
+		"DESCRIPTION": "Dinosaurs deal 20% less damage and gain 70% more Block.",
+		"NAME": "Jurassic Impact",
+		"UPGRADE_DESCRIPTION": "Dinosaurs deal 20% less damage and gain 70% more Block."
+	},
+	"theDuelist:MetalReflectSlime": {
+		"DESCRIPTION": "Whenever you are attacked, gain !M! Block and deal !duelist:M! damage back at the attacker.",
+		"NAME": "Metal Reflect Slime",
+		"UPGRADE_DESCRIPTION": "Whenever you are attacked, gain !M! Block and deal !duelist:M! damage back at the attacker."
+	},
+	"theDuelist:RisingEnergy": {
+		"DESCRIPTION": "At the start of each turn, choose to either: Tribute X and gain [E] [E] or lose [E] and summon !M! Megatype Tokens.",
+		"NAME": "Rising Energy",
+		"UPGRADE_DESCRIPTION": "At the start of each turn, choose to either: Tribute X and gain [E] [E] or lose [E] and summon !M! Megatype Tokens."
+	},
+	"theDuelist:SafeZone": {
+		"DESCRIPTION": "Arcane NL Gain !B! Block. NL Gain !M! Temporary HP.",
+		"NAME": "Safe Zone",
+		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block. NL Gain !M! Temporary HP."
+	},
+	"theDuelist:ScrapIronScarecrow": {
+		"DESCRIPTION": "Convert each of your Artifacts into !M! Temporary HP.",
+		"NAME": "Scrap Iron Scarecrow",
+		"UPGRADE_DESCRIPTION": "Convert each of your Artifacts into !M! Temporary HP."
+	},
+	"theDuelist:StarlightRoad": {
+		"DESCRIPTION": "Channel a Reducer.",
+		"NAME": "Starlight Road",
+		"UPGRADE_DESCRIPTION": "Channel a Reducer."
+	},
+	"theDuelist:SurvivalFittest": {
+		"DESCRIPTION": "Gain !duelist:O! Temporary HP. NL For !duelist:M! turns, keep track of the most powerful Dinosaur you play, then Resummon !M! copies randomly.",
+		"NAME": "Survival of the Fittest",
+		"UPGRADE_DESCRIPTION": "Gain !duelist:O! Temporary HP. NL For !duelist:M! turns, keep track of the most powerful Dinosaur you play, then Resummon !M! copies randomly."
+	},
+	"theDuelist:ThreateningRoar": {
+		"DESCRIPTION": "Apply !M! Weak to ALL enemies. NL Exhaust.",
+		"NAME": "Threatening Roar",
+		"UPGRADE_DESCRIPTION": "Apply !M! Weak to ALL enemies. NL Exhaust."
+	},
+	"theDuelist:VeilDarkness": {
+		"DESCRIPTION": "Arcane NL Malicious NL Gain !B! Block.",
+		"NAME": "Veil of Darkness",
+		"UPGRADE_DESCRIPTION": "Arcane NL Malicious NL Gain !B! Block."
+	},
+	"theDuelist:VolcanicEruption": {
+		"DESCRIPTION": "Apply !M! Burning. NL Evoke all flame-based orbs.",
+		"NAME": "Volcanic Eruption",
+		"UPGRADE_DESCRIPTION": "Apply !M! Burning. NL Evoke all flame-based orbs."
+	},
+	"theDuelist:MessengerPeace": {
+		"DESCRIPTION": "Unplayable NL When you draw this card, gain !M! Temporary HP and Exhaust it.",
+		"NAME": "Messenger of Peace",
+		"UPGRADE_DESCRIPTION": "Unplayable NL When you draw this card, gain !M! Temporary HP and Exhaust it."
+	},
+	"theDuelist:AncientFairyDragon": {
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL If you are below 30% HP, heal to 55% of your Max HP. NL Exhaust.",
+		"NAME": "Ancient Fairy Dragon",
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL If you are below 25% HP, heal to 65% of your Max HP. NL Exhaust."
+	},
+	"theDuelist:ElementSaurus": {
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Channel an Earth, Air, Fire and Water.",
+		"NAME": "Element Saurus",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Channel an Earth, Air, Fire and Water."
+	},
+	"theDuelist:HyperHammerhead": {
+		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Upgrade all cards in your hand. NL Exhaust.",
+		"NAME": "Hyper Hammerhead",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Upgrade all cards in your hand. NL Exhaust."
+	},
+	"theDuelist:Gilasaurus": {
+		"DESCRIPTION": "Reckless NL Stampeding NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies.",
+		"NAME": "Gilasaurus",
+		"UPGRADE_DESCRIPTION": "Reckless NL Stampeding NL Dinosaur NL Summon !duelist:SUMM! NL Deal !D! damage to !M! random enemies."
+	},
+	"theDuelist:TyrannoInfinity": {
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage to a random enemy until ALL enemies are below 40% HP.",
+		"NAME": "Tyranno Infinity",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Deal !D! damage to a random enemy until ALL enemies are below 40% HP."
+	},
+	"theDuelist:SuperconductorTyranno": {
+		"DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Invert all orbs twice. NL Channel !M! Lightning.",
+		"NAME": "Superconductor Tyranno",
+		"UPGRADE_DESCRIPTION": "Dinosaur NL Tribute !duelist:TRIB! NL Invert all orbs twice. NL Channel !M! Lightning."
+	},
+	"theDuelist:BerserkerSoul": {
+		"DESCRIPTION": "Gain !B! Block. NL Enemy loses !M! Strength. NL Exhaust.",
+		"NAME": "Berserker Soul",
+		"UPGRADE_DESCRIPTION": "Gain !B! Block. NL Enemy loses !M! Strength. NL Exhaust."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

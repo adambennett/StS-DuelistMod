@@ -78,7 +78,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v2.922.0-beta";
+	public static String version = "v3.056.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -398,7 +398,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int randomizedTributesIndex = 0;
 	public static int randomizedSummonsIndex = 0;
 	public static int normalSelectDeck = -1;
-	public static int dragonStr = 7;
+	public static int dragonStr = 2;
 	public static int toonVuln = 1;
 	public static int insectPoisonDmg = 1;
 	public static int plantConstricted = 2;
@@ -539,7 +539,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean debug = false;				// print statements only, used in mod option panel
 	public static boolean debugMsg = false;				// for secret msg
 	public static final boolean addTokens = false;		// adds debug tokens to library
-	public static final boolean printSQL = true;		// toggles SQL db formatted info print
+	public static final boolean printSQL = false;		// toggles SQL db formatted info print
 	public static final boolean fullDebug = false;		// actually modifies char stats, cards in compendium, starting max summons, etc
 	public static boolean allowBonusDeckUnlocks = true;	// turn bonus deck unlocks (Ascended/Pharaoh Decks) on
 
@@ -738,6 +738,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		monsterTypes.add(Tags.WARRIOR);		typeCardMap_ID.put(Tags.WARRIOR, makeID("WarriorTypeCard"));			typeCardMap_IMG.put(Tags.WARRIOR, makeCardPath("HardArmor.png"));
 		monsterTypes.add(Tags.ROCK);		typeCardMap_ID.put(Tags.ROCK, makeID("RockTypeCard"));					typeCardMap_IMG.put(Tags.ROCK, makeCardPath("Giant_Soldier.png"));
 		monsterTypes.add(Tags.WYRM);		typeCardMap_ID.put(Tags.WYRM, makeID("WyrmTypeCard"));					typeCardMap_IMG.put(Tags.WYRM, makeCardPath("Bixi.png"));
+		monsterTypes.add(Tags.DINOSAUR);	typeCardMap_ID.put(Tags.DINOSAUR, makeID("DinosaurTypeCard"));			typeCardMap_IMG.put(Tags.DINOSAUR, makeCardPath("SauropodBrachion.png"));
 		
 											typeCardMap_ID.put(Tags.ROSE, makeID("RoseTypeCard"));					typeCardMap_IMG.put(Tags.ROSE, makeCardPath("RevivalRose.png"));	
 											typeCardMap_ID.put(Tags.GIANT, makeID("GiantTypeCard"));				typeCardMap_IMG.put(Tags.GIANT, makeCardPath("EarthGiant.png"));	
@@ -1239,6 +1240,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new MarkOfNature(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new CursedHealer(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumSymbol(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new DragonBurnRelic(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1355,6 +1357,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(MarkOfNature.ID);
 		UnlockTracker.markRelicAsSeen(CursedHealer.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumSymbol.ID);
+		UnlockTracker.markRelicAsSeen(DragonBurnRelic.ID);
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
 		//duelistRelicsForTombEvent.add(new MillenniumRing());
@@ -1419,6 +1422,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new NatureOrb());
 		duelistRelicsForTombEvent.add(new MarkOfNature());
 		duelistRelicsForTombEvent.add(new MillenniumSymbol());
+		duelistRelicsForTombEvent.add(new DragonBurnRelic());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
@@ -1463,7 +1467,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		boolean addBasic = false;
 		/* Debug Commands (fill game with only cards from specified pool) */
 		//DuelistCardLibrary.setupMyCardsDebug("Standard"); fullPool = false; addBasic = true;
-		DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = false;
+		//DuelistCardLibrary.setupMyCardsDebug("Dragon"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Nature"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Spellcaster"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Toon"); fullPool = false; addBasic = true;
@@ -2059,7 +2063,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		tributeLastCombatCount = 0;
 		zombiesResummonedThisRun = 0;
 		spectralDamageMult = 2;
-		dragonStr = 7;
+		dragonStr = 2;
 		warriorTribEffectsTriggeredThisCombat = 0;
 		warriorTribEffectsPerCombat = 1;
 		toonVuln = 1;
@@ -2941,7 +2945,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			tribCombatCount = 0;
 			summonRunCount = 0;
 			spectralDamageMult = 2;
-			dragonStr = 7;
+			dragonStr = 2;
 			warriorTribEffectsPerCombat = 1;
 			warriorTribEffectsTriggeredThisCombat = 0;
 			toonVuln = 1;

@@ -46,7 +46,7 @@ public class BugSignal extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	for (int i = 0; i < this.secondMagic; i++) { addCardToHand(returnTrulyRandomFromSet(Tags.INSECT)); }
+    	for (int i = 0; i < this.secondMagic; i++) { addCardToHand(returnTrulyRandomFromSet(Tags.BUG)); }
     	this.addToBot(new BugSignalAction(this.magicNumber));
     }
 

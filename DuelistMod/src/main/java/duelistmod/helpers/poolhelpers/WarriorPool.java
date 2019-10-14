@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
+import duelistmod.cards.dragons.DefenseZone;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.helpers.Util;
@@ -159,7 +160,6 @@ public class WarriorPool
 		magnetCards.add(new DarkCrusader());
 		magnetCards.add(new DarkOccultism());
 		magnetCards.add(new DawnKnight());
-		magnetCards.add(new DefenseZone());
 		magnetCards.add(new DeltaAttacker());
 		magnetCards.add(new Downbeat());
 		magnetCards.add(new EgoBoost());

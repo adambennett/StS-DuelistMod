@@ -73,7 +73,7 @@ public class Storm extends DuelistOrb
 	public void onStartOfTurn()
 	{
 		if (!hasNegativeFocus()) { triggerPassiveEffect(); }
-		if (gpcCheck() && !hasNegativeFocus()) { triggerPassiveEffect(); }
+		//if (gpcCheck() && !hasNegativeFocus()) { triggerPassiveEffect(); }
 	}
 
 	private void triggerPassiveEffect()

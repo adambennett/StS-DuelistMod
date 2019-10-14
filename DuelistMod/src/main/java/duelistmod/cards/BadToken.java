@@ -1,5 +1,6 @@
 package duelistmod.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -51,8 +52,7 @@ public class BadToken extends DuelistCard
     
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
-    	p.increaseMaxOrbSlots(7, true);
-    	for (int i = 0; i < 9; i++) { channelRandom(); }
+    	this.addToBot(new FetchAction(p.exhaustPile, 1));
     	if (DuelistMod.debug)
     	{
     		Debug.printTributeInfo();
