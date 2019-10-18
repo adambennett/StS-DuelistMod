@@ -30,6 +30,15 @@ public class DragonOrbEvokeAction extends AbstractGameAction
 		this.costToSet = 0;
 	}
 	
+	public DragonOrbEvokeAction(int amount, int costToSet) 
+	{
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.amount = amount;
+		this.duration = 0.35F;
+		this.typeSave = Tags.DRAGON;
+		this.costToSet = costToSet;
+	}
+	
 	public DragonOrbEvokeAction(int amount, CardTags type) 
 	{
 		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;

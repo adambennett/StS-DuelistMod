@@ -1,6 +1,7 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -10,6 +11,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.powers.incomplete.BoosterDragonPower;
 import duelistmod.relics.GoldenScale;
+import duelistmod.variables.Tags;
 
 public class Dragonscales extends DuelistPower
 {	
@@ -46,6 +48,13 @@ public class Dragonscales extends DuelistPower
 	{
 		float mod = (float)this.amount / 4.0f;
 		return (int)(mod);
+	}
+	
+	@Override
+	public float modifyBlock(float blkAmt, AbstractCard card)
+	{
+		if (card.hasTag(Tags.DRAGON)) { return blkAmt + getInc(); }
+		return blkAmt;
 	}
 
 	@Override

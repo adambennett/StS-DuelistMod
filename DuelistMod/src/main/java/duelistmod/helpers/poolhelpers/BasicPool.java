@@ -275,6 +275,7 @@ public class BasicPool
 		cards.add(new GreenGraveOni());
 		cards.add(new PurplePainOni());
 		cards.add(new GreyGreedOni());
+		cards.add(new LightningDarts());
 
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }

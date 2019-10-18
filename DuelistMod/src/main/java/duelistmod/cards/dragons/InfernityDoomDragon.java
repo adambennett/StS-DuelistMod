@@ -12,6 +12,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.InfernityDoomPower;
 import duelistmod.variables.Tags;
 
 public class InfernityDoomDragon extends DuelistCard 
@@ -26,28 +27,21 @@ public class InfernityDoomDragon extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public InfernityDoomDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
-        this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
+        this.baseDamage = this.damage 				= 50;		// dmg
+        this.tributes = this.baseTributes 			= 4;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
         this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
-        //this.tags.add(Tags);
         this.misc = 0;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.FIRE;
@@ -57,7 +51,9 @@ public class InfernityDoomDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	attack(m);
+    	applyPowerToSelf(new InfernityDoomPower());
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +69,7 @@ public class InfernityDoomDragon extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeDamage(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -12,7 +12,6 @@ import duelistmod.cards.dragons.*;
 import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.insects.*;
-import duelistmod.cards.naturia.DemiseLand;
 import duelistmod.helpers.Util;
 
 public class StandardPool 
@@ -165,7 +164,6 @@ public class StandardPool
 		cards.add(new CircleFireKings());
 		cards.add(new OnslaughtFireKings());
 		cards.add(new WhiteHowling());
-		cards.add(new DemiseLand());
 		
 		cards.add(new Downbeat());
 		cards.add(new EgoBoost());
@@ -180,7 +178,6 @@ public class StandardPool
 		cards.add(new DarkBurningMagic());
 		cards.add(new DeltaAttacker());
 		cards.add(new FengshengMirror());
-		cards.add(new GoldenSparks());
 		cards.add(new GridRod());
 		cards.add(new HarmonicWaves());
 		cards.add(new LegendHeart());

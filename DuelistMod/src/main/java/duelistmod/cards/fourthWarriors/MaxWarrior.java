@@ -12,7 +12,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.stances.Unstable;
 import duelistmod.variables.Tags;
 
 public class MaxWarrior extends DuelistCard 

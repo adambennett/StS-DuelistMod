@@ -20,7 +20,9 @@ public abstract class DuelistStance extends AbstractStance
         this.particleTimer2 = 0.0f;
     }
     
-    public float modifyBlock(final float blockAmount) { return blockAmount; }
+    public void onLoseArtifact() { }
+    
+    public float modifyBlock(final float blockAmount, AbstractCard card) { return blockAmount; }
     
     public void onAddCardToHand(AbstractCard c) { }
     
@@ -88,6 +90,9 @@ public abstract class DuelistStance extends AbstractStance
             case "Nimble": {
             	return new Nimble();
             }
+            case "Unstable": {
+                return new Unstable();
+            }
             case "theDuelist:Samurai": {
             	return new Samurai();
             }
@@ -111,6 +116,9 @@ public abstract class DuelistStance extends AbstractStance
             }
             case "theDuelist:Nimble": {
             	return new Nimble();
+            }
+            case "theDuelist:Unstable": {
+            	return new Unstable();
             }
             default: {
                 Util.log("[ERROR] Unknown stance: " + name + " called for in getStanceFromName()");

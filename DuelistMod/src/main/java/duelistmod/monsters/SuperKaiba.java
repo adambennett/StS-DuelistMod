@@ -30,10 +30,10 @@ public class SuperKaiba extends DuelistMonster
 	private static final float HB_W = 200.0F;   
 	private static final float HB_H = 330.0F;   
 
-	private static final int HP_MIN = 200; 
-	private static final int HP_MAX = 280; 
-	private static final int A7_HP_MIN = 250; 
-	private static final int A7_HP_MAX = 330;
+	private static final int HP_MIN = 300; 
+	private static final int HP_MAX = 380; 
+	private static final int A7_HP_MIN = 350; 
+	private static final int A7_HP_MAX = 430;
 
 	private DuelistCard sparks;
 	private DuelistCard lesser;	

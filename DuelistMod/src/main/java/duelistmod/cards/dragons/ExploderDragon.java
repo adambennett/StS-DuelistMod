@@ -1,20 +1,15 @@
 package duelistmod.cards.dragons;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.EvokeSpecificOrbAction;
 import duelistmod.helpers.Util;
-import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;
@@ -55,19 +50,7 @@ public class ExploderDragon extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	ArrayList<AbstractOrb> flames = new ArrayList<AbstractOrb>();
-    	for (AbstractOrb o : p.orbs)
-    	{
-    		if (o instanceof Lava || o instanceof FireOrb || o instanceof Blaze || o instanceof DuelistHellfire)
-			{
-    			flames.add(o);
-			}
-    	}
-    	
-    	for (AbstractOrb o : flames)
-    	{
-    		this.addToBot(new EvokeSpecificOrbAction(o, 1));
-    	}
+    	evokeAllFlameBased();
     }
 
     // Which card to return when making a copy of this card.

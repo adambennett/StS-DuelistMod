@@ -1,5 +1,6 @@
 package duelistmod.abstracts;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 public abstract class DuelistPotion extends AbstractPotion
@@ -8,6 +9,8 @@ public abstract class DuelistPotion extends AbstractPotion
 	{
 		super(name, id, rarity, size, color);
 	}
+	
+	public void onLoseArtifact() { }
 	
 	public void onChangeStance() { }
 	
@@ -20,4 +23,6 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onResummon(DuelistCard resummoned) { }
 	
 	public void onSynergyTribute() { }
+	
+	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 }

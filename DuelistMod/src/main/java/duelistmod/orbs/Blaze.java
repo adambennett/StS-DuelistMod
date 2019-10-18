@@ -1,27 +1,23 @@
 package duelistmod.orbs;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.interfaces.*;
-import duelistmod.powers.*;
-import duelistmod.variables.Tags;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 
 @SuppressWarnings("unused")
 public class Blaze extends DuelistOrb
@@ -96,8 +92,8 @@ public class Blaze extends DuelistOrb
 			if (mon != null)
 			{
 				AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
-				DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); 
-				if (gpcCheck()) { DuelistCard.staticThornAttack(mon, AttackEffect.FIRE, this.passiveAmount); }
+				DuelistCard.applyPower(new BurningDebuff(mon, AbstractDungeon.player, this.passiveAmount), mon);
+				if (gpcCheck()) { DuelistCard.applyPower(new BurningDebuff(mon, AbstractDungeon.player, this.passiveAmount), mon); }
 			}
 		}
 	}

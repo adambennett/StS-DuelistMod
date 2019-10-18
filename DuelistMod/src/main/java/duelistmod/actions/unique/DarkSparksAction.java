@@ -11,13 +11,12 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 import duelistmod.helpers.Util;
-import duelistmod.variables.Tags;
 
-public class GoldenSparksAction extends AbstractGameAction
+public class DarkSparksAction extends AbstractGameAction
 {
     private static final float DURATION = 0.1f;
 
-    public GoldenSparksAction(AbstractMonster monster)
+    public DarkSparksAction(AbstractMonster monster)
     {
         target = monster;
         actionType = ActionType.DAMAGE;
@@ -29,13 +28,13 @@ public class GoldenSparksAction extends AbstractGameAction
     {
         if (duration == DURATION && target != null) 
         {
-            if (target.isDying || target.currentHealth <= 0) 
+        	if ((((AbstractMonster)this.target).isDying || this.target.currentHealth <= 0) && !this.target.halfDead && !this.target.hasPower("Minion"))
             {
             	ArrayList<AbstractCard> spells = new ArrayList<AbstractCard>();
             	ArrayList<AbstractCard> deck = new ArrayList<AbstractCard>();
             	for (AbstractCard c : AbstractDungeon.player.masterDeck.group) 
             	{ 
-            		if (c.hasTag(Tags.SPELL) && c.canUpgrade()) { spells.add(c); }
+            		if (c.canUpgrade()) { spells.add(c); }
             		else { deck.add(c); }
             	}
             	
@@ -55,7 +54,7 @@ public class GoldenSparksAction extends AbstractGameAction
             	}
             	else
             	{
-            		Util.log("Golden Sparks found no Spells in your deck");
+            		Util.log("Dark Sparks found no upgrade-able cards in your deck");
             	}
             	
             	AbstractDungeon.player.masterDeck.clear();

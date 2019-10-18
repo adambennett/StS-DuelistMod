@@ -1,11 +1,11 @@
 package duelistmod.cards.dragons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -26,7 +26,7 @@ public class Dracocension extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
@@ -35,28 +35,26 @@ public class Dracocension extends DuelistCard
 
     public Dracocension() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
-        this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
+        this.baseMagicNumber = this.magicNumber 	= 2;
+        this.baseSecondMagic = this.secondMagic 	= 1;
         this.tags.add(Tags.SPELL);
-        //this.tags.add(Tags);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseAFX = AttackEffect.FIRE;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	if (p.hasPower(SummonPower.POWER_ID))
+    	{
+    		SummonPower pow = (SummonPower)p.getPower(SummonPower.POWER_ID);
+    		boolean allDrags = pow.isEveryMonsterCheck(Tags.DRAGON, true);
+    		boolean allDinos = pow.isEveryMonsterCheck(Tags.DINOSAUR, true);
+    		if (allDrags) { applyPowerToSelf(new FocusPower(p, this.magicNumber)); }
+    		if (allDinos) { applyPowerToSelf(new IntangiblePlayerPower(p, this.secondMagic)); }
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -72,7 +70,8 @@ public class Dracocension extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeMagicNumber(1);
+            this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

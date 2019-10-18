@@ -72,7 +72,7 @@ implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, Edi
 EditCharactersSubscriber, PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, OnPlayerDamagedSubscriber,
 PostPowerApplySubscriber, OnPowersModifiedSubscriber, PostDeathSubscriber, OnCardUseSubscriber, PostCreateStartingDeckSubscriber,
 RelicGetSubscriber, AddCustomModeModsSubscriber, PostDrawSubscriber, PostDungeonInitializeSubscriber, OnPlayerLoseBlockSubscriber,
-PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostObtainCardSubscriber, PotionGetSubscriber
+PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostObtainCardSubscriber, PotionGetSubscriber, StartGameSubscriber
 {
 	public static final Logger logger = LogManager.getLogger(DuelistMod.class.getName());
 	public static final String MOD_ID_PREFIX = "theDuelist:";
@@ -1015,6 +1015,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.DUELIST_PACK, (rewardSave) -> { return new BoosterReward(rewardSave.amount, BoosterPackHelper.getGoldCostFromID(rewardSave.amount));}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((BoosterReward)customReward).boosterID, 0); });
 		BaseMod.registerCustomReward(RewardItemTypeEnumPatch.METRONOME_PACK, (rewardSave) -> { return new MetronomeReward(rewardSave.amount);}, (customReward) -> {  return new RewardSave(customReward.type.toString(), null, ((MetronomeReward)customReward).boosterID, 0); });
 		
+		// Custom Powers (for basemod console)
+		Util.registerCustomPowers();
+		
 		// Debug
 		if (printSQL)
 		{
@@ -1241,6 +1244,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new CursedHealer(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumSymbol(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new DragonBurnRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new GoldenScale(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1358,6 +1362,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(CursedHealer.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumSymbol.ID);
 		UnlockTracker.markRelicAsSeen(DragonBurnRelic.ID);
+		UnlockTracker.markRelicAsSeen(GoldenScale.ID);
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
 		//duelistRelicsForTombEvent.add(new MillenniumRing());
@@ -1423,6 +1428,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new MarkOfNature());
 		duelistRelicsForTombEvent.add(new MillenniumSymbol());
 		duelistRelicsForTombEvent.add(new DragonBurnRelic());
+		duelistRelicsForTombEvent.add(new GoldenScale());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
@@ -1835,6 +1841,20 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receivePostBattle(AbstractRoom arg0) 
 	{
+		ArrayList<AbstractCard> genesisDragsToAdd = new ArrayList<AbstractCard>();
+		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+		{
+			if (c instanceof GenesisDragon)
+			{
+				int genesisRoll = AbstractDungeon.cardRandomRng.random(1, 10);
+				//int genesisRoll = 1;
+				if (genesisRoll < 4 && c.upgraded) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
+				else if (genesisRoll == 1) { genesisDragsToAdd.add(c.makeStatEquivalentCopy()); }
+			}
+		}
+		
+		if (genesisDragsToAdd.size() > 0) { AbstractDungeon.player.masterDeck.group.addAll(genesisDragsToAdd); }
+		
 		if (namelessTombPoints < 20)
 		{
 			if (wasEliteCombat) { int roll = AbstractDungeon.cardRandomRng.random(1, 2); namelessTombPoints += roll; Util.log("Nameless Tomb: Beat Elite +" + roll);}
@@ -2480,12 +2500,21 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				{
 					CardGroup newStartGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
 					String cardNames = "";
+					boolean replacedOneAlready = false;
+					int sparksGenerated = 0;
 					for (AbstractCard c : startingDeck) 
 					{ 
 						if (c instanceof Sparks)
 						{
-							int roll = ThreadLocalRandom.current().nextInt(1, 20);
-							if (roll == 1) { startingDeckB.add(new GoldenSparks()); Util.log("Generated a Golden Sparks!"); }
+							int roll = ThreadLocalRandom.current().nextInt(1, 20 + (sparksGenerated * 5));
+							//int roll = 1;		// debug, make it always give you a special sparks
+							if (roll == 1) 
+							{ 
+								startingDeckB.add(Util.getSpecialSparksCard()); 
+								//replacedOneAlready = true; 
+								Util.log("Generated a Special Sparks!"); 
+								sparksGenerated++;
+							}
 							else { startingDeckB.add(c); }
 						}
 						else { startingDeckB.add(c); }
@@ -3791,6 +3820,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		{
 			((OnObtainEffect) card).onObtain();
 		}			
+	}
+
+	@Override
+	public void receiveStartGame() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

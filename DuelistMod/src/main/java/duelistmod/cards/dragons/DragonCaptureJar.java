@@ -61,7 +61,8 @@ public class DragonCaptureJar extends DuelistCard
     @Override
     public void upgrade() {
         if (canUpgrade()) {
-            this.upgradeName();
+        	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -37,6 +37,7 @@ public class CyberArchfiend extends DuelistCard
     	this.tags.add(Tags.MONSTER);
     	this.tags.add(Tags.MACHINE);
     	this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.CYBER);
         this.tags.add(Tags.EXODIA_DECK);
 		this.exodiaDeckCopies = 1;
 		this.setupStartingCopies();

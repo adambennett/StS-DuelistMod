@@ -62,7 +62,8 @@ public class CardRewardRelicC extends CustomRelic
     	}
     	else
     	{
-    		this.usedUp = true;
+    		//this.usedUp = true;
+    		this.grayscale = true;
     	}
     }
 }

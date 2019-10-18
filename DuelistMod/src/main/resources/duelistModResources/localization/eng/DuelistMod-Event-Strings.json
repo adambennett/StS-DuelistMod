@@ -110,7 +110,7 @@
 	  "[Ascended Magic] #gReceive #gEnchanted #gDuelist #gCard. #rCursed #r- #rRandom",
 	  "[Pharaoh Magic] #gReceive #gEnchanted #gDuelist #gCard.",
 	  "[Apprentice Greed] #gGain #g250 #gGold. #rLose #r6 #rMax #rHP.",
-	  "[Duelist Greed] #gReplace #gall #gSparks #gwith #gGolden #gSparks. #rLose #rhalf #ryour #rGold.",
+	  "[Duelist Greed] #gReplace #gall #gSparks #gwith ",
 	  "[Ascended Greed] #gReceive #gGolden #gRelic. #rCursed #r- #rRandom",
 	  "[Pharaoh Greed] #gReceive #gGolden #gDuelist #gCard.",
 	  "[Apprentice Power] #gReceive #gRare #gPower #gCard. #rLose #r8 #rHP.",
@@ -124,7 +124,8 @@
 	  "[Apprentice War] #gReceive #gWar #gRelic. #rLose #r15% #rHP.",
 	  "[Duelist War] #gReceive #gStrength #gRelic. #rLose #r30%-70% #rGold.",
 	  "[Ascended War] #gReceive #gTribute #gMonster #gRelic. #rLose #r10 #rMax #rHP.",
-	  "[Pharaoh War] #gReceive #gEnraged #gDuelist #gCard."
+	  "[Pharaoh War] #gReceive #gEnraged #gDuelist #gCard.",
+	  " #rLose #rhalf #ryour #rGold."
     ]
   },
   "theDuelist:BattleCity": {

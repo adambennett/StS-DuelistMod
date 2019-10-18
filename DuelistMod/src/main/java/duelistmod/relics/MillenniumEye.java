@@ -11,65 +11,65 @@ import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.powers.ToonWorldPower;
 
 public class MillenniumEye extends CustomRelic {
-    
-    /*
-     * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-     * 
-     * Summon 1 on combat start
-     */
 
-    // ID, images, text.
-    public static final String ID = DuelistMod.makeID("MillenniumEye");
-    public static final String IMG = DuelistMod.makeRelicPath("MillenniumEyeRelic.png");
-    public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MillenniumEye_Outline.png");
+	/*
+	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
+	 * 
+	 * Summon 1 on combat start
+	 */
 
-    public MillenniumEye() {
-        super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
-    }
-    
-    @Override
-    public boolean canSpawn()
-    {
-    	String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-    	boolean allowSpawn = false;
-    	if (DuelistMod.toonBtnBool) 
-    	{ 
-    		if (deck.equals("Toon Deck")) { allowSpawn = false; }
-    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-    	}
-    	else
-    	{
-    		if (deck.equals("Machine Deck")) { allowSpawn = true; }
-    		if (deck.equals("Dragon Deck")) { allowSpawn = true; }
-    		if (deck.equals("Toon Deck")) { allowSpawn = false; }
-    		if (DuelistMod.setIndex == 6) { allowSpawn = true; }
-    	}
+	// ID, images, text.
+	public static final String ID = DuelistMod.makeID("MillenniumEye");
+	public static final String IMG = DuelistMod.makeRelicPath("MillenniumEyeRelic.png");
+	public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("MillenniumEye_Outline.png");
+
+	public MillenniumEye() {
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
+	}
+
+	@Override
+	public boolean canSpawn()
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		boolean allowSpawn = false;
+		if (DuelistMod.toonBtnBool) 
+		{ 
+			if (deck.equals("Toon Deck")) { allowSpawn = false; }
+			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
+		}
+		else
+		{
+			if (deck.equals("Machine Deck")) { allowSpawn = true; }
+			if (deck.equals("Dragon Deck")) { allowSpawn = true; }
+			if (deck.equals("Toon Deck")) { allowSpawn = false; }
+			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
+		}
 		return allowSpawn;
-    }
+	}
 
-    // Summon 1 on turn start
-    @Override
-    public void atBattleStart() 
-    {
-    	String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-    	if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && deck.equals("Toon Deck"))) 
-    	{
-    		 this.flash();
- 	        AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
- 	        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 0)));
-    	}
-    }
+	// Summon 1 on turn start
+	@Override
+	public void atBattleStart() 
+	{
+		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+		if (!(AbstractDungeon.player.hasRelic(MillenniumSymbol.ID) && deck.equals("Toon Deck"))) 
+		{
+			this.flash();
+			AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 0)));
+		}
+	}
 
-    // Description
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
-    }
+	// Description
+	@Override
+	public String getUpdatedDescription() {
+		return DESCRIPTIONS[0];
+	}
 
-    // Which relic to return on making a copy of this relic.
-    @Override
-    public AbstractRelic makeCopy() {
-        return new MillenniumEye();
-    }
+	// Which relic to return on making a copy of this relic.
+	@Override
+	public AbstractRelic makeCopy() {
+		return new MillenniumEye();
+	}
 
 }

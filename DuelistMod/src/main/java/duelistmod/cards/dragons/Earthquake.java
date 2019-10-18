@@ -1,9 +1,12 @@
 package duelistmod.cards.dragons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import java.util.ArrayList;
+
+import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -26,8 +29,8 @@ public class Earthquake extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
@@ -35,27 +38,50 @@ public class Earthquake extends DuelistCard
 
     public Earthquake() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
-        this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
+        this.isMultiDamage = true;
+        this.baseDamage = this.damage 				= 7;
+        this.baseMagicNumber = this.magicNumber 	= 2;
         this.tags.add(Tags.SPELL);
-        //this.tags.add(Tags);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseAFX = AttackEffect.FIRE;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	normalMultidmg();
+    	ArrayList<AbstractMonster> mons = getAllMons();
+    	if (mons.size() <= this.magicNumber)
+    	{
+    		for (AbstractMonster mon : mons)
+    		{
+    			int stunRoll = AbstractDungeon.cardRandomRng.random(1, 11);
+    	    	if (stunRoll <= 2) 
+    	    	{
+    	    		this.addToBot(new StunMonsterAction(mon, p));
+    	    	}
+    		}
+    	}
+    	else 
+    	{
+    		ArrayList<AbstractMonster> stunChoices = new ArrayList<AbstractMonster>();
+    		while (stunChoices.size() < this.magicNumber)
+    		{
+    			AbstractMonster rand = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+    			while (stunChoices.contains(rand)) { rand = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1)); }
+    			stunChoices.add(rand);
+    		}
+    		
+    		for (AbstractMonster mon : stunChoices)
+    		{
+    			int stunRoll = AbstractDungeon.cardRandomRng.random(1, 11);
+    	    	if (stunRoll <= 2) 
+    	    	{
+    	    		this.addToBot(new StunMonsterAction(mon, p));
+    	    	}
+    		}
+    	}
     	
     }
 
@@ -72,7 +98,8 @@ public class Earthquake extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeMagicNumber(1);
+            this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

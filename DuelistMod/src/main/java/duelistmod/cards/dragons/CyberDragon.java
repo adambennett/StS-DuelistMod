@@ -42,6 +42,7 @@ public class CyberDragon extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.CYBER);
         this.misc = 0;
         this.originalName = this.name;
         this.summons = this.baseSummons = 1;

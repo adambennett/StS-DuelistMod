@@ -1,20 +1,16 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.ReflectionHacks;
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class Ojamagic extends DuelistCard 
@@ -37,7 +33,6 @@ public class Ojamagic extends DuelistCard
     private static final int COST = 1;
     private static final int MIN_CARDS = 1;
     private static final int MAX_CARDS = 4;
-    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public Ojamagic() {
@@ -45,8 +40,7 @@ public class Ojamagic extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
         this.tags.add(Tags.REDUCED);
-		tooltips = new ArrayList<>();
-		tooltips.add(new RedMedicine());
+        this.cardsToPreview = new RedMedicine();
 		this.originalName = this.name;
 		this.exhaust = true;
 	}
@@ -82,39 +76,11 @@ public class Ojamagic extends DuelistCard
 			upgradeName();
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
-			for (AbstractCard c : tooltips) { c.upgrade(); }
+			this.cardsToPreview.upgrade();
 		}
-	}
+	}	
 
-	@Override
-	public void renderCardTip(SpriteBatch sb) {
-		super.renderCardTip(sb);
-		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
-
-		int count = 0;
-		if (!Settings.hideCards && renderTip) {
-			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
-				return;
-			}
-			for (AbstractCard c : tooltips) {
-				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
-				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
-				if (current_x > Settings.WIDTH * 0.75f) {
-					c.current_x = current_x + dx;
-				} else {
-					c.current_x = current_x - dx;
-				}
-				if (count == 0) {
-					c.current_y = current_y + dy;
-				} else {
-					c.current_y = current_y - dy;
-				}
-				c.drawScale = drawScale * 0.8f;
-				c.render(sb);
-				count++;
-			}
-		}
-	}
+	
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {

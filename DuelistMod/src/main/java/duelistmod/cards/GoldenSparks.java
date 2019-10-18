@@ -4,14 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.helpers.BaseModCardTags;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.unique.GoldenSparksAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -39,7 +37,9 @@ public class GoldenSparks extends DuelistCard
     {
     	 super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
     	 this.baseDamage = this.damage = 6;
+    	 this.baseMagicNumber = this.magicNumber = 50;
          this.tags.add(Tags.SPELL);
+         this.tags.add(Tags.SPARKS);
          this.tags.add(BaseModCardTags.BASIC_STRIKE);
          this.tags.add(AbstractCard.CardTags.STRIKE);
          this.originalName = this.name;
@@ -51,7 +51,7 @@ public class GoldenSparks extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	attack(m, AFX, this.damage);
-        AbstractDungeon.actionManager.addToBottom(new GoldenSparksAction(m));
+    	p.gainGold(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

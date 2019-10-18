@@ -37,7 +37,6 @@ public class Skelesaurus extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public Skelesaurus() {
@@ -47,8 +46,7 @@ public class Skelesaurus extends DuelistCard
         this.tags.add(Tags.ZOMBIE);
         this.summons = this.baseSummons = 1;
         this.originalName = this.name;
-        tooltips = new ArrayList<>();
-		tooltips.add(new ShadowToken());
+        this.cardsToPreview = new ShadowToken();
     }
 
     // Actions the card should do.
@@ -130,36 +128,7 @@ public class Skelesaurus extends DuelistCard
     	}
     }
 	
-	 @Override
-	 public void renderCardTip(SpriteBatch sb) 
-	 {
-			super.renderCardTip(sb);
-			boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
-
-			int count = 0;
-			if (!Settings.hideCards && renderTip) {
-				if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
-					return;
-				}
-				for (AbstractCard c : tooltips) {
-					float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
-					float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
-					if (current_x > Settings.WIDTH * 0.75f) {
-						c.current_x = current_x + dx;
-					} else {
-						c.current_x = current_x - dx;
-					}
-					if (count == 0) {
-						c.current_y = current_y + dy;
-					} else {
-						c.current_y = current_y - dy;
-					}
-					c.drawScale = drawScale * 0.8f;
-					c.render(sb);
-					count++;
-				}
-			}
-		}
+	 
 
 	@Override
 	public void summonThis(int summons, DuelistCard c, int var) 

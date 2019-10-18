@@ -1,4 +1,4 @@
-package duelistmod.powers;
+package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.core.*;
@@ -7,21 +7,20 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
-import duelistmod.variables.Strings;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
-public class UmiPower extends DuelistPower 
+public class CyberDragonSiegerPower extends DuelistPower 
 {
     public AbstractCreature source;
 
-    public static final String POWER_ID = duelistmod.DuelistMod.makeID("UmiPower");
+    public static final String POWER_ID = DuelistMod.makeID("CyberDragonSiegerPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public static final String IMG = DuelistMod.makePath(Strings.UMI_POWER);
+    public static final String IMG = DuelistMod.makePowerPath("PlaceholderPower.png");
 
-    public UmiPower(int dmgMod) 
+    public CyberDragonSiegerPower(int dmgMod) 
     {
     	this.name = NAME;
         this.ID = POWER_ID;
@@ -34,15 +33,9 @@ public class UmiPower extends DuelistPower
         this.amount = dmgMod;
         this.updateDescription();
     }
-    
-    @Override
-    public void onDrawOrDiscard() 
-    {
-    	if (this.amount > 0) { this.amount = 0; }
-    }
 
     @Override
-   	public void updateDescription() {
-           this.description = DESCRIPTIONS[0] + (this.amount * 10) + DESCRIPTIONS[1] + (this.amount * 10) + DESCRIPTIONS[2];
-       }
+	public void updateDescription() {
+        this.description = DESCRIPTIONS[0] + (this.amount * 10) + DESCRIPTIONS[1];
+    }
 }

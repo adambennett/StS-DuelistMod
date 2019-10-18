@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Strings;
 
 public class MillenniumToken extends CustomRelic {
@@ -28,9 +30,11 @@ public class MillenniumToken extends CustomRelic {
 	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 	public boolean cardSelected = false;
+	private DuelistCardSelectScreen dcss;
 
 	public MillenniumToken() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SPECIAL, LandingSound.MAGICAL);
+		this.dcss = new DuelistCardSelectScreen(true);
 	}
 	
 	@Override
@@ -50,7 +54,8 @@ public class MillenniumToken extends CustomRelic {
 			}
 		}
 		group.sortAlphabetically(true);
-		AbstractDungeon.gridSelectScreen.open(group, 1, "Select a card to add to your deck", false);
+		AbstractDungeon.gridSelectScreen = this.dcss;
+		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(group, 1, "Select a card to add to your deck");
 	}
 	
 
@@ -58,11 +63,13 @@ public class MillenniumToken extends CustomRelic {
 	public void update() 
 	{
 		super.update();
-		if (!cardSelected && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) 
+		if (!cardSelected && !this.dcss.selectedCards.isEmpty()) 
 		{
 			cardSelected = true;
-			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
-			AbstractDungeon.gridSelectScreen.selectedCards.clear();
+			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(this.dcss.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
+			this.dcss.selectedCards.clear();
+			AbstractDungeon.closeCurrentScreen();
+			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 		}
 	}
 

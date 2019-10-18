@@ -1,10 +1,8 @@
 package duelistmod.cards.dragons;
 
-import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -36,15 +34,15 @@ public class DefenseZone extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.tags.add(Tags.ARCANE);
+        this.baseBlock = this.block = 6;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	AbstractDungeon.actionManager.addToBottom(new ExhaustAction(this.magicNumber, false, true, true));
-    	changeStanceInst("theDuelist:Guarded");
+    	block();
     }
 
     // Which card to return when making a copy of this card.
@@ -57,14 +55,21 @@ public class DefenseZone extends DuelistCard
     @Override
     public void upgrade() 
     {
-        if (!upgraded)
+        if (canUpgrade())
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeBaseCost(0);
+        	this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.timesUpgraded < 5) { return true; }
+    	else { return false; }  
     }
 
 	@Override

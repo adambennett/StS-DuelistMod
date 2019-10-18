@@ -43,6 +43,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     private AbstractCard lvl4Power;
     private AbstractCard lvl4War;
     private AbstractCard randRarePower;
+    private AbstractCard lvl2Greed;
     
     private AbstractRelic greed3R;
     private AbstractRelic power2R;
@@ -555,7 +556,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     {
     	if 		(greedInc == 0)  { imageEventText.setDialogOption("[Locked] Generous", true); return; }    	
     	else if (greedInc == 1)  { imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1)); }
-    	else if (greedInc == 2)  { imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), new GoldenSparks()); }
+    	else if (greedInc == 2)  { this.lvl2Greed = Util.getSpecialSparksCard(); imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1) + getSparksName() + OPTIONS[27], this.lvl2Greed); }
     	else if (greedInc == 3)  { imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), this.greed3R); }    	
     	else if (greedInc == 4)  { this.lvl4Greed = Util.getSpecialGreedCardForNamelessTomb(); log(lvl4Greed); imageEventText.setDialogOption(rewardsGreed.get(greedInc - 1), this.lvl4Greed); }
     }
@@ -601,6 +602,16 @@ public class TombNamelessPuzzle extends DuelistEvent
     	logMetric(NAME, "Generated " + c.originalName + " as reward");
     }
     
+    private String getSparksName()
+    {
+    	if (this.lvl2Greed instanceof GoldenSparks) { return "#gGolden #gSparks."; }
+    	else if (this.lvl2Greed instanceof DarkSparks) { return "#gDark #gSparks."; }
+    	else if (this.lvl2Greed instanceof StormSparks) { return "#gStorm #gSparks."; }
+    	else if (this.lvl2Greed instanceof MagicSparks) { return "#gMagic #gSparks."; }
+    	else if (this.lvl2Greed instanceof BloodSparks) { return "#gBlood #gSparks."; }
+    	else { return "error"; }
+    }
+    
     private void duelistGreedReward()
     {
     	AbstractDungeon.player.loseGold((int) (AbstractDungeon.player.gold/2.0f));
@@ -610,13 +621,13 @@ public class TombNamelessPuzzle extends DuelistEvent
 		ArrayList<AbstractCard> toKeepFromDeck = new ArrayList<AbstractCard>();
 		for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
 		{
-			if (c instanceof Sparks) { monsters++; upgrades += c.timesUpgraded; }
+			if (c.hasTag(Tags.SPARKS)) { monsters++; upgrades += c.timesUpgraded; }
 			else { toKeepFromDeck.add(c); }
 		}
 
 		for (int i = 0; i < monsters; i++)
 		{
-			AbstractCard c = new GoldenSparks();
+			AbstractCard c = this.lvl2Greed.makeCopy();
 			while (upgrades > 0 && c.canUpgrade()) { c.upgrade(); upgrades--; }
 			toKeep.add(c.makeStatEquivalentCopy());
 		}

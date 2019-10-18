@@ -20,7 +20,7 @@ public class BottledKuriboh extends AbstractPotion {
 
     public BottledKuriboh() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOLT, PotionColor.ENERGY);
+        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.T, PotionColor.ENERGY);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

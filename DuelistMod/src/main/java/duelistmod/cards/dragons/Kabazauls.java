@@ -1,6 +1,5 @@
 package duelistmod.cards.dragons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,6 +11,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.Tags;
 
 public class Kabazauls extends DuelistCard 
@@ -26,7 +26,7 @@ public class Kabazauls extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -35,29 +35,25 @@ public class Kabazauls extends DuelistCard
 
     public Kabazauls() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
-        this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
+        this.baseDamage = this.damage = 6;
+        this.summons = this.baseSummons	= 1;   
+        this.specialCanUseLogic = true;
+        this.baseMagicNumber = this.magicNumber = 3; 
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.DRAGON);
-        //this.tags.add(Tags);
+        this.tags.add(Tags.DINOSAUR);
+        this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.RECKLESS);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseAFX = AttackEffect.FIRE;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	attack(m);
+    	applyPowerToSelf(new Dragonscales(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +69,8 @@ public class Kabazauls extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeDamage(3);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

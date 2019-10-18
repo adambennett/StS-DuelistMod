@@ -122,7 +122,7 @@
 },
 "theDuelist:SwordsBurnPower": {
         "NAME": "Swords of Burning Light",
-        "DESCRIPTIONS": ["Each time you #yEvoke, #yChannel #b", " #yLava Orb.", " #yLava Orbs." ]
+        "DESCRIPTIONS": ["Each time you #yEvoke, #yChannel #b", " #yLava orb.", " #yLava orbs." ]
 },
 "theDuelist:SwordsConcealPower": {
         "NAME": "Swords of Concealing Light",
@@ -278,7 +278,7 @@
 },
 "theDuelist:AerodynamicsPower": {
         "NAME": "Aerodynamics",
-        "DESCRIPTIONS": ["#yAir Orbs will always #yChannel randomly at the start of turn." ]
+        "DESCRIPTIONS": ["#yAir orbs will always #yChannel randomly at the start of turn." ]
 },
 "theDuelist:NaturiaPower": {
         "NAME": "Naturia Monsters",
@@ -809,6 +809,98 @@
 "theDuelist:AutorokketDragonPower": {
         "NAME": "Autorokket Dragon",
         "DESCRIPTIONS": ["Whenever you #yChannel a flame-based orb, apply #b", " #yBurning to ALL enemies."]
+},
+"theDuelist:ArtifactSanctumPower": {
+        "NAME": "Artifact Sanctum",
+        "DESCRIPTIONS": ["Whenever you lose an #yArtifact, gain #b", " #yBlock."]
+},
+"theDuelist:CyberneticOverflowDebuffA": {
+        "NAME": "Cybernetic Overflow",
+        "DESCRIPTIONS": ["At the start of next turn, #yTribute #bX."]
+},
+"theDuelist:CyberneticOverflowDebuffB": {
+        "NAME": "Cybernetic Overflow",
+        "DESCRIPTIONS": ["At the start of next turn, lose all #yArtifacts."]
+},
+"theDuelist:BeserkingDebuffA": {
+        "NAME": "Beserking",
+        "DESCRIPTIONS": ["At the start of next turn, take #b", " damage."]
+},
+"theDuelist:BeserkingDebuffB": {
+        "NAME": "Beserking",
+        "DESCRIPTIONS": ["At the start of next turn, #yExhaust all of your cards."]
+},
+"theDuelist:BeserkingDebuffC": {
+        "NAME": "Beserking",
+        "DESCRIPTIONS": ["At the start of next turn, remove every card from your deck and set your #yMax #yHP to #b1."]
+},
+"theDuelist:BerserkScalesPower": {
+        "NAME": "Berserk Scales",
+        "DESCRIPTIONS": ["When attacked, deals #b", " damage back and generates #b", " #yDragonscales."]
+},
+"theDuelist:CastleDragonSoulsPower": {
+        "NAME": "Castle of Dragon Souls",
+        "DESCRIPTIONS": ["At the start of each turn, #yChannel a #yDragonOrb."]
+},
+"theDuelist:DragonTreasurePower": {
+        "NAME": "Dragon Treasure",
+        "DESCRIPTIONS": ["At the end of combat, gain #b", " #yGold."]
+},
+"theDuelist:VanDragPower": {
+        "NAME": "Van'Dalgyon",
+        "DESCRIPTIONS": ["#yDragons deal #b", "% more damage for each stack of #yWeak on their targets."]
+},
+"theDuelist:DragonRavinePower": {
+        "NAME": "bbb",
+        "DESCRIPTIONS": ["#yDragons deal #b", "% more damage for each stack of #yVulnerable on their targets."]
+},
+"theDuelist:LostWorldPower": {
+        "NAME": "Lost World",
+        "DESCRIPTIONS": ["#yDinosaurs deal #b", "% more damage for each stack of #yVulnerable on their targets."]
+},
+"theDuelist:SystemDownPower": {
+        "NAME": "System Down",
+        "DESCRIPTIONS": ["Whenever you take unblocked attack damage, #yInvert your next orb #b", " time.", " times."]
+},
+"theDuelist:DragonMasteryPower": {
+        "NAME": "Dragon Mastery",
+        "DESCRIPTIONS": ["Whenever you play a #yDragon, reduce the cost of another #b", " random #yDragon by 1 for the rest of combat.", " random #yDragons by 1 for the rest of combat."]
+},
+"theDuelist:CyberLaserDragonPower": {
+        "NAME": "Cyber Laser Dragon",
+        "DESCRIPTIONS": ["Whenever you play a card with a modified #yTribute cost, deal #b", " damage to ALL enemies."]
+},
+"theDuelist:JurassicImpactPower": {
+        "NAME": "Jurassic Impact",
+        "DESCRIPTIONS": ["#yDinosaurs deal #b", "% less damage and gain #b", "% more #yBlock."]
+},
+"theDuelist:GalaxySoldierPower": {
+        "NAME": "Galaxy Soldier",
+        "DESCRIPTIONS": ["Whenever you play a #yTrap, set the cost of another random card in your hand to #b0 for the turn."]
+},
+"theDuelist:InfernityDoomPower": {
+        "NAME": "Infernity Doom",
+        "DESCRIPTIONS": ["At the start of turn, if you are not #yFrail, become #yFrail."]
+},
+"theDuelist:SilverWingPower": {
+        "NAME": "Silver Wing",
+        "DESCRIPTIONS": ["Whenever you play a #yDragon, gain #b", " #yBlock."]
+},
+"theDuelist:DragonMirrorPower": {
+        "NAME": "Dragon Mirror",
+        "DESCRIPTIONS": ["Whenever you #yTribute a #yDragon, add #b", " #yRandomized copy to your hand.", " #yRandomized copies to your hand."]
+},
+"theDuelist:SurvivalFittestPower": {
+        "NAME": "Survival of the Fittest",
+        "DESCRIPTIONS": ["Whenever you #yTribute, draw #b", " #yMalicious card.", " #yMalicious cards."]
+},
+"theDuelist:CyberEltaninPower": {
+        "NAME": "Cyber Eltanin",
+        "DESCRIPTIONS": ["#yStampeding cards deal #b", "% more damage for #b", " more turn.", " more turns."]
+},
+"theDuelist:CyberDragonSiegerPower": {
+        "NAME": "Cyber Dragon Sieger",
+        "DESCRIPTIONS": ["#yMachines and #yDragons deal #b", "% more damage."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

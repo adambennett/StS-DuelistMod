@@ -37,7 +37,6 @@ public class Ojamuscle extends DuelistCard
     private static final int COST = 0;
     private static final int MIN_CARDS = 1;
     private static final int MAX_CARDS = 3;
-    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public Ojamuscle() {
@@ -47,8 +46,7 @@ public class Ojamuscle extends DuelistCard
         this.tags.add(Tags.REDUCED);
         this.tags.add(Tags.OJAMA_DECK);
 		this.ojamaDeckCopies = 1;
-		tooltips = new ArrayList<>();
-		tooltips.add(new OjamaYellow());
+		this.cardsToPreview = new OjamaYellow();
 		this.originalName = this.name;
 		this.exhaust = true;
 		this.setupStartingCopies();
@@ -85,39 +83,11 @@ public class Ojamuscle extends DuelistCard
 			upgradeName();
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
-			for (AbstractCard c : tooltips) { c.upgrade(); }
+			this.cardsToPreview.upgrade();
 		}
 	}
 
-	@Override
-	public void renderCardTip(SpriteBatch sb) {
-		super.renderCardTip(sb);
-		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
-
-		int count = 0;
-		if (!Settings.hideCards && renderTip) {
-			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
-				return;
-			}
-			for (AbstractCard c : tooltips) {
-				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
-				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
-				if (current_x > Settings.WIDTH * 0.75f) {
-					c.current_x = current_x + dx;
-				} else {
-					c.current_x = current_x - dx;
-				}
-				if (count == 0) {
-					c.current_y = current_y + dy;
-				} else {
-					c.current_y = current_y - dy;
-				}
-				c.drawScale = drawScale * 0.8f;
-				c.render(sb);
-				count++;
-			}
-		}
-	}
+	
 
 	@Override
 	public void onTribute(DuelistCard tributingCard) {

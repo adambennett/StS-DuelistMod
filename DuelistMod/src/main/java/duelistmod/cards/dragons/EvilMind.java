@@ -1,6 +1,6 @@
 package duelistmod.cards.dragons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -26,37 +26,28 @@ public class EvilMind extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 0;
     // /STAT DECLARATION/
 
     public EvilMind() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
-        this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
         this.tags.add(Tags.SPELL);
-        //this.tags.add(Tags);
+        this.tags.add(Tags.MALICIOUS);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseAFX = AttackEffect.FIRE;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	this.addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
+    	draw(1);
     }
 
     // Which card to return when making a copy of this card.
@@ -72,7 +63,7 @@ public class EvilMind extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -1,12 +1,14 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.variables.Tags;
 
 
 public class SogenPower extends DuelistPower
@@ -33,6 +35,13 @@ public class SogenPower extends DuelistPower
         this.amount2 = blkMod;
         this.updateDescription();
     }
+    
+    @Override
+	public float modifyBlock(float blkAmt, AbstractCard card)
+	{
+		if (card.hasTag(Tags.WARRIOR)) { return blkAmt * ((this.amount / 10.00f) + 1.0f); }
+		return blkAmt;
+	}
 
     @Override
 	public void updateDescription() {

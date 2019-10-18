@@ -35,7 +35,6 @@ public class BlastJuggler extends DuelistCard
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
-	//private ArrayList<AbstractCard> tooltips;
 	// /STAT DECLARATION/
 
 	public BlastJuggler() 
@@ -49,8 +48,6 @@ public class BlastJuggler extends DuelistCard
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
 		this.baseDamage = this.damage = 5;
-		//tooltips = new ArrayList<>();
-		//tooltips.add(new ExplosiveToken());
 	}
 
 

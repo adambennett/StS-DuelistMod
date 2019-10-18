@@ -53,7 +53,7 @@ public class GreyGreedOni extends DuelistCard
     	summon();
     	for (int i = 0; i < this.magicNumber; i++) 
     	{ 
-    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(BaseGameHelper.getColorlessCard(), this.secondMagic)); 
+    		AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(BaseGameHelper.getColorlessCard(true), this.secondMagic)); 
     	}
     }
 

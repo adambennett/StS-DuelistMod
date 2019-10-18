@@ -1,6 +1,7 @@
 package duelistmod.cards.dragons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,6 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
+import duelistmod.cards.tempCards.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -30,34 +33,32 @@ public class CyberDragonNachster extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public CyberDragonNachster() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
         this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
         this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
+        this.baseMagicNumber = this.magicNumber 	= 6;		// 
         this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
-        //this.tags.add(Tags);
+        this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.CYBER);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseAFX = AttackEffect.FIRE;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
+    	choices.add(new PuzzleDragonScales(this.magicNumber));
+    	choices.add(new PuzzleDragonArtifacts(this.secondMagic));
+    	this.addToBot(new CardSelectScreenResummonAction(choices, 1));
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +74,8 @@ public class CyberDragonNachster extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeSecondMagic(1);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

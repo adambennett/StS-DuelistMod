@@ -30,7 +30,7 @@ public class TotemDragon extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 3;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public TotemDragon() {
@@ -39,7 +39,7 @@ public class TotemDragon extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
         this.baseTributes = this.tributes = 3;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     // Actions the card should do.
@@ -64,7 +64,7 @@ public class TotemDragon extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

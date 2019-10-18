@@ -1,11 +1,14 @@
 package duelistmod.cards.dragons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -35,29 +38,28 @@ public class CloudianGhost extends DuelistCard
 
     public CloudianGhost() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
         this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
+        this.specialCanUseLogic = true;							// for any summon or tribute card       
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.DRAGON);
-        //this.tags.add(Tags);
+        this.tags.add(Tags.AQUA);
+        this.tags.add(Tags.FIEND);
         this.misc = 0;
         this.originalName = this.name;
-        this.baseAFX = AttackEffect.FIRE;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	ArrayList<AbstractMonster> mons = getAllMons();
+    	for (AbstractMonster mon : mons)
+    	{
+    		int totalDebuffs = 0;
+    		for (AbstractPower pow : mon.powers) { if (pow.type.equals(PowerType.DEBUFF)) { totalDebuffs++; }}
+    		if (totalDebuffs > 0) { applyPower(new PoisonPower(mon, p, totalDebuffs), mon); }
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +75,7 @@ public class CloudianGhost extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.exhaust = false;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

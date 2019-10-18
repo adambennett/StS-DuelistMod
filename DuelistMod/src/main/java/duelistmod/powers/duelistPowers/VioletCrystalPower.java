@@ -1,13 +1,14 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
-import duelistmod.variables.Strings;
+import duelistmod.variables.*;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
@@ -35,6 +36,13 @@ public class VioletCrystalPower extends DuelistPower
         this.amount2 = constrictedBuff;
         this.updateDescription();
     }
+    
+    @Override
+	public float modifyBlock(float blkAmt, AbstractCard card)
+	{
+		if (card.hasTag(Tags.PLANT)) { return blkAmt * ((this.amount / 10.00f) + 1.0f); }
+		return blkAmt;
+	}
     
    
     @Override

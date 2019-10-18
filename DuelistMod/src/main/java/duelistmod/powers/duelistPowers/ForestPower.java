@@ -1,12 +1,14 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
+import duelistmod.variables.Tags;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
@@ -35,6 +37,12 @@ public class ForestPower extends DuelistPower
         this.updateDescription();
     }
     
+    @Override
+	public float modifyBlock(float blkAmt, AbstractCard card)
+	{
+    	if (card.hasTag(Tags.BUG) || card.hasTag(Tags.SPIDER)) { return blkAmt * ((this.amount2 / 10.00f) + 1.0f); }
+		return blkAmt;
+	}
     
     @Override
 	public void updateDescription() {

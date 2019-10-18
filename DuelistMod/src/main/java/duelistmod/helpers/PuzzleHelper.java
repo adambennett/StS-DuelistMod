@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
+import duelistmod.actions.unique.DragonPuzzleAction;
 import duelistmod.cards.*;
 import duelistmod.cards.insects.Bixi;
 import duelistmod.cards.tempCards.*;
@@ -165,7 +166,7 @@ public class PuzzleHelper
 					choices.add(new PuzzleDragonTribute());
 					choices.add(new PuzzleDragonVulnerable());
 					choices.add(new PuzzleDragonWeak(floor));
-					AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(choices, effects));
+					AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
 					break;
 		
 				// Naturia Deck
@@ -515,7 +516,7 @@ public class PuzzleHelper
 				choices.add(new PuzzleDragonTribute());
 				choices.add(new PuzzleDragonVulnerable());
 				choices.add(new PuzzleDragonWeak(floor));
-				AbstractDungeon.actionManager.addToTop(new CardSelectScreenResummonAction(choices, effects));
+				AbstractDungeon.actionManager.addToTop(new DragonPuzzleAction(choices, effects));
 				break;
 	
 			// Naturia Deck

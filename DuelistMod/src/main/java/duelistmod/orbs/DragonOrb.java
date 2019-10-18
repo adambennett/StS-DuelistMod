@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
+import duelistmod.actions.unique.DragonOrbEvokeAction;
 import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.Tags;
 
@@ -41,7 +42,7 @@ public class DragonOrb extends DuelistOrb
 		this.inversion = "DragonOrb+";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Dragon.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 0;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 3;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -56,13 +57,17 @@ public class DragonOrb extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		this.description = DESC[0] + this.passiveAmount + DESC[1];
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
-			
+		if (this.evokeAmount > 0)
+		{
+			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, 1));
+			if (DuelistMod.debug) { System.out.println("theDuelist:DragonOrb --- > triggered evoke!"); }
+		}	
 	}
 
 	@Override
@@ -78,18 +83,6 @@ public class DragonOrb extends DuelistOrb
 		if (this.passiveAmount > 0) 
 		{ 
 			DuelistCard.applyPowerToSelf(new Dragonscales(this.passiveAmount));
-			ArrayList<String> genDrags = new ArrayList<String>();
-			ArrayList<AbstractCard> selectDrags = new ArrayList<AbstractCard>();
-			
-			while (selectDrags.size() < 3)
-			{
-				AbstractCard randomMonster = DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON);
-				while (genDrags.contains(randomMonster.name)) { randomMonster = DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON); }
-				genDrags.add(randomMonster.name);
-				selectDrags.add(randomMonster);
-			}
-			
-			AbstractDungeon.actionManager.addToBottom(new CardSelectScreenIntoHandAction(selectDrags, 1));
 		}
 	}
 

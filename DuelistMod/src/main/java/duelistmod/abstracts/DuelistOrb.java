@@ -33,6 +33,8 @@ public class DuelistOrb extends AbstractOrb {
 		else { return false; }
 	}
 	
+	public void onLoseArtifact() { }
+	
 	public void onExhaust(AbstractCard c) { }
 	
 	public void onAddCardToHand(AbstractCard c) { }
@@ -58,6 +60,8 @@ public class DuelistOrb extends AbstractOrb {
 	public void onSynergyTribute() { }
 	
 	public void onDrawCard(AbstractCard drawnCard) { }
+	
+	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	
 	public void showInvertValue() {
         this.showInvertValue = true;

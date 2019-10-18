@@ -26,7 +26,7 @@ public class CyberTwinDragon extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -35,19 +35,16 @@ public class CyberTwinDragon extends DuelistCard
 
     public CyberTwinDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
-        this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
+        this.baseDamage = this.damage 				= 13;			
+        this.tributes = this.baseTributes 			= 4;		
+        this.specialCanUseLogic = true;							
+        this.useTributeCanUse   = true;							     
+        this.baseMagicNumber = this.magicNumber 	= 2;
         this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.CYBER);
         this.tags.add(Tags.DRAGON);
-        //this.tags.add(Tags);
+        this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.RECKLESS);
         this.misc = 0;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.FIRE;
@@ -57,7 +54,8 @@ public class CyberTwinDragon extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	tribute();
+    	attackMultipleRandom(this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +71,7 @@ public class CyberTwinDragon extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -34,15 +34,13 @@ public class OnslaughtFireKings extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = -1;
-    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public OnslaughtFireKings() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
         this.tags.add(Tags.SPELL);
-        tooltips = new ArrayList<>();
-		tooltips.add(new BigFire());
+        this.cardsToPreview = (new BigFire());
         this.exhaust = true;
     }
 
@@ -75,36 +73,7 @@ public class OnslaughtFireKings extends DuelistCard
         }
     }
     
-    @Override
-	public void renderCardTip(SpriteBatch sb) {
-		super.renderCardTip(sb);
-		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
-
-		int count = 0;
-		if (!Settings.hideCards && renderTip) {
-			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
-				return;
-			}
-			for (AbstractCard c : tooltips) {
-				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
-				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
-				if (current_x > Settings.WIDTH * 0.75f) {
-					c.current_x = current_x + dx;
-				} else {
-					c.current_x = current_x - dx;
-				}
-				if (count == 0) {
-					c.current_y = current_y + dy;
-				} else {
-					c.current_y = current_y - dy;
-				}
-				c.drawScale = drawScale * 0.8f;
-				c.render(sb);
-				count++;
-			}
-		}
-	}
-
+    
 	@Override
 	public void onTribute(DuelistCard tributingCard) 
 	{

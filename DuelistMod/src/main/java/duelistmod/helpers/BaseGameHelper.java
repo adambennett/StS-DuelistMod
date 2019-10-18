@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.colorless.*;
 import com.megacrit.cardcrawl.cards.green.*;
+import com.megacrit.cardcrawl.cards.optionCards.*;
 import com.megacrit.cardcrawl.cards.purple.*;
 import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.cards.status.*;
@@ -16,24 +17,24 @@ public class BaseGameHelper
 {
 	public static ArrayList<AbstractCard> getAllBaseGameCards()
 	{
-		return getAllBaseGameCards(false);
+		return getAllBaseGameCards(false, false);
 	}
 	
-	public static ArrayList<AbstractCard> getAllBaseGameCards(boolean colorless)
+	public static ArrayList<AbstractCard> getAllBaseGameCards(boolean colorless, boolean allowWishes)
 	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
 		toFill.addAll(getAllIroncladCards());
 		toFill.addAll(getAllSilentCards());
 		toFill.addAll(getAllDefectCards());
 		toFill.addAll(getAllWatcherCards());
-		if (colorless) { toFill.addAll(getAllColorlessCards()); }
+		if (colorless) { toFill.addAll(getAllColorlessCards(allowWishes)); }
 		return toFill;
 	}
 	
-	public static AbstractCard getColorlessCard()
+	public static AbstractCard getColorlessCard(boolean allowWishes)
 	{
 		ArrayList<AbstractCard> colorless = new ArrayList<AbstractCard>();
-		for (AbstractCard c : getAllColorlessCards()){ colorless.add(c); }		
+		for (AbstractCard c : getAllColorlessCards(allowWishes)){ colorless.add(c); }		
 		AbstractCard card = colorless.get(AbstractDungeon.cardRandomRng.random(colorless.size() - 1));
 		return card;
 	}
@@ -70,7 +71,7 @@ public class BaseGameHelper
 		return card;
 	}
 	
-	public static ArrayList<AbstractCard> getAllColorlessCards()
+	public static ArrayList<AbstractCard> getAllColorlessCards(boolean allowWishes)
 	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
 		toFill.add(new Apotheosis());
@@ -119,12 +120,19 @@ public class BaseGameHelper
         toFill.add(new JAX());
         toFill.add(new Insight());
         toFill.add(new Miracle());
-        toFill.add(new Omega());
+        //toFill.add(new Omega());
         toFill.add(new RitualDagger());
         toFill.add(new Safety());
         toFill.add(new Shiv());
         toFill.add(new Smite());
         toFill.add(new ThroughViolence());
+        if (allowWishes)
+        {
+	        toFill.add(new BecomeAlmighty());
+	        toFill.add(new FameAndFortune());
+	        toFill.add(new LiveForever());
+        }
+        toFill.add(new Expunger());
 		return toFill;
 	}
 	
@@ -137,9 +145,9 @@ public class BaseGameHelper
         toFill.add(new BowlingBash());
         toFill.add(new Brilliance());
         toFill.add(new CarveReality());
-        toFill.add(new ConjureBlade());
         toFill.add(new Collect());
         toFill.add(new Conclude());
+        toFill.add(new ConjureBlade());
         toFill.add(new Consecrate());
         toFill.add(new Crescendo());
         toFill.add(new CrushJoints());
@@ -167,6 +175,7 @@ public class BaseGameHelper
         toFill.add(new Judgement());
         toFill.add(new JustLucky());
         toFill.add(new LessonLearned());
+        toFill.add(new LikeWater());
         toFill.add(new MasterReality());
         toFill.add(new Meditate());
         toFill.add(new MentalFortress());
@@ -203,7 +212,8 @@ public class BaseGameHelper
         toFill.add(new Foresight());
         toFill.add(new Wish());
         toFill.add(new Worship());
-        toFill.add(new WreathOfFlame());	
+        toFill.add(new WreathOfFlame());
+        toFill.add(new Study());	
 		return toFill;
 	}
 	

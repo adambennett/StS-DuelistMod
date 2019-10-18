@@ -24,7 +24,7 @@ public class DarkstormDragon extends DuelistCard
     // /TEXT DECLARATION/
     
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
@@ -54,7 +54,25 @@ public class DarkstormDragon extends DuelistCard
     			DuelistCard dC = (DuelistCard)c;
     			if (dC.tributes > 0) { dC.modifyTributes(-this.magicNumber); }
     		}
-    	}    	
+    	}    
+    	
+    	for (AbstractCard c : player().drawPile.group)
+    	{
+    		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
+    		{
+    			DuelistCard dC = (DuelistCard)c;
+    			if (dC.tributes > 0) { dC.modifyTributes(-this.magicNumber); }
+    		}
+    	} 
+    	
+    	for (AbstractCard c : player().discardPile.group)
+    	{
+    		if (c.hasTag(Tags.DRAGON) && !c.uuid.equals(this.uuid))
+    		{
+    			DuelistCard dC = (DuelistCard)c;
+    			if (dC.tributes > 0) { dC.modifyTributes(-this.magicNumber); }
+    		}
+    	} 
     }
 
     // Which card to return when making a copy of this card.

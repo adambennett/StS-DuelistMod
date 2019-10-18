@@ -30,13 +30,13 @@
   "theDuelist:DragonOrb": {
     "NAME": "DragonOrb",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, gain #b", " #yDragonscales and choose 1 of 3 #yRandomized #yDragons to add to your hand. NL #bInversion: #bDragonOrb+"
+      "#yPassive: At the start of turn, gain #b", " #yDragonscales. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 1 for this turn. NL #bInversion: #bDragonOrb+"
     ]
   },
    "theDuelist:DragonPlusOrb": {
     "NAME": "DragonOrb+",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, gain #b", " #yDragonscales and choose 1 of 5 #yRandomized #yDragons to add to your hand. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn. NL #bInversion: #bDragonOrb"
+      "#yPassive: At the start of turn, gain #b", " #yDragonscales. NL #yEvoke: Change the cost of #b", " random #yDragons in your hand to 0 for this turn. NL #bInversion: #bDragonOrb"
     ]
   },
   "theDuelist:ReducerOrb": {
@@ -73,7 +73,7 @@
   "theDuelist:FireOrb": {
     "NAME": "Fire",
     "DESCRIPTION": [
-      "#yPassive: Whenever you play a card, deal #b", " damage to a random enemy. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b", " for this combat. NL #bInversion: #bWater"
+      "#yPassive: Whenever you play a card, deal #b", " damage to a random enemy. Cannot damage #yBurning enemies. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b", " for this combat. NL #bInversion: #bWater"
     ]
   },
   "theDuelist:Glitch": {
@@ -104,7 +104,7 @@
   "theDuelist:Blaze": {
     "NAME": "Blaze",
     "DESCRIPTION": [
-	 "#yPassive: Whenever you #yTribute, deal #b", " damage to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled. NL #bInversion: #bMist"
+	 "#yPassive: Whenever you #yTribute, apply #b", " #yBurning to a random enemy. NL #yEvoke: Deal #b", " damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled. NL #bInversion: #bMist"
     ]
   },
   "theDuelist:Consumer": {

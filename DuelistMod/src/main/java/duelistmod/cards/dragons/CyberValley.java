@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -26,38 +28,111 @@ public class CyberValley extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
+    private int originalCostForTurn = 1;
     // /STAT DECLARATION/
 
     public CyberValley() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
+        this.baseDamage = this.damage 				= 8;		// dmg
         this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
+        this.originalCostForTurn = this.costForTurn;
         this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
         this.baseMagicNumber = this.magicNumber 	= 1;		// 
         this.baseSecondMagic = this.secondMagic 	= 1;		//
         this.baseThirdMagic = this.thirdMagic 		= 1;		//
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
-        //this.tags.add(Tags);
+        this.tags.add(Tags.CYBER);
+        this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.FIRE;
+    }
+    
+    @Override
+    public void modifyCostForCombat(final int amt)
+    {
+    	super.modifyCostForCombat(amt);
+    	if (this.costForTurn != this.originalCostForTurn) { this.originalCostForTurn = this.costForTurn; }
+    }
+    
+    @Override
+    public void setCostForTurn(final int amt)
+    {
+    	super.setCostForTurn(amt);
+    	if (this.costForTurn != this.originalCostForTurn) { this.originalCostForTurn = this.costForTurn; }
+    }
+    
+    @Override
+    public void updateCost(final int amt)
+    {
+    	super.updateCost(amt);
+    	if (this.costForTurn != this.originalCostForTurn) { this.originalCostForTurn = this.costForTurn; }
+    }
+    
+    @Override
+    protected void upgradeBaseCost(final int newBaseCost)
+    {
+    	super.upgradeBaseCost(newBaseCost);
+    	if (this.costForTurn != this.originalCostForTurn) { this.originalCostForTurn = this.costForTurn; }
+    }
+    
+    @Override
+    public void resetAttributes()
+    {
+    	super.resetAttributes();
+    	if (this.costForTurn != this.originalCostForTurn) { this.originalCostForTurn = this.costForTurn; }
+    }
+
+    private void costUpdater(boolean hadTribMods)
+    {
+    	if (hadTribMods && this.costForTurn != 0)
+    	{ 
+    		this.costForTurn = 0; 
+    		if (this.cost != 0) { this.isCostModifiedForTurn = true; }
+    		else { this.isCostModifiedForTurn = false; }
+    	}
+    	else if (!hadTribMods) 
+    	{ 
+    		this.costForTurn = this.originalCostForTurn;
+    		if (this.cost != this.originalCostForTurn) { this.isCostModifiedForTurn = true; }
+    		else { this.isCostModifiedForTurn = false; }
+    	}
+    }
+    
+    @Override
+    public void update()
+    {
+    	super.update();
+		if (AbstractDungeon.currMapNode != null)
+		{
+			if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
+			{
+				boolean hasTributeMod = false;
+				for (AbstractCard c : AbstractDungeon.player.hand.group)
+				{
+					if (c instanceof DuelistCard)
+					{
+						DuelistCard dc = (DuelistCard)c;
+						if (dc.isTributesModified || dc.isTributesModifiedForTurn) { hasTributeMod = true; break; }
+					}
+				}
+				costUpdater(hasTributeMod);
+			}
+		}
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	summon();
+    	attack(m);
     }
 
     // Which card to return when making a copy of this card.
@@ -73,7 +148,7 @@ public class CyberValley extends DuelistCard
             this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

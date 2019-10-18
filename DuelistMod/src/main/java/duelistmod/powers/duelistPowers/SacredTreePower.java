@@ -1,13 +1,14 @@
 package duelistmod.powers.duelistPowers;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
-import duelistmod.variables.Strings;
+import duelistmod.variables.*;
 
 
 public class SacredTreePower extends DuelistPower 
@@ -33,6 +34,13 @@ public class SacredTreePower extends DuelistPower
         this.amount = dmgMod;
         this.updateDescription();
     }
+    
+    @Override
+	public float modifyBlock(float blkAmt, AbstractCard card)
+	{
+		if (card.hasTag(Tags.NATURIA)) { return blkAmt * ((this.amount / 10.00f) + 1.0f); }
+		return blkAmt;
+	}
     
     @Override
 	public void updateDescription() {

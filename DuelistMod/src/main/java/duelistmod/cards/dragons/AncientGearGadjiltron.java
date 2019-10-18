@@ -36,7 +36,6 @@ public class AncientGearGadjiltron extends DuelistCard
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 2;
-	private ArrayList<AbstractCard> tooltips;
 	// /STAT DECLARATION/
 
 	public AncientGearGadjiltron() 
@@ -53,8 +52,7 @@ public class AncientGearGadjiltron extends DuelistCard
 		this.baseDamage = this.damage = 20;
 		this.magicNumber = this.baseMagicNumber = 3;
 		this.baseAFX = AttackEffect.FIRE;
-		tooltips = new ArrayList<>();
-		tooltips.add(new DragonicToken());
+		this.cardsToPreview = new DragonicToken();
 	}
 
 
@@ -91,35 +89,6 @@ public class AncientGearGadjiltron extends DuelistCard
 		}
 	}
 	
-	@Override
-	public void renderCardTip(SpriteBatch sb) {
-		super.renderCardTip(sb);
-		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
-
-		int count = 0;
-		if (!Settings.hideCards && renderTip) {
-			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
-				return;
-			}
-			for (AbstractCard c : tooltips) {
-				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
-				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
-				if (current_x > Settings.WIDTH * 0.75f) {
-					c.current_x = current_x + dx;
-				} else {
-					c.current_x = current_x - dx;
-				}
-				if (count == 0) {
-					c.current_y = current_y + dy;
-				} else {
-					c.current_y = current_y - dy;
-				}
-				c.drawScale = drawScale * 0.8f;
-				c.render(sb);
-				count++;
-			}
-		}
-	}
 	
     // If player doesn't have enough summons, can't play card
     @Override

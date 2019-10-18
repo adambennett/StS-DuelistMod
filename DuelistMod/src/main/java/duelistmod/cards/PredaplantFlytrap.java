@@ -37,7 +37,6 @@ public class PredaplantFlytrap extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
-    private ArrayList<AbstractCard> tooltips;
     // /STAT DECLARATION/
 
     public PredaplantFlytrap() {
@@ -51,8 +50,7 @@ public class PredaplantFlytrap extends DuelistCard
 		this.originalName = this.name;
 		this.baseMagicNumber = this.magicNumber = 4;
 		this.isSummon = true;
-		tooltips = new ArrayList<>();
-		tooltips.add(new PredaplantToken());
+		this.cardsToPreview = new PredaplantToken();
     }
 
     // Actions the card should do.
@@ -86,35 +84,7 @@ public class PredaplantFlytrap extends DuelistCard
 		predaplantSynTrib(tributingCard);
 	}
 	
-	@Override
-	public void renderCardTip(SpriteBatch sb) {
-		super.renderCardTip(sb);
-		boolean renderTip = (boolean) ReflectionHacks.getPrivate(this, AbstractCard.class, "renderTip");
-
-		int count = 0;
-		if (!Settings.hideCards && renderTip) {
-			if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard) {
-				return;
-			}
-			for (AbstractCard c : tooltips) {
-				float dx = (AbstractCard.IMG_WIDTH * 0.9f - 5f) * drawScale;
-				float dy = (AbstractCard.IMG_HEIGHT * 0.4f - 5f) * drawScale;
-				if (current_x > Settings.WIDTH * 0.75f) {
-					c.current_x = current_x + dx;
-				} else {
-					c.current_x = current_x - dx;
-				}
-				if (count == 0) {
-					c.current_y = current_y + dy;
-				} else {
-					c.current_y = current_y - dy;
-				}
-				c.drawScale = drawScale * 0.8f;
-				c.render(sb);
-				count++;
-			}
-		}
-	}
+	
 	
     // Checking for Monster Zones if the challenge is enabled
     @Override

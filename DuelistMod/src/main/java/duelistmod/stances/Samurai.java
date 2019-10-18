@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -53,9 +54,9 @@ public class Samurai extends DuelistStance
 	}
 	
 	@Override
-	public float modifyBlock(final float blockAmount) 
+	public float modifyBlock(final float blockAmount, AbstractCard card) 
 	{ 
-		return blockAmount + 3; 
+		return blockAmount + 3.0f; 
 	}
 
 	@Override

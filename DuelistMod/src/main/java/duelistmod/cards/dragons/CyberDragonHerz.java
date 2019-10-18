@@ -47,6 +47,7 @@ public class CyberDragonHerz extends DuelistCard
         this.baseThirdMagic = this.thirdMagic 		= 1;		//
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.DRAGON);
+        this.tags.add(Tags.CYBER);
         //this.tags.add(Tags);
         this.misc = 0;
         this.originalName = this.name;

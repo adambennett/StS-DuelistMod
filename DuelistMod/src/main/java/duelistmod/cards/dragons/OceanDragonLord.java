@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.unique.OceanDragonLordAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.*;
 
 public class OceanDragonLord extends DuelistCard 
@@ -50,7 +50,7 @@ public class OceanDragonLord extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	tribute();
-    	if (p.hasPower(Dragonscales.POWER_ID)) { Dragonscales pow = (Dragonscales)p.getPower(Dragonscales.POWER_ID); pow.convertToThorns(); }
+    	this.addToBot(new OceanDragonLordAction());
     }
 
     // Which card to return when making a copy of this card.

@@ -435,7 +435,7 @@ public class TheDuelist extends CustomPlayer {
 	            {
 					if (o instanceof Lava || o instanceof FireOrb || o instanceof Blaze || o instanceof DuelistHellfire)
 					{
-						if (hdc instanceof ExploderDragon)
+						if (hdc instanceof ExploderDragon || hdc instanceof VolcanicEruption)
 						{
 							o.showEvokeValue();
 						}

@@ -46,6 +46,7 @@ public class CyberloadFusion extends DuelistCard
         this.baseSecondMagic = this.secondMagic 	= 1;		//
         this.baseThirdMagic = this.thirdMagic 		= 1;		//
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.CYBER);
         //this.tags.add(Tags);
         this.misc = 0;
         this.originalName = this.name;

@@ -10,6 +10,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.UmiPower;
 import duelistmod.variables.*;
 
 public class Umi extends DuelistCard 

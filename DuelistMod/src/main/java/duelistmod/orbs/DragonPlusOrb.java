@@ -43,7 +43,7 @@ public class DragonPlusOrb extends DuelistOrb
 		this.inversion = "DragonOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/DragonPlus.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 2;
+		this.baseEvokeAmount = this.evokeAmount = 1;
 		this.basePassiveAmount = this.passiveAmount = 6;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -66,7 +66,7 @@ public class DragonPlusOrb extends DuelistOrb
 	{
 		if (this.evokeAmount > 0)
 		{
-			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount));
+			AbstractDungeon.actionManager.addToBottom(new DragonOrbEvokeAction(this.evokeAmount, 0));
 			if (DuelistMod.debug) { System.out.println("theDuelist:DragonOrb --- > triggered evoke!"); }
 		}	
 	}
@@ -84,18 +84,6 @@ public class DragonPlusOrb extends DuelistOrb
 		if (this.passiveAmount > 0) 
 		{ 
 			DuelistCard.applyPowerToSelf(new Dragonscales(this.passiveAmount));
-			ArrayList<String> genDrags = new ArrayList<String>();
-			ArrayList<AbstractCard> selectDrags = new ArrayList<AbstractCard>();
-			
-			while (selectDrags.size() < 5)
-			{
-				AbstractCard randomMonster = DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON);
-				while (genDrags.contains(randomMonster.name)) { randomMonster = DuelistCard.returnTrulyRandomFromOnlyFirstSet(Tags.DRAGON, Tags.TOON); }
-				genDrags.add(randomMonster.name);
-				selectDrags.add(randomMonster);
-			}
-			
-			AbstractDungeon.actionManager.addToBottom(new CardSelectScreenIntoHandAction(selectDrags, 1));
 		}
 	}
 

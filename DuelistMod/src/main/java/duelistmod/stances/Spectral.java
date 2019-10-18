@@ -3,6 +3,7 @@ package duelistmod.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
@@ -54,7 +55,7 @@ public class Spectral extends DuelistStance
 	}
 	
 	@Override
-	public float modifyBlock(final float blockAmount) { return 0; }
+	public float modifyBlock(final float blockAmount, AbstractCard card) { return 0; }
 
 	@Override
 	public void onExitStance() 

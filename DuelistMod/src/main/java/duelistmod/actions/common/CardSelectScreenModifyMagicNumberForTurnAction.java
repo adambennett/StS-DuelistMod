@@ -74,6 +74,7 @@ public class CardSelectScreenModifyMagicNumberForTurnAction extends AbstractGame
 	
 	private void modify(DuelistCard original, int magic)
 	{
+		if (original.hasTag(Tags.MAGIC_NUMBER_BUFFS_SCALE_BY_10)) { magic = magic * 10; }
 		if (original.hasTag(Tags.BAD_MAGIC))
 		{
 			original.originalMagicNumber = original.baseMagicNumber;

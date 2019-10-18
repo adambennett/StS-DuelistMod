@@ -785,6 +785,13 @@
 			"#yDragons always apply #yBurning to their targets."
 		]
 	},
+	"theDuelist:GoldenScale": {
+		"NAME": "Golden Scales",
+		"FLAVOR": "A golden scale.",
+		"DESCRIPTIONS": [
+			"Whenever you gain #yDragonscales, gain #b2 extra."
+		]
+	},
 	"theDuelist:OrbCardRelic": {
 		"NAME": "Orbstone",
 		"FLAVOR": "A blue, glowing stone.",

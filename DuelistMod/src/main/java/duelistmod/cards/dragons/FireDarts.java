@@ -1,15 +1,19 @@
 package duelistmod.cards.dragons;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
+import duelistmod.orbs.FireOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -26,8 +30,8 @@ public class FireDarts extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
@@ -35,18 +39,10 @@ public class FireDarts extends DuelistCard
 
     public FireDarts() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 1;		// blk
-        this.baseDamage = this.damage 				= 1;		// dmg
-        this.summons = this.baseSummons				= 1;		// summons
-        this.tributes = this.baseTributes 			= 1;		// tributes
-        this.specialCanUseLogic = true;							// for any summon or tribute card
-        this.useTributeCanUse   = true;							// for tribute cards
-        this.useBothCanUse      = false;						// for hybrid tribute/summon cards
-        this.baseMagicNumber = this.magicNumber 	= 1;		// 
-        this.baseSecondMagic = this.secondMagic 	= 1;		//
-        this.baseThirdMagic = this.thirdMagic 		= 1;		//
+        this.baseDamage = this.damage 				= 1;
+        this.baseMagicNumber = this.magicNumber 	= 6;
         this.tags.add(Tags.TRAP);
-        //this.tags.add(Tags);
+        this.tags.add(Tags.ARCANE);
         this.misc = 0;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.FIRE;
@@ -56,7 +52,20 @@ public class FireDarts extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	
+    	ArrayList<AbstractMonster> mons = getAllMons();
+    	AbstractMonster lastMon = null;
+    	for (int i = 0; i < this.magicNumber; i++)
+    	{
+    		AbstractMonster target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+    		if (target.isDead || target.isDying || target.isDeadOrEscaped() || target.halfDead) 
+    		{
+    			mons = getAllMons();
+    			target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+    		}
+    		if (lastMon != null && target != lastMon) { channel(new FireOrb()); }
+    		lastMon = target;
+    		attack(target);
+    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -68,14 +77,20 @@ public class FireDarts extends DuelistCard
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
+        if (canUpgrade()) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }
+    }
+    
+    @Override
+    public boolean canUpgrade()
+    {
+    	if (this.magicNumber < 25) { return true; }
+    	else { return false; }
     }
     
     // Tribute canUse()

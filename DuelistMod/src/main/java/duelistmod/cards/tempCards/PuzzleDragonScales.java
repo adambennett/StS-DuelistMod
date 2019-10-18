@@ -36,12 +36,19 @@ public class PuzzleDragonScales extends TokenCard
     	this.dontTriggerOnUseCard = true;
     	this.baseMagicNumber = this.magicNumber = 6;
     }
+    
+    public PuzzleDragonScales(int magic) 
+    { 
+    	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
+    	this.dontTriggerOnUseCard = true;
+    	this.baseMagicNumber = this.magicNumber = magic;
+    }
 
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	applyPowerToSelf(new Dragonscales(this.magicNumber));
     }
-    @Override public AbstractCard makeCopy() { return new PuzzleDragonScales(); }
+    @Override public AbstractCard makeCopy() { return new PuzzleDragonScales(this.magicNumber); }
 
     
     

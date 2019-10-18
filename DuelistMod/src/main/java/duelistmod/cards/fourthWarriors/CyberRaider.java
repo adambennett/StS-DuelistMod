@@ -38,6 +38,7 @@ public class CyberRaider extends DuelistCard
         this.tags.add(Tags.MONSTER);  
         this.tags.add(Tags.WARRIOR); 
         this.tags.add(Tags.MACHINE); 
+        this.tags.add(Tags.CYBER);
         this.summons = this.baseSummons = 1;	
         this.baseBlock = this.block = 6;
         this.magicNumber = this.baseMagicNumber = 3;

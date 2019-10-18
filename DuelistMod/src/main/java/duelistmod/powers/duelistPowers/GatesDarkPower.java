@@ -5,12 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistPower;
-import duelistmod.variables.Strings;
+import duelistmod.variables.*;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
 
@@ -37,6 +35,13 @@ public class GatesDarkPower extends DuelistPower
         this.amount = dmgMod;
         this.updateDescription();
     }
+    
+    @Override
+	public float modifyBlock(float blkAmt, AbstractCard card)
+	{
+		if (card.hasTag(Tags.ZOMBIE) || card.hasTag(Tags.FIEND)) { return blkAmt * ((this.amount / 10.00f) + 1.0f); }
+		return blkAmt;
+	}
 
     @Override
    	public void updateDescription() {

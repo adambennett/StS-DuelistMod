@@ -9,12 +9,14 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
 import duelistmod.helpers.BaseGameHelper;
+import duelistmod.ui.DuelistCardSelectScreen;
 
 public class CardRewardRelicI extends CustomRelic
 {
@@ -23,11 +25,19 @@ public class CardRewardRelicI extends CustomRelic
     public static final String IMG = DuelistMod.makeRelicPath("BaseGameRelic.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("BookStone_Outline.png");
     public boolean cardSelected = false;
+	private DuelistCardSelectScreen dcss;
     // /FIELDS
     
     private int colorIndex = -1;
 
-    public CardRewardRelicI() { super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL); this.colorIndex = getRandomColors();  this.setCounter(colorIndex); setDescription(); }
+    public CardRewardRelicI() 
+    { 
+	    super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL); 
+	    this.colorIndex = getRandomColors();  
+	    this.setCounter(colorIndex); 
+	    this.dcss = new DuelistCardSelectScreen(true);
+	    setDescription(); 
+    }
     @Override public String getUpdatedDescription() 
     {
     	if (this.counter > -1) { return this.DESCRIPTIONS[this.counter]; }
@@ -147,27 +157,27 @@ public class CardRewardRelicI extends CustomRelic
 	    		return all;
 	    	case 10:
 	    		all.clear();
-	    		all.addAll(BaseGameHelper.getAllColorlessCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
 	    		return all;
 	    	case 11:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllIroncladCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
 	    		return all;
 	    	case 12:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllSilentCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
 	    		return all;
 	    	case 13:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllDefectCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
 	    		return all;
 	     	case 14:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllWatcherCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
 	    		return all;
 	     	case 15:
 	    		return BaseGameHelper.getAllIroncladCards();
@@ -183,7 +193,7 @@ public class CardRewardRelicI extends CustomRelic
 	    		all.addAll(BaseGameHelper.getAllSilentCards());
 	    		all.addAll(BaseGameHelper.getAllDefectCards());
 	    		all.addAll(BaseGameHelper.getAllWatcherCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards());
+	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
 	    		return all;
     	}
     }
@@ -202,8 +212,8 @@ public class CardRewardRelicI extends CustomRelic
 			group.addToBottom(c);
 			UnlockTracker.unlockCard(c.cardID);
 		}
-		group.sortAlphabetically(true);
-		AbstractDungeon.gridSelectScreen.open(group, 1, "Select any " + getColorName() + " card to add to your deck", false);
+		AbstractDungeon.gridSelectScreen = this.dcss;
+		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(group, 1, "Select any " + getColorName() + " card to add to your deck");
 		
         try 
 		{
@@ -231,11 +241,13 @@ public class CardRewardRelicI extends CustomRelic
 	public void update() 
 	{
 		super.update();
-		if (!cardSelected && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) 
+		if (!cardSelected && !this.dcss.selectedCards.isEmpty()) 
 		{
 			cardSelected = true;
-			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
-			AbstractDungeon.gridSelectScreen.selectedCards.clear();
+			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(this.dcss.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
+			this.dcss.selectedCards.clear();
+			AbstractDungeon.closeCurrentScreen();
+			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 		}
 	}
     

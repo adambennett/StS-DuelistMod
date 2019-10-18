@@ -29,6 +29,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags CONSPIRE;
 	@SpireEnum public static AbstractCard.CardTags CRASHBUG;
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
+	@SpireEnum public static AbstractCard.CardTags CYBER;
 	@SpireEnum public static AbstractCard.CardTags DARK_CRISIS;
 	@SpireEnum public static AbstractCard.CardTags DRAGON;
 	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
@@ -65,6 +66,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MACHINE_DECK;
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER;
+	@SpireEnum public static AbstractCard.CardTags MAGIC_NUMBER_BUFFS_SCALE_BY_10;
 	@SpireEnum public static AbstractCard.CardTags MAGNET;
 	@SpireEnum public static AbstractCard.CardTags MALICIOUS;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR_DECK;
@@ -118,6 +120,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags ROCK;
 	@SpireEnum public static AbstractCard.CardTags ROSE;
 	@SpireEnum public static AbstractCard.CardTags SPELL;
+	@SpireEnum public static AbstractCard.CardTags SPARKS;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER;
 	@SpireEnum public static AbstractCard.CardTags SPELLCASTER_DECK;
 	@SpireEnum public static AbstractCard.CardTags SPIDER;

@@ -69,7 +69,7 @@
 		  "DragonOrb",
 		  "dragonorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, gain #b3 #yDragonscales and choose 1 of 3 #yRandomized #yDragons to add to your hand."
+		"DESCRIPTION": "#yOrb: At the start of turn, gain #b3 #yDragonscales. NL #yEvoke: Sets the cost of #b1 random #yDragon in your hand to 1 for the turn."
 	},
     {
 	  "PROPER_NAME": "Overflow",
@@ -107,14 +107,17 @@
 	  "PROPER_NAME": "Dragon",
       "NAMES": [
         "dragon",
-		"Dragon"
+		"Dragon",
+		"Dragons",
+		"dragons"
       ],      
       "DESCRIPTION": "#yDragons have a chance to apply #yBurning to their targets. When you #yTribute a #yDragon for another #yDragon, gain #b2 #yDragonscales."
     },
     {
 	  "PROPER_NAME": "Spellcaster",
       "NAMES": [
-        "spellcaster"
+        "spellcaster",
+		"Spellcaster"
       ],      
       "DESCRIPTION": "When you attack, if all the monsters you currently have summoned are #ySpellcasters, gain #b4 Block. You need to have at least #b1 #ySpellcaster summoned to trigger this effect."
     },
@@ -164,7 +167,7 @@
       "Fire",
 	  "fire"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you play a card, deal #b2 damage to a random enemy. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b1 for the rest of combat."
+    "DESCRIPTION": "#yOrb: Whenever you play a card, deal #b2 damage to a random enemy. Cannot damage #yBurning enemies. NL #yEvoke: Reduce the #yTribute cost of #yDragons (everywhere) by #b1 for the rest of combat."
   },
   {
    "PROPER_NAME": "Glitch",
@@ -244,7 +247,7 @@
       "Blaze",
 	  "blaze"
     ],   
-    "DESCRIPTION": "#yOrb: Whenever you #yTribute, deal #b4 damage to a random enemy. NL #yEvoke: Deal #b5 damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled."
+    "DESCRIPTION": "#yOrb: Whenever you #yTribute, apply #b2 #yBurning to a random enemy. NL #yEvoke: Deal #b4 damage to ALL enemies. Evoke damage increases at the end of each turn while you have no water-based orbs channeled."
   },
   {
     "PROPER_NAME": "Consumer",
@@ -766,7 +769,9 @@
   "PROPER_NAME": "Dinosaur",
     "NAMES": [
       "Dinosaur",
-	  "dinosaur"
+	  "dinosaur",
+	  "dinosaurs",
+	  "Dinosaurs"
     ],   
     "DESCRIPTION": "#yDinosaurs deal #b10% more damage for each stack of #yWeak on their targets."
   },

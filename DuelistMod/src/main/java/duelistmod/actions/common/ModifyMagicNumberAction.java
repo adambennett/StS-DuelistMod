@@ -3,6 +3,8 @@ package duelistmod.actions.common;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import duelistmod.variables.Tags;
+
 public class ModifyMagicNumberAction extends AbstractGameAction {
 	AbstractCard cardToModify;
 	
@@ -15,7 +17,8 @@ public class ModifyMagicNumberAction extends AbstractGameAction {
 	
 	@Override
 	public void update() {
-		this.cardToModify.baseMagicNumber += this.amount;
+		if (this.cardToModify.hasTag(Tags.MAGIC_NUMBER_BUFFS_SCALE_BY_10)) { this.cardToModify.baseMagicNumber += this.amount * 10;}
+		else { this.cardToModify.baseMagicNumber += this.amount; }
 		if (this.cardToModify.baseMagicNumber < 0) {
 			this.cardToModify.baseMagicNumber = 0;
 		}

@@ -2,6 +2,7 @@ package duelistmod.abstracts;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.CustomRelic;
 
@@ -40,4 +41,8 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onResummon(DuelistCard resummoned) { }
 	
 	public void onSynergyTribute() { }
+	
+	public void onLoseArtifact() { }
+	
+	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 }

@@ -43,7 +43,7 @@ public class CrystalRaigeki extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.isMultiDamage = true;
 		this.originalName = this.name;
-		this.baseDamage = this.damage = 25;
+		this.baseDamage = this.damage = 20;
 		this.magicNumber = this.baseMagicNumber = 6;
     }
 
@@ -75,7 +75,7 @@ public class CrystalRaigeki extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

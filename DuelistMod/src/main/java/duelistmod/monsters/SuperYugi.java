@@ -12,6 +12,7 @@ import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.powers.enemyPowers.EnemyExodiaPower;
 
 public class SuperYugi extends DuelistMonster
 {
@@ -28,10 +29,10 @@ public class SuperYugi extends DuelistMonster
 	private static final float HB_W = 200.0F;   
 	private static final float HB_H = 330.0F;   
 	
-	private static final int HP_MIN = 200; 
-	private static final int HP_MAX = 280; 
-	private static final int A7_HP_MIN = 250; 
-	private static final int A7_HP_MAX = 330;
+	private static final int HP_MIN = 300; 
+	private static final int HP_MAX = 380; 
+	private static final int A7_HP_MIN = 350; 
+	private static final int A7_HP_MAX = 430;
 	
 	private DuelistCard sparks;
 	private DuelistCard lesser;	
@@ -110,7 +111,7 @@ public class SuperYugi extends DuelistMonster
 		this.possibleHands.get(3).clear();
 		this.possibleHands.get(3).add("Forbidden Lance");
 		this.possibleHands.get(3).add("Neo the Magic Swordsman");
-		this.possibleHands.get(3).add("Red Medicine");
+		this.possibleHands.get(3).add("Power Wall");
 		this.possibleHands.get(3).add("#yRight #yArm");
 		this.possibleHands.get(3).add("Golden Apples");		
 	}
@@ -121,10 +122,30 @@ public class SuperYugi extends DuelistMonster
 		int summons = getSummons();
 		//boolean hasLambs = hasLambs();
 		int moveRoll = AbstractDungeon.aiRng.random(1, 5);
+		ArrayList<DuelistCard> currentPieces = new ArrayList<DuelistCard>();
+		if (this.hasPower(EnemyExodiaPower.POWER_ID)) { EnemyExodiaPower pow = (EnemyExodiaPower) this.getPower(EnemyExodiaPower.POWER_ID); currentPieces.addAll(pow.pieces); }
+		boolean hasLeftLeg = false;
+		boolean hasRightLeg = false;
+		boolean hasLeftArm = false;
+		boolean hasRightArm = false;
+		for (DuelistCard c : currentPieces)
+		{
+			if (c instanceof ExodiaLL) { hasLeftLeg = true; }
+			else if (c instanceof ExodiaRL) { hasRightLeg = true; }
+			else if (c instanceof ExodiaRA) { hasRightArm = true; }
+			else if (c instanceof ExodiaLA) { hasLeftArm = true; }
+		}
 		switch (this.handIndex)
 		{
 		case 0:
-			if (moveRoll == 1 && summons > 0)
+			if (!hasLeftLeg)
+			{
+				moveCards.add(new ExodiaLL());
+				moveCards.add(new NeoMagic());
+				moveCards.add(new PreventRat());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.neoMagic.damage);
+			}
+			else if (moveRoll == 1 && summons > 0)
 			{
 				moveCards.add(new NeoMagic());
 				moveCards.add(new DarkMagician());
@@ -169,7 +190,15 @@ public class SuperYugi extends DuelistMonster
 			}
 			break;
 		case 1:
-			if (summons > 0)
+			if (!hasRightLeg)
+			{
+				moveCards.add(new ExodiaRL());
+				moveCards.add(new PreventRat());
+				moveCards.add(new Sparks());
+				moveCards.add(new MillenniumShield());
+				this.setMove((byte)2, Intent.ATTACK_BUFF, this.sparks.damage);
+			}
+			else if (summons > 0)
 			{
 				moveCards.add(new ExodiaRL());
 				moveCards.add(new PreventRat());
@@ -200,8 +229,15 @@ public class SuperYugi extends DuelistMonster
 				this.setMove((byte)2, Intent.ATTACK_DEFEND, this.sparks.damage + this.sSkull.damage);
 			}
 			break;
-		case 2:						
-			if (moveRoll == 5)
+		case 2:		
+			if (!hasLeftArm)
+			{
+				moveCards.add(new CelticGuardian());
+				moveCards.add(new MysticalElf());
+				moveCards.add(new ExodiaLA());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, new ExodiaLA().damage + new CelticGuardian().damage);
+			}
+			else if (moveRoll == 5)
 			{
 				moveCards.add(new SwordsRevealing());
 				this.setMove((byte)2, Intent.MAGIC);
@@ -227,7 +263,14 @@ public class SuperYugi extends DuelistMonster
 			}
 			break;
 		case 3:
-			if (!this.destructUsed && this.summonsThisCombat > 2 && summons > 0)
+			if (!hasRightArm)
+			{
+				moveCards.add(new ExodiaRA());
+				moveCards.add(new NeoMagic());
+				moveCards.add(new PowerWall());
+				this.setMove((byte)2, Intent.ATTACK_DEFEND, new NeoMagic().damage + new ExodiaRA().damage);
+			}
+			else if (!this.destructUsed && this.summonsThisCombat > 2 && summons > 0)
 			{
 				moveCards.add(new ForbiddenLance());
 				moveCards.add(new DestructPotion());
@@ -247,17 +290,17 @@ public class SuperYugi extends DuelistMonster
 					}
 					else if (roll == 2)
 					{
-						moveCards.add(new RedMedicine());
+						moveCards.add(new PowerWall());
 						moveCards.add(new NeoMagic());
 						moveCards.add(new GoldenApples());
-						this.setMove((byte)2, Intent.ATTACK_BUFF, new NeoMagic().damage);
+						this.setMove((byte)2, Intent.ATTACK_DEFEND, new NeoMagic().damage);
 					}
 					else if (roll == 3)
 					{
 						moveCards.add(new ExodiaRA());
 						moveCards.add(new NeoMagic());
-						moveCards.add(new RedMedicine());
-						this.setMove((byte)2, Intent.ATTACK_BUFF, new NeoMagic().damage + new ExodiaRA().damage);
+						moveCards.add(new PowerWall());
+						this.setMove((byte)2, Intent.ATTACK_DEFEND, new NeoMagic().damage + new ExodiaRA().damage);
 					}
 					else if (roll == 4)
 					{

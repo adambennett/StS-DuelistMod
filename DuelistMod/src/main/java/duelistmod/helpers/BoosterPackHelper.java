@@ -92,7 +92,7 @@ public class BoosterPackHelper
 		fatPackSize = 7;
 		bonusPackSize = 3;
 	}
-	
+
 	private static void setupListList()
 	{
 		lists.clear();
@@ -259,35 +259,67 @@ public class BoosterPackHelper
 	public static ArrayList<AbstractCard> multitypeBoosterPack()
 	{
 		Util.log("Multitype Booster Pack -- monsters.size()==" + monsters.size() + ", spells.size()==" + spells.size() + ", traps.size()==" + traps.size());
-		int extra = normalPackSize - 5;
-		if (extra < 1) { extra = 0; }
- 		ArrayList<AbstractCard> toReturn = getRandomCards(monsters, 2 + extra);	// 2 monsters + any extra cards that got added to the pack size
-		toReturn.addAll(getRandomCards(spells, 2));								// 2 spells
-		toReturn.addAll(getRandomCards(traps, 1));								// 1 trap
-		return toReturn;
+		if (normalPackSize == 3)
+		{
+			
+	 		ArrayList<AbstractCard> toReturn = getRandomCards(monsters, 1);	
+			toReturn.addAll(getRandomCards(spells, 1));	
+			toReturn.addAll(getRandomCards(traps, 1));	
+			return toReturn;
+		}
+		else
+		{
+			int extra = normalPackSize - 5;
+			if (extra < 1) { extra = 0; }
+	 		ArrayList<AbstractCard> toReturn = getRandomCards(monsters, 2 + extra);	// 2 monsters + any extra cards that got added to the pack size
+			toReturn.addAll(getRandomCards(spells, 2));								// 2 spells
+			toReturn.addAll(getRandomCards(traps, 1));								// 1 trap
+			return toReturn;
+		}
 	}
 	
 
 	public static ArrayList<AbstractCard> rareBoosterPack()
 	{
 		Util.log("Rare Booster Pack -- commons.size()==" + commons.size() + ", rares.size()==" + rares.size() + ", nonCommon.size()==" + nonCommon.size());
-		int extra = normalPackSize - 5;
-		if (extra < 1) { extra = 0; }
-		if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
+		if (normalPackSize == 3)
 		{
-			ArrayList<AbstractCard> toReturn = getRandomCards(commons, 1 + extra);	// 1 common + any extra cards that got added to the pack size
-			toReturn.addAll(getRandomCards(nonCommon, 3));							// 2 uncommon/rare
-			ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
-			toReturn.addAll(getRandomCards(newRares, 1));							// 1 rare (making sure to elimate possible crossover between non-common and rares to give 1 unique rare for sure)
-			return toReturn;
+			if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
+			{
+				ArrayList<AbstractCard> toReturn = (getRandomCards(nonCommon, 2));	
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							
+				return toReturn;
+			}
+			else
+			{
+		 		ArrayList<AbstractCard> toReturn = getRandomCards(commons, 1);	
+				toReturn.addAll(getRandomCards(nonCommon, 1));							
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							
+				return toReturn;
+			}
 		}
 		else
 		{
-	 		ArrayList<AbstractCard> toReturn = getRandomCards(commons, 3 + extra);	// 3 commons + any extra cards that got added to the pack size
-			toReturn.addAll(getRandomCards(nonCommon, 1));							// 1 uncommon/rare
-			ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
-			toReturn.addAll(getRandomCards(newRares, 1));							// 1 rare (making sure to elimate possible crossover between non-common and rares to give 1 unique rare for sure)
-			return toReturn;
+			int extra = normalPackSize - 5;
+			if (extra < 1) { extra = 0; }
+			if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
+			{
+				ArrayList<AbstractCard> toReturn = getRandomCards(commons, 1 + extra);	// 1 common + any extra cards that got added to the pack size
+				toReturn.addAll(getRandomCards(nonCommon, 3));							// 2 uncommon/rare
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							// 1 rare (making sure to elimate possible crossover between non-common and rares to give 1 unique rare for sure)
+				return toReturn;
+			}
+			else
+			{
+		 		ArrayList<AbstractCard> toReturn = getRandomCards(commons, 3 + extra);	// 3 commons + any extra cards that got added to the pack size
+				toReturn.addAll(getRandomCards(nonCommon, 1));							// 1 uncommon/rare
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							// 1 rare (making sure to elimate possible crossover between non-common and rares to give 1 unique rare for sure)
+				return toReturn;
+			}
 		}
 	}
 	

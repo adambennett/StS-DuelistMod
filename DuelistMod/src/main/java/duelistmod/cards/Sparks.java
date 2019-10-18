@@ -37,6 +37,7 @@ public class Sparks extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 6;
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.SPARKS);
         this.tags.add(BaseModCardTags.BASIC_STRIKE);
         this.tags.add(CardTags.STARTER_STRIKE);
         this.tags.add(Tags.LEGEND_BLUE_EYES);
