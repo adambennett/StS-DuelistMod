@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-import duelistmod.DuelistMod;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.naturia.*;

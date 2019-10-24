@@ -31,7 +31,7 @@ public class BlueDuston extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -55,7 +55,7 @@ public class BlueDuston extends DuelistCard
     {
     	summon();
     	ArrayList<AbstractMonster> mons = getAllMons();
-    	for (AbstractMonster mon : mons) { if (mon.hasPower(BurningPower.POWER_ID)) { applyPower(new FrozenDebuff(m, p), m); }}
+    	for (AbstractMonster mon : mons) { if (mon.hasPower(BurningPower.POWER_ID)) { applyPower(new FrozenDebuff(mon, p), mon); }}
     }
 
     // Which card to return when making a copy of this card.
@@ -68,7 +68,6 @@ public class BlueDuston extends DuelistCard
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeBaseCost(0);

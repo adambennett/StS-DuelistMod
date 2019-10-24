@@ -14,6 +14,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.actions.unique.*;
 import duelistmod.cards.tempCards.*;
+import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -96,11 +97,11 @@ public class TheCreator extends DuelistCard
     		if (p.hasRelic(MillenniumSymbol.ID))
     		{
     			ArrayList<DuelistCard> choices = new ArrayList<DuelistCard>();
-    			choices.add(new NormalCreatorEffectCard(DuelistMod.coloredCards));
-    			choices.add(new BonusCreatorEffectCard(DuelistMod.coloredCards));
+    			choices.add(new NormalCreatorEffectCard(TheDuelist.cardPool.group));
+    			choices.add(new BonusCreatorEffectCard(TheDuelist.cardPool.group));
     			this.addToBot(new CardSelectScreenResummonAction(choices, 1));
     		}
-    		else { this.addToBot(new TheCreatorAction(p, p, DuelistMod.coloredCards, 1, true, false, false)); }
+    		else { this.addToBot(new TheCreatorAction(p, p, TheDuelist.cardPool.group, 1, true, false, false)); }
     	}
 		
     }

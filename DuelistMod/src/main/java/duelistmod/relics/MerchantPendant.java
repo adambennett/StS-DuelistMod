@@ -85,7 +85,7 @@ public class MerchantPendant extends CustomRelic {
 		    	else if (roll == 2 || AbstractDungeon.player.hasRelic("Toxic Egg 2")) { shop.applyUpgrades(CardType.SKILL); }
 		    	else if (roll == 3 || AbstractDungeon.player.hasRelic("Frozen Egg 2")) { shop.applyUpgrades(CardType.POWER); }
 		    	
-		    	int discountRoll = AbstractDungeon.cardRandomRng.random(1, 4);
+		    	int discountRoll = AbstractDungeon.cardRandomRng.random(5, 8);
 		    	float disc = 0.1F * discountRoll;
 		    	shop.applyDiscount(disc, true);
 		    

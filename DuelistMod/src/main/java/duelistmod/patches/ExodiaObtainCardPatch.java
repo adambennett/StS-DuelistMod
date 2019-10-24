@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.*;
 import duelistmod.relics.*;
 import duelistmod.variables.Tags;
@@ -40,6 +41,7 @@ public class ExodiaObtainCardPatch
 			if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
 			if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
 			if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
+			if (card instanceof DuelistCard) { ((DuelistCard)card).onObtainTrigger(); }
 			return SpireReturn.Continue();
 			
 		}
@@ -56,6 +58,7 @@ public class ExodiaObtainCardPatch
 				if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
 				if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
 				if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
+				if (card instanceof DuelistCard) { ((DuelistCard)card).onObtainTrigger(); }
 				return SpireReturn.Continue(); 
 			}
 		}
@@ -66,6 +69,7 @@ public class ExodiaObtainCardPatch
 			if (card.hasTag(Tags.MONSTER)) { DuelistMod.monstersObtained++; }
 			if (card.hasTag(Tags.SPELL)) { DuelistMod.spellsObtained++; }
 			if (card.hasTag(Tags.TRAP)) { DuelistMod.trapsObtained++; }
+			if (card instanceof DuelistCard) { ((DuelistCard)card).onObtainTrigger(); }
 			return SpireReturn.Continue();
 		}
 	}

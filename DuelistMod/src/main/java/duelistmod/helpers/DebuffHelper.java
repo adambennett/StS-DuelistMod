@@ -108,7 +108,7 @@ public class DebuffHelper
 		AbstractPower frail = new FrailPower(p, turnNum, true);
 		AbstractPower drawDown = new DrawReductionPower(p, turnNum);
 		AbstractPower noBlock = new NoBlockPower(p, turnNum, true);
-		AbstractPower noDraw = new NoDrawPower(p);
+		//AbstractPower noDraw = new NoDrawPower(p);
 		//AbstractPower wraith = new WraithFormPower(p, -turnNum);
 		AbstractPower focDown = new FocusDownPower(p, p, turnNum, 2);
 		AbstractPower focLoss = new FocusLossPower(p, p, turnNum);
@@ -140,7 +140,7 @@ public class DebuffHelper
 		debuffs.add(frail);
 		debuffs.add(drawDown);
 		debuffs.add(noBlock);
-		debuffs.add(noDraw);
+		//debuffs.add(noDraw);
 		//debuffs.add(wraith);
 		debuffs.add(focDown);
 		debuffs.add(focLoss);

@@ -46,8 +46,8 @@ public class EvilMind extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));
     	draw(1);
+    	this.addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true));    	
     }
 
     // Which card to return when making a copy of this card.
@@ -60,7 +60,6 @@ public class EvilMind extends DuelistCard
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.exhaust = false;

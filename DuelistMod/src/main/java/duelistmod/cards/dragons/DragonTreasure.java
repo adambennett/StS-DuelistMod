@@ -58,7 +58,6 @@ public class DragonTreasure extends DuelistCard
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(10);

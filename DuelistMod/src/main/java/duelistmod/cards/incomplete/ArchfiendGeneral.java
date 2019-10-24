@@ -36,17 +36,19 @@ public class ArchfiendGeneral extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 35;
+        this.baseDamage = this.damage = 25;
+        this.isMultiDamage = true;
         this.tributes = this.baseTributes = 3;
         this.misc = 0;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);
+        this.baseAFX = AttackEffect.SMASH;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	attackAllEnemies(AttackEffect.SMASH);
+    	normalMultidmg();
     	tribute();    	
     }
 

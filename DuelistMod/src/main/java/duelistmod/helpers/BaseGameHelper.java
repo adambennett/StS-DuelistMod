@@ -181,9 +181,9 @@ public class BaseGameHelper
         toFill.add(new MentalFortress());
         toFill.add(new Nirvana());
         toFill.add(new Omniscience());
-        toFill.add(new PathToVictory());
         toFill.add(new Perseverance());
         toFill.add(new Pray());
+        toFill.add(new PressurePoints());
         toFill.add(new Prostrate());
         toFill.add(new Protect());
         toFill.add(new Ragnarok());

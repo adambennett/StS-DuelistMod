@@ -1,7 +1,6 @@
 package duelistmod.helpers.poolhelpers;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
@@ -77,82 +76,56 @@ public class PharaohPool
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
-		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
-		pools.add(AquaPool.deck());
-		//pools.add(CreatorPool.deck());
-		pools.add(DragonPool.deck());
-		pools.add(FiendPool.deck());		
-		pools.add(IncrementPool.deck());
-		pools.add(InsectPool.deck());
-		pools.add(MachinePool.deck());
-		pools.add(MegatypePool.deck());
-		pools.add(NaturiaPool.deck());
-		pools.add(PlantPool.deck());
-		pools.add(SpellcasterPool.deck());
-		pools.add(StandardPool.deck());
-		pools.add(WarriorPool.deck());
-		pools.add(ZombiePool.deck());
-		pools.add(RockPool.deck());
-		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
-		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
-		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
-		ArrayList<AbstractCard> random = pools.get(DuelistMod.archRoll1);
+		ArrayList<AbstractCard> pools = new ArrayList<>();		
+		pools.addAll(GlobalPoolHelper.oneRandom());
 		String deckName = "Pharaoh ";
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName + "I");
 		StarterDeck deckB = DuelistMod.starterDeckNamesMap.get(deckName + "II");
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
-		deck.fillPoolCards(random);		
-		deckB.fillPoolCards(random);		
-		deckC.fillPoolCards(random);		
-		deckD.fillPoolCards(random);		
-		deckE.fillPoolCards(random);		
-		return random;
+		deck.fillPoolCards(pools);		
+		deck.fillArchetypeCards(pools);		
+		
+		deckB.fillPoolCards(pools);		
+		deckB.fillArchetypeCards(pools);		
+		
+		deckC.fillPoolCards(pools);		
+		deckC.fillArchetypeCards(pools);		
+		
+		deckD.fillPoolCards(pools);		
+		deckD.fillArchetypeCards(pools);		
+		
+		deckE.fillPoolCards(pools);		
+		deckE.fillArchetypeCards(pools);
+		return pools;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
-		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
-		pools.add(AquaPool.deck());
-		//pools.add(CreatorPool.deck());
-		pools.add(DragonPool.deck());
-		pools.add(FiendPool.deck());
-		pools.add(IncrementPool.deck());
-		pools.add(InsectPool.deck());
-		pools.add(MachinePool.deck());
-		pools.add(MegatypePool.deck());
-		pools.add(NaturiaPool.deck());
-		pools.add(PlantPool.deck());
-		pools.add(SpellcasterPool.deck());
-		pools.add(StandardPool.deck());
-		pools.add(WarriorPool.deck());
-		pools.add(ZombiePool.deck());
-		pools.add(RockPool.deck());
-		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
-		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }		
-		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
-		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size() || DuelistMod.archRoll2 > pools.size())
-		{
-			DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size());
-			DuelistMod.archRoll2 = ThreadLocalRandom.current().nextInt(pools.size());
-			while (DuelistMod.archRoll1 == DuelistMod.archRoll2) { DuelistMod.archRoll2 = ThreadLocalRandom.current().nextInt(pools.size()); }
-		}
-		ArrayList<AbstractCard> randomA = pools.get(DuelistMod.archRoll1);
-		ArrayList<AbstractCard> randomB = pools.get(DuelistMod.archRoll2);
-		random.addAll(randomA); random.addAll(randomB);
+		ArrayList<AbstractCard> pools = new ArrayList<>();		
+		pools.addAll(GlobalPoolHelper.twoRandom());
 		String deckName = "Pharaoh ";
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName + "I");
 		StarterDeck deckB = DuelistMod.starterDeckNamesMap.get(deckName + "II");
 		StarterDeck deckC = DuelistMod.starterDeckNamesMap.get(deckName + "III");
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
-		deck.fillPoolCards(random);		
-		deckB.fillPoolCards(random);		
-		deckC.fillPoolCards(random);		
-		deckD.fillPoolCards(random);		
-		deckE.fillPoolCards(random);		
-		return random;
+		deck.fillPoolCards(pools);		
+		deck.fillArchetypeCards(pools);		
+		
+		deckB.fillPoolCards(pools);		
+		deckB.fillArchetypeCards(pools);		
+		
+		deckC.fillPoolCards(pools);		
+		deckC.fillArchetypeCards(pools);		
+		
+		deckD.fillPoolCards(pools);		
+		deckD.fillArchetypeCards(pools);		
+		
+		deckE.fillPoolCards(pools);		
+		deckE.fillArchetypeCards(pools);
+		return pools;
 	}
 	
 	public static ArrayList<AbstractCard> basic()
@@ -164,22 +137,22 @@ public class PharaohPool
 		StarterDeck deckD = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		StarterDeck deckE = DuelistMod.starterDeckNamesMap.get(deckName + "IV");
 		
-		if (DuelistMod.smallBasicSet) { deck.fillPoolCards(BasicPool.smallBasic()); }
-		else { deck.fillPoolCards(BasicPool.fullBasic()); }
+		if (DuelistMod.smallBasicSet) { deck.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		else { deck.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckB.fillPoolCards(BasicPool.smallBasic()); }
-		else { deckB.fillPoolCards(BasicPool.fullBasic()); }
+		if (DuelistMod.smallBasicSet) { deckB.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		else { deckB.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckC.fillPoolCards(BasicPool.smallBasic()); }
-		else { deckC.fillPoolCards(BasicPool.fullBasic()); }
+		if (DuelistMod.smallBasicSet) { deckC.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		else { deckC.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckD.fillPoolCards(BasicPool.smallBasic()); }
-		else { deckD.fillPoolCards(BasicPool.fullBasic()); }
+		if (DuelistMod.smallBasicSet) { deckD.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		else { deckD.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { deckE.fillPoolCards(BasicPool.smallBasic()); }
-		else { deckE.fillPoolCards(BasicPool.fullBasic()); }
+		if (DuelistMod.smallBasicSet) { deckE.fillPoolCards(BasicPool.smallBasic(deckName)); }
+		else { deckE.fillPoolCards(BasicPool.fullBasic(deckName)); }
 		
-		if (DuelistMod.smallBasicSet) { return BasicPool.smallBasic(); }
-		else { return BasicPool.fullBasic(); }
+		if (DuelistMod.smallBasicSet) { return BasicPool.smallBasic(deckName); }
+		else { return BasicPool.fullBasic(deckName); }
 	}
 }

@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.*;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
@@ -13,7 +12,8 @@ import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.*;
 
-public class MillenniumPuzzle extends CustomRelic {
+public class MillenniumPuzzle extends CustomRelic
+{
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -30,10 +30,9 @@ public class MillenniumPuzzle extends CustomRelic {
 	
 	public MillenniumPuzzle() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.STARTER, LandingSound.MAGICAL);
+
 	}
-	
-	
-	
+
 	@Override
 	public void atPreBattle()
 	{
@@ -88,21 +87,10 @@ public class MillenniumPuzzle extends CustomRelic {
 		this.extra = amount;
 	}
 
-	// Summon 1 on turn start
 	@Override
 	public void atBattleStart() 
 	{
 		this.flash();
-		/*
-		getDeckDesc();
-		if (StarterDeckSetup.getCurrentDeck().getIndex() != DuelistMod.normalSelectDeck && DuelistMod.normalSelectDeck > -1)
-		{
-			DuelistMod.deckIndex = DuelistMod.normalSelectDeck;
-			getDeckDesc();
-		}
-		PuzzleHelper.atBattleStartHelper(summons, extra);
-		getDeckDesc();
-		*/
 	}
 
 	@Override
@@ -115,18 +103,6 @@ public class MillenniumPuzzle extends CustomRelic {
 		}
 	}
 	
-	@Override
-	public void onVictory() 
-	{
-		boolean eliteVictory = AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite;
-		boolean boss = AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss;
-		if (!StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Metronome Deck") && !boss)
-		{
-			if (StarterDeckSetup.getCurrentDeck().getIndex() > 0 && StarterDeckSetup.getCurrentDeck().getIndex() < 14) { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, StarterDeckSetup.getCurrentDeck().tagsThatMatchCards); }
-			else { BoosterPackHelper.generateBoosterOnVictory(DuelistMod.lastPackRoll, eliteVictory, null); }
-		}
-	}
-
 	// Description
 	@Override
 	public String getUpdatedDescription() 
@@ -334,4 +310,5 @@ public class MillenniumPuzzle extends CustomRelic {
 		}
 		setDescription(localdesc);
 	}
+
 }

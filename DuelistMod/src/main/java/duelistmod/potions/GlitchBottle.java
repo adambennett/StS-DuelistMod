@@ -60,8 +60,7 @@ public class GlitchBottle extends OrbPotion {
     @Override
     public int getPotency(final int potency) {
     	int pot = 1;
-    	if (AbstractDungeon.player == null) { return pot; }
-        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
+    	return pot;
     }
     
     @Override

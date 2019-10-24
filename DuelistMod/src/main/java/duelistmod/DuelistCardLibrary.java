@@ -29,6 +29,7 @@ import duelistmod.cards.orbCards.*;
 import duelistmod.cards.statuses.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.helpers.*;
+import duelistmod.helpers.crossover.InfiniteSpireHelper;
 import duelistmod.helpers.poolhelpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
@@ -49,6 +50,8 @@ public class DuelistCardLibrary
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
 			DuelistMod.summonMap.put(c.originalName, c); 
+			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c); }
 		}
 		
 		for (DuelistCard c : DuelistMod.myNamelessCards)
@@ -67,6 +70,19 @@ public class DuelistCardLibrary
 		{
 			BaseMod.addCard(c); 
 			UnlockTracker.unlockCard(c.getID()); 
+		}
+		
+		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
+		{
+			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+		}
+		
+		if (DuelistMod.isInfiniteSpire)
+		{
+			for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
+			{
+				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			}
 		}
 
 		DuelistMod.logger.info("theDuelist:DuelistMod:receiveEditCards() ---> done initializing cards");
@@ -783,6 +799,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new MagicSparks());
 		DuelistMod.myCards.add(new StormSparks());
 		DuelistMod.myCards.add(new DarkSparks());
+		DuelistMod.myCards.add(new ChrysalisMole());
 
 
 		DuelistMod.myCards.add(new AssaultArmor());
@@ -1707,7 +1724,7 @@ public class DuelistCardLibrary
 				for (AbstractCard c : PharaohPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 				break;
 			case "Basic":
-				for (AbstractCard c : BasicPool.fullBasic()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+				for (AbstractCard c : BasicPool.fullBasic("Debug")) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
 				break;
 			case "Creator":
 				for (AbstractCard c : CreatorPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}

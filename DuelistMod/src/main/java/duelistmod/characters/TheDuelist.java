@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.apache.logging.log4j.*;
 
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
@@ -20,8 +20,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.Courier;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
+import basemod.BaseMod;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import duelistmod.DuelistMod;
@@ -31,9 +31,10 @@ import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.CircleFireKings;
 import duelistmod.cards.insects.Taotie;
 import duelistmod.helpers.*;
+import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.orbs.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.relics.MillenniumPuzzle;
+import duelistmod.relics.*;
 import duelistmod.variables.Colors;
 import duelistmod.variables.Strings;
 
@@ -51,6 +52,7 @@ public class TheDuelist extends CustomPlayer {
 	public static final int numberOfArchetypes = 17;
 	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	public CardGroup resummonPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+	public static CardGroup cardPool = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	private static final CharacterStrings charStrings;
 	public static final String NAME;
 	public static final String[] DESCRIPTIONS;
@@ -189,30 +191,83 @@ public class TheDuelist extends CustomPlayer {
 		return retVal;
 	}
 	
+	@Override
+	public void renderPlayerImage(SpriteBatch sb) {
+		switch (animation.type()) {
+			case NONE:
+				super.renderPlayerImage(sb);
+				break;
+			case MODEL:
+				BaseMod.publishAnimationRender(sb);
+				break;
+			case SPRITE:
+				animation.setFlip(flipHorizontal, flipVertical);
+				animation.renderSprite(sb, drawX + animX, drawY + animY);
+				break;
+		}
+	}
+	
 	// Card Pool Patch 
 	@Override
 	public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool)
 	{
-		ArrayList<String> addedNames = new ArrayList<String>();
+		cardPool.group.clear();
+		Map<String, String> names = new HashMap<>();
 		tmpPool = super.getCardPool(tmpPool);
-		//tmpPool = new ArrayList<AbstractCard>();
-		if (DuelistMod.shouldFill)
-		{ 
-			PoolHelpers.newFillColored();
-			BoosterPackHelper.setupPoolsForPacks();
-			DuelistMod.shouldFill = false;
-		}
-		else { PoolHelpers.coloredCardsHadCards(); }
-		for (AbstractCard c : DuelistMod.coloredCards)
+		
+		// Card Pool Removal Relic - replaces pool with the pool, except for the selected cards for removal
+		// So we just replace the pool with the list of cards we generated with the relic
+		if (DuelistMod.shouldReplacePool && DuelistMod.toReplacePoolWith.size() > 0)
 		{
-			if (!c.rarity.equals(CardRarity.SPECIAL) && !addedNames.contains(c.originalName))
+			DuelistMod.coloredCards.clear();
+			for (AbstractCard c : DuelistMod.toReplacePoolWith)
 			{
-				tmpPool.add(c);
-				addedNames.add(c.originalName);
-			}		
-			else if (addedNames.contains(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
+				if (!c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC))
+				{
+					c.unhover();
+					if (!names.containsKey(c.originalName))
+					{
+						tmpPool.add(c);				
+						cardPool.addToBottom(c);
+						DuelistMod.coloredCards.add(c);
+						names.put(c.originalName, c.originalName);
+					}		
+					else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
+				}
+			}
+			DuelistMod.shouldReplacePool = false;
+			DuelistMod.toReplacePoolWith.clear();
 		}
 		
+		// Otherwise, we are either:
+			// Filling the pool for the first time
+			// Adding cards to the pool with the Card Pool Add relic
+			// Possibly doing nothing, if the card pools are being reinitialized outside of the above two scenarios and shouldFill is false
+		else
+		{
+			if (DuelistMod.shouldFill || DuelistMod.coloredCards.size() == 0)
+			{ 
+				if (DuelistMod.coloredCards.size() == 0) { Util.log("colored cards size was 0! This check detected that. Was shouldfill false? shouldFill=" + DuelistMod.shouldFill); }
+				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());
+				PoolHelpers.newFillColored(StarterDeckSetup.getCurrentDeck().getSimpleName());
+				BoosterPackHelper.setupPoolsForPacks();
+				DuelistMod.shouldFill = false;
+			}
+			else { PoolHelpers.coloredCardsHadCards(); }
+			for (AbstractCard c : DuelistMod.coloredCards)
+			{
+				if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
+				{
+					tmpPool.add(c);				
+					cardPool.addToBottom(c);
+					names.put(c.originalName, c.originalName);
+				}		
+				else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to main card pool, since it has already been added"); }
+			}
+		}
+		
+		// Filling in colorless pool with Basic set, if fill type is 0/3/5/6
+		// Doing some extra stuff with the Courier to prevent game crashes due to stupid shop implementation
 		if (!this.hasRelic(Courier.ID))
 		{
 			int ind = DuelistMod.setIndex;
@@ -221,18 +276,24 @@ public class TheDuelist extends CustomPlayer {
 				int counter = 1;
 				for (AbstractCard c : DuelistMod.duelColorlessCards) 
 				{
-					if (!c.rarity.equals(CardRarity.SPECIAL) && !addedNames.contains(c.originalName))
+					if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
 					{
 						Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name);
 						AbstractDungeon.colorlessCardPool.group.add(c); 
-						addedNames.add(c.originalName);
+						names.put(c.originalName, c.originalName);
 						counter++;
 					}
-					else if (addedNames.contains(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
+					else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
 				}
 			}
 		}
-		
+
+		// Reset the card pool for all the Card Pool relics
+		//if (this.hasRelic(MillenniumPuzzle.ID)) { MillenniumPuzzle puz = (MillenniumPuzzle)this.getRelic(MillenniumPuzzle.ID); puz.getDeckDesc(); }
+		if (this.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)this.getRelic(CardPoolRelic.ID)).refreshPool(); }
+		if (this.hasRelic(CardPoolAddRelic.ID)) { ((CardPoolAddRelic)this.getRelic(CardPoolAddRelic.ID)).refreshPool(); }
+		if (this.hasRelic(CardPoolMinusRelic.ID)) { ((CardPoolMinusRelic)this.getRelic(CardPoolMinusRelic.ID)).refreshPool(); }
+		Util.log("Duelist card pool size=" + cardPool.size());
 		return tmpPool;
 	}
 	
@@ -243,7 +304,18 @@ public class TheDuelist extends CustomPlayer {
 	{
 		ArrayList<String> retVal = new ArrayList<>();
 		retVal.add(MillenniumPuzzle.ID);
-		UnlockTracker.markRelicAsSeen(MillenniumPuzzle.ID);
+		retVal.add(CardPoolRelic.ID);
+		boolean exodiaDeck = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck");
+		if (!exodiaDeck)
+		{
+			if (DuelistMod.allowCardPoolRelics)
+			{
+				retVal.add(CardPoolAddRelic.ID);
+				retVal.add(CardPoolMinusRelic.ID);
+				retVal.add(CardPoolSaveRelic.ID);
+				retVal.add(CardPoolOptionsRelic.ID);
+			}
+		}
 		return retVal;
 	}
 

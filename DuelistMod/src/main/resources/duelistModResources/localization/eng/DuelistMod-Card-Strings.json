@@ -3633,9 +3633,9 @@
 		"UPGRADE_DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !B! Block. NL Channel a Dark."
 	},
 	"theDuelist:PutridPudding": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !duelist:M! Void. NL Channel !M! Dark. NL Apply !duelist:O! Vulnerable.",
+		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel a Void. NL Channel a Dark. NL Apply !M! Vulnerable.",
 		"NAME": "Putrid Pudding",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel !duelist:M! Void. NL Channel !M! Dark. NL Apply !duelist:O! Vulnerable."
+		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! NL Channel a Void. NL Channel a Dark. NL Apply !M! Vulnerable."
 	},
 	"theDuelist:DoomsdayHorror": {
 		"DESCRIPTION": "Fiend NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Apply !M! Vulnerable to a random enemy.",
@@ -6124,9 +6124,9 @@
 		"UPGRADE_DESCRIPTION": "Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies."
 	},
 	"theDuelist:GigaCricket": {
-		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies twice. NL Add a Swarm to your hand.",
+		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies. NL Add !M! *Swarms to your hand.",
 		"NAME": "Giga-Cricket",
-		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies twice. NL Add a Swarm to your hand."
+		"UPGRADE_DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage to ALL enemies twice. NL Add !M! *Swarms to your hand."
 	},
 	"theDuelist:GigaMantis": {
 		"DESCRIPTION": "Insect NL Tribute !duelist:TRIB! NL Deal !D! damage and apply !M! Poison to ALL enemies.",
@@ -6789,9 +6789,9 @@
 		"UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Has a low chance to stun up to !M! enemies."
 	},
 	"theDuelist:EvilMind": {
-		"DESCRIPTION": "Malicious NL Shuffle a copy of this card into your draw pile. NL Draw a card. NL Exhaust.",
+		"DESCRIPTION": "Malicious NL Draw a card. NL Shuffle a copy of this card into your draw pile. NL Exhaust.",
 		"NAME": "Evil Mind",
-		"UPGRADE_DESCRIPTION": "Malicious NL Shuffle a copy of this card into your draw pile. NL Draw a card."
+		"UPGRADE_DESCRIPTION": "Malicious NL Draw a card. NL Shuffle a copy of this card into your draw pile."
 	},
 	"theDuelist:EvolutionBurst": {
 		"DESCRIPTION": "Apply !M! Burning. NL Level up all Armed Dragons in your hand.",
@@ -6884,9 +6884,9 @@
 		"UPGRADE_DESCRIPTION": "Arcane NL Gain !B! Block. NL If you have no other Skills in your hand, gain an additional !M! Block."
 	},
 	"theDuelist:Berserking": {
-		"DESCRIPTION": "Quintuple your Dragonscales. NL Double your Strength. NL At the start of next turn, die an excruciating death. NL Exhaust.",
+		"DESCRIPTION": "Quintuple your Dragonscales. NL Double your Strength. NL At the start of next turn, die an excruciating death.",
 		"NAME": "Berserking",
-		"UPGRADE_DESCRIPTION": "Quintuple your Dragonscales. NL Double your Strength. NL At the start of next turn, die an excruciating death. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Quintuple your Dragonscales. NL Double your Strength. NL At the start of next turn, die an excruciating death."
 	},
 	"theDuelist:BurstBreath": {
 		"DESCRIPTION": "Deal !D! damage. NL Gain !M! Dragonscales.",
@@ -7052,6 +7052,149 @@
 		"DESCRIPTION": "Upgrade all Dragons in your deck.",
 		"NAME": "Dragons",
 		"UPGRADE_DESCRIPTION": "Upgrade all Dragons in your deck."
+	},
+	"theDuelist:CardPoolOptionAqua": {
+		"DESCRIPTION": "Add the Aqua Set to the card pool.",
+		"NAME": "Aqua Set",
+		"UPGRADE_DESCRIPTION": "Add the Aqua Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionDragon": {
+		"DESCRIPTION": "Add the Dragon Set to the card pool.",
+		"NAME": "Dragon Set",
+		"UPGRADE_DESCRIPTION": "Add the Dragon Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionFiend": {
+		"DESCRIPTION": "Add the Fiend Set to the card pool.",
+		"NAME": "Fiend Set",
+		"UPGRADE_DESCRIPTION": "Add the Fiend Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionIncrement": {
+		"DESCRIPTION": "Add the Increment Set to the card pool.",
+		"NAME": "Increment Set",
+		"UPGRADE_DESCRIPTION": "Add the Increment Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionInsect": {
+		"DESCRIPTION": "Add the Insect Set to the card pool.",
+		"NAME": "Insect Set",
+		"UPGRADE_DESCRIPTION": "Add the Insect Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionMachine": {
+		"DESCRIPTION": "Add the Machine Set to the card pool.",
+		"NAME": "Machine Set",
+		"UPGRADE_DESCRIPTION": "Add the Machine Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionNaturia": {
+		"DESCRIPTION": "Add the Naturia Set to the card pool.",
+		"NAME": "Naturia Set",
+		"UPGRADE_DESCRIPTION": "Add the Naturia Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionPlant": {
+		"DESCRIPTION": "Add the Plant Set to the card pool.",
+		"NAME": "Plant Set",
+		"UPGRADE_DESCRIPTION": "Add the Plant Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionSpellcaster": {
+		"DESCRIPTION": "Add the Spellcaster Set to the card pool.",
+		"NAME": "Spellcaster Set",
+		"UPGRADE_DESCRIPTION": "Add the Spellcaster Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionStandard": {
+		"DESCRIPTION": "Add the *Standard Set to the card pool.",
+		"NAME": "Standard Set",
+		"UPGRADE_DESCRIPTION": "Add the *Standard Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionWarrior": {
+		"DESCRIPTION": "Add the Warrior Set to the card pool.",
+		"NAME": "Warrior Set",
+		"UPGRADE_DESCRIPTION": "Add the Warrior Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionZombie": {
+		"DESCRIPTION": "Add the Zombie Set to the card pool.",
+		"NAME": "Zombie Set",
+		"UPGRADE_DESCRIPTION": "Add the Zombie Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionRock": {
+		"DESCRIPTION": "Add the Rock Set to the card pool.",
+		"NAME": "Rock Set",
+		"UPGRADE_DESCRIPTION": "Add the Rock Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionOjama": {
+		"DESCRIPTION": "Add the *Ojama Set to the card pool.",
+		"NAME": "Ojama Set",
+		"UPGRADE_DESCRIPTION": "Add the *Ojama Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionToon": {
+		"DESCRIPTION": "Add the Toon Set to the card pool.",
+		"NAME": "Toon Set",
+		"UPGRADE_DESCRIPTION": "Add the Toon Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionDino": {
+		"DESCRIPTION": "Add the Dinosaur Set to the card pool.",
+		"NAME": "Dinosaur Set",
+		"UPGRADE_DESCRIPTION": "Add the Dinosaur Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionArcane": {
+		"DESCRIPTION": "Add the Arcane Set to the card pool.",
+		"NAME": "Arcane Set",
+		"UPGRADE_DESCRIPTION": "Add the Arcane Set to the card pool."
+	},
+	"theDuelist:CardPoolOptionClearAll": {
+		"DESCRIPTION": "Clear all cards from pool.",
+		"NAME": "Clear Pool",
+		"UPGRADE_DESCRIPTION": "Clear all cards from pool."
+	},
+	"theDuelist:CardPoolOptionUpgrade": {
+		"DESCRIPTION": "Upgrade all cards in the pool.",
+		"NAME": "Upgrade Pool",
+		"UPGRADE_DESCRIPTION": "Upgrade all cards in the pool."
+	},
+	"theDuelist:CardPoolOptionRandomA": {
+		"DESCRIPTION": "Add 10 random cards to the pool.",
+		"NAME": "Random Cards",
+		"UPGRADE_DESCRIPTION": "Add 10 random cards to the pool."
+	},
+	"theDuelist:CardPoolOptionRandomB": {
+		"DESCRIPTION": "Add 25 random cards to the pool.",
+		"NAME": "Random Cards",
+		"UPGRADE_DESCRIPTION": "Add 25 random cards to the pool."
+	},
+	"theDuelist:CardPoolOptionRandomC": {
+		"DESCRIPTION": "Add 50 random cards to the pool.",
+		"NAME": "Random Cards",
+		"UPGRADE_DESCRIPTION": "Add 50 random cards to the pool."
+	},
+	"theDuelist:CardPoolOptionRandomD": {
+		"DESCRIPTION": "Add 100 random cards to the pool.",
+		"NAME": "Random Cards",
+		"UPGRADE_DESCRIPTION": "Add 100 random cards to the pool."
+	},
+	"theDuelist:CardPoolOptionRandomType": {
+		"DESCRIPTION": "Add a random type to the pool.",
+		"NAME": "Random Set",
+		"UPGRADE_DESCRIPTION": "Add a random type to the pool."
+	},
+	"theDuelist:CardPoolOptionSaveA": {
+		"NAME": "Save Slot 1",
+		"EXTENDED_DESCRIPTION": [
+			"Save the current pool to this save slot. NL ( !M! cards saved )", "Load the card pool saved in this slot. NL ( !M! cards saved )"
+		]
+	},
+	"theDuelist:CardPoolOptionSaveB": {
+		"NAME": "Save Slot 2",
+		"EXTENDED_DESCRIPTION": [
+			"Save the current pool to this save slot. NL ( !M! cards saved )", "Load the card pool saved in this slot. NL ( !M! cards saved )"
+		]
+	},
+	"theDuelist:CardPoolOptionSaveC": {
+		"NAME": "Save Slot 3",
+		"EXTENDED_DESCRIPTION": [
+			"Save the current pool to this save slot. NL ( !M! cards saved )", "Load the card pool saved in this slot. NL ( !M! cards saved )"
+		]
+	},
+	"theDuelist:CardPoolOptionResetSave": {
+		"DESCRIPTION": "Reset all Save Slots.",
+		"NAME": "Reset Saves",
+		"UPGRADE_DESCRIPTION": "Reset all Save Slots."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

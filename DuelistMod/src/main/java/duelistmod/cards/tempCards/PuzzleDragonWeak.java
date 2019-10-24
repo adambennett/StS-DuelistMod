@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
 
 public class PuzzleDragonWeak extends TokenCard 

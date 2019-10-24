@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.orbs.DragonPlusOrb;
 import duelistmod.patches.AbstractCardEnum;

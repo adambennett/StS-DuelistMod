@@ -11,8 +11,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.TokenCard;
+import duelistmod.abstracts.*;
 import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;

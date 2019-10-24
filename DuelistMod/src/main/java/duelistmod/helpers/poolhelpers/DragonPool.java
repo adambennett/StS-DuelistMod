@@ -1,7 +1,6 @@
 package duelistmod.helpers.poolhelpers;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
@@ -16,7 +15,6 @@ import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.HorusServant;
 import duelistmod.cards.insects.TornadoDragon;
 import duelistmod.cards.naturia.SeismicShockwave;
-import duelistmod.helpers.Util;
 
 public class DragonPool 
 {
@@ -24,64 +22,20 @@ public class DragonPool
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
-		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
-		pools.add(AquaPool.deck());
-		//pools.add(CreatorPool.deck());
-		pools.add(FiendPool.deck());		
-		pools.add(IncrementPool.deck());
-		pools.add(InsectPool.deck());
-		pools.add(MachinePool.deck());
-		pools.add(MegatypePool.deck());
-		pools.add(NaturiaPool.deck());
-		pools.add(PlantPool.deck());
-		pools.add(SpellcasterPool.deck());
-		pools.add(StandardPool.deck());
-		pools.add(WarriorPool.deck());
-		pools.add(ZombiePool.deck());
-		pools.add(RockPool.deck());
-		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
-		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
-		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
-		ArrayList<AbstractCard> random = pools.get(DuelistMod.archRoll1);
+		ArrayList<AbstractCard> pool = new ArrayList<>();		
+		pool.addAll(GlobalPoolHelper.oneRandom(1, 15));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(random);	
-		Util.log(deckName + " was filled with random cards from the pool with index of " + DuelistMod.archRoll1);
-		return random;
+		deck.fillPoolCards(pool);	
+		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
-		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
-		pools.add(AquaPool.deck());
-		//pools.add(CreatorPool.deck());
-		pools.add(FiendPool.deck());		
-		pools.add(IncrementPool.deck());
-		pools.add(InsectPool.deck());
-		pools.add(MachinePool.deck());
-		pools.add(MegatypePool.deck());
-		pools.add(NaturiaPool.deck());
-		pools.add(PlantPool.deck());
-		pools.add(SpellcasterPool.deck());
-		pools.add(StandardPool.deck());
-		pools.add(WarriorPool.deck());
-		pools.add(ZombiePool.deck());
-		pools.add(RockPool.deck());
-		if (!DuelistMod.ojamaBtnBool) { pools.add(OjamaPool.deck()); }
-		if (!DuelistMod.toonBtnBool) { pools.add(ToonPool.deck()); }
-		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
-		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size() || DuelistMod.archRoll2 > pools.size())
-		{
-			DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size());
-			DuelistMod.archRoll2 = ThreadLocalRandom.current().nextInt(pools.size());
-			while (DuelistMod.archRoll1 == DuelistMod.archRoll2) { DuelistMod.archRoll2 = ThreadLocalRandom.current().nextInt(pools.size()); }
-		}
-		ArrayList<AbstractCard> randomA = pools.get(DuelistMod.archRoll1);
-		ArrayList<AbstractCard> randomB = pools.get(DuelistMod.archRoll2);
-		random.addAll(randomA); random.addAll(randomB);
+		ArrayList<AbstractCard> pool = new ArrayList<>();		
+		pool.addAll(GlobalPoolHelper.twoRandom(1, 15));
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		Util.log(deckName + " was filled with random cards from the pool with index of " + DuelistMod.archRoll1 + " and " + DuelistMod.archRoll2);
-		deck.fillPoolCards(random);	
-		return random;
+		deck.fillPoolCards(pool);	
+		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> deck()
@@ -285,12 +239,14 @@ public class DragonPool
 		dragonCards.add(new ViceDragon());
 		dragonCards.add(new VoidOgreDragon());
 		dragonCards.add(new VolcanicEruption());
+		dragonCards.add(new WaterDragon());
 		dragonCards.add(new WaterDragonCluster());
 		dragonCards.add(new WhiteHornDragon());
 		dragonCards.add(new WhiteHowling());
 		dragonCards.add(new WhiteNightDragon());
 		dragonCards.add(new WingedDragonRa());
 		dragonCards.add(new YamataDragon());
+		dragonCards.add(new AxeDespair());
 		if (!DuelistMod.toonBtnBool)
 		{
 			dragonCards.add(new ToonWorld());
@@ -377,8 +333,8 @@ public class DragonPool
 	{
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
 		ArrayList<AbstractCard> pool = new ArrayList<AbstractCard>();
-		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic()); }
-		else { pool.addAll(BasicPool.fullBasic()); }
+		if (DuelistMod.smallBasicSet) { pool.addAll(BasicPool.smallBasic("Dragon Deck")); }
+		else { pool.addAll(BasicPool.fullBasic("Dragon Deck")); }
 		deck.fillPoolCards(pool); 
 		return pool;
 	}

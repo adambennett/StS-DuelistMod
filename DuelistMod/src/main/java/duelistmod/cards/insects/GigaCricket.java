@@ -1,16 +1,11 @@
 package duelistmod.cards.insects;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.ReflectionHacks;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.statuses.Swarm;
@@ -39,11 +34,13 @@ public class GigaCricket extends DuelistCard
 
     public GigaCricket() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
-        this.tributes = this.baseTributes = 2;
+        this.baseDamage = this.damage = 14;
+        this.tributes = this.baseTributes = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.isMultiDamage = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
+        this.tags.add(Tags.BAD_MAGIC);
         this.originalName = this.name;
         this.cardsToPreview = new Swarm();
     }
@@ -54,8 +51,8 @@ public class GigaCricket extends DuelistCard
     {
     	tribute();
     	normalMultidmg();
-    	normalMultidmg();
-    	addCardToHand(new Swarm());
+    	if (upgraded) { normalMultidmg(); }
+    	addCardToHand(new Swarm(), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -69,6 +66,8 @@ public class GigaCricket extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeBaseCost(2);
+            this.upgradeMagicNumber(1);
             this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

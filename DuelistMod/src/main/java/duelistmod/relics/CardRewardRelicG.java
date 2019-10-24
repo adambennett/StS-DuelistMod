@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.characters.TheDuelist;
 import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Tags;
 
@@ -45,7 +45,7 @@ public class CardRewardRelicG extends CustomRelic
     	
     	CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 		ArrayList<AbstractCard> myCardsCopy = new ArrayList<AbstractCard>();
-		for (DuelistCard c : DuelistMod.myCards)
+		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			if (c.hasTag(Tags.TRAP) && c.rarity != CardRarity.BASIC && c.rarity != CardRarity.SPECIAL) { myCardsCopy.add(c.makeCopy()); }
 		}

@@ -17,7 +17,7 @@ import duelistmod.variables.Tags;
 public class StarterDeckSetup {
 
 	// STARTER DECK METHODS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public static void refreshPoolOptions()
+	public static void refreshPoolOptions(String deckName)
 	{
 		DuelistMod.archetypeCards.clear();
 		DuelistMod.coloredCards.clear();
@@ -27,7 +27,7 @@ public class StarterDeckSetup {
 			s.getArchetypeCards().clear();
 			s.getPoolCards().clear();
 		}
-		initStarterDeckPool();
+		initStarterDeckPool(deckName);
 	}
 	
 	public static void setupRandomDecks()
@@ -84,38 +84,38 @@ public class StarterDeckSetup {
 		DuelistMod.cardsForRandomDecks.addAll(newRandomCardList);
 	}
 	
-	public static void initStarterDeckPool()
+	public static void initStarterDeckPool(String deckName)
 	{
 		// Standard -- Card Pool defined in poolhelper file
 		// Fill Colorless with Basic Set
-		if (DuelistMod.setIndex == 0) { standardFill(); setupColorlessCards(); }
+		if (DuelistMod.setIndex == 0) { deckFill(deckName); setupColorlessCards(deckName); }
 		
 		// Deck Only -- Card pool defined in poolhelper file (without basic cards)
-		else if (DuelistMod.setIndex == 1) { deckFill(); }
+		else if (DuelistMod.setIndex == 1) { deckFill(deckName); }
 		
 		// Basic Only -- Basic set only
-		else if (DuelistMod.setIndex == 2) { basicFill(); }
+		else if (DuelistMod.setIndex == 2) { basicFill(deckName); }
 		
 		// Deck + Basic + 1 random -- Deck set, basic set, one random poolhelper set
 		// Fill Colorless with Basic Set
-		else if (DuelistMod.setIndex == 3) { deckBasicOneRandomFill(); setupColorlessCards(); }
+		else if (DuelistMod.setIndex == 3) { deckOneRandomFill(deckName); setupColorlessCards(deckName); }
 		
 		// Deck + 1 random -- Deck set and one random poolhelper set
-		else if (DuelistMod.setIndex == 4) { deckOneRandomFill(); }
+		else if (DuelistMod.setIndex == 4) { deckOneRandomFill(deckName); }
 		
 		// Basic + 1 random -- 1 random set + Basic set
 		// Fill Colorless with Basic Set
-		else if (DuelistMod.setIndex == 5) { basicOneRandomFill(); setupColorlessCards(); }
+		else if (DuelistMod.setIndex == 5) { basicOneRandomFill(deckName); setupColorlessCards(deckName); }
 		
 		// Basic + 2 random + Deck -- Two random poolhelper sets, deck set, basic set
 		// Fill Colorless with Basic Set
-		else if (DuelistMod.setIndex == 6) { basicTwoRandomDeckFill(); setupColorlessCards(); }
+		else if (DuelistMod.setIndex == 6) { twoRandomDeckFill(deckName); setupColorlessCards(deckName); }
 		
 		// 2 random -- Card pools from two random poolhelper files (using AscendedOnePool here because it has all available pools in it's random list)
-		else if (DuelistMod.setIndex == 7) { twoRandomFill(); }
+		else if (DuelistMod.setIndex == 7) { twoRandomFill(deckName); }
 		
 		// 2 random + Deck -- Card pools from two random poolhelper files + your decks poolhelper set
-		else if (DuelistMod.setIndex == 8) { twoRandomDeckFill(); }
+		else if (DuelistMod.setIndex == 8) { twoRandomDeckFill(deckName); }
 		
 		// All Cards - exception where pool is filled based on DuelistMod.myCards (and possibly the base game set)
 		//else if (DuelistMod.setIndex == 9) {}
@@ -293,463 +293,165 @@ public class StarterDeckSetup {
 		}
 	}
 	
-	public static void setupColorlessCards()
+	public static void setupColorlessCards(String deckName)
 	{
 		DuelistMod.duelColorlessCards.clear();
-		if (DuelistMod.smallBasicSet) { DuelistMod.duelColorlessCards.addAll(BasicPool.smallBasic()); }
-		else { DuelistMod.duelColorlessCards.addAll(BasicPool.fullBasic()); }
-	}
-	
-	public static void standardFill()
-	{
-		AquaPool.deck();
-		AscendedOnePool.deck();
-		AscendedTwoPool.deck();
-		AscendedThreePool.deck();
-		CreatorPool.deck();
-		DragonPool.deck();
-		ExodiaPool.deck();
-		FiendPool.deck();
-		GiantPool.deck();
-		IncrementPool.deck();
-		InsectPool.deck();
-		MachinePool.deck();
-		MegatypePool.deck();
-		NaturiaPool.deck();
-		OjamaPool.deck();
-		PharaohPool.deck();
-		PlantPool.deck();
-		PredaplantPool.deck();
-		SpellcasterPool.deck();
-		StandardPool.deck();
-		ToonPool.deck();
-		WarriorPool.deck();
-		ZombiePool.deck();
-		RandomSmallPool.deck();
-		RandomBigPool.deck();
-		RandomUpgradePool.deck();
-		RandomMetronomePool.deck();
-		
-		/*
-		AquaPool.basic();
-		AscendedOnePool.basic();
-		AscendedTwoPool.basic();
-		AscendedThreePool.basic();
-		CreatorPool.basic();
-		DragonPool.basic();
-		ExodiaPool.basic();
-		FiendPool.basic();
-		GiantPool.basic();
-		IncrementPool.basic();
-		InsectPool.basic();
-		MachinePool.basic();
-		MegatypePool.basic();
-		NaturiaPool.basic();
-		OjamaPool.basic();
-		PharaohPool.basic();
-		PlantPool.basic();
-		PredaplantPool.basic();
-		SpellcasterPool.basic();
-		StandardPool.basic();
-		ToonPool.basic();
-		WarriorPool.basic();
-		ZombiePool.basic();
-		RandomSmallPool.basic();
-		RandomBigPool.basic();
-		RandomUpgradePool.basic();
-		RandomMetronomePool.basic();
-		*/
+		if (DuelistMod.smallBasicSet) { DuelistMod.duelColorlessCards.addAll(BasicPool.smallBasic(deckName)); }
+		else { DuelistMod.duelColorlessCards.addAll(BasicPool.fullBasic(deckName)); }
 	}
 
-	public static void deckFill()
+	public static void deckFill(String deckName)
 	{
-		AquaPool.deck();
-		AscendedOnePool.deck();
-		AscendedTwoPool.deck();
-		AscendedThreePool.deck();
-		CreatorPool.deck();
-		DragonPool.deck();
-		ExodiaPool.deck();
-		FiendPool.deck();
-		GiantPool.deck();
-		IncrementPool.deck();
-		InsectPool.deck();
-		MachinePool.deck();
-		MegatypePool.deck();
-		NaturiaPool.deck();
-		OjamaPool.deck();
-		PharaohPool.deck();
-		PlantPool.deck();
-		PredaplantPool.deck();
-		SpellcasterPool.deck();
-		StandardPool.deck();
-		ToonPool.deck();
-		WarriorPool.deck();
-		ZombiePool.deck();
-		RandomSmallPool.deck();
-		RandomBigPool.deck();
-		RandomUpgradePool.deck();
-		RandomMetronomePool.deck();
+		if (deckName.equals("Aqua Deck")) { AquaPool.deck(); }
+		else if (deckName.equals("Ascended I")) { AscendedOnePool.deck(); }
+		else if (deckName.equals("Ascended II")) { AscendedTwoPool.deck(); }
+		else if (deckName.equals("Ascended III")) { AscendedThreePool.deck(); }
+		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck();}
+		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(); }
+		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck();}
+		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck();}
+		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck();}
+		else if (deckName.equals("Creator Deck")) { CreatorPool.deck();}
+		else if (deckName.equals("Dragon Deck")) { DragonPool.deck();}
+		else if (deckName.equals("Exodia Deck")) { ExodiaPool.deck();}
+		else if (deckName.equals("Fiend Deck")) { FiendPool.deck();}
+		else if (deckName.equals("Giant Deck")) { GiantPool.deck();}
+		else if (deckName.equals("Increment Deck")) { IncrementPool.deck();}
+		else if (deckName.equals("Insect Deck")) { InsectPool.deck();}
+		else if (deckName.equals("Machine Deck")) { MachinePool.deck();}
+		else if (deckName.equals("Megatype Deck")) { MegatypePool.deck();}
+		else if (deckName.equals("Naturia Deck")) { NaturiaPool.deck();}
+		else if (deckName.equals("Ojama Deck")) { OjamaPool.deck();}
+		else if (deckName.equals("Plant Deck")) { PlantPool.deck();}
+		else if (deckName.equals("Predaplant Deck")) { PredaplantPool.deck();}
+		else if (deckName.equals("Spellcaster Deck")) { SpellcasterPool.deck();}
+		else if (deckName.equals("Standard Deck")) { StandardPool.deck();}
+		else if (deckName.equals("Toon Deck")) { ToonPool.deck();}
+		else if (deckName.equals("Warrior Deck")) { WarriorPool.deck();}
+		else if (deckName.equals("Zombie Deck")) { ZombiePool.deck();}
+		else if (deckName.equals("Random Deck (Small)")) { RandomSmallPool.deck();}
+		else if (deckName.equals("Random Deck (Big)")) { RandomBigPool.deck();}
+		else if (deckName.equals("Upgrade Deck")) { RandomUpgradePool.deck();}
+		else if (deckName.equals("Metronome Deck")) { RandomMetronomePool.deck();}
 	}
 	
-	public static void basicFill()
+	public static void basicFill(String deckName)
 	{
-		AquaPool.basic();
-		AscendedOnePool.basic();
-		AscendedTwoPool.basic();
-		AscendedThreePool.basic();
-		CreatorPool.basic();
-		DragonPool.basic();
-		ExodiaPool.deck();
-		FiendPool.basic();
-		GiantPool.basic();
-		IncrementPool.basic();
-		InsectPool.basic();
-		MachinePool.basic();
-		MegatypePool.basic();
-		NaturiaPool.basic();
-		OjamaPool.basic();
-		PharaohPool.basic();
-		PlantPool.basic();
-		PredaplantPool.basic();
-		SpellcasterPool.basic();
-		StandardPool.basic();
-		ToonPool.basic();
-		WarriorPool.basic();
-		ZombiePool.basic();
-		RandomSmallPool.basic();
-		RandomBigPool.basic();
-		RandomUpgradePool.basic();
-		RandomMetronomePool.basic();
+		if (deckName.equals("Aqua Deck")) { AquaPool.basic(); }
+		else if (deckName.equals("Ascended I")) { AscendedOnePool.basic(); }
+		else if (deckName.equals("Ascended II")) { AscendedTwoPool.basic(); }
+		else if (deckName.equals("Ascended III")) { AscendedThreePool.basic(); }
+		else if (deckName.equals("Pharaoh I")) { PharaohPool.basic();}
+		else if (deckName.equals("Pharaoh II")) { PharaohPool.basic(); }
+		else if (deckName.equals("Pharaoh III")) { PharaohPool.basic();}
+		else if (deckName.equals("Pharaoh IV")) { PharaohPool.basic();}
+		else if (deckName.equals("Pharaoh V")) { PharaohPool.basic();}
+		else if (deckName.equals("Creator Deck")) { CreatorPool.basic();}
+		else if (deckName.equals("Dragon Deck")) { DragonPool.basic();}
+		else if (deckName.equals("Exodia Deck")) { ExodiaPool.basic();}
+		else if (deckName.equals("Fiend Deck")) { FiendPool.basic();}
+		else if (deckName.equals("Giant Deck")) { GiantPool.basic();}
+		else if (deckName.equals("Increment Deck")) { IncrementPool.basic();}
+		else if (deckName.equals("Insect Deck")) { InsectPool.basic();}
+		else if (deckName.equals("Machine Deck")) { MachinePool.basic();}
+		else if (deckName.equals("Megatype Deck")) { MegatypePool.basic();}
+		else if (deckName.equals("Naturia Deck")) { NaturiaPool.basic();}
+		else if (deckName.equals("Ojama Deck")) { OjamaPool.basic();}
+		else if (deckName.equals("Plant Deck")) { PlantPool.basic();}
+		else if (deckName.equals("Predaplant Deck")) { PredaplantPool.basic();}
+		else if (deckName.equals("Spellcaster Deck")) { SpellcasterPool.basic();}
+		else if (deckName.equals("Standard Deck")) { StandardPool.basic();}
+		else if (deckName.equals("Toon Deck")) { ToonPool.basic();}
+		else if (deckName.equals("Warrior Deck")) { WarriorPool.basic();}
+		else if (deckName.equals("Zombie Deck")) { ZombiePool.basic();}
+		else if (deckName.equals("Random Deck (Small)")) { RandomSmallPool.basic();}
+		else if (deckName.equals("Random Deck (Big)")) { RandomBigPool.basic();}
+		else if (deckName.equals("Upgrade Deck")) { RandomUpgradePool.basic();}
+		else if (deckName.equals("Metronome Deck")) { RandomMetronomePool.basic();}
 	}
 
-	public static void deckBasicOneRandomFill()
+	public static void deckOneRandomFill(String deckName)
 	{
-		AquaPool.deck();
-		AscendedOnePool.deck();
-		AscendedTwoPool.deck();
-		AscendedThreePool.deck();
-		CreatorPool.deck();
-		DragonPool.deck();
-		ExodiaPool.deck();
-		FiendPool.deck();
-		GiantPool.deck();
-		IncrementPool.deck();
-		InsectPool.deck();
-		MachinePool.deck();
-		MegatypePool.deck();
-		NaturiaPool.deck();
-		OjamaPool.deck();
-		PharaohPool.deck();
-		PlantPool.deck();
-		PredaplantPool.deck();
-		SpellcasterPool.deck();
-		StandardPool.deck();
-		ToonPool.deck();
-		WarriorPool.deck();
-		ZombiePool.deck();
-		RandomSmallPool.deck();
-		RandomBigPool.deck();
-		RandomUpgradePool.deck();
-		RandomMetronomePool.deck();
-		
-		/*
-		AquaPool.basic();
-		AscendedOnePool.basic();
-		AscendedTwoPool.basic();
-		AscendedThreePool.basic();
-		CreatorPool.basic();
-		DragonPool.basic();
-		ExodiaPool.basic();
-		FiendPool.basic();
-		GiantPool.basic();
-		IncrementPool.basic();
-		InsectPool.basic();
-		MachinePool.basic();
-		MegatypePool.basic();
-		NaturiaPool.basic();
-		OjamaPool.basic();
-		PharaohPool.basic();
-		PlantPool.basic();
-		PredaplantPool.basic();
-		SpellcasterPool.basic();
-		StandardPool.basic();
-		ToonPool.basic();
-		WarriorPool.basic();
-		ZombiePool.basic();
-		RandomSmallPool.basic();
-		RandomBigPool.basic();
-		RandomUpgradePool.basic();
-		RandomMetronomePool.basic();
-		*/
-		AquaPool.oneRandom();
-		AscendedOnePool.oneRandom();
-		AscendedTwoPool.oneRandom();
-		AscendedThreePool.oneRandom();
-		CreatorPool.oneRandom();
-		DragonPool.oneRandom();
-		ExodiaPool.oneRandom();
-		FiendPool.oneRandom();
-		GiantPool.oneRandom();
-		IncrementPool.oneRandom();
-		InsectPool.oneRandom();
-		MachinePool.oneRandom();
-		MegatypePool.oneRandom();
-		NaturiaPool.oneRandom();
-		OjamaPool.oneRandom();
-		PharaohPool.oneRandom();
-		PlantPool.oneRandom();
-		PredaplantPool.oneRandom();
-		SpellcasterPool.oneRandom();
-		StandardPool.oneRandom();
-		ToonPool.oneRandom();
-		WarriorPool.oneRandom();
-		ZombiePool.oneRandom();
-		RandomSmallPool.oneRandom();
-		RandomBigPool.oneRandom();
-		RandomUpgradePool.oneRandom();
-		RandomMetronomePool.oneRandom();
+		if (deckName.equals("Aqua Deck")) { AquaPool.deck(); AquaPool.oneRandom();}
+		else if (deckName.equals("Ascended I")) { AscendedOnePool.deck(); AscendedOnePool.oneRandom();}
+		else if (deckName.equals("Ascended II")) { AscendedTwoPool.deck(); AscendedTwoPool.oneRandom();}
+		else if (deckName.equals("Ascended III")) { AscendedThreePool.deck(); AscendedThreePool.oneRandom();}
+		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck();PharaohPool.oneRandom(); }
+		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(); PharaohPool.oneRandom();}
+		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck();PharaohPool.oneRandom();}
+		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck();PharaohPool.oneRandom();}
+		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck();PharaohPool.oneRandom();}
+		else if (deckName.equals("Creator Deck")) { CreatorPool.deck();CreatorPool.oneRandom();}
+		else if (deckName.equals("Dragon Deck")) { DragonPool.deck();DragonPool.oneRandom();}
+		else if (deckName.equals("Exodia Deck")) { ExodiaPool.deck();ExodiaPool.oneRandom();}
+		else if (deckName.equals("Fiend Deck")) { FiendPool.deck();FiendPool.oneRandom();}
+		else if (deckName.equals("Giant Deck")) { GiantPool.deck();GiantPool.oneRandom();}
+		else if (deckName.equals("Increment Deck")) { IncrementPool.deck();IncrementPool.oneRandom();}
+		else if (deckName.equals("Insect Deck")) { InsectPool.deck();InsectPool.oneRandom();}
+		else if (deckName.equals("Machine Deck")) { MachinePool.deck();MachinePool.oneRandom();}
+		else if (deckName.equals("Megatype Deck")) { MegatypePool.deck();MegatypePool.oneRandom();}
+		else if (deckName.equals("Naturia Deck")) { NaturiaPool.deck();NaturiaPool.oneRandom();}
+		else if (deckName.equals("Ojama Deck")) { OjamaPool.deck();OjamaPool.oneRandom();}
+		else if (deckName.equals("Plant Deck")) { PlantPool.deck();PlantPool.oneRandom();}
+		else if (deckName.equals("Predaplant Deck")) { PredaplantPool.deck();PredaplantPool.oneRandom();}
+		else if (deckName.equals("Spellcaster Deck")) { SpellcasterPool.deck();SpellcasterPool.oneRandom();}
+		else if (deckName.equals("Standard Deck")) { StandardPool.deck();StandardPool.oneRandom();}
+		else if (deckName.equals("Toon Deck")) { ToonPool.deck(); ToonPool.oneRandom();}
+		else if (deckName.equals("Warrior Deck")) { WarriorPool.deck();WarriorPool.oneRandom();}
+		else if (deckName.equals("Zombie Deck")) { ZombiePool.deck();ZombiePool.oneRandom();}
+		else if (deckName.equals("Random Deck (Small)")) { RandomSmallPool.deck();RandomSmallPool.oneRandom();}
+		else if (deckName.equals("Random Deck (Big)")) { RandomBigPool.deck();RandomBigPool.oneRandom();}
+		else if (deckName.equals("Upgrade Deck")) { RandomUpgradePool.deck();RandomUpgradePool.oneRandom();}
+		else if (deckName.equals("Metronome Deck")) { RandomMetronomePool.deck();RandomMetronomePool.oneRandom();}
 	}
 
-	public static void deckOneRandomFill()
-	{
-		AquaPool.deck();
-		AscendedOnePool.deck();
-		AscendedTwoPool.deck();
-		AscendedThreePool.deck();
-		CreatorPool.deck();
-		DragonPool.deck();
-		ExodiaPool.deck();
-		FiendPool.deck();
-		GiantPool.deck();
-		IncrementPool.deck();
-		InsectPool.deck();
-		MachinePool.deck();
-		MegatypePool.deck();
-		NaturiaPool.deck();
-		OjamaPool.deck();
-		PharaohPool.deck();
-		PlantPool.deck();
-		PredaplantPool.deck();
-		SpellcasterPool.deck();
-		StandardPool.deck();
-		ToonPool.deck();
-		WarriorPool.deck();
-		ZombiePool.deck();
-		RandomSmallPool.deck();
-		RandomBigPool.deck();
-		RandomUpgradePool.deck();
-		RandomMetronomePool.deck();
-		AquaPool.oneRandom();
-		AscendedOnePool.oneRandom();
-		AscendedTwoPool.oneRandom();
-		AscendedThreePool.oneRandom();
-		CreatorPool.oneRandom();
-		DragonPool.oneRandom();
-		ExodiaPool.oneRandom();
-		FiendPool.oneRandom();
-		GiantPool.oneRandom();
-		IncrementPool.oneRandom();
-		InsectPool.oneRandom();
-		MachinePool.oneRandom();
-		MegatypePool.oneRandom();
-		NaturiaPool.oneRandom();
-		OjamaPool.oneRandom();
-		PharaohPool.oneRandom();
-		PlantPool.oneRandom();
-		PredaplantPool.oneRandom();
-		SpellcasterPool.oneRandom();
-		StandardPool.oneRandom();
-		ToonPool.oneRandom();
-		WarriorPool.oneRandom();
-		ZombiePool.oneRandom();
-		RandomSmallPool.oneRandom();
-		RandomBigPool.oneRandom();
-		RandomUpgradePool.oneRandom();
-		RandomMetronomePool.oneRandom();
-	}
-
-	public static void basicOneRandomFill()
-	{
-		/*
-		AquaPool.basic();
-		AscendedOnePool.basic();
-		AscendedTwoPool.basic();
-		AscendedThreePool.basic();
-		CreatorPool.basic();
-		DragonPool.basic();
-		ExodiaPool.basic();
-		FiendPool.basic();
-		GiantPool.basic();
-		IncrementPool.basic();
-		InsectPool.basic();
-		MachinePool.basic();
-		MegatypePool.basic();
-		NaturiaPool.basic();
-		OjamaPool.basic();
-		PharaohPool.basic();
-		PlantPool.basic();
-		PredaplantPool.basic();
-		SpellcasterPool.basic();
-		StandardPool.basic();
-		ToonPool.basic();
-		WarriorPool.basic();
-		ZombiePool.basic();
-		RandomSmallPool.basic();
-		RandomBigPool.basic();
-		RandomUpgradePool.basic();
-		RandomMetronomePool.basic();
-		*/
-		ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
-		poolCards.addAll(BasicPool.oneRandom());
-		for (StarterDeck s : DuelistMod.starterDeckList)
-		{
-			s.fillPoolCards(poolCards);
-		}
-	}
-	
-	public static void basicTwoRandomDeckFill()
-	{
-		AquaPool.basic();
-		AscendedOnePool.basic();
-		AscendedTwoPool.basic();
-		AscendedThreePool.basic();
-		CreatorPool.basic();
-		DragonPool.basic();
-		ExodiaPool.basic();
-		FiendPool.basic();
-		GiantPool.basic();
-		IncrementPool.basic();
-		InsectPool.basic();
-		MachinePool.basic();
-		MegatypePool.basic();
-		NaturiaPool.basic();
-		OjamaPool.basic();
-		PharaohPool.basic();
-		PlantPool.basic();
-		PredaplantPool.basic();
-		SpellcasterPool.basic();
-		StandardPool.basic();
-		ToonPool.basic();
-		WarriorPool.basic();
-		ZombiePool.basic();
-		RandomSmallPool.basic();
-		RandomBigPool.basic();
-		RandomUpgradePool.basic();
-		RandomMetronomePool.basic();
-		AquaPool.deck();
-		AscendedOnePool.deck();
-		AscendedTwoPool.deck();
-		AscendedThreePool.deck();
-		CreatorPool.deck();
-		DragonPool.deck();
-		ExodiaPool.deck();
-		FiendPool.deck();
-		GiantPool.deck();
-		IncrementPool.deck();
-		InsectPool.deck();
-		MachinePool.deck();
-		MegatypePool.deck();
-		NaturiaPool.deck();
-		OjamaPool.deck();
-		PharaohPool.deck();
-		PlantPool.deck();
-		PredaplantPool.deck();
-		SpellcasterPool.deck();
-		StandardPool.deck();
-		ToonPool.deck();
-		WarriorPool.deck();
-		ZombiePool.deck();
-		RandomSmallPool.deck();
-		RandomBigPool.deck();
-		RandomUpgradePool.deck();
-		RandomMetronomePool.deck();
-		AscendedOnePool.twoRandom();
-		AscendedTwoPool.twoRandom();
-		AscendedThreePool.twoRandom();
-		CreatorPool.twoRandom();
-		DragonPool.twoRandom();
-		ExodiaPool.twoRandom();
-		FiendPool.twoRandom();
-		GiantPool.twoRandom();
-		IncrementPool.twoRandom();
-		InsectPool.twoRandom();
-		MachinePool.twoRandom();
-		MegatypePool.twoRandom();
-		NaturiaPool.twoRandom();
-		OjamaPool.twoRandom();
-		PharaohPool.twoRandom();
-		PlantPool.twoRandom();
-		PredaplantPool.twoRandom();
-		SpellcasterPool.twoRandom();
-		StandardPool.twoRandom();
-		ToonPool.twoRandom();
-		WarriorPool.twoRandom();
-		ZombiePool.twoRandom();
-		RandomSmallPool.twoRandom();
-		RandomBigPool.twoRandom();
-		RandomUpgradePool.twoRandom();
-		RandomMetronomePool.twoRandom();
-	}
-	
-	public static void twoRandomFill()
+	public static void basicOneRandomFill(String deckName)
 	{
 		ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
-		poolCards.addAll(BasicPool.twoRandom());
-		for (StarterDeck s : DuelistMod.starterDeckList)
-		{
-			s.fillPoolCards(poolCards);
-		}
+		poolCards.addAll(GlobalPoolHelper.oneRandom());
+		for (StarterDeck s : DuelistMod.starterDeckList) { if (s.getSimpleName().equals(deckName)) { s.fillPoolCards(poolCards); }}
 	}
 	
-	public static void twoRandomDeckFill()
+	public static void twoRandomFill(String deckName)
 	{
-		AscendedOnePool.twoRandom();
-		AscendedTwoPool.twoRandom();
-		AscendedThreePool.twoRandom();
-		CreatorPool.twoRandom();
-		DragonPool.twoRandom();
-		ExodiaPool.twoRandom();
-		FiendPool.twoRandom();
-		GiantPool.twoRandom();
-		IncrementPool.twoRandom();
-		InsectPool.twoRandom();
-		MachinePool.twoRandom();
-		MegatypePool.twoRandom();
-		NaturiaPool.twoRandom();
-		OjamaPool.twoRandom();
-		PharaohPool.twoRandom();
-		PlantPool.twoRandom();
-		PredaplantPool.twoRandom();
-		SpellcasterPool.twoRandom();
-		StandardPool.twoRandom();
-		ToonPool.twoRandom();
-		WarriorPool.twoRandom();
-		ZombiePool.twoRandom();
-		RandomSmallPool.twoRandom();
-		RandomBigPool.twoRandom();
-		RandomUpgradePool.twoRandom();
-		RandomMetronomePool.twoRandom();
-		AquaPool.deck();
-		AscendedOnePool.deck();
-		AscendedTwoPool.deck();
-		AscendedThreePool.deck();
-		CreatorPool.deck();
-		DragonPool.deck();
-		ExodiaPool.deck();
-		FiendPool.deck();
-		GiantPool.deck();
-		IncrementPool.deck();
-		InsectPool.deck();
-		MachinePool.deck();
-		MegatypePool.deck();
-		NaturiaPool.deck();
-		OjamaPool.deck();
-		PharaohPool.deck();
-		RandomSmallPool.deck();
-		RandomBigPool.deck();
-		RandomUpgradePool.deck();
-		RandomMetronomePool.deck();
+		ArrayList<AbstractCard> poolCards = new ArrayList<AbstractCard>();
+		poolCards.addAll(GlobalPoolHelper.twoRandom());
+		for (StarterDeck s : DuelistMod.starterDeckList) { if (s.getSimpleName().equals(deckName)) { s.fillPoolCards(poolCards); }}
+	}
+	
+	public static void twoRandomDeckFill(String deckName)
+	{
+		if (deckName.equals("Aqua Deck")) { AquaPool.deck(); AquaPool.twoRandom();}
+		else if (deckName.equals("Ascended I")) { AscendedOnePool.deck(); AscendedOnePool.twoRandom();}
+		else if (deckName.equals("Ascended II")) { AscendedTwoPool.deck(); AscendedTwoPool.twoRandom();}
+		else if (deckName.equals("Ascended III")) { AscendedThreePool.deck(); AscendedThreePool.twoRandom();}
+		else if (deckName.equals("Pharaoh I")) { PharaohPool.deck();PharaohPool.twoRandom(); }
+		else if (deckName.equals("Pharaoh II")) { PharaohPool.deck(); PharaohPool.twoRandom();}
+		else if (deckName.equals("Pharaoh III")) { PharaohPool.deck();PharaohPool.twoRandom();}
+		else if (deckName.equals("Pharaoh IV")) { PharaohPool.deck();PharaohPool.twoRandom();}
+		else if (deckName.equals("Pharaoh V")) { PharaohPool.deck();PharaohPool.twoRandom();}
+		else if (deckName.equals("Creator Deck")) { CreatorPool.deck();CreatorPool.twoRandom();}
+		else if (deckName.equals("Dragon Deck")) { DragonPool.deck();DragonPool.twoRandom();}
+		else if (deckName.equals("Exodia Deck")) { ExodiaPool.deck();ExodiaPool.twoRandom();}
+		else if (deckName.equals("Fiend Deck")) { FiendPool.deck();FiendPool.twoRandom();}
+		else if (deckName.equals("Giant Deck")) { GiantPool.deck();GiantPool.twoRandom();}
+		else if (deckName.equals("Increment Deck")) { IncrementPool.deck();IncrementPool.twoRandom();}
+		else if (deckName.equals("Insect Deck")) { InsectPool.deck();InsectPool.twoRandom();}
+		else if (deckName.equals("Machine Deck")) { MachinePool.deck();MachinePool.twoRandom();}
+		else if (deckName.equals("Megatype Deck")) { MegatypePool.deck();MegatypePool.twoRandom();}
+		else if (deckName.equals("Naturia Deck")) { NaturiaPool.deck();NaturiaPool.twoRandom();}
+		else if (deckName.equals("Ojama Deck")) { OjamaPool.deck();OjamaPool.twoRandom();}
+		else if (deckName.equals("Plant Deck")) { PlantPool.deck();PlantPool.twoRandom();}
+		else if (deckName.equals("Predaplant Deck")) { PredaplantPool.deck();PredaplantPool.twoRandom();}
+		else if (deckName.equals("Spellcaster Deck")) { SpellcasterPool.deck();SpellcasterPool.twoRandom();}
+		else if (deckName.equals("Standard Deck")) { StandardPool.deck();StandardPool.twoRandom();}
+		else if (deckName.equals("Toon Deck")) { ToonPool.deck(); ToonPool.twoRandom();}
+		else if (deckName.equals("Warrior Deck")) { WarriorPool.deck();WarriorPool.twoRandom();}
+		else if (deckName.equals("Zombie Deck")) { ZombiePool.deck();ZombiePool.twoRandom();}
+		else if (deckName.equals("Random Deck (Small)")) { RandomSmallPool.deck();RandomSmallPool.twoRandom();}
+		else if (deckName.equals("Random Deck (Big)")) { RandomBigPool.deck();RandomBigPool.twoRandom();}
+		else if (deckName.equals("Upgrade Deck")) { RandomUpgradePool.deck();RandomUpgradePool.twoRandom();}
+		else if (deckName.equals("Metronome Deck")) { RandomMetronomePool.deck();RandomMetronomePool.twoRandom();}
 	}
 	
 	

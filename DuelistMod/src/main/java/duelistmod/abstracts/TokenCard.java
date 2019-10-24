@@ -1,11 +1,10 @@
-package duelistmod.cards.tempCards;
+package duelistmod.abstracts;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
-import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.PurgeSpecificCard;
 import duelistmod.relics.MillenniumToken;
 

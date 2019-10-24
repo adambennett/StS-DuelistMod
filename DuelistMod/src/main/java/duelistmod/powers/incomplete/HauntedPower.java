@@ -103,8 +103,13 @@ public class HauntedPower extends AbstractPower
 			AbstractPlayer p = AbstractDungeon.player;
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new GhostIgniteEffect(p.hb.cX, p.hb.cY), 1.0F));
 			lastAction = HauntedHelper.triggerRandomAction(this.amount, triggerCard, false);
+			updateDescription();
 		}
-		updateDescription();
+		else
+		{
+			DuelistCard.removePower(this, this.owner);
+		}
+		
 	}
 	
 	@Override

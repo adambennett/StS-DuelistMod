@@ -58,7 +58,7 @@ public class SwordDeepSeated extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	if (DuelistMod.debug) { System.out.println("theDuelist:SwordDeepSeated:use() ---> swords played: " + DuelistMod.swordsPlayed); }
-    	if (GameActionManager.turn <= 1 && AbstractDungeon.player.cardsPlayedThisTurn <= 1)
+    	if (GameActionManager.turn <= 1 && AbstractDungeon.actionManager.cardsPlayedThisTurn.size() <= 1)
     	{ 
     		if (DuelistMod.debug) { System.out.println("theDuelist:SwordDeepSeated:use() ---> reset DefaultMod.swordsPlayed to 0."); }
     		DuelistMod.swordsPlayed = 0; 

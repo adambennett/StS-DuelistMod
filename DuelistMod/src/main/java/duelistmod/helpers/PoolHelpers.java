@@ -1,6 +1,6 @@
 package duelistmod.helpers;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,20 +8,21 @@ import com.megacrit.cardcrawl.cards.AbstractCard.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
 public class PoolHelpers 
 {
 
 	
-	public static void newFillColored()
+	public static void newFillColored(String deckName)
 	{
 		// before calling this we try to load saved array for colored cards
 		// if save exists, fill colored cards with saved cards
 		// if the save does not exist, fill colored cards with the below code
 		
 		// refresh all the cards in all pools to match any "remove all of.." options the player may have selected since startup
-		StarterDeckSetup.refreshPoolOptions();
+		StarterDeckSetup.refreshPoolOptions(deckName);
 		
 		// this if block makes sure the pool is filled with the deck you actually selected
 		if (StarterDeckSetup.getCurrentDeck().getIndex() != DuelistMod.normalSelectDeck && DuelistMod.normalSelectDeck > -1)
@@ -38,8 +39,8 @@ public class PoolHelpers
 		
 		else
 		{
-			ArrayList<String> addedToPool = new ArrayList<String>();
-			for (AbstractCard c : StarterDeckSetup.findDeck(DuelistMod.deckIndex).getPoolCards()) { if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !addedToPool.contains(c.name)) { addedToPool.add(c.name); DuelistMod.coloredCards.add(c); }}
+			Map<String,String> added = new HashMap<>();
+			for (AbstractCard c : StarterDeckSetup.findDeck(DuelistMod.deckIndex).getPoolCards()) { if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !added.containsKey(c.name)) { added.put(c.name, c.name); DuelistMod.coloredCards.add(c); }}
 			Util.log("Card Fill was NOT 'All Cards' so we are filling the pool specifically based on your fill type");
 		}
 		
@@ -107,7 +108,7 @@ public class PoolHelpers
 	{
 		for (DuelistCard c : DuelistMod.myCards)
 		{
-			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL))
+			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
 			{
 				DuelistMod.coloredCards.add(c);
 				DuelistMod.logger.info("theDuelist:DuelistMod:fillColoredCards() ---> added " + c.originalName + " to coloredCards");
@@ -150,20 +151,10 @@ public class PoolHelpers
 	
 	public static void coloredCardsHadCards()
 	{
-		if (DuelistMod.debug)
+		for (int i = 0; i < DuelistMod.coloredCards.size(); i++)
 		{
-			{
-				DuelistMod.logger.info("theDuelist:DuelistMod:coloredCardsHadCards() ---> coloredCards size: " + DuelistMod.coloredCards.size() + ", and every card in there: "); 
-				for (int i = 0; i < DuelistMod.coloredCards.size(); i++)
-				{
-					DuelistMod.logger.info("(" + i + "): " + DuelistMod.coloredCards.get(i).originalName);
-				}
-			}
+			DuelistMod.logger.info("(" + i + "): " + DuelistMod.coloredCards.get(i).originalName);
 		}
-		if (DuelistMod.debug && DuelistMod.archRoll1 != -1 && DuelistMod.archRoll2 != -1) { DuelistMod.logger.info("theDuelist:DuelistMod:coloredCardsHadCards() ---> setIndex was " + DuelistMod.setIndex + ", random archetype deck was: " + StarterDeckSetup.findDeck(DuelistMod.archRoll1).getSimpleName() + ", current deck is: " + StarterDeckSetup.getCurrentDeck().getSimpleName() + ", random archetype deck #2 was: " + StarterDeckSetup.findDeck(DuelistMod.archRoll2).getSimpleName());  }
-		else if (DuelistMod.debug && DuelistMod.archRoll1 != -1) { DuelistMod.logger.info("theDuelist:DuelistMod:coloredCardsHadCards() ---> setIndex was " + DuelistMod.setIndex + ", random archetype 2 was null, but random archetype 1 deck was: " + StarterDeckSetup.findDeck(DuelistMod.archRoll1).getSimpleName() + ", current deck is: " + StarterDeckSetup.getCurrentDeck().getSimpleName());  }
-		else if (DuelistMod.debug) { DuelistMod.logger.info("theDuelist:DuelistMod:coloredCardsHadCards() ---> setIndex was " + DuelistMod.setIndex + ", random archetype 1 and 2 were both null, current deck is: " + StarterDeckSetup.getCurrentDeck().getSimpleName());  }
-		
 	}
 	
 	public boolean isAllCards()

@@ -1,12 +1,8 @@
 package duelistmod.helpers.poolhelpers;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.*;
-import com.megacrit.cardcrawl.cards.green.*;
-import com.megacrit.cardcrawl.cards.red.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
@@ -20,68 +16,20 @@ public class AscendedThreePool
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
-		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
-		pools.add(AquaPool.deck());
-		pools.add(CreatorPool.deck());
-		pools.add(DragonPool.deck());
-		pools.add(ExodiaPool.deck());
-		pools.add(FiendPool.deck());
-		pools.add(GiantPool.deck());
-		pools.add(IncrementPool.deck());
-		pools.add(InsectPool.deck());
-		pools.add(MachinePool.deck());
-		pools.add(NaturiaPool.deck());
-		pools.add(OjamaPool.deck());
-		pools.add(PlantPool.deck());
-		pools.add(PredaplantPool.deck());
-		pools.add(SpellcasterPool.deck());
-		pools.add(StandardPool.deck());
-		pools.add(ToonPool.deck());
-		pools.add(WarriorPool.deck());
-		pools.add(ZombiePool.deck());
-		pools.add(RockPool.deck());
-		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size()) { DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size()); }
-		ArrayList<AbstractCard> random = pools.get(DuelistMod.archRoll1);
+		ArrayList<AbstractCard> pool = new ArrayList<>();		
+		pool.addAll(GlobalPoolHelper.oneRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(random);	
-		return random;
+		deck.fillPoolCards(pool);	
+		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> twoRandom()
 	{
-		ArrayList<ArrayList<AbstractCard>> pools = new ArrayList<ArrayList<AbstractCard>>();
-		pools.add(AquaPool.deck());
-		pools.add(CreatorPool.deck());
-		pools.add(DragonPool.deck());
-		pools.add(ExodiaPool.deck());
-		pools.add(FiendPool.deck());
-		pools.add(GiantPool.deck());
-		pools.add(IncrementPool.deck());
-		pools.add(InsectPool.deck());
-		pools.add(MachinePool.deck());
-		pools.add(NaturiaPool.deck());
-		pools.add(OjamaPool.deck());
-		pools.add(PlantPool.deck());
-		pools.add(PredaplantPool.deck());
-		pools.add(SpellcasterPool.deck());
-		pools.add(StandardPool.deck());
-		pools.add(ToonPool.deck());
-		pools.add(WarriorPool.deck());
-		pools.add(ZombiePool.deck());	
-		pools.add(RockPool.deck());
-		ArrayList<AbstractCard> random = new ArrayList<AbstractCard>();
-		if (DuelistMod.archRoll1 == -1 || DuelistMod.archRoll2 == -1 || DuelistMod.archRoll1 > pools.size() || DuelistMod.archRoll2 > pools.size())
-		{
-			DuelistMod.archRoll1 = ThreadLocalRandom.current().nextInt(pools.size());
-			DuelistMod.archRoll2 = ThreadLocalRandom.current().nextInt(pools.size());
-			while (DuelistMod.archRoll1 == DuelistMod.archRoll2) { DuelistMod.archRoll2 = ThreadLocalRandom.current().nextInt(pools.size()); }
-		}
-		ArrayList<AbstractCard> randomA = pools.get(DuelistMod.archRoll1);
-		ArrayList<AbstractCard> randomB = pools.get(DuelistMod.archRoll2);
-		random.addAll(randomA); random.addAll(randomB);
+		ArrayList<AbstractCard> pool = new ArrayList<>();		
+		pool.addAll(GlobalPoolHelper.twoRandom());
 		StarterDeck deck = DuelistMod.starterDeckNamesMap.get(deckName);
-		deck.fillPoolCards(random);	
-		return random;
+		deck.fillPoolCards(pool);	
+		return pool;
 	}
 	
 	public static ArrayList<AbstractCard> deck()

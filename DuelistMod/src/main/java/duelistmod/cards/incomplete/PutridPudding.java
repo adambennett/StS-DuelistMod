@@ -41,38 +41,20 @@ public class PutridPudding extends DuelistCard
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.FIEND);       
         this.summons = this.baseSummons = 1;			// Summons
-        this.baseMagicNumber = this.magicNumber = 2;	// Dark
-        this.secondMagic = this.baseSecondMagic = 2;	// Void
-        this.thirdMagic = this.baseThirdMagic = 3;		// Vulnerable
+        this.baseMagicNumber = this.magicNumber = 3;
 		this.showEvokeValue = true;
-		this.showEvokeOrbCount = 4;
+		this.showEvokeOrbCount = 2;
         this.originalName = this.name;
     }
     
-	@Override
-	public void update()
-	{
-		super.update();
-		this.showEvokeOrbCount = this.magicNumber + this.secondMagic;
-	}
-
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();
-    	for (int i = 0; i < this.magicNumber; i++)
-    	{
-    		AbstractOrb orb = new Dark();
-    		channel(orb);
-    	}
-    	for (int i = 0; i < this.secondMagic; i++)
-    	{
-    		AbstractOrb orb = new VoidOrb();
-    		channel(orb);
-    	}
-    	
-    	applyPower(new VulnerablePower(m, this.thirdMagic, false), m);
+    	channel(new VoidOrb());
+    	channel(new Dark());    	
+    	applyPower(new VulnerablePower(m, this.magicNumber, false), m);
     }
 
     // Which card to return when making a copy of this card.
@@ -86,8 +68,7 @@ public class PutridPudding extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSecondMagic(1);
-            this.upgradeThirdMagic(2);
+            this.upgradeMagicNumber(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

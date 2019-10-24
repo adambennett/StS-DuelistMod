@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistOrb;
 import duelistmod.actions.common.CardSelectScreenIntoHandAction;
+import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 
@@ -91,13 +92,13 @@ public class MillenniumOrb extends DuelistOrb
 			ArrayList<String> deckCardNames = new ArrayList<String>();
 			for (int i = 0; i < 20; i++)
 			{
-				int index = DuelistMod.coloredCards.size() - 1;
+				int index = TheDuelist.cardPool.group.size() - 1;
 				int indexRoll = AbstractDungeon.cardRandomRng.random(index);
-				AbstractCard c = DuelistMod.coloredCards.get(indexRoll).makeStatEquivalentCopy();
+				AbstractCard c = TheDuelist.cardPool.group.get(indexRoll).makeStatEquivalentCopy();
 				while (deckCardNames.contains(c.name))
 				{
 					indexRoll = AbstractDungeon.cardRandomRng.random(index);
-					c = DuelistMod.coloredCards.get(indexRoll).makeStatEquivalentCopy();
+					c = TheDuelist.cardPool.group.get(indexRoll).makeStatEquivalentCopy();
 				}
 				deckCards.add(c);
 				deckCardNames.add(c.name);

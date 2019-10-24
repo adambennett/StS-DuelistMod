@@ -28,7 +28,6 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     private static float drawStartY;
     private static float padX;
     private static float padY;
-    private static final int CARDS_PER_LINE = 5;
     private static final float SCROLL_BAR_THRESHOLD;
     private float grabStartY;
     private float currentDiffY;
@@ -52,7 +51,6 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     private String tipMsg;
     private String lastTip;
     private float ritualAnimTimer;
-    private static final float RITUAL_ANIM_INTERVAL = 0.1f;
     private int prevDeckSize;
     public boolean cancelWasOn;
     public boolean anyNumber;
@@ -60,7 +58,6 @@ public class DuelistCardSelectScreen extends GridCardSelectScreen implements Scr
     public String cancelText;
     private ScrollBar scrollBar;
     private AbstractCard controllerCard;
-    private static final int ARROW_W = 64;
     private float arrowScale1;
     private float arrowScale2;
     private float arrowScale3;

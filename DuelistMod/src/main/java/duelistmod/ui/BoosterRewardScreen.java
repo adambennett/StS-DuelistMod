@@ -67,36 +67,11 @@ public class BoosterRewardScreen extends CardRewardScreen
 	}
 	
 	@Override
-	public void discoveryOpen() {
-		super.discoveryOpen();
-		this.buyPackBtn.hide();
-	}
-
-	@Override
 	public void chooseOneOpen(final ArrayList<AbstractCard> choices) {
 		super.chooseOneOpen(choices);
 		this.buyPackBtn.hide();
 	}
-	
-	@Override
-	public void discoveryOpen(final AbstractCard.CardType type) {
-		super.discoveryOpen(type);
-		this.buyPackBtn.hide();
-	}
-	
-	@Override
-	public void carveRealityOpen(final ArrayList<AbstractCard> cardsToPickBetween)
-	{
-		super.carveRealityOpen(cardsToPickBetween);
-		this.buyPackBtn.hide();
-	}
 
-	@Override
-	public void codexOpen() {
-		super.codexOpen();
-		this.buyPackBtn.hide();
-	}
-	
 	@Override
 	public void draftOpen() {
 		super.draftOpen();

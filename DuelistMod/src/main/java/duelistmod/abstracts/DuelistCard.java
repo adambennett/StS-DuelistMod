@@ -50,7 +50,7 @@ import duelistmod.cards.incomplete.*;
 import duelistmod.cards.insects.MirrorLadybug;
 import duelistmod.cards.tempCards.*;
 import duelistmod.cards.tokens.*;
-import duelistmod.characters.FakePlayer;
+import duelistmod.characters.*;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
 import duelistmod.orbs.*;
@@ -288,6 +288,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onLoseArtifactDiscard() { }
 	
 	public void onLoseArtifactExhaust() { }
+	
+	public void onObtainTrigger() { }
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 	
 	
@@ -5632,111 +5634,6 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	
 	
 	// =============== RANDOM CARD FUNCTIONS =========================================================================================================================================================
-	public static DuelistCard returnRandomTributeFromSets(CardTags tag, CardTags tagB, boolean seeded, boolean fromCardPoolOnly, boolean checkBothTags)
-	{
-		ArrayList<DuelistCard> tribCards = new ArrayList<DuelistCard>();
-		if (!fromCardPoolOnly)
-		{
-			for (DuelistCard c : DuelistMod.myCards)
-			{
-				if (c.tributes > 0 && c.hasTag(tag) && c.hasTag(tagB) && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					tribCards.add((DuelistCard) c.makeStatEquivalentCopy());
-				}
-			}
-		}
-		else
-		{
-			if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
-			{
-				for (AbstractCard c : DuelistMod.coloredCards)
-				{
-					DuelistCard dC = (DuelistCard)c;
-					if (checkBothTags)
-					{
-						if (dC.tributes > 0 && c.hasTag(tag) && c.hasTag(tagB) && !c.hasTag(Tags.NEVER_GENERATE))
-						{
-							tribCards.add((DuelistCard) c.makeStatEquivalentCopy());
-						}
-					}
-					else
-					{
-						if ((dC.tributes > 0 && (c.hasTag(tag) || c.hasTag(tagB))) && !c.hasTag(Tags.NEVER_GENERATE))
-						{
-							tribCards.add((DuelistCard) c.makeStatEquivalentCopy());
-						}
-					}
-				}
-			}
-			else
-			{
-				returnRandomTributeFromSets(tag, tagB, seeded, false, checkBothTags);
-			}
-		}
-		
-		if (seeded) { return tribCards.get(AbstractDungeon.cardRandomRng.random(tribCards.size() - 1)); }
-		else { return tribCards.get(ThreadLocalRandom.current().nextInt(0, tribCards.size())); }
-	}
-	
-	public static DuelistCard returnRandomTributeFromSet(CardTags tag, boolean seeded, boolean fromCardPoolOnly)
-	{
-		ArrayList<DuelistCard> tribCards = new ArrayList<DuelistCard>();
-		if (!fromCardPoolOnly)
-		{
-			for (DuelistCard c : DuelistMod.myCards)
-			{
-				if (c.tributes > 0 && c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					tribCards.add((DuelistCard) c.makeStatEquivalentCopy());
-				}
-			}
-		}
-		else
-		{
-			for (AbstractCard c : DuelistMod.coloredCards)
-			{
-				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0 && c.hasTag(tag) && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					tribCards.add((DuelistCard) c.makeStatEquivalentCopy());
-				}
-				
-			}
-		}
-		
-		if (seeded) { return tribCards.get(AbstractDungeon.cardRandomRng.random(tribCards.size() - 1)); }
-		else { return tribCards.get(ThreadLocalRandom.current().nextInt(0, tribCards.size())); }
-	}
-	
-	public static DuelistCard returnRandomTribute(boolean seeded, boolean fromCardPoolOnly)
-	{
-		ArrayList<DuelistCard> tribCards = new ArrayList<DuelistCard>();
-		if (!fromCardPoolOnly)
-		{
-			for (DuelistCard c : DuelistMod.myCards)
-			{
-				if (c.tributes > 0 && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					tribCards.add((DuelistCard) c.makeStatEquivalentCopy());
-				}
-			}
-		}
-		else
-		{
-			for (AbstractCard c : DuelistMod.coloredCards)
-			{
-				DuelistCard dC = (DuelistCard)c;
-				if (dC.tributes > 0 && !c.hasTag(Tags.NEVER_GENERATE))
-				{
-					tribCards.add((DuelistCard) c.makeStatEquivalentCopy());
-				}
-				
-			}
-		}
-		if (seeded) { return tribCards.get(AbstractDungeon.cardRandomRng.random(tribCards.size() - 1)); }
-		else { return tribCards.get(ThreadLocalRandom.current().nextInt(0, tribCards.size())); }
-	}
-	
 	public static DuelistCard returnRandomFromArray(ArrayList<DuelistCard> tributeList)
 	{
 		return tributeList.get(AbstractDungeon.cardRandomRng.random(tributeList.size() - 1));
@@ -5837,7 +5734,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public static AbstractCard returnTrulyRandomFromTypeInCombat(CardType type, boolean basic) 
 	{
 		ArrayList<AbstractCard> dragonGroup = new ArrayList<>();
-		for (AbstractCard card : DuelistMod.coloredCards)
+		for (AbstractCard card : TheDuelist.cardPool.group)
 		{
 			if (card.type.equals(type) && !card.hasTag(Tags.TOKEN) && !card.hasTag(Tags.NEVER_GENERATE)) 
 			{
@@ -5924,7 +5821,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public AbstractCard slotMachineCard()
 	{
 		ArrayList<AbstractCard> arcane = new ArrayList<AbstractCard>();
-		for (AbstractCard c : DuelistMod.coloredCards)
+		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
 				arcane.add(c);
@@ -5937,7 +5834,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		else
 		{
-			for (AbstractCard c : DuelistMod.myCards)
+			for (AbstractCard c : DuelistMod.coloredCards)
 			{
 				if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
 					arcane.add(c);
@@ -5950,7 +5847,21 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			}
 			else
 			{
-				return new Token();
+				for (AbstractCard c : DuelistMod.myCards)
+				{
+					if (c.hasTag(Tags.ARCANE) && !c.hasTag(Tags.NEVER_GENERATE)) {
+						arcane.add(c);
+					}
+				}
+				
+				if (arcane.size() > 0)
+				{
+					return arcane.get(AbstractDungeon.cardRandomRng.random(arcane.size() - 1));
+				}
+				else
+				{
+					return new Token();
+				}
 			}
 		}
 	}
@@ -5959,7 +5870,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
-			if (DuelistMod.coloredCards.size() > 0)
+			if (TheDuelist.cardPool.group.size() > 0)
+			{
+				AbstractCard c = TheDuelist.cardPool.group.get(AbstractDungeon.cardRandomRng.random(TheDuelist.cardPool.group.size() - 1));
+				while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = TheDuelist.cardPool.group.get(AbstractDungeon.cardRandomRng.random(TheDuelist.cardPool.group.size() - 1)); }
+				return c;
+			}
+			else if (DuelistMod.coloredCards.size() > 0)
 			{
 				AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
 				while (!c.hasTag(setToFindFrom) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
@@ -6182,8 +6099,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
 		{
-			AbstractCard c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1));
-			while (!(c instanceof DuelistCard) || c.hasTag(Tags.NEVER_GENERATE)) { c = DuelistMod.coloredCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.coloredCards.size() - 1)); }
+			AbstractCard c = TheDuelist.cardPool.group.get(AbstractDungeon.cardRandomRng.random(TheDuelist.cardPool.group.size() - 1));
+			while (!(c instanceof DuelistCard) || c.hasTag(Tags.NEVER_GENERATE)) { c = TheDuelist.cardPool.group.get(AbstractDungeon.cardRandomRng.random(TheDuelist.cardPool.group.size() - 1)); }
 			return c;
 		}
 		else

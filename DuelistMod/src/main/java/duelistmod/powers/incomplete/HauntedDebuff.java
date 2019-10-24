@@ -107,8 +107,13 @@ public class HauntedDebuff extends AbstractPower
 			if (buffRoll == 1 && DuelistMod.debug) { this.amount++;  DuelistMod.logger.info("Haunted Debuff stacked additional stacks by playing " + triggerCard.name + ", since we rolled a " + buffRoll); }
 			else if (buffRoll == 1) { this.amount++;  }
 			else if (DuelistMod.debug) { DuelistMod.logger.info("Haunted Debuff did not stack additional stacks by playing " + triggerCard.name + ", since we rolled a " + buffRoll + " and we needed a 1."); }
+			updateDescription();
 		}
-		updateDescription();
+		else
+		{
+			DuelistCard.removePower(this, this.owner);
+		}
+		
 	}
 	
 	@Override

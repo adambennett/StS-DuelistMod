@@ -9,8 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.TokenCard;
+import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 

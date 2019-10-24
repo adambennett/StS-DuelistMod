@@ -62,6 +62,7 @@ public class MetricsHelper
 		par.put("bonus_deck_stats", DuelistMod.bonusUnlockHelper.logMetrics());
 		par.put("duelistmod_version", DuelistMod.version);	
 		par.put("playing_as_kaiba", DuelistMod.playAsKaiba);
+		par.put("customized_card_pool", DuelistMod.poolIsCustomized);
 	}
 	
 }

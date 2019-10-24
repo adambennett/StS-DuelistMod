@@ -53,8 +53,7 @@ public class DestructPotionPot extends AbstractPotion {
     @Override
     public int getPotency(final int potency) {
     	int pot = 2;
-    	if (AbstractDungeon.player == null) { return pot; }
-        return AbstractDungeon.player.hasRelic("SacredBark") ? pot*2 : pot;
+    	return pot;
     }
     
     @Override

@@ -12,10 +12,10 @@ import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.characters.TheDuelist;
 import duelistmod.ui.DuelistCardSelectScreen;
-import duelistmod.variables.*;
+import duelistmod.variables.Tags;
 
 public class CardRewardRelicH extends CustomRelic
 {
@@ -45,7 +45,7 @@ public class CardRewardRelicH extends CustomRelic
     	
     	CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 		ArrayList<AbstractCard> myCardsCopy = new ArrayList<AbstractCard>();
-		for (DuelistCard c : DuelistMod.myCards)
+		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			if (c.hasTag(Tags.MONSTER) && c.rarity != CardRarity.BASIC && c.rarity != CardRarity.SPECIAL) { myCardsCopy.add(c.makeCopy()); }
 		}

@@ -41,6 +41,7 @@ public class ClawHermos extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -62,7 +63,6 @@ public class ClawHermos extends DuelistCard
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName();
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
             this.upgradeMagicNumber(5);

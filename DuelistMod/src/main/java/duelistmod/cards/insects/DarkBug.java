@@ -45,13 +45,13 @@ public class DarkBug extends DuelistCard
     }
     
     @Override
-    public void onSummonWhileInHand(DuelistCard c, int amt) { if (c.hasTag(Tags.BUG) && amt > 0) { channel(new Dark()); }}
+    public void onSummonWhileInHand(DuelistCard c, int amt) { if (c.hasTag(Tags.BUG) && amt > 0 && !c.uuid.equals(this.uuid)) { channel(new Dark()); }}
 
     @Override
-    public void onSummonWhileInDiscard(DuelistCard c, int amt) { if (c.hasTag(Tags.BUG) && this.upgraded && amt > 0) { channel(new Dark()); }}
+    public void onSummonWhileInDiscard(DuelistCard c, int amt) { if (c.hasTag(Tags.BUG) && this.upgraded && amt > 0 && !c.uuid.equals(this.uuid)) { channel(new Dark()); }}
 
     @Override
-    public void onSummonWhileInDraw(DuelistCard c, int amt) { if (c.hasTag(Tags.BUG) && this.upgraded && amt > 0) { channel(new Dark()); }}
+    public void onSummonWhileInDraw(DuelistCard c, int amt) { if (c.hasTag(Tags.BUG) && this.upgraded && amt > 0 && !c.uuid.equals(this.uuid)) { channel(new Dark()); }}
 
     
     // Actions the card should do.

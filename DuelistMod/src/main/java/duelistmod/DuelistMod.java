@@ -78,7 +78,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.056.0-beta";
+	public static String version = "v3.037.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -93,6 +93,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	// Config Settings
 	public static BonusDeckUnlockHelper bonusUnlockHelper;
 	public static ArrayList<String> randomizedBtnStrings = new ArrayList<String>();
+	public static String lastCardPoolFullList = "";
+	public static String saveSlotA = "";
+	public static String saveSlotB = "";
+	public static String saveSlotC = "";
 	public static final String PROP_TOON_BTN = "toonBtnBool";
 	public static final String PROP_EXODIA_BTN = "exodiaBtnBool";
 	public static final String PROP_OJAMA_BTN = "ojamaBtnBool";
@@ -140,7 +144,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String PROP_ADD_ACT_FOUR = "actFourEnabled";
 	public static final String PROP_NAMELESS = "namelessTombPoints";
 	public static final String PROP_PLAY_KAIBA = "playAsKaiba";
-	public static final String PROP_MONSTER_IS_KAIBA = "monsterIsKaiba";	
+	public static final String PROP_MONSTER_IS_KAIBA = "monsterIsKaiba";
+	public static final String PROP_LAST_CARD_POOL = "lastCardPoolFullList";	
+	public static final String PROP_SAVE_SLOT_A = "saveSlotA";	
+	public static final String PROP_SAVE_SLOT_B = "saveSlotB";	
+	public static final String PROP_SAVE_SLOT_C = "saveSlotC";	
+	public static final String PROP_ALLOW_CARD_POOL_RELICS = "allowCardPoolRelics";
 	public static String seenString = "";
 	public static String characterModel = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
 	public static final String yugiChar = "duelistModResources/images/char/duelistCharacterUpdate/YugiB.scml";
@@ -235,6 +244,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static String exodiaRightLegString = "";	
 	public static String selectedDeck = "";	
 	public static String trapVortexBuffName = "PLACEHOLDER";
+	public static String firstRandomDeck = "";
+	public static String secondRandomDeck = "";
 	
 	
 	// Maps and Lists
@@ -252,6 +263,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static HashMap<CardTags, Integer> monsterTypeTributeSynergyFunctionMap = new HashMap<CardTags, Integer>();
 	public static Map<String, DuelistCard> orbCardMap = new HashMap<String, DuelistCard>();
 	public static Map<CardTags, StarterDeck> deckTagMap = new HashMap<CardTags, StarterDeck>();
+	public static Map<String, AbstractCard> mapForCardPoolSave = new HashMap<>();
 	public static ArrayList<DuelistCard> deckToStartWith = new ArrayList<DuelistCard>();	
 	public static ArrayList<DuelistCard> standardDeck = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> orbCards = new ArrayList<DuelistCard>();
@@ -279,6 +291,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<DuelistCard> uniqueSpellsThisRun = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uniqueTrapsThisCombat = new ArrayList<DuelistCard>();
 	public static ArrayList<DuelistCard> uniqueTrapsThisRun = new ArrayList<DuelistCard>();
+	public static ArrayList<AbstractCard> currentCardPool = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> arcaneCards = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> toAddToPool = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> toReplacePoolWith = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> currentCardPoolNoColorless = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> uniqueSkillsThisCombat = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> basicCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractCard> metronomes = new ArrayList<AbstractCard>();
@@ -334,6 +351,10 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean hasBoosterRewardRelic = false;
 	public static boolean hasShopDupeRelic = false;
 	public static boolean shouldFill = true;
+	public static boolean shouldFillWithRelicCards = false;
+	public static boolean shouldReplacePool = false;
+	public static boolean selectingForRelics = false;
+	public static boolean selectingCardPoolOptions = false;
 	public static boolean dragonRelicBFlipper = false;
 	public static boolean playedSpellThisTurn = false;
 	public static boolean kuribohrnFlipper = false;
@@ -348,6 +369,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean wasEliteCombat = false;	
 	public static boolean wasBossCombat = false;
 	public static boolean mirrorLadybug = false;
+	public static boolean poolIsCustomized = false;
+	public static boolean allowCardPoolRelics = true;
 	public static boolean isConspire = Loader.isModLoaded("conspire");
 	public static boolean isReplay = Loader.isModLoaded("ReplayTheSpireMod");
 	public static boolean isHubris = Loader.isModLoaded("hubris");
@@ -366,7 +389,26 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean isPharaohDeckFourUnlocked = false;
 	public static boolean isPharaohDeckFiveUnlocked = false;
 	public static boolean isExtraRandomDecksUnlocked = false;
-
+	public static boolean lastDeckViewWasCustomScreen = false;
+	public static boolean addedAquaSet = false;
+	public static boolean addedDragonSet = false;
+	public static boolean addedFiendSet = false;
+	public static boolean addedIncrementSet = false;
+	public static boolean addedInsectSet = false;
+	public static boolean addedMachineSet = false;
+	public static boolean addedNaturiaSet = false;
+	public static boolean addedPlantSet = false;
+	public static boolean addedSpellcasterSet = false;
+	public static boolean addedStandardSet = false;
+	public static boolean addedWarriorSet = false;
+	public static boolean addedZombieSet = false;
+	public static boolean addedRockSet = false;
+	public static boolean addedOjamaSet = false;
+	public static boolean addedToonSet = false;
+	public static boolean addedDinoSet = false;
+	public static boolean addedArcaneSet = false;
+	public static boolean addedRandomCards = false;
+	
 	// Numbers
 	public static final int baseInsectPoison = 1;
 	public static int randomDeckSmallSize = 10;
@@ -514,6 +556,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ModLabeledToggleButton noDuelistCursesBtn;
 	public static ModLabeledToggleButton addOrbPotionsBtn;
 	public static ModLabeledToggleButton addActFourBtn;
+	public static ModLabeledToggleButton cardPoolRelicsBtn;
 	public static ModLabel setSelectLabelTxt;
 	public static ModLabel setSelectColorTxt;
 	public static ModButton setSelectLeftBtn;
@@ -530,7 +573,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int energyPerTurn = 3;
 	public static int startHP = 80;
 	public static int maxHP = 80;
-	public static int startGold = 199;
+	public static int startGold = 125;
 	public static int cardDraw = 5;
 	public static int orbSlots = 3;
 	
@@ -722,6 +765,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty(PROP_NAMELESS, "0");
 		duelistDefaults.setProperty(PROP_PLAY_KAIBA, "FALSE");
 		duelistDefaults.setProperty(PROP_MONSTER_IS_KAIBA, "TRUE");
+		duelistDefaults.setProperty(PROP_LAST_CARD_POOL, "");
+		duelistDefaults.setProperty(PROP_SAVE_SLOT_A, "");
+		duelistDefaults.setProperty(PROP_SAVE_SLOT_B, "");
+		duelistDefaults.setProperty(PROP_SAVE_SLOT_C, "");
+		duelistDefaults.setProperty(PROP_ALLOW_CARD_POOL_RELICS, "TRUE");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -913,6 +961,11 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
             namelessTombPoints = config.getInt(PROP_NAMELESS);
             playAsKaiba = config.getBool(PROP_PLAY_KAIBA);
             monsterIsKaiba = config.getBool(PROP_MONSTER_IS_KAIBA);
+            lastCardPoolFullList = config.getString(PROP_LAST_CARD_POOL);
+            saveSlotA = config.getString(PROP_SAVE_SLOT_A);
+            saveSlotB = config.getString(PROP_SAVE_SLOT_B);
+            saveSlotC = config.getString(PROP_SAVE_SLOT_C);
+            allowCardPoolRelics = config.getBool(PROP_ALLOW_CARD_POOL_RELICS);
         } catch (Exception e) { e.printStackTrace(); }
 		
 		if (fullDebug)
@@ -1155,6 +1208,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 
 		// This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
 		BaseMod.addRelicToCustomPool(new MillenniumPuzzle(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardPoolRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardPoolAddRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardPoolMinusRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardPoolSaveRelic(), AbstractCardEnum.DUELIST);
+		//BaseMod.addRelicToCustomPool(new CardPoolLoadRelic(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new CardPoolOptionsRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumEye(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumRing(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new MillenniumKey(), AbstractCardEnum.DUELIST);
@@ -1245,6 +1304,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addRelicToCustomPool(new MillenniumSymbol(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new DragonBurnRelic(), AbstractCardEnum.DUELIST);
 		BaseMod.addRelicToCustomPool(new GoldenScale(), AbstractCardEnum.DUELIST);
+		BaseMod.addRelicToCustomPool(new ConfusionGoldRelic(), AbstractCardEnum.DUELIST);
 		
 		// Base Game Shared relics
 		BaseMod.addRelicToCustomPool(new GoldPlatedCables(), AbstractCardEnum.DUELIST);
@@ -1274,6 +1334,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		
 		//AbstractDungeon.shopRelicPool.remove(PrismaticShard.ID);
 		
+		UnlockTracker.markRelicAsSeen(MillenniumPuzzle.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumRing.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumKey.ID);
 		UnlockTracker.markRelicAsSeen(MillenniumRod.ID);
@@ -1363,6 +1424,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		UnlockTracker.markRelicAsSeen(MillenniumSymbol.ID);
 		UnlockTracker.markRelicAsSeen(DragonBurnRelic.ID);
 		UnlockTracker.markRelicAsSeen(GoldenScale.ID);
+		UnlockTracker.markRelicAsSeen(ConfusionGoldRelic.ID);
+		UnlockTracker.markRelicAsSeen(CardPoolRelic.ID);
+		UnlockTracker.markRelicAsSeen(CardPoolAddRelic.ID);
+		UnlockTracker.markRelicAsSeen(CardPoolMinusRelic.ID);
+		UnlockTracker.markRelicAsSeen(CardPoolSaveRelic.ID);
+		UnlockTracker.markRelicAsSeen(CardPoolOptionsRelic.ID);
 		
 		//duelistRelicsForTombEvent.add(new MillenniumEye());
 		//duelistRelicsForTombEvent.add(new MillenniumRing());
@@ -1429,6 +1496,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistRelicsForTombEvent.add(new MillenniumSymbol());
 		duelistRelicsForTombEvent.add(new DragonBurnRelic());
 		duelistRelicsForTombEvent.add(new GoldenScale());
+		duelistRelicsForTombEvent.add(new ConfusionGoldRelic());
 		//duelistRelicsForTombEvent.add(new GamblerChip());
 		//duelistRelics.add(new MillenniumNecklace());
 
@@ -1495,7 +1563,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//DuelistCardLibrary.setupMyCardsDebug("Ascended Two"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Ascended Three"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Pharaoh"); fullPool = false; addBasic = true;
-		if (addBasic && !fullPool){ for (AbstractCard c : BasicPool.fullBasic()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}}
+		if (addBasic && !fullPool){ DuelistCardLibrary.setupMyCardsDebug("Basic"); }
 		if (fullPool) { DuelistCardLibrary.setupMyCards(); }
 		lastCardPlayed = new CancelCard();
 		secondLastCardPlayed = new CancelCard();
@@ -1508,7 +1576,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// ================ STARTER DECKS ===================
 		logger.info("filling up starting decks");
 		StarterDeckSetup.initStartDeckArrays();
-		StarterDeckSetup.initStarterDeckPool();
+		//StarterDeckSetup.initStarterDeckPool();
 		logger.info("starting deck set as: " + chosenDeckTag.name());
 		
 		// ================ SUMMON MAP ===================
@@ -1533,8 +1601,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		// ================ COLORED CARDS ===================
 		logger.info("filling colored cards array to use for reward pool");
 		//PoolHelpers.fillColoredCards();
-		PoolHelpers.newFillColored();
-		BoosterPackHelper.setupPoolsForPacks();
+		//PoolHelpers.newFillColored();
+		//BoosterPackHelper.setupPoolsForPacks();
 		logger.info("done filling colored cards");
 		logger.info("done receiveEditCards()");
 	}
@@ -2928,11 +2996,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receiveStartAct()
 	{
-		if (!shouldFill && AbstractDungeon.actNum == 1)
+		if (!shouldFill && AbstractDungeon.floorNum < 2)
 		{
 			//int buffRollID = ThreadLocalRandom.current().nextInt(1, 8);
 			//trapVortexBuffName = BuffHelper.trapVortexBuffName(buffRollID);
-			if (debug) { logger.info("Started act and should fill was false. Act #1! So we reset everything!!"); }
+			if (debug) { logger.info("Started act and should fill was false. Current Floor was <2! So we reset everything!!"); }
+			poolIsCustomized = false;
 			chosenRockSunriseTag = Tags.DUMMY_TAG;
 			selectedDeck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 			coloredCards = new ArrayList<AbstractCard>();
@@ -2963,6 +3032,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			monstersPlayedCombatNames = new ArrayList<String>();
 			monstersPlayedRunNames = new ArrayList<String>();
 			BoosterPackHelper.resetPackSizes();
+			//PoolHelpers.newFillColored();
+			//BoosterPackHelper.setupPoolsForPacks();
 			spellCombatCount = 0;
 			trapCombatCount = 0;
 			summonCombatCount = 0;
@@ -3014,7 +3085,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				if (c.hasTag(Tags.SPELL)) { spellsObtained++; }
 				if (c.hasTag(Tags.TRAP)) { trapsObtained++; }
 			}
-			CardCrawlGame.dungeon.initializeCardPools();
+			//CardCrawlGame.dungeon.initializeCardPools();
 			try {
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
 				config.setBool(PROP_WISEMAN, gotWisemanHaunted);
@@ -3023,11 +3094,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 				e.printStackTrace();
 			}
 		}
-		else if (!shouldFill)
-		{
-			shouldFill = true;
-			if (debug) { logger.info("Started act and should fill was false. Act was not #1, so we only reset shouldFill so the pool would be filled with different cards from any random archetypes, or unchanged if there are none."); }
-		}
+		else if (shouldFill) { CardCrawlGame.dungeon.initializeCardPools(); }
 		logger.info("triggered start act sub");
 		
 	}
@@ -3441,8 +3508,22 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			} catch (Exception e) { e.printStackTrace(); }
 
 		});
-		cbLB(); saver++;
+		saver++;
 		// END Add 2 Randomziation Buttons
+		
+		// Toggle card pool add/remove/save/load relics
+		cardPoolRelicsBtn = new ModLabeledToggleButton("Card Pool Relics", xLabPos + xSecondCol + xSecondCol - 10, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, allowCardPoolRelics, settingsPanel, (label) -> {}, (button) -> 
+		{
+			allowCardPoolRelics = button.enabled;
+			try 
+			{
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setBool(PROP_ALLOW_CARD_POOL_RELICS, allowCardPoolRelics);
+				config.save();
+			} catch (Exception e) { e.printStackTrace(); }
+		});
+		cbLB();	
+		// END Toggle card pool add/remove/save/load relics
 		
 		// Add 2 randomization buttons
 		etherealBtn = new ModLabeledToggleButton(randomizedBtnStrings.get(saver), xLabPos, yPos, Settings.CREAM_COLOR, FontHelper.charDescFont, randomizeEthereal, settingsPanel, (label) -> {}, (button) -> 
@@ -3624,6 +3705,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		settingsPanel.addUIElement(kaibaCharBtn);		
 		settingsPanel.addUIElement(alwaysUpgradeBtn);
 		settingsPanel.addUIElement(neverUpgradeBtn);
+		settingsPanel.addUIElement(cardPoolRelicsBtn);
 		settingsPanel.addUIElement(etherealBtn);
 		settingsPanel.addUIElement(exhaustBtn);
 		settingsPanel.addUIElement(allowBaseGameCardsBtn);

@@ -67,7 +67,8 @@ public class DuelistMetricsPatch {
     @SpirePatch(clz = Metrics.class, method = "run")
     public static class RunPatch {
 
-        public static void Postfix(Metrics metrics) {
+        @SuppressWarnings("unchecked")
+		public static void Postfix(Metrics metrics) {
             if (metrics.type == Metrics.MetricRequestType.UPLOAD_METRICS && AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) {
             	HashMap<Object, Object> par = (HashMap<Object, Object>) ReflectionHacks.getPrivate(metrics, Metrics.class, "params");
             	MetricsHelper.setupCustomMetrics(par);

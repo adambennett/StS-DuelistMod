@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
 
 public class MDSpecialCardA extends TokenCard 

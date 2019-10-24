@@ -13,6 +13,7 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.DestructPotion;
+import duelistmod.characters.TheDuelist;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.relics.*;
 import duelistmod.rewards.*;
@@ -558,7 +559,7 @@ public class BoosterPackHelper
 	{
 		deckTyped = new ArrayList<AbstractCard>();
 		ArrayList<String> added = new ArrayList<String>();
-		for (AbstractCard c : DuelistMod.coloredCards)
+		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			for (CardTags t : decktags)
 			{
@@ -590,7 +591,7 @@ public class BoosterPackHelper
 		setupOrbsPack();
 		clearLists();
 		setupSpecialList();
-		Util.log("Resetting booster pack pools. Colored cards size: " + DuelistMod.coloredCards.size());
+		Util.log("Resetting booster pack pools. Colored cards size: " + TheDuelist.cardPool.group.size());
 		for (AbstractCard c : DuelistMod.myCards)
 		{
 			boolean okToAdd = true;
@@ -627,7 +628,7 @@ public class BoosterPackHelper
 			if (!c.rarity.equals(CardRarity.COMMON)) { fullPoolNonCommon.add(c.makeStatEquivalentCopy());  }
 		}
 		
-		for (AbstractCard c : DuelistMod.coloredCards)
+		for (AbstractCard c : TheDuelist.cardPool.group)
 		{
 			boolean okToAdd = true;
 			if (c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.SPECIAL)) { okToAdd = false; }

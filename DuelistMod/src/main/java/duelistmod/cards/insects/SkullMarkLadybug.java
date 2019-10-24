@@ -36,7 +36,7 @@ public class SkullMarkLadybug extends DuelistCard
     public SkullMarkLadybug() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.summons = this.baseSummons = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.INSECT);
