@@ -37,20 +37,11 @@ public class HalloweenManorPower extends DuelistPower
         this.amount = stacks;
 		updateDescription();
 	}
-	
-	@Override
-	public void atEndOfTurn(final boolean isPlayer) 
-	{
-		if (this.amount > 0) { this.amount--; updateDescription(); }
-		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
-	}
 
 	@Override
 	public void updateDescription()
 	{
-		if (this.amount < 0) { this.amount = 0; }
-		if (this.amount == 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
-		else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 	}
 
 	@Override
