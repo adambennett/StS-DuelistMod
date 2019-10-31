@@ -93,7 +93,7 @@ public class PredaplantChlamydosundew extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

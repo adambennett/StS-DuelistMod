@@ -38,17 +38,13 @@ public class MonsterOrb extends DuelistOrb
 	
 	public MonsterOrb()
 	{
+		this.setID(ID);
 		this.inversion = "TokenOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Monster.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
 		this.triggersOnSpellcasterPuzzle = false;
-		if (DuelistMod.challengeMode)
-		{
-			this.baseEvokeAmount = this.evokeAmount = 1;
-			this.basePassiveAmount = this.passiveAmount = 1;
-		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;

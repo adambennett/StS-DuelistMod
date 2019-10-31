@@ -249,6 +249,27 @@ public class CardPoolRelic extends CustomRelic implements ClickableRelic
 			{
 				poolDesc += " NL Base Game Cards";
 			}
+			
+			else if (DuelistMod.addedRedSet) 
+			{
+				poolDesc += " NL Ironclad Set";
+			}
+			
+			else if (DuelistMod.addedBlueSet) 
+			{
+				poolDesc += " NL Defect Set";
+			}
+			
+			else if (DuelistMod.addedGreenSet) 
+			{
+				poolDesc += " NL Silent Set";
+			}
+			
+			else if (DuelistMod.addedPurpleSet) 
+			{
+				poolDesc += " NL Watcher Set";
+			}
+			
 		}
 		
 

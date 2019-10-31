@@ -44,7 +44,7 @@ public class PotGenerosityPower extends DuelistPower
     @Override
     public void onSummon(DuelistCard c, int amt)
     {
-    	if (amt > 0) { DuelistCard.gainEnergy(1); }
+    	if (amt > 0) { DuelistCard.gainEnergy(amt); }
     }
 
     @Override

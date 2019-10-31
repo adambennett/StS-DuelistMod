@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 
 import basemod.abstracts.CustomReward;
 import duelistmod.helpers.*;
@@ -19,7 +20,7 @@ public class BoosterReward extends CustomReward
 	public int boosterID;
 	public int goldCost;
 	private boolean isBonus = false;
-	
+
 	// if id-200 > 0 then we had a bonus booster
 	public BoosterReward(int id, int goldCost)
 	{
@@ -31,6 +32,9 @@ public class BoosterReward extends CustomReward
 		this.boosterID = id;
 		this.goldCost = goldCost;
 		this.isBonus = id-200>0;
+		RewardItem gold = new RewardItem(69);
+		this.relicLink = gold;
+		gold.relicLink = this;
 		for (AbstractCard c : this.cards) 
 		{
 			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 
@@ -75,6 +79,9 @@ public class BoosterReward extends CustomReward
 		this.type = RewardType.CARD;
 		this.goldCost = goldCost;
 		this.isBonus = id-200>0;
+		RewardItem gold = new RewardItem(69);
+		this.relicLink = gold;
+		gold.relicLink = this;
 		for (AbstractCard c : this.cards) 
 		{
 			if ((c.type == AbstractCard.CardType.ATTACK) && (AbstractDungeon.player.hasRelic(MoltenEgg2.ID))) 
@@ -128,8 +135,8 @@ public class BoosterReward extends CustomReward
 	private boolean upgradeCheck()
 	{
 		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-		if (AbstractDungeon.ascensionLevel > 11) 
-		{ 
+		if (Util.getChallengeLevel() > -1)
+		{
 			int act = AbstractDungeon.actNum;
 			if (act <= 3)
 			{
@@ -141,7 +148,28 @@ public class BoosterReward extends CustomReward
 						if (upgradeRoll <= 8) { return true; }
 						else { return false; }
 					case 3:
-						if (upgradeRoll <= 16) { return true; }
+						if (upgradeRoll <= 14) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }
+		}
+		else if (AbstractDungeon.ascensionLevel > 11) 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						if (upgradeRoll <= 12) { return true; }
+						else { return false; }
+					case 3:
+						if (upgradeRoll <= 20) { return true; }
 						else { return false; }
 					default:
 						return false;
@@ -159,10 +187,10 @@ public class BoosterReward extends CustomReward
 					case 1:
 						return false;
 					case 2:
-						if (upgradeRoll <= 16) { return true; }
+						if (upgradeRoll <= 20) { return true; }
 						else { return false; }
 					case 3:
-						if (upgradeRoll <= 32) { return true; }
+						if (upgradeRoll <= 36) { return true; }
 						else { return false; }
 					default:
 						return false;
@@ -175,8 +203,8 @@ public class BoosterReward extends CustomReward
 	private boolean additionalUpgradeCheck()
 	{
 		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 105);
-		if (AbstractDungeon.ascensionLevel > 11) 
-		{ 
+		if (Util.getChallengeLevel() > -1)
+		{
 			int act = AbstractDungeon.actNum;
 			if (act <= 3)
 			{
@@ -195,6 +223,26 @@ public class BoosterReward extends CustomReward
 			}
 			else { return true; }
 		}
+		else if (AbstractDungeon.ascensionLevel > 11) 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						return false;
+					case 3:
+						if (upgradeRoll <= 15) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }
+		}
 		else 
 		{ 
 			int act = AbstractDungeon.actNum;
@@ -207,7 +255,7 @@ public class BoosterReward extends CustomReward
 					case 2:
 						return false;
 					case 3:
-						if (upgradeRoll <= 20) { return true; }
+						if (upgradeRoll <= 25) { return true; }
 						else { return false; }
 					default:
 						return false;

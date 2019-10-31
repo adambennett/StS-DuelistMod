@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.PuzzleHelper;
+import duelistmod.helpers.*;
 import duelistmod.orbs.LightMillenniumOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
@@ -44,7 +44,8 @@ public class PharaohBlessing extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	PuzzleHelper.runEffectForMillenniumOrb(1, 0);
+    	if (Util.getChallengeLevel() > -1) { PuzzleHelper.runChallengeEffect(1, 0); }
+    	else { PuzzleHelper.runSpecialEffect(1, 0, true); }    	
     	channel(new LightMillenniumOrb());
     }
 

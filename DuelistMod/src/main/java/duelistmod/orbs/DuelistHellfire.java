@@ -35,6 +35,7 @@ public class DuelistHellfire extends DuelistOrb
 	
 	public DuelistHellfire()
 	{
+		this.setID(ID);
 		this.inversion = "Splash";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Hellfire.png"));
 		this.name = orbString.NAME;

@@ -35,6 +35,7 @@ public class Mud extends DuelistOrb
 	
 	public Mud()
 	{
+		this.setID(ID);
 		this.inversion = "Earth";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Mud.png"));
 		this.name = orbString.NAME;

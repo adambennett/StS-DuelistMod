@@ -10,4 +10,7 @@ public class PotionRarityEnum
 	
 	@SpireEnum
 	public static AbstractPotion.PotionRarity DUELIST_EVENT;
+	
+	@SpireEnum
+	public static AbstractPotion.PotionRarity SUPER_RARE;
 }

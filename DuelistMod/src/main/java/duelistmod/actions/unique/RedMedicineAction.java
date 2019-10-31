@@ -46,7 +46,7 @@ public class RedMedicineAction extends AbstractGameAction
 	{
 		ArrayList<AbstractPower> toReturn = new ArrayList<AbstractPower>();
 		int turnNum = AbstractDungeon.cardRandomRng.random(lowTurn, highTurn); 
-		if (DuelistMod.challengeMode)
+		if (DuelistMod.playingChallenge)
 		{
 			toReturn.add(new StrengthPower(p, turnNum));
 			toReturn.add(new DexterityPower(p, 1));

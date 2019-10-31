@@ -25,9 +25,9 @@ public class BlackVeloci extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
     // /STAT DECLARATION/
@@ -110,7 +110,7 @@ public class BlackVeloci extends DuelistCard
     		else if (this.useBothCanUse)
     		{
     			// Check for monster zones challenge
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		// Check for energy and other normal game checks
@@ -261,7 +261,7 @@ public class BlackVeloci extends DuelistCard
     	    	boolean canUse = super.canUse(p, m); 
     	    	if (!canUse) { return false; }
 
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		if (p.hasPower(SummonPower.POWER_ID))

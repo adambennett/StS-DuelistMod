@@ -29,7 +29,7 @@ import duelistmod.cards.orbCards.*;
 import duelistmod.cards.statuses.*;
 import duelistmod.cards.tokens.*;
 import duelistmod.helpers.*;
-import duelistmod.helpers.crossover.InfiniteSpireHelper;
+import duelistmod.helpers.crossover.*;
 import duelistmod.helpers.poolhelpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
@@ -51,6 +51,7 @@ public class DuelistCardLibrary
 			UnlockTracker.unlockCard(c.getID());
 			DuelistMod.summonMap.put(c.originalName, c); 
 			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c); }
 		}
 		
@@ -58,6 +59,7 @@ public class DuelistCardLibrary
 		{
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
+			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 		}
 		
 		for (DuelistCard c : DuelistMod.myStatusCards)
@@ -72,6 +74,12 @@ public class DuelistCardLibrary
 			UnlockTracker.unlockCard(c.getID()); 
 		}
 		
+		DuelistCard cd = new CurseDarkness();
+		DuelistCard da = new DuelistAscender();
+		BaseMod.addCard(cd);
+		BaseMod.addCard(da);
+		UnlockTracker.unlockCard(cd.getID());
+		
 		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 		{
 			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
@@ -80,6 +88,60 @@ public class DuelistCardLibrary
 		if (DuelistMod.isInfiniteSpire)
 		{
 			for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
+			{
+				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			}
+		}
+		
+		if (DuelistMod.isAnimator)
+		{
+			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.originalName, c); }}
+			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
+		}
+		
+		if (DuelistMod.isClockwork)
+		{
+			for (AbstractCard c : ClockworkHelper.getAllCards())
+			{
+				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			}
+		}
+		
+		if (DuelistMod.isConspire)
+		{
+			for (AbstractCard c : ConspireHelper.getAllCards())
+			{
+				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			}
+		}
+		
+		if (DuelistMod.isDisciple)
+		{
+			for (AbstractCard c : DiscipleHelper.getAllCards())
+			{
+				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			}
+		}
+		
+		if (DuelistMod.isGatherer)
+		{
+			for (AbstractCard c : GathererHelper.getAllCards())
+			{
+				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			}
+		}
+		
+		if (DuelistMod.isHubris)
+		{
+			for (AbstractCard c : HubrisHelper.getAllCards())
+			{
+				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
+			}
+		}
+		
+		if (DuelistMod.isReplay)
+		{
+			for (AbstractCard c : ReplayHelper.getAllCards())
 			{
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			}
@@ -1161,7 +1223,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new CastleDragonSouls());
 		//DuelistMod.myCards.add(new CyberDragonHerz());
 		DuelistMod.myCards.add(new CyberDragonSieger());
-		//DuelistMod.myCards.add(new CyberEmergency());
+		DuelistMod.myCards.add(new CyberEmergency());
 		DuelistMod.myCards.add(new CyberLaserDragon());
 		//DuelistMod.myCards.add(new CyberRepairPlant());
 		DuelistMod.myCards.add(new DragonMastery());

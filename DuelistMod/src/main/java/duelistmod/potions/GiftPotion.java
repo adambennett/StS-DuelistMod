@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.RegenPower;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
+import duelistmod.variables.Colors;
 
-public class GiftPotion extends AbstractPotion {
+public class GiftPotion extends DuelistPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("GiftPotion");
@@ -21,8 +22,8 @@ public class GiftPotion extends AbstractPotion {
 
     public GiftPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.HEART, PotionColor.FRUIT);
-        
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.HEART, PotionEffect.OSCILLATE, Colors.GRAY, Colors.GRAY, Colors.PINK);
+    
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
         

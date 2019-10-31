@@ -25,14 +25,20 @@ public class Dragonscales extends DuelistPower
 	
 	public Dragonscales(int stacks) 
 	{ 
+		this(AbstractDungeon.player, AbstractDungeon.player, stacks);
+	}
+	
+	public Dragonscales(AbstractCreature owner, AbstractCreature source, int stacks) 
+	{ 
+		//super(owner, source, stacks);
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
+        this.source = source;
         this.amount = stacks;
         if (owner.hasPower(BoosterDragonPower.POWER_ID)) { this.amount += owner.getPower(BoosterDragonPower.POWER_ID).amount; }
 		if (AbstractDungeon.player.hasRelic(GoldenScale.ID)) { this.amount += 2; }

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -32,7 +31,6 @@ public class SpellShatteringArrow extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 2;
-    private double dynamicBlock = 0;
     // /STAT DECLARATION/
 
     public SpellShatteringArrow() {
@@ -65,7 +63,7 @@ public class SpellShatteringArrow extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	this.damage = this.baseDamage;
-    	if (DuelistMod.spellsThisCombat.size() > 0 && this.damage > 0) 
+    	if (DuelistMod.spellCombatCount > 0 && this.damage > 0) 
     	{ 
     		AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SMASH));
     	}
@@ -75,7 +73,7 @@ public class SpellShatteringArrow extends DuelistCard
     public void applyPowers() 
     {
         super.applyPowers();
-	    this.baseDamage = DuelistMod.spellsThisCombat.size();
+	    this.baseDamage = DuelistMod.spellCombatCount;
         this.damage = this.baseDamage;
         this.initializeDescription();
     }
@@ -84,7 +82,7 @@ public class SpellShatteringArrow extends DuelistCard
     public void calculateCardDamage(AbstractMonster mo) 
     {
         super.calculateCardDamage(mo);
-        this.baseDamage = DuelistMod.spellsThisCombat.size();
+        this.baseDamage = DuelistMod.spellCombatCount;
         this.damage = this.baseDamage;
         this.initializeDescription();
     }

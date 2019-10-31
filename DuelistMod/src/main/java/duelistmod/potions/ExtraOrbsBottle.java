@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.OrbPotion;
+import duelistmod.variables.Colors;
 
 public class ExtraOrbsBottle extends OrbPotion {
 
@@ -21,7 +22,8 @@ public class ExtraOrbsBottle extends OrbPotion {
 
     public ExtraOrbsBottle() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.FAIRY, PotionColor.SMOKE);
+    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.FAIRY, PotionEffect.OSCILLATE, Colors.ORANGE, Colors.DARK_PURPLE, Colors.BLUE);
+
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

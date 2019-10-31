@@ -14,9 +14,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.FrozenDebuff;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Tags;
-import eatyourbeets.powers.animator.BurningPower;
 
 public class BlueDuston extends DuelistCard 
 {
@@ -55,7 +54,7 @@ public class BlueDuston extends DuelistCard
     {
     	summon();
     	ArrayList<AbstractMonster> mons = getAllMons();
-    	for (AbstractMonster mon : mons) { if (mon.hasPower(BurningPower.POWER_ID)) { applyPower(new FrozenDebuff(mon, p), mon); }}
+    	for (AbstractMonster mon : mons) { if (mon.hasPower(BurningDebuff.POWER_ID)) { applyPower(new FrozenDebuff(mon, p), mon); }}
     }
 
     // Which card to return when making a copy of this card.
@@ -116,7 +115,7 @@ public class BlueDuston extends DuelistCard
     		else if (this.useBothCanUse)
     		{
     			// Check for monster zones challenge
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		// Check for energy and other normal game checks
@@ -267,7 +266,7 @@ public class BlueDuston extends DuelistCard
     	    	boolean canUse = super.canUse(p, m); 
     	    	if (!canUse) { return false; }
 
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		if (p.hasPower(SummonPower.POWER_ID))

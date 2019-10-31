@@ -132,7 +132,7 @@ public class ZombiePool
 
 		zombieDeck.fillPoolCards(zombieCards);		
 		zombieDeck.fillArchetypeCards(zombieCards);
-		DuelistMod.archetypeCards.addAll(zombieCards);
+		//DuelistMod.archetypeCards.addAll(zombieCards);
 		return zombieCards;
 	}
 	

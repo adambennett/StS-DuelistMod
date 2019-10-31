@@ -290,6 +290,10 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	public void onLoseArtifactExhaust() { }
 	
 	public void onObtainTrigger() { }
+	
+	public void onPostObtainTrigger() { }
+	
+	public void onPotionGetWhileInMasterDeck() { }
 	// =============== /VOID METHODS/ =======================================================================================================================================================
 	
 	
@@ -4246,6 +4250,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 				}
 			}
+			if (Util.getChallengeLevel() > 3 && Util.deckIs("Fiend Deck")) { for (AbstractCard c : p.discardPile.group) { if (c.costForTurn > -1) { c.setCostForTurn(c.costForTurn + 1); }}}
 			AbstractDungeon.actionManager.addToBottom(new FiendFetchAction(p.discardPile, DuelistMod.fiendDraw)); 
 		}
 	}
@@ -4254,6 +4259,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	{
 		if (tributingCard.hasTag(Tags.AQUA))
 		{
+			if (Util.getChallengeLevel() > 3 && Util.deckIs("Aqua Deck")) { if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) { return; }}
 			for (AbstractCard c : player().hand.group)
 			{
 				if (c instanceof DuelistCard)
@@ -4625,6 +4631,11 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (AbstractDungeon.player.hasPower(CardSafePower.POWER_ID)) { drawTag(AbstractDungeon.player.getPower(CardSafePower.POWER_ID).amount, Tags.ZOMBIE); }
 	}
 	
+	public void addToGraveyard()
+	{
+		TheDuelist.resummonPile.addToBottom(this.makeStatEquivalentCopy());
+	}
+	
 	public static void fullResummon(DuelistCard cardCopy, boolean upgradeResummon, AbstractMonster target, boolean superFast)
 	{
 		if (cardCopy.hasTag(Tags.EXEMPT)) { Util.log("You're attemtping to Resummon " + cardCopy.name + ", which is Exempt, so nothing will happen."); }
@@ -4653,6 +4664,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{
 						DuelistCard ref = cardCopy;
 						cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+						cardCopy.addToGraveyard();
 						if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 						if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 						if (upgradeResummon) { cardCopy.upgrade(); }
@@ -4675,6 +4687,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					// Copy card
 					DuelistCard ref = cardCopy;
 					cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+					cardCopy.addToGraveyard();
 					if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 					
 					// Remove tribute cost (unless card requires tributes to function, ex: Insect Queen)
@@ -4721,6 +4734,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					DuelistCard ref = cardCopy;
 					cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+					cardCopy.addToGraveyard();
 					if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 					if (upgradeResummon) { cardCopy.upgrade(); }
@@ -4741,6 +4755,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				if (AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
 				DuelistCard ref = cardCopy;
 				cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+				cardCopy.addToGraveyard();
 				if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 				if (upgradeResummon) { cardCopy.upgrade(); }
@@ -4786,6 +4801,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						if (amt > 0 && AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
 						DuelistCard ref = cardCopy;
 						cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+						cardCopy.addToGraveyard();
 						if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 						if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 						if (upgradeResummon) { cardCopy.upgrade(); }
@@ -4806,6 +4822,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					if (AbstractDungeon.player.hasOrb()) { for (AbstractOrb o : AbstractDungeon.player.orbs) { if (o instanceof Shadow) { Shadow shad = (Shadow)o; shad.triggerPassiveEffect(); }}}
 					DuelistCard ref = cardCopy;
 					cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+					cardCopy.addToGraveyard();
 					if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 					if (upgradeResummon) { cardCopy.upgrade(); }
@@ -4835,6 +4852,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				{
 					DuelistCard ref = cardCopy;
 					cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+					cardCopy.addToGraveyard();
 					if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 					if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 					if (upgradeResummon) { cardCopy.upgrade(); }
@@ -4853,6 +4871,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			{
 				DuelistCard ref = cardCopy;
 				cardCopy = (DuelistCard) cardCopy.makeStatEquivalentCopy();
+				cardCopy.addToGraveyard();
 				if (ref.fiendDeckDmgMod) { Util.log("Resummoned " + ref.name + " and it appears to be roided. DamageOriginal=" + ref.damage + ", DamageNew=" + cardCopy.damage); }
 				if (!cardCopy.tags.contains(Tags.TRIBUTE)) { cardCopy.misc = 52; }
 				if (upgradeResummon) { cardCopy.upgrade(); }
@@ -6221,6 +6240,74 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return res;
 	}
 	
+	public static String generateTypeCardDescForRelic(int magic, CardTags tag, DuelistCard card)
+	{
+		String res = "";
+		String tagString = tag.toString().toLowerCase();
+		String temp = tagString.substring(0, 1).toUpperCase();
+		tagString = temp + tagString.substring(1);
+		boolean useAN = false;
+		
+		if (tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama")) { useAN = true; }
+		if (card instanceof DarkCrusader)
+		{
+			if (magic != 1) { res = "Summon " + magic + " " + tagString + " Tokens"; }
+			else { res = "Summon " + magic + " " + tagString + " Token"; }
+		}
+		
+		if (card instanceof ShardGreed)
+		{
+			if (useAN)
+			{
+				if (magic < 2) { res = "At the start of turn, draw an " + tagString + " card."; }
+				else { res = "At the start of turn, draw " + magic + " " + tagString + " cards."; }
+			}
+			else
+			{
+				if (magic < 2) { res = "At the start of turn, draw a " + tagString + " card."; }
+				else { res = "At the start of turn, draw " + magic + " " + tagString + " cards."; }
+			}			
+		}
+		
+		if (card instanceof RockSunrise)
+		{
+			res = tagString + " cards deal an additional 25% damage for the rest of combat.";
+		}
+		
+		if (card instanceof RainbowJar)
+		{
+			res = Strings.configRainbowJarA + tagString + Strings.configRainbowJarB;
+		}
+		
+		if (card instanceof WingedKuriboh9 || card instanceof WingedKuriboh10)
+		{
+			if (magic < 2) { res = Strings.configWingedTextA + magic + " " + tagString + Strings.configGreedShardB; }
+			else { res = Strings.configWingedTextA + magic + " " + tagString + Strings.configWingedTextB; }
+		}
+		
+		if (card instanceof YamiForm)
+		{
+			 res = Strings.configYamiFormA + tagString + Strings.configYamiFormB;
+		}
+		
+		if (card instanceof RainbowGravity)
+		{
+			res = Strings.configRainbow + tagString + Strings.configRainbowB;
+		}
+		
+		if (card instanceof TributeToken)
+		{
+			res = "Tribute a monster with a monster of " + tagString + " type.";
+		}
+		
+		if (card instanceof SummonToken)
+		{
+			res = "Summon a random " + tagString + " monster.";
+		}
+		
+		return res;
+	}
+	
 	public String generateDynamicTypeCardDesc(int magic, CardTags tag)
 	{
 		String res = "";
@@ -6379,6 +6466,31 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				typeCards.add(new DynamicRelicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
 			}
 		}		
+		return typeCards;
+	}
+	
+	public static ArrayList<DuelistCard> generateTypeForRelic(int magic, boolean customDesc, DuelistCard typeFunctionCardToRun)
+	{
+		ArrayList<DuelistCard> typeCards = new ArrayList<DuelistCard>();
+		for (CardTags t : DuelistMod.monsterTypes)
+		{
+			if (customDesc) { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeCardDescForRelic(magic, t, typeFunctionCardToRun), t, typeFunctionCardToRun, magic)); }
+			else { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), DuelistMod.typeCardMap_DESC.get(t), t, typeFunctionCardToRun, magic)); }
+		}
+		
+		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
+		extraTags.add(Tags.ROSE);		
+		boolean isTok = typeFunctionCardToRun instanceof TributeToken || typeFunctionCardToRun instanceof SummonToken;
+		if (!isTok) { extraTags.add(Tags.MEGATYPED); }
+		extraTags.add(Tags.OJAMA);	
+		extraTags.add(Tags.GIANT);
+		extraTags.add(Tags.MAGNET);
+		for (CardTags t : extraTags)
+		{
+			if (customDesc) { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeCardDescForRelic(magic, t, typeFunctionCardToRun), t, typeFunctionCardToRun, magic)); }
+			else { typeCards.add(new DynamicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), DuelistMod.typeCardMap_DESC.get(t), t, typeFunctionCardToRun, magic)); }
+			
+		}
 		return typeCards;
 	}
 	

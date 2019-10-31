@@ -38,6 +38,7 @@ public class Blood extends DuelistOrb
 	
 	public Blood()
 	{
+		this.setID(ID);
 		this.inversion = "Water";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Blood.png"));
 		this.name = orbString.NAME;

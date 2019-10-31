@@ -33,6 +33,7 @@ public class ReducerOrb extends DuelistOrb
 
 	public ReducerOrb()
 	{
+		this.setID(ID);
 		this.inversion = "Buffer";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Reducer.png"));
 		this.name = orbString.NAME;

@@ -8,10 +8,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.*;
+import duelistmod.abstracts.*;
+import duelistmod.cards.SpiritHarp;
+import duelistmod.variables.Colors;
 
-public class HarpPotion extends AbstractPotion {
+public class HarpPotion extends DuelistPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("HarpPotion");
@@ -22,8 +23,8 @@ public class HarpPotion extends AbstractPotion {
 
     public HarpPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.BOLT, PotionColor.ENERGY);
-        
+    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.BOLT, PotionEffect.NONE, Colors.WHITE, Colors.RED, Colors.BLACK);
+
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
         

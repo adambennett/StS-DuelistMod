@@ -39,6 +39,7 @@ public class DragonOrb extends DuelistOrb
 	
 	public DragonOrb()
 	{
+		this.setID(ID);
 		this.inversion = "DragonOrb+";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Dragon.png"));
 		this.name = orbString.NAME;

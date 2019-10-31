@@ -6,6 +6,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 
 public abstract class DuelistPower extends TwoAmountPower 
 {
+	/*public DuelistPower(AbstractCreature owner, AbstractCreature source, int amt)
+	{
+		
+	}*/
+	
 	public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
 	
 	public void onSummon(DuelistCard summoned, int amountSummoned) { }

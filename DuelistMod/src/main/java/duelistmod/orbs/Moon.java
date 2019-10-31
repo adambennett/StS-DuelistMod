@@ -38,6 +38,7 @@ public class Moon extends DuelistOrb
 	
 	public Moon()
 	{
+		this.setID(ID);
 		this.inversion = "Sun";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Moon.png"));
 		this.name = orbString.NAME;

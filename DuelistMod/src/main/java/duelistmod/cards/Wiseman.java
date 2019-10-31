@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,8 +8,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.curses.CurseDarkness;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -39,7 +39,13 @@ public class Wiseman extends DuelistCard
         this.tags.add(Tags.NEVER_GENERATE);
         this.originalName = this.name;
         this.purgeOnUse = true;
+        this.cardsToPreview = new CurseDarkness();
         this.makeFleeting();
+    }
+    
+    public void onObtainTrigger() 
+    {
+    	AbstractDungeon.player.masterDeck.group.add(new CurseDarkness());
     }
 
     // Actions the card should do.
@@ -51,13 +57,13 @@ public class Wiseman extends DuelistCard
     	{
     		player().potionSlots += 1;
         	AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));	
-        	DuelistMod.gotWisemanHaunted = true;
+        	/*DuelistMod.gotWisemanHaunted = true;
         	try 
 			{
 				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig", DuelistMod.duelistDefaults);
 				config.setBool(DuelistMod.PROP_WISEMAN, DuelistMod.gotWisemanHaunted);
 				config.save();
-			} catch (Exception e) { e.printStackTrace(); }
+			} catch (Exception e) { e.printStackTrace(); }*/
     	}
     }
     

@@ -49,8 +49,8 @@ public class RemovePotionsPatch
 				// Standard/Increment/Creator/Exodia/Ojama - Ghost in a Jar
 				if (deck.equals("Standard Deck") || deck.equals("Increment Deck") || deck.equals("Creator Deck") || deck.equals("Exodia Deck") || deck.equals("Ojama Deck")) { __result.add("GhostInAJar");	}
 				
-				// Machine/Dragon/Increment/Standard - Cunning Potion
-				if (deck.equals("Machine Deck") || deck.equals("Dragon Deck") || deck.equals("Increment Deck") || deck.equals("Standard Deck")) { __result.add("CunningPotion"); }	
+				// Machine/Increment/Standard - Cunning Potion
+				if (deck.equals("Machine Deck") || deck.equals("Increment Deck") || deck.equals("Standard Deck")) { __result.add("CunningPotion"); }	
 				
 				// Spellcaster/Standard/Fiend/Zombie - Essence of Darkness
 				if (deck.equals("Spellcaster Deck") || deck.equals("Standard Deck") || deck.equals("Fiend Deck") || deck.equals("Zombie Deck")) { __result.add("EssenceOfDarkness"); }

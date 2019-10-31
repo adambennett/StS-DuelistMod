@@ -44,8 +44,11 @@ public class MillenniumPuzzle extends CustomRelic
 		}
 		PuzzleHelper.atBattleStartHelper(summons, extra);
 		getDeckDesc();
-		PuzzleHelper.spellcasterChannelAction();
-		PuzzleHelper.zombieChannel();
+		if (Util.getChallengeLevel() < 7) 
+		{ 
+			PuzzleHelper.spellcasterChannelAction();
+			PuzzleHelper.zombieChannel();
+		}		
 	}
 	
 	@Override
@@ -98,8 +101,11 @@ public class MillenniumPuzzle extends CustomRelic
 	{
 		if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck"))
 		{
-			DuelistCard.drawTag(1, Tags.EXODIA_HEAD);
-			this.flash();
+			if (Util.getChallengeLevel() < 1 || AbstractDungeon.cardRandomRng.random(1, 2) == 1)
+			{
+				DuelistCard.drawTag(1, Tags.EXODIA_HEAD);
+				this.flash();
+			}
 		}
 	}
 	
@@ -137,15 +143,8 @@ public class MillenniumPuzzle extends CustomRelic
 	{
 		String localdesc = "empty";
 		int deck = DuelistMod.deckIndex;
-		if (DuelistMod.challengeMode)
+		switch (deck)
 		{
-			localdesc = DESCRIPTIONS[1];
-		}
-		else
-		{
-			switch (deck)
-			{
-			
 			//Standard Deck
 			case 0:
 				localdesc = DESCRIPTIONS[2];
@@ -154,6 +153,7 @@ public class MillenniumPuzzle extends CustomRelic
 			case 1:
 				int effectsToChoose = 2;
 				if (AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) { effectsToChoose++; }
+				if (Util.getChallengeLevel() > 0) { effectsToChoose--; }
 				localdesc = DESCRIPTIONS[3] + effectsToChoose + DESCRIPTIONS[4]; 
 				break;
 	
@@ -306,7 +306,6 @@ public class MillenniumPuzzle extends CustomRelic
 			default:
 				localdesc = "Failed to find a deck string.";
 				break;
-			}
 		}
 		setDescription(localdesc);
 	}

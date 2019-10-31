@@ -36,6 +36,7 @@ public class Surge extends DuelistOrb
 	
 	public Surge()
 	{
+		this.setID(ID);
 		this.inversion = "Metal";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Surge.png"));
 		this.name = orbString.NAME;

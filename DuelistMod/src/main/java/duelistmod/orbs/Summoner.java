@@ -33,16 +33,12 @@ public class Summoner extends DuelistOrb
 
 	public Summoner(int passive)
 	{
+		this.setID(ID);
 		this.inversion = "Consumer";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Summoner.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
-		if (DuelistMod.challengeMode)
-		{
-			this.baseEvokeAmount = this.evokeAmount = 1;
-			this.basePassiveAmount = this.passiveAmount = 1;
-		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -79,7 +75,7 @@ public class Summoner extends DuelistOrb
 		{
 			AbstractPlayer p = AbstractDungeon.player;
 			if (DuelistCard.getSummons(p) < DuelistCard.getMaxSummons(p)) { AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f)); }
-			if (!DuelistMod.challengeMode) { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Spellcaster Token", false); }
+			if (!DuelistMod.playingChallenge) { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Spellcaster Token", false); }
 			else { DuelistCard.powerSummon(AbstractDungeon.player, this.passiveAmount, "Summoner Token", false); }
 		}
 	}

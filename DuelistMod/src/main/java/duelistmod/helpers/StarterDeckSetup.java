@@ -19,7 +19,7 @@ public class StarterDeckSetup {
 	// STARTER DECK METHODS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static void refreshPoolOptions(String deckName)
 	{
-		DuelistMod.archetypeCards.clear();
+		//DuelistMod.archetypeCards.clear();
 		DuelistMod.coloredCards.clear();
 		DuelistMod.duelColorlessCards.clear();
 		for (StarterDeck s : DuelistMod.starterDeckList)

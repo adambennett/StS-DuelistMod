@@ -90,7 +90,7 @@ public class RandomOrbHelperCon
 	public static void channelRandomOrb()
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
-		if (DuelistMod.challengeMode)
+		if (DuelistMod.playingChallenge)
 		{
 			orbs.add(new Lightning());
 			orbs.add(new Dark());
@@ -167,7 +167,7 @@ public class RandomOrbHelperCon
 	public static void channelRandomOrbNoGlassOrGate()
 	{
 		ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
-		if (DuelistMod.challengeMode)
+		if (DuelistMod.playingChallenge)
 		{
 			orbs.add(new Lightning());
 			orbs.add(new Dark());

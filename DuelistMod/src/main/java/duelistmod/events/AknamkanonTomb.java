@@ -33,7 +33,7 @@ public class AknamkanonTomb extends DuelistEvent {
         this.noCardsInRewards = true;
         if (AbstractDungeon.player.hasRelic(MillenniumPuzzle.ID) || AbstractDungeon.player.hasRelic(MillenniumPuzzleShared.ID))
         {
-        	if (AbstractDungeon.ascensionLevel >= 15)
+        	if (AbstractDungeon.ascensionLevel >= 15 || Util.getChallengeLevel() > -1)
         	{
         		if (AbstractDungeon.player.potionSlots < 9) { imageEventText.setDialogOption(OPTIONS[7]); }
             	else { imageEventText.setDialogOption(OPTIONS[6], true); }
@@ -67,7 +67,7 @@ public class AknamkanonTomb extends DuelistEvent {
     @Override
     protected void buttonEffect(int i) 
     {
-    	boolean a15 = AbstractDungeon.ascensionLevel >= 15;
+    	boolean a15 = AbstractDungeon.ascensionLevel >= 15 || Util.getChallengeLevel() > -1;
         switch (screenNum) 
         {
             case 0:
@@ -131,7 +131,7 @@ public class AknamkanonTomb extends DuelistEvent {
 	            			AbstractRelic r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1));
 	            			while (AbstractDungeon.player.hasRelic(r.relicId) || !r.canSpawn()) { r = DuelistMod.duelistRelicsForTombEvent.get(AbstractDungeon.eventRng.random(DuelistMod.duelistRelicsForTombEvent.size() - 1)); }
 	            			AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), r);
-	            			Util.removeRelicFromPools(r);
+	            			Util.removeRelicFromPools(r.relicId);
 	            			if (!a15) { AbstractDungeon.player.damage(new DamageInfo(null, 6, DamageInfo.DamageType.HP_LOSS)); }
 	            			else { AbstractDungeon.player.damage(new DamageInfo(null, 8, DamageInfo.DamageType.HP_LOSS)); }
 	            		}

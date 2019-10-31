@@ -38,7 +38,6 @@ public class DuelistChangeStanceAction extends AbstractGameAction
                 }
                 oldStance.onExitStance();
                 (AbstractDungeon.player.stance = newStance).onEnterStance();
-                AbstractDungeon.actionManager.stancesSwitchedThisTurn.add(newStance);
                 AbstractDungeon.player.switchedStance();
                 for (final AbstractCard c : AbstractDungeon.player.discardPile.group) {
                     c.triggerExhaustedCardsOnStanceChange(newStance);

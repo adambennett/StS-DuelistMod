@@ -1,0 +1,411 @@
+[
+    {
+	  "PROPERNAME": "召唤",
+      "NAMES": [
+        "召唤",
+        "Summon"
+      ],
+      "DESCRIPTION": "计数召唤在场的怪兽。基础最大召唤数为 #b5。"
+    },
+	{
+		"PROPERNAME": "怪兽珠",
+		"NAMES": [
+		  "怪兽珠",
+		  "MonsterOrb"
+		],
+		"DESCRIPTION": " #y被动: 回合开始时，将 #y随机 怪兽牌增加到手牌中。 #y激活同样将 #y随机 怪兽牌增加到手牌中。"
+	},
+    {
+	  "PROPERNAME": "特殊召唤",
+      "NAMES": [
+        "特殊召唤",
+		"Resummon"
+      ],     
+      "DESCRIPTION": "某些牌可以特殊召唤怪兽（比如死者苏生）。当特殊召唤时，会重新打出怪兽效果而不消耗 #y祭品。一些怪兽在特殊召唤时还会有额外特殊效果。"
+    },
+    {
+	  "PROPERNAME": "祭品",
+      "NAMES": [
+        "祭品",
+		"Tribute"
+      ],      
+      "DESCRIPTION": "消耗 X #y召唤 怪兽。除非你有足够的 #y召唤数 作 #y祭品，不然无法打出消耗 #y祭品 的牌。 "
+    },
+    {
+	  "PROPERNAME": "增殖",
+      "NAMES": [
+        "增殖",
+		"Increment"
+      ],      
+      "DESCRIPTION": "增殖的数值能增加最大 #y召唤数。"
+    },
+    {
+	 "PROPERNAME": "增益士",
+      "NAMES": [
+        "增益士",
+		"Buffer"
+      ],     
+      "DESCRIPTION": " #y被动: 回合开始时，有几率提升自己所有增益效果的 #b1 层。如果仅召唤 #y魔法师族 在场，将有更高几率。 NL #y激发: 获得1层随机 #y增益效果。"
+    },
+    {
+	  "PROPERNAME": "召唤士",
+      "NAMES": [
+        "召唤士",
+		"Summoner"
+      ],      
+      "DESCRIPTION": " #y被动: 回合结束时， #y召唤 魔法师衍生物。 #y激发: 增加最大 #y召唤数。"
+    },
+{
+	  "PROPERNAME": "简化",
+      "NAMES": [
+        "简化",
+		"Reducer"
+      ],      
+      "DESCRIPTION": " #y被动: 回合开始时， 增加此充能球的激发数值。 #y激发: 将随机手牌耗能变为0。"
+    },
+	{
+		"PROPERNAME": "龙珠",
+		"NAMES": [
+		  "龙珠",
+		  "DragonOrb"
+		],
+      "DESCRIPTION": " #y被动: 回合开始时，将 #y随机 #y龙族 增加到手牌中。 #y激发: 将手牌中随机 #y龙族 耗能变为0。"
+	},
+    {
+	  "PROPERNAME": "康",
+      "NAMES": [
+        "康",
+		"Overflow"
+      ],      
+      "DESCRIPTION": "当1张带有 #y康 的牌在回合结束时留在手牌中，触发1个效果。这个效果有触发次数限制。"
+    },
+     {
+	  "PROPERNAME": "卡通",
+      "NAMES": [
+        "卡通",
+		"Toon"
+      ],      
+      "DESCRIPTION": "只有在拥有 #y卡通世界 效果时才能打出。每当1个卡通怪兽作为卡通怪兽祭品时对所有敌人造成 #b5 点伤害。"
+    },
+     {
+	  "PROPERNAME": "磁铁",
+      "NAMES": [
+        "磁铁",
+		"Magnet"
+      ],      
+      "DESCRIPTION": "与 #y磁石战士 有关的指示物。 #y磁铁 本身没有效果。"
+    },
+    {
+	 "PROPERNAME": "扰乱狂",
+      "NAMES": [
+        "扰乱狂",
+		"Ojamania"
+      ],      
+      "DESCRIPTION": "将 #b2 张 #y随机 牌增加到手牌中，本回合耗能为0.给予 #b1 个随机 #y增益效果。给予1个敌人 #b2 个随机 #y负面效果。"
+    },
+     {
+	  "PROPERNAME": "龙族",
+      "NAMES": [
+        "龙族",
+		"Dragon"
+      ],      
+      "DESCRIPTION": "每当1个 #y龙族 作为 #y龙族  #y祭品 时，获得 #b 1点 #y力量。"
+    },
+    {
+	  "PROPERNAME": "魔法师族",
+      "NAMES": [
+        "魔法师族",
+        "Spellcaster"
+      ],      
+      "DESCRIPTION": "如果仅召唤 #y魔法师族 在场，每当攻击时获得 #b5 点格挡。至少召唤过1只 #y魔法师族 才能触发这个效果。"
+    },
+     {
+	  "PROPERNAME": "昆虫族",
+      "NAMES": [
+        "昆虫族",
+		"Insect"
+      ],     
+      "DESCRIPTION": "每当1只 #y昆虫族 作为 #y昆虫族 #y祭品 时，给予所有敌人 #b3 层 #y中毒。"
+    },
+     {
+	  "PROPERNAME": "植物族",
+      "NAMES": [
+        "植物族",
+		"Plant"
+      ],      
+      "DESCRIPTION": "每当1只植物族作为植物族祭品时，给予所有敌人 #b1 层 #y缠绕。"
+    },
+     {
+	  "PROPERNAME": "捕食植物",
+      "NAMES": [
+        "捕食植物",
+		"Predaplant"
+      ],      
+      "DESCRIPTION": "每当1只 #y捕食植物 作为 #y植物族 #y祭品 时，给予所有敌人 #b1 层 #y缠绕。 NL 每当1只 #y捕食植物 作为 #y捕食植物 #y祭品 时，给予所有敌人 #b1 层 #y缠绕 并获得 #b1 点 #y荆棘。 NL #y捕食植物 规则上当作 #y植物族。 "
+    },
+  {
+   "PROPERNAME": "地属性",
+    "NAMES": [
+      "地属性",
+	  "Earth"
+    ],    
+    "DESCRIPTION": " #y被动: 回合开始时，将 #y随机 #y魔法卡 增加到手牌中。 #y激活同样将 #y随机 #y魔法卡 增加到手牌中。"
+  },
+  {
+   "PROPERNAME": "空气",
+    "NAMES": [
+      "空气",
+	  "Air"
+    ],    
+    "DESCRIPTION": " #y被动: 回合开始时， 有几率 #y生成 1个随机 #y充能球。如果仅召唤 #y龙族 在场，将有更高几率。 #y激发: 获得 #b1 个 #y充能球 栏位。不受 #y集中 影响。"
+  },
+  {
+    "PROPERNAME": "炎属性",
+    "NAMES": [
+      "炎属性",
+	  "Fire"
+    ],   
+    "DESCRIPTION": " #y被动: 每当抽到1张 #y龙族，本回合减少其 #y祭品 消耗。 #y激发: 本场战斗减少手牌，弃牌堆和消耗牌堆中的 #y龙族 的 #y祭品 消耗"
+  },
+  {
+   "PROPERNAME": "故障",
+    "NAMES": [
+      "故障",
+	  "Glitch"
+    ],    
+    "DESCRIPTION": " #y被动: 回合开始时， 触发随机效果。 #y激发同样触发随机效果。如果仅召唤 #y机械族 在场，触发效果2次。"
+  },
+  {
+   "PROPERNAME": "影子",
+    "NAMES": [
+      "影子",
+	  "Shadow"
+    ],    
+    "DESCRIPTION": " #y被动: 回合开始时，有几率 #y召唤 [ #FF5252]影子 [ #FF5252]衍生物。如果仅召唤 #y不死族 在场，将有更高几率。 #y激发:对随机敌人从弃牌堆中 #y特殊召唤 随机怪兽。"
+  },
+  {
+    "PROPERNAME": "飞溅",
+    "NAMES": [
+      "飞溅",
+	  "Splash"
+    ],   
+    "DESCRIPTION": " #y被动: 每当 抽到1张 #y水族，本回合减少其 #y祭品 消耗。 #y激发: 本场战斗提升所有 #y水族 召唤数。"
+  },
+  {
+    "PROPERNAME": "不死族",
+    "NAMES": [
+      "不死族",
+	  "Zombie"
+    ],   
+    "DESCRIPTION": "每当 #y特殊召唤 1只 #y不死族，获得 #b10 点格挡。"
+  },
+  {
+    "PROPERNAME": "恶魔族",
+    "NAMES": [
+      "恶魔族",
+	  "Fiend"
+    ],   
+    "DESCRIPTION": "每当1只 #y恶魔族 作为 #y恶魔族 #y祭品 时，从弃牌堆将 #b1张卡放入到手牌中。"
+  },
+  {
+    "PROPERNAME": "水族",
+    "NAMES": [
+      "水族",
+	  "Aqua"
+    ],   
+    "DESCRIPTION": "每当1只 #y水族 作为 #y水族 #y祭品 时，本回合提升手牌中所有怪兽的召唤数 #b1。"
+  },
+  {
+    "PROPERNAME": "随机",
+    "NAMES": [
+      "随机",
+	  "Randomized"
+    ],   
+    "DESCRIPTION": " #y随机 关键字会使牌拥有随机 #y耗能，随机 #y召唤数 与随机 #y祭品数，随机会 #y消耗， #y虚无 与 #y升级。"
+  },
+  {
+    "PROPERNAME": "固守",
+    "NAMES": [
+      "固守",
+	  "Exempt"
+    ],   
+    "DESCRIPTION": "无法被 #y特殊召唤。"
+  },
+  {
+    "PROPERNAME": "炎丸",
+    "NAMES": [
+      "炎丸",
+	  "Blaze"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时， 本场战斗每召唤过1只怪兽，有几率回复 #b1生命。如果仅召唤 #y魔法师族 在场，将有更高几率。 #y激发: 本场战斗每召唤过1只怪兽，回复 #b3 生命。"
+  },
+  {
+    "PROPERNAME": "消费",
+    "NAMES": [
+      "消费",
+	  "Consumer"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时， #y祭品 #b2 ，获得临时生命，数值等于祭品总耗能数乘祭品数。 #y激发: #y祭品 所有召唤怪兽, 获得1个随机 #y增益效果，层数等于祭品数。"
+  },
+  {
+    "PROPERNAME": "零件",
+    "NAMES": [
+      "零件",
+	  "Gadget"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时，将 #y随机 #y陷阱卡 增加到手牌中。 #y激发: 对随机敌人打出随机1张本场战斗中打出过的 #y陷阱卡。"
+  },
+  {
+    "PROPERNAME": "熔岩",
+    "NAMES": [
+      "熔岩",
+	  "Lava"
+    ],   
+    "DESCRIPTION": " #y每当抽到1张 #y龙族，本场战斗减少其 #y祭品 消耗 #b1 点。 #y激发: 对随即敌人造成1次随机数值伤害。 激发数值越高，造成伤害越高。"
+  },
+  {
+		"PROPERNAME": "千年",
+		"NAMES": [
+		  "千年",
+		  "MillenniumOrb"
+		],
+		"DESCRIPTION": " #y被动: 回合开始时，发动 #y千年 #y积木。 #y激发:从卡池中选择X张 #y随机 牌增加到手牌中。此激发效果每3回合触发。"
+	},
+  {
+    "PROPERNAME": "金属",
+    "NAMES": [
+      "金属",
+	  "Metal"
+    ],   
+    "DESCRIPTION": " #yOrb: 被动: 回合结束时，获得 #y点格挡，数值等于本场战斗打出过的 #y魔法卡 数量额外加 #b1。 #y激发: 获得 #b2 层 #y金属化。"
+  },
+  {
+    "PROPERNAME": "泥浆",
+    "NAMES": [
+      "泥浆",
+	  "Mud"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时，将随机 #y植物族 或 #y昆虫族 增加到手牌中。 #y激发: 本场战斗提升所有 #y植物族 和 #y昆虫族 召唤数。"
+  },
+  {
+    "PROPERNAME": "霞雾",
+    "NAMES": [
+      "霞雾",
+	  "Mist"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时，将 #y随机 #y水族 增加到手牌和消耗牌堆中。 #y激发: #y祭品 所有 #y水族 怪兽，每有1只祭品，随机 #y召唤 1只随机怪兽。 获得1个随机 #y增益效果，层数等于 #y水族 怪兽 #y祭品数。"
+  },
+  {
+    "PROPERNAME": "沙石",
+    "NAMES": [
+      "沙石",
+	  "Sand"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时，给予随机敌人 #b1 层 #y缓慢。 NL #y激发: 给予所有敌人 #b4 层 #y缓慢。"
+  },
+  {
+    "PROPERNAME": "烟雾",
+    "NAMES": [
+      "烟雾",
+	  "Smoke"
+    ],   
+    "DESCRIPTION": " #y被动: 每当抽到1只怪兽，本回合提升其 #y祭品 消耗 #b2 点，并提升 #b6 点伤害。 #y激发: #y增殖 #b3 。"
+  },
+  {
+    "PROPERNAME": "风暴",
+    "NAMES": [
+      "风暴",
+	  "Storm"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时， 将 #b1 张 #y随机 能力牌增加到手牌中。 #y激发: 如果有空的充能球栏位，失去1个充能球栏位并减少抽牌堆中所有怪兽的 #y祭品 消耗 #b1 点。 "
+  },
+  {
+    "PROPERNAME": "重置",
+    "NAMES": [
+      "重置",
+	  "Invert"
+    ],   
+    "DESCRIPTION": " #y重置 具有与 #y激发 相同效果，同时将额外 #y生成 1个完全不同的充能球。"
+  },
+  {
+    "PROPERNAME": "自然",
+    "NAMES": [
+      "自然",
+	  "Naturia"
+    ],   
+    "DESCRIPTION": "每 #y召唤 在场1只 #y自然 怪兽，回合结束时对所有敌人造成 #b1 点伤害。"
+  },
+  {
+    "PROPERNAME": "超重",
+    "NAMES": [
+      "超重",
+	  "Superheavy"
+    ],   
+    "DESCRIPTION": "每当1只 #y超重 武者作为 #y超重 武者 #y祭品 时，获得 #b1 点 #y敏捷。"
+  },
+  {
+    "PROPERNAME": "机械族",
+    "NAMES": [
+      "机械族",
+	  "Machine"
+    ],   
+    "DESCRIPTION": "每当1只 #y机械族 作为 #y机械族 #y祭品 时，获得 #b1 层 #y人工制品。"
+  },
+  {
+    "PROPERNAME": "暗属性",
+    "NAMES": [
+      "暗属性",
+	  "Black"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时， 有几率给予随机敌人 #b1 个随机负面效果。如果仅召唤 #y恶魔族 在场，将有更高几率。 #y激发: 将1张 #y随机 #y恶魔族 增加到手牌中。"
+  },
+  {
+    "PROPERNAME": "遗言",
+    "NAMES": [
+      "遗言",
+	  "Immortal"
+    ],   
+    "DESCRIPTION": "如果1张 #y遗言卡 在弃牌堆中，回合开始时获得 [E]。"
+  },
+  {
+    "PROPERNAME": "轮盘",
+    "NAMES": [
+      "轮盘",
+	  "Roulette"
+    ],   
+    "DESCRIPTION": "50% 的机会触发效果。"
+  },
+  {
+    "PROPERNAME": "金属化",
+    "NAMES": [
+      "金属化",
+	  "Metallicize"
+    ],   
+    "DESCRIPTION": "回合结束时，获得相应层数的 #y格挡。"
+  },
+  {
+    "PROPERNAME": "海龙族",
+    "NAMES": [
+      "海龙族",
+	  "Tidal"
+    ],   
+    "DESCRIPTION": "打出时，这张卡的随机1个效果提升 #b1点数值。"
+  },
+  {
+    "PROPER_NAME": "魔导书",
+    "NAMES": [
+      "魔导书",
+	  "spellbook",
+	  "spellbooks",
+	  "Spellbooks"
+    ],   
+    "DESCRIPTION": "能让#y魔法师族 额外触发#y祭品 效果的能力牌。一次最多同时触发一个#y魔导书 效果。"
+  },
+  {
+    "PROPERNAME": "门",
+    "NAMES": [
+      "门"
+    ],   
+    "DESCRIPTION": " #y被动: 回合开始时， 对所有敌人造成伤害并获得格挡与 [E] 。 #y激发: #y召唤随机 #y守护者。 NL 不受 #y集中 影响。"
+  }
+]

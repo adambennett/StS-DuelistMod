@@ -33,7 +33,7 @@ public class MillenniumItems extends DuelistEvent {
         super(NAME, DESCRIPTIONS[0], IMG);
         this.noCardsInRewards = true;
         imageEventText.setDialogOption(OPTIONS[0]);
-        imageEventText.setDialogOption(OPTIONS[1]);
+        imageEventText.setDialogOption(OPTIONS[1], Util.getChallengeLevel() > -1);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MillenniumItems extends DuelistEvent {
                         		 AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();
                                  AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(b, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                         		 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2), (AbstractRelic) randMill);
-                        		 Util.removeRelicFromPools((AbstractRelic) randMill);
+                        		 Util.removeRelicFromPools(((AbstractRelic) randMill).relicId);
                         		 nameOfItem = ((AbstractRelic)randMill).name;
                         	}
                         	

@@ -38,6 +38,7 @@ public class FireOrb extends DuelistOrb
 	
 	public FireOrb()
 	{
+		this.setID(ID);
 		this.inversion = "Water";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/FireOrb.png"));
 		this.name = orbString.NAME;

@@ -1,6 +1,7 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
@@ -35,12 +36,24 @@ public class MillenniumRing extends CustomRelic {
 	public void onEquip()
 	{
 		DuelistMod.defaultMaxSummons+= 3;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
-	
+
 	@Override
 	public void onUnequip()
 	{
 		DuelistMod.defaultMaxSummons-= 3;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setInt("defaultMaxSummons", DuelistMod.defaultMaxSummons);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 
 	// Description

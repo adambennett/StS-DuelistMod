@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
@@ -21,8 +20,8 @@ public class CardPoolOptionsRelic extends CustomRelic implements ClickableRelic
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolOptionsRelic");
-	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolAddRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolRelic_Outline.png");
+	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolOptionsRelic.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolOptionsRelic_Outline.png");
 	public CardGroup pool;
 	private DuelistCardSelectScreen dcss;
 
@@ -66,6 +65,24 @@ public class CardPoolOptionsRelic extends CustomRelic implements ClickableRelic
 		types.add(new CardPoolOptionToon());
 		types.add(new CardPoolOptionWarrior());
 		types.add(new CardPoolOptionZombie());
+		
+		if (DuelistMod.baseGameCards)
+		{
+			types.add(new CardPoolOptionRed());
+			types.add(new CardPoolOptionBlue());
+			types.add(new CardPoolOptionGreen());
+			types.add(new CardPoolOptionPurple());
+			types.add(new CardPoolOptionColorless());
+		}
+		
+		if (DuelistMod.isInfiniteSpire) { types.add(new CardPoolOptionBlack()); }
+		if (DuelistMod.isAnimator) { types.add(new CardPoolOptionAnimator()); }
+		if (DuelistMod.isClockwork) { types.add(new CardPoolOptionClockwork()); }	
+		if (DuelistMod.isConspire) { types.add(new CardPoolOptionConspire()); }
+		if (DuelistMod.isDisciple) { types.add(new CardPoolOptionDisciple()); }
+		if (DuelistMod.isGatherer) { types.add(new CardPoolOptionGatherer()); }
+		if (DuelistMod.isHubris) { types.add(new CardPoolOptionHubris()); }
+		if (DuelistMod.isReplay) { types.add(new CardPoolOptionReplay()); }
 		Collections.sort(types);
 		for (CardPoolOptionTypeCard c : types) { if (c.canAdd) { cards.add(c); }}
 		
@@ -121,7 +138,7 @@ public class CardPoolOptionsRelic extends CustomRelic implements ClickableRelic
 
 			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
 			this.dcss.selectedCards.clear();
-			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 		}
 	}
 	
@@ -152,6 +169,7 @@ public class CardPoolOptionsRelic extends CustomRelic implements ClickableRelic
 		AbstractDungeon.gridSelectScreen = this.dcss;
 		DuelistMod.selectingCardPoolOptions = true;
 		setupSaveSlots();
+		DuelistMod.wasViewingSelectScreen = true;
 		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, 1, "Select an Option");		
 	}
 }

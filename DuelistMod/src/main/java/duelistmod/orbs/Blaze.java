@@ -35,6 +35,7 @@ public class Blaze extends DuelistOrb
 	
 	public Blaze()
 	{
+		this.setID(ID);
 		this.inversion = "Mist";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Blaze.png"));
 		this.name = orbString.NAME;

@@ -35,14 +35,14 @@ public class BusterBladerDDS extends DuelistCard
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final AttackEffect AFX = AttackEffect.SLASH_HORIZONTAL;
-    private static final int COST = 2;
+    private static final int COST = 1;
     private int dragons = 0;
     // /STAT DECLARATION/
 
     public BusterBladerDDS() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 30;
-        this.magicNumber = this.baseMagicNumber = 7;
+        this.baseDamage = this.damage = 16;
+        this.magicNumber = this.baseMagicNumber = 4;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.WARRIOR);
         this.misc = 0;

@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.variables.Tags;
+import duelistmod.variables.*;
 
-public class EvenTurnBlockBottle extends AbstractPotion {
+public class EvenTurnBlockBottle extends DuelistPotion {
 
 
 	public static final String POTION_ID = DuelistMod.makeID("EvenTurnBlockBottle");
@@ -22,8 +23,8 @@ public class EvenTurnBlockBottle extends AbstractPotion {
 
 	public EvenTurnBlockBottle() {
 		// The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-		super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.S, PotionColor.BLUE);
-
+		super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.S, PotionEffect.NONE, Colors.TEAL, Colors.TEAL, Colors.BLACK);
+        
 		// Potency is the damage/magic number equivalent of potions.
 		this.potency = this.getPotency();
 

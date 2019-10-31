@@ -45,6 +45,7 @@ public class Mist extends DuelistOrb
 	
 	public Mist()
 	{
+		this.setID(ID);
 		this.inversion = "Blaze";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Mist.png"));
 		this.name = orbString.NAME;

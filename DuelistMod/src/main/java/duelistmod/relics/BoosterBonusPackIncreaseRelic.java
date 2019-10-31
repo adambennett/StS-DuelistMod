@@ -36,7 +36,7 @@ public class BoosterBonusPackIncreaseRelic extends CustomRelic {
 	@Override
 	public void onEquip()
 	{
-		BoosterPackHelper.bonusPackSize = 5;
+		BoosterPackHelper.bonusPackSize += 2;
 		DuelistMod.hasBoosterRewardRelic = true;
 		try 
 		{
@@ -49,7 +49,8 @@ public class BoosterBonusPackIncreaseRelic extends CustomRelic {
 	@Override
 	public void onUnequip()
 	{
-		BoosterPackHelper.bonusPackSize = 3;
+		BoosterPackHelper.bonusPackSize -= 2;
+		if (BoosterPackHelper.bonusPackSize < 1) { BoosterPackHelper.bonusPackSize = 1; }
 		DuelistMod.hasBoosterRewardRelic = false;
 		try 
 		{

@@ -36,6 +36,7 @@ public class Gadget extends DuelistOrb
 	
 	public Gadget()
 	{
+		this.setID(ID);
 		this.inversion = "Glitch";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gadget.png"));
 		this.name = orbString.NAME;

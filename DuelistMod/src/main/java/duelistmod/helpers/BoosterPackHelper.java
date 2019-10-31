@@ -89,9 +89,28 @@ public class BoosterPackHelper
 	
 	public static void resetPackSizes()
 	{
-		normalPackSize = 5;
-		fatPackSize = 7;
-		bonusPackSize = 3;
+		int resetNormal = 5;
+		int resetBonus = 3;
+		int resetFat = 7;
+		if (Util.getChallengeLevel() > 13)
+		{
+			resetNormal--;
+			resetBonus--;
+			resetFat--;
+		}
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(BoosterBonusPackIncreaseRelic.ID))
+		{
+			resetBonus += 2;
+		}
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(BustedCrown.ID)) 
+		{
+			resetNormal -= 2;
+			resetBonus--;
+			resetFat -= 3;
+		}
+		normalPackSize = resetNormal;
+		fatPackSize = resetFat;
+		bonusPackSize = resetBonus;
 	}
 
 	private static void setupListList()
@@ -283,7 +302,29 @@ public class BoosterPackHelper
 	public static ArrayList<AbstractCard> rareBoosterPack()
 	{
 		Util.log("Rare Booster Pack -- commons.size()==" + commons.size() + ", rares.size()==" + rares.size() + ", nonCommon.size()==" + nonCommon.size());
-		if (normalPackSize == 3)
+		if (normalPackSize == 1)
+		{
+		 	ArrayList<AbstractCard> toReturn = getRandomCards(rares, 1);													
+			return toReturn;
+		}
+		else if (normalPackSize == 2)
+		{
+			if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
+			{
+				ArrayList<AbstractCard> toReturn = (getRandomCards(nonCommon, 1));	
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							
+				return toReturn;
+			}
+			else
+			{
+		 		ArrayList<AbstractCard> toReturn = getRandomCards(nonCommon, 1);							
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							
+				return toReturn;
+			}
+		}
+		else if (normalPackSize == 3)
 		{
 			if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
 			{
@@ -296,6 +337,24 @@ public class BoosterPackHelper
 			{
 		 		ArrayList<AbstractCard> toReturn = getRandomCards(commons, 1);	
 				toReturn.addAll(getRandomCards(nonCommon, 1));							
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							
+				return toReturn;
+			}
+		}
+		else if (normalPackSize == 4)
+		{
+			if (AbstractDungeon.player.hasRelic(NlothsGift.ID))
+			{
+				ArrayList<AbstractCard> toReturn = (getRandomCards(nonCommon, 3));	
+				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
+				toReturn.addAll(getRandomCards(newRares, 1));							
+				return toReturn;
+			}
+			else
+			{
+		 		ArrayList<AbstractCard> toReturn = getRandomCards(commons, 1);	
+				toReturn.addAll(getRandomCards(nonCommon, 2));							
 				ArrayList<AbstractCard> newRares = findNonMatching(rares, toReturn);
 				toReturn.addAll(getRandomCards(newRares, 1));							
 				return toReturn;
@@ -616,9 +675,6 @@ public class BoosterPackHelper
 				{
 					exodia.add(c.makeStatEquivalentCopy());
 				}
-				
-				
-				
 			}
 		}
 		
@@ -781,6 +837,7 @@ public class BoosterPackHelper
 		if (toReturn.cards.size() < bonusPackSize) { return getBonusBooster(false, archetypeDeck); }
 		return toReturn;
 	}
+
 	
 	public static RewardItem getBonusBooster(boolean special, boolean archetypeDeck)
 	{

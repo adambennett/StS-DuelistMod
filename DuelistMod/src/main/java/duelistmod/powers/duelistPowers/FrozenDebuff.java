@@ -32,7 +32,7 @@ public class FrozenDebuff extends NoStackDuelistPower
 	}
 	
 	@Override
-	public void atEndOfTurn(final boolean isPlayer) 
+	public void atEndOfRound()
 	{
 		DuelistCard.removePower(this, this.owner);
 	}

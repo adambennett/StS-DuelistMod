@@ -47,6 +47,7 @@ public class LegendaryFisherman extends DuelistCard
 		this.exhaust = true;
 		this.originalName = this.name;
 		this.tributes = this.baseTributes = 2;
+		this.cardsToPreview = new SevenColoredFish();
 		this.setupStartingCopies();
 	}
 

@@ -20,16 +20,22 @@ public class AnteaterPower extends DuelistPower
 	
 	public AnteaterPower(int turns) 
 	{ 
+		this(AbstractDungeon.player, AbstractDungeon.player, turns);
+	}
+	
+	public AnteaterPower(AbstractCreature owner, AbstractCreature source, int stacks) 
+	{ 
+		//super(owner, source, stacks);
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
-        this.amount = turns;
-		updateDescription(); 
+        this.source = source;
+        this.amount = stacks;
+		updateDescription();
 	}
 	
 	@Override

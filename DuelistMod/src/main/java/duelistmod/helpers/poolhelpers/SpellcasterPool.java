@@ -187,7 +187,7 @@ public class SpellcasterPool
 		}
 		spellcasterDeck.fillPoolCards(spellcasterCards);		
 		spellcasterDeck.fillArchetypeCards(spellcasterCards);
-		DuelistMod.archetypeCards.addAll(spellcasterCards);
+		//DuelistMod.archetypeCards.addAll(spellcasterCards);
 		return spellcasterCards;
 	}
 	

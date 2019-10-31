@@ -28,7 +28,7 @@ public class DeltaMagnet extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -36,7 +36,7 @@ public class DeltaMagnet extends DuelistCard
 
     public DeltaMagnet() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 11;
+        this.baseDamage = this.damage = 6;
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 3;
         this.secondMagic = this.baseSecondMagic = 2;
@@ -68,8 +68,7 @@ public class DeltaMagnet extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBaseCost(0);
-            this.upgradeDamage(4);
+            this.upgradeDamage(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -90,7 +89,7 @@ public class DeltaMagnet extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

@@ -5,11 +5,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
+import duelistmod.variables.Colors;
 
-public class MillenniumElixir extends AbstractPotion {
+public class MillenniumElixir extends DuelistPotion {
 
 
     public static final String POTION_ID = duelistmod.DuelistMod.makeID("MillenniumElixir");
@@ -20,7 +22,7 @@ public class MillenniumElixir extends AbstractPotion {
 
     public MillenniumElixir() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.T, PotionColor.SMOKE);
+        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.EYE, PotionEffect.OSCILLATE, Colors.LIGHT_PURPLE, Colors.DARK_PURPLE, Colors.NEAR_WHITE);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -43,7 +45,7 @@ public class MillenniumElixir extends AbstractPotion {
     	for (int i = 0; i < this.potency; i++)
     	{
 	        int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 6);
-	        if (DuelistMod.challengeMode) { randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 3); }
+	        if (DuelistMod.playingChallenge) { randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 3); }
 			DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNum, false);
     	}
     }

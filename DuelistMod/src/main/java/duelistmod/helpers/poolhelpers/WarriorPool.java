@@ -230,7 +230,7 @@ public class WarriorPool
 		
 		magnetDeck.fillPoolCards(magnetCards);		
 		magnetDeck.fillArchetypeCards(magnetCards);
-		DuelistMod.archetypeCards.addAll(magnetCards);
+		//DuelistMod.archetypeCards.addAll(magnetCards);
 		return magnetCards;
 	}
 	

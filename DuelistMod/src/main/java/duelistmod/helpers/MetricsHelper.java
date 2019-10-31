@@ -49,7 +49,7 @@ public class MetricsHelper
 		par.put("unlock_all_decks", DuelistMod.unlockAllDecks);
 		par.put("remove_card_rewards", DuelistMod.removeCardRewards);
 		par.put("encounter_duelist_enemies", DuelistMod.duelistMonsters);
-		par.put("challenge_mode", DuelistMod.challengeMode);
+		par.put("challenge_mode", DuelistMod.playingChallenge);
 		par.put("duelist_curses", DuelistMod.duelistCurses);
 		par.put("bonus_puzzle_summons", DuelistMod.forcePuzzleSummons);
 		par.put("pool_fill", getPoolFillType(DuelistMod.setIndex));

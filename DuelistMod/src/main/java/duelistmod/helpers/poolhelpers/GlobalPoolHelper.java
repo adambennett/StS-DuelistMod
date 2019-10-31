@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
-import duelistmod.helpers.Util;
+import duelistmod.characters.TheDuelist;
+import duelistmod.helpers.*;
 import duelistmod.interfaces.RandomDeckInterface;
+import duelistmod.relics.CardPoolRelic;
 
 public class GlobalPoolHelper 
 {
 	private static ArrayList<AbstractCard> currentSelectionPool;
 	private static ArrayList<AbstractCard> secondSelectionPool;
+	private static int index = -1;
 	
 	public static ArrayList<AbstractCard> oneRandom()
 	{
@@ -32,6 +36,69 @@ public class GlobalPoolHelper
 	public static ArrayList<AbstractCard> oneRandom(int exclude, int excludeB, int excludeC)
 	{
 		return oneRandom(exclude, excludeB, excludeC, -1);
+	}
+	
+	
+	public static void addRandomSetToPool()
+	{
+		ArrayList<RandomDeckInterface> pools = new ArrayList<>();	
+		RandomDeckInterface aqua = 			() -> { index = 0; currentSelectionPool = AquaPool.deck(); 		Util.log("Selected Aquas as random");		 };
+		RandomDeckInterface dragon = 		() -> { index = 1; currentSelectionPool = DragonPool.deck(); 		Util.log("Selected Dragons as random");		 };
+		RandomDeckInterface fiend = 		() -> { index = 2; currentSelectionPool = FiendPool.deck(); 		Util.log("Selected Fiends as random"); 		 };
+		RandomDeckInterface increment = 	() -> { index = 3; currentSelectionPool = IncrementPool.deck(); 	Util.log("Selected Increment as random");	 };
+		RandomDeckInterface insect = 		() -> { index = 4; currentSelectionPool = InsectPool.deck(); 		Util.log("Selected Insects as random"); 	 };
+		RandomDeckInterface machine = 		() -> { index = 5; currentSelectionPool = MachinePool.deck(); 		Util.log("Selected Machines as random");	 };
+		RandomDeckInterface naturia = 		() -> { index = 6; currentSelectionPool = NaturiaPool.deck(); 		Util.log("Selected Naturias as random");	 };
+		RandomDeckInterface plant = 		() -> { index = 7; currentSelectionPool = PlantPool.deck(); 		Util.log("Selected Plants as random"); 		 };
+		RandomDeckInterface spellcaster = 	() -> { index = 8; currentSelectionPool = SpellcasterPool.deck(); 	Util.log("Selected Spellcasters as random"); };
+		RandomDeckInterface standard = 		() -> { index = 9; currentSelectionPool = StandardPool.deck(); 	Util.log("Selected Standard as random");	 };
+		RandomDeckInterface warrior = 		() -> { index = 10; currentSelectionPool = WarriorPool.deck(); 		Util.log("Selected Warriors as random");	 };
+		RandomDeckInterface zombie = 		() -> { index = 11; currentSelectionPool = ZombiePool.deck(); 		Util.log("Selected Zombies as random");		 };
+		RandomDeckInterface rock = 			() -> { index = 12; currentSelectionPool = RockPool.deck(); 		Util.log("Selected Rocks as random");		 };
+		RandomDeckInterface ojama = 		() -> { index = 13; currentSelectionPool = OjamaPool.deck();  		Util.log("Selected Ojamas as random");		 };
+		RandomDeckInterface toon = 			() -> { index = 14; currentSelectionPool = ToonPool.deck(); 		Util.log("Selected Toons as random"); 		 };
+		RandomDeckInterface dino = 			() -> { index = 15; currentSelectionPool = DinosaurPool.deck(); 	Util.log("Selected Dinos as random"); 		 };
+		RandomDeckInterface arc = 			() -> { index = 16; currentSelectionPool = ArcanePool.deck(); 		Util.log("Selected Arcane as random"); 		 };
+		RandomDeckInterface red = 			() -> { index = 17; currentSelectionPool = BaseGameHelper.getAllIroncladCards(); 	Util.log("Selected Ironclad as random"); };
+		RandomDeckInterface blue = 			() -> { index = 18; currentSelectionPool = BaseGameHelper.getAllDefectCards(); 		Util.log("Selected Defect as random"); };
+		RandomDeckInterface green = 		() -> { index = 19; currentSelectionPool = BaseGameHelper.getAllSilentCards(); 		Util.log("Selected Silent as random"); };
+		RandomDeckInterface purple = 		() -> { index = 20; currentSelectionPool = BaseGameHelper.getAllWatcherCards(); 	Util.log("Selected Watcher as random"); };
+		if (!DuelistMod.addedAquaSet) { pools.add(aqua); }
+		if (!DuelistMod.addedDragonSet) { pools.add(dragon); }
+		if (!DuelistMod.addedFiendSet) { pools.add(fiend); }
+		if (!DuelistMod.addedIncrementSet) { pools.add(increment); }
+		if (!DuelistMod.addedInsectSet) { pools.add(insect); }
+		if (!DuelistMod.addedMachineSet) { pools.add(machine); }
+		if (!DuelistMod.addedNaturiaSet) { pools.add(naturia); }
+		if (!DuelistMod.addedPlantSet) { pools.add(plant); }
+		if (!DuelistMod.addedSpellcasterSet) { pools.add(spellcaster); }
+		if (!DuelistMod.addedStandardSet) { pools.add(standard); }
+		if (!DuelistMod.addedWarriorSet) { pools.add(warrior);}
+		if (!DuelistMod.addedZombieSet) { pools.add(zombie); }
+		if (!DuelistMod.addedRockSet) { pools.add(rock); }
+		if (!DuelistMod.addedOjamaSet && !DuelistMod.ojamaBtnBool) { pools.add(ojama); }
+		if (!DuelistMod.addedToonSet && !DuelistMod.toonBtnBool) { pools.add(toon); }
+		if (!DuelistMod.addedDinoSet) { pools.add(dino); }
+		if (!DuelistMod.addedArcaneSet) { pools.add(arc); }
+		if (!DuelistMod.baseGameCards) 
+		{ 
+			pools.add(red);
+			pools.add(blue);
+			pools.add(green);
+			pools.add(purple);
+		}
+		if (pools.size() > 0)
+		{
+			int roll = AbstractDungeon.cardRandomRng.random(pools.size() - 1); 
+			pools.get(roll).getDeck();
+			setPrismDeckFlags(index);
+			TheDuelist.cardPool.group.addAll(currentSelectionPool);
+			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) 
+			{ 
+				CardPoolRelic rel = (CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID); 
+				rel.refreshPool(); 
+			}
+		}
 	}
 	
 	public static ArrayList<AbstractCard> oneRandom(int exclude, int excludeB, int excludeC, int excludeD)
@@ -78,6 +145,81 @@ public class GlobalPoolHelper
 		pools.get(DuelistMod.archRoll1).getDeck();
 		setGlobalDeckFlags();
 		return currentSelectionPool;
+	}
+	
+	private static void setPrismDeckFlags(int roll)
+	{
+		if (roll > -1)
+		{
+			switch (roll)
+			{
+				case 0:
+					DuelistMod.addedAquaSet = true;
+					break;
+				case 1:
+					DuelistMod.addedDragonSet = true;
+					break;
+				case 2:
+					DuelistMod.addedFiendSet = true;
+					break;
+				case 3:
+					DuelistMod.addedIncrementSet = true;
+					break;
+				case 4:
+					DuelistMod.addedInsectSet = true;
+					break;
+				case 5:
+					DuelistMod.addedMachineSet = true;
+					break;
+				case 6:
+					DuelistMod.addedNaturiaSet = true;
+					break;
+				case 7:
+					DuelistMod.addedPlantSet = true;
+					break;
+				case 8:
+					DuelistMod.addedSpellcasterSet = true;
+					break;
+				case 9:
+					DuelistMod.addedStandardSet = true;
+					break;
+				case 10:
+					DuelistMod.addedWarriorSet = true;
+					break;
+				case 11:
+					DuelistMod.addedZombieSet = true;
+					break;
+				case 12:
+					DuelistMod.addedRockSet = true;
+					break;
+				case 13:
+					DuelistMod.addedOjamaSet = true;
+					break;
+				case 14:
+					DuelistMod.addedToonSet = true;
+					break;
+				case 15:
+					DuelistMod.addedDinoSet = true;
+					break;
+				case 16:
+					DuelistMod.addedArcaneSet = true;
+					break;	
+				case 17:
+					DuelistMod.addedRedSet = true;
+					break;
+				case 18:
+					DuelistMod.addedBlueSet = true;
+					break;
+				case 19:
+					DuelistMod.addedGreenSet = true;
+					break;
+				case 20:
+					DuelistMod.addedPurpleSet = true;
+					break;
+				default:
+					break;
+			}
+		}
 	}
 	
 	private static void setGlobalDeckFlags()
@@ -222,6 +364,10 @@ public class GlobalPoolHelper
 		DuelistMod.addedToonSet = false;
 		DuelistMod.addedDinoSet = false;
 		DuelistMod.addedArcaneSet = false;
+		DuelistMod.addedRedSet = false;
+		DuelistMod.addedBlueSet = false;
+		DuelistMod.addedGreenSet = false;
+		DuelistMod.addedPurpleSet = false;
 	}
 	
 	public static boolean addedAnyDecks()

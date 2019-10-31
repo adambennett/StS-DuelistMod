@@ -37,6 +37,7 @@ public class Black extends DuelistOrb
 	
 	public Black()
 	{
+		this.setID(ID);
 		this.inversion = "White";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Black.png"));
 		this.name = orbString.NAME;

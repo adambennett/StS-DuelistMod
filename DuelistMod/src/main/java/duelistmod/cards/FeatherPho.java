@@ -4,12 +4,12 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.FetchAndReduceAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -26,18 +26,17 @@ public class FeatherPho extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    private static int pickup = 1;
     // /STAT DECLARATION/
 
     public FeatherPho() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.LIMITED);
-        this.magicNumber = this.baseMagicNumber = pickup;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.originalName = this.name;
     }
 
@@ -46,7 +45,8 @@ public class FeatherPho extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
        discardTop(this.magicNumber, false);
-       AbstractDungeon.actionManager.addToBottom(new FetchAction(AbstractDungeon.player.discardPile, this.magicNumber));
+       if (!upgraded) { this.addToBot(new FetchAction(p.discardPile, 1)); }
+       else { this.addToBot(new FetchAndReduceAction(1, p.discardPile, this.magicNumber, false)); }
     }
 
     // Which card to return when making a copy of this card.
@@ -60,7 +60,6 @@ public class FeatherPho extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

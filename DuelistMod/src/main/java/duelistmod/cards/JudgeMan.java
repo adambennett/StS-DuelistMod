@@ -83,7 +83,7 @@ public class JudgeMan extends DuelistCard
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
     	// Check for monster zones challenge
-    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		// Check for energy and other normal game checks

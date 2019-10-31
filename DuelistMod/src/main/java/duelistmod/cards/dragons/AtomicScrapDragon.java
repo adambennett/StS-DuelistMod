@@ -236,7 +236,7 @@ public class AtomicScrapDragon extends DuelistCard
     		else if (this.useBothCanUse)
     		{
     			// Check for monster zones challenge
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		// Check for energy and other normal game checks
@@ -387,7 +387,7 @@ public class AtomicScrapDragon extends DuelistCard
     	    	boolean canUse = super.canUse(p, m); 
     	    	if (!canUse) { return false; }
 
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		if (p.hasPower(SummonPower.POWER_ID))

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.colorless.*;
 import com.megacrit.cardcrawl.cards.green.*;
-import com.megacrit.cardcrawl.cards.optionCards.*;
 import com.megacrit.cardcrawl.cards.purple.*;
 import com.megacrit.cardcrawl.cards.red.*;
 import com.megacrit.cardcrawl.cards.status.*;
@@ -17,24 +16,24 @@ public class BaseGameHelper
 {
 	public static ArrayList<AbstractCard> getAllBaseGameCards()
 	{
-		return getAllBaseGameCards(false, false);
+		return getAllBaseGameCards(false);
 	}
 	
-	public static ArrayList<AbstractCard> getAllBaseGameCards(boolean colorless, boolean allowWishes)
+	public static ArrayList<AbstractCard> getAllBaseGameCards(boolean colorless)
 	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
 		toFill.addAll(getAllIroncladCards());
 		toFill.addAll(getAllSilentCards());
 		toFill.addAll(getAllDefectCards());
 		toFill.addAll(getAllWatcherCards());
-		if (colorless) { toFill.addAll(getAllColorlessCards(allowWishes)); }
+		if (colorless) { toFill.addAll(getAllColorlessCards()); }
 		return toFill;
 	}
 	
-	public static AbstractCard getColorlessCard(boolean allowWishes)
+	public static AbstractCard getColorlessCard()
 	{
 		ArrayList<AbstractCard> colorless = new ArrayList<AbstractCard>();
-		for (AbstractCard c : getAllColorlessCards(allowWishes)){ colorless.add(c); }		
+		for (AbstractCard c : getAllColorlessCards()){ colorless.add(c); }		
 		AbstractCard card = colorless.get(AbstractDungeon.cardRandomRng.random(colorless.size() - 1));
 		return card;
 	}
@@ -71,7 +70,7 @@ public class BaseGameHelper
 		return card;
 	}
 	
-	public static ArrayList<AbstractCard> getAllColorlessCards(boolean allowWishes)
+	public static ArrayList<AbstractCard> getAllColorlessCards()
 	{
 		ArrayList<AbstractCard> toFill = new ArrayList<AbstractCard>();
 		toFill.add(new Apotheosis());
@@ -126,12 +125,6 @@ public class BaseGameHelper
         toFill.add(new Shiv());
         toFill.add(new Smite());
         toFill.add(new ThroughViolence());
-        if (allowWishes)
-        {
-	        toFill.add(new BecomeAlmighty());
-	        toFill.add(new FameAndFortune());
-	        toFill.add(new LiveForever());
-        }
         toFill.add(new Expunger());
 		return toFill;
 	}

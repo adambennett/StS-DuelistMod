@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistEvent;
 import duelistmod.cards.MonsterEggSuper;
+import duelistmod.helpers.Util;
 import duelistmod.relics.*;
 
 public class TombNameless extends DuelistEvent {
@@ -68,7 +69,7 @@ public class TombNameless extends DuelistEvent {
         imageEventText.setDialogOption(OPTIONS[2], new CursedHealer());
         imageEventText.setDialogOption(OPTIONS[3]);
         imageEventText.setDialogOption(OPTIONS[4]);
-        imageEventText.setDialogOption(OPTIONS[5]);
+        imageEventText.setDialogOption(OPTIONS[5], Util.getChallengeLevel() > -1);
     }
 
     @Override

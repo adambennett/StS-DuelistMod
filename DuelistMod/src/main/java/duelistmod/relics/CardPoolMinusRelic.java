@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
@@ -22,7 +21,7 @@ public class CardPoolMinusRelic extends CustomRelic implements ClickableRelic
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolMinusRelic");
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolMinusRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolRelic_Outline.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolASRelic_Outline.png");
 	public CardGroup pool;
 	private DuelistCardSelectScreen dcss;
 
@@ -68,7 +67,7 @@ public class CardPoolMinusRelic extends CustomRelic implements ClickableRelic
 			DuelistMod.shouldReplacePool = true;
 			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
 			this.dcss.selectedCards.clear();
-			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 			CardCrawlGame.dungeon.initializeCardPools();
 			GlobalPoolHelper.resetGlobalDeckFlags();
 
@@ -81,6 +80,7 @@ public class CardPoolMinusRelic extends CustomRelic implements ClickableRelic
 		AbstractDungeon.gridSelectScreen = this.dcss;
 		DuelistMod.toReplacePoolWith.clear();
 		DuelistMod.selectingForRelics = true;
+		DuelistMod.wasViewingSelectScreen = true;
 		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, this.pool.size(), "Remove Cards from the Card Pool");
 		
 	}

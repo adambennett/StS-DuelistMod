@@ -851,7 +851,7 @@
         "DESCRIPTIONS": ["#yDragons deal #b", "% more damage for each stack of #yWeak on their targets."]
 },
 "theDuelist:DragonRavinePower": {
-        "NAME": "bbb",
+        "NAME": "Dragon Ravine",
         "DESCRIPTIONS": ["#yDragons deal #b", "% more damage for each stack of #yVulnerable on their targets."]
 },
 "theDuelist:LostWorldPower": {

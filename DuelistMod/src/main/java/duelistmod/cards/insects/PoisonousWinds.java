@@ -1,17 +1,12 @@
 package duelistmod.cards.insects;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.*;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.ReflectionHacks;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.statuses.Swarm;
@@ -34,15 +29,15 @@ public class PoisonousWinds extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public PoisonousWinds() 
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 10;
-        this.secondMagic = this.baseSecondMagic = 4;
+        this.baseMagicNumber = this.magicNumber = 11;
+        this.secondMagic = this.baseSecondMagic = 3;
         this.thirdMagic = this.baseThirdMagic = 3;
         this.misc = 0;
         this.tags.add(Tags.SPELL);
@@ -53,10 +48,10 @@ public class PoisonousWinds extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	poisonAllEnemies(p, this.magicNumber);
-    	weakAllEnemies(this.secondMagic);
-    	vulnAllEnemies(this.thirdMagic);
+    	vulnAllEnemies(this.secondMagic);
     	slowAllEnemies(this.magicNumber);
-    	this.addToBot(new MakeTempCardInDrawPileAction(new Swarm(), this.thirdMagic, true, true));
+    	if (upgraded) { this.addToBot(new MakeTempCardInDrawPileAction(new Swarm(), this.thirdMagic, true, true)); }
+    	else { addCardToHand(new Swarm(), this.thirdMagic); }
     }
 
     // Upgraded stats.
@@ -67,7 +62,7 @@ public class PoisonousWinds extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(2);
+        	this.upgradeSecondMagic(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

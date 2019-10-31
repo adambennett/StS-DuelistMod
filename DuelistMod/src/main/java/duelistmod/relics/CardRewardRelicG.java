@@ -57,6 +57,7 @@ public class CardRewardRelicG extends CustomRelic
 		group.sortAlphabetically(true);
 		
 		AbstractDungeon.gridSelectScreen = this.dcss;
+		DuelistMod.wasViewingSelectScreen = true;
 		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(group, 1, "Select a Trap to add to your deck");
 		
         try 
@@ -91,7 +92,7 @@ public class CardRewardRelicG extends CustomRelic
 			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(this.dcss.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			this.dcss.selectedCards.clear();
 			AbstractDungeon.closeCurrentScreen();
-			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 		}
 	}
     

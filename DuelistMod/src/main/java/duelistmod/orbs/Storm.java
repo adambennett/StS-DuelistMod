@@ -34,6 +34,7 @@ public class Storm extends DuelistOrb
 	
 	public Storm()
 	{
+		this.setID(ID);
 		this.inversion = "Lightning";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Storm.png"));
 		this.name = orbString.NAME;

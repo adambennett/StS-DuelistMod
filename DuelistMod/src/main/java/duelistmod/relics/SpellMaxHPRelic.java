@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class SpellMaxHPRelic extends CustomRelic {
@@ -29,7 +30,7 @@ public class SpellMaxHPRelic extends CustomRelic {
 	@Override
 	public boolean canSpawn()
 	{
-		if (AbstractDungeon.ascensionLevel < 16)
+		if (AbstractDungeon.ascensionLevel < 16 && Util.getChallengeLevel() < 16)
 		{
 			return true;
 		}

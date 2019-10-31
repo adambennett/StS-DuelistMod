@@ -1,0 +1,18 @@
+{
+  "theDuelist:SummonersChallenge": {
+    "NAME": "召唤地带",
+    "DESCRIPTION": "最大召唤数未满时只能打出召唤怪兽。"
+  },
+  "theDuelist:MaxSummonChallenge": {
+    "NAME": "随机增殖",
+    "DESCRIPTION": "增殖时有50%几率失败。"
+  },
+  "theDuelist:SummonRandomizer": {
+    "NAME": "随机召唤",
+    "DESCRIPTION": "召唤时有50%几率失败。"
+  },
+  "theDuelist:TributeRandomizer": {
+    "NAME": "随机祭品",
+    "DESCRIPTION": "祭品时有50%几率失败。"
+  }
+}

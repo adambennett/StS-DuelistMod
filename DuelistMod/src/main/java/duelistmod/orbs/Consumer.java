@@ -38,6 +38,7 @@ public class Consumer extends DuelistOrb
 	
 	public Consumer()
 	{
+		this.setID(ID);
 		this.inversion = "Summoner";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Consumer.png"));
 		this.name = orbString.NAME;

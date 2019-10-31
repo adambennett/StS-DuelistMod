@@ -34,7 +34,7 @@ public class DefenseDraw extends DuelistCard
 
     public DefenseDraw() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block 				= 3;		// blk
+        this.baseBlock = this.block 				= 4;		// blk
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ARCANE);
         this.misc = 0;
@@ -114,7 +114,7 @@ public class DefenseDraw extends DuelistCard
     		else if (this.useBothCanUse)
     		{
     			// Check for monster zones challenge
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		// Check for energy and other normal game checks
@@ -265,7 +265,7 @@ public class DefenseDraw extends DuelistCard
     	    	boolean canUse = super.canUse(p, m); 
     	    	if (!canUse) { return false; }
 
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		if (p.hasPower(SummonPower.POWER_ID))

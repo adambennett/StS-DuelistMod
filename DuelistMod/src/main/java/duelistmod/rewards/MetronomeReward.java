@@ -119,8 +119,8 @@ public class MetronomeReward extends CustomReward
 	private boolean upgradeCheck()
 	{
 		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 100);
-		if (AbstractDungeon.ascensionLevel > 11) 
-		{ 
+		if (Util.getChallengeLevel() > -1)
+		{
 			int act = AbstractDungeon.actNum;
 			if (act <= 3)
 			{
@@ -132,7 +132,28 @@ public class MetronomeReward extends CustomReward
 						if (upgradeRoll <= 8) { return true; }
 						else { return false; }
 					case 3:
-						if (upgradeRoll <= 16) { return true; }
+						if (upgradeRoll <= 14) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }
+		}
+		else if (AbstractDungeon.ascensionLevel > 11) 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						if (upgradeRoll <= 12) { return true; }
+						else { return false; }
+					case 3:
+						if (upgradeRoll <= 20) { return true; }
 						else { return false; }
 					default:
 						return false;
@@ -150,10 +171,10 @@ public class MetronomeReward extends CustomReward
 					case 1:
 						return false;
 					case 2:
-						if (upgradeRoll <= 16) { return true; }
+						if (upgradeRoll <= 20) { return true; }
 						else { return false; }
 					case 3:
-						if (upgradeRoll <= 32) { return true; }
+						if (upgradeRoll <= 36) { return true; }
 						else { return false; }
 					default:
 						return false;
@@ -166,8 +187,8 @@ public class MetronomeReward extends CustomReward
 	private boolean additionalUpgradeCheck()
 	{
 		int upgradeRoll = AbstractDungeon.cardRandomRng.random(1, 105);
-		if (AbstractDungeon.ascensionLevel > 11) 
-		{ 
+		if (Util.getChallengeLevel() > -1)
+		{
 			int act = AbstractDungeon.actNum;
 			if (act <= 3)
 			{
@@ -186,6 +207,26 @@ public class MetronomeReward extends CustomReward
 			}
 			else { return true; }
 		}
+		else if (AbstractDungeon.ascensionLevel > 11) 
+		{ 
+			int act = AbstractDungeon.actNum;
+			if (act <= 3)
+			{
+				switch (act)
+				{
+					case 1:
+						return false;
+					case 2:
+						return false;
+					case 3:
+						if (upgradeRoll <= 15) { return true; }
+						else { return false; }
+					default:
+						return false;
+				}
+			}
+			else { return true; }
+		}
 		else 
 		{ 
 			int act = AbstractDungeon.actNum;
@@ -198,7 +239,7 @@ public class MetronomeReward extends CustomReward
 					case 2:
 						return false;
 					case 3:
-						if (upgradeRoll <= 20) { return true; }
+						if (upgradeRoll <= 25) { return true; }
 						else { return false; }
 					default:
 						return false;

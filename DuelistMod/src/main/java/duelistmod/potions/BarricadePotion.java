@@ -9,9 +9,10 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
+import duelistmod.variables.Colors;
 
-public class BarricadePotion extends AbstractPotion {
+public class BarricadePotion extends DuelistPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("BarricadePotion");
@@ -22,8 +23,8 @@ public class BarricadePotion extends AbstractPotion {
 
     public BarricadePotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.BOLT, PotionColor.ENERGY);
-        
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.BOLT, PotionEffect.NONE, Colors.TEAL, Colors.TEAL, Colors.BLACK);
+   
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
         

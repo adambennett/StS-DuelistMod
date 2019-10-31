@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
@@ -20,8 +19,8 @@ public class CardPoolSaveRelic extends CustomRelic implements ClickableRelic
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolSaveRelic");
-	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolRelic_Outline.png");
+	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolSaveRelic.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolSaveRelic_Outline.png");
 	public CardGroup pool;
 	private DuelistCardSelectScreen dcss;
 
@@ -81,7 +80,7 @@ public class CardPoolSaveRelic extends CustomRelic implements ClickableRelic
 				}
 			}
 			this.dcss.selectedCards.clear();
-			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 		}
 	}
 	
@@ -109,6 +108,7 @@ public class CardPoolSaveRelic extends CustomRelic implements ClickableRelic
 	{
 		refreshPool();
 		AbstractDungeon.gridSelectScreen = this.dcss;
+		DuelistMod.wasViewingSelectScreen = true;
 		DuelistMod.selectingCardPoolOptions = true;
 		setupSaveSlots();
 		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, 1, "Select an Save Slot");

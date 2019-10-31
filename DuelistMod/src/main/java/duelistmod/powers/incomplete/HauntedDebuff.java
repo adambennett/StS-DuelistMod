@@ -1,28 +1,22 @@
 package duelistmod.powers.incomplete;
 
-import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.utility.*;
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.*;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.*;
 import duelistmod.helpers.HauntedHelper;
-import duelistmod.interfaces.*;
 import duelistmod.variables.Tags;
 
 
@@ -154,6 +148,11 @@ public class HauntedDebuff extends AbstractPower
 	@Override
     public void onInitialApplication() 
     {
+		AbstractPlayer p = AbstractDungeon.player;
+        this.addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.33f));
+        this.addToBot(new VFXAction(p, new VerticalAuraEffect(Color.PURPLE, p.hb.cX, p.hb.cY), 0.33f));
+        this.addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0f));
+        this.addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.MAGENTA), 0.0f, true));
 		if (AbstractDungeon.player.hasPower(HauntedPower.POWER_ID))
 		{
 			DuelistCard.removePower(AbstractDungeon.player.getPower(HauntedPower.POWER_ID), AbstractDungeon.player);

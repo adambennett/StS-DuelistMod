@@ -40,6 +40,7 @@ public class MillenniumOrb extends DuelistOrb
 	
 	public MillenniumOrb()
 	{
+		this.setID(ID);
 		this.inversion = "???";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/MillenniumOrb.png"));
 		this.name = orbString.NAME;		
@@ -124,7 +125,14 @@ public class MillenniumOrb extends DuelistOrb
 	public void triggerPassiveEffect()
 	{
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
-		PuzzleHelper.runEffectForMillenniumOrb(this.passiveAmount, 0);
+		if (Util.getChallengeLevel() > -1)
+		{
+			PuzzleHelper.runChallengeEffect(this.passiveAmount, 0);
+		}
+		else
+		{
+			PuzzleHelper.runSpecialEffect(this.passiveAmount, 0, true);
+		}		
 	}
 	
 	@Override

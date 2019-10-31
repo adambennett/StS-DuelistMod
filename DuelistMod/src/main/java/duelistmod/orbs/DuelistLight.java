@@ -35,6 +35,7 @@ public class DuelistLight extends DuelistOrb
 	
 	public DuelistLight()
 	{
+		this.setID(ID);
 		this.inversion = "Shadow";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Light.png"));
 		this.name = orbString.NAME;

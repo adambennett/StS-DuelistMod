@@ -38,6 +38,7 @@ public class WaterOrb extends DuelistOrb
 	
 	public WaterOrb()
 	{
+		this.setID(ID);
 		this.inversion = "Fire";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Water.png"));
 		this.name = orbString.NAME;

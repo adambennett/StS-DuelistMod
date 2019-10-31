@@ -44,7 +44,7 @@ public class WhiteNightDragon extends DuelistCard
         this.tags.add(Tags.AQUA);
         this.misc = 0;
         this.originalName = this.name;
-        this.tributes = this.baseTributes = 5;
+        this.tributes = this.baseTributes = 3;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
     }
@@ -70,7 +70,7 @@ public class WhiteNightDragon extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeTributes(-2);
+            this.upgradeTributes(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

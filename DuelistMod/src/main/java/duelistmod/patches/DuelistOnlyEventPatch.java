@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.random.Random;
 
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
@@ -16,13 +17,13 @@ public class DuelistOnlyEventPatch {
 	{
 		public static AbstractEvent Postfix(AbstractEvent __result, String key)
 		{
-			if (!AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST))
+			if (!AbstractDungeon.player.chosenClass.equals(TheDuelistEnum.THE_DUELIST) || !DuelistMod.allowDuelistEvents)
 			{
 				if (__result instanceof DuelistEvent || __result instanceof CombatDuelistEvent) 
 				{
 					AbstractEvent newEv = AbstractDungeon.getEvent(new Random()); 
 					while (newEv instanceof DuelistEvent) { newEv = AbstractDungeon.getEvent(new Random()); }
-					Util.log("DuelistOnlyEventPatch --- not playing as The Duelist but you rolled a Duelist Event (" + key + "), so we replaced it with another random event.");
+					Util.log("DuelistOnlyEventPatch --- not playing as The Duelist or you have Duelist events turned off, but you rolled a Duelist Event (" + key + "), so we replaced it with another random event.");
 					return newEv;  
 				}
 			}
@@ -35,12 +36,13 @@ public class DuelistOnlyEventPatch {
 	{
 		public static void Postfix(AbstractDungeon dungeon) 
 		{
-			if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST) 
+			if (AbstractDungeon.player.chosenClass == TheDuelistEnum.THE_DUELIST && DuelistMod.allowDuelistEvents) 
 			{
 				AbstractDungeon.specialOneTimeEventList.add(MillenniumItems.ID);
 				AbstractDungeon.specialOneTimeEventList.add(AknamkanonTomb.ID);				
 				AbstractDungeon.specialOneTimeEventList.add(TombNameless.ID);
 				AbstractDungeon.specialOneTimeEventList.add(TombNamelessPuzzle.ID);
+				AbstractDungeon.specialOneTimeEventList.add(CardTrader.ID);
 				//AbstractDungeon.specialOneTimeEventList.add(BattleCity.ID);
 				String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 				if (deck.equals("Warrior Deck")) { AbstractDungeon.specialOneTimeEventList.add(EgyptVillage.ID); Util.log("Added Egypt Village to events list");}

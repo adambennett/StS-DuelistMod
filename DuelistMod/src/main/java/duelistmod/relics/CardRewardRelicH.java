@@ -55,6 +55,7 @@ public class CardRewardRelicH extends CustomRelic
 			group.addToBottom(c);
 		}
 		AbstractDungeon.gridSelectScreen = this.dcss;
+		DuelistMod.wasViewingSelectScreen = true;
 		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(group, 1, "Select a Monster to add to your deck");
 		
         try 
@@ -89,7 +90,7 @@ public class CardRewardRelicH extends CustomRelic
 			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(this.dcss.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			this.dcss.selectedCards.clear();
 			AbstractDungeon.closeCurrentScreen();
-			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 		}
 	}
     

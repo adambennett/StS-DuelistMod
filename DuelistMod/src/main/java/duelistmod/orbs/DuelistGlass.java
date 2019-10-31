@@ -37,6 +37,7 @@ public class DuelistGlass extends DuelistOrb
 	
 	public DuelistGlass()
 	{
+		this.setID(ID);
 		this.inversion = "Sand";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Glass.png"));
 		this.name = orbString.NAME;

@@ -29,8 +29,7 @@ public class LabyrinthWall extends DuelistCard
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
-    private static final int BLOCK = 20;
-    private static final int UPGRADE_PLUS_BLK = 5;
+    private static final int BLOCK = 30;
     // /STAT DECLARATION/
 
     public LabyrinthWall() {
@@ -43,7 +42,7 @@ public class LabyrinthWall extends DuelistCard
 		this.setupStartingCopies();
         this.misc = 0;
 		this.originalName = this.name;
-		this.tributes = this.baseTributes = 2;
+		this.tributes = this.baseTributes = 3;
     }
 
     // Actions the card should do.
@@ -67,7 +66,7 @@ public class LabyrinthWall extends DuelistCard
         if (!this.upgraded) 
         {
             this.upgradeName();
-            this.upgradeBlock(UPGRADE_PLUS_BLK);
+            this.upgradeBlock(10);
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }

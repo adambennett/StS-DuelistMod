@@ -54,17 +54,24 @@ public class FireDarts extends DuelistCard
     {
     	ArrayList<AbstractMonster> mons = getAllMons();
     	AbstractMonster lastMon = null;
-    	for (int i = 0; i < this.magicNumber; i++)
+    	if (mons.size() > 1)
     	{
-    		AbstractMonster target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
-    		if (target.isDead || target.isDying || target.isDeadOrEscaped() || target.halfDead) 
-    		{
-    			mons = getAllMons();
-    			target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
-    		}
-    		if (lastMon != null && target != lastMon) { channel(new FireOrb()); }
-    		lastMon = target;
-    		attack(target);
+	    	for (int i = 0; i < this.magicNumber; i++)
+	    	{
+	    		AbstractMonster target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+	    		if (target.isDead || target.isDying || target.isDeadOrEscaped() || target.halfDead) 
+	    		{
+	    			mons = getAllMons();
+	    			target = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+	    		}
+	    		attack(target);
+	    		if (lastMon != null && target != lastMon) { channel(new FireOrb()); }
+	    		lastMon = target;
+	    	}
+    	}
+    	else if (mons.size() == 1)
+    	{
+    		attack(mons.get(0), AttackEffect.FIRE, this.damage * this.magicNumber);
     	}
     }
 
@@ -133,7 +140,7 @@ public class FireDarts extends DuelistCard
     		else if (this.useBothCanUse)
     		{
     			// Check for monster zones challenge
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		// Check for energy and other normal game checks
@@ -284,7 +291,7 @@ public class FireDarts extends DuelistCard
     	    	boolean canUse = super.canUse(p, m); 
     	    	if (!canUse) { return false; }
 
-    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	    	{
     	    		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     	    		if (p.hasPower(SummonPower.POWER_ID))

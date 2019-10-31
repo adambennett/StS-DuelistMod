@@ -39,6 +39,7 @@ public class DuelistCrystal extends DuelistOrb
 	
 	public DuelistCrystal()
 	{
+		this.setID(ID);
 		this.inversion = "Anticrystal";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Crystal.png"));
 		this.name = orbString.NAME;

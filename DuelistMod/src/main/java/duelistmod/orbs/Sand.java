@@ -35,6 +35,7 @@ public class Sand extends DuelistOrb
 	
 	public Sand()
 	{
+		this.setID(ID);
 		this.inversion = "Glass";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Sand.png"));
 		this.name = orbString.NAME;

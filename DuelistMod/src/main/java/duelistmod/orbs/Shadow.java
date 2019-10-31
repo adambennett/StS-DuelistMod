@@ -41,6 +41,7 @@ public class Shadow extends DuelistOrb
 	
 	public Shadow()
 	{
+		this.setID(ID);
 		this.inversion = "Light";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Shadow.png"));
 		this.name = orbString.NAME;

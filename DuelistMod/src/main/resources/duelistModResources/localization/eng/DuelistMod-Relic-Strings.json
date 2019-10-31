@@ -849,5 +849,85 @@
 		"DESCRIPTIONS": [
 			"Upon pickup, choose 1 of 4 random orb cards to add to your deck. Orb cards are 0-cost Spells that #yChannel orbs."
 		]
+	},
+	"theDuelist:FatMaxHPRelic": {
+		"NAME": "HP Box",
+		"FLAVOR": "A big box of HP!",
+		"DESCRIPTIONS": [
+			"Upon pickup, gain #b200 #yMax #yHP and delete half of your deck (randomly)."
+		]
+	},
+	"theDuelist:DuelistPrismaticShard": {
+		"NAME": "Duelist's Shard",
+		"FLAVOR": "Looking through the shard, you are able to see entirely new perspectives.",
+		"DESCRIPTIONS": [
+			"Upon pickup, add a random card set to the card pool."
+		]
+	},
+	"theDuelist:BlessingAnubis": {
+		"NAME": "Blessing of Anubis",
+		"FLAVOR": "Looking through the shard, you are able to see entirely new perspectives.",
+		"DESCRIPTIONS": [
+			"Consume #b1 #yCharge, choose any card type and draw #b1 card of that type. Starts with #b3 #yCharges, gain #b1 #yCharge every #b4 turns. Can only hold #b3 #yCharges at once."
+		]
+	},
+	"theDuelist:ChallengePuzzle": {
+		"NAME": "Challenge Mode",
+		"FLAVOR": "Good luck!",
+		"DESCRIPTIONS": [
+			"Challenge Level: #b",
+			" NL ",
+			"#bMillennium #bPuzzle: NL Typed Tokens become Puzzle Tokens.",
+			"#bMillennium #bPuzzle: NL Deck effects are weakened or reduced.",
+			"Start each combat with #b4 #yMax #ySummons.",
+			"All Elites start combat with a random #yBuff.",
+			"",
+			"Start each run with #b0 #yGold.",
+			"At the start of each of your turns, all enemies have a chance to gain #yBlock.",
+			"#bMillennium #bPuzzle: NL No deck effects.",
+			"Whenever you open a non-Boss chest, lose all of your Potions.",
+			"#bMillennium #bPuzzle: NL Puzzle Tokens become #rExplosive Tokens.",
+			"Start each run #rCursed.",
+			"#b1% chance to become #rFrozen at the start of each turn.",
+			"Start each combat with #b3 #rBurning.",
+			"#y? rooms are more likely to contain fights.",
+			"Booster pack rewards contain #b1 less card.",
+			"Whenever you #ySmith, lose #b35 #yGold.",
+			"#bMillennium #bPuzzle: NL #rExplosive Tokens become #rSuper #rExplosive Tokens.",
+			"At most Rest Sites, you may only #yRest or #ySmith.",
+			"At the start of Elite combats, add a random #rCurse into your discard pile.",
+			"All Bosses and Elites start combat with a random #yBuff.",
+			"#ySummoning is restricted.",
+			"Standard: #b50% chance to randomize the cost of Spells when drawn.",
+			"Dragon: gain #b50% less #yGold.",
+			"Naturia: resistance to #yVines is increased.",
+			"Spellcaster: start combat with #b2 orb slots.",
+			"Toon: #yToon #yWorld and #yToon #yKingdom are more punishing.",
+			"Zombie: Start each combat with restricted #yResummoning.",
+			"Aqua: #yAqua tribute synergy effect only triggers #b50% of the time.",
+			"Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.",
+			"Machine: [PLACEHOLDER]",
+			"Warrior: [PLACEHOLDER]",
+			"Insect: #yIncrement actions have a #b25% chance to fail.",
+			"Plant: [PLACEHOLDER]",
+			"Megatype: Reduce the amount of tribute synergy effects that trigger on Megatype synergy tributes.",
+			"Increment: Whenever you #yIncrement, take #b1 damage.",
+			"Creator: Whenever you draw a card that has not been drawn this run so far, take #b1 damage.",
+			"Exodia: You may only play #b1 piece of #yExodia per turn.",
+			"Ojama: [PLACEHOLDER]",
+			"Giant: [PLACEHOLDER]",
+			"Ascended I: Whenever you #yChannel an orb, lose #b2 #yDragonscales.",
+			"Ascended II: [PLACEHOLDER]",
+			"Ascended III: [PLACEHOLDER]",
+			"Pharaoh I: [PLACEHOLDER]",
+			"Pharaoh II: [PLACEHOLDER]",
+			"Pharaoh III: [PLACEHOLDER]",
+			"Pharaoh IV: [PLACEHOLDER]",
+			"Pharaoh V: [PLACEHOLDER]",
+			"Random (Small): [PLACEHOLDER]",
+			"Random (Big): [PLACEHOLDER]",
+			"Upgrade: [PLACEHOLDER]",
+			"Metronome: [PLACEHOLDER]"
+		]
 	}
 }

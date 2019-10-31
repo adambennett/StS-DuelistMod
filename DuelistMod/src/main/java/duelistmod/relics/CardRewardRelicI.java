@@ -157,27 +157,27 @@ public class CardRewardRelicI extends CustomRelic
 	    		return all;
 	    	case 10:
 	    		all.clear();
-	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	    	case 11:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllIroncladCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	    	case 12:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllSilentCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	    	case 13:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllDefectCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	     	case 14:
 	    		all.clear();
 	    		all.addAll(BaseGameHelper.getAllWatcherCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
 	     	case 15:
 	    		return BaseGameHelper.getAllIroncladCards();
@@ -193,7 +193,7 @@ public class CardRewardRelicI extends CustomRelic
 	    		all.addAll(BaseGameHelper.getAllSilentCards());
 	    		all.addAll(BaseGameHelper.getAllDefectCards());
 	    		all.addAll(BaseGameHelper.getAllWatcherCards());
-	    		all.addAll(BaseGameHelper.getAllColorlessCards(false));
+	    		all.addAll(BaseGameHelper.getAllColorlessCards());
 	    		return all;
     	}
     }
@@ -213,6 +213,7 @@ public class CardRewardRelicI extends CustomRelic
 			UnlockTracker.unlockCard(c.cardID);
 		}
 		AbstractDungeon.gridSelectScreen = this.dcss;
+		DuelistMod.wasViewingSelectScreen = true;
 		((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(group, 1, "Select any " + getColorName() + " card to add to your deck");
 		
         try 
@@ -247,7 +248,7 @@ public class CardRewardRelicI extends CustomRelic
 			AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(this.dcss.selectedCards.get(0).makeCopy(), (float)Settings.WIDTH / 2.0f, (float)Settings.HEIGHT / 2.0f));
 			this.dcss.selectedCards.clear();
 			AbstractDungeon.closeCurrentScreen();
-			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 		}
 	}
     

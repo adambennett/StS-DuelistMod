@@ -1,0 +1,61 @@
+{  
+  "theDuelist:MillenniumItems": {
+    "NAME": "Millennium Items",
+    "DESCRIPTIONS": [
+      "It seems strange that these powerful items would just be available to take..."
+    ],
+    "OPTIONS": [
+      "[Take] #gObtain #ga #gMillennium #gItem. #rBecome #rCursed #r- #rrandom #rDuelist #rCurse.",
+      "[Leave]"
+    ]
+  },
+  "theDuelist:PharoahRoom": {
+    "NAME": "Pharoah Room",
+    "DESCRIPTIONS": [
+      "A hidden tomb filled with treasure!"
+    ],
+    "OPTIONS": [
+      "[Tributes] #gUpgrade #gall #gTribute #gmonsters. #rBecome #rCursed #r- #rrandom #rDuelist #rCurse.",
+	  "[Summons] #gUpgrade #gall #gSummon #gmonsters. #rBecome #rCursed #r- #rrandom #rDuelist #rCurse.",
+	  "[Spells] #gUpgrade #gall #gSpells. #rBecome #rCursed #r- #rrandom #rDuelist #rCurse.",
+	  "[Traps] #gUpgrade #gall #gTraps. #rBecome #rCursed #r- #rrandom #rDuelist #rCurse.",
+	  "[Choose] #gChoose #g5 #gcards #gto #gadd #gto #gyour #gdeck. #rBecome #rCursed #r- #rrandom #rCurse.",
+      "[Leave]",
+	  "[Locked] Requires: 20 or more Tributes in combat",
+	  "[Locked] Requires: 30 or more Summons in combat"
+    ]
+  },
+  "theDuelist:ShrineExodia": {
+    "NAME": "Shrine of Exodia",
+    "DESCRIPTIONS": [
+      "The great Forbidden One!"
+    ],
+    "OPTIONS": [
+      "[Head] #gAdd #gthe #gHead #gof #gExodia #gto #gyour #gdeck.",
+	  "[Left Arm] #gAdd #gthe #gLeft #Arm #gof #gExodia #gto #gyour #gdeck.",
+	  "[Right Arm] #gAdd #gthe #gRight #gArm #gof #gExodia #gto #gyour #gdeck.",
+	  "[Left Leg] #gAdd #gthe #gLeft #gLeg #gof #gExodia #gto #gyour #gdeck.",
+	  "[Right Leg] #gAdd #gthe #gRight #gLeg #gof #gExodia #gto #gyour #gdeck.",
+	  "[Exxod Stone] #gObtain #gthe #gStone #gof #gExxod.",
+      "[Leave]",
+	  "[Locked] You already have the Stone of Exxod."
+    ]
+  },
+  "theDuelist:AknamkanonTomb": {
+    "NAME": "Aknamkanon's Tomb",
+    "DESCRIPTIONS": [
+      "This place feels evil...",
+	  "What was that sound?!"
+    ],
+    "OPTIONS": [
+      "[Brew] #gDouble #gyour #gpotion #gslots. #rBecome #rCursed #r- #rrandom #rDuelist #rCurse.",
+      "[Enrich] #gDouble #gyour #gGold. #rBecome #rCursed #r- #rrandom #rCurse.",
+      "[Intellect] #gDuplicate #gall #gSpells. #rLose #r5 #rMax #rHP.",
+      "[Reduce] #gAll #gcards #gin #gyour #gdeck #gcost [E] #rBecome #rCursed #r- #r2 #rrandom #rCurses.",
+	  "[Dig] #gReceive #ga #grandom #gDuelist #grelic. #rLose #r8 #rHP.",
+      "[Leave]",
+	  "[Locked] Requires: Millennium Puzzle",
+	  "[Locked] Requires: Fewer than 9 potion slots"
+    ]
+  }
+}

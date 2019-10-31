@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,6 +12,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.statuses.*;
 import duelistmod.cards.tokens.PlagueToken;
 import duelistmod.powers.MortalityPower;
 import duelistmod.powers.incomplete.HauntedDebuff;
@@ -277,40 +277,58 @@ public class HauntedHelper
 				for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) { if (!m.isDead && !m.halfDead && !m.isDying && !m.escaped && !m.isEscaping && !m.isDeadOrEscaped()) { m.addBlock(blockB); }}
 				break;
 			case "Add #b1 Wound to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Wound(), 1));
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedWound(), 1));
+				break;
+			case "Add #b1 Swarm to your discard pile":
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Swarm(), 1));
+				break;
+			case "Add #b1 Cold-Blooded to your discard pile":
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new ColdBlooded(), 1));
 				break;
 			case "Add #b1 Dazed to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Dazed(), 1));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedDaze(), 1));				
 				break;
 			case "Add #b1 Slimed to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Slimed(), 1));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedSlime(), 1));				
 				break;
 			case "Add #b1 Burn to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Burn(), 1));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedBurn(), 1));				
 				break;
 			case "Add #b1 Wound to your draw pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Wound(), 1, true, true));
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new HauntedWound(), 1, true, true));
+				break;
+			case "Add #b1 Swarm to your draw pile":
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Swarm(), 1, true, true));
+				break;
+			case "Add #b1 Cold-Blooded to your draw pile":
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new ColdBlooded(), 1, true, true));
 				break;
 			case "Add #b1 Dazed to your draw pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Dazed(), 1, true, true));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new HauntedDaze(), 1, true, true));				
 				break;
 			case "Add #b1 Slimed to your draw pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Slimed(), 1, true, true));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new HauntedSlime(), 1, true, true));				
 				break;
 			case "Add #b1 Burn to your draw pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Burn(), 1, true, true));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new HauntedBurn(), 1, true, true));				
 				break;
 			case "Add #b2 Wounds to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Wound(), 2));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedWound(), 2));				
+				break;
+			case "Add #b2 Swarms to your discard pile":
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Swarm(), 2));				
+				break;
+			case "Add #b2 Cold-Blooded to your discard pile":
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new ColdBlooded(), 2));				
 				break;
 			case "Add #b2 Dazed to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Dazed(), 2));			
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedDaze(), 2));			
 				break;
 			case "Add #b2 Slimed to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Slimed(), 2));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedSlime(), 2));				
 				break;
 			case "Add #b2 Burns to your discard pile":
-				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new Burn(), 2));				
+				AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(new HauntedBurn(), 2));				
 				break;
 			case "Lose #b1 Max HP":
 				p.decreaseMaxHealth(1);
@@ -394,14 +412,20 @@ public class HauntedHelper
 		actions.add("Add #b2 Slimed to your discard pile");
 		actions.add("Add #b2 Dazed to your discard pile");
 		actions.add("Add #b2 Wounds to your discard pile");
+		actions.add("Add #b2 Swarms to your discard pile");
+		actions.add("Add #b2 Cold-Blooded to your discard pile");
 		actions.add("Add #b1 Burn to your discard pile");
 		actions.add("Add #b1 Slimed to your discard pile");
 		actions.add("Add #b1 Dazed to your discard pile");
 		actions.add("Add #b1 Wound to your discard pile");
+		actions.add("Add #b1 Swarm to your discard pile");
+		actions.add("Add #b1 Cold-Blooded to your discard pile");
 		actions.add("Add #b1 Burn to your draw pile");
 		actions.add("Add #b1 Slimed to your draw pile");
 		actions.add("Add #b1 Dazed to your draw pile");
 		actions.add("Add #b1 Wound to your draw pile");
+		actions.add("Add #b1 Swarm to your draw pile");
+		actions.add("Add #b1 Cold-Blooded to your draw pile");
 		actions.add("ALL enemies gain #b10 Block");
 		actions.add("ALL enemies gain #b5 Block");
 		//actions.add("Add a random Duelist Curse to your draw pile");

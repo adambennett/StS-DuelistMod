@@ -51,7 +51,7 @@ public class TheDuelist extends CustomPlayer {
 	public static final int ORB_SLOTS = DuelistMod.orbSlots;
 	public static final int numberOfArchetypes = 17;
 	public static CardGroup theDuelistArchetypeSelectionCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-	public CardGroup resummonPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+	public static CardGroup resummonPile = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	public static CardGroup cardPool = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 	private static final CharacterStrings charStrings;
 	public static final String NAME;
@@ -164,8 +164,14 @@ public class TheDuelist extends CustomPlayer {
 	{
 		return new CharSelectInfo(NAME,DESCRIPTIONS[0],
 				STARTING_HP, 
-				MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
+				MAX_HP, getOrbSlots(), STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
 				getStartingDeck(), false);
+	}
+	
+	private int getOrbSlots()
+	{
+		if (Util.deckIs("Spellcaster Deck") && Util.getChallengeLevel() > 3) { return 2; }
+		else { return 3; }
 	}
 
 	// Starting Deck
@@ -303,8 +309,27 @@ public class TheDuelist extends CustomPlayer {
 	public ArrayList<String> getStartingRelics() 
 	{
 		ArrayList<String> retVal = new ArrayList<>();
+		boolean challenge = false;
+		
+		// Always get Millennium Puzzle
 		retVal.add(MillenniumPuzzle.ID);
+		
+		// Challenge Puzzle if Challenge Mode enabled
+		if (DuelistMod.playingChallenge || DuelistMod.getChallengeDiffIndex() > -1) {
+			challenge = true; 
+			if (!DuelistMod.playingChallenge)
+			{
+				DuelistMod.challengeLevel = (DuelistMod.getChallengeDiffIndex() * 5) - 5;
+				DuelistMod.playingChallenge = true;
+			}
+		}	
+		
+		if (challenge) { retVal.add(ChallengePuzzle.ID); }
+		
+		// Always add Card Pool relic (for viewing card pool, also handles boosters on victory if card rewards are enabled)
 		retVal.add(CardPoolRelic.ID);
+		
+		// If not playing Challenge Mode or Exodia Deck, allow player to customize card pool
 		boolean exodiaDeck = StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Exodia Deck");
 		if (!exodiaDeck)
 		{
@@ -342,8 +367,7 @@ public class TheDuelist extends CustomPlayer {
 	@Override
 	public int getAscensionMaxHPLoss() 
 	{
-		if (DuelistMod.challengeMode) { return 15; }
-		else { return 10; }
+		return 10;
 	}
 
 	// Should return the card color enum to be associated with your character.

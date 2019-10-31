@@ -61,16 +61,12 @@ public class Glitch extends DuelistOrb
 	
 	public Glitch()
 	{
+		this.setID(ID);
 		this.inversion = "Gadget";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Glitch.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 1;
-		if (DuelistMod.challengeMode)
-		{
-			this.baseEvokeAmount = this.evokeAmount = 1;
-			this.basePassiveAmount = this.passiveAmount = 1;
-		}
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -121,7 +117,7 @@ public class Glitch extends DuelistOrb
 		evokeActions.add("#ySummon #b2");
 		evokeActions.add("#yIncrement #b2");
 		//evokeActions.add("#yOjamania");											translationMap.put("#yOjamania", Strings.configOjamania);
-		if (!DuelistMod.challengeMode) { evokeActions.add("Gain [E] [E] "); }	translationMap.put("Gain [E] [E] ", Strings.configGain2Energies);
+		if (!DuelistMod.playingChallenge) { evokeActions.add("Gain [E] [E] "); }	translationMap.put("Gain [E] [E] ", Strings.configGain2Energies);
 		evokeActions.add("Channel a Glitch");									translationMap.put("Channel a Glitch", Strings.configChannel);
 		evokeActionSize = evokeActions.size();
 	}

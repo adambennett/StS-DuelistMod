@@ -80,16 +80,8 @@ public class SuperExplodingToken extends TokenCard
 		}
 		else
 		{
-			if (DuelistMod.challengeMode) 
-			{ 
-				int damageRoll = AbstractDungeon.cardRandomRng.random(2, 9);
-				damageSelf(damageRoll); 
-			}
-			else 
-			{ 
-				int damageRoll = AbstractDungeon.cardRandomRng.random(2, 6);
-				damageSelf(damageRoll); 
-			}
+			int damageRoll = AbstractDungeon.cardRandomRng.random(2, 6);
+			damageSelf(damageRoll); 			
 		}
 	}
 	@Override public void onResummon(int summons) { }

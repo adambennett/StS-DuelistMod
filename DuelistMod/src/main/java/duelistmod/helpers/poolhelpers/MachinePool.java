@@ -122,7 +122,7 @@ public class MachinePool
 		}
 		machineDeck.fillPoolCards(machineCards);		
 		machineDeck.fillArchetypeCards(machineCards);
-		DuelistMod.archetypeCards.addAll(machineCards);
+		//DuelistMod.archetypeCards.addAll(machineCards);
 		return machineCards;
 	}
 	

@@ -39,7 +39,7 @@ public class AutorokketDragonPower extends DuelistPower
 	{
 		if (o instanceof Lava || o instanceof FireOrb || o instanceof DuelistHellfire || o instanceof Blaze)
 		{
-			DuelistCard.damageAllEnemiesThornsFire(this.amount);
+			DuelistCard.burnAllEnemies(this.amount);
 		}
 	}
 

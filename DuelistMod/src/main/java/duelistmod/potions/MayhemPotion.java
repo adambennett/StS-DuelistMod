@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 import com.megacrit.cardcrawl.powers.MayhemPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.powers.ReducerPower;
+import duelistmod.abstracts.*;
+import duelistmod.variables.Colors;
 
-public class MayhemPotion extends AbstractPotion {
+public class MayhemPotion extends DuelistPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("MayhemPotion");
@@ -24,7 +25,7 @@ public class MayhemPotion extends AbstractPotion {
 
     public MayhemPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.BOLT, PotionColor.ENERGY);
+    	super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.BOLT, PotionEffect.NONE, Colors.TEAL, Colors.TEAL, Colors.BLACK);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();

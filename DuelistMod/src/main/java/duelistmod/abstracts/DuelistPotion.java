@@ -1,13 +1,24 @@
 package duelistmod.abstracts;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 public abstract class DuelistPotion extends AbstractPotion
 {
-	public DuelistPotion(String name, String id, PotionRarity rarity, PotionSize size, PotionColor color) 
+	public DuelistPotion(String name, String id, PotionRarity rarity, PotionSize size, PotionEffect pfx, Color liquid) 
 	{
-		super(name, id, rarity, size, color);
+		super(name, id, rarity, size, pfx, liquid, null, null);
+	}
+	
+	public DuelistPotion(String name, String id, PotionRarity rarity, PotionSize size, PotionEffect pfx, Color liquid, Color hybrid) 
+	{
+		super(name, id, rarity, size, pfx, liquid, hybrid, null);
+	}
+	
+	public DuelistPotion(String name, String id, PotionRarity rarity, PotionSize size, PotionEffect pfx, Color liquid, Color hybrid, Color spots) 
+	{
+		super(name, id, rarity, size, pfx, liquid, hybrid, spots);
 	}
 	
 	public void onLoseArtifact() { }

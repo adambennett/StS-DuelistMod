@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 import duelistmod.variables.Strings;
 
 public class MillenniumSymbol extends CustomRelic {
@@ -32,7 +32,7 @@ public class MillenniumSymbol extends CustomRelic {
 	public boolean canSpawn()
 	{
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (DuelistMod.challengeMode) { return true; }
+		if (Util.getChallengeLevel() > 0) { return false; }
 		if (deck.equals("Standard Deck")) { return true; }
 		if (deck.equals("Dragon Deck")) { return true; }
 		if (deck.equals("Naturia Deck")) { return true; }
@@ -57,7 +57,6 @@ public class MillenniumSymbol extends CustomRelic {
 	{
 		String desc = DESCRIPTIONS[0];
 		String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
-		if (DuelistMod.challengeMode) { return DESCRIPTIONS[1]; }
 		if (deck.equals("Standard Deck")) { desc = DESCRIPTIONS[2]; }
 		if (deck.equals("Dragon Deck")) { desc = DESCRIPTIONS[3]; }
 		if (deck.equals("Naturia Deck")) { desc = DESCRIPTIONS[4]; }

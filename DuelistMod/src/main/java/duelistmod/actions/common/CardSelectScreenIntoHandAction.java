@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import basemod.BaseMod;
@@ -340,6 +339,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 				if (anyNumber)
 				{
 					AbstractDungeon.gridSelectScreen = this.dcss;
+					DuelistMod.wasViewingSelectScreen = true;
 					String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
 					if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
 					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
@@ -374,6 +374,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 				if (this.anyNumber)
 				{		
 					AbstractDungeon.gridSelectScreen = this.dcss;
+					DuelistMod.wasViewingSelectScreen = true;
 					String btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandString;
 					if (this.amount != 1 ) { btmScreenTxt = Strings.configChooseString + this.amount + Strings.configAddCardHandPluralString; }
 					((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(tmp, this.amount, btmScreenTxt);
@@ -444,7 +445,7 @@ public class CardSelectScreenIntoHandAction extends AbstractGameAction
 			this.p.hand.refreshHandLayout();
 		}
 		
-		if (this.anyNumber) { AbstractDungeon.gridSelectScreen = new GridCardSelectScreen(); }
+		//if (this.anyNumber) { AbstractDungeon.gridSelectScreen = new GridCardSelectScreen(); }
 		tickDuration();
 	}
 	

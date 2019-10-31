@@ -33,6 +33,11 @@ public class DuelistOrb extends AbstractOrb {
 		else { return false; }
 	}
 	
+	public void setID(String id)
+	{
+		this.ID = id;
+	}
+	
 	public void onLoseArtifact() { }
 	
 	public void onExhaust(AbstractCard c) { }

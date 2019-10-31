@@ -14,6 +14,7 @@ public class GamblerChip extends CustomRelic
     public static final String ID = DuelistMod.makeID("GamblerChip");
     public static final String IMG = DuelistMod.makeRelicPath("GamblerChip.png");
     public static final String OUTLINE = DuelistMod.makeRelicOutlinePath("GamblerChip_Outline.png");
+    private boolean skipped = false;
 
     public GamblerChip() {
         super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.BOSS, LandingSound.MAGICAL);
@@ -25,6 +26,17 @@ public class GamblerChip extends CustomRelic
     	String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
 		if (deck.equals("Exodia Deck")) { return false; }
 		else { return true; }
+    }
+    
+    public boolean skippedLastCard()
+    {
+    	if (this.skipped) { this.skipped = false; return true; }
+    	else { return false; }
+    }
+    
+    public void skipped()
+    {
+    	this.skipped = true;
     }
 
     @Override

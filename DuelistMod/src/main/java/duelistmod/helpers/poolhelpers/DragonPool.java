@@ -106,7 +106,7 @@ public class DragonPool
 		dragonCards.add(new CyberDragonSieger());
 		dragonCards.add(new CyberDragonVier());
 		dragonCards.add(new CyberEltanin());
-		//dragonCards.add(new CyberEmergency());
+		dragonCards.add(new CyberEmergency());
 		dragonCards.add(new CyberEndDragon());
 		dragonCards.add(new CyberLaserDragon());
 		//dragonCards.add(new CyberPharos());
@@ -325,7 +325,7 @@ public class DragonPool
 		
 		dragonDeck.fillPoolCards(dragonCards); 		
 		dragonDeck.fillArchetypeCards(dragonCards);
-		DuelistMod.archetypeCards.addAll(dragonCards);
+		//DuelistMod.archetypeCards.addAll(dragonCards);
 		return dragonCards;
 	}
 	

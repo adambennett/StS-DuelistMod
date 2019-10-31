@@ -24,14 +24,10 @@ public class ChangeHeart extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
-    //private static final int MIN_ROLL = 3;
-    //private static final int MAX_ROLL = 10;
-    //private static final int MIN_ROLL_UPGRADE = 5;
-    //private static final int MAX_ROLL_UPGRADE = 15;
     // /STAT DECLARATION/
 
     public ChangeHeart() {
@@ -42,6 +38,7 @@ public class ChangeHeart extends DuelistCard
         this.exodiaDeckCopies = 1;
         this.originalName = this.name;
         this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = 8;
         this.setupStartingCopies();
     }
 
@@ -49,13 +46,7 @@ public class ChangeHeart extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m)
     {
-    	// Generate random numbers to set max summons to
-    	//int randomNum = AbstractDungeon.cardRandomRng.random(MIN_ROLL, MAX_ROLL);
-    	//int randomNumUpgraded = AbstractDungeon.cardRandomRng.random(MIN_ROLL_UPGRADE, MAX_ROLL_UPGRADE);
-    	
-    	// Set max summons
-    	if (this.upgraded) { setMaxSummons(p, 10); }
-    	else { setMaxSummons(p, 8); }
+    	setMaxSummons(p, this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.
@@ -69,6 +60,7 @@ public class ChangeHeart extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            this.upgradeMagicNumber(2);
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }

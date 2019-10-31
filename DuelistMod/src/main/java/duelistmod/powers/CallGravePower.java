@@ -48,7 +48,7 @@ public class CallGravePower extends AbstractPower
     @Override
     public void atStartOfTurn() 
     {
-    	if (DuelistMod.uniqueMonstersThisCombat.size() > 0)
+    	if (DuelistMod.uniqueMonstersThisRun.size() > 0)
     	{
     		//this.flash();
     		System.out.println("theDuelist:CallGrave:atEndOfTurn() ---> monstersInCombat size was > 0");
@@ -56,7 +56,7 @@ public class CallGravePower extends AbstractPower
     		ArrayList<DuelistCard> actualResummons = new ArrayList<DuelistCard>();
     		int loopMax = this.amount + 3;
     		int loopCount = 0;
-    		for (DuelistCard c : DuelistMod.uniqueMonstersThisCombat)
+    		for (DuelistCard c : DuelistMod.uniqueMonstersThisRun)
     		{
     			if (c.hasTag(Tags.MONSTER) && !c.hasTag(Tags.EXEMPT))
     			{

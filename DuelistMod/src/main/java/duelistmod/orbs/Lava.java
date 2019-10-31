@@ -42,6 +42,7 @@ public class Lava extends DuelistOrb
 	
 	public Lava()
 	{
+		this.setID(ID);
 		this.inversion = "Frost";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Lava.png"));
 		this.name = orbString.NAME;

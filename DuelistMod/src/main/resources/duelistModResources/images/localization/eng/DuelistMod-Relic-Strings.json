@@ -1,0 +1,919 @@
+{
+	"theDuelist:MillenniumPuzzle": {
+		"NAME": "Millennium Puzzle",
+		"FLAVOR": "It was originally known as the Millennium Pendant, but after being shattered and requiring assembly it came to be known as the Millennium Puzzle.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, trigger an effect depending on your chosen starting deck.",
+			"Challenge Mode: #ySummon #b1 [#FF5252]Exploding [#FF5252]Token at the start of combat. #ySummoning is restricted.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token, gain a random amount (0-10) of #yBlock and gain #b1 #yBlur.",
+			"At the start of combat, #ySummon #b1 #yDragon Token, and choose #b", " of #b6 additional effects.",
+			"At the start of combat, #ySummon #b1 Nature Token, gain #b1 Vine and #b1 Leaf.", " #yPoison or #yConstricted to a random enemy. #ySummon #b1 random Nature Token.",
+			"At the start of next combat, #ySummon #b1 #ySpellcaster Token, and have a #b", "% chance to #yChannel a random Orb.",
+			"At the start of combat, #ySummon #b1 #yToon Token, and gain #yToon #yWorld.",
+			"At the start of combat, #ySummon #b1 #yZombie Token, and #yChannel a #yShadow orb.",
+			"At the start of combat, sum up the total #ySummons of all monsters in your draw pile and increase the #yBlock of a random monster in your draw pile by that much for the rest of combat. #ySummon #b1 #yAqua Token.",
+			"At the start of combat, sum up the total #yTribute cost of all monsters in your draw pile and increase the damage of a random monster in you draw pile by that much for the rest of combat. #ySummon #b1 #yFiend Token.",
+			"At the start of combat, #ySummon #b1 #yMachine Token, and add a random Token to your hand.",
+			"At the start of combat, #ySummon #b1 #yStance Token, gain #b3 #yVigor and gain #b2 #yBlur.",
+			"At the start of combat, #ySummon #b1 #yInsect Token and add #yBixi to your hand.",
+			"At the start of combat, #ySummon #b1 #yPlant Token and apply #b2 #yConstricted to ALL enemies.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token and gain #b2 #yThorns.",
+			"At the start of combat, #ySummon #b1 #yMegatype Token and add a random monster to your hand.",
+			"At the start of combat, #yIncrement and #ySummon #b1 for each Act.",
+			"At the start of combat, #ySummon #b2 #yPuzzle Tokens, and add a random combination of #yRandomized copies of #bJinzo, #bTrap #bHole and #bUltimate #bOffering to your hand.",
+			"At the start of combat, #ySummon a random amount of #yBonanza Tokens and gain a random #yBuff.",
+			"At the start of combat, #ySummon #b1 #yExodia Token. NL All cards in your starter deck have #ySoulbound and you cannot obtain any cards. NL At the start of each turn, draw the #yHead #yof #yExodia.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token (GIANT DECK)",
+			"At the start of combat, #ySummon #b1 #yMegatype Token.",
+			"At the start of combat, #ySummon #b1 #yMegatype Token and have a #b50% chance to #yChannel a #yShadow orb.",
+			"At the start of combat, #ySummon #b1 #yMegatype Token (ASCENSION DECK)",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, draw a card.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, gain #b5 Block.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, deal #b5 damage to a random enemy.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, add a random Token to your hand.",
+			"At the start of combat, #ySummon #b1 #yPuzzle Token. Whenever you #yTribute with matching monster types, add a #yMonster #yEgg to your hand.",
+			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens.",
+			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens.",
+			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens.",
+			"At the start of combat, #ySummon a random amount #b(1-3) of #yPuzzle Tokens."
+		]
+	},
+	"theDuelist:MillenniumSymbol": {
+		"NAME": "Millennium Symbol",
+		"FLAVOR": "This symbol seems to fit right into the Millennium Puzzle...",
+		"DESCRIPTIONS": [
+			"Improve the effects of the #yMillennium #yPuzzle.",
+			"Challenge Mode: No longer #ySummon #yExploding Tokens at the start of combat.",
+			"Gain #b1 extra #yBlur at the start of combat.",
+			"Increase the number of #yMillennium #yPuzzle effects you may choose to #b3.",
+			"Gain #b2 extra #yVines and #yLeaves at the start of combat.",
+			"Whenever the #yMillennium #yPuzzle channels an orb at the start of an Elite or Boss combat, channel a second copy of the same orb.",
+			"Gain #yToon #yKingdom at the start of combat instead of #yToon #yWorld.",
+			"Each combat, have a small chance to channel an additional #yShadow orb.",
+			"Whenever you trigger the puzzle effect, a random summon monster is added to the total #b3 times.",
+			"Whenever you trigger the puzzle effect, a random tribute monster is added to the total #b3 times.",
+			"Instead of random Tokens, choose #b1 of #b5 random Tokens to add to your hand at the start of combat.",
+			"At the start of each combat, gain a random amount (0-10) of #yBlock.",
+			"#yBixi is #yUpgraded.",
+			"Apply #b3 extra #yConstricted to ALL enemies at the start of each combat.",
+			"Instead of random monsters, choose #b1 of #b3 random monsters to add to your hand at the start of combat.",
+			"After you #yIncrement, gain #yTemporary #yHP equal to your max summons.",
+			"Whenever you play #yThe #yCreator, you may choose to shuffle half of the generated cards into your discard pile."
+		]
+	},
+	"theDuelist:MillenniumPuzzleShared": {
+		"NAME": "Millennium Puzzle",
+		"FLAVOR": "It was originally known as the Millennium Pendant, but after being shattered and requiring assembly it came to be known as the Millennium Puzzle.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, trigger an effect depending on your chosen starting deck."
+		]
+	},
+	"theDuelist:MillenniumEye": {
+		"NAME": "Millennium Eye",
+		"FLAVOR": "It was created 3,000 years prior with other Millennium Items by Aknadin. After its creation, Aknadin himself put on the Eye, sacrificing his left eye in the process.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain #yToon #yWorld."
+		]
+	},
+	"theDuelist:MillenniumRing": {
+		"NAME": "Millennium Ring",
+		"FLAVOR": "3,000 years before present day events, the Millennium Ring and the other Millennium Items were forged in Kul Elna by sacrificing 99 souls of the Kul Elna villagers.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, #yIncrement #b3."
+		]
+	},
+	"theDuelist:MillenniumKey": {
+		"NAME": "Millennium Key",
+		"FLAVOR": "After it was made, the Millennium Key was given to Solomon Muto's Egyptian incarnate, Shimon, but later it was passed on to Shada.",
+		"DESCRIPTIONS": [
+			"Gain [E] at the start of each turn. Your max #ySummons cannot be higher than #b5."
+		]
+	},
+	"theDuelist:MillenniumRod": {
+		"NAME": "Millennium Rod",
+		"FLAVOR": "Priest Seto had originally owned the Millennium Rod. Along with the other Items, it was used to resurrect Zorc Necrophades.",
+		"DESCRIPTIONS": [
+			"At the start of each turn, add a #yRandomized #ySpell to your hand."
+		]
+	},
+	"theDuelist:MillenniumScale": {
+		"NAME": "Millennium Scale",
+		"FLAVOR": "Also known as the Scales of Truth, The Scale was originally owned by Karim.",
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute with matching monster types, NL gain #b3 #yTemporary #yHP."
+		]
+	},
+	"theDuelist:MillenniumNecklace": {
+		"NAME": "Millennium Necklace",
+		"FLAVOR": "The Millennium Necklace was originally owned by an unnamed high priestess under Aknamkanon, later by Isis under Atem, in Ancient Egypt.",
+		"DESCRIPTIONS": [
+			"Receive an extra potion reward after every combat."
+		]
+	},
+	"theDuelist:MillenniumToken": {
+		"NAME": "Millennium Token",
+		"FLAVOR": "A very powerful token.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Duelist card to add to your deck. Your Tokens always cost 0."
+		]
+	},
+	"theDuelist:MillenniumCard": {
+		"NAME": "Millennium Membership Card",
+		"FLAVOR": "Bonus membership offer for my most powerful Pharoah!",
+		"DESCRIPTIONS": [
+			"#yUpgrade a random #yTribute monster in your deck whenever you enter a shop."
+		]
+	},
+	"theDuelist:MillenniumHammer": {
+		"NAME": "Millennium Hammer",
+		"FLAVOR": "A hammer which once belonged to Aknamkanon himself.",
+		"DESCRIPTIONS": [
+			"Consume #b1 #yCharge and #yUpgrade a random card in your deck each time you Smith. Starts with #b3 charges. Each time you pickup a #yMillennium #yItem, gain #b2 charges."
+		]
+	},
+	"theDuelist:MillenniumStone": {
+		"NAME": "Millennium Stone",
+		"FLAVOR": "A curious stone with seemingly limitless power!",
+		"DESCRIPTIONS": [
+			"Upon pickup, upgrade as many cards in your deck as you want. Lose #b3 max HP for each upgrade."
+		]
+	},
+	"theDuelist:MillenniumCoin": {
+		"NAME": "Millennium Coin",
+		"FLAVOR": "A beautiful coin.",
+		"DESCRIPTIONS": [
+			"Upon pickup, gain #b100 #yGold for each other #yMillennium #yItem you have."
+		]
+	},
+	"theDuelist:StoneExxod": {
+		"NAME": "Stone of Exxod",
+		"FLAVOR": "A fragment of the Forbidden One?",
+		"DESCRIPTIONS": [
+			"Each time you shuffle your deck, add a random #yExodia card to your hand."
+		]
+	},
+	"theDuelist:GiftAnubis": {
+		"NAME": "Gift of Anubis",
+		"FLAVOR": "A Gift from Anubis himself.",
+		"DESCRIPTIONS": [
+			" NL Summon #b1 and consume #b1 #yCharge. NL Starts with #b1 #yCharge. NL Upon defeating Bosses and Elites, gain #b2 #yCharges."
+		]
+	},
+	"theDuelist:ResummonBranch": {
+		"NAME": "Millennium Branch",
+		"FLAVOR": "The branch of a tree from the Ancient Egyptian era.",
+		"DESCRIPTIONS": [
+			"At the start of turn, #yResummon a random monster you have played this run for every #b2 cards you #yExhausted on the previous turn."
+		]
+	},
+	"theDuelist:AeroRelic": {
+		"NAME": "Orb of Slifer",
+		"FLAVOR": "A strange orb with mysterious power.",
+		"DESCRIPTIONS": [
+			"Your #yAir orbs always #yChannel a random orb."
+		]
+	},
+	"theDuelist:CardRewardRelicA": {
+		"NAME": "Reward Token",
+		"FLAVOR": "A very helpful token.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, receive #b1 extra card reward and consume #b1 #yCharge. Starts with #b0 #yCharges. Upon defeating Bosses and Elites, gain #b2 #yCharges."
+		]
+	},
+	"theDuelist:CardRewardRelicB": {
+		"NAME": "Reward Token+",
+		"FLAVOR": "A VERY helpful token.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, receive #b2 extra card rewards and consume #b1 #yCharge. Starts with #b1 #yCharge. Upon defeating Bosses and Elites, gain #b1 #yCharge."
+		]
+	},
+	"theDuelist:CardRewardRelicC": {
+		"NAME": "Reward Orb",
+		"FLAVOR": "A very helpful orb.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, receive #b1 extra card reward and consume #b1 #yCharge. Starts with #b5 #yCharges."
+		]
+	},
+	"theDuelist:CardRewardRelicD": {
+		"NAME": "Reward Orb+",
+		"FLAVOR": "A strange orb.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, have a #b3% chance to receive #b4 extra card rewards."
+		]
+	},
+	"theDuelist:CardRewardRelicE": {
+		"NAME": "Reward Stone",
+		"FLAVOR": "A strange stone.",
+		"DESCRIPTIONS": [
+			"Whenever you win combat, have a #b20% chance to receive #b2 extra card rewards."
+		]
+	},
+	"theDuelist:CardRewardRelicF": {
+		"NAME": "Spelltome",
+		"FLAVOR": "A green, glowing book.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Spell to add to your deck."
+		]
+	},
+	"theDuelist:CardRewardRelicG": {
+		"NAME": "Tricktome",
+		"FLAVOR": "A purple, glowing book.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Trap to add to your deck."
+		]
+	},
+	"theDuelist:CardRewardRelicH": {
+		"NAME": "Battletome",
+		"FLAVOR": "A yellow, glowing book.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any Monster to add to your deck."
+		]
+	},
+	"theDuelist:CardRewardRelicI": {
+		"NAME": "Spiretome",
+		"FLAVOR": "A multi-colored, glowing book.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose any [#d40e00]Red card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue card to add to your deck.",
+			"Upon pickup, choose any [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or [#2a44ec]Blue card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue or [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue or [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#0c821a]Green or [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any Colorless card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red or Colorless card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue or Colorless card to add to your deck.",			
+			"Upon pickup, choose any [#0c821a]Green or Colorless card to add to your deck.",
+			"Upon pickup, choose any [#5b0bbd]Purple or Colorless card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red card to add to your deck.",
+			"Upon pickup, choose any [#2a44ec]Blue card to add to your deck.",
+			"Upon pickup, choose any [#0c821a]Green card to add to your deck.",
+			"Upon pickup, choose any [#5b0bbd]Purple card to add to your deck.",
+			"Upon pickup, choose any [#d40e00]Red, [#2a44ec]Blue, [#0c821a]Green, [#5b0bbd]Purple, or Colorless card to add to your deck."
+		]
+	},
+	"theDuelist:InversionRelic": {
+		"NAME": "Inversion Stone",
+		"FLAVOR": "A strange looking stone.",
+		"DESCRIPTIONS": [
+			"Whenever you #yInvert, #yEvoke the original Orb twice."
+		]
+	},
+	"theDuelist:InversionEvokeRelic": {
+		"NAME": "Inversion Orb",
+		"FLAVOR": "A strange looking orb.",
+		"DESCRIPTIONS": [
+			"Whenever you #yInvert, repeat the same #yInvert action."
+		]
+	},
+	"theDuelist:NaturiaRelic": {
+		"NAME": "Nature Orb",
+		"FLAVOR": "An orb covered with leaves and dirt. How odd.",
+		"DESCRIPTIONS": [
+			"#yVines gained by playing #yNaturia cards is increased by #b1."
+		]
+	},
+	"theDuelist:InsectRelic": {
+		"NAME": "Bug Token",
+		"FLAVOR": "A dirty token shaped like a beetle.",
+		"DESCRIPTIONS": [
+			"Whenever you apply #yPoison from #yTributing an #yInsect, add #b", " extra poison. Upon defeating Bosses and Elites, have a #b25% chance to further increase this #yPoison buff by #b1."
+		]
+	},
+	"theDuelist:MachineToken": {
+		"NAME": "Machine Token",
+		"FLAVOR": "A mechanical token covered with small wires and strange markings. Best not fiddle with it too much.",
+		"DESCRIPTIONS": [
+			"#yExplosive #yTokens deal damage randomly to enemies instead of damaging you."
+		]
+	},
+	"theDuelist:MachineTokenB": {
+		"NAME": "Machine Orb",
+		"FLAVOR": "A mechanical orb that seems to be ticking?",
+		"DESCRIPTIONS": [
+			"All #yExplosive #yTokens deal extra damage."
+		]
+	},
+	"theDuelist:DragonRelic": {
+		"NAME": "Dragon Statue",
+		"FLAVOR": "A small statue shaped like a dragon.",
+		"DESCRIPTIONS": [
+			"When you gain #yDragonscales from #yTributing a #yDragon, gain #b2 extra #yDragonscales."
+		]
+	},
+	"theDuelist:SummonAnchor": {
+		"NAME": "Summoning Anchor",
+		"FLAVOR": "A small red and yellow anchor. What a strange color scheme.",
+		"DESCRIPTIONS": [
+			"#ySummon #b1 Relic Token at the start of each combat."
+		]
+	},
+	"theDuelist:SpellcasterToken": {
+		"NAME": "Spellcaster Token",
+		"FLAVOR": "A glowing purple token that seems to hold a mysterious power.",
+		"DESCRIPTIONS": [
+			"Whenever you #yChannel an orb #yChannel an additional random orb."
+		]
+	},
+	"theDuelist:SpellcasterOrb": {
+		"NAME": "Spellcaster Orb",
+		"FLAVOR": "A glowing purple orb that seems to hold a mysterious power.",
+		"DESCRIPTIONS": [
+			"Whenever you #yChannel an orb deal #b3 damage to ALL enemies."
+		]
+	},
+	"theDuelist:AquaRelic": {
+		"NAME": "Aqua Orb",
+		"FLAVOR": "A small blue sphere that smells a bit salty.",
+		"DESCRIPTIONS": [
+			"When you gain #ySummons from #yTributing an #yAqua, gain #b1 extra #ySummon. NL Synergy: #yAqua #yToken", "If the player has #yAqua #yToken, #yTributes are also decreased by #b2."
+		]
+	},
+	"theDuelist:AquaRelicB": {
+		"NAME": "Aqua Token",
+		"FLAVOR": "A small blue token shaped like seashell. It is quite damp.",
+		"DESCRIPTIONS": [
+			"When you #yTribute an #yAqua for another, decrease the #yTributes of all monsters in your hand by #y1 for this turn."
+		]
+	},
+	"theDuelist:NatureRelic": {
+		"NAME": "Nature Token",
+		"FLAVOR": "An orb covered with mud and grass. Gross.",
+		"DESCRIPTIONS": [
+			"If you apply at least #b35 #yPoison in combat, drop an extra card reward.",
+			"If you apply at least #b35 #yPoison in combat, drop an extra Booster reward."
+		]
+	},
+	"theDuelist:RandomTributeMonsterRelic": {
+		"NAME": "Tribute Statue",
+		"FLAVOR": "A glowing red stone. It holds mysterious power.",
+		"DESCRIPTIONS": [
+			"Choose #b1 of #b5 random #yTribute monsters to add to your deck. The chosen monster's #yTribute cost is set to #b1."
+		]
+	},
+	"theDuelist:TributeEggRelic": {
+		"NAME": "Tribute Egg",
+		"FLAVOR": "A glowing red egg shaped object. It holds mysterious power.",
+		"DESCRIPTIONS": [
+			"Whenever you add a #yTribute monster that costs #b2 or more #yTributes to your deck, reduce its #yTribute cost by #b1."
+		]
+	},
+	"theDuelist:FiendRelic": {
+		"NAME": "Dark Token",
+		"FLAVOR": "A small darkened token. It feels evil.",
+		"DESCRIPTIONS": [
+			"Move an additional card to your hand each time you #yTribute a #yFiend for another #yFiend."
+		]
+	},
+	"theDuelist:ZombieRelic": {
+		"NAME": "Shadow Token",
+		"FLAVOR": "A smoldering, soot covered token. It's very hot!",
+		"DESCRIPTIONS": [
+			"Your #yShadow orbs spawn with #b2 extra damage per #yResummon."
+		]
+	},
+	"theDuelist:DragonRelicB": {
+		"NAME": "Dragon Pendant",
+		"FLAVOR": "A small necklace with a pendant shaped like a dragon.",
+		"DESCRIPTIONS": [
+			"Every other time you #yTribute a #yDragon for another #yDragon, draw #b1 #yRare card."
+		]
+	},
+	"theDuelist:UpgradeBuffRelic": {
+		"NAME": "Ultra Stone",
+		"FLAVOR": "A glowing red orb that seems to pulsate and emit a great power.",
+		"DESCRIPTIONS": [
+			"#yUpgrading Duelist cards will grant extra bonuses."
+		]
+	},
+	"theDuelist:ShopToken": {
+		"NAME": "Shop Token",
+		"FLAVOR": "A weird looking rug shaped token.",
+		"DESCRIPTIONS": [
+			"You will encounter rarer relics in the shop more often."
+		]
+	},
+	"theDuelist:PyramidLight": {
+		"NAME": "Pyramid of Light",
+		"FLAVOR": "A beautiful small prism.",
+		"DESCRIPTIONS": [
+			"You can upgrade #yCurses and they become Colorless cards."
+		]
+	},
+	"theDuelist:YugiMirror": {
+		"NAME": "Yugi's Mirror",
+		"FLAVOR": "I look funny in this.",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate a random #yTribute card in your deck. The duplicated copy costs #b0."
+		]
+	},
+	"theDuelist:StoneKulElna": {
+		"NAME": "Stone of Kul Elna",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"Spells cost #b0. Start each combat [#FF5252]Hexxed."
+		]
+	},
+	"theDuelist:BlessingAknadin": {
+		"NAME": "Blessing of Aknadin",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"All combats have a small chance to drop an additional Common or Uncommon relic."
+		]
+	},
+	"theDuelist:HasanPendant": {
+		"NAME": "Hasan's Pendant",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"Discarded cards are instead sent to your draw pile."
+		]
+	},
+	"theDuelist:MarikToken": {
+		"NAME": "Marik's Token",
+		"FLAVOR": "",
+		"DESCRIPTIONS": [
+			"Whenever you play a Trap that costs [E] [E] or less, multiply your #yStrength by the cost of the Trap multiplied by #b-1."
+		]
+	},
+	"theDuelist:ZombieRelicB": {
+		"NAME": "Zombie Token",
+		"FLAVOR": "This token looks disgusting!",
+		"DESCRIPTIONS": [
+			"At the start of each turn, if your health is full, copy a random card from your #yExhaust pile into your hand."
+		]
+	},
+	"theDuelist:DragonRelicC": {
+		"NAME": "Dragon Orb",
+		"FLAVOR": "A small red orb.",
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute a #yDragon for another, have a #b20% chance to gain [E]"
+		]
+	},
+	"theDuelist:ZombieResummonBuffRelic": {
+		"NAME": "Zombie Statue",
+		"FLAVOR": "A small statue shaped like a zombie.",
+		"DESCRIPTIONS": [
+			"When you gain #yBlock from #yResummoning a #yZombie, gain #b5 extra #yBlock."
+		]
+	},
+	"theDuelist:HauntedRelic": {
+		"NAME": "Haunted Pendant",
+		"FLAVOR": "A small grey necklace shaped like a ghost. Creepy!",
+		"DESCRIPTIONS": [
+			"Gain [E] at the start of each turn. Start each combat #yHaunted.",
+			"Chooses a random type of card. For the rest of combat, all cards of this type cost #b0. Whenever you play a card of this type, trigger a random negative effect."
+		]
+	},
+	"theDuelist:ToonRelic": {
+		"NAME": "Cartoon Statue",
+		"FLAVOR": "A small colorful statue!",
+		"DESCRIPTIONS": [
+			"When you apply #yVulnerable from #yTributing a #yToon, apply #b1 extra #yVulnerable."
+		]
+	},
+	"theDuelist:SpellcasterStone": {
+		"NAME": "Spellcaster Stone",
+		"FLAVOR": "A glowing purple stone that seems to hold a marvelous power.",
+		"DESCRIPTIONS": [
+			"Start each combat with #b5 #yMagicka and #b2 #yWeak.",
+			"Buff that gives extra block whenever you trigger the #ySpellcaster block-on-attack effect."
+		]
+	},
+	"theDuelist:BoosterAlwaysBonusRelic": {
+		"NAME": "Bonus Orb",
+		"FLAVOR": "All bonus packs. All the time.",
+		"DESCRIPTIONS": [
+			"Always receive a Bonus Booster pack with any Booster rewards."
+		]
+	},
+	"theDuelist:BoosterAlwaysSillyRelic": {
+		"NAME": "Booster Bonanza",
+		"FLAVOR": "So you like to gamble?",
+		"DESCRIPTIONS": [
+			"Booster pack rewards are always Bonanza Packs, which contain #b5 random cards."
+		]
+	},
+	"theDuelist:BoosterBetterBoostersRelic": {
+		"NAME": "Upgrade Stone",
+		"FLAVOR": "Get yourself some high quality card packs!",
+		"DESCRIPTIONS": [
+			"Increase the chances of receiving better Booster packs. No longer receive Common Boosters."
+		]
+	},
+	"theDuelist:BoosterExtraAllRaresRelic": {
+		"NAME": "Booster Power Token",
+		"FLAVOR": "These are some seriously good pulls!",
+		"DESCRIPTIONS": [
+			"Every Booster pack reward has a #b50% chance to roll an #yAll #yRares #yBooster."
+		]
+	},
+	"theDuelist:BoosterBonusPackIncreaseRelic": {
+		"NAME": "Bonus Pack Orb",
+		"FLAVOR": "More cards for everyone!",
+		"DESCRIPTIONS": [
+			"Bonus Booster packs contain #b5 cards instead of #b3."
+		]
+	},
+	"theDuelist:BoosterPackEggRelic": {
+		"NAME": "Booster Egg",
+		"FLAVOR": "Get some upgrades!",
+		"DESCRIPTIONS": [
+			"All cards received from Booster packs are #yUpgraded."
+		]
+	},
+	"theDuelist:SpellMaxHPRelic": {
+		"NAME": "Spell Bowl",
+		"FLAVOR": "A Spell a day keeps the Spellcasters away.",
+		"DESCRIPTIONS": [
+			"Whenever you add a #ySpell to your deck, gain #b1 Max HP."
+		]
+	},
+	"theDuelist:WhiteBowlRelic": {
+		"NAME": "White Bowl",
+		"FLAVOR": "Get some upgrades!",
+		"DESCRIPTIONS": [
+			"At the start of each combat, #yChannel a #yWhite."
+		]
+	},
+	"theDuelist:SummonAnchorRare": {
+		"NAME": "Magician's Anchor",
+		"FLAVOR": "This strange anchor appears to be imbided with powerful magic...",
+		"DESCRIPTIONS": [
+			"#ySummon #b2 random Tokens at the start of each combat."
+		]
+	},
+	"theDuelist:GamblerChip": {
+		"NAME": "Gambler's Chip",
+		"FLAVOR": "You can see a small inscription on one side. It reads: \"Yugi's Lucky Chip!\"",
+		"DESCRIPTIONS": [
+			"Gain [E] at the start of each turn. Whenever you attempt to obtain a card, have a #b50% chance to not receive the card."
+		]
+	},
+	"theDuelist:MerchantPendant": {
+		"NAME": "Merchant's Pendant",
+		"FLAVOR": "A rug pendant? The Merchant is such a weird fellow.",
+		"DESCRIPTIONS": [
+			"Upon pickup, refresh the entire shop. Apply #yUpgrades to a random type of card. Apply a random discount to everything in the shop."
+		]
+	},
+	"theDuelist:MerchantNecklace": {
+		"NAME": "Merchant's Necklace",
+		"FLAVOR": "A rug necklace? The Merchant is such a weird dude.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]in [#2aecd7]a [#2aecd7]shop [#2aecd7]to [#2aecd7]activate. NL Refresh all cards, relics, and potions in the shop. Apply #yUpgrades to a random type of card. Starts with #b2 #yCharges. Upon defeating Bosses and Elites, this relic has a #b50% chance to gain #b1 #yCharge."
+		]
+	},
+	"theDuelist:MerchantTalisman": {
+		"NAME": "Merchant's Talisman",
+		"FLAVOR": "It's all rugs. All his stuff is rugs. Even this weird talisman thing is rug-shaped.",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate all #ySpells in your deck."
+		]
+	},
+	"theDuelist:MerchantSword": {
+		"NAME": "Merchant's Sword",
+		"FLAVOR": "How can a sword even be rug-shaped?",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate all #yMonsters in your deck."
+		]
+	},
+	"theDuelist:MerchantRugbox": {
+		"NAME": "Merchant's Rugbox",
+		"FLAVOR": "A whole box of the merchant's used up rugs. These really could use a wash...",
+		"DESCRIPTIONS": [
+			"Upon pickup, duplicate all #yTraps in your deck."
+		]
+	},
+	"theDuelist:Monsterbox": {
+		"NAME": "Monsterbox",
+		"FLAVOR": "A box of monsters!",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose 1 of 5 random monster types. Replace ALL monsters from your deck with an equal number of random monsters from the chosen type."
+		]
+	},
+	"theDuelist:Spellbox": {
+		"NAME": "Spellbox",
+		"FLAVOR": "A box of Spells!",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Spells from your deck and replace them with an equal number of random Spells."
+		]
+	},
+	"theDuelist:Trapbox": {
+		"NAME": "Trapbox",
+		"FLAVOR": "A box of Traps!",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Traps from your deck and replace them with an equal number of random Traps."
+		]
+	},
+	"theDuelist:Spellheart": {
+		"NAME": "Spellheart",
+		"FLAVOR": "A tasty magical fruit, usually consumed by magicians.",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Spells from your deck. Gain #b4 Max HP for each Spell removed."
+		]
+	},
+	"theDuelist:TrapVortex": {
+		"NAME": "Trap Vortex",
+		"FLAVOR": "A localized black hole. Neat?",
+		"DESCRIPTIONS": [
+			"Upon pickup, remove ALL Traps from your deck. At the start of each combat, gain ", " equal to the number of Traps removed.",
+			"At the start of each combat, gain #b"
+		]
+	},
+	"theDuelist:MonsterEggRelic": {
+		"NAME": "Egg Token",
+		"FLAVOR": "A small egg-shaped token. Seems valuable.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, add #b3 #yMonster #yEggs (with modified stats) to your draw pile."
+		]
+	},
+	"theDuelist:MagnetRelic": {
+		"NAME": "Magnet Stimulus",
+		"FLAVOR": "Get some Magnets!",
+		"DESCRIPTIONS": [
+			"Upon pickup, obtain all basic Magnet Warriors and Valkyrion. Lose #b10 Max HP."
+		]
+	},
+	"theDuelist:KaibaToken": {
+		"NAME": "Kaiba Token",
+		"FLAVOR": "A token shaped like a small treasure chest.",
+		"DESCRIPTIONS": [
+			"Whenever you obtain a monster, gain Gold based on the rarity of the monster. NL #yCommon: #b10 Gold NL #yUncommon: #b20 Gold NL #yRare: #b30 Gold NL #yOther: #b40 Gold"
+		]
+	},
+	"theDuelist:AknamkanonsEssence": {
+		"NAME": "Aknamkanon's Essence",
+		"FLAVOR": "How can I have this?",
+		"DESCRIPTIONS": [
+			"At the start of combat, gain #b10 #yTomb #yLooter.", "Each time you attack with a max stack of #ySummons, gain #b10 Gold."
+		]
+	},
+	"theDuelist:MarkExxod": {
+		"NAME": "Mark of Exxod",
+		"FLAVOR": "This brand was used by Ancient Egyptians to signify warriors who had successfully summoned Exodia in battle.",
+		"DESCRIPTIONS": [
+			"You can no longer obtain duplicate cards. Gain #b10 Max HP."
+		]
+	},
+	"theDuelist:DuelistCoin": {
+		"NAME": "Yu-Gi-Oh! Coin",
+		"FLAVOR": "A very beautiful coin!",
+		"DESCRIPTIONS": [
+			"Upon pickup, gain #b30 #yGold for each other relic you have."
+		]
+	},
+	"theDuelist:MetronomeRelicA": {
+		"NAME": "Metronomic",
+		"FLAVOR": "A pristine, high quality, wooden metronome. Gotta practice those paradiddles!",
+		"DESCRIPTIONS": [
+			"Whenever you play a Metronome, #yResummon another random Metronome on a random enemy."
+		]
+	},
+	"theDuelist:MetronomeRelicB": {
+		"NAME": "Metronometry",
+		"FLAVOR": "The study of blast beats.",
+		"DESCRIPTIONS": [
+			"At the start of each combat, add #b3 random Metronomes to your draw pile."
+		]
+	},
+	"theDuelist:MetronomeRelicC": {
+		"NAME": "Solidified Metronome",
+		"FLAVOR": "A sturdy metronome made from a piece of rock.",
+		"DESCRIPTIONS": [
+			"Whenever you play a Metronome, gain #b2 Block."
+		]
+	},
+	"theDuelist:MetronomeRelicD": {
+		"NAME": "Metronomic Power",
+		"FLAVOR": "You feel a strong pulsing sensation when holding this relic.",
+		"DESCRIPTIONS": [
+			"Whenever you gain #yStrength, add a #yRandomized Metronome to your hand."
+		]
+	},
+	"theDuelist:NamelessPowerRelicA": {
+		"NAME": "Duelist Power",
+		"FLAVOR": "I'm running out of flavor text ideas.",
+		"DESCRIPTIONS": [
+			"Every other turn, gain #b4 #yVigor."
+		]
+	},
+	"theDuelist:NamelessPowerRelicB": {
+		"NAME": "Ascended Power",
+		"FLAVOR": "You have become Ascended!",
+		"DESCRIPTIONS": [
+			"At the start of each combat, gain #b3 ", ".",
+			"At the start of each combat, gain #b"
+		]
+	},
+	"theDuelist:NamelessGreedRelic": {
+		"NAME": "Ascended Greed",
+		"FLAVOR": "You are quite greedy!",
+		"DESCRIPTIONS": [
+			"Whenever you obtain a card, gain #b15 #yGold. Whenever you obtain the same card twice in a row, gain #b25 #yGold."
+		]
+	},
+	"theDuelist:NamelessHungerRelic": {
+		"NAME": "Ascended Hunger",
+		"FLAVOR": "You are quite hungry!",
+		"DESCRIPTIONS": [
+			"Whenever you obtain a potion, gain #b2 Max HP."
+		]
+	},
+	"theDuelist:NamelessWarRelicA": {
+		"NAME": "Apprentice War",
+		"FLAVOR": "Not quite battle ready...",
+		"DESCRIPTIONS": [
+			"ALL enemies start combat with #b10% less HP."
+		]
+	},
+	"theDuelist:NamelessWarRelicB": {
+		"NAME": "Duelist War",
+		"FLAVOR": "Getting more powerful...",
+		"DESCRIPTIONS": [
+			"At the start of Boss and Elite combats, gain #b3 #yStrength."
+		]
+	},
+	"theDuelist:NamelessWarRelicC": {
+		"NAME": "Ascended War",
+		"FLAVOR": "You are quite the Warrior!",
+		"DESCRIPTIONS": [
+			"Whenever you draw a #yTribute monster, gain #b1 #yStrength."
+		]
+	},
+	"theDuelist:Leafblower": {
+		"NAME": "Leafblower",
+		"FLAVOR": "Blow those leaves",
+		"DESCRIPTIONS": [
+			"Increase #yBlock gained by #yLeaves by #b20%."
+		]
+	},
+	"theDuelist:NatureOrb": {
+		"NAME": "Vine Orb",
+		"FLAVOR": "Oohh, Vines!",
+		"DESCRIPTIONS": [
+			"Increase damage of #yVines by #b20%."
+		]
+	},
+	"theDuelist:MarkOfNature": {
+		"NAME": "Mark of Nature",
+		"FLAVOR": "It's prickly",
+		"DESCRIPTIONS": [
+			"Whenever you #yTribute a #yNaturia for another, gain #b1 extra #yVine."
+		]
+	},
+	"theDuelist:Leafpile": {
+		"NAME": "Leafpile",
+		"FLAVOR": "We needa leafblower around here",
+		"DESCRIPTIONS": [
+			"Whenever you play a #yNaturia, gain #b1 Leaf."
+		]
+	},
+	"theDuelist:CursedHealer": {
+		"NAME": "Nameless",
+		"FLAVOR": "You succumbed to the Tomb of the Nameless...",
+		"DESCRIPTIONS": [
+			"You chose to rest in a place where an ancient evil lives."
+		]
+	},
+	"theDuelist:DragonBurnRelic": {
+		"NAME": "Burning Statue",
+		"FLAVOR": "A small red dragon-shaped statue.",
+		"DESCRIPTIONS": [
+			"#yDragons always apply #yBurning to their targets."
+		]
+	},
+	"theDuelist:GoldenScale": {
+		"NAME": "Golden Scales",
+		"FLAVOR": "A golden scale.",
+		"DESCRIPTIONS": [
+			"Whenever you gain #yDragonscales, gain #b2 extra."
+		]
+	},
+	"theDuelist:ConfusionGoldRelic": {
+		"NAME": "Dueling Snake",
+		"FLAVOR": "This snake believes in the heart of the cards. Do you?",
+		"DESCRIPTIONS": [
+			"Whenever #yConfusion randomizes the cost of a Duelist card to be higher than #b3, gain #b20 #yGold."
+		]
+	},
+	"theDuelist:CardPoolRelic": {
+		"NAME": "Card Pool-V",
+		"FLAVOR": "Quality of life relic.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]view [#2aecd7]card [#2aecd7]pool."
+		]
+	},
+	"theDuelist:CardPoolAddRelic": {
+		"NAME": "Card Pool-A",
+		"FLAVOR": "Add cards to the current card pool.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]select [#2aecd7]cards [#2aecd7]to [#2aecd7]add [#2aecd7]to [#2aecd7]the [#2aecd7]card [#2aecd7]pool."
+		]
+	},
+	"theDuelist:CardPoolMinusRelic": {
+		"NAME": "Card Pool-R",
+		"FLAVOR": "Remove cards from the current card pool.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]select [#2aecd7]cards [#2aecd7]to [#2aecd7]remove [#2aecd7]from [#2aecd7]the [#2aecd7]card [#2aecd7]pool."
+		]
+	},
+	"theDuelist:CardPoolLoadRelic": {
+		"NAME": "Card Pool-L",
+		"FLAVOR": "Load a saved card pool.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]load [#2aecd7]the [#2aecd7]last [#2aecd7]saved [#2aecd7]card [#2aecd7]pool #b(", 
+			" #bcards).",
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]load [#2aecd7]the [#2aecd7]last [#2aecd7]saved [#2aecd7]card [#2aecd7]pool."
+		]
+	},
+	"theDuelist:CardPoolSaveRelic": {
+		"NAME": "Card Pool-S",
+		"FLAVOR": "Save a card pool.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]save [#2aecd7]the [#2aecd7]current [#2aecd7]card [#2aecd7]pool."
+		]
+	},
+	"theDuelist:CardPoolOptionsRelic": {
+		"NAME": "Card Pool-O",
+		"FLAVOR": "Card pool options.",
+		"DESCRIPTIONS": [
+			"[#2aecd7]Right [#2aecd7]click [#2aecd7]to [#2aecd7]select [#2aecd7]additional [#2aecd7]card [#2aecd7]pool [#2aecd7]options."
+		]
+	},
+	"theDuelist:OrbCardRelic": {
+		"NAME": "Orbstone",
+		"FLAVOR": "A blue, glowing stone.",
+		"DESCRIPTIONS": [
+			"Upon pickup, choose 1 of 4 random orb cards to add to your deck. Orb cards are 0-cost Spells that #yChannel orbs."
+		]
+	},
+	"theDuelist:FatMaxHPRelic": {
+		"NAME": "HP Box",
+		"FLAVOR": "A big box of HP!",
+		"DESCRIPTIONS": [
+			"Upon pickup, gain #b200 #yMax #yHP and delete half of your deck (randomly)."
+		]
+	},
+	"theDuelist:ChallengePuzzle": {
+		"NAME": "Challenge Mode",
+		"FLAVOR": "Good luck!",
+		"DESCRIPTIONS": [
+			"Challenge Level: #b",
+			" NL ",
+			"#bMillennium #bPuzzle: NL Typed Tokens become Puzzle Tokens.",
+			"#bMillennium #bPuzzle: NL Deck effects are weakened or reduced.",
+			"Start each combat with #b4 #yMax #ySummons.",
+			"All Elites start combat with a random #yBuff.",
+			"",
+			"Start each run with #b0 #yGold.",
+			"At the start of each of your turns, all enemies have a chance to gain #yBlock.",
+			"#bMillennium #bPuzzle: NL No deck effects.",
+			"Whenever you open a non-Boss chest, lose all of your Potions.",
+			"#bMillennium #bPuzzle: NL Puzzle Tokens become #rExplosive Tokens.",
+			"Start each run #rCursed.",
+			"#b1% chance to become #rFrozen at the start of each turn.",
+			"Start each combat with #b3 #rBurning.",
+			"#y? rooms are more likely to contain fights.",
+			"Booster pack rewards contain #b1 less card.",
+			"Whenever you #ySmith, lose #b35 #yGold.",
+			"#bMillennium #bPuzzle: NL #rExplosive Tokens become #rSuper #rExplosive Tokens.",
+			"At most Rest Sites, you may only #yRest or #ySmith.",
+			"At the start of Elite combats, add a random #rCurse into your draw and discard piles.",
+			"All Bosses and Elites start combat with a random #yBuff.",
+			"#ySummoning is restricted.",
+			"Standard: #b50% chance to randomize the cost of Spells when drawn.",
+			"Dragon: gain #b50% less #yGold.",
+			"Naturia: resistance to #yVines is increased.",
+			"Spellcaster: start combat with #b2 orb slots.",
+			"Toon: #yToon #yWorld and #yToon #yKingdom are more punishing.",
+			"Zombie: Start each combat with restricted #yResummoning.",
+			"Aqua: #yAqua tribute synergy effect only triggers #b50% of the time.",
+			"Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn.",
+			"Machine: [PLACEHOLDER]",
+			"Warrior: [PLACEHOLDER]",
+			"Insect: #yIncrement actions have a #b25% chance to fail.",
+			"Plant: [PLACEHOLDER]",
+			"Megatype: Reduce the amount of tribute synergy effects that trigger on Megatype synergy tributes.",
+			"Increment: Whenever you #yIncrement, take #b1 damage.",
+			"Creator: Whenever you draw a card that has not been drawn this run so far, take #b1 damage.",
+			"Exodia: You may only play #b1 piece of #yExodia per turn.",
+			"Ojama: [PLACEHOLDER]",
+			"Giant: [PLACEHOLDER]",
+			"Ascended I: Whenever you #yChannel an orb, lose #b2 #yDragonscales.",
+			"Ascended II: [PLACEHOLDER]",
+			"Ascended III: [PLACEHOLDER]",
+			"Pharaoh I: [PLACEHOLDER]",
+			"Pharaoh II: [PLACEHOLDER]",
+			"Pharaoh III: [PLACEHOLDER]",
+			"Pharaoh IV: [PLACEHOLDER]",
+			"Pharaoh V: [PLACEHOLDER]",
+			"Random (Small): [PLACEHOLDER]",
+			"Random (Big): [PLACEHOLDER]",
+			"Upgrade: [PLACEHOLDER]",
+			"Metronome: [PLACEHOLDER]"
+		]
+	}
+}

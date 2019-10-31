@@ -7,10 +7,11 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.*;
+import duelistmod.abstracts.*;
+import duelistmod.cards.tokens.PotionToken;
+import duelistmod.variables.Colors;
 
-public class TokenPotionB extends AbstractPotion {
+public class TokenPotionB extends DuelistPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("TokenPotionB");
@@ -21,7 +22,7 @@ public class TokenPotionB extends AbstractPotion {
 
     public TokenPotionB() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOLT, PotionColor.WEAK);
+    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOLT, PotionEffect.NONE, Colors.WHITE, Colors.RED, Colors.BLACK);
 
     	// Potency is the damage/magic number equivalent of potions.
     	this.potency = this.getPotency();

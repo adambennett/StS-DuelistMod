@@ -1,10 +1,14 @@
 package duelistmod.cards.tempCards;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -43,6 +47,10 @@ public class HauntSkills extends DuelistCard
     @Override public AbstractCard makeStatEquivalentCopy() { return new HauntSkills(this.magicNumber); }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	this.addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.33f));
+    	this.addToBot(new VFXAction(p, new VerticalAuraEffect(Color.PURPLE, p.hb.cX, p.hb.cY), 0.33f));
+    	this.addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0f));
+    	this.addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.GREEN), 0.0f, true));
     	applyPowerToSelf(new HauntedPower(p, p, this.magicNumber, CardType.SKILL));
     }   
 	@Override public void onTribute(DuelistCard tributingCard)  {}	

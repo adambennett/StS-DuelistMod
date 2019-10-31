@@ -104,7 +104,7 @@ public class AquaPool
 		//aquaDeck.fillPoolCards(DuelistMod.basicCards);
 		aquaDeck.fillPoolCards(aquaCards);		
 		aquaDeck.fillArchetypeCards(aquaCards);
-		DuelistMod.archetypeCards.addAll(aquaCards);
+		//DuelistMod.archetypeCards.addAll(aquaCards);
 		return aquaCards;
 	}
 	

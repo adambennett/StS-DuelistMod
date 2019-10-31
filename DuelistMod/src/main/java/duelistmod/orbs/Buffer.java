@@ -42,6 +42,7 @@ public class Buffer extends DuelistOrb
 	
 	public Buffer()
 	{
+		this.setID(ID);
 		this.inversion = "Reducer";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Earth.png"));
 		this.name = orbString.NAME;

@@ -1,0 +1,18 @@
+{
+  "theDuelist:SummonersChallenge": {
+    "NAME": "Summoning Zones",
+    "DESCRIPTION": "During battle you may only play monsters that summon if you have empty summoning slots."
+  },
+  "theDuelist:MaxSummonChallenge": {
+    "NAME": "Increment Randomizer",
+    "DESCRIPTION": "You will have a chance to fail Increment actions."
+  },
+  "theDuelist:SummonRandomizer": {
+    "NAME": "Summon Randomizer",
+    "DESCRIPTION": "You will have a chance to fail Summon actions."
+  },
+  "theDuelist:TributeRandomizer": {
+    "NAME": "Tribute Randomizer",
+    "DESCRIPTION": "You will have a chance to fail Tribute actions."
+  }
+}

@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
-import duelistmod.variables.Tags;
+import duelistmod.variables.*;
 
-public class SealedPackD extends AbstractPotion {
+public class SealedPackD extends DuelistPotion {
 
 
 	public static final String POTION_ID = DuelistMod.makeID("SealedPackD");
@@ -24,8 +25,8 @@ public class SealedPackD extends AbstractPotion {
 
 	public SealedPackD() {
 		// The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-		super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.CARD, PotionColor.SMOKE);
-
+		super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.CARD, PotionEffect.NONE, Colors.DARK_PURPLE, Colors.WHITE, Colors.BLACK);
+		
 		// Potency is the damage/magic number equivalent of potions.
 		this.potency = this.getPotency();
 

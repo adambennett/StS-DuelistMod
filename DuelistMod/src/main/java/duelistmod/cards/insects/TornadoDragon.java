@@ -1,6 +1,6 @@
 package duelistmod.cards.insects;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -62,13 +62,26 @@ public class TornadoDragon extends DuelistCard
     		{
     			int orbsToEvoke = AbstractDungeon.cardRandomRng.random(0, orbs.size());
     			if (orbsToEvoke == orbs.size()) { DuelistCard.evokeAll(); }
-    			while (orbsToEvoke > 0)
+    			else if (orbsToEvoke > 0)
     			{
-					AbstractOrb toEvoke = p.orbs.get(AbstractDungeon.cardRandomRng.random(p.orbs.size() - 1));
-					while (toEvoke instanceof EmptyOrbSlot) { Util.log("Tornado Dragon: found empty slot, rolling again..."); toEvoke = p.orbs.get(AbstractDungeon.cardRandomRng.random(p.orbs.size() - 1)); }
-					this.addToBot(new EvokeSpecificOrbAction(toEvoke, 1));
-					orbsToEvoke--;
+    				ArrayList<Integer> indices = new ArrayList<>();
+    				Map<Integer, Integer> map = new HashMap<>();
+    				while (indices.size() < orbsToEvoke)
+    				{
+    					int newIndex = AbstractDungeon.cardRandomRng.random(0, orbs.size() - 1);
+    					while (map.containsKey(newIndex)) { newIndex = AbstractDungeon.cardRandomRng.random(0, orbs.size() - 1); }
+    					indices.add(newIndex);
+    					map.put(newIndex, 0);
+    				}
+    				
+    				for (Integer i : indices)
+    				{
+    					AbstractOrb toEvoke = orbs.get(i);
+    					this.addToBot(new EvokeSpecificOrbAction(toEvoke, 1)); 
+    					Util.log("Tornado Dragon is evoking " + toEvoke.name);
+    				}
     			}
+    			else { Util.log("Tornado Dragon generated 0 for number of orbs to evoke! Discarding promptly! :)"); }
     		}
     	}
     	for (AbstractCard c : p.drawPile.group)
@@ -136,7 +149,7 @@ public class TornadoDragon extends DuelistCard
     	boolean canUse = super.canUse(p, m); 
     	if (!canUse) { return false; }
 
-    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeMode)
+    	if (Util.isCustomModActive("theDuelist:SummonersChallenge") || DuelistMod.challengeLevel20)
     	{
     		if ((DuelistMod.getChallengeDiffIndex() < 3) && this.misc == 52) { return true; }
     		if (p.hasPower(SummonPower.POWER_ID))

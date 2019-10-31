@@ -38,6 +38,7 @@ public class Splash extends DuelistOrb
 	
 	public Splash()
 	{
+		this.setID(ID);
 		this.inversion = "Hellfire";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Splash.png"));
 		this.name = orbString.NAME;

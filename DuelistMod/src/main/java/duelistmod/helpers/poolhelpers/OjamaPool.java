@@ -114,7 +114,7 @@ public class OjamaPool
 		ojamaCards.add(new WhiteHowling());
 		ojamaDeck.fillPoolCards(ojamaCards);		
 		ojamaDeck.fillArchetypeCards(ojamaCards);
-		DuelistMod.archetypeCards.addAll(ojamaCards);
+		//DuelistMod.archetypeCards.addAll(ojamaCards);
 		return ojamaCards;
 	}
 	

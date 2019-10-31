@@ -5,17 +5,45 @@ import java.util.Map.Entry;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.PotGenerosityPower;
+import duelistmod.powers.enemyPowers.*;
 import duelistmod.powers.incomplete.FlameTigerPower;
 
 public class BuffHelper {
 
 	
 	// RANDOM BUFF HELPERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static AbstractPower randomBuffEnemy(AbstractMonster mon, int roll, boolean naturia)
+	{
+		if (roll < 1) { roll = AbstractDungeon.cardRandomRng.random(1, 6); }
+		int intangibleRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+		int timeWarpCardsRoll = AbstractDungeon.cardRandomRng.random(10, 16);
+		int timeWarpStrRoll = AbstractDungeon.cardRandomRng.random(1, 3);
+		ArrayList<AbstractPower> pows = new ArrayList<>();
+		pows.add(new StrengthPower(mon, roll));
+		pows.add(new RegenPower(mon, roll));
+		pows.add(new IntangiblePower(mon, intangibleRoll));
+		pows.add(new ThornsPower(mon, roll));
+		pows.add(new MetallicizePower(mon, roll));
+		pows.add(new AngerPower(mon, roll));
+		pows.add(new AngryPower(mon, roll));
+		pows.add(new ArtifactPower(mon, roll));
+		pows.add(new MalleablePower(mon, roll));
+		pows.add(new DemonFormPower(mon, roll));
+		pows.add(new RitualPower(mon, roll, false));
+		pows.add(new ThieveryPower(mon, roll));
+		pows.add(new DuelistTimeWarpPower(mon, timeWarpCardsRoll, timeWarpStrRoll));
+		if (naturia) {	pows.add(new ResistNatureEnemyPower(mon, AbstractDungeon.player, roll)); }
+		AbstractPower powReturn = pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1));
+		if (powReturn instanceof DuelistTimeWarpPower) { powReturn = pows.get(AbstractDungeon.cardRandomRng.random(pows.size() - 1)); }
+		return powReturn;
+	}
+	
 	public static AbstractPower createRandomBuff()
 	{
 		BuffHelper.initBuffMap(AbstractDungeon.player);
@@ -246,7 +274,7 @@ public class BuffHelper {
 		AbstractPower oniPower = new OniPower(p, p, 1);
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
-		if (DuelistMod.challengeMode)
+		if (DuelistMod.playingChallenge)
 		{
 			buffs = new AbstractPower[] 
 			{
@@ -330,7 +358,7 @@ public class BuffHelper {
 		AbstractPower oniPower = new OniPower(p, p, 1);		
 		
 		AbstractPower[] buffs = new AbstractPower[] { str };
-		if (DuelistMod.challengeMode)
+		if (DuelistMod.playingChallenge)
 		{
 			buffs = new AbstractPower[] 
 			{

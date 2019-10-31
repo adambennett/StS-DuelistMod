@@ -10,20 +10,21 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
+import duelistmod.powers.duelistPowers.Dragonscales;
+import duelistmod.variables.Colors;
 
-public class JoeyJuice extends AbstractPotion {
+public class DragonfirePotion extends DuelistPotion {
 
 
-    public static final String POTION_ID = DuelistMod.makeID("JoeyJuice");
+    public static final String POTION_ID = DuelistMod.makeID("DragonfirePotion");
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
-    public JoeyJuice() {
-        // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.SPHERE, PotionColor.FIRE);
+    public DragonfirePotion() {
+    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.RED, Colors.DARK_PURPLE, Colors.DARK_RED_BROWN);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -43,10 +44,12 @@ public class JoeyJuice extends AbstractPotion {
     @Override
     public void use(AbstractCreature target) 
     {
+    	int damage = this.potency;
     	int maxS = DuelistCard.getMaxSummons(AbstractDungeon.player);
+    	if (AbstractDungeon.player.hasPower(Dragonscales.POWER_ID)) { Dragonscales pow = (Dragonscales)AbstractDungeon.player.getPower(Dragonscales.POWER_ID); damage += pow.getInc(); }
     	for (int i = 0; i < maxS; i++)
     	{
-	    	final DamageInfo info = new DamageInfo(AbstractDungeon.player, this.potency, DamageInfo.DamageType.THORNS);
+	    	final DamageInfo info = new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS);
 	        info.applyEnemyPowersOnly(target);
 	        this.addToBot(new DamageAction(target, info, AbstractGameAction.AttackEffect.FIRE));
     	}
@@ -54,7 +57,7 @@ public class JoeyJuice extends AbstractPotion {
     
     @Override
     public AbstractPotion makeCopy() {
-        return new JoeyJuice();
+        return new DragonfirePotion();
     }
 
     // This is your potency.

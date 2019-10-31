@@ -10,13 +10,12 @@ import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 
 import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
-import duelistmod.helpers.crossover.InfiniteSpireHelper;
+import duelistmod.helpers.crossover.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Tags;
@@ -26,7 +25,7 @@ public class CardPoolAddRelic extends CustomRelic implements ClickableRelic
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolAddRelic");
 	public static final String IMG =  DuelistMod.makeRelicPath("CardPoolAddRelic.png");
-	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolRelic_Outline.png");
+	public static final String OUTLINE =  DuelistMod.makeRelicOutlinePath("CardPoolASRelic_Outline.png");
 	public CardGroup pool;
 	private DuelistCardSelectScreen dcss;
 
@@ -51,13 +50,13 @@ public class CardPoolAddRelic extends CustomRelic implements ClickableRelic
 		for (AbstractCard c : AbstractDungeon.colorlessCardPool.group) { if (!map.containsKey(c.name)) { map.put(c.name, c.name); }}
 		for (AbstractCard c : DuelistMod.myCards)
 		{
-			if (!map.containsKey(c.name) && !c.hasTag(Tags.TOKEN) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c); map.put(c.name, c.name); }
+			if (!map.containsKey(c.name) && !c.hasTag(Tags.TOKEN) && !c.color.equals(AbstractCardEnum.DUELIST_SPECIAL) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 		}
 		if (DuelistMod.baseGameCards)
 		{
 			for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c); map.put(c.name, c.name); }
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
 		
@@ -65,9 +64,70 @@ public class CardPoolAddRelic extends CustomRelic implements ClickableRelic
 		{
 			for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
 			{
-				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c); map.put(c.name, c.name); }
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
 			}
 		}
+		
+		if (DuelistMod.isAnimator)
+		{
+			try {
+				for (AbstractCard c : AnimatorHelper.getAllCards())
+				{
+					if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+				}
+			} catch (IllegalAccessException e) {
+				Util.log("Illegal access exception raised when card pool relic attempted to add Animator cards into the pool");
+			}
+		}
+		
+		if (DuelistMod.isClockwork)
+		{
+			for (AbstractCard c : ClockworkHelper.getAllCards())
+			{
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+			}
+		}
+		
+		if (DuelistMod.isConspire)
+		{
+			for (AbstractCard c : ConspireHelper.getAllCards())
+			{
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+			}
+		}
+		
+		if (DuelistMod.isDisciple)
+		{
+			for (AbstractCard c : DiscipleHelper.getAllCards())
+			{
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+			}
+		}
+		
+		if (DuelistMod.isGatherer)
+		{
+			for (AbstractCard c : GathererHelper.getAllCards())
+			{
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+			}
+		}
+		
+		if (DuelistMod.isHubris)
+		{
+			for (AbstractCard c : HubrisHelper.getAllCards())
+			{
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+			}
+		}
+		
+		if (DuelistMod.isReplay)
+		{
+			for (AbstractCard c : ReplayHelper.getAllCards())
+			{
+				if (!map.containsKey(c.name) && !c.rarity.equals(CardRarity.SPECIAL) && !c.rarity.equals(CardRarity.BASIC)) { cards.add(c.makeCopy()); map.put(c.name, c.name); }
+			}
+		}
+		
 		return cards;
 	}
 
@@ -103,7 +163,7 @@ public class CardPoolAddRelic extends CustomRelic implements ClickableRelic
 			DuelistMod.shouldReplacePool = true;
 			if (AbstractDungeon.player.hasRelic(CardPoolRelic.ID)) { ((CardPoolRelic)AbstractDungeon.player.getRelic(CardPoolRelic.ID)).setDescription(); }
 			this.dcss.selectedCards.clear();
-			AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
+			//AbstractDungeon.gridSelectScreen = new GridCardSelectScreen();
 			CardCrawlGame.dungeon.initializeCardPools();
 		}
 	}
@@ -116,6 +176,7 @@ public class CardPoolAddRelic extends CustomRelic implements ClickableRelic
 			AbstractDungeon.gridSelectScreen = this.dcss;
 			DuelistMod.toReplacePoolWith.clear();
 			DuelistMod.selectingForRelics = true;
+			DuelistMod.wasViewingSelectScreen = true;
 			((DuelistCardSelectScreen)AbstractDungeon.gridSelectScreen).open(this.pool, this.pool.size(), "Add Cards into the Card Pool");
 		}
 	}

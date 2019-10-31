@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.GraverobberAction;
+import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
@@ -28,12 +29,10 @@ public class Graverobber extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
-    private static ArrayList<AbstractCard> drawPowers = new ArrayList<AbstractCard>();
-    private static ArrayList<String> drawPowerNames = new ArrayList<String>();
     // /STAT DECLARATION/
 
     public Graverobber() {
@@ -44,7 +43,8 @@ public class Graverobber extends DuelistCard
         this.tags.add(Tags.NO_MAGIC_MOD);
         this.misc = 0;
 		this.originalName = this.name;
-		this.magicNumber = this.baseMagicNumber = 1;
+		this.magicNumber = this.baseMagicNumber = 3;
+		this.secondMagic = this.baseSecondMagic = 1;
 		this.exhaust = true;
     }
 
@@ -52,17 +52,27 @@ public class Graverobber extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-		drawPowers = new ArrayList<AbstractCard>();
-		drawPowerNames = new ArrayList<String>();
-		for (DuelistCard c : DuelistMod.spellsThisRun) { if (!drawPowerNames.contains(c.originalName)) { drawPowers.add(c.makeStatEquivalentCopy()); drawPowerNames.add(c.originalName); }}
-		for (DuelistCard c : DuelistMod.trapsThisRun)  { if (!drawPowerNames.contains(c.originalName) && !c.originalName.equals(this.originalName)) { drawPowers.add(c.makeStatEquivalentCopy()); drawPowerNames.add(c.originalName); }}
+    	ArrayList<AbstractCard> drawPowers = new ArrayList<>();
+		ArrayList<AbstractCard> chosenCards = new ArrayList<>();
+		for (DuelistCard c : DuelistMod.uniqueSpellsThisRun) { drawPowers.add(c.makeStatEquivalentCopy()); }
+		for (DuelistCard c : DuelistMod.uniqueTrapsThisRun)  { if (!c.uuid.equals(this.uuid)) { drawPowers.add(c.makeStatEquivalentCopy()); }}
 
-		if (drawPowers.size() >= 0)
+		if (drawPowers.size() >= this.magicNumber)
 		{
-				if (DuelistMod.debug) { System.out.println("graverobber found choose cards to be > 0"); }
-				AbstractDungeon.actionManager.addToTop(new GraverobberAction(this.magicNumber, drawPowers));
+			while (chosenCards.size() < this.magicNumber)
+			{
+				int index = AbstractDungeon.cardRandomRng.random(drawPowers.size() - 1);
+				AbstractCard rand = drawPowers.get(index);
+				chosenCards.add(rand);
+				drawPowers.remove(index);
+			}
+			AbstractDungeon.actionManager.addToTop(new GraverobberAction(this.secondMagic, chosenCards));
 		}
-		else { if (DuelistMod.debug) { System.out.println("graverobber found draw powers size was 0"); }}
+		else if (drawPowers.size() > 0)
+		{
+			AbstractDungeon.actionManager.addToTop(new GraverobberAction(this.secondMagic, drawPowers));
+		}
+		else { Util.log("graverobber found draw powers size was 0"); }
     }
 
     // Which card to return when making a copy of this card.
@@ -76,7 +86,7 @@ public class Graverobber extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(-1);
+            this.upgradeSecondMagic(-1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
@@ -113,9 +123,4 @@ public class Graverobber extends DuelistCard
 		return ID;
 	}
 
-	@Override
-	public void optionSelected(AbstractPlayer arg0, AbstractMonster arg1, int arg2) 
-	{
-		if (DuelistMod.debug) { System.out.println("theDuelist:Invigoration:optionSelected() ---> can I see the card we selected? the card is: " + drawPowers.get(arg2).originalName); }
-	}
 }

@@ -434,30 +434,4 @@ public class PoolHelpers
 			return true;
 		}
 	}
-	
-	public static void printNonDeckCards()
-	{
-		
-		ArrayList<DuelistCard> toPrint = new ArrayList<DuelistCard>();
-		ArrayList<String> archetypeCardNames = new ArrayList<String>();
-		
-		for (AbstractCard c : DuelistMod.archetypeCards)
-		{
-			archetypeCardNames.add(c.originalName);
-		}
-		
-		for (DuelistCard c : DuelistMod.myCards)
-		{
-			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && !archetypeCardNames.contains(c.originalName))
-			{
-				toPrint.add(c);
-			}
-		}
-		
-		for (int i = 0; i < toPrint.size(); i++)
-		{
-			DuelistMod.logger.info("theDuelist:Debug:printNonBasicSetCards() ---> found a non-basic, non-archetype card [" + i + "]: " + toPrint.get(i).originalName);
-		}
-	}
-
 }

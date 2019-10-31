@@ -34,6 +34,7 @@ public class LightMillenniumOrb extends DuelistOrb
 	
 	public LightMillenniumOrb()
 	{
+		this.setID(ID);
 		this.inversion = "Dark MillenniumOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/LightMillenniumOrb.png"));
 		this.name = orbString.NAME;

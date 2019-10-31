@@ -3,7 +3,8 @@ package duelistmod.patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
+import com.megacrit.cardcrawl.screens.*;
+import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 
 import duelistmod.DuelistMod;
 import duelistmod.characters.TheDuelist;
@@ -27,7 +28,19 @@ public class CardPoolViewPatch
 	        DuelistMod.lastDeckViewWasCustomScreen = false;
     	}
     	
-    	//if (AbstractDungeon.gridSelectScreen instanceof DuelistCardSelectScreen) { Util.log("Patch found the AbstractDungeon gridSelectScreen to be an instanceof DuelistCardSelectScreen, so we are resetting it"); AbstractDungeon.gridSelectScreen = new GridCardSelectScreen(); }
+    	if (DuelistMod.wasViewingSelectScreen)
+    	{
+    		Util.log("Patch saw that you opened a custom card selection screen, and is now attempting to close it fully and reset it properly to the normal one");
+    		AbstractDungeon.gridSelectScreen = new GridCardSelectScreen(); 
+    		DuelistMod.wasViewingSelectScreen = false;
+    	}
+    	
+    	if (DuelistMod.wasViewingSummonCards)
+    	{
+    		Util.log("Patch saw that you opened the custom deck view screen, and is now attempting to close it fully and reset it properly to the normal one");
+	        AbstractDungeon.gameDeckViewScreen = new DrawPileViewScreen();
+	        DuelistMod.wasViewingSummonCards = false;
+    	}
     }
 }
 

@@ -33,6 +33,7 @@ public class Metal extends DuelistOrb
 	
 	public Metal()
 	{
+		this.setID(ID);
 		this.inversion = "Surge";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Metal.png"));
 		this.name = orbString.NAME;

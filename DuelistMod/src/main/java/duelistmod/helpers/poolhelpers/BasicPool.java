@@ -305,7 +305,7 @@ public class BasicPool
 			}
 		}
 		
-		DuelistMod.archetypeCards.addAll(cards);
+		//DuelistMod.archetypeCards.addAll(cards);
 		return cards;
 	}
 
@@ -467,7 +467,7 @@ public class BasicPool
 			}
 		}
 		
-		DuelistMod.archetypeCards.addAll(cards);
+		//DuelistMod.archetypeCards.addAll(cards);
 		return cards;
 	}
 	

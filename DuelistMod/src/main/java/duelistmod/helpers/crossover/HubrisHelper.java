@@ -1,6 +1,11 @@
 package duelistmod.helpers.crossover;
 
+import java.util.ArrayList;
+
+import com.evacipated.cardcrawl.mod.hubris.HubrisMod;
+import com.evacipated.cardcrawl.mod.hubris.cards.black.*;
 import com.evacipated.cardcrawl.mod.hubris.relics.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
@@ -25,5 +30,15 @@ public class HubrisHelper
 		UnlockTracker.markRelicAsSeen(BallOfYels.ID);
 		UnlockTracker.markRelicAsSeen(SoftwareUpdate.ID);
 		
+	}
+	
+	public static ArrayList<AbstractCard> getAllCards()
+	{
+		ArrayList<AbstractCard> cards = new ArrayList<>();
+		HubrisMod.loadOtherData();
+		cards.add(new Fate());
+		cards.add(new InfiniteBlow());
+		cards.add(new Rewind());
+		return cards; 
 	}
 }

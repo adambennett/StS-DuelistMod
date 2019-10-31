@@ -39,6 +39,7 @@ public class Air extends DuelistOrb
 	
 	public Air()
 	{
+		this.setID(ID);
 		this.inversion = "Smoke";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Air.png"));
 		this.name = orbString.NAME;
@@ -56,8 +57,16 @@ public class Air extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.evokeAmount < 2) { this.description = DESC[0] + DESC[1] + this.evokeAmount + DESC[2]; }
-		else { this.description = DESC[0] + DESC[1] + this.evokeAmount + DESC[3]; }
+		if (AbstractDungeon.player != null && (AbstractDungeon.player.hasPower(AerodynamicsPower.POWER_ID) || AbstractDungeon.player.hasRelic(AeroRelic.ID)))
+		{
+			if (this.evokeAmount == 1) { this.description = DESC[4] + DESC[1] + this.evokeAmount + DESC[2]; }
+			else { this.description = DESC[4] + DESC[1] + this.evokeAmount + DESC[3]; }
+		}
+		else
+		{
+			if (this.evokeAmount  == 1) { this.description = DESC[0] + DESC[1] + this.evokeAmount + DESC[2]; }
+			else { this.description = DESC[0] + DESC[1] + this.evokeAmount + DESC[3]; }
+		}
 	}
 
 	@Override

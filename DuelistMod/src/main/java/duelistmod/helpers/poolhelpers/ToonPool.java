@@ -143,7 +143,7 @@ public class ToonPool
 		}
 		toonDeck.fillPoolCards(toonCards);		
 		toonDeck.fillArchetypeCards(toonCards);
-		DuelistMod.archetypeCards.addAll(toonCards);
+		//DuelistMod.archetypeCards.addAll(toonCards);
 		return toonCards;
 	}
 	

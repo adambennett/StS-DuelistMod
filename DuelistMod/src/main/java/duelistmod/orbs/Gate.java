@@ -43,6 +43,7 @@ public class Gate extends DuelistOrb
 	
 	public Gate()
 	{
+		this.setID(ID);
 		this.inversion = "MillenniumOrb";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gate.png"));
 		this.name = orbString.NAME;

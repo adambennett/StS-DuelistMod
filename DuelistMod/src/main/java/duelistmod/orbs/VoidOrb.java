@@ -37,6 +37,7 @@ public class VoidOrb extends DuelistOrb
 	
 	public VoidOrb()
 	{
+		this.setID(ID);
 		this.inversion = "Alien";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Void.png"));
 		this.name = orbString.NAME;

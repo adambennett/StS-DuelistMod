@@ -41,6 +41,7 @@ public class Smoke extends DuelistOrb
 	
 	public Smoke()
 	{
+		this.setID(ID);
 		this.inversion = "Air";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Smoke.png"));
 		this.name = orbString.NAME;

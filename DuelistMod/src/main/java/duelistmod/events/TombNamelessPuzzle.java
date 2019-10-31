@@ -102,7 +102,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     protected void buttonEffect(int i) 
     {
     	// If attempting to Leave
-    	if (screenNum == -10) { openMap(); DuelistMod.namelessTombPoints = 0; }
+    	if (screenNum == -10) { openMap();  }
     	
     	// Otherwise
     	else
@@ -381,6 +381,7 @@ public class TombNamelessPuzzle extends DuelistEvent
     	if (points > 8) { points = ThreadLocalRandom.current().nextInt(2, 20); }
     	if (points == 20) { points = ThreadLocalRandom.current().nextInt(10, 20); }
     	//if (points > 20) { points = 20; }
+    	if (points > 10 && Util.getChallengeLevel() > 0) { points = ThreadLocalRandom.current().nextInt(6, 10); }
     	logMetric(NAME, "Points at Start - " + points);
     }
     
@@ -470,8 +471,8 @@ public class TombNamelessPuzzle extends DuelistEvent
 	         imageEventText.setDialogOption(btnHunger, this.hungerInc > 3);
 	         
 	         // War
-	         if (AbstractDungeon.ascensionLevel > 4) { imageEventText.setDialogOption(btnWar, this.warInc > 3); }
-	         else { imageEventText.setDialogOption("[Locked] Requires Ascension 5+", true); }
+	         if (Util.getChallengeLevel() > -1 || AbstractDungeon.ascensionLevel > 19) { imageEventText.setDialogOption(btnWar, this.warInc > 3); }
+	         else { imageEventText.setDialogOption("[Locked] Requires Challenge Mode or Ascension 20", true); }
 	         
 	         if (points == 1) { imageEventText.setDialogOption("#gGo #gto #gRewards #r(" + points + " #rPoint #rRemaining)"); }
 	         else { imageEventText.setDialogOption("#gGo #gto #gRewards #g(" + points + " #gPoints #gRemaining)"); }

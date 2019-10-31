@@ -38,6 +38,7 @@ public class Alien extends DuelistOrb
 	
 	public Alien()
 	{
+		this.setID(ID);
 		this.inversion = "Void";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Alien.png"));
 		this.name = orbString.NAME;

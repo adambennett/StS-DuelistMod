@@ -9,10 +9,11 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.helpers.DebuffHelper;
+import duelistmod.variables.Colors;
 
-public class DebuffPosionPotion extends AbstractPotion {
+public class DebuffPosionPotion extends DuelistPotion {
 
 
     public static final String POTION_ID = DuelistMod.makeID("DebuffPosionPotion");
@@ -23,7 +24,7 @@ public class DebuffPosionPotion extends AbstractPotion {
 
     public DebuffPosionPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOLT, PotionColor.ENERGY);
+    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.BOLT, PotionEffect.OSCILLATE, Colors.GREEN, Colors.GREEN, Colors.BLACK);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
