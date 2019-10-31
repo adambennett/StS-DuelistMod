@@ -26,6 +26,8 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.dragons.*;
 import duelistmod.cards.fourthWarriors.*;
+import duelistmod.cards.holiday.birthday.*;
+import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.HourglassLife;
 import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
@@ -613,6 +615,43 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new BlessingAnubis());
 	}
 	
+	public static ArrayList<AbstractCard> allHolidayCardsNoDateCheck()
+	{
+		ArrayList<AbstractCard> holidayCards = new ArrayList<>();
+		holidayCards.add(new Hallohallo());
+		holidayCards.add(new PumpkinCarriage());
+		holidayCards.add(new HalloweenManor());
+		holidayCards.add(new BalloonParty());	
+		holidayCards.add(new CocoonParty());
+		holidayCards.add(new DinnerParty());
+		holidayCards.add(new ElephantGift());
+		return holidayCards;
+	}
+	
+	public static ArrayList<AbstractCard> holidayCardRandomizedList()
+	{
+		ArrayList<AbstractCard> holidayCards = new ArrayList<>();
+		if (Util.halloweenCheck()) 
+		{
+			holidayCards.add(new Hallohallo());
+			holidayCards.add(new PumpkinCarriage());
+			holidayCards.add(new HalloweenManor());
+			DuelistMod.addedHalloweenCards = true;
+		}
+		else { DuelistMod.addedHalloweenCards = false; }
+		if (Util.birthdayCheck())
+		{
+			holidayCards.add(new BalloonParty());	
+			holidayCards.add(new CocoonParty());
+			holidayCards.add(new DinnerParty());
+			holidayCards.add(new ElephantGift());
+			DuelistMod.addedBirthdayCards = true;
+		}
+		else { DuelistMod.addedBirthdayCards = false; }
+		Collections.shuffle(holidayCards);
+		return holidayCards;
+	}
+	
 	public static boolean halloweenCheck()
 	{
 		boolean isHalloween = false;
@@ -627,6 +666,52 @@ public class Util
 			Util.log("Halloween Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
 		}
 		return isHalloween;
+	}
+	
+	public static int whichBirthday()
+	{
+		if (!birthdayCheck()) { return -1; }
+		else
+		{
+			boolean isNyoxideBirthday = false;
+			boolean playerBirthday = false;
+			Calendar cal1 = Calendar.getInstance();
+			Calendar cal2 = Calendar.getInstance();
+			Calendar cal3 = Calendar.getInstance();
+			cal2.set(2019, 9, 3);
+			cal3.set(2019, DuelistMod.birthdayMonth - 1, DuelistMod.birthdayDay);
+			if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isNyoxideBirthday = true; }
+			else if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) { playerBirthday = true; }
+			if (isNyoxideBirthday) { return 1; }
+			else if (playerBirthday && !DuelistMod.neverChangedBirthday) { return 2; }
+			else { return 3; }
+		}
+	}
+	
+	public static boolean birthdayCheck()
+	{
+		boolean isBirthday = false;
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		Calendar cal3 = Calendar.getInstance();
+		Calendar cal4 = Calendar.getInstance();
+		cal2.set(2019, 9, 3);
+		cal3.set(2019, 2, 4);
+		cal4.set(2019, DuelistMod.birthdayMonth - 1, DuelistMod.birthdayDay);
+		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isBirthday = true; }
+		if (cal1.get(Calendar.DAY_OF_MONTH) == cal3.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal3.get(Calendar.MONTH)) { isBirthday = true; }
+		if (cal1.get(Calendar.DAY_OF_MONTH) == cal4.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal4.get(Calendar.MONTH)) { isBirthday = true; }
+		if (isBirthday) { Util.log("Duelistmod is detecting Birthday!"); }
+		else 
+		{ 
+			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
+			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal3.dayOfMonth=" + cal3.get(Calendar.DAY_OF_MONTH));
+			Util.log("Birthday Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal4.dayOfMonth=" + cal4.get(Calendar.DAY_OF_MONTH));
+			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
+			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal3.Month=" + cal3.get(Calendar.MONTH));
+			Util.log("Birthday Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal4.Month=" + cal3.get(Calendar.MONTH));
+		}
+		return isBirthday;
 	}
 	
 	public static String getChallengeDifficultyDesc()

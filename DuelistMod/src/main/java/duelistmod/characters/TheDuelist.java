@@ -221,6 +221,18 @@ public class TheDuelist extends CustomPlayer {
 		Map<String, String> names = new HashMap<>();
 		tmpPool = super.getCardPool(tmpPool);
 		
+		
+		// Holiday card handler
+		ArrayList<AbstractCard> holiday = Util.holidayCardRandomizedList();
+		if (holiday.size() > 0)
+		{
+			DuelistMod.holidayDeckCard = holiday.get(0);
+			DuelistMod.addingHolidayCard = true;
+			for (int i = 1; i < holiday.size(); i++) { DuelistMod.holidayNonDeckCards.add(holiday.get(i)); }
+		}
+		// END Holiday card handler
+		
+		
 		// Card Pool Removal Relic - replaces pool with the pool, except for the selected cards for removal
 		// So we just replace the pool with the list of cards we generated with the relic
 		if (DuelistMod.shouldReplacePool && DuelistMod.toReplacePoolWith.size() > 0)
@@ -254,7 +266,7 @@ public class TheDuelist extends CustomPlayer {
 			if (DuelistMod.shouldFill || DuelistMod.coloredCards.size() == 0)
 			{ 
 				if (DuelistMod.coloredCards.size() == 0) { Util.log("colored cards size was 0! This check detected that. Was shouldfill false? shouldFill=" + DuelistMod.shouldFill); }
-				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());
+				GlobalPoolHelper.setGlobalDeckFlags(StarterDeckSetup.getCurrentDeck().getSimpleName());				
 				PoolHelpers.newFillColored(StarterDeckSetup.getCurrentDeck().getSimpleName());
 				BoosterPackHelper.setupPoolsForPacks();
 				DuelistMod.shouldFill = false;
@@ -290,6 +302,21 @@ public class TheDuelist extends CustomPlayer {
 						counter++;
 					}
 					else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
+				}
+				
+				if (DuelistMod.holidayNonDeckCards.size() > 0) 
+				{
+					for (AbstractCard c : DuelistMod.holidayNonDeckCards)
+					{
+						if (!c.rarity.equals(CardRarity.SPECIAL) && !names.containsKey(c.originalName) && !c.rarity.equals(CardRarity.BASIC))
+						{
+							Util.log("Basic Set - Colorless Pool: [" + counter + "]: " + c.name + " [HOLIDAY CARD]");
+							AbstractDungeon.colorlessCardPool.group.add(c); 
+							names.put(c.originalName, c.originalName);
+							counter++;
+						}
+						else if (names.containsKey(c.originalName)) { Util.log("Skipped adding " + c.originalName + " to colorless card set, since it was in the main pool already"); }
+					}
 				}
 			}
 		}

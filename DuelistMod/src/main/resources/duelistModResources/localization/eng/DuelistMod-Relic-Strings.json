@@ -868,7 +868,7 @@
 		"NAME": "Blessing of Anubis",
 		"FLAVOR": "Looking through the shard, you are able to see entirely new perspectives.",
 		"DESCRIPTIONS": [
-			"Consume #b1 #yCharge, choose any card type and draw #b1 card of that type. Starts with #b3 #yCharges, gain #b1 #yCharge every #b4 turns. Can only hold #b3 #yCharges at once."
+			" NL Consume #b1 #yCharge, choose any card type and draw #b1 card of that type. Starts with #b3 #yCharges, gain #b1 #yCharge every #b4 turns. Can only hold #b3 #yCharges at once."
 		]
 	},
 	"theDuelist:ChallengePuzzle": {

@@ -1,4 +1,4 @@
-package duelistmod.cards.halloween;
+package duelistmod.cards.holiday.halloween;
 
 import java.util.*;
 
@@ -11,11 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.helpers.TooltipInfo;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.HauntedRemovalPower;
-import duelistmod.powers.incomplete.HauntedPower;
 import duelistmod.variables.Tags;
 
 public class PumpkinCarriage extends DuelistCard 
@@ -30,8 +29,8 @@ public class PumpkinCarriage extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -40,9 +39,11 @@ public class PumpkinCarriage extends DuelistCard
     public PumpkinCarriage() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.summons = this.baseSummons	= 1;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.specialCanUseLogic = true;							
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.PLANT);
+        this.tags.add(Tags.EXEMPT);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -51,7 +52,7 @@ public class PumpkinCarriage extends DuelistCard
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> retVal = new ArrayList<>();
         //retVal.addAll(super.getCustomTooltips());
-        retVal.add(new TooltipInfo("Halloween", "Cards with this keyword only appear in the game on Halloween!"));
+        retVal.add(new TooltipInfo("Halloween", "Cards with this keyword only appear in the game on #rHalloween!"));
         return retVal;
     }
 
@@ -60,8 +61,20 @@ public class PumpkinCarriage extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	summon();    	
-        applyPowerToSelf(new HauntedPower(p, p, 1));
-	    applyPowerToSelf(new HauntedRemovalPower(p, p, 1));    	
+        ArrayList<DuelistCard> cards = new ArrayList<>();
+        for (AbstractCard c : p.hand.group)
+        {
+        	if (c instanceof DuelistCard && !c.uuid.equals(this.uuid))
+        	{
+        		DuelistCard dc = (DuelistCard)c;
+        		if (!dc.hasTag(Tags.EXEMPT)) { cards.add(dc); }
+        	}
+        }
+        
+        if (cards.size() > 0)
+        {
+        	this.addToBot(new CardSelectScreenResummonAction(cards, this.magicNumber, m));
+        }
     }
 
     // Which card to return when making a copy of this card.
@@ -76,7 +89,7 @@ public class PumpkinCarriage extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(0);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

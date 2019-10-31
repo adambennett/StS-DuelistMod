@@ -42,7 +42,7 @@ import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.DuelistAscender;
 import duelistmod.cards.dragons.*;
-import duelistmod.cards.halloween.*;
+import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.insects.GiantPairfish;
 import duelistmod.cards.tempCards.CancelCard;
@@ -77,7 +77,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.038.2-beta";
+	public static String version = "v3.038.3-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -315,6 +315,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	//public static ArrayList<AbstractCard> archetypeCards = new ArrayList<AbstractCard>();
 	//public static ArrayList<AbstractCard> randomDeckSmallPool = new ArrayList<AbstractCard>();
 	//public static ArrayList<AbstractCard> randomDeckBigPool = new ArrayList<AbstractCard>();
+	public static ArrayList<AbstractCard> holidayNonDeckCards = new ArrayList<AbstractCard>();
 	public static ArrayList<AbstractPower> randomBuffs = new ArrayList<AbstractPower>();
 	public static ArrayList<AbstractPotion> allDuelistPotions = new ArrayList<AbstractPotion>();
 	public static ArrayList<AbstractRelic> duelistRelicsForTombEvent = new ArrayList<AbstractRelic>();
@@ -333,7 +334,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ArrayList<CardTags> monsterTypes = new ArrayList<CardTags>();
 	public static ArrayList<CardTags> summonedTypesThisTurn = new ArrayList<CardTags>();
 	public static ArrayList<StarterDeck> starterDeckList = new ArrayList<StarterDeck>();
-	
+	public static AbstractCard holidayDeckCard; 
+	public static boolean addingHolidayCard = false;
 	
 	// Global Flags
 	public static boolean machineArtifactFlipper = false;
@@ -422,6 +424,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static boolean addedGreenSet = false;
 	public static boolean addedPurpleSet = false;
 	public static boolean allowDuelistEvents = true;
+	public static boolean addedHalloweenCards = false;
+	public static boolean addedBirthdayCards = false;
+	public static boolean neverChangedBirthday = true;
 	
 	// Numbers
 	public static final int baseInsectPoison = 1;
@@ -507,7 +512,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int namelessTombPowerMod = 8;
 	public static int namelessTombGoldMod = 20;
 	public static int challengeLevel = 0;
-	
+	public static int birthdayMonth = 1;
+	public static int birthdayDay = 1;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -579,9 +585,16 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static ModLabel setSelectLabelTxtB;
 	public static ModLabel setSelectColorTxtB;
 	public static ModButton setSelectLeftBtnB;
-	public static ModButton setSelectRightBtnB;
-	
-	
+	public static ModButton setSelectRightBtnB;	
+	public static ModLabel birthdayLabel;
+	public static ModLabel birthdayMonthLabel;
+	public static ModLabel birthdayDayLabel;
+	public static ModLabel birthdayMonthTxt;
+	public static ModLabel birthdayDayTxt;		
+	public static ModButton birthdayMonthRightBtn;
+	public static ModButton birthdayMonthLeftBtn;
+	public static ModButton birthdayDayRightBtn;
+	public static ModButton birthdayDayLeftBtn;
 	
 
 	// Global Character Stats
@@ -789,6 +802,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		duelistDefaults.setProperty("allowDuelistEvents", "TRUE");
 		duelistDefaults.setProperty("playingChallenge", "FALSE");
 		duelistDefaults.setProperty("currentChallengeLevel", "0");
+		duelistDefaults.setProperty("birthdayMonth", "1");
+		duelistDefaults.setProperty("birthdayDay", "1");
+		duelistDefaults.setProperty("neverChangedBirthday", "TRUE");
 		
 		monsterTypes.add(Tags.AQUA);		typeCardMap_ID.put(Tags.AQUA, makeID("AquaTypeCard"));					typeCardMap_IMG.put(Tags.AQUA, makePath(Strings.ISLAND_TURTLE));
 		monsterTypes.add(Tags.DRAGON);		typeCardMap_ID.put(Tags.DRAGON, makeID("DragonTypeCard"));				typeCardMap_IMG.put(Tags.DRAGON, makePath(Strings.BABY_DRAGON));	
@@ -988,6 +1004,9 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
             challengeLevel20 = config.getBool("challengeLevel20");
             defaultMaxSummons = config.getInt("defaultMaxSummons");
             allowDuelistEvents = config.getBool("allowDuelistEvents");
+            birthdayMonth = config.getInt("birthdayMonth");
+            birthdayDay = config.getInt("birthdayDay");
+            neverChangedBirthday = config.getBool("neverChangedBirthday");
         	DuelistMod.playingChallenge = config.getBool("playingChallenge");
         	DuelistMod.challengeLevel = config.getInt("currentChallengeLevel");
         	BonusDeckUnlockHelper.loadProperties();
@@ -2358,15 +2377,18 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 						UnlockTracker.markCardAsSeen("AscendersBane");
 					}
 					//arg1.initializeDeck(newStartGroup);
-					arg1.group.addAll(newStartGroup.group);
-					if (Util.halloweenCheck()) 
+					arg1.group.addAll(newStartGroup.group);		
+					
+					// Holiday card handler
+					if (holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
+					/*ArrayList<AbstractCard> holiday = Util.holidayCardRandomizedList();
+					if (holiday.size() > 0)
 					{
-						ArrayList<AbstractCard> halloweenCards = new ArrayList<>();
-						halloweenCards.add(new Hallohallo());
-						halloweenCards.add(new PumpkinCarriage());
-						halloweenCards.add(new HalloweenManor());
-						arg1.group.add(halloweenCards.get(ThreadLocalRandom.current().nextInt(halloweenCards.size())));
-					}
+						arg1.group.add(holiday.get(0));
+						for (int i = 1; i < holiday.size(); i++) { DuelistMod.holidayNonDeckCards.add(holiday.get(i)); }
+					}*/
+					// END Holiday card handler
+					
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.DRAGON; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of DRAGON");}}
@@ -3366,7 +3388,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		genericLB(40);
 		// END Check Box DEBUG
 
-		genericLB(20);
+		//genericLB(20);
 
 		// Set Size Selector
 		setSelectLabelTxt = new ModLabel(setString,xLabPos, yPos,settingsPanel,(me)->{});
@@ -3404,7 +3426,93 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//settingsPanel.addUIElement(setSelectRightBtn);
 		genericLB(40.0f);
 		// END Set Size Selector
-
+		
+		float xPosLoc = xLabPos;
+		float yPosMod = -10.0f + yPos;
+		birthdayLabel = new ModLabel("Enter Your Birthday:", xPosLoc, yPos, settingsPanel, (me)->{});
+		
+		xPosLoc = xLArrow - 115.0f;
+		birthdayMonthLabel = new ModLabel("Month", xPosLoc, yPos, settingsPanel, (me)->{});
+		
+		xPosLoc = xLArrow;
+		birthdayMonthLeftBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+			if (birthdayMonth > 1) { birthdayMonth--; }
+			else { birthdayMonth = 12; }
+			birthdayMonthTxt.text = "" + birthdayMonth;
+			if (neverChangedBirthday) { neverChangedBirthday = false; }
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt("birthdayMonth", birthdayMonth);
+				config.setBool("neverChangedBirthday", neverChangedBirthday);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		xPosLoc += 75.0f;
+		birthdayMonthTxt = new ModLabel("" + birthdayMonth, xPosLoc, yPos, settingsPanel, (me)->{});
+		
+		xPosLoc += 50.0f;
+		birthdayMonthRightBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
+			if (birthdayMonth < 12) { birthdayMonth++; }
+			else { birthdayMonth = 1; }
+			birthdayMonthTxt.text = "" + birthdayMonth;
+			if (neverChangedBirthday) { neverChangedBirthday = false; }
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt("birthdayMonth", birthdayMonth);
+				config.setBool("neverChangedBirthday", neverChangedBirthday);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		xPosLoc += 200.0f;
+		birthdayDayLabel = new ModLabel("Day", xPosLoc, yPos, settingsPanel, (me)->{});
+		
+		xPosLoc += 90.0f;
+		birthdayDayLeftBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyLeftArrow.png"),settingsPanel,(me)->{
+			if (birthdayDay > 1) { birthdayDay--; }
+			else { birthdayDay = 31; }
+			birthdayDayTxt.text = "" + birthdayDay;
+			if (neverChangedBirthday) { neverChangedBirthday = false; }
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt("birthdayDay", birthdayDay);
+				config.setBool("neverChangedBirthday", neverChangedBirthday);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		xPosLoc += 75.0f;
+		birthdayDayTxt = new ModLabel("" + birthdayDay, xPosLoc, yPos, settingsPanel, (me)->{});
+		
+		xPosLoc += 50.0f;
+		birthdayDayRightBtn =  new ModButton(xPosLoc, yPosMod, ImageMaster.loadImage("img/tinyRightArrow.png"),settingsPanel,(me)->{
+			if (birthdayDay < 31) { birthdayDay++; }
+			else { birthdayDay = 1; }
+			birthdayDayTxt.text = "" + birthdayDay;
+			if (neverChangedBirthday) { neverChangedBirthday = false; }
+			try {
+				SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",duelistDefaults);
+				config.setInt("birthdayDay", birthdayDay);
+				config.setBool("neverChangedBirthday", neverChangedBirthday);
+				config.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
 		// Starting Deck Selector
 		/*
 		setSelectLabelTxtB = new ModLabel(deckString, xLabPos, yPos,settingsPanel,(me)->{});
@@ -3482,6 +3590,15 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		settingsPanel.addUIElement(setSelectColorTxt);
 		settingsPanel.addUIElement(setSelectLeftBtn);
 		settingsPanel.addUIElement(setSelectRightBtn);
+		settingsPanel.addUIElement(birthdayLabel);
+		settingsPanel.addUIElement(birthdayMonthLabel);
+		settingsPanel.addUIElement(birthdayMonthLeftBtn);
+		settingsPanel.addUIElement(birthdayMonthTxt);		
+		settingsPanel.addUIElement(birthdayMonthRightBtn);
+		settingsPanel.addUIElement(birthdayDayLabel);
+		settingsPanel.addUIElement(birthdayDayLeftBtn);
+		settingsPanel.addUIElement(birthdayDayTxt);		
+		settingsPanel.addUIElement(birthdayDayRightBtn);
 		//settingsPanel.addUIElement(setSelectLabelTxtB);
 		//settingsPanel.addUIElement(setSelectColorTxtB);
 		//settingsPanel.addUIElement(setSelectLeftBtnB);

@@ -1,4 +1,4 @@
-package duelistmod.cards.halloween;
+package duelistmod.cards.holiday.birthday;
 
 import java.util.*;
 
@@ -11,47 +11,45 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.helpers.TooltipInfo;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.cards.insects.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.HauntedRemovalPower;
-import duelistmod.powers.incomplete.HauntedPower;
 import duelistmod.variables.Tags;
 
-public class Hallohallo extends DuelistCard 
+public class CocoonParty extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("Hallohallo");
+    public static final String ID = DuelistMod.makeID("CocoonParty");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("Hallohallo.png");
+    public static final String IMG = DuelistMod.makeCardPath("CocoonParty.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public Hallohallo() {
+    public CocoonParty() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.summons = this.baseSummons	= 1;
-        this.specialCanUseLogic = true;							
-        this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.FIEND);
+        this.tags.add(Tags.SPELL);
         this.misc = 0;
         this.originalName = this.name;
+        this.makeFleeting();
     }
     
     @Override
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> retVal = new ArrayList<>();
         //retVal.addAll(super.getCustomTooltips());
-        retVal.add(new TooltipInfo("Halloween", "Cards with this keyword only appear in the game on Halloween!"));
+        if (Util.whichBirthday() == 2) { retVal.add(new TooltipInfo("Happy Birthday!", "Nyoxide wants to wish you a very happy birthday! I hope your day is going well, and may your runs be blessed with only the best RNG!!")); }
+        retVal.add(new TooltipInfo("Birthday", "Cards with this keyword only appear in the game on Nyoxide's birthday, March 4th (DuelistMod first Steam Release date), or on your birthday! Set your birthday in the config menu."));
         return retVal;
     }
 
@@ -59,15 +57,21 @@ public class Hallohallo extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon();    	
-        applyPowerToSelf(new HauntedPower(p, p, 1));
-	    applyPowerToSelf(new HauntedRemovalPower(p, p, 1));    	
+    	AbstractCard pm = new PetitMoth();
+    	AbstractCard co = new CocoonEvolution();
+    	if (upgraded)
+    	{
+    		pm.upgrade();
+    		co.upgrade();
+    	}
+    	p.masterDeck.group.add(pm);
+    	p.masterDeck.group.add(co);
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new Hallohallo();
+        return new CocoonParty();
     }
 
     // Upgraded stats.
@@ -76,7 +80,6 @@ public class Hallohallo extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

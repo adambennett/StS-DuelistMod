@@ -139,7 +139,7 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 				if (DuelistMod.debug) { System.out.println("theDuelist:CardSelectScreenResummonAction:update() ---> added " + gridCard.originalName + " into grid selection pool"); }
 			}
 			
-			Collections.sort(tmp.group, GridSort.getComparator());
+			//Collections.sort(tmp.group, GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.randomTarget && this.resummon)
 			{
@@ -174,7 +174,12 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		
 		if ((AbstractDungeon.gridSelectScreen.selectedCards.size() != 0))
 		{
-			for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
+			ArrayList<AbstractCard> reverseList = new ArrayList<>();
+			for (int i = AbstractDungeon.gridSelectScreen.selectedCards.size() - 1; i > -1; i--)
+			{
+				reverseList.add(AbstractDungeon.gridSelectScreen.selectedCards.get(i));
+			}
+			for (AbstractCard c : reverseList)
 			{
 				c.unhover();
 				if (!(c instanceof CancelCard) && !(c instanceof SplendidCancel))

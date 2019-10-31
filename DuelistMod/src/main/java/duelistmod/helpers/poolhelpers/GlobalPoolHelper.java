@@ -368,6 +368,8 @@ public class GlobalPoolHelper
 		DuelistMod.addedBlueSet = false;
 		DuelistMod.addedGreenSet = false;
 		DuelistMod.addedPurpleSet = false;
+		//DuelistMod.addedHalloweenCards = false;
+		//DuelistMod.addedBirthdayCards = false;
 	}
 	
 	public static boolean addedAnyDecks()

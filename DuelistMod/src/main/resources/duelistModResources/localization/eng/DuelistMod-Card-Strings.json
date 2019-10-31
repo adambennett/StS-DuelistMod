@@ -6364,9 +6364,9 @@
 		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Channel a DragonOrb."
 	},
 	"theDuelist:AncientPixieDragon": {
-		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Add a random Ancient card to your hand. NL Exhaust.",
+		"DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Add a random *Ancient card to your hand. NL Exhaust.",
 		"NAME": "Ancient Pixie Dragon",
-		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Add a random Ancient card to your hand."
+		"UPGRADE_DESCRIPTION": "Dragon NL Tribute !duelist:TRIB! NL Add a random *Ancient card to your hand."
 	},
 	"theDuelist:Anthrosaurus": {
 		"DESCRIPTION": "Dinosaur NL Summon !duelist:SUMM! NL Gain !B! Block.",
@@ -7297,14 +7297,109 @@
 		"UPGRADE_DESCRIPTION": "*Halloween NL Fiend NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn."
 	},
 	"theDuelist:PumpkinCarriage": {
-		"DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn.",
+		"DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Resummon !M! card from your hand. NL Exempt.",
 		"NAME": "Pumpkin Carriage",
-		"UPGRADE_DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn."
+		"UPGRADE_DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Resummon !M! cards from your hand. NL Exempt."
 	},
 	"theDuelist:HalloweenManor": {
 		"DESCRIPTION": "*Halloween NL Whenever you Resummon, gain !M! Gold.",
 		"NAME": "Halloween Manor",
 		"UPGRADE_DESCRIPTION": "*Halloween NL Whenever you Resummon, gain !M! Gold."
+	},
+	"theDuelist:BalloonParty": {
+		"DESCRIPTION": "*Birthday NL Fleeting NL Pop a Max HP balloon! Receive a random amount of Max HP.",
+		"NAME": "Balloon Party",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Pop a Max HP balloon! Receive a random amount of Max HP."
+	},
+	"theDuelist:CocoonParty": {
+		"DESCRIPTION": "*Birthday NL Fleeting NL Obtain a copy of *Petit *Moth and *Cocoon *of *Evolution.",
+		"NAME": "Cocoon Party",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Obtain Upgraded copies of *Petit *Moth and *Cocoon *of *Evolution."
+	},
+	"theDuelist:DinnerParty": {
+		"DESCRIPTION": "*Birthday NL Choose to add up to !M! random *Holiday cards to your hand.",
+		"NAME": "Dinner Party",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Choose to add up to !M! random *Holiday cards to your hand."
+	},
+	"theDuelist:ElephantGift": {
+		"DESCRIPTION": "*Birthday NL Summon !duelist:SUMM! Rock Tokens",
+		"NAME": "Elephant Gift",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Summon !duelist:SUMM! Rock Tokens"
+	},
+	"theDuelist:FairyGift": {
+		"DESCRIPTION": "*Birthday NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots.",
+		"NAME": "Fairy's Gift",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Spellcaster NL Summon !duelist:SUMM! NL Gain !M! orb slots."
+	},
+	"theDuelist:GiftCard": {
+		"DESCRIPTION": "*Birthday NL Fleeting NL Gain a large amount of Gold.",
+		"NAME": "Gift Card",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Gain a large amount of Gold."
+	},
+	"theDuelist:GiftExchange": {
+		"DESCRIPTION": "*Birthday NL Add a random *Holiday card to your hand.",
+		"NAME": "Gift Exchange",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Add a random *Holiday card to your hand."
+	},
+	"theDuelist:GiftGreed": {
+		"DESCRIPTION": "*Birthday NL Purge NL Lose !M! Max HP. NL Heal to full.",
+		"NAME": "Gift of Greed",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Lose !M! Max HP. NL Heal to full."
+	},
+	"theDuelist:GiftMartyr": {
+		"DESCRIPTION": "*Birthday NL Purge NL Gain a powerful Resummoning buff.",
+		"NAME": "Gift of the Martyr",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Gain a powerful Resummoning buff."
+	},
+	"theDuelist:GiftMysticalElf": {
+		"DESCRIPTION": "*Birthday NL Gain a random buff.",
+		"NAME": "Gift of Mystical Elf",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Gain a random buff."
+	},
+	"theDuelist:HeroicGift": {
+		"DESCRIPTION": "*Birthday NL Gain a random amount of Strength. NL Exhaust.",
+		"NAME": "Heroic Gift",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Gain a random amount of Strength. NL Exhaust."
+	},
+	"theDuelist:HystericParty": {
+		"DESCRIPTION": "*Birthday NL Become Confused.",
+		"NAME": "Hysteric Party",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Become Confused."
+	},
+	"theDuelist:LinkParty": {
+		"DESCRIPTION": "*Birthday NL Fetch !M! cards from your draw pile.",
+		"NAME": "Link Party",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Fetch !M! cards from your draw pile."
+	},
+	"theDuelist:PartyHall": {
+		"DESCRIPTION": "*Birthday NL Purge NL Fill your hand with random *Holiday cards.",
+		"NAME": "Party Hall",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Fill your hand with random *Holiday cards."
+	},
+	"theDuelist:PoochParty": {
+		"DESCRIPTION": "*Birthday NL Deal !D! damage to ALL enemies.",
+		"NAME": "Pooch Party",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Deal !D! damage to ALL enemies."
+	},
+	"theDuelist:PoolParty": {
+		"DESCRIPTION": "*Birthday NL Reduce the cost of all cards in play by !M! for the rest of combat.",
+		"NAME": "Pool Party",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Reduce the cost of all cards in play by !M! for the rest of combat."
+	},
+	"theDuelist:SalamangreatGift": {
+		"DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare Relic.",
+		"NAME": "Salamangreat Gift",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare Relic."
+	},
+	"theDuelist:SpaceGift": {
+		"DESCRIPTION": "*Birthday NL Purge NL Obtain a random card. NL Channel an Alien.",
+		"NAME": "Space Gift",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Purge NL Obtain a random card. NL Channel an Alien."
+	},
+	"theDuelist:XyzGift": {
+		"DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare card and a random rare Potion.",
+		"NAME": "Xyz Gift",
+		"UPGRADE_DESCRIPTION": "*Birthday NL Fleeting NL Obtain a random rare card and a random rare Potion."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

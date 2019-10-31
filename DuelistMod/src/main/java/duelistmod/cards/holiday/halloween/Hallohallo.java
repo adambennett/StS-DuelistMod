@@ -1,4 +1,4 @@
-package duelistmod.cards.halloween;
+package duelistmod.cards.holiday.halloween;
 
 import java.util.*;
 
@@ -14,32 +14,35 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.HalloweenManorPower;
+import duelistmod.powers.duelistPowers.HauntedRemovalPower;
+import duelistmod.powers.incomplete.HauntedPower;
 import duelistmod.variables.Tags;
 
-public class HalloweenManor extends DuelistCard 
+public class Hallohallo extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("HalloweenManor");
+    public static final String ID = DuelistMod.makeID("Hallohallo");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("HalloweenManor.png");
+    public static final String IMG = DuelistMod.makeCardPath("Hallohallo.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.POWER;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    private static final CardType TYPE = CardType.SKILL;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public HalloweenManor() {
+    public Hallohallo() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 10;
-        this.tags.add(Tags.SPELL);
+        this.summons = this.baseSummons	= 1;
+        this.specialCanUseLogic = true;							
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.FIEND);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -48,7 +51,7 @@ public class HalloweenManor extends DuelistCard
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo> retVal = new ArrayList<>();
         //retVal.addAll(super.getCustomTooltips());
-        retVal.add(new TooltipInfo("Halloween", "Cards with this keyword only appear in the game on Halloween!"));
+        retVal.add(new TooltipInfo("Halloween", "Cards with this keyword only appear in the game on #rHalloween!"));
         return retVal;
     }
 
@@ -56,13 +59,15 @@ public class HalloweenManor extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new HalloweenManorPower(this.magicNumber));
+    	summon();    	
+        applyPowerToSelf(new HauntedPower(p, p, 1));
+	    applyPowerToSelf(new HauntedRemovalPower(p, p, 1));    	
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new HalloweenManor();
+        return new Hallohallo();
     }
 
     // Upgraded stats.

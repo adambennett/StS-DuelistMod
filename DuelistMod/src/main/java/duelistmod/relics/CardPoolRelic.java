@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -276,8 +277,50 @@ public class CardPoolRelic extends CustomRelic implements ClickableRelic
 		
 		/* Colorless Cards	*/
 		// Basic Cards
-		if (DuelistMod.duelColorlessCards.size() > 0) { poolDesc += " NL #yColorless #b(" + DuelistMod.duelColorlessCards.size() + "): NL Basic Cards";}
-		
+		boolean holiday = DuelistMod.holidayNonDeckCards.size() > 0;
+		boolean basic = DuelistMod.duelColorlessCards.size() > 0;
+		if (holiday && basic)
+		{
+			poolDesc += " NL #yColorless #b(" + (DuelistMod.duelColorlessCards.size() + DuelistMod.holidayNonDeckCards.size()) + "): NL Basic Cards NL ";
+			if (DuelistMod.addedBirthdayCards)  
+			{ 
+				if (Util.whichBirthday() == 1) { poolDesc += "Birthday Cards NL (Nyoxide's Birthday)";  }
+				else if (Util.whichBirthday() == 2) 
+				{
+					String playerName = CardCrawlGame.playerName;
+					poolDesc += "Birthday Cards NL (" + playerName + "'s Birthday)";
+				}
+				else if (Util.whichBirthday() == 3) { poolDesc += "Birthday Cards NL (DuelistMod's Birthday)"; }
+			}
+			if (DuelistMod.addedHalloweenCards) 
+			{ 
+				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Halloween Cards"; }
+				else { poolDesc += "Halloween Cards"; }
+			}
+		}
+		else if (basic)
+		{
+			poolDesc += " NL #yColorless #b(" + DuelistMod.duelColorlessCards.size() + "): NL Basic Cards";
+		}
+		else if (holiday)
+		{
+			poolDesc += " NL #yColorless #b(" + DuelistMod.holidayNonDeckCards.size() + "): NL ";
+			if (DuelistMod.addedBirthdayCards)  
+			{ 
+				if (Util.whichBirthday() == 1) { poolDesc += "Birthday Cards NL (Nyoxide's Birthday)";  }
+				else if (Util.whichBirthday() == 2) 
+				{
+					String playerName = CardCrawlGame.playerName;
+					poolDesc += "Birthday Cards NL (" + playerName + "'s Birthday)";
+				}
+				else if (Util.whichBirthday() == 3) { poolDesc += "Birthday Cards NL (DuelistMod's Birthday)"; }
+			}
+			if (DuelistMod.addedHalloweenCards) 
+			{ 
+				if (DuelistMod.addedBirthdayCards) { poolDesc += " NL Halloween Cards"; }
+				else { poolDesc += "Halloween Cards"; }
+			}
+		}
 		if (!poolDesc.equals("FILLPLEASE") && TheDuelist.cardPool.size() > 0) { description += poolDesc; }
         tips.clear();
         tips.add(new PowerTip(name, description));
