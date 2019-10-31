@@ -902,6 +902,14 @@
         "NAME": "Cyber Dragon Sieger",
         "DESCRIPTIONS": ["#yMachines and #yDragons deal #b", "% more damage."]
 },
+"theDuelist:HalloweenManorPower": {
+        "NAME": "Halloween Manor",
+        "DESCRIPTIONS": ["Whenever you #yResummon, gain #b", " #yGold."]
+},
+"theDuelist:HauntedRemovalPower": {
+        "NAME": "Unhaunted",
+        "DESCRIPTIONS": ["At the end of this turn, lose #yHaunted."]
+},
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",
         "DESCRIPTIONS": ["No inherent effect. Play magic monster cards to activate."]

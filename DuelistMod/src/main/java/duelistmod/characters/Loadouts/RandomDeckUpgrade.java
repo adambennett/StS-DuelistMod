@@ -10,7 +10,9 @@ public class RandomDeckUpgrade extends DuelistCustomLoadout
     {
         this.ID = 29;
         this.Name = "Upgrade Deck";
-        this.permaLockMessage = "Beat the Heart with a Random Deck";
+        this.longDesc = true;
+        this.unlockReq = "Defeat the Heart with a Random Deck";
+        this.permaLockMessage = "Locked";
     }
 
     @Override

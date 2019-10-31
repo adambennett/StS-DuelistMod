@@ -2,7 +2,6 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
-import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 import duelistmod.variables.Strings;
 
@@ -13,7 +12,10 @@ public class A3Deck extends DuelistCustomLoadout
         this.ID = 21;
         this.Name = Strings.configAscended3;
         this.cardCount = "?? Cards";
-        this.permaLockMessage = "Defeat the Heart on Ascension 20 (All Decks)";
+        this.longDesc = true;
+        this.permaLockMessage = "Unavailable";
+        this.unlockReq = "Deck currently unavailable! Defeat the Heart on Ascension 20+";
+        this.deckDesc = "Test deck description field... placeholding some text here so we actually have a few lines to see what a nice long description for a deck might look like.";
     }
 
     @Override

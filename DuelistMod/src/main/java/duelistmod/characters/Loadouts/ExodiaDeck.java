@@ -12,6 +12,7 @@ public class ExodiaDeck extends DuelistCustomLoadout
         this.ID = 17;
         this.Name = DuelistMod.exodiaDeckString;
         this.cardCount = "60 Cards";
+        this.deckDesc = "While playing with the Exodia deck, you cannot add or remove cards from your deck. You must slay the spire with just the 60 starting cards you begin the run with. Summon the legendary Exodia, the Forbidden One to defeat powerful foes and conquer the Heart!";
     }
 
     @Override

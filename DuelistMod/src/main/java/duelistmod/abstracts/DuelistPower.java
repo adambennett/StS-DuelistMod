@@ -2,7 +2,6 @@ package duelistmod.abstracts;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 
 public abstract class DuelistPower extends TwoAmountPower 
 {

@@ -19,9 +19,12 @@ public class DuelistCustomLoadout
 	public int StartingGold;
 	public boolean Locked;
 	public boolean permaLocked = false;
+	public boolean longDesc = false;
 	private static int index;
 	protected String lockedDescription;
 	protected String description;
+	public String unlockReq = "";
+	public String deckDesc = "";
 	protected String permaLockMessage = "Locked";
 	protected int unlockLevel;
 

@@ -11,6 +11,7 @@ public class StandardDeck extends DuelistCustomLoadout
     {
         this.ID = 0;
         this.Name = DuelistMod.standardDeckString;
+        this.deckDesc = "The default starting deck for The Duelist. The card pool mainly consists of Spells, with very few monster tools. Use this deck to get a little more familiar with the mechanics of DuelistMod and how they interact with the base game. Enjoy!";
     }
 
     @Override

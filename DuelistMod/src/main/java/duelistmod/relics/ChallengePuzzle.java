@@ -33,8 +33,8 @@ public class ChallengePuzzle extends CustomRelic {
 	public static final String OUTLINE = DuelistMod.makePath(Strings.M_PUZZLE_RELIC_OUTLINE);
 	
 	private final int smithGoldLoss = 35;
-	private final float questionMonsterChanceInc = 0.3f;
-	private final int randomBlockCap = 20;
+	private final float questionMonsterChanceInc = 0.15f;
+	private final int randomBlockCap = 15;
 	private final int burning = 3;
 	private static int restSiteMod = -1;
 	
@@ -122,10 +122,12 @@ public class ChallengePuzzle extends CustomRelic {
 		{
 			if (AbstractDungeon.cardRandomRng.random(1, 2) == 1) 
 			{
-				int costCap = 3;
-				if (drawnCard.cost > 3) { costCap = drawnCard.cost; }
-				int costRoll = AbstractDungeon.cardRandomRng.random(1, costCap);
-				drawnCard.setCostForTurn(-drawnCard.cost + costRoll);
+				int cardCost = drawnCard.costForTurn;
+				if (cardCost > 1) { cardCost--; }
+				int costCap = 4;
+				if (drawnCard.cost > 4) { costCap = drawnCard.cost; }
+				int costRoll = AbstractDungeon.cardRandomRng.random(cardCost, costCap);
+				drawnCard.setCostForTurn(-drawnCard.costForTurn + costRoll);
 			}
 		}
     }

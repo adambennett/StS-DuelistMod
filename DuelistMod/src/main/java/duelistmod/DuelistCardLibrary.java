@@ -1,6 +1,6 @@
 package duelistmod;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
@@ -18,6 +18,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
 import duelistmod.cards.dragons.*;
 import duelistmod.cards.fourthWarriors.*;
+import duelistmod.cards.halloween.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.insects.*;
 import duelistmod.cards.nameless.greed.*;
@@ -1249,6 +1250,13 @@ public class DuelistCardLibrary
 		//DuelistMod.myCards.add(new TyrannoInfinity());
 		//DuelistMod.myCards.add(new SuperconductorTyranno());
 		DuelistMod.myCards.add(new MessengerPeace());
+		
+		if (Util.halloweenCheck())
+		{
+			DuelistMod.myCards.add(new Hallohallo());
+			DuelistMod.myCards.add(new PumpkinCarriage());
+			DuelistMod.myCards.add(new HalloweenManor());
+		}
 
 		//DuelistMod.myCards.add(new WightLady());		
 		

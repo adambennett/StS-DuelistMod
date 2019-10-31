@@ -10,7 +10,9 @@ public class RandomDeckMetronome extends DuelistCustomLoadout
     {
         this.ID = 30;
         this.Name = "Metronome Deck";
-        this.permaLockMessage = "Beat the Heart with a Random Deck";
+        this.longDesc = true;
+        this.unlockReq = "Defeat the Heart with a Random Deck";
+        this.permaLockMessage = "Locked";
     }
 
     @Override

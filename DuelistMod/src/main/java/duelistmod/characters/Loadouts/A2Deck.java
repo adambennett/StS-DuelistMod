@@ -2,7 +2,6 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
-import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 import duelistmod.variables.Strings;
 
@@ -13,7 +12,9 @@ public class A2Deck extends DuelistCustomLoadout
         this.ID = 20;
         this.Name = Strings.configAscended2;
         this.cardCount = "?? Cards";
-        this.permaLockMessage = "Defeat the Heart on Ascension 20 (Ascended I)";
+        this.longDesc = true;
+        this.permaLockMessage = "Locked";
+        this.unlockReq = "Defeat the Heart on Ascension 15+";
     }
 
     @Override

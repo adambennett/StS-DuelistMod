@@ -4504,6 +4504,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		for (AbstractPotion pot : p.potions) { if (pot instanceof DuelistPotion) { ((DuelistPotion)pot).onIncrement(amount, DuelistMod.lastMaxSummons); }}
 		if (p.stance instanceof DuelistStance) { ((DuelistStance)p.stance).onIncrement(amount, DuelistMod.lastMaxSummons); }
 		
+		if (incremented && Util.getChallengeLevel() > 3 && Util.deckIs("Increment Deck")) { damageSelfNotHP(1); }
+		
 		if (p.hasOrb() && incremented)
 		{
 			for (AbstractOrb o : p.orbs)

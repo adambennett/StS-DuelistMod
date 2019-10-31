@@ -42,6 +42,7 @@ import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.DuelistAscender;
 import duelistmod.cards.dragons.*;
+import duelistmod.cards.halloween.*;
 import duelistmod.cards.incomplete.RevivalRose;
 import duelistmod.cards.insects.GiantPairfish;
 import duelistmod.cards.tempCards.CancelCard;
@@ -59,7 +60,7 @@ import duelistmod.powers.duelistPowers.*;
 import duelistmod.powers.incomplete.*;
 import duelistmod.relics.*;
 import duelistmod.rewards.*;
-import duelistmod.ui.*;
+import duelistmod.ui.CombatIconViewer;
 import duelistmod.variables.*;
 
 
@@ -1043,6 +1044,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public void receivePostInitialize() 
 	{	
 		// Mod Options
+		Util.halloweenCheck();
 		logger.info("Loading badge image and mod options, adding events and monsters, adding combat summons icon, initialize elite deck helper");
 		String loc = Localization.localize();
 		Texture badgeTexture = new Texture(makePath(Strings.BADGE_IMAGE));
@@ -2357,6 +2359,14 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 					}
 					//arg1.initializeDeck(newStartGroup);
 					arg1.group.addAll(newStartGroup.group);
+					if (Util.halloweenCheck()) 
+					{
+						ArrayList<AbstractCard> halloweenCards = new ArrayList<>();
+						halloweenCards.add(new Hallohallo());
+						halloweenCards.add(new PumpkinCarriage());
+						halloweenCards.add(new HalloweenManor());
+						arg1.group.add(halloweenCards.get(ThreadLocalRandom.current().nextInt(halloweenCards.size())));
+					}
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.DRAGON; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of DRAGON");}}

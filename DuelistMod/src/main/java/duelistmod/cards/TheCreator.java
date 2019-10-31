@@ -15,7 +15,7 @@ import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.actions.unique.*;
 import duelistmod.cards.tempCards.*;
 import duelistmod.characters.TheDuelist;
-import duelistmod.helpers.StarterDeckSetup;
+import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.relics.MillenniumSymbol;
@@ -72,7 +72,7 @@ public class TheCreator extends DuelistCard
     	
     	// Add a 1 cost for combat, ethereal copy of EVERY Card in pool to draw pile
     	// Hardcoded different pool for Creator Deck - since that pool sucks, which sort of ruins the card which is the entire basis of the deck
-    	if (StarterDeckSetup.getCurrentDeck().getSimpleName().equals("Creator Deck")) 
+    	if (Util.deckIs("Creator Deck") && !DuelistMod.poolIsCustomized) 
     	{  
 	    	ArrayList<AbstractCard> creatorDeckUniquePool = new ArrayList<AbstractCard>();
 	    	for (AbstractCard c : DuelistMod.myCards)

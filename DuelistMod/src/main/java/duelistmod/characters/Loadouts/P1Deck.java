@@ -2,7 +2,6 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
-import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 import duelistmod.variables.Strings;
 
@@ -13,6 +12,9 @@ public class P1Deck extends DuelistCustomLoadout
         this.ID = 22;
         this.Name = Strings.configPharaoh1;
         this.cardCount = "?? Cards";
+        this.longDesc = true;
+        this.permaLockMessage = "Unavailable";
+        this.unlockReq = "Deck currently unavailable! Defeat the Heart on Challenge 1+ and defeat the Heart with all three Ascended decks.";
     }
 
     @Override

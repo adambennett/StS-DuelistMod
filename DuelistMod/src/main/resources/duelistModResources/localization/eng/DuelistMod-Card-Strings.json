@@ -7291,6 +7291,21 @@
 		"NAME": "Duelist's Bane",
 		"UPGRADE_DESCRIPTION": "Grave NL Ethereal NL Unplayable NL Soulbound NL When drawn, reduce your Max Summons by !M!."
 	},
+	"theDuelist:Hallohallo": {
+		"DESCRIPTION": "*Halloween NL Fiend NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn.",
+		"NAME": "Hallohallo",
+		"UPGRADE_DESCRIPTION": "*Halloween NL Fiend NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn."
+	},
+	"theDuelist:PumpkinCarriage": {
+		"DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn.",
+		"NAME": "Pumpkin Carriage",
+		"UPGRADE_DESCRIPTION": "*Halloween NL Plant NL Summon !duelist:SUMM! NL Become Haunted for the rest of this turn."
+	},
+	"theDuelist:HalloweenManor": {
+		"DESCRIPTION": "*Halloween NL Whenever you Resummon, gain !M! Gold.",
+		"NAME": "Halloween Manor",
+		"UPGRADE_DESCRIPTION": "*Halloween NL Whenever you Resummon, gain !M! Gold."
+	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",
 		"NAME": "Cancel",

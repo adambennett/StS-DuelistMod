@@ -13,7 +13,6 @@ public class PlantDeck extends DuelistCustomLoadout
         this.ID = 11;
         this.Name = Strings.configPlantDeck;
         this.cardCount = "?? Cards";
-        this.permaLockMessage = "Unavailable";
     }
 
     @Override

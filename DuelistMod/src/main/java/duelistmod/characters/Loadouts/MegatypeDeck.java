@@ -2,7 +2,6 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
-import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 import duelistmod.variables.Strings;
 
@@ -13,7 +12,7 @@ public class MegatypeDeck extends DuelistCustomLoadout
         this.ID = 13;
         this.Name = Strings.configMegatypeDeck;
         this.cardCount = "?? Cards";
-        this.permaLockMessage = "Unavailable";
+        this.deckDesc = "This deck is probably a bit silly. Megatyped monsters are very strong, so a deck based entirely around this concept... yeah not exactly what you'd call balanced. Enjoy!";
     }
 
     @Override

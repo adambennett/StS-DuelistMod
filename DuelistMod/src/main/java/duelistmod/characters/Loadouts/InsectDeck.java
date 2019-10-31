@@ -2,7 +2,6 @@ package duelistmod.characters.Loadouts;
 
 import java.util.ArrayList;
 
-import duelistmod.DuelistMod;
 import duelistmod.characters.DuelistCustomLoadout;
 import duelistmod.variables.Strings;
 
@@ -13,7 +12,6 @@ public class InsectDeck extends DuelistCustomLoadout
         this.ID = 10;
         this.Name = Strings.configInsectDeck;
         this.cardCount = "?? Cards";
-        this.permaLockMessage = "Unavailable";
     }
 
     @Override

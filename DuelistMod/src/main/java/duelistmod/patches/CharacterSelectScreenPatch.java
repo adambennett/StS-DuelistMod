@@ -46,12 +46,12 @@ public class CharacterSelectScreenPatch
 	public static void Initialize(CharacterSelectScreen selectScreen)
 	{
 		float deckLeftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Starting Deck: ", 9999.0F, 0.0F); 
-		float deckRightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "###############", 9999.0F, 0.0F); 
+		float deckRightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "################", 9999.0F, 0.0F); 
 		float challengeLeftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "Challenge Mode", 9999.0F, 0.0F); 
 		float challengeRightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, "  Level 20  ", 9999.0F, 0.0F); 
 
 		POS_X_DECK = 180f * Settings.scale;
-		POS_X_CHALLENGE = 1080f * Settings.scale;
+		POS_X_CHALLENGE = 1200f * Settings.scale;
 		POS_Y_DECK = ((float) Settings.HEIGHT / 3.25F);
 		POS_Y_CHALLENGE = ((float) Settings.HEIGHT / 3.25F);
 
@@ -89,6 +89,7 @@ public class CharacterSelectScreenPatch
 		startingCardsLabelHb.update();
 		startingCardsRightHb.update();
 		startingCardsLeftHb.update();
+		startingCardsSelectedHb.update();
 
 		challengeModeHb.update();
 		challengeLevelHb.update();
@@ -175,8 +176,13 @@ public class CharacterSelectScreenPatch
 		if (challengeModeHb.clicked)
 		{
 			challengeModeHb.clicked = false;
-			DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
-			if (!DuelistMod.playingChallenge) { DuelistMod.challengeLevel = 0; }
+			DuelistCustomLoadout info = DuelistCharacterSelect.GetSelectedLoadout();
+			boolean allowChallenge = BonusDeckUnlockHelper.challengeUnlocked(info.Name);
+			if (allowChallenge)
+			{
+				DuelistMod.playingChallenge = !DuelistMod.playingChallenge;
+				if (!DuelistMod.playingChallenge) { DuelistMod.challengeLevel = 0; }
+			}
 		}
 
 		if (challengeLeftHb.clicked)
@@ -237,30 +243,44 @@ public class CharacterSelectScreenPatch
 		else { sb.setColor(Color.WHITE); }
 		sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24.0F, startingCardsRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-		
+		if (startingCardsSelectedHb.hovered)
+		{
+			/*if (!info.deckDesc.equals("") && info.longDesc) 
+			{ 
+				TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 240.0f * Settings.scale, "Deck Description", info.deckDesc); 
+				TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Unlock Requirements", info.unlockReq);
+			}
+			else if (!info.deckDesc.equals("")) 
+			{ 
+				TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Deck Description", info.deckDesc);
+			}
+			else*/
+			if (info.longDesc) { TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 250.0f * Settings.scale, "Unlock Requirements", info.unlockReq); }
+		}
+	
 		if (allowChallenge && DuelistMod.allowChallengeMode)
 		{
 			Color challengeLevelColor = Settings.BLUE_TEXT_COLOR;
 			if (!DuelistMod.playingChallenge) { challengeLevelColor = Settings.RED_TEXT_COLOR; }
 			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
-			if (!challengeLeftHb.hovered) { sb.setColor(Color.LIGHT_GRAY); }
+			if (!challengeLeftHb.hovered || !DuelistMod.playingChallenge) { sb.setColor(Color.LIGHT_GRAY); }
 			else { sb.setColor(Color.WHITE); }
 			sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-			if (!challengeRightHb.hovered) { sb.setColor(Color.LIGHT_GRAY); }
+			if (!challengeRightHb.hovered || !DuelistMod.playingChallenge) { sb.setColor(Color.LIGHT_GRAY); }
 			else { sb.setColor(Color.WHITE); }
 			sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 	
 			// Render tip on hover over Challenge Level
-			if (challengeLevelHb.hovered)
+			if (challengeLevelHb.hovered && Util.getChallengeLevel() > -1)
 			{
-				 TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Level " + DuelistMod.challengeLevel + " Challenge Mode", "Placeholder description of level difficulty increases.");
+				 TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge #b" + DuelistMod.challengeLevel, Util.getChallengeDifficultyDesc());
 			}
 			
 			// Challenge Mode toggle
 	        sb.setColor(Color.WHITE);
-	        if (!DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 20.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
-	        else { sb.draw(ImageMaster.OPTION_TOGGLE_ON, challengeModeHb.cX + 20.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); } 
+	        sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 20.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+	        if (DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE_ON, challengeModeHb.cX + 20.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); } 
 	        if (challengeModeHb.hovered) 
 	        {
 	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY - 10.0f, Settings.GREEN_TEXT_COLOR);
@@ -270,23 +290,38 @@ public class CharacterSelectScreenPatch
 	        {
 	        	FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY - 10.0f, Settings.GOLD_COLOR);
 	        }
-	        
-	    	startingCardsLabelHb.render(sb);
-			startingCardsLeftHb.render(sb);
-			startingCardsRightHb.render(sb);
-			challengeModeHb.render(sb);
-			challengeLevelHb.render(sb);
-			challengeLeftHb.render(sb);
-			challengeRightHb.render(sb);
 		}
 		else 
 		{ 
 			DuelistMod.playingChallenge = false;
 			DuelistMod.challengeLevel = 0;
-			startingCardsLabelHb.render(sb);
-			startingCardsLeftHb.render(sb);
-			startingCardsRightHb.render(sb);
+			Color challengeLevelColor = Settings.RED_TEXT_COLOR;
+			FontHelper.renderFont(sb, FontHelper.cardTitleFont_small, "Level " + DuelistMod.challengeLevel, challengeLevelHb.x, challengeLevelHb.cY, challengeLevelColor);
+			sb.setColor(Color.LIGHT_GRAY);
+			sb.draw(ImageMaster.CF_LEFT_ARROW, challengeLeftHb.cX - 24.0F, challengeLeftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+			sb.setColor(Color.LIGHT_GRAY);
+			sb.draw(ImageMaster.CF_RIGHT_ARROW, challengeRightHb.cX - 24.0F, challengeRightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+
+			// Challenge Mode toggle
+	        sb.setColor(Color.WHITE);
+	        if (!DuelistMod.playingChallenge) { sb.draw(ImageMaster.OPTION_TOGGLE, challengeModeHb.cX + 20.0F, challengeModeHb.cY - 40.0f, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false); }
+	        if (challengeModeHb.hovered) 
+	        {
+	            FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY - 10.0f, Settings.RED_TEXT_COLOR);
+	            TipHelper.renderGenericTip(InputHelper.mX - 140.0f * Settings.scale, InputHelper.mY + 340.0f * Settings.scale, "Challenge Mode", "Unlock Challenge Mode with any deck by defeating the Heart at Ascension 20. Unlock more Challenge levels by defeating the Heart on Ascension 20 at the highest Challenge level available.");
+	        }
+	        else 
+	        {
+	        	FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, "Challenge Mode", challengeModeHb.x, challengeModeHb.cY - 10.0f, Settings.RED_TEXT_COLOR);
+	        }
 		}
+		startingCardsLabelHb.render(sb);
+		startingCardsLeftHb.render(sb);
+		startingCardsRightHb.render(sb);
+		challengeModeHb.render(sb);
+		challengeLevelHb.render(sb);
+		challengeLeftHb.render(sb);
+		challengeRightHb.render(sb);
 	}
 
 	private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)

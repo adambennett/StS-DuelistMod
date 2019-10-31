@@ -11,7 +11,6 @@ public class NaturiaDeck extends DuelistCustomLoadout
     {
         this.ID = 2;
         this.Name = DuelistMod.natureDeckString;
-        this.permaLockMessage = "Unavailable";
     }
 
     @Override

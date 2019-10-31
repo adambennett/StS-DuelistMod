@@ -12,7 +12,9 @@ public class A1Deck extends DuelistCustomLoadout
         this.ID = 19;
         this.Name = Strings.configAscended1;
         this.cardCount = "?? Cards";
-        this.permaLockMessage = "Defeat the Heart on Ascension 20 (Any Deck)";
+        this.longDesc = true;
+        this.permaLockMessage = "Locked";
+        this.unlockReq = "Defeat the Heart on Ascension 10+";
     }
 
     @Override

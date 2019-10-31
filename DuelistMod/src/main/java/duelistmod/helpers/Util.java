@@ -613,6 +613,81 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new BlessingAnubis());
 	}
 	
+	public static boolean halloweenCheck()
+	{
+		boolean isHalloween = false;
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2019, 9, 31);
+		if (cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { isHalloween = true; }
+		if (isHalloween) { Util.log("Duelistmod is detecting Halloween!"); }
+		else 
+		{ 
+			Util.log("Halloween Check : cal1.dayOfMonth=" + cal1.get(Calendar.DAY_OF_MONTH) + ", and cal2.dayOfMonth=" + cal2.get(Calendar.DAY_OF_MONTH));
+			Util.log("Halloween Check : cal1.Month=" + cal1.get(Calendar.MONTH) + ", and cal2.Month=" + cal2.get(Calendar.MONTH));
+		}
+		return isHalloween;
+	}
+	
+	public static String getChallengeDifficultyDesc()
+	{
+		if (Util.getChallengeLevel() == 0) { return "#bMillennium #bPuzzle: Typed tokens become Puzzle Tokens."; }
+		else if (Util.getChallengeLevel() == 1) { return "#bMillennium #bPuzzle: Deck effects are weakened or reduced."; }
+		else if (Util.getChallengeLevel() == 2) { return "Start each combat with #b4 #yMax #ySummons."; }
+		else if (Util.getChallengeLevel() == 3) { return "All Elites start combat with a random #yBuff."; }
+		else if (Util.getChallengeLevel() == 4) 
+		{ 
+			if (Util.deckIs("Standard Deck")) { return "Standard: #b50% chance to randomize the cost of Spells when drawn."; }
+			else if (Util.deckIs("Dragon Deck")) { return "Dragon: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Naturia Deck")) { return "Naturia: resistance to #yVines is increased."; }
+			else if (Util.deckIs("Spellcaster Deck")) { return "Spellcaster: start combat with #b2 orb slots."; }
+			else if (Util.deckIs("Toon Deck")) { return "Toon: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Zombie Deck")) { return "Zombie: start each combat with restricted #yResummoning."; }
+			else if (Util.deckIs("Aqua Deck")) { return "Aqua: #yAqua tribute synergy effect only triggers #b50% of the time."; }
+			else if (Util.deckIs("Fiend Deck")) { return "Fiend: When triggered, the #yFiend tribute synergy effect increases the cost of all cards in discard by #b1 for the turn."; }
+			else if (Util.deckIs("Machine Deck")) { return "Machine: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Warrior Deck")) { return "Warrior: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Insect Deck")) { return "Insect: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Plant Deck")) { return "Plant: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Megatype Deck")) { return "Megatype: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Increment Deck")) { return "Increment: Whenever you #yIncrement, take #b1 damage."; }
+			else if (Util.deckIs("Creator Deck")) { return "Creator: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Exodia Deck")) { return "Exodia: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Ojama Deck")) { return "Ojama: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Giant Deck")) { return "Giant: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Ascended I")) { return "Ascended I: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Ascended II")) { return "Ascended II: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Ascended III")) { return "Ascended III: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Pharaoh I")) { return "Pharaoh I: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Pharaoh II")) { return "Pharaoh II: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Pharaoh III")) { return "Pharaoh III: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Pharaoh IV")) { return "Pharaoh IV: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Pharaoh V")) { return "Pharaoh V: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Random Deck (Small)")) { return "Random (Small): [PLACEHOLDER]"; }
+			else if (Util.deckIs("Random Deck (Big)")) { return "Random (Big): [PLACEHOLDER]"; }
+			else if (Util.deckIs("Upgrade Deck")) { return "Upgrade: [PLACEHOLDER]"; }
+			else if (Util.deckIs("Metronome Deck")) { return "Metronome: [PLACEHOLDER]"; }
+			else { return "???"; }
+		}
+		else if (Util.getChallengeLevel() == 5) { return "Start each run with #b0 #yGold."; }
+		else if (Util.getChallengeLevel() == 6) { return "At the start of each of your turns, all enemies have a chance to gain #yBlock."; }
+		else if (Util.getChallengeLevel() == 7) { return "#bMillennium #bPuzzle: NL No deck effects."; }
+		else if (Util.getChallengeLevel() == 8) { return "Whenever you open a non-Boss chest, lose all of your Potions."; }
+		else if (Util.getChallengeLevel() == 9) { return "#bMillennium #bPuzzle: NL Puzzle Tokens become #rExplosive Tokens."; }
+		else if (Util.getChallengeLevel() == 10) { return "Start each run #rCursed."; }
+		else if (Util.getChallengeLevel() == 11) { return "#b1% chance to become #rFrozen at the start of each turn."; }
+		else if (Util.getChallengeLevel() == 12) { return "Start each combat with #b3 #rBurning."; }
+		else if (Util.getChallengeLevel() == 13) { return "#y? rooms are more likely to contain fights."; }
+		else if (Util.getChallengeLevel() == 14) { return "Booster pack rewards contain #b1 less card."; }
+		else if (Util.getChallengeLevel() == 15) { return "Whenever you #ySmith, lose #b35 #yGold."; }
+		else if (Util.getChallengeLevel() == 16) { return "#bMillennium #bPuzzle: NL #rExplosive Tokens become #rSuper #rExplosive Tokens."; }
+		else if (Util.getChallengeLevel() == 17) { return "At most Rest Sites, you may only #yRest or #ySmith."; }
+		else if (Util.getChallengeLevel() == 18) { return "At the start of Elite combats, add a random #rCurse into your discard pile."; }
+		else if (Util.getChallengeLevel() == 19) { return "All Bosses and Elites start combat with a random #yBuff."; }
+		else if (Util.getChallengeLevel() == 20) { return "#ySummoning is restricted."; }
+		else { return "Challenge Mode disabled!"; }
+	}
+	
 	public static void resetCardsPlayedThisRunLists()
 	{
 		DuelistMod.loadedUniqueMonstersThisRunList = "";
