@@ -77,7 +77,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.038.3-beta";
+	public static String version = "v3.038.4-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -2324,6 +2324,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			if (badModNames.contains(s))
 			{ 
 				badMods = true; 
+				if (holidayDeckCard != null && addingHolidayCard && arg0.name().equals("THE_DUELIST")) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
 			} 
 		}
 		if (!badMods)
@@ -2376,19 +2377,8 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 						newStartGroup.addToRandomSpot(new AscendersBane());
 						UnlockTracker.markCardAsSeen("AscendersBane");
 					}
-					//arg1.initializeDeck(newStartGroup);
-					arg1.group.addAll(newStartGroup.group);		
-					
-					// Holiday card handler
+					arg1.group.addAll(newStartGroup.group);	
 					if (holidayDeckCard != null && addingHolidayCard) { arg1.group.add(holidayDeckCard.makeCopy()); addingHolidayCard = false; }
-					/*ArrayList<AbstractCard> holiday = Util.holidayCardRandomizedList();
-					if (holiday.size() > 0)
-					{
-						arg1.group.add(holiday.get(0));
-						for (int i = 1; i < holiday.size(); i++) { DuelistMod.holidayNonDeckCards.add(holiday.get(i)); }
-					}*/
-					// END Holiday card handler
-					
 					arg1.sortAlphabetically(true);
 					lastTagSummoned = StarterDeckSetup.getCurrentDeck().getCardTag();
 					if (lastTagSummoned == null) { lastTagSummoned = Tags.DRAGON; if (debug) { logger.info("starter deck has no associated card tag, so lastTagSummoned is reset to default value of DRAGON");}}
