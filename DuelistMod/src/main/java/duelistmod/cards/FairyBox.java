@@ -30,16 +30,16 @@ public class FairyBox extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
     private static final int COST = 1;
 
     // /STAT DECLARATION/
 
     public FairyBox() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.TRAP);
         this.tags.add(Tags.EXODIA_DECK);
 		this.exodiaDeckCopies = 1;
 		this.setupStartingCopies();

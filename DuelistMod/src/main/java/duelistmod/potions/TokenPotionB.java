@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.tokens.PotionToken;
+import duelistmod.cards.other.tokens.PotionToken;
 import duelistmod.variables.Colors;
 
 public class TokenPotionB extends DuelistPotion {

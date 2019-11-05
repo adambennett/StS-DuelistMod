@@ -32,7 +32,7 @@ public class StatueAnguishPatternPower extends AbstractPower
 	public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 	public static final String IMG = DuelistMod.makePowerPath("StatueAnguishPatternPower.png");
 	private boolean finished = false;
-	private AbstractOrb orb = new Air();
+	private AbstractOrb orb = new AirOrb();
 	private ArrayList<AbstractOrb> orbs = new ArrayList<AbstractOrb>();
 	
 	public StatueAnguishPatternPower(final AbstractCreature owner, final AbstractCreature source) 
@@ -70,7 +70,7 @@ public class StatueAnguishPatternPower extends AbstractPower
 		if (this.orb != null)
 		{
 			// Professional Vowel Handler
-			if (this.orb instanceof Air || this.orb instanceof Earth) { this.description = DESCRIPTIONS[2] + this.orb.name + DESCRIPTIONS[1]; }
+			if (this.orb instanceof AirOrb || this.orb instanceof Earth) { this.description = DESCRIPTIONS[2] + this.orb.name + DESCRIPTIONS[1]; }
 			else { this.description = DESCRIPTIONS[0] + this.orb.name + DESCRIPTIONS[1]; }
 		}
 		else

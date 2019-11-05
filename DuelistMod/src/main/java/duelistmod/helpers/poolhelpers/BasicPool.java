@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.insects.*;
-import duelistmod.cards.naturia.*;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.naturia.*;
 
 public class BasicPool 
 {
@@ -248,7 +248,6 @@ public class BasicPool
 			cards.add(new Metronome());
 			cards.add(new OneForOne());
 			cards.add(new OrbMetronome());
-			cards.add(new Overworked());
 			cards.add(new Jinzo());
 			cards.add(new YellowBelliedOni());		
 			cards.add(new GolemSentry());

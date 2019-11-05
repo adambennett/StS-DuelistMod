@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.CancelCard;
+import duelistmod.cards.other.tempCards.CancelCard;
 
 public class HauntedShrineAction extends AbstractGameAction
 {

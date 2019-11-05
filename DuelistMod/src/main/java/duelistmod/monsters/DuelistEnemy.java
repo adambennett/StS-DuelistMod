@@ -10,8 +10,8 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.dragons.*;
 import duelistmod.helpers.*;
 import duelistmod.powers.enemyPowers.EnemyMiraclePower;
 

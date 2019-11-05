@@ -8,16 +8,20 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
+import duelistmod.cards.*;
+import duelistmod.cards.incomplete.LostGuardian;
+import duelistmod.cards.pools.dragons.LivingFossil;
+import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.naturia.*;
 import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Strings;
 
-public class MillenniumToken extends CustomRelic {
+public class MillenniumToken extends DuelistRelic {
 
 	/*
 	 * 
@@ -26,15 +30,21 @@ public class MillenniumToken extends CustomRelic {
 	 */
 
 	// ID, images, text.
-	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumToken");
+	public static final String ID = DuelistMod.makeID("MillenniumToken");
 	public static final String IMG = DuelistMod.makePath(Strings.TEMP_RELIC);
 	public static final String OUTLINE = DuelistMod.makePath(Strings.TEMP_RELIC_OUTLINE);
 	public boolean cardSelected = false;
 	private DuelistCardSelectScreen dcss;
 
 	public MillenniumToken() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SPECIAL, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.SHOP, LandingSound.MAGICAL);
 		this.dcss = new DuelistCardSelectScreen(true);
+	}
+	
+	@Override
+	public int getPrice()
+	{
+		return 300;
 	}
 	
 	@Override
@@ -42,9 +52,26 @@ public class MillenniumToken extends CustomRelic {
 	{
 		CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 		ArrayList<AbstractCard> myCardsCopy = new ArrayList<AbstractCard>();
-		for (DuelistCard c : DuelistMod.myCards)
+		Map<String, AbstractCard> mapp = new HashMap<>();
+		myCardsCopy.add(new GreenGadget());
+		myCardsCopy.add(new RedGadget());
+		myCardsCopy.add(new YellowGadget());
+		myCardsCopy.add(new AncientGearChimera());
+		myCardsCopy.add(new TurretWarrior());
+		myCardsCopy.add(new TokenVacuum());
+		myCardsCopy.add(new Linkuriboh());
+		myCardsCopy.add(new RainbowBridge());
+		myCardsCopy.add(new ClosedForest());
+		myCardsCopy.add(new ChrysalisMole());
+		myCardsCopy.add(new LivingFossil());
+		myCardsCopy.add(new LostGuardian());
+		for (AbstractCard c : myCardsCopy) { mapp.put(c.cardID, c); }
+		while (myCardsCopy.size() < 20)
 		{
+			AbstractCard c = DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1));
+			while (mapp.containsKey(c.cardID) || c.rarity == CardRarity.BASIC || c.rarity == CardRarity.SPECIAL) { c = DuelistMod.myCards.get(AbstractDungeon.cardRandomRng.random(DuelistMod.myCards.size() - 1)); }
 			myCardsCopy.add(c.makeCopy());
+			mapp.put(c.cardID, c.makeCopy());
 		}
 		List<AbstractCard> list = myCardsCopy;
 		for (AbstractCard c : list){

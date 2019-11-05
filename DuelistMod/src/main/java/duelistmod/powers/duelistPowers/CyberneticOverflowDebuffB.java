@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.dragons.ArtifactSanctum;
+import duelistmod.cards.pools.dragons.ArtifactSanctum;
 
 
 @SuppressWarnings("unused")
@@ -48,7 +48,7 @@ public class CyberneticOverflowDebuffB extends NoStackDuelistPower
 		if (AbstractDungeon.player.hasPower(ArtifactPower.POWER_ID)) 
 		{ 
 			int amt = AbstractDungeon.player.getPower(ArtifactSanctumPower.POWER_ID).amount;
-			if (AbstractDungeon.player.hasPower(ArtifactSanctumPower.POWER_ID)) { ((ArtifactSanctumPower)AbstractDungeon.player.getPower(ArtifactSanctumPower.POWER_ID)).cyberneticTrigger(amt); }
+			DuelistCard.handleOnLoseArtifactForAllAbstracts();
 			DuelistCard.removePower(AbstractDungeon.player.getPower(ArtifactPower.POWER_ID), AbstractDungeon.player); 
 		}
 		DuelistCard.removePower(this, this.owner);

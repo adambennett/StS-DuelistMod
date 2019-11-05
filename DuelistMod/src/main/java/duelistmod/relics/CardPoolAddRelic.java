@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
@@ -20,7 +20,7 @@ import duelistmod.patches.AbstractCardEnum;
 import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Tags;
 
-public class CardPoolAddRelic extends CustomRelic implements ClickableRelic
+public class CardPoolAddRelic extends DuelistRelic implements ClickableRelic
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolAddRelic");

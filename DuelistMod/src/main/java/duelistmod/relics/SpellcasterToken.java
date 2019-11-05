@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.helpers.StarterDeckSetup;
 
-public class SpellcasterToken extends CustomRelic implements OnChannelRelic {
+public class SpellcasterToken extends DuelistRelic implements OnChannelRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

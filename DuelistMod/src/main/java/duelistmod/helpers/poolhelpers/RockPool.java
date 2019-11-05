@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.naturia.*;
+import duelistmod.cards.pools.machine.IronhammerGiant;
+import duelistmod.cards.pools.naturia.*;
 
 public class RockPool 
 {

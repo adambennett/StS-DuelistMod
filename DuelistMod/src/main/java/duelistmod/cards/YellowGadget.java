@@ -29,8 +29,8 @@ public class YellowGadget extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.UNCOMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
@@ -45,7 +45,8 @@ public class YellowGadget extends DuelistCard
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 2;
 		this.isSummon = true;
-		this.magicNumber = this.baseMagicNumber = 3;
+		this.magicNumber = this.baseMagicNumber = 4;
+		this.secondMagic = this.baseSecondMagic = 2;
 	}
 
 
@@ -53,28 +54,13 @@ public class YellowGadget extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
-		// Upgraded version - random tokens
-		if (upgraded)
-		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-			for (int i = 0; i < this.magicNumber; i++)
-			{
-				DuelistCard tk = tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
-				addCardToHand((DuelistCard)tk.makeCopy());
-			}
-		}
-		
-		// Base version - choose tokens
-		else
-		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-			ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
-			int iterations = this.magicNumber;
-			abTokens.addAll(tokens);
-			if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
-		}
+		summon(p, this.summons, this);		
+		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
+		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
+		int iterations = this.magicNumber;
+		abTokens.addAll(tokens);
+		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
+		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, this.secondMagic, abTokens));		
 	}
 
 	// Which card to return when making a copy of this card.
@@ -92,6 +78,8 @@ public class YellowGadget extends DuelistCard
 		{
 			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(1);
+			this.upgradeSecondMagic(1);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

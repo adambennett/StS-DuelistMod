@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.BloodToken;
+import duelistmod.cards.other.tokens.BloodToken;
 
 
 

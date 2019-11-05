@@ -3,11 +3,10 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.variables.Strings;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 
-public class MillenniumNecklace extends CustomRelic
+public class MillenniumNecklace extends DuelistRelic	
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("MillenniumNecklace");

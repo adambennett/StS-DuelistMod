@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.unique.SeedCannonAction;
-import duelistmod.cards.tempCards.SeedCannonConfirm;
+import duelistmod.cards.other.tempCards.SeedCannonConfirm;
 import duelistmod.variables.Tags;
 
 

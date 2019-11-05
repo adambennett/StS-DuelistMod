@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.*;
 
 public class DragonPuzzleAction extends AbstractGameAction
@@ -79,7 +79,7 @@ public class DragonPuzzleAction extends AbstractGameAction
 			Collections.sort(tmp.group, GridSort.getComparator());
 			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
 			if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effect", false, false, false, false); }
-			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effect", false, false, false, false); }
+			else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, "Choose " + this.amount + " Special Puzzle Effects", false, false, false, false); }
 			tickDuration();
 			return;
 			

@@ -7,10 +7,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
-import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.insects.*;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.machine.AncientGearFist;
+import duelistmod.cards.pools.warrior.*;
 
 public class StandardPool 
 {

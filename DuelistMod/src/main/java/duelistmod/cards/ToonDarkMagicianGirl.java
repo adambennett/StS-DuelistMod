@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.orbs.Air;
+import duelistmod.orbs.AirOrb;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -70,7 +70,7 @@ public class ToonDarkMagicianGirl extends DuelistCard
 		block(this.block);
 		for (int i = 0; i < this.magicNumber; i++)
 		{
-			AbstractOrb air = new Air();
+			AbstractOrb air = new AirOrb();
 			channel(air);
 		}		
 	}

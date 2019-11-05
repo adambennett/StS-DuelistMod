@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.variables.*;
 
-public class KaibaToken extends CustomRelic {
+public class KaibaToken extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

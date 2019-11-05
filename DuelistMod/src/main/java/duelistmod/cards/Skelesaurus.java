@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.ShadowToken;
+import duelistmod.cards.other.tokens.ShadowToken;
 import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.SummonPower;

@@ -10,11 +10,10 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
-import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.HorusServant;
-import duelistmod.cards.insects.TornadoDragon;
-import duelistmod.cards.naturia.SeismicShockwave;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.naturia.SeismicShockwave;
+import duelistmod.cards.pools.warrior.*;
 
 public class DragonPool 
 {
@@ -225,7 +224,7 @@ public class DragonPool
 		dragonCards.add(new ThreateningRoar());
 		dragonCards.add(new ThunderDragon());
 		//dragonCards.add(new TidalWaterfall());
-		dragonCards.add(new TornadoDragon());
+		//dragonCards.add(new TornadoDragon());
 		dragonCards.add(new TotemDragon());
 		dragonCards.add(new TrihornedDragon());
 		dragonCards.add(new TwinBarrelDragon());

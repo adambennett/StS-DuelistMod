@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.variables.Strings;
 
 
 public class FocusLossPower extends AbstractPower 

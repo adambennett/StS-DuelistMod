@@ -5,14 +5,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.variables.Strings;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 
-public class YugiMirror extends CustomRelic {
+public class YugiMirror extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

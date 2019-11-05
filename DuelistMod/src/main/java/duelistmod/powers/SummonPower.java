@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.relics.FrozenEye;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.BigEye;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.helpers.*;
 import duelistmod.powers.duelistPowers.CanyonPower;
 import duelistmod.relics.MillenniumKey;

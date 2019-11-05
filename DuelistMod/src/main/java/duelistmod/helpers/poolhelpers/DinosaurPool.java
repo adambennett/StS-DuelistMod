@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-import duelistmod.cards.dragons.*;
+import duelistmod.cards.pools.dragons.*;
 
 public class DinosaurPool 
 {

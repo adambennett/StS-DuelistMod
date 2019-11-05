@@ -45,7 +45,7 @@ public class DragonPlusOrb extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/DragonPlus.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 6;
+		this.basePassiveAmount = this.passiveAmount = 4;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;

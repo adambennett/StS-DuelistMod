@@ -4,13 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.SummonAction;
 
-public class SummonAnchorRare extends CustomRelic {
+public class SummonAnchorRare extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -37,13 +37,20 @@ public class SummonAnchorRare extends CustomRelic {
 	@Override
 	public void atBattleStart() 
 	{
-		DuelistCard randTokenA = DuelistCardLibrary.getRandomTokenForCombat();
-		DuelistCard randTokenB = DuelistCardLibrary.getRandomTokenForCombat();
+		DuelistCard randTokenA = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false);
+		DuelistCard randTokenB = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false);
 		AbstractDungeon.actionManager.addToBottom(new SummonAction(1, randTokenA));
 		AbstractDungeon.actionManager.addToBottom(new SummonAction(1, randTokenB));
 		this.flash();
 		AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+		this.grayscale = true;
 	}
+		
+	@Override
+    public void onVictory() 
+    {
+		this.grayscale = false;
+    }
 
 	// Description
 	@Override

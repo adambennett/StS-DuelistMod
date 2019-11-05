@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.*;
 import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Strings;

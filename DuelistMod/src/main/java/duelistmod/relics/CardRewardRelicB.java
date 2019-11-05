@@ -3,13 +3,14 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.variables.Strings;
 
-public class CardRewardRelicB extends CustomRelic
+public class CardRewardRelicB extends DuelistRelic
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("CardRewardRelicB");

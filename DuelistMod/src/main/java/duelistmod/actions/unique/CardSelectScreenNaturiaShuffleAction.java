@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.GridSort;
 
 public class CardSelectScreenNaturiaShuffleAction extends AbstractGameAction

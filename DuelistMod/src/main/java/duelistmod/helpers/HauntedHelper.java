@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.statuses.*;
-import duelistmod.cards.tokens.PlagueToken;
+import duelistmod.cards.other.statuses.*;
+import duelistmod.cards.other.tokens.PlagueToken;
 import duelistmod.powers.MortalityPower;
 import duelistmod.powers.incomplete.HauntedDebuff;
 

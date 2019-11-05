@@ -9,6 +9,19 @@
       "[Leave]"
     ]
   },
+  "theDuelist:RelicDuplicator": {
+    "NAME": "Relic Duplicator",
+    "DESCRIPTIONS": [
+      "Powerful arcane magic allows me to duplicate certain relics... do you have any?"
+    ],
+    "OPTIONS": [
+      "[Duplicate] #gDuplicate ",
+	  ". #rPay #r",
+	  " #rGold.",
+	  "[Locked] No Duplicatable Relics",
+      "[Leave]"
+    ]
+  },
   "theDuelist:CardTrader": {
     "NAME": "Card Trader",
     "DESCRIPTIONS": [

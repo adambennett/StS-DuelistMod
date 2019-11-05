@@ -3,12 +3,13 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.StarterDeckSetup;
 
-public class GamblerChip extends CustomRelic 
+public class GamblerChip extends DuelistRelic 
 {
     // ID, images, text.
     public static final String ID = DuelistMod.makeID("GamblerChip");

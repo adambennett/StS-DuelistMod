@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.variables.Strings;
 
-public class MerchantNecklace extends CustomRelic implements ClickableRelic {
+public class MerchantNecklace extends DuelistRelic implements ClickableRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

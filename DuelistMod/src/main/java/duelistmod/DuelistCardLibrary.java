@@ -16,20 +16,21 @@ import basemod.BaseMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
-import duelistmod.cards.dragons.*;
-import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.holiday.birthday.*;
 import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.insects.*;
 import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
-import duelistmod.cards.naturia.*;
-import duelistmod.cards.orbCards.*;
-import duelistmod.cards.statuses.*;
-import duelistmod.cards.tokens.*;
+import duelistmod.cards.other.orbCards.*;
+import duelistmod.cards.other.statuses.*;
+import duelistmod.cards.other.tokens.*;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.warrior.*;
 import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.helpers.poolhelpers.*;
@@ -1056,7 +1057,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new HunterSpider());
 		DuelistMod.myCards.add(new NeoBug());
 		DuelistMod.myCards.add(new RazorLizard());
-		DuelistMod.myCards.add(new TornadoDragon());
+		//DuelistMod.myCards.add(new TornadoDragon());
 		DuelistMod.myCards.add(new AtomicFirefly());
 		DuelistMod.myCards.add(new CobraJar());
 		DuelistMod.myCards.add(new DarkSpider());
@@ -1243,7 +1244,28 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new SilverWing());
 		DuelistMod.myCards.add(new SystemDown());
 		DuelistMod.myCards.add(new Vandalgyon());
-		
+		DuelistMod.myCards.add(new BreakDraw());
+		DuelistMod.myCards.add(new ElectromagneticTurtle());
+		DuelistMod.myCards.add(new Geargiauger());
+		DuelistMod.myCards.add(new GoldGadget());
+		DuelistMod.myCards.add(new PlatinumGadget());
+		DuelistMod.myCards.add(new PsychicShockwave());
+		DuelistMod.myCards.add(new JinzoLord());
+		DuelistMod.myCards.add(new JadeKnight());
+		DuelistMod.myCards.add(new HeavyMetalRaiders());
+		DuelistMod.myCards.add(new HeavyMechSupportArmor());
+		DuelistMod.myCards.add(new HeavyMechSupportPlatform());
+		DuelistMod.myCards.add(new AllySalvo());
+		DuelistMod.myCards.add(new DoubleTool());
+		DuelistMod.myCards.add(new FrontlineObserver());
+		DuelistMod.myCards.add(new HeavyFreightTrainDerricane());
+		DuelistMod.myCards.add(new CardsFromTheSky());
+		DuelistMod.myCards.add(new SevenCompleted());
+		DuelistMod.myCards.add(new AirCrackingStorm());
+		DuelistMod.myCards.add(new Submarineroid());
+		DuelistMod.myCards.add(new GearGigant());
+		DuelistMod.myCards.add(new SolarWindJammer());
+		DuelistMod.myCards.add(new ShortCircuit());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());
@@ -1619,6 +1641,9 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("S. Exploding Token", new SuperExplodingToken());
 		DuelistMod.summonMap.put("Naturia Token", new NaturiaToken());
 		DuelistMod.summonMap.put("Rock Token", new RockToken());
+		DuelistMod.summonMap.put("Blast Token", new BlastToken());
+		DuelistMod.summonMap.put("Time Token", new TimeToken());
+		DuelistMod.summonMap.put("Entrench Token", new EntrenchToken());
 	}
 	
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
@@ -1671,64 +1696,95 @@ public class DuelistCardLibrary
 		tokens.add(new NaturiaToken());
 		tokens.add(new RockToken());
 		tokens.add(new DragonicToken());
+		tokens.add(new BlastToken());
+		tokens.add(new TimeToken());
+		tokens.add(new EntrenchToken());
 		return tokens;
 	}
 	
 	public static ArrayList<DuelistCard> getTokensForCombat()
 	{
+		return getTokensForCombat(false, false, true, false, false);
+	}
+	
+	public static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon)
+	{
 		ArrayList<DuelistCard> tokens = new ArrayList<DuelistCard>();
-		tokens.add(new AquaToken());
-		tokens.add(new DragonToken());
-		if (!DuelistMod.exodiaBtnBool) { tokens.add(new ExodiaToken()); }
-		tokens.add(new SpellcasterToken());
-		tokens.add(new PredaplantToken());
-		tokens.add(new KuribohToken());
-		tokens.add(new ExplosiveToken());
-		tokens.add(new ShadowToken());
-		tokens.add(new InsectToken());
-		tokens.add(new PlantToken());
-		tokens.add(new FiendToken());
-		tokens.add(new MachineToken());
-		tokens.add(new SuperheavyToken());
-		if (!DuelistMod.toonBtnBool) { tokens.add(new ToonToken()); }
-		tokens.add(new ZombieToken());
-		tokens.add(new JamToken());
-		tokens.add(new Token());
-		tokens.add(new DamageToken());
-		tokens.add(new CastleToken());
-		tokens.add(new StormToken());
-		//tokens.add(new RelicToken());
-		tokens.add(new PuzzleToken());
-		tokens.add(new BonanzaToken());		
-		tokens.add(new OrbToken());
-		tokens.add(new UnderdogToken());
-		tokens.add(new MagnetToken());
-		tokens.add(new CocoonToken());
-		tokens.add(new GodToken());
-		tokens.add(new PotionToken());
-		tokens.add(new GlitchToken());
 		tokens.add(new AnubisToken());
+		tokens.add(new AquaToken());
 		tokens.add(new BloodToken());
-		tokens.add(new HaneToken());
-		tokens.add(new StimToken());
-		tokens.add(new PlagueToken());
-		tokens.add(new SummonToken());
-		tokens.add(new TributeToken());
-		tokens.add(new SuperExplodingToken());
-		tokens.add(new MegatypeToken());
-		tokens.add(new ForsakenToken());
-		tokens.add(new WarriorToken());
-		tokens.add(new StanceToken());
-		tokens.add(new NatureToken());
-		tokens.add(new NaturiaToken());
-		tokens.add(new RockToken());
+		tokens.add(new BonanzaToken());		
+		tokens.add(new CocoonToken());
+		tokens.add(new DamageToken());
+		tokens.add(new DragonToken());
 		tokens.add(new DragonicToken());
+		tokens.add(new GodToken());
+		tokens.add(new HaneToken());
+		tokens.add(new InsectToken());		
+		tokens.add(new KuribohToken());
+		tokens.add(new MachineToken());
+		tokens.add(new MegatypeToken());		
+		tokens.add(new OrbToken());		
+		tokens.add(new PlantToken());
+		tokens.add(new PredaplantToken());
+		tokens.add(new PuzzleToken());
+		tokens.add(new RockToken());		
+		tokens.add(new SpellcasterToken());
+		tokens.add(new StimToken());
+		tokens.add(new StormToken());
+		tokens.add(new SummonToken());	
+		tokens.add(new SuperheavyToken());
+		tokens.add(new Token());
+		tokens.add(new TributeToken());
+		tokens.add(new UnderdogToken());		
+		tokens.add(new ZombieToken());		
+		tokens.add(new TimeToken()); 
+		tokens.add(new EntrenchToken()); 
+		if (Util.deckIs("Fiend Deck")) 
+		{ 
+			tokens.add(new FiendToken()); 
+			tokens.add(new CastleToken()); 
+		}
+		if (Util.deckIs("Naturia Deck") || Util.deckIs("Insect Deck") || Util.deckIs("Plant Deck")) 
+		{
+			tokens.add(new NatureToken());
+			tokens.add(new NaturiaToken()); 
+		}
+		if (Util.deckIs("Warrior Deck")) 
+		{ 
+			tokens.add(new StanceToken());
+			tokens.add(new WarriorToken()); 
+			tokens.add(new MagnetToken());
+			tokens.add(new ForsakenToken());
+		}
+		if (Util.deckIs("Machine Deck")) 
+		{ 
+			tokens.add(new GlitchToken()); 
+			tokens.add(new BlastToken());
+		}
+		if (Util.deckIs("Aqua Deck")) { tokens.add(new JamToken()); }
+		if (Util.deckIs("Zombie Deck")) { tokens.add(new ShadowToken()); }
+		if (!DuelistMod.exodiaBtnBool || exodia) { tokens.add(new ExodiaToken()); }
+		if (!DuelistMod.toonBtnBool || toon) { tokens.add(new ToonToken()); }
+		if (relic) { tokens.add(new RelicToken()); }
+		if (potion) { tokens.add(new PotionToken()); }
+		if (badTokens) 
+		{ 
+			tokens.add(new ExplosiveToken());
+			tokens.add(new SuperExplodingToken());
+			tokens.add(new PlagueToken());
+		}
 		return tokens;
 	}
 	
 	public static DuelistCard getRandomTokenForCombat()
 	{
-		ArrayList<DuelistCard> tokens = getTokensForCombat();
+		return getRandomTokenForCombat(false, false, true, false, false);
+	}
+	
+	public static DuelistCard getRandomTokenForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon)
+	{
+		ArrayList<DuelistCard> tokens = getTokensForCombat(potion, relic, badTokens, exodia, toon);
 		return tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
 	}
 	

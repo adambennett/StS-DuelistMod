@@ -4,13 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.powers.ToonWorldPower;
 
-public class MillenniumEye extends CustomRelic {
+public class MillenniumEye extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -58,7 +59,14 @@ public class MillenniumEye extends CustomRelic {
 			AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ToonWorldPower(AbstractDungeon.player, AbstractDungeon.player, 0)));
 		}
+		this.grayscale = true;
 	}
+	
+	@Override
+    public void onVictory() 
+    {
+		this.grayscale = false;
+    }
 
 	// Description
 	@Override

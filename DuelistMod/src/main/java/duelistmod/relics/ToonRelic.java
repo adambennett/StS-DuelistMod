@@ -3,13 +3,13 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.StarterDeckSetup;
-import duelistmod.variables.Strings;
 
-public class ToonRelic extends CustomRelic 
+public class ToonRelic extends DuelistRelic 
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("ToonRelic");

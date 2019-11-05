@@ -8,16 +8,16 @@ import com.megacrit.cardcrawl.cards.*;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.ui.DuelistCardSelectScreen;
 import duelistmod.variables.Tags;
 
-public class CardRewardRelicH extends CustomRelic
+public class CardRewardRelicH extends DuelistRelic
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("CardRewardRelicH");

@@ -59,7 +59,7 @@ public class RandomOrbHelperRep
 		orbs.add(new MonsterOrb());
 		orbs.add(new DragonOrb());
 		orbs.add(new ReducerOrb()); 
-		orbs.add(new Air());
+		orbs.add(new AirOrb());
 		orbs.add(new Earth());
 		orbs.add(new FireOrb());
 		orbs.add(new Shadow(AbstractDungeon.player.hasRelic(ZombieRelic.ID)));	
@@ -130,7 +130,7 @@ public class RandomOrbHelperRep
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
 			orbs.add(new DuelistLight());
-			orbs.add(new Air());
+			orbs.add(new AirOrb());
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
@@ -207,7 +207,7 @@ public class RandomOrbHelperRep
 			orbs.add(new DragonOrb());
 			orbs.add(new ReducerOrb()); 
 			orbs.add(new DuelistLight());
-			orbs.add(new Air());
+			orbs.add(new AirOrb());
 			orbs.add(new Earth());
 			orbs.add(new FireOrb());
 			orbs.add(new Glitch());
@@ -320,7 +320,7 @@ public class RandomOrbHelperRep
 		returnOrbs.add(new DragonOrb());
 		returnOrbs.add(new ReducerOrb()); 
 		returnOrbs.add(new DuelistLight());
-		returnOrbs.add(new Air());
+		returnOrbs.add(new AirOrb());
 		returnOrbs.add(new Earth());
 		returnOrbs.add(new FireOrb());
 		returnOrbs.add(new Glitch());
@@ -378,8 +378,8 @@ public class RandomOrbHelperRep
 		DuelistMod.invertStringMap.put(new Gadget().name, new Glitch());				
 		DuelistMod.invertStringMap.put(new Plasma().name, new Dark());
 		DuelistMod.invertStringMap.put(new Dark().name, new Plasma());	
-		DuelistMod.invertStringMap.put(new Smoke().name, new Air());
-		DuelistMod.invertStringMap.put(new Air().name, new Smoke());	
+		DuelistMod.invertStringMap.put(new Smoke().name, new AirOrb());
+		DuelistMod.invertStringMap.put(new AirOrb().name, new Smoke());	
 		DuelistMod.invertStringMap.put(new Earth().name, new Mud());
 		DuelistMod.invertStringMap.put(new Mud().name, new Earth());
 		DuelistMod.invertStringMap.put(new Storm().name, new Lightning());

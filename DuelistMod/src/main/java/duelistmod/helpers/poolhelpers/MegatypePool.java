@@ -7,9 +7,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
-import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.warrior.*;
 
 public class MegatypePool 
 {
@@ -157,7 +158,7 @@ public class MegatypePool
 		cards.add(new GadgetSoldier());
 		cards.add(new BlastJuggler());
 		cards.add(new StimPack());
-		cards.add(new IronhammerGiant());
+		//cards.add(new IronhammerGiant());
 		cards.add(new GravityBlaster());
 		cards.add(new IronCall());
 		cards.add(new IronDraw());

@@ -41,7 +41,7 @@ public class FocusDownPower extends TwoAmountPower
 	}
 	
 	@Override
-	public void atEndOfTurn(final boolean isPlayer) 
+	public void atEndOfRound()
 	{
 		if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
 		else

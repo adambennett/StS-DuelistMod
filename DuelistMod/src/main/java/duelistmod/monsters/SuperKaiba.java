@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.dragons.*;
 import duelistmod.powers.enemyPowers.*;
 
 public class SuperKaiba extends DuelistMonster

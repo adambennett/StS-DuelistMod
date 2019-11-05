@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.cards.green.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.incomplete.MillenniumScorpion;
-import duelistmod.cards.insects.*;
-import duelistmod.cards.naturia.*;
+import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.naturia.*;
 
 public class InsectPool 
 {
@@ -122,7 +122,7 @@ public class InsectPool
 		cards.add(new SpiritualForest());
 		cards.add(new Suanni());
 		cards.add(new Taotie());
-		cards.add(new TornadoDragon());
+		//cards.add(new TornadoDragon());
 		cards.add(new UndergroundArachnid());	
 		cards.add(new WallThorns());
 		cards.add(new Yazi());

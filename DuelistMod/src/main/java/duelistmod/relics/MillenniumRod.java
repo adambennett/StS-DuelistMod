@@ -4,13 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
+import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.variables.*;
 
-public class MillenniumRod extends CustomRelic {
+public class MillenniumRod extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics

@@ -4,12 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.actions.unique.SummonAnchorAction;
 
-public class SummonAnchor extends CustomRelic {
+public class SummonAnchor extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -41,7 +42,14 @@ public class SummonAnchor extends CustomRelic {
 		AbstractDungeon.actionManager.addToBottom(new SummonAnchorAction(summs));
 		this.flash();
 		AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+		this.grayscale = true;
 	}
+	
+	@Override
+    public void onVictory() 
+    {
+		this.grayscale = false;
+    }
 
 	// Description
 	@Override

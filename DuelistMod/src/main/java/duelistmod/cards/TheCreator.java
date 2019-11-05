@@ -13,7 +13,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.actions.unique.*;
-import duelistmod.cards.tempCards.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;

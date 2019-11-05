@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
 import duelistmod.cards.WingedKuriboh9;
 import duelistmod.variables.Strings;
 
-public class BlessingAnubis extends CustomRelic implements ClickableRelic 
+public class BlessingAnubis extends DuelistRelic implements ClickableRelic 
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("BlessingAnubis");

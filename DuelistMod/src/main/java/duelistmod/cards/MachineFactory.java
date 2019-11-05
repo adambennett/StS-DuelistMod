@@ -1,18 +1,15 @@
 package duelistmod.cards;
 
-import com.megacrit.cardcrawl.actions.defect.RemoveNextOrbAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.orbs.Glitch;
-import duelistmod.patches.*;
+import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.MachineFactoryPower;
 import duelistmod.variables.*;
 
 public class MachineFactory extends DuelistCard 
@@ -28,10 +25,10 @@ public class MachineFactory extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public MachineFactory() {
@@ -41,41 +38,14 @@ public class MachineFactory extends DuelistCard
         this.tags.add(Tags.LEGEND_BLUE_EYES);
         this.misc = 0;
 		this.originalName = this.name;
-		this.exhaust = true;
+		this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int orbCount = 0;
-    	int initCount = 0;
-    	orbCount = p.filledOrbCount();
-    	initCount = orbCount;
-    	while (orbCount > 0)
-    	{
-    		AbstractDungeon.actionManager.addToTop(new RemoveNextOrbAction());
-    		orbCount--;
-    	}
-    	if (!upgraded)
-    	{
-	    	for (int i = 0; i < initCount; i++)
-	    	{
-	    		AbstractOrb glitch = new Glitch();
-	    		channelBottom(glitch);
-	    	}
-    	}
-    	
-    	else
-    	{
-    		evokeAll();
-    		for (int i = 0; i < initCount; i++)
-	    	{
-    			AbstractOrb glitch = new Glitch();
-	    		channelBottom(glitch);
-	    	}
-    	}
-    	
+    	applyPowerToSelf(new MachineFactoryPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -89,7 +59,7 @@ public class MachineFactory extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-    		this.showEvokeValue = true;
+    		this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

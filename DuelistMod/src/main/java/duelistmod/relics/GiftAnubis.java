@@ -4,15 +4,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.Token;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.variables.Strings;
 
-public class GiftAnubis extends CustomRelic implements ClickableRelic 
+public class GiftAnubis extends DuelistRelic implements ClickableRelic 
 {
 	// FIELDS
 	public static final String ID = DuelistMod.makeID("GiftAnubis");

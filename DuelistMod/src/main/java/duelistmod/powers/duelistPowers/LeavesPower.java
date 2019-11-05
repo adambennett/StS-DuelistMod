@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.CardSelectScreenResummonAction;
-import duelistmod.cards.tempCards.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.relics.Leafblower;
 import duelistmod.variables.Tags;

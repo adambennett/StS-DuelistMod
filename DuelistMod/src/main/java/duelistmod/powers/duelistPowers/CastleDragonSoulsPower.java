@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.orbs.DragonOrb;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;

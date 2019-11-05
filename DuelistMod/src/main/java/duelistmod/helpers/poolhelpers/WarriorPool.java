@@ -10,8 +10,9 @@ import com.megacrit.cardcrawl.cards.red.*;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.machine.ElectromagneticTurtle;
+import duelistmod.cards.pools.warrior.*;
 
 public class WarriorPool 
 {
@@ -160,6 +161,7 @@ public class WarriorPool
 		magnetCards.add(new CircleFireKings());
 		magnetCards.add(new OnslaughtFireKings());
 		magnetCards.add(new RockstoneWarrior());
+		magnetCards.add(new ElectromagneticTurtle());
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{
 			magnetCards.add(new Rushdown());

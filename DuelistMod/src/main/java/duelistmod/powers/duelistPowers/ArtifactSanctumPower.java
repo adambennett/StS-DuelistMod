@@ -38,11 +38,6 @@ public class ArtifactSanctumPower extends DuelistPower
 		if (this.amount > 0) { this.flashWithoutSound(); DuelistCard.staticBlock(this.amount); }
 	}
 	
-	public void cyberneticTrigger(int amt)
-	{
-		if (this.amount > 0) { this.flashWithoutSound(); DuelistCard.staticBlock(this.amount); }
-	}
-
 	@Override
 	public void updateDescription()
 	{

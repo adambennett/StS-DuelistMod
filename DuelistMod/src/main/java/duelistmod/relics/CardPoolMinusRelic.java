@@ -9,14 +9,15 @@ import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 import duelistmod.ui.DuelistCardSelectScreen;
 
-public class CardPoolMinusRelic extends CustomRelic implements ClickableRelic
+public class CardPoolMinusRelic extends DuelistRelic implements ClickableRelic
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("CardPoolMinusRelic");

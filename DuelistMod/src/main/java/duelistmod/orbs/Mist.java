@@ -24,7 +24,7 @@ import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.actions.unique.MistEvokeAction;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
 

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.ConstrictedPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.ExplosiveToken;
+import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -42,6 +42,7 @@ public class BlossomBombardment extends DuelistCard
         this.summons = this.baseSummons = 3;	
         this.baseMagicNumber = this.magicNumber = 11;	
         this.originalName = this.name;
+        this.cardsToPreview = new ExplosiveToken();
     }
 
     // Actions the card should do.

@@ -29,11 +29,11 @@ public class RedGadget extends DuelistCard
 	// /TEXT DECLARATION/
 
 	// STAT DECLARATION
-	private static final CardRarity RARITY = CardRarity.COMMON;
+	private static final CardRarity RARITY = CardRarity.UNCOMMON;
 	private static final CardTarget TARGET = CardTarget.ENEMY;
 	private static final CardType TYPE = CardType.ATTACK;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-	private static final int COST = 1;
+	private static final int COST = 2;
 	// /STAT DECLARATION/
 
 	public RedGadget() 
@@ -43,9 +43,9 @@ public class RedGadget extends DuelistCard
 		this.tags.add(Tags.GOOD_TRIB);
 		this.tags.add(Tags.MACHINE);
 		this.originalName = this.name;
-		this.summons = this.baseSummons = 1;
+		this.summons = this.baseSummons = 2;
 		this.isSummon = true;
-		this.baseDamage = this.damage = 5;
+		this.baseDamage = this.damage = 12;
 		this.magicNumber = this.baseMagicNumber = 2;
 	}
 
@@ -54,30 +54,14 @@ public class RedGadget extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		summon(p, this.summons, this);
-		attack(m, this.baseAFX, this.damage);
-		
-		// Upgraded version - random tokens
-		if (upgraded)
-		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-			for (int i = 0; i < this.magicNumber; i++)
-			{
-				DuelistCard tk = tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
-				addCardToHand((DuelistCard)tk.makeCopy());
-			}
-		}
-		
-		// Base version - choose tokens
-		else
-		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-			ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
-			int iterations = this.magicNumber;
-			abTokens.addAll(tokens);
-			if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
-		}
+		summon();
+		attack(m);		
+		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
+		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
+		int iterations = this.magicNumber;
+		abTokens.addAll(tokens);
+		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
+		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -94,8 +78,7 @@ public class RedGadget extends DuelistCard
 		if (!this.upgraded) 
 		{
 			this.upgradeName();
-			//this.upgradeMagicNumber(1);
-			this.upgradeDamage(3);
+			this.upgradeDamage(4);
 			this.rawDescription = UPGRADE_DESCRIPTION;
 			this.initializeDescription();
 		}

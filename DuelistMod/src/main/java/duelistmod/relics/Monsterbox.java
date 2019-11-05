@@ -8,17 +8,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.*;
+import duelistmod.abstracts.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.GridSort;
 import duelistmod.variables.*;
 
-public class Monsterbox extends CustomRelic {
+public class Monsterbox extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -42,7 +42,7 @@ public class Monsterbox extends CustomRelic {
     {
 		run = true;
 		CardGroup availableCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-		ArrayList<DuelistCard> types = DuelistCard.generateTypeCardsForRelics(this, 0, true, 5);
+		ArrayList<DuelistCard> types = DuelistCard.generateTypeCardsForMonsterbox(this, 0, true, 5);
 		for (AbstractCard c : types)
 		{
 			availableCards.addToTop(c);
@@ -74,9 +74,9 @@ public class Monsterbox extends CustomRelic {
 				else { toKeepFromDeck.add(c); }
 			}
 			
-			if ( AbstractDungeon.gridSelectScreen.selectedCards.get(0) instanceof DynamicRelicTypeCard)
+			if ( AbstractDungeon.gridSelectScreen.selectedCards.get(0) instanceof DynamicRelicTagCard)
 			{
-				DynamicRelicTypeCard ref = (DynamicRelicTypeCard) AbstractDungeon.gridSelectScreen.selectedCards.get(0);
+				DynamicRelicTagCard ref = (DynamicRelicTagCard) AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 				CardTags randType = ref.getTypeTag();
 				boolean allowMegatype = false;
 				if (randType.equals(Tags.MEGATYPED)) { allowMegatype = true; }

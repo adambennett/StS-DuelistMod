@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifyMagicNumberAction;
-import duelistmod.cards.tokens.AquaToken;
+import duelistmod.cards.other.tokens.AquaToken;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.relics.AquaRelicB;

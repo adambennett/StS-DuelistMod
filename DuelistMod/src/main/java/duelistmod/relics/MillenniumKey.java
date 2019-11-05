@@ -3,12 +3,13 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.variables.Strings;
 
-public class MillenniumKey extends CustomRelic 
+public class MillenniumKey extends DuelistRelic 
 {
     // ID, images, text.
     public static final String ID = DuelistMod.makeID("MillenniumKey");

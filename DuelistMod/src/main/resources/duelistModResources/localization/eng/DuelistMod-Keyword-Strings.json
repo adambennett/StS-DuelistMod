@@ -69,7 +69,7 @@
 		  "DragonOrb",
 		  "dragonorb"
 		],
-		"DESCRIPTION": "#yOrb: At the start of turn, gain #b3 #yDragonscales. NL #yEvoke: Sets the cost of #b1 random #yDragon in your hand to 1 for the turn."
+		"DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDragonscales. NL #yEvoke: Sets the cost of #b1 random #yDragon in your hand to 1 for the turn."
 	},
     {
 	  "PROPER_NAME": "Overflow",

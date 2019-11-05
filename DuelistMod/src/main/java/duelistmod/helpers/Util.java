@@ -24,8 +24,6 @@ import basemod.BaseMod;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
-import duelistmod.cards.fourthWarriors.*;
 import duelistmod.cards.holiday.birthday.*;
 import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.HourglassLife;
@@ -33,8 +31,10 @@ import duelistmod.cards.nameless.greed.*;
 import duelistmod.cards.nameless.magic.*;
 import duelistmod.cards.nameless.power.*;
 import duelistmod.cards.nameless.war.*;
-import duelistmod.cards.tempCards.*;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.other.tempCards.*;
+import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.warrior.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;
@@ -171,44 +171,32 @@ public class Util
 		items.add(new MillenniumNecklace().name);
 		items.add(new MillenniumToken().name);
 		items.add(new MillenniumSymbol().name);
+		items.add(new MillenniumPeriapt().name);
+		items.add(new MillenniumPrayerbook().name);
+		items.add(new MillenniumArmor().name);
 		if (includePuzzle) { items.add(new MillenniumPuzzle().name); }
 		if (items.contains(r.name)) { return true; }
 		else { return false; }		
 	}
 	
-	public static ArrayList<AbstractRelic> getAllMillenniumItems(boolean includePuzzle)
+	public static ArrayList<AbstractRelic> getMillenniumItemsForEvent(boolean includePuzzle)
 	{
 		ArrayList<AbstractRelic> items = new ArrayList<AbstractRelic>();
 		items.add(new MillenniumCoin());
 		items.add(new MillenniumRing());
 		items.add(new MillenniumRod());
-		//items.add(new MillenniumKey());
-		//items.add(new MillenniumEye());
+		items.add(new MillenniumSymbol());
 		items.add(new ResummonBranch());
 		items.add(new MillenniumScale());
 		items.add(new MillenniumNecklace());
-		items.add(new MillenniumToken());
-		items.add(new MillenniumSymbol());
+		items.add(new MillenniumPeriapt());
+		items.add(new MillenniumPrayerbook());
+		items.add(new MillenniumArmor());
 		if (includePuzzle) { items.add(new MillenniumPuzzle()); }
+		//Collections.shuffle(items);
 		return items;
 	}
 
-	public static AbstractRelic getRandomMillenniumItem()
-	{
-		ArrayList<AbstractRelic> items = new ArrayList<AbstractRelic>();
-		items.add(new MillenniumCoin());
-		items.add(new MillenniumRing());
-		items.add(new MillenniumRod());
-		//items.add(new MillenniumKey());
-		//items.add(new MillenniumEye());
-		items.add(new ResummonBranch());
-		items.add(new MillenniumScale());
-		items.add(new MillenniumNecklace());
-		items.add(new MillenniumToken());
-		items.add(new MillenniumSymbol());
-		return items.get(AbstractDungeon.relicRng.random(items.size() - 1));
-	}
-	
 	public static AbstractCard getRandomBambooSword()
 	{
 		ArrayList<AbstractCard> swords = new ArrayList<AbstractCard>();
@@ -613,6 +601,18 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new ConfusionGoldRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new DuelistPrismaticShard());
 		DuelistMod.duelistRelicsForTombEvent.add(new BlessingAnubis());
+		DuelistMod.duelistRelicsForTombEvent.add(new MillenniumPeriapt());
+		DuelistMod.duelistRelicsForTombEvent.add(new DuelistTeaSet());
+		DuelistMod.duelistRelicsForTombEvent.add(new DuelistOrichalcum());
+		DuelistMod.duelistRelicsForTombEvent.add(new DuelistLetterOpener());
+		DuelistMod.duelistRelicsForTombEvent.add(new DuelistUrn());
+		DuelistMod.duelistRelicsForTombEvent.add(new MillenniumPrayerbook());
+		DuelistMod.duelistRelicsForTombEvent.add(new PrayerPageA());
+		DuelistMod.duelistRelicsForTombEvent.add(new PrayerPageB());
+		DuelistMod.duelistRelicsForTombEvent.add(new PrayerPageC());
+		DuelistMod.duelistRelicsForTombEvent.add(new PrayerPageD());
+		DuelistMod.duelistRelicsForTombEvent.add(new PrayerPageE());
+		DuelistMod.duelistRelicsForTombEvent.add(new MillenniumArmor());
 	}
 	
 	public static ArrayList<AbstractCard> allHolidayCardsNoDateCheck()

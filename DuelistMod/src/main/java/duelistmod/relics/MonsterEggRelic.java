@@ -6,14 +6,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.actions.unique.MonsterEggRelicAction;
 import duelistmod.cards.MonsterEggSpecial;
 import duelistmod.variables.Strings;
 
-public class MonsterEggRelic extends CustomRelic {
+public class MonsterEggRelic extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -40,7 +41,14 @@ public class MonsterEggRelic extends CustomRelic {
 		cards.add(new MonsterEggSpecial());
 		//AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 		AbstractDungeon.actionManager.addToBottom(new MonsterEggRelicAction(cards));
+		this.grayscale = true;
 	}
+	
+	@Override
+    public void onVictory() 
+    {
+		this.grayscale = false;
+    }
 
 	// Description
 	@Override

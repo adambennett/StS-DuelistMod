@@ -45,11 +45,12 @@ import duelistmod.DuelistMod;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.*;
-import duelistmod.cards.fourthWarriors.DarkCrusader;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.insects.MirrorLadybug;
-import duelistmod.cards.tempCards.*;
-import duelistmod.cards.tokens.*;
+import duelistmod.cards.other.tempCards.*;
+import duelistmod.cards.other.tokens.*;
+import duelistmod.cards.pools.insects.MirrorLadybug;
+import duelistmod.cards.pools.machine.IronhammerGiant;
+import duelistmod.cards.pools.warrior.DarkCrusader;
 import duelistmod.characters.*;
 import duelistmod.helpers.*;
 import duelistmod.interfaces.*;
@@ -2181,8 +2182,9 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		else
 		{			
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:summon() ---> check trap, SUMMONS: " + SUMMONS); }
-			trapHoleSummon(p, SUMMONS, c);			
+			trapHoleSummon(p, SUMMONS, c);		
 		}
+		player().hand.glowCheck();
 	}
 
 	public static void spellSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
@@ -2302,6 +2304,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:spellSummon() ---> check trap, SUMMONS: " + SUMMONS); }
 			trapHoleSummon(p, SUMMONS, c);		
 		}
+		player().hand.glowCheck();
 	}
 
 
@@ -2468,6 +2471,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, c: " + c.originalName); }
 			trapHoleSummon(p, SUMMONS, c);
 		}
+		player().hand.glowCheck();
 	}
 
 	public static void trapHoleSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
@@ -2595,6 +2599,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			DuelistMod.checkUO = false;
 			DuelistMod.checkTrap = false;
 		}
+		player().hand.glowCheck();
 	}
 
 	public static void uoSummon(AbstractPlayer p, int SUMMONS, DuelistCard c)
@@ -2682,6 +2687,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			summonsInstance.updateDescription();
 			Util.log("theDuelist:DuelistCard:uoSummon() ---> summons instance amount: " + summonsInstance.amount);
 		}
+		player().hand.glowCheck();
 	}
 	
 	
@@ -2810,6 +2816,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerSummon() ---> check trap, c: " + c.originalName); }
 			trapHoleSummon(p, SUMMONS, c);
 		}
+		player().hand.glowCheck();
 	}
 	// =============== /SUMMON MONSTER FUNCTIONS/ =======================================================================================================================================================
 	
@@ -2861,6 +2868,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 	    	summonsInstance.updateDescription();
     	}
 		int size = tokens;
+		player().hand.glowCheck();
 		if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) { return size * 2; }
 		else { return size; }
 	}
@@ -3050,6 +3058,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					{
 						empInstance.flag = true;
 						if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
+						player().hand.glowCheck();
 						return tributeList;
 					}
 				}
@@ -3191,6 +3200,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		{
 			//card.misc = 0;
 			if (AbstractDungeon.player.hasPower(ReinforcementsPower.POWER_ID)) { DuelistCard.summon(AbstractDungeon.player, 1, card); }
+			player().hand.glowCheck();
 			return tributeList;
 		}
 
@@ -3366,11 +3376,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						}
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 					}
+					player().hand.glowCheck();
 					return tributes;
 				}
 				else
 				{
 					empInstance.flag = true;
+					player().hand.glowCheck();
 					return 0;
 				}
 			}
@@ -3495,6 +3507,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s customOnTribute()"); }
 				}
+				player().hand.glowCheck();
 				return tributes;
 			}
 		}
@@ -3672,11 +3685,13 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 						}
 						if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():1 ---> Called " + c.originalName + "'s customOnTribute()"); }
 					}
+					player().hand.glowCheck();
 					return cardTribList;
 				}
 				else
 				{
 					empInstance.flag = true;
+					player().hand.glowCheck();
 					return tributeList;
 				}
 			}
@@ -3801,6 +3816,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					}
 					if (DuelistMod.debug) { System.out.println("theDuelist:DuelistCard:powerTribute():2 ---> Called " + c.originalName + "'s customOnTribute()"); }
 				}
+				player().hand.glowCheck();
 				return cardTribList;
 			}
 		}
@@ -3964,6 +3980,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 				}
 			}
 		}
+		player().hand.glowCheck();
 	}
 	// =============== /TRIBUTE MONSTER FUNCTIONS/ =======================================================================================================================================================
 	
@@ -4408,7 +4425,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			if (!(amount > 5 && p.hasRelic(MillenniumKey.ID))) { summonsInstance.MAX_SUMMONS = amount; DuelistMod.lastMaxSummons = amount; }
+			if (!(amount > 5 && p.hasRelic(MillenniumKey.ID))) { summonsInstance.MAX_SUMMONS = amount; DuelistMod.lastMaxSummons = amount; p.getRelic(MillenniumKey.ID).flash(); }
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();
@@ -4428,6 +4445,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		player().hand.glowCheck();
 	}
 	
 	public static void incMaxSummons(AbstractPlayer p, int amount)
@@ -4476,8 +4494,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			if (summonsInstance.MAX_SUMMONS == 5 && p.hasRelic(MillenniumKey.ID)) { incremented = false; }
-			else if (summonsInstance.MAX_SUMMONS + amount > 5 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 5; DuelistMod.lastMaxSummons = 5; }
+			if (summonsInstance.MAX_SUMMONS == 5 && p.hasRelic(MillenniumKey.ID)) { incremented = false; p.getRelic(MillenniumKey.ID).flash(); }
+			else if (summonsInstance.MAX_SUMMONS + amount > 5 && p.hasRelic(MillenniumKey.ID)) { summonsInstance.MAX_SUMMONS = 5; DuelistMod.lastMaxSummons = 5; p.getRelic(MillenniumKey.ID).flash(); }
 			else { summonsInstance.MAX_SUMMONS += amount; DuelistMod.lastMaxSummons += amount; }			
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
@@ -4516,6 +4534,16 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 					la.triggerPassiveEffect();
 					if (la.gpcCheck()) { la.triggerPassiveEffect(); }
 				}
+			}
+		}
+		
+		if (p.hasRelic(MillenniumSymbol.ID) && incremented && Util.deckIs("Increment Deck"))
+		{
+			int maxSumms = getMaxSummons(p);
+			if (maxSumms > 0)
+			{
+				if (Util.getChallengeLevel() > 0 && Util.getChallengeLevel() < 7) { gainTempHP((int) (maxSumms / 2.0f)); }
+				else if (Util.getChallengeLevel() < 0) { gainTempHP(maxSumms); }
 			}
 		}
 		
@@ -4570,6 +4598,8 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		player().hand.glowCheck();
 	}
 	
 	public static boolean canDecMaxSummons(int amount)
@@ -4610,6 +4640,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		player().hand.glowCheck();
 	}
 	// =============== /INCREMENT FUNCTIONS/ =======================================================================================================================================================
 	
@@ -6232,11 +6263,33 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		String tagString = tag.toString().toLowerCase();
 		String temp = tagString.substring(0, 1).toUpperCase();
 		tagString = temp + tagString.substring(1);
-		//boolean useAN = false;
-		//if (tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama")) { useAN = true; }
+		boolean useAN = false;
+		if (tagString.equals("Aqua") || tagString.equals("Insect") || tagString.equals("Arcane") || tagString.equals("Ojama")) { useAN = true; }
 		if (callingRelic instanceof Monsterbox)
 		{			
 			res = "Replace ALL monsters in your deck with " + tagString + " monsters.";			
+		}
+		
+		if (callingRelic instanceof MillenniumPrayerbook)
+		{
+			if (useAN) { res = "At the start of each turn, add an " + tagString + " card to your hand."; }
+			else { res = "At the start of each turn, add a " + tagString + " card to your hand."; }
+		}
+		
+		return res;
+	}
+	
+	public static String generateTypeDescForRelics(CardType tag, AbstractRelic callingRelic)
+	{
+		String res = "";
+		String tagString = "";
+		if (tag.equals(CardType.ATTACK)) { tagString = "an Attack "; }
+		else if (tag.equals(CardType.SKILL)) { tagString = "a Skill "; }
+		else { tagString = "a Power "; } 
+
+		if (callingRelic instanceof MillenniumPrayerbook)
+		{
+			res = "At the start of each turn, add " + tagString + " card to your hand.";	
 		}
 		
 		return res;
@@ -6426,7 +6479,7 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		return generateTypeCards(magic, false);
 	}
 	
-	public static ArrayList<DuelistCard> generateTypeCardsForRelics(AbstractRelic callingRelic, int magic, boolean limitTypes, int types)
+	public static ArrayList<DuelistCard> generateTypeCardsForMonsterbox(AbstractRelic callingRelic, int magic, boolean limitTypes, int types)
 	{
 		ArrayList<DuelistCard> typeCards = new ArrayList<DuelistCard>();
 		ArrayList<CardTags> randomThreeTags = new ArrayList<CardTags>();
@@ -6450,14 +6503,14 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			
 			for (CardTags t : randomThreeTags)
 			{
-				typeCards.add(new DynamicRelicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
+				typeCards.add(new DynamicRelicTagCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
 			}
 		}
 		else
 		{
 			for (CardTags t : DuelistMod.monsterTypes)
 			{
-				typeCards.add(new DynamicRelicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
+				typeCards.add(new DynamicRelicTagCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
 			}
 			
 			ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
@@ -6465,9 +6518,44 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 			extraTags.add(Tags.OJAMA);
 			for (CardTags t : extraTags)
 			{
-				typeCards.add(new DynamicRelicTypeCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
+				typeCards.add(new DynamicRelicTagCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic));
 			}
 		}		
+		return typeCards;
+	}
+	
+	public static ArrayList<DuelistCard> generateTypeCardsForPrayerbook(AbstractRelic callingRelic, ArrayList<CardTags> tags, ArrayList<CardType> types, int magic)
+	{
+		ArrayList<DuelistCard> typeCards = new ArrayList<DuelistCard>();
+		for (CardTags t : tags) 
+		{ 
+			DuelistCard tagCard = new DynamicRelicTagCard(DuelistMod.typeCardMap_ID.get(t), DuelistMod.typeCardMap_NAME.get(t), DuelistMod.typeCardMap_IMG.get(t), generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic);
+			typeCards.add(tagCard); 
+		}
+		
+		for (CardType t : types)
+		{
+			String type = "";
+			String imgPath = "";
+			if (t.equals(CardType.ATTACK)) 
+			{ 
+				type = "Attack"; 
+				imgPath = DuelistMod.makeCardPath("MillenniumPrayerbookCardAttack.png");
+				
+			}
+			else if (t.equals(CardType.SKILL)) 
+			{ 
+				type = "Skill"; 
+				imgPath = DuelistMod.makeCardPath("MillenniumPrayerbookCard.png");
+			}
+			else 
+			{ 
+				type = "Power"; 
+				imgPath = DuelistMod.makeCardPath("MillenniumSpellbook.png");
+			}
+			DuelistCard tagCard = new DynamicRelicTypeCard("theDuelist:MillenniumPrayerbook" + type, type, imgPath, generateTypeDescForRelics(t, callingRelic), t, callingRelic, magic);
+			typeCards.add(tagCard); 
+		}
 		return typeCards;
 	}
 	

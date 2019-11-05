@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.ExplosiveToken;
+import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.helpers.Util;
 import duelistmod.orbs.Alien;
 import duelistmod.patches.AbstractCardEnum;
@@ -42,6 +42,7 @@ public class OrbitalBombardment extends DuelistCard
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
         this.tags.add(Tags.TRAP);
+        this.cardsToPreview = new ExplosiveToken();
     }
 
     // Actions the card should do.

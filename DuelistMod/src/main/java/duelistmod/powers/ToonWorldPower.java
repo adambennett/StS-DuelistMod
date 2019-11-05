@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.*;
 import duelistmod.variables.*;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
@@ -110,6 +109,12 @@ public class ToonWorldPower extends AbstractPower
     		updateDescription();
     	}
 	}
+    
+    @Override
+    public void onInitialApplication()
+    {
+    	AbstractDungeon.player.hand.glowCheck();
+    }
 
     @Override
 	public void updateDescription() 

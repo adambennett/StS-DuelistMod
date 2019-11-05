@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistEvent;
-import duelistmod.cards.tempCards.CancelCard;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;

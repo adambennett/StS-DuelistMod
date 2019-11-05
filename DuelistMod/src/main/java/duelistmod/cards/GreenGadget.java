@@ -30,7 +30,7 @@ public class GreenGadget extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.COMMON;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.SKILL;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
 	private static final int COST = 1;
@@ -49,7 +49,7 @@ public class GreenGadget extends DuelistCard
 		this.originalName = this.name;
 		this.summons = this.baseSummons = 1;
 		this.isSummon = true;
-		this.baseBlock = this.block = 7;
+		this.baseBlock = this.block = 6;
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.setupStartingCopies();
 	}
@@ -61,28 +61,13 @@ public class GreenGadget extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		block(this.block);
+		ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
+		ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
+		int iterations = this.magicNumber;
+		abTokens.addAll(tokens);
+		if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
+		AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
 		
-		// Upgraded version - random tokens
-		if (upgraded)
-		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-			for (int i = 0; i < this.magicNumber; i++)
-			{
-				DuelistCard tk = tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
-				addCardToHand((DuelistCard)tk.makeCopy());
-			}
-		}
-		
-		// Base version - choose tokens
-		else
-		{
-			ArrayList<DuelistCard> tokens = DuelistCardLibrary.getTokensForCombat();
-			ArrayList<AbstractCard> abTokens = new ArrayList<AbstractCard>();
-			int iterations = this.magicNumber;
-			abTokens.addAll(tokens);
-			if (!(iterations >= tokens.size())) { for (int i = 0; i < tokens.size() - iterations; i++) { abTokens.remove(AbstractDungeon.cardRandomRng.random(abTokens.size() - 1)); }}
-			AbstractDungeon.actionManager.addToTop(new CardSelectScreenIntoHandAction(false, false, 1, abTokens));
-		}
 	}
 
 	// Which card to return when making a copy of this card.

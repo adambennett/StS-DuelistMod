@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.variables.Strings;
 
-public class NamelessWarRelicB extends CustomRelic 
+public class NamelessWarRelicB extends DuelistRelic 
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("NamelessWarRelicB");

@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.*;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.interfaces.IShufflePower;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.*;

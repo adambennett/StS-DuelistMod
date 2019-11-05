@@ -3,12 +3,13 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.helpers.poolhelpers.GlobalPoolHelper;
 
-public class DuelistPrismaticShard extends CustomRelic 
+public class DuelistPrismaticShard extends DuelistRelic 
 {
 	// ID, images, text.
 	public static final String ID = DuelistMod.makeID("DuelistPrismaticShard");

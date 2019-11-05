@@ -3,13 +3,12 @@ package duelistmod.relics;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.helpers.StarterDeckSetup;
 import duelistmod.variables.*;
 
-public class StoneExxod extends CustomRelic 
+public class StoneExxod extends DuelistRelic 
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("StoneExxod");

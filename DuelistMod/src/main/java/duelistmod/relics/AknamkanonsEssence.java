@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.powers.TombLooterPower;
 import duelistmod.variables.Strings;
 
-public class AknamkanonsEssence extends CustomRelic {
+public class AknamkanonsEssence extends DuelistRelic {
 
 	/*
 	 * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
@@ -33,7 +33,14 @@ public class AknamkanonsEssence extends CustomRelic {
 	public void atBattleStart()
 	{
 		DuelistCard.applyPowerToSelf(new TombLooterPower(AbstractDungeon.player, 10, 30, true));
+		this.grayscale = true;
 	}
+	
+	@Override
+    public void onVictory() 
+    {
+		this.grayscale = false;
+    }
 
 	// Description
 	@Override

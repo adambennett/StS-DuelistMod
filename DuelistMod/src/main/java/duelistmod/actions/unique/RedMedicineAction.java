@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tempCards.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.GridSort;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.PotGenerosityPower;

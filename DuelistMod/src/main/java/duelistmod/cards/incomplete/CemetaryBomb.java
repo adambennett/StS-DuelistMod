@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.PlayRandomFromDiscardAction;
-import duelistmod.cards.tokens.ExplosiveToken;
+import duelistmod.cards.other.tokens.ExplosiveToken;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -33,7 +33,7 @@ public class CemetaryBomb extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public CemetaryBomb() {
@@ -43,6 +43,7 @@ public class CemetaryBomb extends DuelistCard
         this.baseMagicNumber = this.magicNumber = 3;
         this.originalName = this.name;
         this.exhaust = true;
+        this.cardsToPreview = new ExplosiveToken();
     }
 
     // Actions the card should do.
@@ -64,7 +65,7 @@ public class CemetaryBomb extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBaseCost(1);
             this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

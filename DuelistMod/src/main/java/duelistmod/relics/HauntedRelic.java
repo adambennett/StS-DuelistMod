@@ -4,14 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
-import duelistmod.*;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.DuelistMod;
+import duelistmod.abstracts.*;
 import duelistmod.powers.incomplete.HauntedDebuff;
-import duelistmod.variables.Strings;
 
-public class HauntedRelic extends CustomRelic 
+public class HauntedRelic extends DuelistRelic 
 {
     // ID, images, text.
     public static final String ID = DuelistMod.makeID("HauntedRelic");

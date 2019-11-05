@@ -7,8 +7,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
-import duelistmod.cards.dragons.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.machine.*;
+import duelistmod.cards.pools.warrior.*;
 
 public class AscendedThreePool 
 {
@@ -135,7 +137,7 @@ public class AscendedThreePool
 		cards.add(new GadgetSoldier());
 		cards.add(new BlastJuggler());
 		cards.add(new StimPack());
-		cards.add(new IronhammerGiant());
+		//cards.add(new IronhammerGiant());
 		cards.add(new Biofalcon());
 		cards.add(new OniTankT34());
 		cards.add(new SuperheavyBenkei());

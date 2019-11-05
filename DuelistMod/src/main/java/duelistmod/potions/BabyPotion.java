@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.dragons.BabyDragon;
+import duelistmod.cards.pools.dragons.BabyDragon;
 import duelistmod.variables.Colors;
 
 public class BabyPotion extends DuelistPotion {

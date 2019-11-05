@@ -103,7 +103,7 @@ public class TokenOrb extends DuelistOrb
 		AbstractDungeon.actionManager.addToBottom(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
 		for (int i = 0; i < this.passiveAmount; i++)
 		{
-			DuelistCard randomMonster = DuelistCardLibrary.getRandomTokenForCombat();
+			DuelistCard randomMonster = DuelistCardLibrary.getRandomTokenForCombat(true, false, true, false, false);
 			DuelistCard.addCardToHand(randomMonster);
 			if (DuelistMod.debug) { System.out.println("theDuelist:TokenOrb --- > Added: " + randomMonster.name + " to player hand."); }
 		}

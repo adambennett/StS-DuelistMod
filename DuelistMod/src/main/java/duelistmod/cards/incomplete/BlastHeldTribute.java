@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
@@ -83,13 +83,13 @@ public class BlastHeldTribute extends DuelistCard
 	    	{
 	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh);
 	    		DuelistCard.attackAllEnemiesFireThorns(roll);
-	    		addCardToHand(DuelistCardLibrary.getRandomTokenForCombat());
+	    		addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(false, false, true, false, false));
 	    	}
 	    	for (int i = 0; i < sTokens; i++)
 	    	{
 	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2);
 	    		DuelistCard.attackAllEnemiesFireThorns(roll);
-	    		addCardToHand(DuelistCardLibrary.getRandomTokenForCombat());
+	    		addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(true, true, false, false, false));
 	    	}
 	    	
 	    	summon(player(), 0, new Token());

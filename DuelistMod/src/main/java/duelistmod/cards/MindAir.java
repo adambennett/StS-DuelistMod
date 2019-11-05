@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
-import duelistmod.orbs.Air;
+import duelistmod.orbs.AirOrb;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
 import duelistmod.variables.Tags;
@@ -58,7 +58,7 @@ public class MindAir extends DuelistCard
     {
     	summon(p, this.summons, this);
     	applyPowerToSelf(new AerodynamicsPower(p, p));
-    	channel(new Air(), this.magicNumber);
+    	channel(new AirOrb(), this.magicNumber);
     }
 
     // Which card to return when making a copy of this card.

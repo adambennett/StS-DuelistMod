@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.powers.*;
 import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.PredaplantToken;
+import duelistmod.cards.other.tokens.PredaplantToken;
 import duelistmod.helpers.Util;
 import duelistmod.patches.*;
 import duelistmod.powers.*;

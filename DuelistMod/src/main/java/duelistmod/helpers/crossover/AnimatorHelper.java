@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
-import duelistmod.cards.tempCards.CancelCard;
+import duelistmod.cards.other.tempCards.CancelCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import eatyourbeets.relics.animator.*;

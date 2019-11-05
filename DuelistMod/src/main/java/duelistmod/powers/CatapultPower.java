@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.CatapultTurtle;
+import duelistmod.cards.pools.machine.CatapultTurtle;
 import duelistmod.variables.Strings;
 
 /* 	

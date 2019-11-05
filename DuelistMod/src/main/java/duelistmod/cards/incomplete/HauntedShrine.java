@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.unique.HauntedShrineAction;
-import duelistmod.cards.tempCards.*;
+import duelistmod.cards.other.tempCards.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.incomplete.*;
 import duelistmod.variables.Tags;

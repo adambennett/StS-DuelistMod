@@ -47,16 +47,16 @@ public class MillenniumItems extends DuelistEvent {
                         this.imageEventText.updateDialogOption(0, OPTIONS[1]);
                         this.imageEventText.clearRemainingOptions();
                         boolean hasEveryMillenniumItem = true;
-                        for (AbstractRelic t : Util.getAllMillenniumItems(false)) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryMillenniumItem = false; }}
+                        for (AbstractRelic t : Util.getMillenniumItemsForEvent(false)) { if (!AbstractDungeon.player.hasRelic(t.relicId)) { hasEveryMillenniumItem = false; }}
                         if (!hasEveryMillenniumItem) 
                         {
                         	ArrayList<Object> mills = new ArrayList<Object>();
-                        	for (AbstractRelic r : Util.getAllMillenniumItems(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
+                        	for (AbstractRelic r : Util.getMillenniumItemsForEvent(false)) { if (!(AbstractDungeon.player.hasRelic(r.relicId))) { mills.add(r.makeCopy()); }}
                         	//mills.add(new MillenniumElixir());    
                         	mills.add(new MillenniumSpellbook());
                         	mills.add(new Metronome());
-                        	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
-                        	if (randMill instanceof AbstractCard) { nameOfItem = ((AbstractCard)randMill).name; randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1)); }
+                        	Object randMill = mills.get(AbstractDungeon.cardRandomRng.random(mills.size() - 1));
+                        	if (randMill instanceof AbstractCard) { nameOfItem = ((AbstractCard)randMill).name; randMill = mills.get(AbstractDungeon.cardRandomRng.random(mills.size() - 1)); }
                         	
                         	if (randMill instanceof AbstractRelic)
                         	{
@@ -99,7 +99,7 @@ public class MillenniumItems extends DuelistEvent {
                         	mills.add(new MillenniumElixir());    
                         	mills.add(new MillenniumSpellbook());
                         	mills.add(new Metronome());
-                        	Object randMill = mills.get(AbstractDungeon.eventRng.random(mills.size() - 1));
+                        	Object randMill = mills.get(AbstractDungeon.cardRandomRng.random(mills.size() - 1));
                         	if (randMill instanceof AbstractPotion)
                         	{
                         		AbstractCard b = DuelistCardLibrary.getRandomDuelistCurse();

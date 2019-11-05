@@ -41,11 +41,12 @@ import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
 import duelistmod.cards.*;
 import duelistmod.cards.curses.DuelistAscender;
-import duelistmod.cards.dragons.*;
 import duelistmod.cards.holiday.halloween.*;
 import duelistmod.cards.incomplete.RevivalRose;
-import duelistmod.cards.insects.GiantPairfish;
-import duelistmod.cards.tempCards.CancelCard;
+import duelistmod.cards.other.tempCards.CancelCard;
+import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.insects.GiantPairfish;
+import duelistmod.cards.pools.machine.ChaosAncientGearGiant;
 import duelistmod.characters.TheDuelist;
 import duelistmod.events.*;
 import duelistmod.helpers.*;
@@ -77,7 +78,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.038.4-beta";
+	public static String version = "v3.058.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -514,6 +515,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	public static int challengeLevel = 0;
 	public static int birthdayMonth = 1;
 	public static int birthdayDay = 1;
+	public static int tokensThisCombat = 0;
 	
 	// Other
 	public static TheDuelist duelistChar;
@@ -1087,6 +1089,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		BaseMod.addEvent(TombNamelessPuzzle.ID, TombNamelessPuzzle.class);	
 		BaseMod.addEvent(BattleCity.ID, BattleCity.class, TheBeyond.ID);	
 		BaseMod.addEvent(CardTrader.ID, CardTrader.class);
+		BaseMod.addEvent(RelicDuplicator.ID, RelicDuplicator.class);
 		
 		// Monsters
 		//BaseMod.addMonster(DEPRECATEDOriginalKaiba.ID, "Seto Kaiba", () -> new DEPRECATEDOriginalKaiba(-5.0F, 15.0F));
@@ -1255,7 +1258,12 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		allRelics.add(new DragonRelicB());
 		allRelics.add(new DragonRelicC());
 		allRelics.add(new DuelistCoin());
+		allRelics.add(new MillenniumPeriapt());
 		allRelics.add(new DuelistPrismaticShard());
+		allRelics.add(new DuelistOrichalcum());
+		allRelics.add(new DuelistLetterOpener());
+		allRelics.add(new DuelistTeaSet());
+		allRelics.add(new DuelistUrn());
 		allRelics.add(new FatMaxHPRelic());		
 		allRelics.add(new GamblerChip());
 		allRelics.add(new GiftAnubis());
@@ -1288,6 +1296,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		allRelics.add(new MillenniumRing());
 		allRelics.add(new MillenniumRod());
 		allRelics.add(new MillenniumScale());
+		allRelics.add(new MillenniumStone());
 		allRelics.add(new MillenniumSymbol());
 		allRelics.add(new MillenniumToken());
 		allRelics.add(new MonsterEggRelic());
@@ -1321,6 +1330,19 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		allRelics.add(new ZombieRelic());
 		allRelics.add(new ZombieResummonBuffRelic());
 		allRelics.add(new ChallengePuzzle());
+		allRelics.add(new AkhenamkhanenSceptre());
+		allRelics.add(new MillenniumPrayerbook());
+		allRelics.add(new PrayerPageA());
+		allRelics.add(new PrayerPageB());
+		allRelics.add(new PrayerPageC());
+		allRelics.add(new PrayerPageD());
+		allRelics.add(new PrayerPageE());
+		allRelics.add(new MillenniumArmor());
+		allRelics.add(new ArmorPlateA());
+		allRelics.add(new ArmorPlateB());
+		allRelics.add(new ArmorPlateC());
+		allRelics.add(new ArmorPlateD());
+		allRelics.add(new ArmorPlateE());
 		//allRelics.add(new RandomTributeMonsterRelic());
 		//allRelics.add(new Spellbox());
 		//allRelics.add(new Trapbox());
@@ -1399,7 +1421,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		//DuelistCardLibrary.setupMyCardsDebug("Zombie"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Aqua"); fullPool = false; addBasic = true;
 		//DuelistCardLibrary.setupMyCardsDebug("Fiend"); fullPool = false; addBasic = true;
-		//DuelistCardLibrary.setupMyCardsDebug("Machine"); fullPool = false; addBasic = true;
+		//DuelistCardLibrary.setupMyCardsDebug("Machine"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Warrior"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Insect"); fullPool = false; addBasic = false;
 		//DuelistCardLibrary.setupMyCardsDebug("Plant"); fullPool = false; addBasic = true;
@@ -1701,6 +1723,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 			SummonPower pow = (SummonPower)AbstractDungeon.player.getPower(SummonPower.POWER_ID);
 			pow.MAX_SUMMONS = defaultMaxSummons;
 		}
+		tokensThisCombat = 0;
 		spellCombatCount = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
@@ -1747,6 +1770,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		lastMaxSummons = defaultMaxSummons;
 		spellCombatCount = 0;
 		trapCombatCount = 0;
+		tokensThisCombat = 0;
 		summonLastCombatCount = summonCombatCount;
 		tributeLastCombatCount = tribCombatCount;
 		summonCombatCount = 0;
@@ -1913,6 +1937,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 		monstersPlayedRunNames = new ArrayList<String>();
 		BoosterPackHelper.resetPackSizes();
 		spellCombatCount = 0;
+		tokensThisCombat = 0;
 		trapCombatCount = 0;
 		summonCombatCount = 0;
 		summonLastCombatCount = 0;
@@ -1976,6 +2001,7 @@ PreMonsterTurnSubscriber, PostDungeonUpdateSubscriber, StartActSubscriber, PostO
 	@Override
 	public void receiveCardUsed(AbstractCard arg0) 
 	{
+		if (arg0 instanceof TokenCard) { tokensThisCombat++; }
 		for (AbstractOrb o : AbstractDungeon.player.orbs)
 		{
 			if (o instanceof Alien)

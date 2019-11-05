@@ -6,16 +6,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.DuelistRelic;
 import duelistmod.cards.incomplete.MillenniumSpellbook;
 import duelistmod.helpers.Util;
 import duelistmod.potions.MillenniumElixir;
 import duelistmod.variables.Strings;
 
-public class MillenniumCoin extends CustomRelic 
+public class MillenniumCoin extends DuelistRelic 
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("MillenniumCoin");

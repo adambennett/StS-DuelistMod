@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.cards.dragons.*;
+import duelistmod.cards.pools.dragons.*;
 
 public abstract class ArmedDragonCard extends DuelistCard {
 

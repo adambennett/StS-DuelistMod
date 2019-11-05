@@ -662,6 +662,10 @@
         "NAME": "White Howling",
         "DESCRIPTIONS": ["At the start of turn, if you have no #yWhite orbs, #yChannel #b", " #yWhite."]
 },
+"theDuelist:AirCrackingStormPower": {
+        "NAME": "Air Cracking Storm",
+        "DESCRIPTIONS": ["At the start of turn, if you have no #yAir orbs, #yChannel #b", " #yAir."]
+},
 "theDuelist:AnteaterPower": {
         "NAME": "Anteatereatingant",
         "DESCRIPTIONS": ["For the next #b", " turn, whenever you #ySummon, draw a card.", " turns, whenever you #ySummon, draw a card."]
@@ -909,6 +913,26 @@
 "theDuelist:HauntedRemovalPower": {
         "NAME": "Unhaunted",
         "DESCRIPTIONS": ["At the end of this turn, lose #yHaunted."]
+},
+"theDuelist:MachineFactoryPower": {
+        "NAME": "Machine Factory",
+        "DESCRIPTIONS": ["Whenever you #yTribute a Token, add #b", " random #yToken to your hand.", " random #yTokens to your hand."]
+},
+"theDuelist:WonderGaragePower": {
+        "NAME": "Wonder Garage",
+        "DESCRIPTIONS": ["At the start of turn, add #b", " random #yToken to your hand.", " random #yTokens to your hand."]
+},
+"theDuelist:ShortCircuitPower": {
+        "NAME": "Short Circuit",
+        "DESCRIPTIONS": ["Whenever you lose an #Artifact, #yChannel #b", " Lightning."]
+},
+"theDuelist:FocusUpPower": {
+        "NAME": "Focus Up",
+        "DESCRIPTIONS": ["For the next #b", " turn, #yFocus is increased by #b", " turns, #yFocus is increased by #b", "." ]
+},
+"theDuelist:JinzoLordPower": {
+        "NAME": "Jinzo Lord",
+        "DESCRIPTIONS": ["Whenever you play a #yTrap, deal #b", " damage to ALL enemies." ]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

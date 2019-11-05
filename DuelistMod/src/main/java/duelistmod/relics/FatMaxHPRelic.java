@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.helpers.*;
+import duelistmod.abstracts.DuelistRelic;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Strings;
 
-public class FatMaxHPRelic extends CustomRelic 
+public class FatMaxHPRelic extends DuelistRelic 
 {
 	// ID, images, text.
 	public static final String ID = duelistmod.DuelistMod.makeID("FatMaxHPRelic");

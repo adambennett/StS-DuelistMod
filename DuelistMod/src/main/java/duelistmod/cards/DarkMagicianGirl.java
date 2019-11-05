@@ -54,7 +54,7 @@ public class DarkMagicianGirl extends DuelistCard
 	{
 		summon(p, this.summons, this);
 		block(this.block);
-		AbstractOrb buffer = new Air();
+		AbstractOrb buffer = new AirOrb();
 		channel(buffer);
 	}
 

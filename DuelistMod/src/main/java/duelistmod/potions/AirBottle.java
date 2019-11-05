@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.orbs.Air;
+import duelistmod.orbs.AirOrb;
 import duelistmod.variables.Colors;
 
 public class AirBottle extends OrbPotion {
@@ -46,7 +46,7 @@ public class AirBottle extends OrbPotion {
     	target = AbstractDungeon.player;
     	for (int i = 0; i < this.potency; i++)
     	{
-	       AbstractOrb air = new Air();
+	       AbstractOrb air = new AirOrb();
 	       DuelistCard.channel(air);
     	}
     }

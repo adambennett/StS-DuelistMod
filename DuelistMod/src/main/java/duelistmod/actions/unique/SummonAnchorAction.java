@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.RelicToken;
+import duelistmod.cards.other.tokens.RelicToken;
 
 public class SummonAnchorAction extends AbstractGameAction 
 {

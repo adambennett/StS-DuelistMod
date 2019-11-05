@@ -31,6 +31,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags CREATOR_DECK;
 	@SpireEnum public static AbstractCard.CardTags CYBER;
 	@SpireEnum public static AbstractCard.CardTags DARK_CRISIS;
+	@SpireEnum public static AbstractCard.CardTags DESKBOT;
 	@SpireEnum public static AbstractCard.CardTags DRAGON;
 	@SpireEnum public static AbstractCard.CardTags DRAGON_DECK;
 	@SpireEnum public static AbstractCard.CardTags DINOSAUR;

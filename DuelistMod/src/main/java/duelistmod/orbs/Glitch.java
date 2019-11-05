@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 import duelistmod.*;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.*;
-import duelistmod.cards.tokens.*;
+import duelistmod.cards.other.tokens.*;
 import duelistmod.helpers.DebuffHelper;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;

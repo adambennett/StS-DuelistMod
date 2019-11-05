@@ -26,7 +26,7 @@ public class DesLacooda extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -35,7 +35,7 @@ public class DesLacooda extends DuelistCard
     public DesLacooda() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseBlock = this.block = 13;
+        this.baseBlock = this.block = 6;
         this.summons = this.baseSummons = 1;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);
@@ -63,16 +63,8 @@ public class DesLacooda extends DuelistCard
         if (!upgraded) 
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
-	    	else { this.upgradeName(NAME + "+"); }
-        	if (DuelistMod.hasUpgradeBuffRelic)
-        	{
-        		this.upgradeBaseCost(1);
-        		this.upgradeBlock(4);
-        	}
-        	else
-        	{
-        		this.upgradeBlock(4);
-        	}
+	    	else { this.upgradeName(NAME + "+"); }        	
+        	this.upgradeSummons(1);      	
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

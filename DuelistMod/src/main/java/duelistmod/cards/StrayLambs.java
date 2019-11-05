@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.ReflectionHacks;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.tokens.KuribohToken;
+import duelistmod.cards.other.tokens.KuribohToken;
 import duelistmod.patches.*;
 import duelistmod.variables.*;
 

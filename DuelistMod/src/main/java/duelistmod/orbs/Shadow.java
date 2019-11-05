@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.*;
 import duelistmod.abstracts.*;
-import duelistmod.cards.tokens.Token;
+import duelistmod.cards.other.tokens.Token;
 import duelistmod.interfaces.*;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;

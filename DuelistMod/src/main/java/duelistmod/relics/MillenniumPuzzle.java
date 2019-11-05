@@ -5,14 +5,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-import basemod.abstracts.CustomRelic;
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistCard;
+import duelistmod.abstracts.*;
 import duelistmod.helpers.*;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.variables.*;
 
-public class MillenniumPuzzle extends CustomRelic
+public class MillenniumPuzzle extends DuelistRelic
 {
 
 	/*
@@ -127,7 +126,9 @@ public class MillenniumPuzzle extends CustomRelic
 	{
 		description = getUpdatedDescription();
         tips.clear();
-        tips.add(new PowerTip(name, description));
+        String header = name;
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) { header = "Millennium Puzzle (S)"; }
+        tips.add(new PowerTip(header, description));
         initializeTips();
 	}
 	
@@ -135,7 +136,9 @@ public class MillenniumPuzzle extends CustomRelic
 	{
 		description = desc;
         tips.clear();
-        tips.add(new PowerTip(name, description));
+        String header = name;
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(MillenniumSymbol.ID)) { header = "Millennium Puzzle (S)"; }
+        tips.add(new PowerTip(header, description));
         initializeTips();
 	}
 	
