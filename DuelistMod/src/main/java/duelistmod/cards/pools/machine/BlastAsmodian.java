@@ -38,8 +38,7 @@ public class BlastAsmodian extends DuelistCard
     public BlastAsmodian() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.MONSTER);
-        this.tags.add(Tags.FIEND);       
-        this.tags.add(Tags.EXEMPT); 
+        this.tags.add(Tags.FIEND);   
         this.summons = this.baseSummons = 2;			
         this.baseDamage = this.damage = 11;
         this.originalName = this.name;

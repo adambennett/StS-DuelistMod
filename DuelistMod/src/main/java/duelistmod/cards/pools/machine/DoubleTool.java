@@ -29,13 +29,13 @@ public class DoubleTool extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public DoubleTool() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 8;
-        this.tributes = this.baseTributes = 2;
+        this.tributes = this.baseTributes = 3;
         this.baseMagicNumber = this.magicNumber = 4;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

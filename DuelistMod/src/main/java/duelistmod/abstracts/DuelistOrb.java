@@ -38,6 +38,8 @@ public class DuelistOrb extends AbstractOrb {
 		this.ID = id;
 	}
 	
+	public void onEnemyUseCard(final AbstractCard card) { }
+	
 	public void onLoseArtifact() { }
 	
 	public void onExhaust(AbstractCard c) { }
@@ -65,6 +67,12 @@ public class DuelistOrb extends AbstractOrb {
 	public void onSynergyTribute() { }
 	
 	public void onDrawCard(AbstractCard drawnCard) { }
+	
+	public void onDetonate() { }
+	
+	public void onSolder() { }
+	
+	public void onPassRoulette() { }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
 	

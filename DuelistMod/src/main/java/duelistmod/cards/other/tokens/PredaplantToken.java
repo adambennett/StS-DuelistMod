@@ -28,7 +28,7 @@ public class PredaplantToken extends TokenCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
@@ -41,7 +41,8 @@ public class PredaplantToken extends TokenCard
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     
     public PredaplantToken(String tokenName) 
@@ -51,13 +52,14 @@ public class PredaplantToken extends TokenCard
     	this.tags.add(Tags.PREDAPLANT); 
     	this.tags.add(Tags.PLANT); 
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(AbstractDungeon.player, 1, this); 
-    	applyPowerToSelf(new ThornsPower(p, 1));
+    	summon(); 
+    	applyPowerToSelf(new ThornsPower(p, this.magicNumber));
     }
     @Override public AbstractCard makeCopy() { return new PredaplantToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
@@ -67,7 +69,18 @@ public class PredaplantToken extends TokenCard
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
-	@Override public void upgrade() {}
+
+	@Override public void upgrade() 
+	{
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(2);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
+	}
+	
 	@Override
 	public String getID() {
 		return ID;

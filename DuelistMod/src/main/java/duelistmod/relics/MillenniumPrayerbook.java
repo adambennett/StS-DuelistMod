@@ -14,6 +14,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.actions.common.RandomizedHandAction;
 import duelistmod.cards.other.tempCards.*;
+import duelistmod.characters.TheDuelist;
 import duelistmod.helpers.GridSort;
 import duelistmod.variables.Tags;
 
@@ -34,12 +35,14 @@ public class MillenniumPrayerbook extends DuelistRelic
     private CardType type = CardType.CURSE;
     private boolean run = false;
     private int cardsToHand = 1;
+    private static ArrayList<AbstractCard> pool = new ArrayList<>();
 
 	public MillenniumPrayerbook() {
 		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 		this.tag = Tags.ALL;
 		this.type = CardType.CURSE;
 		this.setCounter(1);
+		pool = new ArrayList<>();
 	}
 
 	private String getTypeString()
@@ -66,6 +69,7 @@ public class MillenniumPrayerbook extends DuelistRelic
 	@Override
 	public void atBattleStart() 
 	{
+		pool = new ArrayList<>();
 		run = true;
 		CardGroup availableCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 		AbstractPlayer p = AbstractDungeon.player;
@@ -171,7 +175,8 @@ public class MillenniumPrayerbook extends DuelistRelic
 				DynamicRelicTagCard ref = (DynamicRelicTagCard) AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 				this.tag = ref.getTypeTag();
 				this.cardsToHand = ref.baseMagicNumber;
-				//this.setCounter(cardsToHand);
+				for (AbstractCard c : TheDuelist.cardPool.group) { if (c.hasTag(this.tag)) { pool.add(c.makeStatEquivalentCopy()); }}
+				if (pool.size() < 1) { for (AbstractCard c : DuelistMod.myCards) { if (c.hasTag(this.tag)) { pool.add(c.makeStatEquivalentCopy()); }} }
 				setDescription();
 				runEffect();
 			}
@@ -180,7 +185,8 @@ public class MillenniumPrayerbook extends DuelistRelic
 				DynamicRelicTypeCard ref = (DynamicRelicTypeCard) AbstractDungeon.gridSelectScreen.selectedCards.get(0);
 				this.type = ref.getTypeTag();
 				this.cardsToHand = ref.baseMagicNumber;
-				//this.setCounter(cardsToHand);
+				for (AbstractCard c : TheDuelist.cardPool.group) { if (c.type.equals(this.type)) { pool.add(c.makeStatEquivalentCopy()); }}
+				if (pool.size() < 1) { for (AbstractCard c : DuelistMod.myCards) { if (c.type.equals(this.type)) { pool.add(c.makeStatEquivalentCopy()); }} }
 				setDescription();
 				runEffect();
 			}
@@ -202,22 +208,12 @@ public class MillenniumPrayerbook extends DuelistRelic
 	
 	private void runEffect()
 	{
-		if (this.tag.equals(Tags.ALL) && !this.type.equals(CardType.CURSE))
+		if (pool.size() > 0)
 		{
-			flash();
 			for (int i = 0; i < this.counter; i++)
 			{
-				AbstractCard randomCard = AbstractDungeon.returnTrulyRandomCardInCombat(this.type);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, false, true, true, false, false, false, false, false, 1, 3, 0, 2, 0, 2));
-			}
-		}
-		else if (this.type.equals(CardType.CURSE) && !this.tag.equals(Tags.ALL))
-		{
-			flash();
-			for (int i = 0; i < this.counter; i++)
-			{
-				DuelistCard randomCard = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(this.tag);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomCard, false, true, true, false, false, false, false, false, 1, 3, 0, 2, 0, 2));
+				AbstractCard randomCard = pool.get(AbstractDungeon.cardRandomRng.random(pool.size() - 1));
+				this.addToBot(new RandomizedHandAction(randomCard, false, true, true, false, false, false, false, false, 1, 3, 0, 2, 0, 2));
 			}
 		}
 	}
@@ -233,7 +229,6 @@ public class MillenniumPrayerbook extends DuelistRelic
 	{
 		this.type = CardType.CURSE;
 		this.tag = Tags.ALL;
-		//this.setCounter(-1);
 		setDescription();
 	}
 	

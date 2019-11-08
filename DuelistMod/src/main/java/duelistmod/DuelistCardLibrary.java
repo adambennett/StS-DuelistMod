@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.powers.watcher.MasterRealityPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import basemod.BaseMod;
@@ -35,6 +36,7 @@ import duelistmod.helpers.*;
 import duelistmod.helpers.crossover.*;
 import duelistmod.helpers.poolhelpers.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.powers.duelistPowers.WonderGaragePower;
 import duelistmod.variables.Tags;
 
 public class DuelistCardLibrary 
@@ -865,8 +867,6 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new StormSparks());
 		DuelistMod.myCards.add(new DarkSparks());
 		DuelistMod.myCards.add(new ChrysalisMole());
-
-
 		DuelistMod.myCards.add(new AssaultArmor());
 		DuelistMod.myCards.add(new BambooSwordBroken());
 		DuelistMod.myCards.add(new BambooSwordBurning());
@@ -916,7 +916,7 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new EgoBoost());
 		DuelistMod.myCards.add(new ElfLight());
 		DuelistMod.myCards.add(new EulerCircuit());
-		DuelistMod.myCards.add(new FengshengMirror());
+		//DuelistMod.myCards.add(new FengshengMirror());
 		DuelistMod.myCards.add(new GladiatorReturn());
 		DuelistMod.myCards.add(new GlowingCrossbow());
 		DuelistMod.myCards.add(new GoyoDefender());
@@ -1266,14 +1266,39 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new GearGigant());
 		DuelistMod.myCards.add(new SolarWindJammer());
 		DuelistMod.myCards.add(new ShortCircuit());
+		DuelistMod.myCards.add(new Deskbot003());
+		DuelistMod.myCards.add(new Deskbot006());
+		DuelistMod.myCards.add(new Deskbot007());
+		DuelistMod.myCards.add(new Deskbot008());
+		DuelistMod.myCards.add(new GenexAllyBirdman());
+		DuelistMod.myCards.add(new GenexNeutron());
+		DuelistMod.myCards.add(new MachineKingPrototype());
+		DuelistMod.myCards.add(new PerfectMachineKing());
+		DuelistMod.myCards.add(new Tuningware());		
+		DuelistMod.myCards.add(new MessengerPeace());
+		DuelistMod.myCards.add(new WonderGarage());
+		DuelistMod.myCards.add(new RoboticKnight());
+		DuelistMod.myCards.add(new Factory100Machines());
+		DuelistMod.myCards.add(new Geartown());
+		DuelistMod.myCards.add(new UnionHangar());
+		DuelistMod.myCards.add(new AncientGearWorkshop());
+		DuelistMod.myCards.add(new RevolvingSwitchyard());
+		DuelistMod.myCards.add(new ScrapBeast());
+		DuelistMod.myCards.add(new AncientGearReactorDragon());
+		DuelistMod.myCards.add(new MetalholdMovingBlockade());
+		DuelistMod.myCards.add(new MachinaCannon());
+		DuelistMod.myCards.add(new TimeSeal());
+		DuelistMod.myCards.add(new OrcustCrescendo());
+		DuelistMod.myCards.add(new ParallelPortArmor());
+		DuelistMod.myCards.add(new PineappleBlast());
+		DuelistMod.myCards.add(new BlackSalvo());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());
 		//DuelistMod.myCards.add(new Gilasaurus());
 		//DuelistMod.myCards.add(new TyrannoInfinity());
 		//DuelistMod.myCards.add(new SuperconductorTyranno());
-		DuelistMod.myCards.add(new MessengerPeace());
-		
+
 		if (Util.halloweenCheck())
 		{
 			DuelistMod.myCards.add(new Hallohallo());
@@ -1644,6 +1669,8 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Blast Token", new BlastToken());
 		DuelistMod.summonMap.put("Time Token", new TimeToken());
 		DuelistMod.summonMap.put("Entrench Token", new EntrenchToken());
+		DuelistMod.summonMap.put("Flux Token", new FluxToken());
+		DuelistMod.summonMap.put("Megaglitch Token", new MegaGlitchToken());
 	}
 	
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
@@ -1699,6 +1726,8 @@ public class DuelistCardLibrary
 		tokens.add(new BlastToken());
 		tokens.add(new TimeToken());
 		tokens.add(new EntrenchToken());
+		tokens.add(new FluxToken());
+		tokens.add(new MegaGlitchToken());
 		return tokens;
 	}
 	
@@ -1761,6 +1790,11 @@ public class DuelistCardLibrary
 		{ 
 			tokens.add(new GlitchToken()); 
 			tokens.add(new BlastToken());
+			tokens.add(new FluxToken());
+			if (DuelistMod.quicktimeEventsAllowed)
+			{
+				tokens.add(new MegaGlitchToken());
+			}
 		}
 		if (Util.deckIs("Aqua Deck")) { tokens.add(new JamToken()); }
 		if (Util.deckIs("Zombie Deck")) { tokens.add(new ShadowToken()); }
@@ -1773,6 +1807,11 @@ public class DuelistCardLibrary
 			tokens.add(new ExplosiveToken());
 			tokens.add(new SuperExplodingToken());
 			tokens.add(new PlagueToken());
+		}
+		
+		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) || AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID))
+		{
+			for (AbstractCard c : tokens) { c.upgrade(); }
 		}
 		return tokens;
 	}

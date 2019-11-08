@@ -1,16 +1,20 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.helpers.*;
 import duelistmod.patches.AbstractCardEnum;
+import duelistmod.speedster.SpeedsterUtil.UC;
+import duelistmod.speedster.actions.BeginSpeedModeAction;
+import duelistmod.speedster.mechanics.*;
 import duelistmod.variables.*;
 
 public class BadToken extends DuelistCard 
@@ -52,6 +56,20 @@ public class BadToken extends DuelistCard
     
     @Override public void use (AbstractPlayer p, AbstractMonster m) 
     {
+    	if(Settings.isDebug) {
+            UC.doDmg(m, this.damage, MathUtils.randomBoolean() ? AbstractGameAction.AttackEffect.SLASH_VERTICAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        } else {
+            //UC.atb(new BeginSpeedModeAction(new SpeedClickEnemyTime(3.0f, mon -> UC.doDmg(mon, damage, DamageInfo.DamageType.NORMAL, UC.getSpeedyAttackEffect(), true))));
+            Runnable myRunnable = () -> {
+                System.out.println("Ran");
+                UC.doVfx(new CleaveEffect());
+                UC.doAllDmg(damage, AbstractGameAction.AttackEffect.NONE, false);
+            };
+            UC.atb(new BeginSpeedModeAction(new SpeedClickButtonTime(10.0f, myRunnable, new BasicButtonGenerator(1f, true)), 0));
+            //UC.atb(new BeginSpeedModeAction(new SpeedHoverZoneTime(10.0f, myRunnable, true, 10)));
+        }
+
+    	/*
     	this.addToBot(new FetchAction(p.exhaustPile, 1));
     	if (DuelistMod.debug)
     	{
@@ -60,6 +78,7 @@ public class BadToken extends DuelistCard
         	Debug.printTypedRarityInfo();
         	BoosterPackHelper.debugCheckLists();
     	}
+    	*/
     }
    
 

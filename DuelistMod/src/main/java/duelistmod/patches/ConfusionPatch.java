@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ConfusionPower;
 
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.relics.ConfusionGoldRelic;
+import duelistmod.relics.TokenUpgradeRelic;
 
 @SpirePatch(clz= ConfusionPower.class,method="onCardDraw")
 public class ConfusionPatch
@@ -22,7 +22,6 @@ public class ConfusionPatch
     		int newCost = AbstractDungeon.cardRandomRng.random(lowBound, costCapRoll);
             if (newCost > 3) { newCost = AbstractDungeon.cardRandomRng.random(lowBound, costCapRoll); }
             //if (newCost > 6) { int ref = newCost; newCost = AbstractDungeon.cardRandomRng.random(0, ref); }
-            if (newCost > 3 && AbstractDungeon.player.hasRelic(ConfusionGoldRelic.ID)) { ConfusionGoldRelic rel = (ConfusionGoldRelic)AbstractDungeon.player.getRelic(ConfusionGoldRelic.ID); rel.goldGainEffect(); }
             if (card.cost != newCost) 
             {
                 card.cost = newCost;
@@ -35,7 +34,6 @@ public class ConfusionPatch
     	{
             int newCost = AbstractDungeon.cardRandomRng.random(0, 4);
             if (newCost == 4) { newCost = AbstractDungeon.cardRandomRng.random(0, 4); }
-            if (newCost == 4 && AbstractDungeon.player.hasRelic(ConfusionGoldRelic.ID)) { ConfusionGoldRelic rel = (ConfusionGoldRelic)AbstractDungeon.player.getRelic(ConfusionGoldRelic.ID); rel.goldGainEffect(); }
             if (card.cost != newCost) 
             {
                 card.cost = newCost;

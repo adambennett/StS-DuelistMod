@@ -1,20 +1,17 @@
 package duelistmod.powers.duelistPowers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.naturia.CatapultZone;
 import duelistmod.powers.SummonPower;
-import duelistmod.variables.*;
+import duelistmod.variables.Tags;
 
 
 @SuppressWarnings("unused")
@@ -65,37 +62,8 @@ public class CatapultZonePower extends NoStackDuelistPower
 		AbstractPlayer p = AbstractDungeon.player;
     	if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && (info.owner != null) && (info.owner != this.owner) && (damageAmount > 0) && (!this.owner.hasPower("Buffer")))
     	{
-    		if (p.hasPower(SummonPower.POWER_ID))
-    		{
-    			SummonPower pow = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    			if (pow.getNumberOfTypeSummoned(Tags.ROCK) > 0)
-    			{
-    				int tokens = 0;
-    		    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    		    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
-    		    	ArrayList<String> newSummonList = new ArrayList<String>();
-    		    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-    		    	for (DuelistCard s : aSummonsList)
-    		    	{
-    		    		if (s.hasTag(Tags.ROCK))
-    		    		{
-    		    			tokens++;
-    		    		}
-    		    		else
-    		    		{
-    		    			newSummonList.add(s.originalName);
-    		    			aNewSummonList.add(s);
-    		    		}
-    		    	}
-    		    	
-    		    	DuelistCard.tributeChecker(p, tokens, new Token(), true);
-    		    	summonsInstance.summonList = newSummonList;
-    		    	summonsInstance.actualCardSummonList = aNewSummonList;
-    		    	summonsInstance.amount -= tokens;
-    		    	summonsInstance.updateDescription();
-    		    	return 0;
-    			}
-    		}
+    		int x = DuelistCard.xCostTributeStatic(Tags.ROCK, new CatapultZone());
+    		if (x > 0) { return 0; }
     	}
     	return damageAmount;
     }

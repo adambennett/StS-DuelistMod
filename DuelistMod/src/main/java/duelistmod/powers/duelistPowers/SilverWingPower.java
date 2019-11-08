@@ -23,14 +23,19 @@ public class SilverWingPower extends DuelistPower
 	
 	public SilverWingPower(int amt) 
 	{ 
+		this(AbstractDungeon.player, AbstractDungeon.player, amt);
+	}
+	
+	public SilverWingPower(AbstractCreature source, AbstractCreature owner, int amt) 
+	{ 
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
+        this.source = source;
         this.amount = amt;
 		updateDescription(); 
 	}
@@ -43,6 +48,12 @@ public class SilverWingPower extends DuelistPower
 			if (this.amount > 0) { DuelistCard.staticBlock(this.amount); }
 		}
 	}
+	
+    @Override
+    public void onEnemyUseCard(AbstractCard card)
+    {
+    	onPlayCard(card, null);
+    }
 
 	@Override
 	public void updateDescription()

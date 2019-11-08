@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.CardSelectScreenModifyMagicNumberAction;
+import duelistmod.actions.common.SolderAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -51,8 +51,8 @@ public class TimeToken extends TokenCard
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
-    	this.addToTop(new CardSelectScreenModifyMagicNumberAction(p.hand.group, 1, this.magicNumber, true));
+    	summon();
+    	this.addToTop(new SolderAction(p.hand.group, this.magicNumber, true));
     }
     @Override public AbstractCard makeCopy() { return new TimeToken(); }
 
@@ -70,10 +70,13 @@ public class TimeToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

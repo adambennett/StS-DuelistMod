@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
 // Passive no-effect power, just lets Toon Monsters check for playability
@@ -37,6 +38,7 @@ public class ToonWorldPower extends AbstractPower
         this.amount = amount;       
         this.lowend = 0;
         this.maxDmg = 2;
+        if (Util.getChallengeLevel() > 3 && Util.deckIs("Toon Deck")) { this.maxDmg += 2; }
         this.updateDescription();
     }
     
@@ -52,6 +54,7 @@ public class ToonWorldPower extends AbstractPower
         this.amount = amount;        
         this.lowend = lowend;
         this.maxDmg = maxdmg;
+        if (Util.getChallengeLevel() > 3 && Util.deckIs("Toon Deck")) { this.maxDmg += 2; }
         this.updateDescription();
     }
     

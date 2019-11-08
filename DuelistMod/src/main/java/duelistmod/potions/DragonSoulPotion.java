@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.*;
 
 public class DragonSoulPotion extends DuelistPotion {
@@ -37,6 +38,14 @@ public class DragonSoulPotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Dragon Deck")) { return true; }
+    	return false;
+    }
+
 
     @Override
     public void use(AbstractCreature target) 

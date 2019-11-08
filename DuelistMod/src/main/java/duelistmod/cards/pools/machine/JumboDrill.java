@@ -10,7 +10,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.incomplete.JumboDrillPower;
+import duelistmod.powers.duelistPowers.JumboDrillPower;
 import duelistmod.variables.Tags;
 
 public class JumboDrill extends DuelistCard 
@@ -26,7 +26,7 @@ public class JumboDrill extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;

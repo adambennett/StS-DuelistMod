@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.ui.campfire.*;
 
@@ -128,6 +127,7 @@ public class ChallengePuzzle extends DuelistRelic {
 				if (drawnCard.cost > 4) { costCap = drawnCard.cost; }
 				int costRoll = AbstractDungeon.cardRandomRng.random(cardCost, costCap);
 				drawnCard.setCostForTurn(-drawnCard.costForTurn + costRoll);
+				AbstractDungeon.player.hand.glowCheck();
 			}
 		}
     }

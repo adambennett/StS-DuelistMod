@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.ModifyTributeAction;
 import duelistmod.patches.AbstractCardEnum;
@@ -65,6 +65,33 @@ public class ChaosAncientGearGiant extends DuelistCard
 
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c) 
+    {
+    	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInHand(AbstractCard c)
+    {
+    	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDiscard(AbstractCard c)
+    {
+    	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDraw(AbstractCard c)
     {
     	if (c.hasTag(Tags.MACHINE) && this.tributes > 0)
     	{

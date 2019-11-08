@@ -30,6 +30,7 @@ public class BugSignalAction extends AbstractGameAction
             		c.modifyCostForCombat(-this.mag);
             	}
             }
+            AbstractDungeon.player.hand.glowCheck();
         }
         tickDuration();
     }

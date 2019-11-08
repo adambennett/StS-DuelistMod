@@ -17,6 +17,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_THREE_DECK;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_FOUR_DECK;
 	@SpireEnum public static AbstractCard.CardTags PHARAOH_FIVE_DECK;
+	@SpireEnum public static AbstractCard.CardTags ALLOYED;							// no magic number modification
 	@SpireEnum public static AbstractCard.CardTags AQUA;
 	@SpireEnum public static AbstractCard.CardTags AQUA_DECK;
 	@SpireEnum public static AbstractCard.CardTags ARCHETYPE;
@@ -43,6 +44,11 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags EXODIA_HEAD;
 	@SpireEnum public static AbstractCard.CardTags EXODIA_PIECE;
 	@SpireEnum public static AbstractCard.CardTags EXPLODING_TOKEN;
+	@SpireEnum public static AbstractCard.CardTags DETONATE_DMG_SELF_DISABLED;
+	@SpireEnum public static AbstractCard.CardTags DETONATE_DMG_SPECIFIC_TARGET;
+	@SpireEnum public static AbstractCard.CardTags DETONATE_DMG_ENEMIES_ALLOWED;
+	@SpireEnum public static AbstractCard.CardTags DETONATE_DMG_ALL_ENEMIES;
+	@SpireEnum public static AbstractCard.CardTags DETONATE_RANDOM_NUMBER_OF_EXPLOSIONS;
 	@SpireEnum public static AbstractCard.CardTags FIELDSPELL;
 	@SpireEnum public static AbstractCard.CardTags FIEND;
 	@SpireEnum public static AbstractCard.CardTags FIEND_DECK;
@@ -67,7 +73,7 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags MACHINE_DECK;
 	@SpireEnum public static AbstractCard.CardTags MAGICIANS_FORCE;
 	@SpireEnum public static AbstractCard.CardTags MAGIC_RULER;
-	@SpireEnum public static AbstractCard.CardTags MAGIC_NUMBER_BUFFS_SCALE_BY_10;
+	@SpireEnum public static AbstractCard.CardTags MAGIC_NUM_SCALE_BY_10;
 	@SpireEnum public static AbstractCard.CardTags MAGNET;
 	@SpireEnum public static AbstractCard.CardTags MALICIOUS;
 	@SpireEnum public static AbstractCard.CardTags WARRIOR_DECK;
@@ -88,7 +94,6 @@ public class Tags {
 	@SpireEnum public static AbstractCard.CardTags NO_MANA_RESET;
 	@SpireEnum public static AbstractCard.CardTags NO_POWER_FOR_RANDOM_DECK_POOLS;
 	@SpireEnum public static AbstractCard.CardTags NO_CARD_FOR_RANDOM_DECK_POOLS;
-	@SpireEnum public static AbstractCard.CardTags NO_MAGIC_MOD;
 	@SpireEnum public static AbstractCard.CardTags NEVER_GENERATE;
 	@SpireEnum public static AbstractCard.CardTags OJAMA;
 	@SpireEnum public static AbstractCard.CardTags OJAMA_DECK;

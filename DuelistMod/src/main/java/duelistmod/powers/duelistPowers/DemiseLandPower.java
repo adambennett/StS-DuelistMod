@@ -24,14 +24,19 @@ public class DemiseLandPower extends DuelistPower
     
 	public DemiseLandPower(int amt) 
 	{ 
+		this(AbstractDungeon.player, AbstractDungeon.player, amt);
+	}
+	
+	public DemiseLandPower(AbstractCreature source, AbstractCreature owner, int amt) 
+	{ 
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
+        this.source = source;
         this.amount = amt;
 		updateDescription(); 
 	}
@@ -50,5 +55,11 @@ public class DemiseLandPower extends DuelistPower
 		{
 			DuelistCard.damageAllEnemiesThornsNormal(this.amount);
 		}
+    }
+	
+	@Override
+    public void onEnemyUseCard(AbstractCard card)
+    {
+    	onPlayCard(card, null);
     }
 }

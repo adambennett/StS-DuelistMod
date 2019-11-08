@@ -18,7 +18,7 @@ public class ModifyMagicNumberForTurnAction extends AbstractGameAction
 	@Override
 	public void update() 
 	{
-		if (this.cardToModify.hasTag(Tags.MAGIC_NUMBER_BUFFS_SCALE_BY_10)) { this.amount = this.amount * 10; }
+		if (this.cardToModify.hasTag(Tags.MAGIC_NUM_SCALE_BY_10)) { this.amount = this.amount * 10; }
 		if (this.cardToModify.hasTag(Tags.BAD_MAGIC))
 		{
 			this.cardToModify.originalMagicNumber = this.cardToModify.baseMagicNumber;

@@ -8,13 +8,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
 import duelistmod.cards.*;
-import duelistmod.cards.incomplete.LostGuardian;
 import duelistmod.cards.pools.dragons.LivingFossil;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;

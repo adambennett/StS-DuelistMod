@@ -9,6 +9,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.machine.StarBlast;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
 public class OjamaPool 
@@ -61,7 +62,6 @@ public class OjamaPool
 		ojamaCards.add(new StatueAnguishPattern());		
 		ojamaCards.add(new DarkTinker());
 		ojamaCards.add(new GarbageLord());
-		ojamaCards.add(new StarBlast());
 		ojamaCards.add(new QueenDragunDjinn());
 		ojamaCards.add(new IceQueen());
 		ojamaCards.add(new DiffusionWaveMotion());

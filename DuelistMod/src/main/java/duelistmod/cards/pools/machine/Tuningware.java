@@ -9,55 +9,68 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.DoublePlayFirstCardPower;
 import duelistmod.variables.Tags;
 
 public class Tuningware extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("ElectromagneticTurtle");
+    public static final String ID = DuelistMod.makeID("Tuningware");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ElectromagneticTurtle.png");
+    public static final String IMG = DuelistMod.makeCardPath("Tuningware.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public Tuningware() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 25;
-        this.tributes = this.baseTributes = 3;
+        this.baseBlock = this.block = 7;
+        this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
+    }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Apply 'first card next turn is played twice' power
+            applyPowerToSelf(new DoublePlayFirstCardPower(1));
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
+        super.triggerOnEndOfPlayerTurn();
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
+    	summon();
     	block();
-    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
-    	switch (randomMagnetNum)
-    	{
-    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
-    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
-    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
-    	}
     }
 
     // Which card to return when making a copy of this card.
@@ -72,7 +85,7 @@ public class Tuningware extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeTributes(-1);
+            this.upgradeBlock(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

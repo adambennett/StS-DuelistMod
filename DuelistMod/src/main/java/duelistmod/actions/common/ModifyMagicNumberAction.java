@@ -17,7 +17,7 @@ public class ModifyMagicNumberAction extends AbstractGameAction {
 	
 	@Override
 	public void update() {
-		if (this.cardToModify.hasTag(Tags.MAGIC_NUMBER_BUFFS_SCALE_BY_10)) { this.cardToModify.baseMagicNumber += this.amount * 10;}
+		if (this.cardToModify.hasTag(Tags.MAGIC_NUM_SCALE_BY_10)) { this.cardToModify.baseMagicNumber += this.amount * 10;}
 		else { this.cardToModify.baseMagicNumber += this.amount; }
 		if (this.cardToModify.baseMagicNumber < 0) {
 			this.cardToModify.baseMagicNumber = 0;

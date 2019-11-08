@@ -99,14 +99,12 @@ public class FiendPool
 		fiendCards.add(new DoomDonuts());		
 		fiendCards.add(new Wildfire());
 		fiendCards.add(new BerserkerCrush());
-		fiendCards.add(new MeteorDestruction());
 		fiendCards.add(new FeatherShot());
 		fiendCards.add(new FlyingSaucer());
 		fiendCards.add(new Relinkuriboh());
 		fiendCards.add(new CosmicHorrorGangiel());	
 		fiendCards.add(new AlienTelepath());	
 		fiendCards.add(new BlastAsmodian());
-		fiendCards.add(new CemetaryBomb());
 		fiendCards.add(new UmbralHorrorGhoul());
 		fiendCards.add(new UmbralHorrorGhost());
 		fiendCards.add(new UmbralHorrorWilloWisp());

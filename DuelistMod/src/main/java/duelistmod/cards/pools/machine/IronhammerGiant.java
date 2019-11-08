@@ -3,6 +3,7 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -51,6 +52,7 @@ public class IronhammerGiant extends DuelistCard
     	{
     		this.modifyCostForCombat(-this.magicNumber);
     		this.isCostModified = true;
+    		AbstractDungeon.player.hand.glowCheck();
     	}
     }
 

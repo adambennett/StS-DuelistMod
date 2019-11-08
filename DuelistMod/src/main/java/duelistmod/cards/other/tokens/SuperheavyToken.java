@@ -40,7 +40,8 @@ public class SuperheavyToken extends TokenCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.SUPERHEAVY);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     public SuperheavyToken(String tokenName) 
     { 
@@ -48,13 +49,13 @@ public class SuperheavyToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.SUPERHEAVY);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
-    	int roll = AbstractDungeon.cardRandomRng.random(1,2);
-    	if (roll == 1) { applyPowerToSelf(new DexterityPower(p, 1)); }
+    	summon();
+    	if (roulette()) { applyPowerToSelf(new DexterityPower(p, this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new SuperheavyToken(); }
 
@@ -72,11 +73,13 @@ public class SuperheavyToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBlock(2);
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

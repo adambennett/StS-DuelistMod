@@ -36,7 +36,7 @@ public class HeavyFreightTrainDerricane extends DuelistCard
 
     public HeavyFreightTrainDerricane() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 15;
+        this.baseDamage = this.damage = 25;
         this.tributes = this.baseTributes = 2;
         this.isMultiDamage = true;
         this.specialCanUseLogic = true;
@@ -70,7 +70,7 @@ public class HeavyFreightTrainDerricane extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeDamage(5);
+            this.upgradeDamage(10);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -36,7 +36,7 @@ public class DestructPotionPot extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
-
+    
     @Override
     public void use(AbstractCreature target) 
     {

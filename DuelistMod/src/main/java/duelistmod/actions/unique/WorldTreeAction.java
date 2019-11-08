@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.other.tokens.Token;
-import duelistmod.powers.WorldTreePower;
+import duelistmod.powers.duelistPowers.WorldTreePower;
 import duelistmod.variables.Tags;
 
 public class WorldTreeAction extends AbstractGameAction

@@ -1,8 +1,8 @@
 package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
@@ -24,6 +24,13 @@ public class MachineTokenB extends DuelistRelic
 	{
 		DuelistMod.explosiveDmgLow += 2;
 		DuelistMod.explosiveDmgHigh += 3;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setInt("explosiveDmgLow", DuelistMod.explosiveDmgLow);
+			config.setInt("explosiveDmgHigh", DuelistMod.explosiveDmgHigh);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
 	@Override
@@ -31,6 +38,13 @@ public class MachineTokenB extends DuelistRelic
 	{
 		DuelistMod.explosiveDmgLow -= 2;
 		DuelistMod.explosiveDmgHigh -= 3;
+		try 
+		{
+			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
+			config.setInt("explosiveDmgLow", DuelistMod.explosiveDmgLow);
+			config.setInt("explosiveDmgHigh", DuelistMod.explosiveDmgHigh);
+			config.save();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
 	@Override

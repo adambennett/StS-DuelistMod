@@ -177,7 +177,7 @@
 	  "Glitches",
 	  "glitches"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, trigger #b1 random effect. If all monsters summoned are #yMachines, trigger the effect twice. NL #yEvoke: Trigger #b2 random effects."
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b3 #yGreased to ALL enemies. NL #yEvoke: Fill your hand with random Tokens."
   },
   {
    "PROPER_NAME": "Shadow",
@@ -261,9 +261,11 @@
     "PROPER_NAME": "Gadget",
     "NAMES": [
       "Gadget",
-	  "gadget"
+	  "gadget",
+	  "gadgets",
+	  "Gadgets"
     ],   
-    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Play a random #ySkill you have played this combat on a random enemy."
+    "DESCRIPTION": "#yOrb: At the start of turn, gain #b2 #yDexterity until the end of turn. NL #yEvoke: Apply #b2 #yGrease to the enemy with the highest HP."
   },
   {
     "PROPER_NAME": "Lava",
@@ -423,7 +425,7 @@
       "Megatyped",
 	  "megatyped"
     ],   
-    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie)."
+    "DESCRIPTION": "Considered to be ALL monster types (Aqua, Dragon, Fiend, Insect, Machine, Naturia, Plant, Predaplant, Rock, Spellcaster, Superheavy, Toon, Warrior, Wyrm, and Zombie). When #yTributing a #yMegatyped card for another, you will trigger a Quicktime Event that will genrate random #yTribute synergy effects. You can disable this behavior and return to legacy #yMegatype behavior by disabling QTE from the config menu."
   },
   {
     "PROPER_NAME": "Exodia",
@@ -639,7 +641,7 @@
       "Chaotic",
 	  "chaotic"
     ],   
-    "DESCRIPTION": "In this #yStance, whenever you #yExhaust a card, increase the magic number of a card in your hand by #b1 for the rest of combat. Whenever you #yBlock, randomize the amount of #yBlock you gain."
+    "DESCRIPTION": "In this #yStance, whenever you #yExhaust a card, #ySolder #b1. Whenever you #yBlock, randomize the amount of #yBlock you gain."
   },
   {
   "PROPER_NAME": "Forsaken",
@@ -793,6 +795,68 @@
 	  "envenom"
     ],   
     "DESCRIPTION": "Whenever an Attack deals unblocked damage, apply #yPoison equal to your #yEnvenom."
+  },
+  {
+  "PROPER_NAME": "Alloyed",
+    "NAMES": [
+      "Alloyed",
+	  "alloyed"
+    ],   
+    "DESCRIPTION": "Cannot be #ySoldered."
+  },
+  {
+  "PROPER_NAME": "Slow",
+    "NAMES": [
+      "Slow",
+	  "slow"
+    ],   
+    "DESCRIPTION": "#ySlowed characters take #b10% more damage for each stack of #ySlow. Playing cards adds #b1 #ySlow to ALL #ySlowed characters. Resets at the start of each turn."
+  },
+  {
+  "PROPER_NAME": "Flux",
+    "NAMES": [
+      "Flux",
+	  "flux"
+    ],   
+    "DESCRIPTION": "Improves the effect of #ySoldering."
+  },
+  {
+  "PROPER_NAME": "Detonate",
+    "NAMES": [
+      "Detonate",
+	  "detonate"
+    ],   
+    "DESCRIPTION": "#yTribute the given number of #rExplosive #rTokens, triggering the explosive damage effect on random enemies instead of yourself."
+  },
+  {
+  "PROPER_NAME": "Solder",
+    "NAMES": [
+      "Solder",
+	  "solder",
+	  "Soldered",
+	  "soldered",
+	  "Soldering",
+	  "soldering"
+    ],   
+    "DESCRIPTION": "Improve the #bmagic #bnumber of #b1 card in your hand by the given amount. Cards with negative effects tied to magic numbers will have their values decreased by #ySolder effects. #bMagic #bnumbers are used to hold dynamic card values for almost anything that is not damage or #yBlock. For example, most cards that draw cards and use a number to indicate how many cards to draw are modifiable with #ySolder effects."
+  },
+  {
+  "PROPER_NAME": "Grease",
+    "NAMES": [
+      "Grease",
+	  "grease",
+	  "greased",
+	  "Greased"
+    ],   
+    "DESCRIPTION": "At the start of odd turns, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."
+  },
+  {
+    "PROPER_NAME": "Quicktime",
+    "NAMES": [
+      "Quicktime",
+	  "quicktime"
+    ],   
+    "DESCRIPTION": "Cards with this keyword will trigger a Quicktime Event when played, and will activate their given effects depending on your performance in the event. If you disable Quicktime Events (QTE) from the config menu, Quicktime effects will trigger as if they are #yRoulette effects."
   },
   {
     "PROPER_NAME": "Gate",

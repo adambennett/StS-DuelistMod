@@ -1,7 +1,5 @@
 package duelistmod.cards;
 
-import java.util.ArrayList;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,10 +7,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.patches.*;
-import duelistmod.powers.*;
+import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.*;
 
 public class ComicHand extends DuelistCard 
@@ -50,42 +47,14 @@ public class ComicHand extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	int tokens = 0;
-    	if (p.hasPower(SummonPower.POWER_ID))
+    	int tokens = xCostTribute(Tags.TOON);
+    	for (int i = 0; i < tokens; i++)
     	{
-    		SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
-	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-	    	for (DuelistCard s : aSummonsList)
-	    	{
-	    		if (s.hasTag(Tags.TOON))
-	    		{
-	    			tokens++;
-	    		}
-	    		else
-	    		{
-	    			newSummonList.add(s.originalName);
-	    			aNewSummonList.add(s);
-	    		}
-	    	}
-	    	
-	    	tributeChecker(player(), tokens, this, true);
-	    	summonsInstance.summonList = newSummonList;
-	    	summonsInstance.actualCardSummonList = aNewSummonList;
-	    	summonsInstance.amount -= tokens;
-	    	summonsInstance.updateStringColors();
-	    	summonsInstance.updateDescription();
-	    	for (int i = 0; i < tokens; i++)
-	    	{
-	    		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
-	    		summon(player(), 1, tempCard);
-	    		AbstractMonster randomM = getRandomMonster();
-	    		if (randomM != null) { attack(randomM, AFX, this.damage); }
-	    	}
+    		DuelistCard tempCard = (DuelistCard) returnTrulyRandomFromSet(Tags.MONSTER);
+    		summon(player(), 1, tempCard);
+    		AbstractMonster randomM = getRandomMonster();
+    		if (randomM != null) { attack(randomM, AFX, this.damage); }
     	}
-    	
-
     }
 
     // Which card to return when making a copy of this card.

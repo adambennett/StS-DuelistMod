@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 
 import duelistmod.actions.unique.PurgeSpecificCard;
-import duelistmod.relics.MillenniumToken;
+import duelistmod.relics.*;
 
 public class TokenCard extends DuelistCard
 {
@@ -23,6 +23,13 @@ public class TokenCard extends DuelistCard
 	}
 	
 	@Override
+	public boolean canUpgrade()
+	{
+		if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(TokenUpgradeRelic.ID)) { return true; }
+		else { return super.canUpgrade(); }
+	}
+	
+	@Override
 	public void update()
 	{
 		super.update();
@@ -30,6 +37,7 @@ public class TokenCard extends DuelistCard
 		{
 			this.setCostForTurn(-this.cost);
 			this.isCostModifiedForTurn = true;
+			AbstractDungeon.player.hand.glowCheck();
 		}
 	}
 	

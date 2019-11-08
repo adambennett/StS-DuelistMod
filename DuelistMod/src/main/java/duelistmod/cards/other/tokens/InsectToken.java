@@ -40,7 +40,8 @@ public class InsectToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.INSECT); 
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.summons = this.baseSummons = 1;
     }
     
     public InsectToken(String tokenName) 
@@ -49,13 +50,14 @@ public class InsectToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.INSECT);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.summons = this.baseSummons = 1;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     { 
-    	summon(p, 1, this);
-    	applyPower(new PoisonPower(m, p, 1), m);
+    	summon();
+    	applyPower(new PoisonPower(m, p, this.magicNumber), m);
     }
     
     @Override public AbstractCard makeCopy() { return new InsectToken(); }
@@ -66,7 +68,18 @@ public class InsectToken extends TokenCard
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) { summon(AbstractDungeon.player, 1, this); }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { summon(AbstractDungeon.player, 1, this); }
-	@Override public void upgrade() {}
+
+	@Override public void upgrade() 
+	{
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(2);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
+	}
+	
 	@Override
 	public String getID() {
 		return ID;

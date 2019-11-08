@@ -12,6 +12,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.HorusServant;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.SeismicShockwave;
 import duelistmod.cards.pools.warrior.*;
 

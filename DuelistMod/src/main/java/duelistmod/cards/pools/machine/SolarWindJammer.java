@@ -44,6 +44,8 @@ public class SolarWindJammer extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
+        this.showEvokeOrbCount = 2;
+        this.showEvokeValue = true;
     }
 
     // Actions the card should do.
@@ -53,6 +55,7 @@ public class SolarWindJammer extends DuelistCard
     	tribute();
     	channel(new FireOrb());
     	channel(new AirOrb());
+    	applyPowerToSelf(new FocusUpPower(p, p, this.secondMagic, this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.

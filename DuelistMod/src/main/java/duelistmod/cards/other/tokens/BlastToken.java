@@ -1,18 +1,17 @@
 package duelistmod.cards.other.tokens;
 
-import java.util.ArrayList;
+import java.util.*;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.helpers.TooltipInfo;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class BlastToken extends TokenCard 
@@ -28,7 +27,7 @@ public class BlastToken extends TokenCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
@@ -38,51 +37,33 @@ public class BlastToken extends TokenCard
     { 
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
-    	this.tags.add(Tags.MACHINE);
-    	this.baseDamage = this.damage = 1;
+    	this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
+    	this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
     	this.purgeOnUse = true;
+    	this.summons = this.baseSummons = 1;
     }
     public BlastToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
-    	this.tags.add(Tags.MACHINE);
-    	this.baseDamage = this.damage = 1;
+    	this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
+    	this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
     	this.purgeOnUse = true;
+    	this.summons = this.baseSummons = 1;
     }
+    
+    @Override
+    public List<TooltipInfo> getCustomTooltips() {
+        List<TooltipInfo> retVal = new ArrayList<>();
+        //retVal.addAll(super.getCustomTooltips());
+        retVal.add(new TooltipInfo("?", "A random amount of Explosive Tokens, between 1 and your current max summons."));
+        return retVal;
+    }
+    
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	if (p.hasPower(SummonPower.POWER_ID))
-		{
-			int tokens = 0;
-			int allTokens = 0;
-			int sTokens = 0;
-	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
-	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-	    	for (DuelistCard s : aSummonsList)
-	    	{
-	    		if (s.hasTag(Tags.EXPLODING_TOKEN)) { tokens++; allTokens++; }
-	    		else if (s.hasTag(Tags.SUPER_EXPLODING_TOKEN)) { sTokens++; allTokens++; }
-	    		else { newSummonList.add(s.originalName); aNewSummonList.add(s); }
-	    	}
-	    	
-	    	tributeChecker(player(), allTokens, this, false);
-	    	summonsInstance.summonList = newSummonList;
-	    	summonsInstance.actualCardSummonList = aNewSummonList;
-	    	summonsInstance.amount -= allTokens;
-	    	for (int i = 0; i < tokens; i++)
-	    	{
-	    		attack(m, AttackEffect.FIRE, 1);
-	    	}
-	    	for (int i = 0; i < sTokens; i++)
-	    	{
-	    		attack(m, AttackEffect.FIRE, 2);
-	    	}
-	    	
-	    	summon(player(), 0, new Token());
-		} 	
+    	detonationTribute(false);
+    	summon();
     }
     @Override public AbstractCard makeCopy() { return new BlastToken(); }
 
@@ -100,10 +81,13 @@ public class BlastToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.detonations = 2;
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

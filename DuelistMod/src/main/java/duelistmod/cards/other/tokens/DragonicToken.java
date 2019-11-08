@@ -37,6 +37,7 @@ public class DragonicToken extends TokenCard
     	this.tags.add(Tags.DRAGON);
     	this.purgeOnUse = true;
     	this.baseDamage = this.damage = 2;
+    	this.summons = this.baseSummons = 1;
     }
     public DragonicToken(String tokenName) 
     { 
@@ -45,10 +46,11 @@ public class DragonicToken extends TokenCard
     	this.tags.add(Tags.DRAGON);
     	this.purgeOnUse = true;
     	this.baseDamage = this.damage = 2;
+    	this.summons = this.baseSummons = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
+    	summon();
     	attack(m);
     }
     @Override public AbstractCard makeCopy() { return new DragonicToken(); }
@@ -67,10 +69,13 @@ public class DragonicToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeDamage(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

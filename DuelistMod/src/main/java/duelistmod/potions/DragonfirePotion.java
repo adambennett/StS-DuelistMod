@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.powers.duelistPowers.Dragonscales;
 import duelistmod.variables.Colors;
 
@@ -39,6 +40,13 @@ public class DragonfirePotion extends DuelistPotion {
         // Initialize the on-hover name + description
         //this.tips.add(new PowerTip(this.name, this.description));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Dragon Deck")) { return true; }
+    	return false;
     }
 
     @Override

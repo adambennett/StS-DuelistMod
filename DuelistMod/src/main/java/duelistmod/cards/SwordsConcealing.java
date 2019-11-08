@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
-import duelistmod.powers.SwordsConcealPower;
+import duelistmod.powers.duelistPowers.SwordsConcealPower;
 import duelistmod.variables.*;
 
 public class SwordsConcealing extends DuelistCard 

@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.PlayerTurnEffect;
 
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.ShuffleOnlyTaggedAction;
+import duelistmod.actions.common.*;
 import duelistmod.variables.Tags;
 
 public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGameAction
@@ -20,8 +20,9 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 	private CardTags tagToDraw;
 	private boolean draw = true;
 	private AbstractMonster targ;
-	
-	public CyberFusionAction(AbstractCreature source, int amount, boolean endTurnDraw, CardTags tag, AbstractMonster target) {
+	private boolean upgraded;
+
+	public CyberFusionAction(AbstractCreature source, int amount, boolean endTurnDraw, CardTags tag, AbstractMonster target, boolean upgraded) {
 		if (endTurnDraw) 
 		{
 			AbstractDungeon.topLevelEffects.add(new PlayerTurnEffect());
@@ -46,13 +47,14 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 		}
 		tagToDraw = tag;
 		this.targ = target;
+		this.upgraded = upgraded;
 	}
 
-	public CyberFusionAction(AbstractCreature source, int amount, CardTags tag, AbstractMonster m) {
-		this(source, amount, false, tag, m);
+	public CyberFusionAction(AbstractCreature source, int amount, CardTags tag, AbstractMonster m, boolean upgraded) {
+		this(source, amount, false, tag, m, upgraded);
 	}
 
-	
+
 	public void drawTag(int numCards, CardTags tag)
 	{
 		ArrayList<AbstractCard> typedCardsFromDeck = new ArrayList<AbstractCard>();
@@ -63,7 +65,7 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 				typedCardsFromDeck.add(c);
 			}
 		}
-		
+
 		if (typedCardsFromDeck.size() > 0)
 		{
 			for (int i = 0; i < numCards; i++) 
@@ -87,26 +89,26 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 						c.isCostModified = true;
 					}
 				}
-				
+
 				c.triggerWhenDrawn();
-	
-				 AbstractDungeon.player.hand.addToHand(c);
-				 AbstractDungeon.player.drawPile.removeCard(c);
-	
+
+				AbstractDungeon.player.hand.addToHand(c);
+				AbstractDungeon.player.drawPile.removeCard(c);
+
 				if ((AbstractDungeon.player.hasPower("Corruption")) && (c.type == AbstractCard.CardType.SKILL)) 
 				{
 					c.setCostForTurn(-9);
 				}
-	
+
 				for (AbstractRelic r : AbstractDungeon.player.relics) 
 				{
 					r.onCardDraw(c);
 				}
-				
+
 			}
 		}
 	}
-	
+
 	public void drawTag(CardTags tag)
 	{
 		if (AbstractDungeon.player.hand.size() == 10) {
@@ -172,12 +174,12 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 				}
 				if (taggedCardsInDiscard > 0 && this.draw)
 				{
-					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, tmp, tagToDraw, this.targ));
+					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, tmp, tagToDraw, this.targ, this.upgraded));
 					AbstractDungeon.actionManager.addToTop(new ShuffleOnlyTaggedAction(tagToDraw));
 					//AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
 				}
 				if (deckSize != 0 && this.draw) {
-					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, deckSize, tagToDraw, this.targ));
+					AbstractDungeon.actionManager.addToTop(new CyberFusionAction(AbstractDungeon.player, deckSize, tagToDraw, this.targ, this.upgraded));
 				}
 				this.amount = 0;
 				this.isDone = true;
@@ -197,9 +199,9 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			{
 				this.duration = Settings.ACTION_DUR_FASTER;
 			}
-			
+
 			this.amount -= 1;
-			
+
 			if (!AbstractDungeon.player.drawPile.isEmpty() && this.draw) 
 			{
 				drawTag(tagToDraw);
@@ -209,40 +211,65 @@ public class CyberFusionAction extends com.megacrit.cardcrawl.actions.AbstractGa
 			{
 				ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
 				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && !a.hasTag(Tags.EXEMPT)) { handCards.add(a); }}   	
-		    	if (handCards.size() > 0)
-		    	{
-		    		AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
-		    		DuelistCard cardCopy = (DuelistCard)summon;
-					if (cardCopy != null)
+				if (handCards.size() > 0)
+				{
+					if (!upgraded)
 					{
-						AbstractMonster m = AbstractDungeon.getRandomMonster();
-						if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
+						AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
+						DuelistCard cardCopy = (DuelistCard)summon;
+						if (cardCopy != null)
+						{
+							AbstractMonster m = AbstractDungeon.getRandomMonster();
+							if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }
+						}
 					}
-		    	}
+					else
+					{
+						ArrayList<DuelistCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
+						AbstractMonster m = AbstractDungeon.getRandomMonster();		    			
+						if (m != null) { this.addToBot(new CardSelectScreenResummonAction(choices, 1, m)); }
+					}
+				}
 				this.isDone = true;
 			}
-			
+
 			if (this.amount == 0) 
 			{
 				ArrayList<AbstractCard> handCards = new ArrayList<AbstractCard>();
 				for (AbstractCard a : AbstractDungeon.player.hand.group) { if (a.hasTag(Tags.MACHINE) && !a.hasTag(Tags.EXEMPT)) { handCards.add(a); }}   	
-		    	if (handCards.size() > 0)
-		    	{
-		    		AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
-		    		DuelistCard cardCopy = (DuelistCard)summon;
-					if (cardCopy != null)
+				if (handCards.size() > 0)
+				{
+					if (!upgraded)
 					{
+						AbstractCard summon = DuelistCard.returnRandomFromArrayAbstract(handCards);
+						DuelistCard cardCopy = (DuelistCard)summon;
+						if (cardCopy != null)
+						{
+							if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
+							{
+								DuelistCard.fullResummon(cardCopy, summon.upgraded, this.targ, false);
+							}
+							else
+							{
+								AbstractMonster m = AbstractDungeon.getRandomMonster();
+								if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }							
+							}
+						}
+					}
+					else
+					{
+						ArrayList<DuelistCard> choices = new ArrayList<>(); for (AbstractCard c : handCards) { if (c instanceof DuelistCard) { choices.add((DuelistCard)c); }}
 						if (this.targ != null && !this.targ.isDead && !this.targ.isDying && !this.targ.isDeadOrEscaped() && !this.targ.halfDead)
 						{
-							DuelistCard.fullResummon(cardCopy, summon.upgraded, this.targ, false);
+							this.addToBot(new CardSelectScreenResummonAction(choices, 1, this.targ));
 						}
 						else
 						{
-							AbstractMonster m = AbstractDungeon.getRandomMonster();
-							if (m != null) { DuelistCard.fullResummon(cardCopy, summon.upgraded, m, false); }							
+							AbstractMonster m = AbstractDungeon.getRandomMonster();		    			
+							if (m != null) { this.addToBot(new CardSelectScreenResummonAction(choices, 1, m)); }							
 						}
 					}
-		    	}
+				}
 				this.isDone = true;
 			}
 		}

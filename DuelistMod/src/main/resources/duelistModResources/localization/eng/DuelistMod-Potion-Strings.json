@@ -65,7 +65,7 @@
 },
 "theDuelist:GadgetBottle": {
         "NAME": "Amazon Package",
-        "DESCRIPTIONS": ["#yChannel a #yGadget.", "#yChannel #b", " #yGadget Orbs.", "Gives #yDexterity for the turn at the start of each turn, and plays random #ySkills when #yEvoked.", "#bInversion: #bGlitch"]
+        "DESCRIPTIONS": ["#yChannel a #yGadget.", "#yChannel #b", " #yGadget Orbs.", "Gives #yDexterity for the turn at the start of each turn, and applies #yGrease when #yEvoked.", "#bInversion: #bGlitch"]
 },
 "theDuelist:GlitchBottle": {
         "NAME": "Broken Bottle",
@@ -122,6 +122,10 @@
 "theDuelist:DragonfirePotion": {
         "NAME": "Dragonfire Potion",
         "DESCRIPTIONS": ["Deal #b", " damage for each of your max summons. Affected by #yDragonscales."]
+},
+"theDuelist:GreasePot": {
+        "NAME": "Grease Potion",
+        "DESCRIPTIONS": ["Deal #b", " damage for each of your max summons. Damage is incrased by #b1 each time you #yDetonate, up to a maximum of #b20 damage."]
 },
 "theDuelist:WaterBottle": {
         "NAME": "Water Bottle",
@@ -193,7 +197,7 @@
 },
 "theDuelist:MetallicizePotion": {
         "NAME": "Metallicize Potion",
-        "DESCRIPTIONS": ["Gain #b", " #yMetallicize. Reduce your #yMax #ySummons by #b", "."]
+        "DESCRIPTIONS": ["Gain #b", " #yMetallicize."]
 },
 "theDuelist:GiftPotion": {
         "NAME": "Fairy's Gift",

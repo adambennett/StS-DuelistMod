@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.CardSelectScreenModifyMagicNumberAction;
+import duelistmod.actions.common.SolderAction;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.variables.Tags;
 
@@ -45,7 +45,7 @@ public class GravityLashNameless extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
 		attack(m);
-		AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberAction(p.hand.group, 1, this.magicNumber, true));
+		AbstractDungeon.actionManager.addToTop(new SolderAction(p.hand.group, this.magicNumber, true));
     }
 
     // Which card to return when making a copy of this card.

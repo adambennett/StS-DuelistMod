@@ -1,15 +1,13 @@
 package duelistmod.cards.other.tokens;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.interfaces.*;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.variables.*;
@@ -27,7 +25,7 @@ public class ToonToken extends TokenCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
@@ -39,8 +37,8 @@ public class ToonToken extends TokenCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
     	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     public ToonToken(String tokenName) 
     { 
@@ -48,12 +46,12 @@ public class ToonToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.TOON);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
     	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
+    	summon();
     	drawTag(this.magicNumber, Tags.TOON);
     }
     @Override public AbstractCard makeCopy() { return new ToonToken(); }
@@ -86,11 +84,13 @@ public class ToonToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBlock(2);
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

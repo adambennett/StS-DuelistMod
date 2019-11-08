@@ -36,4 +36,14 @@ public abstract class DuelistPotion extends AbstractPotion
 	public void onSynergyTribute() { }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
+	
+	public void onEnemyUseCard(final AbstractCard card) { }
+	
+	public void onDetonate() { }
+	
+	public void onSolder() { }
+	
+	public void onPassRoulette() { }
+	
+	public boolean canSpawn() { return true; }
 }

@@ -94,6 +94,7 @@ public class DragonOrbEvokeAction extends AbstractGameAction
 	        	modCards.remove(randomNum);
     		}
     	}
+    	AbstractDungeon.player.hand.glowCheck();
     	
     	// Set amount to 0 so update() knows to return
     	amount = 0;

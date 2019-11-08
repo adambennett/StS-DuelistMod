@@ -48,7 +48,7 @@ public class CyberDragonInfinity extends DuelistCard
         this.tags.add(Tags.EXEMPT);
         this.tags.add(Tags.CYBER);
         this.tags.add(Tags.BAD_MAGIC);
-        this.tags.add(Tags.MAGIC_NUMBER_BUFFS_SCALE_BY_10);
+        this.tags.add(Tags.MAGIC_NUM_SCALE_BY_10);
         this.misc = 0;
         this.originalName = this.name;
         this.baseAFX = AttackEffect.FIRE;

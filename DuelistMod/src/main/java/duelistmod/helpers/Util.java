@@ -150,14 +150,7 @@ public class Util
 		if (DuelistMod.playingChallenge) { return DuelistMod.challengeLevel; }
 		else { return -1; }
 	}
-	
-	public static boolean tokenRoll()
-	{
-		int roll = AbstractDungeon.cardRandomRng.random(1,2);
-    	if (roll == 1) { return true; }
-    	else { return false; }
-	}
-	
+
 	public static boolean isMillenniumItem(AbstractRelic r, boolean includePuzzle)
 	{
 		ArrayList<String> items = new ArrayList<String>();
@@ -553,6 +546,10 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new InsectRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new NaturiaRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new MachineToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenB());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenC());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenD());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenE());
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new SummonAnchor());
 		DuelistMod.duelistRelicsForTombEvent.add(new SpellcasterToken());
@@ -563,8 +560,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new ZombieRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonRelicB());
 		DuelistMod.duelistRelicsForTombEvent.add(new ShopToken());
-		DuelistMod.duelistRelicsForTombEvent.add(new StoneExxod());
-		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenB());		
+		DuelistMod.duelistRelicsForTombEvent.add(new StoneExxod());	
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonRelicC());
 		DuelistMod.duelistRelicsForTombEvent.add(new YugiMirror());
 		DuelistMod.duelistRelicsForTombEvent.add(new CardRewardRelicF());
@@ -598,7 +594,7 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new MillenniumSymbol());
 		DuelistMod.duelistRelicsForTombEvent.add(new DragonBurnRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new GoldenScale());
-		DuelistMod.duelistRelicsForTombEvent.add(new ConfusionGoldRelic());
+		DuelistMod.duelistRelicsForTombEvent.add(new TokenUpgradeRelic());
 		DuelistMod.duelistRelicsForTombEvent.add(new DuelistPrismaticShard());
 		DuelistMod.duelistRelicsForTombEvent.add(new BlessingAnubis());
 		DuelistMod.duelistRelicsForTombEvent.add(new MillenniumPeriapt());
@@ -613,6 +609,17 @@ public class Util
 		DuelistMod.duelistRelicsForTombEvent.add(new PrayerPageD());
 		DuelistMod.duelistRelicsForTombEvent.add(new PrayerPageE());
 		DuelistMod.duelistRelicsForTombEvent.add(new MillenniumArmor());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenF());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenG());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenH());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenI());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenJ());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenK());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenL());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenM());
+		DuelistMod.duelistRelicsForTombEvent.add(new MachineTokenN());
+		DuelistMod.duelistRelicsForTombEvent.add(new ZoneToken());
+		DuelistMod.duelistRelicsForTombEvent.add(new SolderToken());
 	}
 	
 	public static ArrayList<AbstractCard> allHolidayCardsNoDateCheck()
@@ -1184,7 +1191,17 @@ public class Util
 		BaseMod.addPower(WorldTreePower.class, WorldTreePower.POWER_ID);
 		BaseMod.addPower(YamiFormPower.class, YamiFormPower.POWER_ID);		
 		BaseMod.addPower(YamiPower.class, YamiPower.POWER_ID);
-		
+		BaseMod.addPower(FluxPower.class, FluxPower.POWER_ID);
+		BaseMod.addPower(DoublePlayFirstCardPower.class, DoublePlayFirstCardPower.POWER_ID);
+		BaseMod.addPower(GeartownPower.class, GeartownPower.POWER_ID);
+		BaseMod.addPower(GreasedDebuff.class, GreasedDebuff.POWER_ID);
+		BaseMod.addPower(JinzoLordPower.class, JinzoLordPower.POWER_ID);
+		BaseMod.addPower(MetalholdMovingBlockadePower.class, MetalholdMovingBlockadePower.POWER_ID);
+		BaseMod.addPower(OverworkedPower.class, OverworkedPower.POWER_ID);
+		BaseMod.addPower(RevolvingSwitchyardPower.class, RevolvingSwitchyardPower.POWER_ID);
+		BaseMod.addPower(RoboticKnightPower.class, RoboticKnightPower.POWER_ID);
+		BaseMod.addPower(UnionHangarPower.class, UnionHangarPower.POWER_ID);
+		BaseMod.addPower(WonderGaragePower.class, WonderGaragePower.POWER_ID);
 	}
 	
 }

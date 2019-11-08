@@ -1,24 +1,17 @@
 package duelistmod.powers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.cards.other.tokens.Token;
-import duelistmod.interfaces.*;
-import duelistmod.variables.*;
+import duelistmod.cards.incomplete.RainbowRefraction;
+import duelistmod.variables.Tags;
 
 
 @SuppressWarnings("unused")
@@ -57,37 +50,8 @@ public class RainbowRefractionPower extends AbstractPower
 		AbstractPlayer p = AbstractDungeon.player;
     	if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && (info.owner != null) && (info.owner != this.owner) && (damageAmount > 0) && (!this.owner.hasPower("Buffer")))
     	{
-    		if (p.hasPower(SummonPower.POWER_ID))
-    		{
-    			SummonPower pow = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    			if (pow.getNumberOfTypeSummoned(Tags.MEGATYPED) > 0)
-    			{
-    				int tokens = 0;
-    		    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    		    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
-    		    	ArrayList<String> newSummonList = new ArrayList<String>();
-    		    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-    		    	for (DuelistCard s : aSummonsList)
-    		    	{
-    		    		if (s.hasTag(Tags.MEGATYPED))
-    		    		{
-    		    			tokens++;
-    		    		}
-    		    		else
-    		    		{
-    		    			newSummonList.add(s.originalName);
-    		    			aNewSummonList.add(s);
-    		    		}
-    		    	}
-    		    	
-    		    	DuelistCard.tributeChecker(p, tokens, new Token(), true);
-    		    	summonsInstance.summonList = newSummonList;
-    		    	summonsInstance.actualCardSummonList = aNewSummonList;
-    		    	summonsInstance.amount -= tokens;
-    		    	summonsInstance.updateDescription();
-    		    	return 0;
-    			}
-    		}
+    		int x = DuelistCard.xCostTributeStatic(Tags.MEGATYPED, new RainbowRefraction());
+    		if (x > 0) { return 0; }
     	}
     	return damageAmount;
     }

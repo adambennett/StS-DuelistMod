@@ -3,6 +3,7 @@ package duelistmod.cards.pools.warrior;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.SlowPower;
@@ -45,6 +46,7 @@ public class SwordDragonSoul extends DuelistCard
     @Override
     public void switchedStance() {
         this.setCostForTurn(this.costForTurn - this.thirdMagic);
+    	AbstractDungeon.player.hand.glowCheck();
     }
 
     // Actions the card should do.

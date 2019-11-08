@@ -12,7 +12,6 @@ import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
-import duelistmod.powers.duelistPowers.FrozenDebuff;
 import duelistmod.variables.*;
 
 public class SevenColoredFish extends DuelistCard 
@@ -54,6 +53,7 @@ public class SevenColoredFish extends DuelistCard
         this.originalName = this.name;
         this.summons = this.baseSummons = SUMMONS;
         this.isSummon = true;
+        this.setupStartingCopies();
     }
 
     // Actions the card should do.

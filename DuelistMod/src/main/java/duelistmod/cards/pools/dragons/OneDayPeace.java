@@ -38,7 +38,7 @@ public class OneDayPeace extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = 100;
         this.tags.add(Tags.SPELL);
-        this.tags.add(Tags.MAGIC_NUMBER_BUFFS_SCALE_BY_10);
+        this.tags.add(Tags.MAGIC_NUM_SCALE_BY_10);
         this.misc = 0;
         this.originalName = this.name;
         this.purgeOnUse = true;

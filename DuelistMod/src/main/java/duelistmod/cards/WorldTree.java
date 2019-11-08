@@ -10,6 +10,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.WorldTreePower;
 import duelistmod.variables.Tags;
 
 public class WorldTree extends DuelistCard 

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.pools.dragons.BabyDragon;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
 
 public class BabyPotion extends DuelistPotion {
@@ -38,6 +39,14 @@ public class BabyPotion extends DuelistPotion {
 		//this.tips.add(new PowerTip(this.name, this.description));
 
 	}
+	
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Dragon Deck")) { return true; }
+    	return false;
+    }
 
 	@Override
 	public void use(AbstractCreature target) 

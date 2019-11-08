@@ -49,63 +49,12 @@ public class BlastingFusePower extends AbstractPower
 	@Override
 	public void updateDescription() 
 	{
-		// Description Layout: Effect, singular, plural
-		if (this.amount == 1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2]; }
-		else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1]; }
+		this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
 	}
 
 	@Override
 	public void atStartOfTurn() 
 	{
-		AbstractPlayer p = AbstractDungeon.player;
-		if (GameActionManager.turn % 2 == 0) 
-		{
-			DuelistCard.summon(p, this.amount, new ExplosiveToken());
-		}
-		else if (p.hasPower(SummonPower.POWER_ID))
-		{
-			int tokens = 0;
-			int allTokens = 0;
-			int sTokens = 0;
-	    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-	    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
-	    	ArrayList<String> newSummonList = new ArrayList<String>();
-	    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-	    	for (DuelistCard s : aSummonsList)
-	    	{
-	    		if (s.hasTag(Tags.EXPLODING_TOKEN))
-	    		{
-	    			tokens++;
-	    			allTokens++;	    			
-	    		}
-	    		else if (s.hasTag(Tags.SUPER_EXPLODING_TOKEN))
-	    		{
-	    			sTokens++;
-	    			allTokens++;
-	    		}
-	    		else
-	    		{
-	    			newSummonList.add(s.originalName);
-	    			aNewSummonList.add(s);
-	    		}
-	    	}
-	    	
-	    	DuelistCard.tributeChecker(p, allTokens, new Token(), false);
-	    	summonsInstance.summonList = newSummonList;
-	    	summonsInstance.actualCardSummonList = aNewSummonList;
-	    	summonsInstance.amount -= allTokens;
-	    	for (int i = 0; i < tokens; i++)
-	    	{
-	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh);
-	    		DuelistCard.attackAllEnemiesFireThorns(roll);
-	    	}
-	    	for (int i = 0; i < sTokens; i++)
-	    	{
-	    		int roll = AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2);
-	    		DuelistCard.attackAllEnemiesFireThorns(roll);
-	    	}
-	    	
-	    	DuelistCard.summon(p, 0, new Token());
-		}
+		if (this.amount > 0) { DuelistCard.detonationTributeStatic(this.amount, false, false, 1, false); }
 	}
 }

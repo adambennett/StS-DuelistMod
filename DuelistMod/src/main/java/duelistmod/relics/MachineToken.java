@@ -2,7 +2,6 @@ package duelistmod.relics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistRelic;
@@ -16,7 +15,7 @@ public class MachineToken extends DuelistRelic
 	public static final String OUTLINE = DuelistMod.makeRelicPath("MachineRelic.png");
 
 	public MachineToken() {
-		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.COMMON, LandingSound.MAGICAL);
+		super(ID, new Texture(IMG), new Texture(OUTLINE), RelicTier.UNCOMMON, LandingSound.MAGICAL);
 	}
 	
 	@Override

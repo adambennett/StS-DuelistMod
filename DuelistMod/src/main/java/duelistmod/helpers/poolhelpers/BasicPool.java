@@ -10,7 +10,9 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
+import duelistmod.cards.pools.warrior.ElectromagneticShield;
 
 public class BasicPool 
 {
@@ -116,7 +118,6 @@ public class BasicPool
 		toReturn.add(new OneForOne());
 		toReturn.add(new DigitalBug());
 		toReturn.add(new Solidarity());
-		toReturn.add(new SlotMachine());
 		toReturn.add(new RedHeadedOni());
 		toReturn.add(new BlueBloodedOni());
 		toReturn.add(new GreenGraveOni());
@@ -144,8 +145,10 @@ public class BasicPool
 		if (deckName.equals("Dragon Deck")) { cards.addAll(dragonBasics(true)); }
 		else if (deckName.equals("Naturia Deck")) { cards.addAll(naturiaBasics(true)); }
 		else if (deckName.equals("Insect Deck")) { cards.addAll(insectBasics(true)); }
+		else if (deckName.equals("Machine Deck")) { cards.addAll(machineBasics(true)); }
 		else
 		{
+			cards.add(new TimeSeal());
 			cards.add(new PowerWall());
 			cards.add(new Cloning());		
 			cards.add(new DarkFactory());
@@ -220,7 +223,6 @@ public class BasicPool
 			cards.add(new EarthGiant());
 			cards.add(new RainbowKuriboh());
 			cards.add(new ClearKuriboh());
-			cards.add(new Linkuriboh());
 			cards.add(new GiantTrapHole());
 			cards.add(new BigEye());	
 			cards.add(new YamiForm());
@@ -314,6 +316,7 @@ public class BasicPool
 		if (deckName.equals("Dragon Deck")) { cards.addAll(dragonBasics(false)); }
 		else if (deckName.equals("Naturia Deck")) { cards.addAll(naturiaBasics(false)); }
 		else if (deckName.equals("Insect Deck")) { cards.addAll(insectBasics(false)); }
+		else if (deckName.equals("Machine Deck")) { cards.addAll(machineBasics(false)); }
 		else
 		{
 			//cards.add(new CastleWalls());
@@ -519,6 +522,79 @@ public class BasicPool
 		cards.add(new Solidarity());		
 		cards.add(new YamiForm());
 		cards.add(new YellowBelliedOni());
+		
+		// Creators
+		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }
+		
+		// Ascension-locked cards		
+		if (AbstractDungeon.ascensionLevel < 10)
+		{
+			cards.add(new DestructPotion());
+			cards.add(new Wiseman());			
+		} 
+		
+		if (AbstractDungeon.ascensionLevel < 15)
+		{
+			cards.add(new DianKeto());
+			cards.add(new RedMedicine());
+			cards.add(new Reload());
+			cards.add(new ForbiddenChalice());
+		}
+		
+		return cards;
+	}
+	
+	public static ArrayList<AbstractCard> machineBasics(boolean full)
+	{
+		ArrayList<AbstractCard> cards = new ArrayList<AbstractCard>();
+		if (full)
+		{
+			cards.add(new BigEye());	
+			cards.add(new BigFire());
+			cards.add(new BlockGolem());
+			cards.add(new FutureFusion());
+			cards.add(new GemElephant());
+			cards.add(new Hinotama());
+			cards.add(new Kuribohrn());
+			cards.add(new LightningDarts());
+			cards.add(new LightningVortex());
+			cards.add(new MagicalStone());
+			cards.add(new ReinforcementsArmy());
+			cards.add(new Sangan());
+			cards.add(new Solidarity());
+			cards.add(new Terraforming());
+			cards.add(new UltimateOffering());
+		}
+		cards.add(new GracefulCharity());
+		cards.add(new BlackPendant());
+		cards.add(new PerfectMachineKing());
+		cards.add(new Reinforcements());
+		cards.add(new PowerWall());
+		cards.add(new SeismicShockwave());
+		cards.add(new BattleFootballer());
+		cards.add(new ChangeHeart());
+		cards.add(new DarkFactory());
+		cards.add(new FluteKuriboh());		
+		cards.add(new GoldenApples());		
+		cards.add(new Kuriboh());		
+		cards.add(new LabyrinthWall());		
+		cards.add(new Linkuriboh());		
+		cards.add(new MillenniumShield());
+		cards.add(new Polymerization());
+		cards.add(new PotAvarice());
+		cards.add(new PotGenerosity());
+		cards.add(new PotGreed());
+		cards.add(new PowerGiant());
+		cards.add(new Raigeki());		
+		cards.add(new ScrapFactory());
+		cards.add(new ShardGreed());	
+		cards.add(new StrayLambs());
+		cards.add(new WeepingIdol());
+		cards.add(new WingedKuriboh());
+		cards.add(new WingedKuriboh10());
+		cards.add(new Wiretap());
+		cards.add(new WormApocalypse());
+		cards.add(new YamiForm());
 		
 		// Creators
 		if (!DuelistMod.creatorBtnBool) { cards.add(new TheCreator()); cards.add(new DarkCreator()); }

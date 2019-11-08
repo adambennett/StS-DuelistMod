@@ -35,7 +35,7 @@ public class ArtifactSanctum extends DuelistCard
 
     public ArtifactSanctum() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 3;
+        this.baseMagicNumber = this.magicNumber 	= 7;
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;
@@ -60,7 +60,7 @@ public class ArtifactSanctum extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeMagicNumber(2);
+            this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

@@ -26,6 +26,7 @@ import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.machine.*;
 import duelistmod.helpers.*;
 import duelistmod.powers.SwordsRevealPower;
+import duelistmod.powers.duelistPowers.OverworkedPower;
 import duelistmod.powers.enemyPowers.*;
 import duelistmod.variables.Tags;
 
@@ -250,7 +251,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		{ 
 			int dmgTotal = 0;
 			for (int i = 0; i < explodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow, DuelistMod.explosiveDmgHigh); }
-			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.FIRE));
 		}	
 		
 		int supExplodes = superExplodesTributed(tribs);
@@ -258,7 +259,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		{ 
 			int dmgTotal = 0;
 			for (int i = 0; i < supExplodes; i++) { dmgTotal += AbstractDungeon.cardRandomRng.random(DuelistMod.explosiveDmgLow * 2, DuelistMod.explosiveDmgHigh * 2); }
-			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.POISON));
+			AbstractDungeon.actionManager.addToBottom(new LoseHPAction(this, this, dmgTotal, AbstractGameAction.AttackEffect.FIRE));
 		}	
 		return tribs;
 	}
@@ -595,6 +596,7 @@ public abstract class DuelistMonster extends AbstractMonster
 	
 	private void takeCardAction(AbstractCard c)
 	{
+		DuelistCard.handleOnEnemyPlayCardForAllAbstracts(c);
 		if (c instanceof DarkCubicLord)
 		{
 			tribute(7, false, false, false);
@@ -726,6 +728,7 @@ public abstract class DuelistMonster extends AbstractMonster
 		if (c instanceof SwordsRevealing)
 		{
 			DuelistCard sword = new SwordsRevealing();
+			tribute(9999, false, false, false);
 			DuelistCard.applyPower(new SwordsRevealPower(this, this, sword.magicNumber), this);
 		}
 

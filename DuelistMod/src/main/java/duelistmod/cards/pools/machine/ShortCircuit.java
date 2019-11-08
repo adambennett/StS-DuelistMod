@@ -37,13 +37,14 @@ public class ShortCircuit extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
+        this.magicNumber = this.baseMagicNumber = 1;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new ShortCircuitPower(1));
+    	applyPowerToSelf(new ShortCircuitPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
@@ -332,19 +333,20 @@ public class ShortCircuit extends DuelistCard
 		
 	}
 	
-    private static String getCARDID()
+	// AUTOSETUP - ID/IMG - Id, Img name, and class name all must match to use this
+    public static String getCARDID()
     {
     	return DuelistMod.makeID(getCurClassName());
     }
     
-    private static CardStrings getCardStrings()
+	public static CardStrings getCardStrings()
     {
     	return CardCrawlGame.languagePack.getCardStrings(getCARDID());
     }
     
-    private static String getIMG()
+    public static String getIMG()
     {
-    	return DuelistMod.makeID(getCurClassName() + ".png");
+    	return DuelistMod.makeCardPath(getCurClassName() + ".png");
     }
     
     public static String getCurClassName()
@@ -352,11 +354,10 @@ public class ShortCircuit extends DuelistCard
     	return (new CurClassNameGetter()).getClassName();
     }
 
-    //Static Nested Class doing the trick
     public static class CurClassNameGetter extends SecurityManager{
     	public String getClassName(){
-    		return getClassContext()[1].getName();
+    		return getClassContext()[1].getSimpleName();
     	}
     }
-   
+    // END AUTOSETUP
 }

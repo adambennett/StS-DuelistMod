@@ -19,7 +19,7 @@ public class SetMagicNumberToSevenAction extends AbstractGameAction
 	@Override
 	public void update() 
 	{
-		if (!this.cardToModify.hasTag(Tags.NO_MAGIC_MOD))
+		if (!this.cardToModify.hasTag(Tags.ALLOYED))
 		{
 			if (this.cardToModify.baseMagicNumber != 7) { this.cardToModify.isMagicNumberModified = true; }
 			this.cardToModify.baseMagicNumber = 7;

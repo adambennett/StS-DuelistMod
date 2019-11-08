@@ -5,9 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.AbstractPotion.*;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -30,7 +28,7 @@ public class MetallicizePotion extends DuelistPotion {
         this.potency = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
+        this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = false;
@@ -41,20 +39,10 @@ public class MetallicizePotion extends DuelistPotion {
     }
     
     @Override
-    public boolean canUse()
-    {
-    	int decAmt = 1;
-    	if (!AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT)) { return false; }
-    	if (DuelistCard.canDecMaxSummons(decAmt)) { return true; }
-    	else { return false; }
-    }
-
-    @Override
     public void use(AbstractCreature target) 
     {
     	target = AbstractDungeon.player;
     	DuelistCard.applyPowerToSelf(new MetallicizePower(AbstractDungeon.player, this.potency));
-    	DuelistCard.decMaxSummons(AbstractDungeon.player, 1);
     }
     
     @Override
@@ -65,14 +53,14 @@ public class MetallicizePotion extends DuelistPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 4;
+    	int pot = 5;
     	return pot;
     }
     
     @Override
     public void initializeData() {
         this.potency = this.getPotency();
-        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
+        this.description =  DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
@@ -80,7 +68,7 @@ public class MetallicizePotion extends DuelistPotion {
     public void upgradePotion()
     {
       this.potency += 2;
-      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
+      this.description = DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1];
       this.tips.clear();
       this.tips.add(new PowerTip(this.name, this.description));
     }

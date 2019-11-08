@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
-import duelistmod.cards.pools.machine.IronhammerGiant;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 
 public class RockPool 
@@ -63,6 +63,7 @@ public class RockPool
 		cards.add(new RockstoneWarrior());
 		cards.add(new StoneDragon());
 		cards.add(new WeepingIdol());
+		cards.add(new RockBombardment());
 		return cards;
 	}
 }

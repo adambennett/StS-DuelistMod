@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -26,7 +27,7 @@ public class GiantTrapHole extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
     private static final int COST = 3;
@@ -69,6 +70,38 @@ public class GiantTrapHole extends DuelistCard
     
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c) 
+    {
+    	if (c.type.equals(CardType.POWER))
+    	{
+    		this.modifyCostForCombat(-this.magicNumber);
+    		this.isCostModified = true;
+    		AbstractDungeon.player.hand.glowCheck();
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInHand(AbstractCard c)
+    {
+    	if (c.type.equals(CardType.POWER))
+    	{
+    		this.modifyCostForCombat(-this.magicNumber);
+    		this.isCostModified = true;
+    		AbstractDungeon.player.hand.glowCheck();
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDiscard(AbstractCard c)
+    {
+    	if (c.type.equals(CardType.POWER))
+    	{
+    		this.modifyCostForCombat(-this.magicNumber);
+    		this.isCostModified = true;
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDraw(AbstractCard c)
     {
     	if (c.type.equals(CardType.POWER))
     	{

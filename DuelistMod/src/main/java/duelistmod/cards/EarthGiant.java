@@ -1,6 +1,7 @@
 package duelistmod.cards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -27,7 +28,7 @@ public class EarthGiant extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -64,6 +65,33 @@ public class EarthGiant extends DuelistCard
 
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c) 
+    {
+    	if (c.type.equals(CardType.SKILL))
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInHand(AbstractCard c)
+    {
+    	if (c.type.equals(CardType.SKILL))
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDiscard(AbstractCard c)
+    {
+    	if (c.type.equals(CardType.SKILL))
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDraw(AbstractCard c)
     {
     	if (c.type.equals(CardType.SKILL))
     	{

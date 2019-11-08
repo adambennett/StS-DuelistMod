@@ -66,6 +66,8 @@ public class NaturiaForestAction extends AbstractGameAction
     		trap.isCostModifiedForTurn = true;
     	}
     	
+    	AbstractDungeon.player.hand.glowCheck();
+    	
     	// Set amount to 0 so update() knows to return
     	amount = 0;
 	}

@@ -27,6 +27,8 @@ public class DebuffHelper
 		AbstractPower strDownB = new StrengthDownPower(targetMonster, targetMonster, turnNum, 2);
 		AbstractPower burning = new BurningDebuff(targetMonster, p, turnNum);
 		//AbstractPower frozen = new FrozenDebuff(targetMonster, p);
+		AbstractPower grease = new GreasedDebuff(targetMonster, AbstractDungeon.player, turnNum);
+		
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		debuffs.add(slow);
 		debuffs.add(vulnerable);
@@ -37,6 +39,7 @@ public class DebuffHelper
 		debuffs.add(strDownB);
 		debuffs.add(burning);
 		//debuffs.add(frozen);
+		debuffs.add(grease);
 
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);
@@ -59,6 +62,8 @@ public class DebuffHelper
 		AbstractPower strDownB = new StrengthDownPower(targetMonster, targetMonster, turnNum, strRoll);
 		AbstractPower burning = new BurningDebuff(targetMonster, AbstractDungeon.player, turnNum);
 		AbstractPower frozen = new FrozenDebuff(targetMonster, AbstractDungeon.player);
+		AbstractPower grease = new GreasedDebuff(targetMonster, AbstractDungeon.player, turnNum);
+		
 		ArrayList<AbstractPower> debuffs = new ArrayList<AbstractPower>();
 		debuffs.add(slow);
 		debuffs.add(vulnerable);
@@ -69,6 +74,7 @@ public class DebuffHelper
 		debuffs.add(strDownB);
 		debuffs.add(burning);
 		debuffs.add(frozen);
+		debuffs.add(grease);
 
 		// Get randomized debuff
 		int randomDebuffNum = AbstractDungeon.cardRandomRng.random(debuffs.size() - 1);

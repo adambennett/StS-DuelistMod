@@ -31,12 +31,12 @@ public class CyberneticOverflow extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 1;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public CyberneticOverflow() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber = 20;
+        this.baseMagicNumber = this.magicNumber = 15;
         this.tags.add(Tags.TRAP);
         this.misc = 0;
         this.originalName = this.name;

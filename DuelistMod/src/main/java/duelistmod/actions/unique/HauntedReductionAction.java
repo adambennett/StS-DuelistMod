@@ -76,6 +76,7 @@ public class HauntedReductionAction extends AbstractGameAction
     	{
     		trap.setCostForTurn(-trap.cost);
     		trap.isCostModifiedForTurn = true;
+    		AbstractDungeon.player.hand.glowCheck();
     	}
     	
     	// Set amount to 0 so update() knows to return

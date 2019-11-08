@@ -25,7 +25,7 @@ public class SpellcasterToken extends TokenCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
@@ -37,11 +37,12 @@ public class SpellcasterToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.SPELLCASTER); 
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
 		this.showInvertValue = true;
 		this.showEvokeValue = true;
 		this.showInvertOrbs = 1;
 		this.showEvokeOrbCount = 1;		
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     
     public SpellcasterToken(String tokenName) 
@@ -50,18 +51,19 @@ public class SpellcasterToken extends TokenCard
     	this.tags.add(Tags.TOKEN); 
     	this.tags.add(Tags.SPELLCASTER);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
 		this.showInvertValue = true;
 		this.showEvokeValue = true;
 		this.showInvertOrbs = 1;
-		this.showEvokeOrbCount = 1;		
+		this.showEvokeOrbCount = 1;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this); 
+    	summon(); 
     	int roll = AbstractDungeon.cardRandomRng.random(1, 2);
-    	if (roll == 1) { invert(1); }
+    	if (roll == 1) { invert(this.magicNumber); }
     }
     @Override public AbstractCard makeCopy() { return new SpellcasterToken(); }
 	@Override public void onTribute(DuelistCard tributingCard) 
@@ -71,7 +73,18 @@ public class SpellcasterToken extends TokenCard
 	@Override public void onResummon(int summons) { }
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
-	@Override public void upgrade() {}
+
+	@Override public void upgrade() 
+	{
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(1);
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
+	}
+	
 	@Override
 	public String getID() {
 		return ID;

@@ -200,6 +200,18 @@
         "NAME": "Yami",
         "DESCRIPTIONS": ["#ySpellcasters deal #b", "% more damage and gain #b", "% more #yBlock. Whenever you #ySummon a #ySpellcaster, gain 1 extra #ySummon." ]
 },
+"theDuelist:UnionHangarPower": {
+        "NAME": "Union Hangar",
+        "DESCRIPTIONS": ["#yMachines gain #b", "% more #yBlock." ]
+},
+"theDuelist:RevolvingSwitchyardPower": {
+        "NAME": "Revolving Switchyard",
+        "DESCRIPTIONS": ["#yRoulette effects always trigger." ]
+},
+"theDuelist:GeartownPower": {
+        "NAME": "Geartown",
+        "DESCRIPTIONS": ["Whenever you a Trap is played, #ySummon #b", " Explosive Token.", " Explosive Tokens." ]
+},
 "theDuelist:TimeWizardPower": {
         "NAME": "Time Wizard",
         "DESCRIPTIONS": ["At the start of turn, trigger #b", " random effect. NL #yEffect #yThis #yTurn: ", " random effects. NL #yEffects #yThis #yTurn: " ]
@@ -438,7 +450,7 @@
 },
 "theDuelist:OutriggerExtensionPower": {
         "NAME": "Outrigger Extension",
-        "DESCRIPTIONS": ["Whenever you draw a #yMachine, increase the magic number of another random card in your hand by #b", " for the turn."  ]
+        "DESCRIPTIONS": ["The first time you #yTribute a #yMachine each turn, #ySolder #b", "."  ]
 },
 "theDuelist:JumboDrillPower": {
         "NAME": "Jumbo Drill",
@@ -560,7 +572,7 @@
 },
 "theDuelist:BlastingFusePower": {
         "NAME": "Blasting Fuse",
-        "DESCRIPTIONS": ["At the start of even turns, #ySummon #b", " Explosive Tokens. At the start of odd turns, #yTribute all of your Explosive Tokens, dealing damage to ALL enemies instead of you.", " Explosive Token. At the start of odd turns, #yTribute all of your Explosive Tokens, dealing damage to ALL enemies instead of you."		]
+        "DESCRIPTIONS": ["At the start of each turn, #yDetonate #b", "."		]
 },
 "theDuelist:EnemyHandPower": {
         "NAME": "Hand",
@@ -920,7 +932,7 @@
 },
 "theDuelist:WonderGaragePower": {
         "NAME": "Wonder Garage",
-        "DESCRIPTIONS": ["At the start of turn, add #b", " random #yToken to your hand.", " random #yTokens to your hand."]
+        "DESCRIPTIONS": ["Whenever a Token is created during combat, #yUpgrade it."]
 },
 "theDuelist:ShortCircuitPower": {
         "NAME": "Short Circuit",
@@ -933,6 +945,30 @@
 "theDuelist:JinzoLordPower": {
         "NAME": "Jinzo Lord",
         "DESCRIPTIONS": ["Whenever you play a #yTrap, deal #b", " damage to ALL enemies." ]
+},
+"theDuelist:DoublePlayFirstCardPower": {
+        "NAME": "Tuningware",
+        "DESCRIPTIONS": ["The next #b", " card you play is played twice.", " cards you play are played twice.", "The next" ]
+},
+"theDuelist:OverworkedPower": {
+        "NAME": "Overworked",
+        "DESCRIPTIONS": ["Whenever an #yAttack is played, lose #b", " #yStrength.", "Whenever an #yAttack is played, gain #b", ]
+},
+"theDuelist:FluxPower": {
+        "NAME": "Flux",
+        "DESCRIPTIONS": ["When you #ySolder, improve the magic number of the targeted card by #b", " more." ]
+},
+"theDuelist:MetaholdMovingBlockadePower": {
+        "NAME": "Metahold Blockade",
+        "DESCRIPTIONS": ["Whenever you #yDetonate, gain #b", " #yBlock." ]
+},
+"theDuelist:RoboticKnightPower": {
+        "NAME": "Robotic Knight",
+        "DESCRIPTIONS": ["Whenever you #ySolder, repeat the same #ySoldering action." ]
+},
+"theDuelist:GreasedDebuff": {
+        "NAME": "Greased",
+        "DESCRIPTIONS": ["At the start of your #yodd turns, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of its #yodd turns, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

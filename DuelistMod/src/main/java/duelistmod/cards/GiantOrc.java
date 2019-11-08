@@ -1,6 +1,5 @@
 package duelistmod.cards;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,11 +7,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.*;
+import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
 public class GiantOrc extends DuelistCard 
@@ -61,6 +60,38 @@ public class GiantOrc extends DuelistCard
 
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c) 
+    {
+    	if (c.type.equals(CardType.ATTACK))
+    	{
+    		this.modifyCostForCombat(-this.magicNumber);
+    		this.isCostModified = true;
+    		AbstractDungeon.player.hand.glowCheck();
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInHand(AbstractCard c)
+    {
+    	if (c.type.equals(CardType.ATTACK))
+    	{
+    		this.modifyCostForCombat(-this.magicNumber);
+    		this.isCostModified = true;
+    		AbstractDungeon.player.hand.glowCheck();
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDiscard(AbstractCard c)
+    {
+    	if (c.type.equals(CardType.ATTACK))
+    	{
+    		this.modifyCostForCombat(-this.magicNumber);
+    		this.isCostModified = true;
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDraw(AbstractCard c)
     {
     	if (c.type.equals(CardType.ATTACK))
     	{

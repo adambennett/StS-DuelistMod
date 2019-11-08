@@ -1,338 +1,279 @@
 package duelistmod.helpers;
 
-import java.util.*;
+import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.common.*;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 
-import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.actions.common.*;
-import duelistmod.orbs.Glitch;
-import duelistmod.variables.*;
+import duelistmod.cards.other.tempCards.RarityTempCardA;
+import duelistmod.orbs.*;
+import duelistmod.powers.duelistPowers.FrozenDebuff;
 
 public class RandomActionHelper
-{
-	
-	// OJAMANIA FIELDS
-	private static int MIN_BUFF_TURNS_ROLL = 1;
-    private static int MAX_BUFF_TURNS_ROLL = 3;
-    private static int MIN_DEBUFF_TURNS_ROLL = 1;
-    private static int MAX_DEBUFF_TURNS_ROLL = 6;
-    private static int RAND_CARDS = 2;
-    private static int RAND_BUFFS = 1;
-    private static int RAND_DEBUFFS = 2;
-    private static boolean printing = DuelistMod.debug;
-    
+{    
     // Action List
     public static ArrayList<String> actions = new ArrayList<String>();
     public static int randomIndex = 0;
-    public static Map<String, String> translationMap = new HashMap<String, String>();	
     
-    public static String triggerRandomAction(int timesTriggered, boolean upgradeOjamaniaCards)
+    public static String triggerRandomAction(int timesTriggered, boolean upgradeOjamaniaCards, boolean talk, boolean screensAllowed)
 	{
-    	initList();
+    	initList(screensAllowed);
 		int randomActionNum = 0;
 		String lastAction = "";
 		for (int i = 0; i < timesTriggered; i++)
 		{
 			randomActionNum = AbstractDungeon.cardRandomRng.random(actions.size() - 1);
-			if (DuelistMod.debug) { System.out.println("theDuelist:RandomActionHelper:triggerRandomAction() ---> randomActionNum: " + randomActionNum); }
-			lastAction = runAction(actions.get(randomActionNum), upgradeOjamaniaCards);
+			Util.log("theDuelist:RandomActionHelper:triggerRandomAction() ---> randomActionNum: " + randomActionNum);
+			lastAction = runAction(actions.get(randomActionNum), upgradeOjamaniaCards, talk, screensAllowed);
 		}
 		
-		if (translationMap.get(lastAction) != null) { lastAction = translationMap.get(lastAction); }
-		else if (DuelistMod.debug) { DuelistMod.logger.info("Got a null translation for a random action, so we just loaded the English"); }
 		return lastAction;
 	}
+    
 
-	public static String runAction(String string, boolean upgradeCards) 
+	public static String runAction(String string, boolean upgradeCards, boolean talk, boolean screensAllowed) 
 	{
-		initList();
+		initList(screensAllowed);
+		AbstractPlayer p = AbstractDungeon.player;
 		switch (string)
 		{
 			case "Draw #b1 card":
 				DuelistCard.draw(1);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Draw 1 card", 1.0F, 2.0F)); }
+				break;
+			case "Draw #b1 Common":
+				DuelistCard.drawRare(1, CardRarity.COMMON);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Draw 1 Common", 1.0F, 2.0F)); }
+				break;
+			case "Draw #b1 Uncommon":
+				DuelistCard.drawRare(1, CardRarity.UNCOMMON);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Draw 1 Uncommon", 1.0F, 2.0F)); }
+				break;
+			case "Draw #b1 of chosen rarity":
+				ArrayList<DuelistCard> choices = new ArrayList<>();
+	    		choices.add(new RarityTempCardA(1, CardRarity.COMMON));
+	    		choices.add(new RarityTempCardA(1, CardRarity.UNCOMMON));
+	    		choices.add(new RarityTempCardA(1, CardRarity.RARE));
+	    		AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(choices, 1));
+	    		if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Choose a rarity to draw from", 1.0F, 2.0F)); }
 				break;
 			case "Draw #b2 cards":
 				DuelistCard.draw(2);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Gain #b10 HP":
-				DuelistCard.heal(AbstractDungeon.player, 10);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Gain #b5 HP":
-				DuelistCard.heal(AbstractDungeon.player, 5);
-				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
-				break;
-			case "Lose #b5 HP":
-				DuelistCard.damageSelf(5);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Lose #b1 HP":
-				DuelistCard.damageSelf(1);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "#yExhaust #b1 random card in hand":
-				AbstractDungeon.actionManager.addToTop(new ExhaustAction(1, true));
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Gain a random amount of gold (50-100)":
-				int randomGold = AbstractDungeon.cardRandomRng.random(50, 100);
-				DuelistCard.gainGold(randomGold, AbstractDungeon.player, true);
-				string = "Gain a random amount of gold (50-100): #b" + randomGold ;
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Gain a random amount of gold (1-50)":
-				int randomGoldB = AbstractDungeon.cardRandomRng.random(1, 50);
-				DuelistCard.gainGold(randomGoldB, AbstractDungeon.player, true);
-				string = "Gain a random amount of gold (1-50): #b" + randomGoldB;
-				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
-				break;
-			case "Gain a random amount of gold (5-200)":
-				int randomGoldC = AbstractDungeon.cardRandomRng.random(5, 200);
-				DuelistCard.gainGold(randomGoldC, AbstractDungeon.player, true);
-				string = "Gain a random amount of gold (5-200): #b" + randomGoldC;
-				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
-				break;
-			case "Gain a random amount of gold (0-1000)":
-				int randomGoldD = AbstractDungeon.cardRandomRng.random(0, 1000);
-				DuelistCard.gainGold(randomGoldD, AbstractDungeon.player, true);
-				string = "Gain a random amount of gold (5-1000): #b" + randomGoldD;
-				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
-				break;
-			case "Apply #b1 random #ybuff":
-				int randomTurnNum = AbstractDungeon.cardRandomRng.random(1, 3);
-				DuelistCard.applyRandomBuff(AbstractDungeon.player, randomTurnNum);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Apply #b1 random #ydebuff to random enemy":
-				int randomTurnNumD = AbstractDungeon.cardRandomRng.random(1, 3);
-				AbstractMonster m = DuelistCard.getRandomMonster();
-				if (m != null)
-				{
-					AbstractPower debuff = DebuffHelper.getRandomDebuff(AbstractDungeon.player, m, randomTurnNumD);
-					DuelistCard.applyPower(debuff, (AbstractCreature)m);
-				}
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Apply #b2 random #ydebuffs to random enemy":
-				
-				int randomTurnNumDe = AbstractDungeon.cardRandomRng.random(1, 3);
-				AbstractMonster ma = DuelistCard.getRandomMonster();
-				if (ma != null)
-				{
-					AbstractPower debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
-					DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
-					
-					randomTurnNumDe = AbstractDungeon.cardRandomRng.random(1, 3);
-					debuffB = DebuffHelper.getRandomDebuff(AbstractDungeon.player, ma, randomTurnNumDe);
-					DuelistCard.applyPower(debuffB, (AbstractCreature)ma);
-				}				
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "#yChannel #b1 random orb":
-				DuelistCard.channelRandom();
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Channel a Glitch":
-				AbstractOrb glitch = new Glitch();
-				DuelistCard.channel(glitch);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Add #b1 random #ySpell to hand":
-				DuelistCard randomSpell = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.SPELL);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpell, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "#yEvoke #b1 Orb":
-				if (AbstractDungeon.player.orbs.size() < 1) 
-				{ 
-					triggerRandomAction(1, upgradeCards);
-					//System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: Evoke 1 Orb, but skipped due to no orbs ");
-					break; 
-				}
-				else { DuelistCard.evoke(1); }
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Add #b1 random #yTrap to hand":
-				DuelistCard randomTrap = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.TRAP);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomTrap, false, true, true, false, false, false, false, false, 1, 3, 0, 0, 0, 0));
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Add #b1 random #yDragon to hand":
-				DuelistCard randomSpellcaster = (DuelistCard) DuelistCard.returnTrulyRandomFromSet(Tags.DRAGON);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomSpellcaster, false, true, true, false, randomSpellcaster.baseTributes > 0, false, true, false, 1, 3, 0, 1, 0, 0));
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Add #b1 random #yMonster to hand":
-				DuelistCard randomMonster = (DuelistCard) DuelistCard.returnTrulyRandomInCombatFromSet(Tags.MONSTER);
-				AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(randomMonster, false, true, true, false, false, randomMonster.baseSummons > 0, false, true, 1, 3, 0, 0, 1, 2));
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Add #b1 random #yEthereal Duelist card to hand":
-				AbstractDungeon.actionManager.addToTop(new RandomEtherealDuelistCardToHandAction());
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Lose #b1 strength":
-				AbstractDungeon.actionManager.addToTop(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1), 1));
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Lose #b1 dexterity":
-				AbstractDungeon.actionManager.addToTop(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, 1), 1));
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Draw 2 cards", 1.0F, 2.0F)); }
 				break;
 			case "Gain #b5 #yBlock":
 				DuelistCard.staticBlock(5);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 5 Block", 1.0F, 2.0F)); }
 				break;
 			case "Gain #b10 #yBlock":
 				DuelistCard.staticBlock(10);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 10 Block", 1.0F, 2.0F)); }
 				break;
 			case "Gain #b15 #yBlock":
 				DuelistCard.staticBlock(15);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 15 Block", 1.0F, 2.0F)); }
 				break;
-			case "#ySummon #b1":
-				DuelistCard randomToken = (DuelistCard) DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeCopy();
-				DuelistCard.summon(AbstractDungeon.player, 1, randomToken);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+			case "Gain #b5 #yTemp #yHP":
+				DuelistCard.gainTempHP(5);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 5 Temporary HP", 1.0F, 2.0F)); }
 				break;
-			case "#ySummon #b2":
-				DuelistCard randomTokenB = (DuelistCard) DuelistCardLibrary.getTokensForCombat().get(AbstractDungeon.cardRandomRng.random(DuelistCardLibrary.getTokensForCombat().size() - 1)).makeCopy();
-				DuelistCard.summon(AbstractDungeon.player, 2, randomTokenB);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+			case "Gain #b10 #yTemp #yHP":
+				DuelistCard.gainTempHP(10);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 10 Temporary HP", 1.0F, 2.0F)); }
 				break;
-			case "#yIncrement #b1":
-				DuelistCard.incMaxSummons(AbstractDungeon.player, 1);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+			case "Gain #b15 #yTemp #yHP":
+				DuelistCard.gainTempHP(15);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 15 Temporary HP", 1.0F, 2.0F)); }
 				break;
-			case "#yIncrement #b2":
-				DuelistCard.incMaxSummons(AbstractDungeon.player, 2);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+			case "#ySolder #b1":
+				AbstractDungeon.actionManager.addToBottom(new SolderAction(p.hand.group, 1, true));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Solder 1", 1.0F, 2.0F)); }
+				break;	
+			case "#ySolder #b2":
+				AbstractDungeon.actionManager.addToBottom(new SolderAction(p.hand.group, 2, true));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Solder 2", 1.0F, 2.0F)); }
+				break;	
+			case "#ySolder #b3":
+				AbstractDungeon.actionManager.addToBottom(new SolderAction(p.hand.group, 3, true));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Solder 3", 1.0F, 2.0F)); }
 				break;
-			case "#yOjamania":
-				AbstractMonster mO = DuelistCard.getRandomMonster();
-				// Add 5 random cards to hand, set cost to 0
-				for (int i = 0; i < RAND_CARDS; i++)
-				{
-					AbstractCard card = AbstractDungeon.returnTrulyRandomCardInCombat().makeStatEquivalentCopy();
-					AbstractDungeon.actionManager.addToTop(new RandomizedHandAction(card, false, true, true, false, false, false, true, true, 1, 3, 0, 1, 1, 2));
-				}
-				
-				// Give self 3 random buffs
-				for (int i = 0; i < RAND_BUFFS; i++)
-				{
-					int randomTurnNumO = AbstractDungeon.cardRandomRng.random(MIN_BUFF_TURNS_ROLL, MAX_BUFF_TURNS_ROLL);
-					DuelistCard.applyRandomBuffPlayer(AbstractDungeon.player, randomTurnNumO, false);
-				}
-				
-				// Give 3 random debuffs to enemy
-				if (mO != null)
-				{
-					for (int i = 0; i < RAND_DEBUFFS; i++)
-					{
-						int randomTurnNumO2 = AbstractDungeon.cardRandomRng.random(MIN_DEBUFF_TURNS_ROLL, MAX_DEBUFF_TURNS_ROLL);
-						DuelistCard.applyPower(DebuffHelper.getRandomDebuff(AbstractDungeon.player, mO, randomTurnNumO2), mO);
-					}
-				}
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+			case "#ySolder #b4":
+				AbstractDungeon.actionManager.addToBottom(new SolderAction(p.hand.group, 4, true));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Solder 4", 1.0F, 2.0F)); }
+				break;	
+			case "#ySolder #b5":
+				AbstractDungeon.actionManager.addToBottom(new SolderAction(p.hand.group, 5, true));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Solder 5", 1.0F, 2.0F)); }
+				break;	
+			case "Channel a Fire":
+				DuelistCard.channel(new FireOrb());
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Channel a Fire", 1.0F, 2.0F)); }
+				break;
+			case "Channel an Air":
+				DuelistCard.channel(new AirOrb());
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Channel an Air", 1.0F, 2.0F)); }
+				break;
+			case "Channel a Gadget":
+				DuelistCard.channel(new Gadget());
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Channel a Gadget", 1.0F, 2.0F)); }
+				break;
+			case "Channel a Metal":
+				DuelistCard.channel(new Metal());
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Channel a Metal", 1.0F, 2.0F)); }
+				break;
+			case "Channel a Glitch":
+				DuelistCard.channel(new Glitch());
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Channel a Glitch", 1.0F, 2.0F)); }
 				break;
 			case "Gain [E] ":
 				DuelistCard.gainEnergy(1);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 1 Energy", 1.0F, 2.0F)); }
 				break;
-			case "Gain [E] [E] ":
-				DuelistCard.gainEnergy(2);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+			case "#yIncrement #b3":
+				DuelistCard.incMaxSummons(3);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Increment 3", 1.0F, 2.0F)); }
 				break;
-			case "Gain #b3 Artifacts":
-				AbstractPower art = new ArtifactPower(AbstractDungeon.player, 3);
-				DuelistCard.applyPowerToSelf(art);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
-				break;
-			case "Gain #b2 Artifacts":
-				AbstractPower artB = new ArtifactPower(AbstractDungeon.player, 2);
-				DuelistCard.applyPowerToSelf(artB);
-				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
+			case "#yIncrement #b5":
+				DuelistCard.incMaxSummons(5);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Increment 5", 1.0F, 2.0F)); }
 				break;
 			case "Gain #b1 Artifact":
-				AbstractPower artC = new ArtifactPower(AbstractDungeon.player, 1);
+				AbstractPower artC = new ArtifactPower(p, 1);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 1 Artifact", 1.0F, 2.0F)); }
 				DuelistCard.applyPowerToSelf(artC);
-				if (printing) { if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); } }
 				break;
-			case "Gain #b1 Max HP":
-				AbstractDungeon.player.increaseMaxHp(1, true);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered: " + string); }
+			case "Gain #b2 Artifacts":
+				AbstractPower artD = new ArtifactPower(p, 2);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 2 Artifacts", 1.0F, 2.0F)); }
+				DuelistCard.applyPowerToSelf(artD);
 				break;
+			case "#yUpgrade a Card":
+				AbstractDungeon.actionManager.addToBottom(new ArmamentsAction(true));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Upgrade a card", 1.0F, 2.0F)); }
+				break;
+			case "#yResummon a card":
+				AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(p.hand.group, 1, new Double(2.0)));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Resummon a random card", 1.0F, 2.0F)); }
+				break;
+			case "Gain #b1 #yStrength":
+				DuelistCard.applyPowerToSelf(new StrengthPower(p, 1));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 1 Strength", 1.0F, 2.0F)); }
+				break;	
+			case "Gain #b2 #yStrength":
+				DuelistCard.applyPowerToSelf(new StrengthPower(p, 2));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Gain 2 Strength", 1.0F, 2.0F)); }
+				break;	
+			case "#yDetonate X":
+				DuelistCard.detonationTributeStatic(0, true, false, 1, true);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Detonate X", 1.0F, 2.0F)); }
+				break;	
+			case "#yDetonate #b3":
+				DuelistCard.detonationTributeStatic(3, false, false, 1, false);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Detonate 3", 1.0F, 2.0F)); }
+				break;	
+			case "#yStun a random enemy":
+				ArrayList<AbstractMonster> monst = DuelistCard.getAllMons();
+				AbstractMonster randy = monst.get(AbstractDungeon.cardRandomRng.random(monst.size() - 1));
+				AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(randy, p));
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Stun a random enemy", 1.0F, 2.0F)); }
+				break;	
+			case "Damage ALL enemies #b5":
+				DuelistCard.attackAllEnemiesThorns(5);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Damage ALL enemies for 5", 1.0F, 2.0F)); }
+				break;	
+			case "Damage ALL enemies #b10":
+				DuelistCard.attackAllEnemiesThorns(10);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Damage ALL enemies for 10", 1.0F, 2.0F)); }
+				break;	
+			case "#yFreeze a random enemy":
+				ArrayList<AbstractMonster> mons = DuelistCard.getAllMons();
+				AbstractMonster targ = mons.get(AbstractDungeon.cardRandomRng.random(mons.size() - 1));
+				DuelistCard.applyPower(new FrozenDebuff(targ, p), targ);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Freeze a random enemy", 1.0F, 2.0F)); }
+				break;	
+			case "#yUpgrade your hand":
+				for (AbstractCard c : p.hand.group) { if (c.canUpgrade()) { c.upgrade(); }}
+				p.hand.glowCheck();
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Upgrade your hand", 1.0F, 2.0F)); }
+				break;	
+			case "#yWeaken ALL enemies":
+				DuelistCard.weakAllEnemies(1);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Weaken ALL enemies", 1.0F, 2.0F)); }
+				break;
+			case "#ySlow ALL enemies":
+				DuelistCard.slowAllEnemies(1);
+				if (talk) { AbstractDungeon.actionManager.addToBottom(new TalkAction(true, "Slow ALL enemies", 1.0F, 2.0F)); }
+				break;	
 			default:
 				String randomAction = actions.get(AbstractDungeon.cardRandomRng.random(actions.size() - 1));
-				runAction(randomAction, upgradeCards);
-				if (printing) { System.out.println("theDuelist:RandomActionHelper:runAction ---> triggered (default): " + string); }
+				runAction(randomAction, upgradeCards, talk, screensAllowed);
+				Util.log("theDuelist:RandomActionHelper:runAction ---> triggered (default): " + string);
 				break;
 		}
 		
 		return string;
 	}
 
-	private static void initList()
+	private static void initList(boolean screensAllowed)
 	{
 		actions = new ArrayList<String>();
-		actions.add("Draw #b2 cards");	
-		actions.add("#ySummon #b2");
-		actions.add("#yOjamania");	
+		if (screensAllowed)
+		{
+			actions.add("Draw #b1 of chosen rarity");
+			actions.add("#ySolder #b1");
+			actions.add("#ySolder #b2");
+			actions.add("#ySolder #b3");
+			actions.add("#ySolder #b4");
+			actions.add("#ySolder #b5");
+			actions.add("#yUpgrade a Card");
+			actions.add("#yResummon a card");
+		}
+		else
+		{
+			actions.add("Gain #b5 #yBlock");
+			actions.add("Gain #b15 #yBlock");
+			actions.add("Gain #b5 #yTemporary #yHP");
+			actions.add("Gain #b15 #yTemporary #yHP");
+			actions.add("Damage ALL enemies #b10");
+			actions.add("Gain #b2 Artifacts");
+			actions.add("Channel a Glitch");
+			actions.add("Channel a Glitch");
+			actions.add("Channel a Fire");
+		}
+		actions.add("#ySlow ALL enemies");
+		actions.add("#yWeaken ALL enemies");
+		actions.add("#yUpgrade your hand");
+		actions.add("#yFreeze a random enemy");
+		actions.add("Damage ALL enemies #b5");
+		actions.add("Draw #b2 cards");		
 		actions.add("Gain [E] "); 
+		actions.add("Channel a Fire");
+		actions.add("Channel a Gadget");
+		actions.add("Channel a Metal");
 		actions.add("Channel a Glitch");
-		actions.add("#yIncrement #b2");
+		actions.add("Channel an Air");
 		actions.add("Gain #b1 Artifact");
-		actions.add("Add #b1 random #yEthereal Duelist card to hand");
-		actions.add("#ySummon #b1");
-		actions.add("#yIncrement #b1");
+		actions.add("#yIncrement #b5");
+		actions.add("#yIncrement #b3");
 		actions.add("Draw #b1 card");	
-		actions.add("Draw #b1 card");	
-		actions.add("Apply #b2 random #ydebuffs to random enemy");	
-		actions.add("Apply #b1 random #ydebuff to random enemy");
-		actions.add("Add #b1 random #yTrap to hand");
-		actions.add("Add #b1 random #yTrap to hand");	
-		actions.add("Add #b1 random #yMonster to hand");
-		actions.add("Add #b1 random #yEthereal Duelist card to hand");
-		actions.add("Gain #b10 #yBlock");
-		actions.add("Gain #b5 #yBlock");
-		actions.add("Gain #b5 #yBlock");
-		actions.add("#ySummon #b1");	
-		actions.add("#ySummon #b1");	
-		actions.add("#yIncrement #b1");	
-		
-		translationMap.put("Gain a random amount of gold (1-50)", Strings.configGainGoldA);
-		translationMap.put("Draw #b2 cards", Strings.configDraw2Cards);
-		translationMap.put("Gain #b5 HP", Strings.configGain5HP);
-		translationMap.put("Gain #b10 HP", Strings.configGain10HP);
-		translationMap.put("#ySummon #b2", Strings.configSummon2);
-		translationMap.put("#yOjamania", Strings.configOjamania);
-		translationMap.put("Gain [E] ", Strings.configGainEnergy);
-		translationMap.put("Channel a Glitch", Strings.configChannel);
-		translationMap.put("#yIncrement #b2", Strings.configIncrement2);
-		translationMap.put("Lose #b1 HP", Strings.configLose1HP);
-		translationMap.put("Gain #b1 Artifact", Strings.configGainArtifact);
-		translationMap.put("Add #b1 random #yEthereal Duelist card to hand", Strings.configAddRandomEtherealDuelist);
-		translationMap.put("#ySummon #b1", Strings.configSummon);
-		translationMap.put("#yIncrement #b1", Strings.configIncrement);
-		translationMap.put("Draw #b1 card", Strings.configDraw1Card);
-		translationMap.put("Apply #b2 random #ydebuffs to random enemy", Strings.configApply1RandomDebuff);
-		translationMap.put("Apply #b1 random #ydebuff to random enemy", Strings.configApply2RandomDebuffs);
-		translationMap.put("Add #b1 random #yTrap to hand", Strings.configAddRandomTrap);
-		translationMap.put("Add #b1 random #yMonster to hand", Strings.configAddRandomMonster);
-		translationMap.put("Gain #b10 #yBlock", Strings.configGain10Block);
-		translationMap.put("Gain #b5 #yBlock",Strings.configGain5Block);
-		translationMap.put("Gain #b1 Max HP",Strings.configGain1MAXHPText);
+		actions.add("Draw #b1 Common");	
+		actions.add("Draw #b1 Uncommon");		
+		actions.add("Gain #b10 #yBlock");	
+		actions.add("Gain #b10 #yTemp #yHP");		
+		actions.add("Gain #b1 #yStrength");
+		actions.add("Gain #b2 #yStrength");
+		actions.add("#yDetonate X");
+		actions.add("#yDetonate #b3");
+		actions.add("#yStun a random enemy");
 	}
 
 }

@@ -42,7 +42,7 @@ public class BlackPendant extends DuelistCard
 
     public BlackPendant() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 6;	// Overflows
+        this.magicNumber = this.baseMagicNumber = 4;	// Overflows
         this.secondMagic = this.baseSecondMagic = 4;	// Strength
         this.thirdMagic = this.baseThirdMagic = 3;		// HP Loss
         this.tags.add(Tags.SPELL);
@@ -95,7 +95,7 @@ public class BlackPendant extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();            
-            this.upgradeMagicNumber(-3);
+            this.upgradeMagicNumber(-2);
             this.upgradeSecondMagic(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();

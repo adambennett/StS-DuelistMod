@@ -167,6 +167,20 @@
       "Stuff."
     ]
   },
+  "theDuelist:SpeedModePrepText": {
+    "TEXT": [
+      "Begins in: ",
+	  "Megatype Quicktime Event in: ",
+	  "Glitch Quicktime Event in: ",
+	  "Cannon Quicktime Event in: "
+    ]
+  },
+  "theDuelist:ExhaustionPanel": {
+    "TEXT": [
+      "Exhaustion",
+      "When you would die, revive with half HP, clear your debuffs and gain Exhaustion instead. NL You lose #b1 HP per #yExhaustion whenever you play a card. NL You give up if #yExhaustion would reach #b5."
+    ]
+  },
   "theDuelist:theDuelist:ActFourText": {
     "TEXT": [
       "Duelist Kingdom",

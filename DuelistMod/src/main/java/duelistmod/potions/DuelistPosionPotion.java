@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
 
 public class DuelistPosionPotion extends DuelistPotion {
@@ -39,6 +40,14 @@ public class DuelistPosionPotion extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Insect Deck")) { return true; }
+    	return false;
+    }
+
     
     @Override
     public boolean canUse()

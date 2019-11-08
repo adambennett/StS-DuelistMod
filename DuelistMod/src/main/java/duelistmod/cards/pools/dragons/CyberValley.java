@@ -122,6 +122,7 @@ public class CyberValley extends DuelistCard
 						if (dc.isTributesModified || dc.isTributesModifiedForTurn) { hasTributeMod = true; break; }
 					}
 				}
+				if (hasTributeMod) { AbstractDungeon.player.hand.glowCheck(); }
 				costUpdater(hasTributeMod);
 			}
 		}

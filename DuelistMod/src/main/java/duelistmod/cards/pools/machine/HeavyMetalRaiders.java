@@ -31,12 +31,12 @@ public class HeavyMetalRaiders extends DuelistCard
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
-    private static final int COST = 2;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public HeavyMetalRaiders() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 9;
+        this.baseDamage = this.damage = 7;
         this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;

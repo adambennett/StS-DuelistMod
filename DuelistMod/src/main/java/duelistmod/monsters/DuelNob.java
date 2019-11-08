@@ -18,6 +18,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.machine.MeteorDestruction;
 import duelistmod.powers.enemyPowers.EnemyMiraclePower;
 
 public class DuelNob extends DuelistMonster

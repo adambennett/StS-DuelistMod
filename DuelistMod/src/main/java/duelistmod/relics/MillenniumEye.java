@@ -40,8 +40,6 @@ public class MillenniumEye extends DuelistRelic {
 		}
 		else
 		{
-			if (deck.equals("Machine Deck")) { allowSpawn = true; }
-			if (deck.equals("Dragon Deck")) { allowSpawn = true; }
 			if (deck.equals("Toon Deck")) { allowSpawn = false; }
 			if (DuelistMod.setIndex == 6) { allowSpawn = true; }
 		}

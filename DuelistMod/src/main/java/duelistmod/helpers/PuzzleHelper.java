@@ -18,6 +18,7 @@ import duelistmod.actions.unique.DragonPuzzleAction;
 import duelistmod.cards.*;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.machine.Jinzo;
 import duelistmod.patches.TheDuelistEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.*;

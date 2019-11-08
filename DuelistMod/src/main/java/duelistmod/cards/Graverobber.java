@@ -40,7 +40,7 @@ public class Graverobber extends DuelistCard
         this.tags.add(Tags.TRAP);
         this.tags.add(Tags.ALL);
         this.tags.add(Tags.PHARAOH_SERVANT);
-        this.tags.add(Tags.NO_MAGIC_MOD);
+        this.tags.add(Tags.ALLOYED);
         this.misc = 0;
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 3;

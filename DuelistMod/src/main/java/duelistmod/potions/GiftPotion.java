@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.RegenPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Colors;
 
 public class GiftPotion extends DuelistPotion {
@@ -36,6 +37,13 @@ public class GiftPotion extends DuelistPotion {
         // Initialize the on-hover name + description
         //this.tips.add(new PowerTip(this.name, this.description));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (AbstractDungeon.ascensionLevel < 15 && Util.getChallengeLevel() < 0) { return true; }
+    	return false;
     }
 
     @Override

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.*;
 
 import duelistmod.abstracts.DuelistStance;
-import duelistmod.actions.common.CardSelectScreenModifyMagicNumberAction;
+import duelistmod.actions.common.SolderAction;
 
 public class Chaotic extends DuelistStance
 {
@@ -49,7 +49,7 @@ public class Chaotic extends DuelistStance
 	@Override
 	public void onExhaust(AbstractCard c)
 	{
-		AbstractDungeon.actionManager.addToBottom(new CardSelectScreenModifyMagicNumberAction(AbstractDungeon.player.hand.group, 1, 1, true));
+		AbstractDungeon.actionManager.addToBottom(new SolderAction(AbstractDungeon.player.hand.group, 1, true));
 	}
 	
 	@Override

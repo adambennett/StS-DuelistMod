@@ -10,6 +10,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.Scapegoat;
 import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.MultiplicationOfAnts;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
@@ -65,7 +66,6 @@ public class IncrementPool
 		incCards.add(new CrystalEmeraldTortoise());
 		incCards.add(new RainbowKuriboh());
 		incCards.add(new ClearKuriboh());
-		incCards.add(new Linkuriboh());
 		incCards.add(new Spore());
 		incCards.add(new SilverApples());
 		incCards.add(new GoldenApples());

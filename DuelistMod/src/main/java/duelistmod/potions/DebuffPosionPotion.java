@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.helpers.DebuffHelper;
+import duelistmod.helpers.*;
 import duelistmod.variables.Colors;
 
 public class DebuffPosionPotion extends DuelistPotion {
@@ -38,6 +38,13 @@ public class DebuffPosionPotion extends DuelistPotion {
         // Initialize the on-hover name + description
         //this.tips.add(new PowerTip(this.name, this.description));
         
+    }
+    
+    @Override
+    public boolean canSpawn()
+    {
+    	if (Util.deckIs("Insect Deck")) { return true; }
+    	return false;
     }
 
     @Override

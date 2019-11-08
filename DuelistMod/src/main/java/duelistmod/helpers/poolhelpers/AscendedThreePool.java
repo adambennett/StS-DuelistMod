@@ -131,15 +131,11 @@ public class AscendedThreePool
 		cards.add(new WanderingKing());
 		cards.add(new GoblinKing());
 		cards.add(new Jinzo());
-		cards.add(new JunkKuriboh());
 		cards.add(new RedGadget());
 		cards.add(new GreenGadget());
 		cards.add(new GadgetSoldier());
-		cards.add(new BlastJuggler());
-		cards.add(new StimPack());
 		//cards.add(new IronhammerGiant());
 		cards.add(new Biofalcon());
-		cards.add(new OniTankT34());
 		cards.add(new SuperheavyBenkei());
 		cards.add(new SuperheavyFlutist());
 		cards.add(new SuperheavyGeneral());
@@ -166,18 +162,8 @@ public class AscendedThreePool
 		cards.add(new DragonZombie());
 		cards.add(new GoldenBlastJuggler());
 		cards.add(new BlastAsmodian());
-		cards.add(new BlastHeldTribute());
-		cards.add(new BlastMagician());
-		cards.add(new BlastWithChain());
 		cards.add(new ExploderDragonwing());
-		cards.add(new OrbitalBombardment());
-		cards.add(new AncientGearExplosive());
 		cards.add(new BlasterDragonInfernos());
-		cards.add(new BlastingRuins());
-		cards.add(new BlossomBombardment());
-		cards.add(new BlastingFuse());
-		cards.add(new CemetaryBomb());
-		cards.add(new RockBombardment());
 		
 		if (DuelistMod.baseGameCards && DuelistMod.setIndex != 9)
 		{

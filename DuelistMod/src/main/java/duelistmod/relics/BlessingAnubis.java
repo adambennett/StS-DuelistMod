@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.AbstractRelic.*;
+import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
@@ -47,7 +49,7 @@ public class BlessingAnubis extends DuelistRelic implements ClickableRelic
     @Override
     public void onRightClick() 
     {
-    	if (this.counter > 0)
+    	if (this.counter > 0 && AbstractDungeon.getCurrRoom().phase.equals(RoomPhase.COMBAT))
     	{
     		flash();
     		ArrayList<DuelistCard> types = DuelistCard.generateTypeForRelic(1, true, new WingedKuriboh9());

@@ -40,7 +40,7 @@ public class Ojamassimilation extends DuelistCard
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.OJAMA);
-        this.tags.add(Tags.NO_MAGIC_MOD);
+        this.tags.add(Tags.ALLOYED);
 		this.originalName = this.name;
 		this.magicNumber = this.baseMagicNumber = 2;
 		this.exhaust = true;

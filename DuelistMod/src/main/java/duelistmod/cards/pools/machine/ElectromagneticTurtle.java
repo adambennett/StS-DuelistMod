@@ -41,6 +41,7 @@ public class ElectromagneticTurtle extends DuelistCard
         this.useTributeCanUse = true;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.AQUA);
         this.misc = 0;
         this.originalName = this.name;
     }
@@ -54,9 +55,9 @@ public class ElectromagneticTurtle extends DuelistCard
     	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
     	switch (randomMagnetNum)
     	{
-    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
-    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
-    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
+    		case 0: applyPowerToSelf(new AlphaMagPower(p, p)); break;
+    		case 1: applyPowerToSelf(new BetaMagPower(p, p)); break;
+    		case 2: applyPowerToSelf(new GammaMagPower(p, p)); break;
     	}
     }
 

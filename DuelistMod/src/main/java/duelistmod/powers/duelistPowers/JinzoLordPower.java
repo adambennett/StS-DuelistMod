@@ -49,6 +49,12 @@ public class JinzoLordPower extends DuelistPower
     	}
     }
     
+    @Override
+    public void onEnemyUseCard(AbstractCard card)
+    {
+    	onPlayCard(card, null);
+    }
+    
   
     @Override
 	public void updateDescription() 

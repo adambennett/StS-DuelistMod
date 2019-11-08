@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import duelistmod.*;
+import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.helpers.RandomActionHelper;
-import duelistmod.interfaces.*;
 import duelistmod.variables.Strings;
 
 public class TimeWizardPower extends AbstractPower 
@@ -55,7 +54,7 @@ public class TimeWizardPower extends AbstractPower
     	if (this.amount < 1) { DuelistCard.removePower(this, this.owner); }
     	for (int i = 0; i < this.amount; i++)
     	{
-    		String lastAction = RandomActionHelper.triggerRandomAction(1, false);
+    		String lastAction = RandomActionHelper.triggerRandomAction(1, false, true, true);
     		if (DuelistMod.debug)
     		{
     			System.out.println("theDuelist:TimeWizardPower:atStartOfTurn() ---> last action was: " + lastAction);

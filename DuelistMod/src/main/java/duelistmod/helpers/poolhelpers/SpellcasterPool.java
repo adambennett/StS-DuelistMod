@@ -10,6 +10,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.WhiteHowling;
 
 public class SpellcasterPool 
@@ -81,7 +82,6 @@ public class SpellcasterPool
 		spellcasterCards.add(new BlueDragonSummoner());
 		spellcasterCards.add(new ApprenticeIllusionMagician());
 		spellcasterCards.add(new DarkHorizon());
-		spellcasterCards.add(new MachineFactory());
 		spellcasterCards.add(new DarkPaladin());
 		spellcasterCards.add(new WhiteMagicalHat());
 		spellcasterCards.add(new LegendaryFlameLord());
@@ -106,14 +106,12 @@ public class SpellcasterPool
 		spellcasterCards.add(new RainbowDarkDragon());
 		spellcasterCards.add(new InfernoFireBlast());
 		spellcasterCards.add(new SilentDoom());
-		spellcasterCards.add(new SparkBlaster());
 		spellcasterCards.add(new SpellShatteringArrow());
 		spellcasterCards.add(new Wildfire());
 		spellcasterCards.add(new CharcoalInpachi());
 		spellcasterCards.add(new FlyingSaucer());
 		spellcasterCards.add(new AlienTelepath());
 		spellcasterCards.add(new CosmicHorrorGangiel());
-		spellcasterCards.add(new BlastMagician());
 		spellcasterCards.add(new WitchBlackRose());
 		spellcasterCards.add(new CrystalWingDragon());
 		spellcasterCards.add(new SkilledDarkMagician());

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
+import duelistmod.helpers.Util;
 import duelistmod.variables.Tags;
 
 public class GalaxySoldierPower extends NoStackDuelistPower
@@ -55,6 +56,8 @@ public class GalaxySoldierPower extends NoStackDuelistPower
 			{
 				AbstractCard rand = reduce.get(AbstractDungeon.cardRandomRng.random(reduce.size() - 1));
 				rand.setCostForTurn(-rand.cost);
+				Util.log("Galaxy Soldier reduced the cost of " + rand.name);
+		    	AbstractDungeon.player.hand.glowCheck();
 			}
 		}
 	}

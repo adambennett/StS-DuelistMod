@@ -25,14 +25,19 @@ public class DragonMasteryPower extends DuelistPower
 	
 	public DragonMasteryPower(int turns) 
 	{ 
+		this(AbstractDungeon.player, AbstractDungeon.player, turns);
+	}
+	
+	public DragonMasteryPower(AbstractCreature source, AbstractCreature owner, int turns) 
+	{ 
 		this.name = NAME;
         this.ID = POWER_ID;
-        this.owner = AbstractDungeon.player;        
+        this.owner = owner;        
         this.type = PowerType.BUFF;
         this.isTurnBased = false;
         this.canGoNegative = false;
         this.img = new Texture(IMG);
-        this.source = AbstractDungeon.player;
+        this.source = source;
         this.amount = turns;
 		updateDescription(); 
 	}
@@ -60,14 +65,22 @@ public class DragonMasteryPower extends DuelistPower
 			
 			if (dragons.size() > 0)
 			{
+				if (this.amount > 0) { this.flashWithoutSound(); }
 				for (int i = 0; i < this.amount; i++)
 				{
 					AbstractCard rand = dragons.get(AbstractDungeon.cardRandomRng.random(dragons.size() - 1));
-					rand.modifyCostForCombat(-1);
+					rand.modifyCostForCombat(-1);					
 				}
+				AbstractDungeon.player.hand.glowCheck();
 			}
 		}
 	}
+	
+    @Override
+    public void onEnemyUseCard(AbstractCard card)
+    {
+    	onPlayCard(card, null);
+    }
 
 	@Override
 	public void updateDescription()

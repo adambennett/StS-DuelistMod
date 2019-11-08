@@ -14,7 +14,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.cards.other.tempCards.*;
 import duelistmod.helpers.*;
-import duelistmod.variables.Strings;
+import duelistmod.variables.*;
 
 public class CardSelectScreenResummonAction extends AbstractGameAction
 {
@@ -87,6 +87,20 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 		this.canCancel = false;
 	}
 	
+	public CardSelectScreenResummonAction(ArrayList<AbstractCard> cardsToChooseFrom, int amount, Double unusued)
+	{
+		this.p = AbstractDungeon.player;
+		this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
+		this.duration = Settings.ACTION_DUR_MED;
+		this.upgrade = false;
+		this.amount = amount;
+		this.cards = new ArrayList<>();
+		for (AbstractCard c : cardsToChooseFrom) { if (c instanceof DuelistCard) { this.cards.add((DuelistCard) c); }}
+		this.damageBlockRandomize = false;
+		this.randomTarget = true;
+		this.canCancel = false;
+	}
+	
 	// Inzektron
 	public CardSelectScreenResummonAction(ArrayList<DuelistCard> cardsToChooseFrom, int amount, AbstractMonster m)
 	{
@@ -110,65 +124,71 @@ public class CardSelectScreenResummonAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard card : cards)
 			{
-				AbstractCard gridCard = card.makeStatEquivalentCopy();
-				if (this.upgrade) { gridCard.upgrade(); }
-				if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
-				if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
-	    		if (damageBlockRandomize)
-	    		{
-	    			if (gridCard.damage > 0)
-	    			{
-	    				int low = gridCard.damage * -1;
-	    				int high = gridCard.damage + 6;
-	    				int roll = AbstractDungeon.cardRandomRng.random(low, high);
-	    				AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(gridCard.uuid, roll));
-	    				gridCard.isDamageModified = true;
-	    			}
-	    			
-	    			if (gridCard.block > 0)
-	    			{
-	    				int low = gridCard.block * -1;
-	    				int high = gridCard.block + 6;
-	    				int roll = AbstractDungeon.cardRandomRng.random(low, high);
-	    				AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(gridCard.uuid, roll));
-	    				gridCard.isBlockModified = true;
-	    			}
-	    		}	
-		        gridCard.initializeDescription();
-				tmp.addToTop(gridCard);
-				if (DuelistMod.debug) { System.out.println("theDuelist:CardSelectScreenResummonAction:update() ---> added " + gridCard.originalName + " into grid selection pool"); }
+				if (!card.hasTag(Tags.EXEMPT))
+				{
+					AbstractCard gridCard = card.makeStatEquivalentCopy();
+					if (this.upgrade) { gridCard.upgrade(); }
+					if (this.target == null) { Util.log("Is this it? Big bug guy?"); }
+					if (randomTarget || this.target == null) { this.target = AbstractDungeon.getRandomMonster(); }
+		    		if (damageBlockRandomize)
+		    		{
+		    			if (gridCard.damage > 0)
+		    			{
+		    				int low = gridCard.damage * -1;
+		    				int high = gridCard.damage + 6;
+		    				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+		    				AbstractDungeon.actionManager.addToTop(new ModifyDamageAction(gridCard.uuid, roll));
+		    				gridCard.isDamageModified = true;
+		    			}
+		    			
+		    			if (gridCard.block > 0)
+		    			{
+		    				int low = gridCard.block * -1;
+		    				int high = gridCard.block + 6;
+		    				int roll = AbstractDungeon.cardRandomRng.random(low, high);
+		    				AbstractDungeon.actionManager.addToTop(new ModifyBlockAction(gridCard.uuid, roll));
+		    				gridCard.isBlockModified = true;
+		    			}
+		    		}	
+			        gridCard.initializeDescription();
+					tmp.addToTop(gridCard);
+					if (DuelistMod.debug) { System.out.println("theDuelist:CardSelectScreenResummonAction:update() ---> added " + gridCard.originalName + " into grid selection pool"); }
+				}
 			}
 			
 			//Collections.sort(tmp.group, GridSort.getComparator());
-			if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
-			if (this.randomTarget && this.resummon)
+			if (tmp.group.size() > 0)
 			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString, false, false, false, false); }
-				
-				tickDuration();
-				return;
-			}
-			else if (!this.randomTarget && this.resummon)
-			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString, false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString, false, false, false, false); }
-				tickDuration();
-				return;
-			}
-			else if (this.randomTarget && !this.resummon)
-			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString, false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString, false, false, false, false); }
-				tickDuration();
-				return;
-			}
-			else if (!this.randomTarget && !this.resummon)
-			{
-				if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString, false, false, false, false); }
-				else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString, false, false, false, false); }
-				tickDuration();
-				return;
+				if (this.canCancel) { for (int i = 0; i < this.amount; i++) { tmp.addToTop(new CancelCard()); }}
+				if (this.randomTarget && this.resummon)
+				{
+					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyString, false, false, false, false); }
+					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyPluralString, false, false, false, false); }
+					
+					tickDuration();
+					return;
+				}
+				else if (!this.randomTarget && this.resummon)
+				{
+					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetString, false, false, false, false); }
+					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configResummonRandomlyTargetPluralString, false, false, false, false); }
+					tickDuration();
+					return;
+				}
+				else if (this.randomTarget && !this.resummon)
+				{
+					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayString, false, false, false, false); }
+					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayPluralString, false, false, false, false); }
+					tickDuration();
+					return;
+				}
+				else if (!this.randomTarget && !this.resummon)
+				{
+					if (this.amount == 1) { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetString, false, false, false, false); }
+					else { AbstractDungeon.gridSelectScreen.open(tmp, this.amount, Strings.configChooseString + this.amount + Strings.configCardPlayTargetPluralString, false, false, false, false); }
+					tickDuration();
+					return;
+				}
 			}
 		}
 		

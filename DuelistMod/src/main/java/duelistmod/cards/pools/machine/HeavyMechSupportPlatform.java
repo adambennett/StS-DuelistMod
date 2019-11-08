@@ -36,7 +36,7 @@ public class HeavyMechSupportPlatform extends DuelistCard
     public HeavyMechSupportPlatform() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = this.block = 18;
-        this.tributes = this.baseTributes = 4;
+        this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 1;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;
@@ -44,6 +44,8 @@ public class HeavyMechSupportPlatform extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
+        this.showEvokeOrbCount = this.magicNumber;
+        this.showEvokeValue = true;
     }
 
     // Actions the card should do.

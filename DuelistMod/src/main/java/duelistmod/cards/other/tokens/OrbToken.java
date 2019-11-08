@@ -28,7 +28,7 @@ public class OrbToken extends TokenCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
@@ -39,38 +39,41 @@ public class OrbToken extends TokenCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     public OrbToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);  
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
 		this.showEvokeValue = true;
 		this.showEvokeOrbCount = 1;
+    	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
-    	int roll = AbstractDungeon.cardRandomRng.random(1,2);
-    	if (roll == 1)
-    	{
+    	summon();
+    	if (roulette()) { 
     		ArrayList<DuelistCard> orbs = new ArrayList<DuelistCard>();
-        	ArrayList<String> orbNames = new ArrayList<String>();
         	ArrayList<AbstractCard> orbsToChooseFrom = DuelistCardLibrary.orbCardsForGeneration();
-    		for (int i = 0; i < 3; i++)
-    		{
-    			AbstractCard random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1));
-    			while (orbNames.contains(random.name)) { random = orbsToChooseFrom.get(AbstractDungeon.cardRandomRng.random(orbsToChooseFrom.size() - 1)); }
-    			orbs.add((DuelistCard) random.makeCopy());
-    			orbNames.add(random.name);
-    		}
-        	//AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true));
-    		if (DuelistMod.addTokens) { orbs.clear(); for (AbstractCard c : DuelistCardLibrary.orbCardsForGeneration()) { orbs.add((DuelistCard) c.makeCopy()); }AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true)); }
-    		else { AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, 1, false, false, false, true)); }
+        	int extra = this.magicNumber + 2;
+        	if (extra >= orbsToChooseFrom.size() || DuelistMod.addTokens) 
+        	{
+        		extra = orbsToChooseFrom.size();  
+        		for (AbstractCard c : DuelistCardLibrary.orbCardsForGeneration()) 
+        		{ orbs.add((DuelistCard) c.makeCopy()); }
+        		AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, true));
+        	}
+        	else
+        	{
+	        	for (AbstractCard c : orbsToChooseFrom) { if (c instanceof DuelistCard) { orbs.add((DuelistCard)c); }}
+	        	while (orbs.size() > extra) { orbs.remove(AbstractDungeon.cardRandomRng.random(orbs.size() - 1)); }
+	        	AbstractDungeon.actionManager.addToBottom(new CardSelectScreenResummonAction(orbs, this.magicNumber, false, false, false, true));
+        	}
     	}
     }
     @Override public AbstractCard makeCopy() { return new OrbToken(); }
@@ -89,10 +92,13 @@ public class OrbToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

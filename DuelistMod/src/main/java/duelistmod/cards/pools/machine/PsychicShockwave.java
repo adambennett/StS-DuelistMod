@@ -23,7 +23,7 @@ public class PsychicShockwave extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
@@ -34,7 +34,7 @@ public class PsychicShockwave extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseDamage = this.damage = 18;
+        this.baseDamage = this.damage = 19;
         this.baseMagicNumber = this.magicNumber = 4;
         this.misc = 0;
         this.tags.add(Tags.TRAP);
@@ -45,7 +45,7 @@ public class PsychicShockwave extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	normalMultidmg();
-    	vulnAllEnemies(this.magicNumber);
+    	slowAllEnemies(this.magicNumber);
     }
 
     

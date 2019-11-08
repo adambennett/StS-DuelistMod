@@ -25,4 +25,14 @@ public abstract class DuelistPower extends TwoAmountPower
 	public void onLoseArtifact() { }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
+	
+	public void onEnemyUseCard(final AbstractCard card) { }
+	
+	public void onDexChange() { }
+	
+	public void onDetonate() { }
+	
+	public void onSolder() { }
+	
+	public void onPassRoulette() { }
 }

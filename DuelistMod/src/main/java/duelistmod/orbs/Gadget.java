@@ -1,11 +1,12 @@
 package duelistmod.orbs;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
@@ -17,8 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.*;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.actions.common.QueueCardSuperFastAction;
-import duelistmod.variables.Tags;
+import duelistmod.powers.duelistPowers.GreasedDebuff;
 
 @SuppressWarnings("unused")
 public class Gadget extends DuelistOrb
@@ -40,7 +40,7 @@ public class Gadget extends DuelistOrb
 		this.inversion = "Glitch";
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Gadget.png"));
 		this.name = orbString.NAME;
-		this.baseEvokeAmount = this.evokeAmount = 1;
+		this.baseEvokeAmount = this.evokeAmount = 2;
 		this.basePassiveAmount = this.passiveAmount = 2;
 		this.updateDescription();
 		this.angle = MathUtils.random(360.0F);
@@ -54,23 +54,20 @@ public class Gadget extends DuelistOrb
 	public void updateDescription()
 	{
 		applyFocus();
-		if (this.evokeAmount == 1) { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2]; }
-		else { this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[3]; }
+		this.description = DESC[0] + this.passiveAmount + DESC[1] + this.evokeAmount + DESC[2];
 	}
 
 	@Override
 	public void onEvoke()
 	{
 		applyFocus();
-		if (DuelistMod.uniqueSkillsThisCombat.size() > 0 && !hasNegativeFocus())
+		if (this.evokeAmount > 0)
 		{
-			AbstractCard randomTrap = DuelistMod.uniqueSkillsThisCombat.get(AbstractDungeon.cardRandomRng.random(DuelistMod.uniqueSkillsThisCombat.size() - 1)).makeStatEquivalentCopy();
-			if (!randomTrap.tags.contains(Tags.TRIBUTE)) { randomTrap.misc = 52; }
-			randomTrap.freeToPlayOnce = true;
-			randomTrap.applyPowers();
-			randomTrap.purgeOnUse = true;
-			AbstractMonster mon = AbstractDungeon.getRandomMonster();
-			if (mon != null) { AbstractDungeon.actionManager.addToTop(new QueueCardSuperFastAction(randomTrap, mon, 1.0F)); }
+			ArrayList<AbstractMonster> mons = DuelistCard.getAllMons();
+			int highestHP = 0;
+			AbstractMonster targ = null;
+			for (AbstractMonster m : mons) { if (m.currentHealth > highestHP) { targ = m; highestHP = m.currentHealth; }}
+			if (targ != null) { DuelistCard.applyPower(new GreasedDebuff(targ, AbstractDungeon.player, this.evokeAmount), targ);  }
 		}
 	}
 	
@@ -152,6 +149,47 @@ public class Gadget extends DuelistOrb
 		{
 			FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2.0F + NUM_Y_OFFSET, this.c, this.fontScale);
 		}
+	}
+	
+	@Override
+	public void checkFocus(boolean allowNegativeFocus) 
+	{
+		if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
+		{
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalPassive > 0))
+			{
+				this.basePassiveAmount = this.originalPassive + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.basePassiveAmount = 0;
+			}
+			
+			
+			if ((AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount > 0) || (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount + this.originalEvoke > 0))
+			{
+				this.baseEvokeAmount = this.originalEvoke + AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;
+			}
+			
+			else
+			{
+				this.baseEvokeAmount = 0;
+			}
+			
+		}
+		else
+		{
+			this.basePassiveAmount = this.originalPassive;
+			this.baseEvokeAmount = this.originalEvoke;
+		}
+		if (DuelistMod.debug)
+		{
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalPassive: " + originalPassive + " :: new passive amount: " + this.basePassiveAmount);
+			System.out.println("theDuelist:DuelistOrb:checkFocus() ---> Orb: " + this.name + " originalEvoke: " + originalEvoke + " :: new evoke amount: " + this.baseEvokeAmount);
+		}
+		applyFocus();
+		updateDescription();
 	}
 	
 	@Override

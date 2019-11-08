@@ -40,7 +40,7 @@ public class CardSelectScreenModifyMagicNumberForTurnAction extends AbstractGame
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (DuelistCard c : cards) 
 			{ 
-				if (!c.hasTag(Tags.NO_MAGIC_MOD) && c.magicNumber > 0) 
+				if (!c.hasTag(Tags.ALLOYED) && c.magicNumber > 0) 
 				{
 					AbstractCard copy = c.makeStatEquivalentCopy();
 					tmp.addToTop(copy);
@@ -74,7 +74,7 @@ public class CardSelectScreenModifyMagicNumberForTurnAction extends AbstractGame
 	
 	private void modify(DuelistCard original, int magic)
 	{
-		if (original.hasTag(Tags.MAGIC_NUMBER_BUFFS_SCALE_BY_10)) { magic = magic * 10; }
+		if (original.hasTag(Tags.MAGIC_NUM_SCALE_BY_10)) { magic = magic * 10; }
 		if (original.hasTag(Tags.BAD_MAGIC))
 		{
 			original.originalMagicNumber = original.baseMagicNumber;

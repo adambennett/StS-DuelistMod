@@ -10,7 +10,7 @@ import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.dragons.*;
 import duelistmod.cards.pools.insects.*;
-import duelistmod.cards.pools.machine.AncientGearFist;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.warrior.*;
 
 public class StandardPool 
@@ -51,9 +51,10 @@ public class StandardPool
 		cards.add(new SilverApples());
 		cards.add(new MiraculousDescent());
 		cards.add(new Reinforcements());
+		cards.add(new SolarWindJammer());
+		cards.add(new Tuningware());
 		
 		// Megatype
-		//cards.add(new HourglassLife());
 		cards.add(new Eva());
 		cards.add(new HappyLover());
 		cards.add(new RainbowNeos());
@@ -132,7 +133,7 @@ public class StandardPool
 		cards.add(new DarkBurningAttack());
 		cards.add(new DarkBurningMagic());
 		cards.add(new DeltaAttacker());
-		cards.add(new FengshengMirror());
+		cards.add(new PineappleBlast());
 		cards.add(new GridRod());
 		cards.add(new HarmonicWaves());
 		cards.add(new LegendHeart());
@@ -142,6 +143,12 @@ public class StandardPool
 		cards.add(new MagnumShield());
 		cards.add(new SwordDragonSoul());
 		cards.add(new WhiteNinja());
+		cards.add(new PsychicShockwave());
+		cards.add(new BreakDraw());
+		cards.add(new DoubleTool());
+		cards.add(new SevenCompleted());
+		cards.add(new GravityLash());
+		cards.add(new TimeSeal());
 		
 		if (!DuelistMod.ojamaBtnBool)
 		{

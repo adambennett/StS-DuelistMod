@@ -83,11 +83,7 @@
   "theDuelist:Glitch": {
     "NAME": "Glitch",
     "DESCRIPTION": [
-      "#yPassive: At the start of turn, trigger #b", 
-	  " random effects. NL #yEvoke: Trigger #b",
-	  " random effect. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ", 
-	  " random effects. If all monsters summoned are #yMachines, trigger the effect twice. NL #yLast #yEffects #yTriggered: NL ",
-	  " NL NL #bInversion: #bGadget"
+      "#yPassive: At the end of turn, apply #b", " #yGreased to ALL enemies. NL #yEvoke: Fill your hand with random Tokens. NL #bInversion: #bGadget"
     ]
   },
   "theDuelist:Shadow": {
@@ -120,9 +116,9 @@
   "theDuelist:Gadget": {
     "NAME": "Gadget",
     "DESCRIPTION": [
-	  "#yPassive: At the start of turn, gain #b", " #yDexterity until the end of turn. NL #yEvoke: Play #b",
-	  " random #ySkill you have played this combat on a random enemy. NL #bInversion: #bGlitch",
-	  " random #ySkills you have played this combat on a random enemy. NL #bInversion: #bGlitch"
+	  "#yPassive: At the start of turn, gain #b",
+	  " #yDexterity until the end of turn. NL #yEvoke: Apply #b",
+	  " #yGrease to the enemy with the highest HP. NL #bInversion: #bGlitch"
     ]
   },
   "theDuelist:Lava": {

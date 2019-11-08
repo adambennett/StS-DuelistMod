@@ -26,11 +26,11 @@ public class SevenCompleted extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
     public SevenCompleted() {
@@ -40,16 +40,17 @@ public class SevenCompleted extends DuelistCard
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
-        this.exhaust = true;
+        this.purgeOnUse = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	for (AbstractCard c : p.drawPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.NO_MAGIC_MOD)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	for (AbstractCard c : p.discardPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.NO_MAGIC_MOD)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	for (AbstractCard c : p.hand.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.NO_MAGIC_MOD)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
+    	for (AbstractCard c : p.drawPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
+    	for (AbstractCard c : p.discardPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
+    	for (AbstractCard c : p.hand.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
+    	p.hand.glowCheck();
     }
 
     // Which card to return when making a copy of this card.

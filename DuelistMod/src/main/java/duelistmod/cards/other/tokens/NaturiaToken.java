@@ -38,6 +38,7 @@ public class NaturiaToken extends TokenCard
     	this.tags.add(Tags.TOKEN);  
     	this.tags.add(Tags.NATURIA);  
        	this.baseMagicNumber = this.magicNumber = 3;
+       	this.baseSummons = this.summons = 1;
     	this.purgeOnUse = true;
     }
     public NaturiaToken(String tokenName) 
@@ -46,12 +47,13 @@ public class NaturiaToken extends TokenCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.NATURIA);   
     	this.baseMagicNumber = this.magicNumber = 3;
+    	this.baseSummons = this.summons = 1;
     	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
-    	if (Util.tokenRoll()) { DuelistCard.applyPowerToSelf(new VinesPower(this.magicNumber)); }
+    	summon();
+    	if (roulette()) { DuelistCard.applyPowerToSelf(new VinesPower(this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new NaturiaToken(); }
 
@@ -69,10 +71,13 @@ public class NaturiaToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(3);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

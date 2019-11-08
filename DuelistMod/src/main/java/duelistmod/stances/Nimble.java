@@ -70,6 +70,7 @@ public class Nimble extends DuelistStance
 				rand.setCostForTurn(rand.cost - 1);
 				rand.isCostModifiedForTurn = true;
 				Util.log("Nimble: reduced the cost of " + rand.name);
+				AbstractDungeon.player.hand.glowCheck();
 			}
 		}
 		else { Util.log("Nimble: missed the roll"); }

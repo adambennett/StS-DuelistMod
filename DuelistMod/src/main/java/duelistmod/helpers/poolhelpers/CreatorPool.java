@@ -8,6 +8,7 @@ import duelistmod.DuelistMod;
 import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
+import duelistmod.cards.pools.machine.*;
 
 public class CreatorPool 
 {
@@ -43,7 +44,6 @@ public class CreatorPool
 		cards.add(new TrapHole());
 		cards.add(new UltimateOffering());
 		cards.add(new OrbitalBombardment());
-		cards.add(new BlastingRuins());
 		
 		if (DuelistMod.smallBasicSet) { cards.addAll(BasicPool.smallBasic("")); }
 		else { cards.addAll(BasicPool.fullBasic("")); }

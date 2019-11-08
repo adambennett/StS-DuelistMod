@@ -10,6 +10,7 @@ import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.*;
 import duelistmod.powers.*;
+import duelistmod.powers.duelistPowers.ToonBriefcasePower;
 import duelistmod.variables.*;
 
 public class ToonBriefcase extends DuelistCard 

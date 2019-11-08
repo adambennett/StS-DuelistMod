@@ -40,6 +40,7 @@ public class RainbowLife extends DuelistCard
         this.originalName = this.name;
         this.exhaust = true;
         this.tags.add(Tags.TRAP);
+        this.selfRetain = true;
     }
 
     // Actions the card should do.

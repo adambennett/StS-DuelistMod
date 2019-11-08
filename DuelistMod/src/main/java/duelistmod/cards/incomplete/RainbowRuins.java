@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.incomplete.RainbowRuinsPower;
+import duelistmod.powers.duelistPowers.RainbowRuinsPower;
 import duelistmod.variables.Tags;
 
 public class RainbowRuins extends DuelistCard 

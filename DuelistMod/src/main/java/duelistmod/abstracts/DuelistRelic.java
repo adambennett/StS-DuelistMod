@@ -45,4 +45,12 @@ public abstract class DuelistRelic extends CustomRelic implements ClickableRelic
 	public void onLoseArtifact() { }
 	
 	public float modifyBlock(float blockAmount, AbstractCard card) { return blockAmount; }
+	
+	public void onEnemyUseCard(final AbstractCard card) { }
+	
+	public void onDetonate() { }
+	
+	public void onSolder() { }
+	
+	public void onPassRoulette() { }
 }

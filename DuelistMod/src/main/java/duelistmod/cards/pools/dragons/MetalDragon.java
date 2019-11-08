@@ -37,7 +37,7 @@ public class MetalDragon extends DuelistCard
     public MetalDragon() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = this.damage = 10;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
         this.tributes = this.baseTributes = 1;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.EXEMPT);

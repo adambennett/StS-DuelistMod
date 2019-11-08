@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import duelistmod.*;
 import duelistmod.abstracts.DuelistCard;
 import duelistmod.patches.AbstractCardEnum;
-import duelistmod.powers.ReinforcementsPower;
+import duelistmod.powers.duelistPowers.ReinforcementsPower;
 import duelistmod.variables.Tags;
 
 public class ReinforcementsArmy extends DuelistCard 

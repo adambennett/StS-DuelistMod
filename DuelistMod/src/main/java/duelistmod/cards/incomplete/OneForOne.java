@@ -34,7 +34,8 @@ public class OneForOne extends DuelistCard
     public OneForOne() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 1;
         this.tags.add(Tags.SPELL);
 		this.tags.add(Tags.ARCANE);
         this.tags.add(Tags.EXODIA_DECK);
@@ -47,7 +48,7 @@ public class OneForOne extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new RetainForTurnsPower(p, this.magicNumber, 1));
+    	applyPowerToSelf(new RetainForTurnsPower(p, this.magicNumber, this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -64,7 +65,8 @@ public class OneForOne extends DuelistCard
         {
         	if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-        	this.upgradeMagicNumber(1);
+        	//this.upgradeMagicNumber(1);
+        	this.upgradeSecondMagic(1);
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
         }
     }

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
+import duelistmod.abstracts.DuelistPotion;
 import duelistmod.helpers.*;
 
 public class RemovePotionsPatch 
@@ -20,6 +22,14 @@ public class RemovePotionsPatch
 			if (chosenClass == TheDuelistEnum.THE_DUELIST && !DuelistMod.addOrbPotions) 
 			{
 				for (String s : DuelistMod.orbPotionIDs) { PotionHelper.potions.remove(s); Util.log("Duelist config settings: removing " + s + " from potion pool"); }
+				for (AbstractPotion pot : DuelistMod.allDuelistPotions)
+				{
+					if (pot instanceof DuelistPotion)
+					{
+						DuelistPotion dp = (DuelistPotion)pot;
+						if (!dp.canSpawn()) { String s = dp.ID; PotionHelper.potions.remove(s); Util.log("Duelist config settings: removing " + s + " from potion pool"); }
+					}
+				}
 			}
 		}
 	}
@@ -32,37 +42,51 @@ public class RemovePotionsPatch
 		{
 			if (c == TheDuelistEnum.THE_DUELIST && !getAll) 
 			{
-				String deck = StarterDeckSetup.getCurrentDeck().getSimpleName();
+				ArrayList<String> newList = new ArrayList<>();
+				for (String s : __result)
+				{
+					if (DuelistMod.duelistPotionMap.get(s) instanceof DuelistPotion)
+					{
+						DuelistPotion pot = (DuelistPotion) DuelistMod.duelistPotionMap.get(s);
+						if (pot.canSpawn()) { newList.add(s); }
+						else { Util.log("Duelist config settings: removing " + s + " from potion pool"); } 
+					}
+					else
+					{
+						newList.add(s);
+					}
+				}
+				__result = newList;
 				
 				// Naturia/Plant/Insect - Poison Potion
-				if (deck.equals("Naturia Deck") || deck.equals("Plant Deck") || deck.equals("Insect Deck")) { __result.add("Poison_Potion"); }
+				if (Util.deckIs("Naturia Deck") || Util.deckIs("Plant Deck") || Util.deckIs("Insect Deck")) { __result.add("Poison_Potion"); }
 				
 				// Spellcaster/Standard - Focus Potion
-				if (deck.equals("Spellcaster Deck") || deck.equals("Standard Deck")|| deck.equals("Dragon Deck")|| deck.equals("Plant Deck")|| deck.equals("Fiend Deck")|| deck.equals("Zombie Deck")) { __result.add("FocusPotion"); }
+				if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck")|| Util.deckIs("Dragon Deck")|| Util.deckIs("Plant Deck")|| Util.deckIs("Fiend Deck")|| Util.deckIs("Zombie Deck")) { __result.add("FocusPotion"); }
 				
 				// Toon/Increment/Zombie - Blood Potion
-				if (deck.equals("Toon Deck") || deck.equals("Increment Deck") || deck.equals("Zombie Deck")) { __result.add("BloodPotion"); }
+				if (Util.deckIs("Toon Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Zombie Deck")) { __result.add("BloodPotion"); }
 				
 				// Machine/Dragon/Aqua - Heart of Iron
-				if (deck.equals("Machine Deck") || deck.equals("Dragon Deck") || deck.equals("Aqua Deck")) { __result.add("HeartOfIron"); }
+				if (Util.deckIs("Machine Deck") || Util.deckIs("Dragon Deck") || Util.deckIs("Aqua Deck")) { __result.add("HeartOfIron"); }
 				
 				// Standard/Increment/Creator/Exodia/Ojama - Ghost in a Jar
-				if (deck.equals("Standard Deck") || deck.equals("Increment Deck") || deck.equals("Creator Deck") || deck.equals("Exodia Deck") || deck.equals("Ojama Deck")) { __result.add("GhostInAJar");	}
+				if (Util.deckIs("Standard Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Creator Deck") || Util.deckIs("Exodia Deck") || Util.deckIs("Ojama Deck")) { __result.add("GhostInAJar");	}
 				
 				// Machine/Increment/Standard - Cunning Potion
-				if (deck.equals("Machine Deck") || deck.equals("Increment Deck") || deck.equals("Standard Deck")) { __result.add("CunningPotion"); }	
+				if (Util.deckIs("Machine Deck") || Util.deckIs("Increment Deck") || Util.deckIs("Standard Deck")) { __result.add("CunningPotion"); }	
 				
 				// Spellcaster/Standard/Fiend/Zombie - Essence of Darkness
-				if (deck.equals("Spellcaster Deck") || deck.equals("Standard Deck") || deck.equals("Fiend Deck") || deck.equals("Zombie Deck")) { __result.add("EssenceOfDarkness"); }
+				if (Util.deckIs("Spellcaster Deck") || Util.deckIs("Standard Deck") || Util.deckIs("Fiend Deck") || Util.deckIs("Zombie Deck")) { __result.add("EssenceOfDarkness"); }
 				
 				// Warrior - Stance Potion
-				if (deck.equals("Warrior Deck")) { __result.add("StancePotion"); }
+				if (Util.deckIs("Warrior Deck")) { __result.add("StancePotion"); }
 
 				// Warrior/Standard - Ambrosia
-				if (deck.equals("Warrior Deck") || deck.equals("Standard Deck")) { __result.add("Ambrosia"); }
+				if (Util.deckIs("Warrior Deck") || Util.deckIs("Standard Deck")) { __result.add("Ambrosia"); }
 
 				// Megatype/Ascended/Pharaoh - All Unique Potions, except Stance Potion & Ambrosia
-				if (deck.equals("Megatype Deck") || deck.equals("Pharaoh I") || deck.equals("Pharaoh II") || deck.equals("Pharaoh III") || deck.equals("Pharaoh IV") || deck.equals("Pharaoh V") || deck.equals("Ascended I") || deck.equals("Ascended II") || deck.equals("Ascended III"))
+				if (Util.deckIs("Megatype Deck") || Util.deckIs("Pharaoh I") || Util.deckIs("Pharaoh II") || Util.deckIs("Pharaoh III") || Util.deckIs("Pharaoh IV") || Util.deckIs("Pharaoh V") || Util.deckIs("Ascended I") || Util.deckIs("Ascended II") || Util.deckIs("Ascended III"))
 				{
 					__result.add("Poison_Potion");
 					__result.add("FocusPotion");

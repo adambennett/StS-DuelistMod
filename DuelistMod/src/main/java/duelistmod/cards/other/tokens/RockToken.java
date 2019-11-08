@@ -36,6 +36,7 @@ public class RockToken extends TokenCard
     	this.tags.add(Tags.TOKEN);  
     	this.tags.add(Tags.ROCK);  
     	this.baseBlock = this.block = 3;
+    	this.baseSummons = this.summons = 2;
     	this.purgeOnUse = true;
     }
     public RockToken(String tokenName) 
@@ -44,11 +45,12 @@ public class RockToken extends TokenCard
     	this.tags.add(Tags.TOKEN);
     	this.tags.add(Tags.ROCK);   
     	this.baseBlock = this.block = 3;
+    	this.baseSummons = this.summons = 2;
     	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
+    	summon();
     	block();
     }
     @Override public AbstractCard makeCopy() { return new RockToken(); }
@@ -67,10 +69,13 @@ public class RockToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeSummons(2);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

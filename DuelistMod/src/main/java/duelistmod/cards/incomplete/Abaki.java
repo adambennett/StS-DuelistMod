@@ -42,7 +42,7 @@ public class Abaki extends DuelistCard
         this.tags.add(Tags.NO_METRONOME);
         this.tags.add(Tags.NO_CARD_FOR_RANDOM_DECK_POOLS);
         this.tags.add(Tags.NO_CREATOR);
-        this.tags.add(Tags.NO_MAGIC_MOD);   
+        this.tags.add(Tags.ALLOYED);   
         this.summons = this.baseSummons = 666;			
         this.baseDamage = this.damage = 666;
         this.baseMagicNumber = this.magicNumber = 666;	

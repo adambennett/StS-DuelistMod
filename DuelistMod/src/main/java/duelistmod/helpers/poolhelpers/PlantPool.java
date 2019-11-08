@@ -9,6 +9,7 @@ import duelistmod.abstracts.StarterDeck;
 import duelistmod.cards.*;
 import duelistmod.cards.incomplete.*;
 import duelistmod.cards.pools.insects.*;
+import duelistmod.cards.pools.machine.*;
 import duelistmod.cards.pools.naturia.*;
 
 public class PlantPool 
@@ -94,7 +95,6 @@ public class PlantPool
 		cards.add(new WorldTree());
 		cards.add(new MiracleFertilizer());
 		cards.add(new VenomShot());
-		cards.add(new OrbitalBombardment());
 		cards.add(new BlossomBombardment());
 		cards.add(new ThornMalice());
 		cards.add(new SilverApples());

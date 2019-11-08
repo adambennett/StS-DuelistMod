@@ -88,7 +88,9 @@ public class DynamicTypeCard extends DuelistCard
     	
     	if (this.callCard instanceof SummonToken)
     	{
+    		int loopCap = 50;
     		DuelistCard randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave);
+    		while (!randMon.hasTag(Tags.MONSTER) && loopCap> 0) { randMon = (DuelistCard)DuelistCard.returnTrulyRandomFromSet(tagSave); loopCap++; }
     		summon(p, 1, randMon);
     	}
     	

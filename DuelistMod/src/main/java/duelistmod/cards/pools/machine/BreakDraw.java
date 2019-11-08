@@ -36,9 +36,10 @@ public class BreakDraw extends DuelistCard
 
     public BreakDraw() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage 				= 30;		// blk
+        this.baseDamage = this.damage 				= 25;		// blk
         this.baseMagicNumber = this.magicNumber 	= 2;		// 
         this.tags.add(Tags.SPELL);
+        this.tags.add(Tags.BAD_MAGIC);
         this.misc = 0;
         this.originalName = this.name;
         this.exhaust = true;

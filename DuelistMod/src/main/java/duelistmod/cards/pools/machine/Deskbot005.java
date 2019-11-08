@@ -27,7 +27,7 @@ public class Deskbot005 extends DuelistCard
     
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 1;
@@ -35,7 +35,7 @@ public class Deskbot005 extends DuelistCard
 
     public Deskbot005() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 5;
+        this.baseBlock = this.block = 6;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.MACHINE_DECK);

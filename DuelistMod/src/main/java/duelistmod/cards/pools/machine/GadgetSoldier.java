@@ -39,8 +39,11 @@ public class GadgetSoldier extends DuelistCard
         this.baseDamage = this.damage = 13;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
+        this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
+		this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
         this.summons = this.baseSummons = 1;
         this.baseMagicNumber = this.magicNumber = 2;
+        this.secondMagic = this.baseSecondMagic = 2;
         this.originalName = this.name;
         this.cardsToPreview = new DamageToken();
     }
@@ -49,6 +52,7 @@ public class GadgetSoldier extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	detonationTribute(this.secondMagic);
     	summon(p, this.summons, this);
     	attack(m);
     	for (int i = 0; i < this.magicNumber; i++)

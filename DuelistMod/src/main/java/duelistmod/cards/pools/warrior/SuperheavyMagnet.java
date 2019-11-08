@@ -58,10 +58,10 @@ public class SuperheavyMagnet extends DuelistCard
 	    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
 	    	switch (randomMagnetNum)
 	    	{
-	    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
-	    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
-	    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
-	    		default: applyPowerToSelf(new BetaMagPower(p, p));
+	    		case 0: applyPowerToSelf(new AlphaMagPower(p, p)); break;
+	    		case 1: applyPowerToSelf(new BetaMagPower(p, p)); break;
+	    		case 2: applyPowerToSelf(new GammaMagPower(p, p)); break;
+	    		default: applyPowerToSelf(new BetaMagPower(p, p)); break;
 	    	}
     	}
     

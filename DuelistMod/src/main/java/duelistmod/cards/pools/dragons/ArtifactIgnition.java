@@ -3,16 +3,18 @@ package duelistmod.cards.pools.dragons;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.ModifyMagicNumberAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
-import duelistmod.powers.duelistPowers.BurningDebuff;
+import duelistmod.powers.duelistPowers.*;
 import duelistmod.variables.Tags;
 
 public class ArtifactIgnition extends DuelistCard 
@@ -31,24 +33,43 @@ public class ArtifactIgnition extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public ArtifactIgnition() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = this.magicNumber 	= 3; 
-        this.baseSecondMagic = this.secondMagic 	= 5;   
+        this.baseMagicNumber = this.magicNumber 	= 4; 
+        this.baseSecondMagic = this.secondMagic 	= 3;   
+        this.thirdMagic = this.baseThirdMagic = 4;
         this.tags.add(Tags.SPELL);       
         this.misc = 0;
         this.originalName = this.name;
+    }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Burn self
+            applyPowerToSelf(new BurningDebuff(AbstractDungeon.player, AbstractDungeon.player, this.thirdMagic));
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
+        super.triggerOnEndOfPlayerTurn();
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new BurningDebuff(p, p, this.secondMagic));
-    	applyPowerToSelf(new ArtifactPower(p, this.magicNumber));
+    	
+    	applyPowerToSelf(new ArtifactPower(p, this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.
@@ -63,7 +84,8 @@ public class ArtifactIgnition extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeSecondMagic(-1);
+            this.upgradeThirdMagic(-1);
+            this.upgradeBaseCost(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }

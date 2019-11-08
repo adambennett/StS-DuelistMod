@@ -35,6 +35,7 @@ public class DamageToken extends TokenCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.baseDamage = this.damage = 1;
+    	this.summons = this.baseSummons = 1;
     	this.purgeOnUse = true;
     }
     public DamageToken(String tokenName) 
@@ -42,11 +43,12 @@ public class DamageToken extends TokenCard
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.baseDamage = this.damage = 1;
+    	this.summons = this.baseSummons = 1;
     	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
+    	summon();
     	attack(m);
     }
     @Override public AbstractCard makeCopy() { return new DamageToken(); }
@@ -65,16 +67,17 @@ public class DamageToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeDamage(2);
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeDamage(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
 	}
-	
 	@Override
 	public String getID() {
 		return ID;

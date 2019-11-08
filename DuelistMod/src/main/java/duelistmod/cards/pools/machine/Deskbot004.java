@@ -35,13 +35,16 @@ public class Deskbot004 extends DuelistCard
 
     public Deskbot004() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 7;
+        this.baseDamage = this.damage = 6;
         this.tags.add(Tags.MONSTER);
         this.tags.add(Tags.MACHINE);
         this.tags.add(Tags.DESKBOT);
         this.tags.add(Tags.MACHINE_DECK);
+        this.tags.add(Tags.DETONATE_DMG_SELF_DISABLED);
+		this.tags.add(Tags.DETONATE_DMG_ENEMIES_ALLOWED);
         this.machineDeckCopies = 2;        
         this.summons = this.baseSummons = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.originalName = this.name;
         this.setupStartingCopies();
     }
@@ -50,6 +53,7 @@ public class Deskbot004 extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
+    	detonationTribute(this.magicNumber);
     	summon();
     	attack(m);
     }
@@ -65,7 +69,8 @@ public class Deskbot004 extends DuelistCard
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(3);
+            this.upgradeDamage(2);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

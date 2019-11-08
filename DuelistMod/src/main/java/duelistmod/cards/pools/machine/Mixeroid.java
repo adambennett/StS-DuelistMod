@@ -27,7 +27,7 @@ public class Mixeroid extends DuelistCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
     private static final int COST = 2;
@@ -37,7 +37,7 @@ public class Mixeroid extends DuelistCard
     {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.originalName = this.name;
-        this.baseMagicNumber = this.magicNumber = 10;
+        this.baseMagicNumber = this.magicNumber = 11;
         this.summons = this.baseSummons = 2;
         this.isSummon = true;
         this.tags.add(Tags.MONSTER);

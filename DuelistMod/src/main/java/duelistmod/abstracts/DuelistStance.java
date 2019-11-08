@@ -47,6 +47,14 @@ public abstract class DuelistStance extends AbstractStance
     public void onSynergyTribute() { }
    
     public void onTribute(DuelistCard tributedMon, DuelistCard tributingMon) { }
+    
+    public void onEnemyUseCard(final AbstractCard card) { }
+    
+	public void onDetonate() { }
+	
+	public void onSolder() { }
+	
+	public void onPassRoulette() { }
 
     public static AbstractStance getStanceFromName(final String name) 
     {

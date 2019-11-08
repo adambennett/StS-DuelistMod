@@ -40,6 +40,7 @@ public class NatureToken extends TokenCard
     	this.tags.add(Tags.NATURIA);  
     	this.tags.add(Tags.PREDAPLANT);
     	this.magicNumber = this.baseMagicNumber = 1;
+    	this.baseSummons = this.summons = 1;
     	this.purgeOnUse = true;
     }
     public NatureToken(String tokenName) 
@@ -50,14 +51,15 @@ public class NatureToken extends TokenCard
     	this.tags.add(Tags.NATURIA);  
     	this.tags.add(Tags.PREDAPLANT);  
        	this.magicNumber = this.baseMagicNumber = 1;
+       	this.baseSummons = this.summons = 1;
     	this.purgeOnUse = true;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
-    	if (Util.tokenRoll()) { DuelistCard.applyPower(new PoisonPower(m, p, this.magicNumber), m); }
-    	if (Util.tokenRoll()) { DuelistCard.applyPower(new ConstrictedPower(m, p, this.magicNumber), m);}
-    	if (Util.tokenRoll()) { DuelistCard.applyPowerToSelf(new ThornsPower(p, this.magicNumber)); }
+    	summon();
+    	if (roulette()) { DuelistCard.applyPower(new PoisonPower(m, p, this.magicNumber), m); }
+    	if (roulette()) { DuelistCard.applyPower(new ConstrictedPower(m, p, this.magicNumber), m);}
+    	if (roulette()) { DuelistCard.applyPowerToSelf(new ThornsPower(p, this.magicNumber)); }
     }
     @Override public AbstractCard makeCopy() { return new NatureToken(); }
 
@@ -75,10 +77,13 @@ public class NatureToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

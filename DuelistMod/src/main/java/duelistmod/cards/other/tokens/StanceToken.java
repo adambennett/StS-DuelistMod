@@ -38,7 +38,7 @@ public class StanceToken extends TokenCard
     	this.tags.add(Tags.WARRIOR);
     	this.tags.add(Tags.SUPERHEAVY);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.baseSummons = this.summons = 1;
     }
     public StanceToken(String tokenName) 
     { 
@@ -47,11 +47,11 @@ public class StanceToken extends TokenCard
     	this.tags.add(Tags.WARRIOR);
     	this.tags.add(Tags.SUPERHEAVY);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.baseSummons = this.summons = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
+    	summon();
     	changeStanceInst("theDuelist:Guarded");
     }
     @Override public AbstractCard makeCopy() { return new StanceToken(); }
@@ -70,11 +70,13 @@ public class StanceToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBlock(2);
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

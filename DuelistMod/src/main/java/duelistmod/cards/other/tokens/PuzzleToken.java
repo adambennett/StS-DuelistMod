@@ -26,7 +26,7 @@ public class PuzzleToken extends TokenCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 1;
@@ -39,7 +39,7 @@ public class PuzzleToken extends TokenCard
     	this.purgeOnUse = true;
     	this.baseBlock = this.block = 1;
     	this.baseMagicNumber = this.magicNumber = 1;
-    	this.isEthereal = true;
+    	this.baseSummons = this.summons = 1;
     }
     public PuzzleToken(String tokenName) 
     { 
@@ -48,11 +48,11 @@ public class PuzzleToken extends TokenCard
     	this.purgeOnUse = true;
     	this.baseBlock = this.block = 1;
     	this.baseMagicNumber = this.magicNumber = 1;
-    	this.isEthereal = true;
+    	this.baseSummons = this.summons = 1;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 1, this);
+    	summon();
     	block(this.block);
     	drawTag(this.magicNumber, Tags.MONSTER);
     }
@@ -72,11 +72,13 @@ public class PuzzleToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBaseCost(0);
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeBaseCost(0);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

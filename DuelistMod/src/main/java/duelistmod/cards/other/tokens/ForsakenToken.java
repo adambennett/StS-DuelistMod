@@ -25,7 +25,7 @@ public class ForsakenToken extends TokenCard
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST;
     private static final int COST = 0;
@@ -36,18 +36,18 @@ public class ForsakenToken extends TokenCard
     	super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN);
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.summons = this.baseSummons = 2;
     }
     public ForsakenToken(String tokenName) 
     { 
     	super(ID, tokenName, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET); 
     	this.tags.add(Tags.TOKEN); 
     	this.purgeOnUse = true;
-    	this.isEthereal = true;
+    	this.summons = this.baseSummons = 2;
     }
     @Override public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	summon(p, 2, this);
+    	summon();
     	changeStanceInst("theDuelist:Forsaken");
     }
     @Override public AbstractCard makeCopy() { return new ForsakenToken(); }
@@ -66,11 +66,13 @@ public class ForsakenToken extends TokenCard
 	
 	@Override public void summonThis(int summons, DuelistCard c, int var) {  }
 	@Override public void summonThis(int summons, DuelistCard c, int var, AbstractMonster m) { }
+	
 	@Override public void upgrade() 
 	{
-		if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeBlock(2);
+		if (canUpgrade()) {
+			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
+	    	else { this.upgradeName(NAME + "+"); }
+			this.upgradeSummons(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

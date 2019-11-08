@@ -151,7 +151,10 @@ public class CombatIconViewer
 		{
 			FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + DuelistCard.getSummons(AbstractDungeon.player),summons.cX,summons.cY,Settings.GREEN_TEXT_COLOR);
 		}
-
+		
+		if (TheDuelist.resummonPile.group.size() > 0) { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + TheDuelist.resummonPile.group.size(),grave.cX,grave.cY,Settings.BLUE_TEXT_COLOR); }
+		else { FontHelper.renderFontCentered(sb,FontHelper.powerAmountFont,"" + TheDuelist.resummonPile.group.size(),grave.cX,grave.cY,Settings.RED_TEXT_COLOR); }
+		
 		if (this.summons.hovered) 
 		{
 			TipHelper.renderGenericTip((float) InputHelper.mX + 50.0F * Settings.scale, (float) InputHelper.mY, Strings.configSummonsIconText, getSummonTipBody());

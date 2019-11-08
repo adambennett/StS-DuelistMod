@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.CardSelectScreenModifyMagicNumberAction;
+import duelistmod.actions.common.SolderAction;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.SummonPower;
@@ -52,7 +52,7 @@ public class OilmanNameless extends DuelistCard
     {
     	summon();
     	attack(m);
-    	AbstractDungeon.actionManager.addToTop(new CardSelectScreenModifyMagicNumberAction(p.hand.group, 1, this.magicNumber, true));
+    	AbstractDungeon.actionManager.addToTop(new SolderAction(p.hand.group, this.magicNumber, true));
     }
 
     

@@ -8,11 +8,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower.PowerType;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 import duelistmod.cards.other.tokens.Token;
+import duelistmod.cards.pools.insects.CorrosiveScales;
 import duelistmod.powers.SummonPower;
 import duelistmod.variables.Tags;
 
@@ -57,40 +57,11 @@ public class CorrosiveScalesPower extends NoStackDuelistPower
 		AbstractPlayer p = AbstractDungeon.player;
     	if ((info.type != DamageInfo.DamageType.THORNS) && (info.type != DamageInfo.DamageType.HP_LOSS) && (info.owner != null) && (info.owner != this.owner) && (damageAmount > 0) && (!this.owner.hasPower("Buffer")))
     	{
-    		if (p.hasPower(SummonPower.POWER_ID))
+    		int x = DuelistCard.xCostTributeStatic(Tags.INSECT, new CorrosiveScales());
+    		if (x > 0)
     		{
-    			SummonPower pow = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    			if (pow.getNumberOfTypeSummoned(Tags.INSECT) > 0)
-    			{
-    				int tokens = 0;
-    		    	SummonPower summonsInstance = (SummonPower) p.getPower(SummonPower.POWER_ID);
-    		    	ArrayList<DuelistCard> aSummonsList = summonsInstance.actualCardSummonList;
-    		    	ArrayList<String> newSummonList = new ArrayList<String>();
-    		    	ArrayList<DuelistCard> aNewSummonList = new ArrayList<DuelistCard>();
-    		    	for (DuelistCard s : aSummonsList)
-    		    	{
-    		    		if (s.hasTag(Tags.INSECT))
-    		    		{
-    		    			tokens++;
-    		    		}
-    		    		else
-    		    		{
-    		    			newSummonList.add(s.originalName);
-    		    			aNewSummonList.add(s);
-    		    		}
-    		    	}
-    		    	
-    		    	DuelistCard.tributeChecker(p, tokens, new Token(), true);
-    		    	summonsInstance.summonList = newSummonList;
-    		    	summonsInstance.actualCardSummonList = aNewSummonList;
-    		    	summonsInstance.amount -= tokens;
-    		    	summonsInstance.updateDescription();
-    		    	
-    		    	if (upgraded) { DuelistCard.poisonAllEnemies(p, tokens * 3); }
-    		    	else { DuelistCard.poisonAllEnemies(p, tokens * 2); }
-    		    	
-    		    	return damageAmount;
-    			}
+    			if (upgraded) { DuelistCard.poisonAllEnemies(p, x * 3); }
+		    	else { DuelistCard.poisonAllEnemies(p, x * 2); }
     		}
     	}
     	return damageAmount;

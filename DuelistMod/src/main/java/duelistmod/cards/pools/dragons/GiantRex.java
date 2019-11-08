@@ -75,6 +75,33 @@ public class GiantRex extends DuelistCard
     	}
     }
     
+    @Override
+    public void onEnemyUseCardWhileInHand(AbstractCard c)
+    {
+    	if (c.hasTag(Tags.DINOSAUR) && this.tributes > 0)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDiscard(AbstractCard c)
+    {
+    	if (c.hasTag(Tags.DINOSAUR) && this.tributes > 0)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
+    @Override
+    public void onEnemyUseCardWhileInDraw(AbstractCard c)
+    {
+    	if (c.hasTag(Tags.DINOSAUR) && this.tributes > 0)
+    	{
+    		AbstractDungeon.actionManager.addToTop(new ModifyTributeAction(this, -this.magicNumber, true));
+    	}
+    }
+    
     // Upgraded stats.
     @Override
     public void upgrade() 

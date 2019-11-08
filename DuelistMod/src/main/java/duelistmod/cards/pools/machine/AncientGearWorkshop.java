@@ -1,14 +1,19 @@
 package duelistmod.cards.pools.machine;
 
+import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
+import duelistmod.actions.common.*;
+import duelistmod.cards.other.tempCards.RarityTempCardA;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
@@ -17,9 +22,9 @@ import duelistmod.variables.Tags;
 public class AncientGearWorkshop extends DuelistCard 
 {
     // TEXT DECLARATION
-    public static final String ID = DuelistMod.makeID("ElectromagneticTurtle");
+    public static final String ID = DuelistMod.makeID("AncientGearWorkshop");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String IMG = DuelistMod.makeCardPath("ElectromagneticTurtle.png");
+    public static final String IMG = DuelistMod.makeCardPath("AncientGearWorkshop.png");
     public static final String NAME = cardStrings.NAME;
     public static final String DESCRIPTION = cardStrings.DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -30,33 +35,48 @@ public class AncientGearWorkshop extends DuelistCard
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = AbstractCardEnum.DUELIST_SPELLS;
-    private static final int COST = 0;
+    private static final int COST = 2;
     // /STAT DECLARATION/
 
     public AncientGearWorkshop() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseBlock = this.block = 25;
-        this.tributes = this.baseTributes = 3;
-        this.specialCanUseLogic = true;
-        this.useTributeCanUse = true;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 2;
         this.tags.add(Tags.SPELL);
         this.tags.add(Tags.MACHINE);
         this.misc = 0;
         this.originalName = this.name;
+    }
+    
+    @Override
+    public void triggerOnEndOfPlayerTurn() 
+    {
+    	// If overflows remaining
+        if (this.magicNumber > 0) 
+        {
+        	// Remove 1 overflow
+            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
+            
+            // Gain second magic Artifacts
+            applyPowerToSelf(new ArtifactPower(AbstractDungeon.player, this.secondMagic));
+            
+            // Check Splash Orbs
+            checkSplash();
+        }
+        super.triggerOnEndOfPlayerTurn();
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	tribute();
-    	block();
-    	int randomMagnetNum = AbstractDungeon.cardRandomRng.random(0, 2);
-    	switch (randomMagnetNum)
+    	if (this.magicNumber > 0) 
     	{
-    		case 0: applyPowerToSelf(new AlphaMagPower(p, p));
-    		case 1: applyPowerToSelf(new BetaMagPower(p, p));
-    		case 2: applyPowerToSelf(new GammaMagPower(p, p));
+    		ArrayList<DuelistCard> choices = new ArrayList<>();
+    		choices.add(new RarityTempCardA(this.magicNumber, CardRarity.COMMON));
+    		choices.add(new RarityTempCardA(this.magicNumber, CardRarity.UNCOMMON));
+    		choices.add(new RarityTempCardA(this.magicNumber, CardRarity.RARE));
+    		this.addToBot(new CardSelectScreenResummonAction(choices, 1));
     	}
     }
 
@@ -72,7 +92,7 @@ public class AncientGearWorkshop extends DuelistCard
         if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeTributes(-1);
+            this.upgradeMagicNumber(1);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }
