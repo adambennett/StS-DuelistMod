@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.AbstractRelic.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import duelistmod.DuelistMod;
@@ -36,6 +35,14 @@ public class BlessingAnubis extends DuelistRelic implements ClickableRelic
     }
     
     @Override
+    public void setCounter(final int counter) {
+        super.setCounter(counter);
+        if (counter > 0) {
+            this.pulse = true;
+        }
+    }
+    
+    @Override
     public void onPlayerEndTurn()
     {
     	curTurn++;
@@ -55,6 +62,7 @@ public class BlessingAnubis extends DuelistRelic implements ClickableRelic
     		ArrayList<DuelistCard> types = DuelistCard.generateTypeForRelic(1, true, new WingedKuriboh9());
         	this.addToBot(new CardSelectScreenResummonAction(types, 1, false, false, false, true));
     		this.counter--;
+    		if (this.counter < 1) { this.pulse = false; }
     	}
     }
     

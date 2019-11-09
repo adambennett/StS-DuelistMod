@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
-import duelistmod.abstracts.DuelistPower;
+import duelistmod.abstracts.*;
 
 public class OverworkedPower extends DuelistPower
 {	
@@ -19,13 +19,14 @@ public class OverworkedPower extends DuelistPower
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private final int strGain;
 	
-	public OverworkedPower(int turns) 
+	public OverworkedPower(int turns, int strGain) 
 	{ 
-		this(AbstractDungeon.player, AbstractDungeon.player, turns);
+		this(AbstractDungeon.player, AbstractDungeon.player, turns, strGain);
 	}
 	
-	public OverworkedPower(AbstractCreature owner, AbstractCreature source, int stacks) 
+	public OverworkedPower(AbstractCreature owner, AbstractCreature source, int stacks, int strGain) 
 	{ 
 		//super(owner, source, stacks);
 		this.name = NAME;
@@ -36,6 +37,7 @@ public class OverworkedPower extends DuelistPower
         this.canGoNegative = true;
         this.source = source;
         this.amount = stacks;
+        this.strGain = strGain;
         this.loadRegion("anger");
 		updateDescription();
 	}
@@ -67,4 +69,10 @@ public class OverworkedPower extends DuelistPower
         }
     }
 
+	@Override
+	public void onInitialApplication()
+	{
+		DuelistCard.applyPowerToSelf(new StrengthPower(AbstractDungeon.player, this.strGain));
+	}
+	
 }

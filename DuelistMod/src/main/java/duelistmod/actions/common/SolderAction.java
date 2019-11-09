@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.*;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -82,7 +83,7 @@ public class SolderAction extends AbstractGameAction
 			tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 			for (AbstractCard c : cards) 
 			{ 
-				if (!c.hasTag(Tags.ALLOYED) && c.magicNumber > 0) 
+				if (!c.hasTag(Tags.ALLOYED) && c.magicNumber > 0 && !c.type.equals(CardType.STATUS) && !c.type.equals(CardType.CURSE)) 
 				{
 					AbstractCard copy = c.makeStatEquivalentCopy();
 					tmp.addToTop(copy);

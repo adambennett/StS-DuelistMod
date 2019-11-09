@@ -1,4 +1,4 @@
-package duelistmod.cards;
+package duelistmod.cards.pools.machine;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

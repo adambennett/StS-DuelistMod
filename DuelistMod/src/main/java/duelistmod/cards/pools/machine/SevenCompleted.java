@@ -47,8 +47,8 @@ public class SevenCompleted extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	for (AbstractCard c : p.drawPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
-    	for (AbstractCard c : p.discardPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
+    	//for (AbstractCard c : p.drawPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
+    	//for (AbstractCard c : p.discardPile.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
     	for (AbstractCard c : p.hand.group) { if (c.baseMagicNumber > 0 && !c.hasTag(Tags.ALLOYED)) { this.addToBot(new SetMagicNumberToSevenAction(c)); }}
     	p.hand.glowCheck();
     }

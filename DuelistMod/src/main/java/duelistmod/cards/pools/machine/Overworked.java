@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
@@ -45,8 +44,7 @@ public class Overworked extends DuelistCard
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	applyPowerToSelf(new StrengthPower(p, this.secondMagic));
-    	applyPowerToSelf(new OverworkedPower(this.magicNumber));
+    	applyPowerToSelf(new OverworkedPower(this.magicNumber, this.secondMagic));
     }
 
     // Which card to return when making a copy of this card.

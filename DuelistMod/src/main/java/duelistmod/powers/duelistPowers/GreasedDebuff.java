@@ -48,16 +48,13 @@ public class GreasedDebuff extends DuelistPower
     public void atStartOfTurn() {
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) 
         {
-        	if (GameActionManager.turn % 2 != 0) 
-        	{
-        		this.flashWithoutSound();
-        		DuelistCard.applyPower(new SlowPower(this.owner, this.amount), this.owner);
-        		if (this.owner.hasPower(BurningDebuff.POWER_ID)) 
-        		{
-        			int dmg = this.owner.getPower(BurningDebuff.POWER_ID).amount + this.amount;
-        			this.addToBot(new BurningTakeDamageAction(this.owner, this.source, dmg, AbstractGameAction.AttackEffect.FIRE));
-        		}
-        	}
+    		this.flashWithoutSound();
+    		DuelistCard.applyPower(new SlowPower(this.owner, this.amount), this.owner);
+    		if (this.owner.hasPower(BurningDebuff.POWER_ID)) 
+    		{
+    			int dmg = this.owner.getPower(BurningDebuff.POWER_ID).amount + this.amount;
+    			this.addToBot(new BurningTakeDamageAction(this.owner, this.source, dmg, AbstractGameAction.AttackEffect.FIRE));
+    		}
         }
     }
 }

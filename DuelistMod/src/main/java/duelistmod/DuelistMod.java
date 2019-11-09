@@ -80,7 +80,7 @@ PostUpdateSubscriber
 	public static final String MOD_ID_PREFIX = "theDuelist:";
 	
 	// Member fields
-	public static String version = "v3.083.1-beta";
+	public static String version = "v3.088.0-beta";
 	private static String modName = "Duelist Mod";
 	private static String modAuthor = "Nyoxide";
 	private static String modDescription = "A Slay the Spire adaptation of Yu-Gi-Oh!";
@@ -1182,7 +1182,7 @@ PostUpdateSubscriber
 		pots.add(new MayhemPotion());
 		pots.add(new GreasePot());
 		pots.add(new FluxPotion());
-		pots.add(new MetallicizePotion());
+		//pots.add(new MetallicizePotion());
 		pots.add(new GiftPotion());
 		for (AbstractPotion p : pots){ duelistPotionMap.put(p.ID, p); allDuelistPotions.add(p);BaseMod.addPotion(p.getClass(), Colors.WHITE, Colors.WHITE, Colors.WHITE, p.ID, TheDuelistEnum.THE_DUELIST); }
 		pots.clear();

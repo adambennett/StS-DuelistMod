@@ -968,7 +968,7 @@
 },
 "theDuelist:GreasedDebuff": {
         "NAME": "Greased",
-        "DESCRIPTIONS": ["At the start of your #yodd turns, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of its #yodd turns, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]
+        "DESCRIPTIONS": ["At the start of your turn, gain #b", " #ySlow. If you are #yBurning, take damage equal to the sum of your #yBurning and #yGreased.", "At the start of its turn, gains #b", " #ySlow. If #yBurning, takes damage equal to the sum of its #yBurning and #yGreased."]
 },
 "theDuelist:SpellCounterPower": {
         "NAME": "Spell Counter",

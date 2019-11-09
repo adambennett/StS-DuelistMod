@@ -38,6 +38,7 @@ public class GravityLash extends DuelistCard
         this.tags.add(Tags.SPELL);
         this.baseMagicNumber = this.magicNumber = 3;
         this.baseDamage = this.damage = 11;
+        this.exhaust = true;
     }
 
     // Actions the card should do.

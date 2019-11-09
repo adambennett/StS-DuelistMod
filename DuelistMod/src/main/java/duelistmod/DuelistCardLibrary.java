@@ -1292,6 +1292,11 @@ public class DuelistCardLibrary
 		DuelistMod.myCards.add(new ParallelPortArmor());
 		DuelistMod.myCards.add(new PineappleBlast());
 		DuelistMod.myCards.add(new BlackSalvo());
+		DuelistMod.myCards.add(new Flashbang());
+		DuelistMod.myCards.add(new BlindDestruction());
+		DuelistMod.myCards.add(new NightmareWheel());
+		DuelistMod.myCards.add(new PortableBatteryPack());
+		DuelistMod.myCards.add(new QuillboltHedgehog());
 		//DuelistMod.myCards.add(new AncientFairyDragon());
 		//DuelistMod.myCards.add(new ElementSaurus());
 		//DuelistMod.myCards.add(new HyperHammerhead());

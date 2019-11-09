@@ -3,20 +3,18 @@ package duelistmod.cards.pools.machine;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.DuelistCard;
-import duelistmod.actions.common.*;
 import duelistmod.helpers.Util;
 import duelistmod.patches.AbstractCardEnum;
 import duelistmod.powers.*;
 import duelistmod.powers.duelistPowers.FluxPower;
 import duelistmod.variables.Tags;
 
-public class ParallelPortArmor extends DuelistCard 
+public class QuillboltHedgehog extends DuelistCard 
 {
     // TEXT DECLARATION
     private static final CardStrings cardStrings = getCardStrings();
@@ -26,73 +24,50 @@ public class ParallelPortArmor extends DuelistCard
     // /TEXT DECLARATION/
 
     // STAT DECLARATION
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-    private static final int COST = 2;
+    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardType TYPE = CardType.ATTACK;
+    public static final CardColor COLOR = AbstractCardEnum.DUELIST_MONSTERS;
+    private static final int COST = 1;
     // /STAT DECLARATION/
 
-    public ParallelPortArmor() {
+    public QuillboltHedgehog() {
         super(getCARDID(), NAME, getIMG(), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(Tags.TRAP);
-        this.tags.add(Tags.ARCANE);
-        this.block = this.baseBlock = 20;
+        this.tags.add(Tags.MONSTER);
+        this.tags.add(Tags.MACHINE);
+        this.summons = this.baseSummons = 2;
         this.misc = 0;
+        this.specialCanUseLogic = true;
         this.originalName = this.name;
-        this.magicNumber = this.baseMagicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 2;
-    }
-    
-    @Override
-    public void triggerOnEndOfPlayerTurn() 
-    {
-    	// If overflows remaining
-        if (this.magicNumber > 0) 
-        {
-        	// Remove 1 overflow
-            AbstractDungeon.actionManager.addToTop(new ModifyMagicNumberAction(this, -1));
-            
-            // Apply 'first card next turn is played twice' power
-            applyPowerToSelf(new FluxPower(AbstractDungeon.player, AbstractDungeon.player, 1));
-            
-            // Check Splash Orbs
-            checkSplash();
-        }
-        super.triggerOnEndOfPlayerTurn();
+        this.baseDamage = this.damage = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
-    	this.addToBot(new SolderAction(this.magicNumber));
-    	if (upgraded) { this.addToBot(new SolderAction(this.magicNumber)); }
+    	summon();
+    	attack(m);
+    	applyPowerToSelf(new FluxPower(this.magicNumber));
     }
 
     // Which card to return when making a copy of this card.
     @Override
     public AbstractCard makeCopy() {
-        return new ParallelPortArmor();
+        return new QuillboltHedgehog();
     }
 
     // Upgraded stats.
     @Override
     public void upgrade() {
-        if (canUpgrade()) {
+        if (!this.upgraded) {
             if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-            this.upgradeBlock(3);
+            this.upgradeDamage(4);
             this.rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription(); 
         }
-    }
-    
-    @Override
-    public boolean canUpgrade()
-    {
-    	if (this.timesUpgraded < 4) { return true; }
-    	return false;
     }
     
     // Tribute canUse()

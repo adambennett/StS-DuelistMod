@@ -4058,9 +4058,9 @@
 		"UPGRADE_DESCRIPTION": "At the start of turn, Detonate !M!."
 	},
 	"theDuelist:BlastAsmodian": {
-		"DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Explosive Tokens. NL Deal !D! damage. NL Channel a Gadget.",
+		"DESCRIPTION": "Fiend NL Detonate !M! NL Deal !D! damage. NL Channel a Gadget.",
 		"NAME": "Blast Asmodian",
-		"UPGRADE_DESCRIPTION": "Fiend NL Summon !duelist:SUMM! Explosive Tokens. NL Deal !D! damage. NL Channel a Gadget."
+		"UPGRADE_DESCRIPTION": "Fiend NL Detonate !M! NL Deal !D! damage. NL Channel a Gadget."
 	},
 	"theDuelist:BlastingRuins": {
 		"DESCRIPTION": "Summon !duelist:SUMM! Explosive Tokens. NL Gain !M! Artifact. NL Channel an Alien.",
@@ -7532,9 +7532,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage to !M! random enemies. NL Channel an Air."
 	},
 	"theDuelist:Deskbot003": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Channel !M! Gadgets.",
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Channel !M! Gadget.",
 		"NAME": "Deskbot003",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Channel !M! Gadgets."
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Channel !M! Gadget."
 	},
 	"theDuelist:Deskbot006": {
 		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL Add a random *Deskbot to your hand.",
@@ -7627,9 +7627,9 @@
 		"UPGRADE_DESCRIPTION": "Machine Dragon NL Detonate X NL Gain X *Temp *HP. NL Deal !D! damage X times."
 	},
 	"theDuelist:SevenCompleted": {
-		"DESCRIPTION": "Purge NL Set the magic number of all cards in play to !duelist:O!.",
+		"DESCRIPTION": "Retain NL Set the magic number of all cards in your hand to !duelist:O!. NL Exhaust.",
 		"NAME": "7 Completed",
-		"UPGRADE_DESCRIPTION": "Innate NL Purge NL Set the magic number of all cards in play to !duelist:O!."
+		"UPGRADE_DESCRIPTION": "Retain NL Set the magic number of all cards in your hand to !duelist:O!. NL Exhaust."
 	},
 	"theDuelist:AirCrackingStorm": {
 		"DESCRIPTION": "Purge NL Machine NL Tribute !duelist:TRIB! NL Deal !D! damage. NL At the start of each turn, if you have no Air orbs, Channel !M! Air.",
@@ -7666,11 +7666,6 @@
 		"NAME": "Solemn Warning",
 		"UPGRADE_DESCRIPTION": "If the enemy intends to Attack, gain !M! *Temporary *HP."
 	},
-	"theDuelist:Twister": {
-		"DESCRIPTION": "Deal !D! damage to a random amount of random enemies.",
-		"NAME": "Twister",
-		"UPGRADE_DESCRIPTION": "Deal !D! damage to a random amount of random enemies."
-	},
 	"theDuelist:Flashbang": {
 		"DESCRIPTION": "Deal !D! damage. Stun a random enemy. Fill your summon zones with Exploding Tokens.",
 		"NAME": "Flashbang",
@@ -7695,11 +7690,6 @@
 		"DESCRIPTION": "Retain NL Solder !duelist:M! twice. NL When Retained, increase this card's Solder amount by !M!. NL Exhaust.",
 		"NAME": "Orcust Crescendo",
 		"UPGRADE_DESCRIPTION": "Retain NL Solder !duelist:M! twice. NL When Retained, increase this card's Solder amount by !M!. NL Exhaust."
-	},
-	"theDuelist:Earthshaker": {
-		"DESCRIPTION": "Retain NL Deal !D! damage to a random enemy !M! times. NL Has a chance to apply Vulnerable to damaged enemies.",
-		"NAME": "Earthshaker",
-		"UPGRADE_DESCRIPTION": "Retain NL Deal !D! damage to a random enemy !M! times. NL Has a chance to apply Vulnerable to damaged enemies."
 	},
 	"theDuelist:Gust": {
 		"DESCRIPTION": "Retain NL Deal !D! damage. NL Apply !duelist:M! Slow. NL When Retained, increase this card's Slow amount by !M!.",
@@ -7733,13 +7723,8 @@
 	},
 	"theDuelist:PortableBatteryPack": {
 		"DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Exhaust.",
-		"NAME": "Portable Battery Pack",
+		"NAME": "Battery Pack",
 		"UPGRADE_DESCRIPTION": "Machine NL Gain !B! Block. NL Gain !M! Flux. NL Exhaust."
-	},
-	"theDuelist:QuickCharger": {
-		"DESCRIPTION": "Fleeting NL Machine NL Heal to full. NL Lose !M! Max HP.",
-		"NAME": "Quick Charger",
-		"UPGRADE_DESCRIPTION": "Fleeting NL Machine NL Heal to full. NL Lose !M! Max HP."
 	},
 	"theDuelist:Factory100Machines": {
 		"DESCRIPTION": "Fleeting NL Choose a rarity, then choose !duelist:M! of !M! random Machine cards of that rarity to obtain.",
@@ -7750,21 +7735,6 @@
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Flux.",
 		"NAME": "Quillbolt Hedgehog",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain !M! Flux."
-	},
-	"theDuelist:BatterymanC": {
-		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you are Debuffed, deals 0 damage.",
-		"NAME": "Batteryman C",
-		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Deal !D! damage. NL While you are Debuffed, deals 0 damage."
-	},
-	"theDuelist:DarkFlattop": {
-		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Channel !M! Dark. NL Draw a card of a random rarity.",
-		"NAME": "Dark Flattop",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Channel !M! Dark. NL Draw a card of a random rarity."
-	},
-	"theDuelist:HeavyArmoredTrainIronwolf": {
-		"DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Lose all Artifacts and Exhaust your hand. NL Deal damage equal to the Artifacts lost multipled by the sum of all card damage. NL ( !duelist:M! damage )",
-		"NAME": "Heavy Ironwolf Train",
-		"UPGRADE_DESCRIPTION": "Machine NL Tribute !duelist:TRIB! NL Lose all Artifacts and Exhaust your hand. NL Deal damage equal to the Artifacts lost multipled by the sum of all card damage. NL ( !duelist:M! damage )"
 	},
 	"theDuelist:MachinaCannon": {
 		"DESCRIPTION": "Retain NL Machine NL Tribute !duelist:TRIB! NL Quicktime: Deal !D! damage. NL Whenever this card is Retained, increase its damage by !M!.",

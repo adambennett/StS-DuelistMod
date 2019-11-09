@@ -35,8 +35,8 @@ public class GenexAllyBirdman extends DuelistCard
 
     public GenexAllyBirdman() {
         super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = this.damage = 12;
-        this.tributes = this.baseTributes = 3;
+        this.baseDamage = this.damage = 9;
+        this.tributes = this.baseTributes = 2;
         this.baseMagicNumber = this.magicNumber = 2;
         this.specialCanUseLogic = true;
         this.useTributeCanUse = true;

@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.FetchAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.*;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
@@ -1991,7 +1991,41 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		}
 		return effect;
 	}
+	
+	public void stunEnemy()
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		if (m != null) { stunEnemy(m); }
+	}
+	
+	public static void stunEnemyStatic()
+	{
+		AbstractMonster m = AbstractDungeon.getRandomMonster();
+		if (m != null) { stunEnemyStatic(m); }
+	}
 
+	public void stunEnemy(AbstractMonster m)
+	{
+		this.addToBot(new StunMonsterAction(m, AbstractDungeon.player));
+	}
+	
+	public static void stunEnemyStatic(AbstractMonster m)
+	{
+		AbstractDungeon.actionManager.addToBottom(new StunMonsterAction(m, AbstractDungeon.player));
+	}
+	
+	public void stunAllEnemies()
+	{
+		ArrayList<AbstractMonster> mons = getAllMons();
+		for (AbstractMonster m : mons) { stunEnemy(m); }
+	}
+	
+	public static void stunAllEnemiesStatic()
+	{
+		ArrayList<AbstractMonster> mons = getAllMons();
+		for (AbstractMonster m : mons) { stunEnemyStatic(m); }
+	}
+	
 	protected void useXEnergy() {
 		AbstractDungeon.actionManager.addToTop(new LoseXEnergyAction(player(), freeToPlayOnce));
 	}
@@ -5088,7 +5122,15 @@ public abstract class DuelistCard extends CustomCard implements ModalChoice.Call
 		if (p.hasPower(SummonPower.POWER_ID))
 		{
 			SummonPower summonsInstance = (SummonPower)p.getPower(SummonPower.POWER_ID);
-			if (!(amount > 5 && p.hasRelic(MillenniumKey.ID))) { summonsInstance.MAX_SUMMONS = amount; DuelistMod.lastMaxSummons = amount; p.getRelic(MillenniumKey.ID).flash(); }
+			if (!(amount > 5 && p.hasRelic(MillenniumKey.ID))) 
+			{ 
+				summonsInstance.MAX_SUMMONS = amount; 
+				DuelistMod.lastMaxSummons = amount; 
+			}
+			else if (amount > 5 && p.hasRelic(MillenniumKey.ID))
+			{
+				p.getRelic(MillenniumKey.ID).flash(); 
+			}
 			summonsInstance.updateCount(summonsInstance.amount);
 			summonsInstance.updateStringColors();
 			summonsInstance.updateDescription();

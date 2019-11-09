@@ -41,7 +41,7 @@ public class Glitch extends DuelistOrb
 		this.img = ImageMaster.loadImage(DuelistMod.makePath("orbs/Glitch.png"));
 		this.name = orbString.NAME;
 		this.baseEvokeAmount = this.evokeAmount = 1;
-		this.basePassiveAmount = this.passiveAmount = 3;
+		this.basePassiveAmount = this.passiveAmount = 4;
 		this.angle = MathUtils.random(360.0F);
 		this.channelAnimTimer = 0.5F;
 		originalEvoke = this.baseEvokeAmount;
@@ -69,7 +69,7 @@ public class Glitch extends DuelistOrb
 	}
 
 	@Override
-	public void onStartOfTurn()
+	public void onEndOfTurn()
 	{
 		if (this.passiveAmount > 0) { this.triggerPassiveEffect(); }
 	}
@@ -83,9 +83,6 @@ public class Glitch extends DuelistOrb
 		updateDescription();
 	}
 
-	
-	
-	
 	@Override
 	//Taken from frost orb and modified a bit. Works to draw the basic orb image.
 	public void render(SpriteBatch sb) 

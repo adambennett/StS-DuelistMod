@@ -177,7 +177,7 @@
 	  "Glitches",
 	  "glitches"
     ],    
-    "DESCRIPTION": "#yOrb: At the start of turn, apply #b3 #yGreased to ALL enemies. NL #yEvoke: Fill your hand with random Tokens."
+    "DESCRIPTION": "#yOrb: At the start of turn, apply #b4 #yGreased to ALL enemies. NL #yEvoke: Fill your hand with random Tokens."
   },
   {
    "PROPER_NAME": "Shadow",
@@ -848,7 +848,7 @@
 	  "greased",
 	  "Greased"
     ],   
-    "DESCRIPTION": "At the start of odd turns, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."
+    "DESCRIPTION": "At the start of turn, #yGreased characters gain #ySlow equal to their #yGrease. If #yBurning, take damage equal to the sum of #yBurning and #yGrease."
   },
   {
     "PROPER_NAME": "Quicktime",
