@@ -123,8 +123,8 @@
         "NAME": "Dragonfire Potion",
         "DESCRIPTIONS": ["Deal #b", " damage for each of your max summons. Affected by #yDragonscales."]
 },
-"theDuelist:GreasePot": {
-        "NAME": "Grease Potion",
+"theDuelist:BombBottle": {
+        "NAME": "Bombottle",
         "DESCRIPTIONS": ["Deal #b", " damage for each of your max summons. Damage is incrased by #b1 each time you #yDetonate, up to a maximum of #b20 damage."]
 },
 "theDuelist:WaterBottle": {
@@ -218,6 +218,34 @@
 "theDuelist:MegaupgradePotion": {
         "NAME": "Arcane Forge",
         "DESCRIPTIONS": ["#yUpgrade all cards in your hand until they cannot be #yUpgraded anymore."]
+},
+"theDuelist:FreezingPotion": {
+        "NAME": "Freezing Potion",
+        "DESCRIPTIONS": ["#yFreeze ALL enemies."]
+},
+"theDuelist:IcePotion": {
+        "NAME": "Ice Potion",
+        "DESCRIPTIONS": ["#yFreeze an enemy. Heal #b", " HP."]
+},
+"theDuelist:BurningPotion": {
+        "NAME": "Searing Potion",
+        "DESCRIPTIONS": ["Apply #b", " #yBurning."]
+},
+"theDuelist:GreasePot": {
+        "NAME": "Grease Potion",
+        "DESCRIPTIONS": ["Apply #b", " #yGrease."]
+},
+"theDuelist:StunPotion": {
+        "NAME": "Stun Potion",
+        "DESCRIPTIONS": ["#yStun an enemy."]
+},
+"theDuelist:GrimePotion": {
+        "NAME": "Grime Potion",
+        "DESCRIPTIONS": ["Apply #b", " #yGrease to ALL enemies."]
+},
+"theDuelist:BurningPotionB": {
+        "NAME": "Blazing Potion",
+        "DESCRIPTIONS": ["Apply #b", " #yBurning to ALL enemies."]
 },
 "theDuelist:FlamingBottle": {
         "NAME": "Flaming Bottle",

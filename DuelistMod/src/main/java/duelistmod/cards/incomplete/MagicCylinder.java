@@ -25,10 +25,10 @@ public class MagicCylinder extends DuelistCard
 
 	// STAT DECLARATION
 	private static final CardRarity RARITY = CardRarity.RARE;
-	private static final CardTarget TARGET = CardTarget.NONE;
+	private static final CardTarget TARGET = CardTarget.SELF;
 	private static final CardType TYPE = CardType.POWER;
 	public static final CardColor COLOR = AbstractCardEnum.DUELIST_TRAPS;
-	private static final int COST = 4;
+	private static final int COST = 3;
 	// /STAT DECLARATION/
 
 	public MagicCylinder() {
@@ -36,9 +36,7 @@ public class MagicCylinder extends DuelistCard
 		this.tags.add(Tags.TRAP);
 		this.tags.add(Tags.LABYRINTH_NIGHTMARE);
 		this.tags.add(Tags.EXODIA_DECK);
-		this.tags.add(Tags.ARCANE);
         this.exodiaDeckCopies = 1;
-        this.baseMagicNumber = this.magicNumber = 2;
 		this.originalName = this.name;
 		this.setupStartingCopies();
 	}
@@ -47,7 +45,7 @@ public class MagicCylinder extends DuelistCard
 	@Override
 	public void use(AbstractPlayer p, AbstractMonster m) 
 	{
-		applyPowerToSelf(new MagicCylinderPower(p, p, this.magicNumber));
+		applyPowerToSelf(new MagicCylinderPower(p, p, 5));
 	}
 
 	// Which card to return when making a copy of this card.
@@ -59,20 +57,13 @@ public class MagicCylinder extends DuelistCard
 	// Upgraded stats.
 	@Override
 	public void upgrade() {
-		if (canUpgrade()) 
+		if (!upgraded) 
 		{
 			if (this.timesUpgraded > 0) { this.upgradeName(NAME + "+" + this.timesUpgraded); }
 	    	else { this.upgradeName(NAME + "+"); }
-			this.upgradeMagicNumber(1);
+			this.upgradeBaseCost(2);
 			exodiaDeckCardUpgradeDesc(UPGRADE_DESCRIPTION); 
 		}
-	}
-	
-	@Override
-	public boolean canUpgrade()
-	{
-		if (this.magicNumber < 6) { return true; }
-		else { return false; }
 	}
 
 	@Override

@@ -1096,7 +1096,6 @@ public class Util
 		BaseMod.addPower(LeavesPower.class, LeavesPower.POWER_ID);
 		BaseMod.addPower(LeodrakeManePower.class, LeodrakeManePower.POWER_ID);
 		BaseMod.addPower(LostWorldPower.class, LostWorldPower.POWER_ID);
-		BaseMod.addPower(MagicCylinderPower.class, MagicCylinderPower.POWER_ID);
 		BaseMod.addPower(MagiciansRobePower.class, MagiciansRobePower.POWER_ID);
 		BaseMod.addPower(MagiciansRodPower.class, MagiciansRodPower.POWER_ID);
 		BaseMod.addPower(MagickaPower.class, MagickaPower.POWER_ID);
@@ -1202,6 +1201,7 @@ public class Util
 		BaseMod.addPower(RoboticKnightPower.class, RoboticKnightPower.POWER_ID);
 		BaseMod.addPower(UnionHangarPower.class, UnionHangarPower.POWER_ID);
 		BaseMod.addPower(WonderGaragePower.class, WonderGaragePower.POWER_ID);
+		BaseMod.addPower(MagicCylinderPower.class, MagicCylinderPower.POWER_ID);
 	}
 	
 }

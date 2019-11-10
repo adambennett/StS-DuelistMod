@@ -1132,9 +1132,9 @@
 		"UPGRADE_DESCRIPTION": "Machine NL Summon 1 NL Roulette: Channel !M! Metal."
 	},
 	"theDuelist:MagicCylinder": {
-		"DESCRIPTION": "Arcane NL Whenever you lose HP, draw !M! cards.",
+		"DESCRIPTION": "Whenever you lose HP, gain a random amount of *Temporary *HP.",
 		"NAME": "Magic Cylinder",
-		"UPGRADE_DESCRIPTION": "Arcane NL Whenever you lose HP, draw !M! cards."
+		"UPGRADE_DESCRIPTION": "Whenever you lose HP, gain a random amount of *Temporary *HP."
 	},
 	"theDuelist:MagnetArchetype": {
 		"DESCRIPTION": "Add Magnet Warrior cards to your card pool.",
@@ -2713,9 +2713,9 @@
 		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns."
 	},
 	"theDuelist:MagicalStone": {
-		"DESCRIPTION": "Arcane NL Draw !M! Spells. NL Exhaust.",
+		"DESCRIPTION": "Arcane NL Retain NL Draw !M! Spells.",
 		"NAME": "Magical Stone",
-		"UPGRADE_DESCRIPTION": "Arcane NL Draw !M! Spells. NL Exhaust."
+		"UPGRADE_DESCRIPTION": "Arcane NL Retain NL Draw !M! Spells."
 	},
 	"theDuelist:CastleToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Draw !M! Fiend.",
@@ -7775,6 +7775,51 @@
 		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Quicktime: Trigger random effects.",
 		"NAME": "Megaglitch Token",
 		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Quicktime: Trigger random effects."
+	},
+	"theDuelist:MetallicToken": {
+		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain !M! Metallicize.",
+		"NAME": "Metallic Token",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Gain !M! Metallicize."
+	},
+	"theDuelist:ArmoredToken": {
+		"DESCRIPTION": "Summon !duelist:SUMM! Roulette: Gain !M! Plated Armor.",
+		"NAME": "Armored Token",
+		"UPGRADE_DESCRIPTION": "Summon !duelist:SUMM! Roulette: Gain !M! Plated Armor."
+	},
+	"theDuelist:FocusToken": {
+		"DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Roulette: Gain !M! Focus for !duelist:M! turn.",
+		"NAME": "Focus Token",
+		"UPGRADE_DESCRIPTION": "Spellcaster NL Summon !duelist:SUMM! NL Roulette: Gain !M! Focus for !duelist:M! turns."
+	},
+	"theDuelist:TrapToken": {
+		"DESCRIPTION": "Roulette: Add a Randomized Trap to your hand.",
+		"NAME": "Trap Token",
+		"UPGRADE_DESCRIPTION": "Add a Randomized Trap to your hand."
+	},
+	"theDuelist:RobotToken": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Whenever you Solder, repeat the same Soldering action.",
+		"NAME": "Robot Token",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Whenever you Solder, repeat the same Soldering action."
+	},
+	"theDuelist:AncientToken": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Double your Artifacts.",
+		"NAME": "Ancient Token",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Double your Artifacts."
+	},
+	"theDuelist:BurnToken": {
+		"DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Apply !M! Burning.",
+		"NAME": "Burn Token",
+		"UPGRADE_DESCRIPTION": "Dragon NL Summon !duelist:SUMM! NL Apply !M! Burning."
+	},
+	"theDuelist:FreezeToken": {
+		"DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Roulette: Freeze an enemy.",
+		"NAME": "Freeze Token",
+		"UPGRADE_DESCRIPTION": "Aqua NL Summon !duelist:SUMM! NL Roulette: Freeze an enemy."
+	},
+	"theDuelist:GreaseToken": {
+		"DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Apply !M! Grease to ALL enemies.",
+		"NAME": "Grease Token",
+		"UPGRADE_DESCRIPTION": "Machine NL Summon !duelist:SUMM! NL Roulette: Apply !M! Grease to ALL enemies."
 	},
 	"theDuelist:Cancel": {
 		"DESCRIPTION": "None",

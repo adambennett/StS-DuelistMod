@@ -37,8 +37,8 @@ public class SummonAnchorRare extends DuelistRelic {
 	@Override
 	public void atBattleStart() 
 	{
-		DuelistCard randTokenA = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false);
-		DuelistCard randTokenB = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false);
+		DuelistCard randTokenA = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false, false);
+		DuelistCard randTokenB = DuelistCardLibrary.getRandomTokenForCombat(true, true, true, false, false, false);
 		AbstractDungeon.actionManager.addToBottom(new SummonAction(1, randTokenA));
 		AbstractDungeon.actionManager.addToBottom(new SummonAction(1, randTokenB));
 		this.flash();

@@ -8,21 +8,20 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
-import duelistmod.helpers.Util;
-import duelistmod.powers.duelistPowers.GreasedDebuff;
+import duelistmod.powers.duelistPowers.BurningDebuff;
 import duelistmod.variables.Colors;
 
-public class GreasePot extends DuelistPotion {
+public class BurningPotion extends DuelistPotion {
 
 
-    public static final String POTION_ID = DuelistMod.makeID("GreasePot");
+    public static final String POTION_ID = DuelistMod.makeID("BurningPotion");
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
-    public GreasePot() {
-    	super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.BLACK, Colors.BLACK);
+    public BurningPotion() {
+    	super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.SPHERE, PotionEffect.OSCILLATE, Colors.GRAY, Colors.BLACK, Colors.BLACK);
         
         // Potency is the damage/magic number equivalent of potions.
         this.potency = this.getPotency();
@@ -38,30 +37,23 @@ public class GreasePot extends DuelistPotion {
         //this.tips.add(new PowerTip(this.name, this.description));
         
     }
-    
-    @Override
-    public boolean canSpawn()
-    {
-    	if (Util.deckIs("Machine Deck")) { return true; }
-    	return false;
-    }
 
     @Override
     public void use(AbstractCreature target) 
     {
-    	DuelistCard.applyPower(new GreasedDebuff(target, AbstractDungeon.player, this.potency), target);
-    	//DuelistCard.greaseAllEnemies(this.potency);
+    	DuelistCard.applyPower(new BurningDebuff(target, AbstractDungeon.player, this.potency), target);
+    	//DuelistCard.burnAllEnemies(this.potency);
     }
     
     @Override
     public AbstractPotion makeCopy() {
-        return new GreasePot();
+        return new BurningPotion();
     }
 
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-    	int pot = 6;
+    	int pot = 10;
     	return pot;
     }
     

@@ -82,7 +82,7 @@
 },
 "theDuelist:MagicCylinderPower": {
         "NAME": "Magic Cylinder",
-        "DESCRIPTIONS": ["Whenever you lose HP, draw #b", " card.", " cards." ]
+        "DESCRIPTIONS": ["Whenever you lose HP, gain a random amount of #yTemporary #yHP between #b1 and the amount of damage dealt plus #b", "." ]
 },
 "theDuelist:MirrorForcePower": {
         "NAME": "Mirror Force",

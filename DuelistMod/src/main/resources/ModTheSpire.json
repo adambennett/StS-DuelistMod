@@ -3,7 +3,7 @@
   "name": "Duelist Mod",
   "author_list": ["Nyoxide"],
   "description": "A Slay the Spire adaptation of Yu-Gi-Oh!\n\nSOURCE\n https://github.com/adambennett/StS-DuelistMod \n\n\nThanks for playing the Duelist! Please let me know if you have any feedback or bug reports!\nEmail: nyoxidestsmods@gmail.com\nDiscord: Nyoxide#3464",
-  "version": "3.088.0-beta",
+  "version": "3.088.1-beta",
   "sts_version": "11-08-2019",
   "mts_version": "3.14.1",
   "credits": "Thanks to Gremious for his amazing work with the Default Mod base, without which the Duelist would not exist! \n\nHUGE thanks to GK for providing his quicktime event code and making it really easy to use! If you enjoy the input-based quicktime events in this mod, GK is who you should thank!! Could not have accomplished this without his help!\n\nBig shoutout to Playmaker for various art contributions: character selection button, spellcaster deck selection screen art, and the newer Yugi character model! \n\nThanks to DarkVexon for his awesome relic damage animation! \n\nThanks to Pastykake, Rocketchu, magekirbys, Avret, Drogoroth, NullChaos, PheonixLord, joel.strange, Captain Buggy, spencerws88 and everyone else I forgot to mention for providing consistent suggestions on balancing, bug reports, and other general feedback to help improve the mod!",

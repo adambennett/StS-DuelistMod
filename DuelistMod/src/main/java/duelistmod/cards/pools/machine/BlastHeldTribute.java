@@ -47,7 +47,7 @@ public class BlastHeldTribute extends DuelistCard
     public void use(AbstractPlayer p, AbstractMonster m) 
     {
     	int tokens = detonationTribute(true);
-    	addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(false, false, true, false, false), tokens);
+    	addCardToHand(DuelistCardLibrary.getRandomTokenForCombat(false, false, true, false, false, true), tokens);
     }
 
     // Which card to return when making a copy of this card.

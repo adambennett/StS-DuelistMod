@@ -47,7 +47,7 @@ public class DuelistCardLibrary
 	{
 		return null;
 	}
-	
+
 	public static void addCardsToGame()
 	{
 		for (DuelistCard c : DuelistMod.myCards) 
@@ -59,14 +59,14 @@ public class DuelistCardLibrary
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 			if (c.hasTag(Tags.ARCANE)) { DuelistMod.arcaneCards.add(c); }
 		}
-		
+
 		for (DuelistCard c : DuelistMod.myNamelessCards)
 		{
 			BaseMod.addCard(c); 		
 			UnlockTracker.unlockCard(c.getID());
 			DuelistMod.mapForRunCardsLoading.put(c.originalName, c);
 		}
-		
+
 		for (DuelistCard c : DuelistMod.myStatusCards)
 		{
 			BaseMod.addCard(c); 		
@@ -78,18 +78,18 @@ public class DuelistCardLibrary
 			BaseMod.addCard(c); 
 			UnlockTracker.unlockCard(c.getID()); 
 		}
-		
+
 		DuelistCard cd = new CurseDarkness();
 		DuelistCard da = new DuelistAscender();
 		BaseMod.addCard(cd);
 		BaseMod.addCard(da);
 		UnlockTracker.unlockCard(cd.getID());
-		
+
 		for (AbstractCard c : BaseGameHelper.getAllBaseGameCards())
 		{
 			DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 		}
-		
+
 		if (DuelistMod.isInfiniteSpire)
 		{
 			for (AbstractCard c : InfiniteSpireHelper.getAllBlackCards())
@@ -97,13 +97,13 @@ public class DuelistCardLibrary
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			}
 		}
-		
+
 		if (DuelistMod.isAnimator)
 		{
 			try { for (AbstractCard c : AnimatorHelper.getAllCards()) { DuelistMod.mapForCardPoolSave.put(c.originalName, c); }}
 			catch (IllegalAccessException e) { Util.log("Illegal access exception while attempting to read Animator cards into map"); }
 		}
-		
+
 		if (DuelistMod.isClockwork)
 		{
 			for (AbstractCard c : ClockworkHelper.getAllCards())
@@ -111,7 +111,7 @@ public class DuelistCardLibrary
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			}
 		}
-		
+
 		if (DuelistMod.isConspire)
 		{
 			for (AbstractCard c : ConspireHelper.getAllCards())
@@ -119,7 +119,7 @@ public class DuelistCardLibrary
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			}
 		}
-		
+
 		if (DuelistMod.isDisciple)
 		{
 			for (AbstractCard c : DiscipleHelper.getAllCards())
@@ -127,7 +127,7 @@ public class DuelistCardLibrary
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			}
 		}
-		
+
 		if (DuelistMod.isGatherer)
 		{
 			for (AbstractCard c : GathererHelper.getAllCards())
@@ -135,7 +135,7 @@ public class DuelistCardLibrary
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			}
 		}
-		
+
 		if (DuelistMod.isHubris)
 		{
 			for (AbstractCard c : HubrisHelper.getAllCards())
@@ -143,7 +143,7 @@ public class DuelistCardLibrary
 				DuelistMod.mapForCardPoolSave.put(c.originalName, c);
 			}
 		}
-		
+
 		if (DuelistMod.isReplay)
 		{
 			for (AbstractCard c : ReplayHelper.getAllCards())
@@ -1310,7 +1310,7 @@ public class DuelistCardLibrary
 			DuelistMod.myCards.add(new PumpkinCarriage());
 			DuelistMod.myCards.add(new HalloweenManor());
 		}
-		
+
 		if (Util.birthdayCheck())
 		{
 			DuelistMod.myCards.add(new BalloonParty());
@@ -1320,7 +1320,7 @@ public class DuelistCardLibrary
 		}
 
 		//DuelistMod.myCards.add(new WightLady());		
-		
+
 		// NAMELESS TOMB CARDS
 		DuelistMod.myNamelessCards.add(new AllyJusticeNameless());
 		DuelistMod.myNamelessCards.add(new AncientGearBoxNameless());
@@ -1368,12 +1368,12 @@ public class DuelistCardLibrary
 		DuelistMod.myNamelessCards.add(new BlueEyesNamelessWar());	
 		DuelistMod.myNamelessCards.add(new NaturalDisasterNameless());	
 		// NAMELESS TOMB CARDS
-		
+
 		// STATUS
 		DuelistMod.myStatusCards.add(new ColdBlooded());
 		DuelistMod.myStatusCards.add(new Swarm());
 		// STATUS
-		
+
 		if (DuelistMod.duelistCurses)
 		{
 			DuelistMod.curses.add(new GravekeeperCurse());
@@ -1386,7 +1386,7 @@ public class DuelistCardLibrary
 			DuelistMod.curses.add(new PsiCurse());
 			//DuelistMod.curses.add(new CurseRoyal());
 		}
-		
+
 		for (CardTags t : DuelistMod.monsterTypes)
 		{
 			String ID = DuelistMod.typeCardMap_ID.get(t);
@@ -1395,7 +1395,7 @@ public class DuelistCardLibrary
 			DuelistMod.typeCardMap_NameToString.put(localCardStrings.NAME, t);
 			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
 		}
-		
+
 		ArrayList<CardTags> extraTags = new ArrayList<CardTags>();
 		extraTags.add(Tags.ROSE);
 		extraTags.add(Tags.ARCANE);
@@ -1406,7 +1406,7 @@ public class DuelistCardLibrary
 		extraTags.add(Tags.TRAP);
 		extraTags.add(Tags.GIANT);
 		extraTags.add(Tags.MAGNET);
-		
+
 		for (CardTags t : extraTags)
 		{
 			String ID = DuelistMod.typeCardMap_ID.get(t);
@@ -1427,11 +1427,11 @@ public class DuelistCardLibrary
 				}				
 			}			
 		}
-		
+
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) { for (DuelistCard c : getAllDuelistTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}
-		
-		
+
+
 		// DEBUG CARD STUFF
 		if (DuelistMod.debug)
 		{
@@ -1452,7 +1452,7 @@ public class DuelistCardLibrary
 				}
 			}
 		}
-		
+
 		if (DuelistMod.addTokens)
 		{
 			DuelistMod.myCards.addAll(getAllDuelistTokens());
@@ -1464,7 +1464,7 @@ public class DuelistCardLibrary
 			for (DuelistCard orbCard : DuelistMod.orbCards) { DuelistMod.myCards.add(orbCard); }
 		}
 		// END DEBUG CARD STUFF
-		
+
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			if (!c.color.equals(AbstractCardEnum.DUELIST_SPECIAL))
@@ -1474,19 +1474,19 @@ public class DuelistCardLibrary
 					DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					if (!c.type.equals(CardType.POWER)) { DuelistMod.rareNonPowers.add((DuelistCard) c.makeStatEquivalentCopy()); }
 				}
-				
+
 				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				}
-				
+
 				else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 				{
 					DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 					DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				}
-				
+
 				if (c.type.equals(CardType.POWER))
 				{
 					DuelistMod.allPowers.add((DuelistCard)c.makeStatEquivalentCopy());
@@ -1499,14 +1499,14 @@ public class DuelistCardLibrary
 				{
 					DuelistMod.nonPowers.add((DuelistCard)c.makeStatEquivalentCopy());
 				}
-				
+
 				if (c.hasTag(Tags.METRONOME))
 				{
 					DuelistMod.metronomes.add(c.makeStatEquivalentCopy());
 				}
 			}
 		}
-		
+
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
 			config.setInt(DuelistMod.PROP_CARDS, DuelistMod.cardCount);
@@ -1515,7 +1515,7 @@ public class DuelistCardLibrary
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static ArrayList<AbstractCard> orbCardsForGeneration()
 	{
 		ArrayList<AbstractCard> toReturn = new ArrayList<AbstractCard>();
@@ -1555,7 +1555,7 @@ public class DuelistCardLibrary
 		toReturn.add(new SunOrbCard()); 
 		return toReturn;
 	}
-	
+
 	public static void setupOrbCards()
 	{
 
@@ -1603,7 +1603,7 @@ public class DuelistCardLibrary
 		DuelistMod.orbCards.add(new LightMillenniumOrbCard()); 
 		DuelistMod.orbCards.add(new DarkMillenniumOrbCard()); 
 		DuelistMod.orbCards.add(new AnticrystalOrbCard()); 
-		
+
 		for (DuelistCard o : DuelistMod.orbCards) 
 		{ 
 			DuelistMod.orbCardMap.put(o.name, o); 
@@ -1619,7 +1619,7 @@ public class DuelistCardLibrary
 		{ 
 			DuelistMod.summonMap.put(c.originalName, c);	
 		}
-		
+
 		DuelistMod.summonMap.put("Great Moth", new GreatMoth());
 		DuelistMod.summonMap.put("Summoner Token", new Token());	
 		DuelistMod.summonMap.put("Buffer Token", new Token());		
@@ -1661,7 +1661,6 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Cocoon Token", new CocoonToken());
 		DuelistMod.summonMap.put("Potion Token", new PotionToken());
 		DuelistMod.summonMap.put("Pot Token", new PotionToken());
-		DuelistMod.summonMap.put("God Token", new GodToken());
 		DuelistMod.summonMap.put("Glitch Token", new GlitchToken());
 		DuelistMod.summonMap.put("Anubis Token", new AnubisToken());
 		DuelistMod.summonMap.put("Blood Token", new BloodToken());
@@ -1676,8 +1675,17 @@ public class DuelistCardLibrary
 		DuelistMod.summonMap.put("Entrench Token", new EntrenchToken());
 		DuelistMod.summonMap.put("Flux Token", new FluxToken());
 		DuelistMod.summonMap.put("Megaglitch Token", new MegaGlitchToken());
+		DuelistMod.summonMap.put("Burn Token", new BurnToken());
+		DuelistMod.summonMap.put("Robot Token", new RobotToken());
+		DuelistMod.summonMap.put("Grease Token", new GreaseToken());
+		DuelistMod.summonMap.put("Freeze Token", new FreezeToken());
+		DuelistMod.summonMap.put("Armored Token", new ArmoredToken());
+		DuelistMod.summonMap.put("Metallic Token", new MetallicToken());
+		DuelistMod.summonMap.put("Ancient Token", new AncientToken());
+		DuelistMod.summonMap.put("Focus Token", new FocusToken());
+		DuelistMod.summonMap.put("Trap Token", new TrapToken());
 	}
-	
+
 	public static ArrayList<DuelistCard> getAllDuelistTokens()
 	{
 		ArrayList<DuelistCard> tokens = new ArrayList<DuelistCard>();
@@ -1709,7 +1717,6 @@ public class DuelistCardLibrary
 		tokens.add(new GoldToken());
 		tokens.add(new MagnetToken());
 		tokens.add(new CocoonToken());
-		tokens.add(new GodToken());
 		tokens.add(new PotionToken());
 		tokens.add(new GlitchToken());
 		tokens.add(new AnubisToken());
@@ -1733,17 +1740,33 @@ public class DuelistCardLibrary
 		tokens.add(new EntrenchToken());
 		tokens.add(new FluxToken());
 		tokens.add(new MegaGlitchToken());
+		tokens.add(new FreezeToken()); 
+		tokens.add(new BurnToken()); 
+		tokens.add(new RobotToken()); 
+		tokens.add(new GreaseToken()); 
+		tokens.add(new ArmoredToken()); 
+		tokens.add(new MetallicToken()); 
+		tokens.add(new AncientToken()); 
+		tokens.add(new FocusToken()); 
+		tokens.add(new TrapToken()); 
 		return tokens;
 	}
-	
+
 	public static ArrayList<DuelistCard> getTokensForCombat()
 	{
-		return getTokensForCombat(false, false, true, false, false);
+		return getTokensForCombat(false, false, true, false, false, true);
 	}
-	
-	public static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon)
+
+	public static ArrayList<DuelistCard> getTokensForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
 	{
-		ArrayList<DuelistCard> tokens = new ArrayList<DuelistCard>();
+		ArrayList<DuelistCard> tokens = new ArrayList<>();
+		ArrayList<DuelistCard> superRareTokens = new ArrayList<>();
+		if (Util.deckIs("Machine Deck"))
+		{
+			superRareTokens.add(new RobotToken()); 
+			superRareTokens.add(new AncientToken()); 
+		}
+
 		tokens.add(new AnubisToken());
 		tokens.add(new AquaToken());
 		tokens.add(new BloodToken());
@@ -1752,15 +1775,11 @@ public class DuelistCardLibrary
 		tokens.add(new DamageToken());
 		tokens.add(new DragonToken());
 		tokens.add(new DragonicToken());
-		tokens.add(new GodToken());
-		tokens.add(new HaneToken());
-		tokens.add(new InsectToken());		
+		tokens.add(new HaneToken());				
 		tokens.add(new KuribohToken());
 		tokens.add(new MachineToken());
 		tokens.add(new MegatypeToken());		
-		tokens.add(new OrbToken());		
-		tokens.add(new PlantToken());
-		tokens.add(new PredaplantToken());
+		tokens.add(new OrbToken());			
 		tokens.add(new PuzzleToken());
 		tokens.add(new RockToken());		
 		tokens.add(new SpellcasterToken());
@@ -1773,7 +1792,13 @@ public class DuelistCardLibrary
 		tokens.add(new UnderdogToken());		
 		tokens.add(new ZombieToken());		
 		tokens.add(new TimeToken()); 
-		tokens.add(new EntrenchToken()); 
+		tokens.add(new EntrenchToken()); 		
+		tokens.add(new FreezeToken()); 
+		tokens.add(new BurnToken()); 
+		tokens.add(new ArmoredToken());
+		tokens.add(new MetallicToken());
+		tokens.add(new FocusToken()); 
+		tokens.add(new TrapToken()); 
 		if (Util.deckIs("Fiend Deck")) 
 		{ 
 			tokens.add(new FiendToken()); 
@@ -1783,6 +1808,9 @@ public class DuelistCardLibrary
 		{
 			tokens.add(new NatureToken());
 			tokens.add(new NaturiaToken()); 
+			tokens.add(new PlantToken());
+			tokens.add(new PredaplantToken());
+			tokens.add(new InsectToken());
 		}
 		if (Util.deckIs("Warrior Deck")) 
 		{ 
@@ -1796,6 +1824,7 @@ public class DuelistCardLibrary
 			tokens.add(new GlitchToken()); 
 			tokens.add(new BlastToken());
 			tokens.add(new FluxToken());
+			tokens.add(new GreaseToken()); 
 			if (DuelistMod.quicktimeEventsAllowed)
 			{
 				tokens.add(new MegaGlitchToken());
@@ -1811,27 +1840,31 @@ public class DuelistCardLibrary
 		{ 
 			tokens.add(new ExplosiveToken());
 			tokens.add(new SuperExplodingToken());
-			tokens.add(new PlagueToken());
+			if (Util.deckIs("Zombie Deck")) { tokens.add(new PlagueToken()); }
 		}
-		
+		if (superRare && superRareTokens.size() > 0)
+		{
+			int superRoll = AbstractDungeon.cardRandomRng.random(1, 10);
+			if (superRoll == 1) { tokens.addAll(superRareTokens); }
+		}
 		if (AbstractDungeon.player.hasPower(WonderGaragePower.POWER_ID) || AbstractDungeon.player.hasPower(MasterRealityPower.POWER_ID))
 		{
 			for (AbstractCard c : tokens) { c.upgrade(); }
 		}
 		return tokens;
 	}
-	
+
 	public static DuelistCard getRandomTokenForCombat()
 	{
-		return getRandomTokenForCombat(false, false, true, false, false);
+		return getRandomTokenForCombat(false, false, true, false, false, true);
 	}
-	
-	public static DuelistCard getRandomTokenForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon)
+
+	public static DuelistCard getRandomTokenForCombat(boolean potion, boolean relic, boolean badTokens, boolean exodia, boolean toon, boolean superRare)
 	{
-		ArrayList<DuelistCard> tokens = getTokensForCombat(potion, relic, badTokens, exodia, toon);
+		ArrayList<DuelistCard> tokens = getTokensForCombat(potion, relic, badTokens, exodia, toon, superRare);
 		return tokens.get(AbstractDungeon.cardRandomRng.random(tokens.size() - 1));
 	}
-	
+
 	public static AbstractCard getRandomDuelistCurseUnseeded()
 	{
 		if (DuelistMod.curses.size() > 0)
@@ -1843,7 +1876,7 @@ public class DuelistCardLibrary
 			return CardLibrary.getCurse();
 		}
 	}
-	
+
 	public static AbstractCard getRandomDuelistCurse()
 	{
 		if (DuelistMod.curses.size() > 0)
@@ -1855,7 +1888,7 @@ public class DuelistCardLibrary
 			return CardLibrary.getCurse();
 		}
 	}
-	
+
 	public static AbstractCard getRandomMetronome()
 	{
 		Util.log("Calling getRandomMetronome()");
@@ -1870,83 +1903,83 @@ public class DuelistCardLibrary
 		mets.add(new UncommonMetronome());
 		return mets.get(AbstractDungeon.cardRandomRng.random(mets.size() - 1));
 	}
-	
+
 	public static void setupMyCardsDebug(String poolName)
 	{
 		switch (poolName)
 		{
-			case "Standard":
-				for (AbstractCard c : StandardPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Dragon":
-				for (AbstractCard c : DragonPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Spellcaster":
-				for (AbstractCard c : SpellcasterPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Nature":
-				for (AbstractCard c : NaturiaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Aqua":
-				for (AbstractCard c : AquaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Ascended One":
-				for (AbstractCard c : AscendedOnePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Ascended Two":
-				for (AbstractCard c : AscendedTwoPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Ascended Three":
-				for (AbstractCard c : AscendedThreePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Pharaoh":
-				for (AbstractCard c : PharaohPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Basic":
-				for (AbstractCard c : BasicPool.fullBasic("Debug")) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Creator":
-				for (AbstractCard c : CreatorPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Exodia":
-				for (AbstractCard c : ExodiaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Fiend":
-				for (AbstractCard c : FiendPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Giant":
-				for (AbstractCard c : GiantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Increment":
-				for (AbstractCard c : IncrementPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Insect":
-				for (AbstractCard c : InsectPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Machine":
-				for (AbstractCard c : MachinePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Megatype":
-				for (AbstractCard c : MegatypePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Ojama":
-				for (AbstractCard c : OjamaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Plant":
-				for (AbstractCard c : PlantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Predaplant":
-				for (AbstractCard c : PredaplantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Toon":
-				for (AbstractCard c : ToonPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Warrior":
-				for (AbstractCard c : WarriorPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
-			case "Zombie":
-				for (AbstractCard c : ZombiePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
-				break;
+		case "Standard":
+			for (AbstractCard c : StandardPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Dragon":
+			for (AbstractCard c : DragonPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Spellcaster":
+			for (AbstractCard c : SpellcasterPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Nature":
+			for (AbstractCard c : NaturiaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Aqua":
+			for (AbstractCard c : AquaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Ascended One":
+			for (AbstractCard c : AscendedOnePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Ascended Two":
+			for (AbstractCard c : AscendedTwoPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Ascended Three":
+			for (AbstractCard c : AscendedThreePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Pharaoh":
+			for (AbstractCard c : PharaohPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Basic":
+			for (AbstractCard c : BasicPool.fullBasic("Debug")) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Creator":
+			for (AbstractCard c : CreatorPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Exodia":
+			for (AbstractCard c : ExodiaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Fiend":
+			for (AbstractCard c : FiendPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Giant":
+			for (AbstractCard c : GiantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Increment":
+			for (AbstractCard c : IncrementPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Insect":
+			for (AbstractCard c : InsectPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Machine":
+			for (AbstractCard c : MachinePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Megatype":
+			for (AbstractCard c : MegatypePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Ojama":
+			for (AbstractCard c : OjamaPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Plant":
+			for (AbstractCard c : PlantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Predaplant":
+			for (AbstractCard c : PredaplantPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Toon":
+			for (AbstractCard c : ToonPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Warrior":
+			for (AbstractCard c : WarriorPool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
+		case "Zombie":
+			for (AbstractCard c : ZombiePool.deck()) { if (c instanceof DuelistCard) { DuelistMod.myCards.add((DuelistCard) c); }}
+			break;
 		}
 		DuelistMod.curses.add(new GravekeeperCurse());
 		DuelistMod.curses.add(new CurseAnubis());
@@ -1964,7 +1997,7 @@ public class DuelistCardLibrary
 			DuelistMod.typeCardMap_NameToString.put(localCardStrings.NAME, t);
 			DuelistMod.typeCardMap_DESC.put(t, localCardStrings.DESCRIPTION);
 		}
-		
+
 		DuelistMod.typeCardMap_NAME.put(Tags.MEGATYPED, "Megatyped");
 		DuelistMod.typeCardMap_NameToString.put("Megatyped", Tags.MEGATYPED);
 
@@ -1973,11 +2006,11 @@ public class DuelistCardLibrary
 		{
 			DuelistMod.cardCount++;
 		}
-		
+
 		// Add tokens to 'The Duelist' section of compendium
 		if (!DuelistMod.addTokens) { for (DuelistCard c : getAllDuelistTokens()) { if (c.rarity.equals(CardRarity.SPECIAL)) { DuelistMod.myCards.add(c); }}}
-		
-		
+
+
 		// DEBUG CARD STUFF
 		if (DuelistMod.debug)
 		{
@@ -1998,7 +2031,7 @@ public class DuelistCardLibrary
 				}
 			}
 		}
-		
+
 		if (DuelistMod.addTokens)
 		{
 			DuelistMod.myCards.addAll(getAllDuelistTokens());
@@ -2010,27 +2043,27 @@ public class DuelistCardLibrary
 			for (DuelistCard orbCard : DuelistMod.orbCards) { DuelistMod.myCards.add(orbCard); }
 		}
 		// END DEBUG CARD STUFF
-		
+
 		for (DuelistCard c : DuelistMod.myCards)
 		{
 			if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.RARE) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.rareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
-			
+
 			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.UNCOMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.uncommonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
-			
+
 			else if (!c.rarity.equals(CardRarity.BASIC) && !c.rarity.equals(CardRarity.SPECIAL) && c.rarity.equals(CardRarity.COMMON) && !c.hasTag(Tags.NEVER_GENERATE) && !c.hasTag(Tags.TOON) && !c.hasTag(Tags.EXODIA) && !c.hasTag(Tags.OJAMA))
 			{
 				DuelistMod.commonCards.add((DuelistCard) c.makeStatEquivalentCopy());
 				DuelistMod.nonRareCards.add((DuelistCard) c.makeStatEquivalentCopy());
 			}
 		}
-		
+
 		try {
 			SpireConfig config = new SpireConfig("TheDuelist", "DuelistConfig",DuelistMod.duelistDefaults);
 			config.setInt(DuelistMod.PROP_CARDS, DuelistMod.cardCount);
@@ -2039,7 +2072,7 @@ public class DuelistCardLibrary
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 
 }
