@@ -34,7 +34,7 @@
     <!-- Dependency Properties-->
 
     <dependencies>
-        <dependency>
+   		 <dependency>
             <groupId>com.megacrit.cardcrawl</groupId>
             <artifactId>slaythespire</artifactId>
             <version>${SlayTheSpire.version}</version>
