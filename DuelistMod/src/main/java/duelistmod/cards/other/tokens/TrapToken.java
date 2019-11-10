@@ -50,12 +50,12 @@ public class TrapToken extends TokenCard
     	if (upgraded)
     	{
     		AbstractCard randTrap = DuelistCard.returnTrulyRandomFromSet(Tags.TRAP); 
-    		this.addToBot(new RandomizedHandAction(randTrap)); 
+    		this.addToBot(new RandomizedHandAction(randTrap, true)); 
     	}
     	else if (roulette()) 
     	{ 
     		AbstractCard randTrap = DuelistCard.returnTrulyRandomFromSet(Tags.TRAP); 
-    		this.addToBot(new RandomizedHandAction(randTrap)); 
+    		this.addToBot(new RandomizedHandAction(randTrap, true)); 
     	}
     }
     @Override public AbstractCard makeCopy() { return new TrapToken(); }

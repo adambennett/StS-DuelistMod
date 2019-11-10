@@ -31,7 +31,7 @@ public class BombBottle extends DuelistPotion {
         this.dynamicPot = this.getPotency();
         
         // Initialize the Description
-        this.description = DESCRIPTIONS[0] + this.dynamicPot + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + 2 + DESCRIPTIONS[1];
         
        // Do you throw this potion at an enemy or do you just consume it.
         this.isThrown = true;
@@ -87,6 +87,7 @@ public class BombBottle extends DuelistPotion {
     @Override
     public int getPotency(final int potency) {
     	int pot = dynamicPot;
+    	if (pot == 0) { pot = 2; }
     	return pot;
     }
     

@@ -235,6 +235,10 @@
         "NAME": "Grease Potion",
         "DESCRIPTIONS": ["Apply #b", " #yGrease."]
 },
+"theDuelist:FluxPotion": {
+        "NAME": "Flux Potion",
+        "DESCRIPTIONS": ["Gain #b", " #yFlux."]
+},
 "theDuelist:StunPotion": {
         "NAME": "Stun Potion",
         "DESCRIPTIONS": ["#yStun an enemy."]

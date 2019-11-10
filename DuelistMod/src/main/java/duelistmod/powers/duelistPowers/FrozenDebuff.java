@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import duelistmod.DuelistMod;
 import duelistmod.abstracts.*;
 
-public class FrozenDebuff extends NoStackDuelistPower
+public class FrozenDebuff extends DuelistPower
 {	
 	public AbstractCreature source;
 
@@ -28,6 +28,7 @@ public class FrozenDebuff extends NoStackDuelistPower
         this.canGoNegative = false;
         this.img = new Texture(IMG);
         this.source = source;
+        this.amount = 0;
 		updateDescription(); 
 	}
 	
@@ -56,6 +57,7 @@ public class FrozenDebuff extends NoStackDuelistPower
 	@Override
 	public void updateDescription()
 	{
+		this.amount = 0;
 		this.description = DESCRIPTIONS[0]; 
 	}
 

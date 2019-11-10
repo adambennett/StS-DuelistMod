@@ -2713,9 +2713,9 @@
 		"UPGRADE_DESCRIPTION": "Warrior NL Summon !duelist:SUMM! NL Deal !D! damage. NL Gain a random debuff with !M! turns."
 	},
 	"theDuelist:MagicalStone": {
-		"DESCRIPTION": "Arcane NL Retain NL Draw !M! Spells.",
+		"DESCRIPTION": "Retain NL Arcane NL Draw !M! Spells.",
 		"NAME": "Magical Stone",
-		"UPGRADE_DESCRIPTION": "Arcane NL Retain NL Draw !M! Spells."
+		"UPGRADE_DESCRIPTION": "Retain NL Arcane NL Draw !M! Spells."
 	},
 	"theDuelist:CastleToken": {
 		"DESCRIPTION": "Summon !duelist:SUMM! NL Roulette: Draw !M! Fiend.",
